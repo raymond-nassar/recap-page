@@ -191,7 +191,7 @@ test('native producer outputs and job deadlines bind every package consumer', ()
       return jobs[0].match(new RegExp(` {6}- name: ${escaped}\\r?\\n[\\s\\S]*?(?=\\r?\\n {6}- name:|$)`))?.[0] ?? '';
     };
     const diagnostic = "github.event_name == 'workflow_dispatch' && inputs.diagnostic_only == true";
-    const consoleDiagnostic = `${diagnostic} && inputs.diagnostic_target != 'handles'`;
+    const consoleDiagnostic = `${diagnostic} && !(inputs.diagnostic_target == 'handles' || inputs.diagnostic_target == 'f01-smoke')`;
     const handleDiagnostic = `${diagnostic} && inputs.diagnostic_target == 'handles'`;
     for (const name of [
       'Install the checksum-verified diagnostic package tool',
@@ -205,11 +205,17 @@ test('native producer outputs and job deadlines bind every package consumer', ()
     assert.equal(handleStep.match(/if: \$\{\{ (.+) \}\}/)?.[1], handleDiagnostic);
     assert.match(handleStep, /native-startup-proof\.ps1 -Diagnostic -DiagnosticTarget handles/);
     assert.doesNotMatch(handleStep, /msix:pack|msix:inspect|run-wack|-Negatives/);
-    assert.match(jobs[0], /\$env:DIAGNOSTIC_TARGET -eq 'handles' -and \$env:DIAGNOSTIC_ONLY -ne 'true'/);
+    assert.match(jobs[0], /\$env:DIAGNOSTIC_TARGET -in @\('handles', 'f01-smoke'\) -and \$env:DIAGNOSTIC_ONLY -ne 'true'/);
+    const smokeStep = nativeStep('Run bounded F01 and wrapper smoke');
+    assert.equal(smokeStep.match(/if: \$\{\{ (.+) \}\}/)?.[1], `${diagnostic} && inputs.diagnostic_target == 'f01-smoke'`);
+    assert.match(smokeStep, /timeout-minutes: 6/);
+    assert.match(smokeStep, /-DiagnosticTarget f01-smoke/);
+    assert.doesNotMatch(smokeStep, /msix:pack|msix:inspect|run-wack|-Negatives/);
     for (const [event, inputs, expectedConsole, expectedHandle] of [
       ['workflow_dispatch', { diagnostic_only: true }, true, false],
       ['workflow_dispatch', { diagnostic_only: true, diagnostic_target: 'console-wack' }, true, false],
       ['workflow_dispatch', { diagnostic_only: true, diagnostic_target: 'handles' }, false, true],
+      ['workflow_dispatch', { diagnostic_only: true, diagnostic_target: 'f01-smoke' }, false, false],
       ['workflow_dispatch', { diagnostic_only: false, diagnostic_target: 'handles' }, false, false],
       ['pull_request', { diagnostic_only: true, diagnostic_target: 'handles' }, false, false],
     ]) {
@@ -250,4 +256,15 @@ test('native artifact transfer pins exact inputs and refuses digest mismatches',
   ]);
   assert.equal((workflow.match(/retention-days: 1/g) ?? []).length, 2);
   assert.doesNotMatch(workflow, /merge-multiple: true|include-hidden-files: true|overwrite: true/);
+  const proof = readFileSync(new URL('../scripts/native-startup-proof.ps1', import.meta.url), 'utf8');
+  assert.doesNotMatch(proof, /ReadToEndAsync|\.WaitForExit\(\)/);
+  assert.match(proof, /\$entry\.Task\.IsCompleted/);
+  assert.match(proof, /FixtureJob\]::new/);
+  assert.ok(proof.indexOf('$job.Assign($process.Handle)') < proof.indexOf("WriteAllText($go, 'contained'"));
+  assert.match(proof, /Write-Host \$line/);
+  assert.match(proof, /wrapper-held-writer/);
+  assert.match(proof, /wrapper-stall/);
+  assert.match(proof, /held-writer-drain/);
+  assert.match(proof, /RestoreContrast\(\$contrast\)/);
+  assert.match(proof, /\$limit = 290000/);
 });

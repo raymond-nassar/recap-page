@@ -19,6 +19,7 @@ export const PROOF_INPUTS = Object.freeze([
   ...NATIVE_INPUTS,
   'scripts/native-startup-proof.ps1',
   'test/native/Launcher.fixture.mjs.in',
+  'test/native/ProofHost.cs',
   'test/native/StartupObserver.h',
   'test/native/StartupTests.cpp',
   'test/native/startup-frames.txt',

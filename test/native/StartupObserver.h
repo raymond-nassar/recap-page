@@ -9,6 +9,7 @@
 #include <climits>
 #include <cstring>
 #include <map>
+#include <memory>
 #include <mutex>
 #include <set>
 #include <thread>
@@ -147,21 +148,30 @@ struct ConsoleFact {
 };
 
 class Observer {
+    struct ProcessCapture {
+        std::mutex mutex_;
+        std::vector<ProcessEvent> processes_;
+        std::map<DWORD, std::wstring> images_;
+        std::atomic<bool> lost_{ false };
+        TRACEHANDLE consumer_ = INVALID_PROCESSTRACE_HANDLE;
+    };
     inline static thread_local Observer* current_ = nullptr;
+    std::shared_ptr<ProcessCapture> capture_ = std::make_shared<ProcessCapture>();
     std::wstring name_;
     std::vector<unsigned char> properties_;
-    TRACEHANDLE session_ = 0, consumer_ = INVALID_PROCESSTRACE_HANDLE;
+    TRACEHANDLE session_ = 0;
+    TRACEHANDLE& consumer_ = capture_->consumer_;
     std::thread consumerThread_;
     HWINEVENTHOOK consoleHook_ = nullptr;
     HWINEVENTHOOK windowHook_ = nullptr;
-    std::mutex mutex_;
-    std::vector<ProcessEvent> processes_;
-    std::map<DWORD, std::wstring> images_;
+    std::mutex& mutex_ = capture_->mutex_;
+    std::vector<ProcessEvent>& processes_ = capture_->processes_;
+    std::map<DWORD, std::wstring>& images_ = capture_->images_;
     std::vector<ConsoleFact> consoles_;
     std::vector<WindowFact> windows_;
     std::map<uintptr_t, WindowFact> windowMetadata_;
     std::map<DWORD, std::wstring> roots_;
-    std::atomic<bool> lost_{ false };
+    std::atomic<bool>& lost_ = capture_->lost_;
     std::atomic<bool> clockValid_{ true };
     bool stopped_ = false;
     bool windowObservation_ = false;
@@ -206,7 +216,7 @@ class Observer {
         return result;
     }
     static void WINAPI record(EVENT_RECORD* event) {
-        auto* self = static_cast<Observer*>(event->UserContext);
+        auto* self = static_cast<ProcessCapture*>(event->UserContext);
         if (!self) return;
         try {
             const auto pidBytes = property(event, L"ProcessId");
@@ -310,7 +320,7 @@ public:
         log.ProcessTraceMode = PROCESS_TRACE_MODE_REAL_TIME | PROCESS_TRACE_MODE_EVENT_RECORD;
         if (windowObservation_) log.ProcessTraceMode |= PROCESS_TRACE_MODE_RAW_TIMESTAMP;
         log.EventRecordCallback = record;
-        log.Context = this;
+        log.Context = capture_.get();
         consumer_ = OpenTraceW(&log);
         if (consumer_ == INVALID_PROCESSTRACE_HANDLE) {
             ControlTraceW(session_, name_.c_str(), properties(), EVENT_TRACE_CONTROL_STOP);
@@ -337,9 +347,9 @@ public:
             }
         }
         try {
-            consumerThread_ = std::thread([this] {
-                const auto status = ProcessTrace(&consumer_, 1, nullptr, nullptr);
-                if (status != ERROR_SUCCESS && status != ERROR_CANCELLED) lost_.store(true);
+            consumerThread_ = std::thread([state = capture_] {
+                const auto status = ProcessTrace(&state->consumer_, 1, nullptr, nullptr);
+                if (status != ERROR_SUCCESS && status != ERROR_CANCELLED) state->lost_.store(true);
             });
         } catch (const std::system_error&) {
             if (windowHook_) UnhookWinEvent(windowHook_);
@@ -359,7 +369,21 @@ public:
         if (status != ERROR_SUCCESS) lost_.store(true);
         if (properties()->EventsLost || properties()->LogBuffersLost || properties()->RealTimeBuffersLost) lost_.store(true);
         if (status != ERROR_SUCCESS) CloseTrace(consumer_);
-        if (consumerThread_.joinable()) consumerThread_.join();
+        if (consumerThread_.joinable()) {
+            const auto deadline = GetTickCount64() + 2000;
+            auto wait = WaitForSingleObject(consumerThread_.native_handle(), 1000);
+            if (wait != WAIT_OBJECT_0) {
+                CloseTrace(consumer_);
+                const auto now = GetTickCount64();
+                wait = WaitForSingleObject(consumerThread_.native_handle(),
+                    now < deadline ? static_cast<DWORD>(deadline - now) : 0);
+            }
+            if (wait == WAIT_OBJECT_0) consumerThread_.join();
+            else {
+                lost_.store(true);
+                consumerThread_.detach();
+            }
+        }
         if (status == ERROR_SUCCESS) CloseTrace(consumer_);
         pump(0);
         if (consoleHook_ && !UnhookWinEvent(consoleHook_)) lost_.store(true);
@@ -417,6 +441,7 @@ public:
     }
     std::vector<DWORD> registeredRoots(const std::wstring& expected, size_t count, DWORD exitCode) {
         check(stopped_, "registered roots require completed capture");
+        assertHealthy();
         std::vector<DWORD> roots;
         const auto events = processes();
         for (const auto& event : events) {

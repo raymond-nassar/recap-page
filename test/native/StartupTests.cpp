@@ -8,20 +8,62 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
+#include <type_traits>
 
 namespace fs = std::filesystem;
 using proof::check;
 
 namespace {
+std::ofstream* liveReport = nullptr;
+fs::path liveReportPath;
+
+void checkpoint(const char* edge, const char* stage) {
+    if (!liveReport) return;
+    *liveReport << "CHECK " << edge << " " << stage << " tick=" << GetTickCount64() << "\n";
+    liveReport->flush();
+}
+
+template<class Action>
+auto observed(const char* stage, Action action) {
+    checkpoint("ENTER", stage);
+    try {
+        if constexpr (std::is_void_v<decltype(action())>) {
+            action();
+            checkpoint("EXIT", stage);
+        } else {
+            auto result = action();
+            checkpoint("EXIT", stage);
+            return result;
+        }
+    } catch (const std::exception&) {
+        checkpoint("FAIL", stage);
+        throw;
+    }
+}
+
+DWORD_PTR sendChecked(HWND window, UINT message, WPARAM wparam = 0, LPARAM lparam = 0) {
+    check(window != nullptr && message < WM_USER, "unsupported cross-process message or window");
+    return observed("window-message", [&] {
+        DWORD_PTR result = 0;
+        SetLastError(ERROR_SUCCESS);
+        if (!SendMessageTimeoutW(window, message, wparam, lparam,
+                                SMTO_ABORTIFHUNG | SMTO_ERRORONEXIT, 2000, &result)) {
+            const auto error = GetLastError();
+            throw std::runtime_error("window message failed error=" + std::to_string(error));
+        }
+        return result;
+    });
+}
+
 struct StopResult {
     bool complete = false, terminationAttempted = false, terminationSucceeded = false;
     DWORD initialWait = WAIT_FAILED, finalWait = WAIT_FAILED, waitError = 0, terminationError = 0;
 };
 
 template<class Operations>
-StopResult stopOwned(Operations& operations) {
+StopResult stopOwned(Operations& operations, uint64_t timeout = recap::CleanupTimeout) {
     StopResult result;
-    const auto deadline = operations.now() + recap::CleanupTimeout;
+    const auto deadline = operations.now() + timeout;
     result.initialWait = operations.wait(0);
     result.finalWait = result.initialWait;
     if (result.initialWait == WAIT_OBJECT_0) { result.complete = true; return result; }
@@ -92,21 +134,28 @@ struct Child {
             throw std::runtime_error("owned exit query failed error=" + std::to_string(GetLastError()));
         return code;
     }
-    void stop() {
+    void stop(uint64_t timeout = recap::CleanupTimeout) {
+        checkpoint("ENTER", "owned-process-cleanup");
         ++stopCalls;
         if (!process) {
             check(pid == 0, "owned cleanup lost a retained process handle");
             cleanup.complete = true;
             cleanup.initialWait = cleanup.finalWait = WAIT_OBJECT_0;
+            checkpoint("EXIT", "owned-process-cleanup");
             return;
         }
-        if (cleanup.complete) { check(completed(), "previously completed owned handle is no longer signaled"); return; }
+        if (cleanup.complete) {
+            check(completed(), "previously completed owned handle is no longer signaled");
+            checkpoint("EXIT", "owned-process-cleanup");
+            return;
+        }
         StopOperations operations{ process.get() };
-        cleanup = stopOwned(operations);
+        cleanup = stopOwned(operations, timeout);
         if (!cleanup.complete)
             throw std::runtime_error("owned fixture cleanup failed pid=" + std::to_string(pid) +
                 " wait=" + std::to_string(cleanup.finalWait) + " wait_error=" + std::to_string(cleanup.waitError) +
                 " terminate_error=" + std::to_string(cleanup.terminationError));
+        checkpoint("EXIT", "owned-process-cleanup");
     }
 };
 
@@ -115,8 +164,10 @@ void start(Child& child, const std::wstring& executable, const std::wstring& arg
     auto command = recap::quoted(executable) + (arguments.empty() ? L"" : L" " + arguments);
     STARTUPINFOW startup{ sizeof(STARTUPINFOW) };
     PROCESS_INFORMATION process{};
-    check(CreateProcessW(executable.c_str(), command.data(), nullptr, nullptr, inherit, flags,
-        nullptr, nullptr, &startup, &process) != FALSE, "fixture process creation failed");
+    observed("fixture-process-create", [&] {
+        check(CreateProcessW(executable.c_str(), command.data(), nullptr, nullptr, inherit, flags,
+            nullptr, nullptr, &startup, &process) != FALSE, "fixture process creation failed");
+    });
     child.process = recap::Handle(process.hProcess);
     child.pid = process.dwProcessId;
     child.cleanup = {};
@@ -163,17 +214,15 @@ HWND windowFor(DWORD pid) {
 
 std::wstring controlText(HWND control) {
     check(control != nullptr, "native control is missing");
-    const auto length = static_cast<size_t>(SendMessageW(control, WM_GETTEXTLENGTH, 0, 0));
+    const auto length = static_cast<size_t>(sendChecked(control, WM_GETTEXTLENGTH));
     check(length < 256 * 1024, "native text exceeded its display bound");
     std::vector<wchar_t> buffer(length + 1);
-    SendMessageW(control, WM_GETTEXT, buffer.size(), reinterpret_cast<LPARAM>(buffer.data()));
+    sendChecked(control, WM_GETTEXT, buffer.size(), reinterpret_cast<LPARAM>(buffer.data()));
     return { buffer.data() };
 }
 
 void responsive(HWND window) {
-    DWORD_PTR result = 0;
-    check(SendMessageTimeoutW(window, WM_NULL, 0, 0, SMTO_ABORTIFHUNG, 2000, &result) != 0,
-          "native message loop did not respond");
+    sendChecked(window, WM_NULL);
 }
 
 bool sameKernelObject(HANDLE first, HANDLE second) {
@@ -258,10 +307,12 @@ struct DuplicationFact {
 };
 
 DuplicationFact duplicateFact(HANDLE sourceProcess, HANDLE source, HANDLE targetProcess, DWORD options) {
+    checkpoint("ENTER", "handle-duplicate");
     DuplicationFact fact;
     SetLastError(ERROR_SUCCESS);
     fact.result = DuplicateHandle(sourceProcess, source, targetProcess, &fact.handle, 0, FALSE, options);
     fact.error = GetLastError();
+    checkpoint("EXIT", "handle-duplicate");
     return fact;
 }
 
@@ -271,16 +322,19 @@ struct ComparisonFact {
 };
 
 ComparisonFact compareFact(HANDLE original, HANDLE copy) {
+    checkpoint("ENTER", "handle-compare");
     ComparisonFact fact;
     DWORD originalFlags = 0, copyFlags = 0;
     if (!GetHandleInformation(original, &originalFlags) || !GetHandleInformation(copy, &copyFlags)) {
         fact.error = GetLastError();
+        checkpoint("FAIL", "handle-compare");
         return fact;
     }
     SetLastError(ERROR_SUCCESS);
     fact.equal = sameKernelObject(original, copy);
     fact.error = GetLastError();
     fact.known = fact.equal || fact.error == ERROR_SUCCESS || fact.error == ERROR_NOT_SAME_OBJECT;
+    checkpoint("EXIT", "handle-compare");
     return fact;
 }
 
@@ -402,51 +456,69 @@ template<class T> struct Com {
     Com() = default;
     Com(const Com&) = delete;
     Com& operator=(const Com&) = delete;
-    ~Com() { if (value) value->Release(); }
+    ~Com() {
+        if (value) {
+            checkpoint("ENTER", "com-release");
+            value->Release();
+            checkpoint("EXIT", "com-release");
+        }
+    }
     T** put() { return &value; }
     T* operator->() { return value; }
 };
 
+void automationClient(Com<IUIAutomation2>& automation) {
+    check(SUCCEEDED(observed("uia-create", [&] {
+        return CoCreateInstance(CLSID_CUIAutomation8, nullptr, CLSCTX_INPROC_SERVER,
+                                IID_PPV_ARGS(automation.put()));
+    })), "UI Automation timeout-capable client unavailable");
+    check(SUCCEEDED(observed("uia-connection-timeout", [&] { return automation->put_ConnectionTimeout(2000); })),
+          "UI Automation connection timeout unavailable");
+    check(SUCCEEDED(observed("uia-transaction-timeout", [&] { return automation->put_TransactionTimeout(2000); })),
+          "UI Automation transaction timeout unavailable");
+}
+
 void accessible(HWND window, bool failed) {
     responsive(window);
-    Com<IUIAutomation> automation;
-    check(SUCCEEDED(CoCreateInstance(CLSID_CUIAutomation, nullptr, CLSCTX_INPROC_SERVER,
-        IID_PPV_ARGS(automation.put()))), "UI Automation could not start");
+    Com<IUIAutomation2> automation;
+    automationClient(automation);
     for (const auto& item : std::vector<std::pair<int, std::wstring>>{
         {201, L"RECAP PAGE!"}, {203, failed ? L"Close" : L"Hide startup window"}
     }) {
         Com<IUIAutomationElement> element;
-        check(SUCCEEDED(automation->ElementFromHandle(GetDlgItem(window, item.first), element.put())),
+        check(SUCCEEDED(observed("uia-element", [&] { return automation->ElementFromHandle(GetDlgItem(window, item.first), element.put()); })),
               "native accessible element missing");
         BSTR name = nullptr;
-        check(SUCCEEDED(element->get_CurrentName(&name)), "native accessible name unavailable");
+        check(SUCCEEDED(observed("uia-name", [&] { return element->get_CurrentName(&name); })), "native accessible name unavailable");
         const std::wstring actual(name ? name : L"");
         SysFreeString(name);
         check(actual == item.second, "native accessible name differed");
         CONTROLTYPEID type = 0;
-        check(SUCCEEDED(element->get_CurrentControlType(&type)), "native accessible role unavailable");
+        check(SUCCEEDED(observed("uia-role", [&] { return element->get_CurrentControlType(&type); })), "native accessible role unavailable");
         check(type == (item.first == 203 ? UIA_ButtonControlTypeId : UIA_TextControlTypeId),
               "native accessible role differed");
     }
     if (failed) {
         Com<IUIAutomationElement> element;
-        check(SUCCEEDED(automation->ElementFromHandle(GetDlgItem(window, 204), element.put())),
+        check(SUCCEEDED(observed("uia-error-element", [&] { return automation->ElementFromHandle(GetDlgItem(window, 204), element.put()); })),
               "error text is inaccessible");
         Com<IUIAutomationValuePattern> value;
-        check(SUCCEEDED(element->GetCurrentPatternAs(UIA_ValuePatternId, IID_PPV_ARGS(value.put()))),
+        check(SUCCEEDED(observed("uia-value-pattern", [&] { return element->GetCurrentPatternAs(UIA_ValuePatternId, IID_PPV_ARGS(value.put())); })),
               "error text has no accessible value");
         BOOL readonly = FALSE;
-        check(SUCCEEDED(value->get_CurrentIsReadOnly(&readonly)) && readonly, "error text is not read-only");
+        check(SUCCEEDED(observed("uia-readonly", [&] { return value->get_CurrentIsReadOnly(&readonly); })) && readonly, "error text is not read-only");
         Com<IUIAutomationTextPattern> text;
-        check(SUCCEEDED(element->GetCurrentPatternAs(UIA_TextPatternId, IID_PPV_ARGS(text.put()))),
+        check(SUCCEEDED(observed("uia-text-pattern", [&] { return element->GetCurrentPatternAs(UIA_TextPatternId, IID_PPV_ARGS(text.put())); })),
               "error text cannot be selected");
         Com<IUIAutomationTextRange> range;
-        check(SUCCEEDED(text->get_DocumentRange(range.put())) && SUCCEEDED(range->Select()),
+        check(SUCCEEDED(observed("uia-document-range", [&] { return text->get_DocumentRange(range.put()); })) &&
+              SUCCEEDED(observed("uia-select-text", [&] { return range->Select(); })),
               "error text selection failed");
     }
 }
 
 void bounds(HWND window) {
+    checkpoint("ENTER", "control-bounds");
     RECT parent{};
     GetClientRect(window, &parent);
     POINT origin{ 0, 0 };
@@ -458,6 +530,7 @@ void bounds(HWND window) {
               child.right <= origin.x + parent.right && child.bottom <= origin.y + parent.bottom,
               "native control clipped outside window");
     }
+    checkpoint("EXIT", "control-bounds");
 }
 
 COLORREF capture(HWND window, const fs::path& destination) {
@@ -474,7 +547,7 @@ COLORREF capture(HWND window, const fs::path& destination) {
     const auto bitmap = CreateDIBSection(dc, &info, DIB_RGB_COLORS, &data, nullptr, 0);
     check(bitmap && memory, "fixture window capture unavailable");
     const auto old = SelectObject(memory, bitmap);
-    const bool printed = PrintWindow(window, memory, PW_CLIENTONLY) != FALSE;
+    const bool printed = observed("print-window", [&] { return PrintWindow(window, memory, PW_CLIENTONLY) != FALSE; });
     const auto color = GetPixel(memory, 10, 10);
     const DWORD size = static_cast<DWORD>(rect.right * rect.bottom * 4);
     BITMAPFILEHEADER header{};
@@ -493,52 +566,127 @@ COLORREF capture(HWND window, const fs::path& destination) {
     return color;
 }
 
-void visual(HWND window, const fs::path& root, std::ofstream& report) {
+void visualOperation(HWND window, const fs::path& root, std::ofstream& report) {
+    checkpoint("ENTER", "visual-assertions");
     accessible(window, false);
     bounds(window);
     check(capture(window, root / L"startup-dark.bmp") == RGB(25, 25, 37), "ordinary startup surface is not dark");
-    const auto heading = GetDlgItem(window, 201);
-    LOGFONTW font{};
-    const auto handle = reinterpret_cast<HFONT>(SendMessageW(heading, WM_GETFONT, 0, 0));
-    check(GetObjectW(handle, sizeof(font), &font) != 0, "native selected font unavailable");
+    Com<IUIAutomation2> automation;
+    automationClient(automation);
+    Com<IUIAutomationElement> heading;
+    check(SUCCEEDED(observed("uia-font-element", [&] {
+        return automation->ElementFromHandle(GetDlgItem(window, 201), heading.put());
+    })), "font observation element unavailable");
+    Com<IUIAutomationTextPattern> text;
+    check(SUCCEEDED(observed("uia-font-pattern", [&] {
+        return heading->GetCurrentPatternAs(UIA_TextPatternId, IID_PPV_ARGS(text.put()));
+    })), "supported native font observation is unavailable");
+    Com<IUIAutomationTextRange> range;
+    check(SUCCEEDED(observed("uia-font-range", [&] { return text->get_DocumentRange(range.put()); })),
+          "native font range unavailable");
+    VARIANT font{};
+    VariantInit(&font);
+    const auto fontResult = observed("uia-font-name", [&] { return range->GetAttributeValue(UIA_FontNameAttributeId, &font); });
+    if (FAILED(fontResult) || font.vt != VT_BSTR || !font.bstrVal) {
+        VariantClear(&font);
+        throw std::runtime_error("supported native font attribute is unavailable");
+    }
+    const std::wstring family(font.bstrVal);
+    VariantClear(&font);
     std::string selectedFont;
-    for (const auto c : std::wstring(font.lfFaceName)) {
+    for (const auto c : family) {
         check(c >= 32 && c < 127, "selected font identity could not be recorded safely");
         selectedFont += static_cast<char>(c);
     }
     check(!selectedFont.empty(), "selected font identity was empty");
     report << "selected-font=" << selectedFont << "\n";
     HIGHCONTRASTW before{ sizeof(HIGHCONTRASTW), 0, nullptr };
-    check(SystemParametersInfoW(SPI_GETHIGHCONTRAST, sizeof(before), &before, 0) != FALSE, "high contrast unavailable");
+    check(observed("high-contrast-read", [&] {
+        return SystemParametersInfoW(SPI_GETHIGHCONTRAST, sizeof(before), &before, 0) != FALSE;
+    }), "high contrast unavailable");
     auto high = before;
     high.dwFlags |= HCF_HIGHCONTRASTON;
-    check(SystemParametersInfoW(SPI_SETHIGHCONTRAST, sizeof(high), &high, SPIF_SENDCHANGE) != FALSE,
+    check(observed("high-contrast-enable", [&] {
+        return SystemParametersInfoW(SPI_SETHIGHCONTRAST, sizeof(high), &high, 0) != FALSE;
+    }),
           "high contrast could not be enabled");
     try {
-        SendMessageW(window, WM_SETTINGCHANGE, 0, 0);
+        sendChecked(window, WM_SETTINGCHANGE);
         check(capture(window, root / L"startup-high-contrast.bmp") == GetSysColor(COLOR_WINDOW),
               "startup ignored high contrast");
         accessible(window, false);
     } catch (const std::exception& failure) {
-        if (!SystemParametersInfoW(SPI_SETHIGHCONTRAST, sizeof(before), &before, SPIF_SENDCHANGE))
+        if (!SystemParametersInfoW(SPI_SETHIGHCONTRAST, sizeof(before), &before, 0))
             throw std::runtime_error(std::string(failure.what()) + "; high contrast restoration failed");
         throw;
     }
-    check(SystemParametersInfoW(SPI_SETHIGHCONTRAST, sizeof(before), &before, SPIF_SENDCHANGE) != FALSE,
+    check(observed("high-contrast-restore", [&] {
+        return SystemParametersInfoW(SPI_SETHIGHCONTRAST, sizeof(before), &before, 0) != FALSE;
+    }),
           "high contrast could not be restored");
-    SendMessageW(window, WM_SETTINGCHANGE, 0, 0);
+    sendChecked(window, WM_SETTINGCHANGE);
     const auto originalDpi = GetDpiForWindow(window);
     RECT original{};
     GetWindowRect(window, &original);
     for (const UINT dpi : { 144u, 192u }) {
         RECT proposed{ original.left, original.top, original.left + MulDiv(640, dpi, 96),
                        original.top + MulDiv(340, dpi, 96) };
-        SendMessageW(window, WM_DPICHANGED, MAKEWPARAM(dpi, dpi), reinterpret_cast<LPARAM>(&proposed));
+        static_assert(WM_DPICHANGED < WM_USER);
+        // User32 marshals this system-message RECT; no foreign-process GDI handle is consumed.
+        observed("synthetic-dpi-message", [&] {
+            sendChecked(window, WM_DPICHANGED, MAKEWPARAM(dpi, dpi), reinterpret_cast<LPARAM>(&proposed));
+        });
         bounds(window);
         responsive(window);
     }
-    SendMessageW(window, WM_DPICHANGED, MAKEWPARAM(originalDpi, originalDpi), reinterpret_cast<LPARAM>(&original));
+    sendChecked(window, WM_DPICHANGED, MAKEWPARAM(originalDpi, originalDpi), reinterpret_cast<LPARAM>(&original));
     report << "dpi-message-cases=2;kind=emulated\n";
+    checkpoint("EXIT", "visual-assertions");
+}
+
+void visual(HWND window, const fs::path& root, std::ofstream&) {
+    checkpoint("ENTER", "visual-worker");
+    DWORD owner = 0;
+    check(GetWindowThreadProcessId(window, &owner) != 0 && owner != 0, "visual target ownership unavailable");
+    HIGHCONTRASTW before{ sizeof(HIGHCONTRASTW), 0, nullptr };
+    check(observed("visual-settings-backup", [&] {
+        return SystemParametersInfoW(SPI_GETHIGHCONTRAST, sizeof(before), &before, 0) != FALSE;
+    }), "visual rollback state unavailable");
+    RECT rectangle{};
+    check(GetWindowRect(window, &rectangle) != FALSE, "visual rollback rectangle unavailable");
+    const auto dpi = GetDpiForWindow(window);
+    Child worker;
+    const auto deadline = GetTickCount64() + 10000;
+    std::string failure;
+    try {
+        const auto args = L"--mode visual-worker --target-pid " + std::to_wstring(owner) +
+            L" --target-window " + std::to_wstring(reinterpret_cast<uintptr_t>(window)) +
+            L" --root " + recap::quoted(root.wstring()) + L" --report " + recap::quoted(liveReportPath.wstring());
+        start(worker, recap::modulePath(), args);
+        const auto now = GetTickCount64();
+        const DWORD remaining = now + 2000 < deadline ? static_cast<DWORD>(deadline - now - 2000) : 0;
+        proof::until([&] { return worker.completed(); }, "visual worker operation deadline", remaining);
+        check(worker.exit() == 0, "isolated visual assertion failed");
+    } catch (const std::exception& error) { failure = error.what(); }
+    try {
+        const auto now = GetTickCount64();
+        worker.stop(now < deadline ? deadline - now : 0);
+    } catch (const std::exception& error) {
+        failure = error.what();
+        worker.process.close();
+    }
+    checkpoint("ENTER", "visual-settings-rollback");
+    before.lpszDefaultScheme = nullptr;
+    check(SystemParametersInfoW(SPI_SETHIGHCONTRAST, sizeof(before), &before, 0) != FALSE,
+          "visual high contrast rollback failed");
+    sendChecked(window, WM_SETTINGCHANGE);
+    sendChecked(window, WM_DPICHANGED, MAKEWPARAM(dpi, dpi), reinterpret_cast<LPARAM>(&rectangle));
+    checkpoint("EXIT", "visual-settings-rollback");
+    if (!failure.empty()) {
+        checkpoint("FAIL", "visual-worker");
+        throw std::runtime_error(failure);
+    }
+    checkpoint("EXIT", "visual-worker");
 }
 
 recap::Capture golden(const fs::path& source, const std::string& name) {
@@ -690,6 +838,7 @@ void supervision() {
 }
 
 proof::WindowFact calibration(proof::Observer& observer, size_t* started = nullptr, std::ofstream* report = nullptr) {
+    checkpoint("ENTER", "calibration");
     Child control;
     const auto begin = proof::moment();
     start(control, recap::modulePath(), L"--console-control", CREATE_NEW_CONSOLE);
@@ -767,6 +916,7 @@ proof::WindowFact calibration(proof::Observer& observer, size_t* started = nullp
                 << " before_attach_qpc=" << beforeAttach.qpc << " end_tick=" << end.tick
                 << " end_qpc=" << end.qpc << " create_observed=1 show_observed=1 destroy_observed=1\n";
     }
+    checkpoint("EXIT", "calibration");
     return consoleWindow;
 }
 
@@ -801,6 +951,7 @@ void fixture(const std::string& id, const fs::path& root, const fs::path& native
              const fs::path& runtime, const fs::path& source, proof::Observer& observer,
              std::vector<DWORD>& roots, std::ofstream& report, bool consoleOnly,
              HandleVerdict* diagnosticVerdict = nullptr) {
+    checkpoint("ENTER", id.c_str());
     const auto layout = root / (id == "F01" ? L"fixture space \u03a9" : fs::path(id).wstring());
     fs::create_directories(layout / L"runtime");
     fs::copy_file(native, layout / L"RecapPageLauncher.exe");
@@ -854,7 +1005,7 @@ void fixture(const std::string& id, const fs::path& root, const fs::path& native
     }
     if (id == "F02" || id == "F03") {
         if (id == "F02") PostMessageW(window, WM_SYSCOMMAND, SC_CLOSE, 0);
-        else SendMessageW(GetDlgItem(window, 203), BM_CLICK, 0, 0);
+        else sendChecked(GetDlgItem(window, 203), BM_CLICK);
         proof::until([&] { return !IsWindowVisible(window); }, "pending window did not hide");
         check(gui.exit() == STILL_ACTIVE && coordinator.exit() == STILL_ACTIVE,
               "F03 pending close lost the startup owner");
@@ -863,6 +1014,7 @@ void fixture(const std::string& id, const fs::path& root, const fs::path& native
         responsive(window);
         check(gui.exit() == STILL_ACTIVE && coordinator.exit() == STILL_ACTIVE, "EOF completed startup before child exit");
     }
+    checkpoint("ENTER", "fixture-handshake");
     write(layout / L"continue.txt", "continue");
     const bool opened = id == "F01" || id == "F02" || id == "F09";
     if (opened) {
@@ -889,10 +1041,12 @@ void fixture(const std::string& id, const fs::path& root, const fs::path& native
         sentinel.stop();
     }
     if (coordinator.process) coordinator.stop();
+    checkpoint("EXIT", "fixture-handshake");
     if (diagnosticVerdict)
         report << "HANDLE fixture-handshake=complete exclusion=" << verdictName(*diagnosticVerdict)
                << " visual=" << (eventExcluded(*diagnosticVerdict) ? "passed" : "not-run") << "\n";
     else report << "PASS " << id << "\n";
+    checkpoint("EXIT", id.c_str());
 }
 
 void handleDiagnostic(const std::map<std::wstring, std::wstring>& options, std::ofstream& report) {
@@ -1270,7 +1424,7 @@ void installed(const std::map<std::wstring, std::wstring>& options, std::ofstrea
                     L"Do not start Recap Page on a different port.",
                     L"another port opens a separate browser storage location.", L"http://127.0.0.1:8787/"
                 }) check(detail.find(required) != std::wstring::npos, "installed native guidance was incomplete");
-                SendMessageW(GetDlgItem(window, 203), BM_CLICK, 0, 0);
+                sendChecked(GetDlgItem(window, 203), BM_CLICK);
                 proof::until([&] { return gui.exit() != STILL_ACTIVE; }, "installed error was not dismissible");
                 check(gui.exit() == 1, "installed native error exited successfully");
                 dismissed = true;
@@ -1301,35 +1455,84 @@ int wmain(int argc, wchar_t** argv) {
         Sleep(INFINITE);
         return 0;
     }
+    if (argc == 2 && std::wstring(argv[1]) == L"--health-writer") {
+        Sleep(INFINITE);
+        return 0;
+    }
     std::map<std::wstring, std::wstring> options;
     for (int index = 1; index + 1 < argc; index += 2) options[argv[index]] = argv[index + 1];
     const auto reportPath = fs::path(options[L"--report"]);
-    std::ofstream report(reportPath, std::ios::binary);
-    const auto com = CoInitializeEx(nullptr, COINIT_MULTITHREADED);
+    std::ofstream report(reportPath, std::ios::binary | std::ios::app);
+    liveReport = &report;
+    liveReportPath = reportPath;
+    const auto com = observed("com-initialize", [] { return CoInitializeEx(nullptr, COINIT_MULTITHREADED); });
     try {
         check(static_cast<bool>(report), "proof report path is required");
         check(SUCCEEDED(com), "proof COM initialization failed");
         proof::nativeArchitecture(GetCurrentProcess());
+        if (options[L"--mode"] == L"visual-worker") {
+            checkpoint("ENTER", "visual-target-validation");
+            const auto pid = static_cast<DWORD>(std::stoul(options[L"--target-pid"]));
+            const auto window = reinterpret_cast<HWND>(static_cast<uintptr_t>(std::stoull(options[L"--target-window"])));
+            recap::Handle target(OpenProcess(SYNCHRONIZE | PROCESS_QUERY_LIMITED_INFORMATION, FALSE, pid));
+            check(static_cast<bool>(target), "visual worker target handle unavailable");
+            check(recap::samePath(proof::imagePath(target.get()),
+                  (fs::path(options[L"--root"]) / L"RecapPageLauncher.exe").wstring()),
+                  "visual worker target image differed");
+            DWORD windowOwner = 0;
+            check(GetWindowThreadProcessId(window, &windowOwner) != 0 && windowOwner == pid,
+                  "visual worker target identity differed");
+            checkpoint("EXIT", "visual-target-validation");
+            observed("visual-operation", [&] { visualOperation(window, options[L"--root"], report); });
+            observed("com-uninitialize", [] { CoUninitialize(); });
+            return 0;
+        }
+        if (options.count(L"--containment-go")) {
+            checkpoint("ENTER", "containment-ready");
+            const fs::path go(options[L"--containment-go"]);
+            proof::until([&] { return fs::exists(go); }, "fixture containment was not established", 5000);
+            BOOL contained = FALSE;
+            check(IsProcessInJob(GetCurrentProcess(), nullptr, &contained) && contained, "fixture process is not contained");
+            checkpoint("EXIT", "containment-ready");
+        } else {
+            check(options[L"--mode"] == L"functionality" || options[L"--mode"] == L"busy",
+                  "fixture execution requires owned containment");
+        }
+        if (options[L"--mode"] == L"wrapper-stall") {
+            checkpoint("ENTER", "wrapper-health-stall");
+            Sleep(INFINITE);
+        }
+        if (options[L"--mode"] == L"wrapper-held-writer") {
+            checkpoint("ENTER", "wrapper-health-held-writer");
+            Child writer;
+            start(writer, recap::modulePath(), L"--health-writer", CREATE_NO_WINDOW, TRUE);
+            check(writer.process.close() == ERROR_SUCCESS, "health writer handle release failed");
+            proof::until([&] { return fs::exists(options[L"--progress-ack"]); },
+                         "held-writer progress was not surfaced before exit", 1000);
+            checkpoint("EXIT", "wrapper-health-held-writer");
+            observed("com-uninitialize", [] { CoUninitialize(); });
+            return 0;
+        }
         if (options[L"--mode"] == L"diagnostic") {
             cleanupCases();
             report << "DIAG deterministic-cleanup-rows=6 passed=6\n";
             diagnostic(options, report);
-            CoUninitialize();
+            observed("com-uninitialize", [] { CoUninitialize(); });
             return 0;
         }
         if (options[L"--mode"] == L"handles") {
             handleDiagnostic(options, report);
-            CoUninitialize();
+            observed("com-uninitialize", [] { CoUninitialize(); });
             return 0;
         }
         if (options[L"--mode"] == L"functionality" || options[L"--mode"] == L"busy") {
             installed(options, report);
-            CoUninitialize();
+            observed("com-uninitialize", [] { CoUninitialize(); });
             return 0;
         }
         const bool onlyDecoder = options[L"--case"] == L"N1";
         decoder(fs::path(options[L"--goldens"]), onlyDecoder);
-        if (onlyDecoder) { report << "PASS N1 baseline\n"; CoUninitialize(); return 0; }
+        if (onlyDecoder) { report << "PASS N1 baseline\n"; observed("com-uninitialize", [] { CoUninitialize(); }); return 0; }
         supervision();
         const fs::path root(options[L"--root"]);
         fs::create_directories(root);
@@ -1348,11 +1551,11 @@ int wmain(int argc, wchar_t** argv) {
         observer.stop();
         observer.assertNoVisibleTerminals(roots, false, controls);
         report << "PASS observer;console-controls=2;visible-product-terminals=0;attachment=not-used\n";
-        CoUninitialize();
+        observed("com-uninitialize", [] { CoUninitialize(); });
         return 0;
     } catch (const std::exception& failure) {
         report << "FAIL " << failure.what() << "\n";
-        if (SUCCEEDED(com)) CoUninitialize();
+        if (SUCCEEDED(com)) observed("com-uninitialize", [] { CoUninitialize(); });
         return 1;
     }
 }

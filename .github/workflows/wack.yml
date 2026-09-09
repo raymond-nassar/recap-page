@@ -16,7 +16,7 @@ on:
       diagnostic_target:
         description: Bounded diagnostic target when diagnostic_only is enabled
         type: choice
-        options: [console-wack, handles]
+        options: [console-wack, handles, f01-smoke]
         required: false
         default: console-wack
   pull_request:
@@ -61,7 +61,7 @@ jobs:
   native:
     name: Build and prove the native startup boundary
     runs-on: windows-2022
-    timeout-minutes: 171
+    timeout-minutes: 178
     outputs:
       native_sha256: ${{ steps.build.outputs.native_sha256 }}
       proof_sha256: ${{ steps.build.outputs.proof_sha256 }}
@@ -79,8 +79,8 @@ jobs:
             throw 'native_only and diagnostic_only cannot both be enabled.'
           }
           if ($env:GITHUB_EVENT_NAME -eq 'workflow_dispatch' -and
-              $env:DIAGNOSTIC_TARGET -eq 'handles' -and $env:DIAGNOSTIC_ONLY -ne 'true') {
-            throw 'The handles target requires diagnostic_only.'
+              $env:DIAGNOSTIC_TARGET -in @('handles', 'f01-smoke') -and $env:DIAGNOSTIC_ONLY -ne 'true') {
+            throw 'A focused target requires diagnostic_only.'
           }
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         timeout-minutes: 2
@@ -106,7 +106,7 @@ jobs:
         shell: pwsh
         run: ./scripts/native-startup-proof.ps1 -Negatives
       - name: Install the checksum-verified diagnostic package tool
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.diagnostic_only == true && inputs.diagnostic_target != 'handles' }}
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.diagnostic_only == true && !(inputs.diagnostic_target == 'handles' || inputs.diagnostic_target == 'f01-smoke') }}
         timeout-minutes: 6
         shell: pwsh
         run: |
@@ -127,15 +127,15 @@ jobs:
           }
           $toolRoot >> $env:GITHUB_PATH
       - name: Build one diagnostic package set
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.diagnostic_only == true && inputs.diagnostic_target != 'handles' }}
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.diagnostic_only == true && !(inputs.diagnostic_target == 'handles' || inputs.diagnostic_target == 'f01-smoke') }}
         timeout-minutes: 15
         run: npm run msix:pack
       - name: Inspect the diagnostic package set
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.diagnostic_only == true && inputs.diagnostic_target != 'handles' }}
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.diagnostic_only == true && !(inputs.diagnostic_target == 'handles' || inputs.diagnostic_target == 'f01-smoke') }}
         timeout-minutes: 8
         run: npm run msix:inspect -- --structural
       - name: Acquire both native and WACK diagnostic facts
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.diagnostic_only == true && inputs.diagnostic_target != 'handles' }}
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.diagnostic_only == true && !(inputs.diagnostic_target == 'handles' || inputs.diagnostic_target == 'f01-smoke') }}
         timeout-minutes: 70
         shell: pwsh
         run: |
@@ -168,6 +168,11 @@ jobs:
         timeout-minutes: 20
         shell: pwsh
         run: ./scripts/native-startup-proof.ps1 -Diagnostic -DiagnosticTarget handles
+      - name: Run bounded F01 and wrapper smoke
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.diagnostic_only == true && inputs.diagnostic_target == 'f01-smoke' }}
+        timeout-minutes: 6
+        shell: pwsh
+        run: ./scripts/native-startup-proof.ps1 -Diagnostic -DiagnosticTarget f01-smoke
       - name: Transfer only the native launchers and their provenance
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         timeout-minutes: 2
@@ -203,7 +208,7 @@ jobs:
           $failures = @()
           $paths = @('./dist/native-launcher', './dist/native-proof')
           if ($env:GITHUB_EVENT_NAME -eq 'workflow_dispatch' -and
-              $env:DIAGNOSTIC_ONLY -eq 'true' -and $env:DIAGNOSTIC_TARGET -ne 'handles') {
+              $env:DIAGNOSTIC_ONLY -eq 'true' -and $env:DIAGNOSTIC_TARGET -notin @('handles', 'f01-smoke')) {
             try {
               Get-AppxPackage -Name PanelStackLabs.RecapPage |
                 Where-Object PackageFamilyName -eq 'PanelStackLabs.RecapPage_we33aa8nvkpcc' |
