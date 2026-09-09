@@ -346,9 +346,19 @@ void calibration(proof::Observer& observer) {
     Child control;
     start(control, recap::modulePath(), L"--console-control", CREATE_NEW_CONSOLE);
     proof::until([&] { return observer.console(control.pid); }, "observer did not detect its console control");
-    control.stop();
-    proof::until([&] { return observer.console(control.pid, EVENT_CONSOLE_END_APPLICATION); },
-                 "observer did not detect console control exit");
+    check(FreeConsole() != FALSE && AttachConsole(control.pid) != FALSE,
+          "observer could not retain the calibration console");
+    // Keep the host window alive until its asynchronous application-end event is delivered.
+    try {
+        control.stop();
+        proof::until([&] { return observer.console(control.pid, EVENT_CONSOLE_END_APPLICATION); },
+                     "observer did not detect console control exit");
+    } catch (const std::exception& failure) {
+        if (!FreeConsole())
+            throw std::runtime_error(std::string(failure.what()) + "; calibration console detach failed");
+        throw;
+    }
+    check(FreeConsole() != FALSE, "observer could not detach the calibration console");
 }
 
 void preflight(const fs::path& root, const std::wstring& native) {
