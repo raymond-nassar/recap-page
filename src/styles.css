@@ -18,6 +18,14 @@
    Colours that are the same in both themes stay in the shared block. Only what genuinely
    differs is restated, so the light theme is 25 declarations rather than a second palette. */
 
+.reader-link { min-width: 0; border: 1px solid var(--line); border-radius: var(--r); padding: var(--space-6); }
+.reader-link p, .reader-link button, .reader-link a { overflow-wrap: anywhere; }
+.reader-link input, .reader-link textarea { width: 100%; min-width: 0; box-sizing: border-box; }
+.reader-link .cta { flex-wrap: wrap; }
+@media (forced-colors: active) {
+  .reader-link { border-color: CanvasText; }
+}
+
 :root {
   --r: 14px;
   /* The spacing ladder. Eleven steps replace one-off numeric lengths across margin, padding and gap
@@ -142,7 +150,7 @@
   --blue: #7fb3ff;
   --logo-fill: #7fb3ff;
   /* The placeholder shown where a cover has not loaded. The hue comes from the series name at
-     `src/js/main.js:900-907`; these pairs supply saturation and lightness where that local hue is
+     `src/js/main.js:913-920`; these pairs supply saturation and lightness where that local hue is
      consumed. Keeping the hue reference on the cover avoids resolving it before the cover exists. */
   --fallback-a: 42% 26%;
   --fallback-b: 38% 14%;

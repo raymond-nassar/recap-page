@@ -15,11 +15,13 @@ export function createIssueView({
   loadOrder,
   onCancelSynopsis,
   onRead,
+  onReaderContext = () => {},
   onStaleContext,
   onStartSynopsis,
   paintBackground,
   paintCover,
   renderBreadcrumbs,
+  readerPresentation = (issue) => ({ launchable: !!issuePresentation(issue)?.launchable, temporary: false }),
   seriesOnly,
   synopsisFallback,
   synopsisDisclosure,
@@ -50,6 +52,7 @@ export function createIssueView({
     const nodes = elements();
     const issue = result?.issue;
     currentResult = result;
+    onReaderContext(result?.issue ? result : null);
     const retryable = !issue && activeRoute?.issueId > 0 && result?.failure === 'transient';
     const restoreFocus = !retryable && nodes.retry.ownerDocument?.activeElement === nodes.retry;
     nodes.retry.hidden = !retryable;
@@ -104,7 +107,7 @@ export function createIssueView({
     )));
     nodes.note.textContent = context?.note ?? '';
     nodes.note.hidden = !nodes.note.textContent;
-    nodes.read.hidden = !presentation.launchable;
+    refreshReader();
     nodes.info.hidden = !presentation.detailUrl;
     if (presentation.detailUrl) {
       nodes.info.href = presentation.detailUrl;
@@ -137,6 +140,7 @@ export function createIssueView({
     activeLoad = controller;
     activeRoute = route;
     currentResult = null;
+    onReaderContext(null);
     const nodes = elements();
     nodes.card.hidden = true;
     nodes.heading.textContent = 'Loading issue details';
@@ -190,6 +194,7 @@ export function createIssueView({
     activeLoad = null;
     activeRoute = null;
     currentResult = null;
+    onReaderContext(null);
     elements().retry.hidden = true;
     resetSynopsis();
   }
@@ -222,10 +227,17 @@ export function createIssueView({
     }
   }
 
+  function refreshReader() {
+    if (!currentResult?.issue) return;
+    const { launchable, temporary } = readerPresentation(currentResult.issue, currentResult.source);
+    elements().read.hidden = !launchable;
+    elements().read.textContent = temporary ? 'Read with temporary link' : 'Open in Marvel Unlimited';
+  }
+
   function wire() {
     const nodes = elements();
     nodes.read.addEventListener('click', (event) => {
-      if (currentResult?.issue) onRead(currentResult.issue, event);
+      if (currentResult?.issue) onRead(currentResult.issue, event, currentResult.source);
     });
     nodes.disclosure.addEventListener('click', () => {
       if (!currentResult?.issue) return;
@@ -259,6 +271,7 @@ export function createIssueView({
     render,
     repaintSynopsis,
     refreshDescription,
+    refreshReader,
     resetSynopsis,
     result: () => currentResult,
     wire,

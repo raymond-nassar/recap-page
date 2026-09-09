@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { Store, KEY } from '../src/js/storage.js';
 import { dispatchStorageEvent } from '../src/js/main.js';
+import { createTemporaryReaderLinks } from '../src/js/lib/temporaryReaderLink.js';
 import {
   SAVE_EDUCATION_KEY, SAVE_EDUCATION_STATE, createSaveEducation,
 } from '../src/js/lib/saveEducation.js';
@@ -65,6 +66,33 @@ function savedState(storage) {
 }
 
 // --------------------------------------------------------------------- the defect, reproduced
+
+test('453 foreign adoption retains valid temporary links but actual erase and unknown outcomes invalidate', () => {
+  const storage = fakeStorage({ [KEY]: seedRaw() });
+  const readerStore = new Store({ storage });
+  readerStore.load();
+  const links = createTemporaryReaderLinks();
+  links.use(readerStore.state, 1, 'https://read.marvel.com/#/book/22');
+  const receive = (raw) => {
+    if (raw === null) storage.removeItem(KEY);
+    else storage.setItem(KEY, raw);
+    dispatchStorageEvent({ key: KEY, newValue: raw }, {
+      readerStore,
+      reconcileReader: (changed) => links.reconcile(readerStore.state, { changed }),
+    });
+  };
+  receive(JSON.stringify(exportBackup(markRead(readerStore.state, 2, true))));
+  assert.equal(links.get(readerStore.state, 1), 22);
+  receive('invalid saved data');
+  assert.equal(links.known, false);
+  assert.equal(links.resolve(readerStore.state, readerStore.state.issues[1]).ok, false);
+  receive(seedRaw());
+  assert.equal(links.known, true);
+  links.use(readerStore.state, 1, 'https://read.marvel.com/#/book/22');
+  receive(null);
+  assert.equal(links.size, 0);
+  assert.equal(links.known, true);
+});
 
 // The loss BL-084 was filed for. Two tabs, both holding the snapshot they loaded, both editing.
 // Before the compare-before-write the second write replaced the whole payload, so the first tab's

@@ -400,6 +400,34 @@
                   <p class="desc" id="issue-focus-desc"></p>
                   <dl class="facts" id="issue-focus-facts"></dl>
                   <p class="issue-focus-note" id="issue-focus-note" hidden></p>
+                  <section id="reader-link-root" class="reader-link stack" aria-labelledby="reader-link-heading" hidden>
+                    <h2 id="reader-link-heading">Wrong reader link?</h2>
+                    <p id="reader-link-summary" class="rail-hint"></p>
+                    <div class="cta">
+                      <button type="button" class="btn btn-g" id="reader-link-edit">Edit temporary reader link</button>
+                      <button type="button" class="btn btn-g" id="reader-link-revert" hidden>Use original link</button>
+                    </div>
+                    <form id="reader-link-form" class="stack" hidden>
+                      <label id="reader-link-label" for="reader-link-input">Marvel Unlimited reader address</label>
+                      <input id="reader-link-input" type="url" autocomplete="off" spellcheck="false" />
+                      <p class="rail-hint">Use only a link for this exact comic. Paste an http or https address on read.marvel.com with a /#/book/ numeric reference (up to 12 digits). Comic information pages, other hosts and custom ports are not accepted.</p>
+                      <p id="reader-link-preview" class="rail-hint"></p>
+                      <p id="reader-link-error" class="report"></p>
+                      <div class="cta">
+                        <button id="reader-link-apply" type="submit" class="btn">Use temporarily</button>
+                        <button id="reader-link-cancel" type="button" class="btn btn-g">Cancel</button>
+                      </div>
+                    </form>
+                    <p id="reader-link-status" class="rail-hint"></p>
+                    <button id="reader-link-reportToggle" type="button" class="btn btn-g">Report details</button>
+                    <div id="reader-link-reportPanel" class="stack" hidden>
+                      <p id="reader-link-reportStatus" class="rail-hint"></p>
+                      <textarea id="reader-link-reportText" rows="8" spellcheck="false"></textarea>
+                      <button id="reader-link-regenerate" type="button" class="btn btn-g">Regenerate report details</button>
+                      <p id="reader-link-reportDisclosure" class="rail-hint"></p>
+                      <a id="reader-link-reportLink" class="btn btn-g" href="https://github.com/raymond-nassar/recap-page/issues/new?template=data-order.yml" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">Open GitHub correction form (new tab)</a>
+                    </div>
+                  </section>
                   <p class="rail-hint" id="issue-synopsis-status" role="status" hidden></p>
                   <div class="cta">
                     <button type="button" class="btn btn-lg" id="btn-issue-read">

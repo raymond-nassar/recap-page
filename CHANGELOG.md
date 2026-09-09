@@ -12,6 +12,14 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Use a temporary reader link for the same comic
+
+Issue Details can use a pasted Marvel Unlimited reader address for a saved comic in this tab,
+with an explicit return to the original link. It works across lists without changing comic facts,
+availability checks, progress, notes or backups. Reloading, closing the document or replacing saved
+data clears it. A separate optional GitHub correction form offers manually reviewed report details;
+nothing is submitted automatically, and a supplied link proves neither comic identity nor access.
+
 ### Review earlier comics and choose description hiding
 
 An optional Review earlier issues picker starts just before the next unread comic in your

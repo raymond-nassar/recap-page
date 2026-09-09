@@ -26,6 +26,7 @@ function node(textContent = '') {
 function harness({
   apiIssue, state, synopsis = null, loadCatalog, loadOrder,
   disclosure = createSynopsisDisclosure(), onStartSynopsis,
+  readerPresentation, onReaderContext,
 } = {}) {
   const nodes = {
     background: node(),
@@ -81,6 +82,8 @@ function harness({
     loadOrder: loadOrder ?? (async () => ({ items: [] })),
     onCancelSynopsis: () => { calls.cancelSynopsis += 1; },
     onRead: (...args) => calls.read.push(args),
+    onReaderContext,
+    readerPresentation,
     onStaleContext: (route) => calls.stale.push(route),
     onStartSynopsis: onStartSynopsis ?? (() => { calls.startSynopsis += 1; }),
     paintBackground: () => {},
@@ -203,9 +206,45 @@ test('Issue view owns loading, resolved paint, current result, and local control
   h.nodes.read.listeners.click(event);
   h.nodes.synopsis.listeners.click();
   h.nodes.cancelSynopsis.listeners.click();
-  assert.deepEqual(h.calls.read, [[h.view.result().issue, event]]);
+  assert.deepEqual(h.calls.read, [[h.view.result().issue, event, 'saved']]);
   assert.equal(h.calls.startSynopsis, 1);
   assert.equal(h.calls.cancelSynopsis, 1);
+});
+
+test('453 reader refresh preserves facts and disclosure and reports explicit result lifecycle', async () => {
+  const saved = { ...issue(-8), digitalId: null, url: null };
+  const state = { issues: { '-8': saved }, lists: {}, read: {}, overrides: {}, notes: {} };
+  let temporary = false;
+  const contexts = [];
+  const h = harness({
+    state, synopsis: 'Synthetic hidden description',
+    onReaderContext: (result) => contexts.push(result),
+    readerPresentation: (base, source) => {
+      assert.equal(base.issueId, saved.issueId);
+      assert.equal(base.digitalId, null);
+      assert.equal(source, 'saved');
+      return { launchable: temporary, temporary };
+    },
+  });
+  h.view.wire();
+  await h.view.render({ issueId: -8 });
+  assert.equal(contexts[0], null, 'loading clears editor context');
+  assert.equal(contexts.at(-1).source, 'saved');
+  assert.equal(h.nodes.read.hidden, true);
+  const facts = h.nodes.facts.children;
+  const info = h.nodes.info.href;
+  temporary = true;
+  h.view.refreshReader();
+  assert.equal(h.nodes.read.hidden, false);
+  assert.equal(h.nodes.read.textContent, 'Read with temporary link');
+  assert.equal(h.nodes.facts.children, facts);
+  assert.equal(h.nodes.info.href, info);
+  assert.equal(h.nodes.description.textContent, '');
+  h.nodes.read.listeners.click({});
+  assert.equal(h.calls.read[0][2], 'saved');
+  assert.equal(saved.digitalId, null);
+  h.view.cancel();
+  assert.equal(contexts.at(-1), null, 'leaving clears editor without inventing unavailable provenance');
 });
 
 test('447 Issue Details hides fetched prose until explicit reveal and retains only exact-issue choices', async () => {

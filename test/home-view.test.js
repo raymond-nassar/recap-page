@@ -85,6 +85,7 @@ function harness({
   populated = false,
   nextIssue = { issueId: 7, title: 'Next issue', seriesName: 'Series (2026)', number: '3' },
   progress = { read: 1, total: 2 },
+  readerPresentation,
 } = {}) {
   const firstGateway = gateway();
   const secondGateway = gateway();
@@ -179,6 +180,7 @@ function harness({
     onOpen: () => { calls.open += 1; },
     onReview: () => calls.navigate.push('review'),
     onRead: (...args) => calls.read.push(args),
+    readerPresentation,
     openPreview: (entry) => calls.preview.push(entry.id),
     paintCover: (...args) => calls.covers.push(args),
     paintCoverUrl: (...args) => calls.coverFallbacks.push(args),
@@ -220,6 +222,33 @@ test('Home view owns first-run, saved-list, recommendation, and shared gateway p
   assert.equal(recommended.hidden, false);
   findById(firstRun, 'btn-home-recommended').onclick();
   assert.deepEqual(h.calls.preview, ['recommended']);
+});
+
+test('453 Home refresh uses effective launchability and saved provenance without repainting gateways', () => {
+  let temporary = false;
+  const h = harness({
+    populated: true,
+    nextIssue: { issueId: -7, title: 'Manual comic', seriesName: '' },
+    readerPresentation: (_issue, source) => {
+      assert.equal(source, 'saved');
+      return { launchable: temporary, temporary };
+    },
+  });
+  h.view.wire();
+  h.view.render();
+  assert.equal(h.nodes.continueRead.hidden, false);
+  assert.equal(h.nodes.continueRead.disabled, true);
+  temporary = true;
+  h.view.refreshReader();
+  assert.equal(h.nodes.continueRead.hidden, false);
+  assert.equal(h.nodes.continueRead.disabled, false);
+  assert.match(h.nodes.continueRead.attributes['aria-label'], /Read with temporary link/);
+  h.nodes.continueRead.listeners.click({});
+  assert.equal(h.calls.read.at(-1)[2], 'saved');
+  assert.equal(h.calls.read.at(-1)[0].digitalId, undefined);
+  temporary = false;
+  h.view.refreshReader();
+  assert.equal(h.nodes.continueRead.disabled, true);
 });
 
 test('Home view paints populated Continue details and accessible actions', () => {

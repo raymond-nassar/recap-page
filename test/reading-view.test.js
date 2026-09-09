@@ -409,6 +409,7 @@ function harness(overrides = {}) {
     paintHeroBackground: () => { calls.paintBackground += 1; },
     preservingFocus: (_container, fn) => fn(),
     recordDirectProgressSave: overrides.recordDirectProgressSave ?? (() => ({ kind: 'saved' })),
+    readerPresentation: overrides.readerPresentation,
     renderSaveEducation: () => { calls.renderSaveEducation += 1; },
     saveSettings: () => { calls.saveSettings += 1; },
     seriesOnly: (name) => name?.replace(/\s+\(.*/, '') ?? '',
@@ -561,6 +562,37 @@ test('447 hero bulk prose starts hidden and disclosure stays isolated through Do
     h.view.resetSynopsis();
     assert.equal(h.nodes.heroDesc.textContent, '');
     assert.equal(h.nodes.btnHeroDescription.hidden, true);
+  } finally {
+    h.restore();
+  }
+});
+
+test('453 reader presentation invalidates memoized buttons without changing stored rows', () => {
+  let temporary = false;
+  const h = harness({ readerPresentation: () => ({ launchable: temporary, temporary }) });
+  try {
+    h.view.wire();
+    h.view.render();
+    const state = JSON.stringify(h.state());
+    const oldRows = [...h.nodes.rows.childNodes];
+    const oldDescription = h.nodes.heroDesc.textContent;
+    assert.equal(h.nodes.btnHeroRead.hidden, true);
+    temporary = true;
+    h.view.refreshReader();
+    assert.equal(h.nodes.btnHeroRead.hidden, false);
+    assert.match(h.nodes.btnHeroRead.textContent, /temporary/);
+    assert.notDeepEqual(h.nodes.rows.childNodes, oldRows, 'effective presentation participates in cache key');
+    const actions = [];
+    walk(h.nodes.rows, (entry) => { if (entry.dataset?.act === 'open') actions.push(entry); });
+    assert.ok(actions.length);
+    for (const action of actions) {
+      assert.equal(action.hidden, false);
+      assert.match(action.attributes['aria-label'], /temporary/);
+      action.fire('click', {});
+      assert.equal(h.calls.launch.at(-1)[2], 'saved');
+    }
+    assert.equal(h.nodes.heroDesc.textContent, oldDescription);
+    assert.equal(JSON.stringify(h.state()), state);
   } finally {
     h.restore();
   }
