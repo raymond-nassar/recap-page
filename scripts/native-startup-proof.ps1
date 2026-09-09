@@ -224,6 +224,89 @@ function Invoke-NativeProof {
   }
 }
 
+function Export-NativePreview {
+  param([string]$Layout, [string]$Runtime, [bool]$F01Completed)
+  $image = Join-Path $Layout 'startup-dark.bmp'
+  $facts = Join-Path $Layout 'render-evidence.json'
+  if (-not (Test-Path -LiteralPath $image -PathType Leaf) -or
+      -not (Test-Path -LiteralPath $facts -PathType Leaf)) {
+    Write-Host 'CHECK INFO pending-preview-unavailable'
+    return $false
+  }
+  if ((Get-Item -LiteralPath $facts).Length -gt 4096) { throw 'Native preview facts exceed their bound.' }
+  $render = Get-Content -LiteralPath $facts -Raw | ConvertFrom-Json
+  $keys = @(
+    'pendingOnly', 'nameRoleVerified', 'pendingControlsVerified', 'errorDetailsHidden',
+    'wordmarkUnclipped', 'width', 'height', 'dpi', 'fillPixels', 'outlinePixels',
+    'shadowPixels', 'fontPatternAvailable', 'renderedReviewRequired', 'expectedFirstCandidate', 'fontAvailability'
+  )
+  if (@(Compare-Object ($render.PSObject.Properties.Name | Sort-Object) ($keys | Sort-Object)).Count -ne 0) {
+    throw 'Native preview facts contain unexpected fields.'
+  }
+  foreach ($flag in @('pendingOnly', 'nameRoleVerified', 'pendingControlsVerified',
+      'errorDetailsHidden', 'wordmarkUnclipped', 'renderedReviewRequired')) {
+    if ($render.$flag -isnot [bool] -or -not $render.$flag) { throw 'Native preview safety gate did not hold.' }
+  }
+  if ($render.fontPatternAvailable -isnot [bool]) { throw 'Native preview optional metadata status is invalid.' }
+  $names = @('Impact', 'Haettenschweiler', 'Arial Narrow Bold', 'Segoe UI')
+  if ($render.fontAvailability.Count -ne 4) { throw 'Native preview font scope differs.' }
+  $expectedFirst = $null
+  for ($index = 0; $index -lt 4; $index++) {
+    $font = $render.fontAvailability[$index]
+    if ($font.name -cne $names[$index] -or $font.available -isnot [bool] -or
+        @($font.PSObject.Properties).Count -ne 2) { throw 'Native preview font facts are unsafe.' }
+    if ($font.available -and -not $expectedFirst) { $expectedFirst = $font.name }
+  }
+  if (-not $expectedFirst -or $render.expectedFirstCandidate -cne $expectedFirst) {
+    throw 'Native preview expected font candidate differs.'
+  }
+  foreach ($number in @('width', 'height', 'dpi', 'fillPixels', 'outlinePixels', 'shadowPixels')) {
+    if ($render.$number -le 0 -or $render.$number -ne [Math]::Truncate($render.$number)) {
+      throw 'Native preview numeric facts are invalid.'
+    }
+  }
+  if ($render.dpi -gt 768 -or $render.width -gt 4096 -or $render.height -gt 4096 -or
+      $render.fillPixels + $render.outlinePixels + $render.shadowPixels -gt $render.width * $render.height) {
+    throw 'Native preview dimensions or ink counts exceed their bound.'
+  }
+  $bytes = [IO.File]::ReadAllBytes($image)
+  if ($bytes.Length -gt 4MB -or $bytes.Length -lt 54 -or
+      [Text.Encoding]::ASCII.GetString($bytes, 0, 2) -cne 'BM' -or
+      [BitConverter]::ToUInt32($bytes, 2) -ne $bytes.Length -or
+      [BitConverter]::ToUInt32($bytes, 10) -ne 54 -or
+      [BitConverter]::ToInt32($bytes, 18) -ne $render.width -or
+      -[BitConverter]::ToInt32($bytes, 22) -ne $render.height -or
+      [BitConverter]::ToUInt16($bytes, 28) -ne 32 -or
+      $bytes.Length -ne (54 + $render.width * $render.height * 4)) {
+    throw 'Native preview bitmap does not match bounded client evidence.'
+  }
+  $nativeRecord = Get-Content -LiteralPath (Join-Path $root 'dist\native-launcher\build.json') -Raw | ConvertFrom-Json
+  $output = Join-Path $root "dist\native-preview\$Architecture"
+  if (Test-Path -LiteralPath $output) { throw 'A native preview already exists for this architecture.' }
+  New-Item -ItemType Directory -Path $output -ErrorAction Stop | Out-Null
+  Copy-Item -LiteralPath $image -Destination (Join-Path $output 'pending-dark.bmp')
+  $sidecar = [ordered]@{
+    schemaVersion = 1
+    commit = $nativeRecord.commit
+    architecture = $Architecture
+    launcherSha256 = (Get-FileHash -LiteralPath $launcher -Algorithm SHA256).Hash.ToLowerInvariant()
+    proofSha256 = (Get-FileHash -LiteralPath $driver -Algorithm SHA256).Hash.ToLowerInvariant()
+    runtimeSha256 = (Get-FileHash -LiteralPath $Runtime -Algorithm SHA256).Hash.ToLowerInvariant()
+    imageSha256 = (Get-FileHash -LiteralPath $image -Algorithm SHA256).Hash.ToLowerInvariant()
+    imageBytes = $bytes.Length
+    f01Completed = $F01Completed
+    render = $render
+  }
+  $json = $sidecar | ConvertTo-Json -Depth 6
+  if ($json.Length -gt 8192) { throw 'Native preview sidecar exceeds its bound.' }
+  [IO.File]::WriteAllText((Join-Path $output 'evidence.json'), $json, [Text.UTF8Encoding]::new($false))
+  if ($env:GITHUB_OUTPUT) {
+    'preview_ready=true' | Out-File -LiteralPath $env:GITHUB_OUTPUT -Encoding utf8 -Append
+  }
+  Write-Host "CHECK INFO pending-preview-ready architecture=$Architecture"
+  return $true
+}
+
 try {
   $packageRuntime = $null
   if ($Diagnostic -and $DiagnosticTarget -in @('handles', 'f01-smoke')) {
@@ -390,9 +473,12 @@ try {
     $results = @(Invoke-NativeProof -Executable $driver -Arguments $arguments -Report $report -TotalTimeoutMs $limit)
     $result = $results[-1]
     $results | Select-Object -SkipLast 1 | Write-Output
+    $preview = Export-NativePreview -Layout (Join-Path (Join-Path $scratch 'fixture') "fixture space $([char]0x03a9)") `
+      -Runtime $packageRuntime -F01Completed ($result.ExitCode -eq 0)
     if ($result.ExitCode -ne 0 -or -not $result.Text.Contains('PASS focused-handle-diagnostic')) {
       throw 'The focused handle diagnostic did not establish conclusive exclusion and its permitted visual checks.'
     }
+    if (-not $preview) { throw 'The focused F01 preview evidence is missing.' }
     Write-Output 'HANDLE diagnostic complete; feature-acceptance=not-evaluated'
   } else {
     $report = Join-Path $scratch 'result.txt'
@@ -401,9 +487,12 @@ try {
     $results = @(Invoke-NativeProof -Executable $driver -Arguments $arguments -Report $report)
     $result = $results[-1]
     $results | Select-Object -SkipLast 1 | Write-Output
+    $preview = Export-NativePreview -Layout (Join-Path (Join-Path $scratch 'fixtures') "fixture space $([char]0x03a9)") `
+      -Runtime $packageRuntime -F01Completed ($result.ExitCode -eq 0)
     if ($result.ExitCode -ne 0 -or ([regex]::Matches($result.Text, '(?m)^PASS F\d\d$').Count -ne 11)) {
       throw "The $Architecture native suite failed or did not run all 11 release fixtures."
     }
+    if (-not $preview) { throw 'The native F01 preview evidence is missing.' }
     Write-Output "PASS native-suite=$Architecture;gui-activations=11;coordinator-fixtures=9;sentinels=2"
   }
 } finally {

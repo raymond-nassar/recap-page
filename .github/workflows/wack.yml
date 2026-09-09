@@ -61,7 +61,7 @@ jobs:
   native:
     name: Build and prove the native startup boundary
     runs-on: windows-2022
-    timeout-minutes: 178
+    timeout-minutes: 181
     outputs:
       native_sha256: ${{ steps.build.outputs.native_sha256 }}
       proof_sha256: ${{ steps.build.outputs.proof_sha256 }}
@@ -169,10 +169,23 @@ jobs:
         shell: pwsh
         run: ./scripts/native-startup-proof.ps1 -Diagnostic -DiagnosticTarget handles
       - name: Run bounded F01 and wrapper smoke
+        id: f01_smoke
         if: ${{ github.event_name == 'workflow_dispatch' && inputs.diagnostic_only == true && inputs.diagnostic_target == 'f01-smoke' }}
         timeout-minutes: 6
         shell: pwsh
         run: ./scripts/native-startup-proof.ps1 -Diagnostic -DiagnosticTarget f01-smoke
+      - name: Retain the safe x64 pending preview
+        if: ${{ always() && steps.f01_smoke.outputs.preview_ready == 'true' }}
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        timeout-minutes: 2
+        with:
+          name: native-preview-x64-${{ github.sha }}
+          path: |
+            dist/native-preview/x64/pending-dark.bmp
+            dist/native-preview/x64/evidence.json
+          if-no-files-found: error
+          retention-days: 1
+          compression-level: 0
       - name: Transfer only the native launchers and their provenance
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         timeout-minutes: 2
@@ -206,7 +219,7 @@ jobs:
           DIAGNOSTIC_TARGET: ${{ inputs.diagnostic_target }}
         run: |
           $failures = @()
-          $paths = @('./dist/native-launcher', './dist/native-proof')
+          $paths = @('./dist/native-launcher', './dist/native-proof', './dist/native-preview')
           if ($env:GITHUB_EVENT_NAME -eq 'workflow_dispatch' -and
               $env:DIAGNOSTIC_ONLY -eq 'true' -and $env:DIAGNOSTIC_TARGET -notin @('handles', 'f01-smoke')) {
             try {
@@ -440,7 +453,7 @@ jobs:
     runs-on: ${{ matrix.runner }}
     needs: native
     if: ${{ !(github.event_name == 'workflow_dispatch' && (inputs.native_only == true || inputs.diagnostic_only == true)) }}
-    timeout-minutes: 96
+    timeout-minutes: 99
     env:
       MRT_NATIVE_SHA256: ${{ needs.native.outputs.native_sha256 }}
       MRT_NATIVE_PROOF_SHA256: ${{ needs.native.outputs.proof_sha256 }}
@@ -532,9 +545,22 @@ jobs:
         run: npm run msix:inspect -- --structural
 
       - name: Exercise the matching native startup fixtures
+        id: native_fixtures
         timeout-minutes: 18
         shell: pwsh
         run: ./scripts/native-startup-proof.ps1 -Architecture '${{ matrix.architecture }}'
+      - name: Retain the safe native pending preview
+        if: ${{ always() && steps.native_fixtures.outputs.preview_ready == 'true' }}
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        timeout-minutes: 2
+        with:
+          name: native-preview-${{ matrix.architecture }}-${{ github.sha }}
+          path: |
+            dist/native-preview/${{ matrix.architecture }}/pending-dark.bmp
+            dist/native-preview/${{ matrix.architecture }}/evidence.json
+          if-no-files-found: error
+          retention-days: 1
+          compression-level: 0
 
       - name: Trust exact ephemeral certificate
         timeout-minutes: 2

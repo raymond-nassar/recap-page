@@ -467,11 +467,37 @@ template<class T> struct Com {
     T* operator->() { return value; }
 };
 
+enum class UiaOutput { available, optionalAbsent, invalid };
+
+UiaOutput classifyUiaOutput(HRESULT result, bool present, bool optional) {
+    if (FAILED(result)) return UiaOutput::invalid;
+    if (present) return UiaOutput::available;
+    return optional ? UiaOutput::optionalAbsent : UiaOutput::invalid;
+}
+
+bool checkedUiaOutput(const char* stage, HRESULT result, const void* pointer, bool optional = false) {
+    if (liveReport) {
+        *liveReport << "CHECK INFO " << stage << " hresult=" << result
+                    << " pointer_present=" << (pointer != nullptr) << "\n";
+        liveReport->flush();
+    }
+    const auto state = classifyUiaOutput(result, pointer != nullptr, optional);
+    check(state != UiaOutput::invalid, "required UI Automation output was unavailable");
+    return state == UiaOutput::available;
+}
+
+void uiaOutputCases() {
+    check(classifyUiaOutput(S_OK, false, false) == UiaOutput::invalid, "required successful-null UIA output was accepted");
+    check(classifyUiaOutput(E_FAIL, true, false) == UiaOutput::invalid, "failed nonnull UIA output was accepted");
+    check(classifyUiaOutput(S_OK, false, true) == UiaOutput::optionalAbsent, "optional pattern absence was misclassified");
+}
+
 void automationClient(Com<IUIAutomation2>& automation) {
-    check(SUCCEEDED(observed("uia-create", [&] {
+    const auto result = observed("uia-create", [&] {
         return CoCreateInstance(CLSID_CUIAutomation8, nullptr, CLSCTX_INPROC_SERVER,
                                 IID_PPV_ARGS(automation.put()));
-    })), "UI Automation timeout-capable client unavailable");
+    });
+    checkedUiaOutput("uia-client-output", result, automation.value);
     check(SUCCEEDED(observed("uia-connection-timeout", [&] { return automation->put_ConnectionTimeout(2000); })),
           "UI Automation connection timeout unavailable");
     check(SUCCEEDED(observed("uia-transaction-timeout", [&] { return automation->put_TransactionTimeout(2000); })),
@@ -486,12 +512,12 @@ void accessible(HWND window, bool failed) {
         {201, L"RECAP PAGE!"}, {203, failed ? L"Close" : L"Hide startup window"}
     }) {
         Com<IUIAutomationElement> element;
-        check(SUCCEEDED(observed("uia-element", [&] { return automation->ElementFromHandle(GetDlgItem(window, item.first), element.put()); })),
-              "native accessible element missing");
-        BSTR name = nullptr;
-        check(SUCCEEDED(observed("uia-name", [&] { return element->get_CurrentName(&name); })), "native accessible name unavailable");
-        const std::wstring actual(name ? name : L"");
-        SysFreeString(name);
+        const auto elementResult = observed("uia-element", [&] { return automation->ElementFromHandle(GetDlgItem(window, item.first), element.put()); });
+        checkedUiaOutput("uia-element-output", elementResult, element.value);
+        struct NameValue { BSTR value = nullptr; ~NameValue() { SysFreeString(value); } } name;
+        const auto nameResult = observed("uia-name", [&] { return element->get_CurrentName(&name.value); });
+        checkedUiaOutput("uia-name-output", nameResult, name.value);
+        const std::wstring actual(name.value);
         check(actual == item.second, "native accessible name differed");
         CONTROLTYPEID type = 0;
         check(SUCCEEDED(observed("uia-role", [&] { return element->get_CurrentControlType(&type); })), "native accessible role unavailable");
@@ -500,20 +526,20 @@ void accessible(HWND window, bool failed) {
     }
     if (failed) {
         Com<IUIAutomationElement> element;
-        check(SUCCEEDED(observed("uia-error-element", [&] { return automation->ElementFromHandle(GetDlgItem(window, 204), element.put()); })),
-              "error text is inaccessible");
+        const auto elementResult = observed("uia-error-element", [&] { return automation->ElementFromHandle(GetDlgItem(window, 204), element.put()); });
+        checkedUiaOutput("uia-error-element-output", elementResult, element.value);
         Com<IUIAutomationValuePattern> value;
-        check(SUCCEEDED(observed("uia-value-pattern", [&] { return element->GetCurrentPatternAs(UIA_ValuePatternId, IID_PPV_ARGS(value.put())); })),
-              "error text has no accessible value");
+        const auto valueResult = observed("uia-value-pattern", [&] { return element->GetCurrentPatternAs(UIA_ValuePatternId, IID_PPV_ARGS(value.put())); });
+        checkedUiaOutput("uia-value-output", valueResult, value.value);
         BOOL readonly = FALSE;
         check(SUCCEEDED(observed("uia-readonly", [&] { return value->get_CurrentIsReadOnly(&readonly); })) && readonly, "error text is not read-only");
         Com<IUIAutomationTextPattern> text;
-        check(SUCCEEDED(observed("uia-text-pattern", [&] { return element->GetCurrentPatternAs(UIA_TextPatternId, IID_PPV_ARGS(text.put())); })),
-              "error text cannot be selected");
+        const auto textResult = observed("uia-text-pattern", [&] { return element->GetCurrentPatternAs(UIA_TextPatternId, IID_PPV_ARGS(text.put())); });
+        checkedUiaOutput("uia-text-output", textResult, text.value);
         Com<IUIAutomationTextRange> range;
-        check(SUCCEEDED(observed("uia-document-range", [&] { return text->get_DocumentRange(range.put()); })) &&
-              SUCCEEDED(observed("uia-select-text", [&] { return range->Select(); })),
-              "error text selection failed");
+        const auto rangeResult = observed("uia-document-range", [&] { return text->get_DocumentRange(range.put()); });
+        checkedUiaOutput("uia-range-output", rangeResult, range.value);
+        check(SUCCEEDED(observed("uia-select-text", [&] { return range->Select(); })), "error text selection failed");
     }
 }
 
@@ -533,9 +559,19 @@ void bounds(HWND window) {
     checkpoint("EXIT", "control-bounds");
 }
 
-COLORREF capture(HWND window, const fs::path& destination) {
+struct RenderEvidence {
+    UINT dpi = 0;
+    LONG width = 0, height = 0;
+    uint64_t fill = 0, outline = 0, shadow = 0;
+    bool unclipped = true;
+};
+
+COLORREF capture(HWND window, const fs::path& destination, RenderEvidence* evidence = nullptr) {
     RECT rect{};
-    GetClientRect(window, &rect);
+    check(GetClientRect(window, &rect) != FALSE, "owned client dimensions unavailable");
+    check(rect.right > 0 && rect.bottom > 0 &&
+          static_cast<uint64_t>(rect.right) * static_cast<uint64_t>(rect.bottom) * 4 + 54 <= 4 * 1024 * 1024,
+          "owned client capture exceeds its image bound");
     const auto dc = GetDC(window), memory = CreateCompatibleDC(dc);
     BITMAPINFO info{};
     info.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
@@ -549,6 +585,39 @@ COLORREF capture(HWND window, const fs::path& destination) {
     const auto old = SelectObject(memory, bitmap);
     const bool printed = observed("print-window", [&] { return PrintWindow(window, memory, PW_CLIENTONLY) != FALSE; });
     const auto color = GetPixel(memory, 10, 10);
+    if (evidence) {
+        checkpoint("ENTER", "wordmark-ink");
+        RECT heading{};
+        check(GetWindowRect(GetDlgItem(window, 201), &heading) != FALSE, "wordmark rectangle unavailable");
+        SetLastError(ERROR_SUCCESS);
+        const auto mapped = MapWindowPoints(nullptr, window, reinterpret_cast<POINT*>(&heading), 2);
+        check(mapped != 0 || GetLastError() == ERROR_SUCCESS, "wordmark coordinates could not be mapped");
+        check(heading.left >= 0 && heading.top >= 0 && heading.right <= rect.right && heading.bottom <= rect.bottom,
+              "wordmark capture bounds are clipped");
+        evidence->dpi = GetDpiForWindow(window);
+        check(evidence->dpi != 0, "owned capture DPI unavailable");
+        evidence->width = rect.right;
+        evidence->height = rect.bottom;
+        const auto* pixels = static_cast<const unsigned char*>(data);
+        for (LONG y = heading.top; y < heading.bottom; ++y) {
+            for (LONG x = heading.left; x < heading.right; ++x) {
+                const auto offset = (static_cast<size_t>(y) * static_cast<size_t>(rect.right) + static_cast<size_t>(x)) * 4;
+                const auto pixel = RGB(pixels[offset + 2], pixels[offset + 1], pixels[offset]);
+                const bool fill = pixel == RGB(127, 179, 255);
+                const bool outline = pixel == RGB(255, 255, 255);
+                const bool shadow = pixel == RGB(138, 83, 225);
+                evidence->fill += fill ? 1 : 0;
+                evidence->outline += outline ? 1 : 0;
+                evidence->shadow += shadow ? 1 : 0;
+                if ((fill || outline || shadow) &&
+                    (x == heading.left || y == heading.top || x == heading.right - 1 || y == heading.bottom - 1))
+                    evidence->unclipped = false;
+            }
+        }
+        check(evidence->fill > 0 && evidence->outline > 0 && evidence->shadow > 0 && evidence->unclipped,
+              "actual wordmark fill outline shadow or unclipped ink was not observed");
+        checkpoint("EXIT", "wordmark-ink");
+    }
     const DWORD size = static_cast<DWORD>(rect.right * rect.bottom * 4);
     BITMAPFILEHEADER header{};
     header.bfType = 0x4d42;
@@ -566,40 +635,75 @@ COLORREF capture(HWND window, const fs::path& destination) {
     return color;
 }
 
+int CALLBACK declaredFontFound(const LOGFONTW*, const TEXTMETRICW*, DWORD, LPARAM found) {
+    *reinterpret_cast<bool*>(found) = true;
+    return 0;
+}
+
+void writeRenderEvidence(HWND window, const fs::path& root, const RenderEvidence& evidence, bool fontMetadata) {
+    checkpoint("ENTER", "declared-font-availability");
+    const std::array<const wchar_t*, 4> names{ L"Impact", L"Haettenschweiler", L"Arial Narrow Bold", L"Segoe UI" };
+    std::array<bool, 4> available{};
+    const auto dc = CreateCompatibleDC(nullptr);
+    check(dc != nullptr, "local font availability DC unavailable");
+    size_t first = names.size();
+    for (size_t index = 0; index < names.size(); ++index) {
+        LOGFONTW query{};
+        query.lfCharSet = DEFAULT_CHARSET;
+        lstrcpynW(query.lfFaceName, names[index], LF_FACESIZE);
+        EnumFontFamiliesExW(dc, &query, declaredFontFound, reinterpret_cast<LPARAM>(&available[index]), 0);
+        if (available[index] && first == names.size()) first = index;
+    }
+    DeleteDC(dc);
+    check(first < names.size(), "none of the declared font candidates was available");
+    const auto ascii = [](const wchar_t* value) {
+        std::string text;
+        for (; *value; ++value) text += static_cast<char>(*value);
+        return text;
+    };
+    std::ofstream output(root / L"render-evidence.json", std::ios::binary);
+    output << "{\"pendingOnly\":true,\"nameRoleVerified\":true,\"pendingControlsVerified\":true,"
+           << "\"errorDetailsHidden\":true,\"wordmarkUnclipped\":true,\"width\":" << evidence.width
+           << ",\"height\":" << evidence.height << ",\"dpi\":" << evidence.dpi
+           << ",\"fillPixels\":" << evidence.fill << ",\"outlinePixels\":" << evidence.outline
+           << ",\"shadowPixels\":" << evidence.shadow << ",\"fontPatternAvailable\":"
+           << (fontMetadata ? "true" : "false") << ",\"renderedReviewRequired\":true,\"expectedFirstCandidate\":\""
+           << ascii(names[first]) << "\",\"fontAvailability\":[";
+    for (size_t index = 0; index < names.size(); ++index)
+        output << (index ? "," : "") << "{\"name\":\"" << ascii(names[index])
+               << "\",\"available\":" << (available[index] ? "true" : "false") << "}";
+    output << "]}";
+    output.close();
+    check(static_cast<bool>(output) && IsWindowVisible(window), "pending render evidence could not be retained");
+    checkpoint("EXIT", "declared-font-availability");
+}
+
 void visualOperation(HWND window, const fs::path& root, std::ofstream& report) {
     checkpoint("ENTER", "visual-assertions");
     accessible(window, false);
     bounds(window);
-    check(capture(window, root / L"startup-dark.bmp") == RGB(25, 25, 37), "ordinary startup surface is not dark");
+    check(IsWindowVisible(window) && !IsWindowVisible(GetDlgItem(window, 204)) &&
+          controlText(GetDlgItem(window, 202)) == L"Opening your reading tracker..." &&
+          controlText(GetDlgItem(window, 203)) == L"Hide startup window",
+          "safe pending-only capture identity did not hold");
+    RenderEvidence rendering;
+    check(capture(window, root / L"startup-dark.bmp", &rendering) == RGB(25, 25, 37), "ordinary startup surface is not dark");
     Com<IUIAutomation2> automation;
     automationClient(automation);
     Com<IUIAutomationElement> heading;
-    check(SUCCEEDED(observed("uia-font-element", [&] {
+    const auto headingResult = observed("uia-font-element", [&] {
         return automation->ElementFromHandle(GetDlgItem(window, 201), heading.put());
-    })), "font observation element unavailable");
+    });
+    checkedUiaOutput("uia-font-element-output", headingResult, heading.value);
     Com<IUIAutomationTextPattern> text;
-    check(SUCCEEDED(observed("uia-font-pattern", [&] {
+    const auto patternResult = observed("uia-font-pattern", [&] {
         return heading->GetCurrentPatternAs(UIA_TextPatternId, IID_PPV_ARGS(text.put()));
-    })), "supported native font observation is unavailable");
-    Com<IUIAutomationTextRange> range;
-    check(SUCCEEDED(observed("uia-font-range", [&] { return text->get_DocumentRange(range.put()); })),
-          "native font range unavailable");
-    VARIANT font{};
-    VariantInit(&font);
-    const auto fontResult = observed("uia-font-name", [&] { return range->GetAttributeValue(UIA_FontNameAttributeId, &font); });
-    if (FAILED(fontResult) || font.vt != VT_BSTR || !font.bstrVal) {
-        VariantClear(&font);
-        throw std::runtime_error("supported native font attribute is unavailable");
-    }
-    const std::wstring family(font.bstrVal);
-    VariantClear(&font);
-    std::string selectedFont;
-    for (const auto c : family) {
-        check(c >= 32 && c < 127, "selected font identity could not be recorded safely");
-        selectedFont += static_cast<char>(c);
-    }
-    check(!selectedFont.empty(), "selected font identity was empty");
-    report << "selected-font=" << selectedFont << "\n";
+    });
+    const bool fontMetadata = checkedUiaOutput("uia-optional-font-pattern-output", patternResult, text.value, true);
+    report << "CHECK INFO " << (fontMetadata ? "font-pattern-available-rendered-review-required"
+                                           : "font-metadata-unavailable-rendered-review-required") << "\n";
+    report.flush();
+    writeRenderEvidence(window, root, rendering, fontMetadata);
     HIGHCONTRASTW before{ sizeof(HIGHCONTRASTW), 0, nullptr };
     check(observed("high-contrast-read", [&] {
         return SystemParametersInfoW(SPI_GETHIGHCONTRAST, sizeof(before), &before, 0) != FALSE;
@@ -835,6 +939,7 @@ void supervision() {
     check(publication.claim() && !publication.claim(), "late completion could publish twice");
     cleanupCases();
     handleClassificationCases();
+    uiaOutputCases();
 }
 
 proof::WindowFact calibration(proof::Observer& observer, size_t* started = nullptr, std::ofstream* report = nullptr) {
@@ -1054,6 +1159,7 @@ void handleDiagnostic(const std::map<std::wstring, std::wstring>& options, std::
     GetNativeSystemInfo(&host);
     check(host.wProcessorArchitecture == PROCESSOR_ARCHITECTURE_AMD64, "handle diagnostic is x64 only");
     handleClassificationCases();
+    uiaOutputCases();
     report << "HANDLE classification-rows=19 passed=19 allocation-order=gui-control-before-original-slot\n";
     proof::Observer observer(true);
     size_t controlStarts = 0;
@@ -1470,6 +1576,9 @@ int wmain(int argc, wchar_t** argv) {
         check(static_cast<bool>(report), "proof report path is required");
         check(SUCCEEDED(com), "proof COM initialization failed");
         proof::nativeArchitecture(GetCurrentProcess());
+        check(observed("proof-dpi-awareness", [] {
+            return SetThreadDpiAwarenessContext(DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2) != nullptr;
+        }), "proof DPI context unavailable");
         if (options[L"--mode"] == L"visual-worker") {
             checkpoint("ENTER", "visual-target-validation");
             const auto pid = static_cast<DWORD>(std::stoul(options[L"--target-pid"]));

@@ -241,7 +241,7 @@ test('native producer outputs and job deadlines bind every package consumer', ()
 });
 
 test('native artifact transfer pins exact inputs and refuses digest mismatches', () => {
-  assert.equal((workflow.match(/actions\/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a/g) ?? []).length, 2);
+  assert.equal((workflow.match(/actions\/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a/g) ?? []).length, 4);
   assert.equal((workflow.match(/actions\/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c/g) ?? []).length, 3);
   assert.equal((workflow.match(/digest-mismatch: error/g) ?? []).length, 3);
   const inputs = [...workflow.matchAll(/^ {12}(dist\/native-(?:launcher|proof)\/.+)$/gm)]
@@ -254,7 +254,16 @@ test('native artifact transfer pins exact inputs and refuses digest mismatches',
     'dist/native-proof/x64/NativeStartupTests.exe',
     'dist/native-proof/arm64/NativeStartupTests.exe',
   ]);
-  assert.equal((workflow.match(/retention-days: 1/g) ?? []).length, 2);
+  const previews = [...workflow.matchAll(/^ {12}(dist\/native-preview\/.+)$/gm)].map((match) => match[1]);
+  assert.deepEqual(previews, [
+    'dist/native-preview/x64/pending-dark.bmp',
+    'dist/native-preview/x64/evidence.json',
+    'dist/native-preview/${{ matrix.architecture }}/pending-dark.bmp',
+    'dist/native-preview/${{ matrix.architecture }}/evidence.json',
+  ]);
+  assert.match(workflow, /steps\.f01_smoke\.outputs\.preview_ready == 'true'/);
+  assert.match(workflow, /steps\.native_fixtures\.outputs\.preview_ready == 'true'/);
+  assert.equal((workflow.match(/retention-days: 1/g) ?? []).length, 4);
   assert.doesNotMatch(workflow, /merge-multiple: true|include-hidden-files: true|overwrite: true/);
   const proof = readFileSync(new URL('../scripts/native-startup-proof.ps1', import.meta.url), 'utf8');
   assert.doesNotMatch(proof, /ReadToEndAsync|\.WaitForExit\(\)/);
@@ -267,4 +276,9 @@ test('native artifact transfer pins exact inputs and refuses digest mismatches',
   assert.match(proof, /held-writer-drain/);
   assert.match(proof, /RestoreContrast\(\$contrast\)/);
   assert.match(proof, /\$limit = 290000/);
+  assert.match(proof, /function Export-NativePreview/);
+  assert.match(proof, /\$bytes\.Length -gt 4MB/);
+  assert.match(proof, /renderedReviewRequired/);
+  assert.match(proof, /preview_ready=true/);
+  assert.doesNotMatch(previews.join('\n'), /\*{2}|\.xml|\.pfx|\.cer|trace|error|desktop/);
 });
