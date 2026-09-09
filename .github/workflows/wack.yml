@@ -2,6 +2,12 @@ name: Windows App Certification Kit
 
 on:
   workflow_dispatch:
+    inputs:
+      native_only:
+        description: Build and prove only the native startup tools
+        type: boolean
+        required: false
+        default: false
   pull_request:
     branches: [main]
     paths:
@@ -113,6 +119,7 @@ jobs:
     # in that supported-host list, so windows-latest is deliberately not used.
     runs-on: windows-2022
     needs: native
+    if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.native_only == true) }}
     timeout-minutes: 110
     env:
       MRT_NATIVE_SHA256: ${{ needs.native.outputs.native_sha256 }}
@@ -292,6 +299,7 @@ jobs:
     name: Installed functionality on ${{ matrix.architecture }}
     runs-on: ${{ matrix.runner }}
     needs: native
+    if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.native_only == true) }}
     timeout-minutes: 96
     env:
       MRT_NATIVE_SHA256: ${{ needs.native.outputs.native_sha256 }}

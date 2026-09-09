@@ -292,6 +292,7 @@ struct App {
     recap::Outcome result;
     recap::Publication publication;
     ~App() {
+        if (window && IsWindow(window)) DestroyWindow(window);
         if (icon) DeleteObject(icon);
         if (uiFont) DeleteObject(uiFont);
         if (wordFont) DeleteObject(wordFont);
@@ -504,6 +505,24 @@ bool clampWindow(RECT& rectangle) {
     return true;
 }
 
+void drawClient(App& app, HDC dc, const RECT& rectangle) {
+    FillRect(dc, &rectangle, app.background);
+    if (app.icon) {
+        const auto source = CreateCompatibleDC(dc);
+        if (!source) {
+            SetWindowTextW(app.footer, L"The app icon could not be drawn. Startup is still being observed.");
+            return;
+        }
+        const auto old = SelectObject(source, app.icon);
+        const auto& box = app.iconRect;
+        BLENDFUNCTION blend{ AC_SRC_OVER, 0, 255, AC_SRC_ALPHA };
+        AlphaBlend(dc, box.left, box.top, box.right - box.left, box.bottom - box.top,
+                   source, 0, 0, 512, 512, blend);
+        SelectObject(source, old);
+        DeleteDC(source);
+    }
+}
+
 LRESULT CALLBACK windowProcedure(HWND window, UINT message, WPARAM wparam, LPARAM lparam) {
     auto* app = reinterpret_cast<App*>(GetWindowLongPtrW(window, GWLP_USERDATA));
     if (message == WM_NCCREATE) {
@@ -579,18 +598,14 @@ LRESULT CALLBACK windowProcedure(HWND window, UINT message, WPARAM wparam, LPARA
     case WM_PAINT: {
         PAINTSTRUCT paint{};
         const auto dc = BeginPaint(window, &paint);
-        FillRect(dc, &paint.rcPaint, app->background);
-        if (app->icon) {
-            const auto source = CreateCompatibleDC(dc);
-            const auto old = SelectObject(source, app->icon);
-            const auto& box = app->iconRect;
-            BLENDFUNCTION blend{ AC_SRC_OVER, 0, 255, AC_SRC_ALPHA };
-            AlphaBlend(dc, box.left, box.top, box.right - box.left, box.bottom - box.top,
-                       source, 0, 0, 512, 512, blend);
-            SelectObject(source, old);
-            DeleteDC(source);
-        }
+        drawClient(*app, dc, paint.rcPaint);
         EndPaint(window, &paint);
+        return 0;
+    }
+    case WM_PRINTCLIENT: {
+        RECT client{};
+        GetClientRect(window, &client);
+        drawClient(*app, reinterpret_cast<HDC>(wparam), client);
         return 0;
     }
     case CompleteMessage:

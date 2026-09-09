@@ -96,6 +96,18 @@ void responsive(HWND window) {
           "native message loop did not respond");
 }
 
+bool sameKernelObject(HANDLE first, HANDLE second) {
+    // SDK 26100 declares the API but the hosted image has no kernelbase.lib.
+    const auto module = GetModuleHandleW(L"kernelbase.dll");
+    check(module != nullptr, "kernel object comparison is unavailable");
+    const auto address = GetProcAddress(module, "CompareObjectHandles");
+    check(address != nullptr, "kernel object comparison is unavailable");
+    decltype(&CompareObjectHandles) compare = nullptr;
+    static_assert(sizeof(compare) == sizeof(address));
+    memcpy(&compare, &address, sizeof(compare));
+    return compare(first, second) != FALSE;
+}
+
 template<class T> struct Com {
     T* value = nullptr;
     Com() = default;
@@ -410,7 +422,7 @@ void fixture(const std::string& id, const fs::path& root, const fs::path& native
             if (DuplicateHandle(coordinator.process.get(), sentinelHandle.get(), GetCurrentProcess(),
                 &duplicate, 0, FALSE, DUPLICATE_SAME_ACCESS)) {
                 recap::Handle copied(duplicate);
-                check(!CompareObjectHandles(sentinelHandle.get(), copied.get()), "coordinator inherited the unrelated sentinel");
+                check(!sameKernelObject(sentinelHandle.get(), copied.get()), "coordinator inherited the unrelated sentinel");
             } else check(GetLastError() == ERROR_INVALID_HANDLE, "handle inheritance observation was inconclusive");
             if (!consoleOnly) visual(window, layout, report);
         }

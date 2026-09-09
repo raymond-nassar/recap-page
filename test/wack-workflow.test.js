@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { runInNewContext } from 'node:vm';
 
 const workflow = readFileSync(new URL('../.github/workflows/wack.yml', import.meta.url), 'utf8');
 const runner = readFileSync(new URL('../scripts/run-wack.ps1', import.meta.url), 'utf8');
@@ -159,6 +160,21 @@ test('native producer outputs and job deadlines bind every package consumer', ()
   const jobs = workflow.slice(workflow.search(/^jobs:\r?$/m))
     .split(/(?=^ {2}[a-z][\w-]*:)/m).slice(1);
   assert.deepEqual(jobs.map((job) => /^ {2}([\w-]+):/.exec(job)?.[1]), ['native', 'certify', 'installed']);
+  assert.match(workflow, /native_only:\r?\n {8}description: .+\r?\n {8}type: boolean\r?\n {8}required: false\r?\n {8}default: false/);
+  const predicate = "!(github.event_name == 'workflow_dispatch' && inputs.native_only == true)";
+  for (const job of jobs.slice(1)) {
+    const expression = job.match(/^ {4}if: \$\{\{ (.+) \}\}\r?$/m)?.[1];
+    assert.equal(expression, predicate);
+    for (const [event, inputs, expected] of [
+      ['workflow_dispatch', { native_only: true }, false],
+      ['workflow_dispatch', { native_only: false }, true],
+      ['workflow_dispatch', {}, true],
+      ['pull_request', { native_only: true }, true],
+      ['pull_request', {}, true],
+    ]) {
+      assert.equal(runInNewContext(expression, { github: { event_name: event }, inputs }), expected);
+    }
+  }
   for (const job of jobs) {
     const backstop = Number(job.match(/^ {4}timeout-minutes: (\d+)/m)?.[1]);
     const steps = [...job.matchAll(/^ {8}timeout-minutes: (\d+)/gm)].map((match) => Number(match[1]));
