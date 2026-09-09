@@ -103,11 +103,11 @@ export const PAIRS = [
   ['--accent', '--card-2', LARGE, 'the fill of a primary button on a raised card'],
   // Found by the same review, one token over, and it is the reason the guard in test/theme.test.js
   // now pins `--on-accent` too. The tick inside a checked checkbox is `--on-accent` on `--teal`
-  // (`src/styles.css:993` and `src/styles.css:995`), which is 1.93:1 in the dark theme. It is
+  // (`src/styles.css:994` and `src/styles.css:996`), which is 1.93:1 in the dark theme. It is
   // listed here and recorded below rather than fixed, because the colour decision belongs to
   // BL-069 and this item is about measuring what nothing measured. The railed status dot is the
   // other thing painted on `--teal` and it carries no foreground at all, since
-  // `.railed .rail-foot .pill` sets `color: transparent` at `src/styles.css:536-537`, so this is
+  // `.railed .rail-foot .pill` sets `color: transparent` at `src/styles.css:537-538`, so this is
   // the only pair `--teal` backs.
   ['--on-accent', '--teal', LARGE, 'the tick inside a checked read checkbox'],
   // BL-069, out of the BL-067 review, which found `--accent` painting three surfaces no pair reached.
@@ -119,8 +119,8 @@ export const PAIRS = [
   // own fixed palette, leaving this pair to describe the skip link alone.
   //
   // The accent bar is deliberately not on that entry. `.ri[aria-current]`
-  // sets its own background at `src/styles.css:476`, a tint over the rail, and the bar at
-  // `src/styles.css:480` is its `::before`, so it can only ever land on the tint. It reads 3.44 and
+  // sets its own background at `src/styles.css:477`, a tint over the rail, and the bar at
+  // `src/styles.css:481` is its `::before`, so it can only ever land on the tint. It reads 3.44 and
   // 5.35. Putting it on `--rail` with the other two would have read 4.09 and 6.37, overstating it
   // by 0.65 in the dark theme and 1.02 in the light one, which is the mistake hit testing was for.
   ['--accent', '--rail', LARGE, 'the skip link when focused on the rail'],
@@ -133,7 +133,7 @@ export const PAIRS = [
   // ghost button has any: its label and its border. Both are listed rather than assumed, because
   // the button that was made quieter is the one it would be worst to make unreadable.
   ['--text', 'the ghost button on the unreadable-data banner', BODY, 'the label of the start-fresh button'],
-  ['--muted', 'the ghost button on the unreadable-data banner', LARGE, 'the border that sets the start-fresh button apart, at `src/styles.css:1832`'],
+  ['--muted', 'the ghost button on the unreadable-data banner', LARGE, 'the border that sets the start-fresh button apart, at `src/styles.css:1833`'],
 ];
 
 export const STANDALONE_PAIRS = [
@@ -169,13 +169,13 @@ export const SURFACES = {
     // 228 in blue. The ghost button below already carries the same correction.
     fraction: 20 / 255,
     on: '--rail',
-    css: 'rgb(var(--tint-base) / 8%) over the rail, at `src/styles.css:476`',
+    css: 'rgb(var(--tint-base) / 8%) over the rail, at `src/styles.css:477`',
   },
   'the unreadable-data banner': {
     layer: '--warn',
     fraction: 0.12,
     on: '--panel',
-    css: 'color-mix(in srgb, var(--warn) 12%, var(--panel)), at `src/styles.css:1808`',
+    css: 'color-mix(in srgb, var(--warn) 12%, var(--panel)), at `src/styles.css:1809`',
   },
   // Built on a surface rather than a token, which is the case the first version of this could not
   // express. A ghost button is a tint over whatever it is dropped onto, so on the banner it is a
@@ -185,7 +185,7 @@ export const SURFACES = {
     layer: '--tint-base',
     fraction: 0.05882,
     on: 'the unreadable-data banner',
-    css: 'rgb(var(--tint-base) / 5.882%) over the banner, at `src/styles.css:821`',
+    css: 'rgb(var(--tint-base) / 5.882%) over the banner, at `src/styles.css:822`',
   },
 };
 

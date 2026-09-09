@@ -43,6 +43,7 @@ function node(id, ownerDocument) {
     value: '',
     textContent: '',
     focus() { ownerDocument.activeElement = this; },
+    getClientRects() { return this.hidden || this.parent?.getClientRects().length === 0 ? [] : [{}]; },
     contains(target) { return this === target || this.children.some((child) => child.contains(target)); },
     setAttribute(key, value) { attributes.set(key, String(value)); },
     getAttribute(key) { return attributes.get(key) ?? null; },
@@ -76,6 +77,11 @@ function harness() {
   ].map((key) => [key, node(`test-${key}`, doc)]));
   nodes.form.children = [nodes.input, nodes.apply, nodes.cancel];
   nodes.reportPanel.children = [nodes.reportText, nodes.regenerate, nodes.reportLink];
+  nodes.root.children = Object.values(nodes).filter((entry) => entry !== nodes.root
+    && !nodes.form.children.includes(entry) && !nodes.reportPanel.children.includes(entry));
+  for (const parent of [nodes.root, nodes.form, nodes.reportPanel]) {
+    for (const child of parent.children) child.parent = parent;
+  }
   const links = createTemporaryReaderLinks();
   const messages = [];
   let changes = 0;
@@ -86,7 +92,7 @@ function harness() {
     links,
     announce: (message) => messages.push(message),
     onChange: () => { changes += 1; },
-    focusFallback: () => { fallback += 1; },
+    focusFallback: () => { fallback += 1; doc.activeElement = null; },
   });
   view.wire();
   view.show(7);
@@ -227,6 +233,8 @@ test('temporary memory retains valid bindings through unchanged outcomes and inv
   }
   assert.equal(links.remove(state, 7).ok, false);
   links.reconcile(state, { changed: false });
+  assert.equal(links.known, false, 'unchanged alone cannot validate unknown data');
+  links.reconcile(state, { changed: false, confirmed: true });
   assert.equal(links.use(state, 7, 'https://read.marvel.com/#/book/22').ok, true);
   assert.equal(createTemporaryReaderLinks().get(state, 7), null, 'a separate document has its own memory');
   assert.equal(links.clear(), 1);
@@ -353,7 +361,7 @@ test('injected reader form reconciles outcomes without discarding unrelated temp
   assert.equal(h.links.known, false);
   assert.equal(h.nodes.edit.disabled, true);
   assert.equal(h.fallback(), 1);
-  h.view.reconcile({ changed: false });
+  h.view.reconcile({ changed: false, confirmed: true });
   h.nodes.edit.fire('click');
   h.paste('https://read.marvel.com/#/book/22');
   h.nodes.form.fire('submit');

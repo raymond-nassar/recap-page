@@ -115,7 +115,7 @@ export function createTemporaryReaderLinks() {
     return removed;
   }
 
-  function reconcile(state, { changed = false } = {}) {
+  function reconcile(state, { changed = false, confirmed = false } = {}) {
     if (changed !== true && changed !== false && changed !== null) {
       throw new TypeError('A saved-data outcome must be true, false or null.');
     }
@@ -124,7 +124,7 @@ export function createTemporaryReaderLinks() {
       known = changed !== null;
       return { removed, known, replaced: changed === true };
     }
-    known = true;
+    if (confirmed) known = true;
     let removed = 0;
     for (const id of links.keys()) {
       if (!savedReaderIssue(state, id)) {

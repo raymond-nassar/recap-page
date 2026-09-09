@@ -67,6 +67,9 @@ export function createReaderLinkView({
 
   function refresh() {
     const nodes = elements();
+    const active = nodes.root.ownerDocument?.activeElement;
+    const ownedFocus = active && nodes.root.contains(active)
+      && nodes.root.getClientRects().length > 0;
     const issue = held();
     const current = links.get(getState(), issueId);
     const eligible = Boolean(issue) && links.known;
@@ -88,6 +91,7 @@ export function createReaderLinkView({
       nodes.reportStatus.textContent = 'These report details describe an earlier context. Review them or regenerate from the current comic.';
     }
     nodes.regenerate.disabled = !eligible;
+    if (ownedFocus && (active.disabled || !active.getClientRects().length)) focusEdit();
   }
 
   function cancel({ focus = true } = {}) {
@@ -209,7 +213,8 @@ export function createReaderLinkView({
       announce(message);
     }
     onChange();
-    if ((formFocused && nodes.form.hidden) || (reportFocused && nodes.reportPanel.hidden)) focusEdit();
+    if (nodes.form.ownerDocument?.activeElement === active
+      && ((formFocused && nodes.form.hidden) || (reportFocused && nodes.reportPanel.hidden))) focusEdit();
     return result;
   }
 

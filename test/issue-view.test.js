@@ -20,6 +20,7 @@ function node(textContent = '') {
     replaceChildren(...children) { this.children = children; },
     setAttribute(name, value) { this.attributes[name] = value; },
     focus() { this.ownerDocument.activeElement = this; },
+    getClientRects() { return this.hidden || this.viewHidden ? [] : [{}]; },
   };
 }
 
@@ -243,6 +244,23 @@ test('453 reader refresh preserves facts and disclosure and reports explicit res
   h.nodes.read.listeners.click({});
   assert.equal(h.calls.read[0][2], 'saved');
   assert.equal(saved.digitalId, null);
+  h.nodes.read.focus();
+  temporary = false;
+  h.view.refreshReader();
+  assert.equal(h.nodes.read.ownerDocument.activeElement, h.nodes.heading, 'disappearing Read rescues focus');
+  temporary = true;
+  h.view.refreshReader();
+  h.nodes.info.focus();
+  temporary = false;
+  h.view.refreshReader();
+  assert.equal(h.nodes.info.ownerDocument.activeElement, h.nodes.info, 'unrelated focus is preserved');
+  temporary = true;
+  h.view.refreshReader();
+  h.nodes.read.focus();
+  h.nodes.read.viewHidden = true;
+  temporary = false;
+  h.view.refreshReader();
+  assert.equal(h.nodes.read.ownerDocument.activeElement, h.nodes.read, 'a hidden view does not redirect focus');
   h.view.cancel();
   assert.equal(contexts.at(-1), null, 'leaving clears editor without inventing unavailable provenance');
 });

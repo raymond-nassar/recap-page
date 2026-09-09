@@ -112,7 +112,7 @@ export function dispatchStorageEvent(
     readerStore = store,
     education = saveEducation,
     renderEducation = renderSaveEducation,
-    reconcileReader = readerStore === store ? (changed) => readerLinkView.reconcile({ changed }) : () => {},
+    reconcileReader = readerStore === store ? (changed) => readerLinkView.reconcile({ changed, confirmed: changed !== null }) : () => {},
   } = {},
 ) {
   if (event.key === STATE_KEY) {

@@ -229,9 +229,15 @@ export function createIssueView({
 
   function refreshReader() {
     if (!currentResult?.issue) return;
+    const nodes = elements();
+    const focused = nodes.read.ownerDocument?.activeElement === nodes.read && nodes.read.getClientRects().length > 0;
     const { launchable, temporary } = readerPresentation(currentResult.issue, currentResult.source);
-    elements().read.hidden = !launchable;
-    elements().read.textContent = temporary ? 'Read with temporary link' : 'Open in Marvel Unlimited';
+    nodes.read.hidden = !launchable;
+    nodes.read.textContent = temporary ? 'Read with temporary link' : 'Open in Marvel Unlimited';
+    if (focused && !launchable) {
+      nodes.heading.setAttribute('tabindex', '-1');
+      nodes.heading.focus({ preventScroll: true });
+    }
   }
 
   function wire() {

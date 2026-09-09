@@ -1,5 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { runInNewContext } from 'node:vm';
 import { Store, KEY } from '../src/js/storage.js';
 import { dispatchStorageEvent } from '../src/js/main.js';
 import { createTemporaryReaderLinks } from '../src/js/lib/temporaryReaderLink.js';
@@ -78,17 +80,41 @@ test('453 foreign adoption retains valid temporary links but actual erase and un
     else storage.setItem(KEY, raw);
     dispatchStorageEvent({ key: KEY, newValue: raw }, {
       readerStore,
-      reconcileReader: (changed) => links.reconcile(readerStore.state, { changed }),
+      reconcileReader: (changed) => links.reconcile(readerStore.state, { changed, confirmed: changed !== null }),
     });
   };
   receive(JSON.stringify(exportBackup(markRead(readerStore.state, 2, true))));
   assert.equal(links.get(readerStore.state, 1), 22);
   receive('invalid saved data');
   assert.equal(links.known, false);
-  assert.equal(links.resolve(readerStore.state, readerStore.state.issues[1]).ok, false);
+  const main = readFileSync(new URL('../src/js/main.js', import.meta.url), 'utf8');
+  const callbacks = ['onRestore', 'onUndoRestore'].map((name) => {
+    const match = main.match(new RegExp(`${name}: \\([^)]*\\) => \\{[\\s\\S]*?\\n  \\},`));
+    assert.ok(match, `${name} composition callback exists`);
+    return runInNewContext(`({${match[0]}})`, {
+      store: readerStore,
+      readerLinkView: { reconcile: (outcome) => links.reconcile(readerStore.state, outcome) },
+      readingView: { forgetDeleted() {} },
+    })[name];
+  });
+  for (const operation of [() => callbacks[0]('invalid backup'), () => callbacks[1]()]) {
+    assert.equal(operation().ok, false);
+    assert.equal(links.known, false, 'a no-change refusal cannot validate unreadable saved data');
+    assert.equal(storage.getItem(KEY), 'invalid saved data');
+    assert.equal(links.resolve(readerStore.state, readerStore.state.issues[1], { source: 'saved' }).ok, false);
+    for (const source of ['bundled', 'api']) {
+      const supplied = { issueId: 1, digitalId: 88 };
+      assert.equal(links.resolve(readerStore.state, supplied, { source }).issue, supplied);
+    }
+  }
   receive(seedRaw());
   assert.equal(links.known, true);
   links.use(readerStore.state, 1, 'https://read.marvel.com/#/book/22');
+  assert.equal(callbacks[0]('invalid backup').ok, false);
+  assert.equal(links.get(readerStore.state, 1), 22, 'known no-change refusal retains a valid mapping');
+  links.reconcile(readerStore.state, { changed: null });
+  assert.equal(callbacks[0](seedRaw()).ok, true);
+  assert.equal(links.known, true, 'successful actual replacement restores knowledge');
   receive(null);
   assert.equal(links.size, 0);
   assert.equal(links.known, true);

@@ -22,6 +22,7 @@
 .reader-link p, .reader-link button, .reader-link a { overflow-wrap: anywhere; }
 .reader-link input, .reader-link textarea { width: 100%; min-width: 0; box-sizing: border-box; }
 .reader-link .cta { flex-wrap: wrap; }
+#reader-link-root[hidden], #reader-link-form[hidden], #reader-link-reportPanel[hidden] { display: none; }
 @media (forced-colors: active) {
   .reader-link { border-color: CanvasText; }
 }
