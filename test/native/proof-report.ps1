@@ -172,6 +172,17 @@ try {
   Assert-Report ($observer.Contains('raw_unknown_metadata=') -and $observer.Contains('visible_ambient_consoles=')) 'raw metadata and ambient visibility are not reported separately'
   Assert-Report ($native.Contains('ObservationProfile::installedBusy') -and $native.Contains('ObservationProfile::installedFunctionality')) 'real installed contexts are not explicit'
   Assert-Report ($observer.Contains('ambientConsoleScoped(ObservationProfile profile')) 'ambient binding lacks its explicit profile guard'
+  $definition = [regex]::Matches($observer, '(?ms)^inline bool completeNonPresenterTransient\(.*?^\}')
+  $types = @('WindowKind', 'WindowFact', 'HelperScopeEvidence', 'WindowLifetime')
+  $typeEnds = @($types | ForEach-Object {
+    $pattern = "(?ms)^struct $_\b.*?^};"
+    if ($_ -eq 'WindowKind') { $pattern = '(?m)^enum class WindowKind \{[^\r\n]*};' }
+    $match = [regex]::Match($observer, $pattern)
+    if ($match.Success) { $match.Index + $match.Length } else { [int]::MaxValue }
+  })
+  Assert-Report ($definition.Count -eq 1 -and
+    $definition[0].Index -ge ($typeEnds | Measure-Object -Maximum).Maximum -and
+    $definition[0].Index -lt $observer.IndexOf('inline std::vector<WindowLifetime> windowLifetimes')) 'transient helper precedes its complete prerequisite types'
   Write-Output "PASS proof-report-fixtures assertions=$script:assertions"
 } finally {
   Remove-Item -LiteralPath $file -Force

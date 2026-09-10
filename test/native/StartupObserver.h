@@ -79,22 +79,6 @@ struct ProcessEvent {
     DWORD exitCode = 0;
 };
 
-inline bool completeNonPresenterTransient(const std::vector<WindowFact>& facts, const WindowLifetime& life,
-                                          const HelperScopeEvidence& evidence) {
-    if (!evidence.registered || !evidence.instance || !evidence.image || !evidence.thread ||
-        !evidence.ownerCompatible || evidence.productAssociation || evidence.terminalAssociation ||
-        !life.created || !life.closed || life.conflict || life.rows.size() != 2) return false;
-    const auto& created = facts[life.rows[0]];
-    const auto& destroyed = facts[life.rows[1]];
-    if (created.event != EVENT_OBJECT_CREATE || destroyed.event != EVENT_OBJECT_DESTROY) return false;
-    for (const auto index : life.rows) {
-        const auto& raw = facts[index];
-        if (raw.visible || raw.kind == WindowKind::startup || raw.kind == WindowKind::console ||
-            raw.kind == WindowKind::terminal) return false;
-    }
-    return true;
-}
-
 struct ProcessImage {
     DWORD pid = 0;
     LONGLONG timestamp = 0;
@@ -344,6 +328,22 @@ struct WindowLifetime {
     std::vector<size_t> rows;
     bool created = false, closed = false, conflict = false;
 };
+
+inline bool completeNonPresenterTransient(const std::vector<WindowFact>& facts, const WindowLifetime& life,
+                                          const HelperScopeEvidence& evidence) {
+    if (!evidence.registered || !evidence.instance || !evidence.image || !evidence.thread ||
+        !evidence.ownerCompatible || evidence.productAssociation || evidence.terminalAssociation ||
+        !life.created || !life.closed || life.conflict || life.rows.size() != 2) return false;
+    const auto& created = facts[life.rows[0]];
+    const auto& destroyed = facts[life.rows[1]];
+    if (created.event != EVENT_OBJECT_CREATE || destroyed.event != EVENT_OBJECT_DESTROY) return false;
+    for (const auto index : life.rows) {
+        const auto& raw = facts[index];
+        if (raw.visible || raw.kind == WindowKind::startup || raw.kind == WindowKind::console ||
+            raw.kind == WindowKind::terminal) return false;
+    }
+    return true;
+}
 
 inline std::vector<WindowLifetime> windowLifetimes(const std::vector<WindowFact>& facts) {
     std::vector<WindowLifetime> lifetimes;
