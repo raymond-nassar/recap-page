@@ -309,6 +309,11 @@ test('native artifact transfer pins exact inputs and refuses digest mismatches',
   assert.match(observer, /registered-visual-helper/);
   assert.match(native, /final-observer-cases cases=20 passed=20 fixed_conditions=31/);
   assert.match(native, /pending footer text ink was not captured/);
+  assert.match(native, /observation-profile-cases cases=20 passed=20 profiles=5 raw_metadata_preserved=1/);
+  assert.match(native, /ObservationProfile::nativeFixture, verifyFixedFixture\(options\[L"--fixture"\]\)/);
+  assert.match(observer, /raw_unknown_metadata=/);
+  assert.match(observer, /visible_ambient_consoles=/);
+  assert.doesNotMatch(observer, /const std::vector<DWORD>& roots, bool installed/);
   assert.match(proof, /footerInkPixels -lt 64/);
   assert.match(observer, /temporary_closed=/);
   assert.doesNotMatch(observer, /ConsoleControl\(|ConsoleSetWindowOwner/);
@@ -319,7 +324,7 @@ test('native artifact transfer pins exact inputs and refuses digest mismatches',
     ], { encoding: 'utf8', timeout: 15000, maxBuffer: 128 * 1024 });
     assert.match(output, /PASS report-limits line-count=4096 size=1048576 poisoned-reparse=0/);
     assert.match(output, /PASS cleanup-accounting report-fatal-clean=1 secondary-faults=2 stages-attempted=7/);
-    assert.match(output, /PASS proof-report-fixtures assertions=62/);
+    assert.match(output, /PASS proof-report-fixtures assertions=69/);
     t.diagnostic(output.trim());
   } else {
     t.diagnostic('Windows-only inert PowerShell reporting fixtures were not executed on this host.');

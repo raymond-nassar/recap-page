@@ -161,6 +161,17 @@ try {
   Assert-Report ($native.Contains('pending footer text ink was not captured') -and $native.Contains('Closing this window lets startup continue in the background.')) 'actual footer property or ink evidence is missing'
   Assert-Report ($proof.Contains('footerInkPixels') -and $proof.Contains('footerBoundsVerified')) 'safe footer artifact fields are not validated'
   Assert-Report ($native.Contains('RDW_INVALIDATE | RDW_UPDATENOW | RDW_ALLCHILDREN')) 'settled real child/window capture is missing'
+  Assert-Report ($observer.Contains('enum class ObservationProfile')) 'terminal observation still lacks explicit activation profiles'
+  $fixture = [IO.File]::ReadAllText((Join-Path $root 'test\native\Launcher.fixture.mjs.in')).Replace("`r`n","`n")
+  $sha = [Security.Cryptography.SHA256]::Create()
+  try { $digest = [BitConverter]::ToString($sha.ComputeHash([Text.Encoding]::UTF8.GetBytes($fixture))).Replace('-','').ToLowerInvariant() }
+  finally { $sha.Dispose() }
+  Assert-Report ($digest -ceq '1f370a079387f32d8d9d755bb8a63c18bd485800f5eab50ebcfa7193a1c1432a') 'the closed fixture capability source changed'
+  Assert-Report ($native.Contains('ObservationProfile::nativeFixture, verifyFixedFixture(options[L"--fixture"])')) 'native profile lacks actual fixed-source verification'
+  Assert-Report (-not $observer.Contains('const std::vector<DWORD>& roots, bool installed')) 'closed observation still overloads the installed flag'
+  Assert-Report ($observer.Contains('raw_unknown_metadata=') -and $observer.Contains('visible_ambient_consoles=')) 'raw metadata and ambient visibility are not reported separately'
+  Assert-Report ($native.Contains('ObservationProfile::installedBusy') -and $native.Contains('ObservationProfile::installedFunctionality')) 'real installed contexts are not explicit'
+  Assert-Report ($observer.Contains('ambientConsoleScoped(ObservationProfile profile')) 'ambient binding lacks its explicit profile guard'
   Write-Output "PASS proof-report-fixtures assertions=$script:assertions"
 } finally {
   Remove-Item -LiteralPath $file -Force

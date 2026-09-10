@@ -3,6 +3,7 @@
 #include "StartupObserver.h"
 #include <ole2.h>
 #include <UIAutomation.h>
+#include <wincrypt.h>
 #include <array>
 #include <cstdlib>
 #include <exception>
@@ -78,7 +79,9 @@ const char* failureCode(const std::exception& failure) {
         { "registration purpose or image conflict", "process-registration-purpose-conflict" },
         { "registration requires a retained live process instance", "process-registration-not-live" },
         { "registered process image differs from its declared purpose", "process-registration-image-mismatch" },
-        { "registered primary thread instance differs", "process-registration-thread-mismatch" }
+        { "registered primary thread instance differs", "process-registration-thread-mismatch" },
+        { "native closed profile requires the exact reviewed inert fixture", "native-fixture-contract-mismatch" },
+        { "fixed fixture digest could not be verified", "native-fixture-digest-failed" }
     };
     for (const auto& label : labels) if (strcmp(failure.what(), label[0]) == 0) return label[1];
     return "unclassified-proof-error";
@@ -347,6 +350,42 @@ std::string read(const fs::path& path) {
     std::ifstream input(path, std::ios::binary);
     check(static_cast<bool>(input), "fixture input is missing");
     return { std::istreambuf_iterator<char>(input), std::istreambuf_iterator<char>() };
+}
+
+bool verifyFixedFixture(const fs::path& path) {
+    checkpoint("ENTER", "fixed-fixture-contract");
+    check(fs::file_size(path) <= 16384, "fixed fixture source exceeds its bound");
+    const auto input = read(path);
+    std::string canonical;
+    for (size_t index = 0; index < input.size(); ++index) {
+        if (input[index] == '\r' && index + 1 < input.size() && input[index + 1] == '\n') continue;
+        canonical.push_back(input[index]);
+    }
+    HCRYPTPROV provider = 0;
+    HCRYPTHASH hash = 0;
+    std::array<BYTE, 32> bytes{};
+    DWORD length = static_cast<DWORD>(bytes.size());
+    const bool hashed = CryptAcquireContextW(&provider, nullptr, MS_ENH_RSA_AES_PROV_W, PROV_RSA_AES, CRYPT_VERIFYCONTEXT) &&
+        CryptCreateHash(provider, CALG_SHA_256, 0, 0, &hash) &&
+        CryptHashData(hash, reinterpret_cast<const BYTE*>(canonical.data()), static_cast<DWORD>(canonical.size()), 0) &&
+        CryptGetHashParam(hash, HP_HASHVAL, bytes.data(), &length, 0);
+    const DWORD error = hashed ? ERROR_SUCCESS : GetLastError();
+    const bool hashClosed = !hash || CryptDestroyHash(hash);
+    const bool providerClosed = !provider || CryptReleaseContext(provider, 0);
+    if (liveReport) {
+        *liveReport << "DIAG fixture-digest hashed=" << hashed << " error=" << error
+                    << " hash_closed=" << hashClosed << " provider_closed=" << providerClosed << "\n";
+        liveReport->flush();
+    }
+    check(hashed && length == bytes.size() && hashClosed && providerClosed, "fixed fixture digest could not be verified");
+    constexpr char hex[] = "0123456789abcdef";
+    std::string digest;
+    for (const auto value : bytes) { digest.push_back(hex[value >> 4]); digest.push_back(hex[value & 15]); }
+    check(canonical.size() == 2717 &&
+          digest == "1f370a079387f32d8d9d755bb8a63c18bd485800f5eab50ebcfa7193a1c1432a",
+          "native closed profile requires the exact reviewed inert fixture");
+    checkpoint("EXIT", "fixed-fixture-contract");
+    return true;
 }
 
 void write(const fs::path& path, const std::string& text) {
@@ -1485,6 +1524,93 @@ void finalObserverCases() {
     liveReport->flush();
 }
 
+void observationProfileCases() {
+    using Profile = proof::ObservationProfile;
+    proof::WindowFact created;
+    created.event = EVENT_OBJECT_CREATE;
+    created.window = 100;
+    created.kind = proof::WindowKind::unknown;
+    auto destroyed = created;
+    destroyed.event = EVENT_OBJECT_DESTROY;
+    const std::vector<proof::WindowFact> raw{ created, destroyed };
+    const proof::WindowLifetime life{ { 0, 1 }, true, true, false };
+    const proof::HelperScopeEvidence source{ true, true, true, true, true, false, false };
+    size_t cases = 0;
+    const auto expect = [&](bool value, const char* message) {
+        ++cases;
+        if (!value && liveReport) { *liveReport << "DIAG observation-profile-case-failed index=" << cases << "\n"; liveReport->flush(); }
+        check(value, message);
+    };
+    expect(proof::completeNonPresenterTransient(raw, life, source) && !raw[0].metadataKnown &&
+           raw[0].kind == proof::WindowKind::unknown, "source-bound transient fabricated metadata");
+    auto shown = raw; shown[0].event = EVENT_OBJECT_SHOW;
+    expect(!proof::completeNonPresenterTransient(shown, life, source), "SHOW was treated as a GUI-only transient");
+    auto visible = raw; visible[0].visible = true;
+    expect(!proof::completeNonPresenterTransient(visible, life, source), "positive visibility was hidden");
+    auto terminal = raw; terminal[0].kind = proof::WindowKind::console;
+    expect(!proof::completeNonPresenterTransient(terminal, life, source), "console identity was hidden");
+    auto association = source; association.terminalAssociation = true;
+    expect(!proof::completeNonPresenterTransient(raw, life, association), "console application association was hidden");
+    auto unknown = source; unknown.image = false;
+    expect(!proof::completeNonPresenterTransient(raw, life, unknown), "unknown source image was accepted");
+    unknown = source; unknown.thread = false;
+    expect(!proof::completeNonPresenterTransient(raw, life, unknown), "unknown primary thread was accepted");
+    auto conflict = life; conflict.conflict = true;
+    expect(!proof::completeNonPresenterTransient(raw, conflict, source), "conflicting transient lifetime was accepted");
+    association = source; association.productAssociation = true;
+    expect(!proof::completeNonPresenterTransient(raw, life, association), "instrumentation scope hid a product relation");
+    expect(proof::nativeEnvironmentAllowed(Profile::nativeFixture, true, true, true, false, false),
+           "closed fixture capability was not recognized");
+    expect(!proof::nativeEnvironmentAllowed(Profile::nativeFixture, false, true, true, false, false),
+           "unverified fixture source enabled closed scope");
+    expect(!proof::nativeEnvironmentAllowed(Profile::installedFunctionality, true, true, true, false, false),
+           "installed functionality inherited closed scope");
+    expect(!proof::nativeEnvironmentAllowed(Profile::installedBusy, true, true, true, false, false),
+           "installed busy-port inherited closed scope");
+    expect(!proof::nativeEnvironmentAllowed(Profile::calibration, true, true, true, false, false) &&
+           !proof::nativeEnvironmentAllowed(Profile::diagnostic, true, true, true, false, false),
+           "nonfixture context inherited closed scope");
+    expect(!proof::nativeEnvironmentAllowed(Profile::nativeFixture, true, true, true, true, false) &&
+           !proof::nativeEnvironmentAllowed(Profile::nativeFixture, true, true, true, false, true),
+           "controlled creation or association was scoped as environment");
+    proof::ConsoleBinding binding;
+    binding.window = binding.lifetime = binding.presenterActor = 1;
+    binding.clientActor = 2;
+    binding.presenter = binding.presenterThread = 1;
+    binding.client = binding.clientThread = 2;
+    binding.sourceThreadCreation = 1;
+    binding.role = proof::PresenterRole::classic;
+    binding.presenterKnown = binding.sourceThreadBound = binding.presenterEtw = true;
+    binding.clientKnown = binding.clientThreadBound = binding.clientEtw = binding.association = binding.noOtherClients = true;
+    binding.ambient = true;
+    expect(proof::ambientConsoleScoped(Profile::nativeFixture, true, binding), "fully verified ambient binding was rejected");
+    auto bad = binding; bad.clientKnown = false;
+    auto host = binding; host.role = proof::PresenterRole::unknown;
+    expect(!proof::ambientConsoleScoped(Profile::nativeFixture, true, bad) &&
+           !proof::ambientConsoleScoped(Profile::nativeFixture, true, host), "unknown ambient host or client was accepted");
+    bad = binding; bad.noOtherClients = false;
+    expect(!proof::ambientConsoleScoped(Profile::nativeFixture, true, bad), "mixed owned client was scoped ambient");
+    expect(!proof::ambientConsoleScoped(Profile::installedFunctionality, true, binding) &&
+           !proof::ambientConsoleScoped(Profile::installedBusy, true, binding), "installed context accepted unproved ambient activity");
+    binding.ambient = false;
+    proof::WindowResolution product;
+    product.consoleBound = product.identityKnown = true;
+    product.kind = proof::WindowKind::console;
+    auto productWindow = created;
+    productWindow.event = EVENT_OBJECT_SHOW;
+    productWindow.metadataKnown = productWindow.geometryKnown = productWindow.hierarchyKnown = true;
+    productWindow.topLevel = productWindow.onScreen = productWindow.present = productWindow.visible = true;
+    bool productFails = true;
+    for (const auto profile : { Profile::calibration, Profile::nativeFixture, Profile::installedFunctionality,
+                               Profile::installedBusy, Profile::diagnostic })
+        productFails = productFails && proof::visibleBoundConsole(productWindow, product) &&
+            !proof::ambientConsoleScoped(profile, true, binding);
+    expect(productFails, "a profile hid visible product-terminal evidence");
+    check(cases == 20 && liveReport, "profile scenario count or report differs");
+    *liveReport << "DIAG observation-profile-cases cases=20 passed=20 profiles=5 raw_metadata_preserved=1\n";
+    liveReport->flush();
+}
+
 struct CalibrationState {
     const char* stage = "calibration-start";
     proof::Moment begin, beforeAttach;
@@ -1929,7 +2055,7 @@ void handleDiagnostic(const std::map<std::wstring, std::wstring>& options, std::
     windowCorrelationCases();
     observed("console-binding-cases", [] { consoleBindingCases(); });
     report << "HANDLE classification-rows=19 passed=19 allocation-order=gui-control-before-original-slot\n";
-    proof::Observer observer(true);
+    proof::Observer observer(true, proof::ObservationProfile::diagnostic);
     size_t controlStarts = 0;
     std::vector<proof::WindowFact> controls{ calibration(observer, report, &controlStarts) };
     std::vector<DWORD> roots;
@@ -1938,7 +2064,7 @@ void handleDiagnostic(const std::map<std::wstring, std::wstring>& options, std::
             options.at(L"--fixture"), observer, roots, report, false, &verdict);
     controls.push_back(calibration(observer, report, &controlStarts));
     observer.stop();
-    observer.assertNoVisibleTerminals(roots, false, controls, report);
+    observer.assertNoVisibleTerminals(roots, controls, report);
     observer.finishIdentities();
     report << "HANDLE acquisition=complete exclusion=" << verdictName(verdict)
            << " gui-activations=" << roots.size() << " calibration-controls=" << controlStarts
@@ -2127,7 +2253,7 @@ void diagnostic(const std::map<std::wstring, std::wstring>& options, std::ofstre
     report << " sha256=";
     for (const auto c : hash) report << static_cast<char>(c);
     report << " architecture=x64 cases=3 mutation=N3\n";
-    proof::Observer observer(true);
+    proof::Observer observer(true, proof::ObservationProfile::diagnostic);
     std::vector<proof::WindowFact> controls;
     size_t controlStarts = 0;
     std::vector<DiagnosticCase> cases;
@@ -2276,7 +2402,7 @@ void installed(const std::map<std::wstring, std::wstring>& options, std::ofstrea
           package.wstring().find(L"__we33aa8nvkpcc") != std::wstring::npos,
           "installed observation requires the exact package family");
     const bool busy = options.at(L"--mode") == L"busy";
-    proof::Observer observer(true);
+    proof::Observer observer(true, busy ? proof::ObservationProfile::installedBusy : proof::ObservationProfile::installedFunctionality);
     observer.watchRootImage(executable);
     std::vector<proof::WindowFact> controls{ calibration(observer, report) };
     write(control / L"ready.txt", "ready");
@@ -2314,7 +2440,7 @@ void installed(const std::map<std::wstring, std::wstring>& options, std::ofstrea
     controls.push_back(calibration(observer, report));
     observer.stop();
     const auto roots = observer.registeredRoots(executable, busy ? 1 : 3, busy ? 1 : 0);
-    observer.assertNoVisibleTerminals(roots, !busy, controls, report);
+    observer.assertNoVisibleTerminals(roots, controls, report);
     observer.finishIdentities();
     report << "PASS installed-" << (busy ? "busy" : "functionality")
            << ";native-roots=" << roots.size() << ";console-controls=2;visible-product-terminals=0"
@@ -2419,7 +2545,8 @@ int wmain(int argc, wchar_t** argv) {
             report << "DIAG failure-envelope-cases cases=9 passed=9\n";
             observed("polling-observation-cases", [] { pollingObservationCases(); });
             observed("final-observer-cases", [] { finalObserverCases(); });
-            proof::Observer observer(true);
+            observed("observation-profile-cases", [] { observationProfileCases(); });
+            proof::Observer observer(true, proof::ObservationProfile::calibration);
             size_t started = 0;
             windowCorrelationCases();
             observed("console-binding-cases", [] { consoleBindingCases(); });
@@ -2441,7 +2568,7 @@ int wmain(int argc, wchar_t** argv) {
         const fs::path root(options[L"--root"]);
         fs::create_directories(root);
         preflight(root, options[L"--launcher"]);
-        proof::Observer observer(true);
+        proof::Observer observer(true, proof::ObservationProfile::nativeFixture, verifyFixedFixture(options[L"--fixture"]));
         std::vector<proof::WindowFact> controls{ calibration(observer, report) };
         std::vector<DWORD> roots;
         const std::wstring only = options[L"--case"];
@@ -2453,7 +2580,7 @@ int wmain(int argc, wchar_t** argv) {
         }
         controls.push_back(calibration(observer, report));
         observer.stop();
-        observer.assertNoVisibleTerminals(roots, false, controls, report);
+        observer.assertNoVisibleTerminals(roots, controls, report);
         observer.finishIdentities();
         report << "PASS observer;console-controls=2;visible-product-terminals=0;attachment=not-used\n";
         observed("com-uninitialize", [] { CoUninitialize(); });
