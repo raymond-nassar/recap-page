@@ -13,7 +13,7 @@ function Assert-Report {
 }
 Assert-Report ($parseErrors.Count -eq 0) 'proof script did not parse'
 foreach ($functionName in @('Reject-ProofReport', 'Read-ProofProgress', 'New-ProofOutcome',
-    'Add-ProofFailure', 'Invoke-ProofCleanupStep', 'Complete-ProofOutcome')) {
+    'Add-ProofFailure', 'Invoke-ProofCleanupStep', 'Complete-ProofOutcome', 'Receive-NativeFailure')) {
   $definitions = @($ast.FindAll({
     param($node)
     $node -is [System.Management.Automation.Language.FunctionDefinitionAst] -and
@@ -30,6 +30,7 @@ function Observe-Report {
   $state = [pscustomobject]@{
     Position = 0L; Pending = ''; Lines = 0; Text = [Text.StringBuilder]::new()
     Live = $false; LiveHealthLines = 0; Caught = $null; Failure = $null; FailureCause = 0L; Reads = 0
+    NativeFailure = $null; NativeStage = $null; NativeRecorded = $false
   }
   $captured = @(& {
     try {
@@ -138,6 +139,19 @@ try {
   Assert-Report ($attempts.Count -eq 7 -and (($brokenOutput | ForEach-Object { $_.ToString() }) -join "`n").Contains('cleanup-settings-failed')) 'cleanup failure prevented later stages or its own reporting'
   Write-Output 'PASS cleanup-accounting report-fatal-clean=1 secondary-faults=2 stages-attempted=7'
 
+  $nativeFailure = Observe-Report -Lines @('FAIL code=fixture-observed-shape stage=fixture-observed-parse')
+  $nativeState = New-ProofOutcome
+  Receive-NativeFailure $nativeState $nativeFailure.State
+  Assert-Report ($nativeState.Failure -ceq 'fixture-observed-shape' -and $nativeState.PrimaryOrigin -ceq 'native') 'native setup failure was not captured as primary'
+  Assert-Report ($nativeFailure.State.NativeStage -ceq 'fixture-observed-parse') 'native setup stage was lost'
+  Add-ProofFailure -State $nativeState -Code 'owned-process-residue' -Origin cleanup -AlreadyReported
+  foreach ($stage in @($nativeState.Resources.Keys)) { $nativeState.Resources[$stage] = $true }
+  $residue = Complete-ProofOutcome $nativeState $nativeFailure.State 1 2000
+  Assert-Report ($residue.Failure -ceq 'fixture-observed-shape' -and $residue.SecondaryFailures.Count -eq 1 -and
+    $residue.SecondaryFailures[0].Code -ceq 'owned-process-residue') 'residue replaced the native setup failure'
+  Assert-Report ($residue.ExitCode -eq 1 -and $residue.Cleanup -and $residue.NonNativeFailure) 'cleanup upgraded native failure or accepted residue as an intended negative'
+  Write-Output 'PASS native-primary-preserved residue-secondary=1 cleanup-does-not-upgrade=1'
+
   $native = [IO.File]::ReadAllText((Join-Path $root 'test\native\StartupTests.cpp'))
   $observer = [IO.File]::ReadAllText((Join-Path $root 'test\native\StartupObserver.h'))
   $proof = [IO.File]::ReadAllText($proofPath)
@@ -166,7 +180,7 @@ try {
   $sha = [Security.Cryptography.SHA256]::Create()
   try { $digest = [BitConverter]::ToString($sha.ComputeHash([Text.Encoding]::UTF8.GetBytes($fixture))).Replace('-','').ToLowerInvariant() }
   finally { $sha.Dispose() }
-  Assert-Report ($digest -ceq '1f370a079387f32d8d9d755bb8a63c18bd485800f5eab50ebcfa7193a1c1432a') 'the closed fixture capability source changed'
+  Assert-Report ($digest -ceq '300a0d2d3b1c195bddea2ccca076658f82ce1db6249b9cb5ec2d15163d8fc01d') 'the closed fixture capability source changed'
   Assert-Report ($native.Contains('ObservationProfile::nativeFixture, verifyFixedFixture(options[L"--fixture"])')) 'native profile lacks actual fixed-source verification'
   Assert-Report (-not $observer.Contains('const std::vector<DWORD>& roots, bool installed')) 'closed observation still overloads the installed flag'
   Assert-Report ($observer.Contains('raw_unknown_metadata=') -and $observer.Contains('visible_ambient_consoles=')) 'raw metadata and ambient visibility are not reported separately'

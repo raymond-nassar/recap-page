@@ -77,6 +77,10 @@ function Read-ProofProgress {
         }
         [void]$State.Text.AppendLine($line)
         Write-Host $line
+        if (-not $State.NativeFailure -and $line -match '^FAIL code=([a-z][a-z0-9-]{0,79}) stage=([A-Za-z][A-Za-z0-9-]{0,79})$') {
+          $State.NativeFailure = $Matches[1]
+          $State.NativeStage = $Matches[2]
+        }
         if ($State.Live -and $line -match '^CHECK ENTER wrapper-health-') { $State.LiveHealthLines += 1 }
       }
       if ($State.Pending.Length -gt 4096) { Reject-ProofReport $State 'unterminated-proof-report-line' }
@@ -89,7 +93,7 @@ function Read-ProofProgress {
 
 function New-ProofOutcome {
   [pscustomobject]@{
-    Failure = $null; PrimaryCause = 0L
+    Failure = $null; PrimaryCause = 0L; PrimaryOrigin = 'none'
     SecondaryFailures = [Collections.Generic.List[object]]::new()
     Resources = [ordered]@{
       job = $false; process = $false; streams = $false; 'job-handle' = $false
@@ -100,13 +104,15 @@ function New-ProofOutcome {
 
 function Add-ProofFailure {
   param($State, [ValidatePattern('^[a-z][a-z0-9-]{0,79}$')][string]$Code,
-    [long]$Cause = 0, [switch]$AlreadyReported)
+    [long]$Cause = 0, [switch]$AlreadyReported,
+    [ValidateSet('native','report','wrapper','cleanup')][string]$Origin = 'wrapper')
   $secondary = [bool]$State.Failure
   if ($secondary) {
-    $State.SecondaryFailures.Add([pscustomobject]@{ Code = $Code; Cause = $Cause })
+    $State.SecondaryFailures.Add([pscustomobject]@{ Code = $Code; Cause = $Cause; Origin = $Origin })
   } else {
     $State.Failure = $Code
     $State.PrimaryCause = $Cause
+    $State.PrimaryOrigin = $Origin
   }
   if (-not $AlreadyReported) { Write-Host "CHECK FAIL $Code secondary=$secondary cause=$Cause" }
 }
@@ -121,7 +127,7 @@ function Invoke-ProofCleanupStep {
     Write-Host "CHECK EXIT cleanup-$Stage"
   } catch {
     $State.Resources[$Stage] = $false
-    Add-ProofFailure -State $State -Code "cleanup-$Stage-failed" -Cause $_.Exception.HResult
+    Add-ProofFailure -State $State -Code "cleanup-$Stage-failed" -Cause $_.Exception.HResult -Origin cleanup
   }
 }
 
@@ -130,14 +136,25 @@ function Complete-ProofOutcome {
   $cleanup = @($State.Resources.Values | Where-Object { -not $_ }).Count -eq 0
   $reportValid = -not $Progress.Failure -and -not $Progress.Pending
   $exitCode = $DriverExitCode
+  $nonNative = ($State.Failure -and $State.PrimaryOrigin -ne 'native') -or
+    @($State.SecondaryFailures | Where-Object { $_.Origin -ne 'native' }).Count -gt 0
   if ($State.Failure -or -not $cleanup -or -not $reportValid -or $null -eq $exitCode) { $exitCode = 1 }
   [pscustomobject]@{
     ExitCode = $exitCode; DriverExitCode = $DriverExitCode; Text = $Progress.Text.ToString()
     Failure = $State.Failure; PrimaryCause = $State.PrimaryCause
+    PrimaryOrigin = $State.PrimaryOrigin; NonNativeFailure = $nonNative
     SecondaryFailures = @($State.SecondaryFailures.ToArray()); Cleanup = $cleanup
     Resources = [pscustomobject]$State.Resources; ReportValid = $reportValid
     ProgressLines = $Progress.Lines; LiveProgressLines = $Progress.LiveHealthLines
     ElapsedMilliseconds = $ElapsedMilliseconds
+  }
+}
+
+function Receive-NativeFailure {
+  param($State, $Progress)
+  if ($Progress.NativeFailure -and -not $Progress.NativeRecorded) {
+    Add-ProofFailure -State $State -Code $Progress.NativeFailure -Origin native -AlreadyReported
+    $Progress.NativeRecorded = $true
   }
 }
 
@@ -165,6 +182,7 @@ function Invoke-NativeProof {
   $progress = [pscustomobject]@{
     Position = 0L; Pending = ''; Lines = 0; Text = [Text.StringBuilder]::new()
     Live = $false; LiveHealthLines = 0; Failure = $null; FailureCause = 0L; Reads = 0
+    NativeFailure = $null; NativeStage = $null; NativeRecorded = $false
   }
   $outcome = New-ProofOutcome
   $driverExit = $null
@@ -204,6 +222,7 @@ function Invoke-NativeProof {
     while ($clock.ElapsedMilliseconds -lt $runDeadline) {
       $progress.Live = -not $process.WaitForExit(0)
       Read-ProofProgress -Path $Report -State $progress
+      Receive-NativeFailure $outcome $progress
       if ($progress.LiveHealthLines -gt 0 -and -not (Test-Path -LiteralPath $ack)) {
         [IO.File]::WriteAllText($ack, 'progress-visible', [Text.UTF8Encoding]::new($false))
       }
@@ -216,6 +235,10 @@ function Invoke-NativeProof {
         if ($null -eq $exitObservedAt) {
           $exitObservedAt = $clock.ElapsedMilliseconds
           $driverExit = $process.ExitCode
+          if ($driverExit -ne 0 -and -not $progress.NativeRecorded) {
+            Add-ProofFailure -State $outcome -Code 'native-exit-failed' -Cause $driverExit -Origin native
+            $progress.NativeRecorded = $true
+          }
           Write-Host "CHECK EXIT process-wait code=$driverExit"
           Write-Host 'CHECK ENTER stream-drain'
         }
@@ -232,8 +255,9 @@ function Invoke-NativeProof {
       Write-Host 'CHECK EXIT stream-drain'
     }
   } catch {
+    Receive-NativeFailure $outcome $progress
     if ($progress.Failure) {
-      Add-ProofFailure -State $outcome -Code $progress.Failure -Cause $progress.FailureCause -AlreadyReported
+      Add-ProofFailure -State $outcome -Code $progress.Failure -Cause $progress.FailureCause -AlreadyReported -Origin report
     } else {
       Add-ProofFailure -State $outcome -Code 'proof-wrapper-operation-failed' -Cause $_.Exception.HResult
     }
@@ -243,7 +267,7 @@ function Invoke-NativeProof {
     Invoke-ProofCleanupStep $outcome 'job' {
       if ($job) {
         if ($job.ActiveProcesses -gt 0) {
-          if (-not $outcome.Failure) { Add-ProofFailure $outcome 'owned-process-residue' }
+          Add-ProofFailure -State $outcome -Code 'owned-process-residue' -Origin cleanup
           $job.Terminate()
         }
         while ($job.ActiveProcesses -gt 0 -and $clock.ElapsedMilliseconds -lt $TotalTimeoutMs) {
@@ -279,10 +303,12 @@ function Invoke-NativeProof {
     if (-not $progress.Failure) {
       try {
         Read-ProofProgress -Path $Report -State $progress
+        Receive-NativeFailure $outcome $progress
         if ($progress.Pending) { Add-ProofFailure $outcome 'incomplete-proof-checkpoint' }
       } catch {
+        Receive-NativeFailure $outcome $progress
         if ($progress.Failure) {
-          Add-ProofFailure -State $outcome -Code $progress.Failure -Cause $progress.FailureCause -AlreadyReported
+          Add-ProofFailure -State $outcome -Code $progress.Failure -Cause $progress.FailureCause -AlreadyReported -Origin report
         } else {
           Add-ProofFailure -State $outcome -Code 'proof-report-read-failed' -Cause $_.Exception.HResult
         }
@@ -318,7 +344,7 @@ function Invoke-NativeProof {
   Write-Host "CHECK EXIT owned-cleanup complete=$($result.Cleanup) elapsed_ms=$($result.ElapsedMilliseconds)"
   $primary = 'none'
   if ($result.Failure) { $primary = $result.Failure }
-  Write-Host "DIAG proof-outcome primary=$primary secondary=$($result.SecondaryFailures.Count) report_valid=$($result.ReportValid) report_reads=$($progress.Reads) resource_cleanup=$($result.Cleanup)"
+  Write-Host "DIAG proof-outcome primary=$primary origin=$($result.PrimaryOrigin) secondary=$($result.SecondaryFailures.Count) report_valid=$($result.ReportValid) report_reads=$($progress.Reads) resource_cleanup=$($result.Cleanup)"
   return $result
 }
 
@@ -559,7 +585,7 @@ bool placeFailureWindow(App& app) {
       $results = @(Invoke-NativeProof -Executable $runDriver -Arguments $arguments -Report $report)
       $result = $results[-1]
       $results | Select-Object -SkipLast 1 | Write-Output
-      if ($result.ExitCode -ne 1 -or $result.Failure -or -not $result.Cleanup -or -not $result.Text.Contains($expectedFailure)) {
+      if ($result.ExitCode -ne 1 -or $result.NonNativeFailure -or -not $result.Cleanup -or -not $result.Text.Contains($expectedFailure)) {
         throw "$negative did not fail its intended assertion."
       }
       $kind = 'aimed-negative'

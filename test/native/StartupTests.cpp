@@ -11,6 +11,8 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
+#include <string_view>
+#include <system_error>
 #include <type_traits>
 
 namespace fs = std::filesystem;
@@ -29,6 +31,29 @@ struct WindowMessageFailure : std::runtime_error {
         : std::runtime_error("window-message-failed"), message(id), error(code), elapsed(duration) {}
 };
 
+struct FixtureRecordFailure : std::runtime_error {
+    const char* code;
+    size_t bytes;
+    FixtureRecordFailure(const char* condition, size_t size) : std::runtime_error(condition), code(condition), bytes(size) {}
+};
+
+struct FixtureSetupFailure : std::runtime_error {
+    const char* code;
+    const char* stage;
+    const char* category;
+    long long numeric;
+    std::exception_ptr primary;
+    FixtureSetupFailure(const char* condition, const char* section, const char* kind, long long value, std::exception_ptr error)
+        : std::runtime_error(condition), code(condition), stage(section), category(kind), numeric(value), primary(std::move(error)) {}
+};
+
+struct FixtureSetupContext {
+    std::string fixture;
+    DWORD gui = 0, coordinator = 0, sentinel = 0;
+    size_t recordBytes = 0;
+    bool recordReady = false, recordParsed = false, clientRetained = false;
+};
+
 struct CalibrationFailure : std::runtime_error {
     const char* code;
     const char* stage;
@@ -41,6 +66,8 @@ struct CalibrationFailure : std::runtime_error {
 };
 
 const char* failureCode(const std::exception& failure) {
+    if (const auto* setup = dynamic_cast<const FixtureSetupFailure*>(&failure)) return setup->code;
+    if (const auto* record = dynamic_cast<const FixtureRecordFailure*>(&failure)) return record->code;
     if (const auto* final = dynamic_cast<const proof::FinalObservationFailure*>(&failure)) return final->code;
     if (dynamic_cast<const WindowMessageFailure*>(&failure)) return "window-message-failed";
     if (const auto* calibration = dynamic_cast<const CalibrationFailure*>(&failure)) return calibration->code;
@@ -81,7 +108,25 @@ const char* failureCode(const std::exception& failure) {
         { "registered process image differs from its declared purpose", "process-registration-image-mismatch" },
         { "registered primary thread instance differs", "process-registration-thread-mismatch" },
         { "native closed profile requires the exact reviewed inert fixture", "native-fixture-contract-mismatch" },
-        { "fixed fixture digest could not be verified", "native-fixture-digest-failed" }
+        { "fixed fixture digest could not be verified", "native-fixture-digest-failed" },
+        { "fixture process creation failed", "fixture-gui-create-failed" },
+        { "inheritable sentinel unavailable", "fixture-inheritance-sentinel-missing" },
+        { "native window did not appear", "fixture-gui-window-missing" },
+        { "coordinator fixture did not start", "fixture-observed-record-not-ready" },
+        { "detached fixture sentinel absent", "fixture-sentinel-record-not-ready" },
+        { "fixture child ownership could not be retained", "fixture-client-retention-failed" },
+        { "fixture child image differs", "fixture-client-image-mismatch" },
+        { "client process instance changed", "fixture-client-instance-conflict" },
+        { "client process identity unavailable", "fixture-client-identity-unavailable" },
+        { "returned primary thread identity differed", "fixture-primary-thread-mismatch" },
+        { "native architecture could not be observed", "fixture-architecture-unavailable" },
+        { "ARM64 proof is not native", "fixture-architecture-not-arm64" },
+        { "x64 proof is not native", "fixture-architecture-not-x64" },
+        { "fixture output could not be written", "fixture-scenario-write-failed" },
+        { "identity handle duplication failed", "fixture-identity-duplicate-failed" },
+        { "client identity bound exceeded", "fixture-client-capacity" },
+        { "registered process bound exceeded", "fixture-registration-capacity" },
+        { "returned primary thread could not be bound", "fixture-primary-thread-unavailable" }
     };
     for (const auto& label : labels) if (strcmp(failure.what(), label[0]) == 0) return label[1];
     return "unclassified-proof-error";
@@ -94,6 +139,9 @@ void writeFailure(std::ostream& report, const std::exception& failure, const std
     if (const auto* leaf = dynamic_cast<const WindowMessageFailure*>(&failure))
         report << "DIAG failed-leaf stage=window-message message=" << leaf->message
                << " error=" << leaf->error << " elapsed_ms=" << leaf->elapsed << "\n";
+    if (const auto* setup = dynamic_cast<const FixtureSetupFailure*>(&failure))
+        report << "DIAG fixture-native-failure category=" << setup->category << " numeric=" << setup->numeric
+               << " condition=" << setup->code << " stage=" << setup->stage << "\n";
     report.flush();
 }
 
@@ -119,6 +167,50 @@ auto observed(const char* stage, Action action) {
     } catch (const std::exception&) {
         checkpoint("FAIL", stage);
         throw;
+    }
+}
+
+template<class Action>
+auto fixtureSetup(const char* stage, FixtureSetupContext& context, Action action) {
+    checkpoint("ENTER", stage);
+    try {
+        if constexpr (std::is_void_v<decltype(action())>) {
+            action();
+            checkpoint("EXIT", stage);
+        } else {
+            auto result = action();
+            checkpoint("EXIT", stage);
+            return result;
+        }
+    } catch (const std::exception& error) {
+        const char* code = failureCode(error);
+        const char* category = "condition";
+        long long numeric = 0;
+        if (const auto* record = dynamic_cast<const FixtureRecordFailure*>(&error)) {
+            context.recordBytes = record->bytes;
+            category = "record";
+        } else if (const auto* file = dynamic_cast<const fs::filesystem_error*>(&error)) {
+            code = "fixture-setup-filesystem-error"; category = "filesystem"; numeric = file->code().value();
+        } else if (const auto* stream = dynamic_cast<const std::ios_base::failure*>(&error)) {
+            code = "fixture-setup-stream-error"; category = "stream"; numeric = stream->code().value();
+        } else if (const auto* system = dynamic_cast<const std::system_error*>(&error)) {
+            code = "fixture-setup-system-error"; category = "system"; numeric = system->code().value();
+        } else if (dynamic_cast<const std::invalid_argument*>(&error) || dynamic_cast<const std::out_of_range*>(&error)) {
+            code = "fixture-setup-numeric-error"; category = "numeric";
+        } else if (std::string_view(code) == "unclassified-proof-error") {
+            code = "fixture-setup-unexpected"; category = "unexpected";
+        }
+        checkpoint("FAIL", stage);
+        if (liveReport) {
+            *liveReport << "DIAG fixture-setup fixture=" << context.fixture << " stage=" << stage
+                        << " condition=" << code << " category=" << category << " numeric=" << numeric
+                        << " gui_pid=" << context.gui << " coordinator_pid=" << context.coordinator
+                        << " sentinel_pid=" << context.sentinel << " record_bytes=" << context.recordBytes
+                        << " record_ready=" << context.recordReady << " record_parsed=" << context.recordParsed
+                        << " client_retained=" << context.clientRetained << "\n";
+            liveReport->flush();
+        }
+        throw FixtureSetupFailure(code, stage, category, numeric, std::current_exception());
     }
 }
 
@@ -322,8 +414,9 @@ void start(Child& child, const std::wstring& executable, const std::wstring& arg
     STARTUPINFOW startup{ sizeof(STARTUPINFOW) };
     PROCESS_INFORMATION process{};
     observed("fixture-process-create", [&] {
-        check(CreateProcessW(executable.c_str(), command.data(), nullptr, nullptr, inherit, flags,
-            nullptr, nullptr, &startup, &process) != FALSE, "fixture process creation failed");
+        if (!CreateProcessW(executable.c_str(), command.data(), nullptr, nullptr, inherit, flags,
+            nullptr, nullptr, &startup, &process))
+            throw std::system_error(static_cast<int>(GetLastError()), std::system_category(), "fixture-process-create");
     });
     child.process = recap::Handle(process.hProcess);
     child.primaryThread = recap::Handle(process.hThread);
@@ -336,7 +429,8 @@ void start(Child& child, const std::wstring& executable, const std::wstring& arg
 void retain(Child& child, DWORD pid, const std::wstring& expected) {
     recap::Handle candidate(OpenProcess(SYNCHRONIZE | PROCESS_QUERY_LIMITED_INFORMATION |
         PROCESS_TERMINATE | PROCESS_DUP_HANDLE, FALSE, pid));
-    check(static_cast<bool>(candidate), "fixture child ownership could not be retained");
+    if (!candidate)
+        throw std::system_error(static_cast<int>(GetLastError()), std::system_category(), "fixture-client-open");
     check(recap::samePath(proof::imagePath(candidate.get()), expected), "fixture child image differs");
     child.process = std::move(candidate);
     check(child.primaryThread.close() == ERROR_SUCCESS, "previous primary thread handle could not close");
@@ -350,6 +444,133 @@ std::string read(const fs::path& path) {
     std::ifstream input(path, std::ios::binary);
     check(static_cast<bool>(input), "fixture input is missing");
     return { std::istreambuf_iterator<char>(input), std::istreambuf_iterator<char>() };
+}
+
+enum class FixtureRecordKind { observed, sentinel };
+
+DWORD parseFixturePid(std::string_view text, size_t recordBytes) {
+    if (text.empty() || (text.size() > 1 && text.front() == '0'))
+        throw FixtureRecordFailure("fixture-pid-syntax", recordBytes);
+    uint64_t value = 0;
+    for (const auto digit : text) {
+        if (digit < '0' || digit > '9') throw FixtureRecordFailure("fixture-pid-syntax", recordBytes);
+        const auto number = static_cast<uint64_t>(digit - '0');
+        if (value > (static_cast<uint64_t>(MAXDWORD) - number) / 10)
+            throw FixtureRecordFailure("fixture-pid-range", recordBytes);
+        value = value * 10 + number;
+    }
+    if (!value) throw FixtureRecordFailure("fixture-pid-range", recordBytes);
+    return static_cast<DWORD>(value);
+}
+
+DWORD parseFixtureRecord(const std::string& text, FixtureRecordKind kind) {
+    if (text.empty()) throw FixtureRecordFailure("fixture-record-empty", 0);
+    if (text.size() > 256) throw FixtureRecordFailure("fixture-record-oversize", text.size());
+    if (kind == FixtureRecordKind::sentinel) return parseFixturePid(text, text.size());
+    std::array<std::string_view, 4> fields;
+    size_t start = 0;
+    for (size_t index = 0; index < 3; ++index) {
+        const auto end = text.find('\n', start);
+        if (end == std::string::npos) throw FixtureRecordFailure("fixture-observed-shape", text.size());
+        fields[index] = std::string_view(text).substr(start, end - start);
+        start = end + 1;
+    }
+    fields[3] = std::string_view(text).substr(start);
+    if (fields[3].find('\n') != std::string_view::npos || fields[0].substr(0, 4) != "pid=")
+        throw FixtureRecordFailure("fixture-observed-shape", text.size());
+    const auto pid = parseFixturePid(fields[0].substr(4), text.size());
+    constexpr const char* prefixes[]{ "arguments=", "environment=", "cwd=" };
+    constexpr const char* falseCodes[]{ "fixture-arguments-false", "fixture-environment-false", "fixture-cwd-false" };
+    constexpr const char* malformedCodes[]{ "fixture-arguments-malformed", "fixture-environment-malformed", "fixture-cwd-malformed" };
+    for (size_t index = 0; index < 3; ++index) {
+        const std::string_view prefix(prefixes[index]);
+        if (fields[index + 1].substr(0, prefix.size()) != prefix)
+            throw FixtureRecordFailure("fixture-observed-shape", text.size());
+        const auto flag = fields[index + 1].substr(prefix.size());
+        if (flag == "false") throw FixtureRecordFailure(falseCodes[index], text.size());
+        if (flag != "true") throw FixtureRecordFailure(malformedCodes[index], text.size());
+    }
+    return pid;
+}
+
+std::string readFixtureRecord(const fs::path& path, FixtureSetupContext& context) {
+    const auto bytes = fs::file_size(path);
+    context.recordBytes = static_cast<size_t>(bytes);
+    if (!bytes) throw FixtureRecordFailure("fixture-record-empty", 0);
+    if (bytes > 256) throw FixtureRecordFailure("fixture-record-oversize", context.recordBytes);
+    std::ifstream input;
+    input.exceptions(std::ios::badbit | std::ios::failbit);
+    input.open(path, std::ios::binary);
+    std::string text(static_cast<size_t>(bytes), '\0');
+    input.read(text.data(), static_cast<std::streamsize>(bytes));
+    if (input.peek() != std::char_traits<char>::eof())
+        throw FixtureRecordFailure("fixture-record-size-changed", text.size());
+    return text;
+}
+
+void fixtureRecordCases() {
+    const std::string valid = "pid=123\narguments=true\nenvironment=true\ncwd=true";
+    size_t cases = 0;
+    const auto expect = [&](bool value, const char* message) {
+        ++cases;
+        if (!value && liveReport) { *liveReport << "DIAG fixture-record-case-failed index=" << cases << "\n"; liveReport->flush(); }
+        check(value, message);
+    };
+    expect(parseFixtureRecord(valid, FixtureRecordKind::observed) == 123, "valid observed record was rejected");
+    expect(parseFixtureRecord("123", FixtureRecordKind::sentinel) == 123, "valid sentinel record was rejected");
+    expect(parseFixtureRecord("4294967295", FixtureRecordKind::sentinel) == MAXDWORD, "maximum DWORD PID was rejected");
+    struct Invalid { std::string text; FixtureRecordKind kind; const char* code; };
+    const std::array<Invalid, 13> invalid{{
+        { "", FixtureRecordKind::observed, "fixture-record-empty" },
+        { "pid=123", FixtureRecordKind::observed, "fixture-observed-shape" },
+        { "pid=123\nenvironment=true\narguments=true\ncwd=true", FixtureRecordKind::observed, "fixture-observed-shape" },
+        { "12x", FixtureRecordKind::sentinel, "fixture-pid-syntax" },
+        { "0", FixtureRecordKind::sentinel, "fixture-pid-range" },
+        { "4294967296", FixtureRecordKind::sentinel, "fixture-pid-range" },
+        { "0123", FixtureRecordKind::sentinel, "fixture-pid-syntax" },
+        { "pid=123\narguments=false\nenvironment=true\ncwd=true", FixtureRecordKind::observed, "fixture-arguments-false" },
+        { "pid=123\narguments=true\nenvironment=false\ncwd=true", FixtureRecordKind::observed, "fixture-environment-false" },
+        { "pid=123\narguments=true\nenvironment=true\ncwd=false", FixtureRecordKind::observed, "fixture-cwd-false" },
+        { "pid=123\narguments=TRUE\nenvironment=true\ncwd=true", FixtureRecordKind::observed, "fixture-arguments-malformed" },
+        { valid + "\n", FixtureRecordKind::observed, "fixture-observed-shape" },
+        { std::string(257, '1'), FixtureRecordKind::sentinel, "fixture-record-oversize" }
+    }};
+    for (const auto& item : invalid) {
+        bool rejected = false;
+        try { parseFixtureRecord(item.text, item.kind); }
+        catch (const FixtureRecordFailure& error) {
+            rejected = std::string_view(error.code) == item.code && error.bytes == item.text.size();
+        }
+        expect(rejected, "malformed completed fixture record was not rejected precisely");
+    }
+    FixtureSetupContext context{ "inert-record-case" };
+    context.recordReady = true;
+    bool nativeRecord = false;
+    try {
+        fixtureSetup("fixture-simulated-record-parse", context, [&] {
+            context.coordinator = parseFixtureRecord("", FixtureRecordKind::observed);
+            context.clientRetained = true;
+        });
+    } catch (const FixtureSetupFailure& error) {
+        nativeRecord = std::string_view(error.code) == "fixture-record-empty" &&
+            std::string_view(error.stage) == "fixture-simulated-record-parse" &&
+            std::string_view(error.category) == "record" && !context.clientRetained && context.coordinator == 0;
+    }
+    expect(nativeRecord, "record failure lost its setup stage or reached PID retention");
+    bool fileContext = false;
+    try {
+        fixtureSetup("fixture-simulated-file-read", context, [] {
+            throw fs::filesystem_error("inert", std::make_error_code(std::errc::permission_denied));
+        });
+    } catch (const FixtureSetupFailure& error) {
+        fileContext = std::string_view(error.code) == "fixture-setup-filesystem-error" &&
+            std::string_view(error.stage) == "fixture-simulated-file-read" &&
+            error.numeric == std::make_error_code(std::errc::permission_denied).value();
+    }
+    expect(fileContext, "filesystem setup context lost its genuine code");
+    check(cases == 18 && liveReport, "fixture record case count or report differs");
+    *liveReport << "DIAG fixture-record-cases cases=18 passed=18 max_bytes=256 no_bad_record_retry=1\n";
+    liveReport->flush();
 }
 
 bool verifyFixedFixture(const fs::path& path) {
@@ -381,8 +602,8 @@ bool verifyFixedFixture(const fs::path& path) {
     constexpr char hex[] = "0123456789abcdef";
     std::string digest;
     for (const auto value : bytes) { digest.push_back(hex[value >> 4]); digest.push_back(hex[value & 15]); }
-    check(canonical.size() == 2717 &&
-          digest == "1f370a079387f32d8d9d755bb8a63c18bd485800f5eab50ebcfa7193a1c1432a",
+    check(canonical.size() == 3005 &&
+          digest == "300a0d2d3b1c195bddea2ccca076658f82ce1db6249b9cb5ec2d15163d8fc01d",
           "native closed profile requires the exact reviewed inert fixture");
     checkpoint("EXIT", "fixed-fixture-contract");
     return true;
@@ -1939,37 +2160,58 @@ void fixture(const std::string& id, const fs::path& root, const fs::path& native
              std::vector<DWORD>& roots, std::ofstream& report, bool consoleOnly,
              HandleVerdict* diagnosticVerdict = nullptr) {
     checkpoint("ENTER", id.c_str());
+    FixtureSetupContext setup{ id };
     const auto layout = root / (id == "F01" ? L"fixture space \u03a9" : fs::path(id).wstring());
-    fs::create_directories(layout / L"runtime");
-    fs::copy_file(native, layout / L"RecapPageLauncher.exe");
-    if (id != "F04") fs::copy_file(runtime, layout / L"runtime" / L"node.exe");
-    if (id != "F05") fs::copy_file(source, layout / L"Launcher.mjs");
-    write(layout / L"scenario.txt", id);
+    fixtureSetup("fixture-layout", setup, [&] { fs::create_directories(layout / L"runtime"); });
+    fixtureSetup("fixture-copy-launcher", setup, [&] { fs::copy_file(native, layout / L"RecapPageLauncher.exe"); });
+    if (id != "F04") fixtureSetup("fixture-copy-runtime", setup, [&] { fs::copy_file(runtime, layout / L"runtime" / L"node.exe"); });
+    if (id != "F05") fixtureSetup("fixture-copy-coordinator", setup, [&] { fs::copy_file(source, layout / L"Launcher.mjs"); });
+    fixtureSetup("fixture-scenario", setup, [&] { write(layout / L"scenario.txt", id); });
     SECURITY_ATTRIBUTES security{ sizeof(SECURITY_ATTRIBUTES), nullptr, TRUE };
-    recap::Handle sentinelHandle(CreateEventW(&security, TRUE, FALSE, nullptr));
-    check(static_cast<bool>(sentinelHandle), "inheritable sentinel unavailable");
-    if (id == "F01") {
-        SetEnvironmentVariableW(L"NoDe_OpTiOnS", L"--require missing-native-fixture");
-        SetEnvironmentVariableW(L"nOdE_pAtH", L"missing-native-fixture");
-    }
+    auto sentinelHandle = fixtureSetup("fixture-inheritance-sentinel", setup, [&] {
+        recap::Handle value(CreateEventW(&security, TRUE, FALSE, nullptr));
+        if (!value) throw std::system_error(static_cast<int>(GetLastError()), std::system_category(), "fixture-sentinel-create");
+        return value;
+    });
+    fixtureSetup("fixture-environment", setup, [&] {
+        if (id == "F01") {
+            SetEnvironmentVariableW(L"NoDe_OpTiOnS", L"--require missing-native-fixture");
+            SetEnvironmentVariableW(L"nOdE_pAtH", L"missing-native-fixture");
+        }
+    });
     Child gui, coordinator, sentinel;
-    start(gui, (layout / L"RecapPageLauncher.exe").wstring(), L"", 0, TRUE);
-    SetEnvironmentVariableW(L"NoDe_OpTiOnS", nullptr);
-    SetEnvironmentVariableW(L"nOdE_pAtH", nullptr);
-    roots.push_back(gui.pid);
-    observer.bindRoot(gui.pid, gui.process.get(), gui.primaryThread.get());
-    proof::nativeArchitecture(gui.process.get());
+    fixtureSetup("fixture-gui-create", setup, [&] {
+        start(gui, (layout / L"RecapPageLauncher.exe").wstring(), L"", 0, TRUE);
+        setup.gui = gui.pid;
+    });
+    fixtureSetup("fixture-environment-clear", setup, [&] {
+        SetEnvironmentVariableW(L"NoDe_OpTiOnS", nullptr);
+        SetEnvironmentVariableW(L"nOdE_pAtH", nullptr);
+    });
+    fixtureSetup("fixture-root-registration", setup, [&] {
+        roots.push_back(gui.pid);
+        observer.bindRoot(gui.pid, gui.process.get(), gui.primaryThread.get());
+    });
+    fixtureSetup("fixture-gui-architecture", setup, [&] { proof::nativeArchitecture(gui.process.get()); });
     HWND window = nullptr;
-    proof::until([&] { window = windowFor(gui.pid); return window != nullptr; }, "native window did not appear");
+    fixtureSetup("fixture-window-discovery", setup, [&] {
+        proof::until([&] { window = windowFor(gui.pid); return window != nullptr; }, "native window did not appear");
+    });
     if (id != "F04" && id != "F05") {
-        proof::until([&] { return fs::exists(layout / L"observed.txt"); }, "coordinator fixture did not start");
-        const auto observed = read(layout / L"observed.txt");
-        const auto first = observed.find("pid=");
-        check(first == 0, "fixture process identity missing");
-        retain(coordinator, static_cast<DWORD>(std::stoul(observed.substr(4))), (layout / L"runtime" / L"node.exe").wstring());
-        observer.bindClient(coordinator.pid, coordinator.process.get());
-        check(observed.find("arguments=true") != std::string::npos && observed.find("environment=true") != std::string::npos &&
-              observed.find("cwd=true") != std::string::npos, "fixed launch arguments/environment/cwd differed");
+        fixtureSetup("fixture-observed-ready", setup, [&] {
+            proof::until([&] { return fs::exists(layout / L"observed.txt"); }, "coordinator fixture did not start");
+            setup.recordReady = true;
+        });
+        const auto record = fixtureSetup("fixture-observed-read", setup, [&] { return readFixtureRecord(layout / L"observed.txt", setup); });
+        fixtureSetup("fixture-observed-parse", setup, [&] {
+            setup.coordinator = parseFixtureRecord(record, FixtureRecordKind::observed);
+            setup.recordParsed = true;
+        });
+        fixtureSetup("fixture-client-retain", setup, [&] {
+            retain(coordinator, setup.coordinator, (layout / L"runtime" / L"node.exe").wstring());
+            setup.clientRetained = true;
+        });
+        fixtureSetup("fixture-client-binding", setup, [&] { observer.bindClient(coordinator.pid, coordinator.process.get()); });
         if (id == "F01") {
             const auto fence = GetTickCount64() + 200;
             try {
@@ -1993,9 +2235,21 @@ void fixture(const std::string& id, const fs::path& root, const fs::path& native
         }
     }
     if (id == "F09" || id == "F10") {
-        proof::until([&] { return fs::exists(layout / L"sentinel.txt"); }, "detached fixture sentinel absent");
-        retain(sentinel, static_cast<DWORD>(std::stoul(read(layout / L"sentinel.txt"))),
-               (layout / L"runtime" / L"node.exe").wstring());
+        setup.recordReady = setup.recordParsed = setup.clientRetained = false;
+        setup.recordBytes = 0;
+        fixtureSetup("fixture-sentinel-ready", setup, [&] {
+            proof::until([&] { return fs::exists(layout / L"sentinel.txt"); }, "detached fixture sentinel absent");
+            setup.recordReady = true;
+        });
+        const auto record = fixtureSetup("fixture-sentinel-read", setup, [&] { return readFixtureRecord(layout / L"sentinel.txt", setup); });
+        fixtureSetup("fixture-sentinel-parse", setup, [&] {
+            setup.sentinel = parseFixtureRecord(record, FixtureRecordKind::sentinel);
+            setup.recordParsed = true;
+        });
+        fixtureSetup("fixture-sentinel-retain", setup, [&] {
+            retain(sentinel, setup.sentinel, (layout / L"runtime" / L"node.exe").wstring());
+            setup.clientRetained = true;
+        });
     }
     RECT failureWork{};
     if (id == "F03" || id == "F07") failureWork = positionPendingAtEdge(window);
@@ -2148,6 +2402,7 @@ DiagnosticCase diagnosticCase(const std::string& id, const fs::path& root, const
                               const fs::path& runtime, const fs::path& source, proof::Observer& observer) {
     DiagnosticCase result;
     result.id = id;
+    FixtureSetupContext setup{ id };
     const auto layout = root / (fs::path(id).wstring() + L" space \u03a9");
     Child gui, coordinator;
     try {
@@ -2158,21 +2413,27 @@ DiagnosticCase diagnosticCase(const std::string& id, const fs::path& root, const
         write(layout / L"scenario.txt", "F01");
         result.begin = proof::moment();
         start(gui, (layout / L"RecapPageLauncher.exe").wstring(), L"", 0);
+        setup.gui = gui.pid;
         result.gui = gui.pid;
         result.guiCreated = creationTime(gui.process.get());
         observer.bindRoot(gui.pid, gui.process.get());
         proof::nativeArchitecture(gui.process.get());
         proof::until([&] { return windowFor(gui.pid) != nullptr; }, "diagnostic GUI window was not observed");
         proof::until([&] { return fs::exists(layout / L"observed.txt"); }, "diagnostic coordinator did not start");
-        const auto observed = read(layout / L"observed.txt");
-        check(observed.find("pid=") == 0, "diagnostic coordinator identity missing");
-        retain(coordinator, static_cast<DWORD>(std::stoul(observed.substr(4))),
-               (layout / L"runtime" / L"node.exe").wstring());
+        setup.recordReady = true;
+        const auto record = fixtureSetup("fixture-diagnostic-record-read", setup, [&] {
+            return readFixtureRecord(layout / L"observed.txt", setup);
+        });
+        fixtureSetup("fixture-diagnostic-record-parse", setup, [&] {
+            setup.coordinator = parseFixtureRecord(record, FixtureRecordKind::observed);
+            setup.recordParsed = true;
+        });
+        fixtureSetup("fixture-diagnostic-client-retain", setup, [&] {
+            retain(coordinator, setup.coordinator, (layout / L"runtime" / L"node.exe").wstring());
+            setup.clientRetained = true;
+        });
         result.coordinator = coordinator.pid;
         result.coordinatorCreated = creationTime(coordinator.process.get());
-        check(observed.find("arguments=true") != std::string::npos &&
-              observed.find("environment=true") != std::string::npos &&
-              observed.find("cwd=true") != std::string::npos, "diagnostic launch contract differed");
         const auto passiveFence = GetTickCount64() + 200;
         proof::until([&] {
             check(gui.exit() == STILL_ACTIVE && coordinator.exit() == STILL_ACTIVE,
@@ -2546,6 +2807,7 @@ int wmain(int argc, wchar_t** argv) {
             observed("polling-observation-cases", [] { pollingObservationCases(); });
             observed("final-observer-cases", [] { finalObserverCases(); });
             observed("observation-profile-cases", [] { observationProfileCases(); });
+            observed("fixture-record-cases", [] { fixtureRecordCases(); });
             proof::Observer observer(true, proof::ObservationProfile::calibration);
             size_t started = 0;
             windowCorrelationCases();
@@ -2588,7 +2850,9 @@ int wmain(int argc, wchar_t** argv) {
     } catch (const std::exception& failure) {
         const auto* calibrationFailure = dynamic_cast<const CalibrationFailure*>(&failure);
         const auto* finalFailure = dynamic_cast<const proof::FinalObservationFailure*>(&failure);
-        writeFailure(report, failure, finalFailure ? finalFailure->stage : calibrationFailure ? calibrationFailure->stage : lastStage);
+        const auto* setupFailure = dynamic_cast<const FixtureSetupFailure*>(&failure);
+        writeFailure(report, failure, setupFailure ? setupFailure->stage : finalFailure ? finalFailure->stage :
+                     calibrationFailure ? calibrationFailure->stage : lastStage);
         if (SUCCEEDED(com)) observed("com-uninitialize", [] { CoUninitialize(); });
         return 1;
     }

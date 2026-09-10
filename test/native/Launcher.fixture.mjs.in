@@ -1,11 +1,18 @@
-import { closeSync, existsSync, readFileSync, writeFileSync } from 'node:fs';
+import { closeSync, existsSync, readFileSync, renameSync, writeFileSync } from 'node:fs';
 import { spawn } from 'node:child_process';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = dirname(fileURLToPath(import.meta.url));
 const scenario = readFileSync(join(root, 'scenario.txt'), 'utf8').trim();
-writeFileSync(join(root, 'observed.txt'), [
+function publishFixtureRecord(name, value) {
+  const final = join(root, name);
+  const temporary = join(root, `${name}.tmp`);
+  if (existsSync(final)) throw new Error('fixture record already exists');
+  writeFileSync(temporary, value, { flag: 'wx' });
+  renameSync(temporary, final);
+}
+publishFixtureRecord('observed.txt', [
   `pid=${process.pid}`,
   `arguments=${process.argv.length === 3 && process.argv[2] === '--gui-startup-v1'}`,
   `environment=${!Object.keys(process.env).some((key) => ['NODE_OPTIONS', 'NODE_PATH'].includes(key.toUpperCase()))}`,
@@ -41,7 +48,7 @@ if (scenario === 'F09' || scenario === 'F10') {
     child.once('spawn', resolve);
     child.once('error', reject);
   });
-  writeFileSync(join(root, 'sentinel.txt'), String(child.pid));
+  publishFixtureRecord('sentinel.txt', String(child.pid));
   child.unref();
 }
 if (scenario === 'F10') {

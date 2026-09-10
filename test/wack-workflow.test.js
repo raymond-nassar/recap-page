@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { dirname, join } from 'node:path';
 import { runInNewContext } from 'node:vm';
 
 const workflow = readFileSync(new URL('../.github/workflows/wack.yml', import.meta.url), 'utf8');
@@ -243,6 +244,38 @@ test('native producer outputs and job deadlines bind every package consumer', ()
 });
 
 test('native artifact transfer pins exact inputs and refuses digest mismatches', (t) => {
+  const fixtureSource = readFileSync(new URL('./native/Launcher.fixture.mjs.in', import.meta.url), 'utf8');
+  const publisher = fixtureSource.match(/^function publishFixtureRecord\([\s\S]*?^\}/m)?.[0] ?? '';
+  const observedWrite = fixtureSource.match(/^(?:writeFileSync\(join\(root, 'observed\.txt'\),|publishFixtureRecord\('observed\.txt',) \[[\s\S]*?\]\.join\('\\n'\)\);/m)?.[0];
+  assert.ok(observedWrite, 'the actual observed-record publisher is missing');
+  const fixtureRoot = 'inert-fixture';
+  const finalRecord = join(fixtureRoot, 'observed.txt');
+  const records = new Map();
+  let partialFinalVisible = false;
+  let renames = 0;
+  runInNewContext(`${publisher}\n${observedWrite}`, {
+    root: fixtureRoot, join,
+    process: { pid: 123, argv: ['node', 'Launcher.mjs', '--gui-startup-v1'], env: {}, cwd: () => fixtureRoot },
+    existsSync: (path) => records.has(path),
+    writeFileSync: (path, value) => {
+      records.set(path, { text: '', closed: false });
+      partialFinalVisible ||= records.has(finalRecord) && !records.get(finalRecord).closed;
+      records.set(path, { text: value, closed: true });
+    },
+    renameSync: (source, destination) => {
+      assert.equal(dirname(source), dirname(destination));
+      assert.equal(records.get(source)?.closed, true, 'rename happened before complete close');
+      assert.equal(records.has(destination), false, 'publication overwrote a completed record');
+      records.set(destination, records.get(source));
+      records.delete(source);
+      renames += 1;
+    },
+  });
+  assert.equal(partialFinalVisible, false, 'final fixture record is visible before all bytes are published');
+  assert.equal(renames, 1, 'observed record was not published by a single same-directory rename');
+  assert.equal(records.get(finalRecord)?.text, 'pid=123\narguments=true\nenvironment=true\ncwd=true');
+  assert.match(fixtureSource, /publishFixtureRecord\('sentinel\.txt', String\(child\.pid\)\)/);
+  t.diagnostic('PASS atomic-fixture-publication original-interleaving-defended=1 unchanged-record=1');
   assert.equal((workflow.match(/actions\/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a/g) ?? []).length, 4);
   assert.equal((workflow.match(/actions\/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c/g) ?? []).length, 3);
   assert.equal((workflow.match(/digest-mismatch: error/g) ?? []).length, 3);
@@ -309,6 +342,11 @@ test('native artifact transfer pins exact inputs and refuses digest mismatches',
   assert.match(observer, /registered-visual-helper/);
   assert.match(native, /final-observer-cases cases=20 passed=20 fixed_conditions=31/);
   assert.match(native, /pending footer text ink was not captured/);
+  assert.match(native, /fixture-record-cases cases=18 passed=18 max_bytes=256 no_bad_record_retry=1/);
+  assert.match(native, /fixture-observed-parse/);
+  assert.match(native, /fixture-sentinel-retain/);
+  assert.doesNotMatch(native, /stoul\(observed\.substr/);
+  assert.match(proof, /\$result\.NonNativeFailure/);
   assert.match(native, /observation-profile-cases cases=20 passed=20 profiles=5 raw_metadata_preserved=1/);
   assert.match(native, /ObservationProfile::nativeFixture, verifyFixedFixture\(options\[L"--fixture"\]\)/);
   assert.match(observer, /raw_unknown_metadata=/);
@@ -324,7 +362,8 @@ test('native artifact transfer pins exact inputs and refuses digest mismatches',
     ], { encoding: 'utf8', timeout: 15000, maxBuffer: 128 * 1024 });
     assert.match(output, /PASS report-limits line-count=4096 size=1048576 poisoned-reparse=0/);
     assert.match(output, /PASS cleanup-accounting report-fatal-clean=1 secondary-faults=2 stages-attempted=7/);
-    assert.match(output, /PASS proof-report-fixtures assertions=70/);
+    assert.match(output, /PASS native-primary-preserved residue-secondary=1 cleanup-does-not-upgrade=1/);
+    assert.match(output, /PASS proof-report-fixtures assertions=75/);
     t.diagnostic(output.trim());
   } else {
     t.diagnostic('Windows-only inert PowerShell reporting fixtures were not executed on this host.');

@@ -14,6 +14,7 @@
 #include <ostream>
 #include <mutex>
 #include <set>
+#include <system_error>
 #include <thread>
 
 namespace proof {
@@ -43,13 +44,15 @@ void until(Predicate predicate, const char* failure, DWORD timeout = 15000) {
 inline std::wstring imagePath(HANDLE process) {
     std::vector<wchar_t> buffer(32768);
     DWORD size = static_cast<DWORD>(buffer.size());
-    check(QueryFullProcessImageNameW(process, 0, buffer.data(), &size) != FALSE, "process image could not be observed");
+    if (!QueryFullProcessImageNameW(process, 0, buffer.data(), &size))
+        throw std::system_error(static_cast<int>(GetLastError()), std::system_category(), "process-image-query");
     return recap::normalizedPath({ buffer.data(), size });
 }
 
 inline void nativeArchitecture(HANDLE process) {
     USHORT emulated = 0, native = 0;
-    check(IsWow64Process2(process, &emulated, &native) != FALSE, "native architecture could not be observed");
+    if (!IsWow64Process2(process, &emulated, &native))
+        throw std::system_error(static_cast<int>(GetLastError()), std::system_category(), "process-architecture-query");
 #if defined(_M_ARM64)
     check(native == IMAGE_FILE_MACHINE_ARM64 && emulated == IMAGE_FILE_MACHINE_UNKNOWN, "ARM64 proof is not native");
 #else
