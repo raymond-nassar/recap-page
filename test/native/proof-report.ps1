@@ -12,13 +12,16 @@ function Assert-Report {
   if (-not $Condition) { throw $Failure }
 }
 Assert-Report ($parseErrors.Count -eq 0) 'proof script did not parse'
-$definitions = @($ast.FindAll({
-  param($node)
-  $node -is [System.Management.Automation.Language.FunctionDefinitionAst] -and
-    $node.Name -ceq 'Read-ProofProgress'
-}, $true))
-Assert-Report ($definitions.Count -eq 1) 'progress reader definition is not unique'
-. ([scriptblock]::Create($definitions[0].Extent.Text))
+foreach ($functionName in @('Reject-ProofReport', 'Read-ProofProgress', 'New-ProofOutcome',
+    'Add-ProofFailure', 'Invoke-ProofCleanupStep', 'Complete-ProofOutcome')) {
+  $definitions = @($ast.FindAll({
+    param($node)
+    $node -is [System.Management.Automation.Language.FunctionDefinitionAst] -and
+      $node.Name -ceq $functionName
+  }, $true))
+  Assert-Report ($definitions.Count -eq 1) 'progress or outcome definition is not unique'
+  . ([scriptblock]::Create($definitions[0].Extent.Text))
+}
 
 $file = [IO.Path]::GetTempFileName()
 function Observe-Report {
@@ -26,7 +29,7 @@ function Observe-Report {
   [IO.File]::WriteAllText($file, ($Lines -join "`n") + "`n", (New-Object Text.UTF8Encoding $false))
   $state = [pscustomobject]@{
     Position = 0L; Pending = ''; Lines = 0; Text = [Text.StringBuilder]::new()
-    Live = $false; LiveHealthLines = 0; Caught = $null
+    Live = $false; LiveHealthLines = 0; Caught = $null; Failure = $null; FailureCause = 0L; Reads = 0
   }
   $captured = @(& {
     try {
@@ -40,11 +43,29 @@ function Observe-Report {
   if ($state.Caught) { $exitCode = 1 }
   [pscustomobject]@{
     Failure = $state.Caught; ExitCode = $exitCode; Accepted = $state.Text.ToString()
+    State = $state
     Emitted = ($captured | ForEach-Object { $_.ToString() }) -join "`n"
   }
 }
 
 try {
+  $overflow = Observe-Report -Lines @(1..4097 | ForEach-Object { 'CHECK ENTER window-message tick=1' })
+  $accepted = @($overflow.Accepted -split "`n" | Where-Object { $_.Length -gt 0 }).Count
+  Assert-Report ($accepted -eq 4096 -and $overflow.ExitCode -eq 1) 'original repeated-message witness did not retain the line bound'
+  Write-Output 'PASS original-poll-emitter-witness accepted=4096 rejected=1'
+  Assert-Report ($overflow.Failure -ceq 'proof-report-line-count' -and
+    $overflow.State.Failure -ceq 'proof-report-line-count') 'line-count limit does not retain its distinct primary code'
+  $reads = $overflow.State.Reads
+  $poisonedOutput = @(& {
+    try { Read-ProofProgress -Path $file -State $overflow.State }
+    catch { $overflow.State.Caught = $_.Exception.Message }
+  } 6>&1)
+  Assert-Report ($overflow.State.Caught -ceq 'proof-report-line-count') 'poisoned report changed its first failure'
+  Assert-Report ($overflow.State.Reads -eq $reads -and $poisonedOutput.Count -eq 0) 'poisoned report was reread or re-reported'
+  $oversize = Observe-Report -Lines @('x' * (1MB + 1))
+  Assert-Report ($oversize.Failure -ceq 'proof-report-size' -and $oversize.ExitCode -eq 1) 'report size limit lost its distinct fatal cause'
+  Write-Output 'PASS report-limits line-count=4096 size=1048576 poisoned-reparse=0'
+
   $candidate = 'FAIL calibration window create/show events were incomplete'
   $original = Observe-Report -Lines @($candidate)
   Assert-Report ($original.ExitCode -eq 1 -and $original.Failure -ceq 'unsafe-proof-report') 'fixed slash candidate was not rejected'
@@ -75,12 +96,47 @@ try {
   )
   foreach ($payload in $unsafe) {
     $rejected = Observe-Report -Lines @($envelope[0], $payload)
-    Assert-Report ($rejected.ExitCode -eq 1 -and $rejected.Failure -ceq 'unsafe-proof-report') 'unsafe report payload was accepted'
-    Assert-Report ($rejected.Emitted.Contains('unsafe-proof-line-redacted') -and
+    $expected = 'unsafe-proof-report'
+    $label = 'unsafe-proof-line-redacted'
+    if ($payload.Length -gt 4096) { $expected = 'proof-report-line-length'; $label = $expected }
+    Assert-Report ($rejected.ExitCode -eq 1 -and $rejected.Failure -ceq $expected) 'unsafe report payload was accepted'
+    Assert-Report ($rejected.Emitted.Contains($label) -and
       -not $rejected.Emitted.Contains($payload) -and -not $rejected.Accepted.Contains($payload)) 'unsafe payload was disclosed'
     Assert-Report ($rejected.Accepted.Contains($envelope[0])) 'later rejection erased the earlier failure checkpoint'
   }
   Write-Output 'PASS unsafe-payloads cases=6 redacted=6 failed=6'
+
+  $clean = New-ProofOutcome
+  Add-ProofFailure -State $clean -Code $overflow.State.Failure -AlreadyReported
+  $cleanOutput = @(& {
+    foreach ($stage in @($clean.Resources.Keys)) {
+      Invoke-ProofCleanupStep -State $clean -Stage $stage -Action {}
+    }
+  } 6>&1)
+  $cleanResult = Complete-ProofOutcome $clean $overflow.State 0 2000
+  Assert-Report ($cleanResult.ExitCode -eq 1 -and $cleanResult.Failure -ceq 'proof-report-line-count' -and
+    $cleanResult.Cleanup -and -not $cleanResult.ReportValid) 'report rejection became a cleanup failure or successful exit'
+  Assert-Report ($clean.Resources.Count -eq 7 -and $cleanOutput.Count -eq 14 -and
+    $cleanResult.SecondaryFailures.Count -eq 0) 'independent successful cleanup stages were not all reported'
+
+  $broken = New-ProofOutcome
+  Add-ProofFailure -State $broken -Code 'proof-report-line-count' -AlreadyReported
+  $attempts = [Collections.Generic.List[string]]::new()
+  $brokenOutput = @(& {
+    foreach ($stage in @($broken.Resources.Keys)) {
+      Invoke-ProofCleanupStep -State $broken -Stage $stage -Action {
+        $attempts.Add($Stage)
+        if ($Stage -eq 'job' -or $Stage -eq 'settings') { throw 'fixed-inert-cleanup-failure' }
+      }
+    }
+  } 6>&1)
+  $brokenResult = Complete-ProofOutcome $broken $overflow.State 0 2000
+  Assert-Report ($brokenResult.Failure -ceq 'proof-report-line-count' -and
+    $brokenResult.SecondaryFailures.Count -eq 2) 'secondary cleanup faults replaced the report primary'
+  Assert-Report (-not $brokenResult.Cleanup -and -not $brokenResult.Resources.job -and
+    -not $brokenResult.Resources.settings -and $brokenResult.ExitCode -eq 1) 'cleanup or rollback failure was hidden'
+  Assert-Report ($attempts.Count -eq 7 -and (($brokenOutput | ForEach-Object { $_.ToString() }) -join "`n").Contains('cleanup-settings-failed')) 'cleanup failure prevented later stages or its own reporting'
+  Write-Output 'PASS cleanup-accounting report-fatal-clean=1 secondary-faults=2 stages-attempted=7'
 
   $native = [IO.File]::ReadAllText((Join-Path $root 'test\native\StartupTests.cpp'))
   $observer = [IO.File]::ReadAllText((Join-Path $root 'test\native\StartupObserver.h'))
@@ -93,6 +149,11 @@ try {
   Assert-Report ($observer.Contains('reportCalibrationWindows(')) 'early window context reporter is missing'
   Assert-Report ($proof.Contains('-TotalTimeoutMs 60000')) 'calibration preflight lacks its total bound'
   Assert-Report ($proof.IndexOf('calibration-preflight') -lt $proof.IndexOf('$runtimeInfo = (& node')) 'preflight does not precede runtime work'
+  Assert-Report ($native.Contains('void pollingObservationCases()')) 'deterministic polling cardinality cases are missing'
+  Assert-Report ($native.Contains('observedWait("error-feedback-wait"')) 'error feedback does not use a bounded reporting scope'
+  Assert-Report ($native.Contains('id == "F10" ? 190000 : 15000')) 'the real watchdog fixture deadline changed'
+  Assert-Report ($proof.Contains('if (-not $progress.Failure)')) 'cleanup does not avoid the poisoned report'
+  Assert-Report ($proof.Contains('Invoke-ProofCleanupStep $outcome')) 'independent cleanup accounting is not wired'
   Write-Output "PASS proof-report-fixtures assertions=$script:assertions"
 } finally {
   Remove-Item -LiteralPath $file -Force

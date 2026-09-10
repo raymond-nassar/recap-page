@@ -30,21 +30,37 @@ if (-not ('RecapPageProof.FixtureJob' -as [type])) {
   Add-Type -Path (Join-Path $root 'test\native\ProofHost.cs')
 }
 
+function Reject-ProofReport {
+  param($State, [ValidateSet('proof-report-size', 'proof-report-truncated', 'proof-report-line-count',
+    'proof-report-line-length', 'unsafe-proof-report', 'proof-report-read-incomplete',
+    'unterminated-proof-report-line', 'proof-report-read-failed')][string]$Code, [long]$Cause = 0)
+  if (-not $State.Failure) {
+    $State.Failure = $Code
+    $State.FailureCause = $Cause
+    $label = $Code
+    if ($Code -eq 'unsafe-proof-report') { $label = 'unsafe-proof-line-redacted' }
+    Write-Host "CHECK FAIL $label"
+  }
+  throw $State.Failure
+}
+
 function Read-ProofProgress {
   param([string]$Path, $State)
-  if (-not (Test-Path -LiteralPath $Path -PathType Leaf)) { return }
-  $file = [IO.File]::Open($Path, [IO.FileMode]::Open, [IO.FileAccess]::Read,
-    [IO.FileShare]::ReadWrite -bor [IO.FileShare]::Delete)
+  if ($State.Failure) { throw $State.Failure }
+  $State.Reads += 1
+  $file = $null
   try {
+    if (-not (Test-Path -LiteralPath $Path -PathType Leaf)) { return }
+    $file = [IO.File]::Open($Path, [IO.FileMode]::Open, [IO.FileAccess]::Read,
+      [IO.FileShare]::ReadWrite -bor [IO.FileShare]::Delete)
     $length = $file.Length
-    if ($length -gt 1MB -or $length -lt $State.Position) {
-      throw 'proof-report-size-or-truncation'
-    }
+    if ($length -gt 1MB) { Reject-ProofReport $State 'proof-report-size' }
+    if ($length -lt $State.Position) { Reject-ProofReport $State 'proof-report-truncated' }
     [void]$file.Seek($State.Position, [IO.SeekOrigin]::Begin)
     $buffer = New-Object byte[] 16384
     while ($file.Position -lt $length) {
       $read = $file.Read($buffer, 0, [Math]::Min($buffer.Length, $length - $file.Position))
-      if ($read -eq 0) { throw 'proof-report-read-incomplete' }
+      if ($read -eq 0) { Reject-ProofReport $State 'proof-report-read-incomplete' }
       $State.Position += $read
       $State.Pending += [Text.Encoding]::UTF8.GetString($buffer, 0, $read)
       while ($State.Pending.Contains("`n")) {
@@ -53,19 +69,76 @@ function Read-ProofProgress {
         $State.Pending = $State.Pending.Substring($index + 1)
         if (-not $line) { continue }
         $State.Lines += 1
-        if ($State.Lines -gt 4096 -or $line.Length -gt 4096 -or
-            $line -notmatch '^(CHECK (ENTER|EXIT|FAIL|INFO) |HANDLE |DIAG |PASS |FAIL |selected-font=|dpi-message-cases=)' -or
+        if ($State.Lines -gt 4096) { Reject-ProofReport $State 'proof-report-line-count' }
+        if ($line.Length -gt 4096) { Reject-ProofReport $State 'proof-report-line-length' }
+        if ($line -notmatch '^(CHECK (ENTER|EXIT|FAIL|INFO) |HANDLE |DIAG |PASS |FAIL |selected-font=|dpi-message-cases=)' -or
             $line -match '[^\x20-\x7e]|[\\/:<>]') {
-          Write-Host 'CHECK FAIL unsafe-proof-line-redacted'
-          throw 'unsafe-proof-report'
+          Reject-ProofReport $State 'unsafe-proof-report'
         }
         [void]$State.Text.AppendLine($line)
         Write-Host $line
         if ($State.Live -and $line -match '^CHECK ENTER wrapper-health-') { $State.LiveHealthLines += 1 }
       }
-      if ($State.Pending.Length -gt 4096) { throw 'unterminated-proof-report-line' }
+      if ($State.Pending.Length -gt 4096) { Reject-ProofReport $State 'unterminated-proof-report-line' }
     }
-  } finally { $file.Dispose() }
+  } catch {
+    if (-not $State.Failure) { Reject-ProofReport $State 'proof-report-read-failed' $_.Exception.HResult }
+    throw $State.Failure
+  } finally { if ($file) { $file.Dispose() } }
+}
+
+function New-ProofOutcome {
+  [pscustomobject]@{
+    Failure = $null; PrimaryCause = 0L
+    SecondaryFailures = [Collections.Generic.List[object]]::new()
+    Resources = [ordered]@{
+      job = $false; process = $false; streams = $false; 'job-handle' = $false
+      'process-handle' = $false; settings = $false; files = $false
+    }
+  }
+}
+
+function Add-ProofFailure {
+  param($State, [ValidatePattern('^[a-z][a-z0-9-]{0,79}$')][string]$Code,
+    [long]$Cause = 0, [switch]$AlreadyReported)
+  $secondary = [bool]$State.Failure
+  if ($secondary) {
+    $State.SecondaryFailures.Add([pscustomobject]@{ Code = $Code; Cause = $Cause })
+  } else {
+    $State.Failure = $Code
+    $State.PrimaryCause = $Cause
+  }
+  if (-not $AlreadyReported) { Write-Host "CHECK FAIL $Code secondary=$secondary cause=$Cause" }
+}
+
+function Invoke-ProofCleanupStep {
+  param($State, [ValidateSet('job', 'process', 'streams', 'job-handle', 'process-handle', 'settings', 'files')]
+    [string]$Stage, [scriptblock]$Action)
+  Write-Host "CHECK ENTER cleanup-$Stage"
+  try {
+    & $Action
+    $State.Resources[$Stage] = $true
+    Write-Host "CHECK EXIT cleanup-$Stage"
+  } catch {
+    $State.Resources[$Stage] = $false
+    Add-ProofFailure -State $State -Code "cleanup-$Stage-failed" -Cause $_.Exception.HResult
+  }
+}
+
+function Complete-ProofOutcome {
+  param($State, $Progress, $DriverExitCode, [long]$ElapsedMilliseconds)
+  $cleanup = @($State.Resources.Values | Where-Object { -not $_ }).Count -eq 0
+  $reportValid = -not $Progress.Failure -and -not $Progress.Pending
+  $exitCode = $DriverExitCode
+  if ($State.Failure -or -not $cleanup -or -not $reportValid -or $null -eq $exitCode) { $exitCode = 1 }
+  [pscustomobject]@{
+    ExitCode = $exitCode; DriverExitCode = $DriverExitCode; Text = $Progress.Text.ToString()
+    Failure = $State.Failure; PrimaryCause = $State.PrimaryCause
+    SecondaryFailures = @($State.SecondaryFailures.ToArray()); Cleanup = $cleanup
+    Resources = [pscustomobject]$State.Resources; ReportValid = $reportValid
+    ProgressLines = $Progress.Lines; LiveProgressLines = $Progress.LiveHealthLines
+    ElapsedMilliseconds = $ElapsedMilliseconds
+  }
 }
 
 function Receive-ProofStreams {
@@ -91,17 +164,15 @@ function Invoke-NativeProof {
   $runDeadline = $TotalTimeoutMs - $reserve
   $progress = [pscustomobject]@{
     Position = 0L; Pending = ''; Lines = 0; Text = [Text.StringBuilder]::new()
-    Live = $false; LiveHealthLines = 0
+    Live = $false; LiveHealthLines = 0; Failure = $null; FailureCause = 0L; Reads = 0
   }
-  $failure = $null
+  $outcome = New-ProofOutcome
   $driverExit = $null
   $exitObservedAt = $null
   $streams = @()
   $process = $null
   $job = $null
   $contrast = [RecapPageProof.HostSettings]::CaptureContrast()
-  $cleanup = $false
-  $assigned = $false
   $go = "$Report.containment-ready"
   $ack = "$Report.progress-seen"
   Write-Host 'CHECK ENTER wrapper-start'
@@ -120,7 +191,6 @@ function Invoke-NativeProof {
     $process.StartInfo = $start
     [void]$process.Start()
     $job.Assign($process.Handle)
-    $assigned = $true
     [IO.File]::WriteAllText($go, 'contained', [Text.UTF8Encoding]::new($false))
     foreach ($stream in @($process.StandardOutput.BaseStream, $process.StandardError.BaseStream)) {
       $buffer = New-Object byte[] 4096
@@ -138,7 +208,10 @@ function Invoke-NativeProof {
         [IO.File]::WriteAllText($ack, 'progress-visible', [Text.UTF8Encoding]::new($false))
       }
       Receive-ProofStreams -Streams $streams
-      if (@($streams | Where-Object Unexpected).Count -gt 0) { $failure = 'unexpected-proof-stream'; break }
+      if (@($streams | Where-Object Unexpected).Count -gt 0) {
+        Add-ProofFailure $outcome 'unexpected-proof-stream'
+        break
+      }
       if ($process.WaitForExit(0)) {
         if ($null -eq $exitObservedAt) {
           $exitObservedAt = $clock.ElapsedMilliseconds
@@ -147,81 +220,106 @@ function Invoke-NativeProof {
           Write-Host 'CHECK ENTER stream-drain'
         }
         if (@($streams | Where-Object { -not $_.Eof }).Count -eq 0) { break }
-        if ($clock.ElapsedMilliseconds - $exitObservedAt -ge 1000) { $failure = 'held-writer-drain'; break }
+        if ($clock.ElapsedMilliseconds - $exitObservedAt -ge 1000) {
+          Add-ProofFailure $outcome 'held-writer-drain'
+          break
+        }
       }
       Start-Sleep -Milliseconds 20
     }
-    if ($null -eq $exitObservedAt -and -not $failure) { $failure = 'proof-total-deadline' }
+    if ($null -eq $exitObservedAt -and -not $outcome.Failure) { Add-ProofFailure $outcome 'proof-total-deadline' }
     if ($null -ne $exitObservedAt -and @($streams | Where-Object { -not $_.Eof }).Count -eq 0) {
       Write-Host 'CHECK EXIT stream-drain'
     }
   } catch {
-    $failure = 'proof-wrapper-operation-failed'
-    Write-Host "CHECK FAIL wrapper-operation code=$($_.Exception.HResult)"
+    if ($progress.Failure) {
+      Add-ProofFailure -State $outcome -Code $progress.Failure -Cause $progress.FailureCause -AlreadyReported
+    } else {
+      Add-ProofFailure -State $outcome -Code 'proof-wrapper-operation-failed' -Cause $_.Exception.HResult
+    }
   } finally {
     Write-Host 'CHECK ENTER owned-cleanup'
     $progress.Live = $false
-    try {
+    Invoke-ProofCleanupStep $outcome 'job' {
       if ($job) {
         if ($job.ActiveProcesses -gt 0) {
-          if (-not $failure) { $failure = 'owned-process-residue' }
+          if (-not $outcome.Failure) { Add-ProofFailure $outcome 'owned-process-residue' }
           $job.Terminate()
         }
         while ($job.ActiveProcesses -gt 0 -and $clock.ElapsedMilliseconds -lt $TotalTimeoutMs) {
           Start-Sleep -Milliseconds 20
         }
-        $cleanup = $job.ActiveProcesses -eq 0
+        if ($job.ActiveProcesses -ne 0) { throw 'owned-job-cleanup-incomplete' }
       }
-      if ($process -and -not $assigned -and -not $process.WaitForExit(0)) {
+    }
+    Invoke-ProofCleanupStep $outcome 'process' {
+      if ($process -and -not $process.WaitForExit(0)) {
         $process.Kill()
         $remaining = [Math]::Max(0, $TotalTimeoutMs - $clock.ElapsedMilliseconds)
-        $cleanup = $process.WaitForExit([int]$remaining) -and $cleanup
+        if (-not $process.WaitForExit([int]$remaining)) { throw 'owned-process-cleanup-incomplete' }
       }
-      if (-not $cleanup) { $failure = 'owned-cleanup-incomplete' }
+    }
+    Invoke-ProofCleanupStep $outcome 'streams' {
+      $streamFault = $false
       while (@($streams | Where-Object { -not $_.Eof }).Count -gt 0 -and
           $clock.ElapsedMilliseconds -lt $TotalTimeoutMs) {
-        Receive-ProofStreams -Streams $streams
+        foreach ($entry in $streams) {
+          try { Receive-ProofStreams -Streams @($entry) }
+          catch {
+            $streamFault = $true
+            Add-ProofFailure -State $outcome -Code 'proof-stream-read-failed' -Cause $_.Exception.HResult
+          }
+        }
         Start-Sleep -Milliseconds 10
       }
-      Read-ProofProgress -Path $Report -State $progress
-      if ($progress.Pending) { $failure = 'incomplete-proof-checkpoint' }
-      if (@($streams | Where-Object { -not $_.Eof }).Count -gt 0) { $failure = 'stream-cleanup-incomplete' }
-    } catch {
-      $cleanup = $false
-      $failure = 'owned-cleanup-failed'
-      Write-Host "CHECK FAIL owned-cleanup code=$($_.Exception.HResult)"
+      if ($streamFault -or @($streams | Where-Object { -not $_.Eof }).Count -gt 0) {
+        throw 'stream-cleanup-incomplete'
+      }
     }
-    try {
-      if ($job) { $job.Dispose() }
-      if ($process -and @($streams | Where-Object { -not $_.Eof }).Count -eq 0) { $process.Dispose() }
-    } catch {
-      $cleanup = $false
-      $failure = 'owned-handle-release-failed'
-      Write-Host "CHECK FAIL owned-handle-release code=$($_.Exception.HResult)"
+    if (-not $progress.Failure) {
+      try {
+        Read-ProofProgress -Path $Report -State $progress
+        if ($progress.Pending) { Add-ProofFailure $outcome 'incomplete-proof-checkpoint' }
+      } catch {
+        if ($progress.Failure) {
+          Add-ProofFailure -State $outcome -Code $progress.Failure -Cause $progress.FailureCause -AlreadyReported
+        } else {
+          Add-ProofFailure -State $outcome -Code 'proof-report-read-failed' -Cause $_.Exception.HResult
+        }
+      }
+    }
+    Invoke-ProofCleanupStep $outcome 'job-handle' { if ($job) { $job.Dispose() } }
+    Invoke-ProofCleanupStep $outcome 'process-handle' {
+      if ($process) {
+        if (@($streams | Where-Object { -not $_.Eof }).Count -gt 0) { throw 'owned-process-streams-still-active' }
+        $process.Dispose()
+      }
     }
     Write-Host 'CHECK ENTER host-settings-rollback'
-    try {
+    Invoke-ProofCleanupStep $outcome 'settings' {
       [RecapPageProof.HostSettings]::RestoreContrast($contrast)
       Write-Host 'CHECK EXIT host-settings-rollback'
-    } catch {
-      $failure = 'host-settings-rollback-failed'
-      Write-Host "CHECK FAIL host-settings-rollback code=$($_.Exception.HResult)"
     }
-    if ($clock.ElapsedMilliseconds -gt $TotalTimeoutMs) { $failure = 'proof-total-deadline' }
-    if (Test-Path -LiteralPath $go) { Remove-Item -LiteralPath $go -Force }
-    if (Test-Path -LiteralPath $ack) { Remove-Item -LiteralPath $ack -Force }
-    Write-Host "CHECK EXIT owned-cleanup complete=$cleanup elapsed_ms=$($clock.ElapsedMilliseconds)"
+    Invoke-ProofCleanupStep $outcome 'files' {
+      $fileFault = $false
+      foreach ($path in @($go, $ack)) {
+        try { if (Test-Path -LiteralPath $path) { Remove-Item -LiteralPath $path -Force } }
+        catch {
+          $fileFault = $true
+          Add-ProofFailure -State $outcome -Code 'proof-control-file-cleanup-failed' -Cause $_.Exception.HResult
+        }
+      }
+      if ($fileFault) { throw 'proof-control-file-cleanup-incomplete' }
+    }
+    if ($clock.ElapsedMilliseconds -gt $TotalTimeoutMs) { Add-ProofFailure $outcome 'proof-total-deadline' }
   }
-  if ($progress.Lines -eq 0) { $failure = 'missing-proof-progress' }
-  if ($failure) { Write-Host "CHECK FAIL $failure" }
-  $effectiveExit = $driverExit
-  if ($failure -or $null -eq $effectiveExit) { $effectiveExit = 1 }
-  [pscustomobject]@{
-    ExitCode = $effectiveExit; DriverExitCode = $driverExit; Text = $progress.Text.ToString()
-    Failure = $failure; Cleanup = $cleanup; ProgressLines = $progress.Lines
-    LiveProgressLines = $progress.LiveHealthLines
-    ElapsedMilliseconds = $clock.ElapsedMilliseconds
-  }
+  if ($progress.Lines -eq 0) { Add-ProofFailure $outcome 'missing-proof-progress' }
+  $result = Complete-ProofOutcome $outcome $progress $driverExit $clock.ElapsedMilliseconds
+  Write-Host "CHECK EXIT owned-cleanup complete=$($result.Cleanup) elapsed_ms=$($result.ElapsedMilliseconds)"
+  $primary = 'none'
+  if ($result.Failure) { $primary = $result.Failure }
+  Write-Host "DIAG proof-outcome primary=$primary secondary=$($result.SecondaryFailures.Count) report_valid=$($result.ReportValid) report_reads=$($progress.Reads) resource_cleanup=$($result.Cleanup)"
+  return $result
 }
 
 function Export-NativePreview {
@@ -448,7 +546,7 @@ bool placeFailureWindow(App& app) {
       $results = @(Invoke-NativeProof -Executable $runDriver -Arguments $arguments -Report $report)
       $result = $results[-1]
       $results | Select-Object -SkipLast 1 | Write-Output
-      if ($result.ExitCode -ne 1 -or -not $result.Text.Contains($expectedFailure)) {
+      if ($result.ExitCode -ne 1 -or $result.Failure -or -not $result.Cleanup -or -not $result.Text.Contains($expectedFailure)) {
         throw "$negative did not fail its intended assertion."
       }
       $kind = 'aimed-negative'

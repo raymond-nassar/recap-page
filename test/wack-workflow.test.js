@@ -311,7 +311,9 @@ test('native artifact transfer pins exact inputs and refuses digest mismatches',
       '-NoProfile', '-NonInteractive', '-File',
       fileURLToPath(new URL('./native/proof-report.ps1', import.meta.url)),
     ], { encoding: 'utf8', timeout: 15000, maxBuffer: 128 * 1024 });
-    assert.match(output, /PASS proof-report-fixtures assertions=35/);
+    assert.match(output, /PASS report-limits line-count=4096 size=1048576 poisoned-reparse=0/);
+    assert.match(output, /PASS cleanup-accounting report-fatal-clean=1 secondary-faults=2 stages-attempted=7/);
+    assert.match(output, /PASS proof-report-fixtures assertions=55/);
     t.diagnostic(output.trim());
   } else {
     t.diagnostic('Windows-only inert PowerShell reporting fixtures were not executed on this host.');

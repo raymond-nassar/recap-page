@@ -20,6 +20,14 @@ std::ofstream* liveReport = nullptr;
 fs::path liveReportPath;
 std::string lastStage = "not-started";
 
+struct WindowMessageFailure : std::runtime_error {
+    UINT message;
+    DWORD error;
+    uint64_t elapsed;
+    WindowMessageFailure(UINT id, DWORD code, uint64_t duration)
+        : std::runtime_error("window-message-failed"), message(id), error(code), elapsed(duration) {}
+};
+
 struct CalibrationFailure : std::runtime_error {
     const char* code;
     const char* stage;
@@ -32,6 +40,7 @@ struct CalibrationFailure : std::runtime_error {
 };
 
 const char* failureCode(const std::exception& failure) {
+    if (dynamic_cast<const WindowMessageFailure*>(&failure)) return "window-message-failed";
     if (const auto* calibration = dynamic_cast<const CalibrationFailure*>(&failure)) return calibration->code;
     static constexpr const char* labels[][2] = {
         { "N1 missing frame was accepted as opened", "n1-missing-frame-accepted" },
@@ -69,6 +78,9 @@ void writeFailure(std::ostream& report, const std::exception& failure, const std
     report << "FAIL code=" << failureCode(failure) << " stage=" << stage << "\n";
     if (const auto* calibration = dynamic_cast<const CalibrationFailure*>(&failure))
         report << "DIAG calibration-exception primary=1 secondary_failures=" << calibration->secondary.size() << "\n";
+    if (const auto* leaf = dynamic_cast<const WindowMessageFailure*>(&failure))
+        report << "DIAG failed-leaf stage=window-message message=" << leaf->message
+               << " error=" << leaf->error << " elapsed_ms=" << leaf->elapsed << "\n";
     report.flush();
 }
 
@@ -97,18 +109,93 @@ auto observed(const char* stage, Action action) {
     }
 }
 
+struct PollingObservation {
+    std::ostream& report;
+    const char* stage;
+    uint64_t started, lastHeartbeat, polls = 0, messages = 0, succeeded = 0, slow = 0, maximumMessageMs = 0;
+    size_t records = 0;
+    PollingObservation(std::ostream& output, const char* name, uint64_t now)
+        : report(output), stage(name), started(now), lastHeartbeat(now) { emit("ENTER", now); }
+    void emit(const char* edge, uint64_t now) {
+        report << "CHECK " << edge << " " << stage << " tick=" << now << " elapsed_ms=" << now - started
+               << " polls=" << polls << " messages=" << messages << " succeeded=" << succeeded
+               << " slow_messages=" << slow << " max_message_ms=" << maximumMessageMs << "\n";
+        ++records;
+        report.flush();
+    }
+    void progress(uint64_t now) {
+        check(now >= lastHeartbeat, "poll observation clock reversed");
+        if (now - lastHeartbeat >= 2000) { emit("INFO", now); lastHeartbeat = now; }
+    }
+    void message(UINT id, bool success, DWORD error, uint64_t elapsed, uint64_t now) {
+        ++messages;
+        maximumMessageMs = std::max(maximumMessageMs, elapsed);
+        if (!success) {
+            report << "CHECK FAIL window-message scope=" << stage << " message=" << id
+                   << " error=" << error << " elapsed_ms=" << elapsed << " tick=" << now
+                   << " polls=" << polls << " messages=" << messages << " succeeded=" << succeeded << "\n";
+            ++records;
+            report.flush();
+            throw WindowMessageFailure(id, error, elapsed);
+        }
+        ++succeeded;
+        if (elapsed >= 100 && ++slow == 1) {
+            report << "DIAG poll-leaf-slow scope=" << stage << " message=" << id
+                   << " elapsed_ms=" << elapsed << " tick=" << now << "\n";
+            ++records;
+            report.flush();
+        }
+    }
+};
+
+PollingObservation* activePolling = nullptr;
+
+template<class Predicate>
+void observedWait(const char* stage, Predicate predicate, const char* failure, DWORD timeout = 15000) {
+    check(liveReport != nullptr, "poll observation requires its report");
+    PollingObservation observation(*liveReport, stage, GetTickCount64());
+    auto* previous = std::exchange(activePolling, &observation);
+    lastStage = stage;
+    try {
+        proof::until([&] {
+            ++observation.polls;
+            const bool ready = predicate();
+            observation.progress(GetTickCount64());
+            return ready;
+        }, failure, timeout);
+        observation.emit("EXIT", GetTickCount64());
+        activePolling = previous;
+    } catch (const std::exception&) {
+        observation.emit("FAIL", GetTickCount64());
+        activePolling = previous;
+        throw;
+    }
+}
+
 DWORD_PTR sendChecked(HWND window, UINT message, WPARAM wparam = 0, LPARAM lparam = 0) {
     check(window != nullptr && message < WM_USER, "unsupported cross-process message or window");
-    return observed("window-message", [&] {
+    const auto invoke = [&] {
+        const auto begin = GetTickCount64();
         DWORD_PTR result = 0;
         SetLastError(ERROR_SUCCESS);
-        if (!SendMessageTimeoutW(window, message, wparam, lparam,
-                                SMTO_ABORTIFHUNG | SMTO_ERRORONEXIT, 2000, &result)) {
-            const auto error = GetLastError();
-            throw std::runtime_error("window message failed error=" + std::to_string(error));
+        const bool success = SendMessageTimeoutW(window, message, wparam, lparam,
+            SMTO_ABORTIFHUNG | SMTO_ERRORONEXIT, 2000, &result) != 0;
+        const auto error = success ? ERROR_SUCCESS : GetLastError();
+        const auto end = GetTickCount64();
+        if (!success) lastStage = "window-message";
+        if (activePolling) activePolling->message(message, success, error, end - begin, end);
+        if (!success) {
+            if (liveReport) {
+                *liveReport << "DIAG failed-leaf stage=window-message message=" << message
+                            << " error=" << error << " elapsed_ms=" << end - begin << "\n";
+                liveReport->flush();
+            }
+            throw WindowMessageFailure(message, error, end - begin);
         }
         return result;
-    });
+    };
+    const bool repeatedRead = activePolling && (message == WM_GETTEXTLENGTH || message == WM_GETTEXT);
+    return repeatedRead ? invoke() : observed("window-message", invoke);
 }
 
 struct StopResult {
@@ -1434,6 +1521,52 @@ void failureReportingCases() {
     }
 }
 
+void pollingObservationCases() {
+    std::ostringstream full;
+    PollingObservation nominal(full, "simulated-poll-wait", 0);
+    for (uint64_t tick = 0; tick <= 190000; tick += 20) {
+        ++nominal.polls;
+        nominal.message(WM_GETTEXTLENGTH, true, 0, 0, tick);
+        nominal.message(WM_GETTEXT, true, 0, 0, tick);
+        nominal.progress(tick);
+    }
+    nominal.emit("EXIT", 190000);
+    const auto text = full.str();
+    check(nominal.polls == 9501 && nominal.messages == 19002 && nominal.succeeded == 19002 &&
+          nominal.records == 97 && nominal.records <= 128 &&
+          static_cast<size_t>(std::count(text.begin(), text.end(), '\n')) == nominal.records,
+          "full polling observation lost counts or exceeded its record bound");
+
+    std::ostringstream failed;
+    PollingObservation timeout(failed, "simulated-failed-wait", 0);
+    ++timeout.polls;
+    bool rejected = false;
+    try { timeout.message(WM_GETTEXT, false, ERROR_TIMEOUT, 2000, 2000); }
+    catch (const WindowMessageFailure& error) {
+        rejected = error.message == WM_GETTEXT && error.error == ERROR_TIMEOUT && error.elapsed == 2000;
+        timeout.emit("FAIL", 2000);
+    }
+    check(rejected && timeout.messages == 1 && timeout.succeeded == 0 &&
+          failed.str().find("CHECK FAIL window-message scope=simulated-failed-wait message=13 error=1460") != std::string::npos &&
+          failed.str().find("CHECK EXIT") == std::string::npos,
+          "polling timeout was hidden or appeared successful");
+
+    std::ostringstream slow;
+    PollingObservation delayed(slow, "simulated-slow-wait", 0);
+    ++delayed.polls;
+    delayed.message(WM_GETTEXTLENGTH, true, 0, 200, 200);
+    delayed.message(WM_GETTEXT, true, 0, 300, 500);
+    delayed.progress(2000);
+    delayed.emit("EXIT", 2000);
+    check(delayed.slow == 2 && delayed.maximumMessageMs == 300 && delayed.messages == 2 &&
+          delayed.succeeded == 2 && slow.str().find("DIAG poll-leaf-slow") != std::string::npos &&
+          slow.str().find("slow_messages=2 max_message_ms=300") != std::string::npos,
+          "slow polling calls lost their immediate and aggregate evidence");
+    check(liveReport != nullptr, "polling case report is missing");
+    *liveReport << "DIAG polling-observation-cases cases=3 passed=3 simulated_ms=190000 polls=9501 messages=19002 records=97\n";
+    liveReport->flush();
+}
+
 void preflight(const fs::path& root, const std::wstring& native) {
     bool rejected = false;
     try { recap::launchPaths(native, L"--unexpected"); }
@@ -1578,7 +1711,7 @@ void fixture(const std::string& id, const fs::path& root, const fs::path& native
         proof::until([&] { return gui.exit() != STILL_ACTIVE; }, "opened fixture did not complete");
         check(gui.exit() == 0, "opened fixture failed");
     } else {
-        proof::until([&] {
+        observedWait("error-feedback-wait", [&] {
             check(gui.exit() == STILL_ACTIVE, id == "F03"
                 ? "F03 pending close lost the startup owner" : "failure feedback owner exited early");
             return IsWindowVisible(window) && controlText(GetDlgItem(window, 203)) == L"Close";
@@ -1967,7 +2100,7 @@ void installed(const std::map<std::wstring, std::wstring>& options, std::ofstrea
     std::vector<proof::WindowFact> controls{ calibration(observer, report) };
     write(control / L"ready.txt", "ready");
     bool dismissed = false;
-    proof::until([&] {
+    observedWait("installed-result-wait", [&] {
         const auto counts = observer.entryCounts(executable);
         write(control / L"counts.txt", "started=" + std::to_string(counts.first) +
               "\nended=" + std::to_string(counts.second) + "\n");
@@ -2103,6 +2236,7 @@ int wmain(int argc, wchar_t** argv) {
             check(host.wProcessorArchitecture == PROCESSOR_ARCHITECTURE_AMD64, "calibration preflight is x64 only");
             observed("failure-envelope-cases", [] { failureReportingCases(); });
             report << "DIAG failure-envelope-cases cases=9 passed=9\n";
+            observed("polling-observation-cases", [] { pollingObservationCases(); });
             proof::Observer observer(true);
             size_t started = 0;
             windowCorrelationCases();
