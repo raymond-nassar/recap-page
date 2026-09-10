@@ -10,6 +10,7 @@
 #include <array>
 #include <climits>
 #include <cstring>
+#include <filesystem>
 #include <map>
 #include <memory>
 #include <ostream>

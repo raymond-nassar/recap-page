@@ -364,6 +364,9 @@ test('native artifact transfer pins exact inputs and refuses digest mismatches',
   assert.match(native, /cases=22 passed=22/);
   assert.match(native, /observer\.assertCalibrations\(controls, report\)/);
   const observer = readFileSync(new URL('./native/StartupObserver.h', import.meta.url), 'utf8');
+  const filesystemInclude = observer.match(/^#include <filesystem>\r?$/m);
+  assert.ok(filesystemInclude && filesystemInclude.index < observer.indexOf('std::filesystem::'),
+    'StartupObserver must include filesystem before its direct uses');
   assert.match(observer, /struct ConsoleBinding/);
   assert.match(observer, /correlateWindows\(windows_, clockValid\(\), healthy\(\), consoleBindings\(\)\)/);
   assert.match(observer, /recap::samePath\(value\.image, classicHostImage_\)/);
