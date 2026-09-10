@@ -19,6 +19,7 @@ if ($DiagnosticTarget -ne 'console-wack' -and -not $Diagnostic) { throw 'A focus
 $root = Split-Path -Parent $PSScriptRoot
 & node (Join-Path $root 'scripts\lib\native-launcher.mjs') --verify --proof
 if ($LASTEXITCODE -ne 0) { throw 'Native proof inputs did not validate.' }
+$proofRecord = Get-Content -LiteralPath (Join-Path $root 'dist\native-proof\build.json') -Raw | ConvertFrom-Json
 $scratch = Join-Path $env:RUNNER_TEMP "recap-native-proof-$Architecture-$env:GITHUB_RUN_ID-$env:GITHUB_RUN_ATTEMPT"
 if (Test-Path -LiteralPath $scratch) { throw 'The native proof scratch directory already exists.' }
 New-Item -ItemType Directory -Path $scratch -ErrorAction Stop | Out-Null
@@ -162,6 +163,64 @@ function Test-NativeSuiteResult {
     if ($line -cnotmatch '^PASS F(0[1-9]|1[01])$' -or -not $labels.Add($line)) { return $false }
   }
   return $labels.Count -eq 11
+}
+
+function New-StartupInvocation {
+  param([string]$Report, [string]$Context, [string]$InputsDigest)
+  $binding = [ordered]@{
+    commit = $proofRecord.commit; tree = $proofRecord.creationReceipt.tree
+    captureId = [Guid]::NewGuid().ToString('N'); architecture = $Architecture
+    proofInputDigest = $proofRecord.inputDigest; creationReceiptDigest = $proofRecord.creationReceiptDigest
+    startupInputsDigest = $InputsDigest
+    deployment = [ordered]@{ kind = 'fixed-fixture'; architecture = $Architecture }
+  }
+  $path = "$Report.startup-context"
+  $fields = @('RCPAPP2', $Context, $binding.captureId, $binding.commit, $binding.tree, $Architecture,
+    $binding.proofInputDigest, $binding.creationReceiptDigest, $InputsDigest)
+  [IO.File]::WriteAllText($path, ($fields -join "`n") + "`n", [Text.UTF8Encoding]::new($false))
+  [pscustomobject]@{ Binding = $binding; Path = $path; Context = $Context }
+}
+
+function Test-HostCompletion {
+  param([string]$Text, $Expected)
+  $lines = @($Text.Replace("`r`n", "`n").Split("`n") | Where-Object { $_.StartsWith('DIAG host-completion-v2') })
+  if ($lines.Count -ne 1 -or $lines[0].Length -gt 4096 -or $lines[0] -match '[^\x20-\x7e]|[\\/:<>]') { return $false }
+  $keys = @('context','captureId','commit','tree','architecture','proofInputDigest','creationReceiptDigest',
+    'beginEvaluated','endEvaluated','beginState','endState','registryView','hiveSamplesBefore',
+    'hiveSamplesAfter','helperSnapshotPairs','helpersUnchanged','hostState','primaryReason')
+  $parts = $lines[0].Split(' ')
+  if ($parts.Count -ne $keys.Count + 2) { return $false }
+  $values = @{}
+  for ($index = 0; $index -lt $keys.Count; $index += 1) {
+    $pair = $parts[$index + 2].Split('=')
+    if ($pair.Count -ne 2 -or $pair[0] -cne $keys[$index] -or -not $pair[1]) { return $false }
+    $values[$pair[0]] = $pair[1]
+  }
+  if ($values.context -cne $Expected.Context -or $values.context -cnotmatch '^(preflight|N2|N3|LC-001)$') { return $false }
+  foreach ($key in @('captureId','commit','tree','architecture','proofInputDigest','creationReceiptDigest')) {
+    if ($values[$key] -cne $Expected.Binding[$key]) { return $false }
+  }
+  if ($values.captureId -cnotmatch '^[0-9a-f]{32}$' -or $values.commit -cnotmatch '^[0-9a-f]{40}$' -or
+      $values.tree -cnotmatch '^[0-9a-f]{40}$' -or $values.proofInputDigest -cnotmatch '^[0-9a-f]{64}$' -or
+      $values.creationReceiptDigest -cnotmatch '^[0-9a-f]{64}$' -or $values.architecture -cnotmatch '^(x64|arm64)$') { return $false }
+  return $values.beginEvaluated -ceq '1' -and $values.endEvaluated -ceq '1' -and
+    $values.beginState -ceq 'satisfied' -and $values.endState -ceq 'satisfied' -and
+    $values.registryView -ceq 'native64' -and $values.hiveSamplesBefore -ceq '2' -and
+    $values.hiveSamplesAfter -ceq '2' -and $values.helperSnapshotPairs -ceq '2' -and
+    $values.helpersUnchanged -ceq '1' -and $values.hostState -ceq 'satisfied' -and $values.primaryReason -ceq 'none'
+}
+
+function Test-StartupControlResult {
+  param($Result, $Expected, [string]$ExpectedFailure)
+  if (-not $Result.Cleanup -or -not $Result.ReportValid -or $Result.NonNativeFailure) { return $false }
+  if ($Expected.Context -eq 'N1') {
+    return $Result.ExitCode -eq 1 -and $Result.Text.Contains($ExpectedFailure)
+  }
+  if (-not (Test-HostCompletion $Result.Text $Expected)) { return $false }
+  if ($Expected.Context -eq 'preflight') {
+    return $Result.ExitCode -eq 0 -and $Result.Text.Contains('PASS calibration-preflight;controls=2;product-starts=0;node-starts=0')
+  }
+  return $Result.ExitCode -eq 1 -and $Result.Text.Contains($ExpectedFailure)
 }
 
 function Receive-NativeFailure {
@@ -474,12 +533,12 @@ try {
   if ($Negatives) {
     if ($Architecture -ne 'x64') { throw 'The calibration preflight requires the native x64 producer.' }
     $report = Join-Path $scratch 'calibration-preflight.txt'
+    $invocation = New-StartupInvocation $report 'preflight' $proofRecord.inputDigest
     $results = @(Invoke-NativeProof -Executable $driver `
-      -Arguments @('--mode', 'calibration', '--report', $report) -Report $report -TotalTimeoutMs 60000)
+      -Arguments @('--mode', 'calibration', '--report', $report, '--contract', $invocation.Path) -Report $report -TotalTimeoutMs 60000)
     $result = $results[-1]
     $results | Select-Object -SkipLast 1 | Write-Output
-    if ($result.ExitCode -ne 0 -or -not $result.Cleanup -or
-        -not $result.Text.Contains('PASS calibration-preflight;controls=2;product-starts=0;node-starts=0')) {
+    if (-not (Test-StartupControlResult $result $invocation '')) {
       throw 'The calibration preflight failed; no mutation or product fixture was started.'
     }
   }
@@ -596,10 +655,15 @@ bool placeFailureWindow(App& app) {
       $arguments = @('--case', $case, '--report', $report, '--goldens', $goldens,
         '--root', (Join-Path $copy 'fixtures'), '--launcher', $runLauncher,
         '--runtime', $runtimeInfo.path, '--fixture', $fixture, '--console-only', 'true')
+      $invocation = [pscustomobject]@{ Context = 'N1' }
+      if ($negative -ne 'N1') {
+        $invocation = New-StartupInvocation $report $negative $proofRecord.inputDigest
+        $arguments += @('--contract', $invocation.Path)
+      }
       $results = @(Invoke-NativeProof -Executable $runDriver -Arguments $arguments -Report $report)
       $result = $results[-1]
       $results | Select-Object -SkipLast 1 | Write-Output
-      if ($result.ExitCode -ne 1 -or $result.NonNativeFailure -or -not $result.Cleanup -or -not $result.Text.Contains($expectedFailure)) {
+      if (-not (Test-StartupControlResult $result $invocation $expectedFailure)) {
         throw "$negative did not fail its intended assertion."
       }
       $kind = 'aimed-negative'
@@ -676,8 +740,19 @@ bool placeFailureWindow(App& app) {
     Write-Output 'HANDLE diagnostic complete; feature-acceptance=not-evaluated'
   } else {
     $report = Join-Path $scratch 'result.txt'
+    $nodeHash = (Get-FileHash -LiteralPath $packageRuntime -Algorithm SHA256).Hash.ToLowerInvariant()
+    $expectedNode = '3602f2bb1a10f2cbab4c36886218a33c1ab3db87290e73b033c46c77147d0237'
+    if ($Architecture -eq 'arm64') { $expectedNode = '3958e4bb3f2d4ef37c938215dfc65a9d3c9d839b5060fec103bd2345fa78e951' }
+    if ($nodeHash -cne $expectedNode) { throw 'The native fixture runtime is not the official architecture input.' }
+    $fixtureHash = (Get-FileHash -LiteralPath $fixture -Algorithm SHA256).Hash.ToLowerInvariant()
+    $digest = [Security.Cryptography.SHA256]::Create()
+    try {
+      $inputHash = [BitConverter]::ToString($digest.ComputeHash(
+        [Text.Encoding]::ASCII.GetBytes("$($proofRecord.productionDigest)|$fixtureHash|$nodeHash"))).Replace('-','').ToLowerInvariant()
+    } finally { $digest.Dispose() }
+    $invocation = New-StartupInvocation $report 'native-inert' $inputHash
     $arguments = @('--report', $report, '--goldens', $goldens, '--root', (Join-Path $scratch 'fixtures'),
-      '--launcher', $launcher, '--runtime', $packageRuntime, '--fixture', $fixture)
+      '--launcher', $launcher, '--runtime', $packageRuntime, '--fixture', $fixture, '--contract', $invocation.Path)
     $results = @(Invoke-NativeProof -Executable $driver -Arguments $arguments -Report $report)
     $result = $results[-1]
     $results | Select-Object -SkipLast 1 | Write-Output
@@ -687,6 +762,21 @@ bool placeFailureWindow(App& app) {
       throw "The $Architecture native suite failed or did not run all 11 release fixtures."
     }
     if (-not $preview) { throw 'The native F01 preview evidence is missing.' }
+    $records = @($result.Text.Replace("`r`n", "`n").Split("`n") | Where-Object {
+      $_.StartsWith('DIAG app-capture-v2') -or $_.StartsWith('DIAG host-sample ')
+    })
+    if (@($records | Where-Object { $_.StartsWith('DIAG app-capture-v2') }).Count -ne 1) {
+      throw 'The native mandatory app capture record is missing or duplicated.'
+    }
+    Remove-Item -LiteralPath $scratch -Recurse -Force -ErrorAction Stop
+    $composition = [ordered]@{
+      bindings = $invocation.Binding; profile = 'native-inert'; record = $records -join "`n"
+      inputs = $true; creation = $true; behavior = $true
+      cleanup = [ordered]@{ scope = 'capture'; completed = $result.Cleanup; reportValid = $result.ReportValid; closingInputs = $true }
+      failures = @()
+    }
+    $composition | ConvertTo-Json -Depth 8 -Compress | & node (Join-Path $root 'scripts\lib\startup-contract.mjs') --compose-native
+    if ($LASTEXITCODE -ne 0) { throw 'The composed native startup contract did not pass.' }
     Write-Output "PASS native-suite=$Architecture;gui-activations=11;coordinator-fixtures=9;sentinels=2"
   }
 } finally {

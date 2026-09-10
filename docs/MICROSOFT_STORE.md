@@ -346,8 +346,8 @@ installed proof does not contact Marvel.
 
 Busy-port proof also activates the installed native GUI, reads its full error through native
 accessibility controls, dismisses it, and requires that browser windows and server ownership remain
-unchanged. Calibrated process/console observation starts before activation. Lost events, incomplete
-role coverage and ambiguous attachment failures block proof; a screenshot alone is not no-console
+unchanged. Calibrated app-client observation starts before activation. Lost events, missing required
+actor evidence and app-linked terminal presentation block proof; a screenshot alone is not sufficient
 evidence. The fixed native fixtures cover pending dismissal, late errors, malformed outcomes, pipe
 lifetime, bounds and accessibility without starting the real server or browser.
 
@@ -474,3 +474,33 @@ remains the immutable first-submission handoff and records the boundary between 
 - [Create and manage Store submissions](https://learn.microsoft.com/windows/uwp/monetize/create-and-manage-submissions-using-windows-store-services)
 - [WinApp CLI v0.6.0 release assets and digests](https://api.github.com/repos/microsoft/WinAppCli/releases/tags/v0.6.0)
 - [Node v24.19.0 published checksums](https://nodejs.org/dist/v24.19.0/SHASUMS256.txt)
+
+## Qualified app startup proof
+
+The startup claim concerns the native GUI and its internal coordinator, verifier, detached server
+and CMD browser-command helper on a qualified Windows host. It does not certify the whole desktop
+or the independent UI of an external URI handler. Other window activity remains explicitly
+unassessed, including known browser and shared-service request relationships. A presenter outside
+the app's process tree still matters when its console client is an app actor.
+
+The proof composes independent input, host, creation-policy, actor, observation, behavior and
+capture-cleanup evidence. Missing or ambiguous mandatory evidence is inconclusive; a known mismatch
+or app-linked visible terminal fails. The producer receipt runs the actual JavaScript creation
+functions and the server's packaged browser-suppression gate, rather than treating the inert native
+coordinator as production coverage.
+
+Before activation and at the required closing boundaries, nine installed inputs are compared with
+independent source, producer and inspected-package expectations: the activation manifest, GUI,
+official Node, coordinator, server, its two local imports, native build record and generation marker.
+The generation marker is compared as an input, not interpreted as installed-tree attestation.
+The private expectation map stays in the controlled job and is neither packaged nor uploaded.
+
+Native64 HKCU and HKLM Command Processor AutoRun values must be absent or canonical literal-empty
+at both capture endpoints; unreadable, nonempty or changed values cannot qualify. Actual inbox
+helper images must match the expected system inputs. The proof does not change registry values,
+PATH, helper flags or the browser handler to obtain a result. Preflight and window-observing
+negative controls also require their own complete, bound host-completion record.
+
+A passing startup capture covers only its completed resources. All five installed journey commands
+must separately finish their remaining behavior and outer cleanup before command success is
+published. Native-only runs and earlier captures never substitute for that delivery evidence.

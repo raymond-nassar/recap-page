@@ -43,6 +43,7 @@ test('WACK and installed proof run when package behavior changes', () => {
       'scripts/inspect-msix.mjs',
       'scripts/build-native-launcher.ps1',
       'scripts/lib/native-launcher.mjs',
+      'scripts/lib/startup-contract.mjs',
       'scripts/msix-proof.mjs',
       'scripts/native-startup-proof.ps1',
       'scripts/pack-msix.mjs',
@@ -54,6 +55,7 @@ test('WACK and installed proof run when package behavior changes', () => {
       'test/microsoft-store-release.test.js',
       'test/native/**',
       'test/server-contract.test.js',
+      'test/startup-contract.test.js',
       'test/wack-workflow.test.js',
     ],
   );
@@ -298,6 +300,8 @@ test('native artifact transfer pins exact inputs and refuses digest mismatches',
       ARCHITECTURES: ['x64', 'arm64'],
       process: { pid: 123, execPath: 'X:\\fixture\\node.exe', argv: ['node', 'msix-proof.mjs', ...item.args] },
       proofModule: 'X:\\fixture\\scripts\\msix-proof.mjs',
+      loadStartupEvidence: async () => {},
+      console: { log: () => {} },
       resolveEdge: () => '',
       publishSemanticRecord: (root, name, text) => {
         assert.equal(root, 'inert-control');
@@ -407,17 +411,17 @@ test('native artifact transfer pins exact inputs and refuses digest mismatches',
   assert.match(observer, /struct ProcessGraph/);
   assert.match(observer, /CHECK ENTER final-observer-closure/);
   assert.match(observer, /registered-visual-helper/);
-  assert.match(native, /final-observer-cases cases=20 passed=20 fixed_conditions=31/);
+  assert.match(native, /process-instance-cases cases=6 passed=6/);
   assert.match(native, /pending footer text ink was not captured/);
   assert.match(native, /fixture-record-cases cases=18 passed=18 max_bytes=256 no_bad_record_retry=1/);
   assert.match(native, /fixture-observed-parse/);
   assert.match(native, /fixture-sentinel-retain/);
   assert.doesNotMatch(native, /stoul\(observed\.substr/);
-  assert.match(proof, /\$result\.NonNativeFailure/);
-  assert.match(native, /observation-profile-cases cases=20 passed=20 profiles=5 raw_metadata_preserved=1/);
+  assert.match(proof, /\$Result\.NonNativeFailure/);
+  assert.match(native, /app-contract-cases actors=32 host=8 passed=40/);
   assert.match(native, /ObservationProfile::nativeFixture, verifyFixedFixture\(options\[L"--fixture"\]\)/);
-  assert.match(observer, /raw_unknown_metadata=/);
-  assert.match(observer, /visible_ambient_consoles=/);
+  assert.match(observer, /unknown_object_metadata=/);
+  assert.match(observer, /unassessed_global=/);
   assert.doesNotMatch(observer, /const std::vector<DWORD>& roots, bool installed/);
   assert.match(proof, /footerInkPixels -lt 64/);
   assert.match(observer, /temporary_closed=/);
@@ -475,12 +479,34 @@ test('native artifact transfer pins exact inputs and refuses digest mismatches',
     assert.match(output, /PASS cleanup-accounting report-fatal-clean=1 secondary-faults=2 stages-attempted=7/);
     assert.match(output, /PASS native-primary-preserved residue-secondary=1 cleanup-does-not-upgrade=1/);
     assert.match(output, /PASS suite-result-shapes accepted=2 invalid-labels=9 invalid-outcomes=8/);
-    assert.match(output, /PASS semantic-diagnostics frozen-definitions=13 separate-registration=1/);
-    assert.match(output, /PASS caller-context reporting-only-delta=1 primary-precedence-unchanged=1 existing-console-records=1/);
+    assert.match(output, /PASS semantic-diagnostics frozen-definitions=6 separate-registration=1/);
+    assert.match(output, /PASS host-completion-consumer configurations=12 expected-native-primary-preserved=1/);
     assert.match(output, /PASS proof-report-fixtures assertions=130/);
     t.diagnostic(output.trim());
   } else {
     t.diagnostic('Windows-only inert PowerShell reporting fixtures were not executed on this host.');
   }
   assert.doesNotMatch(previews.join('\n'), /\*{2}|\.xml|\.pfx|\.cer|trace|error|desktop/);
+});
+
+test('app startup prerequisites preserve native-only and all five installed journey routes', () => {
+  const jobs = [...workflow.slice(workflow.indexOf('\njobs:')).matchAll(/^ {2}[a-z]+:\r?$/gm)];
+  const expression = workflow.match(/^ {4}if: \$\{\{ (.+inputs\.native_only.+) \}\}\r?$/m)?.[1];
+  assert.ok(expression);
+  for (const [event, inputs, enabled] of [
+    ['workflow_dispatch', { native_only: true, diagnostic_only: false }, false],
+    ['workflow_dispatch', { native_only: false, diagnostic_only: false }, true],
+    ['workflow_dispatch', {}, true],
+    ['pull_request', { native_only: true }, true],
+    ['pull_request', {}, true],
+    ['workflow_dispatch', { diagnostic_only: true }, false],
+  ]) assert.equal(runInNewContext(expression, { github: { event_name: event }, inputs }), enabled);
+  assert.equal(jobs.length, 3);
+  assert.match(workflow, /--scenario=certification-functionality/);
+  assert.match(workflow, /--scenario=busy-port-refusal/);
+  assert.match(workflow, /--scenario=update-state-continuity/);
+  assert.match(workflow, /scripts\/lib\/startup-contract\.mjs/);
+  const build = readFileSync(new URL('../scripts/build-native-launcher.ps1', import.meta.url), 'utf8');
+  assert.ok(build.indexOf('production-creation tests failed') < build.indexOf("foreach ($architecture"));
+  assert.match(build, /WaitForExit\(120000\)/);
 });

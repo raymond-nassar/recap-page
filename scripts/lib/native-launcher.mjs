@@ -3,6 +3,9 @@ import { execFileSync } from 'node:child_process';
 import { appendFile, lstat, readFile, readdir, writeFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import {
+  CREATION_TESTS, creationReceipt, recordDigest, startupSourceInputs, validateCreationReceipt,
+} from './startup-contract.mjs';
 
 export const NATIVE_NAME = 'RecapPageLauncher.exe';
 export const NATIVE_INPUTS = Object.freeze([
@@ -23,6 +26,14 @@ export const PROOF_INPUTS = Object.freeze([
   'test/native/StartupObserver.h',
   'test/native/StartupTests.cpp',
   'test/native/startup-frames.txt',
+  'test/native/StartupContract.h',
+  'scripts/lib/startup-contract.mjs',
+  'scripts/msix-proof.mjs',
+  'scripts/inspect-msix.mjs',
+  'test/msix-packaging.test.js',
+  'test/server-contract.test.js',
+  'test/startup-contract.test.js',
+  'test/wack-workflow.test.js',
 ].sort());
 export const NATIVE_TARGETS = Object.freeze([
   Object.freeze({ id: 'x64', machine: 0x8664 }),
@@ -126,9 +137,10 @@ export function inputDigest(inputs) {
   return sha256(Buffer.from(JSON.stringify(inputs)));
 }
 
-export function validateNativeRecord(record, { commit, inputs, outputs, proof = false, productionDigest = null }) {
-  exactKeys(record, ['schemaVersion', 'commit', 'inputs', 'inputDigest', 'outputs', 'toolchain', 'productionDigest'], 'build record');
-  demand(record.schemaVersion === 1, 'unsupported build record');
+export function validateNativeRecord(record, { commit, tree, inputs, outputs, proof = false, productionDigest = null, creationSources }) {
+  exactKeys(record, ['schemaVersion', 'commit', 'inputs', 'inputDigest', 'outputs', 'toolchain', 'productionDigest',
+    ...(proof ? ['creationReceipt', 'creationReceiptDigest'] : [])], 'build record');
+  demand(record.schemaVersion === (proof ? 2 : 1), 'unsupported build record');
   demand(/^[0-9a-f]{40}$/.test(record.commit) && record.commit === commit, 'stale source commit');
   demand(Array.isArray(record.inputs)
     && JSON.stringify(record.inputs) === JSON.stringify(inputs), 'source input bytes or paths differ');
@@ -138,6 +150,10 @@ export function validateNativeRecord(record, { commit, inputs, outputs, proof = 
   }
   demand(record.inputDigest === inputDigest(inputs), 'input digest differs');
   demand(record.productionDigest === (proof ? productionDigest : null), 'production artifact binding differs');
+  if (proof) validateCreationReceipt(record.creationReceipt, {
+    commit, tree, proofInputDigest: record.inputDigest, sources: creationSources,
+  });
+  if (proof) demand(record.creationReceiptDigest === recordDigest(record.creationReceipt), 'creation receipt digest differs');
   demand(Array.isArray(record.outputs)
     && JSON.stringify(record.outputs) === JSON.stringify(outputs), 'native output bytes, paths or PE policy differ');
   exactKeys(record.toolchain, ['image', 'sdk', 'compilerVersion', 'targets'], 'toolchain');
@@ -163,6 +179,15 @@ async function regularBytes(path) {
 
 function head() {
   return execFileSync('git', ['rev-parse', 'HEAD'], { cwd: ROOT, encoding: 'utf8' }).trim();
+}
+function tree() {
+  return execFileSync('git', ['rev-parse', 'HEAD^{tree}'], { cwd: ROOT, encoding: 'utf8' }).trim();
+}
+function creationSources(inputs) {
+  return [
+    ...inputs.filter((input) => CREATION_TESTS.includes(input.path)),
+    ...startupSourceInputs(ROOT),
+  ];
 }
 
 async function sourceInputs(proof) {
@@ -214,9 +239,11 @@ export async function verifyNativeArtifact({ proof = false } = {}) {
   }
   const record = JSON.parse(recordBytes.toString('utf8'));
   const production = proof ? await verifyNativeArtifact() : null;
+  const inputs = await sourceInputs(proof);
   validateNativeRecord(record, {
-    commit: head(), inputs: await sourceInputs(proof), outputs: await outputRecords(root, proof),
+    commit: head(), tree: proof ? tree() : undefined, inputs, outputs: await outputRecords(root, proof),
     proof, productionDigest: production?.digest ?? null,
+    creationSources: proof ? creationSources(inputs) : undefined,
   });
   return { record, bytes: recordBytes, digest: sha256(recordBytes), root };
 }
@@ -227,9 +254,18 @@ async function recordBuild(toolchainPath, proof) {
     const root = isProof ? NATIVE_PROOF_ROOT : NATIVE_ROOT;
     const inputs = await sourceInputs(isProof);
     const record = {
-      schemaVersion: 1, commit: head(), inputs, inputDigest: inputDigest(inputs),
+      schemaVersion: isProof ? 2 : 1, commit: head(), inputs, inputDigest: inputDigest(inputs),
       outputs: await outputRecords(root, isProof), toolchain, productionDigest,
     };
+    if (isProof) {
+      const execution = JSON.parse((await readFile(join(dirname(toolchainPath), 'creation-execution.json'), 'utf8')).replace(/^\ufeff/u, ''));
+      record.creationReceipt = creationReceipt({
+        tap: (await readFile(join(dirname(toolchainPath), 'creation-tests.tap'), 'utf8')).replace(/^\ufeff/u, ''),
+        exitCode: execution.exitCode, nodeVersion: execution.nodeVersion,
+        commit: record.commit, tree: tree(), proofInputDigest: record.inputDigest, sources: creationSources(inputs),
+      });
+      record.creationReceiptDigest = recordDigest(record.creationReceipt);
+    }
     await writeFile(join(root, 'build.json'), `${JSON.stringify(record, null, 2)}\n`);
     return verifyNativeArtifact({ proof: isProof });
   };

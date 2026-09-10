@@ -6109,8 +6109,8 @@
     "fp": "b4d25fd001f72a5a",
     "head": "const SECURITY_HEADERS = Object.freeze({"
   },
-  "SECURITY.md|what-already-reduces-risk-here|test/server-contract.test.js:254-295|0": {
-    "anchor": "test/server-contract.test.js:254-295",
+  "SECURITY.md|what-already-reduces-risk-here|test/server-contract.test.js:274-315|0": {
+    "anchor": "test/server-contract.test.js:274-315",
     "fp": "7e7a6a6822d82b78",
     "head": "test('every application response carries the security headers', async () => {"
   },

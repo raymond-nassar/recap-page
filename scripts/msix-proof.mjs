@@ -2,7 +2,7 @@
 import { execFileSync, spawn } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import {
-  copyFileSync, existsSync, mkdirSync, mkdtempSync, readFileSync, renameSync, rmSync, writeFileSync,
+  copyFileSync, existsSync, mkdirSync, mkdtempSync, readFileSync, renameSync, rmSync, statSync, writeFileSync,
 } from 'node:fs';
 import { createServer } from 'node:net';
 import { tmpdir } from 'node:os';
@@ -14,6 +14,10 @@ import {
   PROOF_UPDATE_VERSION, STORE_PACKAGE_VERSION, bundlePath, packagePath, proofPackagePath,
 } from './pack-msix.mjs';
 import { verifyNativeArtifact } from './lib/native-launcher.mjs';
+import {
+  bindInstalledInputs, captureBindings, captureRequest, composeCapture, demandCapturePass,
+  parseCaptureReport, selectDeployment, sourceRevision, startupSourceInputs, validateExpectations,
+} from './lib/startup-contract.mjs';
 
 export const SCENARIOS = Object.freeze([
   'certification-functionality',
@@ -29,6 +33,40 @@ const CATALOG_ITEM_COUNT = 20;
 const ARCHITECTURES = Object.freeze(PACKAGE_ARCHITECTURES.map(({ id }) => id));
 const ROOT = join(fileURLToPath(new URL('..', import.meta.url)));
 let activeSemanticCapture = null;
+let startupEvidence = null;
+const installedStartup = new Map();
+
+async function loadStartupEvidence() {
+  const native = await verifyNativeArtifact();
+  const proof = await verifyNativeArtifact({ proof: true });
+  const text = readFileSync(join(ROOT, 'dist', 'msix-proof', 'startup-inputs.json'), 'utf8');
+  if (Buffer.byteLength(text) > 16384) throw new Error('startup expectation record exceeds its bound');
+  const expectations = validateExpectations(JSON.parse(text), {
+    ...sourceRevision(), nativeDigest: native.digest, sourceInputs: startupSourceInputs(ROOT),
+  });
+  startupEvidence = { native, proof, expectations };
+}
+
+function closingStartupInputs(installed) {
+  const evidence = installedStartup.get(installed.InstallLocation);
+  if (!evidence) throw new Error('mandatory installed startup inputs are missing');
+  const snapshot = bindInstalledInputs(installed.InstallLocation, evidence.variant);
+  if (snapshot.digest !== evidence.snapshot.digest) throw new Error('installed startup inputs changed');
+  console.log('DIAG installed-startup-inputs files=9 matched=9 snapshot=complete');
+  return snapshot;
+}
+
+function startupCaptureInputs(installed, architecture, source, proof) {
+  const evidence = installedStartup.get(installed.InstallLocation);
+  if (!evidence || !startupEvidence || startupEvidence.proof.digest !== proof.digest
+    || evidence.variant.identity.architecture !== architecture || evidence.source !== source) {
+    throw new Error('mandatory startup contract bindings are missing');
+  }
+  return captureBindings(proof, architecture, evidence.snapshot.digest, {
+    kind: 'installed', family: PACKAGE_FAMILY, architecture, version: evidence.variant.identity.version,
+    packageDigest: evidence.packageDigest, source,
+  });
+}
 
 function powershell(script, operation) {
   const ticket = activeSemanticCapture?.begin(operation, script);
@@ -218,6 +256,8 @@ function installPackage(
       ? packagePath(architecture)
       : proofPackagePath(version));
   if (!existsSync(path)) throw new Error(`missing package: ${path}`);
+  if (!startupEvidence) throw new Error('mandatory package startup expectations are missing');
+  const startup = selectDeployment(startupEvidence.expectations, version, architecture, source, path);
   powershell(`Add-AppxPackage -Path ${psLiteral(path)} -ForceApplicationShutdown`);
   const installed = packageInfo();
   if (!installed) throw new Error(`package ${version} was not registered after installation`);
@@ -230,6 +270,9 @@ function installPackage(
   if (!String(installed.PackageFullName).toLowerCase().includes(`_${architecture}__`)) {
     throw new Error(`installed architecture differs: ${installed.PackageFullName}`);
   }
+  const snapshot = bindInstalledInputs(installed.InstallLocation, startup.variant);
+  installedStartup.set(installed.InstallLocation, { ...startup, snapshot });
+  console.log('DIAG installed-startup-inputs files=9 matched=9 snapshot=complete');
   return installed;
 }
 
@@ -362,21 +405,32 @@ async function withNativeObservation(installed, architecture, source, mode, body
   let exitCode = null;
   let spawnFailure = null;
   let unexpectedOutput = false;
+  let closed = false;
   let result;
+  let record;
+  let reportText = '';
+  let closingInputs = false;
+  let captureClean = false;
+  const profile = mode === 'busy' ? 'installed-busy' : 'installed-functionality';
+  let bindings;
   try {
+    bindings = startupCaptureInputs(installed, architecture, source, artifact);
     if (activeSemanticCapture) throw new Error('native semantic captures cannot overlap');
     const semanticCapture = createSemanticCapture(root, architecture, mode, source);
+    publishSemanticRecord(root, 'startup-context.txt', captureRequest(bindings, profile));
     child = spawn(join(artifact.root, architecture, 'NativeStartupTests.exe'), [
       '--mode', mode, '--root', root, '--report', report,
-      '--installed-root', installed.InstallLocation,
+      '--installed-root', installed.InstallLocation, '--contract', join(root, 'startup-context.txt'),
     ], { cwd: ROOT, stdio: ['ignore', 'pipe', 'pipe'], windowsHide: true });
     child.once('error', (error) => { spawnFailure = error; });
     child.once('exit', (code) => { exited = true; exitCode = code; });
+    child.once('close', () => { closed = true; });
     child.stdout.on('data', () => { unexpectedOutput = true; });
     child.stderr.on('data', () => { unexpectedOutput = true; });
     const assertAlive = () => {
       if (spawnFailure) throw spawnFailure;
       if (exited) {
+        if (existsSync(report) && statSync(report).size > 1024 * 1024) throw new Error('startup report exceeds its bound');
         const detail = existsSync(report) ? readFileSync(report, 'utf8') : 'no observer report';
         throw new Error(`native observer exited ${exitCode}: ${detail}`);
       }
@@ -399,25 +453,31 @@ async function withNativeObservation(installed, architecture, source, mode, body
       failures.push(error);
     } finally {
       activeSemanticCapture = null;
+      if (mode === 'functionality' && Number.isInteger(result?.settledListenerPid)) {
+        publishSemanticRecord(root, 'winning-server.txt', String(result.settledListenerPid));
+      }
       publishSemanticRecord(root, 'semantic-finished.txt', 'finished');
     }
     if (mode === 'functionality') writeFileSync(join(root, 'finish.txt'), 'finish');
     await waitFor(() => {
       if (spawnFailure) throw spawnFailure;
-      return exited;
+      return exited && closed;
     }, 'native observer did not finish', 30000);
-    const text = existsSync(report) ? readFileSync(report, 'utf8') : '';
-    if (exitCode !== 0 || unexpectedOutput || !text.includes(`PASS installed-${mode}`)) {
-      throw new Error(`native installed observation failed: exit ${exitCode}; ${text || 'no report'}`);
+    if (existsSync(report) && statSync(report).size > 1024 * 1024) throw new Error('startup report exceeds its bound');
+    reportText = existsSync(report) ? readFileSync(report, 'utf8') : '';
+    record = parseCaptureReport(reportText, bindings, profile);
+    closingStartupInputs(installed);
+    closingInputs = true;
+    if (exitCode !== 0 || unexpectedOutput) {
+      throw new Error(`native installed observation failed: exit ${exitCode}; ${reportText}`);
     }
-    console.log(text.trim());
   } catch (error) {
     failures.push(error);
   } finally {
     if (child?.pid && !exited) {
       try {
         child.kill();
-        await waitFor(() => exited, 'owned native observer did not stop', 2000);
+        await waitFor(() => exited && closed, 'owned native observer did not stop', 2000);
       } catch (error) {
         failures.push(error);
       }
@@ -425,12 +485,19 @@ async function withNativeObservation(installed, architecture, source, mode, body
     if (!child?.pid || exited) {
       try {
         rmSync(root, { recursive: true, force: true });
+        captureClean = (!child?.pid || (exited && closed)) && !unexpectedOutput;
       } catch (error) {
         failures.push(error);
       }
     }
   }
   if (failures.length) throw new AggregateError(failures, 'native observed journey failed');
+  const composed = demandCapturePass(composeCapture({
+    bindings, profile, record, inputs: closingInputs, creation: true, behavior: true,
+    cleanup: { scope: 'capture', completed: captureClean, reportValid: true, closingInputs },
+  }));
+  console.log(reportText.trim());
+  console.log(`PASS app-startup-contract-v2 profile=${composed.profile} scope=capture`);
   return result;
 }
 
@@ -910,6 +977,7 @@ async function certificationFunctionality(architecture, source) {
     await waitFor(generation, 'the package did not relaunch after deliberate server stop');
 
     const livePid = relaunched.ProcessId;
+    closingStartupInputs(context.installed);
     removePackage();
     await waitFor(
       () => !processExists(livePid) && listenerPid() === null && packageInfo() === null,
@@ -918,6 +986,7 @@ async function certificationFunctionality(architecture, source) {
     context.installed = null;
 
     console.log(JSON.stringify({
+      phase: 'behavior',
       scenario: SCENARIOS[0],
       architecture,
       source,
@@ -988,6 +1057,7 @@ async function busyPortRefusal(architecture, source) {
       throw new Error('native busy-port refusal started a server child');
     }
     console.log(JSON.stringify({
+      phase: 'behavior',
       scenario: SCENARIOS[1],
       architecture,
       source,
@@ -1077,6 +1147,7 @@ async function updateStateContinuity(architecture, source) {
         localStorage.setItem('mrt.state.v2', JSON.stringify(value));
       }, sentinel);
 
+      closingStartupInputs(context.installed);
       context.installed = installPackage(PROOF_UPDATE_VERSION, architecture);
       await waitFor(
         () => !processExists(oldServer.ProcessId) && listenerPid() === null,
@@ -1097,7 +1168,9 @@ async function updateStateContinuity(architecture, source) {
         || after.packageVersion !== PROOF_UPDATE_VERSION) {
         throw new Error(`generation mismatch: ${before.packageVersion} then ${after.packageVersion}`);
       }
+      closingStartupInputs(context.installed);
       console.log(JSON.stringify({
+        phase: 'behavior',
         scenario: SCENARIOS[2],
         architecture,
         source,
@@ -1127,11 +1200,13 @@ async function main() {
   if (!['package', 'bundle'].includes(source)) {
     throw new Error('choose --source=package|bundle');
   }
+  await loadStartupEvidence();
   if (scenario === SCENARIOS[0]) await certificationFunctionality(architecture, source);
   if (scenario === SCENARIOS[1]) await busyPortRefusal(architecture, source);
   if (scenario === SCENARIOS[2]) {
     await updateStateContinuity(architecture, source);
   }
+  console.log(`PASS installed-journey scenario=${scenario} architecture=${architecture} source=${source} cleanup=complete`);
 }
 
 function formatProofError(error, indent = '') {

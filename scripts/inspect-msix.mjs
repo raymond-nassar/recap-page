@@ -1,7 +1,7 @@
 import { execFileSync, spawn } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import {
-  mkdir, mkdtemp, readFile, readdir, rm,
+  mkdir, mkdtemp, readFile, readdir, rm, writeFile,
 } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import {
@@ -16,6 +16,9 @@ import { NODE_VERSION } from './pack-windows.mjs';
 import {
   NATIVE_NAME, exactExecutablePayloads, nativePe, verifyNativeArtifact,
 } from './lib/native-launcher.mjs';
+import {
+  buildStartupVariant, recordDigest, sourceRevision, startupSourceInputs, validateExpectations,
+} from './lib/startup-contract.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const EXTERNAL_UPDATER_MARKERS = Object.freeze([
@@ -201,6 +204,7 @@ async function inspectPackage(path, target, hashes, {
     throw new Error('unsupported package inspection version or architecture');
   }
   const artifact = native ?? await verifyNativeArtifact();
+  const sourceInputs = startupSourceInputs(ROOT);
   const unpacked = await mkdtemp(join(tmpdir(), `recap-page-${target.id}-`));
   try {
     await unpackPackage(path, unpacked);
@@ -270,6 +274,10 @@ async function inspectPackage(path, target, hashes, {
       || !/^[0-9a-f]{64}$/.test(generation.generation)) {
       throw new Error(`${basename(path)} has an invalid package generation marker`);
     }
+    const startupInputs = buildStartupVariant({
+      layout: unpacked, architecture: target.id, version, native: artifact,
+      nodeHash: hashes.get(target.id), sourceInputs,
+    });
 
     return {
       file: basename(path),
@@ -283,6 +291,7 @@ async function inspectPackage(path, target, hashes, {
       nodePeMachine: `0x${nodeMachine.toString(16)}`,
       nodeSha256: nodeHash,
       generation,
+      startupInputs,
       runtimeProcess: measure ? await measureRuntime(unpacked, target.id) : undefined,
     };
   } finally {
@@ -362,6 +371,29 @@ async function main({ measureRuntimes = true } = {}) {
     { version: PROOF_UPDATE_VERSION, native },
   );
   const bundle = await inspectBundle(bundlePath(), hashes, native);
+  const sourceInputs = startupSourceInputs(ROOT);
+  for (const standalone of packages) {
+    const slice = bundle.packages.find((entry) => entry.identity.architecture === standalone.identity.architecture);
+    if (!slice || recordDigest(slice.startupInputs) !== recordDigest(standalone.startupInputs)) {
+      throw new Error('The bundle and standalone startup inputs differ.');
+    }
+  }
+  const expectations = {
+    schemaVersion: 2, ...sourceRevision(), nativeDigest: native.digest, sourceInputs,
+    variants: [...packages, proofUpdate].map((entry) => entry.startupInputs),
+    packages: [
+      ...[...packages, proofUpdate].map((entry) => ({
+        version: entry.identity.version, architecture: entry.identity.architecture, source: 'package', sha256: entry.sha256,
+      })),
+      { version: STORE_PACKAGE_VERSION, architecture: 'bundle', source: 'bundle', sha256: bundle.sha256 },
+    ],
+  };
+  validateExpectations(expectations, { ...sourceRevision(), nativeDigest: native.digest, sourceInputs });
+  const sidecar = `${JSON.stringify(expectations)}\n`;
+  if (Buffer.byteLength(sidecar) > 16384) throw new Error('Startup expectations exceed the private record bound.');
+  await mkdir(join(ROOT, 'dist', 'msix-proof'), { recursive: true });
+  await writeFile(join(ROOT, 'dist', 'msix-proof', 'startup-inputs.json'), sidecar);
+  for (const entry of [...packages, proofUpdate, ...bundle.packages]) delete entry.startupInputs;
   console.log(JSON.stringify({ nodeVersion: NODE_VERSION, packages, proofUpdate, bundle }, null, 2));
 }
 

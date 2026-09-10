@@ -33,6 +33,7 @@ on:
       - scripts/inspect-msix.mjs
       - scripts/build-native-launcher.ps1
       - scripts/lib/native-launcher.mjs
+      - scripts/lib/startup-contract.mjs
       - scripts/msix-proof.mjs
       - scripts/native-startup-proof.ps1
       - scripts/pack-msix.mjs
@@ -44,6 +45,7 @@ on:
       - test/microsoft-store-release.test.js
       - test/native/**
       - test/server-contract.test.js
+      - test/startup-contract.test.js
       - test/wack-workflow.test.js
 
 # WACK needs no repository write, package publication, identity token, or secret.

@@ -933,3 +933,26 @@ Removing it requires a reviewed source change, and cannot recall an Issue, reply
 copy that already exists. The earlier private Copilot project guide is not part of the current route;
 keeping or deleting it cannot recall a chat GitHub already processed. Keep those limits in the
 delivery record.
+
+## Interpret qualified startup evidence
+
+The controlled Windows proof reports `app-startup-contract-v2`, not a machine-wide window census.
+It requires the exact installed startup closure and activation, a source-bound producer receipt
+from the real creation-option tests, a qualified native64 command environment, every internal
+startup actor, calibrated app-client terminal evidence, the declared behavior and completed
+capture-owned cleanup. A required unknown is inconclusive, not a pass.
+
+The host reads both AutoRun hives without modifying them and compares expected inbox helper
+identities before and after capture. A window-observing negative counts only with its intended
+failure and a complete qualified `host-completion-v2` record. An early expected failure cannot
+hide a failed final host sample. Decoder-only N1 does not pretend to collect host evidence.
+
+Unassessed global activity and external URI-handler UI stay visible as separate uncertainty.
+Do not treat an image label, a PID outside the app tree, or a previous result as an exemption.
+The actual installed functionality, busy-port and update journeys still need their own successful
+completion after package and scenario cleanup. Preserve primary and secondary failure chronology.
+
+The existing native-only workflow input is a cheap compiler/preflight gate, not installed
+certification. A complete run rebuilds its own producer artifacts at the same settled source head.
+Keep the finite approved run budget, exact input hashes, actual inner command counts, skipped
+stages and original preview flags. No proof result alone authorizes a PR or Store release.

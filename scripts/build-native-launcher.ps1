@@ -34,6 +34,30 @@ foreach ($path in @($production, $proof, $intermediate)) {
 $targets = @()
 $compilerVersion = $null
 try {
+  if ($IncludeProofTools) {
+    $creationReport = Join-Path $intermediate 'creation-tests.tap'
+    $creationError = Join-Path $intermediate 'creation-tests.err'
+    $node = (Get-Command node -CommandType Application -ErrorAction Stop).Source
+    $arguments = '--test --test-reporter=tap test/msix-packaging.test.js test/server-contract.test.js test/startup-contract.test.js'
+    $tests = Start-Process -FilePath $node -ArgumentList $arguments -WorkingDirectory $root `
+      -NoNewWindow -PassThru -RedirectStandardOutput $creationReport -RedirectStandardError $creationError
+    try {
+      if (-not $tests.WaitForExit(120000)) {
+        Stop-Process -Id $tests.Id -Force -ErrorAction Stop
+        throw 'The fixed production-creation test selection exceeded its deadline.'
+      }
+      $tests.Refresh()
+      $creationExit = $tests.ExitCode
+      Get-Content -LiteralPath $creationReport | Write-Output
+      if ((Get-Item -LiteralPath $creationError).Length) { Get-Content -LiteralPath $creationError | Write-Output }
+      if ($creationExit -ne 0) { throw 'The fixed production-creation tests failed.' }
+      $versionRecords = [regex]::Matches([IO.File]::ReadAllText($creationReport), '(?m)^# creation-runtime=(v24\.\d+\.\d+)\r?$')
+      if ($versionRecords.Count -ne 1) { throw 'The creation-test runtime version was unavailable.' }
+      $nodeVersion = $versionRecords[0].Groups[1].Value
+      [ordered]@{ exitCode = $creationExit; nodeVersion = $nodeVersion } |
+        ConvertTo-Json -Compress | Set-Content -LiteralPath (Join-Path $intermediate 'creation-execution.json') -Encoding utf8
+    } finally { $tests.Dispose() }
+  }
   foreach ($architecture in @('x64', 'arm64')) {
     $bin = Join-Path $visualStudio "VC\Tools\MSVC\$toolVersion\bin\Hostx64\$architecture"
     $compiler = Join-Path $bin 'cl.exe'

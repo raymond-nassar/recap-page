@@ -237,9 +237,8 @@ try {
   Assert-Report ($digest -ceq '300a0d2d3b1c195bddea2ccca076658f82ce1db6249b9cb5ec2d15163d8fc01d') 'the closed fixture capability source changed'
   Assert-Report ($native.Contains('ObservationProfile::nativeFixture, verifyFixedFixture(options[L"--fixture"])')) 'native profile lacks actual fixed-source verification'
   Assert-Report (-not $observer.Contains('const std::vector<DWORD>& roots, bool installed')) 'closed observation still overloads the installed flag'
-  Assert-Report ($observer.Contains('raw_unknown_metadata=') -and $observer.Contains('visible_ambient_consoles=')) 'raw metadata and ambient visibility are not reported separately'
+  Assert-Report ($observer.Contains('unknown_object_metadata=') -and $observer.Contains('unassessed_global=')) 'raw object uncertainty and unassessed global observations are not separate'
   Assert-Report ($native.Contains('ObservationProfile::installedBusy') -and $native.Contains('ObservationProfile::installedFunctionality')) 'real installed contexts are not explicit'
-  Assert-Report ($observer.Contains('ambientConsoleScoped(ObservationProfile profile')) 'ambient binding lacks its explicit profile guard'
   $definition = [regex]::Matches($observer, '(?ms)^inline bool completeNonPresenterTransient\(.*?^\}')
   $types = @('WindowKind', 'WindowFact', 'HelperScopeEvidence', 'WindowLifetime')
   $typeEnds = @($types | ForEach-Object {
@@ -293,21 +292,14 @@ try {
   Assert-Report ($native.Contains('collectSemanticOperations(observer, control, operationOrdinal, operationActive)') -and
     $native.Contains('fs::rename(temporary, path)') -and $native.Contains('semantic channel did not finish", 10000')) 'atomic bounded semantic channel is not wired'
   $frozen = [ordered]@{
-    nativeEnvironmentAllowed = '6b8193a41d5e3a7c6dd60512c14506f5bb849282d354d715854b734a1aab0259'
     visibleIn = '30eb5e1b19c3f428cf7b4068947b54a92cdea0ae64bc8ca4e4c165219c94a0dc'
     visibleBoundConsole = '48599faaf6450608d2c6d3fbcf298b3b8f9d15e31aa1f9c558befade9b2bb22f'
     bindingReady = '0e155c4c6a212651289cdd42b8d2d0f2726f9cb0958629286d2fdbdaf5bc8bf3'
-    ambientConsoleScoped = '39e7f599457e8540210f41b1163663d9f0fdd1b2b7dee9dc317fc4c12b16fc91'
-    verifiedHelperSurface = '1a3d8154ad98c96b16c3ac1756b6bbbb403f41ea0e6a9415cfb35dac65f9b4ea'
     completeNonPresenterTransient = '357011e39b1e79a0257e63dc359e06c563db116d0e5d767f236d49d214ce50b8'
     correlateWindows = '94faa76da67796b33e80906a6f03d377422e79f4f258db97b387b4a8c26cf3f3'
-    helperScope = '63d70b5194784b4269041fa8e89d96924128f91cc28e6347383cc0c4ab3aeea9'
-    transientSource = 'a4e4de939371c7382479832a2921acf9293ab93b5068e9f8cd5e780f67d3b5c3'
-    environmentWindow = '4e06a73bfd03550f515c929759c41583f16d3c488986bac1c58e5104343627bf'
-    assertNoVisibleTerminals = '5186dab4370c23b3a7bc9bb55a24205b66bd18124a344c88332101e04457b998'
     requireCalibrationLifetimes = '7f51724f7e38120cf885fe032dddcb2f365af06d72aa0c43417c89be7e09a236'
   }
-  $methods = @('helperScope','transientSource','environmentWindow','assertNoVisibleTerminals','requireCalibrationLifetimes')
+  $methods = @('requireCalibrationLifetimes')
   $sha = [Security.Cryptography.SHA256]::Create()
   try {
     foreach ($name in $frozen.Keys) {
@@ -318,26 +310,6 @@ try {
       $digest = ''
       if ($matches.Count -eq 1) {
         $value = $matches[0].Value
-        if ($name -ceq 'assertNoVisibleTerminals') {
-          $printing = @'
-            const auto failures = collectFailureRows(unboundConsole, inconclusive, visible);
-            if (!failures.rows.empty()) {
-                reportCategories_ = failures.categories;
-                report << "DIAG offender-groups unbound_console=" << unboundConsole.size()
-                       << " inconclusive=" << inconclusive.size() << " visible_product=" << visible.size() << "\n";
-                reportRows(failures.rows);
-                reportConsoleContext(report, resolution, failures.rows);
-            }
-'@
-          $printing = $printing.Replace("`r`n", "`n")
-          Assert-Report ([regex]::Matches($value, [regex]::Escape($printing)).Count -eq 1) 'approved reporting block changed or disappeared'
-          $value = $value.Replace($printing + "`n", '')
-          foreach ($category in @('unboundConsole','inconclusive','visible')) {
-            $condition = "            if (!${category}.empty()) {"
-            Assert-Report ([regex]::Matches($value, [regex]::Escape($condition)).Count -eq 1) 'primary failure condition changed'
-            $value = $value.Replace($condition, $condition + "`n                reportRows($category);")
-          }
-        }
         $digest = [BitConverter]::ToString($sha.ComputeHash([Text.Encoding]::UTF8.GetBytes($value))).Replace('-','').ToLowerInvariant()
       }
       Assert-Report ($digest -ceq $frozen[$name]) "frozen acceptance definition changed: $name"
@@ -350,8 +322,46 @@ try {
     $native.Contains('caller-context-cases rows=8 passed=8')) 'bounded caller recognition or guard evidence is missing'
   Assert-Report ($observer.Contains('id_object_process=') -and $observer.Contains('shared_principal_limit=20') -and
     $observer.Contains('consoleFactInSegment(event, windows_[row], resolution[row])')) 'bounded existing-console context is missing'
-  Write-Output 'PASS semantic-diagnostics frozen-definitions=13 separate-registration=1'
-  Write-Output 'PASS caller-context reporting-only-delta=1 primary-precedence-unchanged=1 existing-console-records=1'
+  foreach ($name in @('Test-HostCompletion','Test-StartupControlResult')) {
+    $definition = @($ast.FindAll({
+      param($node)
+      $node -is [System.Management.Automation.Language.FunctionDefinitionAst] -and $node.Name -ceq $name
+    }, $true))
+    if ($definition.Count -ne 1) { throw 'host acceptance function is not unique' }
+    . ([scriptblock]::Create($definition[0].Extent.Text))
+  }
+  $expected = [pscustomobject]@{ Context = 'N3'; Binding = @{
+    captureId = 'a' * 32; commit = 'b' * 40; tree = 'c' * 40
+    architecture = 'x64'; proofInputDigest = 'd' * 64; creationReceiptDigest = 'e' * 64
+  } }
+  $h = $expected.Binding
+  $hostLine = "DIAG host-completion-v2 context=N3 captureId=$($h.captureId) commit=$($h.commit) tree=$($h.tree) architecture=x64 proofInputDigest=$($h.proofInputDigest) creationReceiptDigest=$($h.creationReceiptDigest) beginEvaluated=1 endEvaluated=1 beginState=satisfied endState=satisfied registryView=native64 hiveSamplesBefore=2 hiveSamplesAfter=2 helperSnapshotPairs=2 helpersUnchanged=1 hostState=satisfied primaryReason=none"
+  $nativeError = 'FAIL code=n3-visible-coordinator-terminal'
+  $controlCases = @(
+    @{ Context='preflight'; Text=$hostLine.Replace('context=N3','context=preflight')+"`nPASS calibration-preflight;controls=2;product-starts=0;node-starts=0"; Exit=0; Accept=$true },
+    @{ Context='preflight'; Text='PASS calibration-preflight;controls=2;product-starts=0;node-starts=0'; Exit=0; Accept=$false },
+    @{ Context='N3'; Text=$hostLine; Exit=1; Accept=$true },
+    @{ Context='N3'; Text=''; Exit=1; Accept=$false },
+    @{ Context='N3'; Text=$hostLine.Replace('endState=satisfied','endState=unknown'); Exit=1; Accept=$false },
+    @{ Context='N3'; Text=$hostLine.Replace('helpersUnchanged=1','helpersUnchanged=0').Replace('hostState=satisfied','hostState=violated'); Exit=1; Accept=$false },
+    @{ Context='N3'; Text=$hostLine+"`n"+$hostLine; Exit=1; Accept=$false },
+    @{ Context='N3'; Text=$hostLine.Replace($h.proofInputDigest,('f'*64)); Exit=1; Accept=$false },
+    @{ Context='N3'; Text=$hostLine.Replace('architecture=x64','architecture=arm64'); Exit=1; Accept=$false },
+    @{ Context='N3'; Text=$hostLine.Replace($h.captureId,('f'*32)); Exit=1; Accept=$false },
+    @{ Context='N3'; Text=$hostLine.Replace('beginEvaluated=1','beginEvaluated=0'); Exit=1; Accept=$false },
+    @{ Context='N1'; Text=''; Exit=1; Accept=$true }
+  )
+  foreach ($case in $controlCases) {
+    $expected.Context = $case.Context
+    $control = [pscustomobject]@{
+      ExitCode=$case.Exit; Cleanup=$true; ReportValid=$true; NonNativeFailure=$false
+      Failure=$nativeError; Text=$case.Text+"`n"+$nativeError
+    }
+    $accepted = Test-StartupControlResult $control $expected $nativeError
+    Assert-Report ($accepted -eq $case.Accept -and $control.Failure -ceq $nativeError) 'host completion did not govern the actual control acceptance independently'
+  }
+  Write-Output 'PASS semantic-diagnostics frozen-definitions=6 separate-registration=1'
+  Write-Output 'PASS host-completion-consumer configurations=12 expected-native-primary-preserved=1'
   Write-Output "PASS proof-report-fixtures assertions=$script:assertions"
 } finally {
   Remove-Item -LiteralPath $file -Force

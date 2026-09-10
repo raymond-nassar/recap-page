@@ -1,6 +1,7 @@
 #pragma once
 
 #include "StartupProcess.h"
+#include "StartupContract.h"
 #include <objbase.h>
 #include <evntrace.h>
 #include <evntcons.h>
@@ -332,13 +333,6 @@ inline const char* profileName(ObservationProfile profile) {
     case ObservationProfile::installedBusy: return "installed-busy";
     default: return "diagnostic";
     }
-}
-
-inline bool nativeEnvironmentAllowed(ObservationProfile profile, bool fixedSource, bool instanceKnown,
-                                     bool exactOutsideImage, bool controlledRelation, bool ownedAssociation) {
-    // The pinned fixture only spawns process.execPath; installed activation can use shell brokers.
-    return profile == ObservationProfile::nativeFixture && fixedSource && instanceKnown && exactOutsideImage &&
-        !controlledRelation && !ownedAssociation;
 }
 
 inline const char* purposeName(RegisteredPurpose purpose) {
@@ -700,13 +694,6 @@ struct HelperScopeEvidence {
     bool productAssociation = false, terminalAssociation = false;
 };
 
-inline bool verifiedHelperSurface(const WindowFact& raw, const HelperScopeEvidence& evidence) {
-    return evidence.registered && evidence.instance && evidence.image && evidence.thread && evidence.ownerCompatible &&
-        !evidence.productAssociation && !evidence.terminalAssociation &&
-        raw.kind != WindowKind::startup && raw.kind != WindowKind::console && raw.kind != WindowKind::terminal &&
-        ((raw.event != EVENT_OBJECT_SHOW && !raw.visible) || (raw.metadataKnown && raw.kind == WindowKind::other));
-}
-
 inline WindowFact windowFact(HWND window) {
     WindowFact fact;
     fact.window = reinterpret_cast<uintptr_t>(window);
@@ -834,11 +821,6 @@ inline bool bindingReady(const ConsoleBinding& binding) {
         binding.clientActor && binding.client && binding.clientThread && binding.association && binding.noOtherClients &&
         (!binding.control || (binding.membership && binding.sampleMapped && binding.observerKnown &&
                               binding.observerActor && binding.observerAttached));
-}
-
-inline bool ambientConsoleScoped(ObservationProfile profile, bool fixedSource, const ConsoleBinding& binding) {
-    return profile == ObservationProfile::nativeFixture && fixedSource && binding.ambient && !binding.control &&
-        bindingReady(binding);
 }
 
 inline std::vector<WindowResolution> correlateWindows(const std::vector<WindowFact>& facts,
@@ -1139,6 +1121,7 @@ class Observer {
     uint64_t captureBegin_ = 0;
     std::vector<Actor> actors_;
     std::map<DWORD, Client> clients_;
+    DWORD winningServer_ = 0;
     std::vector<ControlAssociation> controlAssociations_;
     std::wstring classicHostImage_;
     std::ostream* report_ = nullptr;
@@ -1682,124 +1665,6 @@ class Observer {
         report_->flush();
         throw FinalObservationFailure(code, finalStage_);
     }
-    HelperScopeEvidence helperScope(const WindowFact& raw, const SourceResolution& source, const ProcessGraph& graph,
-                                    const std::set<size_t>& owned) const {
-        HelperScopeEvidence evidence;
-        const Registration* helper = nullptr;
-        for (const auto& item : registrations_) {
-            if (!source.known || item.purpose == RegisteredPurpose::product || item.pid != source.owner || !item.tid ||
-                item.tid != raw.sourceThread || item.threadCreation != source.threadCreation) continue;
-            if (helper) return evidence;
-            helper = &item;
-        }
-        if (!helper) return evidence;
-        evidence.registered = true;
-        evidence.image = helper->imageExact;
-        evidence.thread = source.known;
-        evidence.ownerCompatible = !raw.owner || (raw.owner == helper->pid && (!raw.thread || raw.thread == helper->tid));
-        const auto instance = graph.unique(helper->pid, static_cast<LONGLONG>(helper->witnessed));
-        evidence.instance = helper->purpose == RegisteredPurpose::observer
-            ? helper->pid == GetCurrentProcessId() && GetProcessId(helper->process.get()) == helper->pid
-            : instance != SIZE_MAX && graph.instances[instance].start.parent == GetCurrentProcessId();
-        for (const auto& fact : windows_) {
-            if (fact.window != raw.window) continue;
-            if (fact.kind == WindowKind::startup) evidence.productAssociation = true;
-            if (fact.kind == WindowKind::console || fact.kind == WindowKind::terminal) evidence.terminalAssociation = true;
-            const auto owner = graph.unique(fact.owner, static_cast<LONGLONG>(fact.received.qpc));
-            if (owner != SIZE_MAX && owned.count(owner)) evidence.productAssociation = true;
-        }
-        for (const auto& event : consoles_) if (event.window && event.window == raw.window)
-            evidence.terminalAssociation = true;
-        return evidence;
-    }
-    struct EnvironmentEvidence {
-        bool allowed = false, parentKnown = false;
-        size_t instance = SIZE_MAX;
-    };
-    EnvironmentEvidence fixtureEnvironment(const ProcessGraph& graph, size_t instance) const {
-        EnvironmentEvidence result;
-        result.instance = instance;
-        if (instance == SIZE_MAX || instance >= graph.instances.size()) return result;
-        const auto& value = graph.instances[instance];
-        const auto path = executablePath(value.start.pid, value.start);
-        bool outside = path.size() > 3 && path[1] == L':' && path[2] == L'\\';
-        std::set<size_t> roots;
-        for (const auto& root : rootAnchors_) {
-            const auto runtime = root.image.substr(0, root.image.find_last_of(L'\\')) + L"\\runtime\\node.exe";
-            outside = outside && !recap::samePath(path, root.image) && !recap::samePath(path, runtime);
-            const auto index = graph.unique(root.pid, root.point);
-            if (index == SIZE_MAX) return result;
-            roots.insert(index);
-        }
-        for (const auto& registered : registrations_) outside = outside && !recap::samePath(path, registered.image);
-        const auto lineage = graph.descendants(roots);
-        if (lineage.ambiguous != SIZE_MAX || lineage.missingParent != SIZE_MAX) return result;
-        const bool controlled = lineage.owned.count(instance) || clients_.count(value.start.pid);
-        const auto parents = graph.at(value.start.parent, value.start.timestamp);
-        result.parentKnown = value.creationObserved && parents.size() == 1 && !graph.instances[parents[0]].ambiguous;
-        result.allowed = nativeEnvironmentAllowed(profile_, fixedFixtureSource_, !value.ambiguous, outside, controlled, false);
-        return result;
-    }
-    const Registration* transientSource(const WindowLifetime& life, const ProcessGraph& graph,
-                                        const std::vector<SourceResolution>& sources) const {
-        if (life.rows.empty()) return nullptr;
-        const auto& first = windows_[life.rows.front()];
-        const auto& firstSource = sources[life.rows.front()];
-        for (const auto& registered : registrations_) {
-            if (!firstSource.known || registered.pid != firstSource.owner || !registered.tid ||
-                registered.tid != first.sourceThread) continue;
-            HelperScopeEvidence evidence;
-            evidence.registered = true;
-            evidence.image = registered.imageExact;
-            evidence.instance = registered.purpose == RegisteredPurpose::observer
-                ? registered.pid == GetCurrentProcessId()
-                : graph.unique(registered.pid, static_cast<LONGLONG>(registered.witnessed)) != SIZE_MAX;
-            evidence.thread = evidence.ownerCompatible = true;
-            for (const auto index : life.rows) {
-                const auto& raw = windows_[index];
-                const auto& recovered = sources[index];
-                evidence.thread = evidence.thread && recovered.known && recovered.owner == registered.pid &&
-                    recovered.process == firstSource.process && raw.sourceThread == registered.tid &&
-                    recovered.threadCreation == registered.threadCreation;
-                evidence.ownerCompatible = evidence.ownerCompatible && (!raw.owner || raw.owner == registered.pid) &&
-                    (!raw.thread || raw.thread == registered.tid);
-                const auto* source = actor(raw.sourceActor);
-                if (source && source->role == PresenterRole::classic) evidence.terminalAssociation = true;
-            }
-            for (size_t index = 0; index < windows_.size(); ++index) {
-                if (windows_[index].window == first.window &&
-                    std::find(life.rows.begin(), life.rows.end(), index) == life.rows.end()) evidence.productAssociation = true;
-            }
-            for (const auto& event : consoles_) if (event.window && event.window == first.window)
-                evidence.terminalAssociation = true;
-            if (completeNonPresenterTransient(windows_, life, evidence)) return &registered;
-        }
-        return nullptr;
-    }
-    EnvironmentEvidence environmentWindow(const WindowLifetime& life, const ProcessGraph& graph,
-                                           const std::vector<SourceResolution>& sources) const {
-        EnvironmentEvidence result;
-        if (life.rows.empty()) return result;
-        const auto& first = windows_[life.rows.front()];
-        const auto& firstSource = sources[life.rows.front()];
-        if (!firstSource.known) return result;
-        const auto index = firstSource.process;
-        result = fixtureEnvironment(graph, index);
-        if (!result.allowed) return result;
-        for (const auto row : life.rows) {
-            const auto& raw = windows_[row];
-            const auto& recovered = sources[row];
-            const auto* source = actor(raw.sourceActor);
-            if (!recovered.known || recovered.owner != firstSource.owner ||
-                (raw.owner && raw.owner != firstSource.owner) || raw.kind == WindowKind::startup ||
-                raw.kind == WindowKind::console || raw.kind == WindowKind::terminal ||
-                (source && source->role == PresenterRole::classic) ||
-                recovered.process != index) result.allowed = false;
-        }
-        for (const auto& event : consoles_) if (event.window && event.window == first.window) result.allowed = false;
-        return result;
-    }
-
     EVENT_TRACE_PROPERTIES* properties() {
         return reinterpret_cast<EVENT_TRACE_PROPERTIES*>(properties_.data());
     }
@@ -2211,7 +2076,6 @@ public:
     const std::vector<ConsoleFact>& consoles() const { return consoles_; }
     std::vector<ConsoleBinding> consoleBindings() const {
         std::lock_guard<std::mutex> lock(mutex_);
-        const ProcessGraph graph(processes_);
         const auto lifetimes = windowLifetimes(windows_);
         std::vector<ConsoleBinding> result;
         for (size_t number = 0; number < lifetimes.size(); ++number) {
@@ -2273,31 +2137,14 @@ public:
                     clientId = id;
                 }
             }
-            bool ambientCandidate = false;
-            if (!clientPid && knownClient == clients_.end() && profile_ == ObservationProfile::nativeFixture &&
-                fixedFixtureSource_) {
-                for (const auto index : life.rows) {
-                    const auto id = windows_[index].reportedActor;
-                    const auto* candidate = actor(id);
-                    if (!candidate || !host || candidate->pid == host->pid) continue;
-                    const auto node = graph.unique(candidate->pid, static_cast<LONGLONG>(candidate->capturedQpc));
-                    if (!fixtureEnvironment(graph, node).allowed) { clientConflict = true; continue; }
-                    if (clientId && clientId != id) clientConflict = true;
-                    clientId = id;
-                    clientPid = candidate->pid;
-                    ambientCandidate = true;
-                }
-                binding.client = clientPid;
-            }
             const auto* client = actor(clientId);
-            if (client && (knownClient != clients_.end() || ambientCandidate)) {
+            if (client && knownClient != clients_.end()) {
                 binding.clientActor = clientId;
                 binding.clientThread = client->tid;
                 binding.clientKnown = !clientConflict && client->instanceKnown && client->liveAtCapture &&
-                    client->pid == clientPid && (ambientCandidate || client->processCreation == knownClient->second.creation);
+                    client->pid == clientPid && client->processCreation == knownClient->second.creation;
                 binding.clientThreadBound = client->instanceKnown;
                 binding.clientEtw = etwInstance(*client, processes_, false);
-                binding.ambient = ambientCandidate;
             }
             const Actor* self = control ? actor(control->observerActor) : nullptr;
             if (control && self) {
@@ -2326,7 +2173,6 @@ public:
                     source->role == PresenterRole::classic && source->pid == host->pid &&
                     source->processCreation == host->processCreation && event.child == 0;
                 if (!sourceKnown) { associationsValid = false; continue; }
-                if (ambientCandidate && clients_.count(event.pid)) { associationsValid = false; continue; }
                 if (event.pid == clientPid) {
                     if (event.event == EVENT_CONSOLE_START_APPLICATION) { ++starts; startTick = event.generated; }
                     if (event.event == EVENT_CONSOLE_END_APPLICATION) { ++ends; binding.clientEndTick = event.generated; }
@@ -2780,216 +2626,214 @@ public:
         reportBindings(report);
     }
 
-    void assertNoVisibleTerminals(const std::vector<DWORD>& roots,
-                                 const std::vector<WindowFact>& controls, std::ostream& report) {
+    void retainWinningServer(DWORD pid, const std::wstring& expected) {
+        recap::Handle process(OpenProcess(PROCESS_QUERY_LIMITED_INFORMATION | SYNCHRONIZE, FALSE, pid));
+        check(process && WaitForSingleObject(process.get(), 0) == WAIT_TIMEOUT &&
+              recap::samePath(imagePath(process.get()), expected), "winning-server-instance-unavailable");
+        bindClient(pid, process.get());
+        winningServer_ = pid;
+    }
+    struct AppCapture {
+        startup::ActorResult result;
+        size_t rawUnknown = 0, unassessed = 0, requests = 0;
+    };
+    AppCapture appStartupCapture(const std::vector<DWORD>& roots, const std::vector<WindowFact>& controls,
+                                const startup::HostCapture& host, std::ostream& report) {
         reportTo(report);
-        try {
-            finalSection("final-capture-health");
-            finalRequire(stopped_ && windowObservation_, "final-capture-not-stopped");
-            reportCapture(report);
-            finalRequire(healthy(), "final-capture-unhealthy");
-            finalRequire(clockValid(), "final-clock-invalid");
-            finalRequire(controls.size() == 2, "final-control-count");
-            const bool installed = profile_ == ObservationProfile::installedFunctionality;
-            report << "DIAG observation-profile profile=" << profileName(profile_) << " fixed_fixture=" << fixedFixtureSource_
-                   << " criterion=controlled-app-terminal-presentation\n";
-            const auto resolution = resolvedWindows();
-            const auto bindings = consoleBindings();
-            const ProcessGraph graph(processes());
-            finalSection("final-source-lifetimes");
-            finalSources_ = sourceSnapshot(graph, report);
-            finalRequire(healthy(), "final-capture-unhealthy");
-
-            finalSection("final-process-graph");
-            finalExpectedRoots_ = roots.size();
-            finalActualRoots_ = rootAnchors_.size();
-            finalRequire(!roots.empty() && roots.size() == rootAnchors_.size(), "final-root-registration-missing");
-            std::set<size_t> rootInstances;
-            std::set<std::wstring> packageRuntimes;
-            for (size_t index = 0; index < roots.size(); ++index) {
-                const auto& anchor = rootAnchors_[index];
-                finalContextPids_.insert(anchor.pid);
-                finalRequire(roots[index] == anchor.pid, "final-root-pid-mismatch", roots[index]);
-                finalRequire(!graph.at(anchor.pid, anchor.point).empty(), "final-root-instance-missing", anchor.pid);
-                const auto node = anchor.exactStart ? graph.exact(anchor.pid, anchor.point) : graph.unique(anchor.pid, anchor.point);
-                finalRequire(node != SIZE_MAX, "final-root-instance-ambiguous", anchor.pid);
-                const auto& value = graph.instances[node];
-                finalRequire(recap::samePath(executablePath(anchor.pid, value.start), anchor.image),
-                             "final-root-image-mismatch", anchor.pid);
-                finalRequire(value.ended && value.end.exitKnown, "final-root-exit-mismatch", anchor.pid);
-                rootInstances.insert(node);
-                packageRuntimes.insert(anchor.image.substr(0, anchor.image.find_last_of(L'\\')) + L"\\runtime\\node.exe");
+        report << "CHECK ENTER app-startup-reduction\n";
+        check(stopped_ && healthy() && clockValid(), "app-capture-incomplete");
+        reportCapture(report);
+        const auto resolution = resolvedWindows();
+        const auto bindings = consoleBindings();
+        const ProcessGraph graph(processes());
+        const ThreadGraph threads(threads_);
+        finalSources_ = sourceSnapshot(graph, report);
+        startup::Evidence evidence;
+        evidence.profile = profile_ == ObservationProfile::installedFunctionality ? startup::Profile::functionality
+            : profile_ == ObservationProfile::installedBusy ? startup::Profile::busy : startup::Profile::inert;
+        evidence.expectedRoots = evidence.profile == startup::Profile::inert ? 11
+            : evidence.profile == startup::Profile::functionality ? 3 : 1;
+        evidence.expectedCoordinators = evidence.profile == startup::Profile::inert ? 9 : evidence.expectedRoots;
+        evidence.healthy = healthy(); evidence.clocks = clockValid(); evidence.stopped = stopped_;
+        evidence.calibrated = controls.size() == 2;
+        try { requireCalibrationLifetimes(controls, report, resolution); }
+        catch (const std::exception&) { evidence.calibrated = false; report << "DIAG app-calibration state=unknown\n"; }
+        std::map<size_t, startup::Role> roles;
+        std::map<size_t, std::wstring> layouts;
+        std::map<size_t, startup::Actor> facts;
+        std::set<std::wstring> runtimes, guiImages;
+        for (size_t position = 0; position < rootAnchors_.size(); ++position) {
+            const auto& root = rootAnchors_[position];
+            const auto node = graph.unique(root.pid, root.point);
+            const auto layout = root.image.substr(0, root.image.find_last_of(L'\\'));
+            guiImages.insert(root.image); runtimes.insert(layout + L"\\runtime\\node.exe");
+            if (position >= roots.size() || roots[position] != root.pid || node == SIZE_MAX) {
+                evidence.candidateAmbiguous = true; continue;
             }
-            const auto lineage = graph.descendants(rootInstances);
-            finalRequire(lineage.ambiguous == SIZE_MAX, "final-lineage-ambiguous",
-                         lineage.ambiguous < graph.instances.size() ? graph.instances[lineage.ambiguous].start.pid : 0);
-            finalRequire(lineage.missingParent == SIZE_MAX, "final-parent-interval-missing",
-                         lineage.missingParent < graph.instances.size() ? graph.instances[lineage.missingParent].start.pid : 0);
-            std::set<DWORD> ownedPids;
-            for (const auto index : lineage.owned) ownedPids.insert(graph.instances[index].start.pid);
-
-            finalSection("final-role-coverage");
-            bool coordinator = false, verifier = false, server = false, browser = false;
-            wchar_t system[32768]{};
-            const auto systemLength = GetSystemDirectoryW(system, static_cast<UINT>(std::size(system)));
-            finalRequire(systemLength && systemLength < std::size(system), "final-system-root-unavailable");
-            for (const auto index : lineage.owned) {
-                const auto& value = graph.instances[index];
-                const auto& event = value.start;
-                const auto pid = event.pid;
-                const auto path = executablePath(pid, event);
-                const auto runtime = std::any_of(packageRuntimes.begin(), packageRuntimes.end(),
-                    [&](const auto& expected) { return recap::samePath(path, expected); });
-                if (event.command.find(L"Launcher.mjs") != std::wstring::npos) {
-                    coordinator = true;
-                    finalRequire(runtime, "final-coordinator-image-mismatch", pid);
-                    finalRequire(event.command.find(L"--gui-startup-v1") != std::wstring::npos, "final-coordinator-arguments", pid);
-                    finalRequire(value.ended, "final-coordinator-exit-missing", pid);
-                }
-                if (event.command.find(L"server.mjs") != std::wstring::npos) {
-                    server = true;
-                    finalRequire(runtime, "final-server-image-mismatch", pid);
-                }
-                const auto name = path.substr(path.find_last_of(L"\\/") + 1);
-                if (recap::samePath(name, L"powershell.exe")) {
-                    verifier = true;
-                    finalRequire(recap::samePath(path, std::wstring(system) + L"\\WindowsPowerShell\\v1.0\\powershell.exe"),
-                                 "final-verifier-image-mismatch", pid);
-                    finalRequire(value.ended, "final-verifier-exit-missing", pid);
-                }
-                if (recap::samePath(name, L"cmd.exe")) {
-                    browser = true;
-                    finalRequire(recap::samePath(path, std::wstring(system) + L"\\cmd.exe"), "final-browser-image-mismatch", pid);
-                    finalRequire(event.command.find(L"http://127.0.0.1:8787/") != std::wstring::npos,
-                                 "final-browser-origin-mismatch", pid);
-                    finalRequire(value.ended, "final-browser-exit-missing", pid);
-                }
-            }
-            report << "DIAG final-roles roots=" << rootInstances.size() << " owned_instances=" << lineage.owned.size()
-                   << " total_instances=" << graph.instances.size() << " coordinator=" << coordinator
-                   << " verifier=" << verifier << " server=" << server << " browser=" << browser << "\n";
-            finalRequire(coordinator, "final-coordinator-role-missing");
-            finalRequire(!installed || (verifier && server && browser), "final-installed-roles-missing");
-
-            finalSection("final-calibration-lifetimes");
-            std::set<size_t> calibrationLifetimes;
-            try { calibrationLifetimes = requireCalibrationLifetimes(controls, report, resolution); }
-            catch (const std::exception&) { finalRequire(false, "final-calibration-lifetime-invalid"); }
-            finalSection("final-console-bindings");
-            reportBindings(report);
-            finalSection("final-window-attribution");
-            const auto lifetimes = windowLifetimes(windows_);
-            std::set<size_t> guiTransientRows, observerTransientRows, environmentRows;
-            size_t guiTransients = 0, observerTransients = 0, environmentMissingParents = 0;
-            for (const auto& life : lifetimes) {
-                if (const auto* source = transientSource(life, graph, finalSources_)) {
-                    auto& rows = source->purpose == RegisteredPurpose::product ? guiTransientRows : observerTransientRows;
-                    rows.insert(life.rows.begin(), life.rows.end());
-                    if (source->purpose == RegisteredPurpose::product) ++guiTransients;
-                    else ++observerTransients;
-                } else {
-                    const auto environment = environmentWindow(life, graph, finalSources_);
-                    if (environment.allowed) {
-                        environmentRows.insert(life.rows.begin(), life.rows.end());
-                        if (!environment.parentKnown) environmentMissingParents += life.rows.size();
-                    }
-                }
-            }
-            std::vector<size_t> inconclusive, visible, unboundConsole;
-            std::set<size_t> ambientConsoles, visibleAmbientConsoles;
-            size_t helperExcluded = 0, helperUnknown = 0, rawUnknown = 0, scopedUnknown = 0;
-            for (size_t index = 0; index < windows_.size(); ++index) {
-                const auto& raw = windows_[index];
-                const auto& identity = resolution[index];
-                if (!raw.metadataKnown) ++rawUnknown;
-                if (identity.identityKnown && !identity.conflict && calibrationLifetimes.count(identity.lifetime)) continue;
-                if (guiTransientRows.count(index) || observerTransientRows.count(index) || environmentRows.count(index)) {
-                    if (!raw.metadataKnown) ++scopedUnknown;
-                    continue;
-                }
-                const auto scope = helperScope(raw, finalSources_[index], graph, lineage.owned);
-                if (verifiedHelperSurface(raw, scope)) {
-                    ++helperExcluded;
-                    if (!raw.metadataKnown) ++helperUnknown;
-                    continue;
-                }
-                const bool possibleConsole = std::any_of(consoles_.begin(), consoles_.end(), [&](const auto& event) {
-                    return event.window && event.window == raw.window &&
-                        event.generated >= identity.beginTick && event.generated <= identity.endTick;
-                });
-                const bool verifiedAmbient = std::any_of(bindings.begin(), bindings.end(), [&](const auto& binding) {
-                    return binding.lifetime == identity.lifetime && ambientConsoleScoped(profile_, fixedFixtureSource_, binding);
-                });
-                if (identity.consoleBound && identity.ambientConsole && verifiedAmbient && !identity.conflict && !identity.visibilityMissing) {
-                    ambientConsoles.insert(identity.lifetime);
-                    if (visibleBoundConsole(raw, identity)) visibleAmbientConsoles.insert(identity.lifetime);
-                    if (!raw.metadataKnown) ++scopedUnknown;
-                    continue;
-                }
-                if ((identity.kind == WindowKind::console || possibleConsole) && !identity.consoleBound) {
-                    unboundConsole.push_back(index);
-                } else if (!identity.identityKnown || identity.conflict || identity.visibilityMissing ||
-                    (identity.kind == WindowKind::terminal && raw.event == EVENT_OBJECT_CREATE && !raw.metadataKnown)) {
-                    inconclusive.push_back(index);
-                } else {
-                    const auto measured = effectiveWindow(raw, identity);
-                    const bool terminal = identity.kind == WindowKind::console || identity.kind == WindowKind::terminal;
-                    if (!terminal || !visibleIn(measured, 0, UINT64_MAX)) continue;
-                    auto owner = graph.unique(identity.owner, static_cast<LONGLONG>(raw.received.qpc));
-                    if (identity.consoleBound) for (const auto& binding : bindings) {
-                        if (binding.lifetime != identity.lifetime) continue;
-                        const auto* client = actor(binding.clientActor);
-                        if (client) owner = graph.unique(client->pid, static_cast<LONGLONG>(client->capturedQpc));
-                    }
-                    if (owner != SIZE_MAX && lineage.owned.count(owner)) visible.push_back(index);
-                    else inconclusive.push_back(index);
-                }
-            }
-            report << "DIAG final-scope excluded_helpers=" << helperExcluded << " unavailable_helper_metadata=" << helperUnknown
-                   << " reason=verified-registered-nonterminal-helper retained_raw=1 controls=" << calibrationLifetimes.size() << "\n";
-            report << "DIAG terminal-scope profile=" << profileName(profile_) << " gui_transients=" << guiTransients
-                   << " gui_transient_rows=" << guiTransientRows.size() << " observer_transients=" << observerTransients
-                   << " observer_transient_rows=" << observerTransientRows.size() << " environment_rows=" << environmentRows.size()
-                   << " environment_parent_unproved_rows=" << environmentMissingParents
-                   << " environment_basis=" << (profile_ == ObservationProfile::nativeFixture ? "fixed-executable-capabilities" : "none")
-                   << " raw_unknown_metadata=" << rawUnknown << " scoped_unknown_metadata=" << scopedUnknown << "\n";
-            report << "DIAG terminal-coverage product_visible_rows=" << visible.size()
-                   << " visible_ambient_consoles=" << visibleAmbientConsoles.size() << " ambient_console_lifetimes=" << ambientConsoles.size()
-                   << " unresolved_rows=" << inconclusive.size() + unboundConsole.size() << " raw_facts_preserved=1\n";
-            const auto reportRows = [&](const std::vector<size_t>& rows) {
-                finalContextPids_.clear();
-                for (const auto index : rows) {
-                    if (finalSources_[index].known) finalContextPids_.insert(finalSources_[index].owner);
-                    if (windows_[index].sourceOwner) finalContextPids_.insert(windows_[index].sourceOwner);
-                    if (windows_[index].owner) finalContextPids_.insert(windows_[index].owner);
-                }
-                reportAttribution(report, resolution, rows, ownedPids);
-            };
-            const auto failures = collectFailureRows(unboundConsole, inconclusive, visible);
-            if (!failures.rows.empty()) {
-                reportCategories_ = failures.categories;
-                report << "DIAG offender-groups unbound_console=" << unboundConsole.size()
-                       << " inconclusive=" << inconclusive.size() << " visible_product=" << visible.size() << "\n";
-                reportRows(failures.rows);
-                reportConsoleContext(report, resolution, failures.rows);
-            }
-            if (!unboundConsole.empty()) {
-                finalRequire(false, "final-console-binding-unresolved", 0, windows_[unboundConsole.front()].window);
-            }
-            if (!inconclusive.empty()) {
-                finalRequire(false, "final-window-scope-inconclusive", 0, windows_[inconclusive.front()].window);
-            }
-            if (!visible.empty()) {
-                finalRequire(false, "final-visible-product-terminal", 0, windows_[visible.front()].window);
-            }
-            report << "CHECK EXIT " << finalStage_ << "\nCHECK EXIT final-observer-closure\n";
-            finalSectionOpen_ = false;
-            report.flush();
-        } catch (const FinalObservationFailure&) {
-            throw;
-        } catch (const std::exception&) {
-            finalRequire(false, "final-context-exception", finalPid_, finalWindow_);
+            const auto& value = graph.instances[node];
+            roles[node] = startup::Role::gui; layouts[node] = layout;
+            startup::Actor fact;
+            fact.role = startup::Role::gui;
+            fact.image = recap::samePath(executablePath(root.pid, value.start), root.image);
+            fact.identity = value.creationObserved && !value.ambiguous;
+            fact.exitKnown = value.ended && value.end.exitKnown;
+            fact.exitExpected = !fact.exitKnown || (evidence.profile == startup::Profile::inert
+                ? value.end.exitCode <= 1 : value.end.exitCode == (evidence.profile == startup::Profile::busy ? 1UL : 0UL));
+            facts[node] = fact;
         }
+        const auto verifierScript = [](const std::wstring& script) {
+            const std::wstring prefix = L"$connection = Get-NetTCPConnection -LocalAddress 127.0.0.1 -LocalPort 8787 -State Listen -ErrorAction SilentlyContinue | Where-Object OwningProcess -eq ";
+            if (script.compare(0, prefix.size(), prefix)) return false;
+            const auto end = script.find(L" | Select-Object -First 1", prefix.size());
+            if (end == std::wstring::npos) return false;
+            const auto pid = script.substr(prefix.size(), end - prefix.size());
+            if (pid.empty() || pid.size() > 10 || pid[0] == L'0' || pid.find_first_not_of(L"0123456789") != std::wstring::npos) return false;
+            return script == prefix + pid + L" | Select-Object -First 1; $process = Get-CimInstance Win32_Process -Filter \"ProcessId = " +
+                pid + L"\" -ErrorAction SilentlyContinue; if ($connection -and $process) {;   $process | Select-Object ExecutablePath,CommandLine | ConvertTo-Json -Compress; }";
+        };
+        std::set<size_t> external;
+        for (size_t turn = 0; turn <= graph.instances.size(); ++turn) {
+            bool changed = false;
+            for (size_t index = 0; index < graph.instances.size(); ++index) {
+                if (roles.count(index) || external.count(index)) continue;
+                const auto& value = graph.instances[index];
+                if (!value.creationObserved) continue;
+                const auto parents = graph.at(value.start.parent, value.start.timestamp);
+                std::vector<size_t> appParents;
+                for (const auto parent : parents) if (roles.count(parent)) appParents.push_back(parent);
+                if (appParents.empty()) {
+                    if (parents.empty()) for (const auto& [parent, role] : roles) {
+                        (void)role;
+                        if (graph.instances[parent].start.pid == value.start.parent) evidence.candidateAmbiguous = true;
+                    }
+                    continue;
+                }
+                if (parents.size() != 1 || appParents.size() != 1 || value.ambiguous) {
+                    evidence.candidateAmbiguous = true; continue;
+                }
+                const auto parent = appParents[0];
+                if (roles[parent] == startup::Role::command && facts[parent].image && facts[parent].arguments &&
+                    facts[parent].exitKnown && facts[parent].exitExpected) { external.insert(index); continue; }
+                const auto layout = layouts[parent];
+                const auto image = executablePath(value.start.pid, value.start);
+                const auto args = semanticArguments(value.start.command);
+                startup::Actor fact;
+                fact.identity = image.find(L'\\') != std::wstring::npos && !args.empty();
+                fact.exitKnown = value.ended && value.end.exitKnown;
+                const bool node = recap::samePath(image, layout + L"\\runtime\\node.exe");
+                if (roles[parent] == startup::Role::gui) {
+                    fact.role = startup::Role::coordinator; fact.image = node;
+                    fact.arguments = args.size() == 3 && recap::samePath(args[1], layout + L"\\Launcher.mjs") &&
+                        args[2] == L"--gui-startup-v1";
+                } else if (roles[parent] == startup::Role::coordinator && node && args.size() == 2 &&
+                           recap::samePath(args[1], layout + L"\\server.mjs") && evidence.profile != startup::Profile::inert) {
+                    fact.role = startup::Role::server;
+                } else if (roles[parent] == startup::Role::coordinator && recap::samePath(image, host.verifier)) {
+                    fact.role = startup::Role::verifier;
+                    fact.arguments = args.size() == 5 && args[1] == L"-NoProfile" && args[2] == L"-NonInteractive" &&
+                        args[3] == L"-Command" && verifierScript(args[4]);
+                } else if (roles[parent] == startup::Role::coordinator && recap::samePath(image, host.command)) {
+                    fact.role = startup::Role::command;
+                    fact.arguments = args.size() == 5 && args[1] == L"/c" && args[2] == L"start" &&
+                        args[3].empty() && args[4] == L"http://127.0.0.1:8787/";
+                } else if (roles[parent] == startup::Role::coordinator && evidence.profile == startup::Profile::inert &&
+                           fixedFixtureSource_ && node && args.size() == 3 && args[1] == L"-e" &&
+                           args[2] == L"setInterval(() => {}, 1000)") fact.role = startup::Role::sentinel;
+                if (fact.role == startup::Role::server && value.start.pid == winningServer_) {
+                    const auto retained = clients_.find(winningServer_);
+                    fact.retainedLive = retained != clients_.end() &&
+                        WaitForSingleObject(retained->second.process.get(), 0) == WAIT_TIMEOUT;
+                    fact.exitExpected = fact.retainedLive;
+                } else if (fact.exitKnown) {
+                    fact.exitExpected = fact.role == startup::Role::server || fact.role == startup::Role::sentinel ||
+                        (evidence.profile == startup::Profile::inert && fact.role == startup::Role::coordinator)
+                        ? value.end.exitCode <= 1 : value.end.exitCode == (evidence.profile == startup::Profile::busy ? 1UL : 0UL);
+                }
+                bool threadSeen = false;
+                for (const auto& thread : threads.instances)
+                    if (!thread.ambiguous && thread.owner == value.start.pid && thread.begin >= value.start.timestamp &&
+                        thread.begin <= value.until) threadSeen = true;
+                fact.identity = fact.identity && threadSeen;
+                if (args.empty()) fact.arguments = true;
+                if (image.find(L'\\') == std::wstring::npos) fact.image = true;
+                roles[index] = fact.role; layouts[index] = layout; facts[index] = fact; changed = true;
+            }
+            if (!changed) break;
+        }
+        for (size_t index = 0; index < graph.instances.size(); ++index) {
+            const auto& value = graph.instances[index];
+            const auto image = executablePath(value.start.pid, value.start);
+            const auto matches = [&](const auto& paths) {
+                return std::any_of(paths.begin(), paths.end(), [&](const auto& expected) { return recap::samePath(image, expected); });
+            };
+            if (!roles.count(index) && (matches(guiImages) || matches(runtimes))) evidence.candidateAmbiguous = true;
+        }
+        std::set<DWORD> ownedPids;
+        for (const auto& [index, fact] : facts) {
+            evidence.actors.push_back(fact); ownedPids.insert(graph.instances[index].start.pid);
+            report << "DIAG app-actor instance=" << graph.instances[index].startRow << " pid=" << graph.instances[index].start.pid
+                   << " role=" << static_cast<int>(fact.role) << " identity=" << fact.identity << " image=" << fact.image
+                   << " arguments=" << fact.arguments << " exit_known=" << fact.exitKnown << " exit_expected=" << fact.exitExpected
+                   << " retained_live=" << fact.retainedLive << "\n";
+        }
+        const auto relates = [&](DWORD pid, uint64_t generated, const Moment& received) {
+            if (!pid || generated > received.tick || received.tick - generated > 120000) return false;
+            const auto delay = received.tick - generated;
+            const auto delta = (delay + SourceClockSlopMs) * frequency_ / 1000;
+            const auto earliest = received.qpc > delta ? received.qpc - delta : 0;
+            const auto after = delay > SourceClockSlopMs ? (delay - SourceClockSlopMs) * frequency_ / 1000 : 0;
+            const auto latest = received.afterQpc > after ? std::min(received.qpc, received.afterQpc - after) : 0;
+            for (const auto& [index, role] : roles) {
+                (void)role;
+                const auto& value = graph.instances[index];
+                if (value.start.pid == pid && value.start.timestamp <= static_cast<LONGLONG>(latest) &&
+                    value.until >= static_cast<LONGLONG>(earliest)) return true;
+            }
+            return false;
+        };
+        AppCapture captured;
+        std::vector<size_t> offending, global;
+        for (size_t index = 0; index < windows_.size(); ++index) {
+            const auto& raw = windows_[index]; const auto& identity = resolution[index];
+            if (!raw.metadataKnown) ++captured.rawUnknown;
+            bool linked = relates(raw.owner, raw.generated, raw.received) ||
+                (finalSources_[index].known && roles.count(finalSources_[index].process));
+            bool console = identity.kind == WindowKind::console || identity.kind == WindowKind::terminal ||
+                raw.kind == WindowKind::console || raw.kind == WindowKind::terminal;
+            for (const auto& event : consoles_) if (consoleFactInSegment(event, raw, identity) &&
+                relates(event.pid, event.generated, event.received)) { console = true; linked = true; }
+            if (console && linked) {
+                const bool visible = visibleBoundConsole(raw, identity) ||
+                    (raw.metadataKnown && relates(raw.owner, raw.generated, raw.received) && visibleIn(raw, 0, UINT64_MAX));
+                const bool complete = identity.identityKnown && !identity.conflict && !identity.visibilityMissing &&
+                    identity.created && (identity.kind != WindowKind::console || identity.consoleBound);
+                evidence.terminals.push_back({ true, visible, complete });
+                if (visible || !complete) offending.push_back(index);
+            } else if (!linked) { ++captured.unassessed; global.push_back(index); }
+        }
+        for (const auto& event : consoles_) {
+            if (!event.window || !relates(event.pid, event.generated, event.received)) continue;
+            bool matched = false;
+            for (size_t index = 0; index < windows_.size(); ++index)
+                if (consoleFactInSegment(event, windows_[index], resolution[index])) matched = true;
+            if (!matched) evidence.terminals.push_back({ true, false, false });
+        }
+        captured.result = startup::reduceActors(evidence);
+        captured.requests = external.size();
+        report << "DIAG app-scope claim=app-startup-contract-v2 app_visible=" << captured.result.visible
+               << " app_unresolved=" << captured.result.unresolved << " unassessed_global=" << captured.unassessed
+               << " unknown_object_metadata=" << captured.rawUnknown << " external_request_children=" << captured.requests << "\n";
+        const auto& context = offending.empty() ? global : offending;
+        finalContextPids_.clear();
+        for (const auto index : context) {
+            if (finalSources_[index].known) finalContextPids_.insert(finalSources_[index].owner);
+            if (windows_[index].owner) finalContextPids_.insert(windows_[index].owner);
+        }
+        reportAttribution(report, resolution, context, ownedPids);
+        reportConsoleContext(report, resolution, context);
+        reportFinalContext();
+        report << "CHECK EXIT app-startup-reduction\n"; report.flush();
+        return captured;
     }
 };
 } // namespace proof

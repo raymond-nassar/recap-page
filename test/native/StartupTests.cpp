@@ -22,6 +22,32 @@ namespace {
 std::ofstream* liveReport = nullptr;
 fs::path liveReportPath;
 std::string lastStage = "not-started";
+std::unique_ptr<startup::HostCapture> activeHost;
+bool appCapturePublished = false;
+
+void beginHost(const std::map<std::wstring, std::wstring>& options, std::ostream& report, const std::string& context) {
+    const auto found = options.find(L"--contract");
+    check(found != options.end(), "startup-context-unavailable");
+    auto binding = startup::Binding::read(found->second);
+    check(binding.context == context, "startup-context-binding");
+    activeHost = std::make_unique<startup::HostCapture>(std::move(binding), report);
+    check(activeHost->beginningQualified(), "host-unqualified");
+}
+
+void completeApp(proof::Observer& observer, const std::vector<DWORD>& roots,
+                 const std::vector<proof::WindowFact>& controls, std::ostream& report) {
+    check(activeHost != nullptr, "startup-context-unavailable");
+    const auto host = activeHost->finish(report);
+    observer.stop();
+    const auto capture = observer.appStartupCapture(roots, controls, *activeHost, report);
+    observer.finishIdentities();
+    startup::printCapture(report, activeHost->binding(), host, capture.result,
+                          capture.rawUnknown, capture.unassessed, capture.requests);
+    appCapturePublished = true;
+    const auto& failure = host.state != startup::State::satisfied ? host :
+        capture.result.actors.state != startup::State::satisfied ? capture.result.actors : capture.result.capture;
+    if (failure.state != startup::State::satisfied) throw proof::FinalObservationFailure(failure.reason, "app-startup-reduction");
+}
 
 struct WindowMessageFailure : std::runtime_error {
     UINT message;
@@ -1742,7 +1768,7 @@ void supervision() {
     observed("console-binding-cases", [] { consoleBindingCases(); });
 }
 
-void finalObserverCases() {
+void processInstanceCases() {
     const auto event = [](DWORD pid, DWORD parent, LONGLONG time, bool start) {
         proof::ProcessEvent value;
         value.pid = pid; value.parent = parent; value.timestamp = time; value.start = start;
@@ -1791,64 +1817,8 @@ void finalObserverCases() {
            unrelatedLineage.missingParent == SIZE_MAX,
            "unrelated ambiguous instances corrupted the retained graph");
 
-    proof::WindowFact raw;
-    raw.window = 100;
-    raw.event = EVENT_OBJECT_SHOW;
-    raw.sourceOwner = raw.owner = 10;
-    raw.sourceThread = raw.thread = 99;
-    raw.kind = proof::WindowKind::other;
-    raw.identityKnown = raw.metadataKnown = raw.present = raw.visible = raw.geometryKnown = raw.hierarchyKnown = true;
-    const proof::HelperScopeEvidence verified{ true, true, true, true, true, false, false };
-    expect(proof::verifiedHelperSurface(raw, verified), "verified helper surface was not scoped");
-    auto scope = verified; scope.registered = false;
-    expect(!proof::verifiedHelperSurface(raw, scope), "an unregistered source was scoped");
-    scope = verified; scope.image = false;
-    expect(!proof::verifiedHelperSurface(raw, scope), "unknown helper image was scoped");
-    scope = verified; scope.instance = false;
-    expect(!proof::verifiedHelperSurface(raw, scope), "unknown helper instance was scoped");
-    scope = verified; scope.thread = false;
-    expect(!proof::verifiedHelperSurface(raw, scope), "unknown helper thread was scoped");
-    scope = verified; scope.ownerCompatible = false;
-    expect(!proof::verifiedHelperSurface(raw, scope), "conflicting raw owner was scoped");
-    scope = verified; scope.productAssociation = true;
-    expect(!proof::verifiedHelperSurface(raw, scope), "product-linked facts were scoped");
-    scope = verified; scope.terminalAssociation = true;
-    expect(!proof::verifiedHelperSurface(raw, scope), "console-linked facts were scoped");
-    auto terminal = raw; terminal.kind = proof::WindowKind::console;
-    expect(!proof::verifiedHelperSurface(terminal, verified), "terminal class was hidden by helper registration");
-    auto vanished = raw;
-    vanished.event = EVENT_OBJECT_CREATE; vanished.kind = proof::WindowKind::unknown;
-    vanished.owner = vanished.thread = 0;
-    vanished.metadataKnown = vanished.identityKnown = vanished.present = vanished.visible = false;
-    expect(proof::verifiedHelperSurface(vanished, verified) && !vanished.metadataKnown && !vanished.present,
-           "verified helper scope fabricated vanished-window metadata");
-    vanished.event = EVENT_OBJECT_SHOW;
-    expect(!proof::verifiedHelperSurface(vanished, verified), "unknown SHOW visibility was scoped");
-    auto show = raw; show.generated = 10; show.received = { 10, 100 };
-    auto create = raw; create.event = EVENT_OBJECT_CREATE; create.generated = 20; create.received = { 20, 200 };
-    const auto windows = proof::correlateWindows({ show, create }, true, true);
-    scope = verified; scope.registered = false;
-    expect(windows[0].conflict && windows[1].conflict && show.generated == 10 && create.generated == 20 &&
-           !proof::verifiedHelperSurface(show, scope), "unclassified SHOW-before-CREATE was erased");
-
-    std::set<std::string> codes;
-    bool safeCodes = true;
-    for (const auto* code : proof::FinalConditions) {
-        const std::string text(code);
-        safeCodes = safeCodes && text.rfind("final-", 0) == 0 && text.size() <= 80 &&
-            text.find_first_not_of("abcdefghijklmnopqrstuvwxyz-") == std::string::npos && codes.insert(text).second;
-    }
-    expect(safeCodes && codes.size() == 31, "final condition catalog is unsafe or incomplete");
-    bool fixedFailure = false;
-    try { throw proof::FinalObservationFailure("final-root-image-mismatch", "final-root-registration"); }
-    catch (const std::exception& error) {
-        const auto* final = dynamic_cast<const proof::FinalObservationFailure*>(&error);
-        fixedFailure = final && std::string(failureCode(error)) == "final-root-image-mismatch" &&
-            std::string(final->stage) == "final-root-registration";
-    }
-    expect(fixedFailure, "early final condition reverted to an unclassified calibration failure");
-    check(cases == 20 && liveReport, "final observer scenario count or report differs");
-    *liveReport << "DIAG final-observer-cases cases=20 passed=20 fixed_conditions=31\n";
+    check(cases == 6 && liveReport, "process instance scenario count or report differs");
+    *liveReport << "DIAG process-instance-cases cases=6 passed=6\n";
     liveReport->flush();
 }
 
@@ -1941,7 +1911,11 @@ void sourceLifetimeCases() {
            "missing process interval was invented");
     expect(!resolve(raw, graph, proof::ThreadGraph(std::vector<proof::ThreadEvent>{}), retained).known,
            "missing thread interval was invented");
-    expect(!proof::nativeEnvironmentAllowed(proof::ObservationProfile::nativeFixture, true, recovered.known, false, false, false),
+    startup::Evidence missingImage;
+    startup::Actor unknownSource;
+    unknownSource.identity = false;
+    missingImage.actors.push_back(unknownSource);
+    expect(startup::reduceActors(missingImage).actors.state != startup::State::satisfied,
            "recovered source identity bypassed the exact image requirement");
     auto clock = raw; clock.received.afterQpc = clock.received.qpc - 1;
     expect(!resolve(clock, graph, threads, retained).known && !resolve(raw, graph, threads, retained, false).known,
@@ -2137,90 +2111,77 @@ void callerContextCases() {
     liveReport->flush();
 }
 
-void observationProfileCases() {
-    using Profile = proof::ObservationProfile;
-    proof::WindowFact created;
-    created.event = EVENT_OBJECT_CREATE;
-    created.window = 100;
-    created.kind = proof::WindowKind::unknown;
-    auto destroyed = created;
-    destroyed.event = EVENT_OBJECT_DESTROY;
-    const std::vector<proof::WindowFact> raw{ created, destroyed };
-    const proof::WindowLifetime life{ { 0, 1 }, true, true, false };
-    const proof::HelperScopeEvidence source{ true, true, true, true, true, false, false };
+void appContractCases() {
+    using State = startup::State;
+    using Role = startup::Role;
+    startup::Evidence base;
+    base.profile = startup::Profile::functionality;
+    base.expectedRoots = base.expectedCoordinators = 1;
+    for (const auto role : { Role::gui, Role::coordinator, Role::verifier, Role::server, Role::command }) {
+        startup::Actor value; value.role = role; value.retainedLive = role == Role::server;
+        base.actors.push_back(value);
+    }
     size_t cases = 0;
-    const auto expect = [&](bool value, const char* message) {
+    const auto expect = [&](const startup::Evidence& value, State actor, State capture) {
         ++cases;
-        if (!value && liveReport) { *liveReport << "DIAG observation-profile-case-failed index=" << cases << "\n"; liveReport->flush(); }
-        check(value, message);
+        const auto result = startup::reduceActors(value);
+        if ((result.actors.state != actor || result.capture.state != capture) && liveReport)
+            *liveReport << "DIAG app-contract-case-failed index=" << cases << "\n";
+        check(result.actors.state == actor && result.capture.state == capture, "app-contract-row-failed");
     };
-    expect(proof::completeNonPresenterTransient(raw, life, source) && !raw[0].metadataKnown &&
-           raw[0].kind == proof::WindowKind::unknown, "source-bound transient fabricated metadata");
-    auto shown = raw; shown[0].event = EVENT_OBJECT_SHOW;
-    expect(!proof::completeNonPresenterTransient(shown, life, source), "SHOW was treated as a GUI-only transient");
-    auto visible = raw; visible[0].visible = true;
-    expect(!proof::completeNonPresenterTransient(visible, life, source), "positive visibility was hidden");
-    auto terminal = raw; terminal[0].kind = proof::WindowKind::console;
-    expect(!proof::completeNonPresenterTransient(terminal, life, source), "console identity was hidden");
-    auto association = source; association.terminalAssociation = true;
-    expect(!proof::completeNonPresenterTransient(raw, life, association), "console application association was hidden");
-    auto unknown = source; unknown.image = false;
-    expect(!proof::completeNonPresenterTransient(raw, life, unknown), "unknown source image was accepted");
-    unknown = source; unknown.thread = false;
-    expect(!proof::completeNonPresenterTransient(raw, life, unknown), "unknown primary thread was accepted");
-    auto conflict = life; conflict.conflict = true;
-    expect(!proof::completeNonPresenterTransient(raw, conflict, source), "conflicting transient lifetime was accepted");
-    association = source; association.productAssociation = true;
-    expect(!proof::completeNonPresenterTransient(raw, life, association), "instrumentation scope hid a product relation");
-    expect(proof::nativeEnvironmentAllowed(Profile::nativeFixture, true, true, true, false, false),
-           "closed fixture capability was not recognized");
-    expect(!proof::nativeEnvironmentAllowed(Profile::nativeFixture, false, true, true, false, false),
-           "unverified fixture source enabled closed scope");
-    expect(!proof::nativeEnvironmentAllowed(Profile::installedFunctionality, true, true, true, false, false),
-           "installed functionality inherited closed scope");
-    expect(!proof::nativeEnvironmentAllowed(Profile::installedBusy, true, true, true, false, false),
-           "installed busy-port inherited closed scope");
-    expect(!proof::nativeEnvironmentAllowed(Profile::calibration, true, true, true, false, false) &&
-           !proof::nativeEnvironmentAllowed(Profile::diagnostic, true, true, true, false, false),
-           "nonfixture context inherited closed scope");
-    expect(!proof::nativeEnvironmentAllowed(Profile::nativeFixture, true, true, true, true, false) &&
-           !proof::nativeEnvironmentAllowed(Profile::nativeFixture, true, true, true, false, true),
-           "controlled creation or association was scoped as environment");
-    proof::ConsoleBinding binding;
-    binding.window = binding.lifetime = binding.presenterActor = 1;
-    binding.clientActor = 2;
-    binding.presenter = binding.presenterThread = 1;
-    binding.client = binding.clientThread = 2;
-    binding.sourceThreadCreation = 1;
-    binding.role = proof::PresenterRole::classic;
-    binding.presenterKnown = binding.sourceThreadBound = binding.presenterEtw = true;
-    binding.clientKnown = binding.clientThreadBound = binding.clientEtw = binding.association = binding.noOtherClients = true;
-    binding.ambient = true;
-    expect(proof::ambientConsoleScoped(Profile::nativeFixture, true, binding), "fully verified ambient binding was rejected");
-    auto bad = binding; bad.clientKnown = false;
-    auto host = binding; host.role = proof::PresenterRole::unknown;
-    expect(!proof::ambientConsoleScoped(Profile::nativeFixture, true, bad) &&
-           !proof::ambientConsoleScoped(Profile::nativeFixture, true, host), "unknown ambient host or client was accepted");
-    bad = binding; bad.noOtherClients = false;
-    expect(!proof::ambientConsoleScoped(Profile::nativeFixture, true, bad), "mixed owned client was scoped ambient");
-    expect(!proof::ambientConsoleScoped(Profile::installedFunctionality, true, binding) &&
-           !proof::ambientConsoleScoped(Profile::installedBusy, true, binding), "installed context accepted unproved ambient activity");
-    binding.ambient = false;
-    proof::WindowResolution product;
-    product.consoleBound = product.identityKnown = true;
-    product.kind = proof::WindowKind::console;
-    auto productWindow = created;
-    productWindow.event = EVENT_OBJECT_SHOW;
-    productWindow.metadataKnown = productWindow.geometryKnown = productWindow.hierarchyKnown = true;
-    productWindow.topLevel = productWindow.onScreen = productWindow.present = productWindow.visible = true;
-    bool productFails = true;
-    for (const auto profile : { Profile::calibration, Profile::nativeFixture, Profile::installedFunctionality,
-                               Profile::installedBusy, Profile::diagnostic })
-        productFails = productFails && proof::visibleBoundConsole(productWindow, product) &&
-            !proof::ambientConsoleScoped(profile, true, binding);
-    expect(productFails, "a profile hid visible product-terminal evidence");
-    check(cases == 20 && liveReport, "profile scenario count or report differs");
-    *liveReport << "DIAG observation-profile-cases cases=20 passed=20 profiles=5 raw_metadata_preserved=1\n";
+    expect(base, State::satisfied, State::satisfied);
+    auto value = base; value.terminals = { { false, true, false } }; expect(value, State::satisfied, State::satisfied);
+    value = base; value.actors.clear(); expect(value, State::unknown, State::satisfied);
+    for (size_t actor = 0; actor < 5; ++actor) {
+        value = base; value.terminals = { { true, true, true } }; expect(value, State::satisfied, State::violated);
+    }
+    value = base; value.terminals = { { true, true, false } }; expect(value, State::satisfied, State::violated);
+    value = base; value.terminals = { { true, false, false } }; expect(value, State::satisfied, State::unknown);
+    expect(value, State::satisfied, State::unknown);
+    value.terminals.push_back({ true, true, false }); expect(value, State::satisfied, State::violated);
+    value = base; value.candidateAmbiguous = true; expect(value, State::unknown, State::satisfied);
+    value = base; value.actors[1].identity = false; expect(value, State::unknown, State::satisfied);
+    value = base; value.terminals = { { true, false, false } }; expect(value, State::satisfied, State::unknown);
+    value = base; value.actors.erase(value.actors.begin()); expect(value, State::unknown, State::satisfied);
+    value = base; value.actors[0].image = false; expect(value, State::violated, State::satisfied);
+    value = base; value.actors.erase(value.actors.begin() + 1); expect(value, State::unknown, State::satisfied);
+    value = base; value.actors.erase(value.actors.begin() + 2); expect(value, State::unknown, State::satisfied);
+    value = base; value.actors[3].retainedLive = false; expect(value, State::unknown, State::satisfied);
+    value = base; value.actors.pop_back(); expect(value, State::unknown, State::satisfied);
+    value = base; value.actors[2].arguments = false; expect(value, State::violated, State::satisfied);
+    value = base; value.actors.push_back({}); expect(value, State::violated, State::satisfied);
+    value = base; value.actors[1].exitKnown = false; expect(value, State::unknown, State::satisfied);
+    value = base; value.actors[3].retainedLive = false; value.actors[3].exitExpected = false; expect(value, State::violated, State::satisfied);
+    expect(base, State::satisfied, State::satisfied);
+    value = base; value.profile = startup::Profile::busy; expect(value, State::violated, State::satisfied);
+    value = {}; value.expectedRoots = 2; value.expectedCoordinators = 0;
+    startup::Actor gui; gui.role = Role::gui; value.actors = { gui, gui }; expect(value, State::satisfied, State::satisfied);
+    value = base; value.healthy = false; expect(value, State::satisfied, State::unknown);
+    expect(base, State::satisfied, State::satisfied);
+    value = base; value.calibrated = false; expect(value, State::satisfied, State::unknown);
+    value = base; value.terminals = { { false, false, false } }; expect(value, State::satisfied, State::satisfied);
+    check(cases == 32, "app-contract-case-count");
+    startup::HostSample host;
+    host.evaluated = true;
+    for (auto& hive : host.hives) hive.open = ERROR_FILE_NOT_FOUND;
+    for (auto& helper : host.helpers) helper.known = true;
+    size_t hostCases = 0;
+    const auto hostExpect = [&](const startup::HostSample& before, const startup::HostSample& after, State expected) {
+        ++hostCases;
+        check(startup::hostPremise(before, after).state == expected, "host-contract-row-failed");
+    };
+    hostExpect(host, host, State::satisfied);
+    auto empty = host;
+    for (auto& hive : empty.hives) { hive.open = ERROR_SUCCESS; hive.type = REG_SZ; hive.empty = true; }
+    hostExpect(empty, empty, State::satisfied);
+    auto bad = empty; bad.hives[0].empty = false; bad.hives[0].bytes = 8; hostExpect(bad, bad, State::unknown);
+    bad = empty; bad.hives[1].empty = false; bad.hives[1].bytes = 8; hostExpect(bad, bad, State::unknown);
+    bad = empty; bad.hives[0].empty = false; bad.hives[0].bytes = 2; hostExpect(bad, bad, State::unknown);
+    bad = empty; bad.hives[0].type = REG_BINARY; hostExpect(bad, bad, State::unknown);
+    bad = host; bad.hives[0].open = ERROR_ACCESS_DENIED; hostExpect(bad, bad, State::unknown);
+    hostExpect(host, empty, State::violated);
+    check(hostCases == 8 && liveReport, "host-contract-case-count");
+    *liveReport << "DIAG app-contract-cases actors=32 host=8 passed=40\n";
     liveReport->flush();
 }
 
@@ -2710,7 +2671,7 @@ void handleDiagnostic(const std::map<std::wstring, std::wstring>& options, std::
             options.at(L"--fixture"), observer, roots, report, false, &verdict);
     controls.push_back(calibration(observer, report, &controlStarts));
     observer.stop();
-    observer.assertNoVisibleTerminals(roots, controls, report);
+    observer.assertCalibrations(controls, report);
     observer.finishIdentities();
     report << "HANDLE acquisition=complete exclusion=" << verdictName(verdict)
            << " gui-activations=" << roots.size() << " calibration-controls=" << controlStarts
@@ -3055,6 +3016,7 @@ void installed(const std::map<std::wstring, std::wstring>& options, std::ofstrea
           package.wstring().find(L"__we33aa8nvkpcc") != std::wstring::npos,
           "installed observation requires the exact package family");
     const bool busy = options.at(L"--mode") == L"busy";
+    beginHost(options, report, busy ? "installed-busy" : "installed-functionality");
     proof::Observer observer(true, busy ? proof::ObservationProfile::installedBusy : proof::ObservationProfile::installedFunctionality);
     observer.reportTo(report);
     observed("semantic-caller-bind", [&] { bindSemanticCaller(observer, control, options.at(L"--mode")); });
@@ -3103,12 +3065,16 @@ void installed(const std::map<std::wstring, std::wstring>& options, std::ofstrea
         }, "semantic channel did not finish", 10000);
     });
     controls.push_back(calibration(observer, report));
+    if (!busy) {
+        const auto server = parseFixturePid(readSemanticRecord(control / L"winning-server.txt"), 16);
+        observer.retainWinningServer(server, (package / L"runtime" / L"node.exe").wstring());
+    }
+    activeHost->finish(report);
     observer.stop();
     const auto roots = observer.registeredRoots(executable, busy ? 1 : 3, busy ? 1 : 0);
-    observer.assertNoVisibleTerminals(roots, controls, report);
-    observer.finishIdentities();
+    completeApp(observer, roots, controls, report);
     report << "PASS installed-" << (busy ? "busy" : "functionality")
-           << ";native-roots=" << roots.size() << ";console-controls=2;visible-product-terminals=0"
+           << ";native-roots=" << roots.size() << ";console-controls=2;app-scoped=1"
            << ";console-records=" << observer.consoles().size()
            << ";window-records=" << observer.windows().size() << ";attachment=not-used\n";
 }
@@ -3209,23 +3175,26 @@ int wmain(int argc, wchar_t** argv) {
             observed("failure-envelope-cases", [] { failureReportingCases(); });
             report << "DIAG failure-envelope-cases cases=9 passed=9\n";
             observed("polling-observation-cases", [] { pollingObservationCases(); });
-            observed("final-observer-cases", [] { finalObserverCases(); });
-            observed("observation-profile-cases", [] { observationProfileCases(); });
+            observed("process-instance-cases", [] { processInstanceCases(); });
+            observed("app-contract-cases", [] { appContractCases(); });
             observed("source-lifetime-cases", [] { sourceLifetimeCases(); });
             observed("semantic-evidence-cases", [] { semanticEvidenceCases(); });
             observed("caller-context-cases", [] { callerContextCases(); });
             observed("fixture-record-cases", [] { fixtureRecordCases(); });
+            beginHost(options, report, "preflight");
             proof::Observer observer(true, proof::ObservationProfile::calibration);
             size_t started = 0;
             windowCorrelationCases();
             observed("console-binding-cases", [] { consoleBindingCases(); });
             std::vector<proof::WindowFact> controls{ calibration(observer, report, &started) };
             controls.push_back(calibration(observer, report, &started));
+            activeHost->finish(report);
             observer.stop();
             observer.assertHealthy();
             check(started == 2 && observer.clockValid(), "calibration preflight was incomplete");
             observer.assertCalibrations(controls, report);
             observer.finishIdentities();
+            activeHost->completion(report);
             report << "PASS calibration-preflight;controls=2;product-starts=0;node-starts=0\n";
             observed("com-uninitialize", [] { CoUninitialize(); });
             return 0;
@@ -3237,6 +3206,9 @@ int wmain(int argc, wchar_t** argv) {
         const fs::path root(options[L"--root"]);
         fs::create_directories(root);
         preflight(root, options[L"--launcher"]);
+        const auto context = startup::Binding::read(options.at(L"--contract")).context;
+        check(context == "native-inert" || context == "N2" || context == "N3" || context == "LC-001", "startup-context-binding");
+        beginHost(options, report, context);
         proof::Observer observer(true, proof::ObservationProfile::nativeFixture, verifyFixedFixture(options[L"--fixture"]));
         std::vector<proof::WindowFact> controls{ calibration(observer, report) };
         std::vector<DWORD> roots;
@@ -3248,10 +3220,8 @@ int wmain(int argc, wchar_t** argv) {
                     observer, roots, report, options[L"--console-only"] == L"true");
         }
         controls.push_back(calibration(observer, report));
-        observer.stop();
-        observer.assertNoVisibleTerminals(roots, controls, report);
-        observer.finishIdentities();
-        report << "PASS observer;console-controls=2;visible-product-terminals=0;attachment=not-used\n";
+        completeApp(observer, roots, controls, report);
+        report << "PASS app-observer;console-controls=2;app-scoped=1;attachment=not-used\n";
         observed("com-uninitialize", [] { CoUninitialize(); });
         return 0;
     } catch (const std::exception& failure) {
@@ -3260,6 +3230,19 @@ int wmain(int argc, wchar_t** argv) {
         const auto* setupFailure = dynamic_cast<const FixtureSetupFailure*>(&failure);
         writeFailure(report, failure, setupFailure ? setupFailure->stage : finalFailure ? finalFailure->stage :
                      calibrationFailure ? calibrationFailure->stage : lastStage);
+        if (activeHost) {
+            const auto& binding = activeHost->binding();
+            if (binding.context == "preflight" || binding.context == "N2" || binding.context == "N3" || binding.context == "LC-001") {
+                if (!activeHost->completionPublished()) activeHost->completion(report);
+            } else if (!appCapturePublished) {
+                const auto host = activeHost->finish(report);
+                startup::ActorResult missing;
+                missing.actors.add(startup::State::unknown, "actor-missing");
+                missing.capture.add(startup::State::unknown, "capture-incomplete");
+                startup::printCapture(report, binding, host, missing, 0, 0, 0);
+                appCapturePublished = true;
+            }
+        }
         if (SUCCEEDED(com)) observed("com-uninitialize", [] { CoUninitialize(); });
         return 1;
     }

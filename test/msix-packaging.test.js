@@ -2,9 +2,11 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
 import { EventEmitter } from 'node:events';
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, readFileSync, mkdtempSync, mkdirSync, writeFileSync, rmSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { runInNewContext } from 'node:vm';
+import { tmpdir } from 'node:os';
 
 import {
   LOCAL_SERVER_GENERATION_HEADER_NAME,
@@ -22,6 +24,177 @@ const INSPECT = join(ROOT, 'scripts', 'inspect-msix.mjs');
 const PROOF = join(ROOT, 'scripts', 'msix-proof.mjs');
 
 const read = (path) => readFileSync(path, 'utf8');
+
+const observationBinding = {
+  commit: 'a'.repeat(40), tree: 'b'.repeat(40), captureId: 'c'.repeat(32), architecture: 'x64',
+  proofInputDigest: 'd'.repeat(64), creationReceiptDigest: 'e'.repeat(64), startupInputsDigest: 'f'.repeat(64),
+  deployment: { kind: 'installed', family: 'PanelStackLabs.RecapPage_we33aa8nvkpcc', architecture: 'x64', packageDigest: '1'.repeat(64) },
+};
+function observationText() {
+  const b = observationBinding;
+  return ['begin', 'end'].flatMap((phase) => [0, 1].map((slot) => (
+    `DIAG host-sample phase=${phase} slot=${slot} registryView=native64 open=2 query=0 type=0 bytes=0 literalEmpty=0 registryClosed=1 helperKnown=1 helperMachine=34404 helperError=0`
+  ))).join('\n') + '\n' + `DIAG app-capture-v2 profile=installed-functionality captureId=${b.captureId} commit=${b.commit} tree=${b.tree} architecture=x64 proofInputDigest=${b.proofInputDigest} creationReceiptDigest=${b.creationReceiptDigest} startupInputsDigest=${b.startupInputsDigest} hostState=satisfied hostReason=none actorState=satisfied actorReason=none captureState=satisfied captureReason=none roots=3 coordinators=3 verifiers=1 servers=1 commands=3 visible=0 unresolved=0 rawUnknown=19 unassessed=19 externalRequests=1`;
+}
+async function observationFixture(overrides = {}) {
+  const contract = await import('../scripts/lib/startup-contract.mjs');
+  const definition = read(PROOF).match(/^async function withNativeObservation\([\s\S]*?^\}/m)?.[0];
+  assert.ok(definition, 'the installed observation boundary must exist');
+  const child = new EventEmitter();
+  child.pid = 91;
+  child.stdout = new EventEmitter();
+  child.stderr = new EventEmitter();
+  child.kill = () => queueMicrotask(() => { child.emit('exit', 1); child.emit('close'); });
+  const context = {
+    process: { env: { GITHUB_ACTIONS: 'true' } },
+    ROOT: 'fixture-root', join, tmpdir: () => 'fixture-temp', mkdtempSync: () => 'fixture-capture',
+    verifyNativeArtifact: async () => ({ root: 'fixture-tools' }),
+    createSemanticCapture: () => ({}),
+    spawn: () => child,
+    existsSync: () => true,
+    statSync: () => ({ size: 1000 }),
+    readFileSync: () => 'PASS installed-functionality\n',
+    writeFileSync: () => queueMicrotask(() => { child.emit('exit', 0); child.emit('close'); }),
+    publishSemanticRecord: () => {},
+    startupCaptureInputs: () => observationBinding,
+    closingStartupInputs: () => ({ digest: observationBinding.startupInputsDigest }),
+    captureRequest: contract.captureRequest,
+    parseCaptureReport: contract.parseCaptureReport,
+    composeCapture: contract.composeCapture,
+    demandCapturePass: contract.demandCapturePass,
+    rmSync: () => {},
+    waitFor: async (predicate) => {
+      await Promise.resolve();
+      const value = predicate();
+      assert.ok(value, 'the inert observation predicate must settle');
+      return value;
+    },
+    console: { log: () => {} },
+    ...overrides,
+  };
+  return runInNewContext(`let activeSemanticCapture = null;\n${definition}
+    withNativeObservation({ InstallLocation: 'fixture-package' }, 'x64', 'package',
+      'functionality', async () => ({ startupBodyCompleted: true }));`, context);
+}
+
+test('installed startup rejects legacy success without mandatory evidence', async () => {
+  const nested = (text) => (error) => (error.errors ?? [error]).some((failure) => failure.message.includes(text));
+  await assert.rejects(observationFixture(), nested('report-invalid'));
+  const valid = () => observationFixture({ readFileSync: () => observationText() });
+  assert.equal((await valid()).startupBodyCompleted, true);
+  await assert.rejects(observationFixture({ readFileSync: () => observationText()
+    .replace('actorState=satisfied actorReason=none', 'actorState=unknown actorReason=actor-missing') }), /actor-missing/);
+  await assert.rejects(observationFixture({ readFileSync: () => observationText() + '\nDIAG path=C:\\private' }), nested('report-invalid'));
+  await assert.rejects(observationFixture({ readFileSync: () => observationText(), rmSync: () => { throw new Error('capture-cleanup'); } }),
+    nested('capture-cleanup'));
+  const scenario = read(PROOF).match(/^async function runInstalledScenario\([\s\S]*?^\}/m)?.[0];
+  const failure = new Error('late-installed-cleanup');
+  await assert.rejects(runInNewContext(`${scenario}
+    runInstalledScenario(async (context) => { context.cleanupAuthorized = true; return await capture(); });`, {
+    capture: valid, cleanupPackage: () => { throw failure; }, AggregateError,
+  }), (error) => error.errors[0] === failure);
+});
+
+test('GUI default creation contracts call the real browser adapter and default server environment', async () => {
+  const production = await import('../packaging/windows/Launcher.mjs');
+  const present = read(LAUNCHER).match(/^export async function presentLaunch\([\s\S]*?^\}$/m)[0].replace('export ', '');
+  let browserCall;
+  let exit;
+  const output = capturedStream();
+  await runInNewContext(`${present}\npresentLaunch({
+    args: ['--gui-startup-v1'], output, errorOutput: output, environment: {},
+    coordinate: async (options) => { await options.openBrowser(); return { status: 'opened' }; },
+    setExitCode: setExit
+  });`, {
+    selectGuiStartup: production.selectGuiStartup, coordinateLaunch: production.coordinateLaunch,
+    openDefaultBrowser: (url, options) => {
+      browserCall = { url, options };
+      const child = fakeChild();
+      queueMicrotask(() => child.emit('exit', 0));
+      return production.openDefaultBrowser(url, { ...options, spawnImpl: () => child });
+    },
+    encodeGuiResult: production.encodeGuiResult, writeGuiFrame: production.writeGuiFrame,
+    LAUNCH_RESULT: production.LAUNCH_RESULT, GUI_BROWSER_TIMEOUT_MS: production.GUI_BROWSER_TIMEOUT_MS,
+    ORIGIN: production.ORIGIN, output, setExit: (code) => { exit = code; },
+    process: { argv: [], stdout: output, stderr: output, env: {}, arch: 'x64' },
+    fail: () => { throw new Error('GUI called console failure'); },
+    Buffer,
+  });
+  assert.equal(exit, 0);
+  assert.equal(browserCall.url, 'http://127.0.0.1:8787/');
+  assert.equal(browserCall.options.timeoutMs, 30000);
+  assert.equal(output.frames.length, 1);
+});
+
+function startupLayoutFixture() {
+  const root = mkdtempSync(join(tmpdir(), 'recap-startup-inputs-'));
+  return {
+    root,
+    put(path, bytes) {
+      const file = join(root, ...path.split('/'));
+      mkdirSync(dirname(file), { recursive: true });
+      writeFileSync(file, bytes);
+    },
+    close() { rmSync(root, { recursive: true, force: true }); },
+  };
+}
+async function populateStartupLayout(fixture, architecture = 'x64', version = '2.0.3.0') {
+  const { SOURCE_FILES, startupSourceInputs, hashBytes, buildStartupVariant } = await import('../scripts/lib/startup-contract.mjs');
+  for (const [path, source] of SOURCE_FILES) fixture.put(path, readFileSync(join(ROOT, ...source.split('/'))));
+  fixture.put('AppxManifest.xml', read(MANIFEST).replace(/Version="[^"]+"/, `Version="${version}"`)
+    .replace(/ProcessorArchitecture="[^"]+"/, `ProcessorArchitecture="${architecture}"`));
+  fixture.put('RecapPageLauncher.exe', 'native-fixture');
+  fixture.put('runtime/node.exe', 'node-fixture');
+  const nativeBytes = Buffer.from('native-record');
+  fixture.put('native-build.json', nativeBytes);
+  fixture.put('src/msix-generation.json', JSON.stringify({ packageVersion: version, generation: 'a'.repeat(64) }));
+  const native = { digest: hashBytes(nativeBytes), record: { outputs: [{ architecture, sha256: hashBytes(Buffer.from('native-fixture')) }] } };
+  return buildStartupVariant({ layout: fixture.root, architecture, version, native,
+    nodeHash: hashBytes(Buffer.from('node-fixture')), sourceInputs: startupSourceInputs(ROOT) });
+}
+
+test('startup expectations bind three package variants and reject an unlisted executable import', async () => {
+  const { startupSourceInputs } = await import('../scripts/lib/startup-contract.mjs');
+  for (const [architecture, version] of [['x64', '2.0.3.0'], ['arm64', '2.0.3.0'], ['x64', '2.0.3.1']]) {
+    const fixture = startupLayoutFixture();
+    try {
+      const variant = await populateStartupLayout(fixture, architecture, version);
+      assert.equal(variant.identity.architecture, architecture);
+      assert.equal(variant.identity.version, version);
+      assert.equal(variant.files.length, 9);
+    } finally { fixture.close(); }
+  }
+  const fixture = startupLayoutFixture();
+  try {
+    for (const path of ['packaging/windows/Launcher.mjs', 'server.mjs', 'src/js/lib/coverHost.js', 'src/js/lib/localServer.js']) {
+      fixture.put(path, readFileSync(join(ROOT, ...path.split('/'))));
+    }
+    fixture.put('server.mjs', read(join(ROOT, 'server.mjs')) + "\nimport './unexpected.mjs';\n");
+    assert.throws(() => startupSourceInputs(fixture.root), /input-mismatch/);
+  } finally { fixture.close(); }
+});
+
+test('installed startup bindings reject altered inputs activation ambiguity and stale expectations', async () => {
+  const { bindInstalledInputs, boundedFile, validateActivationManifest, validateExpectations } = await import('../scripts/lib/startup-contract.mjs');
+  const fixture = startupLayoutFixture();
+  try {
+    const variant = await populateStartupLayout(fixture);
+    assert.equal(bindInstalledInputs(fixture.root, variant).files, 9);
+    for (const input of variant.files) {
+      const file = join(fixture.root, ...input.path.split('/'));
+      const bytes = readFileSync(file);
+      fixture.put(input.path, Buffer.concat([bytes, Buffer.from('changed')]));
+      assert.throws(() => bindInstalledInputs(fixture.root, variant), /input-mismatch/);
+      fixture.put(input.path, bytes);
+    }
+    assert.throws(() => validateActivationManifest(read(MANIFEST) + '<Application Id="extra">', 'x64', '2.0.2.0'), /input-mismatch/);
+    assert.throws(() => boundedFile(fixture.root, '../escaped'), /input-mismatch/);
+    assert.throws(() => validateExpectations({ schemaVersion: 2 }, {
+      commit: 'a'.repeat(40), tree: 'b'.repeat(40), nativeDigest: 'c'.repeat(64), sourceInputs: [],
+    }));
+    assert.throws(() => bindInstalledInputs(fixture.root, { ...variant, files: variant.files.slice(1) }));
+  } finally { fixture.close(); }
+});
 
 function capturedStream() {
   const stream = new EventEmitter();
@@ -215,7 +388,10 @@ test('the browser helper settles once and keeps the legacy no-timeout default', 
     const clock = browserClock();
     const child = fakeChild();
     const pending = openDefaultBrowser(undefined, {
-      spawnImpl: () => child, ...clock, ...(timeoutMs ? { timeoutMs } : {}),
+      spawnImpl: (...args) => {
+        assert.deepEqual(args, ['cmd', ['/c', 'start', '', 'http://127.0.0.1:8787/'], { stdio: 'ignore', windowsHide: true }]);
+        return child;
+      }, ...clock, ...(timeoutMs ? { timeoutMs } : {}),
     });
     assert.equal(clock.timers.size, timeoutMs ? 1 : 0);
     child.emit('exit', 0);
@@ -608,6 +784,19 @@ test('the coordinator starts a hidden detached server with independent stdio', a
       windowsHide: true,
     },
   ]);
+  const source = read(LAUNCHER);
+  const environment = source.match(/^export function packageEnvironment\([\s\S]*?^\}/m)[0].replace('export ', '');
+  const spawn = source.match(/^export function spawnServer\([\s\S]*?^\}/m)[0].replace('export ', '');
+  const inherited = { mrt_port: '9999', MRT_NO_OPEN: '0', KEEP_ME: 'yes' };
+  let defaultOptions;
+  runInNewContext(`${environment}\n${spawn}\nspawnServer('C:\\\\Package\\\\server.mjs');`, {
+    process: { execPath: 'C:\\Package\\runtime\\node.exe', env: inherited }, ROOT: 'C:\\Package',
+    spawn: (exe, args, options) => { defaultOptions = JSON.parse(JSON.stringify({ exe, args, options })); return child; },
+  });
+  assert.deepEqual(defaultOptions, {
+    exe: 'C:\\Package\\runtime\\node.exe', args: ['C:\\Package\\server.mjs'],
+    options: { cwd: 'C:\\Package', detached: true, env: { KEEP_ME: 'yes', MRT_NO_OPEN: '1' }, stdio: 'ignore', windowsHide: true },
+  });
 });
 
 test('the coordinator accepts only a full package-input generation digest', async () => {
@@ -710,8 +899,9 @@ test('server ownership requires the listening packaged executable and server com
     },
   }), true);
   assert.equal(invocation[0], 'powershell');
+  assert.deepEqual(invocation[1].slice(0, 3), ['-NoProfile', '-NonInteractive', '-Command']);
   assert.match(invocation[1].join(' '), /OwningProcess -eq 41/);
-  assert.equal(invocation[2].timeout, 8000);
+  assert.deepEqual(invocation[2], { encoding: 'utf8', timeout: 8000, windowsHide: true });
   assert.equal(verifyServerProcess(41, {
     ...options,
     execFile: () => JSON.stringify({
