@@ -419,6 +419,10 @@ test('native artifact transfer pins exact inputs and refuses digest mismatches',
   assert.doesNotMatch(native, /stoul\(observed\.substr/);
   assert.match(proof, /\$Result\.NonNativeFailure/);
   assert.match(native, /app-contract-cases actors=32 host=8 passed=40/);
+  assert.match(native, /fixture-cleanup-cases fixtures=7 diagnostic=1 passed=8 old_exit_rule_rejected=2/);
+  assert.match(native, /observed\("fixture-cleanup-cases", \[\] \{ fixtureCleanupCases\(\); \}\)/);
+  assert.match(observer, /startup::applyFixtureExit\(fact, identity,/);
+  assert.match(observer, /startup::prioritizeActorContext\(finalActorContexts_, linked, context\)/);
   assert.match(native, /ObservationProfile::nativeFixture, verifyFixedFixture\(options\[L"--fixture"\]\)/);
   assert.match(observer, /unknown_object_metadata=/);
   assert.match(observer, /unassessed_global=/);

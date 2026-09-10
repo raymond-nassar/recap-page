@@ -1132,6 +1132,10 @@ class Observer {
     bool finalBegun_ = false, finalSectionOpen_ = false;
     size_t finalExpectedRoots_ = 0, finalActualRoots_ = 0;
     std::set<DWORD> finalContextPids_;
+    std::vector<startup::ActorContext> finalActorContexts_;
+    std::map<size_t, startup::Actor> finalActorFacts_;
+    std::vector<startup::FixtureCleanupWitness> fixtureCleanup_;
+    std::map<size_t, startup::FixtureCleanupWitness> finalFixtureContexts_;
     std::vector<SourceResolution> finalSources_;
     std::map<size_t, const char*> reportCategories_;
     std::set<size_t> finalConsoleContexts_;
@@ -1522,6 +1526,7 @@ class Observer {
             const auto& value = graph.instances[index];
             if (finalPid_ && value.start.pid != finalPid_ && value.start.parent != finalPid_) continue;
             if (!finalPid_ && !finalContextPids_.empty() && !finalContextPids_.count(value.start.pid)) continue;
+            if (!finalPid_ && finalContextPids_.empty() && !finalActorContexts_.empty()) continue;
             add(index);
             sourceContexts.insert(index);
         }
@@ -1533,6 +1538,34 @@ class Observer {
         for (const auto index : urlHelpers) add(index);
         const auto directCount = context.size();
         for (size_t position = 0; position < directCount; ++position) add(parentOf(context[position]));
+        std::set<size_t> failedActors;
+        for (const auto& value : finalActorContexts_) {
+            add(value.instance);
+            if (startup::actorPremise(value.fact).state != startup::State::satisfied) failedActors.insert(value.instance);
+        }
+        std::vector<size_t> linked(finalConsoleContexts_.begin(), finalConsoleContexts_.end());
+        for (const auto& event : consoles_) {
+            const auto* source = actor(event.sourceActor);
+            const auto sourceInstance = source && source->instanceKnown
+                ? graph.unique(source->pid, static_cast<LONGLONG>(source->capturedQpc)) : SIZE_MAX;
+            WindowFact timingInput;
+            timingInput.sourceThread = event.sourceThread;
+            timingInput.generated = event.generated; timingInput.received = event.received;
+            const auto timing = resolveSource(timingInput, graph, semanticThreads, {}, captureBegin_, frequency_, clockValid(), healthy());
+            std::vector<size_t> clients;
+            if (timing.earliest > 0 && timing.latest >= timing.earliest)
+                for (size_t index = 0; index < graph.instances.size(); ++index) {
+                    const auto& value = graph.instances[index];
+                    if (value.start.pid == event.pid && value.start.timestamp <= timing.latest && value.until >= timing.earliest)
+                        clients.push_back(index);
+                }
+            if (failedActors.count(sourceInstance) || std::any_of(clients.begin(), clients.end(),
+                [&](size_t index) { return failedActors.count(index) != 0; })) {
+                linked.push_back(sourceInstance);
+                linked.insert(linked.end(), clients.begin(), clients.end());
+            }
+        }
+        context = startup::prioritizeActorContext(finalActorContexts_, linked, context);
         std::set<size_t> shown;
         for (size_t index = 0; index < std::min<size_t>(20, context.size()); ++index) shown.insert(context[index]);
         const auto key = [&](size_t index) {
@@ -1621,6 +1654,8 @@ class Observer {
             const bool directUrlChild = parentReported && urlHelpers.count(parent);
             const auto association = semanticAssociation(directOperation, directExplorerRequest, directOperationChild,
                 urlHelpers.count(index) != 0, directUrlChild, semanticImage.broker);
+            const auto app = finalActorFacts_.find(index), appParent = finalActorFacts_.find(parent);
+            const auto cleanup = finalFixtureContexts_.find(index);
             *report_ << "DIAG final-process instance_row=" << value.startRow << " pid=" << value.start.pid
                      << " parent=" << value.start.parent << " coverage_begin_qpc=" << value.start.timestamp
                      << " creation_observed=" << value.creationObserved << " rundown_begin=" << value.rundownBegin
@@ -1647,11 +1682,31 @@ class Observer {
                      << " aumid_request_match=" << directExplorerRequest
                      << " canonical_url_helper=" << (urlHelpers.count(index) != 0) << " direct_url_child=" << directUrlChild
                      << " source_thread_rows_matched=" << sourceThreads << " delegated_association_known=0"
-                     << " semantic_association=" << association << " semantic_acceptance_input=0\n";
+                     << " semantic_association=" << association << " semantic_acceptance_input=0"
+                     << " app_role=" << (app == finalActorFacts_.end() ? -1 : static_cast<int>(app->second.role))
+                     << " parent_app_role=" << (appParent == finalActorFacts_.end() ? -1 : static_cast<int>(appParent->second.role))
+                     << " failed_actor_priority=" << (failedActors.count(index) != 0);
+            if (app != finalActorFacts_.end()) {
+                const auto& fact = app->second;
+                const bool matched = fact.role != startup::Role::unexpected;
+                *report_ << " app_image_known=" << fact.imageKnown << " app_arguments_known=" << fact.argumentsKnown
+                         << " app_role_matched=" << matched << " app_image_matched=" << (matched && fact.imageKnown && fact.image)
+                         << " app_arguments_matched=" << (matched && fact.argumentsKnown && fact.arguments)
+                         << " exit_expectation_known=" << fact.exitExpectationKnown << " exit_expected=" << fact.exitExpected
+                         << " exit_basis=" << (fact.role == startup::Role::sentinel ? "fixture-owned-cleanup"
+                                : fact.retainedLive ? "retained-server" : "ordinary-exit-contract")
+                         << " exit_reason=" << (fact.exitExpectationKnown && fact.exitExpected ? "none" : fact.exitReason);
+            }
+            *report_ << " fixture_cleanup_witness=" << (cleanup != finalFixtureContexts_.end());
+            if (cleanup != finalFixtureContexts_.end()) startup::printFixtureCleanup(*report_, cleanup->second);
+            *report_ << "\n";
         }
         *report_ << "DIAG final-context stage=" << finalStage_ << " pid=" << finalPid_ << " hwnd=" << finalWindow_
                  << " expected_roots=" << finalExpectedRoots_ << " actual_roots=" << finalActualRoots_
                  << " process_candidates=" << context.size() << " emitted=" << emitted << " omitted=" << context.size() - emitted
+                 << " failed_actor_candidates=" << failedActors.size()
+                 << " failed_actors_omitted=" << std::count_if(failedActors.begin(), failedActors.end(),
+                        [&](size_t index) { return !shown.count(index); })
                  << " healthy=" << healthy() << " clocks=" << clockValid() << "\n";
         report_->flush();
     }
@@ -2007,6 +2062,26 @@ public:
         }
         check(!control || client.primaryActor != 0, "control primary thread is required");
         clients_.emplace(pid, std::move(client));
+    }
+    size_t retainFixtureCleanup(unsigned int fixture, DWORD root, DWORD parent, DWORD pid, HANDLE process) {
+        check(profile_ == ObservationProfile::nativeFixture && fixedFixtureSource_ && (fixture == 9 || fixture == 10) &&
+              fixtureCleanup_.size() < 2, "fixture-cleanup-binding-invalid");
+        check(std::none_of(fixtureCleanup_.begin(), fixtureCleanup_.end(),
+            [&](const auto& value) { return value.actor.fixture == fixture || value.actor.pid == pid; }),
+            "fixture-cleanup-binding-duplicate");
+        const auto gui = clients_.find(root), coordinator = clients_.find(parent);
+        check(gui != clients_.end() && coordinator != clients_.end() && roots_.count(root), "fixture-cleanup-owner-missing");
+        bindClient(pid, process);
+        startup::FixtureCleanupWitness value;
+        value.actor = { fixture, pid, parent, root, clients_.at(pid).creation,
+                        coordinator->second.creation, gui->second.creation, true };
+        value.retainedQpc = moment().qpc;
+        fixtureCleanup_.push_back(value);
+        return fixtureCleanup_.size() - 1;
+    }
+    startup::FixtureCleanupWitness& fixtureCleanup(size_t index) {
+        check(index < fixtureCleanup_.size(), "fixture-cleanup-witness-missing");
+        return fixtureCleanup_[index];
     }
     void bindControlSample(DWORD pid, const WindowFact& sample) {
         const auto found = clients_.find(pid);
@@ -2661,6 +2736,7 @@ public:
         std::map<size_t, startup::Role> roles;
         std::map<size_t, std::wstring> layouts;
         std::map<size_t, startup::Actor> facts;
+        finalActorContexts_.clear(); finalActorFacts_.clear(); finalFixtureContexts_.clear();
         std::set<std::wstring> runtimes, guiImages;
         for (size_t position = 0; position < rootAnchors_.size(); ++position) {
             const auto& root = rootAnchors_[position];
@@ -2674,9 +2750,13 @@ public:
             roles[node] = startup::Role::gui; layouts[node] = layout;
             startup::Actor fact;
             fact.role = startup::Role::gui;
-            fact.image = recap::samePath(executablePath(root.pid, value.start), root.image);
+            const auto image = executablePath(root.pid, value.start);
+            fact.imageKnown = image.find(L'\\') != std::wstring::npos;
+            fact.argumentsKnown = !semanticArguments(value.start.command).empty();
+            fact.image = recap::samePath(image, root.image);
             fact.identity = value.creationObserved && !value.ambiguous;
             fact.exitKnown = value.ended && value.end.exitKnown;
+            fact.exitCode = value.end.exitCode;
             fact.exitExpected = !fact.exitKnown || (evidence.profile == startup::Profile::inert
                 ? value.end.exitCode <= 1 : value.end.exitCode == (evidence.profile == startup::Profile::busy ? 1UL : 0UL));
             facts[node] = fact;
@@ -2718,8 +2798,11 @@ public:
                 const auto image = executablePath(value.start.pid, value.start);
                 const auto args = semanticArguments(value.start.command);
                 startup::Actor fact;
-                fact.identity = image.find(L'\\') != std::wstring::npos && !args.empty();
+                fact.imageKnown = image.find(L'\\') != std::wstring::npos;
+                fact.argumentsKnown = !args.empty();
+                fact.identity = fact.imageKnown && fact.argumentsKnown;
                 fact.exitKnown = value.ended && value.end.exitKnown;
+                fact.exitCode = value.end.exitCode;
                 const bool node = recap::samePath(image, layout + L"\\runtime\\node.exe");
                 if (roles[parent] == startup::Role::gui) {
                     fact.role = startup::Role::coordinator; fact.image = node;
@@ -2745,7 +2828,7 @@ public:
                         WaitForSingleObject(retained->second.process.get(), 0) == WAIT_TIMEOUT;
                     fact.exitExpected = fact.retainedLive;
                 } else if (fact.exitKnown) {
-                    fact.exitExpected = fact.role == startup::Role::server || fact.role == startup::Role::sentinel ||
+                    fact.exitExpected = fact.role == startup::Role::server ||
                         (evidence.profile == startup::Profile::inert && fact.role == startup::Role::coordinator)
                         ? value.end.exitCode <= 1 : value.end.exitCode == (evidence.profile == startup::Profile::busy ? 1UL : 0UL);
                 }
@@ -2754,6 +2837,40 @@ public:
                     if (!thread.ambiguous && thread.owner == value.start.pid && thread.begin >= value.start.timestamp &&
                         thread.begin <= value.until) threadSeen = true;
                 fact.identity = fact.identity && threadSeen;
+                if (fact.role == startup::Role::sentinel) {
+                    const auto witness = std::find_if(fixtureCleanup_.begin(), fixtureCleanup_.end(),
+                        [&](const auto& item) { return item.actor.pid == value.start.pid; });
+                    startup::FixtureIdentity identity;
+                    const auto name = std::filesystem::path(layout).filename().wstring();
+                    identity.fixture = name == L"F09" ? 9U : name == L"F10" ? 10U : 0U;
+                    identity.pid = value.start.pid; identity.parent = value.start.parent;
+                    const auto& coordinator = graph.instances[parent];
+                    const auto root = graph.unique(coordinator.start.parent, coordinator.start.timestamp);
+                    identity.root = root == SIZE_MAX ? 0 : graph.instances[root].start.pid;
+                    const auto retainedCreation = [&](DWORD pid) {
+                        const auto retained = clients_.find(pid);
+                        return retained == clients_.end() ? uint64_t{ 0 } : retained->second.creation;
+                    };
+                    identity.creation = retainedCreation(identity.pid);
+                    identity.parentCreation = retainedCreation(identity.parent);
+                    identity.rootCreation = retainedCreation(identity.root);
+                    if (witness != fixtureCleanup_.end()) {
+                        const auto retained = static_cast<LONGLONG>(witness->retainedQpc);
+                        identity.bound = fact.identity && root != SIZE_MAX && roles.count(root) &&
+                            roles[root] == startup::Role::gui && graph.unique(identity.pid, retained) == index &&
+                            graph.unique(identity.parent, retained) == parent && graph.unique(identity.root, retained) == root &&
+                            graph.instances[root].ended &&
+                            graph.instances[root].until <= static_cast<LONGLONG>(witness->survivalQpc);
+                        finalFixtureContexts_[index] = *witness;
+                    }
+                    startup::applyFixtureExit(fact, identity, witness == fixtureCleanup_.end() ? nullptr : &*witness);
+                    if (fact.exitExpected && witness != fixtureCleanup_.end() && value.ended &&
+                        (value.until < static_cast<LONGLONG>(witness->stopBeginQpc) ||
+                         value.until > static_cast<LONGLONG>(witness->stopEndQpc))) {
+                        fact.exitExpectationKnown = fact.exitExpected = false;
+                        fact.exitReason = "actor-ambiguous";
+                    }
+                }
                 if (args.empty()) fact.arguments = true;
                 if (image.find(L'\\') == std::wstring::npos) fact.image = true;
                 roles[index] = fact.role; layouts[index] = layout; facts[index] = fact; changed = true;
@@ -2771,11 +2888,21 @@ public:
         std::set<DWORD> ownedPids;
         for (const auto& [index, fact] : facts) {
             evidence.actors.push_back(fact); ownedPids.insert(graph.instances[index].start.pid);
+            const auto& instance = graph.instances[index];
+            const auto parent = instance.creationObserved ? graph.unique(instance.start.parent, instance.start.timestamp) : SIZE_MAX;
+            finalActorContexts_.push_back({ index, parent, fact });
             report << "DIAG app-actor instance=" << graph.instances[index].startRow << " pid=" << graph.instances[index].start.pid
                    << " role=" << static_cast<int>(fact.role) << " identity=" << fact.identity << " image=" << fact.image
                    << " arguments=" << fact.arguments << " exit_known=" << fact.exitKnown << " exit_expected=" << fact.exitExpected
+                   << " exit_code=" << fact.exitCode << " exit_expectation_known=" << fact.exitExpectationKnown
+                   << " exit_basis=" << (fact.role == startup::Role::sentinel ? "fixture-owned-cleanup"
+                        : fact.retainedLive ? "retained-server" : "ordinary-exit-contract")
+                   << " exit_reason=" << (fact.exitExpectationKnown && fact.exitExpected ? "none" : fact.exitReason)
+                   << " image_known=" << fact.imageKnown
+                   << " arguments_known=" << fact.argumentsKnown << " role_matched=" << (fact.role != startup::Role::unexpected)
                    << " retained_live=" << fact.retainedLive << "\n";
         }
+        finalActorFacts_ = facts;
         const auto relates = [&](DWORD pid, uint64_t generated, const Moment& received) {
             if (!pid || generated > received.tick || received.tick - generated > 120000) return false;
             const auto delay = received.tick - generated;
@@ -2823,7 +2950,9 @@ public:
         report << "DIAG app-scope claim=app-startup-contract-v2 app_visible=" << captured.result.visible
                << " app_unresolved=" << captured.result.unresolved << " unassessed_global=" << captured.unassessed
                << " unknown_object_metadata=" << captured.rawUnknown << " external_request_children=" << captured.requests << "\n";
-        const auto& context = offending.empty() ? global : offending;
+        const std::vector<size_t> noWindowOffenders;
+        const auto& context = offending.empty()
+            ? (captured.result.actors.state == startup::State::satisfied ? global : noWindowOffenders) : offending;
         finalContextPids_.clear();
         for (const auto index : context) {
             if (finalSources_[index].known) finalContextPids_.insert(finalSources_[index].owner);

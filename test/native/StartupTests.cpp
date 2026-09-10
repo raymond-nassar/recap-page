@@ -2185,6 +2185,64 @@ void appContractCases() {
     liveReport->flush();
 }
 
+void fixtureCleanupCases() {
+    using State = startup::State;
+    startup::FixtureCleanupWitness good;
+    good.actor = { 9, 300, 200, 100, 30, 20, 10, true };
+    good.retainedQpc = 100; good.survivalQpc = 200; good.stopBeginQpc = 210; good.stopEndQpc = 230;
+    good.survivalObserved = good.stopObserved = good.complete = true;
+    good.terminationAttempted = good.terminationSucceeded = good.exitKnown = true;
+    good.stopCalls = 1; good.survivalWait = good.initialWait = WAIT_TIMEOUT; good.finalWait = WAIT_OBJECT_0;
+    good.requestedExit = good.exitCode = 2;
+    size_t cases = 0;
+    const auto expect = [&](const startup::FixtureIdentity& identity, const startup::FixtureCleanupWitness* witness,
+                            DWORD rawExit, State expected) {
+        ++cases;
+        startup::Actor actor;
+        actor.role = startup::Role::sentinel; actor.exitCode = rawExit;
+        startup::applyFixtureExit(actor, identity, witness);
+        startup::Evidence evidence;
+        evidence.expectedRoots = evidence.expectedCoordinators = 0;
+        evidence.actors.push_back(actor);
+        const auto actual = startup::reduceActors(evidence);
+        check(actual.actors.state == expected && actor.exitExpectationKnown == (expected != State::unknown),
+              "fixture-cleanup-row-failed");
+    };
+    expect(good.actor, &good, 2, State::satisfied);
+    check(!(good.exitCode <= 1), "old-sentinel-exit-rule-did-not-reject-owned-cleanup");
+    auto second = good; second.actor.fixture = 10;
+    expect(second.actor, &second, 2, State::satisfied);
+    check(!(second.exitCode <= 1), "old-sentinel-exit-rule-did-not-reject-owned-cleanup");
+    expect(good.actor, nullptr, 2, State::unknown);
+    auto borrowed = good; ++borrowed.actor.creation;
+    expect(good.actor, &borrowed, 2, State::unknown);
+    auto early = good; early.survivalWait = WAIT_OBJECT_0;
+    expect(good.actor, &early, 2, State::violated);
+    expect(good.actor, &good, 1, State::violated);
+    auto failed = good; failed.terminationSucceeded = false; failed.terminationError = ERROR_ACCESS_DENIED;
+    expect(good.actor, &failed, 2, State::violated);
+    startup::Actor unexpected, missingExit;
+    missingExit.role = startup::Role::sentinel;
+    startup::applyFixtureExit(missingExit, good.actor, nullptr);
+    std::vector<startup::ActorContext> actors{ { 100, 101, unexpected }, { 200, 201, missingExit } };
+    std::vector<size_t> global;
+    for (size_t index = 0; index < 30; ++index) global.push_back(index);
+    const auto context = startup::prioritizeActorContext(actors, { 300, 100 }, global);
+    ++cases;
+    check(context.size() == 35 && context[0] == 100 && context[1] == 200 &&
+          context[2] == 101 && context[3] == 201 && context[4] == 300 &&
+          startup::actorPremise(unexpected).state == State::violated &&
+          startup::actorPremise(missingExit).state == State::unknown,
+          "failed-actor-context-was-crowded-out");
+    std::ostringstream record;
+    startup::printFixtureCleanup(record, good);
+    check(record.str().size() < 2048 && record.str().find("stop_exit=2") != std::string::npos &&
+          record.str().find("survival_wait=258") != std::string::npos && cases == 8 && liveReport,
+          "fixture-cleanup-case-count-or-report");
+    *liveReport << "DIAG fixture-cleanup-cases fixtures=7 diagnostic=1 passed=8 old_exit_rule_rejected=2\n";
+    liveReport->flush();
+}
+
 struct CalibrationState {
     const char* stage = "calibration-start";
     proof::Moment begin, beforeAttach;
@@ -2533,6 +2591,7 @@ void fixture(const std::string& id, const fs::path& root, const fs::path& native
         }
     });
     Child gui, coordinator, sentinel;
+    size_t sentinelWitness = SIZE_MAX;
     fixtureSetup("fixture-gui-create", setup, [&] {
         start(gui, (layout / L"RecapPageLauncher.exe").wstring(), L"", 0, TRUE);
         setup.gui = gui.pid;
@@ -2601,6 +2660,8 @@ void fixture(const std::string& id, const fs::path& root, const fs::path& native
         });
         fixtureSetup("fixture-sentinel-retain", setup, [&] {
             retain(sentinel, setup.sentinel, (layout / L"runtime" / L"node.exe").wstring());
+            sentinelWitness = observer.retainFixtureCleanup(id == "F09" ? 9U : 10U,
+                gui.pid, coordinator.pid, sentinel.pid, sentinel.process.get());
             setup.clientRetained = true;
         });
     }
@@ -2641,8 +2702,38 @@ void fixture(const std::string& id, const fs::path& root, const fs::path& native
         check(gui.exit() == 1, "error dismissal did not fail");
     }
     if (sentinel.process) {
-        check(sentinel.exit() == STILL_ACTIVE, "detached fixture sentinel was terminated");
-        sentinel.stop();
+        auto& witness = observer.fixtureCleanup(sentinelWitness);
+        witness.survivalQpc = proof::moment().qpc;
+        witness.survivalObserved = true;
+        witness.survivalWait = WaitForSingleObject(sentinel.process.get(), 0);
+        witness.survivalError = witness.survivalWait == WAIT_FAILED ? GetLastError() : 0;
+        if (witness.survivalWait != WAIT_TIMEOUT) {
+            report << "DIAG fixture-owned-cleanup";
+            startup::printFixtureCleanup(report, witness); report << "\n"; report.flush();
+        }
+        check(witness.survivalWait == WAIT_TIMEOUT, "detached fixture sentinel was terminated");
+        witness.stopBeginQpc = proof::moment().qpc;
+        witness.requestedExit = 2;
+        const auto finish = [&] {
+            witness.stopObserved = true; witness.stopCalls = sentinel.stopCalls;
+            witness.complete = sentinel.cleanup.complete;
+            witness.terminationAttempted = sentinel.cleanup.terminationAttempted;
+            witness.terminationSucceeded = sentinel.cleanup.terminationSucceeded;
+            witness.initialWait = sentinel.cleanup.initialWait; witness.finalWait = sentinel.cleanup.finalWait;
+            witness.waitError = sentinel.cleanup.waitError; witness.terminationError = sentinel.cleanup.terminationError;
+            if (witness.finalWait == WAIT_OBJECT_0) {
+                witness.exitKnown = GetExitCodeProcess(sentinel.process.get(), &witness.exitCode) != FALSE;
+                witness.exitError = witness.exitKnown ? 0 : GetLastError();
+            }
+            LARGE_INTEGER counter{};
+            if (QueryPerformanceCounter(&counter)) witness.stopEndQpc = static_cast<uint64_t>(counter.QuadPart);
+            else witness.clockError = GetLastError();
+            report << "DIAG fixture-owned-cleanup";
+            startup::printFixtureCleanup(report, witness); report << "\n"; report.flush();
+        };
+        try { sentinel.stop(); }
+        catch (const std::exception&) { finish(); throw; }
+        finish();
     }
     if (coordinator.process) coordinator.stop();
     checkpoint("EXIT", "fixture-handshake");
@@ -3177,6 +3268,7 @@ int wmain(int argc, wchar_t** argv) {
             observed("polling-observation-cases", [] { pollingObservationCases(); });
             observed("process-instance-cases", [] { processInstanceCases(); });
             observed("app-contract-cases", [] { appContractCases(); });
+            observed("fixture-cleanup-cases", [] { fixtureCleanupCases(); });
             observed("source-lifetime-cases", [] { sourceLifetimeCases(); });
             observed("semantic-evidence-cases", [] { semanticEvidenceCases(); });
             observed("caller-context-cases", [] { callerContextCases(); });

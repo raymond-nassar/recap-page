@@ -8,6 +8,7 @@
 #include <cstring>
 #include <fstream>
 #include <ostream>
+#include <set>
 #include <stdexcept>
 #include <string>
 #include <utility>
@@ -246,11 +247,115 @@ public:
 
 enum class Role { gui, coordinator, verifier, server, command, sentinel, unexpected };
 enum class Profile { inert, functionality, busy };
+struct FixtureIdentity {
+    unsigned int fixture = 0;
+    DWORD pid = 0, parent = 0, root = 0;
+    uint64_t creation = 0, parentCreation = 0, rootCreation = 0;
+    bool bound = false;
+};
+struct FixtureCleanupWitness {
+    FixtureIdentity actor;
+    uint64_t retainedQpc = 0, survivalQpc = 0, stopBeginQpc = 0, stopEndQpc = 0;
+    unsigned int stopCalls = 0;
+    bool survivalObserved = false, stopObserved = false, complete = false;
+    bool terminationAttempted = false, terminationSucceeded = false, exitKnown = false;
+    DWORD survivalWait = WAIT_FAILED, survivalError = 0, initialWait = WAIT_FAILED, finalWait = WAIT_FAILED;
+    DWORD waitError = 0, terminationError = 0, requestedExit = 0, exitCode = 0, exitError = 0, clockError = 0;
+};
+inline Premise fixtureExit(const FixtureIdentity& actor, const FixtureCleanupWitness* witness,
+                          bool exitKnown, DWORD exitCode) {
+    Premise result;
+    if (actor.fixture != 9 && actor.fixture != 10) {
+        result.add(State::violated, "actor-wrong-input"); return result;
+    }
+    if (!witness) { result.add(State::unknown, "actor-missing"); return result; }
+    const auto& bound = witness->actor;
+    if (!actor.bound || !bound.bound || !actor.creation || !actor.parentCreation || !actor.rootCreation ||
+        actor.fixture != bound.fixture || actor.pid != bound.pid || actor.parent != bound.parent ||
+        actor.root != bound.root || actor.creation != bound.creation ||
+        actor.parentCreation != bound.parentCreation || actor.rootCreation != bound.rootCreation) {
+        result.add(State::unknown, "actor-ambiguous"); return result;
+    }
+    if (!witness->survivalObserved) result.add(State::unknown, "actor-missing");
+    else if (witness->survivalWait == WAIT_OBJECT_0) result.add(State::violated, "behavior-mismatch");
+    else if (witness->survivalWait != WAIT_TIMEOUT || witness->survivalError)
+        result.add(State::unknown, "actor-missing");
+    if (!witness->stopObserved) result.add(State::unknown, "actor-missing");
+    else {
+        if (witness->initialWait == WAIT_OBJECT_0) result.add(State::violated, "behavior-mismatch");
+        if (witness->stopCalls != 1 || !witness->terminationAttempted || !witness->terminationSucceeded || !witness->complete ||
+            witness->initialWait != WAIT_TIMEOUT || witness->finalWait != WAIT_OBJECT_0 ||
+            witness->waitError || witness->terminationError)
+            result.add(State::violated, "resource-cleanup-failed");
+        if (witness->requestedExit != 2) result.add(State::violated, "behavior-mismatch");
+    }
+    if (!witness->retainedQpc || !witness->survivalQpc || !witness->stopBeginQpc || !witness->stopEndQpc ||
+        witness->clockError || witness->retainedQpc > witness->survivalQpc ||
+        witness->survivalQpc > witness->stopBeginQpc || witness->stopBeginQpc > witness->stopEndQpc)
+        result.add(State::unknown, "actor-ambiguous");
+    if (!witness->exitKnown || !exitKnown) result.add(State::unknown, "actor-missing");
+    else if (witness->exitCode != witness->requestedExit || exitCode != witness->exitCode)
+        result.add(State::violated, "behavior-mismatch");
+    return result;
+}
+inline void printFixtureCleanup(std::ostream& out, const FixtureCleanupWitness& value) {
+    out << " fixture=" << value.actor.fixture << " cleanup_pid=" << value.actor.pid
+        << " cleanup_creation=" << value.actor.creation << " cleanup_parent=" << value.actor.parent
+        << " cleanup_parent_creation=" << value.actor.parentCreation << " cleanup_root=" << value.actor.root
+        << " cleanup_root_creation=" << value.actor.rootCreation << " retained_qpc=" << value.retainedQpc
+        << " survival_observed=" << value.survivalObserved << " survival_wait=" << value.survivalWait
+        << " survival_error=" << value.survivalError << " survival_qpc=" << value.survivalQpc
+        << " stop_observed=" << value.stopObserved << " stop_calls=" << value.stopCalls << " stop_begin_qpc=" << value.stopBeginQpc
+        << " stop_end_qpc=" << value.stopEndQpc << " stop_clock_error=" << value.clockError
+        << " stop_attempted=" << value.terminationAttempted << " stop_succeeded=" << value.terminationSucceeded
+        << " stop_complete=" << value.complete << " stop_initial_wait=" << value.initialWait
+        << " stop_final_wait=" << value.finalWait << " stop_wait_error=" << value.waitError
+        << " stop_error=" << value.terminationError << " stop_requested_exit=" << value.requestedExit
+        << " stop_exit_known=" << value.exitKnown << " stop_exit=" << value.exitCode << " stop_exit_error=" << value.exitError;
+}
 struct Actor {
     Role role = Role::unexpected;
     bool identity = true, image = true, arguments = true, parent = true;
     bool exitKnown = true, exitExpected = true, retainedLive = false;
+    bool exitExpectationKnown = true, imageKnown = false, argumentsKnown = false;
+    DWORD exitCode = 0;
+    const char* exitReason = "behavior-mismatch";
 };
+inline void applyFixtureExit(Actor& actor, const FixtureIdentity& identity, const FixtureCleanupWitness* witness) {
+    const auto result = fixtureExit(identity, witness, actor.exitKnown, actor.exitCode);
+    actor.exitExpectationKnown = result.state != State::unknown;
+    actor.exitExpected = result.state == State::satisfied;
+    actor.exitReason = result.reason;
+}
+inline Premise actorPremise(const Actor& actor) {
+    Premise result;
+    if (actor.role == Role::unexpected)
+        result.add(actor.identity ? State::violated : State::unknown, actor.identity ? "actor-unexpected" : "actor-missing");
+    if (!actor.identity || !actor.parent) result.add(State::unknown, "actor-ambiguous");
+    if (!actor.image || !actor.arguments) result.add(State::violated, "actor-wrong-input");
+    if (!actor.retainedLive && !actor.exitKnown) result.add(State::unknown, "actor-missing");
+    if (!actor.exitExpectationKnown) result.add(State::unknown, actor.exitReason);
+    else if (!actor.exitExpected) result.add(State::violated, actor.exitReason);
+    return result;
+}
+struct ActorContext {
+    size_t instance = SIZE_MAX, parent = SIZE_MAX;
+    Actor fact;
+};
+inline std::vector<size_t> prioritizeActorContext(const std::vector<ActorContext>& actors,
+                                                const std::vector<size_t>& linked,
+                                                const std::vector<size_t>& remaining) {
+    std::vector<size_t> result;
+    std::set<size_t> present;
+    const auto add = [&](size_t index) {
+        if (index != SIZE_MAX && present.insert(index).second) result.push_back(index);
+    };
+    for (const auto& actor : actors) if (actorPremise(actor.fact).state != State::satisfied) add(actor.instance);
+    for (const auto& actor : actors) if (actorPremise(actor.fact).state != State::satisfied) add(actor.parent);
+    for (const auto index : linked) add(index);
+    for (const auto index : remaining) add(index);
+    return result;
+}
 struct Terminal {
     bool appLinked = false, visible = false, complete = true;
 };
@@ -274,14 +379,10 @@ inline ActorResult reduceActors(const Evidence& evidence) {
         case Role::verifier: ++result.verifiers; break;
         case Role::server: ++result.servers; if (actor.retainedLive) ++result.liveServers; break;
         case Role::command: ++result.commands; break;
-        case Role::unexpected: result.actors.add(actor.identity ? State::violated : State::unknown,
-                                                 actor.identity ? "actor-unexpected" : "actor-missing"); break;
         default: break;
         }
-        if (!actor.identity || !actor.parent) result.actors.add(State::unknown, "actor-ambiguous");
-        if (!actor.image || !actor.arguments) result.actors.add(State::violated, "actor-wrong-input");
-        if (!actor.retainedLive && !actor.exitKnown) result.actors.add(State::unknown, "actor-missing");
-        if (!actor.exitExpected) result.actors.add(State::violated, "behavior-mismatch");
+        const auto premise = actorPremise(actor);
+        result.actors.add(premise.state, premise.reason);
     }
     if (result.roots != evidence.expectedRoots || result.coordinators != evidence.expectedCoordinators)
         result.actors.add(State::unknown, "actor-missing");
