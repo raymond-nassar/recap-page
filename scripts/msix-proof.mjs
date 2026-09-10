@@ -84,7 +84,7 @@ function powershell(script, operation) {
   try {
     if (ticket) activeSemanticCapture.end(ticket, Boolean(failure));
   } catch (error) {
-    if (failure) throw new AggregateError([failure, error], 'helper and semantic reporting failed');
+    if (failure) throw new AggregateError([failure, error], 'helper and semantic reporting failed', { cause: error });
     throw error;
   }
   if (failure) throw failure;
@@ -101,7 +101,7 @@ function publishSemanticRecord(root, name, text) {
     renameSync(temporary, path);
   } catch (error) {
     const errno = Number.isSafeInteger(error.errno) ? error.errno : 'unknown';
-    throw new Error(`semantic record publication failed errno=${errno}`);
+    throw new Error(`semantic record publication failed errno=${errno}`, { cause: error });
   }
 }
 
@@ -133,7 +133,7 @@ function createSemanticCapture(root, architecture, mode, source) {
       received = readFileSync(path, 'utf8');
     } catch (error) {
       const errno = Number.isSafeInteger(error.errno) ? error.errno : 'unknown';
-      throw new Error(`semantic acknowledgement read failed errno=${errno}`);
+      throw new Error(`semantic acknowledgement read failed errno=${errno}`, { cause: error });
     }
     if (received !== String(expected)) throw new Error('semantic acknowledgement differs');
   };

@@ -507,6 +507,6 @@ test('app startup prerequisites preserve native-only and all five installed jour
   assert.match(workflow, /--scenario=update-state-continuity/);
   assert.match(workflow, /scripts\/lib\/startup-contract\.mjs/);
   const build = readFileSync(new URL('../scripts/build-native-launcher.ps1', import.meta.url), 'utf8');
-  assert.ok(build.indexOf('production-creation tests failed') < build.indexOf("foreach ($architecture"));
+  assert.ok(build.indexOf('production-creation tests failed') < build.indexOf('foreach ($architecture'));
   assert.match(build, /WaitForExit\(120000\)/);
 });

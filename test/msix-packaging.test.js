@@ -1415,6 +1415,63 @@ test('aggregate proof failures retain every scenario and cleanup cause', async (
   assert.match(output, /scenario failed/);
   assert.match(output, /cleanup aggregate/);
   assert.match(output, /cleanup failed/);
+
+  const source = read(PROOF);
+  const actualFunction = (name) => {
+    const definition = source.match(new RegExp(`^function ${name}\\([\\s\\S]*?^\\}$`, 'm'))?.[0];
+    assert.ok(definition, `${name} must be the actual proof function`);
+    return definition.replace('fileURLToPath(import.meta.url)', 'proofModule');
+  };
+  const invokeFailure = (name, invocation, dependencies) => {
+    let caught;
+    try {
+      runInNewContext(`${actualFunction(name)}\n${invocation}`, {
+        Error, AggregateError, Buffer, join, ROOT: 'inert-root', ...dependencies,
+      });
+    } catch (failure) {
+      caught = failure;
+    }
+    assert.ok(caught instanceof Error, 'the actual wrapper must throw');
+    return caught;
+  };
+  const privateMarker = 'SYNTHETIC-PRIVATE-CAUSE-NOT-PUBLIC';
+  const publicationCause = new Error(`${privateMarker} publication-path`);
+  publicationCause.errno = -5;
+  const publication = invokeFailure('publishSemanticRecord',
+    "publishSemanticRecord('inert-root', 'record.txt', 'fixed');", {
+      existsSync: () => false,
+      writeFileSync: () => { throw publicationCause; },
+      renameSync: () => { throw new Error('rename must not follow a failed write'); },
+    });
+  assert.equal(publication.cause, publicationCause);
+  assert.equal(publication.message, 'semantic record publication failed errno=-5');
+  assert.doesNotMatch(formatProofError(publication), new RegExp(privateMarker));
+
+  const acknowledgementCause = new Error(`${privateMarker} acknowledgement-path`);
+  acknowledgementCause.errno = -2;
+  const acknowledgement = invokeFailure('createSemanticCapture',
+    "createSemanticCapture('inert-root', 'x64', 'functionality', 'package').begin('listener-query', 'fixed');", {
+      process: { pid: 123, execPath: 'inert-node' }, proofModule: 'inert-proof-module',
+      resolveEdge: () => '', publishSemanticRecord: () => {}, existsSync: () => true,
+      performance: { now: () => 0 },
+      readFileSync: () => { throw acknowledgementCause; },
+    });
+  assert.equal(acknowledgement.cause, acknowledgementCause);
+  assert.equal(acknowledgement.message, 'semantic acknowledgement read failed errno=-2');
+  assert.doesNotMatch(formatProofError(acknowledgement), new RegExp(privateMarker));
+
+  const helper = new Error('original helper failure', { cause: new Error(`${privateMarker} helper-command`) });
+  const combined = invokeFailure('powershell', "powershell('fixed', 'listener-query');", {
+    activeSemanticCapture: { begin: () => ({}), end: () => { throw acknowledgement; } },
+    execFileSync: () => { throw helper; },
+  });
+  assert.ok(combined instanceof AggregateError);
+  assert.deepEqual(combined.errors, [helper, acknowledgement]);
+  assert.equal(combined.cause, acknowledgement);
+  assert.equal(combined.message, 'helper and semantic reporting failed');
+  const formatted = formatProofError(combined);
+  assert.ok(formatted.indexOf('original helper failure') < formatted.indexOf('semantic acknowledgement read failed'));
+  assert.doesNotMatch(formatted, new RegExp(privateMarker));
 });
 
 test('the proof distinguishes the Node supervisor from its server child', async () => {
