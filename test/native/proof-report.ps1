@@ -154,6 +154,13 @@ try {
   Assert-Report ($native.Contains('id == "F10" ? 190000 : 15000')) 'the real watchdog fixture deadline changed'
   Assert-Report ($proof.Contains('if (-not $progress.Failure)')) 'cleanup does not avoid the poisoned report'
   Assert-Report ($proof.Contains('Invoke-ProofCleanupStep $outcome')) 'independent cleanup accounting is not wired'
+  Assert-Report (-not $observer.Contains('check(!starts.count(event.pid), "PID reuse made trace identity ambiguous")')) 'final observer still rejects global PID reuse before relevance'
+  Assert-Report ($observer.Contains('struct ProcessGraph')) 'process-instance reducer is missing'
+  Assert-Report ($observer.Contains('CHECK ENTER final-observer-closure') -and $observer.Contains('FinalConditions[]')) 'fixed final-observer boundaries are missing'
+  Assert-Report ($native.Contains('observer.bindHelper(worker.pid, worker.process.get(), worker.primaryThread.get())')) 'created helper registration is missing'
+  Assert-Report ($native.Contains('pending footer text ink was not captured') -and $native.Contains('Closing this window lets startup continue in the background.')) 'actual footer property or ink evidence is missing'
+  Assert-Report ($proof.Contains('footerInkPixels') -and $proof.Contains('footerBoundsVerified')) 'safe footer artifact fields are not validated'
+  Assert-Report ($native.Contains('RDW_INVALIDATE | RDW_UPDATENOW | RDW_ALLCHILDREN')) 'settled real child/window capture is missing'
   Write-Output "PASS proof-report-fixtures assertions=$script:assertions"
 } finally {
   Remove-Item -LiteralPath $file -Force

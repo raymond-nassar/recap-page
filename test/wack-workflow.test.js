@@ -304,6 +304,12 @@ test('native artifact transfer pins exact inputs and refuses digest mismatches',
   assert.match(observer, /correlateWindows\(windows_, clockValid\(\), healthy\(\), consoleBindings\(\)\)/);
   assert.match(observer, /recap::samePath\(value\.image, classicHostImage_\)/);
   assert.match(observer, /row\.consoleBound && row\.completeControl/);
+  assert.match(observer, /struct ProcessGraph/);
+  assert.match(observer, /CHECK ENTER final-observer-closure/);
+  assert.match(observer, /registered-visual-helper/);
+  assert.match(native, /final-observer-cases cases=20 passed=20 fixed_conditions=31/);
+  assert.match(native, /pending footer text ink was not captured/);
+  assert.match(proof, /footerInkPixels -lt 64/);
   assert.match(observer, /temporary_closed=/);
   assert.doesNotMatch(observer, /ConsoleControl\(|ConsoleSetWindowOwner/);
   if (process.platform === 'win32') {
@@ -313,7 +319,7 @@ test('native artifact transfer pins exact inputs and refuses digest mismatches',
     ], { encoding: 'utf8', timeout: 15000, maxBuffer: 128 * 1024 });
     assert.match(output, /PASS report-limits line-count=4096 size=1048576 poisoned-reparse=0/);
     assert.match(output, /PASS cleanup-accounting report-fatal-clean=1 secondary-faults=2 stages-attempted=7/);
-    assert.match(output, /PASS proof-report-fixtures assertions=55/);
+    assert.match(output, /PASS proof-report-fixtures assertions=62/);
     t.diagnostic(output.trim());
   } else {
     t.diagnostic('Windows-only inert PowerShell reporting fixtures were not executed on this host.');

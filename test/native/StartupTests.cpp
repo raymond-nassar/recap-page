@@ -40,6 +40,7 @@ struct CalibrationFailure : std::runtime_error {
 };
 
 const char* failureCode(const std::exception& failure) {
+    if (const auto* final = dynamic_cast<const proof::FinalObservationFailure*>(&failure)) return final->code;
     if (dynamic_cast<const WindowMessageFailure*>(&failure)) return "window-message-failed";
     if (const auto* calibration = dynamic_cast<const CalibrationFailure*>(&failure)) return calibration->code;
     static constexpr const char* labels[][2] = {
@@ -68,7 +69,16 @@ const char* failureCode(const std::exception& failure) {
         { "passive F01 observation fence did not complete", "product-terminal-binding-inconclusive" },
         { "unmapped window lifecycle made passive observation inconclusive", "window-lifecycle-inconclusive" },
         { "calibration window lifetime made passive observation inconclusive", "calibration-lifetime-inconclusive" },
-        { "product process created a visible terminal", "product-visible-terminal" }
+        { "product process created a visible terminal", "product-visible-terminal" },
+        { "pending footer text is missing or changed", "pending-footer-text-mismatch" },
+        { "pending footer is not visible within the client", "pending-footer-bounds-invalid" },
+        { "pending footer text ink was not captured", "pending-footer-ink-missing" },
+        { "owned client repaint failed", "owned-client-repaint-failed" },
+        { "registration process identity unavailable", "process-registration-identity-unavailable" },
+        { "registration purpose or image conflict", "process-registration-purpose-conflict" },
+        { "registration requires a retained live process instance", "process-registration-not-live" },
+        { "registered process image differs from its declared purpose", "process-registration-image-mismatch" },
+        { "registered primary thread instance differs", "process-registration-thread-mismatch" }
     };
     for (const auto& label : labels) if (strcmp(failure.what(), label[0]) == 0) return label[1];
     return "unclassified-proof-error";
@@ -713,14 +723,45 @@ struct RenderEvidence {
     bool unclipped = true;
     LONG iconTop = 0, iconBottom = 0;
     bool centered = false;
+    RECT footer{};
+    uint64_t footerInk = 0;
+    bool footerVerified = false;
 };
 
 COLORREF capture(HWND window, const fs::path& destination, RenderEvidence* evidence = nullptr) {
+    check(window && IsWindow(window), "owned capture window is missing");
     RECT rect{};
     check(GetClientRect(window, &rect) != FALSE, "owned client dimensions unavailable");
     check(rect.right > 0 && rect.bottom > 0 &&
           static_cast<uint64_t>(rect.right) * static_cast<uint64_t>(rect.bottom) * 4 + 54 <= 4 * 1024 * 1024,
           "owned client capture exceeds its image bound");
+    if (evidence) {
+        observed("pending-footer-properties", [&] {
+            const auto footer = GetDlgItem(window, 205);
+            const bool text = footer && controlText(footer) == L"Closing this window lets startup continue in the background.";
+            const bool visible = footer && IsWindowVisible(footer);
+            bool bounds = footer && GetWindowRect(footer, &evidence->footer);
+            if (bounds) {
+                SetLastError(ERROR_SUCCESS);
+                const auto moved = MapWindowPoints(nullptr, window, reinterpret_cast<POINT*>(&evidence->footer), 2);
+                bounds = (moved || GetLastError() == ERROR_SUCCESS) && evidence->footer.left >= 0 &&
+                    evidence->footer.top >= 0 && evidence->footer.right <= rect.right && evidence->footer.bottom <= rect.bottom &&
+                    evidence->footer.right > evidence->footer.left && evidence->footer.bottom > evidence->footer.top;
+            }
+            if (liveReport) {
+                *liveReport << "DIAG footer-properties text_match=" << text << " visible=" << visible << " bounds=" << bounds
+                            << " left=" << evidence->footer.left << " top=" << evidence->footer.top
+                            << " right=" << evidence->footer.right << " bottom=" << evidence->footer.bottom << "\n";
+                liveReport->flush();
+            }
+            check(text, "pending footer text is missing or changed");
+            check(visible && bounds, "pending footer is not visible within the client");
+            evidence->footerVerified = true;
+        });
+    }
+    check(observed("owned-client-settle", [&] {
+        return RedrawWindow(window, nullptr, nullptr, RDW_INVALIDATE | RDW_UPDATENOW | RDW_ALLCHILDREN) != FALSE;
+    }), "owned client repaint failed");
     const auto dc = GetDC(window), memory = CreateCompatibleDC(dc);
     BITMAPINFO info{};
     info.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
@@ -733,7 +774,9 @@ COLORREF capture(HWND window, const fs::path& destination, RenderEvidence* evide
     check(bitmap && memory, "fixture window capture unavailable");
     const auto old = SelectObject(memory, bitmap);
     const bool printed = observed("print-window", [&] { return PrintWindow(window, memory, PW_CLIENTONLY) != FALSE; });
+    check(printed, "fixture window capture failed");
     const auto color = GetPixel(memory, 10, 10);
+    check(color != CLR_INVALID, "owned capture background unavailable");
     if (evidence) {
         checkpoint("ENTER", "wordmark-ink");
         RECT heading{};
@@ -781,6 +824,25 @@ COLORREF capture(HWND window, const fs::path& destination, RenderEvidence* evide
         check(evidence->fill > 0 && evidence->outline > 0 && evidence->shadow > 0 && evidence->unclipped,
               "actual wordmark fill outline shadow or unclipped ink was not observed");
         checkpoint("EXIT", "wordmark-ink");
+        checkpoint("ENTER", "pending-footer-ink");
+        LONG left = rect.right, right = -1, top = rect.bottom, bottom = -1;
+        for (LONG y = evidence->footer.top; y < evidence->footer.bottom; ++y) {
+            for (LONG x = evidence->footer.left; x < evidence->footer.right; ++x) {
+                const auto offset = (static_cast<size_t>(y) * static_cast<size_t>(rect.right) + static_cast<size_t>(x)) * 4;
+                if (RGB(pixels[offset + 2], pixels[offset + 1], pixels[offset]) == color) continue;
+                ++evidence->footerInk;
+                left = std::min(left, x); right = std::max(right, x);
+                top = std::min(top, y); bottom = std::max(bottom, y);
+            }
+        }
+        if (liveReport) {
+            *liveReport << "DIAG footer-capture ink_pixels=" << evidence->footerInk
+                        << " ink_left=" << left << " ink_top=" << top << " ink_right=" << right << " ink_bottom=" << bottom << "\n";
+            liveReport->flush();
+        }
+        check(evidence->footerInk >= 64 && right - left >= 16 && bottom - top >= 4,
+              "pending footer text ink was not captured");
+        checkpoint("EXIT", "pending-footer-ink");
     }
     const DWORD size = static_cast<DWORD>(rect.right * rect.bottom * 4);
     BITMAPFILEHEADER header{};
@@ -833,7 +895,12 @@ void writeRenderEvidence(HWND window, const fs::path& root, const RenderEvidence
            << ",\"shadowPixels\":" << evidence.shadow << ",\"fontPatternAvailable\":"
            << (fontMetadata ? "true" : "false") << ",\"renderedReviewRequired\":true,\"expectedFirstCandidate\":\""
            << ascii(names[first]) << "\",\"iconTop\":" << evidence.iconTop
-           << ",\"iconBottom\":" << evidence.iconBottom << ",\"rowCentered\":true,\"fontAvailability\":[";
+           << ",\"iconBottom\":" << evidence.iconBottom << ",\"rowCentered\":true"
+           << ",\"footerTextVerified\":" << (evidence.footerVerified ? "true" : "false")
+           << ",\"footerVisible\":true,\"footerBoundsVerified\":true,\"footerInkPixels\":" << evidence.footerInk
+           << ",\"footerLeft\":" << evidence.footer.left << ",\"footerTop\":" << evidence.footer.top
+           << ",\"footerRight\":" << evidence.footer.right << ",\"footerBottom\":" << evidence.footer.bottom
+           << ",\"fontAvailability\":[";
     for (size_t index = 0; index < names.size(); ++index)
         output << (index ? "," : "") << "{\"name\":\"" << ascii(names[index])
                << "\",\"available\":" << (available[index] ? "true" : "false") << "}";
@@ -913,7 +980,7 @@ void visualOperation(HWND window, const fs::path& root, std::ofstream& report) {
     checkpoint("EXIT", "visual-assertions");
 }
 
-void visual(HWND window, const fs::path& root, std::ofstream&) {
+void visual(HWND window, const fs::path& root, std::ofstream&, proof::Observer& observer) {
     checkpoint("ENTER", "visual-worker");
     DWORD owner = 0;
     check(GetWindowThreadProcessId(window, &owner) != 0 && owner != 0, "visual target ownership unavailable");
@@ -932,6 +999,9 @@ void visual(HWND window, const fs::path& root, std::ofstream&) {
             L" --target-window " + std::to_wstring(reinterpret_cast<uintptr_t>(window)) +
             L" --root " + recap::quoted(root.wstring()) + L" --report " + recap::quoted(liveReportPath.wstring());
         start(worker, recap::modulePath(), args);
+        observed("visual-helper-registration", [&] {
+            observer.bindHelper(worker.pid, worker.process.get(), worker.primaryThread.get());
+        });
         const auto now = GetTickCount64();
         const DWORD remaining = now + 2000 < deadline ? static_cast<DWORD>(deadline - now - 2000) : 0;
         proof::until([&] { return worker.completed(); }, "visual worker operation deadline", remaining);
@@ -1305,6 +1375,116 @@ void supervision() {
     observed("console-binding-cases", [] { consoleBindingCases(); });
 }
 
+void finalObserverCases() {
+    const auto event = [](DWORD pid, DWORD parent, LONGLONG time, bool start) {
+        proof::ProcessEvent value;
+        value.pid = pid; value.parent = parent; value.timestamp = time; value.start = start;
+        value.exitKnown = !start;
+        return value;
+    };
+    const std::vector<proof::ProcessEvent> captured{
+        event(1, 90, 100, true), event(2, 1, 200, true), event(2, 1, 400, false), event(1, 90, 800, false),
+        event(9, 90, 110, true), event(9, 90, 150, false), event(9, 90, 300, true), event(9, 90, 350, false)
+    };
+    size_t cases = 0;
+    const auto expect = [&](bool value, const char* message) {
+        ++cases;
+        if (!value && liveReport) { *liveReport << "DIAG final-observer-case-failed index=" << cases << "\n"; liveReport->flush(); }
+        check(value, message);
+    };
+    const proof::ProcessGraph graph(captured);
+    const auto root = graph.unique(1, 500);
+    const auto lineage = graph.descendants({ root });
+    expect(root != SIZE_MAX && lineage.owned.size() == 2 && lineage.ambiguous == SIZE_MAX &&
+           lineage.missingParent == SIZE_MAX, "unrelated PID recycling changed retained lineage");
+    auto reused = captured;
+    reused.push_back(event(1, 90, 1000, true));
+    reused.push_back(event(3, 1, 1200, true));
+    reused.push_back(event(3, 1, 1300, false));
+    reused.push_back(event(1, 90, 1500, false));
+    const proof::ProcessGraph recycled(reused);
+    const auto recycledLineage = recycled.descendants({ recycled.unique(1, 500) });
+    expect(recycledLineage.owned.size() == 2 && recycledLineage.ambiguous == SIZE_MAX &&
+           recycledLineage.missingParent == SIZE_MAX &&
+           recycled.unique(1, 500) != recycled.unique(1, 1200), "new recycled-parent children were attached to an ended root");
+    auto ambiguous = captured;
+    ambiguous.push_back(event(1, 90, 300, true));
+    expect(proof::ProcessGraph(ambiguous).unique(1, 500) == SIZE_MAX, "ambiguous retained root was accepted");
+    expect(graph.unique(99, 500) == SIZE_MAX, "missing required root was invented");
+    auto orphan = captured;
+    orphan.push_back(event(3, 1, 900, true));
+    const proof::ProcessGraph missingParent(orphan);
+    expect(missingParent.descendants({ missingParent.unique(1, 500) }).missingParent != SIZE_MAX,
+           "a child was attached across an absent parent interval");
+    auto unrelated = captured;
+    unrelated.push_back(event(9, 90, 120, true));
+    const proof::ProcessGraph unrelatedConflict(unrelated);
+    const auto unrelatedLineage = unrelatedConflict.descendants({ unrelatedConflict.unique(1, 500) });
+    expect(unrelatedLineage.owned.size() == 2 && unrelatedLineage.ambiguous == SIZE_MAX &&
+           unrelatedLineage.missingParent == SIZE_MAX,
+           "unrelated ambiguous instances corrupted the retained graph");
+
+    proof::WindowFact raw;
+    raw.window = 100;
+    raw.event = EVENT_OBJECT_SHOW;
+    raw.sourceOwner = raw.owner = 10;
+    raw.sourceThread = raw.thread = 99;
+    raw.kind = proof::WindowKind::other;
+    raw.identityKnown = raw.metadataKnown = raw.present = raw.visible = raw.geometryKnown = raw.hierarchyKnown = true;
+    const proof::HelperScopeEvidence verified{ true, true, true, true, true, false, false };
+    expect(proof::verifiedHelperSurface(raw, verified), "verified helper surface was not scoped");
+    auto scope = verified; scope.registered = false;
+    expect(!proof::verifiedHelperSurface(raw, scope), "an unregistered source was scoped");
+    scope = verified; scope.image = false;
+    expect(!proof::verifiedHelperSurface(raw, scope), "unknown helper image was scoped");
+    scope = verified; scope.instance = false;
+    expect(!proof::verifiedHelperSurface(raw, scope), "unknown helper instance was scoped");
+    scope = verified; scope.thread = false;
+    expect(!proof::verifiedHelperSurface(raw, scope), "unknown helper thread was scoped");
+    scope = verified; scope.ownerCompatible = false;
+    expect(!proof::verifiedHelperSurface(raw, scope), "conflicting raw owner was scoped");
+    scope = verified; scope.productAssociation = true;
+    expect(!proof::verifiedHelperSurface(raw, scope), "product-linked facts were scoped");
+    scope = verified; scope.terminalAssociation = true;
+    expect(!proof::verifiedHelperSurface(raw, scope), "console-linked facts were scoped");
+    auto terminal = raw; terminal.kind = proof::WindowKind::console;
+    expect(!proof::verifiedHelperSurface(terminal, verified), "terminal class was hidden by helper registration");
+    auto vanished = raw;
+    vanished.event = EVENT_OBJECT_CREATE; vanished.kind = proof::WindowKind::unknown;
+    vanished.owner = vanished.thread = 0;
+    vanished.metadataKnown = vanished.identityKnown = vanished.present = vanished.visible = false;
+    expect(proof::verifiedHelperSurface(vanished, verified) && !vanished.metadataKnown && !vanished.present,
+           "verified helper scope fabricated vanished-window metadata");
+    vanished.event = EVENT_OBJECT_SHOW;
+    expect(!proof::verifiedHelperSurface(vanished, verified), "unknown SHOW visibility was scoped");
+    auto show = raw; show.generated = 10; show.received = { 10, 100 };
+    auto create = raw; create.event = EVENT_OBJECT_CREATE; create.generated = 20; create.received = { 20, 200 };
+    const auto windows = proof::correlateWindows({ show, create }, true, true);
+    scope = verified; scope.registered = false;
+    expect(windows[0].conflict && windows[1].conflict && show.generated == 10 && create.generated == 20 &&
+           !proof::verifiedHelperSurface(show, scope), "unclassified SHOW-before-CREATE was erased");
+
+    std::set<std::string> codes;
+    bool safeCodes = true;
+    for (const auto* code : proof::FinalConditions) {
+        const std::string text(code);
+        safeCodes = safeCodes && text.rfind("final-", 0) == 0 && text.size() <= 80 &&
+            text.find_first_not_of("abcdefghijklmnopqrstuvwxyz-") == std::string::npos && codes.insert(text).second;
+    }
+    expect(safeCodes && codes.size() == 31, "final condition catalog is unsafe or incomplete");
+    bool fixedFailure = false;
+    try { throw proof::FinalObservationFailure("final-root-image-mismatch", "final-root-registration"); }
+    catch (const std::exception& error) {
+        const auto* final = dynamic_cast<const proof::FinalObservationFailure*>(&error);
+        fixedFailure = final && std::string(failureCode(error)) == "final-root-image-mismatch" &&
+            std::string(final->stage) == "final-root-registration";
+    }
+    expect(fixedFailure, "early final condition reverted to an unclassified calibration failure");
+    check(cases == 20 && liveReport, "final observer scenario count or report differs");
+    *liveReport << "DIAG final-observer-cases cases=20 passed=20 fixed_conditions=31\n";
+    liveReport->flush();
+}
+
 struct CalibrationState {
     const char* stage = "calibration-start";
     proof::Moment begin, beforeAttach;
@@ -1651,7 +1831,7 @@ void fixture(const std::string& id, const fs::path& root, const fs::path& native
     SetEnvironmentVariableW(L"NoDe_OpTiOnS", nullptr);
     SetEnvironmentVariableW(L"nOdE_pAtH", nullptr);
     roots.push_back(gui.pid);
-    observer.bindRoot(gui.pid, gui.process.get());
+    observer.bindRoot(gui.pid, gui.process.get(), gui.primaryThread.get());
     proof::nativeArchitecture(gui.process.get());
     HWND window = nullptr;
     proof::until([&] { window = windowFor(gui.pid); return window != nullptr; }, "native window did not appear");
@@ -1683,7 +1863,7 @@ void fixture(const std::string& id, const fs::path& root, const fs::path& native
                 check(verdict != HandleVerdict::inherited, "coordinator inherited the unrelated sentinel");
                 check(eventExcluded(verdict), "handle inheritance observation was inconclusive");
             }
-            if (!consoleOnly && eventExcluded(verdict)) visual(window, layout, report);
+            if (!consoleOnly && eventExcluded(verdict)) visual(window, layout, report, observer);
         }
     }
     if (id == "F09" || id == "F10") {
@@ -2097,6 +2277,7 @@ void installed(const std::map<std::wstring, std::wstring>& options, std::ofstrea
           "installed observation requires the exact package family");
     const bool busy = options.at(L"--mode") == L"busy";
     proof::Observer observer(true);
+    observer.watchRootImage(executable);
     std::vector<proof::WindowFact> controls{ calibration(observer, report) };
     write(control / L"ready.txt", "ready");
     bool dismissed = false;
@@ -2237,6 +2418,7 @@ int wmain(int argc, wchar_t** argv) {
             observed("failure-envelope-cases", [] { failureReportingCases(); });
             report << "DIAG failure-envelope-cases cases=9 passed=9\n";
             observed("polling-observation-cases", [] { pollingObservationCases(); });
+            observed("final-observer-cases", [] { finalObserverCases(); });
             proof::Observer observer(true);
             size_t started = 0;
             windowCorrelationCases();
@@ -2278,7 +2460,8 @@ int wmain(int argc, wchar_t** argv) {
         return 0;
     } catch (const std::exception& failure) {
         const auto* calibrationFailure = dynamic_cast<const CalibrationFailure*>(&failure);
-        writeFailure(report, failure, calibrationFailure ? calibrationFailure->stage : lastStage);
+        const auto* finalFailure = dynamic_cast<const proof::FinalObservationFailure*>(&failure);
+        writeFailure(report, failure, finalFailure ? finalFailure->stage : calibrationFailure ? calibrationFailure->stage : lastStage);
         if (SUCCEEDED(com)) observed("com-uninitialize", [] { CoUninitialize(); });
         return 1;
     }
