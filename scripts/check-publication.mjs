@@ -108,6 +108,7 @@ const STORE_PUBLISHER_FILES = [
   'scripts/pack-msix.mjs',
   'scripts/run-wack.ps1',
   'scripts/check-store-submission.mjs',
+  'scripts/lib/startup-contract.mjs',
   'test/msix-packaging.test.js',
 ];
 export const ALLOWED = new Map([

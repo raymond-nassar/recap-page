@@ -272,10 +272,11 @@ const STORE_PUBLISHER_FILES = [
   'scripts/pack-msix.mjs',
   'scripts/run-wack.ps1',
   'scripts/check-store-submission.mjs',
+  'scripts/lib/startup-contract.mjs',
   'test/msix-packaging.test.js',
 ];
 
-test('the public Store publisher GUID is allowed only at its seven intended identity sites', () => {
+test('the public Store publisher GUID is allowed only at its eight intended identity sites', () => {
   const entries = [...ALLOWED.keys()]
     .map((key) => key.split('|'))
     .filter(([file, pattern]) => (
