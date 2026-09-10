@@ -362,6 +362,146 @@ try {
   }
   Write-Output 'PASS semantic-diagnostics frozen-definitions=6 separate-registration=1'
   Write-Output 'PASS host-completion-consumer configurations=12 expected-native-primary-preserved=1'
+
+  $builderTokens = $null
+  $builderErrors = $null
+  $builderAst = [System.Management.Automation.Language.Parser]::ParseFile(
+    (Join-Path $root 'scripts\build-native-launcher.ps1'), [ref]$builderTokens, [ref]$builderErrors)
+  if ($builderErrors.Count) { throw 'builder fixture source did not parse' }
+  $resolution = @($builderAst.FindAll({
+    param($item)
+    if ($item -is [System.Management.Automation.Language.AssignmentStatementAst]) {
+      return $item.Left -is [System.Management.Automation.Language.VariableExpressionAst] -and
+        $item.Left.VariablePath.UserPath -in @('nodeCommand', 'node')
+    }
+    if ($item -is [System.Management.Automation.Language.IfStatementAst]) {
+      foreach ($clause in $item.Clauses) {
+        if (@($clause.Item1.FindAll({
+          param($value)
+          $value -is [System.Management.Automation.Language.VariableExpressionAst] -and
+            $value.VariablePath.UserPath -in @('nodeCommand', 'node')
+        }, $true)).Count) { return $true }
+      }
+    }
+    return $false
+  }, $true))
+  $creationCommands = @($builderAst.FindAll({
+    param($item)
+    $item -is [System.Management.Automation.Language.CommandAst] -and $item.GetCommandName() -ceq 'Start-Process'
+  }, $true))
+  $recordCommands = @($builderAst.FindAll({
+    param($item)
+    $item -is [System.Management.Automation.Language.CommandAst] -and
+      $item.InvocationOperator -eq [System.Management.Automation.Language.TokenKind]::Ampersand -and
+      $item.CommandElements[0].Extent.Text -cin @('node', '$node')
+  }, $true))
+  if ($resolution.Count -lt 1 -or $creationCommands.Count -ne 1 -or $recordCommands.Count -ne 1) {
+    throw 'actual builder Node seams are missing or ambiguous'
+  }
+  $creationSeam = [scriptblock]::Create($creationCommands[0].Extent.Text)
+  $recordTarget = $recordCommands[0].CommandElements[0]
+  function Invoke-BuilderNodeCase {
+    param($Case)
+    $state = [pscustomobject]@{
+      Created = [Collections.Generic.List[object]]::new()
+      Recorded = [Collections.Generic.List[object]]::new()
+      Lookups = [Collections.Generic.List[object]]::new()
+      PathChecks = [Collections.Generic.List[object]]::new()
+      Error = $null
+    }
+    function Get-Command {
+      [CmdletBinding()]
+      param([string]$Name, [string]$CommandType, [switch]$All)
+      $state.Lookups.Add([pscustomobject]@{ Name=$Name; Type=$CommandType; All=[bool]$All })
+      $Case.Commands
+    }
+    function Test-Path {
+      param([object]$LiteralPath, [string]$PathType)
+      $state.PathChecks.Add([pscustomobject]@{ Path=$LiteralPath; Type=$PathType })
+      $Case.ValidPaths -ccontains $LiteralPath
+    }
+    function Start-Process {
+      param([object]$FilePath, $ArgumentList, $WorkingDirectory,
+        [switch]$NoNewWindow, [switch]$PassThru, $RedirectStandardOutput, $RedirectStandardError)
+      $state.Created.Add($FilePath)
+      [pscustomobject]@{ Inert = $true }
+    }
+    function Record-Node {
+      param([object]$FilePath)
+      $state.Recorded.Add($FilePath)
+    }
+    $IncludeProofTools = $Case.Proof
+    $root = 'C:\inert\source'
+    $arguments = 'fixed-inert-arguments'
+    $creationReport = 'C:\inert\output.tap'
+    $creationError = 'C:\inert\output.err'
+    try {
+      foreach ($statement in $resolution) {
+        $parent = $statement.Parent
+        $proofOnly = $false
+        while ($null -ne $parent) {
+          if ($parent -is [System.Management.Automation.Language.IfStatementAst] -and
+              $parent.Clauses[0].Item1.Extent.Text -ceq '$IncludeProofTools') { $proofOnly = $true }
+          $parent = $parent.Parent
+        }
+        if ($proofOnly -and -not $IncludeProofTools) { continue }
+        . ([scriptblock]::Create($statement.Extent.Text))
+      }
+      if ($IncludeProofTools) { $ignored = & $creationSeam }
+      if ($recordTarget -is [System.Management.Automation.Language.VariableExpressionAst]) {
+        Record-Node -FilePath (Get-Variable -Name $recordTarget.VariablePath.UserPath -ValueOnly)
+      } elseif ($recordTarget -is [System.Management.Automation.Language.StringConstantExpressionAst]) {
+        Record-Node -FilePath $recordTarget.Value
+      } else { throw 'unsupported recording target expression' }
+    } catch { $state.Error = $_.Exception.Message }
+    return $state
+  }
+  $firstPath = 'C:\inert\first\node.exe'
+  $secondPath = 'C:\inert\second\node.exe'
+  $missingPath = 'C:\inert\missing\node.exe'
+  $firstCommand = [pscustomobject]@{ Source=$firstPath }
+  $secondCommand = [pscustomobject]@{ Source=$secondPath }
+  $nodeCases = @(
+    @{ Name='ordered'; Proof=$true; Commands=@($firstCommand,$secondCommand); ValidPaths=@($firstPath,$secondPath); Expected=$firstPath; Checks=@($firstPath); Error=$null },
+    @{ Name='single-production'; Proof=$false; Commands=@($firstCommand); ValidPaths=@($firstPath); Expected=$firstPath; Checks=@($firstPath); Error=$null },
+    @{ Name='missing'; Proof=$true; Commands=@(); ValidPaths=@(); Expected=$null; Checks=@(); Error='The builder Node executable was not found.' },
+    @{ Name='array'; Proof=$true; Commands=@([pscustomobject]@{ Source=@($firstPath,$secondPath) }); ValidPaths=@($firstPath,$secondPath); Expected=$null; Checks=@(); Error='The builder Node executable path is invalid.' },
+    @{ Name='blank'; Proof=$true; Commands=@([pscustomobject]@{ Source='  ' }); ValidPaths=@(); Expected=$null; Checks=@(); Error='The builder Node executable path is invalid.' },
+    @{ Name='numeric'; Proof=$true; Commands=@([pscustomobject]@{ Source=42 }); ValidPaths=@(); Expected=$null; Checks=@(); Error='The builder Node executable path is invalid.' },
+    @{ Name='relative'; Proof=$true; Commands=@([pscustomobject]@{ Source='node.exe' }); ValidPaths=@('node.exe'); Expected=$null; Checks=@(); Error='The builder Node executable path is invalid.' },
+    @{ Name='no-fallback'; Proof=$true; Commands=@([pscustomobject]@{ Source=$missingPath },$secondCommand); ValidPaths=@($secondPath); Expected=$null; Checks=@($missingPath); Error='The builder Node executable path is invalid.' }
+  )
+  foreach ($case in $nodeCases) {
+    $observed = Invoke-BuilderNodeCase $case
+    if ($case.Name -ceq 'ordered' -and $observed.Created.Count -eq 1 -and $observed.Created[0] -is [array]) {
+      Write-Output 'CHECK builder-node-original collection-filepath=1 selected-scalar=0'
+    }
+    if ($case.Expected) {
+      if ($case.Proof) {
+        Assert-Report ($observed.Created.Count -eq 1 -and $observed.Created[0] -is [string] -and
+          $observed.Created[0] -ceq $case.Expected) 'actual builder FilePath is not the first scalar executable'
+      } else {
+        Assert-Report ($observed.Created.Count -eq 0 -and $observed.Recorded.Count -eq 1 -and
+          $observed.Recorded[0] -is [string] -and $observed.Recorded[0] -ceq $case.Expected) 'production-only recording did not use the resolved scalar'
+      }
+    } else {
+      Assert-Report ($observed.Error -ceq $case.Error -and $observed.Created.Count -eq 0 -and
+        $observed.Recorded.Count -eq 0) "invalid builder Node metadata was accepted: $($case.Name)"
+    }
+    $validTrace = $observed.Lookups.Count -eq 1 -and $observed.Lookups[0].Name -ceq 'node.exe' -and
+      $observed.Lookups[0].Type -ceq 'Application' -and $observed.Lookups[0].All -and
+      $observed.PathChecks.Count -eq $case.Checks.Count
+    for ($i = 0; $i -lt $observed.PathChecks.Count; $i++) {
+      $validTrace = $validTrace -and $i -lt $case.Checks.Count -and
+        $observed.PathChecks[$i].Path -ceq $case.Checks[$i] -and $observed.PathChecks[$i].Type -ceq 'Leaf'
+    }
+    if ($case.Expected) {
+      $validTrace = $validTrace -and $null -eq $observed.Error -and $observed.Recorded.Count -eq 1 -and
+        $observed.Recorded[0] -is [string] -and $observed.Recorded[0] -ceq $case.Expected
+    }
+    Assert-Report $validTrace "builder selection, common reuse or no-fallback contract differs: $($case.Name)"
+  }
+  Write-Output 'PASS builder-node-resolution configurations=8 assertions=16 proof-and-production=1 native-starts=0'
   Write-Output "PASS proof-report-fixtures assertions=$script:assertions"
 } finally {
   Remove-Item -LiteralPath $file -Force

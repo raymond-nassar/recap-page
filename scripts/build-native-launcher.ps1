@@ -34,10 +34,18 @@ foreach ($path in @($production, $proof, $intermediate)) {
 $targets = @()
 $compilerVersion = $null
 try {
+  $nodeCommand = Get-Command -Name node.exe -CommandType Application -All -ErrorAction Stop |
+    Select-Object -First 1
+  if (-not $nodeCommand) { throw 'The builder Node executable was not found.' }
+  $node = $nodeCommand.Source
+  if ($node -isnot [string] -or [string]::IsNullOrWhiteSpace($node) -or
+      $node -notmatch '^(?:[A-Za-z]:[\\/]|\\\\[^\\/]+[\\/][^\\/]+[\\/])' -or
+      $node -notmatch '\.exe$' -or -not (Test-Path -LiteralPath $node -PathType Leaf)) {
+    throw 'The builder Node executable path is invalid.'
+  }
   if ($IncludeProofTools) {
     $creationReport = Join-Path $intermediate 'creation-tests.tap'
     $creationError = Join-Path $intermediate 'creation-tests.err'
-    $node = (Get-Command node -CommandType Application -ErrorAction Stop).Source
     $arguments = '--test --test-reporter=tap test/msix-packaging.test.js test/server-contract.test.js test/startup-contract.test.js'
     $tests = Start-Process -FilePath $node -ArgumentList $arguments -WorkingDirectory $root `
       -NoNewWindow -PassThru -RedirectStandardOutput $creationReport -RedirectStandardError $creationError
@@ -110,7 +118,7 @@ try {
   } | ConvertTo-Json -Depth 6 | Set-Content -LiteralPath $metadata -Encoding utf8
   $arguments = @((Join-Path $root 'scripts\lib\native-launcher.mjs'), '--record', $metadata)
   if ($IncludeProofTools) { $arguments += '--proof' }
-  & node @arguments
+  & $node @arguments
   if ($LASTEXITCODE -ne 0) { throw 'The native artifact could not be recorded and verified.' }
 } finally {
   if (Test-Path -LiteralPath $intermediate) {
