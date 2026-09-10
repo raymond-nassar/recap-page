@@ -295,6 +295,17 @@ test('native artifact transfer pins exact inputs and refuses digest mismatches',
   assert.match(native, /reportCalibrationFailure/);
   assert.match(native, /checkpoint\("FAIL", "calibration"\)/);
   assert.match(native, /writeFailure\(report, failure,/);
+  assert.match(native, /child\.primaryThread = recap::Handle\(process\.hThread\)/);
+  assert.match(native, /observer\.bindClient\(control\.pid, control\.process\.get\(\), control\.primaryThread\.get\(\), control\.primaryTid, true\)/);
+  assert.match(native, /cases=22 passed=22/);
+  assert.match(native, /observer\.assertCalibrations\(controls, report\)/);
+  const observer = readFileSync(new URL('./native/StartupObserver.h', import.meta.url), 'utf8');
+  assert.match(observer, /struct ConsoleBinding/);
+  assert.match(observer, /correlateWindows\(windows_, clockValid\(\), healthy\(\), consoleBindings\(\)\)/);
+  assert.match(observer, /recap::samePath\(value\.image, classicHostImage_\)/);
+  assert.match(observer, /row\.consoleBound && row\.completeControl/);
+  assert.match(observer, /temporary_closed=/);
+  assert.doesNotMatch(observer, /ConsoleControl\(|ConsoleSetWindowOwner/);
   if (process.platform === 'win32') {
     const output = execFileSync('powershell.exe', [
       '-NoProfile', '-NonInteractive', '-File',

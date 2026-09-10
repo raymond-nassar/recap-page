@@ -50,6 +50,13 @@ const char* failureCode(const std::exception& failure) {
         { "observer did not detect console control exit", "calibration-console-end-missing" },
         { "observer could not detach the calibration console", "calibration-detach-failed" },
         { "calibration window destroy event was incomplete", "calibration-window-destroy-missing" },
+        { "control sample primary thread differed", "control-primary-thread-mismatch" },
+        { "control sample console association differed", "control-window-association-mismatch" },
+        { "control binding requires exactly its client and observer", "control-membership-binding-mismatch" },
+        { "control departure was not confirmed on its retained instance", "control-departure-unconfirmed" },
+        { "remaining attached observer association was not confirmed", "observer-membership-unconfirmed" },
+        { "observer detach association was not confirmed", "observer-detach-unconfirmed" },
+        { "passive F01 observation fence did not complete", "product-terminal-binding-inconclusive" },
         { "unmapped window lifecycle made passive observation inconclusive", "window-lifecycle-inconclusive" },
         { "calibration window lifetime made passive observation inconclusive", "calibration-lifetime-inconclusive" },
         { "product process created a visible terminal", "product-visible-terminal" }
@@ -159,7 +166,8 @@ struct StopOperations {
 
 struct Child {
     recap::Handle process;
-    DWORD pid = 0;
+    recap::Handle primaryThread;
+    DWORD pid = 0, primaryTid = 0;
     StopResult cleanup;
     unsigned int stopCalls = 0;
     ~Child() {
@@ -218,10 +226,11 @@ void start(Child& child, const std::wstring& executable, const std::wstring& arg
             nullptr, nullptr, &startup, &process) != FALSE, "fixture process creation failed");
     });
     child.process = recap::Handle(process.hProcess);
+    child.primaryThread = recap::Handle(process.hThread);
     child.pid = process.dwProcessId;
+    child.primaryTid = process.dwThreadId;
     child.cleanup = {};
     child.stopCalls = 0;
-    CloseHandle(process.hThread);
 }
 
 void retain(Child& child, DWORD pid, const std::wstring& expected) {
@@ -230,7 +239,9 @@ void retain(Child& child, DWORD pid, const std::wstring& expected) {
     check(static_cast<bool>(candidate), "fixture child ownership could not be retained");
     check(recap::samePath(proof::imagePath(candidate.get()), expected), "fixture child image differs");
     child.process = std::move(candidate);
+    check(child.primaryThread.close() == ERROR_SUCCESS, "previous primary thread handle could not close");
     child.pid = pid;
+    child.primaryTid = 0;
     child.cleanup = {};
     child.stopCalls = 0;
 }
@@ -1046,6 +1057,142 @@ void windowCorrelationCases() {
     check(!proof::correlateWindows(safe, true, false)[0].identityKnown, "capture loss allowed identity recovery");
 }
 
+void consoleBindingCases() {
+    const auto fact = [](DWORD event, uint64_t tick, DWORD owner, DWORD thread, bool present = true) {
+        proof::WindowFact value;
+        value.window = 100;
+        value.event = event;
+        value.generated = tick;
+        value.received = { tick, tick * 10 };
+        value.sourceOwner = 9;
+        value.sourceThread = 77;
+        value.sourceThreadCreation = 100;
+        value.sourceThreadKnown = true;
+        value.sourceActor = 1;
+        value.owner = owner;
+        value.thread = thread;
+        value.reportedActor = owner == 9 ? 1 : owner == 10 ? 2 : owner == 11 ? 3 : 0;
+        value.kind = present ? proof::WindowKind::console : proof::WindowKind::unknown;
+        value.identityKnown = value.metadataKnown = value.present = value.geometryKnown = value.hierarchyKnown = present;
+        value.topLevel = value.onScreen = present;
+        value.visible = present && event == EVENT_OBJECT_SHOW;
+        return value;
+    };
+    const std::vector<proof::WindowFact> raw{
+        fact(EVENT_OBJECT_CREATE, 10, 9, 77), fact(EVENT_OBJECT_SHOW, 20, 10, 88),
+        fact(EVENT_OBJECT_DESTROY, 50, 0, 0, false)
+    };
+    proof::ConsoleBinding binding;
+    binding.window = 100;
+    binding.lifetime = 1;
+    binding.presenterActor = 1;
+    binding.clientActor = 2;
+    binding.observerActor = 3;
+    binding.presenter = 9;
+    binding.presenterThread = 77;
+    binding.sourceThreadCreation = 100;
+    binding.client = 10;
+    binding.clientThread = 88;
+    binding.observer = 11;
+    binding.observerThread = 99;
+    binding.role = proof::PresenterRole::classic;
+    binding.presenterKnown = binding.sourceThreadBound = binding.presenterEtw = true;
+    binding.clientKnown = binding.clientThreadBound = binding.clientEtw = binding.association = binding.noOtherClients = true;
+    binding.control = binding.membership = binding.sampleMapped = binding.observerKnown = binding.observerAttached = true;
+    binding.clientEnded = binding.departed = binding.observerOnly = binding.observerEnded = binding.observerDetached = true;
+    binding.clientEndTick = 30;
+    binding.departureQpc = 300;
+    binding.observerEndTick = 40;
+    binding.detachQpc = 400;
+    size_t cases = 0;
+    const auto expect = [&](bool result, const char* message) {
+        ++cases;
+        if (!result && liveReport) { *liveReport << "DIAG console-binding-case-failed index=" << cases << "\n"; liveReport->flush(); }
+        check(result, message);
+    };
+    const auto resolved = [&](const proof::ConsoleBinding& candidate) {
+        return proof::correlateWindows(raw, true, true, { candidate });
+    };
+    expect(!proof::correlateWindows(raw, true, true)[0].identityKnown, "unbound classic projection was accepted");
+    const auto valid = resolved(binding);
+    expect(valid[0].consoleBound && valid[1].consoleBound && valid[0].owner == 10 &&
+           raw[0].owner == 9 && raw[1].owner == 10 && !raw[0].visible && raw[1].visible,
+           "bound projection lost raw identity or visibility");
+    auto late = raw;
+    late[0].owner = 10;
+    late[0].thread = 88;
+    late[0].reportedActor = 2;
+    expect(proof::correlateWindows(late, true, true, { binding })[0].identityKnown, "late CREATE projection was rejected");
+    auto changed = binding;
+    changed.role = proof::PresenterRole::other;
+    expect(!resolved(changed)[0].identityKnown, "untrusted presenter was accepted");
+    changed = binding;
+    changed.presenterKnown = false;
+    expect(!resolved(changed)[0].identityKnown, "unknown presenter instance was accepted");
+    changed = binding;
+    changed.sourceThreadBound = false;
+    expect(!resolved(changed)[0].identityKnown, "unknown presenter thread was accepted");
+    auto wrongSource = raw;
+    wrongSource[1].sourceThreadCreation = 101;
+    expect(!proof::correlateWindows(wrongSource, true, true, { binding })[1].identityKnown,
+           "source thread instance mismatch was accepted");
+    changed = binding;
+    changed.clientKnown = false;
+    expect(!resolved(changed)[0].identityKnown, "unknown client instance was accepted");
+    changed = binding;
+    changed.clientThread = 89;
+    expect(!resolved(changed)[1].identityKnown, "wrong client thread was accepted");
+    changed = binding;
+    changed.association = false;
+    expect(!resolved(changed)[0].identityKnown, "missing console association was accepted");
+    changed = binding;
+    changed.membership = false;
+    expect(!resolved(changed)[0].identityKnown, "missing control membership was accepted");
+    auto ordinary = raw;
+    ordinary[0].kind = ordinary[1].kind = proof::WindowKind::other;
+    expect(!proof::correlateWindows(ordinary, true, true, { binding })[1].identityKnown,
+           "classic binding weakened ordinary-window identity");
+    auto reused = raw;
+    reused.push_back(fact(EVENT_OBJECT_CREATE, 60, 10, 88));
+    reused.push_back(fact(EVENT_OBJECT_SHOW, 70, 10, 88));
+    reused.push_back(fact(EVENT_OBJECT_DESTROY, 80, 0, 0, false));
+    const auto reuse = proof::correlateWindows(reused, true, true, { binding });
+    expect(!reuse[3].identityKnown && !reuse[3].completeControl, "binding crossed HWND reuse");
+    auto recreated = raw;
+    recreated.insert(recreated.begin() + 1, fact(EVENT_OBJECT_CREATE, 15, 9, 77));
+    expect(proof::correlateWindows(recreated, true, true, { binding })[0].conflict, "recreated lifetime was accepted");
+    auto missing = raw;
+    missing[1].geometryKnown = missing[1].metadataKnown = false;
+    const auto noGeometry = proof::correlateWindows(missing, true, true, { binding });
+    expect(noGeometry[1].visibilityMissing && !noGeometry[1].completeControl, "binding fabricated SHOW geometry");
+    expect(!proof::correlateWindows(raw, false, true, { binding })[0].identityKnown, "binding ignored invalid clocks");
+    expect(!proof::correlateWindows(raw, true, false, { binding })[0].identityKnown, "binding ignored capture loss");
+    expect(valid[0].completeControl && valid[2].completeControl, "complete control lifetime was not identified");
+    changed = binding;
+    changed.control = false;
+    const auto product = resolved(changed);
+    expect(!product[1].completeControl && proof::visibleBoundConsole(raw[1], product[1]),
+           "visible product binding was exempted");
+    auto teardown = raw;
+    teardown.insert(teardown.begin() + 2, fact(EVENT_OBJECT_HIDE, 35, 11, 99));
+    expect(proof::correlateWindows(teardown, true, true, { binding })[2].identityKnown,
+           "proven observer teardown projection was rejected");
+    changed = binding;
+    changed.departed = false;
+    expect(!proof::correlateWindows(teardown, true, true, { changed })[2].identityKnown,
+           "observer projection without departure was accepted");
+    auto fallback = teardown;
+    fallback.insert(fallback.begin() + 3, fact(EVENT_OBJECT_HIDE, 45, 9, 77));
+    auto early = raw;
+    early.insert(early.begin() + 2, fact(EVENT_OBJECT_HIDE, 25, 9, 77));
+    expect(proof::correlateWindows(fallback, true, true, { binding })[3].identityKnown &&
+           !proof::correlateWindows(early, true, true, { binding })[2].identityKnown,
+           "host fallback lacked its zero-client interval");
+    check(cases == 22 && liveReport, "binding case count or report is missing");
+    *liveReport << "DIAG console-binding-cases cases=22 passed=22\n";
+    liveReport->flush();
+}
+
 void supervision() {
     FakeOperations race;
     race.fault = true;
@@ -1068,6 +1215,7 @@ void supervision() {
     handleClassificationCases();
     uiaOutputCases();
     windowCorrelationCases();
+    observed("console-binding-cases", [] { consoleBindingCases(); });
 }
 
 struct CalibrationState {
@@ -1091,6 +1239,7 @@ void reportCalibrationFailure(proof::Observer& observer, std::ofstream& report, 
     const auto waitError = control.process && wait == WAIT_FAILED ? GetLastError() : ERROR_SUCCESS;
     const auto creation = (static_cast<uint64_t>(created.dwHighDateTime) << 32) | created.dwLowDateTime;
     report << "DIAG calibration-control pid=" << control.pid << " handle_known=" << static_cast<bool>(control.process)
+           << " primary_tid=" << control.primaryTid << " primary_handle_known=" << static_cast<bool>(control.primaryThread)
            << " creation_known=" << creationKnown << " creation=" << creation << " creation_error=" << creationError
            << " wait_known=" << static_cast<bool>(control.process) << " wait=" << wait << " wait_error=" << waitError
            << " attachment_known=" << state.attachmentKnown << " attached=" << state.attached
@@ -1110,6 +1259,7 @@ void reportCalibrationFailure(proof::Observer& observer, std::ofstream& report, 
 
 proof::WindowFact calibration(proof::Observer& observer, std::ofstream& report, size_t* started = nullptr) {
     checkpoint("ENTER", "calibration");
+    observer.reportTo(report);
     Child control;
     CalibrationState state;
     const auto step = [&](const char* stage, auto action) {
@@ -1125,6 +1275,7 @@ proof::WindowFact calibration(proof::Observer& observer, std::ofstream& report, 
             report << "DIAG calibration-start pid=" << control.pid << " begin_tick=" << state.begin.tick
                    << " begin_qpc=" << state.begin.qpc << "\n";
             report.flush();
+            observer.bindClient(control.pid, control.process.get(), control.primaryThread.get(), control.primaryTid, true);
         });
         step("calibration-console-start", [&] {
             proof::until([&] { return observer.console(control.pid); }, "observer did not detect its console control");
@@ -1175,6 +1326,7 @@ proof::WindowFact calibration(proof::Observer& observer, std::ofstream& report, 
                 check(state.window.metadataKnown && state.window.present && state.window.topLevel &&
                       state.window.visible && state.window.onScreen, "calibration visible console window could not be mapped");
                 state.window.received = proof::moment();
+                observer.bindControlSample(control.pid, state.window);
             });
             step("calibration-window-events", [&] {
                 proof::until([&] {
@@ -1186,10 +1338,14 @@ proof::WindowFact calibration(proof::Observer& observer, std::ofstream& report, 
             });
         }
         // Retain the attached host until its queued application-end event is observed.
-        step("calibration-control-stop", [&] { control.stop(); });
+        step("calibration-control-stop", [&] {
+            control.stop();
+            if (observer.observesWindows()) observer.confirmControlDeparture(control.pid);
+        });
         step("calibration-console-end", [&] {
             proof::until([&] { return observer.console(control.pid, EVENT_CONSOLE_END_APPLICATION); },
                          "observer did not detect console control exit");
+            if (observer.observesWindows()) observer.confirmObserverOnly(control.pid);
         });
         step("calibration-detach", [&] {
             const bool detached = FreeConsole() != FALSE;
@@ -1197,10 +1353,16 @@ proof::WindowFact calibration(proof::Observer& observer, std::ofstream& report, 
             state.detachError = detached ? ERROR_SUCCESS : GetLastError();
             if (detached) state.attached = false;
             check(detached, "observer could not detach the calibration console");
+            if (observer.observesWindows()) observer.confirmObserverDetached(control.pid);
         });
         if (observer.observesWindows()) step("calibration-window-destroy", [&] {
             proof::until([&] { return observer.windowEventSeen(state.window.window, EVENT_OBJECT_DESTROY); },
                          "calibration window destroy event was incomplete");
+        });
+        step("calibration-primary-thread-close", [&] {
+            const auto error = control.primaryThread.close();
+            report << "DIAG control-primary-thread-close error=" << error << "\n";
+            check(error == ERROR_SUCCESS, "control primary thread handle close failed");
         });
         const auto end = proof::moment();
         report << "DIAG calibration-complete pid=" << control.pid << " hwnd=" << state.window.window
@@ -1210,6 +1372,7 @@ proof::WindowFact calibration(proof::Observer& observer, std::ofstream& report, 
                << " before_attach_qpc=" << state.beforeAttach.qpc << " end_tick=" << end.tick
                << " end_qpc=" << end.qpc << " create_observed=1 show_observed=1 destroy_observed=1\n";
         checkpoint("EXIT", "calibration");
+        observer.reportBindings(report);
         return state.window;
     } catch (const std::exception& failure) {
         const auto primary = std::current_exception();
@@ -1233,12 +1396,16 @@ proof::WindowFact calibration(proof::Observer& observer, std::ofstream& report, 
                 secondary.push_back(std::make_exception_ptr(std::runtime_error("calibration cleanup detach failed")));
             }
         }
+        const auto primaryClose = control.primaryThread.close();
+        if (primaryClose != ERROR_SUCCESS)
+            secondary.push_back(std::make_exception_ptr(std::runtime_error("control primary thread handle close failed")));
         report << "DIAG calibration-cleanup control_complete=" << control.cleanup.complete
                << " wait=" << control.cleanup.finalWait << " wait_error=" << control.cleanup.waitError
                << " terminate_attempted=" << control.cleanup.terminationAttempted
                << " terminate_succeeded=" << control.cleanup.terminationSucceeded
                << " terminate_error=" << control.cleanup.terminationError
                << " detach_attempted=" << detachAttempted << " detached=" << detached << " detach_error=" << detachError
+               << " primary_thread_close_error=" << primaryClose
                << " secondary_failures=" << secondary.size() << " elapsed_ms=" << GetTickCount64() - cleanupBegin
                << " failure_snapshot_complete=" << snapshotComplete << "\n";
         report.flush();
@@ -1361,15 +1528,22 @@ void fixture(const std::string& id, const fs::path& root, const fs::path& native
         const auto first = observed.find("pid=");
         check(first == 0, "fixture process identity missing");
         retain(coordinator, static_cast<DWORD>(std::stoul(observed.substr(4))), (layout / L"runtime" / L"node.exe").wstring());
+        observer.bindClient(coordinator.pid, coordinator.process.get());
         check(observed.find("arguments=true") != std::string::npos && observed.find("environment=true") != std::string::npos &&
               observed.find("cwd=true") != std::string::npos, "fixed launch arguments/environment/cwd differed");
         if (id == "F01") {
             const auto fence = GetTickCount64() + 200;
-            proof::until([&] {
-                check(!observer.visibleForProcess(gui.pid), "F01 GUI created a visible terminal");
-                check(!observer.visibleForProcess(coordinator.pid), "F01 coordinator created a visible terminal");
-                return GetTickCount64() >= fence;
-            }, "passive F01 observation fence did not complete");
+            try {
+                proof::until([&] {
+                    check(!observer.visibleForProcess(gui.pid), "F01 GUI created a visible terminal");
+                    check(!observer.visibleForProcess(coordinator.pid), "F01 coordinator created a visible terminal");
+                    return GetTickCount64() >= fence && !observer.pendingTerminalIdentity(gui.pid) &&
+                        !observer.pendingTerminalIdentity(coordinator.pid);
+                }, "passive F01 observation fence did not complete");
+            } catch (const std::exception&) {
+                observer.reportClientWindows(report, { gui.pid, coordinator.pid });
+                throw;
+            }
             const auto verdict = observeSentinel(gui, coordinator, sentinelHandle.get(), report, diagnosticVerdict != nullptr);
             if (diagnosticVerdict) *diagnosticVerdict = verdict;
             else {
@@ -1440,6 +1614,7 @@ void handleDiagnostic(const std::map<std::wstring, std::wstring>& options, std::
     handleClassificationCases();
     uiaOutputCases();
     windowCorrelationCases();
+    observed("console-binding-cases", [] { consoleBindingCases(); });
     report << "HANDLE classification-rows=19 passed=19 allocation-order=gui-control-before-original-slot\n";
     proof::Observer observer(true);
     size_t controlStarts = 0;
@@ -1451,6 +1626,7 @@ void handleDiagnostic(const std::map<std::wstring, std::wstring>& options, std::
     controls.push_back(calibration(observer, report, &controlStarts));
     observer.stop();
     observer.assertNoVisibleTerminals(roots, false, controls, report);
+    observer.finishIdentities();
     report << "HANDLE acquisition=complete exclusion=" << verdictName(verdict)
            << " gui-activations=" << roots.size() << " calibration-controls=" << controlStarts
            << " observer-healthy=" << observer.healthy() << " clock-valid=" << observer.clockValid()
@@ -1773,6 +1949,7 @@ void diagnostic(const std::map<std::wstring, std::wstring>& options, std::ofstre
            << " acquisition_error=" << (acquisitionFailure.empty() ? "none" : acquisitionFailure) << "\n";
     check(complete, "diagnostic acquisition was incomplete or the visible negative was not observed");
     report << "PASS diagnostic-facts-only;feature-acceptance=not-evaluated\n";
+    observer.finishIdentities();
 }
 
 void installed(const std::map<std::wstring, std::wstring>& options, std::ofstream& report) {
@@ -1824,6 +2001,7 @@ void installed(const std::map<std::wstring, std::wstring>& options, std::ofstrea
     observer.stop();
     const auto roots = observer.registeredRoots(executable, busy ? 1 : 3, busy ? 1 : 0);
     observer.assertNoVisibleTerminals(roots, !busy, controls, report);
+    observer.finishIdentities();
     report << "PASS installed-" << (busy ? "busy" : "functionality")
            << ";native-roots=" << roots.size() << ";console-controls=2;visible-product-terminals=0"
            << ";console-records=" << observer.consoles().size()
@@ -1927,11 +2105,15 @@ int wmain(int argc, wchar_t** argv) {
             report << "DIAG failure-envelope-cases cases=9 passed=9\n";
             proof::Observer observer(true);
             size_t started = 0;
-            calibration(observer, report, &started);
-            calibration(observer, report, &started);
+            windowCorrelationCases();
+            observed("console-binding-cases", [] { consoleBindingCases(); });
+            std::vector<proof::WindowFact> controls{ calibration(observer, report, &started) };
+            controls.push_back(calibration(observer, report, &started));
             observer.stop();
             observer.assertHealthy();
             check(started == 2 && observer.clockValid(), "calibration preflight was incomplete");
+            observer.assertCalibrations(controls, report);
+            observer.finishIdentities();
             report << "PASS calibration-preflight;controls=2;product-starts=0;node-starts=0\n";
             observed("com-uninitialize", [] { CoUninitialize(); });
             return 0;
@@ -1956,6 +2138,7 @@ int wmain(int argc, wchar_t** argv) {
         controls.push_back(calibration(observer, report));
         observer.stop();
         observer.assertNoVisibleTerminals(roots, false, controls, report);
+        observer.finishIdentities();
         report << "PASS observer;console-controls=2;visible-product-terminals=0;attachment=not-used\n";
         observed("com-uninitialize", [] { CoUninitialize(); });
         return 0;

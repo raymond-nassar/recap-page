@@ -6,6 +6,7 @@
 #include <evntcons.h>
 #include <tdh.h>
 #include <atomic>
+#include <array>
 #include <climits>
 #include <cstring>
 #include <map>
@@ -89,6 +90,11 @@ inline Moment moment() {
 }
 
 enum class WindowKind { unknown, other, startup, console, terminal };
+enum class PresenterRole { unknown, other, classic };
+
+inline const char* presenterRoleName(PresenterRole role) {
+    return role == PresenterRole::classic ? "trusted-classic-host" : role == PresenterRole::other ? "other" : "unknown";
+}
 
 inline const char* windowKindName(WindowKind kind) {
     switch (kind) {
@@ -110,6 +116,9 @@ struct WindowFact {
     WindowKind kind = WindowKind::unknown;
     bool metadataKnown = false, present = false, visible = false, topLevel = false, onScreen = false;
     bool identityKnown = false, geometryKnown = false, hierarchyKnown = false;
+    uint64_t sourceThreadCreation = 0;
+    size_t sourceActor = 0, reportedActor = 0;
+    bool sourceThreadKnown = false, sourceRetained = false;
     RECT rectangle{};
 };
 
@@ -145,18 +154,19 @@ struct WindowResolution {
     WindowKind kind = WindowKind::unknown;
     bool identityKnown = false, derived = false, conflict = false, visibilityMissing = false;
     bool created = false, destroyed = false;
+    bool consoleBound = false, completeControl = false;
+    DWORD presenter = 0, presenterThread = 0, client = 0;
     const char* reason = "missing-identity";
 };
 
-inline std::vector<WindowResolution> correlateWindows(const std::vector<WindowFact>& facts,
-                                                      bool clocks, bool captureHealthy) {
-    struct Lifetime {
-        std::vector<size_t> rows;
-        bool created = false, closed = false, conflict = false;
-    };
-    std::vector<Lifetime> lifetimes;
+struct WindowLifetime {
+    std::vector<size_t> rows;
+    bool created = false, closed = false, conflict = false;
+};
+
+inline std::vector<WindowLifetime> windowLifetimes(const std::vector<WindowFact>& facts) {
+    std::vector<WindowLifetime> lifetimes;
     std::map<uintptr_t, size_t> active;
-    std::vector<WindowResolution> result(facts.size());
     for (size_t index = 0; index < facts.size(); ++index) {
         const auto& fact = facts[index];
         auto found = active.find(fact.window);
@@ -174,13 +184,136 @@ inline std::vector<WindowResolution> correlateWindows(const std::vector<WindowFa
                 lifetime.conflict = true;
         }
         lifetime.rows.push_back(index);
-        result[index].lifetime = found->second + 1;
         if (fact.event == EVENT_OBJECT_DESTROY) {
             lifetime.closed = true;
             active.erase(found);
         }
     }
-    for (const auto& lifetime : lifetimes) {
+    return lifetimes;
+}
+
+struct ConsoleBinding {
+    uintptr_t window = 0;
+    size_t lifetime = 0, presenterActor = 0, clientActor = 0, observerActor = 0;
+    DWORD presenter = 0, presenterThread = 0, client = 0, clientThread = 0, observer = 0, observerThread = 0;
+    uint64_t sourceThreadCreation = 0, sampleTick = 0, clientEndTick = 0, departureQpc = 0;
+    uint64_t observerEndTick = 0, detachQpc = 0;
+    PresenterRole role = PresenterRole::unknown;
+    bool presenterKnown = false, sourceThreadBound = false, presenterEtw = false;
+    bool clientKnown = false, clientThreadBound = false, clientEtw = false, association = false, noOtherClients = false;
+    bool control = false, membership = false, sampleMapped = false, observerKnown = false, observerAttached = false;
+    bool clientEnded = false, departed = false, observerOnly = false, observerEnded = false, observerDetached = false;
+    size_t clientStarts = 0, clientEnds = 0, observerStarts = 0, observerEnds = 0;
+};
+
+inline bool bindingReady(const ConsoleBinding& binding) {
+    return binding.window && binding.lifetime && binding.role == PresenterRole::classic &&
+        binding.presenterKnown && binding.sourceThreadBound && binding.presenterEtw &&
+        binding.presenterActor && binding.presenter && binding.presenterThread && binding.sourceThreadCreation &&
+        binding.clientKnown && binding.clientThreadBound && binding.clientEtw &&
+        binding.clientActor && binding.client && binding.clientThread && binding.association && binding.noOtherClients &&
+        (!binding.control || (binding.membership && binding.sampleMapped && binding.observerKnown &&
+                              binding.observerActor && binding.observerAttached));
+}
+
+inline std::vector<WindowResolution> correlateWindows(const std::vector<WindowFact>& facts,
+                                                      bool clocks, bool captureHealthy,
+                                                      const std::vector<ConsoleBinding>& bindings = {}) {
+    const auto lifetimes = windowLifetimes(facts);
+    std::vector<WindowResolution> result(facts.size());
+    for (size_t number = 0; number < lifetimes.size(); ++number) {
+        const auto& lifetime = lifetimes[number];
+        for (const auto index : lifetime.rows) {
+            auto& row = result[index];
+            row.lifetime = number + 1;
+            row.created = lifetime.created;
+            row.destroyed = lifetime.closed;
+            row.beginTick = facts[lifetime.rows.front()].generated;
+            row.endTick = lifetime.closed ? facts[lifetime.rows.back()].generated : UINT64_MAX;
+        }
+        const ConsoleBinding* binding = nullptr;
+        size_t matching = 0;
+        for (const auto& candidate : bindings) {
+            if (candidate.lifetime == number + 1 && candidate.window == facts[lifetime.rows.front()].window) {
+                binding = &candidate;
+                ++matching;
+            }
+        }
+        const bool classic = binding || std::any_of(lifetime.rows.begin(), lifetime.rows.end(),
+            [&](size_t index) { return facts[index].kind == WindowKind::console; });
+        if (classic) {
+            bool conflict = lifetime.conflict || !clocks || !captureHealthy || !lifetime.created ||
+                matching != 1 || !binding || !bindingReady(*binding);
+            unsigned int projection = 0;
+            bool visibilityComplete = true;
+            for (const auto index : lifetime.rows) {
+                const auto& fact = facts[index];
+                auto& row = result[index];
+                row.kind = WindowKind::console;
+                row.owner = fact.owner;
+                row.thread = fact.thread;
+                if (binding) {
+                    row.presenter = binding->presenter;
+                    row.presenterThread = binding->presenterThread;
+                    row.client = binding->client;
+                }
+                if (!conflict) {
+                    const bool source = fact.sourceThread == binding->presenterThread &&
+                        ((fact.sourceOwner == binding->presenter && fact.sourceThreadKnown &&
+                          fact.sourceThreadCreation == binding->sourceThreadCreation) ||
+                         (!fact.sourceOwner && fact.sourceRetained && fact.sourceActor == binding->presenterActor));
+                    const auto pair = [&](DWORD pid, DWORD tid, size_t actor) {
+                        return (!fact.owner || fact.owner == pid) && (!fact.thread || fact.thread == tid) &&
+                            (!fact.identityKnown || fact.reportedActor == actor);
+                    };
+                    const bool rawHost = pair(binding->presenter, binding->presenterThread, binding->presenterActor);
+                    const bool rawClient = pair(binding->client, binding->clientThread, binding->clientActor);
+                    const bool observerInterval = binding->control && binding->observerKnown && binding->observerAttached &&
+                        binding->clientEnded && binding->departed && binding->observerOnly &&
+                        fact.generated >= binding->clientEndTick && fact.received.qpc >= binding->departureQpc;
+                    const bool rawObserver = observerInterval &&
+                        pair(binding->observer, binding->observerThread, binding->observerActor);
+                    const bool zeroClients = observerInterval && binding->observerDetached && binding->observerEnded &&
+                        fact.generated >= binding->observerEndTick && fact.received.qpc >= binding->detachQpc;
+                    bool owner = rawHost || rawClient || rawObserver;
+                    if (fact.identityKnown) {
+                        if (rawClient) { owner = projection <= 1; projection = 1; }
+                        else if (rawObserver) { owner = projection <= 2; projection = 2; }
+                        else if (rawHost && projection != 0) { owner = zeroClients; projection = 3; }
+                    }
+                    conflict = !source || !owner ||
+                        (fact.kind != WindowKind::console && fact.kind != WindowKind::unknown);
+                    row.identityKnown = !conflict;
+                    row.consoleBound = !conflict;
+                    row.owner = binding->client;
+                    row.thread = binding->clientThread;
+                    row.derived = !fact.identityKnown || fact.owner != row.owner || fact.thread != row.thread;
+                }
+                row.visibilityMissing =
+                    (fact.event == EVENT_OBJECT_SHOW && (!fact.present || !fact.geometryKnown || !fact.hierarchyKnown)) ||
+                    (fact.present && fact.visible && (!fact.geometryKnown || !fact.hierarchyKnown)) ||
+                    (fact.event == EVENT_OBJECT_CREATE && (!fact.present || !fact.geometryKnown || !fact.hierarchyKnown));
+                visibilityComplete = visibilityComplete && !row.visibilityMissing;
+            }
+            const bool showed = std::any_of(lifetime.rows.begin(), lifetime.rows.end(), [&](size_t index) {
+                const auto& fact = facts[index];
+                return fact.event == EVENT_OBJECT_SHOW && fact.present && fact.geometryKnown && fact.hierarchyKnown &&
+                    fact.topLevel && fact.onScreen;
+            });
+            const bool complete = !conflict && visibilityComplete && showed && lifetime.closed && binding && binding->control &&
+                binding->clientEnded && binding->departed && binding->observerOnly &&
+                binding->observerDetached && binding->observerEnded;
+            for (const auto index : lifetime.rows) {
+                auto& row = result[index];
+                row.conflict = conflict;
+                row.identityKnown = row.identityKnown && !conflict;
+                row.consoleBound = row.consoleBound && !conflict;
+                row.completeControl = complete;
+                row.reason = conflict ? "classic-console-binding-inconclusive"
+                    : row.visibilityMissing ? "missing-visibility" : "validated-classic-console-binding";
+            }
+            continue;
+        }
         size_t evidence = SIZE_MAX;
         bool conflict = lifetime.conflict || !clocks || !captureHealthy;
         for (const auto index : lifetime.rows) {
@@ -245,15 +378,75 @@ inline bool visibleIn(const WindowFact& fact, uint64_t begin, uint64_t end, uint
         (fact.event == EVENT_OBJECT_SHOW || (fact.present && fact.visible));
 }
 
+inline WindowFact effectiveWindow(const WindowFact& raw, const WindowResolution& identity) {
+    auto result = raw;
+    result.owner = identity.owner;
+    result.thread = identity.thread;
+    result.kind = identity.kind;
+    result.identityKnown = identity.identityKnown;
+    result.metadataKnown = identity.identityKnown && raw.geometryKnown && raw.hierarchyKnown;
+    return result;
+}
+
+inline bool visibleBoundConsole(const WindowFact& raw, const WindowResolution& identity) {
+    return identity.consoleBound && !identity.conflict && visibleIn(effectiveWindow(raw, identity), 0, UINT64_MAX);
+}
+
 struct ConsoleFact {
     DWORD event = 0, pid = 0, sourceThread = 0, generated32 = 0;
     LONG child = 0;
     uintptr_t window = 0;
     uint64_t generated = 0;
     Moment received;
+    size_t sourceActor = 0;
 };
 
 class Observer {
+    struct Actor {
+        recap::Handle process, thread;
+        DWORD pid = 0, tid = 0;
+        uint64_t processCreation = 0, threadCreation = 0, capturedQpc = 0;
+        bool instanceKnown = false, liveAtCapture = false;
+        PresenterRole role = PresenterRole::unknown;
+        std::wstring image;
+        DWORD imageError = 0;
+    };
+    struct Client {
+        recap::Handle process;
+        DWORD pid = 0;
+        uint64_t creation = 0;
+        size_t primaryActor = 0;
+        bool control = false;
+    };
+    struct ControlAssociation {
+        DWORD client = 0;
+        WindowFact sample;
+        size_t observerActor = 0;
+        bool membership = false, departed = false, observerOnly = false, detached = false;
+        uint64_t departureQpc = 0, detachQpc = 0;
+    };
+    struct IdentityCounts {
+        size_t sourceThreadOpens = 0, sourceProcessOpens = 0, reportedThreadOpens = 0, reportedProcessOpens = 0;
+        size_t processTimes = 0, threadTimes = 0, imageQueries = 0, duplicates = 0, closes = 0, closeFailures = 0;
+        size_t temporaryOpened = 0, temporaryClosed = 0;
+    } identityCounts_;
+    struct ObservedHandle {
+        Observer& observer;
+        recap::Handle value;
+        ObservedHandle(Observer& owner, HANDLE handle) : observer(owner), value(handle) {
+            if (value) ++observer.identityCounts_.temporaryOpened;
+        }
+        ~ObservedHandle() {
+            if (!value) return;
+            ++observer.identityCounts_.temporaryClosed;
+            if (value.close() != ERROR_SUCCESS) {
+                ++observer.identityCounts_.closeFailures;
+                observer.lost_.store(true);
+            }
+        }
+        HANDLE get() const { return value.get(); }
+        explicit operator bool() const { return static_cast<bool>(value); }
+    };
     struct ProcessCapture {
         std::mutex mutex_;
         std::vector<ProcessEvent> processes_;
@@ -281,6 +474,165 @@ class Observer {
     bool stopped_ = false;
     bool windowObservation_ = false;
     uint64_t frequency_ = 0;
+    std::vector<Actor> actors_;
+    std::map<DWORD, Client> clients_;
+    std::vector<ControlAssociation> controlAssociations_;
+    std::wstring classicHostImage_;
+    std::ostream* report_ = nullptr;
+    bool identitiesClosed_ = false;
+
+    bool creation(HANDLE handle, bool thread, uint64_t& value) {
+        FILETIME born{}, exited{}, kernel{}, user{};
+        if (thread) ++identityCounts_.threadTimes;
+        else ++identityCounts_.processTimes;
+        const bool result = thread ? GetThreadTimes(handle, &born, &exited, &kernel, &user) != FALSE
+                                   : GetProcessTimes(handle, &born, &exited, &kernel, &user) != FALSE;
+        value = result ? (static_cast<uint64_t>(born.dwHighDateTime) << 32) | born.dwLowDateTime : 0;
+        return result && value != 0;
+    }
+    recap::Handle duplicate(HANDLE handle) {
+        HANDLE copy = nullptr;
+        ++identityCounts_.duplicates;
+        check(DuplicateHandle(GetCurrentProcess(), handle, GetCurrentProcess(), &copy, 0, FALSE,
+                              DUPLICATE_SAME_ACCESS) != FALSE, "identity handle duplication failed");
+        return recap::Handle(copy);
+    }
+    const Actor* actor(size_t id) const { return id && id <= actors_.size() ? &actors_[id - 1] : nullptr; }
+    void classify(Actor& value) {
+        if (value.role != PresenterRole::unknown) return;
+        ++identityCounts_.imageQueries;
+        std::vector<wchar_t> path(32768);
+        DWORD length = static_cast<DWORD>(path.size());
+        if (!QueryFullProcessImageNameW(value.process.get(), 0, path.data(), &length)) {
+            value.imageError = GetLastError();
+            return;
+        }
+        value.image = recap::normalizedPath({ path.data(), length });
+        value.imageError = 0;
+        value.role = recap::samePath(value.image, classicHostImage_) ? PresenterRole::classic : PresenterRole::other;
+    }
+    size_t retainActor(HANDLE process, HANDLE thread, bool classifyHost) {
+        const DWORD pid = GetProcessId(process), tid = GetThreadId(thread);
+        uint64_t processBorn = 0, threadBorn = 0;
+        if (!pid || !tid || GetProcessIdOfThread(thread) != pid ||
+            !creation(process, false, processBorn) || !creation(thread, true, threadBorn)) return 0;
+        for (size_t index = 0; index < actors_.size(); ++index) {
+            auto& value = actors_[index];
+            if (value.pid == pid && value.tid == tid && value.processCreation == processBorn &&
+                value.threadCreation == threadBorn) {
+                if (classifyHost) classify(value);
+                return index + 1;
+            }
+        }
+        check(actors_.size() < 512, "retained identity bound exceeded");
+        Actor value;
+        value.process = duplicate(process);
+        value.thread = duplicate(thread);
+        value.pid = pid;
+        value.tid = tid;
+        value.processCreation = processBorn;
+        value.threadCreation = threadBorn;
+        value.instanceKnown = true;
+        value.liveAtCapture = WaitForSingleObject(process, 0) == WAIT_TIMEOUT &&
+            WaitForSingleObject(thread, 0) == WAIT_TIMEOUT;
+        value.capturedQpc = moment().qpc;
+        if (classifyHost) classify(value);
+        actors_.push_back(std::move(value));
+        return actors_.size();
+    }
+    size_t retainedThread(DWORD tid, DWORD pid = 0) const {
+        size_t match = 0;
+        for (size_t index = 0; index < actors_.size(); ++index) {
+            const auto& value = actors_[index];
+            if (value.tid == tid && (!pid || value.pid == pid)) {
+                if (match) return 0;
+                match = index + 1;
+            }
+        }
+        return match;
+    }
+    size_t observeSource(DWORD tid, WindowFact& raw, bool retain, bool recover) {
+        if (!tid) return 0;
+        ++identityCounts_.sourceThreadOpens;
+        ObservedHandle thread(*this, OpenThread(THREAD_QUERY_LIMITED_INFORMATION | SYNCHRONIZE, FALSE, tid));
+        if (thread) raw.sourceOwner = GetProcessIdOfThread(thread.get());
+        if (!thread || !raw.sourceOwner) raw.sourceError = GetLastError();
+        if (thread && raw.sourceOwner) {
+            raw.sourceThreadKnown = creation(thread.get(), true, raw.sourceThreadCreation);
+            if (!raw.sourceThreadKnown) raw.sourceError = GetLastError();
+            if (!retain || !raw.sourceThreadKnown) return 0;
+            ++identityCounts_.sourceProcessOpens;
+            ObservedHandle process(*this, OpenProcess(PROCESS_QUERY_LIMITED_INFORMATION | SYNCHRONIZE, FALSE, raw.sourceOwner));
+            if (!process) { raw.sourceError = GetLastError(); return 0; }
+            return retainActor(process.get(), thread.get(), true);
+        }
+        if (recover) {
+            const auto id = retainedThread(tid);
+            const auto* value = actor(id);
+            if (value && value->role == PresenterRole::classic && value->instanceKnown &&
+                GetThreadId(value->thread.get()) == tid &&
+                GetProcessIdOfThread(value->thread.get()) == value->pid) {
+                raw.sourceRetained = true;
+                return id;
+            }
+        }
+        return 0;
+    }
+    size_t observeReported(const WindowFact& raw) {
+        if (!raw.identityKnown || !raw.owner || !raw.thread) return 0;
+        const auto* source = actor(raw.sourceActor);
+        if (!source || source->role != PresenterRole::classic) return 0;
+        if (source->pid == raw.owner && source->tid == raw.thread) return raw.sourceActor;
+        ++identityCounts_.reportedThreadOpens;
+        ObservedHandle thread(*this, OpenThread(THREAD_QUERY_LIMITED_INFORMATION | SYNCHRONIZE, FALSE, raw.thread));
+        if (!thread) return retainedThread(raw.thread, raw.owner);
+        if (GetProcessIdOfThread(thread.get()) != raw.owner) return 0;
+        ++identityCounts_.reportedProcessOpens;
+        ObservedHandle process(*this, OpenProcess(PROCESS_QUERY_LIMITED_INFORMATION | SYNCHRONIZE, FALSE, raw.owner));
+        return process ? retainActor(process.get(), thread.get(), false) : 0;
+    }
+    bool etwInstance(const Actor& value, const std::vector<ProcessEvent>& events, bool presenter) const {
+        const ProcessEvent* start = nullptr;
+        for (const auto& event : events) {
+            if (event.pid != value.pid) continue;
+            if (event.start) {
+                if (start) return false;
+                start = &event;
+            } else if (event.timestamp > 0 && static_cast<uint64_t>(event.timestamp) < value.capturedQpc) {
+                return false;
+            }
+        }
+        if (!start || start->timestamp <= 0 || static_cast<uint64_t>(start->timestamp) > value.capturedQpc) return false;
+        if (!presenter) return true;
+        const auto image = executablePath(value.pid, *start);
+        return recap::samePath(image, classicHostImage_) ||
+            (value.role == PresenterRole::classic && recap::samePath(image, L"conhost.exe"));
+    }
+    void closeIdentityHandles() {
+        if (identitiesClosed_) return;
+        identitiesClosed_ = true;
+        const auto close = [&](recap::Handle& handle) {
+            if (!handle) return;
+            ++identityCounts_.closes;
+            if (handle.close() != ERROR_SUCCESS) { ++identityCounts_.closeFailures; lost_.store(true); }
+        };
+        for (auto& value : actors_) { close(value.thread); close(value.process); }
+        for (auto& [pid, client] : clients_) { (void)pid; close(client.process); }
+        if (report_) {
+            *report_ << "DIAG identity-handles source_thread_opens=" << identityCounts_.sourceThreadOpens
+                     << " source_process_opens=" << identityCounts_.sourceProcessOpens
+                     << " reported_thread_opens=" << identityCounts_.reportedThreadOpens
+                     << " reported_process_opens=" << identityCounts_.reportedProcessOpens
+                     << " process_time_queries=" << identityCounts_.processTimes
+                     << " thread_time_queries=" << identityCounts_.threadTimes
+                     << " image_queries=" << identityCounts_.imageQueries << " duplicated=" << identityCounts_.duplicates
+                     << " closed=" << identityCounts_.closes
+                     << " temporary_opened=" << identityCounts_.temporaryOpened
+                     << " temporary_closed=" << identityCounts_.temporaryClosed
+                     << " close_failures=" << identityCounts_.closeFailures << "\n";
+            report_->flush();
+        }
+    }
 
     EVENT_TRACE_PROPERTIES* properties() {
         return reinterpret_cast<EVENT_TRACE_PROPERTIES*>(properties_.data());
@@ -365,9 +717,11 @@ class Observer {
         if (current_->consoles_.size() >= 8192) { current_->lost_.store(true); return; }
         try {
             const auto received = moment();
+            WindowFact source;
+            const auto sourceActor = current_->observeSource(thread, source, true, event == EVENT_CONSOLE_END_APPLICATION);
             current_->consoles_.push_back({
                 event, static_cast<DWORD>(object), thread, generated, child,
-                reinterpret_cast<uintptr_t>(window), current_->eventTick(generated, received), received
+                reinterpret_cast<uintptr_t>(window), current_->eventTick(generated, received), received, sourceActor
             });
         } catch (const std::exception&) { current_->lost_.store(true); }
     }
@@ -381,11 +735,12 @@ class Observer {
             fact.child = child;
             fact.callbackThread = GetCurrentThreadId();
             fact.sourceThread = thread;
-            if (thread) {
-                recap::Handle source(OpenThread(THREAD_QUERY_LIMITED_INFORMATION, FALSE, thread));
-                if (source) fact.sourceOwner = GetProcessIdOfThread(source.get());
-                if (!source || !fact.sourceOwner) fact.sourceError = GetLastError();
-            }
+            const auto* knownSource = current_->actor(current_->retainedThread(thread));
+            const bool retain = fact.kind == WindowKind::console ||
+                (knownSource && knownSource->role == PresenterRole::classic);
+            fact.sourceActor = current_->observeSource(thread, fact, retain,
+                event == EVENT_OBJECT_DESTROY || event == EVENT_OBJECT_HIDE);
+            if (fact.kind == WindowKind::console) fact.reportedActor = current_->observeReported(fact);
             fact.generated32 = generated;
             fact.received = moment();
             fact.generated = current_->eventTick(generated, fact.received);
@@ -396,6 +751,10 @@ class Observer {
 public:
     explicit Observer(bool observeWindows = false) : windowObservation_(observeWindows) {
         check(current_ == nullptr, "observer already active");
+        wchar_t system[32768]{};
+        const auto systemLength = GetSystemDirectoryW(system, static_cast<UINT>(std::size(system)));
+        check(systemLength && systemLength < std::size(system), "trusted console host path unavailable");
+        classicHostImage_ = recap::normalizedPath(std::wstring(system) + L"\\conhost.exe");
         consoles_.reserve(8192);
         if (windowObservation_) windows_.reserve(8192);
         LARGE_INTEGER frequency{};
@@ -464,6 +823,7 @@ public:
     }
     ~Observer() {
         if (!stopped_) stop();
+        closeIdentityHandles();
     }
     void stop() {
         if (stopped_) return;
@@ -493,6 +853,83 @@ public:
         current_ = nullptr;
         stopped_ = true;
     }
+    void reportTo(std::ostream& report) { report_ = &report; }
+    void bindClient(DWORD pid, HANDLE process, HANDLE primaryThread = nullptr, DWORD primaryTid = 0, bool control = false) {
+        uint64_t born = 0;
+        check(pid && GetProcessId(process) == pid && creation(process, false, born), "client process identity unavailable");
+        auto found = clients_.find(pid);
+        if (found != clients_.end()) {
+            check(found->second.creation == born && found->second.control == control, "client process instance changed");
+            return;
+        }
+        check(clients_.size() < 128, "client identity bound exceeded");
+        Client client;
+        client.pid = pid;
+        client.creation = born;
+        client.control = control;
+        client.process = duplicate(process);
+        if (primaryThread) {
+            check(primaryTid && GetThreadId(primaryThread) == primaryTid, "returned primary thread identity differed");
+            client.primaryActor = retainActor(process, primaryThread, false);
+            check(client.primaryActor != 0, "returned primary thread could not be bound");
+        }
+        check(!control || client.primaryActor != 0, "control primary thread is required");
+        clients_.emplace(pid, std::move(client));
+    }
+    void bindControlSample(DWORD pid, const WindowFact& sample) {
+        const auto found = clients_.find(pid);
+        check(found != clients_.end() && found->second.control, "control client was not retained");
+        const auto* client = actor(found->second.primaryActor);
+        check(client && sample.metadataKnown && sample.kind == WindowKind::console &&
+              sample.owner == pid && sample.thread == client->tid, "control sample primary thread differed");
+        check(reinterpret_cast<uintptr_t>(GetConsoleWindow()) == sample.window, "control sample console association differed");
+        std::array<DWORD, 128> members{};
+        const auto count = GetConsoleProcessList(members.data(), static_cast<DWORD>(members.size()));
+        check(count == 2 && std::find(members.begin(), members.begin() + count, pid) != members.begin() + count &&
+              std::find(members.begin(), members.begin() + count, GetCurrentProcessId()) != members.begin() + count,
+              "control binding requires exactly its client and observer");
+        const auto self = retainActor(GetCurrentProcess(), GetCurrentThread(), false);
+        check(self && actor(self)->pid == GetCurrentProcessId() && actor(self)->tid == GetCurrentThreadId(),
+              "attached observer thread could not be bound");
+        check(controlAssociations_.size() < 8, "control association bound exceeded");
+        ControlAssociation association;
+        association.client = pid;
+        association.sample = sample;
+        association.observerActor = self;
+        association.membership = true;
+        controlAssociations_.push_back(association);
+    }
+    void confirmControlDeparture(DWORD pid) {
+        const auto found = clients_.find(pid);
+        check(found != clients_.end() && WaitForSingleObject(found->second.process.get(), 0) == WAIT_OBJECT_0,
+              "control departure was not confirmed on its retained instance");
+        for (auto& association : controlAssociations_) if (association.client == pid) {
+            association.departed = true;
+            association.departureQpc = moment().qpc;
+        }
+    }
+    void confirmObserverOnly(DWORD pid) {
+        for (auto& association : controlAssociations_) if (association.client == pid) {
+            std::array<DWORD, 128> members{};
+            const auto count = GetConsoleProcessList(members.data(), static_cast<DWORD>(members.size()));
+            check(association.departed && reinterpret_cast<uintptr_t>(GetConsoleWindow()) == association.sample.window &&
+                  count == 1 && members[0] == GetCurrentProcessId(),
+                  "remaining attached observer association was not confirmed");
+            association.observerOnly = true;
+        }
+    }
+    void confirmObserverDetached(DWORD pid) {
+        for (auto& association : controlAssociations_) if (association.client == pid) {
+            check(association.observerOnly && GetConsoleWindow() == nullptr, "observer detach association was not confirmed");
+            association.detached = true;
+            association.detachQpc = moment().qpc;
+        }
+    }
+    void finishIdentities() {
+        check(stopped_, "identity handles must outlive observation");
+        closeIdentityHandles();
+        assertHealthy();
+    }
     bool console(DWORD pid, DWORD event = EVENT_CONSOLE_START_APPLICATION) const {
         return std::any_of(consoles_.begin(), consoles_.end(),
             [&](const auto& fact) { return fact.pid == pid && fact.event == event; });
@@ -505,8 +942,168 @@ public:
     ULONG buffersLost() { return properties()->LogBuffersLost + properties()->RealTimeBuffersLost; }
     const std::vector<WindowFact>& windows() const { return windows_; }
     const std::vector<ConsoleFact>& consoles() const { return consoles_; }
+    std::vector<ConsoleBinding> consoleBindings() const {
+        std::lock_guard<std::mutex> lock(mutex_);
+        const auto lifetimes = windowLifetimes(windows_);
+        std::vector<ConsoleBinding> result;
+        for (size_t number = 0; number < lifetimes.size(); ++number) {
+            const auto& life = lifetimes[number];
+            const auto& first = windows_[life.rows.front()];
+            const auto endTick = life.closed ? windows_[life.rows.back()].generated : UINT64_MAX;
+            const ControlAssociation* control = nullptr;
+            size_t controlMatches = 0;
+            for (const auto& candidate : controlAssociations_) {
+                if (candidate.sample.window == first.window && candidate.sample.received.tick >= first.generated &&
+                    candidate.sample.received.tick <= endTick) { control = &candidate; ++controlMatches; }
+            }
+            if (!control && std::none_of(life.rows.begin(), life.rows.end(),
+                [&](size_t index) { return windows_[index].kind == WindowKind::console; })) continue;
+            ConsoleBinding binding;
+            binding.window = first.window;
+            binding.lifetime = number + 1;
+            binding.control = control != nullptr;
+            size_t hostId = 0;
+            for (const auto index : life.rows) {
+                const auto& raw = windows_[index];
+                auto id = raw.sourceActor;
+                if (!id && raw.sourceThreadKnown) {
+                    id = retainedThread(raw.sourceThread, raw.sourceOwner);
+                    const auto* value = actor(id);
+                    if (!value || value->threadCreation != raw.sourceThreadCreation) id = 0;
+                }
+                if (id) { hostId = id; break; }
+            }
+            const auto* host = actor(hostId);
+            if (host) {
+                binding.presenterActor = hostId;
+                binding.presenter = host->pid;
+                binding.presenterThread = host->tid;
+                binding.sourceThreadCreation = host->threadCreation;
+                binding.role = host->role;
+                binding.presenterKnown = host->instanceKnown && host->liveAtCapture;
+                binding.sourceThreadBound = host->instanceKnown;
+                binding.presenterEtw = etwInstance(*host, processes_, true);
+            }
+            DWORD clientPid = control ? control->client : 0;
+            bool clientConflict = controlMatches > 1;
+            if (!control) for (const auto index : life.rows) {
+                const auto found = clients_.find(windows_[index].owner);
+                if (found == clients_.end() || found->second.control) continue;
+                if (clientPid && clientPid != found->first) clientConflict = true;
+                clientPid = found->first;
+            }
+            binding.client = clientPid;
+            const auto knownClient = clients_.find(clientPid);
+            size_t clientId = knownClient == clients_.end() ? 0 : knownClient->second.primaryActor;
+            if (!clientId && knownClient != clients_.end()) {
+                for (const auto index : life.rows) {
+                    const auto id = windows_[index].reportedActor;
+                    const auto* candidate = actor(id);
+                    if (!candidate || candidate->pid != clientPid ||
+                        candidate->processCreation != knownClient->second.creation) continue;
+                    if (clientId && clientId != id) clientConflict = true;
+                    clientId = id;
+                }
+            }
+            const auto* client = actor(clientId);
+            if (client && knownClient != clients_.end()) {
+                binding.clientActor = clientId;
+                binding.clientThread = client->tid;
+                binding.clientKnown = !clientConflict && client->instanceKnown && client->liveAtCapture &&
+                    client->pid == clientPid && client->processCreation == knownClient->second.creation;
+                binding.clientThreadBound = client->instanceKnown;
+                binding.clientEtw = etwInstance(*client, processes_, false);
+            }
+            const Actor* self = control ? actor(control->observerActor) : nullptr;
+            if (control && self) {
+                binding.observerActor = control->observerActor;
+                binding.observer = self->pid;
+                binding.observerThread = self->tid;
+                binding.observerKnown = self->instanceKnown && self->liveAtCapture && self->pid == GetCurrentProcessId();
+                binding.membership = control->membership;
+                binding.sampleMapped = client && control->sample.metadataKnown && control->sample.kind == WindowKind::console &&
+                    control->sample.owner == clientPid && control->sample.thread == client->tid;
+                binding.sampleTick = control->sample.received.tick;
+                binding.observerAttached = control->membership;
+                binding.departed = control->departed;
+                binding.departureQpc = control->departureQpc;
+                binding.observerOnly = control->observerOnly;
+                binding.observerDetached = control->detached;
+                binding.detachQpc = control->detachQpc;
+            }
+            size_t starts = 0, ends = 0, observerStarts = 0, observerEnds = 0;
+            uint64_t startTick = 0;
+            bool associationsValid = host && life.created && !life.conflict;
+            for (const auto& event : consoles_) {
+                if (event.window != first.window || event.generated < first.generated || event.generated > endTick) continue;
+                const auto* source = actor(event.sourceActor);
+                const bool sourceKnown = host && source && source->instanceKnown &&
+                    source->role == PresenterRole::classic && source->pid == host->pid &&
+                    source->processCreation == host->processCreation && event.child == 0;
+                if (!sourceKnown) { associationsValid = false; continue; }
+                if (event.pid == clientPid) {
+                    if (event.event == EVENT_CONSOLE_START_APPLICATION) { ++starts; startTick = event.generated; }
+                    if (event.event == EVENT_CONSOLE_END_APPLICATION) { ++ends; binding.clientEndTick = event.generated; }
+                } else if (control && self && event.pid == self->pid) {
+                    if (event.event == EVENT_CONSOLE_START_APPLICATION) ++observerStarts;
+                    if (event.event == EVENT_CONSOLE_END_APPLICATION) { ++observerEnds; binding.observerEndTick = event.generated; }
+                } else {
+                    associationsValid = false;
+                }
+            }
+            binding.association = associationsValid && starts == 1;
+            binding.noOtherClients = associationsValid && starts <= 1 && ends <= 1 && observerStarts <= 1 && observerEnds <= 1;
+            binding.clientEnded = ends == 1 && binding.clientEndTick >= startTick;
+            binding.observerEnded = observerStarts == 1 && observerEnds == 1 &&
+                binding.observerEndTick >= binding.clientEndTick;
+            binding.clientStarts = starts;
+            binding.clientEnds = ends;
+            binding.observerStarts = observerStarts;
+            binding.observerEnds = observerEnds;
+            if (control) binding.observerAttached = binding.observerAttached && observerStarts == 1;
+            result.push_back(binding);
+        }
+        return result;
+    }
+    std::vector<WindowResolution> resolvedWindows() const {
+        return correlateWindows(windows_, clockValid(), healthy(), consoleBindings());
+    }
+    void reportBindings(std::ostream& report) const {
+        const auto bindings = consoleBindings();
+        for (size_t index = 0; index < std::min<size_t>(20, bindings.size()); ++index) {
+            const auto& value = bindings[index];
+            const auto* host = actor(value.presenterActor);
+            const auto* client = actor(value.clientActor);
+            report << "DIAG console-binding lifetime=" << value.lifetime << " hwnd=" << value.window
+                   << " ready=" << bindingReady(value) << " host_role=" << presenterRoleName(value.role)
+                   << " host=" << value.presenter << " host_thread=" << value.presenterThread
+                   << " host_instance=" << value.presenterKnown << " host_thread_bound=" << value.sourceThreadBound
+                   << " host_etw=" << value.presenterEtw << " host_image_exact=" << (value.role == PresenterRole::classic)
+                   << " host_image_error=" << (host ? host->imageError : 0)
+                   << " host_creation=" << (host ? host->processCreation : 0)
+                   << " host_thread_creation=" << value.sourceThreadCreation << " client=" << value.client
+                   << " client_thread=" << value.clientThread << " client_instance=" << value.clientKnown
+                   << " client_thread_bound=" << value.clientThreadBound << " client_etw=" << value.clientEtw
+                   << " client_creation=" << (client ? client->processCreation : 0)
+                   << " client_thread_creation=" << (client ? client->threadCreation : 0)
+                   << " control=" << value.control << " association=" << value.association
+                   << " no_other_clients=" << value.noOtherClients << " membership=" << value.membership
+                   << " sample_mapped=" << value.sampleMapped << " observer=" << value.observer
+                   << " observer_thread=" << value.observerThread << " observer_bound=" << value.observerKnown
+                   << " observer_attached=" << value.observerAttached << " client_end=" << value.clientEnded
+                   << " client_starts=" << value.clientStarts << " client_ends=" << value.clientEnds
+                   << " observer_starts=" << value.observerStarts << " observer_ends=" << value.observerEnds
+                   << " departed=" << value.departed << " departure_qpc=" << value.departureQpc
+                   << " observer_only=" << value.observerOnly << " observer_detached=" << value.observerDetached
+                   << " observer_end=" << value.observerEnded << " detach_qpc=" << value.detachQpc << "\n";
+        }
+        report << "DIAG console-binding-summary bindings=" << bindings.size()
+               << " omitted=" << (bindings.size() > 20 ? bindings.size() - 20 : 0)
+               << " retained_instances=" << actors_.size() << " retained_clients=" << clients_.size() << "\n";
+        report.flush();
+    }
     bool windowEventSeen(uintptr_t window, DWORD event) const {
-        const auto resolution = correlateWindows(windows_, clockValid(), healthy());
+        const auto resolution = resolvedWindows();
         for (size_t index = 0; index < windows_.size(); ++index)
             if (windows_[index].window == window && windows_[index].event == event &&
                 resolution[index].identityKnown && !resolution[index].conflict) return true;
@@ -518,20 +1115,40 @@ public:
         });
     }
     bool visibleForProcess(DWORD pid) const {
-        return std::any_of(windows_.begin(), windows_.end(), [&](const auto& fact) {
-            const bool associated = std::any_of(consoles_.begin(), consoles_.end(), [&](const auto& event) {
-                return event.pid == pid && event.window != 0 && event.window == fact.window;
-            });
-            const bool terminal = fact.kind == WindowKind::console || fact.kind == WindowKind::terminal || associated;
-            return terminal && (fact.owner == pid || associated) && visibleIn(fact, 0, UINT64_MAX);
+        const auto resolution = resolvedWindows();
+        for (size_t index = 0; index < windows_.size(); ++index) {
+            const auto& row = resolution[index];
+            if (row.client == pid && visibleBoundConsole(windows_[index], row)) return true;
+            if (row.kind == WindowKind::terminal && row.identityKnown && !row.conflict &&
+                row.owner == pid && visibleIn(windows_[index], 0, UINT64_MAX)) return true;
+        }
+        return false;
+    }
+    bool potentialConsole(DWORD pid, const WindowFact& raw, const WindowResolution& identity) const {
+        return std::any_of(consoles_.begin(), consoles_.end(), [&](const auto& event) {
+            return event.event == EVENT_CONSOLE_START_APPLICATION && event.pid == pid && event.window &&
+                event.window == raw.window && event.generated >= identity.beginTick && event.generated <= identity.endTick;
         });
+    }
+    bool pendingTerminalIdentity(DWORD pid) const {
+        const auto resolution = resolvedWindows();
+        for (size_t index = 0; index < windows_.size(); ++index) {
+            const auto& raw = windows_[index];
+            const auto& row = resolution[index];
+            if (((raw.kind == WindowKind::console && (raw.owner == pid || row.client == pid)) ||
+                 potentialConsole(pid, raw, row)) && !row.consoleBound) return true;
+        }
+        return false;
     }
     std::vector<ProcessEvent> processes() {
         std::lock_guard<std::mutex> lock(mutex_);
         return processes_;
     }
     void assertHealthy() const { check(!lost_.load(), "observer lost data or could not complete capture"); }
-    void bindRoot(DWORD pid, HANDLE process) { roots_[pid] = imagePath(process); }
+    void bindRoot(DWORD pid, HANDLE process) {
+        roots_[pid] = imagePath(process);
+        bindClient(pid, process);
+    }
     std::pair<size_t, size_t> entryCounts(const std::wstring& expected) {
         std::lock_guard<std::mutex> lock(mutex_);
         std::set<DWORD> roots, ended;
@@ -559,7 +1176,7 @@ public:
         check(roots.size() == count, "registered GUI activation count differed");
         return roots;
     }
-    std::wstring executablePath(DWORD pid, const ProcessEvent& event) {
+    std::wstring executablePath(DWORD pid, const ProcessEvent& event) const {
         std::wstring path = event.image;
         if (images_.count(pid)) path = images_.at(pid);
         if (roots_.count(pid)) return roots_.at(pid);
@@ -589,6 +1206,9 @@ public:
                    << " source_thread=" << raw.sourceThread
                    << " source_owner=" << raw.sourceOwner << " source_error=" << raw.sourceError
                    << " raw_owner=" << raw.owner << " raw_thread=" << raw.thread
+                   << " source_actor=" << raw.sourceActor << " reported_actor=" << raw.reportedActor
+                   << " source_thread_known=" << raw.sourceThreadKnown << " source_thread_creation=" << raw.sourceThreadCreation
+                   << " source_retained=" << raw.sourceRetained
                    << " raw_kind=" << windowKindName(raw.kind) << " raw_identity=" << raw.identityKnown
                    << " raw_metadata=" << raw.metadataKnown << " raw_present=" << raw.present
                    << " raw_visible=" << raw.visible << " raw_geometry=" << raw.geometryKnown
@@ -602,6 +1222,8 @@ public:
                    << " derived=" << row.derived << " evidence_row=" << (row.evidence == SIZE_MAX ? -1LL : static_cast<long long>(row.evidence))
                    << " resolved_owner=" << row.owner << " resolved_thread=" << row.thread
                    << " resolved_kind=" << windowKindName(row.kind)
+                   << " console_bound=" << row.consoleBound << " complete_control=" << row.completeControl
+                   << " presenter=" << row.presenter << " presenter_thread=" << row.presenterThread << " client=" << row.client
                    << " owned_role=" << (owned.count(row.owner) ? "owned" : "outside-owned")
                    << " conflict=" << row.conflict << " visibility_missing=" << row.visibilityMissing << "\n";
         };
@@ -626,6 +1248,7 @@ public:
 
     void reportCalibrationWindows(std::ostream& report, DWORD control, const WindowFact& sample,
                                   Moment begin, Moment beforeAttach) {
+        reportBindings(report);
         uintptr_t window = sample.window;
         const char* source = window ? "sample" : "unavailable";
         if (!window) for (const auto& fact : consoles_) {
@@ -660,7 +1283,7 @@ public:
                << " passive_fence=" << (window && beforeAttach.qpc &&
                    passiveVisible(window, begin.tick, beforeAttach.tick + 1, beforeAttach.qpc))
                << " healthy=" << healthy() << " clocks=" << clockValid() << " stopped=" << stopped_ << "\n";
-        const auto resolution = correlateWindows(windows_, clockValid(), healthy());
+        const auto resolution = resolvedWindows();
         std::vector<size_t> context;
         for (size_t index = 0; index < windows_.size(); ++index)
             if (!window || windows_[index].window == window) context.push_back(index);
@@ -669,10 +1292,57 @@ public:
         reportAttribution(report, resolution, context, owned);
     }
 
+    void reportClientWindows(std::ostream& report, const std::set<DWORD>& clients) {
+        reportBindings(report);
+        const auto resolution = resolvedWindows();
+        std::vector<size_t> context;
+        for (size_t index = 0; index < windows_.size(); ++index) {
+            const auto& raw = windows_[index];
+            const auto& row = resolution[index];
+            if (clients.count(raw.owner) || clients.count(row.client) ||
+                std::any_of(clients.begin(), clients.end(), [&](DWORD pid) { return potentialConsole(pid, raw, row); }))
+                context.push_back(index);
+        }
+        reportAttribution(report, resolution, context, clients);
+    }
+
+    std::set<size_t> requireCalibrationLifetimes(const std::vector<WindowFact>& controls, std::ostream& report,
+                                               const std::vector<WindowResolution>& resolution) {
+        std::set<size_t> result;
+        for (const auto& known : controls) {
+            std::set<size_t> candidates;
+            std::vector<size_t> context;
+            for (size_t index = 0; index < windows_.size(); ++index) {
+                if (windows_[index].window != known.window) continue;
+                context.push_back(index);
+                const auto& row = resolution[index];
+                if (row.identityKnown && !row.conflict && row.consoleBound && row.completeControl &&
+                    row.created && row.destroyed && row.client == known.owner && row.thread == known.thread &&
+                    row.kind == known.kind && row.beginTick <= known.received.tick && known.received.tick <= row.endTick)
+                    candidates.insert(row.lifetime);
+            }
+            if (candidates.size() != 1) {
+                reportBindings(report);
+                reportAttribution(report, resolution, context, {});
+                throw std::runtime_error("calibration window lifetime made passive observation inconclusive");
+            }
+            result.insert(*candidates.begin());
+        }
+        check(result.size() == controls.size(), "calibration controls did not have distinct complete lifetimes");
+        return result;
+    }
+    void assertCalibrations(const std::vector<WindowFact>& controls, std::ostream& report) {
+        check(stopped_ && controls.size() == 2 && clockValid(), "calibration preflight was incomplete");
+        assertHealthy();
+        const auto resolution = resolvedWindows();
+        requireCalibrationLifetimes(controls, report, resolution);
+        reportBindings(report);
+    }
+
     void assertNoVisibleTerminals(const std::vector<DWORD>& roots, bool installed,
                                  const std::vector<WindowFact>& controls, std::ostream& report) {
         check(stopped_ && windowObservation_, "visible-terminal verdict requires completed window observation");
-        const auto resolution = correlateWindows(windows_, clockValid(), healthy());
+        const auto resolution = resolvedWindows();
         if (!healthy() || !clockValid() || controls.size() != 2) {
             std::vector<size_t> rows;
             for (size_t index = 0; index < windows_.size(); ++index) rows.push_back(index);
@@ -738,28 +1408,7 @@ public:
         }
         check(coordinator, "coordinator startup role was not captured");
         if (installed) check(verifier && server && browser, "installed startup role coverage was incomplete");
-        std::set<uintptr_t> associated;
-        for (const auto& event : consoles_)
-            if (owned.count(event.pid) && event.window) associated.insert(event.window);
-        std::set<size_t> calibrationLifetimes;
-        for (const auto& known : controls) {
-            std::set<size_t> candidates;
-            std::vector<size_t> context;
-            for (size_t index = 0; index < windows_.size(); ++index) {
-                if (windows_[index].window != known.window) continue;
-                context.push_back(index);
-                const auto& row = resolution[index];
-                if (row.identityKnown && !row.conflict && row.created && row.destroyed &&
-                    row.owner == known.owner && row.thread == known.thread && row.kind == known.kind &&
-                    row.beginTick <= known.received.tick && known.received.tick <= row.endTick)
-                    candidates.insert(row.lifetime);
-            }
-            if (candidates.size() != 1) {
-                reportAttribution(report, resolution, context, owned);
-                throw std::runtime_error("calibration window lifetime made passive observation inconclusive");
-            }
-            calibrationLifetimes.insert(*candidates.begin());
-        }
+        const auto calibrationLifetimes = requireCalibrationLifetimes(controls, report, resolution);
         std::set<DWORD> observers{ GetCurrentProcessId() };
         const auto observerImage = recap::modulePath();
         for (const auto& [pid, event] : starts) {
@@ -774,24 +1423,21 @@ public:
             const bool control = identity.identityKnown && !identity.conflict &&
                 calibrationLifetimes.count(identity.lifetime);
             if (control) continue;
+            const bool possibleConsole = std::any_of(owned.begin(), owned.end(),
+                [&](DWORD pid) { return potentialConsole(pid, fact, identity); });
             const bool observerOnly = identity.identityKnown && !identity.conflict && identity.kind == WindowKind::other &&
-                observers.count(identity.owner) && !associated.count(fact.window);
+                observers.count(identity.owner) && !possibleConsole;
             if (observerOnly) continue;
-            const bool terminal = identity.kind == WindowKind::console || identity.kind == WindowKind::terminal ||
-                associated.count(fact.window);
+            const bool terminal = identity.kind == WindowKind::console || identity.kind == WindowKind::terminal || possibleConsole;
             if (!identity.identityKnown || identity.conflict || identity.visibilityMissing ||
-                (terminal && fact.event == EVENT_OBJECT_CREATE && !fact.metadataKnown)) {
+                (possibleConsole && !identity.consoleBound) ||
+                (terminal && !identity.consoleBound && fact.event == EVENT_OBJECT_CREATE && !fact.metadataKnown)) {
                 inconclusive.push_back(index);
                 continue;
             }
-            auto measured = fact;
-            measured.owner = identity.owner;
-            measured.thread = identity.thread;
-            measured.kind = identity.kind;
-            measured.identityKnown = identity.identityKnown;
-            measured.metadataKnown = identity.identityKnown && fact.geometryKnown && fact.hierarchyKnown;
+            const auto measured = effectiveWindow(fact, identity);
             if (!terminal || !visibleIn(measured, 0, UINT64_MAX)) continue;
-            if (!owned.count(identity.owner) && !associated.count(fact.window)) inconclusive.push_back(index);
+            if (!owned.count(identity.owner)) inconclusive.push_back(index);
             else visible.push_back(index);
         }
         if (!inconclusive.empty()) {
