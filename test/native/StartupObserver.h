@@ -73,6 +73,87 @@ inline bool hasConsole(HANDLE process, DWORD pid) {
     return false;
 }
 
+enum class Rundown { none, begin, end };
+enum class LifecycleKind { start, end, rundownBegin, rundownEnd };
+
+struct LifecycleEvent {
+    DWORD id = 0, owner = 0;
+    LONGLONG timestamp = 0;
+    LifecycleKind kind = LifecycleKind::start;
+};
+
+struct LifetimeRange {
+    size_t first = 0, last = SIZE_MAX;
+    DWORD id = 0, owner = 0;
+    LONGLONG begin = 0, until = LLONG_MAX;
+    bool created = false, ended = false, ambiguous = false, rundownBegin = false, rundownEnd = false;
+};
+
+inline std::vector<LifetimeRange> lifetimeRanges(const std::vector<LifecycleEvent>& events, size_t limit) {
+    std::vector<size_t> order;
+    for (size_t index = 0; index < events.size(); ++index) order.push_back(index);
+    std::stable_sort(order.begin(), order.end(), [&](size_t a, size_t b) {
+        if (events[a].timestamp != events[b].timestamp) return events[a].timestamp < events[b].timestamp;
+        return events[a].kind == LifecycleKind::start && events[b].kind != LifecycleKind::start;
+    });
+    std::vector<LifetimeRange> result;
+    std::map<DWORD, std::vector<size_t>> identities;
+    for (const auto row : order) {
+        const auto& event = events[row];
+        auto& entries = identities[event.id];
+        std::vector<size_t> active;
+        for (const auto index : entries)
+            if (result[index].begin <= event.timestamp && event.timestamp <= result[index].until) active.push_back(index);
+        if (event.kind == LifecycleKind::end) {
+            if (active.empty()) {
+                if (!entries.empty()) result[entries.back()].ambiguous = true;
+                check(result.size() < limit, "lifetime identity bound exceeded");
+                LifetimeRange missing;
+                missing.first = missing.last = row;
+                missing.id = event.id;
+                missing.owner = event.owner;
+                missing.begin = missing.until = event.timestamp;
+                missing.ended = missing.ambiguous = true;
+                entries.push_back(result.size());
+                result.push_back(missing);
+                continue;
+            }
+            for (const auto index : active) {
+                auto& value = result[index];
+                value.ambiguous = value.ambiguous || value.ended || active.size() != 1 || value.owner != event.owner;
+                value.last = row;
+                value.until = event.timestamp;
+                value.ended = true;
+            }
+            continue;
+        }
+        if (event.kind != LifecycleKind::start && !active.empty()) {
+            for (const auto index : active) {
+                auto& value = result[index];
+                auto& observed = event.kind == LifecycleKind::rundownBegin ? value.rundownBegin : value.rundownEnd;
+                value.ambiguous = value.ambiguous || value.ended || active.size() != 1 || observed ||
+                    value.owner != event.owner;
+                observed = true;
+            }
+            continue;
+        }
+        check(result.size() < limit, "lifetime identity bound exceeded");
+        LifetimeRange value;
+        value.first = row;
+        value.id = event.id;
+        value.owner = event.owner;
+        value.begin = event.timestamp;
+        value.created = event.kind == LifecycleKind::start;
+        value.rundownBegin = event.kind == LifecycleKind::rundownBegin;
+        value.rundownEnd = event.kind == LifecycleKind::rundownEnd;
+        value.ambiguous = !event.id || event.timestamp <= 0 || !active.empty();
+        for (const auto index : active) result[index].ambiguous = true;
+        entries.push_back(result.size());
+        result.push_back(value);
+    }
+    return result;
+}
+
 struct ProcessEvent {
     DWORD pid = 0, parent = 0;
     bool start = false;
@@ -80,12 +161,15 @@ struct ProcessEvent {
     std::wstring image, command;
     bool exitKnown = false;
     DWORD exitCode = 0;
+    Rundown rundown = Rundown::none;
+    UCHAR version = 0;
 };
 
 struct ProcessImage {
     DWORD pid = 0;
     LONGLONG timestamp = 0;
     std::wstring path;
+    Rundown rundown = Rundown::none;
 };
 
 struct ProcessInstance {
@@ -93,41 +177,31 @@ struct ProcessInstance {
     size_t startRow = 0;
     LONGLONG until = LLONG_MAX;
     bool ended = false, ambiguous = false;
+    bool creationObserved = false, rundownBegin = false, rundownEnd = false;
 };
 
 struct ProcessGraph {
     std::vector<ProcessInstance> instances;
     explicit ProcessGraph(const std::vector<ProcessEvent>& events) {
-        std::map<DWORD, std::vector<size_t>> pids;
-        for (size_t row = 0; row < events.size(); ++row) if (events[row].start) {
-            ProcessInstance value;
-            value.start = events[row];
-            value.startRow = row;
-            value.ambiguous = !value.start.pid || value.start.timestamp <= 0;
-            pids[value.start.pid].push_back(instances.size());
-            instances.push_back(std::move(value));
+        std::vector<LifecycleEvent> records;
+        for (const auto& event : events) {
+            const auto kind = event.rundown == Rundown::begin ? LifecycleKind::rundownBegin
+                : event.rundown == Rundown::end ? LifecycleKind::rundownEnd
+                : event.start ? LifecycleKind::start : LifecycleKind::end;
+            records.push_back({ event.pid, event.parent, event.timestamp, kind });
         }
-        for (auto& [pid, entries] : pids) {
-            std::sort(entries.begin(), entries.end(), [&](size_t a, size_t b) {
-                return instances[a].start.timestamp < instances[b].start.timestamp;
-            });
-            for (const auto& event : events) {
-                if (event.start || event.pid != pid) continue;
-                for (size_t index = 0; index < entries.size(); ++index) {
-                    auto& value = instances[entries[index]];
-                    const auto next = index + 1 < entries.size()
-                        ? instances[entries[index + 1]].start.timestamp : LLONG_MAX;
-                    if (event.timestamp < value.start.timestamp || event.timestamp >= next) continue;
-                    if (value.ended) value.ambiguous = true;
-                    else { value.end = event; value.until = event.timestamp; value.ended = true; }
-                }
-            }
-            for (size_t index = 0; index + 1 < entries.size(); ++index) {
-                auto& before = instances[entries[index]];
-                auto& after = instances[entries[index + 1]];
-                if (!before.ended || before.start.timestamp == after.start.timestamp ||
-                    before.until >= after.start.timestamp) before.ambiguous = after.ambiguous = true;
-            }
+        for (const auto& range : lifetimeRanges(records, 8192)) {
+            ProcessInstance value;
+            value.start = events[range.first];
+            if (range.ended) value.end = events[range.last];
+            value.startRow = range.first;
+            value.until = range.until;
+            value.ended = range.ended;
+            value.ambiguous = range.ambiguous;
+            value.creationObserved = range.created;
+            value.rundownBegin = range.rundownBegin;
+            value.rundownEnd = range.rundownEnd;
+            instances.push_back(std::move(value));
         }
     }
     std::vector<size_t> at(DWORD pid, LONGLONG time) const {
@@ -168,6 +242,7 @@ struct ProcessGraph {
             for (size_t index = 0; index < instances.size(); ++index) {
                 if (roots.count(index)) continue;
                 const auto& value = instances[index];
+                if (!value.creationObserved) continue;
                 const auto parents = at(value.start.parent, value.start.timestamp);
                 const bool related = std::any_of(parents.begin(), parents.end(),
                     [&](size_t parent) { return result.owned.count(parent) != 0; });
@@ -184,6 +259,42 @@ struct ProcessGraph {
             if (!changed) break;
         }
         return result;
+    }
+};
+
+inline constexpr size_t ThreadRecordLimit = 65536, ThreadIdentityLimit = 32768;
+
+struct ThreadEvent {
+    DWORD pid = 0, tid = 0;
+    LONGLONG timestamp = 0;
+    LifecycleKind kind = LifecycleKind::start;
+    UCHAR version = 0;
+};
+
+inline void appendThreadEvent(std::vector<ThreadEvent>& events, const ThreadEvent& event) {
+    check(events.size() < ThreadRecordLimit, "ETW thread record bound exceeded");
+    events.push_back(event);
+}
+
+struct ThreadGraph {
+    std::vector<LifetimeRange> instances;
+    explicit ThreadGraph(const std::vector<ThreadEvent>& events) {
+        check(events.size() <= ThreadRecordLimit, "ETW thread record bound exceeded");
+        std::vector<LifecycleEvent> records;
+        for (const auto& event : events) records.push_back({ event.tid, event.pid, event.timestamp, event.kind });
+        instances = lifetimeRanges(records, ThreadIdentityLimit);
+    }
+    std::vector<size_t> between(DWORD tid, LONGLONG begin, LONGLONG end) const {
+        std::vector<size_t> result;
+        for (size_t index = 0; index < instances.size(); ++index) {
+            const auto& value = instances[index];
+            if (value.id == tid && value.begin <= end && value.until >= begin) result.push_back(index);
+        }
+        return result;
+    }
+    size_t unique(DWORD tid, LONGLONG time) const {
+        const auto candidates = between(tid, time, time);
+        return candidates.size() == 1 && !instances[candidates[0]].ambiguous ? candidates[0] : SIZE_MAX;
     }
 };
 
@@ -236,13 +347,15 @@ inline const char* purposeName(RegisteredPurpose purpose) {
 }
 
 struct Moment {
-    uint64_t tick = 0, qpc = 0;
+    uint64_t tick = 0, qpc = 0, afterQpc = 0;
 };
 
 inline Moment moment() {
-    LARGE_INTEGER counter{};
+    LARGE_INTEGER counter{}, after{};
     check(QueryPerformanceCounter(&counter) != FALSE, "performance clock unavailable");
-    return { GetTickCount64(), static_cast<uint64_t>(counter.QuadPart) };
+    const auto tick = GetTickCount64();
+    check(QueryPerformanceCounter(&after) != FALSE, "performance clock unavailable");
+    return { tick, static_cast<uint64_t>(counter.QuadPart), static_cast<uint64_t>(after.QuadPart) };
 }
 
 enum class WindowKind { unknown, other, startup, console, terminal };
@@ -275,8 +388,107 @@ struct WindowFact {
     uint64_t sourceThreadCreation = 0;
     size_t sourceActor = 0, reportedActor = 0;
     bool sourceThreadKnown = false, sourceRetained = false;
+    uint64_t sourceObservedQpc = 0;
+    bool sourceLive = false;
     RECT rectangle{};
 };
+
+inline constexpr uint64_t SourceClockSlopMs = 32;
+
+struct SourceWitness {
+    DWORD pid = 0, tid = 0;
+    uint64_t processCreation = 0, threadCreation = 0, observedQpc = 0, liveThroughQpc = 0;
+};
+
+struct SourceResolution {
+    DWORD owner = 0;
+    size_t process = SIZE_MAX, thread = SIZE_MAX;
+    uint64_t threadCreation = 0;
+    bool known = false, retained = false, liveQuery = false, rundown = false;
+    LONGLONG earliest = 0, latest = 0;
+    const char* reason = "source-interval-missing";
+};
+
+inline SourceResolution resolveSource(const WindowFact& raw, const ProcessGraph& processes,
+                                      const ThreadGraph& threads, const std::vector<SourceWitness>& retained,
+                                      uint64_t captureBegin, uint64_t frequency, bool clocks, bool healthy) {
+    SourceResolution result;
+    if (!clocks || !healthy || !raw.sourceThread || !frequency || !captureBegin ||
+        raw.received.afterQpc < raw.received.qpc || raw.received.afterQpc > static_cast<uint64_t>(LLONG_MAX) ||
+        raw.generated > raw.received.tick || raw.received.tick - raw.generated > 120000 ||
+        frequency > static_cast<uint64_t>(LLONG_MAX) / (120000 + SourceClockSlopMs)) {
+        result.reason = "source-clock-or-capture-invalid";
+        return result;
+    }
+    const auto delay = raw.received.tick - raw.generated;
+    // Two coarse uptime readings bracket a QPC interval, not one invented event instant.
+    const auto before = (delay + SourceClockSlopMs) * frequency / 1000;
+    const auto after = delay > SourceClockSlopMs ? (delay - SourceClockSlopMs) * frequency / 1000 : 0;
+    if (raw.received.qpc <= before || raw.received.afterQpc < after) return result;
+    const auto earliest = raw.received.qpc - before;
+    const auto latest = std::min(raw.received.qpc, raw.received.afterQpc - after);
+    if (earliest < captureBegin || latest < earliest) return result;
+    result.earliest = static_cast<LONGLONG>(earliest);
+    result.latest = static_cast<LONGLONG>(latest);
+    const auto candidates = threads.between(raw.sourceThread, result.earliest, result.latest);
+    if (candidates.size() != 1 || threads.instances[candidates[0]].ambiguous) {
+        result.reason = candidates.empty() ? "source-thread-lifetime-missing" : "source-thread-lifetime-ambiguous";
+        return result;
+    }
+    result.thread = candidates[0];
+    const auto& thread = threads.instances[result.thread];
+    std::vector<size_t> owners;
+    for (size_t index = 0; index < processes.instances.size(); ++index) {
+        const auto& value = processes.instances[index];
+        if (value.start.pid == thread.owner && value.start.timestamp <= result.latest &&
+            value.until >= std::max(thread.begin, result.earliest)) owners.push_back(index);
+    }
+    if (owners.size() != 1 || processes.instances[owners[0]].ambiguous) {
+        result.reason = "source-process-lifetime-missing-or-ambiguous";
+        return result;
+    }
+    result.process = owners[0];
+    const auto& process = processes.instances[result.process];
+    if (!thread.owner || (raw.sourceOwner && raw.sourceOwner != thread.owner) ||
+        (process.creationObserved && process.start.timestamp > thread.begin)) {
+        result.reason = "source-owner-instance-conflict";
+        return result;
+    }
+    const auto point = std::max(thread.begin, process.start.timestamp);
+    uint64_t processCreation = 0;
+    for (const auto& witness : retained) {
+        if (witness.pid != thread.owner || witness.tid != raw.sourceThread || !witness.processCreation ||
+            !witness.threadCreation || !witness.observedQpc || witness.observedQpc > witness.liveThroughQpc) continue;
+        const auto witnessed = std::max(static_cast<LONGLONG>(witness.observedQpc), point);
+        if (witnessed > static_cast<LONGLONG>(witness.liveThroughQpc) ||
+            threads.unique(witness.tid, witnessed) != result.thread ||
+            processes.unique(witness.pid, witnessed) != result.process) continue;
+        if ((processCreation && processCreation != witness.processCreation) ||
+            (result.threadCreation && result.threadCreation != witness.threadCreation) ||
+            (raw.sourceThreadKnown && raw.sourceThreadCreation != witness.threadCreation)) {
+            result.reason = "source-retained-creation-conflict";
+            return result;
+        }
+        processCreation = witness.processCreation;
+        result.threadCreation = witness.threadCreation;
+        result.retained = true;
+    }
+    if (raw.sourceThreadKnown && raw.sourceLive) {
+        if (!raw.sourceObservedQpc || threads.unique(raw.sourceThread, static_cast<LONGLONG>(raw.sourceObservedQpc)) != result.thread ||
+            processes.unique(raw.sourceOwner, static_cast<LONGLONG>(raw.sourceObservedQpc)) != result.process) {
+            result.reason = "source-live-query-instance-conflict";
+            return result;
+        }
+        result.threadCreation = raw.sourceThreadCreation;
+        result.liveQuery = true;
+    }
+    result.owner = thread.owner;
+    result.known = true;
+    result.rundown = thread.rundownBegin || thread.rundownEnd || process.rundownBegin || process.rundownEnd;
+    result.reason = result.retained ? "retained-source-identity"
+        : result.liveQuery ? "live-source-query" : "source-lifecycle-recovery";
+    return result;
+}
 
 struct HelperScopeEvidence {
     bool registered = false, instance = false, image = false, thread = false, ownerCompatible = false;
@@ -601,6 +813,7 @@ class Observer {
         RegisteredPurpose purpose = RegisteredPurpose::product;
         std::wstring image;
         bool imageExact = false;
+        size_t primaryActor = 0;
     };
     struct RootAnchor {
         DWORD pid = 0;
@@ -611,7 +824,7 @@ class Observer {
     struct Actor {
         recap::Handle process, thread;
         DWORD pid = 0, tid = 0;
-        uint64_t processCreation = 0, threadCreation = 0, capturedQpc = 0;
+        uint64_t processCreation = 0, threadCreation = 0, capturedQpc = 0, lastLiveQpc = 0;
         bool instanceKnown = false, liveAtCapture = false;
         PresenterRole role = PresenterRole::unknown;
         std::wstring image;
@@ -657,7 +870,9 @@ class Observer {
         std::mutex mutex_;
         std::vector<ProcessEvent> processes_;
         std::vector<ProcessImage> images_;
+        std::vector<ThreadEvent> threads_;
         std::atomic<bool> lost_{ false };
+        std::atomic<const char*> failure_{ nullptr };
         TRACEHANDLE consumer_ = INVALID_PROCESSTRACE_HANDLE;
     };
     inline static thread_local Observer* current_ = nullptr;
@@ -672,6 +887,7 @@ class Observer {
     std::mutex& mutex_ = capture_->mutex_;
     std::vector<ProcessEvent>& processes_ = capture_->processes_;
     std::vector<ProcessImage>& images_ = capture_->images_;
+    std::vector<ThreadEvent>& threads_ = capture_->threads_;
     std::vector<ConsoleFact> consoles_;
     std::vector<WindowFact> windows_;
     std::map<DWORD, std::wstring> roots_;
@@ -685,6 +901,7 @@ class Observer {
     ObservationProfile profile_;
     bool fixedFixtureSource_ = false;
     uint64_t frequency_ = 0;
+    uint64_t captureBegin_ = 0;
     std::vector<Actor> actors_;
     std::map<DWORD, Client> clients_;
     std::vector<ControlAssociation> controlAssociations_;
@@ -697,6 +914,7 @@ class Observer {
     bool finalBegun_ = false, finalSectionOpen_ = false;
     size_t finalExpectedRoots_ = 0, finalActualRoots_ = 0;
     std::set<DWORD> finalContextPids_;
+    std::vector<SourceResolution> finalSources_;
 
     bool creation(HANDLE handle, bool thread, uint64_t& value) {
         FILETIME born{}, exited{}, kernel{}, user{};
@@ -733,10 +951,13 @@ class Observer {
         uint64_t processBorn = 0, threadBorn = 0;
         if (!pid || !tid || GetProcessIdOfThread(thread) != pid ||
             !creation(process, false, processBorn) || !creation(thread, true, threadBorn)) return 0;
+        const auto sampled = moment().qpc;
+        const bool live = WaitForSingleObject(process, 0) == WAIT_TIMEOUT && WaitForSingleObject(thread, 0) == WAIT_TIMEOUT;
         for (size_t index = 0; index < actors_.size(); ++index) {
             auto& value = actors_[index];
             if (value.pid == pid && value.tid == tid && value.processCreation == processBorn &&
                 value.threadCreation == threadBorn) {
+                if (live) value.lastLiveQpc = sampled;
                 if (classifyHost) classify(value);
                 return index + 1;
             }
@@ -750,9 +971,9 @@ class Observer {
         value.processCreation = processBorn;
         value.threadCreation = threadBorn;
         value.instanceKnown = true;
-        value.liveAtCapture = WaitForSingleObject(process, 0) == WAIT_TIMEOUT &&
-            WaitForSingleObject(thread, 0) == WAIT_TIMEOUT;
-        value.capturedQpc = moment().qpc;
+        value.liveAtCapture = live;
+        value.capturedQpc = sampled;
+        value.lastLiveQpc = live ? sampled : 0;
         if (classifyHost) classify(value);
         actors_.push_back(std::move(value));
         return actors_.size();
@@ -780,6 +1001,8 @@ class Observer {
                     known.tid = GetThreadId(thread);
                     check(known.tid && GetProcessIdOfThread(thread) == pid && creation(thread, true, known.threadCreation),
                           "registered primary thread instance differs");
+                    known.primaryActor = retainActor(process, thread, false);
+                    check(known.primaryActor != 0, "registered primary thread instance differs");
                 }
                 return index;
             }
@@ -800,6 +1023,8 @@ class Observer {
             value.tid = GetThreadId(thread);
             check(value.tid && GetProcessIdOfThread(thread) == pid && creation(thread, true, value.threadCreation),
                   "registered primary thread instance differs");
+            value.primaryActor = retainActor(process, thread, false);
+            check(value.primaryActor != 0, "registered primary thread instance differs");
         }
         registrations_.push_back(std::move(value));
         return registrations_.size() - 1;
@@ -813,10 +1038,21 @@ class Observer {
         if (thread && raw.sourceOwner) {
             raw.sourceThreadKnown = creation(thread.get(), true, raw.sourceThreadCreation);
             if (!raw.sourceThreadKnown) raw.sourceError = GetLastError();
-            if (!retain || !raw.sourceThreadKnown) return 0;
+            raw.sourceObservedQpc = moment().qpc;
+            raw.sourceLive = WaitForSingleObject(thread.get(), 0) == WAIT_TIMEOUT;
+            if ((!retain && !raw.sourceLive) || !raw.sourceThreadKnown) return 0;
+            for (size_t index = 0; index < actors_.size(); ++index) {
+                auto& value = actors_[index];
+                if (value.pid != raw.sourceOwner || value.tid != tid ||
+                    value.threadCreation != raw.sourceThreadCreation) continue;
+                if (raw.sourceLive) value.lastLiveQpc = raw.sourceObservedQpc;
+                classify(value);
+                return index + 1;
+            }
             ++identityCounts_.sourceProcessOpens;
             ObservedHandle process(*this, OpenProcess(PROCESS_QUERY_LIMITED_INFORMATION | SYNCHRONIZE, FALSE, raw.sourceOwner));
             if (!process) { raw.sourceError = GetLastError(); return 0; }
+            if (!retain && WaitForSingleObject(process.get(), 0) != WAIT_TIMEOUT) return 0;
             return retainActor(process.get(), thread.get(), true);
         }
         if (recover) {
@@ -830,6 +1066,71 @@ class Observer {
             }
         }
         return 0;
+    }
+    std::vector<SourceWitness> sourceWitnesses() const {
+        std::vector<SourceWitness> result;
+        for (const auto& value : actors_) {
+            if (!value.instanceKnown || !value.liveAtCapture) continue;
+            auto through = value.lastLiveQpc;
+            const auto sampled = moment().qpc;
+            const auto process = WaitForSingleObject(value.process.get(), 0);
+            const auto thread = WaitForSingleObject(value.thread.get(), 0);
+            if (process == WAIT_FAILED || thread == WAIT_FAILED) lost_.store(true);
+            if (process == WAIT_TIMEOUT && thread == WAIT_TIMEOUT) through = sampled;
+            result.push_back({ value.pid, value.tid, value.processCreation, value.threadCreation,
+                               value.capturedQpc, through });
+        }
+        return result;
+    }
+    void reportCapture(std::ostream& report) const {
+        std::lock_guard<std::mutex> lock(mutex_);
+        size_t processBegin = 0, processEnd = 0, threadBegin = 0, threadEnd = 0;
+        std::set<unsigned int> processVersions, threadVersions;
+        for (const auto& value : processes_) {
+            processBegin += value.rundown == Rundown::begin;
+            processEnd += value.rundown == Rundown::end;
+            processVersions.insert(value.version);
+        }
+        for (const auto& value : threads_) {
+            threadBegin += value.kind == LifecycleKind::rundownBegin;
+            threadEnd += value.kind == LifecycleKind::rundownEnd;
+            threadVersions.insert(value.version);
+        }
+        const auto failure = capture_->failure_.load();
+        report << "DIAG source-capture process_records=" << processes_.size() << " process_rundown_begin=" << processBegin
+               << " process_rundown_end=" << processEnd << " thread_records=" << threads_.size()
+               << " thread_rundown_begin=" << threadBegin << " thread_rundown_end=" << threadEnd
+               << " image_records=" << images_.size() << " retained_actors=" << actors_.size()
+               << " process_schema_versions=" << processVersions.size()
+               << " process_schema_max=" << (processVersions.empty() ? 0 : *processVersions.rbegin())
+               << " thread_schema_versions=" << threadVersions.size()
+               << " thread_schema_max=" << (threadVersions.empty() ? 0 : *threadVersions.rbegin())
+               << " thread_record_limit=" << ThreadRecordLimit << " thread_identity_limit=" << ThreadIdentityLimit
+               << " capture_begin_qpc=" << captureBegin_ << " clock_slop_ms=" << SourceClockSlopMs
+               << " failure=" << (failure ? failure : "none") << " healthy=" << healthy() << "\n";
+        report.flush();
+    }
+    std::vector<SourceResolution> sourceSnapshot(const ProcessGraph& graph, std::ostream& report) const {
+        std::lock_guard<std::mutex> lock(mutex_);
+        const ThreadGraph threads(threads_);
+        const auto retained = sourceWitnesses();
+        std::vector<SourceResolution> result;
+        size_t live = 0, witnessed = 0, recovered = 0, rundown = 0, unresolved = 0;
+        for (const auto& raw : windows_) {
+            auto source = resolveSource(raw, graph, threads, retained, captureBegin_, frequency_, clockValid(), healthy());
+            if (!source.known) ++unresolved;
+            else if (source.retained) ++witnessed;
+            else if (source.liveQuery) ++live;
+            else ++recovered;
+            if (source.known && source.rundown) ++rundown;
+            result.push_back(source);
+        }
+        report << "DIAG source-lifetimes thread_instances=" << threads.instances.size()
+               << " retained_identity=" << witnessed << " live_query_only=" << live
+               << " lifecycle_only=" << recovered << " with_rundown=" << rundown
+               << " unresolved_sources=" << unresolved << " raw_facts_preserved=1\n";
+        report.flush();
+        return result;
     }
     size_t observeReported(const WindowFact& raw) {
         if (!raw.identityKnown || !raw.owner || !raw.thread) return 0;
@@ -929,11 +1230,13 @@ class Observer {
                 imageRole = purposeName(registered->purpose); imageMatch = true;
             }
             *report_ << "DIAG final-process instance_row=" << value.startRow << " pid=" << value.start.pid
-                     << " parent=" << value.start.parent << " start_qpc=" << value.start.timestamp
+                     << " parent=" << value.start.parent << " coverage_begin_qpc=" << value.start.timestamp
+                     << " creation_observed=" << value.creationObserved << " rundown_begin=" << value.rundownBegin
+                     << " rundown_end=" << value.rundownEnd
                      << " end_qpc=" << (value.ended ? value.until : 0) << " ended=" << value.ended
                      << " exit_known=" << value.end.exitKnown << " exit_code=" << value.end.exitCode
                      << " ambiguous=" << value.ambiguous
-                     << " parent_candidates=" << graph.at(value.start.parent, value.start.timestamp).size()
+                     << " parent_candidates=" << (value.creationObserved ? graph.at(value.start.parent, value.start.timestamp).size() : 0)
                      << " registered=" << (registered != nullptr)
                      << " role=" << (registered ? purposeName(registered->purpose) : "unclassified-captured-process")
                      << " image_known=" << imageKnown << " image_role=" << imageRole << " image_match=" << imageMatch
@@ -958,20 +1261,20 @@ class Observer {
         report_->flush();
         throw FinalObservationFailure(code, finalStage_);
     }
-    HelperScopeEvidence helperScope(const WindowFact& raw, const ProcessGraph& graph,
+    HelperScopeEvidence helperScope(const WindowFact& raw, const SourceResolution& source, const ProcessGraph& graph,
                                     const std::set<size_t>& owned) const {
         HelperScopeEvidence evidence;
         const Registration* helper = nullptr;
         for (const auto& item : registrations_) {
-            if (item.purpose == RegisteredPurpose::product || item.pid != raw.sourceOwner || !item.tid ||
-                item.tid != raw.sourceThread || item.threadCreation != raw.sourceThreadCreation) continue;
+            if (!source.known || item.purpose == RegisteredPurpose::product || item.pid != source.owner || !item.tid ||
+                item.tid != raw.sourceThread || item.threadCreation != source.threadCreation) continue;
             if (helper) return evidence;
             helper = &item;
         }
         if (!helper) return evidence;
         evidence.registered = true;
         evidence.image = helper->imageExact;
-        evidence.thread = raw.sourceThreadKnown;
+        evidence.thread = source.known;
         evidence.ownerCompatible = !raw.owner || (raw.owner == helper->pid && (!raw.thread || raw.thread == helper->tid));
         const auto instance = graph.unique(helper->pid, static_cast<LONGLONG>(helper->witnessed));
         evidence.instance = helper->purpose == RegisteredPurpose::observer
@@ -1012,15 +1315,18 @@ class Observer {
         if (lineage.ambiguous != SIZE_MAX || lineage.missingParent != SIZE_MAX) return result;
         const bool controlled = lineage.owned.count(instance) || clients_.count(value.start.pid);
         const auto parents = graph.at(value.start.parent, value.start.timestamp);
-        result.parentKnown = parents.size() == 1 && !graph.instances[parents[0]].ambiguous;
+        result.parentKnown = value.creationObserved && parents.size() == 1 && !graph.instances[parents[0]].ambiguous;
         result.allowed = nativeEnvironmentAllowed(profile_, fixedFixtureSource_, !value.ambiguous, outside, controlled, false);
         return result;
     }
-    const Registration* transientSource(const WindowLifetime& life, const ProcessGraph& graph) const {
+    const Registration* transientSource(const WindowLifetime& life, const ProcessGraph& graph,
+                                        const std::vector<SourceResolution>& sources) const {
         if (life.rows.empty()) return nullptr;
         const auto& first = windows_[life.rows.front()];
+        const auto& firstSource = sources[life.rows.front()];
         for (const auto& registered : registrations_) {
-            if (registered.pid != first.sourceOwner || !registered.tid || registered.tid != first.sourceThread) continue;
+            if (!firstSource.known || registered.pid != firstSource.owner || !registered.tid ||
+                registered.tid != first.sourceThread) continue;
             HelperScopeEvidence evidence;
             evidence.registered = true;
             evidence.image = registered.imageExact;
@@ -1030,8 +1336,10 @@ class Observer {
             evidence.thread = evidence.ownerCompatible = true;
             for (const auto index : life.rows) {
                 const auto& raw = windows_[index];
-                evidence.thread = evidence.thread && raw.sourceThreadKnown && raw.sourceOwner == registered.pid &&
-                    raw.sourceThread == registered.tid && raw.sourceThreadCreation == registered.threadCreation;
+                const auto& recovered = sources[index];
+                evidence.thread = evidence.thread && recovered.known && recovered.owner == registered.pid &&
+                    recovered.process == firstSource.process && raw.sourceThread == registered.tid &&
+                    recovered.threadCreation == registered.threadCreation;
                 evidence.ownerCompatible = evidence.ownerCompatible && (!raw.owner || raw.owner == registered.pid) &&
                     (!raw.thread || raw.thread == registered.tid);
                 const auto* source = actor(raw.sourceActor);
@@ -1047,21 +1355,25 @@ class Observer {
         }
         return nullptr;
     }
-    EnvironmentEvidence environmentWindow(const WindowLifetime& life, const ProcessGraph& graph) const {
+    EnvironmentEvidence environmentWindow(const WindowLifetime& life, const ProcessGraph& graph,
+                                           const std::vector<SourceResolution>& sources) const {
         EnvironmentEvidence result;
         if (life.rows.empty()) return result;
         const auto& first = windows_[life.rows.front()];
-        const auto index = graph.unique(first.sourceOwner, static_cast<LONGLONG>(first.received.qpc));
+        const auto& firstSource = sources[life.rows.front()];
+        if (!firstSource.known) return result;
+        const auto index = firstSource.process;
         result = fixtureEnvironment(graph, index);
         if (!result.allowed) return result;
         for (const auto row : life.rows) {
             const auto& raw = windows_[row];
+            const auto& recovered = sources[row];
             const auto* source = actor(raw.sourceActor);
-            if (!raw.sourceThreadKnown || raw.sourceOwner != first.sourceOwner ||
-                (raw.owner && raw.owner != first.sourceOwner) || raw.kind == WindowKind::startup ||
+            if (!recovered.known || recovered.owner != firstSource.owner ||
+                (raw.owner && raw.owner != firstSource.owner) || raw.kind == WindowKind::startup ||
                 raw.kind == WindowKind::console || raw.kind == WindowKind::terminal ||
                 (source && source->role == PresenterRole::classic) ||
-                graph.unique(raw.sourceOwner, static_cast<LONGLONG>(raw.received.qpc)) != index) result.allowed = false;
+                recovered.process != index) result.allowed = false;
         }
         for (const auto& event : consoles_) if (event.window && event.window == first.window) result.allowed = false;
         return result;
@@ -1108,31 +1420,60 @@ class Observer {
     static void WINAPI record(EVENT_RECORD* event) {
         auto* self = static_cast<ProcessCapture*>(event->UserContext);
         if (!self) return;
+        const char* failure = "event-field-decode";
         try {
+            static constexpr GUID processClass{ 0x3d6fa8d0, 0xfe05, 0x11d0, { 0x9d, 0xda, 0x00, 0xc0, 0x4f, 0xd7, 0xba, 0x7c } };
+            static constexpr GUID threadClass{ 0x3d6fa8d1, 0xfe05, 0x11d0, { 0x9d, 0xda, 0x00, 0xc0, 0x4f, 0xd7, 0xba, 0x7c } };
+            const auto opcode = event->EventHeader.EventDescriptor.Opcode;
+            const auto version = event->EventHeader.EventDescriptor.Version;
+            const bool process = IsEqualGUID(event->EventHeader.ProviderId, processClass) != FALSE;
+            const bool thread = IsEqualGUID(event->EventHeader.ProviderId, threadClass) != FALSE;
+            const bool lifecycle = opcode == EVENT_TRACE_TYPE_START || opcode == EVENT_TRACE_TYPE_END ||
+                opcode == EVENT_TRACE_TYPE_DC_START || opcode == EVENT_TRACE_TYPE_DC_END;
+            if ((process || thread) && !lifecycle) return;
+            const auto rundown = opcode == EVENT_TRACE_TYPE_DC_START ? Rundown::begin
+                : opcode == EVENT_TRACE_TYPE_DC_END ? Rundown::end : Rundown::none;
+            const auto kind = rundown == Rundown::begin ? LifecycleKind::rundownBegin
+                : rundown == Rundown::end ? LifecycleKind::rundownEnd
+                : opcode == EVENT_TRACE_TYPE_START ? LifecycleKind::start : LifecycleKind::end;
             const auto pidBytes = property(event, L"ProcessId");
-            if (pidBytes.size() != sizeof(DWORD)) return;
+            if (!process && !thread && pidBytes.size() != sizeof(DWORD)) return;
+            failure = thread ? "thread-event-field-decode" : "process-event-field-decode";
+            check(pidBytes.size() == sizeof(DWORD), "required ETW process identifier could not be decoded");
             const DWORD pid = number(pidBytes);
-            const auto parentBytes = property(event, L"ParentId");
             std::lock_guard<std::mutex> lock(self->mutex_);
-            if (parentBytes.size() == sizeof(DWORD) &&
-                (event->EventHeader.EventDescriptor.Opcode == EVENT_TRACE_TYPE_START ||
-                 event->EventHeader.EventDescriptor.Opcode == EVENT_TRACE_TYPE_END)) {
+            if (thread) {
+                // TDH selects the payload schema using this event's class and version, not header PID/TID.
+                const auto tid = property(event, L"TThreadId");
+                check(tid.size() == sizeof(DWORD), "required ETW thread identifier could not be decoded");
+                failure = "thread-record-bound";
+                appendThreadEvent(self->threads_, { pid, number(tid), event->EventHeader.TimeStamp.QuadPart, kind, version });
+            } else if (process) {
+                const auto parent = property(event, L"ParentId");
+                check(parent.size() == sizeof(DWORD), "required ETW parent identifier could not be decoded");
+                failure = "process-record-bound";
                 check(self->processes_.size() < 8192, "ETW process bound exceeded");
-                const auto exit = property(event, L"ExitStatus");
+                failure = "process-event-field-decode";
+                const auto exit = opcode == EVENT_TRACE_TYPE_END ? property(event, L"ExitStatus") : std::vector<unsigned char>{};
                 self->processes_.push_back({
-                    pid, number(parentBytes), event->EventHeader.EventDescriptor.Opcode == EVENT_TRACE_TYPE_START,
+                    pid, number(parent), opcode == EVENT_TRACE_TYPE_START,
                     event->EventHeader.TimeStamp.QuadPart,
-                    narrow(property(event, L"ImageFileName")), wide(property(event, L"CommandLine")),
-                    exit.size() == sizeof(DWORD), number(exit)
+                    narrow(property(event, L"ImageFileName")),
+                    rundown == Rundown::none ? wide(property(event, L"CommandLine")) : std::wstring{},
+                    exit.size() == sizeof(DWORD), number(exit), rundown, version
                 });
             } else {
+                failure = "image-event-field-decode";
                 const auto image = wide(property(event, L"FileName"));
                 if (image.size() >= 4 && recap::samePath(image.substr(image.size() - 4), L".exe")) {
+                    failure = "image-record-bound";
                     check(self->images_.size() < 4096, "ETW image bound exceeded");
-                    self->images_.push_back({ pid, event->EventHeader.TimeStamp.QuadPart, image });
+                    self->images_.push_back({ pid, event->EventHeader.TimeStamp.QuadPart, image, rundown });
                 }
             }
         } catch (const std::exception&) {
+            const char* previous = nullptr;
+            self->failure_.compare_exchange_strong(previous, failure);
             self->lost_.store(true);
         }
     }
@@ -1222,9 +1563,11 @@ public:
         settings->MaximumBuffers = 64;
         settings->LogFileMode = EVENT_TRACE_REAL_TIME_MODE | EVENT_TRACE_SYSTEM_LOGGER_MODE;
         settings->FlushTimer = 1;
-        settings->EnableFlags = EVENT_TRACE_FLAG_PROCESS | EVENT_TRACE_FLAG_IMAGE_LOAD | EVENT_TRACE_FLAG_NO_SYSCONFIG;
+        settings->EnableFlags = EVENT_TRACE_FLAG_PROCESS | EVENT_TRACE_FLAG_THREAD |
+            EVENT_TRACE_FLAG_IMAGE_LOAD | EVENT_TRACE_FLAG_NO_SYSCONFIG;
         settings->LoggerNameOffset = sizeof(EVENT_TRACE_PROPERTIES);
         memcpy(properties_.data() + settings->LoggerNameOffset, name_.c_str(), (name_.size() + 1) * sizeof(wchar_t));
+        captureBegin_ = moment().qpc;
         check(StartTraceW(&session_, name_.c_str(), settings) == ERROR_SUCCESS, "owned ETW session could not start");
         EVENT_TRACE_LOGFILEW log{};
         log.LoggerName = name_.data();
@@ -1682,7 +2025,7 @@ public:
     }
     std::wstring executablePath(DWORD pid, const ProcessEvent& event) const {
         const ProcessGraph graph(processes_);
-        const auto index = event.start ? graph.exact(pid, event.timestamp) : graph.unique(pid, event.timestamp);
+        const auto index = graph.unique(pid, event.timestamp);
         if (index == SIZE_MAX) return {};
         const auto& instance = graph.instances[index];
         for (const auto& registered : registrations_) {
@@ -1692,9 +2035,28 @@ public:
         const auto base = [](const std::wstring& path) { return path.substr(path.find_last_of(L"\\/") + 1); };
         const auto name = base(event.image);
         std::wstring found;
+        for (const auto& value : actors_) {
+            if (value.pid != pid || !value.instanceKnown || !value.liveAtCapture || value.image.empty() ||
+                graph.unique(pid, static_cast<LONGLONG>(value.capturedQpc)) != index) continue;
+            if (!found.empty() && !recap::samePath(found, value.image)) return {};
+            found = value.image;
+        }
         for (const auto& image : images_) {
-            if (image.pid != pid || image.timestamp < instance.start.timestamp || image.timestamp > instance.until ||
-                !recap::samePath(base(image.path), name)) continue;
+            if (image.pid != pid || image.timestamp > instance.until || !recap::samePath(base(image.path), name)) continue;
+            if (image.timestamp < instance.start.timestamp) {
+                if (image.rundown != Rundown::begin || !instance.rundownBegin || instance.creationObserved ||
+                    image.timestamp < static_cast<LONGLONG>(captureBegin_)) continue;
+                bool competing = false;
+                for (const auto& fact : processes_)
+                    if (fact.pid == pid && fact.rundown == Rundown::none &&
+                        fact.timestamp >= image.timestamp && fact.timestamp <= instance.start.timestamp) competing = true;
+                for (size_t other = 0; other < graph.instances.size(); ++other) {
+                    const auto& candidate = graph.instances[other];
+                    if (other != index && candidate.start.pid == pid && candidate.until >= image.timestamp &&
+                        candidate.start.timestamp <= instance.start.timestamp) competing = true;
+                }
+                if (competing) continue;
+            }
             const auto path = normalizedImage(image.path);
             if (!found.empty() && !recap::samePath(found, path)) return {};
             found = path;
@@ -1708,6 +2070,7 @@ public:
             if (index >= windows_.size() || !emitted.insert(index).second) return;
             const auto& raw = windows_[index];
             const auto& row = resolution[index];
+            const SourceResolution source = index < finalSources_.size() ? finalSources_[index] : SourceResolution{};
             report << "DIAG attribution category=" << category << " row=" << index << " reason=" << row.reason
                    << " event=" << raw.event << " object=" << raw.object << " child=" << raw.child
                    << " hwnd=" << raw.window << " callback_thread=" << raw.callbackThread
@@ -1717,6 +2080,13 @@ public:
                    << " source_actor=" << raw.sourceActor << " reported_actor=" << raw.reportedActor
                    << " source_thread_known=" << raw.sourceThreadKnown << " source_thread_creation=" << raw.sourceThreadCreation
                    << " source_retained=" << raw.sourceRetained
+                   << " source_query_live=" << raw.sourceLive << " source_query_qpc=" << raw.sourceObservedQpc
+                   << " recovered_source_known=" << source.known << " recovered_source_owner=" << source.owner
+                   << " source_reason=" << source.reason << " source_from_retained=" << source.retained
+                   << " source_from_live_query=" << source.liveQuery << " source_has_rundown=" << source.rundown
+                   << " source_earliest_qpc=" << source.earliest << " source_latest_qpc=" << source.latest
+                   << " source_process_interval=" << (source.process == SIZE_MAX ? -1LL : static_cast<long long>(source.process))
+                   << " source_thread_interval=" << (source.thread == SIZE_MAX ? -1LL : static_cast<long long>(source.thread))
                    << " raw_kind=" << windowKindName(raw.kind) << " raw_identity=" << raw.identityKnown
                    << " raw_metadata=" << raw.metadataKnown << " raw_present=" << raw.present
                    << " raw_visible=" << raw.visible << " raw_geometry=" << raw.geometryKnown
@@ -1756,6 +2126,7 @@ public:
 
     void reportCalibrationWindows(std::ostream& report, DWORD control, const WindowFact& sample,
                                   Moment begin, Moment beforeAttach) {
+        reportCapture(report);
         reportBindings(report);
         uintptr_t window = sample.window;
         const char* source = window ? "sample" : "unavailable";
@@ -1841,7 +2212,14 @@ public:
     }
     void assertCalibrations(const std::vector<WindowFact>& controls, std::ostream& report) {
         check(stopped_ && controls.size() == 2 && clockValid(), "calibration preflight was incomplete");
+        reportCapture(report);
         assertHealthy();
+        {
+            std::lock_guard<std::mutex> lock(mutex_);
+            const ThreadGraph threads(threads_);
+            report << "DIAG calibration-thread-identities instances=" << threads.instances.size() << "\n";
+            report.flush();
+        }
         const auto resolution = resolvedWindows();
         requireCalibrationLifetimes(controls, report, resolution);
         reportBindings(report);
@@ -1853,6 +2231,7 @@ public:
         try {
             finalSection("final-capture-health");
             finalRequire(stopped_ && windowObservation_, "final-capture-not-stopped");
+            reportCapture(report);
             finalRequire(healthy(), "final-capture-unhealthy");
             finalRequire(clockValid(), "final-clock-invalid");
             finalRequire(controls.size() == 2, "final-control-count");
@@ -1862,6 +2241,9 @@ public:
             const auto resolution = resolvedWindows();
             const auto bindings = consoleBindings();
             const ProcessGraph graph(processes());
+            finalSection("final-source-lifetimes");
+            finalSources_ = sourceSnapshot(graph, report);
+            finalRequire(healthy(), "final-capture-unhealthy");
 
             finalSection("final-process-graph");
             finalExpectedRoots_ = roots.size();
@@ -1945,13 +2327,13 @@ public:
             std::set<size_t> guiTransientRows, observerTransientRows, environmentRows;
             size_t guiTransients = 0, observerTransients = 0, environmentMissingParents = 0;
             for (const auto& life : lifetimes) {
-                if (const auto* source = transientSource(life, graph)) {
+                if (const auto* source = transientSource(life, graph, finalSources_)) {
                     auto& rows = source->purpose == RegisteredPurpose::product ? guiTransientRows : observerTransientRows;
                     rows.insert(life.rows.begin(), life.rows.end());
                     if (source->purpose == RegisteredPurpose::product) ++guiTransients;
                     else ++observerTransients;
                 } else {
-                    const auto environment = environmentWindow(life, graph);
+                    const auto environment = environmentWindow(life, graph, finalSources_);
                     if (environment.allowed) {
                         environmentRows.insert(life.rows.begin(), life.rows.end());
                         if (!environment.parentKnown) environmentMissingParents += life.rows.size();
@@ -1970,7 +2352,7 @@ public:
                     if (!raw.metadataKnown) ++scopedUnknown;
                     continue;
                 }
-                const auto scope = helperScope(raw, graph, lineage.owned);
+                const auto scope = helperScope(raw, finalSources_[index], graph, lineage.owned);
                 if (verifiedHelperSurface(raw, scope)) {
                     ++helperExcluded;
                     if (!raw.metadataKnown) ++helperUnknown;
@@ -2022,6 +2404,7 @@ public:
             const auto reportRows = [&](const std::vector<size_t>& rows) {
                 finalContextPids_.clear();
                 for (const auto index : rows) {
+                    if (finalSources_[index].known) finalContextPids_.insert(finalSources_[index].owner);
                     if (windows_[index].sourceOwner) finalContextPids_.insert(windows_[index].sourceOwner);
                     if (windows_[index].owner) finalContextPids_.insert(windows_[index].owner);
                 }

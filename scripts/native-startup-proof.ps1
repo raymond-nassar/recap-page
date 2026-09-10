@@ -150,6 +150,20 @@ function Complete-ProofOutcome {
   }
 }
 
+function Test-NativeSuiteResult {
+  param($Result)
+  if ($Result.ExitCode -ne 0 -or $null -eq $Result.DriverExitCode -or $Result.DriverExitCode -ne 0 -or
+      -not $Result.ReportValid -or -not $Result.Cleanup -or $Result.Failure -or
+      $Result.NonNativeFailure -or $Result.SecondaryFailures.Count -ne 0) { return $false }
+  $labels = [Collections.Generic.HashSet[string]]::new([StringComparer]::Ordinal)
+  foreach ($line in $Result.Text.Replace("`r`n", "`n").Split("`n")) {
+    if ($line -match '^FAIL ') { return $false }
+    if ($line -notmatch '^PASS +F') { continue }
+    if ($line -cnotmatch '^PASS F(0[1-9]|1[01])$' -or -not $labels.Add($line)) { return $false }
+  }
+  return $labels.Count -eq 11
+}
+
 function Receive-NativeFailure {
   param($State, $Progress)
   if ($Progress.NativeFailure -and -not $Progress.NativeRecorded) {
@@ -669,7 +683,7 @@ bool placeFailureWindow(App& app) {
     $results | Select-Object -SkipLast 1 | Write-Output
     $preview = Export-NativePreview -Layout (Join-Path (Join-Path $scratch 'fixtures') "fixture space $([char]0x03a9)") `
       -Runtime $packageRuntime -F01Completed ($result.ExitCode -eq 0)
-    if ($result.ExitCode -ne 0 -or ([regex]::Matches($result.Text, '(?m)^PASS F\d\d$').Count -ne 11)) {
+    if (-not (Test-NativeSuiteResult $result)) {
       throw "The $Architecture native suite failed or did not run all 11 release fixtures."
     }
     if (-not $preview) { throw 'The native F01 preview evidence is missing.' }

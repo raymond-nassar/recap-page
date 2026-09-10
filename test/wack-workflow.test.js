@@ -355,6 +355,12 @@ test('native artifact transfer pins exact inputs and refuses digest mismatches',
   assert.match(proof, /footerInkPixels -lt 64/);
   assert.match(observer, /temporary_closed=/);
   assert.doesNotMatch(observer, /ConsoleControl\(|ConsoleSetWindowOwner/);
+  assert.match(proof, /function Test-NativeSuiteResult/);
+  assert.match(proof, /if \(-not \(Test-NativeSuiteResult \$result\)\)/);
+  assert.match(observer, /EVENT_TRACE_FLAG_PROCESS \| EVENT_TRACE_FLAG_THREAD/);
+  assert.match(observer, /property\(event, L"TThreadId"\)/);
+  assert.match(observer, /sourceSnapshot\(graph, report\)/);
+  assert.match(native, /source-lifetime-cases cases=24 passed=24/);
   if (process.platform === 'win32') {
     const output = execFileSync('powershell.exe', [
       '-NoProfile', '-NonInteractive', '-File',
@@ -363,7 +369,8 @@ test('native artifact transfer pins exact inputs and refuses digest mismatches',
     assert.match(output, /PASS report-limits line-count=4096 size=1048576 poisoned-reparse=0/);
     assert.match(output, /PASS cleanup-accounting report-fatal-clean=1 secondary-faults=2 stages-attempted=7/);
     assert.match(output, /PASS native-primary-preserved residue-secondary=1 cleanup-does-not-upgrade=1/);
-    assert.match(output, /PASS proof-report-fixtures assertions=75/);
+    assert.match(output, /PASS suite-result-shapes accepted=2 invalid-labels=9 invalid-outcomes=8/);
+    assert.match(output, /PASS proof-report-fixtures assertions=104/);
     t.diagnostic(output.trim());
   } else {
     t.diagnostic('Windows-only inert PowerShell reporting fixtures were not executed on this host.');

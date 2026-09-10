@@ -22,6 +22,21 @@ foreach ($functionName in @('Reject-ProofReport', 'Read-ProofProgress', 'New-Pro
   Assert-Report ($definitions.Count -eq 1) 'progress or outcome definition is not unique'
   . ([scriptblock]::Create($definitions[0].Extent.Text))
 }
+$suiteDefinitions = @($ast.FindAll({
+  param($node)
+  $node -is [System.Management.Automation.Language.FunctionDefinitionAst] -and
+    $node.Name -ceq 'Test-NativeSuiteResult'
+}, $true))
+Assert-Report ($suiteDefinitions.Count -le 1) 'suite adapter definition is not unique'
+if ($suiteDefinitions.Count -eq 1) { . ([scriptblock]::Create($suiteDefinitions[0].Extent.Text)) }
+$suiteGates = @($ast.FindAll({
+  param($node)
+  $node -is [System.Management.Automation.Language.IfStatementAst] -and
+    $node.Clauses.Count -eq 1 -and
+    $node.Clauses[0].Item2.Extent.Text.Contains('native suite failed or did not run all 11 release fixtures.')
+}, $true))
+Assert-Report ($suiteGates.Count -eq 1) 'actual release suite result gate is not unique'
+$rejectSuite = [scriptblock]::Create($suiteGates[0].Clauses[0].Item1.Extent.Text)
 
 $file = [IO.Path]::GetTempFileName()
 function Observe-Report {
@@ -50,6 +65,45 @@ function Observe-Report {
 }
 
 try {
+  $fixtureLines = @(1..11 | ForEach-Object { 'PASS F{0:00}' -f $_ })
+  $fixtureReport = Observe-Report -Lines $fixtureLines
+  $fixtureOutcome = New-ProofOutcome
+  foreach ($stage in @($fixtureOutcome.Resources.Keys)) { $fixtureOutcome.Resources[$stage] = $true }
+  $result = Complete-ProofOutcome $fixtureOutcome $fixtureReport.State 0 2000
+  Assert-Report ($result.Text.Contains("`r`n") -and -not (& $rejectSuite)) 'actual Windows AppendLine fixture results were rejected'
+  Write-Output 'PASS windows-appendline-adapter exact-fixtures=11 accepted=1'
+  $validSuite = $result
+  $result = $validSuite.PSObject.Copy()
+  $result.Text = $result.Text.Replace("`r`n", "`n")
+  Assert-Report (-not (& $rejectSuite)) 'LF fixture results were rejected'
+  $invalidLabels = @(
+    (($fixtureLines | Select-Object -First 10) -join "`r`n"),
+    (($fixtureLines + 'PASS F11') -join "`r`n"),
+    ((@($fixtureLines | Select-Object -First 10) + 'PASS F10') -join "`r`n"),
+    (($fixtureLines + 'PASS F12') -join "`r`n"),
+    (($fixtureLines + 'PASS F00') -join "`r`n"),
+    (($fixtureLines + 'PASS F1') -join "`r`n"),
+    (($fixtureLines + 'pass f01') -join "`r`n"),
+    (($fixtureLines + 'PASS  F01') -join "`r`n"),
+    (($fixtureLines + 'PASS F01 trailing') -join "`r`n")
+  )
+  foreach ($text in $invalidLabels) {
+    $result = $validSuite.PSObject.Copy()
+    $result.Text = $text + "`r`n"
+    Assert-Report ([bool](& $rejectSuite)) 'missing duplicate extra or malformed fixture labels were accepted'
+  }
+  $invalidOutcomes = @(
+    @{ DriverExitCode = 1 }, @{ DriverExitCode = $null }, @{ ExitCode = 1 },
+    @{ ReportValid = $false }, @{ Cleanup = $false }, @{ Failure = 'native-fixed-failure' },
+    @{ SecondaryFailures = @('cleanup-fixed-failure') }, @{ NonNativeFailure = $true }
+  )
+  foreach ($change in $invalidOutcomes) {
+    $result = $validSuite.PSObject.Copy()
+    foreach ($key in $change.Keys) { $result.$key = $change[$key] }
+    Assert-Report ([bool](& $rejectSuite)) 'failed driver report or cleanup was accepted as a complete suite'
+  }
+  Write-Output 'PASS suite-result-shapes accepted=2 invalid-labels=9 invalid-outcomes=8'
+
   $overflow = Observe-Report -Lines @(1..4097 | ForEach-Object { 'CHECK ENTER window-message tick=1' })
   $accepted = @($overflow.Accepted -split "`n" | Where-Object { $_.Length -gt 0 }).Count
   Assert-Report ($accepted -eq 4096 -and $overflow.ExitCode -eq 1) 'original repeated-message witness did not retain the line bound'
@@ -197,6 +251,35 @@ try {
   Assert-Report ($definition.Count -eq 1 -and
     $definition[0].Index -ge ($typeEnds | Measure-Object -Maximum).Maximum -and
     $definition[0].Index -lt $observer.IndexOf('inline std::vector<WindowLifetime> windowLifetimes')) 'transient helper precedes its complete prerequisite types'
+  Assert-Report ($observer.Contains('EVENT_TRACE_FLAG_PROCESS | EVENT_TRACE_FLAG_THREAD') -and
+    $observer.Contains('EVENT_TRACE_TYPE_DC_START') -and $observer.Contains('EVENT_TRACE_TYPE_DC_END')) 'minimal thread or process rundown capture is missing'
+  Assert-Report ($observer.Contains('property(event, L"TThreadId")') -and
+    $observer.Contains('EventHeader.EventDescriptor.Version') -and
+    $observer.Contains('IsEqualGUID(event->EventHeader.ProviderId, threadClass)')) 'thread identity does not use its class/version payload'
+  Assert-Report ($observer.Contains('creationObserved') -and $observer.Contains('coverage_begin_qpc=') -and
+    $observer.Contains('if (!value.creationObserved) continue;')) 'rundown coverage is confused with actual process creation'
+  Assert-Report ($observer.Contains('ThreadRecordLimit = 65536, ThreadIdentityLimit = 32768') -and
+    $observer.Contains('appendThreadEvent(self->threads_')) 'finite thread capture limits are not wired'
+  Assert-Report ($observer -notmatch 'property\(event, L"(UniqueProcessKey|UserSID|StackBase|StackLimit|UserStackBase|UserStackLimit|StartAddr|Win32StartAddr|TebBase|SubProcessTag)"') 'unnecessary sensitive identity fields are decoded'
+  Assert-Report ($observer.Contains('source_error=') -and $observer.Contains('recovered_source_known=') -and
+    $observer.Contains('source_reason=') -and $observer.Contains('lifecycle_only=')) 'raw query gaps and recovered source provenance are not separate'
+  Assert-Report ($native.Contains('source-lifetime-cases cases=24 passed=24') -and
+    $native.Contains('observed("source-lifetime-cases", [] { sourceLifetimeCases(); });')) 'finite lifetime rows are not in the existing preflight'
+  $ordered = $true
+  foreach ($pair in @(
+    @('struct LifecycleEvent', 'struct LifetimeRange'),
+    @('struct LifetimeRange', 'inline std::vector<LifetimeRange> lifetimeRanges'),
+    @('struct ThreadEvent', 'struct ThreadGraph'),
+    @('struct ThreadGraph', 'struct WindowFact'),
+    @('struct WindowFact', 'struct SourceWitness'),
+    @('struct SourceResolution', 'inline SourceResolution resolveSource'),
+    @('inline SourceResolution resolveSource', 'class Observer')
+  )) {
+    $first = $observer.IndexOf($pair[0])
+    $second = $observer.IndexOf($pair[1])
+    $ordered = $ordered -and $first -ge 0 -and $second -gt $first
+  }
+  Assert-Report $ordered 'source lifetime helpers precede their complete prerequisite types'
   Write-Output "PASS proof-report-fixtures assertions=$script:assertions"
 } finally {
   Remove-Item -LiteralPath $file -Force

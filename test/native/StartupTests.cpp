@@ -107,6 +107,8 @@ const char* failureCode(const std::exception& failure) {
         { "registration requires a retained live process instance", "process-registration-not-live" },
         { "registered process image differs from its declared purpose", "process-registration-image-mismatch" },
         { "registered primary thread instance differs", "process-registration-thread-mismatch" },
+        { "lifetime identity bound exceeded", "lifetime-identity-bound" },
+        { "ETW thread record bound exceeded", "thread-record-bound" },
         { "native closed profile requires the exact reviewed inert fixture", "native-fixture-contract-mismatch" },
         { "fixed fixture digest could not be verified", "native-fixture-digest-failed" },
         { "fixture process creation failed", "fixture-gui-create-failed" },
@@ -1745,6 +1747,133 @@ void finalObserverCases() {
     liveReport->flush();
 }
 
+void sourceLifetimeCases() {
+    using Kind = proof::LifecycleKind;
+    const auto process = [](DWORD pid, DWORD parent, LONGLONG time, Kind kind) {
+        proof::ProcessEvent value;
+        value.pid = pid; value.parent = parent; value.timestamp = time; value.start = kind == Kind::start;
+        value.rundown = kind == Kind::rundownBegin ? proof::Rundown::begin
+            : kind == Kind::rundownEnd ? proof::Rundown::end : proof::Rundown::none;
+        value.exitKnown = kind == Kind::end;
+        value.version = 2;
+        return value;
+    };
+    const std::vector<proof::ProcessEvent> captured{
+        process(11, 1, 1000000, Kind::rundownBegin), process(11, 1, 3000000, Kind::rundownEnd)
+    };
+    const proof::ProcessGraph graph(captured);
+    const std::vector<proof::ThreadEvent> threadEvents{
+        { 11, 44, 1200000, Kind::start, 2 }, { 11, 44, 1700000, Kind::end, 2 }
+    };
+    const proof::ThreadGraph threads(threadEvents);
+    proof::WindowFact raw;
+    raw.sourceThread = 44; raw.sourceError = ERROR_INVALID_PARAMETER;
+    raw.generated = 1500; raw.received = { 2000, 2000000, 2000001 };
+    const std::vector<proof::SourceWitness> retained{ { 11, 44, 11, 44, 1300000, 1600000 } };
+    const auto resolve = [&](const proof::WindowFact& fact, const proof::ProcessGraph& owners,
+                             const proof::ThreadGraph& sources, const std::vector<proof::SourceWitness>& known,
+                             bool clocks = true, bool healthy = true) {
+        return proof::resolveSource(fact, owners, sources, known, 900000, 1000000, clocks, healthy);
+    };
+    size_t cases = 0;
+    const auto expect = [&](bool value, const char* message) {
+        ++cases;
+        if (!value && liveReport) { *liveReport << "DIAG source-lifetime-case-failed index=" << cases << "\n"; liveReport->flush(); }
+        check(value, message);
+    };
+    expect(graph.instances.size() == 1 && !graph.instances[0].creationObserved && graph.instances[0].rundownBegin &&
+           graph.unique(11, 999999) == SIZE_MAX && graph.unique(11, 1500000) == 0,
+           "process rundown fabricated an earlier creation");
+    expect(graph.instances[0].rundownEnd && !graph.instances[0].ended && !graph.instances[0].end.exitKnown,
+           "process rundown end was treated as exit");
+    auto actual = captured; actual.insert(actual.begin(), process(11, 1, 950000, Kind::start));
+    const proof::ProcessGraph combined(actual);
+    expect(combined.instances.size() == 1 && combined.instances[0].creationObserved &&
+           combined.instances[0].rundownBegin && combined.unique(11, 1500000) == 0,
+           "compatible actual start and rundown did not retain both provenances");
+    auto conflict = captured; conflict.push_back(process(11, 1, 1200000, Kind::start));
+    expect(proof::ProcessGraph(conflict).unique(11, 1500000) == SIZE_MAX, "overlapping rundown and new start were merged");
+    auto duplicate = captured; duplicate.push_back(process(11, 1, 1100000, Kind::rundownBegin));
+    expect(proof::ProcessGraph(duplicate).unique(11, 1500000) == SIZE_MAX, "duplicate rundown was silently merged");
+    auto parent = captured; parent.push_back(process(1, 99, 950000, Kind::start));
+    const proof::ProcessGraph parentGraph(parent);
+    expect(parentGraph.descendants({ parentGraph.unique(1, 1500000) }).owned.size() == 1,
+           "rundown parent PID was presented as observed creation ancestry");
+    const proof::ThreadGraph rundownThreads({
+        { 11, 44, 1100000, Kind::rundownBegin, 2 }, { 11, 44, 3000000, Kind::rundownEnd, 2 }
+    });
+    expect(rundownThreads.instances.size() == 1 && !rundownThreads.instances[0].created &&
+           !rundownThreads.instances[0].ended && rundownThreads.instances[0].rundownEnd &&
+           rundownThreads.unique(44, 1000000) == SIZE_MAX, "thread rundown fabricated creation or exit");
+    const auto recovered = resolve(raw, graph, threads, {});
+    expect(recovered.known && recovered.owner == 11 && !recovered.retained && !recovered.liveQuery &&
+           recovered.rundown && !recovered.threadCreation && raw.sourceOwner == 0 &&
+           raw.sourceError == ERROR_INVALID_PARAMETER && !raw.sourceThreadKnown,
+           "delayed thread lifetime recovery changed raw query facts");
+    const auto witnessed = resolve(raw, graph, threads, retained);
+    expect(witnessed.known && witnessed.retained && witnessed.threadCreation == 44 &&
+           std::string(witnessed.reason) == "retained-source-identity", "retained source identity was not used first");
+    auto live = raw; live.sourceOwner = 11; live.sourceThreadKnown = live.sourceLive = true;
+    live.sourceThreadCreation = 44; live.sourceObservedQpc = 1600000;
+    const auto queried = resolve(live, graph, threads, {});
+    expect(queried.known && queried.liveQuery && !queried.retained && queried.threadCreation == 44,
+           "unique live source query lost its provenance");
+    const proof::ThreadGraph reused({
+        { 11, 44, 1200000, Kind::start, 2 }, { 11, 44, 1490000, Kind::end, 2 },
+        { 11, 44, 1500000, Kind::start, 2 }, { 11, 44, 1700000, Kind::end, 2 }
+    });
+    const proof::ThreadGraph missingFirstStart({
+        { 11, 44, 1490000, Kind::end, 2 }, { 11, 44, 1500000, Kind::start, 2 },
+        { 11, 44, 1700000, Kind::end, 2 }
+    });
+    expect(!resolve(raw, graph, reused, retained).known && !resolve(raw, graph, missingFirstStart, retained).known,
+           "coarse generation clock erased a possible reused TID");
+    auto overlapping = threadEvents; overlapping.push_back({ 11, 44, 1300000, Kind::start, 2 });
+    expect(!resolve(raw, graph, proof::ThreadGraph(overlapping), retained).known, "overlapping thread lifetimes were accepted");
+    auto wrongOwner = raw; wrongOwner.sourceOwner = 12;
+    expect(!resolve(wrongOwner, graph, threads, retained).known, "conflicting raw source owner was overwritten");
+    expect(!resolve(raw, proof::ProcessGraph(std::vector<proof::ProcessEvent>{}), threads, retained).known,
+           "missing process interval was invented");
+    expect(!resolve(raw, graph, proof::ThreadGraph(std::vector<proof::ThreadEvent>{}), retained).known,
+           "missing thread interval was invented");
+    expect(!proof::nativeEnvironmentAllowed(proof::ObservationProfile::nativeFixture, true, recovered.known, false, false, false),
+           "recovered source identity bypassed the exact image requirement");
+    auto clock = raw; clock.received.afterQpc = clock.received.qpc - 1;
+    expect(!resolve(clock, graph, threads, retained).known && !resolve(raw, graph, threads, retained, false).known,
+           "invalid clock evidence was accepted");
+    expect(!resolve(raw, graph, threads, retained, true, false).known, "lost capture was accepted");
+    bool recordBound = false;
+    try {
+        std::vector<proof::ThreadEvent> full(proof::ThreadRecordLimit);
+        proof::appendThreadEvent(full, threadEvents[0]);
+    } catch (const std::runtime_error& error) { recordBound = std::string(failureCode(error)) == "thread-record-bound"; }
+    expect(recordBound, "thread record overflow was accepted");
+    bool identityBound = false;
+    try {
+        std::vector<proof::ThreadEvent> full;
+        for (size_t index = 0; index <= proof::ThreadIdentityLimit; ++index)
+            full.push_back({ 11, static_cast<DWORD>(index + 1), 1200000, Kind::start, 2 });
+        const proof::ThreadGraph excessive(full);
+        (void)excessive;
+    } catch (const std::runtime_error& error) { identityBound = std::string(failureCode(error)) == "lifetime-identity-bound"; }
+    expect(identityBound, "thread identity overflow was accepted");
+    expect(!resolve(raw, proof::ProcessGraph({ captured[1] }), threads, retained).known,
+           "end rundown supplied unobserved earlier coverage");
+    const proof::ProcessGraph recycledOwner({
+        captured[0], process(11, 1, 1300000, Kind::end), process(11, 1, 1400000, Kind::start)
+    });
+    expect(!resolve(raw, recycledOwner, threads, retained).known, "thread source crossed a process PID reuse");
+    auto wrongCreation = retained; wrongCreation.push_back({ 11, 44, 11, 45, 1300000, 1600000 });
+    expect(!resolve(raw, graph, threads, wrongCreation).known, "contradictory retained thread creation was accepted");
+    auto stale = retained; stale[0].observedQpc = stale[0].liveThroughQpc = 2000000;
+    const auto withoutRetained = resolve(raw, graph, threads, stale);
+    expect(withoutRetained.known && !withoutRetained.retained && !withoutRetained.threadCreation,
+           "retained identity was used outside its witnessed interval");
+    check(cases == 24 && liveReport, "source lifetime scenario count or report differs");
+    *liveReport << "DIAG source-lifetime-cases cases=24 passed=24 thread_record_limit=65536 thread_identity_limit=32768 raw_facts_preserved=1\n";
+    liveReport->flush();
+}
+
 void observationProfileCases() {
     using Profile = proof::ObservationProfile;
     proof::WindowFact created;
@@ -2807,6 +2936,7 @@ int wmain(int argc, wchar_t** argv) {
             observed("polling-observation-cases", [] { pollingObservationCases(); });
             observed("final-observer-cases", [] { finalObserverCases(); });
             observed("observation-profile-cases", [] { observationProfileCases(); });
+            observed("source-lifetime-cases", [] { sourceLifetimeCases(); });
             observed("fixture-record-cases", [] { fixtureRecordCases(); });
             proof::Observer observer(true, proof::ObservationProfile::calibration);
             size_t started = 0;
