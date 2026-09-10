@@ -243,7 +243,7 @@ test('native producer outputs and job deadlines bind every package consumer', ()
   }
 });
 
-test('native artifact transfer pins exact inputs and refuses digest mismatches', (t) => {
+test('native artifact transfer pins exact inputs and refuses digest mismatches', async (t) => {
   const fixtureSource = readFileSync(new URL('./native/Launcher.fixture.mjs.in', import.meta.url), 'utf8');
   const publisher = fixtureSource.match(/^function publishFixtureRecord\([\s\S]*?^\}/m)?.[0] ?? '';
   const observedWrite = fixtureSource.match(/^(?:writeFileSync\(join\(root, 'observed\.txt'\),|publishFixtureRecord\('observed\.txt',) \[[\s\S]*?\]\.join\('\\n'\)\);/m)?.[0];
@@ -277,6 +277,39 @@ test('native artifact transfer pins exact inputs and refuses digest mismatches',
   assert.match(fixtureSource, /publishFixtureRecord\('sentinel\.txt', String\(child\.pid\)\)/);
   t.diagnostic('PASS atomic-fixture-publication original-interleaving-defended=1 unchanged-record=1');
   const installedProof = readFileSync(new URL('../scripts/msix-proof.mjs', import.meta.url), 'utf8');
+  const mainSource = installedProof.match(/^async function main\([\s\S]*?^\}/m)?.[0];
+  const descriptorSource = installedProof.match(/^function createSemanticCapture\([\s\S]*?^\}/m)?.[0]
+    .replace('fileURLToPath(import.meta.url)', 'proofModule');
+  assert.ok(mainSource && descriptorSource, 'the actual CLI or descriptor producer is missing');
+  const descriptorCases = [
+    { args: ['--architecture=x64', '--source=package', '--scenario=certification-functionality'], architecture: 'x64', source: 'package' },
+    { args: ['--source=bundle', '--scenario=certification-functionality', '--architecture=arm64'], architecture: 'arm64', source: 'bundle' },
+    { args: ['--scenario=certification-functionality'], architecture: 'x64', source: 'package' },
+    { args: ['--scenario=certification-functionality', '--source=bundle'], architecture: 'x64', source: 'bundle' },
+  ];
+  for (const item of descriptorCases) {
+    let descriptor;
+    await runInNewContext(`${descriptorSource}\n${mainSource}
+      function certificationFunctionality(architecture, source) {
+        createSemanticCapture('inert-control', architecture, 'functionality', source);
+      }
+      main();`, {
+      SCENARIOS: ['certification-functionality', 'busy-port-refusal', 'update-state-continuity'],
+      ARCHITECTURES: ['x64', 'arm64'],
+      process: { pid: 123, execPath: 'X:\\fixture\\node.exe', argv: ['node', 'msix-proof.mjs', ...item.args] },
+      proofModule: 'X:\\fixture\\scripts\\msix-proof.mjs',
+      resolveEdge: () => '',
+      publishSemanticRecord: (root, name, text) => {
+        assert.equal(root, 'inert-control');
+        assert.equal(name, 'semantic-caller.txt');
+        descriptor = text.split('\n');
+      },
+    });
+    assert.equal(descriptor?.[5], 'functionality');
+    assert.equal(descriptor?.[6], item.architecture);
+    assert.equal(descriptor?.[7], item.source, 'actual equals-form CLI source was changed in the semantic descriptor');
+  }
+  t.diagnostic('PASS actual-cli-descriptors cases=4 package-bundle-defaults-order=1');
   const shellWrapper = installedProof.match(/^function powershell\([\s\S]*?^\}/m)?.[0];
   const listenerQuery = installedProof.match(/^function listenerPid\([\s\S]*?^\}/m)?.[0];
   assert.ok(shellWrapper && listenerQuery, 'the actual installed helper/query definitions are missing');
@@ -396,6 +429,9 @@ test('native artifact transfer pins exact inputs and refuses digest mismatches',
   assert.match(observer, /sourceSnapshot\(graph, report\)/);
   assert.match(native, /source-lifetime-cases cases=24 passed=24/);
   assert.match(native, /semantic-cases cases=16 passed=16 diagnostic_only=1 acceptance_inputs=0/);
+  assert.match(native, /caller-context-cases rows=8 passed=8 acceptance_unchanged=1/);
+  assert.match(installedProof, /context\.installed, architecture, source, 'functionality'/);
+  assert.match(installedProof, /withNativeObservation\(context\.installed, architecture, source, 'busy'/);
   assert.match(observer, /delegated_association_known=0/);
   const scripts = new Map();
   const declarations = ['psLiteral', 'packageInfo', 'packageProcesses', 'processExists', 'listenerPid', 'browserSnapshotDigest', 'activate']
@@ -440,7 +476,8 @@ test('native artifact transfer pins exact inputs and refuses digest mismatches',
     assert.match(output, /PASS native-primary-preserved residue-secondary=1 cleanup-does-not-upgrade=1/);
     assert.match(output, /PASS suite-result-shapes accepted=2 invalid-labels=9 invalid-outcomes=8/);
     assert.match(output, /PASS semantic-diagnostics frozen-definitions=13 separate-registration=1/);
-    assert.match(output, /PASS proof-report-fixtures assertions=123/);
+    assert.match(output, /PASS caller-context reporting-only-delta=1 primary-precedence-unchanged=1 existing-console-records=1/);
+    assert.match(output, /PASS proof-report-fixtures assertions=130/);
     t.diagnostic(output.trim());
   } else {
     t.diagnostic('Windows-only inert PowerShell reporting fixtures were not executed on this host.');

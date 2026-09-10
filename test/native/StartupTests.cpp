@@ -2073,6 +2073,70 @@ void semanticEvidenceCases() {
     liveReport->flush();
 }
 
+void callerContextCases() {
+    size_t cases = 0;
+    const auto expect = [&](bool value, const char* message) {
+        ++cases;
+        if (!value && liveReport) { *liveReport << "DIAG caller-context-case-failed index=" << cases << "\n"; liveReport->flush(); }
+        check(value, message);
+    };
+    const auto package = proof::semanticCli(proof::semanticArguments(
+        L"node scripts\\msix-proof.mjs --architecture=x64 --source=package --scenario=certification-functionality"));
+    proof::SemanticCallerEvidence packageEvidence;
+    expect(proof::semanticCallerOptions(packageEvidence, package, L"certification-functionality", L"x64", L"package"),
+           "actual package equals-form caller was rejected");
+    const auto bundle = proof::semanticCli(proof::semanticArguments(
+        L"node scripts\\msix-proof.mjs --scenario=certification-functionality --source=bundle --architecture=arm64"));
+    proof::SemanticCallerEvidence bundleEvidence;
+    expect(proof::semanticCallerOptions(bundleEvidence, bundle, L"certification-functionality", L"arm64", L"bundle"),
+           "actual bundle equals-form caller or option order was rejected");
+    const auto defaults = proof::semanticCli({ L"node", L"scripts\\msix-proof.mjs", L"--scenario=certification-functionality" });
+    proof::SemanticCallerEvidence defaultEvidence;
+    expect(proof::semanticCallerOptions(defaultEvidence, defaults, L"certification-functionality", L"x64", L"package") &&
+           defaults.options == 1, "supported caller defaults changed");
+    proof::SemanticCallerEvidence wrongScenario, wrongArchitecture, wrongSource;
+    expect(!proof::semanticCallerOptions(wrongScenario, package, L"busy-port-refusal", L"x64", L"package") &&
+           !proof::semanticCallerOptions(wrongArchitecture, package, L"certification-functionality", L"arm64", L"package") &&
+           !proof::semanticCallerOptions(wrongSource, package, L"certification-functionality", L"x64", L"bundle") &&
+           std::string(wrongScenario.failure) == "caller-scenario-mismatch" &&
+           std::string(wrongArchitecture.failure) == "caller-architecture-mismatch" &&
+           std::string(wrongSource.failure) == "caller-source-mismatch", "inconsistent caller values were bound");
+    expect(!proof::semanticCli({ L"node", L"module", L"--scenario", L"certification-functionality" }).valid &&
+           !proof::semanticCli({ L"node", L"module", L"--scenario=certification-functionality", L"--source=package", L"--source=bundle" }).valid &&
+           !proof::semanticCli({ L"node", L"module", L"--scenario=certification-functionality", L"--unknown=value" }).valid &&
+           !proof::semanticCli({ L"node", L"module", L"--scenario=" }).valid,
+           "separated ambiguous or malformed diagnostic options were accepted");
+    proof::SemanticCallerEvidence guards;
+    bool second = false;
+    const bool first = guards.guard(false, guards.handle, "caller-handle-unavailable");
+    const bool later = guards.guard(false, second, "caller-parent-mismatch");
+    expect(!first && !later && guards.evaluated == 1 && std::string(guards.failure) == "caller-handle-unavailable",
+           "later guard replaced the first failed caller guard");
+    const auto rows = proof::collectFailureRows({ 4, 5 }, { 1, 2, 3, 6 }, { 7 });
+    expect(rows.rows == std::vector<size_t>({ 4, 5, 1, 2, 3, 6, 7 }) &&
+           std::string(rows.categories.at(4)) == "unbound-console" &&
+           std::string(rows.categories.at(1)) == "inconclusive" &&
+           std::string(rows.categories.at(7)) == "visible-product" &&
+           20 - std::min<size_t>(20, rows.rows.size()) == 13,
+           "failure context dropped later categories or changed the shared row budget");
+    proof::WindowFact destroyed;
+    destroyed.window = 100; destroyed.event = EVENT_OBJECT_DESTROY;
+    proof::WindowResolution segment;
+    segment.lifetime = 1; segment.beginTick = 100; segment.endTick = 200; segment.destroyed = true;
+    proof::ConsoleFact ended;
+    ended.event = EVENT_CONSOLE_END_APPLICATION; ended.window = 100; ended.pid = 42; ended.generated = 150;
+    auto outside = ended; outside.generated = 250;
+    const proof::HelperScopeEvidence helper{ true, true, true, true, true, false, false };
+    expect(proof::consoleFactInSegment(ended, destroyed, segment) && ended.pid == 42 &&
+           !proof::consoleFactInSegment(outside, destroyed, segment) &&
+           !proof::completeNonPresenterTransient({ destroyed }, { { 0 }, false, true, false }, helper) &&
+           !destroyed.identityKnown && !segment.created,
+           "console context crossed a segment or invented partial-window completeness");
+    check(cases == 8 && liveReport, "caller context scenario count or report differs");
+    *liveReport << "DIAG caller-context-cases rows=8 passed=8 acceptance_unchanged=1\n";
+    liveReport->flush();
+}
+
 void observationProfileCases() {
     using Profile = proof::ObservationProfile;
     proof::WindowFact created;
@@ -3149,6 +3213,7 @@ int wmain(int argc, wchar_t** argv) {
             observed("observation-profile-cases", [] { observationProfileCases(); });
             observed("source-lifetime-cases", [] { sourceLifetimeCases(); });
             observed("semantic-evidence-cases", [] { semanticEvidenceCases(); });
+            observed("caller-context-cases", [] { callerContextCases(); });
             observed("fixture-record-cases", [] { fixtureRecordCases(); });
             proof::Observer observer(true, proof::ObservationProfile::calibration);
             size_t started = 0;

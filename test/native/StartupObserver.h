@@ -514,6 +514,61 @@ inline std::vector<std::wstring> semanticArguments(const std::wstring& command) 
     return result;
 }
 
+struct SemanticCli {
+    std::wstring scenario, architecture = L"x64", source = L"package";
+    size_t options = 0;
+    bool valid = false;
+    const char* failure = "caller-options-shape";
+};
+
+inline SemanticCli semanticCli(const std::vector<std::wstring>& args) {
+    SemanticCli result;
+    if (args.size() < 3 || args.size() > 5) return result;
+    std::set<std::wstring> seen;
+    for (size_t index = 2; index < args.size(); ++index) {
+        const auto separator = args[index].find(L'=');
+        if (separator == std::wstring::npos) { result.failure = "caller-options-not-equals"; return result; }
+        const auto key = args[index].substr(0, separator);
+        const auto value = args[index].substr(separator + 1);
+        if (value.empty() || !seen.insert(key).second) { result.failure = "caller-options-empty-or-duplicate"; return result; }
+        ++result.options;
+        if (key == L"--scenario") result.scenario = value;
+        else if (key == L"--architecture") result.architecture = value;
+        else if (key == L"--source") result.source = value;
+        else { result.failure = "caller-option-unknown"; return result; }
+    }
+    if (result.scenario.empty()) { result.failure = "caller-scenario-missing"; return result; }
+    result.valid = true;
+    result.failure = "none";
+    return result;
+}
+
+struct SemanticCallerEvidence {
+    size_t bound = SIZE_MAX, caller = SIZE_MAX, observer = SIZE_MAX, witnessed = SIZE_MAX;
+    size_t evaluated = 0, argumentCount = 0, optionCount = 0;
+    bool handle = false, creation = false, callerInterval = false, observerInterval = false, parent = false;
+    bool witness = false, image = false, arguments = false, module = false, options = false;
+    bool scenario = false, architecture = false, source = false;
+    bool failed = false;
+    const char* failure = "caller-handle-unavailable";
+    bool guard(bool condition, bool& field, const char* code) {
+        if (failed) return false;
+        ++evaluated;
+        field = condition;
+        if (!condition) { failure = code; failed = true; }
+        return condition;
+    }
+};
+
+inline bool semanticCallerOptions(SemanticCallerEvidence& evidence, const SemanticCli& parsed,
+                                   const std::wstring& scenario, const std::wstring& architecture, const std::wstring& source) {
+    evidence.optionCount = parsed.options;
+    return evidence.guard(parsed.valid, evidence.options, parsed.failure) &&
+        evidence.guard(parsed.scenario == scenario, evidence.scenario, "caller-scenario-mismatch") &&
+        evidence.guard(parsed.architecture == architecture, evidence.architecture, "caller-architecture-mismatch") &&
+        evidence.guard(parsed.source == source, evidence.source, "caller-source-mismatch");
+}
+
 inline bool semanticFixedScript(const std::string& operation, const std::wstring& script) {
     if (operation == "aumid-activate")
         return script == std::wstring(L"Start-Process explorer.exe -ArgumentList 'shell:AppsFolder\\") + SemanticAumid + L"'";
@@ -693,6 +748,24 @@ struct WindowLifetime {
     std::vector<size_t> rows;
     bool created = false, closed = false, conflict = false;
 };
+
+struct FailureRows {
+    std::vector<size_t> rows;
+    std::map<size_t, const char*> categories;
+};
+
+inline FailureRows collectFailureRows(const std::vector<size_t>& consoles, const std::vector<size_t>& inconclusive,
+                                      const std::vector<size_t>& visible) {
+    FailureRows result;
+    const auto add = [&](const std::vector<size_t>& rows, const char* category) {
+        for (const auto row : rows)
+            if (result.categories.emplace(row, category).second) result.rows.push_back(row);
+    };
+    add(consoles, "unbound-console");
+    add(inconclusive, "inconclusive");
+    add(visible, "visible-product");
+    return result;
+}
 
 inline bool completeNonPresenterTransient(const std::vector<WindowFact>& facts, const WindowLifetime& life,
                                           const HelperScopeEvidence& evidence) {
@@ -955,6 +1028,12 @@ struct ConsoleFact {
     size_t sourceActor = 0;
 };
 
+inline bool consoleFactInSegment(const ConsoleFact& fact, const WindowFact& window, const WindowResolution& lifetime) {
+    return (fact.event == EVENT_CONSOLE_START_APPLICATION || fact.event == EVENT_CONSOLE_END_APPLICATION) &&
+        fact.window && fact.window == window.window && lifetime.lifetime &&
+        fact.generated >= lifetime.beginTick && fact.generated <= lifetime.endTick;
+}
+
 class Observer {
     struct SemanticCaller {
         recap::Handle process;
@@ -1071,36 +1150,44 @@ class Observer {
     size_t finalExpectedRoots_ = 0, finalActualRoots_ = 0;
     std::set<DWORD> finalContextPids_;
     std::vector<SourceResolution> finalSources_;
+    std::map<size_t, const char*> reportCategories_;
+    std::set<size_t> finalConsoleContexts_;
     SemanticCaller semanticCaller_;
     std::vector<SemanticOperation> semanticOperations_;
     SemanticImageGroups semanticImages_;
     size_t semanticOpens_ = 0, semanticCloses_ = 0;
 
-    size_t semanticCallerIndex(const ProcessGraph& graph) const {
-        if (!semanticCaller_.process || !semanticCaller_.creation ||
-            semanticCaller_.creation > semanticCaller_.observerCreation) return SIZE_MAX;
+    SemanticCallerEvidence semanticCallerEvidence(const ProcessGraph& graph) const {
+        SemanticCallerEvidence evidence;
+        if (!evidence.guard(static_cast<bool>(semanticCaller_.process), evidence.handle, "caller-handle-unavailable")) return evidence;
+        if (!evidence.guard(semanticCaller_.creation && semanticCaller_.creation <= semanticCaller_.observerCreation,
+                            evidence.creation, "caller-creation-unproved")) return evidence;
         const auto point = semanticOperations_.empty() ? semanticCaller_.witnessed : semanticOperations_.front().begin;
         const auto caller = graph.unique(semanticCaller_.pid, static_cast<LONGLONG>(point));
         const auto self = graph.unique(GetCurrentProcessId(), static_cast<LONGLONG>(point));
-        if (caller == SIZE_MAX || self == SIZE_MAX ||
-            graph.instances[self].start.parent != semanticCaller_.pid) return SIZE_MAX;
+        evidence.caller = caller; evidence.observer = self;
+        if (!evidence.guard(caller != SIZE_MAX, evidence.callerInterval, "caller-interval-unavailable")) return evidence;
+        if (!evidence.guard(self != SIZE_MAX, evidence.observerInterval, "observer-interval-unavailable")) return evidence;
+        if (!evidence.guard(graph.instances[self].start.parent == semanticCaller_.pid,
+                            evidence.parent, "caller-parent-mismatch")) return evidence;
         const auto& value = graph.instances[caller];
         const auto capturedImage = executablePath(value.start.pid, value.start);
-        if (graph.unique(semanticCaller_.pid, static_cast<LONGLONG>(semanticCaller_.witnessed)) != caller ||
-            (capturedImage.find(L'\\') != std::wstring::npos && !recap::samePath(capturedImage, semanticCaller_.image)))
-            return SIZE_MAX;
+        evidence.witnessed = graph.unique(semanticCaller_.pid, static_cast<LONGLONG>(semanticCaller_.witnessed));
+        if (!evidence.guard(evidence.witnessed == caller, evidence.witness, "caller-witness-interval-mismatch")) return evidence;
+        if (!evidence.guard(capturedImage.find(L'\\') == std::wstring::npos || recap::samePath(capturedImage, semanticCaller_.image),
+                            evidence.image, "caller-image-mismatch")) return evidence;
         const auto args = semanticArguments(value.start.diagnosticCommand);
+        evidence.argumentCount = args.size();
+        if (!evidence.guard(args.size() >= 2, evidence.arguments, "caller-arguments-unavailable")) return evidence;
+        if (!evidence.guard(!args[1].empty() &&
+                            recap::samePath(std::filesystem::absolute(args[1]).lexically_normal().wstring(), semanticCaller_.module),
+                            evidence.module, "caller-module-mismatch")) return evidence;
+        const auto parsed = semanticCli(args);
         const auto scenario = semanticCaller_.mode == L"busy" ? L"busy-port-refusal" : L"certification-functionality";
-        if (args.size() != 8 ||
-            !recap::samePath(std::filesystem::absolute(args[1]).lexically_normal().wstring(), semanticCaller_.module))
-            return SIZE_MAX;
-        std::map<std::wstring, std::wstring> options;
-        for (size_t index = 2; index < args.size(); index += 2)
-            if (!options.emplace(args[index], args[index + 1]).second) return SIZE_MAX;
-        if (options.size() != 3 || options[L"--scenario"] != scenario ||
-            options[L"--architecture"] != semanticCaller_.architecture || options[L"--source"] != semanticCaller_.source)
-            return SIZE_MAX;
-        return caller;
+        if (!semanticCallerOptions(evidence, parsed, scenario, semanticCaller_.architecture, semanticCaller_.source)) return evidence;
+        evidence.bound = caller;
+        evidence.failure = "none";
+        return evidence;
     }
 
     bool creation(HANDLE handle, bool thread, uint64_t& value) {
@@ -1397,7 +1484,8 @@ class Observer {
         std::lock_guard<std::mutex> lock(mutex_);
         const ProcessGraph graph(processes_);
         const ThreadGraph semanticThreads(threads_);
-        const auto caller = semanticCallerIndex(graph);
+        const auto callerEvidence = semanticCallerEvidence(graph);
+        const auto caller = callerEvidence.bound;
         const auto callerPoint = semanticOperations_.empty() ? semanticCaller_.witnessed : semanticOperations_.front().begin;
         const auto self = graph.unique(GetCurrentProcessId(), static_cast<LONGLONG>(callerPoint));
         const auto system = classicHostImage_.substr(0, classicHostImage_.find_last_of(L'\\'));
@@ -1454,8 +1542,9 @@ class Observer {
             add(index);
             sourceContexts.insert(index);
         }
-        add(caller);
-        if (caller != SIZE_MAX) add(self);
+        for (const auto index : finalConsoleContexts_) add(index);
+        add(callerEvidence.caller);
+        if (semanticCaller_.pid) add(self);
         for (size_t index = 0; index < operations.size(); ++index)
             if (semanticOperations_[index].name == "aumid-activate") add(operations[index].process);
         for (const auto index : urlHelpers) add(index);
@@ -1476,6 +1565,18 @@ class Observer {
                  << " operation_records=" << operations.size() << " bound_operations=" << boundOperations
                  << " unresolved_operations=" << operations.size() - boundOperations
                  << " query_hiding_explicit=0 expected_browser_only=1 browser_role_meaning=owned-cmd-url-helper acceptance_inputs=0\n";
+        *report_ << "DIAG caller-guards first_failed=" << callerEvidence.failure
+                 << " evaluated=" << callerEvidence.evaluated << " total=13 unobserved=" << 13 - callerEvidence.evaluated
+                 << " handle=" << callerEvidence.handle << " creation=" << callerEvidence.creation
+                 << " caller_interval=" << callerEvidence.callerInterval << " observer_interval=" << callerEvidence.observerInterval
+                 << " parent=" << callerEvidence.parent << " witness_interval=" << callerEvidence.witness
+                 << " image=" << callerEvidence.image << " arguments=" << callerEvidence.arguments
+                 << " module=" << callerEvidence.module << " options=" << callerEvidence.options
+                 << " scenario_match=" << callerEvidence.scenario << " architecture_match=" << callerEvidence.architecture
+                 << " source_match=" << callerEvidence.source << " argument_count=" << callerEvidence.argumentCount
+                 << " option_count=" << callerEvidence.optionCount << " caller_candidate=" << key(callerEvidence.caller)
+                 << " observer_candidate=" << key(callerEvidence.observer) << " witness_candidate=" << key(callerEvidence.witnessed)
+                 << " acceptance_input=0\n";
         size_t emitted = 0;
         for (const auto index : context) {
             if (!shown.count(index)) continue;
@@ -2444,7 +2545,9 @@ public:
             const auto& raw = windows_[index];
             const auto& row = resolution[index];
             const SourceResolution source = index < finalSources_.size() ? finalSources_[index] : SourceResolution{};
+            const auto categoryFound = reportCategories_.find(index);
             report << "DIAG attribution category=" << category << " row=" << index << " reason=" << row.reason
+                   << " failure_category=" << (categoryFound == reportCategories_.end() ? "context" : categoryFound->second)
                    << " event=" << raw.event << " object=" << raw.object << " child=" << raw.child
                    << " hwnd=" << raw.window << " callback_thread=" << raw.callbackThread
                    << " source_thread=" << raw.sourceThread
@@ -2494,6 +2597,85 @@ public:
                << " emitted_rows=" << emitted.size() << " total_window_rows=" << windows_.size()
                << " healthy=" << healthy() << " clocks=" << clockValid()
                << " etw_events_lost=" << eventsLost() << " etw_buffers_lost=" << buffersLost() << "\n";
+        report.flush();
+    }
+
+    void reportConsoleContext(std::ostream& report, const std::vector<WindowResolution>& resolution,
+                              const std::vector<size_t>& offenders) {
+        std::lock_guard<std::mutex> lock(mutex_);
+        const ProcessGraph graph(processes_);
+        const ThreadGraph threads(threads_);
+        const auto windowBudget = std::min<size_t>(20, offenders.size());
+        const auto budget = 20 - windowBudget;
+        size_t candidates = 0, printed = 0;
+        finalConsoleContexts_.clear();
+        for (size_t index = 0; index < consoles_.size(); ++index) {
+            const auto& event = consoles_[index];
+            std::set<size_t> lifetimes;
+            size_t example = SIZE_MAX;
+            for (size_t position = 0; position < windowBudget; ++position) {
+                const auto row = offenders[position];
+                if (consoleFactInSegment(event, windows_[row], resolution[row])) {
+                    lifetimes.insert(resolution[row].lifetime);
+                    example = row;
+                }
+            }
+            if (lifetimes.empty()) continue;
+            ++candidates;
+            if (printed >= budget) continue;
+            ++printed;
+            WindowFact timingInput;
+            timingInput.sourceThread = event.sourceThread;
+            timingInput.generated = event.generated; timingInput.received = event.received;
+            const auto timing = resolveSource(timingInput, graph, threads, {}, captureBegin_, frequency_, clockValid(), healthy());
+            std::vector<size_t> clients;
+            if (timing.earliest > 0 && timing.latest >= timing.earliest)
+                for (size_t process = 0; process < graph.instances.size(); ++process) {
+                    const auto& value = graph.instances[process];
+                    if (value.start.pid == event.pid && value.start.timestamp <= timing.latest && value.until >= timing.earliest)
+                        clients.push_back(process);
+                }
+            const bool clientKnown = event.child == 0 && clients.size() == 1 && !graph.instances[clients[0]].ambiguous;
+            const auto client = clientKnown ? clients[0] : SIZE_MAX;
+            const auto* source = actor(event.sourceActor);
+            const auto sourceInstance = source && source->instanceKnown
+                ? graph.unique(source->pid, static_cast<LONGLONG>(source->capturedQpc)) : SIZE_MAX;
+            bool retainedClient = false, controlClient = false;
+            const auto retained = clients_.find(event.pid);
+            if (clientKnown && retained != clients_.end()) {
+                for (const auto& value : actors_)
+                    if (value.pid == event.pid && value.processCreation == retained->second.creation &&
+                        graph.unique(value.pid, static_cast<LONGLONG>(value.capturedQpc)) == client) retainedClient = true;
+                controlClient = retainedClient && retained->second.control;
+            }
+            if (clientKnown) finalConsoleContexts_.insert(client);
+            if (sourceInstance != SIZE_MAX) finalConsoleContexts_.insert(sourceInstance);
+            const auto& lifetime = resolution[example];
+            report << "DIAG console-context record=" << index << " event=" << event.event << " hwnd=" << event.window
+                   << " id_object_process=" << event.pid << " child=" << event.child
+                   << " source_thread=" << event.sourceThread << " source_actor=" << event.sourceActor
+                   << " source_pid=" << (source ? source->pid : 0)
+                   << " source_role=" << (source ? presenterRoleName(source->role) : "unknown")
+                   << " source_instance=" << (sourceInstance == SIZE_MAX ? -1LL : static_cast<long long>(graph.instances[sourceInstance].startRow))
+                   << " source_thread_exact=" << (source && source->instanceKnown && source->tid == event.sourceThread)
+                   << " generation32=" << event.generated32 << " generation_tick=" << event.generated
+                   << " receipt_tick=" << event.received.tick << " receipt_qpc=" << event.received.qpc
+                   << " earliest_qpc=" << timing.earliest << " latest_qpc=" << timing.latest
+                   << " lifetime_candidates=" << lifetimes.size() << " lifetime=" << (lifetimes.size() == 1 ? lifetime.lifetime : 0)
+                   << " completeness_known=" << (lifetimes.size() == 1)
+                   << " created=" << (lifetimes.size() == 1 && lifetime.created)
+                   << " destroyed=" << (lifetimes.size() == 1 && lifetime.destroyed)
+                   << " raw_identity=" << (lifetimes.size() == 1 && windows_[example].identityKnown)
+                   << " raw_visibility_known=" << (lifetimes.size() == 1 && windows_[example].metadataKnown)
+                   << " client_candidates=" << clients.size() << " client_interval_known=" << clientKnown
+                   << " client_instance=" << (clientKnown ? static_cast<long long>(graph.instances[client].startRow) : -1LL)
+                   << " client_process_ended=" << (clientKnown && graph.instances[client].ended)
+                   << " retained_client_match=" << retainedClient << " control_client=" << controlClient
+                   << " acceptance_input=0\n";
+        }
+        report << "DIAG console-context-summary candidates=" << candidates << " printed=" << printed
+               << " omitted=" << candidates - printed << " shared_principal_limit=20 window_rows=" << windowBudget
+               << " console_budget=" << budget << " new_queries=0\n";
         report.flush();
     }
 
@@ -2783,16 +2965,21 @@ public:
                 }
                 reportAttribution(report, resolution, rows, ownedPids);
             };
+            const auto failures = collectFailureRows(unboundConsole, inconclusive, visible);
+            if (!failures.rows.empty()) {
+                reportCategories_ = failures.categories;
+                report << "DIAG offender-groups unbound_console=" << unboundConsole.size()
+                       << " inconclusive=" << inconclusive.size() << " visible_product=" << visible.size() << "\n";
+                reportRows(failures.rows);
+                reportConsoleContext(report, resolution, failures.rows);
+            }
             if (!unboundConsole.empty()) {
-                reportRows(unboundConsole);
                 finalRequire(false, "final-console-binding-unresolved", 0, windows_[unboundConsole.front()].window);
             }
             if (!inconclusive.empty()) {
-                reportRows(inconclusive);
                 finalRequire(false, "final-window-scope-inconclusive", 0, windows_[inconclusive.front()].window);
             }
             if (!visible.empty()) {
-                reportRows(visible);
                 finalRequire(false, "final-visible-product-terminal", 0, windows_[visible.front()].window);
             }
             report << "CHECK EXIT " << finalStage_ << "\nCHECK EXIT final-observer-closure\n";

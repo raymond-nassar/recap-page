@@ -317,12 +317,41 @@ try {
       $matches = [regex]::Matches($observer.Replace("`r`n", "`n"), "(?ms)$prefix[^\r\n]*\b$name\(.*?$end")
       $digest = ''
       if ($matches.Count -eq 1) {
-        $digest = [BitConverter]::ToString($sha.ComputeHash([Text.Encoding]::UTF8.GetBytes($matches[0].Value))).Replace('-','').ToLowerInvariant()
+        $value = $matches[0].Value
+        if ($name -ceq 'assertNoVisibleTerminals') {
+          $printing = @'
+            const auto failures = collectFailureRows(unboundConsole, inconclusive, visible);
+            if (!failures.rows.empty()) {
+                reportCategories_ = failures.categories;
+                report << "DIAG offender-groups unbound_console=" << unboundConsole.size()
+                       << " inconclusive=" << inconclusive.size() << " visible_product=" << visible.size() << "\n";
+                reportRows(failures.rows);
+                reportConsoleContext(report, resolution, failures.rows);
+            }
+'@
+          $printing = $printing.Replace("`r`n", "`n")
+          Assert-Report ([regex]::Matches($value, [regex]::Escape($printing)).Count -eq 1) 'approved reporting block changed or disappeared'
+          $value = $value.Replace($printing + "`n", '')
+          foreach ($category in @('unboundConsole','inconclusive','visible')) {
+            $condition = "            if (!${category}.empty()) {"
+            Assert-Report ([regex]::Matches($value, [regex]::Escape($condition)).Count -eq 1) 'primary failure condition changed'
+            $value = $value.Replace($condition, $condition + "`n                reportRows($category);")
+          }
+        }
+        $digest = [BitConverter]::ToString($sha.ComputeHash([Text.Encoding]::UTF8.GetBytes($value))).Replace('-','').ToLowerInvariant()
       }
       Assert-Report ($digest -ceq $frozen[$name]) "frozen acceptance definition changed: $name"
     }
   } finally { $sha.Dispose() }
+  $installed = [IO.File]::ReadAllText((Join-Path $root 'scripts\msix-proof.mjs'))
+  Assert-Report ($installed.Contains('createSemanticCapture(root, architecture, mode, source)') -and
+    -not $installed.Contains("process.argv.indexOf('--source')")) 'descriptor still reparses the source option'
+  Assert-Report ($observer.Contains('first_failed=') -and $observer.Contains('semanticCli(args)') -and
+    $native.Contains('caller-context-cases rows=8 passed=8')) 'bounded caller recognition or guard evidence is missing'
+  Assert-Report ($observer.Contains('id_object_process=') -and $observer.Contains('shared_principal_limit=20') -and
+    $observer.Contains('consoleFactInSegment(event, windows_[row], resolution[row])')) 'bounded existing-console context is missing'
   Write-Output 'PASS semantic-diagnostics frozen-definitions=13 separate-registration=1'
+  Write-Output 'PASS caller-context reporting-only-delta=1 primary-precedence-unchanged=1 existing-console-records=1'
   Write-Output "PASS proof-report-fixtures assertions=$script:assertions"
 } finally {
   Remove-Item -LiteralPath $file -Force

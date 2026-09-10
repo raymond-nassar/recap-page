@@ -67,12 +67,11 @@ function publishSemanticRecord(root, name, text) {
   }
 }
 
-function createSemanticCapture(root, architecture, mode) {
-  const sourceIndex = process.argv.indexOf('--source');
+function createSemanticCapture(root, architecture, mode, source) {
   const browser = resolveEdge(false);
   const fields = [
     'RCPSEM1', String(process.pid), process.execPath, fileURLToPath(import.meta.url),
-    browser ? resolve(browser) : '', mode, architecture, sourceIndex < 0 ? 'package' : process.argv[sourceIndex + 1],
+    browser ? resolve(browser) : '', mode, architecture, source,
   ];
   if (fields.some((value) => typeof value !== 'string' || /[\r\n\0]/.test(value))) {
     throw new Error('semantic caller fields are invalid');
@@ -350,7 +349,7 @@ function activate() {
   powershell(`Start-Process explorer.exe -ArgumentList ${psLiteral(`shell:AppsFolder\\${AUMID}`)}`, 'aumid-activate');
 }
 
-async function withNativeObservation(installed, architecture, mode, body) {
+async function withNativeObservation(installed, architecture, source, mode, body) {
   if (process.env.GITHUB_ACTIONS !== 'true') {
     throw new Error('native installed observation is restricted to controlled Actions runners');
   }
@@ -366,7 +365,7 @@ async function withNativeObservation(installed, architecture, mode, body) {
   let result;
   try {
     if (activeSemanticCapture) throw new Error('native semantic captures cannot overlap');
-    const semanticCapture = createSemanticCapture(root, architecture, mode);
+    const semanticCapture = createSemanticCapture(root, architecture, mode, source);
     child = spawn(join(artifact.root, architecture, 'NativeStartupTests.exe'), [
       '--mode', mode, '--root', root, '--report', report,
       '--installed-root', installed.InstallLocation,
@@ -749,7 +748,7 @@ async function certificationFunctionality(architecture, source) {
     context.installed = installPackage(STORE_PACKAGE_VERSION, architecture, source);
     context.since = new Date();
     const { marker, settledListenerPid, serverProcess, settledServers } = await withNativeObservation(
-      context.installed, architecture, 'functionality', async (observation) => {
+      context.installed, architecture, source, 'functionality', async (observation) => {
         activate();
         activate();
         const marker = await waitFor(generation, 'the package server did not answer at the canonical origin');
@@ -978,7 +977,7 @@ async function busyPortRefusal(architecture, source) {
     ]) {
       if (!guidance.includes(expected)) throw new Error(`busy-port guidance omitted: ${expected}`);
     }
-    await withNativeObservation(context.installed, architecture, 'busy', async () => {
+    await withNativeObservation(context.installed, architecture, source, 'busy', async () => {
       activate();
     });
     if (browserSnapshotDigest() !== browserBefore) {
