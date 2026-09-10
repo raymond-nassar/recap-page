@@ -5,6 +5,7 @@
 #include <evntrace.h>
 #include <evntcons.h>
 #include <tdh.h>
+#include <shellapi.h>
 #include <atomic>
 #include <array>
 #include <climits>
@@ -163,6 +164,7 @@ struct ProcessEvent {
     DWORD exitCode = 0;
     Rundown rundown = Rundown::none;
     UCHAR version = 0;
+    std::wstring diagnosticCommand;
 };
 
 struct ProcessImage {
@@ -490,6 +492,153 @@ inline SourceResolution resolveSource(const WindowFact& raw, const ProcessGraph&
     return result;
 }
 
+inline constexpr size_t SemanticOperationLimit = 256, SemanticRecordLimit = 16384;
+inline constexpr wchar_t SemanticAumid[] = L"PanelStackLabs.RecapPage_we33aa8nvkpcc!App";
+inline constexpr wchar_t SemanticListenerScript[] = LR"SEM($row = Get-NetTCPConnection -State Listen -ErrorAction Stop | Where-Object { $_.LocalAddress -eq '127.0.0.1' -and $_.LocalPort -eq 8787 } | Select-Object -First 1; if ($row) { $row.OwningProcess })SEM";
+inline constexpr wchar_t SemanticPackagePrefix[] = L"$since = [datetime]'";
+inline constexpr wchar_t SemanticPackageSuffix[] = LR"SEM('; $rows = Get-CimInstance Win32_Process | ForEach-Object { $created = [datetime]$_.CreationDate; if ($created -ge $since) { [pscustomobject]@{ Name = $_.Name; ProcessId = $_.ProcessId; ParentProcessId = $_.ParentProcessId; ExecutablePath = $_.ExecutablePath; CreationDate = $created.ToString("o"); CommandLine = $_.CommandLine } } }; @($rows) | ConvertTo-Json -Compress)SEM";
+inline constexpr wchar_t SemanticPackageInfoScript[] = LR"SEM($p = Get-AppxPackage -Name 'PanelStackLabs.RecapPage' | Where-Object PackageFamilyName -eq 'PanelStackLabs.RecapPage_we33aa8nvkpcc' | Sort-Object Version -Descending | Select-Object -First 1; if (-not $p) { "null"; exit 0 }; $p | Select-Object Name,PackageFullName,PackageFamilyName,InstallLocation,Version | ConvertTo-Json -Compress)SEM";
+inline constexpr wchar_t SemanticBrowserScript[] = LR"SEM($names = "msedge","chrome","firefox"; $rows = Get-Process -Name $names -ErrorAction SilentlyContinue | Where-Object { $_.MainWindowHandle -ne 0 } | Select-Object Id,ProcessName,MainWindowHandle,MainWindowTitle; @($rows) | ConvertTo-Json -Compress)SEM";
+
+inline std::vector<std::wstring> semanticArguments(const std::wstring& command) {
+    if (command.empty() || command.size() > 32768) return {};
+    int count = 0;
+    auto* values = CommandLineToArgvW(command.c_str(), &count);
+    check(values != nullptr, "semantic command arguments unavailable");
+    std::unique_ptr<void, decltype(&LocalFree)> allocation(values, &LocalFree);
+    check(count > 0 && count <= 64, "semantic command argument bound exceeded");
+    std::vector<std::wstring> result;
+    for (int index = 0; index < count; ++index) result.emplace_back(values[index]);
+    check(LocalFree(allocation.release()) == nullptr, "semantic command allocation cleanup failed");
+    return result;
+}
+
+inline bool semanticFixedScript(const std::string& operation, const std::wstring& script) {
+    if (operation == "aumid-activate")
+        return script == std::wstring(L"Start-Process explorer.exe -ArgumentList 'shell:AppsFolder\\") + SemanticAumid + L"'";
+    if (operation == "listener-query") return script == SemanticListenerScript;
+    if (operation == "package-info-query") return script == SemanticPackageInfoScript;
+    if (operation == "browser-snapshot-query") return script == SemanticBrowserScript;
+    if (operation == "package-process-query") {
+        const std::wstring prefix(SemanticPackagePrefix), suffix(SemanticPackageSuffix);
+        if (script.size() != prefix.size() + 24 + suffix.size() || script.compare(0, prefix.size(), prefix) ||
+            script.compare(prefix.size() + 24, suffix.size(), suffix)) return false;
+        const auto date = script.substr(prefix.size(), 24);
+        const std::wstring shape = L"0000-00-00T00:00:00.000Z";
+        for (size_t index = 0; index < shape.size(); ++index)
+            if (shape[index] == L'0' ? date[index] < L'0' || date[index] > L'9' : date[index] != shape[index]) return false;
+        return true;
+    }
+    if (operation == "process-exists-query") {
+        const std::wstring prefix = L"if (Get-Process -Id ";
+        const std::wstring suffix = LR"SEM( -ErrorAction SilentlyContinue) { "true" } else { "false" })SEM";
+        if (script.size() <= prefix.size() + suffix.size() || script.compare(0, prefix.size(), prefix) ||
+            script.compare(script.size() - suffix.size(), suffix.size(), suffix)) return false;
+        const auto pid = script.substr(prefix.size(), script.size() - prefix.size() - suffix.size());
+        if (pid.size() > 10 || pid.front() == L'0') return false;
+        uint64_t number = 0;
+        for (const auto digit : pid) {
+            if (digit < L'0' || digit > L'9') return false;
+            number = number * 10 + static_cast<unsigned int>(digit - L'0');
+        }
+        return number <= MAXDWORD;
+    }
+    return false;
+}
+
+struct SemanticOperation {
+    size_t ordinal = 0;
+    std::string name;
+    std::wstring script;
+    uint64_t begin = 0, end = 0;
+    bool ended = false, succeeded = false;
+};
+
+struct SemanticBinding {
+    size_t process = SIZE_MAX, candidates = 0;
+    bool fixedScript = false;
+    const char* reason = "caller-unbound";
+};
+
+template<class ImageOf>
+inline SemanticBinding bindSemanticOperation(const ProcessGraph& graph, size_t caller, const SemanticOperation& operation,
+                                             const std::wstring& powershell, ImageOf imageOf) {
+    SemanticBinding result;
+    result.fixedScript = semanticFixedScript(operation.name, operation.script);
+    if (caller >= graph.instances.size() || graph.instances[caller].ambiguous) return result;
+    if (!operation.ordinal || operation.ordinal > SemanticOperationLimit || !operation.ended ||
+        !operation.begin || operation.end < operation.begin || !result.fixedScript) {
+        result.reason = "operation-record-unproved";
+        return result;
+    }
+    result.reason = "operation-child-unproved";
+    const auto pid = graph.instances[caller].start.pid;
+    for (size_t index = 0; index < graph.instances.size(); ++index) {
+        const auto& value = graph.instances[index];
+        if (!value.creationObserved || value.ambiguous || value.start.parent != pid ||
+            value.start.timestamp < static_cast<LONGLONG>(operation.begin) ||
+            value.start.timestamp > static_cast<LONGLONG>(operation.end) ||
+            !value.ended || value.until > static_cast<LONGLONG>(operation.end) ||
+            graph.unique(pid, value.start.timestamp) != caller || !recap::samePath(imageOf(index), powershell)) continue;
+        const auto args = semanticArguments(value.start.diagnosticCommand);
+        if (args.size() != 5 || args[1] != L"-NoProfile" || args[2] != L"-NonInteractive" ||
+            args[3] != L"-Command" || args[4] != operation.script) continue;
+        ++result.candidates;
+        result.process = index;
+    }
+    if (result.candidates == 1) result.reason = "exact-operation-child";
+    else {
+        result.process = SIZE_MAX;
+        if (result.candidates > 1) result.reason = "operation-child-ambiguous";
+    }
+    return result;
+}
+
+inline bool semanticSourceMatches(const ProcessGraph& graph, const ThreadGraph& threads,
+                                   size_t process, const SourceResolution& source) {
+    if (!source.known || source.process != process || process >= graph.instances.size() ||
+        source.thread >= threads.instances.size()) return false;
+    const auto& thread = threads.instances[source.thread];
+    return !thread.ambiguous && thread.owner == graph.instances[process].start.pid &&
+        thread.begin <= source.latest && thread.until >= source.earliest;
+}
+
+struct SemanticKnownImage {
+    std::wstring path;
+    const char* label = "image-unavailable";
+    bool broker = false;
+};
+
+struct SemanticImage {
+    const char* label = "image-unavailable";
+    size_t opaque = 0;
+    bool exact = false, broker = false;
+};
+
+struct SemanticImageGroups {
+    std::vector<std::wstring> paths;
+    SemanticImage classify(const std::wstring& path, const std::vector<SemanticKnownImage>& known) {
+        if (path.size() < 4 || path[1] != L':' || path[2] != L'\\') return {};
+        for (const auto& value : known)
+            if (!value.path.empty() && recap::samePath(path, value.path)) return { value.label, 0, true, value.broker };
+        for (size_t index = 0; index < paths.size(); ++index)
+            if (recap::samePath(path, paths[index])) return { "unmatched-image", index + 1, true, false };
+        check(paths.size() < 20, "semantic image context bound exceeded");
+        paths.push_back(path);
+        return { "unmatched-image", paths.size(), true, false };
+    }
+};
+
+inline const char* semanticAssociation(bool operation, bool explorerRequest, bool operationChild,
+                                       bool urlHelper, bool urlChild, bool broker) {
+    return operation ? "exact-proof-operation"
+        : explorerRequest ? "direct-explorer-request-delegation-unknown"
+        : operationChild ? "direct-operation-child"
+        : urlHelper ? "owned-cmd-url-request"
+        : urlChild ? "direct-url-helper-child"
+        : broker ? "shared-broker-request-unknown" : "activity-association-unknown";
+}
+
 struct HelperScopeEvidence {
     bool registered = false, instance = false, image = false, thread = false, ownerCompatible = false;
     bool productAssociation = false, terminalAssociation = false;
@@ -806,6 +955,12 @@ struct ConsoleFact {
 };
 
 class Observer {
+    struct SemanticCaller {
+        recap::Handle process;
+        DWORD pid = 0;
+        uint64_t creation = 0, observerCreation = 0, witnessed = 0;
+        std::wstring image, module, browser, mode, architecture, source;
+    };
     struct Registration {
         recap::Handle process;
         DWORD pid = 0, tid = 0;
@@ -915,6 +1070,37 @@ class Observer {
     size_t finalExpectedRoots_ = 0, finalActualRoots_ = 0;
     std::set<DWORD> finalContextPids_;
     std::vector<SourceResolution> finalSources_;
+    SemanticCaller semanticCaller_;
+    std::vector<SemanticOperation> semanticOperations_;
+    SemanticImageGroups semanticImages_;
+    size_t semanticOpens_ = 0, semanticCloses_ = 0;
+
+    size_t semanticCallerIndex(const ProcessGraph& graph) const {
+        if (!semanticCaller_.process || !semanticCaller_.creation ||
+            semanticCaller_.creation > semanticCaller_.observerCreation) return SIZE_MAX;
+        const auto point = semanticOperations_.empty() ? semanticCaller_.witnessed : semanticOperations_.front().begin;
+        const auto caller = graph.unique(semanticCaller_.pid, static_cast<LONGLONG>(point));
+        const auto self = graph.unique(GetCurrentProcessId(), static_cast<LONGLONG>(point));
+        if (caller == SIZE_MAX || self == SIZE_MAX ||
+            graph.instances[self].start.parent != semanticCaller_.pid) return SIZE_MAX;
+        const auto& value = graph.instances[caller];
+        const auto capturedImage = executablePath(value.start.pid, value.start);
+        if (graph.unique(semanticCaller_.pid, static_cast<LONGLONG>(semanticCaller_.witnessed)) != caller ||
+            (capturedImage.find(L'\\') != std::wstring::npos && !recap::samePath(capturedImage, semanticCaller_.image)))
+            return SIZE_MAX;
+        const auto args = semanticArguments(value.start.diagnosticCommand);
+        const auto scenario = semanticCaller_.mode == L"busy" ? L"busy-port-refusal" : L"certification-functionality";
+        if (args.size() != 8 ||
+            !recap::samePath(std::filesystem::absolute(args[1]).lexically_normal().wstring(), semanticCaller_.module))
+            return SIZE_MAX;
+        std::map<std::wstring, std::wstring> options;
+        for (size_t index = 2; index < args.size(); index += 2)
+            if (!options.emplace(args[index], args[index + 1]).second) return SIZE_MAX;
+        if (options.size() != 3 || options[L"--scenario"] != scenario ||
+            options[L"--architecture"] != semanticCaller_.architecture || options[L"--source"] != semanticCaller_.source)
+            return SIZE_MAX;
+        return caller;
+    }
 
     bool creation(HANDLE handle, bool thread, uint64_t& value) {
         FILETIME born{}, exited{}, kernel{}, user{};
@@ -1166,7 +1352,17 @@ class Observer {
         for (auto& value : actors_) { close(value.thread); close(value.process); }
         for (auto& [pid, client] : clients_) { (void)pid; close(client.process); }
         for (auto& value : registrations_) close(value.process);
+        if (semanticCaller_.process) {
+            ++semanticCloses_;
+            if (semanticCaller_.process.close() != ERROR_SUCCESS) {
+                ++identityCounts_.closeFailures;
+                lost_.store(true);
+            }
+        }
         if (report_) {
+            if (semanticOpens_)
+                *report_ << "DIAG semantic-handles opened=" << semanticOpens_ << " closed=" << semanticCloses_
+                         << " acceptance_registrations_added=0\n";
             *report_ << "DIAG identity-handles source_thread_opens=" << identityCounts_.sourceThreadOpens
                      << " source_process_opens=" << identityCounts_.sourceProcessOpens
                      << " reported_thread_opens=" << identityCounts_.reportedThreadOpens
@@ -1199,14 +1395,93 @@ class Observer {
     void reportFinalContext() {
         std::lock_guard<std::mutex> lock(mutex_);
         const ProcessGraph graph(processes_);
-        size_t candidates = 0, emitted = 0;
-        for (const auto& value : graph.instances) {
+        const ThreadGraph semanticThreads(threads_);
+        const auto caller = semanticCallerIndex(graph);
+        const auto callerPoint = semanticOperations_.empty() ? semanticCaller_.witnessed : semanticOperations_.front().begin;
+        const auto self = graph.unique(GetCurrentProcessId(), static_cast<LONGLONG>(callerPoint));
+        const auto system = classicHostImage_.substr(0, classicHostImage_.find_last_of(L'\\'));
+        const auto windows = std::filesystem::path(system).parent_path().wstring();
+        const auto powershell = system + L"\\WindowsPowerShell\\v1.0\\powershell.exe";
+        std::vector<SemanticKnownImage> knownImages{
+            { classicHostImage_, "trusted-classic-host" }, { powershell, "system-powershell-image" },
+            { system + L"\\cmd.exe", "system-cmd-image" },
+            { windows + L"\\explorer.exe", "windows-explorer-image", true },
+            { system + L"\\RuntimeBroker.exe", "system-runtimebroker-image", true },
+            { system + L"\\dllhost.exe", "system-dllhost-image", true },
+            { system + L"\\svchost.exe", "system-service-host-image", true },
+            { recap::modulePath(), "observer-proof-image" }
+        };
+        if (caller != SIZE_MAX) {
+            knownImages.push_back({ semanticCaller_.image, "proof-caller-runtime-image" });
+            if (!semanticCaller_.browser.empty()) knownImages.push_back({ semanticCaller_.browser, "expected-browser-image", true });
+        }
+        std::set<size_t> roots;
+        for (const auto& root : rootAnchors_) {
+            knownImages.push_back({ root.image, "product-gui-image" });
+            knownImages.push_back({ root.image.substr(0, root.image.find_last_of(L'\\')) + L"\\runtime\\node.exe", "package-node-image" });
+            const auto index = graph.unique(root.pid, root.point);
+            if (index != SIZE_MAX) roots.insert(index);
+        }
+        const auto lineage = graph.descendants(roots);
+        const bool lineageKnown = lineage.ambiguous == SIZE_MAX && lineage.missingParent == SIZE_MAX;
+        std::vector<SemanticBinding> operations;
+        for (const auto& operation : semanticOperations_)
+            operations.push_back(bindSemanticOperation(graph, caller, operation, powershell, [&](size_t index) {
+                return executablePath(graph.instances[index].start.pid, graph.instances[index].start);
+            }));
+        const auto parentOf = [&](size_t index) {
+            const auto& value = graph.instances[index];
+            return value.creationObserved ? graph.unique(value.start.parent, value.start.timestamp) : SIZE_MAX;
+        };
+        std::set<size_t> urlHelpers;
+        if (lineageKnown) for (const auto index : lineage.owned) {
+            const auto& value = graph.instances[index];
+            if (!recap::samePath(executablePath(value.start.pid, value.start), system + L"\\cmd.exe")) continue;
+            const auto args = semanticArguments(value.start.diagnosticCommand);
+            if (args.size() == 5 && args[1] == L"/c" && args[2] == L"start" && args[3].empty() &&
+                args[4] == L"http://127.0.0.1:8787/") urlHelpers.insert(index);
+        }
+        std::vector<size_t> context;
+        std::set<size_t> present, sourceContexts;
+        const auto add = [&](size_t index) {
+            if (index < graph.instances.size() && present.insert(index).second) context.push_back(index);
+        };
+        for (size_t index = 0; index < graph.instances.size(); ++index) {
+            const auto& value = graph.instances[index];
             if (finalPid_ && value.start.pid != finalPid_ && value.start.parent != finalPid_) continue;
             if (!finalPid_ && !finalContextPids_.empty() && !finalContextPids_.count(value.start.pid)) continue;
-            ++candidates;
-            if (emitted >= 20) continue;
+            add(index);
+            sourceContexts.insert(index);
+        }
+        add(caller);
+        if (caller != SIZE_MAX) add(self);
+        for (size_t index = 0; index < operations.size(); ++index)
+            if (semanticOperations_[index].name == "aumid-activate") add(operations[index].process);
+        for (const auto index : urlHelpers) add(index);
+        const auto directCount = context.size();
+        for (size_t position = 0; position < directCount; ++position) add(parentOf(context[position]));
+        std::set<size_t> shown;
+        for (size_t index = 0; index < std::min<size_t>(20, context.size()); ++index) shown.insert(context[index]);
+        const auto key = [&](size_t index) {
+            return index == SIZE_MAX ? -1LL : static_cast<long long>(graph.instances[index].startRow);
+        };
+        const bool callerContext = caller != SIZE_MAX && self != SIZE_MAX && shown.count(caller) && shown.count(self);
+        size_t boundOperations = 0;
+        for (const auto& operation : operations) if (operation.process != SIZE_MAX) ++boundOperations;
+        *report_ << "DIAG semantic-summary caller_pid=" << semanticCaller_.pid << " caller_bound=" << callerContext
+                 << " caller_instance=" << key(caller) << " caller_creation=" << semanticCaller_.creation
+                 << " observer_instance=" << key(self)
+                 << " observer_creation=" << semanticCaller_.observerCreation << " caller_witness_qpc=" << semanticCaller_.witnessed
+                 << " operation_records=" << operations.size() << " bound_operations=" << boundOperations
+                 << " unresolved_operations=" << operations.size() - boundOperations
+                 << " query_hiding_explicit=0 expected_browser_only=1 browser_role_meaning=owned-cmd-url-helper acceptance_inputs=0\n";
+        size_t emitted = 0;
+        for (const auto index : context) {
+            if (!shown.count(index)) continue;
+            const auto& value = graph.instances[index];
             ++emitted;
             const auto path = executablePath(value.start.pid, value.start);
+            const auto semanticImage = semanticImages_.classify(index == caller ? semanticCaller_.image : path, knownImages);
             const Registration* registered = nullptr;
             for (const auto& item : registrations_) {
                 if (graph.exact(value.start.pid, value.start.timestamp) != SIZE_MAX && item.pid == value.start.pid &&
@@ -1216,7 +1491,6 @@ class Observer {
             const bool imageKnown = path.find(L'\\') != std::wstring::npos;
             const char* imageRole = imageKnown ? "other-captured-image" : "unknown";
             bool imageMatch = false;
-            const auto system = classicHostImage_.substr(0, classicHostImage_.find_last_of(L'\\'));
             if (recap::samePath(path, classicHostImage_)) { imageRole = "trusted-classic-host"; imageMatch = true; }
             if (recap::samePath(path, system + L"\\WindowsPowerShell\\v1.0\\powershell.exe")) {
                 imageRole = "system-powershell-image"; imageMatch = true;
@@ -1229,6 +1503,39 @@ class Observer {
             if (registered && recap::samePath(path, registered->image)) {
                 imageRole = purposeName(registered->purpose); imageMatch = true;
             }
+            const auto parent = parentOf(index);
+            const bool parentReported = parent != SIZE_MAX && shown.count(parent);
+            size_t operationOrdinal = 0, operationMatches = 0;
+            const char* operationName = "none";
+            bool directOperation = false, directOperationChild = false, directExplorerRequest = false;
+            for (size_t operation = 0; operation < operations.size(); ++operation) {
+                const auto helper = operations[operation].process;
+                if (helper == SIZE_MAX || !callerContext) continue;
+                const bool direct = helper == index;
+                const bool child = parentReported && helper == parent;
+                bool explorer = false;
+                if (child && semanticOperations_[operation].name == "aumid-activate" &&
+                    recap::samePath(path, windows + L"\\explorer.exe")) {
+                    const auto args = semanticArguments(value.start.diagnosticCommand);
+                    explorer = args.size() == 2 && args[1] == std::wstring(L"shell:AppsFolder\\") + SemanticAumid;
+                }
+                if (!direct && !child) continue;
+                ++operationMatches;
+                operationOrdinal = semanticOperations_[operation].ordinal;
+                operationName = semanticOperations_[operation].name.c_str();
+                directOperation = direct;
+                directOperationChild = child;
+                directExplorerRequest = explorer;
+            }
+            if (operationMatches != 1) {
+                operationOrdinal = 0; operationName = "none"; directOperation = directOperationChild = directExplorerRequest = false;
+            }
+            size_t sourceThreads = 0;
+            for (const auto& source : finalSources_)
+                if (semanticSourceMatches(graph, semanticThreads, index, source)) ++sourceThreads;
+            const bool directUrlChild = parentReported && urlHelpers.count(parent);
+            const auto association = semanticAssociation(directOperation, directExplorerRequest, directOperationChild,
+                urlHelpers.count(index) != 0, directUrlChild, semanticImage.broker);
             *report_ << "DIAG final-process instance_row=" << value.startRow << " pid=" << value.start.pid
                      << " parent=" << value.start.parent << " coverage_begin_qpc=" << value.start.timestamp
                      << " creation_observed=" << value.creationObserved << " rundown_begin=" << value.rundownBegin
@@ -1243,11 +1550,23 @@ class Observer {
                      << " registration_qpc=" << (registered ? registered->witnessed : 0)
                      << " process_creation=" << (registered ? registered->creation : 0)
                      << " primary_tid=" << (registered ? registered->tid : 0)
-                     << " primary_thread_creation=" << (registered ? registered->threadCreation : 0) << "\n";
+                     << " primary_thread_creation=" << (registered ? registered->threadCreation : 0)
+                     << " semantic_context=" << (sourceContexts.count(index) ? "source" : "parent-or-request")
+                     << " semantic_image=" << semanticImage.label << " opaque_image_group=" << semanticImage.opaque
+                     << " semantic_image_exact=" << semanticImage.exact << " shared_broker_image=" << semanticImage.broker
+                     << " parent_instance=" << key(parent) << " parent_context_known=" << parentReported
+                     << " operation=" << operationName << " operation_ordinal=" << operationOrdinal
+                     << " direct_operation=" << directOperation << " fixed_operation_script=" << directOperation
+                     << " direct_operation_child=" << directOperationChild
+                     << " aumid_script_match=" << (directOperation && std::string(operationName) == "aumid-activate")
+                     << " aumid_request_match=" << directExplorerRequest
+                     << " canonical_url_helper=" << (urlHelpers.count(index) != 0) << " direct_url_child=" << directUrlChild
+                     << " source_thread_rows_matched=" << sourceThreads << " delegated_association_known=0"
+                     << " semantic_association=" << association << " semantic_acceptance_input=0\n";
         }
         *report_ << "DIAG final-context stage=" << finalStage_ << " pid=" << finalPid_ << " hwnd=" << finalWindow_
                  << " expected_roots=" << finalExpectedRoots_ << " actual_roots=" << finalActualRoots_
-                 << " process_candidates=" << candidates << " emitted=" << emitted << " omitted=" << candidates - emitted
+                 << " process_candidates=" << context.size() << " emitted=" << emitted << " omitted=" << context.size() - emitted
                  << " healthy=" << healthy() << " clocks=" << clockValid() << "\n";
         report_->flush();
     }
@@ -1455,12 +1774,13 @@ class Observer {
                 check(self->processes_.size() < 8192, "ETW process bound exceeded");
                 failure = "process-event-field-decode";
                 const auto exit = opcode == EVENT_TRACE_TYPE_END ? property(event, L"ExitStatus") : std::vector<unsigned char>{};
+                const auto command = wide(property(event, L"CommandLine"));
                 self->processes_.push_back({
                     pid, number(parent), opcode == EVENT_TRACE_TYPE_START,
                     event->EventHeader.TimeStamp.QuadPart,
                     narrow(property(event, L"ImageFileName")),
-                    rundown == Rundown::none ? wide(property(event, L"CommandLine")) : std::wstring{},
-                    exit.size() == sizeof(DWORD), number(exit), rundown, version
+                    rundown == Rundown::none ? command : std::wstring{},
+                    exit.size() == sizeof(DWORD), number(exit), rundown, version, command
                 });
             } else {
                 failure = "image-event-field-decode";
@@ -1647,6 +1967,58 @@ public:
         stopped_ = true;
     }
     void reportTo(std::ostream& report) { report_ = &report; }
+    void bindSemanticCaller(DWORD pid, const std::wstring& image, const std::wstring& module,
+                            const std::wstring& browser, const std::wstring& mode,
+                            const std::wstring& architecture, const std::wstring& source) {
+        check(!semanticCaller_.process && pid && pid != GetCurrentProcessId(), "semantic caller input is invalid");
+        SemanticCaller value;
+        value.process = recap::Handle(OpenProcess(PROCESS_QUERY_LIMITED_INFORMATION | SYNCHRONIZE, FALSE, pid));
+        check(value.process && GetProcessId(value.process.get()) == pid &&
+              WaitForSingleObject(value.process.get(), 0) == WAIT_TIMEOUT, "semantic caller instance unavailable");
+        FILETIME born{}, exited{}, kernel{}, user{}, selfBorn{};
+        check(GetProcessTimes(value.process.get(), &born, &exited, &kernel, &user) != FALSE &&
+              GetProcessTimes(GetCurrentProcess(), &selfBorn, &exited, &kernel, &user) != FALSE,
+              "semantic caller creation unavailable");
+        value.creation = (static_cast<uint64_t>(born.dwHighDateTime) << 32) | born.dwLowDateTime;
+        value.observerCreation = (static_cast<uint64_t>(selfBorn.dwHighDateTime) << 32) | selfBorn.dwLowDateTime;
+        value.image = imagePath(value.process.get());
+        const auto expectedModule = (std::filesystem::current_path() / L"scripts" / L"msix-proof.mjs").wstring();
+        check(recap::samePath(value.image, image) && recap::samePath(module, expectedModule),
+              "semantic caller image or proof module differs");
+        value.pid = pid; value.module = recap::normalizedPath(module); value.browser = recap::normalizedPath(browser);
+        value.mode = mode; value.architecture = architecture; value.source = source;
+        value.witnessed = moment().qpc;
+        semanticCaller_ = std::move(value);
+        ++semanticOpens_;
+    }
+    void beginSemanticOperation(size_t ordinal, const std::string& name, const std::wstring& script) {
+        check(semanticCaller_.process && ordinal == semanticOperations_.size() + 1 &&
+              ordinal <= SemanticOperationLimit &&
+              (semanticOperations_.empty() || semanticOperations_.back().ended), "semantic operation order differs");
+        check(name == "aumid-activate" || name == "listener-query" || name == "package-process-query" ||
+              name == "package-info-query" || name == "process-exists-query" || name == "browser-snapshot-query",
+              "semantic operation name is invalid");
+        semanticOperations_.push_back({ ordinal, name, script, moment().qpc });
+        if (report_) {
+            *report_ << "DIAG semantic-operation phase=begin ordinal=" << ordinal << " operation=" << name
+                     << " fixed_script=" << semanticFixedScript(name, script)
+                     << " begin_qpc=" << semanticOperations_.back().begin << " acceptance_input=0\n";
+            report_->flush();
+        }
+    }
+    void endSemanticOperation(size_t ordinal, bool succeeded) {
+        check(!semanticOperations_.empty() && ordinal == semanticOperations_.back().ordinal &&
+              !semanticOperations_.back().ended, "semantic operation end differs");
+        auto& value = semanticOperations_.back();
+        value.end = moment().qpc;
+        value.ended = true;
+        value.succeeded = succeeded;
+        if (report_) {
+            *report_ << "DIAG semantic-operation phase=end ordinal=" << ordinal << " operation=" << value.name
+                     << " end_qpc=" << value.end << " helper_succeeded=" << succeeded << " acceptance_input=0\n";
+            report_->flush();
+        }
+    }
     void bindClient(DWORD pid, HANDLE process, HANDLE primaryThread = nullptr, DWORD primaryTid = 0, bool control = false) {
         uint64_t born = 0;
         check(pid && GetProcessId(process) == pid && creation(process, false, born), "client process identity unavailable");

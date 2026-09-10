@@ -276,6 +276,37 @@ test('native artifact transfer pins exact inputs and refuses digest mismatches',
   assert.equal(records.get(finalRecord)?.text, 'pid=123\narguments=true\nenvironment=true\ncwd=true');
   assert.match(fixtureSource, /publishFixtureRecord\('sentinel\.txt', String\(child\.pid\)\)/);
   t.diagnostic('PASS atomic-fixture-publication original-interleaving-defended=1 unchanged-record=1');
+  const installedProof = readFileSync(new URL('../scripts/msix-proof.mjs', import.meta.url), 'utf8');
+  const shellWrapper = installedProof.match(/^function powershell\([\s\S]*?^\}/m)?.[0];
+  const listenerQuery = installedProof.match(/^function listenerPid\([\s\S]*?^\}/m)?.[0];
+  assert.ok(shellWrapper && listenerQuery, 'the actual installed helper/query definitions are missing');
+  const operations = [];
+  let requestedScript;
+  const listener = runInNewContext(`${shellWrapper}\n${listenerQuery}\nlistenerPid();`, {
+    ROOT: 'inert-proof-root',
+    activeSemanticCapture: {
+      begin: (operation, script) => {
+        operations.push(`begin:${operation}`);
+        requestedScript = script;
+        return { operation };
+      },
+      end: (ticket, failed) => operations.push(`end:${ticket.operation}:${failed}`),
+    },
+    execFileSync: (executable, args, options) => {
+      operations.push('execute');
+      assert.equal(executable, 'powershell');
+      assert.equal(args[0], '-NoProfile');
+      assert.equal(args[1], '-NonInteractive');
+      assert.equal(args[2], '-Command');
+      assert.deepEqual(Object.keys(options).sort(), ['cwd', 'encoding', 'maxBuffer']);
+      if (requestedScript !== undefined) assert.equal(args[3], requestedScript);
+      return '42\n';
+    },
+  });
+  assert.equal(listener, 42);
+  assert.deepEqual(operations, ['begin:listener-query', 'execute', 'end:listener-query:false'],
+    'the existing listener helper ran without native operation fences');
+  t.diagnostic('PASS existing-helper-binding fixed-listener=1 unchanged-presentation-options=1');
   assert.equal((workflow.match(/actions\/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a/g) ?? []).length, 4);
   assert.equal((workflow.match(/actions\/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c/g) ?? []).length, 3);
   assert.equal((workflow.match(/digest-mismatch: error/g) ?? []).length, 3);
@@ -361,6 +392,41 @@ test('native artifact transfer pins exact inputs and refuses digest mismatches',
   assert.match(observer, /property\(event, L"TThreadId"\)/);
   assert.match(observer, /sourceSnapshot\(graph, report\)/);
   assert.match(native, /source-lifetime-cases cases=24 passed=24/);
+  assert.match(native, /semantic-cases cases=16 passed=16 diagnostic_only=1 acceptance_inputs=0/);
+  assert.match(observer, /delegated_association_known=0/);
+  const scripts = new Map();
+  const declarations = ['psLiteral', 'packageInfo', 'packageProcesses', 'processExists', 'listenerPid', 'browserSnapshotDigest', 'activate']
+    .map((name) => {
+      const definition = installedProof.match(new RegExp(`^function ${name}\\([\\s\\S]*?^\\}`, 'm'))?.[0];
+      assert.ok(definition, `existing ${name} definition is missing`);
+      return definition;
+    }).join('\n');
+  runInNewContext(`${declarations}
+    packageInfo();
+    packageProcesses({ InstallLocation: 'X:\\\\fixture' }, new Date('2026-01-02T03:04:05.006Z'));
+    processExists(42); listenerPid(); browserSnapshotDigest(); activate();`, {
+    PACKAGE_NAME: 'PanelStackLabs.RecapPage',
+    PACKAGE_FAMILY: 'PanelStackLabs.RecapPage_we33aa8nvkpcc',
+    AUMID: 'PanelStackLabs.RecapPage_we33aa8nvkpcc!App',
+    powershell: (script, operation) => { scripts.set(operation, script); return '[]'; },
+    createHash: () => ({ update: () => ({ digest: () => 'inert-digest' }) }),
+  });
+  const nativeLiteral = (name) => {
+    const value = observer.match(new RegExp(`${name}\\[\\] = LR"SEM\\(([\\s\\S]*?)\\)SEM";`))?.[1];
+    assert.notEqual(value, undefined, `${name} fixed native predicate is missing`);
+    return value;
+  };
+  assert.equal(scripts.size, 6);
+  assert.equal(scripts.get('listener-query'), nativeLiteral('SemanticListenerScript'));
+  assert.equal(scripts.get('package-info-query'), nativeLiteral('SemanticPackageInfoScript'));
+  assert.equal(scripts.get('browser-snapshot-query'), nativeLiteral('SemanticBrowserScript'));
+  assert.equal(scripts.get('package-process-query'),
+    `$since = [datetime]'2026-01-02T03:04:05.006Z${nativeLiteral('SemanticPackageSuffix')}`);
+  assert.equal(scripts.get('aumid-activate'),
+    "Start-Process explorer.exe -ArgumentList 'shell:AppsFolder\\PanelStackLabs.RecapPage_we33aa8nvkpcc!App'");
+  assert.equal(scripts.get('process-exists-query'),
+    'if (Get-Process -Id 42 -ErrorAction SilentlyContinue) { "true" } else { "false" }');
+  t.diagnostic('PASS fixed-operation-scripts actual-callers=6 native-predicates=6');
   if (process.platform === 'win32') {
     const output = execFileSync('powershell.exe', [
       '-NoProfile', '-NonInteractive', '-File',
@@ -370,7 +436,8 @@ test('native artifact transfer pins exact inputs and refuses digest mismatches',
     assert.match(output, /PASS cleanup-accounting report-fatal-clean=1 secondary-faults=2 stages-attempted=7/);
     assert.match(output, /PASS native-primary-preserved residue-secondary=1 cleanup-does-not-upgrade=1/);
     assert.match(output, /PASS suite-result-shapes accepted=2 invalid-labels=9 invalid-outcomes=8/);
-    assert.match(output, /PASS proof-report-fixtures assertions=104/);
+    assert.match(output, /PASS semantic-diagnostics frozen-definitions=13 separate-registration=1/);
+    assert.match(output, /PASS proof-report-fixtures assertions=123/);
     t.diagnostic(output.trim());
   } else {
     t.diagnostic('Windows-only inert PowerShell reporting fixtures were not executed on this host.');

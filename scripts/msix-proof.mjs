@@ -2,11 +2,11 @@
 import { execFileSync, spawn } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import {
-  copyFileSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync,
+  copyFileSync, existsSync, mkdirSync, mkdtempSync, readFileSync, renameSync, rmSync, writeFileSync,
 } from 'node:fs';
 import { createServer } from 'node:net';
 import { tmpdir } from 'node:os';
-import { dirname, join } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
 import {
@@ -28,13 +28,94 @@ const CATALOG_LIST_ID = 'house-of-m';
 const CATALOG_ITEM_COUNT = 20;
 const ARCHITECTURES = Object.freeze(PACKAGE_ARCHITECTURES.map(({ id }) => id));
 const ROOT = join(fileURLToPath(new URL('..', import.meta.url)));
+let activeSemanticCapture = null;
 
-function powershell(script) {
-  return execFileSync(
-    'powershell',
-    ['-NoProfile', '-NonInteractive', '-Command', script],
-    { cwd: ROOT, encoding: 'utf8', maxBuffer: 32e6 },
-  ).trim();
+function powershell(script, operation) {
+  const ticket = activeSemanticCapture?.begin(operation, script);
+  let result;
+  let failure;
+  try {
+    result = execFileSync(
+      'powershell',
+      ['-NoProfile', '-NonInteractive', '-Command', script],
+      { cwd: ROOT, encoding: 'utf8', maxBuffer: 32e6 },
+    ).trim();
+  } catch (error) {
+    failure = error;
+  }
+  try {
+    if (ticket) activeSemanticCapture.end(ticket, Boolean(failure));
+  } catch (error) {
+    if (failure) throw new AggregateError([failure, error], 'helper and semantic reporting failed');
+    throw error;
+  }
+  if (failure) throw failure;
+  return result;
+}
+
+function publishSemanticRecord(root, name, text) {
+  if (typeof text !== 'string' || Buffer.byteLength(text, 'utf8') > 16384) throw new Error('semantic record exceeds its byte limit');
+  const path = join(root, name);
+  if (existsSync(path)) throw new Error('semantic record already exists');
+  const temporary = `${path}.tmp`;
+  try {
+    writeFileSync(temporary, text, { encoding: 'utf8', flag: 'wx' });
+    renameSync(temporary, path);
+  } catch (error) {
+    const errno = Number.isSafeInteger(error.errno) ? error.errno : 'unknown';
+    throw new Error(`semantic record publication failed errno=${errno}`);
+  }
+}
+
+function createSemanticCapture(root, architecture, mode) {
+  const sourceIndex = process.argv.indexOf('--source');
+  const browser = resolveEdge(false);
+  const fields = [
+    'RCPSEM1', String(process.pid), process.execPath, fileURLToPath(import.meta.url),
+    browser ? resolve(browser) : '', mode, architecture, sourceIndex < 0 ? 'package' : process.argv[sourceIndex + 1],
+  ];
+  if (fields.some((value) => typeof value !== 'string' || /[\r\n\0]/.test(value))) {
+    throw new Error('semantic caller fields are invalid');
+  }
+  publishSemanticRecord(root, 'semantic-caller.txt', `${fields.join('\n')}\n`);
+  let ordinal = 0;
+  const operations = new Set([
+    'aumid-activate', 'listener-query', 'package-process-query',
+    'package-info-query', 'process-exists-query', 'browser-snapshot-query',
+  ]);
+  const waitForAck = (name, expected) => {
+    const path = join(root, name);
+    const deadline = performance.now() + 10000;
+    const sleeper = new Int32Array(new SharedArrayBuffer(4));
+    while (!existsSync(path)) {
+      if (performance.now() >= deadline) throw new Error('semantic acknowledgement deadline exceeded');
+      Atomics.wait(sleeper, 0, 0, 20);
+    }
+    let received;
+    try {
+      received = readFileSync(path, 'utf8');
+    } catch (error) {
+      const errno = Number.isSafeInteger(error.errno) ? error.errno : 'unknown';
+      throw new Error(`semantic acknowledgement read failed errno=${errno}`);
+    }
+    if (received !== String(expected)) throw new Error('semantic acknowledgement differs');
+  };
+  return {
+    begin(operation, script) {
+      if (!operations.has(operation) || /[\r\n\0]/.test(script) || ordinal >= 256) {
+        throw new Error('semantic operation is unknown or exceeds its bound');
+      }
+      ordinal += 1;
+      publishSemanticRecord(root, `semantic-begin-${ordinal}.txt`, `${operation}\n${script}`);
+      waitForAck(`semantic-begin-${ordinal}.ack`, ordinal);
+      return { ordinal, operation };
+    },
+    end(ticket, failed) {
+      if (ticket.ordinal !== ordinal) throw new Error('semantic operation ordering differs');
+      publishSemanticRecord(root, `semantic-end-${ordinal}.txt`, failed ? 'failed' : 'ok');
+      waitForAck(`semantic-end-${ordinal}.ack`, ordinal);
+    },
+  };
 }
 
 function psLiteral(value) {
@@ -48,6 +129,7 @@ function packageInfo(runPowerShell = powershell) {
     + 'Sort-Object Version -Descending | Select-Object -First 1; '
     + 'if (-not $p) { "null"; exit 0 }; '
     + '$p | Select-Object Name,PackageFullName,PackageFamilyName,InstallLocation,Version | ConvertTo-Json -Compress',
+    'package-info-query',
   );
   return JSON.parse(raw);
 }
@@ -86,6 +168,7 @@ function packageProcesses(
     + '$rows = Get-CimInstance Win32_Process | ForEach-Object { $created = [datetime]$_.CreationDate; '
     + 'if ($created -ge $since) { [pscustomobject]@{ Name = $_.Name; ProcessId = $_.ProcessId; ParentProcessId = $_.ParentProcessId; ExecutablePath = $_.ExecutablePath; CreationDate = $created.ToString("o"); CommandLine = $_.CommandLine } } }; '
     + '@($rows) | ConvertTo-Json -Compress',
+    'package-process-query',
   );
   const parsed = JSON.parse(raw || '[]');
   const processes = Array.isArray(parsed) ? parsed : [parsed];
@@ -264,7 +347,7 @@ async function runInstalledScenario(body, { afterCleanup } = {}) {
 }
 
 function activate() {
-  powershell(`Start-Process explorer.exe -ArgumentList ${psLiteral(`shell:AppsFolder\\${AUMID}`)}`);
+  powershell(`Start-Process explorer.exe -ArgumentList ${psLiteral(`shell:AppsFolder\\${AUMID}`)}`, 'aumid-activate');
 }
 
 async function withNativeObservation(installed, architecture, mode, body) {
@@ -282,6 +365,8 @@ async function withNativeObservation(installed, architecture, mode, body) {
   let unexpectedOutput = false;
   let result;
   try {
+    if (activeSemanticCapture) throw new Error('native semantic captures cannot overlap');
+    const semanticCapture = createSemanticCapture(root, architecture, mode);
     child = spawn(join(artifact.root, architecture, 'NativeStartupTests.exe'), [
       '--mode', mode, '--root', root, '--report', report,
       '--installed-root', installed.InstallLocation,
@@ -301,6 +386,7 @@ async function withNativeObservation(installed, architecture, mode, body) {
       assertAlive();
       return existsSync(join(root, 'ready.txt'));
     }, 'native observer did not become ready', 30000);
+    activeSemanticCapture = semanticCapture;
     try {
       result = await body({
         waitForSettledRoots: (count) => waitFor(() => {
@@ -312,6 +398,9 @@ async function withNativeObservation(installed, architecture, mode, body) {
       });
     } catch (error) {
       failures.push(error);
+    } finally {
+      activeSemanticCapture = null;
+      publishSemanticRecord(root, 'semantic-finished.txt', 'finished');
     }
     if (mode === 'functionality') writeFileSync(join(root, 'finish.txt'), 'finish');
     await waitFor(() => {
@@ -353,6 +442,7 @@ function browserSnapshotDigest() {
     + 'Where-Object { $_.MainWindowHandle -ne 0 } | '
     + 'Select-Object Id,ProcessName,MainWindowHandle,MainWindowTitle; '
     + '@($rows) | ConvertTo-Json -Compress',
+    'browser-snapshot-query',
   );
   return createHash('sha256').update(raw || '[]').digest('hex');
 }
@@ -548,15 +638,15 @@ function resolveBrowserDriver() {
   return root;
 }
 
-function resolveEdge() {
+function resolveEdge(required = true) {
   const candidates = [
     process.env.MRT_EDGE,
     'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe',
     'C:\\Program Files\\Microsoft\\Edge\\Application\\msedge.exe',
   ].filter(Boolean);
   const found = candidates.find((candidate) => existsSync(candidate));
-  if (!found) throw new Error('Microsoft Edge was not found');
-  return found;
+  if (!found && required) throw new Error('Microsoft Edge was not found');
+  return found || '';
 }
 
 async function withBrowser(body) {
@@ -629,7 +719,7 @@ async function removeCachedPaths(page, paths) {
 }
 
 function processExists(pid) {
-  return powershell(`if (Get-Process -Id ${pid} -ErrorAction SilentlyContinue) { "true" } else { "false" }`) === 'true';
+  return powershell(`if (Get-Process -Id ${pid} -ErrorAction SilentlyContinue) { "true" } else { "false" }`, 'process-exists-query') === 'true';
 }
 
 function listenerPid(runPowerShell = powershell) {
@@ -637,6 +727,7 @@ function listenerPid(runPowerShell = powershell) {
     '$row = Get-NetTCPConnection -State Listen -ErrorAction Stop | '
     + "Where-Object { $_.LocalAddress -eq '127.0.0.1' -and $_.LocalPort -eq 8787 } | "
     + 'Select-Object -First 1; if ($row) { $row.OwningProcess }',
+    'listener-query',
   );
   return raw ? Number(raw) : null;
 }

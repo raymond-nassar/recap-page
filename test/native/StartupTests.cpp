@@ -109,6 +109,28 @@ const char* failureCode(const std::exception& failure) {
         { "registered primary thread instance differs", "process-registration-thread-mismatch" },
         { "lifetime identity bound exceeded", "lifetime-identity-bound" },
         { "ETW thread record bound exceeded", "thread-record-bound" },
+        { "semantic record byte bound differs", "semantic-record-bound" },
+        { "semantic record changed or has invalid controls", "semantic-record-invalid" },
+        { "semantic text byte bound differs", "semantic-text-bound" },
+        { "semantic text is not UTF-8", "semantic-text-invalid" },
+        { "semantic text decoding failed", "semantic-text-decode-failed" },
+        { "semantic publication target or size differs", "semantic-publication-invalid" },
+        { "semantic caller record shape differs", "semantic-caller-record-invalid" },
+        { "semantic caller architecture differs", "semantic-caller-architecture-mismatch" },
+        { "semantic begin record shape differs", "semantic-begin-record-invalid" },
+        { "semantic end record shape differs", "semantic-end-record-invalid" },
+        { "semantic caller input is invalid", "semantic-caller-input-invalid" },
+        { "semantic caller instance unavailable", "semantic-caller-instance-unavailable" },
+        { "semantic caller creation unavailable", "semantic-caller-creation-unavailable" },
+        { "semantic caller image or proof module differs", "semantic-caller-image-or-module-mismatch" },
+        { "semantic operation order differs", "semantic-operation-order" },
+        { "semantic operation end differs", "semantic-operation-end" },
+        { "semantic operation name is invalid", "semantic-operation-name" },
+        { "semantic channel did not finish", "semantic-channel-deadline" },
+        { "semantic command arguments unavailable", "semantic-command-unavailable" },
+        { "semantic command argument bound exceeded", "semantic-command-bound" },
+        { "semantic command allocation cleanup failed", "semantic-command-cleanup" },
+        { "semantic image context bound exceeded", "semantic-image-context-bound" },
         { "native closed profile requires the exact reviewed inert fixture", "native-fixture-contract-mismatch" },
         { "fixed fixture digest could not be verified", "native-fixture-digest-failed" },
         { "fixture process creation failed", "fixture-gui-create-failed" },
@@ -615,6 +637,89 @@ void write(const fs::path& path, const std::string& text) {
     std::ofstream output(path, std::ios::binary);
     output << text;
     check(static_cast<bool>(output), "fixture output could not be written");
+}
+
+std::string readSemanticRecord(const fs::path& path) {
+    const auto bytes = fs::file_size(path);
+    check(bytes && bytes <= proof::SemanticRecordLimit, "semantic record byte bound differs");
+    std::ifstream input;
+    input.exceptions(std::ios::badbit | std::ios::failbit);
+    input.open(path, std::ios::binary);
+    std::string text(static_cast<size_t>(bytes), '\0');
+    input.read(text.data(), static_cast<std::streamsize>(bytes));
+    check(input.peek() == std::char_traits<char>::eof() && text.find('\0') == std::string::npos &&
+          text.find('\r') == std::string::npos, "semantic record changed or has invalid controls");
+    return text;
+}
+
+std::wstring semanticWide(const std::string& text) {
+    if (text.empty()) return {};
+    check(text.size() <= proof::SemanticRecordLimit, "semantic text byte bound differs");
+    const auto size = MultiByteToWideChar(CP_UTF8, MB_ERR_INVALID_CHARS, text.data(), static_cast<int>(text.size()), nullptr, 0);
+    check(size > 0, "semantic text is not UTF-8");
+    std::wstring result(static_cast<size_t>(size), L'\0');
+    check(MultiByteToWideChar(CP_UTF8, MB_ERR_INVALID_CHARS, text.data(), static_cast<int>(text.size()),
+                             result.data(), size) == size, "semantic text decoding failed");
+    return result;
+}
+
+void publishSemanticRecord(const fs::path& path, const std::string& text) {
+    auto temporary = path;
+    temporary += L".tmp";
+    check(!fs::exists(path) && !fs::exists(temporary) && text.size() <= proof::SemanticRecordLimit,
+          "semantic publication target or size differs");
+    {
+        std::ofstream output;
+        output.exceptions(std::ios::badbit | std::ios::failbit);
+        output.open(temporary, std::ios::binary);
+        output.write(text.data(), static_cast<std::streamsize>(text.size()));
+        output.close();
+    }
+    fs::rename(temporary, path);
+}
+
+void bindSemanticCaller(proof::Observer& observer, const fs::path& root, const std::wstring& mode) {
+    const auto text = readSemanticRecord(root / L"semantic-caller.txt");
+    std::vector<std::string> fields;
+    size_t offset = 0;
+    for (;;) {
+        const auto end = text.find('\n', offset);
+        if (end == std::string::npos) break;
+        fields.push_back(text.substr(offset, end - offset));
+        offset = end + 1;
+    }
+    check(offset == text.size() && fields.size() == 8 && fields[0] == "RCPSEM1" &&
+          semanticWide(fields[5]) == mode && (fields[7] == "package" || fields[7] == "bundle"),
+          "semantic caller record shape differs");
+#if defined(_M_ARM64)
+    check(fields[6] == "arm64", "semantic caller architecture differs");
+#else
+    check(fields[6] == "x64", "semantic caller architecture differs");
+#endif
+    observer.bindSemanticCaller(parseFixturePid(fields[1], text.size()), semanticWide(fields[2]),
+        semanticWide(fields[3]), semanticWide(fields[4]), mode, semanticWide(fields[6]), semanticWide(fields[7]));
+}
+
+void collectSemanticOperations(proof::Observer& observer, const fs::path& root, size_t& ordinal, bool& active) {
+    if (!active) {
+        const auto begin = root / (L"semantic-begin-" + std::to_wstring(ordinal) + L".txt");
+        if (!fs::exists(begin)) return;
+        const auto text = readSemanticRecord(begin);
+        const auto separator = text.find('\n');
+        check(separator != std::string::npos && text.find('\n', separator + 1) == std::string::npos,
+              "semantic begin record shape differs");
+        observer.beginSemanticOperation(ordinal, text.substr(0, separator), semanticWide(text.substr(separator + 1)));
+        publishSemanticRecord(root / (L"semantic-begin-" + std::to_wstring(ordinal) + L".ack"), std::to_string(ordinal));
+        active = true;
+    }
+    const auto end = root / (L"semantic-end-" + std::to_wstring(ordinal) + L".txt");
+    if (!fs::exists(end)) return;
+    const auto text = readSemanticRecord(end);
+    check(text == "ok" || text == "failed", "semantic end record shape differs");
+    observer.endSemanticOperation(ordinal, text == "ok");
+    publishSemanticRecord(root / (L"semantic-end-" + std::to_wstring(ordinal) + L".ack"), std::to_string(ordinal));
+    active = false;
+    ++ordinal;
 }
 
 HWND windowFor(DWORD pid) {
@@ -1874,6 +1979,100 @@ void sourceLifetimeCases() {
     liveReport->flush();
 }
 
+void semanticEvidenceCases() {
+    const std::wstring powershell = L"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe";
+    const auto event = [](DWORD pid, DWORD parent, LONGLONG time, bool start, const std::wstring& command = L"") {
+        proof::ProcessEvent value;
+        value.pid = pid; value.parent = parent; value.timestamp = time; value.start = start;
+        value.diagnosticCommand = command;
+        return value;
+    };
+    const auto command = recap::quoted(powershell) + L" -NoProfile -NonInteractive -Command " +
+        recap::quoted(proof::SemanticListenerScript);
+    const std::vector<proof::ProcessEvent> records{
+        event(10, 9, 100, true), event(11, 10, 210, true, command),
+        event(11, 10, 280, false), event(10, 9, 500, false)
+    };
+    const proof::ProcessGraph graph(records);
+    const auto caller = graph.unique(10, 200);
+    proof::SemanticOperation operation{ 1, "listener-query", proof::SemanticListenerScript, 200, 300, true, true };
+    const auto image = [&](size_t) { return powershell; };
+    const auto binding = proof::bindSemanticOperation(graph, caller, operation, powershell, image);
+    const proof::ThreadGraph threads({ { 11, 44, 211, proof::LifecycleKind::start, 2 },
+                                       { 11, 44, 279, proof::LifecycleKind::end, 2 } });
+    proof::SourceResolution source;
+    source.known = true; source.owner = 11; source.process = graph.unique(11, 220); source.thread = 0;
+    source.earliest = 215; source.latest = 225;
+    size_t cases = 0;
+    const auto expect = [&](bool value, const char* message) {
+        ++cases;
+        if (!value && liveReport) { *liveReport << "DIAG semantic-case-failed index=" << cases << "\n"; liveReport->flush(); }
+        check(value, message);
+    };
+    expect(binding.process == source.process && binding.fixedScript &&
+           proof::semanticSourceMatches(graph, threads, binding.process, source),
+           "exact operation process and source thread did not bind");
+    expect(proof::bindSemanticOperation(graph, graph.unique(99, 200), operation, powershell, image).process == SIZE_MAX,
+           "a caller PID without a captured instance bound an operation");
+    auto parent = records; parent[1].parent = 12; parent[2].parent = 12;
+    expect(proof::bindSemanticOperation(proof::ProcessGraph(parent), caller, operation, powershell, image).process == SIZE_MAX,
+           "a wrong creation parent bound an operation");
+    expect(proof::bindSemanticOperation(graph, caller, operation, powershell,
+        [](size_t) { return L"X:\\other\\powershell.exe"; }).process == SIZE_MAX,
+        "a matching basename substituted for the exact helper image");
+    auto time = operation; time.begin = 220;
+    expect(proof::bindSemanticOperation(graph, caller, time, powershell, image).process == SIZE_MAX,
+           "a helper created outside its request fence was bound");
+    auto script = records; script[1].diagnosticCommand += L" extra";
+    expect(proof::bindSemanticOperation(proof::ProcessGraph(script), caller, operation, powershell, image).process == SIZE_MAX,
+           "a different helper argument list was accepted");
+    const proof::ThreadGraph foreignThreads({ { 12, 44, 211, proof::LifecycleKind::start, 2 } });
+    expect(!proof::semanticSourceMatches(graph, foreignThreads, binding.process, source),
+           "a thread from another process was bound to the operation");
+    const auto activation = std::wstring(L"Start-Process explorer.exe -ArgumentList 'shell:AppsFolder\\") + proof::SemanticAumid + L"'";
+    expect(proof::semanticFixedScript("aumid-activate", activation) &&
+           !proof::semanticFixedScript("listener-query", activation), "activation was confused with a query");
+    auto duplicated = records;
+    duplicated.push_back(event(12, 10, 220, true, command));
+    duplicated.push_back(event(12, 10, 270, false));
+    expect(proof::bindSemanticOperation(proof::ProcessGraph(duplicated), caller, operation, powershell, image).process == SIZE_MAX,
+           "competing helper instances were collapsed");
+    auto unknown = operation; unknown.name = "unknown";
+    auto incomplete = operation; incomplete.ended = false;
+    expect(proof::bindSemanticOperation(graph, caller, unknown, powershell, image).process == SIZE_MAX &&
+           proof::bindSemanticOperation(graph, caller, incomplete, powershell, image).process == SIZE_MAX,
+           "unknown or incomplete operation evidence was accepted");
+    proof::SemanticImageGroups groups;
+    const std::vector<proof::SemanticKnownImage> known{ { L"C:\\Windows\\System32\\svchost.exe", "system-service-host-image", true } };
+    const auto exact = groups.classify(known[0].path, known);
+    expect(exact.exact && exact.broker && exact.opaque == 0 && !groups.classify(L"svchost.exe", known).exact,
+           "system image role was inferred from a basename");
+    const auto opaque = groups.classify(L"X:\\fixture\\one.exe", known);
+    const auto equivalent = groups.classify(L"x:\\FIXTURE\\ONE.exe", known);
+    expect(opaque.opaque == 1 && equivalent.opaque == opaque.opaque &&
+           std::string(opaque.label) == "unmatched-image", "unmatched image equivalence was lost or named");
+    expect(groups.classify(L"X:\\different\\one.exe", known).opaque == 2,
+           "different full images shared an opaque group");
+    expect(std::string(proof::semanticAssociation(false, false, false, false, false, exact.broker)) ==
+           "shared-broker-request-unknown", "recognized broker invented a delegated request association");
+    proof::WindowFact visible;
+    visible.event = EVENT_OBJECT_SHOW; visible.metadataKnown = visible.geometryKnown = visible.hierarchyKnown = true;
+    visible.present = visible.visible = visible.topLevel = visible.onScreen = true;
+    proof::WindowResolution console;
+    console.consoleBound = console.identityKnown = true; console.kind = proof::WindowKind::console;
+    expect(proof::visibleBoundConsole(visible, console) && visible.visible && !console.completeControl,
+           "diagnostic image recognition suppressed visible product-console evidence");
+    proof::WindowFact created, destroyed;
+    created.event = EVENT_OBJECT_CREATE; destroyed.event = EVENT_OBJECT_DESTROY;
+    const proof::HelperScopeEvidence helper{ true, true, true, true, true, false, false };
+    expect(!proof::completeNonPresenterTransient({ created, destroyed }, { { 0, 1 }, true, true, true }, helper) &&
+           !proof::completeNonPresenterTransient({ destroyed }, { { 0 }, false, true, false }, helper) &&
+           !destroyed.identityKnown, "semantic evidence bypassed conflict or DESTROY-only incompleteness");
+    check(cases == 16 && liveReport, "semantic scenario count or report differs");
+    *liveReport << "DIAG semantic-cases cases=16 passed=16 diagnostic_only=1 acceptance_inputs=0\n";
+    liveReport->flush();
+}
+
 void observationProfileCases() {
     using Profile = proof::ObservationProfile;
     proof::WindowFact created;
@@ -2793,11 +2992,16 @@ void installed(const std::map<std::wstring, std::wstring>& options, std::ofstrea
           "installed observation requires the exact package family");
     const bool busy = options.at(L"--mode") == L"busy";
     proof::Observer observer(true, busy ? proof::ObservationProfile::installedBusy : proof::ObservationProfile::installedFunctionality);
+    observer.reportTo(report);
+    observed("semantic-caller-bind", [&] { bindSemanticCaller(observer, control, options.at(L"--mode")); });
     observer.watchRootImage(executable);
     std::vector<proof::WindowFact> controls{ calibration(observer, report) };
     write(control / L"ready.txt", "ready");
     bool dismissed = false;
+    size_t operationOrdinal = 1;
+    bool operationActive = false;
     observedWait("installed-result-wait", [&] {
+        collectSemanticOperations(observer, control, operationOrdinal, operationActive);
         const auto counts = observer.entryCounts(executable);
         write(control / L"counts.txt", "started=" + std::to_string(counts.first) +
               "\nended=" + std::to_string(counts.second) + "\n");
@@ -2827,6 +3031,13 @@ void installed(const std::map<std::wstring, std::wstring>& options, std::ofstrea
         }
         return busy ? dismissed : fs::exists(control / L"finish.txt");
     }, "installed observer deadline exceeded", 600000);
+    observed("semantic-channel-drain", [&] {
+        proof::until([&] {
+            collectSemanticOperations(observer, control, operationOrdinal, operationActive);
+            const auto finished = control / L"semantic-finished.txt";
+            return !operationActive && fs::exists(finished) && readSemanticRecord(finished) == "finished";
+        }, "semantic channel did not finish", 10000);
+    });
     controls.push_back(calibration(observer, report));
     observer.stop();
     const auto roots = observer.registeredRoots(executable, busy ? 1 : 3, busy ? 1 : 0);
@@ -2937,6 +3148,7 @@ int wmain(int argc, wchar_t** argv) {
             observed("final-observer-cases", [] { finalObserverCases(); });
             observed("observation-profile-cases", [] { observationProfileCases(); });
             observed("source-lifetime-cases", [] { sourceLifetimeCases(); });
+            observed("semantic-evidence-cases", [] { semanticEvidenceCases(); });
             observed("fixture-record-cases", [] { fixtureRecordCases(); });
             proof::Observer observer(true, proof::ObservationProfile::calibration);
             size_t started = 0;

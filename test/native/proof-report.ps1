@@ -280,6 +280,49 @@ try {
     $ordered = $ordered -and $first -ge 0 -and $second -gt $first
   }
   Assert-Report $ordered 'source lifetime helpers precede their complete prerequisite types'
+  Assert-Report ($observer.Contains('SemanticOperationLimit = 256, SemanticRecordLimit = 16384') -and
+    $observer.Contains('std::min<size_t>(20, context.size())')) 'semantic input or context bounds differ'
+  $callerMethod = [regex]::Match($observer, '(?ms)^    void bindSemanticCaller\(.*?^    \}')
+  Assert-Report ($callerMethod.Success -and $callerMethod.Value -notmatch 'registerProcess|retainActor|bindRoot|bindHelper|bindClient') 'diagnostic caller entered acceptance registration'
+  Assert-Report ($observer.Contains('opaque_image_group=') -and $observer.Contains('delegated_association_known=0') -and
+    $observer.Contains('semantic_acceptance_input=0')) 'safe image or unresolved-delegation reporting is missing'
+  Assert-Report ($observer.Contains('std::wstring diagnosticCommand;') -and
+    $observer.Contains('rundown == Rundown::none ? command : std::wstring{}')) 'private rundown commands changed the acceptance command field'
+  Assert-Report ($native.Contains('semantic-cases cases=16 passed=16') -and
+    $native.Contains('observed("semantic-evidence-cases", [] { semanticEvidenceCases(); });')) 'bounded semantic cases are not in existing preflight'
+  Assert-Report ($native.Contains('collectSemanticOperations(observer, control, operationOrdinal, operationActive)') -and
+    $native.Contains('fs::rename(temporary, path)') -and $native.Contains('semantic channel did not finish", 10000')) 'atomic bounded semantic channel is not wired'
+  $frozen = [ordered]@{
+    nativeEnvironmentAllowed = '6b8193a41d5e3a7c6dd60512c14506f5bb849282d354d715854b734a1aab0259'
+    visibleIn = '30eb5e1b19c3f428cf7b4068947b54a92cdea0ae64bc8ca4e4c165219c94a0dc'
+    visibleBoundConsole = '48599faaf6450608d2c6d3fbcf298b3b8f9d15e31aa1f9c558befade9b2bb22f'
+    bindingReady = '0e155c4c6a212651289cdd42b8d2d0f2726f9cb0958629286d2fdbdaf5bc8bf3'
+    ambientConsoleScoped = '39e7f599457e8540210f41b1163663d9f0fdd1b2b7dee9dc317fc4c12b16fc91'
+    verifiedHelperSurface = '1a3d8154ad98c96b16c3ac1756b6bbbb403f41ea0e6a9415cfb35dac65f9b4ea'
+    completeNonPresenterTransient = '357011e39b1e79a0257e63dc359e06c563db116d0e5d767f236d49d214ce50b8'
+    correlateWindows = '94faa76da67796b33e80906a6f03d377422e79f4f258db97b387b4a8c26cf3f3'
+    helperScope = '63d70b5194784b4269041fa8e89d96924128f91cc28e6347383cc0c4ab3aeea9'
+    transientSource = 'a4e4de939371c7382479832a2921acf9293ab93b5068e9f8cd5e780f67d3b5c3'
+    environmentWindow = '4e06a73bfd03550f515c929759c41583f16d3c488986bac1c58e5104343627bf'
+    assertNoVisibleTerminals = '5186dab4370c23b3a7bc9bb55a24205b66bd18124a344c88332101e04457b998'
+    requireCalibrationLifetimes = '7f51724f7e38120cf885fe032dddcb2f365af06d72aa0c43417c89be7e09a236'
+  }
+  $methods = @('helperScope','transientSource','environmentWindow','assertNoVisibleTerminals','requireCalibrationLifetimes')
+  $sha = [Security.Cryptography.SHA256]::Create()
+  try {
+    foreach ($name in $frozen.Keys) {
+      $prefix = '^inline '
+      $end = '^\}'
+      if ($name -in $methods) { $prefix = '^    [^ \t\r\n]'; $end = '^    \}' }
+      $matches = [regex]::Matches($observer.Replace("`r`n", "`n"), "(?ms)$prefix[^\r\n]*\b$name\(.*?$end")
+      $digest = ''
+      if ($matches.Count -eq 1) {
+        $digest = [BitConverter]::ToString($sha.ComputeHash([Text.Encoding]::UTF8.GetBytes($matches[0].Value))).Replace('-','').ToLowerInvariant()
+      }
+      Assert-Report ($digest -ceq $frozen[$name]) "frozen acceptance definition changed: $name"
+    }
+  } finally { $sha.Dispose() }
+  Write-Output 'PASS semantic-diagnostics frozen-definitions=13 separate-registration=1'
   Write-Output "PASS proof-report-fixtures assertions=$script:assertions"
 } finally {
   Remove-Item -LiteralPath $file -Force
