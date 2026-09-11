@@ -19,7 +19,7 @@ import {
   writeFileSync,
 } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { isAbsolute, join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
 import {
@@ -1095,6 +1095,54 @@ function emptyHistoryRegistry(baseline) {
   return historyRegistryBytes(historyRegistry(baseline));
 }
 
+function selectAnchorPathDiagnostic(facts, approvedPaths) {
+  const normalize = (value) => value.replaceAll('\\', '/').toLowerCase();
+  const hash = (value) => createHash('sha256').update(value).digest('hex');
+  const form = (value) => {
+    if (value === '') return 'empty';
+    if (value.startsWith('\\\\?\\')) return 'extended-windows';
+    if (value.startsWith('\\\\')) return 'unc';
+    if (/^[A-Za-z]:[\\/]/.test(value)) return 'drive-absolute';
+    if (/^[A-Za-z]:/.test(value)) return 'drive-relative';
+    if (/^[\\/]/.test(value)) return 'rooted';
+    return 'relative';
+  };
+  const paths = {};
+  for (const name of ['root', 'destination', 'comparableRoot', 'comparableDestination']) {
+    const value = facts[name];
+    const approved = approvedPaths.some((allowed) => normalize(value) === normalize(allowed)
+      || normalize(value).startsWith(normalize(allowed) + '/'));
+    paths[name] = {
+      approved, length: Math.min(value.length, 65536), lengthCapped: value.length > 65536,
+      form: form(value), sha256: hash(value), equalsRoot: value === facts.root,
+    };
+    if (approved && JSON.stringify(value).length <= 512) paths[name].value = value;
+    else paths[name].valueOmitted = approved ? 'field-budget' : 'unapproved';
+  }
+  const relation = {
+    class: facts.rel === '' ? 'empty' : isAbsolute(facts.rel) ? 'absolute'
+      : facts.rel === '..' || facts.rel.startsWith(`..${facts.sep}`) ? 'parent-relative' : 'descendant-relative',
+    length: Math.min(facts.rel.length, 65536), lengthCapped: facts.rel.length > 65536,
+    sha256: hash(facts.rel), rawRetained: false,
+  };
+  if (Object.values(paths).every((path) => path.approved) && JSON.stringify(facts.rel).length <= 512) {
+    relation.value = facts.rel;
+    relation.rawRetained = true;
+  }
+  const record = { containment: facts.containment, sep: facts.sep, nodeVersion: facts.nodeVersion, paths, relation };
+  if (JSON.stringify(record).length > 4000) {
+    for (const path of Object.values(paths)) {
+      if (Object.hasOwn(path, 'value')) {
+        delete path.value;
+        path.valueOmitted = 'record-budget';
+      }
+    }
+    delete relation.value;
+    relation.rawRetained = false;
+  }
+  return record;
+}
+
 function anchorRepo({ history = true } = {}) {
   const diagnostic = process.env.MRT_ANCHOR_PATH_DIAGNOSTIC === '1';
   if (diagnostic) {
@@ -1170,16 +1218,13 @@ function anchorRepo({ history = true } = {}) {
       '  const rel = relative(comparableRoot, comparableDestination);',
       `  const diagnosticContained = (${matches[0][1]});`,
       `  const diagnosticPaths = ${JSON.stringify(approvedPaths)};`,
-      String.raw`  const diagnosticNormalize = (value) => value.replaceAll('\\', '/').toLowerCase();`,
-      '  const diagnosticKnown = [root, destination, comparableRoot, comparableDestination].every((value) =>',
-      '    diagnosticPaths.some((allowed) => diagnosticNormalize(value) === diagnosticNormalize(allowed)',
-      "      || diagnosticNormalize(value).startsWith(diagnosticNormalize(allowed) + '/')));",
-      '  const diagnosticFields = diagnosticKnown',
-      '    ? { root, destination, comparableRoot, comparableDestination, rel, sep, containment: diagnosticContained, nodeVersion: process.version }',
-      "    : { error: 'unapproved-path-metadata', nodeVersion: process.version };",
+      selectAnchorPathDiagnostic.toString().split('\n').map((line) => `  ${line}`).join('\n'),
+      '  const diagnosticFields = selectAnchorPathDiagnostic({',
+      '    root, destination, comparableRoot, comparableDestination, rel, sep,',
+      '    containment: diagnosticContained, nodeVersion: process.version,',
+      '  }, diagnosticPaths);',
       "  const diagnosticLine = 'MRT_ANCHOR_PATH ' + JSON.stringify(diagnosticFields);",
-      '  console.error(diagnosticLine.length < 4096 ? diagnosticLine',
-      String.raw`    : 'MRT_ANCHOR_PATH {"error":"record-too-large"}');`,
+      '  console.error(diagnosticLine);',
       '  if (diagnosticContained) {',
     ].join('\n');
     writeFileSync(checkerCopy, source.replace(point, () => instrumented));

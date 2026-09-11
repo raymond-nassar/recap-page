@@ -952,7 +952,7 @@ jobs:
           }
 
   release_tests:
-    name: Diagnose the two release test failures
+    name: Diagnose the history path decision
     if: ${{ github.event_name == 'workflow_dispatch' && inputs.diagnostic_target == 'release-tests' }}
     runs-on: windows-2022
     timeout-minutes: 20
@@ -986,14 +986,11 @@ jobs:
         shell: pwsh
         run: |
           Write-Host "release-tests image=$env:ImageOS version=$env:ImageVersion runner=$env:RUNNER_OS architecture=$env:RUNNER_ARCH"
-      - name: Install existing locked test tooling
-        timeout-minutes: 4
-        run: npm ci --ignore-scripts
-      - name: Run only the two actual failing tests
+      - name: Run only the unchanged history candidate test
         timeout-minutes: 5
         shell: pwsh
         env:
           MRT_ANCHOR_PATH_DIAGNOSTIC: '1'
         run: |
-          node --test --test-name-pattern='^(native artifact transfer pins exact inputs and refuses digest mismatches|history candidate and apply modes require exact reviewed bytes)$' test/check-anchors.test.js test/wack-workflow.test.js
+          node --test --test-name-pattern='^history candidate and apply modes require exact reviewed bytes$' test/check-anchors.test.js
           exit $LASTEXITCODE
