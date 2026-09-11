@@ -33,6 +33,10 @@ evidence anchors, spacing and contrast regressions, and publication content. The
 below are manual release checks because they require installed Edge and a driver outside the
 repository.
 
+Historical-anchor candidate paths use native Windows resolution before containment
+checks, so different spellings of the same directory cannot evade the worktree
+boundary. Other platforms retain their existing resolution behavior.
+
 ### Run the test suite directly
 
 The test script is deliberately the bare Node test command:

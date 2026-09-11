@@ -15,11 +15,11 @@ import assert from 'node:assert/strict';
 import { execFileSync, spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import {
-  cpSync, existsSync, mkdirSync, mkdtempSync, readFileSync, realpathSync, rmSync, statSync, symlinkSync, unlinkSync,
+  cpSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, unlinkSync,
   writeFileSync,
 } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { dirname, isAbsolute, join } from 'node:path';
+import { join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
 import {
@@ -1095,120 +1095,13 @@ function emptyHistoryRegistry(baseline) {
   return historyRegistryBytes(historyRegistry(baseline));
 }
 
-function selectAnchorPathDiagnostic(facts, approvedPaths) {
-  const normalize = (value) => value.replaceAll('\\', '/').toLowerCase();
-  const hash = (value) => createHash('sha256').update(value).digest('hex');
-  const form = (value) => {
-    if (value === '') return 'empty';
-    if (value.startsWith('\\\\?\\')) return 'extended-windows';
-    if (value.startsWith('\\\\')) return 'unc';
-    if (/^[A-Za-z]:[\\/]/.test(value)) return 'drive-absolute';
-    if (/^[A-Za-z]:/.test(value)) return 'drive-relative';
-    if (/^[\\/]/.test(value)) return 'rooted';
-    return 'relative';
-  };
-  const paths = {};
-  for (const name of ['root', 'destination', 'comparableRoot', 'comparableDestination']) {
-    const value = facts[name];
-    const approved = approvedPaths.some((allowed) => normalize(value) === normalize(allowed)
-      || normalize(value).startsWith(normalize(allowed) + '/'));
-    paths[name] = {
-      approved, length: Math.min(value.length, 65536), lengthCapped: value.length > 65536,
-      form: form(value), sha256: hash(value), equalsRoot: value === facts.root,
-    };
-    if (approved && JSON.stringify(value).length <= 512) paths[name].value = value;
-    else paths[name].valueOmitted = approved ? 'field-budget' : 'unapproved';
-  }
-  const relation = {
-    class: facts.rel === '' ? 'empty' : isAbsolute(facts.rel) ? 'absolute'
-      : facts.rel === '..' || facts.rel.startsWith(`..${facts.sep}`) ? 'parent-relative' : 'descendant-relative',
-    length: Math.min(facts.rel.length, 65536), lengthCapped: facts.rel.length > 65536,
-    sha256: hash(facts.rel), rawRetained: false,
-  };
-  if (Object.values(paths).every((path) => path.approved) && JSON.stringify(facts.rel).length <= 512) {
-    relation.value = facts.rel;
-    relation.rawRetained = true;
-  }
-  const record = { containment: facts.containment, sep: facts.sep, nodeVersion: facts.nodeVersion, paths, relation };
-  if (JSON.stringify(record).length > 4000) {
-    for (const path of Object.values(paths)) {
-      if (Object.hasOwn(path, 'value')) {
-        delete path.value;
-        path.valueOmitted = 'record-budget';
-      }
-    }
-    delete relation.value;
-    relation.rawRetained = false;
-  }
-  return record;
-}
-
-function anchorDirectoryIdentity(facts, fixtureRoot) {
-  let operation = 'begin';
-  try {
-    const directories = {
-      gitRoot: facts.root, fixtureRoot, destinationParent: dirname(facts.destination),
-      outside: dirname(fixtureRoot),
-    };
-    const identities = {};
-    const canonical = {};
-    const hash = (value) => createHash('sha256').update(value).digest('hex');
-    for (const [label, path] of Object.entries(directories)) {
-      operation = `stat-${label}`;
-      const stat = statSync(path, { bigint: true });
-      if (!stat.isDirectory() || typeof stat.dev !== 'bigint' || stat.dev < 0n
-          || typeof stat.ino !== 'bigint' || stat.ino <= 0n) {
-        return { pass: false, operation, code: 'INVALID_DIRECTORY_IDENTITY' };
-      }
-      identities[label] = `${stat.dev}:${stat.ino}`;
-      operation = `native-realpath-${label}`;
-      const resolved = realpathSync.native(path);
-      canonical[label] = process.platform === 'win32' ? resolved.toLowerCase() : resolved;
-    }
-    const sameIdentity = identities.gitRoot === identities.fixtureRoot
-      && identities.destinationParent === identities.fixtureRoot;
-    const outsideDistinct = identities.outside !== identities.fixtureRoot;
-    const sameCanonical = canonical.gitRoot === canonical.fixtureRoot
-      && canonical.destinationParent === canonical.fixtureRoot;
-    const originalDirectoriesDiffer = facts.comparableRoot !== dirname(facts.comparableDestination);
-    const parentRelative = facts.rel === '..' || facts.rel.startsWith(`..${facts.sep}`);
-    return {
-      pass: !facts.containment && parentRelative && sameIdentity && outsideDistinct
-        && sameCanonical && originalDirectoriesDiffer,
-      label: 'final-in-tree', containment: facts.containment, parentRelative,
-      directoryIdentitiesMeaningful: true,
-      gitRootIsFixture: identities.gitRoot === identities.fixtureRoot,
-      destinationParentIsFixture: identities.destinationParent === identities.fixtureRoot,
-      outsideDistinct, nativeDirectoriesAgree: sameCanonical,
-      nativeOutsideDistinct: canonical.outside !== canonical.fixtureRoot,
-      originalDirectoriesDiffer,
-      identityHashes: Object.fromEntries(Object.entries(identities).map(([label, value]) => [label, hash(value)])),
-      canonicalHashes: Object.fromEntries(Object.entries(canonical).map(([label, value]) => [label, hash(value)])),
-    };
-  } catch (error) {
-    const safeCodes = ['ENOENT', 'ENOTDIR', 'EACCES', 'EPERM', 'EINVAL', 'EIO', 'ENOSYS'];
-    return { pass: false, operation, code: safeCodes.includes(error.code) ? error.code : 'UNCLASSIFIED_METADATA_ERROR' };
-  }
-}
-
 function anchorRepo({ history = true } = {}) {
-  const diagnostic = process.env.MRT_ANCHOR_PATH_DIAGNOSTIC === '1';
-  if (diagnostic) {
-    assert.equal(process.env.GITHUB_ACTIONS, 'true');
-    assert.equal(process.env.RUNNER_ENVIRONMENT, 'github-hosted');
-    assert.equal(process.version, 'v24.20.0');
-    assert.ok(['original', 'candidate'].includes(process.env.MRT_ANCHOR_IDENTITY_MODE));
-  }
-  const diagnosticCounts = diagnostic ? { git: 0, checker: 0, records: 0 } : null;
   const root = mkdtempSync(join(tmpdir(), 'mrt-anchors-'));
-  const git = (args, options = {}) => {
-    if (diagnosticCounts) diagnosticCounts.git += 1;
-    return execFileSync(
-      'git',
-      ['-c', 'user.email=anchors@example.invalid', '-c', 'user.name=anchors', ...args],
-      { cwd: root, encoding: 'utf8', ...options },
-    );
-  };
+  const git = (args, options = {}) => execFileSync(
+    'git',
+    ['-c', 'user.email=anchors@example.invalid', '-c', 'user.name=anchors', ...args],
+    { cwd: root, encoding: 'utf8', ...options },
+  );
   const write = (path, text) => {
     const full = join(root, ...path.split('/'));
     mkdirSync(join(full, '..'), { recursive: true });
@@ -1218,23 +1111,11 @@ function anchorRepo({ history = true } = {}) {
     git(['add', '-A']);
     git(['commit', '--quiet', '-m', message]);
   };
-  const checkerWith = (args, environment = {}) => {
-    if (diagnosticCounts) diagnosticCounts.checker += 1;
-    const result = spawnSync(
-      process.execPath,
-      ['scripts/check-anchors.mjs', ...args],
-      { cwd: root, encoding: 'utf8', env: { ...process.env, ...environment } },
-    );
-    if (diagnosticCounts && typeof result.stderr === 'string') {
-      result.stderr = result.stderr.replace(/^MRT_ANCHOR_(?:PATH|IDENTITY) [^\r\n]*\r?\n/gm, (line) => {
-        diagnosticCounts.records += 1;
-        assert.ok(diagnosticCounts.records <= 32 && line.length <= 4096, 'path diagnostic limit exceeded');
-        console.log(line.trimEnd());
-        return '';
-      });
-    }
-    return result;
-  };
+  const checkerWith = (args, environment = {}) => spawnSync(
+    process.execPath,
+    ['scripts/check-anchors.mjs', ...args],
+    { cwd: root, encoding: 'utf8', env: { ...process.env, ...environment } },
+  );
   const checker = (...args) => checkerWith(args);
 
   git(['init', '--quiet']);
@@ -1250,93 +1131,12 @@ function anchorRepo({ history = true } = {}) {
   commit('source');
   if (history) write('docs/anchors.history.json', emptyHistoryRegistry(git(['rev-parse', 'HEAD']).trim()));
   mkdirSync(join(root, 'scripts'), { recursive: true });
-  const checkerCopy = join(root, 'scripts', 'check-anchors.mjs');
-  cpSync(join(ROOT, 'scripts', 'check-anchors.mjs'), checkerCopy);
-  if (diagnostic) {
-    const originalBytes = readFileSync(checkerCopy);
-    const originalSource = originalBytes.toString('utf8').replace(/\r\n/g, '\n');
-    let source = originalSource;
-    const mode = process.env.MRT_ANCHOR_IDENTITY_MODE;
-    let substitutions = 0;
-    if (mode === 'candidate') {
-      const begin = source.indexOf('function worktreeRoot() {');
-      const end = source.indexOf('function outsideWorktree(', begin);
-      assert.ok(begin >= 0 && end > begin);
-      const section = source.slice(begin, end);
-      assert.equal((section.match(/\brealpathSync\(/g) ?? []).length, 3);
-      assert.ok(section.includes("return realpathSync(resolve(execFileSync('git'"));
-      assert.ok(section.includes('return realpathSync(destination);'));
-      assert.ok(section.includes('return resolve(realpathSync(parent), relative(parent, destination));'));
-      const changed = section.replace(/\brealpathSync\(/g, () => {
-        substitutions += 1;
-        return 'containmentRealpath(';
-      });
-      assert.equal(changed.replaceAll('containmentRealpath(', 'realpathSync('), section);
-      const helper = [
-        'function containmentRealpath(path) {',
-        "  return process.platform === 'win32' ? realpathSync.native(path) : realpathSync(path);",
-        '}',
-        '',
-      ].join('\n');
-      source = source.slice(0, begin) + helper + changed + source.slice(end);
-      assert.equal(substitutions, 3);
-      assert.equal(source.slice(source.indexOf('function outsideWorktree(')), originalSource.slice(end));
-    }
-    const hash = (value) => createHash('sha256').update(value).digest('hex');
-    const transformation = {
-      mode, substitutions, productionBytesSha256: hash(originalBytes),
-      sourceSha256: hash(originalSource), candidateSha256: hash(source),
-      nonWindowsPreserved: true, predicatePreserved: true,
-    };
-    const point = /^  const rel = relative\(comparableRoot, comparableDestination\);\n  if \((.+)\) \{$/gm;
-    const matches = [...source.matchAll(point)];
-    assert.equal(matches.length, 1, 'expected one actual containment decision');
-    assert.ok(matches[0].index > source.indexOf('function outsideWorktree(')
-      && matches[0].index < source.indexOf('\nfunction corpusSha256('));
-    const approvedPaths = [
-      tmpdir(), realpathSync(tmpdir()),
-      process.env.GITHUB_WORKSPACE, realpathSync(process.env.GITHUB_WORKSPACE),
-    ];
-    const instrumented = [
-      '  const rel = relative(comparableRoot, comparableDestination);',
-      `  const diagnosticContained = (${matches[0][1]});`,
-      `  const diagnosticPaths = ${JSON.stringify(approvedPaths)};`,
-      selectAnchorPathDiagnostic.toString().split('\n').map((line) => `  ${line}`).join('\n'),
-      '  const diagnosticFields = selectAnchorPathDiagnostic({',
-      '    root, destination, comparableRoot, comparableDestination, rel, sep,',
-      '    containment: diagnosticContained, nodeVersion: process.version,',
-      '  }, diagnosticPaths);',
-      "  const diagnosticLine = 'MRT_ANCHOR_PATH ' + JSON.stringify(diagnosticFields);",
-      '  console.error(diagnosticLine);',
-      anchorDirectoryIdentity.toString().split('\n').map((line) => `  ${line}`).join('\n'),
-      `  if (label === 'candidate output' && resolve(path) === ${JSON.stringify(join(root, 'candidate.json'))}) {`,
-      '    const identity = anchorDirectoryIdentity({',
-      '      root, destination, comparableRoot, comparableDestination, rel, sep, containment: diagnosticContained,',
-      `    }, ${JSON.stringify(root)});`,
-      "    console.error('MRT_ANCHOR_IDENTITY ' + JSON.stringify(identity));",
-      '  }',
-      '  if (diagnosticContained) {',
-    ].join('\n');
-    const instrumentedSource = "import { statSync } from 'node:fs';\n" + source.replace(point, () => instrumented);
-    writeFileSync(checkerCopy, instrumentedSource);
-    console.log(`MRT_ANCHOR_TRANSFORMATION ${JSON.stringify({
-      ...transformation, instrumentedSha256: hash(instrumentedSource),
-    })}`);
-    console.log('MRT_ANCHOR_INSTRUMENTATION insertionPoints=1 predicate=original');
-  }
-  return { root, git, write, commit, checker, checkerWith, diagnosticCounts };
+  cpSync(join(ROOT, 'scripts', 'check-anchors.mjs'), join(root, 'scripts', 'check-anchors.mjs'));
+  return { root, git, write, commit, checker, checkerWith };
 }
 
 function disposeAnchorRepo(repo) {
-  try {
-    rmSync(repo.root, { recursive: true, force: true });
-  } finally {
-    if (repo.diagnosticCounts) {
-      console.log(`MRT_ANCHOR_CHILDREN ${JSON.stringify({
-        ...repo.diagnosticCounts, rootRemoved: !existsSync(repo.root),
-      })}`);
-    }
-  }
+  rmSync(repo.root, { recursive: true, force: true });
 }
 
 function readHistory(repo) {
@@ -1455,28 +1255,10 @@ test('history candidate and apply modes require exact reviewed bytes', () => {
     } finally {
       rmSync(redirected, { recursive: true, force: true });
     }
-    if (repo.diagnosticCounts) console.log('MRT_HISTORY_RESULT {"completeTestPassed":true}');
-  } catch (error) {
-    if (repo.diagnosticCounts) {
-      console.log(`MRT_HISTORY_RESULT ${JSON.stringify({
-        completeTestPassed: false,
-        expectedInTreeAssertion: error.code === 'ERR_ASSERTION' && error.operator === 'match'
-          && error.expected?.source === 'outside the worktree'
-          && typeof error.actual === 'string'
-          && error.actual.trim() === 'FATAL: history migration target other.js has no qualifying occurrences',
-      })}`);
-    }
-    throw error;
   } finally {
     rmSync(output, { force: true });
     rmSync(second, { force: true });
     disposeAnchorRepo(repo);
-    if (repo.diagnosticCounts) {
-      console.log(`MRT_HISTORY_CLEANUP ${JSON.stringify({
-        candidateFilesRemoved: !existsSync(output) && !existsSync(second),
-        fixtureRemoved: !existsSync(repo.root),
-      })}`);
-    }
   }
 });
 

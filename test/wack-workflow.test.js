@@ -612,6 +612,9 @@ test('portable preparation verifies its own payload and allowlisted provenance',
     names.slice(1), names.map((name) => name.replace('/', '\\')),
   ]) assert.throws(() => verifyPortableNames(expected, invalid, 'recap-page'));
   verifyPortableEntries(expected, new Map(expected));
+  const unexpectedEntry = new Map(expected);
+  unexpectedEntry.set('unexpected.txt', Buffer.from('unapproved'));
+  assert.throws(() => verifyPortableEntries(expected, unexpectedEntry), /allowlist/);
   for (const name of expected.keys()) {
     const missing = new Map(expected);
     missing.delete(name);
@@ -620,7 +623,7 @@ test('portable preparation verifies its own payload and allowlisted provenance',
     changed.set(name, Buffer.from('changed'));
     assert.throws(() => verifyPortableEntries(expected, changed), /portable bytes/);
   }
-  for (const extra of ['RecapPageLauncher.exe', 'unexpected.txt', 'runtime/helper.EXE']) {
+  for (const extra of ['RecapPageLauncher.exe', 'runtime/helper.EXE']) {
     const actual = new Map(expected);
     actual.set(extra, Buffer.from('unapproved'));
     assert.throws(() => verifyPortableEntries(expected, actual), /allowlist/);
