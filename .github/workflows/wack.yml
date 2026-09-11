@@ -21,7 +21,7 @@ on:
       diagnostic_target:
         description: Bounded diagnostic target when diagnostic_only is enabled
         type: choice
-        options: [console-wack, handles, f01-smoke]
+        options: [console-wack, handles, f01-smoke, release-tests]
         required: false
         default: console-wack
   pull_request:
@@ -67,6 +67,7 @@ concurrency:
 jobs:
   native:
     name: Build and prove the native startup boundary
+    if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.diagnostic_target == 'release-tests') }}
     runs-on: windows-2022
     timeout-minutes: 181
     outputs:
@@ -716,7 +717,7 @@ jobs:
 
   preparation:
     name: Prepare the portable release candidate
-    if: ${{ github.event_name == 'workflow_dispatch' && inputs.release_preparation == true && inputs.native_only != true && inputs.diagnostic_only != true }}
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.release_preparation == true && inputs.native_only != true && inputs.diagnostic_only != true && inputs.diagnostic_target != 'release-tests' }}
     runs-on: windows-2022
     timeout-minutes: 120
     steps:
@@ -949,3 +950,50 @@ jobs:
           if ($failures.Count -ne 0) {
             throw [AggregateException]::new('Portable preparation cleanup failed.', [Exception[]]$failures)
           }
+
+  release_tests:
+    name: Diagnose the two release test failures
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.diagnostic_target == 'release-tests' }}
+    runs-on: windows-2022
+    timeout-minutes: 20
+    steps:
+      - name: Reject conflicting release-test inputs
+        timeout-minutes: 1
+        shell: pwsh
+        env:
+          DIAGNOSTIC_ONLY: ${{ inputs.diagnostic_only }}
+          NATIVE_ONLY: ${{ inputs.native_only }}
+          RELEASE_PREPARATION: ${{ inputs.release_preparation }}
+        run: |
+          if ($env:DIAGNOSTIC_ONLY -ne 'true' -or $env:NATIVE_ONLY -eq 'true' -or
+              $env:RELEASE_PREPARATION -eq 'true') {
+            throw 'release-tests requires diagnostic_only=true and both other modes false.'
+          }
+      - name: Check out the exact diagnostic candidate
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        timeout-minutes: 2
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Set up the observed failing Node version
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        timeout-minutes: 4
+        with:
+          node-version: '24.20.0'
+          cache: npm
+      - name: Record the actual hosted image
+        timeout-minutes: 1
+        shell: pwsh
+        run: |
+          Write-Host "release-tests image=$env:ImageOS version=$env:ImageVersion runner=$env:RUNNER_OS architecture=$env:RUNNER_ARCH"
+      - name: Install existing locked test tooling
+        timeout-minutes: 4
+        run: npm ci --ignore-scripts
+      - name: Run only the two actual failing tests
+        timeout-minutes: 5
+        shell: pwsh
+        env:
+          MRT_ANCHOR_PATH_DIAGNOSTIC: '1'
+        run: |
+          node --test --test-name-pattern='^(native artifact transfer pins exact inputs and refuses digest mismatches|history candidate and apply modes require exact reviewed bytes)$' test/check-anchors.test.js test/wack-workflow.test.js
+          exit $LASTEXITCODE

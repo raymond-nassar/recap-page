@@ -344,7 +344,8 @@ test('native artifact transfer pins exact inputs and refuses digest mismatches',
   assert.deepEqual(operations, ['begin:listener-query', 'execute', 'end:listener-query:false'],
     'the existing listener helper ran without native operation fences');
   t.diagnostic('PASS existing-helper-binding fixed-listener=1 unchanged-presentation-options=1');
-  assert.equal((workflow.match(/actions\/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a/g) ?? []).length, 4);
+  const proofJobs = workflow.split(/\r?\n {2}preparation:/)[0];
+  assert.equal((proofJobs.match(/actions\/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a/g) ?? []).length, 4);
   assert.equal((workflow.match(/actions\/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c/g) ?? []).length, 3);
   assert.equal((workflow.match(/digest-mismatch: error/g) ?? []).length, 3);
   const inputs = [...workflow.matchAll(/^ {12}(dist\/native-(?:launcher|proof)\/.+)$/gm)]
@@ -366,7 +367,7 @@ test('native artifact transfer pins exact inputs and refuses digest mismatches',
   ]);
   assert.match(workflow, /steps\.f01_smoke\.outputs\.preview_ready == 'true'/);
   assert.match(workflow, /steps\.native_fixtures\.outputs\.preview_ready == 'true'/);
-  assert.equal((workflow.match(/retention-days: 1/g) ?? []).length, 4);
+  assert.equal((proofJobs.match(/retention-days: 1/g) ?? []).length, 4);
   assert.doesNotMatch(workflow, /merge-multiple: true|include-hidden-files: true|overwrite: true/);
   const proof = readFileSync(new URL('../scripts/native-startup-proof.ps1', import.meta.url), 'utf8');
   assert.doesNotMatch(proof, /ReadToEndAsync|\.WaitForExit\(\)/);

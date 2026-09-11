@@ -15,7 +15,7 @@ import assert from 'node:assert/strict';
 import { execFileSync, spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import {
-  cpSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, unlinkSync,
+  cpSync, existsSync, mkdirSync, mkdtempSync, readFileSync, realpathSync, rmSync, symlinkSync, unlinkSync,
   writeFileSync,
 } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -1096,12 +1096,22 @@ function emptyHistoryRegistry(baseline) {
 }
 
 function anchorRepo({ history = true } = {}) {
+  const diagnostic = process.env.MRT_ANCHOR_PATH_DIAGNOSTIC === '1';
+  if (diagnostic) {
+    assert.equal(process.env.GITHUB_ACTIONS, 'true');
+    assert.equal(process.env.RUNNER_ENVIRONMENT, 'github-hosted');
+    assert.equal(process.version, 'v24.20.0');
+  }
+  const diagnosticCounts = diagnostic ? { git: 0, checker: 0, records: 0 } : null;
   const root = mkdtempSync(join(tmpdir(), 'mrt-anchors-'));
-  const git = (args, options = {}) => execFileSync(
-    'git',
-    ['-c', 'user.email=anchors@example.invalid', '-c', 'user.name=anchors', ...args],
-    { cwd: root, encoding: 'utf8', ...options },
-  );
+  const git = (args, options = {}) => {
+    if (diagnosticCounts) diagnosticCounts.git += 1;
+    return execFileSync(
+      'git',
+      ['-c', 'user.email=anchors@example.invalid', '-c', 'user.name=anchors', ...args],
+      { cwd: root, encoding: 'utf8', ...options },
+    );
+  };
   const write = (path, text) => {
     const full = join(root, ...path.split('/'));
     mkdirSync(join(full, '..'), { recursive: true });
@@ -1111,11 +1121,23 @@ function anchorRepo({ history = true } = {}) {
     git(['add', '-A']);
     git(['commit', '--quiet', '-m', message]);
   };
-  const checkerWith = (args, environment = {}) => spawnSync(
-    process.execPath,
-    ['scripts/check-anchors.mjs', ...args],
-    { cwd: root, encoding: 'utf8', env: { ...process.env, ...environment } },
-  );
+  const checkerWith = (args, environment = {}) => {
+    if (diagnosticCounts) diagnosticCounts.checker += 1;
+    const result = spawnSync(
+      process.execPath,
+      ['scripts/check-anchors.mjs', ...args],
+      { cwd: root, encoding: 'utf8', env: { ...process.env, ...environment } },
+    );
+    if (diagnosticCounts && typeof result.stderr === 'string') {
+      result.stderr = result.stderr.replace(/^MRT_ANCHOR_PATH [^\r\n]*\r?\n/gm, (line) => {
+        diagnosticCounts.records += 1;
+        assert.ok(diagnosticCounts.records <= 32 && line.length <= 4096, 'path diagnostic limit exceeded');
+        console.log(line.trimEnd());
+        return '';
+      });
+    }
+    return result;
+  };
   const checker = (...args) => checkerWith(args);
 
   git(['init', '--quiet']);
@@ -1131,12 +1153,51 @@ function anchorRepo({ history = true } = {}) {
   commit('source');
   if (history) write('docs/anchors.history.json', emptyHistoryRegistry(git(['rev-parse', 'HEAD']).trim()));
   mkdirSync(join(root, 'scripts'), { recursive: true });
-  cpSync(join(ROOT, 'scripts', 'check-anchors.mjs'), join(root, 'scripts', 'check-anchors.mjs'));
-  return { root, git, write, commit, checker, checkerWith };
+  const checkerCopy = join(root, 'scripts', 'check-anchors.mjs');
+  cpSync(join(ROOT, 'scripts', 'check-anchors.mjs'), checkerCopy);
+  if (diagnostic) {
+    const source = readFileSync(checkerCopy, 'utf8').replace(/\r\n/g, '\n');
+    const point = /^  const rel = relative\(comparableRoot, comparableDestination\);\n  if \((.+)\) \{$/gm;
+    const matches = [...source.matchAll(point)];
+    assert.equal(matches.length, 1, 'expected one actual containment decision');
+    assert.ok(matches[0].index > source.indexOf('function outsideWorktree(')
+      && matches[0].index < source.indexOf('\nfunction corpusSha256('));
+    const approvedPaths = [
+      tmpdir(), realpathSync(tmpdir()),
+      process.env.GITHUB_WORKSPACE, realpathSync(process.env.GITHUB_WORKSPACE),
+    ];
+    const instrumented = [
+      '  const rel = relative(comparableRoot, comparableDestination);',
+      `  const diagnosticContained = (${matches[0][1]});`,
+      `  const diagnosticPaths = ${JSON.stringify(approvedPaths)};`,
+      String.raw`  const diagnosticNormalize = (value) => value.replaceAll('\\', '/').toLowerCase();`,
+      '  const diagnosticKnown = [root, destination, comparableRoot, comparableDestination].every((value) =>',
+      '    diagnosticPaths.some((allowed) => diagnosticNormalize(value) === diagnosticNormalize(allowed)',
+      "      || diagnosticNormalize(value).startsWith(diagnosticNormalize(allowed) + '/')));",
+      '  const diagnosticFields = diagnosticKnown',
+      '    ? { root, destination, comparableRoot, comparableDestination, rel, sep, containment: diagnosticContained, nodeVersion: process.version }',
+      "    : { error: 'unapproved-path-metadata', nodeVersion: process.version };",
+      "  const diagnosticLine = 'MRT_ANCHOR_PATH ' + JSON.stringify(diagnosticFields);",
+      '  console.error(diagnosticLine.length < 4096 ? diagnosticLine',
+      String.raw`    : 'MRT_ANCHOR_PATH {"error":"record-too-large"}');`,
+      '  if (diagnosticContained) {',
+    ].join('\n');
+    writeFileSync(checkerCopy, source.replace(point, () => instrumented));
+    console.log('MRT_ANCHOR_INSTRUMENTATION insertionPoints=1 predicate=original');
+  }
+  return { root, git, write, commit, checker, checkerWith, diagnosticCounts };
 }
 
 function disposeAnchorRepo(repo) {
-  rmSync(repo.root, { recursive: true, force: true });
+  try {
+    rmSync(repo.root, { recursive: true, force: true });
+  } finally {
+    if (repo.diagnosticCounts) {
+      console.log(`MRT_ANCHOR_CHILDREN ${JSON.stringify({
+        ...repo.diagnosticCounts, rootRemoved: !existsSync(repo.root),
+      })}`);
+    }
+  }
 }
 
 function readHistory(repo) {
