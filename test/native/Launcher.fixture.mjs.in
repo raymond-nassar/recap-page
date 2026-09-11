@@ -1,0 +1,77 @@
+import { closeSync, existsSync, readFileSync, renameSync, writeFileSync } from 'node:fs';
+import { spawn } from 'node:child_process';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const root = dirname(fileURLToPath(import.meta.url));
+const scenario = readFileSync(join(root, 'scenario.txt'), 'utf8').trim();
+function publishFixtureRecord(name, value) {
+  const final = join(root, name);
+  const temporary = join(root, `${name}.tmp`);
+  if (existsSync(final)) throw new Error('fixture record already exists');
+  writeFileSync(temporary, value, { flag: 'wx' });
+  renameSync(temporary, final);
+}
+publishFixtureRecord('observed.txt', [
+  `pid=${process.pid}`,
+  `arguments=${process.argv.length === 3 && process.argv[2] === '--gui-startup-v1'}`,
+  `environment=${!Object.keys(process.env).some((key) => ['NODE_OPTIONS', 'NODE_PATH'].includes(key.toUpperCase()))}`,
+  `cwd=${process.cwd().toLowerCase() === root.toLowerCase()}`,
+].join('\n'));
+
+async function signal() {
+  const until = Date.now() + 240000;
+  while (!existsSync(join(root, 'continue.txt'))) {
+    if (Date.now() > until) throw new Error('fixture signal was not received');
+    await new Promise((resolve) => setTimeout(resolve, 20));
+  }
+}
+
+async function frame(failed, text = '') {
+  const body = Buffer.from(text);
+  const bytes = Buffer.alloc(12 + body.length);
+  bytes.write('RCPG');
+  bytes[4] = 1;
+  bytes[5] = failed ? 1 : 0;
+  bytes.writeUInt32LE(body.length, 8);
+  body.copy(bytes, 12);
+  await new Promise((resolve, reject) => process.stdout.write(bytes, (error) => error ? reject(error) : resolve()));
+  process.exitCode = failed ? 1 : 0;
+}
+
+if (scenario === 'F09' || scenario === 'F10') {
+  const child = spawn(process.execPath, ['-e', 'setInterval(() => {}, 1000)'], {
+    detached: true, windowsHide: true,
+    stdio: scenario === 'F09' ? ['ignore', 1, 2] : 'ignore',
+  });
+  await new Promise((resolve, reject) => {
+    child.once('spawn', resolve);
+    child.once('error', reject);
+  });
+  publishFixtureRecord('sentinel.txt', String(child.pid));
+  child.unref();
+}
+if (scenario === 'F10') {
+  setInterval(() => {}, 1000);
+} else if (scenario === 'F11') {
+  closeSync(1);
+  closeSync(2);
+  await signal();
+} else {
+  await signal();
+  if (scenario === 'F06') {
+    process.exitCode = 0;
+  } else if (scenario === 'F07') {
+    await new Promise((resolve, reject) => process.stderr.write('fixture warning\n', (error) => error ? reject(error) : resolve()));
+    await frame(false);
+  } else if (scenario === 'F08') {
+    await new Promise((resolve, reject) => process.stderr.write('x'.repeat(131072), (error) => error ? reject(error) : resolve()));
+    await frame(true, 'Fixture diagnostic flood.\nTry again.');
+  } else if (scenario === 'F03') {
+    await frame(true, 'Fixture failure \u03a9.\nOpen http://127.0.0.1:8787/ in your browser.');
+  } else if (['F01', 'F02', 'F09'].includes(scenario)) {
+    await frame(false);
+  } else {
+    throw new Error('unknown native fixture');
+  }
+}

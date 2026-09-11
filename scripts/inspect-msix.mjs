@@ -1,7 +1,7 @@
 import { execFileSync, spawn } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import {
-  mkdir, mkdtemp, readFile, readdir, rm,
+  mkdir, mkdtemp, readFile, readdir, rm, writeFile,
 } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import {
@@ -9,10 +9,16 @@ import {
 } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
-  LAUNCHER_NAME, PACKAGE_ARCHITECTURES, PACKAGE_NAME, PACKAGE_PUBLISHER,
-  PROOF_UPDATE_VERSION, STORE_PACKAGE_VERSION, bundlePath, packagePath,
+  PACKAGE_ARCHITECTURES, PACKAGE_NAME, PACKAGE_PUBLISHER,
+  PROOF_UPDATE_VERSION, STORE_PACKAGE_VERSION, bundlePath, packagePath, proofPackagePath,
 } from './pack-msix.mjs';
 import { NODE_VERSION } from './pack-windows.mjs';
+import {
+  NATIVE_NAME, exactExecutablePayloads, nativePe, verifyNativeArtifact,
+} from './lib/native-launcher.mjs';
+import {
+  buildStartupVariant, recordDigest, sourceRevision, startupSourceInputs, validateExpectations,
+} from './lib/startup-contract.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const EXTERNAL_UPDATER_MARKERS = Object.freeze([
@@ -188,7 +194,17 @@ async function measureRuntime(
   };
 }
 
-async function inspectPackage(path, target, hashes, { measure = false } = {}) {
+async function inspectPackage(path, target, hashes, {
+  measure = false,
+  version = STORE_PACKAGE_VERSION,
+  native = null,
+} = {}) {
+  if (![STORE_PACKAGE_VERSION, PROOF_UPDATE_VERSION].includes(version)
+    || (version === PROOF_UPDATE_VERSION && target.id !== 'x64')) {
+    throw new Error('unsupported package inspection version or architecture');
+  }
+  const artifact = native ?? await verifyNativeArtifact();
+  const sourceInputs = startupSourceInputs(ROOT);
   const unpacked = await mkdtemp(join(tmpdir(), `recap-page-${target.id}-`));
   try {
     await unpackPackage(path, unpacked);
@@ -202,46 +218,66 @@ async function inspectPackage(path, target, hashes, { measure = false } = {}) {
     const application = {
       executable: xmlAttribute(manifest, 'Application', 'Executable'),
       parameters: xmlAttribute(manifest, 'Application', 'uap10:Parameters'),
+      subsystem: xmlAttribute(manifest, 'Application', 'uap10:Subsystem'),
+      id: xmlAttribute(manifest, 'Application', 'Id'),
+      runtimeBehavior: xmlAttribute(manifest, 'Application', 'uap10:RuntimeBehavior'),
+      trustLevel: xmlAttribute(manifest, 'Application', 'uap10:TrustLevel'),
+      multipleInstances: xmlAttribute(manifest, 'Application', 'uap10:SupportsMultipleInstances'),
     };
     const expectedIdentity = {
       name: PACKAGE_NAME,
       publisher: PACKAGE_PUBLISHER,
-      version: STORE_PACKAGE_VERSION,
+      version,
       architecture: target.id,
     };
     if (JSON.stringify(identity) !== JSON.stringify(expectedIdentity)) {
       throw new Error(`${basename(path)} identity differs: ${JSON.stringify(identity)}`);
     }
-    if (application.executable !== 'runtime\\node.exe'
-      || application.parameters !== `&quot;$(package.effectivePath)\\${LAUNCHER_NAME}&quot;`) {
+    if (application.executable !== NATIVE_NAME || application.parameters !== null
+      || application.subsystem !== 'windows' || application.id !== 'App'
+      || application.runtimeBehavior !== 'packagedClassicApp' || application.trustLevel !== 'mediumIL'
+      || application.multipleInstances !== 'true'
+      || xmlAttribute(manifest, 'TargetDeviceFamily', 'MinVersion') !== '10.0.19041.0') {
       throw new Error(`${basename(path)} activation differs: ${JSON.stringify(application)}`);
     }
 
     const files = await filesUnder(unpacked);
     await assertNoExternalUpdater(unpacked, files, basename(path));
-    const payloads = files.filter((file) => /\.(?:exe|dll|node)$/i.test(file));
+    exactExecutablePayloads(files.map((file) => relative(unpacked, file)));
     const signed = files.some((file) => basename(file).toLowerCase() === 'appxsignature.p7x');
     if (!signed) throw new Error(`${basename(path)} has no AppxSignature.p7x`);
-    if (payloads.length !== 1 || basename(payloads[0]).toLowerCase() !== 'node.exe') {
-      throw new Error(`${basename(path)} has unexpected executable payloads: ${payloads.join(', ')}`);
-    }
-    const nodeMachine = peMachine(await readFile(payloads[0]));
+    const nodePath = join(unpacked, 'runtime', 'node.exe');
+    const nodeMachine = peMachine(await readFile(nodePath));
     if (nodeMachine !== target.peMachine) {
       throw new Error(
         `${basename(path)} Node machine 0x${nodeMachine.toString(16)} is not ${target.id}`,
       );
     }
-    const nodeHash = await sha256(payloads[0]);
+    const nodeHash = await sha256(nodePath);
     if (nodeHash !== hashes.get(target.id)) {
       throw new Error(`${basename(path)} Node hash does not match Node's published ${target.id} hash`);
+    }
+    const launcherPath = join(unpacked, NATIVE_NAME);
+    const nativeImage = nativePe(await readFile(launcherPath), {
+      id: target.id, machine: target.peMachine,
+    });
+    const launcherHash = await sha256(launcherPath);
+    const expectedNative = artifact.record.outputs.find((output) => output.architecture === target.id);
+    if (launcherHash !== expectedNative.sha256
+      || !(await readFile(join(unpacked, 'native-build.json'))).equals(artifact.bytes)) {
+      throw new Error(`${basename(path)} native bytes or provenance differ from the verified build`);
     }
     const generation = JSON.parse(
       await readFile(join(unpacked, 'src', 'msix-generation.json'), 'utf8'),
     );
-    if (generation.packageVersion !== STORE_PACKAGE_VERSION
+    if (generation.packageVersion !== version
       || !/^[0-9a-f]{64}$/.test(generation.generation)) {
       throw new Error(`${basename(path)} has an invalid package generation marker`);
     }
+    const startupInputs = buildStartupVariant({
+      layout: unpacked, architecture: target.id, version, native: artifact,
+      nodeHash: hashes.get(target.id), sourceInputs,
+    });
 
     return {
       file: basename(path),
@@ -250,10 +286,12 @@ async function inspectPackage(path, target, hashes, { measure = false } = {}) {
       application,
       fileCount: files.length,
       signed,
-      executablePayloads: ['runtime\\node.exe'],
+      executablePayloads: [NATIVE_NAME, 'runtime\\node.exe'],
+      native: { ...nativeImage, sha256: launcherHash, inputDigest: artifact.record.inputDigest },
       nodePeMachine: `0x${nodeMachine.toString(16)}`,
       nodeSha256: nodeHash,
       generation,
+      startupInputs,
       runtimeProcess: measure ? await measureRuntime(unpacked, target.id) : undefined,
     };
   } finally {
@@ -261,7 +299,7 @@ async function inspectPackage(path, target, hashes, { measure = false } = {}) {
   }
 }
 
-async function inspectBundle(path, hashes) {
+async function inspectBundle(path, hashes, native = null) {
   const unpacked = await mkdtemp(join(tmpdir(), 'recap-page-bundle-'));
   try {
     makeAppx(['unbundle', '/p', path, '/d', unpacked, '/o']);
@@ -295,7 +333,7 @@ async function inspectBundle(path, hashes) {
         basename(candidate).toLowerCase().includes(`_${target.id}.msix`)
       ));
       if (!pathForArchitecture) throw new Error(`bundle is missing its ${target.id} package`);
-      inner.push(await inspectPackage(pathForArchitecture, target, hashes));
+      inner.push(await inspectPackage(pathForArchitecture, target, hashes, { native }));
     }
     return {
       file: basename(path),
@@ -311,6 +349,7 @@ async function inspectBundle(path, hashes) {
 }
 
 async function main({ measureRuntimes = true } = {}) {
+  const native = await verifyNativeArtifact();
   const hashes = await publishedNodeHashes();
   for (const target of PACKAGE_ARCHITECTURES) {
     if (!hashes.has(target.id)) {
@@ -324,11 +363,38 @@ async function main({ measureRuntimes = true } = {}) {
       packagePath(target.id),
       target,
       hashes,
-      { measure: measureRuntimes },
+      { measure: measureRuntimes, native },
     ));
   }
-  const bundle = await inspectBundle(bundlePath(), hashes);
-  console.log(JSON.stringify({ nodeVersion: NODE_VERSION, packages, bundle }, null, 2));
+  const proofUpdate = await inspectPackage(
+    proofPackagePath(PROOF_UPDATE_VERSION), PACKAGE_ARCHITECTURES[0], hashes,
+    { version: PROOF_UPDATE_VERSION, native },
+  );
+  const bundle = await inspectBundle(bundlePath(), hashes, native);
+  const sourceInputs = startupSourceInputs(ROOT);
+  for (const standalone of packages) {
+    const slice = bundle.packages.find((entry) => entry.identity.architecture === standalone.identity.architecture);
+    if (!slice || recordDigest(slice.startupInputs) !== recordDigest(standalone.startupInputs)) {
+      throw new Error('The bundle and standalone startup inputs differ.');
+    }
+  }
+  const expectations = {
+    schemaVersion: 2, ...sourceRevision(), nativeDigest: native.digest, sourceInputs,
+    variants: [...packages, proofUpdate].map((entry) => entry.startupInputs),
+    packages: [
+      ...[...packages, proofUpdate].map((entry) => ({
+        version: entry.identity.version, architecture: entry.identity.architecture, source: 'package', sha256: entry.sha256,
+      })),
+      { version: STORE_PACKAGE_VERSION, architecture: 'bundle', source: 'bundle', sha256: bundle.sha256 },
+    ],
+  };
+  validateExpectations(expectations, { ...sourceRevision(), nativeDigest: native.digest, sourceInputs });
+  const sidecar = `${JSON.stringify(expectations)}\n`;
+  if (Buffer.byteLength(sidecar) > 16384) throw new Error('Startup expectations exceed the private record bound.');
+  await mkdir(join(ROOT, 'dist', 'msix-proof'), { recursive: true });
+  await writeFile(join(ROOT, 'dist', 'msix-proof', 'startup-inputs.json'), sidecar);
+  for (const entry of [...packages, proofUpdate, ...bundle.packages]) delete entry.startupInputs;
+  console.log(JSON.stringify({ nodeVersion: NODE_VERSION, packages, proofUpdate, bundle }, null, 2));
 }
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {

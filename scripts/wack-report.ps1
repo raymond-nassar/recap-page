@@ -114,10 +114,26 @@ function Read-WackReport {
 
   $disposition = if ($overall -eq 'PASS' -and $nonPass.Count -eq 0) {
     'PASS'
+  } elseif ($overall -eq 'PASS' -and $partial -eq 'FALSE' `
+      -and $nonPass.Count -eq 1 `
+      -and $nonPass[0].Name -ceq 'Blocked executables' `
+      -and $nonPass[0].Result -ceq 'FAIL') {
+    'PASS WITH OPTIONAL WARNINGS'
   } elseif ($overall -eq 'WARNING' -and $optionalOnly) {
     'PASS WITH OPTIONAL WARNINGS'
   } else {
-    throw "$Label contains non-pass results outside the exact optional allowlist."
+    $failure = [InvalidOperationException]::new(
+      "$Label contains non-pass results outside the exact optional allowlist."
+    )
+    $failure.Data['WackRejectedSummary'] = [pscustomobject]@{
+      Overall = $overall
+      PartialRun = $partial
+      LatestVersion = $latest
+      NonPassCount = $nonPass.Count
+      NonPass = @($nonPass | Select-Object -First 20)
+      Omitted = [Math]::Max(0, $nonPass.Count - 20)
+    }
+    throw $failure
   }
 
   [pscustomobject]@{

@@ -2,17 +2,22 @@
 import { execFileSync, spawn } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import {
-  copyFileSync, existsSync, mkdirSync, mkdtempSync, rmSync,
+  copyFileSync, existsSync, mkdirSync, mkdtempSync, readFileSync, renameSync, rmSync, statSync, writeFileSync,
 } from 'node:fs';
 import { createServer } from 'node:net';
 import { tmpdir } from 'node:os';
-import { dirname, join } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
 import {
   AUMID, PACKAGE_ARCHITECTURES, PACKAGE_FAMILY, PACKAGE_NAME,
   PROOF_UPDATE_VERSION, STORE_PACKAGE_VERSION, bundlePath, packagePath, proofPackagePath,
 } from './pack-msix.mjs';
+import { verifyNativeArtifact } from './lib/native-launcher.mjs';
+import {
+  bindInstalledInputs, captureBindings, captureRequest, composeCapture, demandCapturePass,
+  parseCaptureReport, selectDeployment, sourceRevision, startupSourceInputs, validateExpectations,
+} from './lib/startup-contract.mjs';
 
 export const SCENARIOS = Object.freeze([
   'certification-functionality',
@@ -27,13 +32,127 @@ const CATALOG_LIST_ID = 'house-of-m';
 const CATALOG_ITEM_COUNT = 20;
 const ARCHITECTURES = Object.freeze(PACKAGE_ARCHITECTURES.map(({ id }) => id));
 const ROOT = join(fileURLToPath(new URL('..', import.meta.url)));
+let activeSemanticCapture = null;
+let startupEvidence = null;
+const installedStartup = new Map();
 
-function powershell(script) {
-  return execFileSync(
-    'powershell',
-    ['-NoProfile', '-NonInteractive', '-Command', script],
-    { cwd: ROOT, encoding: 'utf8', maxBuffer: 32e6 },
-  ).trim();
+async function loadStartupEvidence() {
+  const native = await verifyNativeArtifact();
+  const proof = await verifyNativeArtifact({ proof: true });
+  const text = readFileSync(join(ROOT, 'dist', 'msix-proof', 'startup-inputs.json'), 'utf8');
+  if (Buffer.byteLength(text) > 16384) throw new Error('startup expectation record exceeds its bound');
+  const expectations = validateExpectations(JSON.parse(text), {
+    ...sourceRevision(), nativeDigest: native.digest, sourceInputs: startupSourceInputs(ROOT),
+  });
+  startupEvidence = { native, proof, expectations };
+}
+
+function closingStartupInputs(installed) {
+  const evidence = installedStartup.get(installed.InstallLocation);
+  if (!evidence) throw new Error('mandatory installed startup inputs are missing');
+  const snapshot = bindInstalledInputs(installed.InstallLocation, evidence.variant);
+  if (snapshot.digest !== evidence.snapshot.digest) throw new Error('installed startup inputs changed');
+  console.log('DIAG installed-startup-inputs files=9 matched=9 snapshot=complete');
+  return snapshot;
+}
+
+function startupCaptureInputs(installed, architecture, source, proof) {
+  const evidence = installedStartup.get(installed.InstallLocation);
+  if (!evidence || !startupEvidence || startupEvidence.proof.digest !== proof.digest
+    || evidence.variant.identity.architecture !== architecture || evidence.source !== source) {
+    throw new Error('mandatory startup contract bindings are missing');
+  }
+  return captureBindings(proof, architecture, evidence.snapshot.digest, {
+    kind: 'installed', family: PACKAGE_FAMILY, architecture, version: evidence.variant.identity.version,
+    packageDigest: evidence.packageDigest, source,
+  });
+}
+
+function powershell(script, operation) {
+  const ticket = activeSemanticCapture?.begin(operation, script);
+  let result;
+  let failure;
+  try {
+    result = execFileSync(
+      'powershell',
+      ['-NoProfile', '-NonInteractive', '-Command', script],
+      { cwd: ROOT, encoding: 'utf8', maxBuffer: 32e6 },
+    ).trim();
+  } catch (error) {
+    failure = error;
+  }
+  try {
+    if (ticket) activeSemanticCapture.end(ticket, Boolean(failure));
+  } catch (error) {
+    if (failure) throw new AggregateError([failure, error], 'helper and semantic reporting failed', { cause: error });
+    throw error;
+  }
+  if (failure) throw failure;
+  return result;
+}
+
+function publishSemanticRecord(root, name, text) {
+  if (typeof text !== 'string' || Buffer.byteLength(text, 'utf8') > 16384) throw new Error('semantic record exceeds its byte limit');
+  const path = join(root, name);
+  if (existsSync(path)) throw new Error('semantic record already exists');
+  const temporary = `${path}.tmp`;
+  try {
+    writeFileSync(temporary, text, { encoding: 'utf8', flag: 'wx' });
+    renameSync(temporary, path);
+  } catch (error) {
+    const errno = Number.isSafeInteger(error.errno) ? error.errno : 'unknown';
+    throw new Error(`semantic record publication failed errno=${errno}`, { cause: error });
+  }
+}
+
+function createSemanticCapture(root, architecture, mode, source) {
+  const browser = resolveEdge(false);
+  const fields = [
+    'RCPSEM1', String(process.pid), process.execPath, fileURLToPath(import.meta.url),
+    browser ? resolve(browser) : '', mode, architecture, source,
+  ];
+  if (fields.some((value) => typeof value !== 'string' || /[\r\n\0]/.test(value))) {
+    throw new Error('semantic caller fields are invalid');
+  }
+  publishSemanticRecord(root, 'semantic-caller.txt', `${fields.join('\n')}\n`);
+  let ordinal = 0;
+  const operations = new Set([
+    'aumid-activate', 'listener-query', 'package-process-query',
+    'package-info-query', 'process-exists-query', 'browser-snapshot-query',
+  ]);
+  const waitForAck = (name, expected) => {
+    const path = join(root, name);
+    const deadline = performance.now() + 10000;
+    const sleeper = new Int32Array(new SharedArrayBuffer(4));
+    while (!existsSync(path)) {
+      if (performance.now() >= deadline) throw new Error('semantic acknowledgement deadline exceeded');
+      Atomics.wait(sleeper, 0, 0, 20);
+    }
+    let received;
+    try {
+      received = readFileSync(path, 'utf8');
+    } catch (error) {
+      const errno = Number.isSafeInteger(error.errno) ? error.errno : 'unknown';
+      throw new Error(`semantic acknowledgement read failed errno=${errno}`, { cause: error });
+    }
+    if (received !== String(expected)) throw new Error('semantic acknowledgement differs');
+  };
+  return {
+    begin(operation, script) {
+      if (!operations.has(operation) || /[\r\n\0]/.test(script) || ordinal >= 256) {
+        throw new Error('semantic operation is unknown or exceeds its bound');
+      }
+      ordinal += 1;
+      publishSemanticRecord(root, `semantic-begin-${ordinal}.txt`, `${operation}\n${script}`);
+      waitForAck(`semantic-begin-${ordinal}.ack`, ordinal);
+      return { ordinal, operation };
+    },
+    end(ticket, failed) {
+      if (ticket.ordinal !== ordinal) throw new Error('semantic operation ordering differs');
+      publishSemanticRecord(root, `semantic-end-${ordinal}.txt`, failed ? 'failed' : 'ok');
+      waitForAck(`semantic-end-${ordinal}.ack`, ordinal);
+    },
+  };
 }
 
 function psLiteral(value) {
@@ -47,6 +166,7 @@ function packageInfo(runPowerShell = powershell) {
     + 'Sort-Object Version -Descending | Select-Object -First 1; '
     + 'if (-not $p) { "null"; exit 0 }; '
     + '$p | Select-Object Name,PackageFullName,PackageFamilyName,InstallLocation,Version | ConvertTo-Json -Compress',
+    'package-info-query',
   );
   return JSON.parse(raw);
 }
@@ -85,6 +205,7 @@ function packageProcesses(
     + '$rows = Get-CimInstance Win32_Process | ForEach-Object { $created = [datetime]$_.CreationDate; '
     + 'if ($created -ge $since) { [pscustomobject]@{ Name = $_.Name; ProcessId = $_.ProcessId; ParentProcessId = $_.ParentProcessId; ExecutablePath = $_.ExecutablePath; CreationDate = $created.ToString("o"); CommandLine = $_.CommandLine } } }; '
     + '@($rows) | ConvertTo-Json -Compress',
+    'package-process-query',
   );
   const parsed = JSON.parse(raw || '[]');
   const processes = Array.isArray(parsed) ? parsed : [parsed];
@@ -135,6 +256,8 @@ function installPackage(
       ? packagePath(architecture)
       : proofPackagePath(version));
   if (!existsSync(path)) throw new Error(`missing package: ${path}`);
+  if (!startupEvidence) throw new Error('mandatory package startup expectations are missing');
+  const startup = selectDeployment(startupEvidence.expectations, version, architecture, source, path);
   powershell(`Add-AppxPackage -Path ${psLiteral(path)} -ForceApplicationShutdown`);
   const installed = packageInfo();
   if (!installed) throw new Error(`package ${version} was not registered after installation`);
@@ -147,6 +270,9 @@ function installPackage(
   if (!String(installed.PackageFullName).toLowerCase().includes(`_${architecture}__`)) {
     throw new Error(`installed architecture differs: ${installed.PackageFullName}`);
   }
+  const snapshot = bindInstalledInputs(installed.InstallLocation, startup.variant);
+  installedStartup.set(installed.InstallLocation, { ...startup, snapshot });
+  console.log('DIAG installed-startup-inputs files=9 matched=9 snapshot=complete');
   return installed;
 }
 
@@ -263,7 +389,116 @@ async function runInstalledScenario(body, { afterCleanup } = {}) {
 }
 
 function activate() {
-  powershell(`Start-Process explorer.exe -ArgumentList ${psLiteral(`shell:AppsFolder\\${AUMID}`)}`);
+  powershell(`Start-Process explorer.exe -ArgumentList ${psLiteral(`shell:AppsFolder\\${AUMID}`)}`, 'aumid-activate');
+}
+
+async function withNativeObservation(installed, architecture, source, mode, body) {
+  if (process.env.GITHUB_ACTIONS !== 'true') {
+    throw new Error('native installed observation is restricted to controlled Actions runners');
+  }
+  const artifact = await verifyNativeArtifact({ proof: true });
+  const root = mkdtempSync(join(tmpdir(), 'recap-native-observer-'));
+  const report = join(root, 'result.txt');
+  const failures = [];
+  let child;
+  let exited = false;
+  let exitCode = null;
+  let spawnFailure = null;
+  let unexpectedOutput = false;
+  let closed = false;
+  let result;
+  let record;
+  let reportText = '';
+  let closingInputs = false;
+  let captureClean = false;
+  const profile = mode === 'busy' ? 'installed-busy' : 'installed-functionality';
+  let bindings;
+  try {
+    bindings = startupCaptureInputs(installed, architecture, source, artifact);
+    if (activeSemanticCapture) throw new Error('native semantic captures cannot overlap');
+    const semanticCapture = createSemanticCapture(root, architecture, mode, source);
+    publishSemanticRecord(root, 'startup-context.txt', captureRequest(bindings, profile));
+    child = spawn(join(artifact.root, architecture, 'NativeStartupTests.exe'), [
+      '--mode', mode, '--root', root, '--report', report,
+      '--installed-root', installed.InstallLocation, '--contract', join(root, 'startup-context.txt'),
+    ], { cwd: ROOT, stdio: ['ignore', 'pipe', 'pipe'], windowsHide: true });
+    child.once('error', (error) => { spawnFailure = error; });
+    child.once('exit', (code) => { exited = true; exitCode = code; });
+    child.once('close', () => { closed = true; });
+    child.stdout.on('data', () => { unexpectedOutput = true; });
+    child.stderr.on('data', () => { unexpectedOutput = true; });
+    const assertAlive = () => {
+      if (spawnFailure) throw spawnFailure;
+      if (exited) {
+        if (existsSync(report) && statSync(report).size > 1024 * 1024) throw new Error('startup report exceeds its bound');
+        const detail = existsSync(report) ? readFileSync(report, 'utf8') : 'no observer report';
+        throw new Error(`native observer exited ${exitCode}: ${detail}`);
+      }
+    };
+    await waitFor(() => {
+      assertAlive();
+      return existsSync(join(root, 'ready.txt'));
+    }, 'native observer did not become ready', 30000);
+    activeSemanticCapture = semanticCapture;
+    try {
+      result = await body({
+        waitForSettledRoots: (count) => waitFor(() => {
+          assertAlive();
+          const counts = join(root, 'counts.txt');
+          return existsSync(counts)
+            && readFileSync(counts, 'utf8') === `started=${count}\nended=${count}\n`;
+        }, 'native activation lifecycle did not settle', 30000),
+      });
+    } catch (error) {
+      failures.push(error);
+    } finally {
+      activeSemanticCapture = null;
+      if (mode === 'functionality' && Number.isInteger(result?.settledListenerPid)) {
+        publishSemanticRecord(root, 'winning-server.txt', String(result.settledListenerPid));
+      }
+      publishSemanticRecord(root, 'semantic-finished.txt', 'finished');
+    }
+    if (mode === 'functionality') writeFileSync(join(root, 'finish.txt'), 'finish');
+    await waitFor(() => {
+      if (spawnFailure) throw spawnFailure;
+      return exited && closed;
+    }, 'native observer did not finish', 30000);
+    if (existsSync(report) && statSync(report).size > 1024 * 1024) throw new Error('startup report exceeds its bound');
+    reportText = existsSync(report) ? readFileSync(report, 'utf8') : '';
+    record = parseCaptureReport(reportText, bindings, profile);
+    closingStartupInputs(installed);
+    closingInputs = true;
+    if (exitCode !== 0 || unexpectedOutput) {
+      throw new Error(`native installed observation failed: exit ${exitCode}; ${reportText}`);
+    }
+  } catch (error) {
+    failures.push(error);
+  } finally {
+    if (child?.pid && !exited) {
+      try {
+        child.kill();
+        await waitFor(() => exited && closed, 'owned native observer did not stop', 2000);
+      } catch (error) {
+        failures.push(error);
+      }
+    }
+    if (!child?.pid || exited) {
+      try {
+        rmSync(root, { recursive: true, force: true });
+        captureClean = (!child?.pid || (exited && closed)) && !unexpectedOutput;
+      } catch (error) {
+        failures.push(error);
+      }
+    }
+  }
+  if (failures.length) throw new AggregateError(failures, 'native observed journey failed');
+  const composed = demandCapturePass(composeCapture({
+    bindings, profile, record, inputs: closingInputs, creation: true, behavior: true,
+    cleanup: { scope: 'capture', completed: captureClean, reportValid: true, closingInputs },
+  }));
+  console.log(reportText.trim());
+  console.log(`PASS app-startup-contract-v2 profile=${composed.profile} scope=capture`);
+  return result;
 }
 
 function browserSnapshotDigest() {
@@ -273,6 +508,7 @@ function browserSnapshotDigest() {
     + 'Where-Object { $_.MainWindowHandle -ne 0 } | '
     + 'Select-Object Id,ProcessName,MainWindowHandle,MainWindowTitle; '
     + '@($rows) | ConvertTo-Json -Compress',
+    'browser-snapshot-query',
   );
   return createHash('sha256').update(raw || '[]').digest('hex');
 }
@@ -468,15 +704,15 @@ function resolveBrowserDriver() {
   return root;
 }
 
-function resolveEdge() {
+function resolveEdge(required = true) {
   const candidates = [
     process.env.MRT_EDGE,
     'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe',
     'C:\\Program Files\\Microsoft\\Edge\\Application\\msedge.exe',
   ].filter(Boolean);
   const found = candidates.find((candidate) => existsSync(candidate));
-  if (!found) throw new Error('Microsoft Edge was not found');
-  return found;
+  if (!found && required) throw new Error('Microsoft Edge was not found');
+  return found || '';
 }
 
 async function withBrowser(body) {
@@ -549,7 +785,7 @@ async function removeCachedPaths(page, paths) {
 }
 
 function processExists(pid) {
-  return powershell(`if (Get-Process -Id ${pid} -ErrorAction SilentlyContinue) { "true" } else { "false" }`) === 'true';
+  return powershell(`if (Get-Process -Id ${pid} -ErrorAction SilentlyContinue) { "true" } else { "false" }`, 'process-exists-query') === 'true';
 }
 
 function listenerPid(runPowerShell = powershell) {
@@ -557,6 +793,7 @@ function listenerPid(runPowerShell = powershell) {
     '$row = Get-NetTCPConnection -State Listen -ErrorAction Stop | '
     + "Where-Object { $_.LocalAddress -eq '127.0.0.1' -and $_.LocalPort -eq 8787 } | "
     + 'Select-Object -First 1; if ($row) { $row.OwningProcess }',
+    'listener-query',
   );
   return raw ? Number(raw) : null;
 }
@@ -577,32 +814,41 @@ async function certificationFunctionality(architecture, source) {
     context.cleanupAuthorized = true;
     context.installed = installPackage(STORE_PACKAGE_VERSION, architecture, source);
     context.since = new Date();
-    activate();
-    activate();
-    const marker = await waitFor(generation, 'the package server did not answer at the canonical origin');
-    const settledListenerPid = await waitFor(
-      () => listenerPid(),
-      'the package server did not own port 8787',
+    const { marker, settledListenerPid, serverProcess, settledServers } = await withNativeObservation(
+      context.installed, architecture, source, 'functionality', async (observation) => {
+        activate();
+        activate();
+        const marker = await waitFor(generation, 'the package server did not answer at the canonical origin');
+        const settledListenerPid = await waitFor(
+          () => listenerPid(),
+          'the package server did not own port 8787',
+        );
+        const serverProcess = await waitFor(
+          () => selectListenerServer(
+            packageProcesses(context.installed, context.since),
+            settledListenerPid,
+          ),
+          `listener PID ${settledListenerPid} was not owned by the installed package`,
+        );
+        const launchersExited = () => !packageProcesses(context.installed, context.since)
+          .some((process) => process.CommandLine?.includes('Launcher.mjs')
+            || process.Name?.toLowerCase() === 'recappagelauncher.exe');
+        await observation.waitForSettledRoots(2);
+        await waitFor(launchersExited, 'the overlapping native launchers or coordinators did not exit');
+        const settledServers = packageProcesses(context.installed, context.since)
+          .filter((process) => process.CommandLine?.includes('server.mjs'));
+        if (settledServers.length !== 1
+          || settledServers[0].ProcessId !== settledListenerPid
+          || listenerPid() !== settledListenerPid) {
+          throw new Error(`overlapping activation left ${settledServers.length} server processes`);
+        }
+        activate();
+        await observation.waitForSettledRoots(3);
+        await waitFor(launchersExited, 'the warm native launcher or coordinator did not exit');
+        if (listenerPid() !== settledListenerPid) throw new Error('warm activation replaced the healthy server');
+        return { marker, settledListenerPid, serverProcess, settledServers };
+      },
     );
-    const serverProcess = await waitFor(
-      () => selectListenerServer(
-        packageProcesses(context.installed, context.since),
-        settledListenerPid,
-      ),
-      `listener PID ${settledListenerPid} was not owned by the installed package`,
-    );
-    await waitFor(
-      () => !packageProcesses(context.installed, context.since)
-        .some((process) => process.CommandLine?.includes('Launcher.mjs')),
-      'the overlapping package coordinators did not exit after launch settling',
-    );
-    const settledServers = packageProcesses(context.installed, context.since)
-      .filter((process) => process.CommandLine?.includes('server.mjs'));
-    if (settledServers.length !== 1
-      || settledServers[0].ProcessId !== settledListenerPid
-      || listenerPid() !== settledListenerPid) {
-      throw new Error(`overlapping activation left ${settledServers.length} server processes`);
-    }
     if (marker.packageVersion !== STORE_PACKAGE_VERSION) {
       throw new Error(`served ${marker.packageVersion}, expected ${STORE_PACKAGE_VERSION}`);
     }
@@ -731,6 +977,7 @@ async function certificationFunctionality(architecture, source) {
     await waitFor(generation, 'the package did not relaunch after deliberate server stop');
 
     const livePid = relaunched.ProcessId;
+    closingStartupInputs(context.installed);
     removePackage();
     await waitFor(
       () => !processExists(livePid) && listenerPid() === null && packageInfo() === null,
@@ -739,6 +986,7 @@ async function certificationFunctionality(architecture, source) {
     context.installed = null;
 
     console.log(JSON.stringify({
+      phase: 'behavior',
       scenario: SCENARIOS[0],
       architecture,
       source,
@@ -758,15 +1006,120 @@ async function certificationFunctionality(architecture, source) {
   });
 }
 
+function createBusyHolder() {
+  const sockets = new Set();
+  const failures = [];
+  const counts = { accepted: 0, closed: 0, socketErrors: 0, peerResets: 0, serverErrors: 0, dropped: 0, omittedErrors: 0 };
+  let closing = false;
+  let notify = () => {};
+  const fail = (code, error) => {
+    if (failures.length < 16) {
+      const errno = Number.isSafeInteger(error?.errno) ? error.errno : 0;
+      failures.push(new Error(`${code} errno=${errno}`, error ? { cause: error } : undefined));
+    } else {
+      counts.omittedErrors = Math.min(65536, counts.omittedErrors + 1);
+    }
+  };
+  const count = (key) => {
+    if (counts[key] === 65536) {
+      if (!failures.length) fail('busy-holder-count-limit');
+    } else counts[key]++;
+  };
+  const destroy = (socket) => {
+    try { socket.destroy(); }
+    catch (error) { fail('busy-holder-socket-destroy-failed', error); }
+  };
+  const accept = (socket) => {
+    count('accepted');
+    sockets.add(socket);
+    const onError = (error) => {
+      count('socketErrors');
+      if (error.code === 'ECONNRESET') count('peerResets');
+      else fail('busy-holder-socket-error', error);
+    };
+    socket.on('error', onError);
+    socket.once('close', () => {
+      if (sockets.delete(socket)) count('closed');
+      socket.removeListener('error', onError);
+      notify();
+    });
+    socket.resume();
+    if (closing) destroy(socket);
+  };
+  const holder = createServer(accept);
+  holder.maxConnections = 64;
+  const onDrop = () => { count('dropped'); fail('busy-holder-socket-limit'); };
+  const onError = (error) => { count('serverErrors'); fail('busy-holder-server-error', error); notify(); };
+  holder.on('drop', onDrop);
+  holder.on('error', onError);
+  const report = (phase, listenerClosed) => {
+    console.log(`DIAG busy-holder-cleanup phase=${phase} accepted=${counts.accepted} open=${sockets.size} closed=${counts.closed}`
+      + ` socket_errors=${counts.socketErrors} peer_resets=${counts.peerResets} server_errors=${counts.serverErrors}`
+      + ` dropped=${counts.dropped} errors=${failures.length} omitted_errors=${counts.omittedErrors}`
+      + ` listener_closed=${Number(listenerClosed)} deadline_ms=2000`);
+  };
+  return {
+    listen: () => new Promise((resolve, reject) => {
+      const failed = (error) => {
+        holder.removeListener('listening', ready);
+        const errno = Number.isSafeInteger(error.errno) ? error.errno : 0;
+        reject(new Error(`busy-holder-listen-failed errno=${errno}`, { cause: error }));
+      };
+      const ready = () => {
+        holder.removeListener('error', failed);
+        resolve();
+      };
+      holder.once('error', failed);
+      holder.once('listening', ready);
+      holder.listen(8787, '127.0.0.1');
+    }),
+    assertHealthy() {
+      if (failures.length) throw new AggregateError([...failures], 'busy-port holder failed');
+    },
+    close: () => new Promise((resolve, reject) => {
+      closing = true;
+      let callbackObserved = false;
+      let settled = false;
+      report('begin', false);
+      const finish = (deadline = false) => {
+        const complete = callbackObserved && sockets.size === 0;
+        if (complete) {
+          holder.removeListener('connection', accept);
+          holder.removeListener('drop', onDrop);
+          holder.removeListener('error', onError);
+        }
+        if (settled || (!complete && !deadline)) return;
+        settled = true;
+        clearTimeout(timer);
+        report(failures.length ? 'failed' : 'completed', callbackObserved);
+        if (failures.length) reject(new AggregateError([...failures], 'busy-port holder cleanup failed'));
+        else resolve();
+      };
+      const timer = setTimeout(() => {
+        fail('busy-holder-close-deadline');
+        for (const socket of sockets) destroy(socket);
+        finish(true);
+      }, 2000);
+      notify = () => finish();
+      try {
+        holder.close((error) => {
+          callbackObserved = true;
+          if (error) fail('busy-holder-listener-close-failed', error);
+          finish();
+        });
+      } catch (error) { fail('busy-holder-listener-close-failed', error); }
+      for (const socket of sockets) destroy(socket);
+      finish();
+    }),
+  };
+}
+
 async function busyPortRefusal(architecture, source) {
-  const holder = createServer();
+  const holder = createBusyHolder();
   let launched = null;
-  await new Promise((resolve, reject) => {
-    holder.once('error', reject);
-    holder.listen(8787, '127.0.0.1', resolve);
-  });
 
   await runInstalledScenario(async (context) => {
+    await holder.listen();
     assertNoPreexistingPackage();
     context.cleanupAuthorized = true;
     context.installed = installPackage(STORE_PACKAGE_VERSION, architecture, source);
@@ -798,7 +1151,19 @@ async function busyPortRefusal(architecture, source) {
     ]) {
       if (!guidance.includes(expected)) throw new Error(`busy-port guidance omitted: ${expected}`);
     }
+    await withNativeObservation(context.installed, architecture, source, 'busy', async () => {
+      activate();
+    });
+    if (browserSnapshotDigest() !== browserBefore) {
+      throw new Error('native busy-port refusal changed browser windows');
+    }
+    if (packageProcesses(context.installed, context.since)
+      .some((candidate) => candidate.CommandLine?.includes('server.mjs'))) {
+      throw new Error('native busy-port refusal started a server child');
+    }
+    holder.assertHealthy();
     console.log(JSON.stringify({
+      phase: 'behavior',
       scenario: SCENARIOS[1],
       architecture,
       source,
@@ -819,9 +1184,7 @@ async function busyPortRefusal(architecture, source) {
         failures.push(error);
       }
       try {
-        await new Promise((resolve, reject) => {
-          holder.close((error) => (error ? reject(error) : resolve()));
-        });
+        await holder.close();
       } catch (error) {
         failures.push(error);
       }
@@ -888,6 +1251,7 @@ async function updateStateContinuity(architecture, source) {
         localStorage.setItem('mrt.state.v2', JSON.stringify(value));
       }, sentinel);
 
+      closingStartupInputs(context.installed);
       context.installed = installPackage(PROOF_UPDATE_VERSION, architecture);
       await waitFor(
         () => !processExists(oldServer.ProcessId) && listenerPid() === null,
@@ -908,7 +1272,9 @@ async function updateStateContinuity(architecture, source) {
         || after.packageVersion !== PROOF_UPDATE_VERSION) {
         throw new Error(`generation mismatch: ${before.packageVersion} then ${after.packageVersion}`);
       }
+      closingStartupInputs(context.installed);
       console.log(JSON.stringify({
+        phase: 'behavior',
         scenario: SCENARIOS[2],
         architecture,
         source,
@@ -938,11 +1304,13 @@ async function main() {
   if (!['package', 'bundle'].includes(source)) {
     throw new Error('choose --source=package|bundle');
   }
+  await loadStartupEvidence();
   if (scenario === SCENARIOS[0]) await certificationFunctionality(architecture, source);
   if (scenario === SCENARIOS[1]) await busyPortRefusal(architecture, source);
   if (scenario === SCENARIOS[2]) {
     await updateStateContinuity(architecture, source);
   }
+  console.log(`PASS installed-journey scenario=${scenario} architecture=${architecture} source=${source} cleanup=complete`);
 }
 
 function formatProofError(error, indent = '') {
@@ -957,10 +1325,19 @@ function formatProofError(error, indent = '') {
 }
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
-  main().catch((err) => {
-    console.error(formatProofError(err));
-    process.exit(1);
-  });
+  const incomplete = () => {
+    console.error('FAIL installed-journey code=main-incomplete');
+    process.exitCode = 1;
+  };
+  process.once('beforeExit', incomplete);
+  main().then(
+    () => { process.removeListener('beforeExit', incomplete); },
+    (err) => {
+      process.removeListener('beforeExit', incomplete);
+      console.error(formatProofError(err));
+      process.exitCode = 1;
+    },
+  );
 }
 
 export {

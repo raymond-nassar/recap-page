@@ -48,7 +48,9 @@ function Assert-Throws {
     [Parameter(Mandatory)]
     [string]$Name,
 
-    [string]$MessagePattern
+    [string]$MessagePattern,
+
+    [scriptblock]$Inspect
   )
 
   $caught = $null
@@ -62,6 +64,9 @@ function Assert-Throws {
   }
   if ($MessagePattern -and $caught.Message -notmatch $MessagePattern) {
     throw "$Name threw an unexpected error: $($caught.Message)"
+  }
+  if ($Inspect -and -not (& $Inspect $caught)) {
+    throw "$Name did not retain the required safe rejection facts."
   }
   $script:passed += 1
 }
@@ -186,10 +191,152 @@ try {
     -MessagePattern 'no RESULT' `
     -Action { Read-Fixture $missingResult }
 
-  if ($passed -ne 11) {
-    throw "Expected 11 fixture tests, observed $passed."
+  Assert-Throws `
+    -Name 'sanitized rejected categories' `
+    -MessagePattern 'outside the exact optional allowlist' `
+    -Action { Read-Fixture $unknown } `
+    -Inspect {
+      param($Failure)
+      $detail = $Failure.Data['WackRejectedSummary']
+      $null -ne $detail -and $detail.Overall -eq 'WARNING' `
+        -and $detail.NonPassCount -eq 3 -and $detail.Omitted -eq 0 `
+        -and $detail.NonPass[2].Name -eq 'Unknown category' `
+        -and $detail.NonPass[2].Result -eq 'FAIL'
+    }
+
+  $zeroNonPass = Write-Fixture -Name 'overall-fail-without-nonpass' -Xml @'
+<REPORT OVERALL_RESULT="FAIL" PARTIAL_RUN="FALSE" LATEST_VERSION="TRUE">
+  <TEST NAME="App manifest"><RESULT>PASS</RESULT></TEST>
+</REPORT>
+'@
+  Assert-Throws `
+    -Name 'zero non-pass overall rejection facts' `
+    -Action { Read-Fixture $zeroNonPass } `
+    -Inspect {
+      param($Failure)
+      $detail = $Failure.Data['WackRejectedSummary']
+      $null -ne $detail -and $detail.Overall -eq 'FAIL' `
+        -and $detail.NonPassCount -eq 0 -and $detail.NonPass.Count -eq 0
+    }
+
+  $manyTests = (1..21 | ForEach-Object {
+    '<TEST NAME="Category {0}"><RESULT>FAIL</RESULT></TEST>' -f $_
+  }) -join ''
+  $many = Write-Fixture -Name 'bounded-rejection' -Xml (
+    '<REPORT OVERALL_RESULT="FAIL" PARTIAL_RUN="FALSE" LATEST_VERSION="TRUE">' `
+      + $manyTests + '<DETAIL>DO_NOT_REPORT_RAW_DETAIL</DETAIL></REPORT>'
+  )
+  Assert-Throws `
+    -Name 'bounded rejected category list' `
+    -Action { Read-Fixture $many } `
+    -Inspect {
+      param($Failure)
+      $detail = $Failure.Data['WackRejectedSummary']
+      $null -ne $detail -and $detail.NonPassCount -eq 21 `
+        -and $detail.NonPass.Count -eq 20 -and $detail.Omitted -eq 1 `
+        -and $detail.NonPass[19].Name -eq 'Category 20' `
+        -and ($detail | ConvertTo-Json -Depth 5 -Compress) -notmatch 'DO_NOT_REPORT|Category 21'
+    }
+
+  $unsafeName = Write-Fixture -Name 'unsafe-name' -Xml @'
+<REPORT OVERALL_RESULT="FAIL" PARTIAL_RUN="FALSE" LATEST_VERSION="TRUE">
+  <TEST NAME="C:\DO_NOT_REPORT_PRIVATE_PATH"><RESULT>FAIL</RESULT></TEST>
+</REPORT>
+'@
+  Assert-Throws `
+    -Name 'unsafe category is not disclosed' `
+    -MessagePattern 'unsafe test summary' `
+    -Action { Read-Fixture $unsafeName } `
+    -Inspect {
+      param($Failure)
+      $null -eq $Failure.Data['WackRejectedSummary'] `
+        -and $Failure.Message -notmatch 'DO_NOT_REPORT'
+    }
+
+  $unsafeOverall = Write-Fixture -Name 'unsafe-summary' -Xml @'
+<REPORT OVERALL_RESULT="FAIL:DO_NOT_REPORT_PRIVATE_SUMMARY" PARTIAL_RUN="FALSE" LATEST_VERSION="TRUE">
+  <TEST NAME="App manifest"><RESULT>FAIL</RESULT></TEST>
+</REPORT>
+'@
+  Assert-Throws `
+    -Name 'unsafe overall is not disclosed' `
+    -MessagePattern 'unsafe summary fields' `
+    -Action { Read-Fixture $unsafeOverall } `
+    -Inspect {
+      param($Failure)
+      $null -eq $Failure.Data['WackRejectedSummary'] `
+        -and $Failure.Message -notmatch 'DO_NOT_REPORT'
+    }
+
+  $passBlocked = Write-Fixture -Name 'pass-with-sole-blocked' -Xml @'
+<REPORT OVERALL_RESULT="PASS" PARTIAL_RUN="FALSE">
+  <TEST NAME="App manifest"><RESULT>PASS</RESULT></TEST>
+  <TEST NAME="Blocked executables"><RESULT>FAIL</RESULT></TEST>
+</REPORT>
+'@
+  $passBlockedResult = Read-Fixture $passBlocked
+  Assert-True `
+    -Name 'qualified PASS with sole optional Blocked result' `
+    -Condition (
+      $passBlockedResult.Disposition -eq 'PASS WITH OPTIONAL WARNINGS' `
+      -and $passBlockedResult.Overall -eq 'PASS' `
+      -and $passBlockedResult.Tests[1].Result -eq 'FAIL'
+    )
+
+  $passBlockedLatest = Write-Fixture -Name 'pass-blocked-current-kit' -Xml @'
+<REPORT OVERALL_RESULT="PASS" PARTIAL_RUN="FALSE" LATEST_VERSION="TRUE">
+  <TEST NAME="Blocked executables"><RESULT>FAIL</RESULT></TEST>
+</REPORT>
+'@
+  Assert-True `
+    -Name 'qualified PASS with explicit latest kit' `
+    -Condition ((Read-Fixture $passBlockedLatest).Disposition -eq 'PASS WITH OPTIONAL WARNINGS')
+
+  $passBlockedUnknownPartial = Write-Fixture -Name 'pass-blocked-unknown-partial' -Xml @'
+<REPORT OVERALL_RESULT="PASS" LATEST_VERSION="TRUE">
+  <TEST NAME="Blocked executables"><RESULT>FAIL</RESULT></TEST>
+</REPORT>
+'@
+  Assert-Throws `
+    -Name 'new optional PASS requires explicit complete run' `
+    -Action { Read-Fixture $passBlockedUnknownPartial } `
+    -MessagePattern 'outside the exact optional allowlist'
+
+  $passBlockedDuplicate = Write-Fixture -Name 'pass-blocked-duplicate' -Xml @'
+<REPORT OVERALL_RESULT="PASS" PARTIAL_RUN="FALSE" LATEST_VERSION="TRUE">
+  <TEST NAME="Blocked executables"><RESULT>FAIL</RESULT></TEST>
+  <TEST NAME="Blocked executables"><RESULT>FAIL</RESULT></TEST>
+</REPORT>
+'@
+  Assert-Throws `
+    -Name 'new optional PASS rejects duplicate Blocked' `
+    -Action { Read-Fixture $passBlockedDuplicate } `
+    -MessagePattern 'outside the exact optional allowlist'
+
+  $passDpi = Write-Fixture -Name 'pass-dpi-only' -Xml @'
+<REPORT OVERALL_RESULT="PASS" PARTIAL_RUN="FALSE" LATEST_VERSION="TRUE">
+  <TEST NAME="DPIAwarenessValidation"><RESULT>WARNING</RESULT></TEST>
+</REPORT>
+'@
+  Assert-Throws `
+    -Name 'new optional PASS is not general subset acceptance' `
+    -Action { Read-Fixture $passDpi } `
+    -MessagePattern 'outside the exact optional allowlist'
+
+  $passChangedBlocked = Write-Fixture -Name 'pass-blocked-changed-result' -Xml @'
+<REPORT OVERALL_RESULT="PASS" PARTIAL_RUN="FALSE" LATEST_VERSION="TRUE">
+  <TEST NAME="Blocked executables"><RESULT>WARNING</RESULT></TEST>
+</REPORT>
+'@
+  Assert-Throws `
+    -Name 'new optional PASS requires the exact Blocked result' `
+    -Action { Read-Fixture $passChangedBlocked } `
+    -MessagePattern 'outside the exact optional allowlist'
+
+  if ($passed -ne 22) {
+    throw "Expected 22 fixture tests, observed $passed."
   }
-  '11 WACK report parser fixture tests passed.'
+  '22 WACK report parser fixture tests passed.'
 } finally {
   Remove-Item -LiteralPath $scratch -Recurse -Force -ErrorAction SilentlyContinue
 }

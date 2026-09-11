@@ -168,6 +168,9 @@ x64 and Windows on Arm. Every job uses a read-only token, telemetry opt-out, and
 signed packages. The browser driver is installed outside the repository and does not become a
 dependency. The workflow uploads no package, certificate, installer, browser profile, raw output, or
 WACK report. The maintained Store guide records its bounded result and cleanup contract.
+One Windows producer compiles the native x64/ARM64 GUI and isolated proof tools. Only those exact
+binaries and source/output hash records transfer to other jobs; consumers verify their producer
+digest against the same commit and source bytes. Native console/UI observation is CI-only.
 
 The installed proof's `puppeteer-core` graph is pinned in `.github/browser-proof/package-lock.json`.
 The workflow copies that manifest and lock into its temporary directory and runs `npm ci` there. It
@@ -766,25 +769,32 @@ and keyboard focus.
 ## Build and prove the Microsoft Store bundle
 
 [The Microsoft Store package guide](MICROSOFT_STORE.md) owns the exact production identity, activation
-decision, local trust procedure, proof matrix, cleanup, and remaining Store gates.
+decision, isolated trust procedure, proof matrix, cleanup, and remaining Store gates.
 
-Use winapp CLI 0.6.0 exactly. The packer stops on any other version:
+Use the controlled Windows Actions workflow, not the personal Store installation. The native
+producer requires the hosted Visual Studio 2022 x64/ARM64 tools and SDK 10.0.26100.0. It builds
+the native GUI with a static runtime and records the exact inputs and output hashes. The packer
+requires that verified artifact and winapp CLI 0.6.0; it stops rather than substituting a launcher:
 
 ```text
 winapp --version
+.\scripts\build-native-launcher.ps1 -IncludeProofTools
 npm run msix:pack
 ```
 
 The packer writes signed x64 and ARM64 packages at `<application-version>.0` plus their bundle under
 ignored `dist/msix/`. It also writes the x64 `<application-version>.1` update artifact under
 `dist/msix-proof/`, where it cannot enter the Store bundle. Both official Node archives are checked
-against Node's published SHA-256 list. Each package uses its native Node executable to run the
-maintained supervisor and the unchanged server. Package assets are generated and all outputs are
+against Node's published SHA-256 list. Each package activates its native GUI, which starts the
+official architecture-matched Node coordinator without a console. That coordinator remains the
+authority for readiness, browser handoff and the unchanged detached server. Startup inputs are
+included before generation hashing. Package assets are generated and all outputs are
 signed with one transient certificate before the private key and password are deleted. Never commit
 anything under `dist/`.
 
 On any build host, inspect every package and both bundle slices for identity, updater absence, Node
-hashes, and PE machine fields without starting a foreign runtime:
+hashes, the exact native-plus-Node executable set, native source/hash binding and PE machine/subsystem
+fields without starting a foreign runtime:
 
 ```text
 npm run msix:inspect -- --structural
@@ -794,8 +804,9 @@ On Windows on Arm, `npm run msix:inspect` also measures the x64-emulated and nat
 processes. Certification workflows use the structural form, then leave native execution to the
 matching installed-proof host.
 
-The public CER requires an administrator-approved trust step before `.msix` installation. No owner
-credential or Store signing secret is used. Run the three proof scenarios only after that trust step:
+The public CER requires temporary administrator trust in the disposable runner before installation.
+No owner credential or Store signing secret is used. The hosted jobs run the three proof scenarios
+after that trust step; do not run them against a personal installation:
 
 ```text
 npm run msix:prove -- --scenario=certification-functionality
@@ -922,3 +933,41 @@ Removing it requires a reviewed source change, and cannot recall an Issue, reply
 copy that already exists. The earlier private Copilot project guide is not part of the current route;
 keeping or deleting it cannot recall a chat GitHub already processed. Keep those limits in the
 delivery record.
+
+## Interpret qualified startup evidence
+
+The controlled Windows proof reports `app-startup-contract-v2`, not a machine-wide window census.
+It requires the exact installed startup closure and activation, a source-bound producer receipt
+from the real creation-option tests, a qualified native64 command environment, every internal
+startup actor, calibrated app-client terminal evidence, the declared behavior and completed
+capture-owned cleanup. A required unknown is inconclusive, not a pass.
+
+The accounted Console API host is still part of the app's actor and terminal evidence. Exact
+system-image and validated client-parent identity do not prove invisibility. Do not extend that
+role to arbitrary system children or allow its children to inherit a CMD external-URI boundary.
+Its arguments are a Windows-owned protocol, not a matched app script, and its normal completed
+exit is0 independently of an expected client refusal.
+
+The host reads both AutoRun hives without modifying them and compares expected inbox helper
+identities before and after capture. A window-observing negative counts only with its intended
+failure and a complete qualified `host-completion-v2` record. An early expected failure cannot
+hide a failed final host sample. Decoder-only N1 does not pretend to collect host evidence.
+
+Unassessed global activity and external URI-handler UI stay visible as separate uncertainty.
+Do not treat an image label, a PID outside the app tree, or a previous result as an exemption.
+The actual installed functionality, busy-port and update journeys still need their own successful
+completion after package and scenario cleanup. Preserve primary and secondary failure chronology.
+After actual driver completion, the bounded final report read imports a specific native failure
+before a generic failed-exit fallback. Only an imported specific record is marked as consumed;
+earlier genuine faults, poisoned reports and later cleanup failures retain their ordering.
+
+Each installed command must return exit0 and exactly one matching final journey record after
+its outer cleanup; capture or behavior output alone is not completion. An unsettled CLI fails
+at process quiescence rather than exiting successfully. The foreign busy-port holder owns at
+most64 accepted sockets, discards their input without replying, and requires actual listener
+and socket closure within its referenced2000ms cleanup deadline.
+
+The existing native-only workflow input is a cheap compiler/preflight gate, not installed
+certification. A complete run rebuilds its own producer artifacts at the same settled source head.
+Keep the finite approved run budget, exact input hashes, actual inner command counts, skipped
+stages and original preview flags. No proof result alone authorizes a PR or Store release.

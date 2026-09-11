@@ -1984,13 +1984,13 @@
     "fp": "e9a1e74dee2c791e",
     "head": "// The publication gate answered a question that only gets asked once, and it was asked on"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3958-3969|0": {
-    "anchor": "CHANGELOG.md:3958-3969",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3966-3977|0": {
+    "anchor": "CHANGELOG.md:3966-3977",
     "fp": "7ebb6ef43a1f1241",
     "head": "- **The project now watches its own development tooling for known security problems, and says how"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3971-3981|0": {
-    "anchor": "CHANGELOG.md:3971-3981",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3979-3989|0": {
+    "anchor": "CHANGELOG.md:3979-3989",
     "fp": "c37eedd88ad1c81c",
     "head": "- **The project now has a published security policy, which names a private route for reporting a"
   },
@@ -6019,8 +6019,8 @@
     "fp": "2a5f696a4a2adc8e",
     "head": "be a heuristic about significance, and a heuristic about which anchors are worth counting is exactly"
   },
-  "scripts/check-counts.mjs|preamble|scripts/check-publication.mjs:183-187|0": {
-    "anchor": "scripts/check-publication.mjs:183-187",
+  "scripts/check-counts.mjs|preamble|scripts/check-publication.mjs:184-188|0": {
+    "anchor": "scripts/check-publication.mjs:184-188",
     "fp": "36abce5861d613b7",
     "head": "// A file git could not read is not a file that read clean. Read from the index enumerated by"
   },
@@ -6109,8 +6109,8 @@
     "fp": "b4d25fd001f72a5a",
     "head": "const SECURITY_HEADERS = Object.freeze({"
   },
-  "SECURITY.md|what-already-reduces-risk-here|test/server-contract.test.js:254-295|0": {
-    "anchor": "test/server-contract.test.js:254-295",
+  "SECURITY.md|what-already-reduces-risk-here|test/server-contract.test.js:274-315|0": {
+    "anchor": "test/server-contract.test.js:274-315",
     "fp": "7e7a6a6822d82b78",
     "head": "test('every application response carries the security headers', async () => {"
   },

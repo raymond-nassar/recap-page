@@ -295,6 +295,11 @@ try {
     -Label 'x64 ARM64 bundle'
 } catch {
   $primaryFailure = $_.Exception
+  if ($primaryFailure.Data.Contains('WackRejectedSummary')) {
+    $safeSummary = $primaryFailure.Data['WackRejectedSummary'] |
+      ConvertTo-Json -Depth 5 -Compress
+    "WACK rejected summary: $safeSummary"
+  }
 } finally {
   try {
     Remove-RecapPackages

@@ -12,6 +12,14 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Show branded feedback while the Store app opens
+
+The Windows Store launch uses a dark startup window with the large app icon and RECAP PAGE!
+instead of opening a terminal. Closing that window hides it while startup continues; later
+failures still show readable, dismissible details. The window closes when the local app is ready
+and the browser command succeeds, without an artificial delay. Browser choice, saved reading
+data, the local address and the detached background server are unchanged.
+
 ### Use a temporary reader link for the same comic
 
 Issue Details can use a pasted Marvel Unlimited reader address for a saved comic in this tab,

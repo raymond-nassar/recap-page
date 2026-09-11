@@ -258,6 +258,15 @@ test('the Store workflow has only approved release and rehearsal entry points', 
   assert.match(workflow, /runs-on: windows-2022/);
 });
 
+test('the Store workflow builds native launchers once before its one bundle build', () => {
+  const native = step('Build the production native launchers');
+  assert.match(native, /run: \.\/scripts\/build-native-launcher\.ps1/);
+  assert.doesNotMatch(native, /IncludeProofTools|Negatives|secrets\./);
+  assert.ok(workflow.indexOf(native) < workflow.indexOf('Build the Store bundle once'));
+  assert.equal((workflow.match(/run: npm run msix:pack/g) ?? []).length, 1);
+  assert.equal((workflow.match(/run: \.\/scripts\/build-native-launcher\.ps1/g) ?? []).length, 1);
+});
+
 test('the Store workflow pins every external release tool', () => {
   assert.match(
     workflow,

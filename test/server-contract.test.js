@@ -4,6 +4,7 @@ import { request } from 'node:http';
 import { connect } from 'node:net';
 import { readFileSync } from 'node:fs';
 import { sep } from 'node:path';
+import { runInNewContext } from 'node:vm';
 
 import {
   CSP, DEFAULT_PORT, HOST, PACKAGE_GENERATION, browserCommand, createStaticServer, parsePort, safePath,
@@ -28,6 +29,25 @@ import {
 const source = readFileSync(new URL('../server.mjs', import.meta.url), 'utf8');
 const packageName = JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8')).name;
 assert.ok(packageName, 'package.json has no name, so the leak assertion would check an empty marker');
+
+test('the actual packaged server startup suppresses its separate browser dispatch only for MRT_NO_OPEN one', () => {
+  const start = source.match(/^function start\(\) \{[\s\S]*?^\}/m)?.[0];
+  assert.ok(start);
+  for (const [value, opens] of [['1', 0], [undefined, 1], ['0', 1], ['', 1]]) {
+    const calls = [];
+    runInNewContext(`${start}\nstart();`, {
+      process: { env: { MRT_NO_OPEN: value } }, PORT: 8787, HOST: '127.0.0.1',
+      createStaticServer: () => ({
+        on: () => {},
+        listen: (port, host, callback) => { assert.equal(port, 8787); assert.equal(host, '127.0.0.1'); callback(); },
+      }),
+      openBrowser: (url) => calls.push(url),
+      console: { log: () => {} },
+    });
+    assert.equal(calls.length, opens);
+    if (opens) assert.equal(calls[0], 'http://127.0.0.1:8787/');
+  }
+});
 
 // Binds 127.0.0.1:0, so the operating system picks a free port and nothing collides with a tracker
 // the developer already has running on 8787. Always closed, including when the body throws.

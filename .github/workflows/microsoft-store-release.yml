@@ -23,7 +23,7 @@ jobs:
       github.ref_name == github.event.repository.default_branch
     environment: microsoft-store-production
     runs-on: windows-2022
-    timeout-minutes: 185
+    timeout-minutes: 200
     steps:
       - name: Check out the approved release source
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -120,6 +120,11 @@ jobs:
         run: >-
           node --test test/version.test.js test/msix-packaging.test.js
           test/wack-workflow.test.js test/microsoft-store-release.test.js
+
+      - name: Build the production native launchers
+        timeout-minutes: 12
+        shell: pwsh
+        run: ./scripts/build-native-launcher.ps1
 
       - name: Build the Store bundle once
         timeout-minutes: 15

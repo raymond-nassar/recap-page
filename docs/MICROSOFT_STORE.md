@@ -172,7 +172,8 @@ planning boundary derived from the reservation date, not as a portal-confirmed e
 
 ```mermaid
 flowchart LR
-  Start["Start menu"] --> Coordinator["short-lived architecture-matched Node coordinator"]
+  Start["Start menu"] --> GUI["native branded GUI launcher"]
+  GUI --> Coordinator["hidden architecture-matched Node coordinator"]
   Coordinator --> Health["exact-generation local health check"]
   Health -->|"not ready"| Node["detached hidden architecture-matched Node"]
   Node --> Server["unchanged loopback server"]
@@ -187,7 +188,30 @@ x64 emulation on Windows on Arm unless it uses a Windows 11 24H2-only applicatio
 That choice would either leave older package targets emulated or raise the Windows floor for both
 bundle slices. A second native toolchain or launcher runtime would add another supply-chain surface.
 
-The selected launcher therefore uses the official Node executable already required by each package.
+The native C++/Win32 entry is now compiled for x64 and ARM64 on the same hosted Windows toolchain.
+It uses a static C++ runtime and inbox Windows UI APIs rather than adding a framework users must
+install. The manifest retains the Windows 10 build 19041 floor. Hosted execution on Windows Server
+2022 and Windows 11 is not itself a runtime observation on that oldest supported Windows version.
+
+The entry shows the existing large icon and centered Impact-style RECAP PAGE! wordmark on a dark
+surface, with system high contrast taking precedence. There is no duplicate caption brand. Closing
+pending feedback hides the window but keeps startup observation alive; a later error restores a
+readable, selectable error surface. Successful completion has no minimum display delay and means
+verified server readiness plus successful browser-command handoff, not that the page has painted.
+
+The GUI starts the unchanged official Node executable without a console and with an explicit
+standard-handle allowlist. Its fixed package-relative command accepts no alternate root, program
+or URL. It removes Node preload/module-path environment overrides from that child. The reserved
+GUI presentation mode writes one bounded versioned outcome, keeps diagnostics separate, and
+requires a valid outcome plus the owned coordinator's exit before reporting success. Missing,
+malformed, oversized or failed I/O is not treated as opened. Pipe work and waits stay off the UI
+thread; completion does not wait for a descendant-held pipe to reach EOF.
+
+The GUI-only browser-command limit is 30 seconds; the outer 180-second coordinator watchdog is a
+liveness backstop, not a replacement for the existing readiness checks or a startup-time promise.
+Cleanup targets retained helper/coordinator handles only, never a detached healthy server.
+Direct-console use of the JavaScript coordinator retains its existing diagnostics and pause.
+
 The maintained JavaScript coordinator validates the packaged server and generation, starts it with
 the package root as its working directory, removes every casing of `MRT_PORT` and `MRT_NO_OPEN`, and
 gives the server independent hidden process and stream ownership. It waits for the exact-generation
@@ -195,7 +219,7 @@ health response before opening the browser, then exits. Another activation reuse
 server. It does not bind a port, read browser storage, write package files, or make an external
 network request.
 
-Three activation routes were measured or evaluated:
+Three earlier activation routes were measured or evaluated:
 
 - **Direct manifest parameters** launched the correct Node command and opened the correct browser
   origin. A normal run had a visible console, but a busy-port failure exited Node and closed the
@@ -203,49 +227,58 @@ Three activation routes were measured or evaluated:
 - **Package Support Framework** preserved the existing command wrapper and guidance. It was rejected
   because Microsoft states that the official NuGet binaries can send usage telemetry when Windows
   diagnostic collection is enabled. That conflicts with this app's no-telemetry promise.
-- **The selected Node coordinator** keeps startup failure guidance without PSF, a downloaded launcher
-  runtime, or an emulated entry process. Successful launch leaves no console to close. The x64 and
-  ARM64 package entry executables are the official native Node binaries already needed by the
-  server.
+- **The prior direct Node entry** kept startup failure guidance without PSF or an emulated entry
+  process, but still began as a console program. Its coordinator remains the startup authority
+  behind the new native GUI; the bundled Node bytes are not patched or replaced.
 
 The manifest declares only `runFullTrust`. It is needed because the package starts a classic desktop
 process at medium integrity. Partner Center must review and approve that restricted capability.
 
-## Build the local proof
+## Build controlled proof packages
 
 Prerequisites:
 
-- Windows 10 version 2004 or later
+- A disposable Windows Actions runner, not the personal Store installation
 - Node.js 20 or later for repository tooling
 - winapp CLI 0.6.0
-- Windows Developer Mode for loose registration
-- Administrator consent to trust the local proof certificate for `.msix` installation
+- Hosted Visual Studio 2022 x64/ARM64 tools and Windows SDK 10.0.26100.0 for the native producer
+- Administrator access in the disposable runner for temporary certificate trust and installed proof
 - `puppeteer-core` installed outside the repository, with `MRT_PUPPETEER` pointing to its entry file
 
-Build the x64 and ARM64 Store packages, their bundle, and the isolated x64 update-proof package:
+The Windows package workflow builds both native targets once, with separate isolated proof tools.
+It transfers only exact native binaries and source/output hash records to the existing package
+jobs. Consumers verify the producer digest, current commit, source bytes, PE policy and output
+hashes before use. Packages, certificates, private keys and raw reports are not transferred.
+
+In that controlled runner, build the native inputs before packaging:
 
 ```text
+.\scripts\build-native-launcher.ps1 -IncludeProofTools
 npm run msix:pack
 ```
 
 The build:
 
-1. Fetches pinned official x64 and ARM64 Node runtimes.
-2. Verifies both archives against Node's published SHA-256 list.
-3. Stages native x64 and ARM64 version `2.0.2.0` package layouts.
-4. Stages x64 version `2.0.2.1` under a separate proof-only output boundary.
-5. Generates MSIX image assets from the maintained app icon.
-6. Generates one random-password development certificate from the manifest.
-7. Signs both Store packages, the bundle, and the proof-only update with that certificate.
-8. Deletes the private PFX and password, leaving only the public CER for local trust.
+1. Requires the verified native build artifact, without silently compiling or downloading one.
+2. Fetches pinned official x64 and ARM64 Node runtimes and verifies their archive hashes.
+3. Stages each architecture's native GUI, unchanged Node, coordinator and native build record.
+4. Computes each package generation after those startup inputs are present.
+5. Separates the Store `.0` layouts from the x64 proof-only `.1` update.
+6. Generates MSIX image assets from the maintained app icon.
+7. Generates one random-password development certificate from the manifest.
+8. Signs both Store packages, the bundle and the proof-only update.
+9. Deletes the private PFX and password, leaving only the public CER for temporary trust.
 
 The package layouts, runtime downloads, generated assets, and launcher inputs are staged under the
-system temporary directory and removed after packaging. Only Store-safe version `2.0.2.0` artifacts
-and the public CER remain under ignored `dist/msix/`; version `2.0.2.1` remains under ignored
+system temporary directory and removed after packaging. Only Store-safe `.0` artifacts
+and the public CER remain under ignored `dist/msix/`; the proof-only `.1` remains under ignored
 `dist/msix-proof/`. Do not commit packages, certificates, logs, or proof reports.
 
-On any build host, inspect the two packages and both bundle slices for identity, updater absence,
-PE machine fields, and official Node executable hashes without starting a foreign runtime:
+Inspect both Store packages, the proof-only update and both bundle slices without starting a
+foreign runtime. The exact executable set is `RecapPageLauncher.exe` and `runtime\node.exe`.
+The GUI requires the matching PE32+ machine, GUI subsystem and source-bound binary hash; the Node
+runtime still requires its published official hash. Extra or misplaced executable payloads fail.
+Identity, activation, support floor, updater absence and proof-version separation are checked too:
 
 ```text
 npm run msix:inspect -- --structural
@@ -257,13 +290,15 @@ jobs own native execution evidence on matching hosts.
 
 ## Complete the installed proof
 
-Open an elevated terminal and trust only the public proof certificate in TrustedPeople:
+Installed and native observation run only in controlled Windows Actions. Never run these journeys
+against a personal Store installation or browser profile. The workflow trusts only its generated
+public proof certificate in TrustedPeople:
 
 ```text
 Import-Certificate -FilePath .\dist\msix\RecapPage-local-proof.cer -CertStoreLocation Cert:\LocalMachine\TrustedPeople
 ```
 
-Then return to a normal terminal:
+The isolated jobs execute these architecture/scenario combinations:
 
 ```text
 npm run msix:prove -- --scenario=certification-functionality
@@ -280,9 +315,9 @@ ordinary browser suite:
 $env:MRT_PUPPETEER='C:\path\to\scratch\node_modules\puppeteer-core\lib\puppeteer\puppeteer-core.js'
 ```
 
-For the corrected runtime, use `certification-functionality` in place of
-`start-profile-reader-relaunch`. That scenario starts the package twice across the pre-ready window,
-requires one settled server, fetches and parses the creator index, series index, catalog, and House
+The functionality scenario starts the package twice across the pre-ready window, requires one
+settled server, proves a later warm activation reuses it, and observes the native GUI, coordinator,
+verifier, server and browser-command lifecycle. It fetches and parses the creator index, series index, catalog, and House
 of M payload, exercises Browse and both name searches in Edge, distinguishes an external metadata
 failure, removes uncached local payloads, stops the server, verifies direct recovery guidance, and
 relaunches it. It then removes the package while the server is live and requires Windows to end the
@@ -309,6 +344,13 @@ directory. A temporary Edge profile verifies browser-owned state continuity duri
 proof. Synchronous reader-tab behavior remains owned by the ordinary browser suite because the
 installed proof does not contact Marvel.
 
+Busy-port proof also activates the installed native GUI, reads its full error through native
+accessibility controls, dismisses it, and requires that browser windows and server ownership remain
+unchanged. Calibrated app-client observation starts before activation. Lost events, missing required
+actor evidence and app-linked terminal presentation block proof; a screenshot alone is not sufficient
+evidence. The fixed native fixtures cover pending dismissal, late errors, malformed outcomes, pipe
+lifetime, bounds and accessibility without starting the real server or browser.
+
 The update scenario is x64-only because its `2.0.2.1` package is local proof material. The ARM64
 package and final bundle contain only Store-safe version `2.0.2.0`.
 
@@ -332,7 +374,8 @@ The workflow runs when package behavior, package proof, or its own WACK automati
 request, and it is also available by manual dispatch. Its installed jobs use architecture-native
 x64 and Windows on Arm hosts for the certification journey. The WACK job remains on the supported
 Windows Server 2022 x64 command-line host. Every job uses a read-only repository token, pinned
-actions, telemetry opt-out, and no secrets or artifact upload. It derives package paths from the
+actions, telemetry opt-out and no secrets. Only the exact native build/proof artifacts cross jobs;
+packages, trust material, browser data and raw reports do not. It derives package paths from the
 canonical application version and certifies the package built from the current source rather than
 comparing that source with the first accepted package commit.
 
@@ -343,9 +386,17 @@ for the x64 package and once for the final bundle. The x64 run covers the x64 en
 bundle run covers the submitted container and both package manifests. ARM64 runtime behavior remains
 owned by the installed Windows on Arm proof above.
 
-Only `Blocked executables=FAIL` and `DPIAwarenessValidation=WARNING` are accepted as known optional
-results. Any other non-pass category, explicit partial run, explicit outdated-kit marker, malformed
-report, command failure, or cleanup residue fails the workflow. The parser disables DTD and external
+Clean `PASS` remains accepted. The historical `WARNING` result is accepted only with exactly
+`Blocked executables=FAIL` and `DPIAwarenessValidation=WARNING`. An overall `PASS` with an explicit
+complete run also accepts exactly one non-pass result, `Blocked executables=FAIL`, provided the kit
+is current or does not report its version status. That case retains the qualified optional-warning
+disposition and prints the failure; it does not claim every category passed.
+
+This is not general subset acceptance. `WARNING` with only Blocked executables, duplicate results,
+an overall `FAIL`, any other non-pass name/result, an explicit partial run, an outdated-kit marker,
+a malformed report, command failure or cleanup residue still fails. Category-only output does not
+identify which executable was flagged and does not establish Store certification.
+The parser disables DTD and external
 resolution, caps the report at 16 MiB, emits no descriptions or paths, and deletes raw XML, HTML,
 stdout, and stderr after extracting allowlisted fields.
 
@@ -423,3 +474,42 @@ remains the immutable first-submission handoff and records the boundary between 
 - [Create and manage Store submissions](https://learn.microsoft.com/windows/uwp/monetize/create-and-manage-submissions-using-windows-store-services)
 - [WinApp CLI v0.6.0 release assets and digests](https://api.github.com/repos/microsoft/WinAppCli/releases/tags/v0.6.0)
 - [Node v24.19.0 published checksums](https://nodejs.org/dist/v24.19.0/SHASUMS256.txt)
+
+## Qualified app startup proof
+
+The startup claim concerns the native GUI and its internal coordinator, verifier, detached server
+and CMD browser-command helper on a qualified Windows host. It does not certify the whole desktop
+or the independent UI of an external URI handler. Other window activity remains explicitly
+unassessed, including known browser and shared-service request relationships. A presenter outside
+the app's process tree still matters when its console client is an app actor.
+
+An exact native-system console host with complete current-instance metadata and a verified
+coordinator, verifier or CMD parent is an accounted internal Console API server, not an external
+or invisible-process exemption. Windows owns its argument protocol. The host requires its own
+observed exit0 even if its client refuses startup with exit1, and its children do not inherit the
+CMD URI-dispatch boundary. Visible associated terminals still fail; unknown host-window metadata
+remains inconclusive unless same-lifetime evidence identifies a nonterminal window.
+Microsoft's [Console Host definition](https://learn.microsoft.com/windows/console/definitions#console-host)
+distinguishes API servicing from terminal presentation.
+
+The proof composes independent input, host, creation-policy, actor, observation, behavior and
+capture-cleanup evidence. Missing or ambiguous mandatory evidence is inconclusive; a known mismatch
+or app-linked visible terminal fails. The producer receipt runs the actual JavaScript creation
+functions and the server's packaged browser-suppression gate, rather than treating the inert native
+coordinator as production coverage.
+
+Before activation and at the required closing boundaries, nine installed inputs are compared with
+independent source, producer and inspected-package expectations: the activation manifest, GUI,
+official Node, coordinator, server, its two local imports, native build record and generation marker.
+The generation marker is compared as an input, not interpreted as installed-tree attestation.
+The private expectation map stays in the controlled job and is neither packaged nor uploaded.
+
+Native64 HKCU and HKLM Command Processor AutoRun values must be absent or canonical literal-empty
+at both capture endpoints; unreadable, nonempty or changed values cannot qualify. Actual inbox
+helper images must match the expected system inputs. The proof does not change registry values,
+PATH, helper flags or the browser handler to obtain a result. Preflight and window-observing
+negative controls also require their own complete, bound host-completion record.
+
+A passing startup capture covers only its completed resources. All five installed journey commands
+must separately finish their remaining behavior and outer cleanup before command success is
+published. Native-only runs and earlier captures never substitute for that delivery evidence.
