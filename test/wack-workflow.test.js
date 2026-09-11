@@ -492,7 +492,8 @@ test('native artifact transfer pins exact inputs and refuses digest mismatches',
     assert.match(output, /PASS builder-node-resolution configurations=8 assertions=16 proof-and-production=1 native-starts=0/);
     assert.match(output, /PASS completed-native-report configurations=7 assertions=8 specific-before-fallback=1/);
     assert.match(output, /PASS composer-completion-guard configurations=6 assertions=8 stdout-and-exit-required=1/);
-    assert.match(output, /PASS proof-report-fixtures assertions=162/);
+    assert.match(output, /PASS installed-journey-workflow configurations=6 assertions=8 live-output=1 final-record-and-exit=1/);
+    assert.match(output, /PASS proof-report-fixtures assertions=170/);
     t.diagnostic(output.trim());
   } else {
     t.diagnostic('Windows-only inert PowerShell reporting fixtures were not executed on this host.');

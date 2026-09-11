@@ -584,25 +584,59 @@ jobs:
         timeout-minutes: 25
         shell: pwsh
         run: |
-          npm run msix:prove -- `
-            --architecture=${{ matrix.architecture }} `
-            --source=${{ matrix.source }} `
-            --scenario=certification-functionality
-          if ($LASTEXITCODE -ne 0) {
-            throw 'The installed certification journey failed.'
-          }
-          npm run msix:prove -- `
-            --architecture=${{ matrix.architecture }} `
-            --source=${{ matrix.source }} `
-            --scenario=busy-port-refusal
-          if ($LASTEXITCODE -ne 0) {
-            throw 'The installed busy-port journey failed.'
-          }
-          if ('${{ matrix.architecture }}' -eq 'x64') {
-            npm run msix:prove -- --scenario=update-state-continuity
-            if ($LASTEXITCODE -ne 0) {
-              throw 'The installed update journey failed.'
+          function New-JourneyOutput {
+            [pscustomobject]@{
+              Lines = 0; Bytes = 0; Exceeded = $false; FinalCount = 0
+              FinalRecords = [Collections.Generic.List[string]]::new()
             }
+          }
+          function Write-JourneyProgress {
+            param($State, [Parameter(ValueFromPipeline = $true)][string]$InputObject)
+            process {
+              $State.Lines = [Math]::Min(4097, $State.Lines + 1)
+              $State.Bytes = [Math]::Min(1048577, $State.Bytes + [Text.Encoding]::UTF8.GetByteCount($InputObject) + 1)
+              if ($InputObject.Length -gt 4096 -or $State.Lines -gt 4096 -or $State.Bytes -gt 1MB) {
+                if (-not $State.Exceeded) { Write-Output 'DIAG installed-journey-output bound-exceeded=1' }
+                $State.Exceeded = $true
+              }
+              if (-not $State.Exceeded) { Write-Output $InputObject }
+              if ($InputObject -match '^(PASS|FAIL) installed-journey') {
+                $State.FinalCount = [Math]::Min(3, $State.FinalCount + 1)
+                if ($State.FinalRecords.Count -lt 2 -and $InputObject.Length -le 4096) {
+                  $State.FinalRecords.Add($InputObject)
+                }
+              }
+            }
+          }
+          function Assert-InstalledJourneyCompletion {
+            param($State, [int]$ExitCode, [string]$Scenario, [string]$Architecture, [string]$Source)
+            $expected = "PASS installed-journey scenario=$Scenario architecture=$Architecture source=$Source cleanup=complete"
+            $complete = -not $State.Exceeded -and $State.FinalCount -eq 1 -and
+              $State.FinalRecords.Count -eq 1 -and $State.FinalRecords[0] -ceq $expected
+            if ($ExitCode -ne 0 -or -not $complete) {
+              Write-Host "DIAG installed-journey-result exit_code=$ExitCode final_records=$($State.FinalCount) complete=$complete"
+              throw 'The installed journey did not finish its expected cleanup.'
+            }
+          }
+          $journey = New-JourneyOutput
+          npm run msix:prove -- `
+            --architecture=${{ matrix.architecture }} `
+            --source=${{ matrix.source }} `
+            --scenario=certification-functionality | Write-JourneyProgress -State $journey
+          $journeyExit = $LASTEXITCODE
+          Assert-InstalledJourneyCompletion $journey $journeyExit 'certification-functionality' '${{ matrix.architecture }}' '${{ matrix.source }}'
+          $journey = New-JourneyOutput
+          npm run msix:prove -- `
+            --architecture=${{ matrix.architecture }} `
+            --source=${{ matrix.source }} `
+            --scenario=busy-port-refusal | Write-JourneyProgress -State $journey
+          $journeyExit = $LASTEXITCODE
+          Assert-InstalledJourneyCompletion $journey $journeyExit 'busy-port-refusal' '${{ matrix.architecture }}' '${{ matrix.source }}'
+          if ('${{ matrix.architecture }}' -eq 'x64') {
+            $journey = New-JourneyOutput
+            npm run msix:prove -- --scenario=update-state-continuity | Write-JourneyProgress -State $journey
+            $journeyExit = $LASTEXITCODE
+            Assert-InstalledJourneyCompletion $journey $journeyExit 'update-state-continuity' 'x64' 'package'
           }
 
       - name: Remove installed proof material

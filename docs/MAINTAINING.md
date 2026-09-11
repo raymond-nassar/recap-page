@@ -961,6 +961,12 @@ After actual driver completion, the bounded final report read imports a specific
 before a generic failed-exit fallback. Only an imported specific record is marked as consumed;
 earlier genuine faults, poisoned reports and later cleanup failures retain their ordering.
 
+Each installed command must return exit0 and exactly one matching final journey record after
+its outer cleanup; capture or behavior output alone is not completion. An unsettled CLI fails
+at process quiescence rather than exiting successfully. The foreign busy-port holder owns at
+most64 accepted sockets, discards their input without replying, and requires actual listener
+and socket closure within its referenced2000ms cleanup deadline.
+
 The existing native-only workflow input is a cheap compiler/preflight gate, not installed
 certification. A complete run rebuilds its own producer artifacts at the same settled source head.
 Keep the finite approved run budget, exact input hashes, actual inner command counts, skipped

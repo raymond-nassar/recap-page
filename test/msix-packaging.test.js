@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { execFileSync } from 'node:child_process';
+import { execFileSync, spawnSync } from 'node:child_process';
 import { EventEmitter } from 'node:events';
 import { existsSync, readFileSync, mkdtempSync, mkdirSync, writeFileSync, rmSync } from 'node:fs';
 import { dirname, join } from 'node:path';
@@ -1197,7 +1197,7 @@ test('package scripts expose build and independently invocable proof scenarios',
   );
 });
 
-test('busy-port proof captures the installed supervisor without Windows Terminal', async () => {
+test('busy-port proof captures the installed supervisor without Windows Terminal', async (t) => {
   const { startInstalledLauncher } = await import('../scripts/msix-proof.mjs');
   const installLocation = 'C:\\Program Files\\WindowsApps\\RecapPage';
   const stagingRoot = 'C:\\Temp\\recap-page-installed-launcher';
@@ -1240,6 +1240,136 @@ test('busy-port proof captures the installed supervisor without Windows Terminal
   assert.equal(launched.output.join(''), 'Port 8787 is already in use.\n');
   assert.equal(launched.error(), null);
   assert.equal(launched.stagingRoot, stagingRoot);
+
+  const source = read(PROOF);
+  const definition = (name) => {
+    const value = source.match(new RegExp(`^(?:async )?function ${name}\\([\\s\\S]*?^\\}`, 'm'))?.[0];
+    assert.ok(value, `actual ${name} definition is required`);
+    return value;
+  };
+  const entry = source.match(/^if \(process\.argv\[1\] && fileURLToPath\(import\.meta\.url\) === process\.argv\[1\]\) \{[\s\S]*?^\}/m)?.[0];
+  assert.ok(entry, 'the actual installed proof CLI entry is required');
+  const scratch = mkdtempSync(join(tmpdir(), 'recap-busy-cli-'));
+  try {
+    for (const mode of ['unsettled', 'sockets', 'cleanup-failure', 'close-deadline']) {
+      const main = definition('main');
+      const busy = mode === 'unsettled'
+        ? 'async function busyPortRefusal() { await new Promise(() => {}); }'
+        : `${definition('createBusyHolder')}\n${definition('runInstalledScenario')}\n${definition('busyPortRefusal')}`;
+      const fixture = `
+import assert from 'node:assert/strict';
+import { createServer as realCreateServer, createConnection } from 'node:net';
+import { fileURLToPath } from 'node:url';
+const mode = ${JSON.stringify(mode)};
+const SCENARIOS = ['certification-functionality', 'busy-port-refusal', 'update-state-continuity'];
+const ARCHITECTURES = ['x64', 'arm64'];
+const STORE_PACKAGE_VERSION = '2.0.3.0', AUMID = 'inert-aumid';
+let server, queued, accepted = 0, peerClosed = 0, serverClosed = 0, responseBytes = 0;
+let acceptedChanged = () => {};
+const sockets = [];
+function createServer(handler) {
+  server = realCreateServer((socket) => {
+    ++accepted; sockets.push(socket);
+    if (mode === 'sockets' && accepted === 3) queued = socket;
+    else handler(socket);
+    acceptedChanged();
+  });
+  const listen = server.listen.bind(server);
+  server.listen = (port, host, callback) => {
+    assert.equal(port, 8787); assert.equal(host, '127.0.0.1');
+    return listen(0, '127.0.0.1', callback);
+  };
+  server.once('close', () => { ++serverClosed; });
+  const close = server.close.bind(server);
+  server.close = (callback) => {
+    const result = close((error) => { if (mode !== 'close-deadline') callback(error); });
+    if (queued) { handler(queued); queued = null; }
+    return result;
+  };
+  return server;
+}
+async function withNativeObservation(installed, architecture, source, kind, body) {
+  assert.equal(server.maxConnections, 64);
+  await body();
+  const count = mode === 'sockets' ? 3 : 1;
+  for (let index = 0; index < count; index++) {
+    await new Promise((resolve, reject) => {
+      const client = createConnection({ host: '127.0.0.1', port: server.address().port });
+      client.once('connect', () => { client.write('inert foreign-port probe'); resolve(); });
+      client.on('data', (data) => { responseBytes += data.length; });
+      client.on('error', (error) => { if (error.code !== 'ECONNRESET') reject(error); });
+      client.once('close', () => { ++peerClosed; });
+    });
+  }
+  await new Promise((resolve) => {
+    acceptedChanged = () => { if (accepted === count) resolve(); };
+    acceptedChanged();
+  });
+}
+async function loadStartupEvidence() {}
+function assertNoPreexistingPackage() {}
+function installPackage() { return { InstallLocation: 'inert-installation' }; }
+function browserSnapshotDigest() { return 'unchanged'; }
+function packageProcesses() { return []; }
+function activate() {}
+function cleanupPackage() {}
+async function waitFor(predicate) { return predicate(); }
+function startInstalledLauncher() {
+  return { child: { pid: 42 }, error: () => null, stagedFiles: [],
+    output: ['Port 8787 is already in use. It is not running this version of Recap Page. '
+      + 'Do not start Recap Page on a different port. another port opens a separate browser storage location.'] };
+}
+function removeStagedLauncher() {
+  if (mode === 'cleanup-failure') {
+    sockets[0].destroy(Object.assign(new Error('synthetic-private-socket-detail'), { code: 'EIO', errno: -5 }));
+    throw new Error('inert-staged-cleanup-failure');
+  }
+}
+process.once('exit', () => {
+  if (mode === 'unsettled') return;
+  assert.equal(accepted, mode === 'sockets' ? 3 : 1);
+  assert.equal(peerClosed, accepted);
+  assert.equal(serverClosed, 1);
+  assert.equal(responseBytes, 0);
+  console.log('DIAG busy-cli-sockets accepted=' + accepted + ' peers_closed=' + peerClosed
+    + ' server_closed=' + serverClosed + ' response_bytes=' + responseBytes);
+});
+${busy}
+${main}
+${definition('formatProofError')}
+${entry}
+`;
+      const path = join(scratch, `${mode}.mjs`);
+      writeFileSync(path, fixture);
+      const result = spawnSync(process.execPath, [path, '--scenario=busy-port-refusal',
+        '--architecture=x64', '--source=package'], {
+        cwd: scratch, encoding: 'utf8', windowsHide: true, timeout: 7000, maxBuffer: 65536,
+      });
+      assert.ifError(result.error);
+      assert.equal(result.signal, null);
+      t.diagnostic(`busy-cli case=${mode} exit=${result.status} final_marker=${result.stdout.includes('PASS installed-journey')}`);
+      assert.equal(result.status, mode === 'sockets' ? 0 : 1);
+      if (mode === 'unsettled') {
+        assert.match(result.stderr, /^FAIL installed-journey code=main-incomplete\r?\n$/);
+      } else {
+        assert.match(result.stdout, /DIAG busy-cli-sockets accepted=[13] peers_closed=[13] server_closed=1 response_bytes=0/);
+        assert.match(result.stdout, /"phase": "behavior"/);
+        if (mode === 'sockets') {
+          assert.match(result.stdout, /DIAG busy-holder-cleanup phase=completed accepted=3 open=0 closed=3/);
+          assert.equal(result.stdout.match(/^PASS installed-journey scenario=busy-port-refusal architecture=x64 source=package cleanup=complete$/gm)?.length, 1);
+          assert.equal(result.stderr, '');
+        } else {
+          assert.match(result.stdout, /DIAG busy-holder-cleanup phase=failed/);
+          assert.match(result.stderr, mode === 'close-deadline' ? /busy-holder-close-deadline/ : /inert-staged-cleanup-failure/);
+          assert.doesNotMatch(result.stderr, /synthetic-private-socket-detail/);
+        }
+      }
+      if (mode !== 'sockets') assert.doesNotMatch(result.stdout, /^PASS installed-journey/m);
+    }
+    t.diagnostic('busy-cli-children=4 package-native-operations=inert socket-origin=owned-ephemeral');
+  } finally {
+    rmSync(scratch, { recursive: true, force: true });
+  }
 });
 
 test('busy-port proof stages only the exact installed launcher inputs', async () => {

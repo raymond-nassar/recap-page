@@ -1006,15 +1006,120 @@ async function certificationFunctionality(architecture, source) {
   });
 }
 
+function createBusyHolder() {
+  const sockets = new Set();
+  const failures = [];
+  const counts = { accepted: 0, closed: 0, socketErrors: 0, peerResets: 0, serverErrors: 0, dropped: 0, omittedErrors: 0 };
+  let closing = false;
+  let notify = () => {};
+  const fail = (code, error) => {
+    if (failures.length < 16) {
+      const errno = Number.isSafeInteger(error?.errno) ? error.errno : 0;
+      failures.push(new Error(`${code} errno=${errno}`, error ? { cause: error } : undefined));
+    } else {
+      counts.omittedErrors = Math.min(65536, counts.omittedErrors + 1);
+    }
+  };
+  const count = (key) => {
+    if (counts[key] === 65536) {
+      if (!failures.length) fail('busy-holder-count-limit');
+    } else counts[key]++;
+  };
+  const destroy = (socket) => {
+    try { socket.destroy(); }
+    catch (error) { fail('busy-holder-socket-destroy-failed', error); }
+  };
+  const accept = (socket) => {
+    count('accepted');
+    sockets.add(socket);
+    const onError = (error) => {
+      count('socketErrors');
+      if (error.code === 'ECONNRESET') count('peerResets');
+      else fail('busy-holder-socket-error', error);
+    };
+    socket.on('error', onError);
+    socket.once('close', () => {
+      if (sockets.delete(socket)) count('closed');
+      socket.removeListener('error', onError);
+      notify();
+    });
+    socket.resume();
+    if (closing) destroy(socket);
+  };
+  const holder = createServer(accept);
+  holder.maxConnections = 64;
+  const onDrop = () => { count('dropped'); fail('busy-holder-socket-limit'); };
+  const onError = (error) => { count('serverErrors'); fail('busy-holder-server-error', error); notify(); };
+  holder.on('drop', onDrop);
+  holder.on('error', onError);
+  const report = (phase, listenerClosed) => {
+    console.log(`DIAG busy-holder-cleanup phase=${phase} accepted=${counts.accepted} open=${sockets.size} closed=${counts.closed}`
+      + ` socket_errors=${counts.socketErrors} peer_resets=${counts.peerResets} server_errors=${counts.serverErrors}`
+      + ` dropped=${counts.dropped} errors=${failures.length} omitted_errors=${counts.omittedErrors}`
+      + ` listener_closed=${Number(listenerClosed)} deadline_ms=2000`);
+  };
+  return {
+    listen: () => new Promise((resolve, reject) => {
+      const failed = (error) => {
+        holder.removeListener('listening', ready);
+        const errno = Number.isSafeInteger(error.errno) ? error.errno : 0;
+        reject(new Error(`busy-holder-listen-failed errno=${errno}`, { cause: error }));
+      };
+      const ready = () => {
+        holder.removeListener('error', failed);
+        resolve();
+      };
+      holder.once('error', failed);
+      holder.once('listening', ready);
+      holder.listen(8787, '127.0.0.1');
+    }),
+    assertHealthy() {
+      if (failures.length) throw new AggregateError([...failures], 'busy-port holder failed');
+    },
+    close: () => new Promise((resolve, reject) => {
+      closing = true;
+      let callbackObserved = false;
+      let settled = false;
+      report('begin', false);
+      const finish = (deadline = false) => {
+        const complete = callbackObserved && sockets.size === 0;
+        if (complete) {
+          holder.removeListener('connection', accept);
+          holder.removeListener('drop', onDrop);
+          holder.removeListener('error', onError);
+        }
+        if (settled || (!complete && !deadline)) return;
+        settled = true;
+        clearTimeout(timer);
+        report(failures.length ? 'failed' : 'completed', callbackObserved);
+        if (failures.length) reject(new AggregateError([...failures], 'busy-port holder cleanup failed'));
+        else resolve();
+      };
+      const timer = setTimeout(() => {
+        fail('busy-holder-close-deadline');
+        for (const socket of sockets) destroy(socket);
+        finish(true);
+      }, 2000);
+      notify = () => finish();
+      try {
+        holder.close((error) => {
+          callbackObserved = true;
+          if (error) fail('busy-holder-listener-close-failed', error);
+          finish();
+        });
+      } catch (error) { fail('busy-holder-listener-close-failed', error); }
+      for (const socket of sockets) destroy(socket);
+      finish();
+    }),
+  };
+}
+
 async function busyPortRefusal(architecture, source) {
-  const holder = createServer();
+  const holder = createBusyHolder();
   let launched = null;
-  await new Promise((resolve, reject) => {
-    holder.once('error', reject);
-    holder.listen(8787, '127.0.0.1', resolve);
-  });
 
   await runInstalledScenario(async (context) => {
+    await holder.listen();
     assertNoPreexistingPackage();
     context.cleanupAuthorized = true;
     context.installed = installPackage(STORE_PACKAGE_VERSION, architecture, source);
@@ -1056,6 +1161,7 @@ async function busyPortRefusal(architecture, source) {
       .some((candidate) => candidate.CommandLine?.includes('server.mjs'))) {
       throw new Error('native busy-port refusal started a server child');
     }
+    holder.assertHealthy();
     console.log(JSON.stringify({
       phase: 'behavior',
       scenario: SCENARIOS[1],
@@ -1078,9 +1184,7 @@ async function busyPortRefusal(architecture, source) {
         failures.push(error);
       }
       try {
-        await new Promise((resolve, reject) => {
-          holder.close((error) => (error ? reject(error) : resolve()));
-        });
+        await holder.close();
       } catch (error) {
         failures.push(error);
       }
@@ -1221,10 +1325,19 @@ function formatProofError(error, indent = '') {
 }
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
-  main().catch((err) => {
-    console.error(formatProofError(err));
-    process.exit(1);
-  });
+  const incomplete = () => {
+    console.error('FAIL installed-journey code=main-incomplete');
+    process.exitCode = 1;
+  };
+  process.once('beforeExit', incomplete);
+  main().then(
+    () => { process.removeListener('beforeExit', incomplete); },
+    (err) => {
+      process.removeListener('beforeExit', incomplete);
+      console.error(formatProofError(err));
+      process.exitCode = 1;
+    },
+  );
 }
 
 export {

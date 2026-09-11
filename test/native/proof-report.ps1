@@ -353,6 +353,70 @@ try {
     $statements[$position+2].Extent.Text -ceq 'Assert-ComposerCompletion -Lines $composerOutput -ExitCode $composerExit') 'composer stdout and immediate native status do not feed the actual guard'
   Write-Output 'PASS composer-completion-guard configurations=6 assertions=8 stdout-and-exit-required=1'
 
+  $workflow = [IO.File]::ReadAllText((Join-Path $root '.github\workflows\wack.yml'))
+  $journeyStep = [regex]::Match($workflow, '(?ms)^      - name: Exercise installed certification journey\r?\n.*?        run: \|\r?\n(.*?)(?=^      - name:)')
+  if (-not $journeyStep.Success) { throw 'actual installed journey workflow step is missing' }
+  $journeyScript = [regex]::Replace($journeyStep.Groups[1].Value, '(?m)^          ', '')
+  $journeyScript = $journeyScript.Replace('${{ matrix.architecture }}', 'x64').Replace('${{ matrix.source }}', 'package')
+  $journeyTokens = $null
+  $journeyErrors = $null
+  $journeyAst = [System.Management.Automation.Language.Parser]::ParseInput(
+    $journeyScript, [ref]$journeyTokens, [ref]$journeyErrors)
+  if ($journeyErrors.Count) { throw 'actual installed journey workflow step did not parse' }
+  foreach ($name in @('New-JourneyOutput','Write-JourneyProgress','Assert-InstalledJourneyCompletion')) {
+    $definitions = @($journeyAst.FindAll({
+      param($item)
+      $item -is [System.Management.Automation.Language.FunctionDefinitionAst] -and $item.Name -ceq $name
+    }, $true))
+    if ($definitions.Count -ne 1) { throw 'actual installed journey output guard is missing or ambiguous' }
+    . ([scriptblock]::Create($definitions[0].Extent.Text))
+  }
+  $journeyPass = 'PASS installed-journey scenario=busy-port-refusal architecture=x64 source=package cleanup=complete'
+  $journeyCases = @(
+    @{ Lines=@('DIAG busy-holder-cleanup phase=completed',$journeyPass); Exit=0; Accept=$true },
+    @{ Lines=@(); Exit=0; Accept=$false },
+    @{ Lines=@($journeyPass,$journeyPass); Exit=0; Accept=$false },
+    @{ Lines=@($journeyPass.Replace('busy-port-refusal','certification-functionality').Replace('source=package','source=bundle')); Exit=0; Accept=$false },
+    @{ Lines=@('{"phase":"behavior"}','PASS app-startup-contract-v2 profile=installed-busy scope=capture'); Exit=0; Accept=$false },
+    @{ Lines=@($journeyPass); Exit=9; Accept=$false }
+  )
+  $journeyReporting = $true
+  foreach ($case in $journeyCases) {
+    $state = New-JourneyOutput
+    $forwarded = @($case.Lines | Write-JourneyProgress -State $state)
+    $outcome = @{ Accepted=$false; Failure=$null }
+    $diagnostics = @(& {
+      try {
+        Assert-InstalledJourneyCompletion $state $case.Exit 'busy-port-refusal' 'x64' 'package'
+        $outcome.Accepted = $true
+      } catch { $outcome.Failure = $_.Exception.Message }
+    } 6>&1)
+    Assert-Report ($outcome.Accepted -eq $case.Accept -and
+      ($case.Accept -or $outcome.Failure -ceq 'The installed journey did not finish its expected cleanup.')) 'workflow accepted an incomplete or mismatched installed journey'
+    $journeyReporting = $journeyReporting -and (($forwarded -join "`n") -ceq ($case.Lines -join "`n"))
+    if (-not $case.Accept) {
+      $text = ($diagnostics | ForEach-Object { $_.ToString() }) -join "`n"
+      $journeyReporting = $journeyReporting -and $text.Contains("exit_code=$($case.Exit)")
+    }
+  }
+  Assert-Report $journeyReporting 'workflow suppressed live output or lost the actual failed exit'
+  $journeyCalls = @($journeyAst.FindAll({
+    param($item)
+    $item -is [System.Management.Automation.Language.PipelineAst] -and
+      $item.Extent.Text.StartsWith('npm run msix:prove --')
+  }, $true))
+  $journeyWiring = $journeyCalls.Count -eq 3
+  foreach ($call in $journeyCalls) {
+    $statements = @($call.Parent.Statements)
+    $position = [array]::IndexOf($statements, $call)
+    $journeyWiring = $journeyWiring -and $call.Extent.Text.Contains('Write-JourneyProgress -State $journey') -and
+      $position -ge 0 -and $position + 2 -lt $statements.Count -and
+      $statements[$position+1].Extent.Text -ceq '$journeyExit = $LASTEXITCODE' -and
+      $statements[$position+2].Extent.Text.StartsWith('Assert-InstalledJourneyCompletion $journey $journeyExit ')
+  }
+  Assert-Report $journeyWiring 'the actual installed commands do not immediately bind exit and output to the workflow guard'
+  Write-Output 'PASS installed-journey-workflow configurations=6 assertions=8 live-output=1 final-record-and-exit=1'
+
   $native = [IO.File]::ReadAllText((Join-Path $root 'test\native\StartupTests.cpp'))
   $observer = [IO.File]::ReadAllText((Join-Path $root 'test\native\StartupObserver.h'))
   $proof = [IO.File]::ReadAllText($proofPath)
