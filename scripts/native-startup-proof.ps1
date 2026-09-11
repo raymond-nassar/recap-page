@@ -231,6 +231,29 @@ function Receive-NativeFailure {
   }
 }
 
+function Receive-CompletedProof {
+  param($State, $Progress, [string]$Path, $DriverExitCode)
+  if (-not $Progress.Failure) {
+    try {
+      Read-ProofProgress -Path $Path -State $Progress
+      Receive-NativeFailure $State $Progress
+      if ($Progress.Pending) { Add-ProofFailure $State 'incomplete-proof-checkpoint' }
+    } catch {
+      Receive-NativeFailure $State $Progress
+      if ($Progress.Failure) {
+        Add-ProofFailure -State $State -Code $Progress.Failure -Cause $Progress.FailureCause -AlreadyReported -Origin report
+      } else {
+        Add-ProofFailure -State $State -Code 'proof-report-read-failed' -Cause $_.Exception.HResult
+      }
+    }
+  } else {
+    Receive-NativeFailure $State $Progress
+  }
+  if ($null -ne $DriverExitCode -and $DriverExitCode -ne 0 -and -not $Progress.NativeRecorded) {
+    Add-ProofFailure -State $State -Code 'native-exit-failed' -Cause $DriverExitCode -Origin native
+  }
+}
+
 function Receive-ProofStreams {
   param($Streams)
   foreach ($entry in $Streams) {
@@ -260,6 +283,7 @@ function Invoke-NativeProof {
   $outcome = New-ProofOutcome
   $driverExit = $null
   $exitObservedAt = $null
+  $completionRead = $false
   $streams = @()
   $process = $null
   $job = $null
@@ -308,10 +332,8 @@ function Invoke-NativeProof {
         if ($null -eq $exitObservedAt) {
           $exitObservedAt = $clock.ElapsedMilliseconds
           $driverExit = $process.ExitCode
-          if ($driverExit -ne 0 -and -not $progress.NativeRecorded) {
-            Add-ProofFailure -State $outcome -Code 'native-exit-failed' -Cause $driverExit -Origin native
-            $progress.NativeRecorded = $true
-          }
+          $completionRead = $true
+          Receive-CompletedProof -State $outcome -Progress $progress -Path $Report -DriverExitCode $driverExit
           Write-Host "CHECK EXIT process-wait code=$driverExit"
           Write-Host 'CHECK ENTER stream-drain'
         }
@@ -374,17 +396,8 @@ function Invoke-NativeProof {
       }
     }
     if (-not $progress.Failure) {
-      try {
-        Read-ProofProgress -Path $Report -State $progress
-        Receive-NativeFailure $outcome $progress
-        if ($progress.Pending) { Add-ProofFailure $outcome 'incomplete-proof-checkpoint' }
-      } catch {
-        Receive-NativeFailure $outcome $progress
-        if ($progress.Failure) {
-          Add-ProofFailure -State $outcome -Code $progress.Failure -Cause $progress.FailureCause -AlreadyReported -Origin report
-        } else {
-          Add-ProofFailure -State $outcome -Code 'proof-report-read-failed' -Cause $_.Exception.HResult
-        }
+      if (-not $completionRead) {
+        Receive-CompletedProof -State $outcome -Progress $progress -Path $Report -DriverExitCode $driverExit
       }
     }
     Invoke-ProofCleanupStep $outcome 'job-handle' { if ($job) { $job.Dispose() } }

@@ -942,6 +942,12 @@ from the real creation-option tests, a qualified native64 command environment, e
 startup actor, calibrated app-client terminal evidence, the declared behavior and completed
 capture-owned cleanup. A required unknown is inconclusive, not a pass.
 
+The accounted Console API host is still part of the app's actor and terminal evidence. Exact
+system-image and validated client-parent identity do not prove invisibility. Do not extend that
+role to arbitrary system children or allow its children to inherit a CMD external-URI boundary.
+Its arguments are a Windows-owned protocol, not a matched app script, and its normal completed
+exit is0 independently of an expected client refusal.
+
 The host reads both AutoRun hives without modifying them and compares expected inbox helper
 identities before and after capture. A window-observing negative counts only with its intended
 failure and a complete qualified `host-completion-v2` record. An early expected failure cannot
@@ -951,6 +957,9 @@ Unassessed global activity and external URI-handler UI stay visible as separate 
 Do not treat an image label, a PID outside the app tree, or a previous result as an exemption.
 The actual installed functionality, busy-port and update journeys still need their own successful
 completion after package and scenario cleanup. Preserve primary and secondary failure chronology.
+After actual driver completion, the bounded final report read imports a specific native failure
+before a generic failed-exit fallback. Only an imported specific record is marked as consumed;
+earlier genuine faults, poisoned reports and later cleanup failures retain their ordering.
 
 The existing native-only workflow input is a cheap compiler/preflight gate, not installed
 certification. A complete run rebuilds its own producer artifacts at the same settled source head.

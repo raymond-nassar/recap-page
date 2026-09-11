@@ -483,6 +483,15 @@ or the independent UI of an external URI handler. Other window activity remains 
 unassessed, including known browser and shared-service request relationships. A presenter outside
 the app's process tree still matters when its console client is an app actor.
 
+An exact native-system console host with complete current-instance metadata and a verified
+coordinator, verifier or CMD parent is an accounted internal Console API server, not an external
+or invisible-process exemption. Windows owns its argument protocol. The host requires its own
+observed exit0 even if its client refuses startup with exit1, and its children do not inherit the
+CMD URI-dispatch boundary. Visible associated terminals still fail; unknown host-window metadata
+remains inconclusive unless same-lifetime evidence identifies a nonterminal window.
+Microsoft's [Console Host definition](https://learn.microsoft.com/windows/console/definitions#console-host)
+distinguishes API servicing from terminal presentation.
+
 The proof composes independent input, host, creation-policy, actor, observation, behavior and
 capture-cleanup evidence. Missing or ambiguous mandatory evidence is inconclusive; a known mismatch
 or app-linked visible terminal fails. The producer receipt runs the actual JavaScript creation

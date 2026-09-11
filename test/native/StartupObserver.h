@@ -508,6 +508,56 @@ inline std::vector<std::wstring> semanticArguments(const std::wstring& command) 
     return result;
 }
 
+enum class AppChildRoute { internal, consoleApiHost, uriExternal };
+struct AppChildEvidence {
+    AppChildRoute route = AppChildRoute::internal;
+    startup::Actor fact;
+};
+inline AppChildEvidence appChildEvidence(const ProcessGraph& graph, const ThreadGraph& threads,
+                                        size_t index, size_t parent, const startup::Actor& parentFact,
+                                        const std::wstring& image, const std::wstring& systemHost) {
+    check(index < graph.instances.size() && parent < graph.instances.size(), "app-child-instance-unavailable");
+    const auto& value = graph.instances[index];
+    AppChildEvidence result;
+    auto& fact = result.fact;
+    fact.imageKnown = image.find(L'\\') != std::wstring::npos;
+    fact.argumentsKnown = !semanticArguments(value.start.command).empty();
+    fact.parent = value.creationObserved && graph.unique(value.start.parent, value.start.timestamp) == parent;
+    fact.identity = value.creationObserved && !value.ambiguous && fact.imageKnown && fact.argumentsKnown;
+    fact.exitKnown = value.ended && value.end.exitKnown;
+    fact.exitCode = value.end.exitCode;
+    bool threadSeen = false, exactThread = false;
+    for (size_t position = 0; position < threads.instances.size(); ++position) {
+        const auto& thread = threads.instances[position];
+        if (!thread.ambiguous && thread.owner == value.start.pid && thread.begin >= value.start.timestamp &&
+            thread.begin <= value.until) {
+            threadSeen = true;
+            if (thread.created && threads.unique(thread.id, thread.begin) == position &&
+                graph.unique(thread.owner, thread.begin) == index) exactThread = true;
+        }
+    }
+    fact.identity = fact.identity && threadSeen;
+    const bool platformHost = fact.imageKnown && !systemHost.empty() && recap::samePath(image, systemHost);
+    if (platformHost) {
+        fact.identity = fact.identity && exactThread;
+        const bool acceptedParent = parentFact.identity && parentFact.parent && parentFact.imageKnown &&
+            parentFact.argumentsKnown && parentFact.image && parentFact.arguments &&
+            (parentFact.role == startup::Role::coordinator || parentFact.role == startup::Role::verifier ||
+             parentFact.role == startup::Role::command);
+        if (fact.identity && fact.parent && acceptedParent) {
+            result.route = AppChildRoute::consoleApiHost;
+            fact.role = startup::Role::consoleApiHost;
+            fact.exitExpectationKnown = fact.exitKnown;
+            fact.exitExpected = fact.exitKnown && fact.exitCode == 0;
+            fact.exitReason = fact.exitKnown ? "behavior-mismatch" : "actor-missing";
+        }
+        return result;
+    }
+    if (fact.imageKnown && parentFact.role == startup::Role::command && parentFact.image && parentFact.arguments &&
+        parentFact.exitKnown && parentFact.exitExpected) result.route = AppChildRoute::uriExternal;
+    return result;
+}
+
 struct SemanticCli {
     std::wstring scenario, architecture = L"x64", source = L"package";
     size_t options = 0;
@@ -999,6 +1049,30 @@ inline WindowFact effectiveWindow(const WindowFact& raw, const WindowResolution&
 
 inline bool visibleBoundConsole(const WindowFact& raw, const WindowResolution& identity) {
     return identity.consoleBound && !identity.conflict && visibleIn(effectiveWindow(raw, identity), 0, UINT64_MAX);
+}
+
+struct AppWindowEvidence {
+    bool relevant = false;
+    startup::Terminal terminal;
+};
+inline AppWindowEvidence appWindowEvidence(const WindowFact& raw, const WindowResolution& identity,
+                                          bool linked, bool linkedOwner, bool apiHost, bool consoleAssociation) {
+    const bool nonterminalKind = identity.kind == WindowKind::other || identity.kind == WindowKind::startup;
+    const bool sameLifetimeNonterminal = identity.lifetime && identity.identityKnown && !identity.conflict &&
+        nonterminalKind && ((raw.metadataKnown && raw.identityKnown && raw.kind == identity.kind) ||
+                           (identity.created && identity.derived && identity.evidence != SIZE_MAX));
+    const bool console = consoleAssociation || identity.kind == WindowKind::console || identity.kind == WindowKind::terminal ||
+        raw.kind == WindowKind::console || raw.kind == WindowKind::terminal || (apiHost && !sameLifetimeNonterminal);
+    AppWindowEvidence result;
+    result.relevant = console && (linked || apiHost);
+    if (!result.relevant) return result;
+    const bool visible = visibleBoundConsole(raw, identity) ||
+        (raw.metadataKnown && (linkedOwner || apiHost) && visibleIn(raw, 0, UINT64_MAX));
+    const bool complete = identity.identityKnown && !identity.conflict && !identity.visibilityMissing &&
+        identity.created && identity.kind != WindowKind::unknown &&
+        (identity.kind != WindowKind::console || identity.consoleBound);
+    result.terminal = { true, visible, complete };
+    return result;
 }
 
 struct ConsoleFact {
@@ -1691,9 +1765,13 @@ class Observer {
                 const bool matched = fact.role != startup::Role::unexpected;
                 *report_ << " app_image_known=" << fact.imageKnown << " app_arguments_known=" << fact.argumentsKnown
                          << " app_role_matched=" << matched << " app_image_matched=" << (matched && fact.imageKnown && fact.image)
-                         << " app_arguments_matched=" << (matched && fact.argumentsKnown && fact.arguments)
+                         << " app_arguments_matched=" << (matched && fact.role != startup::Role::consoleApiHost &&
+                                fact.argumentsKnown && fact.arguments)
+                         << " argument_basis=" << (fact.role == startup::Role::consoleApiHost
+                                ? "windows-console-api-protocol" : "app-role-contract")
                          << " exit_expectation_known=" << fact.exitExpectationKnown << " exit_expected=" << fact.exitExpected
                          << " exit_basis=" << (fact.role == startup::Role::sentinel ? "fixture-owned-cleanup"
+                                : fact.role == startup::Role::consoleApiHost ? "console-api-host-exit0"
                                 : fact.retainedLive ? "retained-server" : "ordinary-exit-contract")
                          << " exit_reason=" << (fact.exitExpectationKnown && fact.exitExpected ? "none" : fact.exitReason);
             }
@@ -2792,19 +2870,14 @@ public:
                     evidence.candidateAmbiguous = true; continue;
                 }
                 const auto parent = appParents[0];
-                if (roles[parent] == startup::Role::command && facts[parent].image && facts[parent].arguments &&
-                    facts[parent].exitKnown && facts[parent].exitExpected) { external.insert(index); continue; }
                 const auto layout = layouts[parent];
                 const auto image = executablePath(value.start.pid, value.start);
                 const auto args = semanticArguments(value.start.command);
-                startup::Actor fact;
-                fact.imageKnown = image.find(L'\\') != std::wstring::npos;
-                fact.argumentsKnown = !args.empty();
-                fact.identity = fact.imageKnown && fact.argumentsKnown;
-                fact.exitKnown = value.ended && value.end.exitKnown;
-                fact.exitCode = value.end.exitCode;
+                const auto child = appChildEvidence(graph, threads, index, parent, facts[parent], image, classicHostImage_);
+                if (child.route == AppChildRoute::uriExternal) { external.insert(index); continue; }
+                auto fact = child.fact;
                 const bool node = recap::samePath(image, layout + L"\\runtime\\node.exe");
-                if (roles[parent] == startup::Role::gui) {
+                if (child.route != AppChildRoute::consoleApiHost && roles[parent] == startup::Role::gui) {
                     fact.role = startup::Role::coordinator; fact.image = node;
                     fact.arguments = args.size() == 3 && recap::samePath(args[1], layout + L"\\Launcher.mjs") &&
                         args[2] == L"--gui-startup-v1";
@@ -2827,16 +2900,11 @@ public:
                     fact.retainedLive = retained != clients_.end() &&
                         WaitForSingleObject(retained->second.process.get(), 0) == WAIT_TIMEOUT;
                     fact.exitExpected = fact.retainedLive;
-                } else if (fact.exitKnown) {
+                } else if (fact.exitKnown && fact.role != startup::Role::consoleApiHost) {
                     fact.exitExpected = fact.role == startup::Role::server ||
                         (evidence.profile == startup::Profile::inert && fact.role == startup::Role::coordinator)
                         ? value.end.exitCode <= 1 : value.end.exitCode == (evidence.profile == startup::Profile::busy ? 1UL : 0UL);
                 }
-                bool threadSeen = false;
-                for (const auto& thread : threads.instances)
-                    if (!thread.ambiguous && thread.owner == value.start.pid && thread.begin >= value.start.timestamp &&
-                        thread.begin <= value.until) threadSeen = true;
-                fact.identity = fact.identity && threadSeen;
                 if (fact.role == startup::Role::sentinel) {
                     const auto witness = std::find_if(fixtureCleanup_.begin(), fixtureCleanup_.end(),
                         [&](const auto& item) { return item.actor.pid == value.start.pid; });
@@ -2896,14 +2964,16 @@ public:
                    << " arguments=" << fact.arguments << " exit_known=" << fact.exitKnown << " exit_expected=" << fact.exitExpected
                    << " exit_code=" << fact.exitCode << " exit_expectation_known=" << fact.exitExpectationKnown
                    << " exit_basis=" << (fact.role == startup::Role::sentinel ? "fixture-owned-cleanup"
+                        : fact.role == startup::Role::consoleApiHost ? "console-api-host-exit0"
                         : fact.retainedLive ? "retained-server" : "ordinary-exit-contract")
                    << " exit_reason=" << (fact.exitExpectationKnown && fact.exitExpected ? "none" : fact.exitReason)
                    << " image_known=" << fact.imageKnown
                    << " arguments_known=" << fact.argumentsKnown << " role_matched=" << (fact.role != startup::Role::unexpected)
+                   << " argument_basis=" << (fact.role == startup::Role::consoleApiHost ? "windows-console-api-protocol" : "app-role-contract")
                    << " retained_live=" << fact.retainedLive << "\n";
         }
         finalActorFacts_ = facts;
-        const auto relates = [&](DWORD pid, uint64_t generated, const Moment& received) {
+        const auto relates = [&](DWORD pid, uint64_t generated, const Moment& received, bool apiOnly = false) {
             if (!pid || generated > received.tick || received.tick - generated > 120000) return false;
             const auto delay = received.tick - generated;
             const auto delta = (delay + SourceClockSlopMs) * frequency_ / 1000;
@@ -2911,7 +2981,7 @@ public:
             const auto after = delay > SourceClockSlopMs ? (delay - SourceClockSlopMs) * frequency_ / 1000 : 0;
             const auto latest = received.afterQpc > after ? std::min(received.qpc, received.afterQpc - after) : 0;
             for (const auto& [index, role] : roles) {
-                (void)role;
+                if (apiOnly && role != startup::Role::consoleApiHost) continue;
                 const auto& value = graph.instances[index];
                 if (value.start.pid == pid && value.start.timestamp <= static_cast<LONGLONG>(latest) &&
                     value.until >= static_cast<LONGLONG>(earliest)) return true;
@@ -2923,20 +2993,20 @@ public:
         for (size_t index = 0; index < windows_.size(); ++index) {
             const auto& raw = windows_[index]; const auto& identity = resolution[index];
             if (!raw.metadataKnown) ++captured.rawUnknown;
-            bool linked = relates(raw.owner, raw.generated, raw.received) ||
+            const bool linkedOwner = relates(raw.owner, raw.generated, raw.received);
+            bool linked = linkedOwner ||
                 (finalSources_[index].known && roles.count(finalSources_[index].process));
-            bool console = identity.kind == WindowKind::console || identity.kind == WindowKind::terminal ||
-                raw.kind == WindowKind::console || raw.kind == WindowKind::terminal;
+            const auto sourceRole = finalSources_[index].known ? roles.find(finalSources_[index].process) : roles.end();
+            const bool apiHost = (sourceRole != roles.end() && sourceRole->second == startup::Role::consoleApiHost) ||
+                relates(raw.owner, raw.generated, raw.received, true) || relates(raw.sourceOwner, raw.generated, raw.received, true);
+            bool consoleAssociation = false;
             for (const auto& event : consoles_) if (consoleFactInSegment(event, raw, identity) &&
-                relates(event.pid, event.generated, event.received)) { console = true; linked = true; }
-            if (console && linked) {
-                const bool visible = visibleBoundConsole(raw, identity) ||
-                    (raw.metadataKnown && relates(raw.owner, raw.generated, raw.received) && visibleIn(raw, 0, UINT64_MAX));
-                const bool complete = identity.identityKnown && !identity.conflict && !identity.visibilityMissing &&
-                    identity.created && (identity.kind != WindowKind::console || identity.consoleBound);
-                evidence.terminals.push_back({ true, visible, complete });
-                if (visible || !complete) offending.push_back(index);
-            } else if (!linked) { ++captured.unassessed; global.push_back(index); }
+                relates(event.pid, event.generated, event.received)) { consoleAssociation = true; linked = true; }
+            const auto window = appWindowEvidence(raw, identity, linked, linkedOwner, apiHost, consoleAssociation);
+            if (window.relevant) {
+                evidence.terminals.push_back(window.terminal);
+                if (window.terminal.visible || !window.terminal.complete) offending.push_back(index);
+            } else if (!linked && !apiHost) { ++captured.unassessed; global.push_back(index); }
         }
         for (const auto& event : consoles_) {
             if (!event.window || !relates(event.pid, event.generated, event.received)) continue;
@@ -2949,7 +3019,9 @@ public:
         captured.requests = external.size();
         report << "DIAG app-scope claim=app-startup-contract-v2 app_visible=" << captured.result.visible
                << " app_unresolved=" << captured.result.unresolved << " unassessed_global=" << captured.unassessed
-               << " unknown_object_metadata=" << captured.rawUnknown << " external_request_children=" << captured.requests << "\n";
+               << " unknown_object_metadata=" << captured.rawUnknown << " external_request_children=" << captured.requests
+               << " console_api_hosts=" << std::count_if(evidence.actors.begin(), evidence.actors.end(),
+                    [](const auto& value) { return value.role == startup::Role::consoleApiHost; }) << "\n";
         const std::vector<size_t> noWindowOffenders;
         const auto& context = offending.empty()
             ? (captured.result.actors.state == startup::State::satisfied ? global : noWindowOffenders) : offending;

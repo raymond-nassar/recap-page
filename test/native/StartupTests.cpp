@@ -2243,6 +2243,101 @@ void fixtureCleanupCases() {
     liveReport->flush();
 }
 
+void consoleApiHostCases() {
+    using Role = startup::Role;
+    using State = startup::State;
+    const std::wstring systemHost = L"C:\\Windows\\System32\\conhost.exe";
+    const auto parentFact = [](Role role) {
+        startup::Actor value;
+        value.role = role; value.imageKnown = value.argumentsKnown = true;
+        return value;
+    };
+    const auto child = [&](const startup::Actor& parent, const std::wstring& image, bool metadata = true,
+                           bool reused = false, DWORD exitCode = 0, bool exitKnown = true) {
+        proof::ProcessEvent owner;
+        owner.pid = 10; owner.parent = 1; owner.start = true; owner.timestamp = 100;
+        owner.image = L"node.exe"; owner.command = L"node.exe fixed-client";
+        proof::ProcessEvent start;
+        start.pid = 20; start.parent = 10; start.start = true; start.timestamp = 110;
+        start.image = L"conhost.exe"; start.command = metadata ? L"conhost.exe opaque-platform-arguments" : L"";
+        auto end = start; end.start = false; end.timestamp = 120; end.exitKnown = exitKnown; end.exitCode = exitCode;
+        auto ownerEnd = owner; ownerEnd.start = false; ownerEnd.timestamp = 130; ownerEnd.exitKnown = true;
+        std::vector<proof::ProcessEvent> records{ owner, start, end, ownerEnd };
+        if (reused) records.push_back(start);
+        const proof::ProcessGraph graph(records);
+        std::vector<proof::ThreadEvent> threadRecords;
+        if (metadata) {
+            threadRecords.push_back({ 20, 21, 111, proof::LifecycleKind::start });
+            threadRecords.push_back({ 20, 21, 119, proof::LifecycleKind::end });
+        }
+        const proof::ThreadGraph threads(threadRecords);
+        const auto candidates = graph.at(20, 111);
+        check(!candidates.empty(), "console-api-test-child-missing");
+        return proof::appChildEvidence(graph, threads, candidates.front(), graph.unique(10, 111), parent, image, systemHost);
+    };
+    size_t rows = 0;
+    const auto expect = [&](bool condition) { ++rows; check(condition, "console-api-host-adapter-row-failed"); };
+    auto coordinator = parentFact(Role::coordinator);
+    coordinator.exitCode = 1;
+    const auto valid = child(coordinator, systemHost);
+    startup::Evidence busy;
+    busy.profile = startup::Profile::busy; busy.expectedRoots = busy.expectedCoordinators = 0;
+    busy.actors = { valid.fact };
+    expect(valid.route == proof::AppChildRoute::consoleApiHost && valid.fact.role == Role::consoleApiHost &&
+           valid.fact.exitCode == 0 && !valid.fact.retainedLive &&
+           startup::reduceActors(busy).actors.state == State::satisfied && coordinator.exitCode == 1);
+    const auto verifier = child(parentFact(Role::verifier), systemHost);
+    expect(verifier.fact.role == Role::consoleApiHost && startup::actorPremise(verifier.fact).state == State::satisfied);
+    const auto command = child(parentFact(Role::command), systemHost);
+    expect(command.route == proof::AppChildRoute::consoleApiHost && command.fact.role == Role::consoleApiHost);
+    const auto wrongImage = child(coordinator, L"C:\\untrusted\\conhost.exe");
+    expect(wrongImage.route == proof::AppChildRoute::internal && startup::actorPremise(wrongImage.fact).state == State::violated);
+    const auto wrongParent = child(parentFact(Role::server), systemHost);
+    expect(wrongParent.route == proof::AppChildRoute::internal && startup::actorPremise(wrongParent.fact).state == State::violated);
+    const auto missing = child(coordinator, systemHost, false);
+    expect(missing.route == proof::AppChildRoute::internal && startup::actorPremise(missing.fact).state == State::unknown);
+    const auto reused = child(coordinator, systemHost, true, true);
+    expect(reused.route == proof::AppChildRoute::internal && startup::actorPremise(reused.fact).state == State::unknown);
+    const auto hostChild = child(valid.fact, L"C:\\Windows\\System32\\cmd.exe");
+    expect(hostChild.route == proof::AppChildRoute::internal && startup::actorPremise(hostChild.fact).state == State::violated);
+
+    proof::WindowFact created;
+    created.event = EVENT_OBJECT_CREATE; created.window = 100; created.owner = 20; created.thread = 21;
+    created.sourceThread = 21; created.sourceOwner = 20; created.generated = 130; created.received = { 130, 130, 130 };
+    created.kind = proof::WindowKind::console;
+    created.identityKnown = created.metadataKnown = created.present = created.visible = true;
+    created.geometryKnown = created.hierarchyKnown = created.topLevel = created.onScreen = true;
+    const auto visibleIdentity = proof::correlateWindows({ created }, true, true);
+    const auto visible = proof::appWindowEvidence(created, visibleIdentity[0], true, true, true, false);
+    startup::Evidence windowCase;
+    windowCase.expectedRoots = windowCase.expectedCoordinators = 0;
+    windowCase.actors = { valid.fact };
+    windowCase.terminals = { visible.terminal };
+    expect(visible.relevant && visible.terminal.visible && startup::reduceActors(windowCase).capture.state == State::violated);
+    auto unknown = created;
+    unknown.kind = proof::WindowKind::unknown;
+    unknown.identityKnown = unknown.metadataKnown = unknown.present = unknown.visible = false;
+    unknown.geometryKnown = unknown.hierarchyKnown = false;
+    auto destroyed = unknown; destroyed.event = EVENT_OBJECT_DESTROY; destroyed.generated = 140; destroyed.received = { 140, 140, 140 };
+    const auto unknownIdentity = proof::correlateWindows({ unknown, destroyed }, true, true);
+    const auto partial = proof::appWindowEvidence(destroyed, unknownIdentity[1], true, false, true, false);
+    windowCase.terminals = { partial.terminal };
+    expect(partial.relevant && !partial.terminal.complete && !partial.terminal.visible &&
+           startup::reduceActors(windowCase).capture.state == State::unknown && !destroyed.metadataKnown);
+    auto nonterminal = created; nonterminal.kind = proof::WindowKind::other; nonterminal.visible = false;
+    const auto recovered = proof::correlateWindows({ nonterminal, destroyed }, true, true);
+    const auto ordinary = proof::appWindowEvidence(destroyed, recovered[1], true, false, true, false);
+    expect(recovered[1].derived && recovered[1].evidence == 0 && !ordinary.relevant && !destroyed.metadataKnown);
+    const auto unknownExit = child(coordinator, systemHost, true, false, 0, false);
+    const auto wrongExit = child(coordinator, systemHost, true, false, 1);
+    expect(unknownExit.fact.role == Role::consoleApiHost && !unknownExit.fact.exitExpectationKnown &&
+           startup::actorPremise(unknownExit.fact).state == State::unknown &&
+           wrongExit.fact.role == Role::consoleApiHost && startup::actorPremise(wrongExit.fact).state == State::violated);
+    check(rows == 12 && liveReport, "console-api-host-case-count");
+    *liveReport << "DIAG console-api-host-cases rows=12 role_evaluations=10 window_evaluations=3 passed=12\n";
+    liveReport->flush();
+}
+
 struct CalibrationState {
     const char* stage = "calibration-start";
     proof::Moment begin, beforeAttach;
@@ -3269,6 +3364,7 @@ int wmain(int argc, wchar_t** argv) {
             observed("process-instance-cases", [] { processInstanceCases(); });
             observed("app-contract-cases", [] { appContractCases(); });
             observed("fixture-cleanup-cases", [] { fixtureCleanupCases(); });
+            observed("console-api-host-cases", [] { consoleApiHostCases(); });
             observed("source-lifetime-cases", [] { sourceLifetimeCases(); });
             observed("semantic-evidence-cases", [] { semanticEvidenceCases(); });
             observed("caller-context-cases", [] { callerContextCases(); });

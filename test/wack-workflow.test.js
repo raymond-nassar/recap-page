@@ -423,6 +423,10 @@ test('native artifact transfer pins exact inputs and refuses digest mismatches',
   assert.match(native, /observed\("fixture-cleanup-cases", \[\] \{ fixtureCleanupCases\(\); \}\)/);
   assert.match(observer, /startup::applyFixtureExit\(fact, identity,/);
   assert.match(observer, /startup::prioritizeActorContext\(finalActorContexts_, linked, context\)/);
+  assert.match(native, /console-api-host-cases rows=12 role_evaluations=10 window_evaluations=3 passed=12/);
+  assert.match(native, /observed\("console-api-host-cases", \[\] \{ consoleApiHostCases\(\); \}\)/);
+  assert.match(observer, /appChildEvidence\(graph, threads, index, parent, facts\[parent\], image, classicHostImage_\)/);
+  assert.match(observer, /appWindowEvidence\(raw, identity, linked, linkedOwner, apiHost, consoleAssociation\)/);
   assert.match(native, /ObservationProfile::nativeFixture, verifyFixedFixture\(options\[L"--fixture"\]\)/);
   assert.match(observer, /unknown_object_metadata=/);
   assert.match(observer, /unassessed_global=/);
@@ -486,7 +490,8 @@ test('native artifact transfer pins exact inputs and refuses digest mismatches',
     assert.match(output, /PASS semantic-diagnostics frozen-definitions=6 separate-registration=1/);
     assert.match(output, /PASS host-completion-consumer configurations=12 expected-native-primary-preserved=1/);
     assert.match(output, /PASS builder-node-resolution configurations=8 assertions=16 proof-and-production=1 native-starts=0/);
-    assert.match(output, /PASS proof-report-fixtures assertions=146/);
+    assert.match(output, /PASS completed-native-report configurations=7 assertions=8 specific-before-fallback=1/);
+    assert.match(output, /PASS proof-report-fixtures assertions=154/);
     t.diagnostic(output.trim());
   } else {
     t.diagnostic('Windows-only inert PowerShell reporting fixtures were not executed on this host.');

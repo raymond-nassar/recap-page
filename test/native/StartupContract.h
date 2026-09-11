@@ -245,7 +245,7 @@ public:
     }
 };
 
-enum class Role { gui, coordinator, verifier, server, command, sentinel, unexpected };
+enum class Role { gui, coordinator, verifier, server, command, sentinel, unexpected, consoleApiHost };
 enum class Profile { inert, functionality, busy };
 struct FixtureIdentity {
     unsigned int fixture = 0;

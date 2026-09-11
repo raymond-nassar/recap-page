@@ -206,6 +206,105 @@ try {
   Assert-Report ($residue.ExitCode -eq 1 -and $residue.Cleanup -and $residue.NonNativeFailure) 'cleanup upgraded native failure or accepted residue as an intended negative'
   Write-Output 'PASS native-primary-preserved residue-secondary=1 cleanup-does-not-upgrade=1'
 
+  $invokeDefinitions = @($ast.FindAll({
+    param($item)
+    $item -is [System.Management.Automation.Language.FunctionDefinitionAst] -and
+      $item.Name -ceq 'Invoke-NativeProof'
+  }, $true))
+  if ($invokeDefinitions.Count -ne 1) { throw 'actual native wrapper is missing or ambiguous' }
+  $completedSeams = @($invokeDefinitions[0].FindAll({
+    param($item)
+    $item -is [System.Management.Automation.Language.IfStatementAst] -and
+      $item.Clauses.Count -eq 1 -and $item.Clauses[0].Item1.Extent.Text -ceq '$null -eq $exitObservedAt' -and
+      $item.Clauses[0].Item2.Extent.Text.Contains('CHECK EXIT process-wait code=')
+  }, $true))
+  $finalReadSeams = @($invokeDefinitions[0].FindAll({
+    param($item)
+    $item -is [System.Management.Automation.Language.IfStatementAst] -and
+      $item.Clauses.Count -eq 1 -and $item.Clauses[0].Item1.Extent.Text.Contains('$progress.Failure') -and
+      ($item.Clauses[0].Item2.Extent.Text.Contains('proof-report-read-failed') -or
+       $item.Clauses[0].Item2.Extent.Text.Contains('Receive-CompletedProof'))
+  }, $true))
+  $completionHelpers = @($ast.FindAll({
+    param($item)
+    $item -is [System.Management.Automation.Language.FunctionDefinitionAst] -and
+      $item.Name -ceq 'Receive-CompletedProof'
+  }, $true))
+  if ($completedSeams.Count -ne 1 -or $finalReadSeams.Count -ne 1 -or $completionHelpers.Count -gt 1) {
+    throw 'actual completed-driver report seams are missing or ambiguous'
+  }
+  if ($completionHelpers.Count) { . ([scriptblock]::Create($completionHelpers[0].Extent.Text)) }
+  $completedSeam = [scriptblock]::Create($completedSeams[0].Extent.Text)
+  $finalReadSeam = [scriptblock]::Create($finalReadSeams[0].Extent.Text)
+  function Invoke-CompletionCase {
+    param([string]$Mode)
+    $initial = 'CHECK ENTER fixture-live-poll'
+    if ($Mode -eq 'recorded') { $initial = 'FAIL code=actor-unexpected stage=app-startup-reduction' }
+    if ($Mode -eq 'poisoned') { $initial = 'unsafe fixture payload' }
+    $seen = Observe-Report -Lines @($initial)
+    $progress = $seen.State
+    $outcome = New-ProofOutcome
+    foreach ($stage in @($outcome.Resources.Keys)) { $outcome.Resources[$stage] = $true }
+    if ($Mode -eq 'recorded') { Receive-NativeFailure $outcome $progress }
+    if ($Mode -eq 'poisoned') {
+      Add-ProofFailure -State $outcome -Code $progress.Failure -Origin report -AlreadyReported
+    }
+    if ($Mode -eq 'earlier') { Add-ProofFailure $outcome 'earlier-wrapper-fault' -AlreadyReported }
+    $tail = ''
+    if ($Mode -in @('late','cleanup','earlier')) {
+      $tail = "FAIL code=actor-unexpected stage=app-startup-reduction`n"
+    }
+    if ($Mode -eq 'incomplete') { $tail = 'FAIL code=actor-unexpected' }
+    [IO.File]::AppendAllText($file, $tail, (New-Object Text.UTF8Encoding $false))
+    $reads = $progress.Reads
+    $Report = $file
+    $process = [pscustomobject]@{ ExitCode = 1 }
+    $clock = [pscustomobject]@{ ElapsedMilliseconds = 100 }
+    $exitObservedAt = $null
+    $driverExit = $null
+    $completionRead = $false
+    $captured = @{ Result = $null }
+    $output = @(& {
+      . $completedSeam
+      if ($Mode -eq 'cleanup') {
+        Invoke-ProofCleanupStep $outcome 'files' { throw 'inert-late-cleanup-fault' }
+      }
+      . $finalReadSeam
+      $captured.Result = Complete-ProofOutcome $outcome $progress $driverExit 2000
+    } 6>&1)
+    [pscustomobject]@{
+      State = $outcome; Progress = $progress; Result = $captured.Result; ReadsBefore = $reads
+      Emitted = ($output | ForEach-Object { $_.ToString() }) -join "`n"
+    }
+  }
+  $late = Invoke-CompletionCase late
+  if ($late.State.Failure -ceq 'native-exit-failed') {
+    Write-Output "CHECK completion-original generic-primary=1 native_recorded=$($late.Progress.NativeRecorded) specific_available=$([bool]$late.Progress.NativeFailure)"
+  }
+  Assert-Report ($late.State.Failure -ceq 'actor-unexpected' -and $late.State.PrimaryOrigin -ceq 'native') 'actual completion suppressed the available specific native failure'
+  Assert-Report ($late.Progress.NativeRecorded -and $late.Result.ExitCode -eq 1 -and
+    $late.State.SecondaryFailures.Count -eq 0) 'specific native completion duplicated or upgraded the failed exit'
+  $recorded = Invoke-CompletionCase recorded
+  Assert-Report ($recorded.State.Failure -ceq 'actor-unexpected' -and $recorded.Progress.NativeRecorded -and
+    $recorded.State.SecondaryFailures.Count -eq 0) 'already imported native failure was duplicated at completion'
+  $generic = Invoke-CompletionCase generic
+  Assert-Report ($generic.State.Failure -ceq 'native-exit-failed' -and -not $generic.Progress.NativeRecorded -and
+    $generic.Result.ExitCode -eq 1) 'generic failed exit was lost or marked as an imported native record'
+  $poisoned = Invoke-CompletionCase poisoned
+  Assert-Report ($poisoned.State.Failure -ceq 'unsafe-proof-report' -and
+    $poisoned.Progress.Reads -eq $poisoned.ReadsBefore -and -not $poisoned.Result.ReportValid -and
+    $poisoned.Result.ExitCode -eq 1) 'completion reread or upgraded a poisoned report'
+  $incomplete = Invoke-CompletionCase incomplete
+  Assert-Report (-not $incomplete.Result.ReportValid -and $incomplete.Result.ExitCode -eq 1 -and
+    $incomplete.State.Failure -ceq 'incomplete-proof-checkpoint') 'incomplete completion report became a valid result'
+  $lateCleanup = Invoke-CompletionCase cleanup
+  Assert-Report ($lateCleanup.State.Failure -ceq 'actor-unexpected' -and $lateCleanup.State.SecondaryFailures.Count -eq 1 -and
+    $lateCleanup.State.SecondaryFailures[0].Code -ceq 'cleanup-files-failed' -and -not $lateCleanup.Result.Cleanup) 'late cleanup replaced the specific completed native failure'
+  $earlier = Invoke-CompletionCase earlier
+  Assert-Report ($earlier.State.Failure -ceq 'earlier-wrapper-fault' -and $earlier.State.SecondaryFailures.Count -eq 1 -and
+    $earlier.State.SecondaryFailures[0].Code -ceq 'actor-unexpected') 'completed native record replaced an earlier real primary'
+  Write-Output 'PASS completed-native-report configurations=7 assertions=8 specific-before-fallback=1'
+
   $native = [IO.File]::ReadAllText((Join-Path $root 'test\native\StartupTests.cpp'))
   $observer = [IO.File]::ReadAllText((Join-Path $root 'test\native\StartupObserver.h'))
   $proof = [IO.File]::ReadAllText($proofPath)
