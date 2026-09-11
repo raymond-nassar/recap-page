@@ -952,7 +952,7 @@ jobs:
           }
 
   release_tests:
-    name: Diagnose the history path decision
+    name: Witness identity and test the disposable resolver candidate
     if: ${{ github.event_name == 'workflow_dispatch' && inputs.diagnostic_target == 'release-tests' }}
     runs-on: windows-2022
     timeout-minutes: 20
@@ -986,11 +986,92 @@ jobs:
         shell: pwsh
         run: |
           Write-Host "release-tests image=$env:ImageOS version=$env:ImageVersion runner=$env:RUNNER_OS architecture=$env:RUNNER_ARCH"
-      - name: Run only the unchanged history candidate test
+      - name: Run the original witness and conditional disposable candidate
         timeout-minutes: 5
         shell: pwsh
         env:
           MRT_ANCHOR_PATH_DIAGNOSTIC: '1'
         run: |
-          node --test --test-name-pattern='^history candidate and apply modes require exact reviewed bytes$' test/check-anchors.test.js
-          exit $LASTEXITCODE
+          $originalLog = Join-Path $env:RUNNER_TEMP 'recap-identity-original.log'
+          $candidateLog = Join-Path $env:RUNNER_TEMP 'recap-identity-candidate.log'
+          function Read-Records($Lines, $Prefix) {
+            $result = @()
+            foreach ($line in $Lines) {
+              if ($line.StartsWith("# $Prefix ")) {
+                $result += ($line.Substring($Prefix.Length + 3) | ConvertFrom-Json -ErrorAction Stop)
+              }
+            }
+            return $result
+          }
+          try {
+            $env:MRT_ANCHOR_IDENTITY_MODE = 'original'
+            node --test --test-reporter=tap --test-name-pattern='^history candidate and apply modes require exact reviewed bytes$' test/check-anchors.test.js *> $originalLog
+            $originalExit = $LASTEXITCODE
+            $originalLines = @(Get-Content -LiteralPath $originalLog -ErrorAction Stop)
+            $originalLines | Write-Output
+            Write-Host "identity-original runnerExit=$originalExit"
+            $identities = @(Read-Records $originalLines 'MRT_ANCHOR_IDENTITY')
+            $results = @(Read-Records $originalLines 'MRT_HISTORY_RESULT')
+            $cleanup = @(Read-Records $originalLines 'MRT_HISTORY_CLEANUP')
+            $children = @(Read-Records $originalLines 'MRT_ANCHOR_CHILDREN')
+            $transforms = @(Read-Records $originalLines 'MRT_ANCHOR_TRANSFORMATION')
+            $qualified = $originalExit -eq 1 -and $identities.Count -eq 1 -and
+              $results.Count -eq 1 -and $cleanup.Count -eq 1 -and $children.Count -eq 1 -and
+              $transforms.Count -eq 1 -and ($originalLines -contains '# tests 1') -and
+              ($originalLines -contains '# fail 1')
+            if ($qualified) {
+              $w = $identities[0]
+              $qualified = $w.pass -eq $true -and $w.label -eq 'final-in-tree' -and
+                $w.containment -eq $false -and $w.parentRelative -eq $true -and
+                $w.directoryIdentitiesMeaningful -eq $true -and $w.gitRootIsFixture -eq $true -and
+                $w.destinationParentIsFixture -eq $true -and $w.outsideDistinct -eq $true -and
+                $w.nativeDirectoriesAgree -eq $true -and $w.nativeOutsideDistinct -eq $true -and
+                $w.originalDirectoriesDiffer -eq $true -and
+                $results[0].expectedInTreeAssertion -eq $true -and
+                $results[0].completeTestPassed -eq $false -and
+                $cleanup[0].candidateFilesRemoved -eq $true -and $cleanup[0].fixtureRemoved -eq $true -and
+                $children[0].rootRemoved -eq $true -and
+                $transforms[0].mode -eq 'original' -and $transforms[0].substitutions -eq 0 -and
+                $transforms[0].sourceSha256 -eq $transforms[0].candidateSha256
+            }
+            if (-not $qualified) {
+              Write-Host 'identity-original qualified=false candidate=skipped'
+              throw 'The original physical witness did not satisfy every gate.'
+            }
+            Write-Host 'identity-original qualified=true candidate=permitted'
+            $env:MRT_ANCHOR_IDENTITY_MODE = 'candidate'
+            node --test --test-reporter=tap --test-name-pattern='^history candidate and apply modes require exact reviewed bytes$' test/check-anchors.test.js *> $candidateLog
+            $candidateExit = $LASTEXITCODE
+            $candidateLines = @(Get-Content -LiteralPath $candidateLog -ErrorAction Stop)
+            $candidateLines | Write-Output
+            Write-Host "identity-candidate runnerExit=$candidateExit"
+            $candidateResults = @(Read-Records $candidateLines 'MRT_HISTORY_RESULT')
+            $candidateCleanup = @(Read-Records $candidateLines 'MRT_HISTORY_CLEANUP')
+            $candidateChildren = @(Read-Records $candidateLines 'MRT_ANCHOR_CHILDREN')
+            $candidateTransforms = @(Read-Records $candidateLines 'MRT_ANCHOR_TRANSFORMATION')
+            $accepted = $candidateExit -eq 0 -and $candidateResults.Count -eq 1 -and
+              $candidateCleanup.Count -eq 1 -and $candidateChildren.Count -eq 1 -and
+              $candidateTransforms.Count -eq 1 -and ($candidateLines -contains '# tests 1') -and
+              ($candidateLines -contains '# pass 1') -and ($candidateLines -contains '# fail 0')
+            if ($accepted) {
+              $t = $candidateTransforms[0]
+              $accepted = $candidateResults[0].completeTestPassed -eq $true -and
+                $candidateCleanup[0].candidateFilesRemoved -eq $true -and
+                $candidateCleanup[0].fixtureRemoved -eq $true -and $candidateChildren[0].rootRemoved -eq $true -and
+                $t.mode -eq 'candidate' -and $t.substitutions -eq 3 -and
+                $t.nonWindowsPreserved -eq $true -and $t.predicatePreserved -eq $true -and
+                $t.productionBytesSha256 -eq $transforms[0].productionBytesSha256 -and
+                $t.sourceSha256 -eq $transforms[0].sourceSha256 -and
+                $t.candidateSha256 -ne $t.sourceSha256
+            }
+            if (-not $accepted) { throw 'The disposable candidate did not pass the complete test and cleanup gate.' }
+            Write-Host 'identity-candidate qualified=true production-source=unchanged'
+          } finally {
+            foreach ($path in @($originalLog, $candidateLog)) {
+              if (Test-Path -LiteralPath $path) {
+                Remove-Item -LiteralPath $path -Force -ErrorAction Stop
+              }
+              if (Test-Path -LiteralPath $path) { throw 'Identity diagnostic log cleanup failed.' }
+            }
+            Write-Host 'identity-experiment log-cleanup=complete'
+          }

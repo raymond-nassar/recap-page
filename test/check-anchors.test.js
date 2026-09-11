@@ -15,11 +15,11 @@ import assert from 'node:assert/strict';
 import { execFileSync, spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import {
-  cpSync, existsSync, mkdirSync, mkdtempSync, readFileSync, realpathSync, rmSync, symlinkSync, unlinkSync,
+  cpSync, existsSync, mkdirSync, mkdtempSync, readFileSync, realpathSync, rmSync, statSync, symlinkSync, unlinkSync,
   writeFileSync,
 } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { isAbsolute, join } from 'node:path';
+import { dirname, isAbsolute, join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
 import {
@@ -1143,12 +1143,61 @@ function selectAnchorPathDiagnostic(facts, approvedPaths) {
   return record;
 }
 
+function anchorDirectoryIdentity(facts, fixtureRoot) {
+  let operation = 'begin';
+  try {
+    const directories = {
+      gitRoot: facts.root, fixtureRoot, destinationParent: dirname(facts.destination),
+      outside: dirname(fixtureRoot),
+    };
+    const identities = {};
+    const canonical = {};
+    const hash = (value) => createHash('sha256').update(value).digest('hex');
+    for (const [label, path] of Object.entries(directories)) {
+      operation = `stat-${label}`;
+      const stat = statSync(path, { bigint: true });
+      if (!stat.isDirectory() || typeof stat.dev !== 'bigint' || stat.dev < 0n
+          || typeof stat.ino !== 'bigint' || stat.ino <= 0n) {
+        return { pass: false, operation, code: 'INVALID_DIRECTORY_IDENTITY' };
+      }
+      identities[label] = `${stat.dev}:${stat.ino}`;
+      operation = `native-realpath-${label}`;
+      const resolved = realpathSync.native(path);
+      canonical[label] = process.platform === 'win32' ? resolved.toLowerCase() : resolved;
+    }
+    const sameIdentity = identities.gitRoot === identities.fixtureRoot
+      && identities.destinationParent === identities.fixtureRoot;
+    const outsideDistinct = identities.outside !== identities.fixtureRoot;
+    const sameCanonical = canonical.gitRoot === canonical.fixtureRoot
+      && canonical.destinationParent === canonical.fixtureRoot;
+    const originalDirectoriesDiffer = facts.comparableRoot !== dirname(facts.comparableDestination);
+    const parentRelative = facts.rel === '..' || facts.rel.startsWith(`..${facts.sep}`);
+    return {
+      pass: !facts.containment && parentRelative && sameIdentity && outsideDistinct
+        && sameCanonical && originalDirectoriesDiffer,
+      label: 'final-in-tree', containment: facts.containment, parentRelative,
+      directoryIdentitiesMeaningful: true,
+      gitRootIsFixture: identities.gitRoot === identities.fixtureRoot,
+      destinationParentIsFixture: identities.destinationParent === identities.fixtureRoot,
+      outsideDistinct, nativeDirectoriesAgree: sameCanonical,
+      nativeOutsideDistinct: canonical.outside !== canonical.fixtureRoot,
+      originalDirectoriesDiffer,
+      identityHashes: Object.fromEntries(Object.entries(identities).map(([label, value]) => [label, hash(value)])),
+      canonicalHashes: Object.fromEntries(Object.entries(canonical).map(([label, value]) => [label, hash(value)])),
+    };
+  } catch (error) {
+    const safeCodes = ['ENOENT', 'ENOTDIR', 'EACCES', 'EPERM', 'EINVAL', 'EIO', 'ENOSYS'];
+    return { pass: false, operation, code: safeCodes.includes(error.code) ? error.code : 'UNCLASSIFIED_METADATA_ERROR' };
+  }
+}
+
 function anchorRepo({ history = true } = {}) {
   const diagnostic = process.env.MRT_ANCHOR_PATH_DIAGNOSTIC === '1';
   if (diagnostic) {
     assert.equal(process.env.GITHUB_ACTIONS, 'true');
     assert.equal(process.env.RUNNER_ENVIRONMENT, 'github-hosted');
     assert.equal(process.version, 'v24.20.0');
+    assert.ok(['original', 'candidate'].includes(process.env.MRT_ANCHOR_IDENTITY_MODE));
   }
   const diagnosticCounts = diagnostic ? { git: 0, checker: 0, records: 0 } : null;
   const root = mkdtempSync(join(tmpdir(), 'mrt-anchors-'));
@@ -1177,7 +1226,7 @@ function anchorRepo({ history = true } = {}) {
       { cwd: root, encoding: 'utf8', env: { ...process.env, ...environment } },
     );
     if (diagnosticCounts && typeof result.stderr === 'string') {
-      result.stderr = result.stderr.replace(/^MRT_ANCHOR_PATH [^\r\n]*\r?\n/gm, (line) => {
+      result.stderr = result.stderr.replace(/^MRT_ANCHOR_(?:PATH|IDENTITY) [^\r\n]*\r?\n/gm, (line) => {
         diagnosticCounts.records += 1;
         assert.ok(diagnosticCounts.records <= 32 && line.length <= 4096, 'path diagnostic limit exceeded');
         console.log(line.trimEnd());
@@ -1204,7 +1253,41 @@ function anchorRepo({ history = true } = {}) {
   const checkerCopy = join(root, 'scripts', 'check-anchors.mjs');
   cpSync(join(ROOT, 'scripts', 'check-anchors.mjs'), checkerCopy);
   if (diagnostic) {
-    const source = readFileSync(checkerCopy, 'utf8').replace(/\r\n/g, '\n');
+    const originalBytes = readFileSync(checkerCopy);
+    const originalSource = originalBytes.toString('utf8').replace(/\r\n/g, '\n');
+    let source = originalSource;
+    const mode = process.env.MRT_ANCHOR_IDENTITY_MODE;
+    let substitutions = 0;
+    if (mode === 'candidate') {
+      const begin = source.indexOf('function worktreeRoot() {');
+      const end = source.indexOf('function outsideWorktree(', begin);
+      assert.ok(begin >= 0 && end > begin);
+      const section = source.slice(begin, end);
+      assert.equal((section.match(/\brealpathSync\(/g) ?? []).length, 3);
+      assert.ok(section.includes("return realpathSync(resolve(execFileSync('git'"));
+      assert.ok(section.includes('return realpathSync(destination);'));
+      assert.ok(section.includes('return resolve(realpathSync(parent), relative(parent, destination));'));
+      const changed = section.replace(/\brealpathSync\(/g, () => {
+        substitutions += 1;
+        return 'containmentRealpath(';
+      });
+      assert.equal(changed.replaceAll('containmentRealpath(', 'realpathSync('), section);
+      const helper = [
+        'function containmentRealpath(path) {',
+        "  return process.platform === 'win32' ? realpathSync.native(path) : realpathSync(path);",
+        '}',
+        '',
+      ].join('\n');
+      source = source.slice(0, begin) + helper + changed + source.slice(end);
+      assert.equal(substitutions, 3);
+      assert.equal(source.slice(source.indexOf('function outsideWorktree(')), originalSource.slice(end));
+    }
+    const hash = (value) => createHash('sha256').update(value).digest('hex');
+    const transformation = {
+      mode, substitutions, productionBytesSha256: hash(originalBytes),
+      sourceSha256: hash(originalSource), candidateSha256: hash(source),
+      nonWindowsPreserved: true, predicatePreserved: true,
+    };
     const point = /^  const rel = relative\(comparableRoot, comparableDestination\);\n  if \((.+)\) \{$/gm;
     const matches = [...source.matchAll(point)];
     assert.equal(matches.length, 1, 'expected one actual containment decision');
@@ -1225,9 +1308,20 @@ function anchorRepo({ history = true } = {}) {
       '  }, diagnosticPaths);',
       "  const diagnosticLine = 'MRT_ANCHOR_PATH ' + JSON.stringify(diagnosticFields);",
       '  console.error(diagnosticLine);',
+      anchorDirectoryIdentity.toString().split('\n').map((line) => `  ${line}`).join('\n'),
+      `  if (label === 'candidate output' && resolve(path) === ${JSON.stringify(join(root, 'candidate.json'))}) {`,
+      '    const identity = anchorDirectoryIdentity({',
+      '      root, destination, comparableRoot, comparableDestination, rel, sep, containment: diagnosticContained,',
+      `    }, ${JSON.stringify(root)});`,
+      "    console.error('MRT_ANCHOR_IDENTITY ' + JSON.stringify(identity));",
+      '  }',
       '  if (diagnosticContained) {',
     ].join('\n');
-    writeFileSync(checkerCopy, source.replace(point, () => instrumented));
+    const instrumentedSource = "import { statSync } from 'node:fs';\n" + source.replace(point, () => instrumented);
+    writeFileSync(checkerCopy, instrumentedSource);
+    console.log(`MRT_ANCHOR_TRANSFORMATION ${JSON.stringify({
+      ...transformation, instrumentedSha256: hash(instrumentedSource),
+    })}`);
     console.log('MRT_ANCHOR_INSTRUMENTATION insertionPoints=1 predicate=original');
   }
   return { root, git, write, commit, checker, checkerWith, diagnosticCounts };
@@ -1361,10 +1455,28 @@ test('history candidate and apply modes require exact reviewed bytes', () => {
     } finally {
       rmSync(redirected, { recursive: true, force: true });
     }
+    if (repo.diagnosticCounts) console.log('MRT_HISTORY_RESULT {"completeTestPassed":true}');
+  } catch (error) {
+    if (repo.diagnosticCounts) {
+      console.log(`MRT_HISTORY_RESULT ${JSON.stringify({
+        completeTestPassed: false,
+        expectedInTreeAssertion: error.code === 'ERR_ASSERTION' && error.operator === 'match'
+          && error.expected?.source === 'outside the worktree'
+          && typeof error.actual === 'string'
+          && error.actual.trim() === 'FATAL: history migration target other.js has no qualifying occurrences',
+      })}`);
+    }
+    throw error;
   } finally {
     rmSync(output, { force: true });
     rmSync(second, { force: true });
     disposeAnchorRepo(repo);
+    if (repo.diagnosticCounts) {
+      console.log(`MRT_HISTORY_CLEANUP ${JSON.stringify({
+        candidateFilesRemoved: !existsSync(output) && !existsSync(second),
+        fixtureRemoved: !existsSync(repo.root),
+      })}`);
+    }
   }
 });
 
