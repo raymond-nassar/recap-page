@@ -12,6 +12,20 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+
+## 2.1.0
+
+Saved data from version 2.0.0 remains fully compatible with 2.1.0, including progress,
+Reading Lists, notes and availability choices. This release adds reading and navigation
+options without changing the saved-data schema. Branded startup feedback applies to the
+Store package only; the portable Windows ZIP keeps its existing command-window launcher.
+
+### Prepare a portable release candidate without publishing
+
+Maintainers can run the complete Windows proof with optional release checks and retain
+only the portable ZIP and its source/version/checksum record. Store packages remain
+temporary, and neither a GitHub release nor a Store submission is created by preparation.
+
 ### Show branded feedback while the Store app opens
 
 The Windows Store launch uses a dark startup window with the large app icon and RECAP PAGE!

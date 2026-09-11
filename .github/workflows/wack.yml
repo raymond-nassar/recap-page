@@ -3,6 +3,11 @@ name: Windows App Certification Kit
 on:
   workflow_dispatch:
     inputs:
+      release_preparation:
+        description: Run release checks and retain only the portable ZIP and provenance
+        type: boolean
+        required: false
+        default: false
       native_only:
         description: Build and prove only the native startup tools
         type: boolean
@@ -75,7 +80,12 @@ jobs:
           NATIVE_ONLY: ${{ inputs.native_only }}
           DIAGNOSTIC_ONLY: ${{ inputs.diagnostic_only }}
           DIAGNOSTIC_TARGET: ${{ inputs.diagnostic_target }}
+          RELEASE_PREPARATION: ${{ inputs.release_preparation }}
         run: |
+          if ($env:RELEASE_PREPARATION -eq 'true' -and
+              ($env:NATIVE_ONLY -eq 'true' -or $env:DIAGNOSTIC_ONLY -eq 'true')) {
+            throw 'release_preparation requires the complete Windows proof.'
+          }
           if ($env:GITHUB_EVENT_NAME -eq 'workflow_dispatch' -and
               $env:NATIVE_ONLY -eq 'true' -and $env:DIAGNOSTIC_ONLY -eq 'true') {
             throw 'native_only and diagnostic_only cannot both be enabled.'
@@ -702,4 +712,240 @@ jobs:
               'One or more installed-proof cleanup boundaries failed.',
               [Exception[]]$failures
             )
+          }
+
+  preparation:
+    name: Prepare the portable release candidate
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.release_preparation == true && inputs.native_only != true && inputs.diagnostic_only != true }}
+    runs-on: windows-2022
+    timeout-minutes: 120
+    steps:
+      - name: Check out the exact candidate and upgrade history
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        timeout-minutes: 2
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Set up the build driver
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        timeout-minutes: 4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install locked repository tooling
+        timeout-minutes: 4
+        run: npm ci --ignore-scripts
+      - name: Install the isolated locked browser driver
+        timeout-minutes: 4
+        shell: pwsh
+        run: |
+          $root = Join-Path $env:RUNNER_TEMP 'recap-release-puppeteer'
+          Copy-Item -LiteralPath ./.github/browser-proof -Destination $root -Recurse -ErrorAction Stop
+          npm ci --prefix $root --ignore-scripts
+          if ($LASTEXITCODE -ne 0) { throw 'The release browser driver could not be installed.' }
+          $entry = Join-Path $root 'node_modules\puppeteer-core\lib\puppeteer\puppeteer-core.js'
+          if (-not (Test-Path -LiteralPath $entry -PathType Leaf)) { throw 'The release browser driver is missing.' }
+          "MRT_PUPPETEER=$entry" >> $env:GITHUB_ENV
+      - name: Run ESLint
+        timeout-minutes: 2
+        run: npm run lint
+      - name: Run the bare test suite
+        timeout-minutes: 6
+        run: npm test
+      - name: Check counts
+        timeout-minutes: 2
+        run: npm run counts
+      - name: Check sizes
+        timeout-minutes: 2
+        run: npm run sizes
+      - name: Check anchors
+        timeout-minutes: 2
+        run: npm run anchors
+      - name: Check spacing
+        timeout-minutes: 2
+        run: npm run spacing
+      - name: Check palette
+        timeout-minutes: 2
+        run: npm run palette
+      - name: Check publication
+        timeout-minutes: 4
+        run: npm run publication
+      - name: Check the live metadata contract
+        timeout-minutes: 5
+        run: npm run contract
+      - name: Run the full ordinary browser suite once
+        timeout-minutes: 40
+        run: npm run browser
+      - name: Prove the historical upgrade once
+        timeout-minutes: 5
+        run: npm run upgrade
+      - name: Check the maintained Store packet
+        timeout-minutes: 2
+        run: npm run store:check
+      - name: Build only the portable ZIP
+        timeout-minutes: 10
+        run: npm run pack
+      - name: Verify portable bytes and record candidate provenance
+        timeout-minutes: 10
+        shell: pwsh
+        run: |
+          $root = Join-Path $env:RUNNER_TEMP 'recap-release-preparation'
+          New-Item -ItemType Directory -Path $root -ErrorAction Stop | Out-Null
+          $verifier = Join-Path $root 'verify.mjs'
+          @'
+          import assert from 'node:assert/strict';
+          import { createHash } from 'node:crypto';
+          import { execFileSync } from 'node:child_process';
+          import { readFile, readdir, writeFile } from 'node:fs/promises';
+          import { join } from 'node:path';
+          import { pathToFileURL } from 'node:url';
+
+          const digest = (bytes) => createHash('sha256').update(bytes).digest('hex');
+          export function verifyPortableEntries(expected, actual) {
+            assert.deepEqual([...actual.keys()].sort(), [...expected.keys()].sort(), 'portable entry allowlist differs');
+            assert.deepEqual([...actual.keys()].filter((name) => /\.exe$/i.test(name)), ['runtime/node.exe']);
+            for (const [name, bytes] of expected) {
+              assert.ok(actual.get(name).equals(bytes), `portable bytes differ: ${name}`);
+            }
+          }
+          export function verifyPortableNames(expected, names, payload) {
+            assert.equal(new Set(names).size, names.length, 'duplicate ZIP entry');
+            const files = [...expected.keys()].map((name) => `${payload}/${name}`).sort();
+            const directories = new Set(files.flatMap((name) => {
+              const parts = name.split('/');
+              return parts.slice(0, -1).map((_, index) => parts.slice(0, index + 1).join('/') + '/');
+            }));
+            for (const name of names) {
+              assert.ok(!name.includes('\\') && !name.split('/').includes('..'), 'unsafe ZIP entry');
+              if (name.endsWith('/')) assert.ok(directories.has(name), 'unexpected ZIP directory');
+            }
+            assert.deepEqual(names.filter((name) => !name.endsWith('/')).sort(), files, 'ZIP entry allowlist differs');
+          }
+          export function candidateRecord(input) {
+            assert.equal(input.repository, 'raymond-nassar/recap-page');
+            assert.match(input.commit, /^[0-9a-f]{40}$/);
+            assert.equal(input.commit, input.expectedCommit, 'candidate commit differs');
+            assert.match(input.tree, /^[0-9a-f]{40}$/);
+            assert.match(input.version, /^\d+\.\d+\.\d+$/);
+            assert.equal(input.version, input.lockVersion, 'lock version differs');
+            assert.equal(input.version, input.browserVersion, 'browser version differs');
+            assert.match(input.runId, /^[1-9]\d*$/);
+            assert.match(input.runAttempt, /^[1-9]\d*$/);
+            assert.match(input.nodeVersion, /^v24\.\d+\.\d+$/);
+            assert.equal(input.nodeArchitecture, 'win-x64');
+            assert.match(input.nodeHash, /^[0-9a-f]{64}$/);
+            assert.ok(Number.isSafeInteger(input.bytes) && input.bytes > 0);
+            assert.match(input.sha256, /^[0-9a-f]{64}$/);
+            return {
+              schemaVersion: 1, repository: input.repository,
+              commit: input.commit, tree: input.tree, applicationVersion: input.version,
+              workflow: { runId: input.runId, runAttempt: input.runAttempt },
+              archive: { file: 'marvel-reading-tracker-windows.zip', bytes: input.bytes, sha256: input.sha256 },
+              bundledNode: { version: input.nodeVersion, architecture: input.nodeArchitecture, sha256: input.nodeHash },
+              portableLauncher: 'Start on Windows.cmd',
+            };
+          }
+          async function entries(root, prefix = '') {
+            const result = new Map();
+            for (const entry of await readdir(root, { withFileTypes: true })) {
+              assert.ok(!entry.isSymbolicLink(), 'portable symlink is forbidden');
+              const name = prefix ? `${prefix}/${entry.name}` : entry.name;
+              const path = join(root, entry.name);
+              if (entry.isDirectory()) {
+                for (const pair of await entries(path, name)) result.set(...pair);
+              } else {
+                assert.ok(entry.isFile(), 'portable entry must be a file');
+                result.set(name, await readFile(path));
+              }
+            }
+            return result;
+          }
+          async function main() {
+            const root = process.env.GITHUB_WORKSPACE;
+            const scratch = join(process.env.RUNNER_TEMP, 'recap-release-preparation');
+            const git = (...args) => execFileSync('git', args, { cwd: root, encoding: 'utf8' }).trim();
+            const commit = git('rev-parse', 'HEAD');
+            const tree = git('rev-parse', 'HEAD^{tree}');
+            assert.equal(git('status', '--porcelain', '--untracked-files=no'), '', 'candidate is dirty');
+            assert.equal(commit, process.env.GITHUB_SHA);
+            const { NODE_VERSION, NODE_ARCH, appFiles, fetchRuntime, readMe, PAYLOAD_NAME } =
+              await import(pathToFileURL(join(root, 'scripts', 'pack-windows.mjs')));
+            const pkg = JSON.parse(await readFile(join(root, 'package.json'), 'utf8'));
+            const lock = JSON.parse(await readFile(join(root, 'package-lock.json'), 'utf8'));
+            assert.equal(lock.version, lock.packages[''].version);
+            const { APP_VERSION } = await import(pathToFileURL(join(root, 'src', 'js', 'lib', 'version.js')));
+            const archivePath = join(root, 'dist', 'marvel-reading-tracker-windows.zip');
+            const archive = await readFile(archivePath);
+            const reference = join(scratch, 'official.zip');
+            await writeFile(reference, await fetchRuntime(NODE_ARCH));
+            const literal = (value) => "'" + value.replaceAll("'", "''") + "'";
+            const unpack = (file, destination) => {
+              execFileSync('powershell.exe', ['-NoProfile', '-NonInteractive', '-Command',
+                `$ErrorActionPreference = 'Stop'; Expand-Archive -LiteralPath ${literal(file)} -DestinationPath ${literal(destination)}`],
+              { encoding: 'utf8', timeout: 120000 });
+            };
+            unpack(reference, join(scratch, 'official'));
+            const official = join(scratch, 'official', `node-${NODE_VERSION}-${NODE_ARCH}`);
+            const node = await readFile(join(official, 'node.exe'));
+            const expected = new Map();
+            for (const name of appFiles()) expected.set(name, await readFile(join(root, name)));
+            expected.set('Read this first.txt', Buffer.from(readMe));
+            expected.set('runtime/LICENSE-node.txt', await readFile(join(official, 'LICENSE')));
+            expected.set('runtime/node.exe', node);
+            const names = JSON.parse(execFileSync('powershell.exe', ['-NoProfile', '-NonInteractive', '-Command',
+              `$ErrorActionPreference = 'Stop'; Add-Type -AssemblyName System.IO.Compression.FileSystem; `
+              + `$zip = [IO.Compression.ZipFile]::OpenRead(${literal(archivePath)}); `
+              + 'try { ConvertTo-Json -InputObject @($zip.Entries | ForEach-Object { $_.FullName }) -Compress } finally { $zip.Dispose() }'],
+            { encoding: 'utf8', timeout: 120000 }));
+            verifyPortableNames(expected, names, PAYLOAD_NAME);
+            unpack(archivePath, join(scratch, 'portable'));
+            const outer = await readdir(join(scratch, 'portable'));
+            assert.deepEqual(outer, [PAYLOAD_NAME], 'portable root differs');
+            verifyPortableEntries(expected, await entries(join(scratch, 'portable', PAYLOAD_NAME)));
+            const record = candidateRecord({
+              repository: process.env.GITHUB_REPOSITORY, commit, expectedCommit: process.env.GITHUB_SHA, tree,
+              version: pkg.version, lockVersion: lock.version, browserVersion: APP_VERSION,
+              runId: process.env.GITHUB_RUN_ID, runAttempt: process.env.GITHUB_RUN_ATTEMPT,
+              nodeVersion: NODE_VERSION, nodeArchitecture: NODE_ARCH, nodeHash: digest(node),
+              bytes: archive.length, sha256: digest(archive),
+            });
+            assert.equal(digest(await readFile(archivePath)), record.archive.sha256, 'ZIP changed during inspection');
+            await writeFile(join(root, 'dist', 'release-preparation.json'), JSON.stringify(record, null, 2) + '\n');
+            console.log(`PASS portable-candidate files=${expected.size} version=${record.applicationVersion} sha256=${record.archive.sha256}`);
+          }
+          await main();
+          '@ | Set-Content -LiteralPath $verifier -Encoding utf8 -ErrorAction Stop
+          node $verifier
+          if ($LASTEXITCODE -ne 0) { throw 'Portable archive verification failed.' }
+      - name: Retain only the portable candidate and provenance
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        timeout-minutes: 2
+        with:
+          name: portable-candidate-${{ github.sha }}
+          path: |
+            dist/marvel-reading-tracker-windows.zip
+            dist/release-preparation.json
+          if-no-files-found: error
+          retention-days: 1
+          compression-level: 0
+      - name: Remove portable preparation material
+        if: always()
+        timeout-minutes: 5
+        shell: pwsh
+        run: |
+          $failures = @()
+          foreach ($path in @(
+            (Join-Path $env:RUNNER_TEMP 'recap-release-puppeteer'),
+            (Join-Path $env:RUNNER_TEMP 'recap-release-preparation'),
+            (Join-Path $env:GITHUB_WORKSPACE 'dist')
+          )) {
+            try {
+              if (Test-Path -LiteralPath $path) {
+                Remove-Item -LiteralPath $path -Recurse -Force -ErrorAction Stop
+              }
+              if (Test-Path -LiteralPath $path) { throw 'Portable preparation material remains.' }
+            } catch { $failures += $_.Exception }
+          }
+          if ($failures.Count -ne 0) {
+            throw [AggregateException]::new('Portable preparation cleanup failed.', [Exception[]]$failures)
           }

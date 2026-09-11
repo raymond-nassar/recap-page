@@ -15,4 +15,4 @@
 // but a new product generation may keep the existing schema.
 //
 // test/version.test.js asserts this matches package.json, so the two cannot drift.
-export const APP_VERSION = '2.0.3';
+export const APP_VERSION = '2.1.0';
