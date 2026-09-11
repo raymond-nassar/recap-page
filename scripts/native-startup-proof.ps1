@@ -228,6 +228,8 @@ function Test-HostCompletion {
 function Test-StartupControlResult {
   param($Result, $Expected, [string]$ExpectedFailure)
   if (-not $Result.Cleanup -or -not $Result.ReportValid -or $Result.NonNativeFailure) { return $false }
+  $expectedExit = if ($Expected.Context -eq 'preflight') { 0 } else { 1 }
+  if ($null -eq $Result.DriverExitCode -or $Result.DriverExitCode -ne $expectedExit) { return $false }
   if ($Expected.Context -eq 'N1') {
     return $Result.ExitCode -eq 1 -and $Result.Text.Contains($ExpectedFailure)
   }

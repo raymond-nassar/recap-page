@@ -565,7 +565,7 @@ try {
   foreach ($case in $controlCases) {
     $expected.Context = $case.Context
     $control = [pscustomobject]@{
-      ExitCode=$case.Exit; Cleanup=$true; ReportValid=$true; NonNativeFailure=$false
+      ExitCode=$case.Exit; DriverExitCode=$case.Exit; Cleanup=$true; ReportValid=$true; NonNativeFailure=$false
       Failure=$nativeError; Text=$case.Text+"`n"+$nativeError
     }
     $accepted = Test-StartupControlResult $control $expected $nativeError
@@ -573,6 +573,35 @@ try {
   }
   Write-Output 'PASS semantic-diagnostics frozen-definitions=6 separate-registration=1'
   Write-Output 'PASS host-completion-consumer configurations=12 expected-native-primary-preserved=1'
+
+  $rawStatusCases = @(
+    @{ Context='N3'; Raw=0; Accept=$false },
+    @{ Context='N3'; Raw=7; Accept=$false },
+    @{ Context='N3'; Raw=$null; Accept=$false },
+    @{ Context='N3'; Raw=1; Accept=$true },
+    @{ Context='N1'; Raw=0; Accept=$false },
+    @{ Context='N1'; Raw=1; Accept=$true },
+    @{ Context='N2'; Raw=1; Accept=$true },
+    @{ Context='LC-001'; Raw=1; Accept=$true }
+  )
+  foreach ($case in $rawStatusCases) {
+    $expected.Context = $case.Context
+    $lines = @()
+    if ($case.Context -ne 'N1') { $lines += $hostLine.Replace('context=N3', "context=$($case.Context)") }
+    $lines += "$nativeError stage=fixture-control"
+    $progress = (Observe-Report -Lines $lines).State
+    $state = New-ProofOutcome
+    Receive-NativeFailure $state $progress
+    foreach ($resource in @($state.Resources.Keys)) { $state.Resources[$resource] = $true }
+    $completed = Complete-ProofOutcome $state $progress $case.Raw 2000
+    $accepted = Test-StartupControlResult $completed $expected $nativeError
+    $rawLabel = if ($null -eq $case.Raw) { 'missing' } else { [string]$case.Raw }
+    Write-Output "DIAG raw-control-status context=$($case.Context) raw=$rawLabel normalized=$($completed.ExitCode) accepted=$accepted"
+    Assert-Report ($completed.ExitCode -eq 1 -and $completed.DriverExitCode -eq $case.Raw -and
+      $completed.PrimaryOrigin -ceq 'native' -and $completed.Cleanup -and $completed.ReportValid -and
+      -not $completed.NonNativeFailure -and $accepted -eq $case.Accept) 'actual completion normalized an incorrect native control status into acceptance'
+  }
+  Write-Output 'PASS native-control-status configurations=8 actual-completion-chain=1'
 
   $builderTokens = $null
   $builderErrors = $null

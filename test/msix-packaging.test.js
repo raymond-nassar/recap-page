@@ -153,7 +153,7 @@ async function populateStartupLayout(fixture, architecture = 'x64', version = '2
     nodeHash: hashBytes(Buffer.from('node-fixture')), sourceInputs: startupSourceInputs(ROOT) });
 }
 
-test('startup expectations bind three package variants and reject an unlisted executable import', async () => {
+test('startup expectations bind three package variants and reject an unlisted executable import', async (t) => {
   const { startupSourceInputs } = await import('../scripts/lib/startup-contract.mjs');
   for (const [architecture, version] of [['x64', '2.0.3.0'], ['arm64', '2.0.3.0'], ['x64', '2.0.3.1']]) {
     const fixture = startupLayoutFixture();
@@ -171,6 +171,38 @@ test('startup expectations bind three package variants and reject an unlisted ex
     }
     fixture.put('server.mjs', read(join(ROOT, 'server.mjs')) + "\nimport './unexpected.mjs';\n");
     assert.throws(() => startupSourceInputs(fixture.root), /input-mismatch/);
+    fixture.put('server.mjs', read(join(ROOT, 'server.mjs')));
+    const localServer = read(join(ROOT, 'src', 'js', 'lib', 'localServer.js'));
+    fixture.put('src/js/lib/unlisted-helper.js', "throw new Error('analyzed source must not execute');\nexport const injected = 1;\n");
+    fixture.put('src/js/lib/localServer.js', `${localServer}\nexport * from './unlisted-helper.js';\n`);
+    let rejection = null;
+    try { startupSourceInputs(fixture.root); } catch (error) { rejection = error; }
+    t.diagnostic(`FR-002 actual-source reexport-rejected=${rejection !== null}`);
+    assert.ok(rejection, 'the actual fixed source closure must reject an unlisted re-export dependency');
+    assert.match(rejection.message, /input-mismatch/);
+    for (const syntax of [
+      "export { injected as hidden } from './unlisted-helper.js';",
+      "  import './unlisted-helper.js';",
+      "import /* between */ { injected } /* clause */ from /* source */ './unlisted-helper.js';",
+      "import /* call */ ('./unlisted-helper.js');",
+      "import('node:' + 'child_process');",
+      "require /* call */ ('./unlisted-helper.js');",
+    ]) {
+      fixture.put('src/js/lib/localServer.js', `${localServer}\n${syntax}\n`);
+      assert.throws(() => startupSourceInputs(fixture.root), /input-mismatch/);
+    }
+    fixture.put('src/js/lib/localServer.js', `${localServer}
+// import './comment-is-not-an-edge.js';
+const apparentImport = "export * from './string-is-not-an-edge.js';";
+const apparentRequire = /require\\('not-a-call'\\)/;
+export { apparentImport, apparentRequire };
+`);
+    fixture.put('server.mjs', read(join(ROOT, 'server.mjs'))
+      .replace(/^import /gm, '  import /* declaration */ ')
+      .replace("import('node:child_process')", "import /* dynamic */ ('node:child_process')")
+      + "\nexport { readFile as nativeRead } from 'node:fs/promises';\n");
+    assert.equal(startupSourceInputs(fixture.root).length, 4);
+    t.diagnostic('startup-source-syntax fixtures=8 rejected=7 allowed=1 modules-executed=0');
   } finally { fixture.close(); }
 });
 

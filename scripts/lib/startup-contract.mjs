@@ -4,6 +4,7 @@ import {
   closeSync, fstatSync, lstatSync, openSync, readFileSync, readSync, realpathSync,
 } from 'node:fs';
 import { dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
+import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 
 export const CLAIM = 'app-startup-contract-v2';
@@ -103,14 +104,47 @@ export function boundedFile(root, path, expectedBytes = null) {
 }
 
 export function startupSourceInputs(root = ROOT) {
+  const { Linter } = createRequire(import.meta.url)('eslint');
+  const linter = new Linter();
   const inputs = SOURCE_FILES.map(([path, source]) => ({ ...boundedFile(root, source), path }));
   for (const [path, source] of SOURCE_FILES) {
     const text = readFileSync(join(root, ...source.split('/')), 'utf8');
-    const imports = [...text.matchAll(/^import\s*(?:[^'"();]*?\bfrom\s*)?['"]([^'"]+)['"]/gm)]
-      .map((match) => match[1]);
-    const dynamic = [...text.matchAll(/\bimport\s*\(\s*['"]([^'"]+)['"]\s*\)/g)].map((match) => match[1]);
-    requireFact((text.match(/\bimport\s*\(/g) ?? []).length === dynamic.length);
-    requireFact(!/\brequire\s*\(/.test(text));
+    const imports = [];
+    const dynamic = [];
+    let requires = false;
+    const declaration = (node) => {
+      if (node.source) imports.push(node.source.value);
+    };
+    const messages = linter.verify(text, {
+      languageOptions: { ecmaVersion: 'latest', sourceType: 'module' },
+      plugins: {
+        startup: {
+          rules: {
+            dependencies: {
+              meta: { schema: [] },
+              create: () => ({
+                ImportDeclaration: declaration,
+                ExportNamedDeclaration: declaration,
+                ExportAllDeclaration: declaration,
+                ImportExpression(node) {
+                  dynamic.push(node.source.type === 'Literal' && typeof node.source.value === 'string'
+                    ? node.source.value : null);
+                },
+                CallExpression({ callee }) {
+                  if ((callee.type === 'Identifier' && callee.name === 'require') ||
+                      (callee.type === 'MemberExpression' &&
+                        (callee.computed ? callee.property.value === 'require' : callee.property.name === 'require'))) {
+                    requires = true;
+                  }
+                },
+              }),
+            },
+          },
+        },
+      },
+      rules: { 'startup/dependencies': 'error' },
+    }, { filename: 'startup-source.mjs', allowInlineConfig: false });
+    requireFact(messages.length === 0 && !requires);
     const local = imports.filter((name) => !name.startsWith('node:'));
     requireFact(JSON.stringify(local.sort()) === JSON.stringify(path === 'server.mjs'
       ? ['./src/js/lib/coverHost.js', './src/js/lib/localServer.js'] : []));
