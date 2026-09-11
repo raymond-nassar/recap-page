@@ -3,11 +3,6 @@ name: Windows App Certification Kit
 on:
   workflow_dispatch:
     inputs:
-      motion_proof:
-        description: Temporary isolated fault-harness motion proof
-        type: boolean
-        required: false
-        default: false
       release_preparation:
         description: Run release checks and retain only the portable ZIP and provenance
         type: boolean
@@ -72,7 +67,6 @@ concurrency:
 jobs:
   native:
     name: Build and prove the native startup boundary
-    if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.motion_proof == true) }}
     runs-on: windows-2022
     timeout-minutes: 181
     outputs:
@@ -290,7 +284,7 @@ jobs:
     # in that supported-host list, so windows-latest is deliberately not used.
     runs-on: windows-2022
     needs: native
-    if: ${{ !(github.event_name == 'workflow_dispatch' && (inputs.native_only == true || inputs.diagnostic_only == true || inputs.motion_proof == true)) }}
+    if: ${{ !(github.event_name == 'workflow_dispatch' && (inputs.native_only == true || inputs.diagnostic_only == true)) }}
     timeout-minutes: 110
     env:
       MRT_NATIVE_SHA256: ${{ needs.native.outputs.native_sha256 }}
@@ -470,7 +464,7 @@ jobs:
     name: Installed functionality on ${{ matrix.architecture }}
     runs-on: ${{ matrix.runner }}
     needs: native
-    if: ${{ !(github.event_name == 'workflow_dispatch' && (inputs.native_only == true || inputs.diagnostic_only == true || inputs.motion_proof == true)) }}
+    if: ${{ !(github.event_name == 'workflow_dispatch' && (inputs.native_only == true || inputs.diagnostic_only == true)) }}
     timeout-minutes: 99
     env:
       MRT_NATIVE_SHA256: ${{ needs.native.outputs.native_sha256 }}
@@ -722,7 +716,7 @@ jobs:
 
   preparation:
     name: Prepare the portable release candidate
-    if: ${{ github.event_name == 'workflow_dispatch' && inputs.release_preparation == true && inputs.native_only != true && inputs.diagnostic_only != true && inputs.motion_proof != true }}
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.release_preparation == true && inputs.native_only != true && inputs.diagnostic_only != true }}
     runs-on: windows-2022
     timeout-minutes: 120
     steps:
@@ -955,243 +949,3 @@ jobs:
           if ($failures.Count -ne 0) {
             throw [AggregateException]::new('Portable preparation cleanup failed.', [Exception[]]$failures)
           }
-
-  motion_proof:
-    name: Temporary targeted motion proof
-    if: ${{ github.event_name == 'workflow_dispatch' && inputs.motion_proof == true }}
-    runs-on: windows-2022
-    timeout-minutes: 32
-    steps:
-      - name: Reject conflicting motion inputs
-        timeout-minutes: 2
-        shell: pwsh
-        env:
-          RELEASE_PREPARATION: ${{ inputs.release_preparation }}
-          NATIVE_ONLY: ${{ inputs.native_only }}
-          DIAGNOSTIC_ONLY: ${{ inputs.diagnostic_only }}
-          DIAGNOSTIC_TARGET: ${{ inputs.diagnostic_target }}
-        run: |
-          if ($env:RELEASE_PREPARATION -eq 'true' -or $env:NATIVE_ONLY -eq 'true' -or
-              $env:DIAGNOSTIC_ONLY -eq 'true' -or $env:DIAGNOSTIC_TARGET -ne 'console-wack') {
-            throw 'motion_proof cannot be combined with another manual mode.'
-          }
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        timeout-minutes: 2
-        with:
-          fetch-depth: 0
-          persist-credentials: false
-      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
-        timeout-minutes: 4
-        with:
-          node-version: '24.20.0'
-      - name: Install only the external locked browser driver
-        timeout-minutes: 4
-        shell: pwsh
-        run: |
-          $root = Join-Path $env:RUNNER_TEMP 'recap-motion-puppeteer'
-          Copy-Item -LiteralPath ./.github/browser-proof -Destination $root -Recurse -ErrorAction Stop
-          npm ci --prefix $root --ignore-scripts
-          if ($LASTEXITCODE -ne 0) { throw 'The motion browser driver could not be installed.' }
-          $entry = Join-Path $root 'node_modules\puppeteer-core\lib\puppeteer\puppeteer-core.js'
-          if (-not (Test-Path -LiteralPath $entry -PathType Leaf)) { throw 'The motion browser driver is missing.' }
-          "MRT_PUPPETEER=$entry" >> $env:GITHUB_ENV
-      - name: Prove original input and corrected motion contracts
-        timeout-minutes: 15
-        shell: pwsh
-        run: |
-          $script = Join-Path $env:RUNNER_TEMP 'recap-motion-proof.mjs'
-          @'
-          import assert from 'node:assert/strict';
-          import { createHash } from 'node:crypto';
-          import { execFileSync, spawnSync } from 'node:child_process';
-          import { readFileSync, writeFileSync, rmSync, existsSync } from 'node:fs';
-          const baseline = 'd6aa7d0817dd867a12b644fae6f2742fe995e7e6';
-          const hash = (bytes) => createHash('sha256').update(bytes).digest('hex');
-          const bytes = execFileSync('git', ['show', `${baseline}:scripts/browser-check.mjs`], { maxBuffer: 2 * 1024 * 1024 });
-          const blob = createHash('sha1').update(`blob ${bytes.length}\0`).update(bytes).digest('hex');
-          assert.equal(blob, '0061efbf3ea2e5041775b4ba9f42b1926980fa43');
-          const original = bytes.toString('utf8').replace(/\r\n/g, '\n');
-          assert.equal(hash(original), '62893d048510fd1571ad4d6718bc0fbabcba62fefff2f88968ca4aeb9854d44a');
-          const corrected = readFileSync('scripts/browser-check.mjs');
-          console.log(`MOTION binding baseline=${baseline} original=${hash(original)} corrected=${hash(corrected)} correctedNormalized=${hash(corrected.toString('utf8').replace(/\r\n/g, '\n'))} node=${process.version}`);
-          const begin = original.indexOf("    id: 'fault-harness-accessibility',");
-          const end = original.indexOf("    id: 'narrow-content',", begin);
-          assert.ok(begin > 0 && end > begin);
-          const scenario = original.slice(begin, end);
-          const checks = [...scenario.matchAll(/t\.check\('/g)].length;
-          const normalName = 'a keyboard-triggered routine result retains focus, stays polite and animates normally';
-          const copies = ['scripts/.motion-original-a.mjs', 'scripts/.motion-original-b.mjs'];
-          let runners = 0;
-          function replaceOne(source, before, after) {
-            assert.equal(source.split(before).length, 2, 'diagnostic insertion must be unique');
-            return source.replace(before, after);
-          }
-          const install = `
-                await page.evaluateOnNewDocument(() => {
-                  const facts = [];
-                  let dropped = 0;
-                  let action = 0;
-                  const emit = (kind, output, extra = {}) => {
-                    if (facts.length >= 16) { dropped += 1; return; }
-                    facts.push({
-                      kind, action, at: performance.now(),
-                      reduce: matchMedia('(prefers-reduced-motion: reduce)').matches,
-                      animations: output?.getAnimations().length ?? 0,
-                      focused: document.activeElement?.id === 'b-report',
-                      status: output?.getAttribute('role') === 'status',
-                      polite: output?.getAttribute('aria-live') === 'polite',
-                      ...extra,
-                    });
-                  };
-                  window.__motionFacts = () => ({ facts, dropped });
-                  document.addEventListener('click', (event) => {
-                    if (event.target?.id !== 'b-report') return;
-                    action += 1;
-                    emit('action', document.getElementById('out-safe'));
-                  }, true);
-                  const animate = Element.prototype.animate;
-                  Element.prototype.animate = function (...args) {
-                    const result = Reflect.apply(animate, this, args);
-                    if (this.id === 'out-safe' && action > 0) {
-                      emit('creation', this, {
-                        duration: result.effect.getTiming().duration,
-                        playState: result.playState,
-                      });
-                    }
-                    return result;
-                  };
-                  document.addEventListener('DOMContentLoaded', () => {
-                    const output = document.getElementById('out-safe');
-                    if (!output) throw new Error('motion output missing');
-                    new MutationObserver(() => {
-                      if (action > 0 && output.textContent.includes('key(s) on this origin')) emit('report', output);
-                    }).observe(output, { childList: true, characterData: true, subtree: true });
-                  }, { once: true });
-                });
-          `;
-          const sample = `
-                const telemetry = await page.evaluate(() => window.__motionFacts());
-                console.log('MOTION facts ' + JSON.stringify({ ...telemetry, sample: {
-                  at: normalMotion.sampleAt, reduce: normalMotion.sampleReduce,
-                  animations: normalMotion.animations,
-                  focused: normalMotion.active === 'b-report',
-                  status: normalMotion.role === 'status', polite: normalMotion.live === 'polite',
-                } }));
-          `;
-          function originalCopy(path, reduce) {
-            let text = replaceOne(scenario, "      await open(page, '/dev-faults.html');",
-              `${install}${reduce ? "      await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'reduce' }]);\n" : ''}      await open(page, '/dev-faults.html');`);
-            text = replaceOne(text, "      const normalMotion = await page.$eval('#out-safe', (output) => ({",
-              "      const normalMotion = await page.$eval('#out-safe', (output) => ({\n        sampleAt: performance.now(),\n        sampleReduce: matchMedia('(prefers-reduced-motion: reduce)').matches,");
-            text = replaceOne(text, `      t.check('${normalName}',`, `${sample}      t.check('${normalName}',`);
-            const copy = original.slice(0, begin) + text + original.slice(end);
-            writeFileSync(path, copy);
-            console.log(`MOTION copy mode=${reduce ? 'reduce' : 'inherited'} sha256=${hash(copy)}`);
-          }
-          function run(stage, path, prove = false) {
-            runners += 1;
-            assert.ok(runners <= 3);
-            const result = spawnSync(process.execPath, [path, '--only=fault-harness-accessibility', ...(prove ? ['--prove'] : [])],
-              { encoding: 'utf8', timeout: 240000, maxBuffer: 2 * 1024 * 1024 });
-            process.stdout.write(result.stdout ?? '');
-            process.stderr.write(result.stderr ?? '');
-            console.log(`MOTION exit stage=${stage} code=${result.status} signal=${result.signal ?? 'none'}`);
-            assert.ifError(result.error);
-            assert.equal(result.signal, null);
-            return result;
-          }
-          function originalResult(result, reduced) {
-            assert.ok(result.status === 0 || result.status === 1, 'original runner prerequisite or runtime failure');
-            const rows = result.stdout.split(/\r?\n/);
-            const records = rows.filter((line) => line.startsWith('MOTION facts '));
-            assert.equal(records.length, 1);
-            assert.ok(records[0].length <= 4096);
-            const data = JSON.parse(records[0].slice('MOTION facts '.length));
-            assert.equal(data.dropped, 0);
-            assert.ok(data.facts.length > 0 && data.facts.length <= 16);
-            for (const fact of [...data.facts, data.sample]) {
-              assert.ok(Number.isFinite(fact.at) && Number.isInteger(fact.animations));
-              for (const key of ['reduce', 'focused', 'status', 'polite']) assert.equal(typeof fact[key], 'boolean');
-            }
-            assert.ok(data.facts.some((fact) => fact.kind === 'action'));
-            assert.ok(data.facts.some((fact) => fact.kind === 'report'));
-            for (const fact of data.facts) {
-              assert.ok(['action', 'creation', 'report'].includes(fact.kind));
-              assert.equal(fact.action, 1);
-              assert.ok(fact.at <= data.sample.at);
-              if (fact.kind === 'creation') {
-                assert.equal(fact.duration, 900);
-                assert.ok(['idle', 'running', 'paused', 'finished'].includes(fact.playState));
-              }
-            }
-            const failures = rows.filter((line) => line.startsWith('  FAIL ')).map((line) => line.slice(7));
-            assert.deepEqual(failures, result.status === 0 ? [] : [normalName]);
-            assert.ok(result.stdout.includes(`${checks - failures.length} assertion(s) passed, ${failures.length} failed, across 1 scenario(s)`));
-            if (reduced) {
-              assert.equal(result.status, 1);
-              assert.equal(data.sample.reduce, true);
-              assert.equal(data.sample.animations, 0);
-              assert.ok(data.sample.focused && data.sample.status && data.sample.polite);
-              assert.ok(data.facts.every((fact) => fact.reduce));
-              assert.equal(data.facts.filter((fact) => fact.kind === 'creation').length, 0);
-            }
-            console.log(`MOTION qualified stage=${reduced ? 'B' : 'A'} assertions=${checks} original_exit=${result.status}`);
-          }
-          try {
-            originalCopy(copies[0], false);
-            originalResult(run('A', copies[0]), false);
-            originalCopy(copies[1], true);
-            originalResult(run('B', copies[1]), true);
-            const candidate = run('C', 'scripts/browser-check.mjs', true);
-            assert.equal(candidate.status, 0, 'corrected proof must succeed');
-            assert.ok(candidate.stdout.includes(`${checks} assertion(s) passed, 0 failed, across 1 scenario(s)`));
-            const controls = [
-              ['fault-result-urgency-static', 'a failed action becomes a named atomic assertive alert'],
-              ['fault-result-reduced-motion-off', 'reduced motion reports the complete result without creating an animation'],
-              ['fault-destructive-refusals-off', 'unbacked corruption and cancelled wipe both leave the seeded bytes untouched'],
-            ];
-            for (const [id, name] of controls) {
-              const block = candidate.stdout.split(`  ok   ${id}:`)[1]?.split('         also turns red:')[0];
-              assert.ok(block?.includes(`aimed at fault-harness-accessibility, where it breaks: ${name}`), `wrong intended control outcome: ${id}`);
-              assert.ok(!block.includes('ran to the end'), `unexpected runtime failure: ${id}`);
-            }
-            assert.ok(candidate.stdout.includes('3/3 mutation(s) caught by the scenario they were aimed at'));
-            assert.deepEqual(readFileSync('scripts/browser-check.mjs'), corrected);
-            console.log(`MOTION qualified stage=C scenarios=4 mutations=3 corrected=${hash(corrected)}`);
-            console.log('MOTION complete runners=3 scenarios=6');
-          } finally {
-            for (const path of copies) {
-              rmSync(path, { force: true });
-              assert.equal(existsSync(path), false);
-            }
-            console.log(`MOTION cleanup copies=2 complete=true runners=${runners}`);
-          }
-          '@ | Set-Content -LiteralPath $script -Encoding utf8
-          node $script
-          $code = $LASTEXITCODE
-          Write-Host "MOTION orchestrator_exit=$code"
-          exit $code
-      - name: Remove exact motion proof material
-        if: always()
-        timeout-minutes: 3
-        shell: pwsh
-        run: |
-          $paths = @(
-            (Join-Path $env:RUNNER_TEMP 'recap-motion-puppeteer'),
-            (Join-Path $env:RUNNER_TEMP 'recap-motion-proof.mjs'),
-            './scripts/.motion-original-a.mjs',
-            './scripts/.motion-original-b.mjs'
-          )
-          $failures = @()
-          foreach ($path in $paths) {
-            try {
-              if (Test-Path -LiteralPath $path) {
-                Remove-Item -LiteralPath $path -Recurse -Force -ErrorAction Stop
-              }
-              if (Test-Path -LiteralPath $path) { throw 'Motion proof material remains.' }
-            } catch { $failures += $_.Exception }
-          }
-          if ($failures.Count -ne 0) {
-            throw [AggregateException]::new('Motion cleanup failed.', [Exception[]]$failures)
-          }
-          Write-Host 'MOTION cleanup driver-and-copies=complete'
