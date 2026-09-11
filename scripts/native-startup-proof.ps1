@@ -165,6 +165,21 @@ function Test-NativeSuiteResult {
   return $labels.Count -eq 11
 }
 
+function Assert-ComposerCompletion {
+  param([object[]]$Lines, [int]$ExitCode)
+  $expected = 'PASS app-startup-contract-v2 profile=native-inert verdict=pass'
+  $complete = $Lines.Count -eq 1 -and $Lines[0] -is [string] -and $Lines[0] -ceq $expected
+  if ($complete) {
+    Write-Output $Lines[0]
+  } else {
+    Write-Output "DIAG composer-output-redacted records=$($Lines.Count)"
+  }
+  if ($ExitCode -ne 0 -or -not $complete) {
+    Write-Output "DIAG composer-result exit_code=$ExitCode complete=$complete"
+    throw 'The composed native startup contract did not pass.'
+  }
+}
+
 function New-StartupInvocation {
   param([string]$Report, [string]$Context, [string]$InputsDigest)
   $binding = [ordered]@{
@@ -788,8 +803,10 @@ bool placeFailureWindow(App& app) {
       cleanup = [ordered]@{ scope = 'capture'; completed = $result.Cleanup; reportValid = $result.ReportValid; closingInputs = $true }
       failures = @()
     }
-    $composition | ConvertTo-Json -Depth 8 -Compress | & node (Join-Path $root 'scripts\lib\startup-contract.mjs') --compose-native
-    if ($LASTEXITCODE -ne 0) { throw 'The composed native startup contract did not pass.' }
+    $composerOutput = @($composition | ConvertTo-Json -Depth 8 -Compress |
+      & node (Join-Path $root 'scripts\lib\startup-contract.mjs') --compose-native)
+    $composerExit = $LASTEXITCODE
+    Assert-ComposerCompletion -Lines $composerOutput -ExitCode $composerExit
     Write-Output "PASS native-suite=$Architecture;gui-activations=11;coordinator-fixtures=9;sentinels=2"
   }
 } finally {

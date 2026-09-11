@@ -305,6 +305,54 @@ try {
     $earlier.State.SecondaryFailures[0].Code -ceq 'actor-unexpected') 'completed native record replaced an earlier real primary'
   Write-Output 'PASS completed-native-report configurations=7 assertions=8 specific-before-fallback=1'
 
+  $composerDefinitions = @($ast.FindAll({
+    param($item)
+    $item -is [System.Management.Automation.Language.FunctionDefinitionAst] -and
+      $item.Name -ceq 'Assert-ComposerCompletion'
+  }, $true))
+  if ($composerDefinitions.Count -ne 1) { throw 'actual composer completion guard is missing or ambiguous' }
+  . ([scriptblock]::Create($composerDefinitions[0].Extent.Text))
+  $passLine = 'PASS app-startup-contract-v2 profile=native-inert verdict=pass'
+  $composerCases = @(
+    @{ Lines=@($passLine); Exit=0; Accept=$true },
+    @{ Lines=@(); Exit=0; Accept=$false },
+    @{ Lines=@($passLine,$passLine); Exit=0; Accept=$false },
+    @{ Lines=@($passLine+' malformed'); Exit=0; Accept=$false },
+    @{ Lines=@($passLine,'synthetic-private-composer-output'); Exit=0; Accept=$false },
+    @{ Lines=@($passLine); Exit=7; Accept=$false }
+  )
+  $composerReporting = $true
+  foreach ($case in $composerCases) {
+    $observed = @{ Accepted=$false; Failure=$null }
+    $output = @(& {
+      try {
+        Assert-ComposerCompletion -Lines $case.Lines -ExitCode $case.Exit
+        $observed.Accepted = $true
+      } catch { $observed.Failure = $_.Exception.Message }
+    })
+    Assert-Report ($observed.Accepted -eq $case.Accept -and
+      ($case.Accept -or $observed.Failure -ceq 'The composed native startup contract did not pass.')) 'actual composer guard accepted missing invalid or failed completion'
+    $text = $output -join "`n"
+    $composerReporting = $composerReporting -and -not $text.Contains('synthetic-private-composer-output')
+    if (-not $case.Accept) {
+      $composerReporting = $composerReporting -and $text.Contains("exit_code=$($case.Exit)")
+    } else { $composerReporting = $composerReporting -and $output.Count -eq 1 -and $output[0] -ceq $passLine }
+  }
+  Assert-Report $composerReporting 'composer completion reporting lost the numeric exit or exposed unknown output'
+  $composerCalls = @($ast.FindAll({
+    param($item)
+    $item -is [System.Management.Automation.Language.AssignmentStatementAst] -and
+      $item.Left.Extent.Text -ceq '$composerOutput'
+  }, $true))
+  if ($composerCalls.Count -ne 1) { throw 'actual composer invocation capture is missing or ambiguous' }
+  $statements = @($composerCalls[0].Parent.Statements)
+  $position = [array]::IndexOf($statements, $composerCalls[0])
+  Assert-Report ($position -ge 0 -and $position + 2 -lt $statements.Count -and
+    $composerCalls[0].Right.Extent.Text.Contains('--compose-native') -and
+    $statements[$position+1].Extent.Text -ceq '$composerExit = $LASTEXITCODE' -and
+    $statements[$position+2].Extent.Text -ceq 'Assert-ComposerCompletion -Lines $composerOutput -ExitCode $composerExit') 'composer stdout and immediate native status do not feed the actual guard'
+  Write-Output 'PASS composer-completion-guard configurations=6 assertions=8 stdout-and-exit-required=1'
+
   $native = [IO.File]::ReadAllText((Join-Path $root 'test\native\StartupTests.cpp'))
   $observer = [IO.File]::ReadAllText((Join-Path $root 'test\native\StartupObserver.h'))
   $proof = [IO.File]::ReadAllText($proofPath)

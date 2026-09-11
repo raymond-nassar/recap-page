@@ -421,7 +421,7 @@ export function demandCapturePass(result) {
   return result;
 }
 
-if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+async function main() {
   requireFact(process.argv.length === 3 && process.argv[2] === '--compose-native');
   const chunks = [];
   let length = 0;
@@ -449,4 +449,13 @@ if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.ur
   const record = parseCaptureReport(input.record, expected, 'native-inert');
   const result = demandCapturePass(composeCapture({ ...input, bindings: expected, record }));
   console.log(`PASS app-startup-contract-v2 profile=${result.profile} verdict=pass`);
+}
+
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  main().catch((error) => {
+    const reason = error instanceof StartupContractError && REASONS.includes(error.reason)
+      ? error.reason : 'report-invalid';
+    console.error(`FAIL ${CLAIM} reason=${reason}`);
+    process.exitCode = 1;
+  });
 }

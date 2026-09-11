@@ -1,9 +1,12 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { spawnSync } from 'node:child_process';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 import { runInNewContext } from 'node:vm';
 import {
-  CLAIM, captureBindings, composeCapture, creationReceipt, parseCaptureReport, premise,
+  CLAIM, captureBindings, composeCapture, creationReceipt, hashBytes, parseCaptureReport, premise,
   qualifiedHostSamples, recordDigest, reduceStartupContract, validateCreationReceipt,
 } from '../scripts/lib/startup-contract.mjs';
 
@@ -31,10 +34,10 @@ function hostSamples() {
     literalEmpty: '0', registryClosed: '1', helperKnown: '1', helperMachine: '34404', helperError: '0',
   })));
 }
-function nativeText() {
+function nativeText(bindings = binding) {
   const samples = hostSamples().map((sample) => 'DIAG host-sample ' + Object.entries(sample).map(([key, value]) => `${key}=${value}`).join(' '));
   const values = {
-    profile: 'native-inert', ...Object.fromEntries(Object.entries(binding).filter(([key]) => key !== 'deployment')),
+    profile: 'native-inert', ...Object.fromEntries(Object.entries(bindings).filter(([key]) => key !== 'deployment')),
     hostState: 'satisfied', hostReason: 'none', actorState: 'satisfied', actorReason: 'none',
     captureState: 'satisfied', captureReason: 'none', roots: 11, coordinators: 9, verifiers: 0,
     servers: 0, commands: 0, visible: 0, unresolved: 0, rawUnknown: 6, unassessed: 19, externalRequests: 2,
@@ -139,6 +142,67 @@ test('creation receipts and capture bindings reject stale or inconsistent source
   const bound = captureBindings(proof, 'x64', binding.startupInputsDigest, binding.deployment, binding.captureId);
   assert.equal(bound.creationReceiptDigest, recordDigest(receipt));
   assert.throws(() => parseCaptureReport(nativeText(), { ...binding, captureId: '0'.repeat(32) }, 'native-inert'));
+
+  const scratch = mkdtempSync(join(tmpdir(), 'recap-composer-cli-'));
+  try {
+    const entry = join(scratch, 'startup-contract.mjs');
+    const facade = join(scratch, 'native-launcher.mjs');
+    writeFileSync(entry, readFileSync(new URL('../scripts/lib/startup-contract.mjs', import.meta.url)));
+    const fixtureHash = '2'.repeat(64);
+    const runtimeHash = '3602f2bb1a10f2cbab4c36886218a33c1ab3db87290e73b033c46c77147d0237';
+    const inertProof = { record: {
+      ...proof.record, productionDigest: '1'.repeat(64),
+      inputs: [{ path: 'test/native/Launcher.fixture.mjs.in', sha256: fixtureHash }],
+    } };
+    const inputDigest = hashBytes(Buffer.from(`${inertProof.record.productionDigest}|${fixtureHash}|${runtimeHash}`));
+    const cliBindings = captureBindings(inertProof, 'x64', inputDigest, binding.deployment, binding.captureId);
+    const cliInput = {
+      bindings: cliBindings, profile: 'native-inert', record: nativeText(cliBindings),
+      inputs: true, creation: true, behavior: true,
+      cleanup: { scope: 'capture', completed: true, reportValid: true, closingInputs: true }, failures: [],
+    };
+    const dependency = (reject) => [
+      'import { CLAIM } from "./startup-contract.mjs";',
+      'export async function verifyNativeArtifact(options) {',
+      `  if (CLAIM !== ${JSON.stringify(CLAIM)} || JSON.stringify(options) !== '{"proof":true}') throw new Error('incorrect-verifier-invocation');`,
+      reject ? '  throw new Error("synthetic-private-verifier-detail");' : `  return ${JSON.stringify(inertProof)};`,
+      '}',
+    ].join('\n');
+    const run = (name, args, stdin) => {
+      const child = spawnSync(process.execPath, args, {
+        cwd: scratch, input: stdin, encoding: 'utf8', windowsHide: true, timeout: 10000, maxBuffer: 65536,
+      });
+      assert.ifError(child.error);
+      assert.equal(child.signal, null, `${name} must settle normally`);
+      t.diagnostic(`composer-cli case=${name} exit=${child.status} unsettled_await=${/unsettled top-level await/.test(child.stderr)}`);
+      return child;
+    };
+    writeFileSync(facade, dependency(false));
+    const valid = run('valid', [entry, '--compose-native'], JSON.stringify(cliInput));
+    assert.equal(valid.status, 0, 'the real CLI with a static dependency back-import must complete');
+    assert.equal(valid.stdout.replace(/\r\n/g, '\n'), `PASS ${CLAIM} profile=native-inert verdict=pass\n`);
+    assert.equal(valid.stderr, '');
+    writeFileSync(facade, dependency(true));
+    const rejected = run('verifier-rejected', [entry, '--compose-native'], JSON.stringify(cliInput));
+    assert.equal(rejected.status, 1);
+    assert.equal(rejected.stdout, '');
+    assert.equal(rejected.stderr.replace(/\r\n/g, '\n'), `FAIL ${CLAIM} reason=report-invalid\n`);
+    writeFileSync(facade, dependency(false));
+    const mismatch = { ...cliInput, bindings: { ...cliBindings, startupInputsDigest: '0'.repeat(64) } };
+    const invalid = run('binding-mismatch', [entry, '--compose-native'], JSON.stringify(mismatch));
+    assert.equal(invalid.status, 1);
+    assert.equal(invalid.stdout, '');
+    assert.equal(invalid.stderr.replace(/\r\n/g, '\n'), `FAIL ${CLAIM} reason=result-binding-mismatch\n`);
+    const library = join(scratch, 'import-only.mjs');
+    writeFileSync(library, 'import "./startup-contract.mjs";\n');
+    const imported = run('library-import', [library], 'not-composition-input');
+    assert.equal(imported.status, 0);
+    assert.equal(imported.stdout, '');
+    assert.equal(imported.stderr, '');
+    t.diagnostic('composer-cli-children=4 native-artifact-acquisition=inert real-loader=1');
+  } finally {
+    rmSync(scratch, { recursive: true, force: true });
+  }
 });
 
 test('fixed startup profiles cannot downgrade installed applicability or predict outer cleanup', () => {
