@@ -1382,9 +1382,12 @@ function applyHistoryRegistry(result, registry) {
   }
 }
 
+function containmentRealpath(path) {
+  return process.platform === 'win32' ? realpathSync.native(path) : realpathSync(path);
+}
 function worktreeRoot() {
   try {
-    return realpathSync(resolve(execFileSync('git', ['rev-parse', '--show-toplevel'], {
+    return containmentRealpath(resolve(execFileSync('git', ['rev-parse', '--show-toplevel'], {
       encoding: 'utf8',
       stdio: ['ignore', 'pipe', 'ignore'],
     }).trim()));
@@ -1395,14 +1398,14 @@ function worktreeRoot() {
 
 function physicalPath(path) {
   const destination = resolve(path);
-  if (existsSync(destination)) return realpathSync(destination);
+  if (existsSync(destination)) return containmentRealpath(destination);
   let parent = dirname(destination);
   while (!existsSync(parent)) {
     const next = dirname(parent);
     if (next === parent) throw new Error(`cannot resolve an existing parent for ${destination}`);
     parent = next;
   }
-  return resolve(realpathSync(parent), relative(parent, destination));
+  return resolve(containmentRealpath(parent), relative(parent, destination));
 }
 
 function outsideWorktree(path, label) {

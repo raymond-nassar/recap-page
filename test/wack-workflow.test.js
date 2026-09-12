@@ -124,7 +124,7 @@ test('WACK builds exact clean package inputs at the canonical version', () => {
   assert.match(workflow, /steps\.package-paths\.outputs\.certificate/);
 });
 
-test('WACK uploads no package, certificate, installer, or raw report', () => {
+test('WACK proof lanes upload no package, certificate, installer, or raw report', () => {
   const uploads = [...workflow.matchAll(/ {6}- name: Transfer only[\s\S]*?(?=\n {6}- name:|\n {2}[a-z])/g)]
     .map((match) => match[0]);
   assert.equal(uploads.length, 2);
@@ -168,11 +168,11 @@ test('native producer outputs and job deadlines bind every package consumer', ()
   assert.match(workflow, /native-startup-proof\.ps1 -Architecture '\$\{\{ matrix\.architecture \}\}'/);
   const jobs = workflow.slice(workflow.search(/^jobs:\r?$/m))
     .split(/(?=^ {2}[a-z][\w-]*:)/m).slice(1);
-  assert.deepEqual(jobs.map((job) => /^ {2}([\w-]+):/.exec(job)?.[1]), ['native', 'certify', 'installed']);
+  assert.deepEqual(jobs.map((job) => /^ {2}([\w-]+):/.exec(job)?.[1]), ['native', 'certify', 'installed', 'preparation']);
   assert.match(workflow, /native_only:\r?\n {8}description: .+\r?\n {8}type: boolean\r?\n {8}required: false\r?\n {8}default: false/);
   assert.match(workflow, /diagnostic_only:\r?\n {8}description: .+\r?\n {8}type: boolean\r?\n {8}required: false\r?\n {8}default: false/);
   const predicate = "!(github.event_name == 'workflow_dispatch' && (inputs.native_only == true || inputs.diagnostic_only == true))";
-  for (const job of jobs.slice(1)) {
+  for (const job of jobs.slice(1, 3)) {
     const expression = job.match(/^ {4}if: \$\{\{ (.+) \}\}\r?$/m)?.[1];
     assert.equal(expression, predicate);
     for (const [event, inputs, expected] of [
@@ -344,7 +344,8 @@ test('native artifact transfer pins exact inputs and refuses digest mismatches',
   assert.deepEqual(operations, ['begin:listener-query', 'execute', 'end:listener-query:false'],
     'the existing listener helper ran without native operation fences');
   t.diagnostic('PASS existing-helper-binding fixed-listener=1 unchanged-presentation-options=1');
-  assert.equal((workflow.match(/actions\/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a/g) ?? []).length, 4);
+  const proofJobs = workflow.split(/\r?\n {2}preparation:/)[0];
+  assert.equal((proofJobs.match(/actions\/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a/g) ?? []).length, 4);
   assert.equal((workflow.match(/actions\/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c/g) ?? []).length, 3);
   assert.equal((workflow.match(/digest-mismatch: error/g) ?? []).length, 3);
   const inputs = [...workflow.matchAll(/^ {12}(dist\/native-(?:launcher|proof)\/.+)$/gm)]
@@ -366,7 +367,7 @@ test('native artifact transfer pins exact inputs and refuses digest mismatches',
   ]);
   assert.match(workflow, /steps\.f01_smoke\.outputs\.preview_ready == 'true'/);
   assert.match(workflow, /steps\.native_fixtures\.outputs\.preview_ready == 'true'/);
-  assert.equal((workflow.match(/retention-days: 1/g) ?? []).length, 4);
+  assert.equal((proofJobs.match(/retention-days: 1/g) ?? []).length, 4);
   assert.doesNotMatch(workflow, /merge-multiple: true|include-hidden-files: true|overwrite: true/);
   const proof = readFileSync(new URL('../scripts/native-startup-proof.ps1', import.meta.url), 'utf8');
   assert.doesNotMatch(proof, /ReadToEndAsync|\.WaitForExit\(\)/);
@@ -514,7 +515,7 @@ test('app startup prerequisites preserve native-only and all five installed jour
     ['pull_request', {}, true],
     ['workflow_dispatch', { diagnostic_only: true }, false],
   ]) assert.equal(runInNewContext(expression, { github: { event_name: event }, inputs }), enabled);
-  assert.equal(jobs.length, 3);
+  assert.equal(jobs.length, 4);
   assert.match(workflow, /--scenario=certification-functionality/);
   assert.match(workflow, /--scenario=busy-port-refusal/);
   assert.match(workflow, /--scenario=update-state-continuity/);
@@ -522,4 +523,167 @@ test('app startup prerequisites preserve native-only and all five installed jour
   const build = readFileSync(new URL('../scripts/build-native-launcher.ps1', import.meta.url), 'utf8');
   assert.ok(build.indexOf('production-creation tests failed') < build.indexOf('foreach ($architecture'));
   assert.match(build, /WaitForExit\(120000\)/);
+});
+
+const preparation = workflow.slice(workflow.indexOf('\n  preparation:'));
+
+test('portable preparation excludes nonmanual and incomplete proof executions', () => {
+  assert.match(workflow, /release_preparation:\r?\n {8}description: .+\r?\n {8}type: boolean\r?\n {8}required: false\r?\n {8}default: false/);
+  const expression = preparation.match(/^ {4}if: \$\{\{ (.+) \}\}\r?$/m)?.[1];
+  assert.ok(expression);
+  let cases = 0;
+  for (const event of ['workflow_dispatch', 'pull_request', 'push', 'release']) {
+    for (const release_preparation of [true, false, undefined]) {
+      for (const native_only of [true, false]) {
+        for (const diagnostic_only of [true, false]) {
+          const expected = event === 'workflow_dispatch' && release_preparation === true
+            && !native_only && !diagnostic_only;
+          assert.equal(runInNewContext(expression, {
+            github: { event_name: event }, inputs: { release_preparation, native_only, diagnostic_only },
+          }), expected, `${event}/${release_preparation}/${native_only}/${diagnostic_only}`);
+          cases += 1;
+        }
+      }
+    }
+  }
+  assert.equal(cases, 48);
+  assert.match(workflow, /\$env:RELEASE_PREPARATION -eq 'true' -and\r?\n\s*\(\$env:NATIVE_ONLY -eq 'true' -or \$env:DIAGNOSTIC_ONLY -eq 'true'\)/);
+  assert.match(preparation, /runs-on: windows-2022/);
+  assert.match(preparation, /fetch-depth: 0/);
+  assert.match(preparation, /persist-credentials: false/);
+  assert.doesNotMatch(preparation, /needs:|secrets\.|msix:|winapp|build-native|native-startup|continue-on-error/);
+});
+
+test('portable preparation runs the bounded release commands and cleans independently', () => {
+  const commands = [...preparation.matchAll(/^ {8}run: (npm .+)\r?$/gm)].map((match) => match[1]);
+  assert.deepEqual(commands, [
+    'npm ci --ignore-scripts', 'npm run lint', 'npm test', 'npm run counts',
+    'npm run sizes', 'npm run anchors', 'npm run spacing', 'npm run palette',
+    'npm run publication', 'npm run contract', 'npm run browser', 'npm run upgrade',
+    'npm run store:check', 'npm run pack',
+  ]);
+  assert.match(preparation, /\.github\/browser-proof/);
+  assert.match(preparation, /npm ci --prefix \$root --ignore-scripts\r?\n\s*if \(\$LASTEXITCODE -ne 0\)/);
+  const exports = [...preparation.matchAll(/"MRT_PUPPETEER=\$(\w+)" >> \$env:GITHUB_ENV/g)];
+  assert.equal(exports.length, 1, 'preparation has one shared driver export');
+  const rootName = preparation.match(/\$root = Join-Path \$env:RUNNER_TEMP '([^']+)'/)?.[1];
+  const entrySuffix = preparation.match(/\$entry = Join-Path \$root '([^']+)'/)?.[1];
+  assert.ok(rootName && entrySuffix);
+  assert.match(preparation, /Test-Path -LiteralPath \$entry -PathType Leaf/);
+  const root = join('inert-runner-temp', rootName);
+  const entry = join(root, ...entrySuffix.split('\\'));
+  const bindings = { root, entry };
+  assert.ok(Object.hasOwn(bindings, exports[0][1]), 'driver export names a known binding');
+  const browserSource = readFileSync(new URL('../scripts/browser-check.mjs', import.meta.url), 'utf8');
+  const upgradeSource = readFileSync(new URL('../scripts/upgrade-check.mjs', import.meta.url), 'utf8');
+  const candidates = browserSource.match(/^function driverCandidates\(\) \{[\s\S]*?^\}/m)?.[0];
+  const resolver = browserSource.match(/^function resolveDriver\(\) \{[\s\S]*?^\}/m)?.[0];
+  const suffixes = browserSource.match(/^const DRIVER_SUFFIXES = \[[\s\S]*?^\];/m)?.[0];
+  const finder = upgradeSource.match(/^function findDriver\(\) \{[\s\S]*?^\}/m)?.[0];
+  assert.ok(candidates && resolver && suffixes && finder);
+  const globals = {
+    join,
+    homedir: () => 'inert-home',
+    existsSync: (path) => path === entry,
+    process: { env: { MRT_PUPPETEER: bindings[exports[0][1]] } },
+  };
+  assert.equal(runInNewContext(`${suffixes}\n${candidates}\n${resolver}\nresolveDriver();`, globals),
+    entry, 'the browser resolves the verified preparation entry');
+  assert.equal(runInNewContext(`${finder}\nfindDriver();`, globals),
+    entry, 'the upgrade resolves the verified preparation entry');
+  assert.match(preparation, /node \$verifier\r?\n\s*if \(\$LASTEXITCODE -ne 0\)/);
+  const steps = [...preparation.matchAll(/^ {8}timeout-minutes: (\d+)/gm)].map((match) => Number(match[1]));
+  assert.equal(steps.length, (preparation.match(/^ {6}- name:/gm) ?? []).length);
+  assert.ok(Number(preparation.match(/^ {4}timeout-minutes: (\d+)/m)?.[1]) > steps.reduce((a, b) => a + b, 0));
+  const cleanup = preparation.slice(preparation.indexOf('      - name: Remove portable preparation material'));
+  assert.match(cleanup, /if: always\(\)/);
+  assert.match(cleanup, /foreach \(\$path[\s\S]*try \{[\s\S]*catch \{ \$failures \+= \$_\.Exception \}/);
+  assert.match(cleanup, /throw \[AggregateException\]/);
+  for (const path of ['recap-release-puppeteer', 'recap-release-preparation', 'dist']) {
+    assert.ok(cleanup.includes(`'${path}'`));
+  }
+  assert.doesNotMatch(cleanup, /SilentlyContinue/);
+});
+
+test('portable preparation verifies its own payload and allowlisted provenance', async () => {
+  const upload = preparation.match(/ {6}- name: Retain only the portable candidate and provenance[\s\S]*?(?=\n {6}- name:)/)?.[0];
+  assert.ok(upload);
+  assert.deepEqual([...upload.matchAll(/^ {12}(dist\/.+)\r?$/gm)].map((match) => match[1]), [
+    'dist/marvel-reading-tracker-windows.zip', 'dist/release-preparation.json',
+  ]);
+  assert.match(upload, /retention-days: 1/);
+  assert.match(upload, /if-no-files-found: error/);
+  assert.doesNotMatch(upload, /if: always|\.msix|\.cer|\.pfx|\*/);
+  const inline = preparation.match(/ {10}@'\r?\n([\s\S]*?)\r?\n {10}'@ \| Set-Content/)?.[1];
+  assert.ok(inline, 'the executable inline verifier is missing');
+  const source = inline.replace(/^ {10}/gm, '');
+  assert.match(source, /\nawait main\(\);$/);
+  const library = source.replace(/\nawait main\(\);$/, '');
+  const { verifyPortableEntries, verifyPortableNames, candidateRecord } = await import(
+    `data:text/javascript;base64,${Buffer.from(library).toString('base64')}`
+  );
+  const expected = new Map([
+    ['Start on Windows.cmd', Buffer.from('command launcher')],
+    ['server.mjs', Buffer.from('server')],
+    ['src/js/lib/version.js', Buffer.from('2.1.0')],
+    ['LICENSE', Buffer.from('app licence')],
+    ['Read this first.txt', Buffer.from('command window instructions')],
+    ['runtime/LICENSE-node.txt', Buffer.from('complete official runtime licence')],
+    ['runtime/node.exe', Buffer.from('official x64 runtime')],
+  ]);
+  const names = [...expected.keys()].map((name) => `recap-page/${name}`);
+  verifyPortableNames(expected, names, 'recap-page');
+  verifyPortableNames(expected, [...names, 'recap-page/', 'recap-page/runtime/'], 'recap-page');
+  for (const invalid of [
+    [...names, names[0]], [...names, '../outside'], [...names, 'recap-page/unexpected/'],
+    names.slice(1), names.map((name) => name.replace('/', '\\')),
+  ]) assert.throws(() => verifyPortableNames(expected, invalid, 'recap-page'));
+  verifyPortableEntries(expected, new Map(expected));
+  const unexpectedEntry = new Map(expected);
+  unexpectedEntry.set('unexpected.txt', Buffer.from('unapproved'));
+  assert.throws(() => verifyPortableEntries(expected, unexpectedEntry), /allowlist/);
+  for (const name of expected.keys()) {
+    const missing = new Map(expected);
+    missing.delete(name);
+    assert.throws(() => verifyPortableEntries(expected, missing), /allowlist/);
+    const changed = new Map(expected);
+    changed.set(name, Buffer.from('changed'));
+    assert.throws(() => verifyPortableEntries(expected, changed), /portable bytes/);
+  }
+  for (const extra of ['RecapPageLauncher.exe', 'runtime/helper.EXE']) {
+    const actual = new Map(expected);
+    actual.set(extra, Buffer.from('unapproved'));
+    assert.throws(() => verifyPortableEntries(expected, actual), /allowlist/);
+  }
+  const input = {
+    repository: 'raymond-nassar/recap-page', commit: 'a'.repeat(40), expectedCommit: 'a'.repeat(40),
+    tree: 'b'.repeat(40), version: '2.1.0', lockVersion: '2.1.0', browserVersion: '2.1.0',
+    runId: '123', runAttempt: '1', nodeVersion: 'v24.19.0', nodeArchitecture: 'win-x64',
+    nodeHash: 'c'.repeat(64), bytes: 1234, sha256: 'd'.repeat(64),
+  };
+  const record = candidateRecord({ ...input, privateValue: 'must not escape' });
+  assert.deepEqual(Object.keys(record), [
+    'schemaVersion', 'repository', 'commit', 'tree', 'applicationVersion',
+    'workflow', 'archive', 'bundledNode', 'portableLauncher',
+  ]);
+  assert.deepEqual(record.archive, { file: 'marvel-reading-tracker-windows.zip', bytes: 1234, sha256: input.sha256 });
+  assert.deepEqual(record.bundledNode, { version: 'v24.19.0', architecture: 'win-x64', sha256: input.nodeHash });
+  assert.equal(record.portableLauncher, 'Start on Windows.cmd');
+  for (const change of [
+    { repository: 'other/repo' }, { expectedCommit: 'e'.repeat(40) }, { tree: 'invalid' },
+    { lockVersion: '2.0.3' }, { browserVersion: '2.0.3' }, { version: '2.1.0.0' },
+    { runId: '0' }, { runAttempt: '0' }, { nodeArchitecture: 'win-arm64' },
+    { nodeVersion: process.version.replace(/^v24/, 'v99') }, { nodeHash: 'bad' },
+    { bytes: 0 }, { sha256: 'bad' },
+  ]) assert.throws(() => candidateRecord({ ...input, ...change }));
+  assert.match(source, /await fetchRuntime\(NODE_ARCH\)/);
+  assert.match(source, /readFile\(join\(official, 'LICENSE'\)\)/);
+  assert.match(source, /for \(const name of appFiles\(\)\)/);
+  assert.match(source, /verifyPortableEntries\(expected, await entries/);
+  assert.ok(source.indexOf('verifyPortableNames(expected, names, PAYLOAD_NAME)')
+    < source.indexOf("unpack(archivePath, join(scratch, 'portable'))"));
+  assert.match(source, /expectedCommit: process\.env\.GITHUB_SHA/);
+  assert.match(source, /nodeVersion: NODE_VERSION, nodeArchitecture: NODE_ARCH/);
+  assert.match(source, /digest\(await readFile\(archivePath\)\), record\.archive\.sha256/);
+  assert.doesNotMatch(source, /process\.version|RecapPageLauncher\.exe/);
 });

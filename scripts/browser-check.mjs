@@ -10073,7 +10073,30 @@ const SCENARIOS = [
     id: 'fault-harness-accessibility',
     title: 'the developer fault harness reports actions accessibly without weakening its safety gates',
     async run(page, t) {
+      const armReport = () => page.$eval('#out-safe', (output) => {
+        // Only effects from an earlier result may be finished; observe the new one unchanged.
+        output.getAnimations().forEach((animation) => animation.finish());
+        window.__faultReportReceipt = null;
+        const observer = new MutationObserver(() => {
+          if (!output.textContent.includes('key(s) on this origin')) return;
+          window.__faultReportReceipt = {
+            active: document.activeElement?.id,
+            matches: matchMedia('(prefers-reduced-motion: reduce)').matches,
+            animations: output.getAnimations().length,
+            role: output.getAttribute('role'),
+            live: output.getAttribute('aria-live'),
+          };
+          observer.disconnect();
+        });
+        observer.observe(output, { childList: true, characterData: true, subtree: true });
+      });
+      const completedReport = async () => {
+        await page.waitForFunction(() => window.__faultReportReceipt !== null);
+        return page.evaluate(() => window.__faultReportReceipt);
+      };
+      await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'no-preference' }]);
       await open(page, '/dev-faults.html');
+      await page.waitForFunction(() => matchMedia('(prefers-reduced-motion: no-preference)').matches);
 
       const semantics = await page.$$eval('.out', (outputs) => outputs.map((output) => ({
         id: output.id,
@@ -10122,18 +10145,12 @@ const SCENARIOS = [
       await page.keyboard.down('Shift');
       for (let press = 0; press < 6; press += 1) await page.keyboard.press('Tab');
       await page.keyboard.up('Shift');
+      await armReport();
       await page.keyboard.press('Enter');
-      await page.waitForFunction(() => (
-        document.querySelector('#out-safe').textContent.includes('key(s) on this origin')
-      ));
-      const normalMotion = await page.$eval('#out-safe', (output) => ({
-        active: document.activeElement?.id,
-        animations: output.getAnimations().length,
-        role: output.getAttribute('role'),
-        live: output.getAttribute('aria-live'),
-      }));
+      const normalMotion = await completedReport();
       t.check('a keyboard-triggered routine result retains focus, stays polite and animates normally',
         normalMotion.active === 'b-report'
+        && !normalMotion.matches
         && normalMotion.animations > 0
         && normalMotion.role === 'status'
         && normalMotion.live === 'polite',
@@ -10280,15 +10297,11 @@ const SCENARIOS = [
       await client.send('Emulation.setPageScaleFactor', { pageScaleFactor: 1 });
       await client.detach();
 
-      await page.evaluate(() => document.getAnimations().forEach((animation) => animation.finish()));
       await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'reduce' }]);
-      await click(page, '#b-report');
       await page.waitForFunction(() => matchMedia('(prefers-reduced-motion: reduce)').matches);
-      const reduced = await page.$eval('#out-safe', (output) => ({
-        matches: matchMedia('(prefers-reduced-motion: reduce)').matches,
-        animations: output.getAnimations().length,
-        role: output.getAttribute('role'),
-      }));
+      await armReport();
+      await click(page, '#b-report');
+      const reduced = await completedReport();
       t.check('reduced motion reports the complete result without creating an animation',
         reduced.matches && reduced.animations === 0 && reduced.role === 'status',
         JSON.stringify(reduced));

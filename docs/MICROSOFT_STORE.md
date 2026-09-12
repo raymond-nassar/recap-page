@@ -23,8 +23,8 @@ app checked GitHub by default, offered a direct standalone ZIP, and told readers
 folder. The next candidate removes that path from the one shared app and adds exact package-content
 inspection.
 
-The repository now builds signed x64 and ARM64 version `2.0.2.0` proof packages, one x64/ARM64
-bundle, and an isolated x64 `2.0.2.1` update package. Store submission and publication remain
+The current release candidate builds signed x64 and ARM64 version `2.1.0.0` proof packages,
+one x64/ARM64 bundle, and an isolated x64 `2.1.0.1` update package. Store submission and publication remain
 separate actions.
 Those versions record this package candidate. Later builds derive Store revision `.0` and the
 proof-only `.1` revision from the canonical application release version.
@@ -351,8 +351,8 @@ actor evidence and app-linked terminal presentation block proof; a screenshot al
 evidence. The fixed native fixtures cover pending dismissal, late errors, malformed outcomes, pipe
 lifetime, bounds and accessibility without starting the real server or browser.
 
-The update scenario is x64-only because its `2.0.2.1` package is local proof material. The ARM64
-package and final bundle contain only Store-safe version `2.0.2.0`.
+The update scenario is x64-only because its `2.1.0.1` package is temporary proof material. The ARM64
+package and final bundle contain only Store-safe version `2.1.0.0`.
 
 The runner recursively prints every nested `AggregateError`. A failure that combines scenario and
 cleanup errors preserves each cause before any decision to repeat it. Busy-port refusal captures the
@@ -433,6 +433,12 @@ Publication remains a separate owner action. Repository automation never request
 accepts terms, reserves a name, uploads a package, or submits a listing.
 
 ## Future Store update automation
+
+The optional manual Windows release-preparation job retains only the portable ZIP and
+its allowlisted source/version/checksum record. It does not retain MSIX files or change
+the protected workflow below. The ZIP still uses its command-window launcher; branded
+native startup is specific to the Store package. Every proof job and cleanup must pass
+before the retained candidate is accepted. Preparation does not publish either distribution.
 
 After the first free submission is certified and live, the protected Microsoft Store release
 workflow can submit later package updates. A published GitHub release starts the job, but the

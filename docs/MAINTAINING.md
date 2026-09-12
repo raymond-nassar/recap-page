@@ -33,6 +33,10 @@ evidence anchors, spacing and contrast regressions, and publication content. The
 below are manual release checks because they require installed Edge and a driver outside the
 repository.
 
+Historical-anchor candidate paths use native Windows resolution before containment
+checks, so different spellings of the same directory cannot evade the worktree
+boundary. Other platforms retain their existing resolution behavior.
+
 ### Run the test suite directly
 
 The test script is deliberately the bare Node test command:
@@ -158,16 +162,18 @@ normal runner to pass. The upgrade proof has no single-scenario selector.
 ## Review pinned GitHub Actions
 
 The workflows pin each third-party action to a full commit SHA. The ordinary CI workflow runs
-deterministic repository checks only; the Windows release archive and its checksum are built and
-reviewed during release preparation rather than uploaded from CI.
+deterministic repository checks only. An explicitly requested manual Windows preparation run
+can retain the portable ZIP and its provenance for review; ordinary CI and Windows proof runs
+do not upload that archive.
 
 The separate Windows package workflow runs when package behavior or its own automation changes in a
 pull request, and it remains manually dispatchable. Its WACK job uses the supported Windows Server
 2022 x64 command-line host. Architecture-native installed jobs exercise the certification journey on
 x64 and Windows on Arm. Every job uses a read-only token, telemetry opt-out, and ephemeral randomly
 signed packages. The browser driver is installed outside the repository and does not become a
-dependency. The workflow uploads no package, certificate, installer, browser profile, raw output, or
-WACK report. The maintained Store guide records its bounded result and cleanup contract.
+dependency. The proof jobs upload no package, certificate, installer, browser profile, raw output, or
+WACK report. The optional preparation job retains only the portable ZIP and an allowlisted
+provenance record. The maintained Store guide records the proof's bounded result and cleanup contract.
 One Windows producer compiles the native x64/ARM64 GUI and isolated proof tools. Only those exact
 binaries and source/output hash records transfer to other jobs; consumers verify their producer
 digest against the same commit and source bytes. Native console/UI observation is CI-only.
@@ -679,7 +685,7 @@ fixes that intentionally change neither data nor interface.
 
 ### 2. Run release validation
 
-Repeat the seven deterministic gates from the start of this guide. Check that every advertised
+Repeat the eight deterministic gates from the start of this guide. Check that every advertised
 branch is either the default or the head of an open pull request in this repository, then fetch the
 current remote state and run the full publication-surface gate. The branch-only check uses the
 public GitHub API without a token in a local clone; set `GITHUB_TOKEN` when checking a private fork
@@ -703,6 +709,29 @@ Get-FileHash -Algorithm SHA256 dist/marvel-reading-tracker-windows.zip
 ```
 
 Do not commit `dist`.
+
+For hosted preparation, manually dispatch **Windows App Certification Kit** at the clean,
+committed candidate with `release_preparation=true`, `native_only=false` and
+`diagnostic_only=false`. The option defaults off and never runs on a pull request.
+The independent Windows preparation job runs the eight gates, live contract, full ordinary
+browser suite, actual historical upgrade, Store packet check and existing portable packer.
+Browser tooling uses the external locked driver and a temporary profile.
+
+The one-day `portable-candidate-<commit>` artifact contains exactly
+`marvel-reading-tracker-windows.zip` and `release-preparation.json`. The latter records the
+source commit/tree, application version, run/attempt, ZIP size/hash and bundled Node
+version/architecture/hash, not the build driver's version. The hosted verifier compares
+every portable file with its source or the checksum-verified official runtime archive.
+The ZIP keeps `Start on Windows.cmd`, its persistent command window and official x64 Node;
+the native branded startup belongs only to MSIX. No launcher or package behavior changes.
+
+An uploaded ZIP alone is not a qualified candidate: all five jobs and their cleanup must
+pass, including the existing native controls and all five installed journeys. Preserve the
+two retained files and verify their hashes before the artifact expires. Keep their original
+candidate provenance after merge rather than claiming they were built at a later commit.
+Store packages, certificates, private inputs and raw reports remain temporary. This route
+creates neither a tag nor a GitHub release and cannot submit a Store update. The protected
+read-only Store rehearsal remains a separate postmerge action.
 
 ### 3. Merge before tagging
 
