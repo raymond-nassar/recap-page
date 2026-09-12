@@ -24,7 +24,7 @@ jobs:
         working-directory: application
     env:
       WINAPP_CLI_TELEMETRY_OPTOUT: '1'
-      HANDOFF_ROOT: ${{ runner.temp }}\recap-store-handoff-${{ github.run_id }}-${{ github.run_attempt }}
+      HANDOFF_ROOT: ${{ github.workspace }}\recap-store-handoff-${{ github.run_id }}-${{ github.run_attempt }}
       DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
     steps:
       - name: Check out reviewed tooling

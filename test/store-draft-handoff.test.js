@@ -79,6 +79,9 @@ function receipt(f = fixture()) {
 }
 
 test('handoff is manual/default-branch-only, protected and has no Store secrets or publisher', () => {
+  assert.equal(workflow.split('\n').find((line) => line.trimStart().startsWith('HANDOFF_ROOT:')),
+    '      HANDOFF_ROOT: ${{ github.workspace }}\\recap-store-handoff-${{ github.run_id }}-${{ github.run_attempt }}',
+    'job-level handoff root must use the supported github context and exact run/attempt suffix');
   assert.match(workflow, /^on:\n {2}workflow_dispatch:\n\npermissions:\n {2}contents: read\n/m);
   assert.match(workflow, /github\.event_name == 'workflow_dispatch' &&\n {6}github\.ref == format\('refs\/heads\/\{0\}', github\.event\.repository\.default_branch\)/);
   assert.equal((workflow.match(/^ {2}[a-z]+:\n/gm) ?? []).length, 1);
