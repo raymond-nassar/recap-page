@@ -564,6 +564,33 @@ test('portable preparation runs the bounded release commands and cleans independ
   ]);
   assert.match(preparation, /\.github\/browser-proof/);
   assert.match(preparation, /npm ci --prefix \$root --ignore-scripts\r?\n\s*if \(\$LASTEXITCODE -ne 0\)/);
+  const exports = [...preparation.matchAll(/"MRT_PUPPETEER=\$(\w+)" >> \$env:GITHUB_ENV/g)];
+  assert.equal(exports.length, 1, 'preparation has one shared driver export');
+  const rootName = preparation.match(/\$root = Join-Path \$env:RUNNER_TEMP '([^']+)'/)?.[1];
+  const entrySuffix = preparation.match(/\$entry = Join-Path \$root '([^']+)'/)?.[1];
+  assert.ok(rootName && entrySuffix);
+  assert.match(preparation, /Test-Path -LiteralPath \$entry -PathType Leaf/);
+  const root = join('inert-runner-temp', rootName);
+  const entry = join(root, ...entrySuffix.split('\\'));
+  const bindings = { root, entry };
+  assert.ok(Object.hasOwn(bindings, exports[0][1]), 'driver export names a known binding');
+  const browserSource = readFileSync(new URL('../scripts/browser-check.mjs', import.meta.url), 'utf8');
+  const upgradeSource = readFileSync(new URL('../scripts/upgrade-check.mjs', import.meta.url), 'utf8');
+  const candidates = browserSource.match(/^function driverCandidates\(\) \{[\s\S]*?^\}/m)?.[0];
+  const resolver = browserSource.match(/^function resolveDriver\(\) \{[\s\S]*?^\}/m)?.[0];
+  const suffixes = browserSource.match(/^const DRIVER_SUFFIXES = \[[\s\S]*?^\];/m)?.[0];
+  const finder = upgradeSource.match(/^function findDriver\(\) \{[\s\S]*?^\}/m)?.[0];
+  assert.ok(candidates && resolver && suffixes && finder);
+  const globals = {
+    join,
+    homedir: () => 'inert-home',
+    existsSync: (path) => path === entry,
+    process: { env: { MRT_PUPPETEER: bindings[exports[0][1]] } },
+  };
+  assert.equal(runInNewContext(`${suffixes}\n${candidates}\n${resolver}\nresolveDriver();`, globals),
+    entry, 'the browser resolves the verified preparation entry');
+  assert.equal(runInNewContext(`${finder}\nfindDriver();`, globals),
+    entry, 'the upgrade resolves the verified preparation entry');
   assert.match(preparation, /node \$verifier\r?\n\s*if \(\$LASTEXITCODE -ne 0\)/);
   const steps = [...preparation.matchAll(/^ {8}timeout-minutes: (\d+)/gm)].map((match) => Number(match[1]));
   assert.equal(steps.length, (preparation.match(/^ {6}- name:/gm) ?? []).length);

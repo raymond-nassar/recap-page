@@ -745,7 +745,7 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw 'The release browser driver could not be installed.' }
           $entry = Join-Path $root 'node_modules\puppeteer-core\lib\puppeteer\puppeteer-core.js'
           if (-not (Test-Path -LiteralPath $entry -PathType Leaf)) { throw 'The release browser driver is missing.' }
-          "MRT_PUPPETEER=$entry" >> $env:GITHUB_ENV
+          "MRT_PUPPETEER=$root" >> $env:GITHUB_ENV
       - name: Run ESLint
         timeout-minutes: 2
         run: npm run lint
