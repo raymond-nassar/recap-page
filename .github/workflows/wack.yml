@@ -21,7 +21,7 @@ on:
       diagnostic_target:
         description: Bounded diagnostic target when diagnostic_only is enabled
         type: choice
-        options: [console-wack, handles, f01-smoke, preparation-tail]
+        options: [console-wack, handles, f01-smoke]
         required: false
         default: console-wack
   pull_request:
@@ -67,7 +67,6 @@ concurrency:
 jobs:
   native:
     name: Build and prove the native startup boundary
-    if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.diagnostic_only == true && inputs.diagnostic_target == 'preparation-tail') }}
     runs-on: windows-2022
     timeout-minutes: 181
     outputs:
@@ -950,145 +949,3 @@ jobs:
           if ($failures.Count -ne 0) {
             throw [AggregateException]::new('Portable preparation cleanup failed.', [Exception[]]$failures)
           }
-
-  preparation-tail:
-    name: Diagnose the unqualified preparation tail
-    if: ${{ github.event_name == 'workflow_dispatch' && inputs.diagnostic_only == true && inputs.diagnostic_target == 'preparation-tail' && inputs.native_only != true && inputs.release_preparation != true }}
-    runs-on: windows-2022
-    timeout-minutes: 50
-    steps:
-      - name: Check out the diagnostic head and complete upgrade history
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        timeout-minutes: 2
-        with:
-          fetch-depth: 0
-          persist-credentials: false
-      - name: Set up the diagnostic driver
-        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
-        timeout-minutes: 4
-        with:
-          node-version: '24.20.0'
-      - name: Bind the external driver and unchanged verifier
-        id: setup
-        timeout-minutes: 4
-        shell: pwsh
-        run: |
-          $root = Join-Path $env:RUNNER_TEMP 'recap-release-puppeteer'
-          Copy-Item -LiteralPath ./.github/browser-proof -Destination $root -Recurse -ErrorAction Stop
-          npm ci --prefix $root --ignore-scripts
-          if ($LASTEXITCODE -ne 0) { throw 'The release browser driver could not be installed.' }
-          $entry = Join-Path $root 'node_modules\puppeteer-core\lib\puppeteer\puppeteer-core.js'
-          if (-not (Test-Path -LiteralPath $entry -PathType Leaf)) { throw 'The release browser driver is missing.' }
-          "MRT_PUPPETEER=$root" >> $env:GITHUB_ENV
-          $scratch = Join-Path $env:RUNNER_TEMP 'recap-tail-diagnostic'
-          New-Item -ItemType Directory -Path $scratch -ErrorAction Stop | Out-Null
-          $temp = Join-Path $scratch 'temp'
-          New-Item -ItemType Directory -Path $temp -ErrorAction Stop | Out-Null
-          "TEMP=$temp" >> $env:GITHUB_ENV
-          "TMP=$temp" >> $env:GITHUB_ENV
-          $source = (Get-Content -LiteralPath ./.github/workflows/wack.yml -Raw).Replace("`r`n", "`n")
-          $baseline = @(& git show '5b7aa211c49f86f4825e2bdb6c092b107559fa56:.github/workflows/wack.yml')
-          if ($LASTEXITCODE -ne 0) { throw 'The accepted preparation source is unavailable.' }
-          $baseline = ($baseline -join "`n") + "`n"
-          $pattern = '(?ms)^      - name: Verify portable bytes and record candidate provenance\n        timeout-minutes: 10\n        shell: pwsh\n        run: \|\n(?<body>.*?)^      - name: Retain only the portable candidate and provenance\n'
-          $current = [regex]::Matches($source, $pattern)
-          $original = [regex]::Matches($baseline, $pattern)
-          if ($current.Count -ne 1 -or $original.Count -ne 1) { throw 'The unique existing verifier was not found.' }
-          if ($current[0].Value -cne $original[0].Value) { throw 'The existing verifier source changed.' }
-          $body = [regex]::Replace($current[0].Groups['body'].Value, '(?m)^          ', '')
-          $verifier = Join-Path $scratch 'verify.ps1'
-          [IO.File]::WriteAllText($verifier, $body, [Text.UTF8Encoding]::new($false))
-          if ([IO.File]::ReadAllText($verifier) -cne $body) { throw 'Extracted verifier bytes differ.' }
-          $hash = (Get-FileHash -LiteralPath $verifier -Algorithm SHA256).Hash.ToLowerInvariant()
-          "TAIL verifier-source-equal=true normalized-ps1-sha256=$hash"
-          "TAIL head=$env:GITHUB_SHA run=$env:GITHUB_RUN_ID attempt=$env:GITHUB_RUN_ATTEMPT qualified=false"
-          git rev-parse 'HEAD^{tree}'
-          if ($LASTEXITCODE -ne 0) { throw 'The diagnostic tree could not be recorded.' }
-          foreach ($file in @('scripts/browser-check.mjs', 'scripts/check-anchors.mjs', 'scripts/upgrade-check.mjs', 'scripts/check-store-submission.mjs', 'scripts/pack-windows.mjs')) {
-            $bytes = [Text.Encoding]::UTF8.GetBytes([IO.File]::ReadAllText((Join-Path $env:GITHUB_WORKSPACE $file)).Replace("`r`n", "`n"))
-            $digest = [Convert]::ToHexString([Security.Cryptography.SHA256]::HashData($bytes)).ToLowerInvariant()
-            "TAIL normalized-source=$file sha256=$digest"
-          }
-      - name: Observe the unchanged live contract once
-        id: contract
-        timeout-minutes: 5
-        run: npm run contract
-      - name: Exercise the real historical upgrade once
-        id: upgrade
-        if: ${{ !cancelled() && steps.setup.outcome == 'success' }}
-        timeout-minutes: 5
-        run: npm run upgrade
-      - name: Check the actual Store packet once
-        id: store
-        if: ${{ !cancelled() && steps.setup.outcome == 'success' }}
-        timeout-minutes: 2
-        run: npm run store:check
-      - name: Pack unqualified scratch once
-        id: pack
-        if: ${{ !cancelled() && steps.setup.outcome == 'success' }}
-        timeout-minutes: 10
-        run: npm run pack
-      - name: Execute the unchanged portable verifier once
-        id: verify
-        if: ${{ !cancelled() && steps.setup.outcome == 'success' && steps.pack.outcome == 'success' }}
-        timeout-minutes: 10
-        shell: pwsh
-        run: |
-          & (Join-Path $env:RUNNER_TEMP 'recap-tail-diagnostic\verify.ps1')
-      - name: Record unqualified stage and archive facts
-        if: always()
-        timeout-minutes: 2
-        shell: pwsh
-        env:
-          SETUP_RESULT: ${{ steps.setup.outcome }}
-          CONTRACT_RESULT: ${{ steps.contract.outcome }}
-          UPGRADE_RESULT: ${{ steps.upgrade.outcome }}
-          STORE_RESULT: ${{ steps.store.outcome }}
-          PACK_RESULT: ${{ steps.pack.outcome }}
-          VERIFY_RESULT: ${{ steps.verify.outcome }}
-        run: |
-          "TAIL setup=$env:SETUP_RESULT contract=$env:CONTRACT_RESULT upgrade=$env:UPGRADE_RESULT store=$env:STORE_RESULT pack=$env:PACK_RESULT verify=$env:VERIFY_RESULT qualified=false"
-          $archive = Join-Path $env:GITHUB_WORKSPACE 'dist\marvel-reading-tracker-windows.zip'
-          if (Test-Path -LiteralPath $archive -PathType Leaf) {
-            $file = Get-Item -LiteralPath $archive
-            $digest = (Get-FileHash -LiteralPath $archive -Algorithm SHA256).Hash.ToLowerInvariant()
-            "TAIL archive=$($file.Name) bytes=$($file.Length) sha256=$digest qualified=false"
-            Add-Type -AssemblyName System.IO.Compression.FileSystem
-            $zip = [IO.Compression.ZipFile]::OpenRead($archive)
-            try {
-              "TAIL archive-names=$(@($zip.Entries | ForEach-Object { $_.FullName }) | ConvertTo-Json -Compress)"
-            } finally { $zip.Dispose() }
-          }
-          $sidecar = Join-Path $env:GITHUB_WORKSPACE 'dist\release-preparation.json'
-          if (Test-Path -LiteralPath $sidecar -PathType Leaf) {
-            'TAIL unqualified-sidecar:'
-            Get-Content -LiteralPath $sidecar -Raw
-          } else { 'TAIL sidecar=absent' }
-      - name: Remove all owned tail diagnostic material
-        if: always()
-        timeout-minutes: 5
-        shell: pwsh
-        run: |
-          $failures = @()
-          $temp = Join-Path $env:RUNNER_TEMP 'recap-tail-diagnostic\temp'
-          if (Test-Path -LiteralPath $temp) {
-            $leftovers = @(Get-ChildItem -LiteralPath $temp -Directory -ErrorAction Stop |
-              Where-Object { $_.Name.StartsWith('mrt-upgrade-') -or $_.Name.StartsWith('mrt-pack-') })
-            "TAIL script-owned-temp-remaining=$($leftovers.Count)"
-            if ($leftovers.Count -ne 0) { $failures += [InvalidOperationException]::new('Script-owned temporary material remained after the runner.') }
-          }
-          foreach ($path in @(
-            (Join-Path $env:RUNNER_TEMP 'recap-release-puppeteer'),
-            (Join-Path $env:RUNNER_TEMP 'recap-release-preparation'),
-            (Join-Path $env:RUNNER_TEMP 'recap-tail-diagnostic'),
-            (Join-Path $env:GITHUB_WORKSPACE 'dist')
-          )) {
-            try {
-              if (Test-Path -LiteralPath $path) { Remove-Item -LiteralPath $path -Recurse -Force -ErrorAction Stop }
-              if (Test-Path -LiteralPath $path) { throw 'Tail diagnostic material remains.' }
-            } catch { $failures += $_.Exception }
-          }
-          if ($failures.Count -ne 0) {
-            throw [AggregateException]::new('Tail diagnostic cleanup failed.', [Exception[]]$failures)
-          }
-          'TAIL cleanup=complete uploads=0 retained=0'
