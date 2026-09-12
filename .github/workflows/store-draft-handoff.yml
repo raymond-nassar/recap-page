@@ -1,0 +1,473 @@
+name: Temporary Store draft handoff
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: store-draft-handoff
+  cancel-in-progress: false
+
+jobs:
+  handoff:
+    if: >-
+      github.event_name == 'workflow_dispatch' &&
+      github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+    environment: microsoft-store-production
+    runs-on: windows-2022
+    timeout-minutes: 130
+    defaults:
+      run:
+        shell: pwsh
+        working-directory: application
+    env:
+      WINAPP_CLI_TELEMETRY_OPTOUT: '1'
+      HANDOFF_ROOT: ${{ runner.temp }}\recap-store-handoff-${{ github.run_id }}-${{ github.run_attempt }}
+      DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+    steps:
+      - name: Check out reviewed tooling
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        timeout-minutes: 2
+        with:
+          ref: ${{ github.workflow_sha }}
+          path: tooling
+          persist-credentials: false
+
+      - name: Check out qualified application
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        timeout-minutes: 2
+        with:
+          ref: d116ffbda21be4289f0546fa4d4da139363404ee
+          path: application
+          persist-credentials: false
+
+      - name: Set up build driver
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        timeout-minutes: 4
+        with:
+          node-version: '24.20.0'
+
+      - name: Bind both sources and install inline contract
+        timeout-minutes: 2
+        run: |
+          $ErrorActionPreference = 'Stop'
+          New-Item -ItemType Directory -Path $env:HANDOFF_ROOT -ErrorAction Stop | Out-Null
+          @'
+          const fs = require('node:fs');
+          const path = require('node:path');
+          const { createHash } = require('node:crypto');
+          const { execFileSync } = require('node:child_process');
+          // BEGIN handoff contracts
+          const APPLICATION = 'd116ffbda21be4289f0546fa4d4da139363404ee';
+          const TREE = 'b5d4af8849fdfa3cdd441b7946da3e0d93f70c01';
+          const WORKFLOW = '.github/workflows/store-draft-handoff.yml';
+          const REPOSITORY = 'raymond-nassar/recap-page';
+          const BUNDLE = 'RecapPage_2.1.0.0_x64_arm64.msixbundle';
+          const FILES = [BUNDLE, 'store-draft-handoff.json'];
+          const HEX = /^[0-9a-f]{64}$/;
+          const COMMIT = /^[0-9a-f]{40}$/;
+          const ARCHITECTURES = ['x64', 'arm64'];
+          function demand(condition, message) {
+            if (!condition) throw new Error(message);
+          }
+          function same(actual, expected, label) {
+            demand(JSON.stringify(actual) === JSON.stringify(expected), label);
+          }
+          function keys(value, names, label) {
+            demand(value !== null && typeof value === 'object' && !Array.isArray(value), label);
+            same(Object.keys(value).sort(), [...names].sort(), label);
+          }
+          function bind(observed, env) {
+            keys(observed, ['source', 'workflow'], 'binding fields');
+            keys(observed.source, ['commit', 'tree', 'applicationVersion', 'storeVersion'], 'source fields');
+            same(observed.source, {
+              commit: APPLICATION, tree: TREE, applicationVersion: '2.1.0', storeVersion: '2.1.0.0',
+            }, 'qualified application source differs');
+            keys(observed.workflow, ['commit', 'tree', 'path', 'blobSha256', 'runId', 'runAttempt'], 'workflow fields');
+            const w = observed.workflow;
+            demand(env.GITHUB_REPOSITORY === REPOSITORY
+              && env.GITHUB_EVENT_NAME === 'workflow_dispatch'
+              && env.GITHUB_REF === `refs/heads/${env.DEFAULT_BRANCH}`
+              && env.GITHUB_WORKFLOW_REF === `${REPOSITORY}/${WORKFLOW}@${env.GITHUB_REF}`,
+            'manual default-branch workflow binding differs');
+            demand(COMMIT.test(w.commit) && COMMIT.test(w.tree) && HEX.test(w.blobSha256)
+              && w.commit === env.GITHUB_WORKFLOW_SHA && w.commit === env.GITHUB_SHA
+              && w.path === WORKFLOW && /^[1-9]\d*$/.test(w.runId) && /^[1-9]\d*$/.test(w.runAttempt)
+              && w.runId === env.GITHUB_RUN_ID && w.runAttempt === env.GITHUB_RUN_ATTEMPT,
+            'workflow source or run binding differs');
+            return observed;
+          }
+          function allowFiles(entries) {
+            same(entries.map((entry) => entry.name).sort(), [...FILES].sort(), 'handoff file allowlist differs');
+            demand(entries.every((entry) => entry.file && !entry.link), 'handoff requires regular files');
+          }
+          function wackSummary(text, label, expectedHash) {
+            function field(name) {
+              const prefix = `${label} ${name}: `;
+              const lines = text.split(/\r?\n/).filter((line) => line.startsWith(prefix));
+              demand(lines.length === 1, `missing or duplicate WACK ${name}`);
+              return lines[0].slice(prefix.length);
+            }
+            demand(field('SHA-256').toLowerCase() === expectedHash, 'WACK package hash differs');
+            const result = {
+              overall: field('overall result'), partial: field('partial run'),
+              latest: field('latest WACK'), disposition: field('disposition'),
+            };
+            validateWack(result);
+            return result;
+          }
+          function validateWack(value) {
+            keys(value, ['overall', 'partial', 'latest', 'disposition'], 'WACK fields');
+            demand(['FALSE', 'NOT REPORTED'].includes(value.partial)
+              && ['TRUE', 'NOT REPORTED'].includes(value.latest)
+              && ((value.overall === 'PASS' && ['PASS', 'PASS WITH OPTIONAL WARNINGS'].includes(value.disposition))
+                || (value.overall === 'WARNING' && value.disposition === 'PASS WITH OPTIONAL WARNINGS')),
+            'unqualified WACK result');
+          }
+          function validateReceipt(r, binding, publisher) {
+            keys(r, ['schemaVersion', 'repository', 'source', 'workflow', 'target', 'bundle', 'native',
+              'runtimes', 'inspection', 'signing', 'wack', 'retention'], 'receipt fields');
+            demand(r.schemaVersion === 1 && r.repository === REPOSITORY, 'receipt schema/repository differs');
+            same(r.source, binding.source, 'receipt source differs');
+            same(r.workflow, binding.workflow, 'receipt workflow differs');
+            same(r.target, { storeId: '9PDJ7XR9Q40Q', submissionId: '1152921505701831258',
+              purpose: 'draft-preparation-only' }, 'receipt draft differs');
+            keys(r.bundle, ['file', 'bytes', 'sha256', 'identity', 'publisher', 'architectures'], 'bundle fields');
+            demand(r.bundle.file === BUNDLE && Number.isSafeInteger(r.bundle.bytes) && r.bundle.bytes > 0
+              && HEX.test(r.bundle.sha256) && r.bundle.identity === 'PanelStackLabs.RecapPage'
+              && r.bundle.publisher === publisher, 'bundle values differ');
+            same(r.bundle.architectures, ARCHITECTURES, 'bundle architectures differ');
+            keys(r.native, ['manifestSha256', 'inputDigest', 'x64Sha256', 'arm64Sha256', 'toolchain'], 'native fields');
+            demand(['manifestSha256', 'inputDigest', 'x64Sha256', 'arm64Sha256'].every((key) => HEX.test(r.native[key])),
+              'native hashes differ');
+            const tools = r.native.toolchain;
+            keys(tools, ['image', 'sdk', 'compilerVersion', 'targets'], 'toolchain fields');
+            demand(typeof tools.image === 'string' && /^[\w .-]{1,200}$/.test(tools.image)
+              && tools.sdk === '10.0.26100.0' && typeof tools.compilerVersion === 'string'
+              && /^\d+\.\d+\.\d+(?:\.\d+)?$/.test(tools.compilerVersion), 'toolchain values differ');
+            demand(Array.isArray(tools.targets) && tools.targets.length === 2, 'toolchain targets differ');
+            demand(Array.isArray(r.runtimes) && r.runtimes.length === 2, 'runtime count differs');
+            ARCHITECTURES.forEach((architecture, i) => {
+              const tool = tools.targets[i];
+              keys(tool, ['architecture', 'compiler', 'linker', 'resources'], 'tool hashes fields');
+              demand(tool.architecture === architecture && ['compiler', 'linker', 'resources'].every((key) => HEX.test(tool[key])),
+                'tool hashes differ');
+              const runtime = r.runtimes[i];
+              keys(runtime, ['architecture', 'version', 'nodeSha256'], 'runtime fields');
+              demand(runtime.architecture === architecture && runtime.version === 'v24.19.0'
+                && HEX.test(runtime.nodeSha256), 'runtime values differ');
+            });
+            same(r.inspection, { structuralPassed: true, signaturePresent: true, proofVersionExcluded: true },
+              'inspection not qualified');
+            keys(r.signing, ['subject', 'thumbprint', 'kind'], 'signing fields');
+            demand(r.signing.subject === publisher && typeof r.signing.thumbprint === 'string'
+              && /^[0-9A-F]{40}$/.test(r.signing.thumbprint) && r.signing.kind === 'ephemeral-local-proof',
+            'signing values differ');
+            keys(r.wack, ['x64', 'bundle'], 'WACK result fields');
+            validateWack(r.wack.x64);
+            validateWack(r.wack.bundle);
+            same(r.retention, { temporary: true, submitAuthorized: false }, 'retention differs');
+            return r;
+          }
+          function makeReceipt(binding, report, native, nativeHash, signer, wack, hashes, bytes) {
+            demand(report.nodeVersion === 'v24.19.0' && report.packages.length === 2
+              && report.bundle.packages.length === 2 && report.bundle.packageCount === 2,
+            'inspection population differs');
+            const slices = report.bundle.packages;
+            const all = [...report.packages, report.proofUpdate, ...slices];
+            demand(all.every((entry) => entry.signed === true && !Object.hasOwn(entry, 'runtimeProcess')),
+              'structural signature evidence differs');
+            demand(report.proofUpdate.identity.version === '2.1.0.1'
+              && report.proofUpdate.identity.architecture === 'x64', 'proof inspection missing');
+            demand(native.commit === binding.source.commit && native.productionDigest === null
+              && native.schemaVersion === 1, 'native source differs');
+            const publisher = signer.subject;
+            for (const [i, architecture] of ARCHITECTURES.entries()) {
+              for (const entry of [report.packages[i], slices[i]]) {
+                same(entry.identity, { name: 'PanelStackLabs.RecapPage', publisher,
+                  version: binding.source.storeVersion, architecture }, 'inspected slice differs');
+                demand(entry.native.sha256 === native.outputs[i].sha256
+                  && native.outputs[i].architecture === architecture
+                  && entry.native.inputDigest === native.inputDigest && HEX.test(entry.nodeSha256),
+                'native/runtime inspection differs');
+              }
+              demand(report.packages[i].nodeSha256 === slices[i].nodeSha256, 'runtime slice mismatch');
+            }
+            same(report.bundle.identity, { name: 'PanelStackLabs.RecapPage', publisher,
+              version: binding.source.storeVersion }, 'inspected bundle differs');
+            demand(report.bundle.file === BUNDLE && report.bundle.signed === true, 'bundle signature missing');
+            demand(hashes.before === report.bundle.sha256 && hashes.after === hashes.before
+              && hashes.staged === hashes.before, 'bundle hash changed');
+            const r = {
+              schemaVersion: 1, repository: REPOSITORY, source: binding.source, workflow: binding.workflow,
+              target: { storeId: '9PDJ7XR9Q40Q', submissionId: '1152921505701831258', purpose: 'draft-preparation-only' },
+              bundle: { file: report.bundle.file, bytes, sha256: hashes.staged,
+                identity: report.bundle.identity.name, publisher: report.bundle.identity.publisher,
+                architectures: slices.map((entry) => entry.identity.architecture) },
+              native: { manifestSha256: nativeHash, inputDigest: native.inputDigest,
+                x64Sha256: slices[0].native.sha256, arm64Sha256: slices[1].native.sha256,
+                toolchain: native.toolchain },
+              runtimes: slices.map((entry) => ({ architecture: entry.identity.architecture,
+                version: report.nodeVersion, nodeSha256: entry.nodeSha256 })),
+              inspection: {
+                structuralPassed: all.length === 5 && all.every((entry) => !Object.hasOwn(entry, 'runtimeProcess')),
+                signaturePresent: report.bundle.signed && all.every((entry) => entry.signed),
+                proofVersionExcluded: slices.every((entry) => entry.identity.version === binding.source.storeVersion),
+              },
+              signing: { subject: signer.subject, thumbprint: signer.thumbprint, kind: 'ephemeral-local-proof' },
+              wack: { x64: wackSummary(wack, 'x64 package', report.packages[0].sha256),
+                bundle: wackSummary(wack, 'x64 ARM64 bundle', hashes.before) },
+              retention: { temporary: true, submitAuthorized: false },
+            };
+            return validateReceipt(r, binding, publisher);
+          }
+          // END handoff contracts
+          const env = process.env;
+          const root = env.HANDOFF_ROOT;
+          const application = path.join(env.GITHUB_WORKSPACE, 'application');
+          const tooling = path.join(env.GITHUB_WORKSPACE, 'tooling');
+          const scratch = path.join(root, 'scratch');
+          const stage = path.join(root, 'stage');
+          const sha = (bytes) => createHash('sha256').update(bytes).digest('hex');
+          const read = (file) => fs.readFileSync(file, 'utf8').replace(/^\ufeff/, '');
+          const json = (file) => JSON.parse(read(file));
+          const git = (cwd, args) => execFileSync('git', args, { cwd, maxBuffer: 8e6 });
+          function revision(cwd) {
+            const values = git(cwd, ['rev-parse', 'HEAD', 'HEAD^{tree}']).toString().trim().split(/\r?\n/);
+            demand(values.length === 2, 'revision population differs');
+            demand(git(cwd, ['status', '--porcelain=v1', '--untracked-files=no']).length === 0,
+              'tracked source is dirty');
+            return { commit: values[0], tree: values[1] };
+          }
+          function observe() {
+            const source = revision(application);
+            const workflow = revision(tooling);
+            const committed = git(tooling, ['show', `${workflow.commit}:${WORKFLOW}`]);
+            // Hash Git blob bytes, not checkout line endings.
+            workflow.path = WORKFLOW;
+            workflow.blobSha256 = sha(committed);
+            workflow.runId = env.GITHUB_RUN_ID;
+            workflow.runAttempt = env.GITHUB_RUN_ATTEMPT;
+            source.applicationVersion = json(path.join(application, 'package.json')).version;
+            source.storeVersion = `${source.applicationVersion}.0`;
+            return bind({ source, workflow }, env);
+          }
+          function preflight(binding, publisher) {
+            allowFiles(fs.readdirSync(stage, { withFileTypes: true }).map((entry) => ({
+              name: entry.name, file: entry.isFile(), link: entry.isSymbolicLink(),
+            })));
+            const receipt = validateReceipt(json(path.join(stage, FILES[1])), binding, publisher);
+            const file = path.join(stage, BUNDLE);
+            demand(fs.statSync(file).size === receipt.bundle.bytes
+              && sha(fs.readFileSync(file)) === receipt.bundle.sha256, 'upload preflight hash differs');
+          }
+          const mode = process.argv[2];
+          if (mode === 'bind') {
+            const binding = observe();
+            fs.mkdirSync(scratch);
+            fs.writeFileSync(path.join(root, 'binding.json'), JSON.stringify(binding));
+            fs.appendFileSync(env.GITHUB_ENV, `TEMP=${scratch}\nTMP=${scratch}\nNUGET_PACKAGES=${path.join(scratch, 'nuget')}\nnpm_config_cache=${path.join(scratch, 'npm')}\n`);
+          } else if (mode === 'stage') {
+            const binding = observe();
+            same(binding, json(path.join(root, 'binding.json')), 'sources changed during qualification');
+            const text = read(path.join(scratch, 'inspection.txt'));
+            const start = text.search(/^\{\r?$/m);
+            demand(start >= 0, 'inspection JSON missing');
+            const report = JSON.parse(text.slice(start));
+            const nativeBytes = fs.readFileSync(path.join(application, 'dist', 'native-launcher', 'build.json'));
+            const signer = json(path.join(scratch, 'signer.json'));
+            const file = path.join(application, 'dist', 'msix', BUNDLE);
+            const after = sha(fs.readFileSync(file));
+            fs.mkdirSync(stage);
+            fs.copyFileSync(file, path.join(stage, BUNDLE), fs.constants.COPYFILE_EXCL);
+            const staged = sha(fs.readFileSync(path.join(stage, BUNDLE)));
+            const receipt = makeReceipt(binding, report, JSON.parse(nativeBytes), sha(nativeBytes), signer,
+              read(path.join(scratch, 'wack.txt')),
+              { before: read(path.join(scratch, 'bundle.sha256')).trim(), after, staged }, fs.statSync(file).size);
+            fs.writeFileSync(path.join(stage, FILES[1]), `${JSON.stringify(receipt, null, 2)}\n`, { flag: 'wx' });
+            preflight(binding, signer.subject);
+          } else if (mode === 'preflight') {
+            const binding = bind(json(path.join(root, 'binding.json')), env);
+            const { X509Certificate } = require('node:crypto');
+            const certificate = new X509Certificate(fs.readFileSync(path.join(application, 'dist', 'msix', 'RecapPage-local-proof.cer')));
+            preflight(binding, certificate.subject);
+          } else {
+            throw new Error('unsupported handoff contract operation');
+          }
+          '@ | Set-Content -LiteralPath (Join-Path $env:HANDOFF_ROOT 'contract.cjs') -Encoding utf8
+          node (Join-Path $env:HANDOFF_ROOT 'contract.cjs') bind
+          if ($LASTEXITCODE -ne 0) { throw 'Source binding failed.' }
+
+      - name: Install application inspection tooling
+        timeout-minutes: 4
+        working-directory: application
+        run: |
+          npm ci --ignore-scripts
+          if ($LASTEXITCODE -ne 0) { throw 'Application tooling installation failed.' }
+
+      - name: Install checksum-verified WinApp CLI
+        timeout-minutes: 6
+        run: |
+          $archive = Join-Path $env:HANDOFF_ROOT 'scratch\winappcli-x64-v0.6.0.zip'
+          $toolRoot = Join-Path $env:HANDOFF_ROOT 'scratch\winappcli-x64-v0.6.0'
+          Invoke-WebRequest `
+            -Uri 'https://github.com/microsoft/winappCli/releases/download/v0.6.0/winappcli-x64.zip' `
+            -OutFile $archive
+          $actual = (Get-FileHash -Algorithm SHA256 -LiteralPath $archive).Hash
+          if ($actual -ne 'F6DC42E3B4E4709C8F617003008E2CFDD9A51735E04E7170D60EDDA258DB78A8') {
+            throw 'WinApp CLI v0.6.0 did not match its reviewed SHA-256.'
+          }
+          Expand-Archive -LiteralPath $archive -DestinationPath $toolRoot
+          $output = @(& (Join-Path $toolRoot 'winapp.exe') --version)
+          if ($LASTEXITCODE -ne 0 -or $output.Count -eq 0 -or @('0.6.0', 'v0.6.0') -notcontains $output[-1].Trim()) {
+            throw 'WinApp CLI version verification failed.'
+          }
+          $toolRoot >> $env:GITHUB_PATH
+
+      - name: Build production native launchers
+        timeout-minutes: 12
+        run: |
+          ./scripts/build-native-launcher.ps1
+          if (-not $?) { throw 'Production native build failed.' }
+
+      - name: Pack Store bundle
+        timeout-minutes: 15
+        run: |
+          npm run msix:pack
+          if ($LASTEXITCODE -ne 0) { throw 'Store packaging failed.' }
+
+      - name: Inspect packages structurally
+        timeout-minutes: 10
+        run: |
+          npm run msix:inspect -- --structural |
+            Set-Content -LiteralPath (Join-Path $env:HANDOFF_ROOT 'scratch\inspection.txt') -Encoding utf8
+          if ($LASTEXITCODE -ne 0) { throw 'Structural inspection failed.' }
+
+      - name: Record pre-WACK bundle hash and signer
+        timeout-minutes: 2
+        run: |
+          (Get-FileHash -Algorithm SHA256 -LiteralPath '.\dist\msix\RecapPage_2.1.0.0_x64_arm64.msixbundle').Hash.ToLowerInvariant() |
+            Set-Content -LiteralPath (Join-Path $env:HANDOFF_ROOT 'scratch\bundle.sha256') -Encoding utf8
+          $certificate = [Security.Cryptography.X509Certificates.X509Certificate2]::new(
+            (Resolve-Path -LiteralPath '.\dist\msix\RecapPage-local-proof.cer').Path)
+          try {
+            [ordered]@{ subject = $certificate.Subject; thumbprint = $certificate.Thumbprint } |
+              ConvertTo-Json -Compress |
+              Set-Content -LiteralPath (Join-Path $env:HANDOFF_ROOT 'scratch\signer.json') -Encoding utf8
+          } finally { $certificate.Dispose() }
+
+      - name: Run WACK on exact packages
+        timeout-minutes: 55
+        run: |
+          ./scripts/run-wack.ps1 `
+            -X64Package '.\dist\msix\RecapPage_2.1.0.0_x64.msix' `
+            -Bundle '.\dist\msix\RecapPage_2.1.0.0_x64_arm64.msixbundle' `
+            -Certificate '.\dist\msix\RecapPage-local-proof.cer' |
+            Set-Content -LiteralPath (Join-Path $env:HANDOFF_ROOT 'scratch\wack.txt') -Encoding utf8
+          if (-not $?) { throw 'WACK execution or cleanup failed.' }
+
+      - name: Rebind and stage qualified handoff
+        id: staged
+        timeout-minutes: 3
+        run: |
+          node (Join-Path $env:HANDOFF_ROOT 'contract.cjs') stage
+          if ($LASTEXITCODE -ne 0) { throw 'Qualified handoff staging failed.' }
+
+      - name: Remove non-handoff material
+        id: cleaned
+        if: always()
+        timeout-minutes: 5
+        shell: powershell
+        working-directory: ${{ github.workspace }}
+        env:
+          STAGED: ${{ steps.staged.outcome }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $failures = @()
+          $cer = Join-Path $env:GITHUB_WORKSPACE 'application\dist\msix\RecapPage-local-proof.cer'
+          try {
+            $packages = @(Get-AppxPackage -Name PanelStackLabs.RecapPage |
+              Where-Object PackageFamilyName -eq 'PanelStackLabs.RecapPage_we33aa8nvkpcc')
+            foreach ($package in $packages) { Remove-AppxPackage -Package $package.PackageFullName }
+            if (@(Get-AppxPackage -Name PanelStackLabs.RecapPage |
+                Where-Object PackageFamilyName -eq 'PanelStackLabs.RecapPage_we33aa8nvkpcc').Count -ne 0) {
+              throw 'WACK package registration remains.'
+            }
+          } catch { $failures += $_.Exception }
+          try {
+            if (Test-Path -LiteralPath $cer) {
+              $certificate = [Security.Cryptography.X509Certificates.X509Certificate2]::new($cer)
+              try {
+                $trusted = "Cert:\LocalMachine\TrustedPeople\$($certificate.Thumbprint)"
+                if (Test-Path -LiteralPath $trusted) { Remove-Item -LiteralPath $trusted -Force }
+                if (Test-Path -LiteralPath $trusted) { throw 'WACK trust remains.' }
+              } finally { $certificate.Dispose() }
+            }
+          } catch { $failures += $_.Exception }
+          try {
+            if ($env:STAGED -eq 'success') {
+              node (Join-Path $env:HANDOFF_ROOT 'contract.cjs') preflight
+              if ($LASTEXITCODE -ne 0) { throw 'Upload preflight failed.' }
+              $stage = Join-Path $env:HANDOFF_ROOT 'stage'
+              $receiptPath = Join-Path $stage 'store-draft-handoff.json'
+              $receiptHash = (Get-FileHash -LiteralPath $receiptPath -Algorithm SHA256).Hash
+              $receipt = Get-Content -LiteralPath $receiptPath -Raw | ConvertFrom-Json
+            }
+          } catch { $failures += $_.Exception }
+          foreach ($path in @(
+            (Join-Path $env:GITHUB_WORKSPACE 'application\dist'),
+            (Join-Path $env:GITHUB_WORKSPACE 'application\node_modules'),
+            (Join-Path $env:RUNNER_TEMP "recap-native-build-$env:GITHUB_RUN_ID-$env:GITHUB_RUN_ATTEMPT"),
+            (Join-Path $env:HANDOFF_ROOT 'scratch'),
+            (Join-Path $env:HANDOFF_ROOT 'contract.cjs'),
+            (Join-Path $env:HANDOFF_ROOT 'binding.json')
+          )) {
+            try {
+              if (Test-Path -LiteralPath $path) { Remove-Item -LiteralPath $path -Recurse -Force }
+              if (Test-Path -LiteralPath $path) { throw "Handoff cleanup residue: $path" }
+            } catch { $failures += $_.Exception }
+          }
+          if ($failures.Count -ne 0) {
+            throw [AggregateException]::new('Non-handoff cleanup failed.', [Exception[]]$failures)
+          }
+          if ($env:STAGED -eq 'success') {
+            $entries = @(Get-ChildItem -LiteralPath $stage -Force)
+            if ($entries.Count -ne 2 -or @($entries | Where-Object {
+                $_.PSIsContainer -or ($_.Attributes -band [IO.FileAttributes]::ReparsePoint) -or
+                $_.Name -notin @('RecapPage_2.1.0.0_x64_arm64.msixbundle', 'store-draft-handoff.json')
+              }).Count -ne 0) { throw 'Post-cleanup handoff file allowlist differs.' }
+            $bundle = Join-Path $stage 'RecapPage_2.1.0.0_x64_arm64.msixbundle'
+            if ((Get-FileHash -LiteralPath $bundle -Algorithm SHA256).Hash.ToLowerInvariant() -cne $receipt.bundle.sha256 -or
+                (Get-Item -LiteralPath $bundle).Length -ne $receipt.bundle.bytes -or
+                (Get-FileHash -LiteralPath $receiptPath -Algorithm SHA256).Hash -cne $receiptHash) {
+              throw 'Post-cleanup handoff hash differs.'
+            }
+          }
+          @("TEMP=$env:RUNNER_TEMP", "TMP=$env:RUNNER_TEMP") |
+            Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+
+      - name: Upload temporary handoff
+        if: success() && steps.staged.outcome == 'success' && steps.cleaned.outcome == 'success'
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        timeout-minutes: 2
+        with:
+          name: store-draft-handoff-${{ github.run_id }}-${{ github.run_attempt }}-${{ github.workflow_sha }}-d116ffbda21be4289f0546fa4d4da139363404ee
+          path: |
+            ${{ env.HANDOFF_ROOT }}\stage\RecapPage_2.1.0.0_x64_arm64.msixbundle
+            ${{ env.HANDOFF_ROOT }}\stage\store-draft-handoff.json
+          if-no-files-found: error
+          retention-days: 1
+          compression-level: 0
+
+      - name: Remove final staging
+        if: always()
+        timeout-minutes: 2
+        working-directory: ${{ github.workspace }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          if (Test-Path -LiteralPath $env:HANDOFF_ROOT) {
+            Remove-Item -LiteralPath $env:HANDOFF_ROOT -Recurse -Force
+          }
+          if (Test-Path -LiteralPath $env:HANDOFF_ROOT) { throw 'Final handoff staging remains.' }
