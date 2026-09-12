@@ -657,6 +657,25 @@ archive and verify SHA-256
 `f6dc42e3b4e4709c8f617003008e2cfdd9a51735e04e7170d60edda258db78a8` before extraction or
 execution.
 
+### Prepare the preserved Store draft
+
+For the owner-approved existing draft in #488, use **Temporary Store draft handoff**
+on the default branch with the normal protected approval. It builds only the pinned
+2.1.0 application, independently records the workflow source, installs that application's
+locked inspection tooling, then runs the existing production build, inspection and WACK.
+The normal publisher and its pending-draft rejection are unchanged.
+
+Accept the one-day artifact only after the entire job, including both cleanup steps,
+succeeds. Verify its run/attempt, both source identities, exact two-file root set,
+receipt fields and bundle hash. Only the 2.1.0.0 x64/ARM64 bundle and receipt may leave
+the runner; no proof package, certificate or raw report is a handoff. This is not a
+public installer or Store-signed package, and optional WACK warnings are not certification.
+The coordinator owns the existing-draft upload and final-release listing updates,
+read-back of intended edits and unchanged unrelated settings, and deletion of the
+exact temporary local copies and cloud artifact after verified upload.
+Do not install the bundle locally or submit for certification through this route.
+Keep #488 open until handoff, draft read-back and disposal finish; publishing is separate.
+
 ## Cutting a release
 
 Release preparation and GitHub publication are separate actions. Prepare and merge the release

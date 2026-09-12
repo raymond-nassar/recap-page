@@ -13,6 +13,13 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Prepare a temporary package for an existing Store draft
+
+Maintainers have a protected, manual handoff for the qualified 2.1.0 Store bundle
+and its source-bound receipt, retained for one day. It preserves the normal
+publisher's pending-draft safeguard and does not submit or publish an update.
+The application and saved data are unchanged.
+
 ## 2.1.0
 
 Saved data from version 2.0.0 remains fully compatible with 2.1.0, including progress,
