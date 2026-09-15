@@ -13,6 +13,13 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Follow Miles Morales from the Ultimate Universe to Earth-616
+
+Adds a Spider-Man: Miles Morales Reading List credited and linked to Comic Book Herald, with
+385 resolved comics and one explicit Ultimate Prologue gap. Crossover chapters keep the guide's
+reading sequence, and Secret Empire #9-10 retain their known identities despite missing provider
+details. Existing Reading Lists and saved progress are unchanged.
+
 ### Follow Mephisto across the Marvel Universe
 
 Adds a Mephisto Reading List credited and linked to Comic Book Herald, with 551 resolved comics

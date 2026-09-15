@@ -3895,5 +3895,54 @@
     "sourceContentSha256": "b3412d7769cf1851534fae82633489621ad95242c197d7886b9022930cbeb2c1",
     "sourceBoundaryStatus": "exact-page-snapshot",
     "metadataHorizonStatus": "approved"
+  },
+  {
+    "position": 130,
+    "id": "miles-morales-spider-man-reading-order",
+    "title": "Spider-Man: Miles Morales",
+    "url": "https://www.comicbookherald.com/miles-morales-spider-man-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "new-order",
+    "reason": "Owner-requested standalone guide intake, separate from the original hub census. Preserves 400 collection references through explicit sequencing as 395 effective occurrences: 385 exact comics, one identity gap and nine repeats. Two exact Secret Empire identities retain provider refusals. sourceContentSha256 hashes normalized factual blocks, not HTML. Issue 496 owns scope; Issue 500 tracks gaps.",
+    "sourceRetrievedAt": "2026-09-15",
+    "overlapIds": [
+      "absolute-carnage",
+      "all-new-all-different-avengers",
+      "amazing-spider-man-reading-order-modern-marvel-era",
+      "ant-man-reading-order",
+      "black-panther-reading-order",
+      "black-widow-reading-order",
+      "captain-marvel-ms-marvel-reading-order",
+      "doctor-doom-primer",
+      "fantastic-four-reading-order",
+      "generations",
+      "hickman-full",
+      "hickman-minimal",
+      "infinite-destinies",
+      "iron-man-reading-order",
+      "mephisto-reading-order",
+      "silver-surfer-reading-order",
+      "spider-geddon",
+      "spider-verse",
+      "venom-reading-order",
+      "war-of-the-realms",
+      "wolverine-reading-order"
+    ],
+    "catalogIds": [
+      "miles-morales-spider-man-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
+    "labels": [
+      "Spider-Man: Miles Morales"
+    ],
+    "sourcePositions": [
+      1
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "f7bab40e8ee464c6863bf7b32b77423bb87db7041e2b934770f287f967cc0c08",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "approved"
   }
 ]

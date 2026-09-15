@@ -88,7 +88,9 @@ test('Mephisto selects the correct annual, Wolverine run, one-shots and decimal 
 test('Mephisto packet, mapping and relationship approval retain their digest contracts', async () => {
   const report = await readJson(`scripts/data/cbh-overlaps/${id}.json`);
   const currentReport = await buildReportForMapping(
-    `scripts/data/cbh-mappings/${id}.json`, [], { excludedOrderIds: [] },
+    `scripts/data/cbh-mappings/${id}.json`, [], {
+      excludedOrderIds: ['miles-morales-spider-man-reading-order'],
+    },
   );
   assert.doesNotThrow(() => validateFrozenPacket(packet));
   assert.doesNotThrow(() => validateMappingDigest(mapping));
@@ -112,7 +114,7 @@ test('Mephisto checklist and catalog publish the exact vector with credit and fi
     readJson('src/data/catalog.json'),
     readJson('src/data/curated-lists.json'),
   ]);
-  assert.equal(markdown, buildMarkdown(mapping));
+  assert.equal(markdown.replace(/\r\n/g, '\n'), buildMarkdown(mapping));
   const parsed = parseChecklist(markdown);
   assert.equal(parsed.entries.length, 551);
   assert.equal(parsed.unresolved.length, 5);
