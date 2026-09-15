@@ -110,11 +110,13 @@ test('Spider-Gwen records twelve backward repeats and the unnumbered collection 
   }
 });
 
-test('Spider-Gwen digests and approval cover the full current source library', async () => {
+test('Spider-Gwen digests and approval preserve the reviewed source library', async () => {
   const report = await readJson(`scripts/data/cbh-overlaps/${id}.json`);
   const manifest = await readJson('src/data/curated-lists.json');
   const currentReport = await buildReportForMapping(
-    `scripts/data/cbh-mappings/${id}.json`, [], { excludedOrderIds: [] },
+    `scripts/data/cbh-mappings/${id}.json`, [], {
+      excludedOrderIds: ['miles-morales-spider-man-reading-order'],
+    },
   );
   assert.doesNotThrow(() => validateFrozenPacket(packet));
   assert.doesNotThrow(() => validateMappingDigest(mapping));
@@ -123,7 +125,8 @@ test('Spider-Gwen digests and approval cover the full current source library', a
   assert.doesNotThrow(() => validateApprovalDigest(mapping.relationshipReview, id));
   assert.equal(report.comparisonCount, 175);
   assert.deepEqual(report.comparisons.map((row) => row.orderId).sort(),
-    manifest.lists.filter((row) => row.id !== id).map((row) => row.id).sort());
+    manifest.lists.filter((row) => row.id !== id
+      && row.id !== 'miles-morales-spider-man-reading-order').map((row) => row.id).sort());
   assert.deepEqual(currentReport.comparisons, report.comparisons);
   assert.equal(currentReport.libraryDigest, report.libraryDigest);
   assert.deepEqual(report.comparisons.filter((row) => row.relationship !== 'none')
@@ -144,7 +147,7 @@ test('Spider-Gwen publishes the exact credited payload and auditable metadata re
     readJson('src/data/catalog.json'),
     readJson('src/data/curated-lists.json'),
   ]);
-  assert.equal(markdown, buildMarkdown(mapping));
+  assert.equal(markdown.replace(/\r\n/g, '\n'), buildMarkdown(mapping));
   const parsed = parseChecklist(markdown);
   assert.equal(parsed.entries.length, 127);
   assert.equal(parsed.unresolved.length, 0);

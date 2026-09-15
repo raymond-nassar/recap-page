@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-15T04:55:40.783Z",
+  "generatedAt": "2026-09-15T05:16:18.121Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -9037,6 +9037,48 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-21T09:58:39.862Z"
+    },
+    {
+      "id": "miles-morales-spider-man-reading-order",
+      "file": "miles_morales_spider_man_reading_order.json",
+      "name": "Spider-Man: Miles Morales",
+      "description": "Follow Miles from the Ultimate Universe to Earth-616, the Champions and Trial By Spider in Comic Book Herald guide order. One unresolved comic remains marked as a gap.",
+      "type": "character-run",
+      "depth": "partial",
+      "spotlightKind": "other",
+      "count": 386,
+      "placeholderCount": 1,
+      "emptyRecordCount": 2,
+      "collections": 60,
+      "characters": [
+        "Miles Morales",
+        "Spider-Man",
+        "Champions",
+        "Spider-Gwen",
+        "Avengers"
+      ],
+      "keywords": [
+        "Miles Morales",
+        "Comic Book Herald",
+        "Ultimate Spider-Man",
+        "Spider-Men",
+        "Spider-Verse",
+        "Trial By Spider"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 38394,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/c0/4e67d6122b965",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/miles-morales-spider-man-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-09-15T05:16:18.121Z"
     },
     {
       "id": "amazing-spider-man-reading-order-modern-marvel-era",
