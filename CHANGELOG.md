@@ -13,6 +13,13 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Follow Bucky Barnes and the Winter Soldier
+
+Adds a Bucky Barnes / Winter Soldier Reading List credited and linked to Comic Book Herald,
+with 480 resolved comics from his Golden Age beginnings through the latest listed Thunderbolts
+run. Four unresolved originals remain marked as gaps, and repeated source references do not
+duplicate the checklist. Existing Reading Lists and saved progress are unchanged.
+
 ### Follow Spider-Gwen into her Ghost-Spider years
 
 Adds a Spider-Gwen / Ghost-Spider Reading List credited and linked to Comic Book Herald,

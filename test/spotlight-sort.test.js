@@ -104,6 +104,7 @@ test('popularity sorting keeps the ranked stories first and the rest in their cu
     'Modern X-Men Fast Track',
     'Thanos',
     'Ant-Man',
+    'Bucky Barnes / Winter Soldier',
     'Hulk (and She-Hulk, Red Hulk)',
     'Captain Marvel / Ms. Marvel',
     'Captain America: Modern Marvel Era',

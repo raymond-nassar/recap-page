@@ -114,7 +114,7 @@ test('Spider-Gwen digests and approval cover the full current source library', a
   const report = await readJson(`scripts/data/cbh-overlaps/${id}.json`);
   const manifest = await readJson('src/data/curated-lists.json');
   const currentReport = await buildReportForMapping(
-    `scripts/data/cbh-mappings/${id}.json`, [], { excludedOrderIds: [] },
+    `scripts/data/cbh-mappings/${id}.json`, [], { excludedOrderIds: ['winter-soldier-bucky-barnes-reading-order'] },
   );
   assert.doesNotThrow(() => validateFrozenPacket(packet));
   assert.doesNotThrow(() => validateMappingDigest(mapping));
@@ -123,7 +123,7 @@ test('Spider-Gwen digests and approval cover the full current source library', a
   assert.doesNotThrow(() => validateApprovalDigest(mapping.relationshipReview, id));
   assert.equal(report.comparisonCount, 175);
   assert.deepEqual(report.comparisons.map((row) => row.orderId).sort(),
-    manifest.lists.filter((row) => row.id !== id).map((row) => row.id).sort());
+    manifest.lists.filter((row) => row.id !== id && row.id !== 'winter-soldier-bucky-barnes-reading-order').map((row) => row.id).sort());
   assert.deepEqual(currentReport.comparisons, report.comparisons);
   assert.equal(currentReport.libraryDigest, report.libraryDigest);
   assert.deepEqual(report.comparisons.filter((row) => row.relationship !== 'none')
