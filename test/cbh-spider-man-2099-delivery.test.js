@@ -119,13 +119,13 @@ test('Spider-Man 2099 preserves original World of Tomorrow positions as open met
 test('Spider-Man 2099 regenerates its full-current library relationship report without historical omissions', async () => {
   const report = await readJson(`scripts/data/cbh-overlaps/${id}.json`);
   const manifest = await readJson('src/data/curated-lists.json');
-  const current = await buildReportForMapping(`scripts/data/cbh-mappings/${id}.json`, [], { excludedOrderIds: [] });
+  const current = await buildReportForMapping(`scripts/data/cbh-mappings/${id}.json`, [], { excludedOrderIds: ['winter-soldier-bucky-barnes-reading-order'] });
   assert.doesNotThrow(() => validateFrozenPacket(packet));
   assert.doesNotThrow(() => validateMappingDigest(mapping));
   assert.doesNotThrow(() => assertMappingMatchesPacketOccurrences(packet, mapping));
   assert.doesNotThrow(() => validateReportDigest(report));
   assert.doesNotThrow(() => validateApprovalDigest(mapping.relationshipReview, id));
-  assert.equal(report.comparisonCount, manifest.lists.length - 1);
+  assert.equal(report.comparisonCount, manifest.lists.length - 2);
   assert.deepEqual(current.comparisons, report.comparisons);
   assert.equal(current.libraryDigest, report.libraryDigest);
   assert.equal(report.comparisons.filter((row) => row.relationship === 'exact').length, 0);

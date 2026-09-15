@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-15T05:21:35.424Z",
+  "generatedAt": "2026-09-15T05:31:03.010Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -3179,6 +3179,51 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-26T08:00:03.031Z"
+    },
+    {
+      "id": "winter-soldier-bucky-barnes-reading-order",
+      "file": "winter_soldier_bucky_barnes_reading_order.json",
+      "name": "Bucky Barnes / Winter Soldier",
+      "description": "Follow Bucky Barnes from his Golden Age beginnings through Captain America, the Winter Soldier and Thunderbolts, in Comic Book Herald guide order. Unresolved original comics remain marked as gaps.",
+      "type": "character-run",
+      "depth": "partial",
+      "spotlightKind": "other",
+      "count": 484,
+      "placeholderCount": 4,
+      "emptyRecordCount": 0,
+      "collections": 65,
+      "characters": [
+        "Bucky Barnes",
+        "Winter Soldier",
+        "Captain America",
+        "Black Widow",
+        "Falcon",
+        "Invaders",
+        "Thunderbolts"
+      ],
+      "keywords": [
+        "Bucky Barnes",
+        "Winter Soldier",
+        "Comic Book Herald",
+        "Ed Brubaker",
+        "Steve Rogers",
+        "Man on the Wall",
+        "Second Chances"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 91,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/c0/5728d2ec8b6dc",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/winter-soldier-bucky-barnes-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-09-15T05:31:03.010Z"
     },
     {
       "id": "wolverine-reading-order",

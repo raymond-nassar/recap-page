@@ -2608,6 +2608,44 @@
       "coverIssueId": 11379
     },
     {
+      "id": "winter-soldier-bucky-barnes-reading-order",
+      "name": "Bucky Barnes / Winter Soldier",
+      "description": "Follow Bucky Barnes from his Golden Age beginnings through Captain America, the Winter Soldier and Thunderbolts, in Comic Book Herald guide order. Unresolved original comics remain marked as gaps.",
+      "type": "character-run",
+      "spotlightKind": "other",
+      "depth": "partial",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "winter-soldier-bucky-barnes-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/winter-soldier-bucky-barnes-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "winter_soldier_bucky_barnes_reading_order.json",
+      "characters": [
+        "Bucky Barnes",
+        "Winter Soldier",
+        "Captain America",
+        "Black Widow",
+        "Falcon",
+        "Invaders",
+        "Thunderbolts"
+      ],
+      "keywords": [
+        "Bucky Barnes",
+        "Winter Soldier",
+        "Comic Book Herald",
+        "Ed Brubaker",
+        "Steve Rogers",
+        "Man on the Wall",
+        "Second Chances"
+      ],
+      "expect": 484,
+      "timeline": null,
+      "coverIssueId": 91
+    },
+    {
       "id": "wolverine-reading-order",
       "name": "Wolverine",
       "description": "Wolverine from Giant-Size X-Men through Old Man Logan, preserving exact issue links and unresolved source provenance.",
