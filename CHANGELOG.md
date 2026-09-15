@@ -20,6 +20,13 @@ with 127 comics in guide order, including its crossover issues and Latest Additi
 Repeated references appear once, and the unnumbered Gwenom vs Carnage collection is
 documented without inventing an issue range. Existing Reading Lists and saved progress are unchanged.
 
+### Give reading-list sources visible credit
+
+Reading List cards now show a linked source website and snapshot date without requiring an
+extra click. Preview keeps the full attribution and source section visible. The app footer
+also links to Comic Book Herald, Comic Book Reading Orders, and the upstream reading-list
+repository. Saved lists and reading progress are unchanged.
+
 ### Follow Mephisto across the Marvel Universe
 
 Adds a Mephisto Reading List credited and linked to Comic Book Herald, with 551 resolved comics

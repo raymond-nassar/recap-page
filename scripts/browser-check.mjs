@@ -3278,7 +3278,7 @@ const SCENARIOS = [
       t.check('All search exposes the exact Adam card, source, controls, and no false first stop',
         card.title === 'Adam Warlock' && card.count
         && card.addName === 'Add to library: Adam Warlock'
-        && card.sourceName === "Source of Adam Warlock: Compiled for this project from Comic Book Herald's guide"
+        && card.sourceName === 'Source of Adam Warlock: Comic Book Herald'
         && card.sourceHref === 'https://www.comicbookherald.com/adam-warlock-reading-order/'
         && !card.path && !card.orientation.includes('Adam Warlock'),
         JSON.stringify(card));
@@ -6003,7 +6003,7 @@ const SCENARIOS = [
       t.check('the first stop is badged so a reader can find it at a glance', first?.pathSummary === 'Start · 1/3', JSON.stringify(first));
       t.check('and still says how long the path is', first?.step?.includes('Step 1 of 3') === true, JSON.stringify(first));
       t.check('and names the path it belongs to', first?.step?.includes('The Fixture Path') === true, JSON.stringify(first?.step));
-      t.check('and names the exact source section without changing its link', first?.source?.includes('Section: Fixture section') === true, JSON.stringify(first?.source));
+      t.check('and credits the source website without the section prose', first?.source?.startsWith('Source: example.com · Snapshot taken ') === true && !first.source.includes('Section:'), JSON.stringify(first?.source));
 
       t.check('a middle stop is numbered', middle?.pathSummary === 'Step 2/3', JSON.stringify(middle));
       // Deliberately absent. The shelf is sorted by year, so the previous stop is the row above,
@@ -13375,6 +13375,7 @@ MUTATIONS.push({
 });
 
 SCENARIOS.push((await import('./browser-preview-scroll-452.mjs')).previewScroll452);
+SCENARIOS.push((await import('./browser-source-credits.mjs')).sourceCredits);
 
 // Without this an unexpected throw leaves an unhandled rejection, which Node reports as a bare
 // stack and exits 1 on. Exit 1 is this check's word for "an assertion failed", so an internal

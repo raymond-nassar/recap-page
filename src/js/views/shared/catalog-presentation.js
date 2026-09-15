@@ -170,10 +170,10 @@ export function createCatalogPresentation({
     }, CATALOG_ADD);
   }
 
-  function attributionLine(list) {
-    const label = sourceLabel(list);
+  function attributionLine(list, { compact = false } = {}) {
     const href = sourceLink(list);
-    const section = typeof list.sourceSection === 'string' && list.sourceSection.trim()
+    const label = compact && href ? sourceSiteName(href) : sourceLabel(list);
+    const section = !compact && typeof list.sourceSection === 'string' && list.sourceSection.trim()
       ? list.sourceSection.trim()
       : null;
     const updated = updatedLabel(list);
@@ -193,10 +193,7 @@ export function createCatalogPresentation({
     }
     if (section) parts.push(el('span', { text: `${label ? ' · ' : ''}Section: ${section}` }));
     if (updated) parts.push(el('span', { text: `${label || section ? ' · ' : ''}Snapshot taken ${updated}` }));
-    return el('details', { class: 'result-src' }, [
-      el('summary', { 'aria-label': `Source of ${list.name}` }, 'Source'),
-      el('p', { class: 'result-meta result-source' }, parts),
-    ]);
+    return el('p', { class: 'result-meta result-source' }, parts);
   }
 
   function pathDisclosure(placement, surface, { localStoryKeys = null } = {}) {
@@ -233,7 +230,7 @@ export function createCatalogPresentation({
     const meta = el('p', { class: 'catalog-card-meta' });
     const source = el('div', { class: 'result-source' });
     const path = pathDisclosure(placement, surface, { localStoryKeys });
-    const disclosures = el('div', { class: 'catalog-card-disclosures' }, [path, source].filter(Boolean));
+    const disclosures = path ? el('div', { class: 'catalog-card-disclosures' }, [path]) : null;
     const actions = el('div', { class: 'catalog-card-actions' });
 
     const paint = (list) => {
@@ -244,7 +241,7 @@ export function createCatalogPresentation({
         `${list.count} issue${list.count === 1 ? '' : 's'}`,
         ...catalogGapLabels(list),
       ].join(' · ');
-      source.replaceChildren(...[attributionLine(list)].filter(Boolean));
+      source.replaceChildren(...[attributionLine(list, { compact: true })].filter(Boolean));
       const previewText = story.lists.length > 1 ? `${story.lists.length} reading options` : 'Preview';
       actions.replaceChildren(
         primaryButton(list, reportTarget),
@@ -271,6 +268,7 @@ export function createCatalogPresentation({
           desc,
           meta,
           disclosures,
+          source,
         ]),
       ]),
       actions,
@@ -488,4 +486,17 @@ export function createCatalogPresentation({
     renderTimelineSections,
     shelfSectionHead,
   };
+}
+
+function sourceSiteName(href) {
+  const url = new URL(href);
+  const host = url.hostname.replace(/^www\./, '');
+  if (host === 'comicbookherald.com') return 'Comic Book Herald';
+  if (host === 'comicbookreadingorders.com') return 'Comic Book Reading Orders';
+  if (host === 'github.com') {
+    const repository = url.pathname.split('/').slice(1, 3).join('/');
+    if (repository === 'raymond-nassar/recap-page') return 'Recap Page';
+    if (repository && !repository.endsWith('/')) return repository;
+  }
+  return host;
 }

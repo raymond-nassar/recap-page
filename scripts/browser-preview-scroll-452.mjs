@@ -160,7 +160,7 @@ export const previewScroll452 = {
       await page.focus('#preview-close');
       await page.keyboard.press('Tab');
       t.check(`${cfg.name}: Source precedes the selected option`,
-        await page.evaluate(() => document.activeElement.matches('#preview-source summary')));
+        await page.evaluate(() => document.activeElement.matches('#preview-source a')));
       await page.keyboard.press('Tab');
       const stationary = await stationaryRadio(page);
       t.check(`${cfg.name}: stationary selected Preview radio shows its full label and focus outline`,
