@@ -1649,8 +1649,8 @@
     "fp": "791cc726f6bd4955",
     "head": "export function modernTimelinePosition(state, stories, { dropped = 0 } = {}) {"
   },
-  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/views/shared/catalog-presentation.js:280-330|0": {
-    "anchor": "src/js/views/shared/catalog-presentation.js:280-330",
+  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/views/shared/catalog-presentation.js:278-328|0": {
+    "anchor": "src/js/views/shared/catalog-presentation.js:278-328",
     "fp": "0a962c0efebbd6c1",
     "head": "function paintTimelinePosition(root, position, {"
   },
@@ -1769,8 +1769,8 @@
     "fp": "0c6537943c08c527",
     "head": "<script type=\"module\" src=\"./dev-faults.js\"></script>"
   },
-  "docs/ARCHITECTURE.md|the-three-entry-points|src/index.html:1123|0": {
-    "anchor": "src/index.html:1123",
+  "docs/ARCHITECTURE.md|the-three-entry-points|src/index.html:1124|0": {
+    "anchor": "src/index.html:1124",
     "fp": "9f74c3a9fa356fa2",
     "head": "<script type=\"module\" src=\"./js/app.js\"></script>"
   },
@@ -1919,8 +1919,8 @@
     "fp": "b79dcc7a949b3231",
     "head": "export function synopsisFallback(issue, sessionEntry = null, noSynopsisMarker = undefined) {"
   },
-  "docs/DATA_PROVENANCE.md|what-the-first-hand-s-own-terms-said|src/index.html:1045|0": {
-    "anchor": "src/index.html:1045",
+  "docs/DATA_PROVENANCE.md|what-the-first-hand-s-own-terms-said|src/index.html:1046|0": {
+    "anchor": "src/index.html:1046",
     "fp": "cd4793f475d06ae8",
     "head": "<span>Marvel metadata via marvel.emreparker.com. <span data-marvel-copyright>© MARVEL</span></span>"
   },
@@ -1984,13 +1984,13 @@
     "fp": "e9a1e74dee2c791e",
     "head": "// The publication gate answered a question that only gets asked once, and it was asked on"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3993-4004|0": {
-    "anchor": "CHANGELOG.md:3993-4004",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:4000-4011|0": {
+    "anchor": "CHANGELOG.md:4000-4011",
     "fp": "7ebb6ef43a1f1241",
     "head": "- **The project now watches its own development tooling for known security problems, and says how"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:4006-4016|0": {
-    "anchor": "CHANGELOG.md:4006-4016",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:4013-4023|0": {
+    "anchor": "CHANGELOG.md:4013-4023",
     "fp": "c37eedd88ad1c81c",
     "head": "- **The project now has a published security policy, which names a private route for reporting a"
   },
@@ -2194,8 +2194,8 @@
     "fp": "5c83ad7d477a49de",
     "head": "function wire(key) {"
   },
-  "docs/UX_STUDY.md|sweep-result|src/styles.css:1774-1776|0": {
-    "anchor": "src/styles.css:1774-1776",
+  "docs/UX_STUDY.md|sweep-result|src/styles.css:1762-1764|0": {
+    "anchor": "src/styles.css:1762-1764",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2214,8 +2214,8 @@
     "fp": "3cbc7d76b21e95fa",
     "head": "// Generated from src/data/hickman_full.json - real issues and real covers. The synopses this"
   },
-  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:1774-1776|0": {
-    "anchor": "src/styles.css:1774-1776",
+  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:1762-1764|0": {
+    "anchor": "src/styles.css:1762-1764",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2334,8 +2334,8 @@
     "fp": "53b9bb8e0988cf2b",
     "head": "color-scheme: dark;"
   },
-  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:1774-1776|0": {
-    "anchor": "src/styles.css:1774-1776",
+  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:1762-1764|0": {
+    "anchor": "src/styles.css:1762-1764",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -6044,13 +6044,13 @@
     "fp": "3a90f9bd69dfcf96",
     "head": "el('span', { class: 'yours-count', text: count }),"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:1809|0": {
-    "anchor": "src/styles.css:1809",
+  "scripts/check-palette.mjs|preamble|src/styles.css:1797|0": {
+    "anchor": "src/styles.css:1797",
     "fp": "3a5c838f7187d084",
     "head": "background: color-mix(in srgb, var(--warn) 12%, var(--panel));"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:1833|0": {
-    "anchor": "src/styles.css:1833",
+  "scripts/check-palette.mjs|preamble|src/styles.css:1821|0": {
+    "anchor": "src/styles.css:1821",
     "fp": "1eef54d530f1e5d5",
     "head": ".blocked .btn-g { border-color: var(--muted); }"
   },

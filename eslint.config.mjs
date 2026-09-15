@@ -114,6 +114,7 @@ export default [
     files: [
       'scripts/browser-check.mjs',
       'scripts/browser-preview-scroll-452.mjs',
+      'scripts/browser-source-credits.mjs',
       'scripts/capture-store-assets.mjs',
       'scripts/upgrade-check.mjs',
     ],

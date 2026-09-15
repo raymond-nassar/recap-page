@@ -16,7 +16,7 @@ the prose rather than in a binary nobody can diff.
 ## The three entry points
 
 The app is served from one origin and has three pages, each loading exactly one module. The tracker
-itself is loaded at `src/index.html:1123`. The launch page, which is the tab a reader's issue opens
+itself is loaded at `src/index.html:1124`. The launch page, which is the tab a reader's issue opens
 into, is loaded at `src/open.html:19`. A fault-injection harness that exists for development and is
 no part of the running app is loaded at `src/dev-faults.html:135`.
 
@@ -559,7 +559,7 @@ filtered completion is stated before the narrowed results.
 
 The shared presentation contract removes the previous positional state and paints exactly one
 current label, hidden message, completion state or unavailable message at
-`src/js/views/shared/catalog-presentation.js:280-330`. Only a visible current story receives
+`src/js/views/shared/catalog-presentation.js:278-328`. Only a visible current story receives
 `aria-current="step"`. The controller injects live state and current-view knowledge at
 `src/js/main.js:3047-3079`, while the existing Store-driven render path calls the position-only
 refresh at `src/js/main.js:2520-2542`. That refresh leaves cards, controls, focus, scroll and
