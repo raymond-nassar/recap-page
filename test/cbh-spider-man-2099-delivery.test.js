@@ -130,6 +130,13 @@ test('Spider-Man 2099 regenerates its full-current library relationship report w
   assert.equal(current.libraryDigest, report.libraryDigest);
   assert.equal(report.comparisons.filter((row) => row.relationship === 'exact').length, 0);
   assert.equal(report.comparisons.find((row) => row.orderId === 'marvel-2099').relationship, 'partial');
+  assert.deepEqual(report.comparisons.filter((row) => row.relationship !== 'none')
+    .map((row) => [row.orderId, row.relationship, row.sharedCount]), [
+    ['amazing-spider-man-reading-order-modern-marvel-era', 'partial', 8],
+    ['marvel-2099', 'partial', 45],
+    ['spider-gwen-reading-order', 'partial', 3],
+    ['spider-verse', 'partial', 4],
+  ]);
   assert.equal(mapping.relationshipReview.dispositions.length, report.comparisonCount);
   assert.ok(mapping.relationshipReview.dispositions.every((row) => row.decision === 'approved'));
 });

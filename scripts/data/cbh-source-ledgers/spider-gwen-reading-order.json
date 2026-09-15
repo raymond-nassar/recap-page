@@ -1,0 +1,2915 @@
+{
+  "schemaVersion": 1,
+  "id": "spider-gwen-reading-order",
+  "sourcePageTitle": "Spider-Gwen (Gwen Stacey, Ghost Spider) Reading Order!",
+  "sourceUrl": "https://www.comicbookherald.com/spider-gwen-reading-order/",
+  "sourceRetrievedAt": "2026-09-15",
+  "sourceIssueBearingBlocksSha256": "03a1ea654bb01735df8a9c8673d475f99cfc77bc876fa3cf8f868d5ea15b4054",
+  "scopeIssue": "https://github.com/raymond-nassar/recap-page/issues/495",
+  "sourceBoundary": "All 19 Collects paragraphs and 14 explicitly listed crossover issues on the full Spider-Gwen guide, from Edge of Spider-Verse through all three Latest Additions collections ending in Shadow Clones. Literal page order and first source occurrences are retained; the later crossover lists remain explicit backward references. Alpha and Omega retain their standalone identities. The unnumbered Gwenom vs Carnage collection recommendation is documented separately, not expanded into invented source issues. No linked-guide expansion, narrative or artwork.",
+  "blocks": [
+    {
+      "block": 1,
+      "sourceRangeReference": "Collects: Edge Of Spider -Verse 1-5",
+      "occurrenceCount": 5
+    },
+    {
+      "block": 2,
+      "sourceRangeReference": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1",
+      "occurrenceCount": 27
+    },
+    {
+      "block": 3,
+      "sourceRangeReference": "Collects: Spider-Gwen 1-5",
+      "occurrenceCount": 5
+    },
+    {
+      "block": 4,
+      "sourceRangeReference": "Collects: Spider-Gwen 1-6",
+      "occurrenceCount": 6
+    },
+    {
+      "block": 5,
+      "sourceRangeReference": "Collects: Silk 7-8, Spider-Gwen 7-8, Spider-Woman 6-7",
+      "occurrenceCount": 6
+    },
+    {
+      "block": 6,
+      "sourceRangeReference": "Spider-Women Alpha",
+      "occurrenceCount": 1
+    },
+    {
+      "block": 7,
+      "sourceRangeReference": "Spider-Gwen #7",
+      "occurrenceCount": 1
+    },
+    {
+      "block": 8,
+      "sourceRangeReference": "Silk #7",
+      "occurrenceCount": 1
+    },
+    {
+      "block": 9,
+      "sourceRangeReference": "Spider-Woman #6",
+      "occurrenceCount": 1
+    },
+    {
+      "block": 10,
+      "sourceRangeReference": "Spider-Gwen #8",
+      "occurrenceCount": 1
+    },
+    {
+      "block": 11,
+      "sourceRangeReference": "Silk #8",
+      "occurrenceCount": 1
+    },
+    {
+      "block": 12,
+      "sourceRangeReference": "Spider-Woman #7",
+      "occurrenceCount": 1
+    },
+    {
+      "block": 13,
+      "sourceRangeReference": "Spider-Women Omega",
+      "occurrenceCount": 1
+    },
+    {
+      "block": 14,
+      "sourceRangeReference": "Collects: Spider-Gwen (2015B) #9-13",
+      "occurrenceCount": 5
+    },
+    {
+      "block": 15,
+      "sourceRangeReference": "Collects: Spider-Gwen 14-15, Annual 1, All-New Wolverine Annual 1",
+      "occurrenceCount": 4
+    },
+    {
+      "block": 16,
+      "sourceRangeReference": "Collects: Spider-Man (2016) #12-14, Spider-Gwen (2015B) #16-18",
+      "occurrenceCount": 6
+    },
+    {
+      "block": 17,
+      "sourceRangeReference": "Spider-Man #12",
+      "occurrenceCount": 1
+    },
+    {
+      "block": 18,
+      "sourceRangeReference": "Spider-Gwen #16",
+      "occurrenceCount": 1
+    },
+    {
+      "block": 19,
+      "sourceRangeReference": "Spider-Man #13",
+      "occurrenceCount": 1
+    },
+    {
+      "block": 20,
+      "sourceRangeReference": "Spider-Gwen #17",
+      "occurrenceCount": 1
+    },
+    {
+      "block": 21,
+      "sourceRangeReference": "Spider-Man #14",
+      "occurrenceCount": 1
+    },
+    {
+      "block": 22,
+      "sourceRangeReference": "Spider-Gwen #18",
+      "occurrenceCount": 1
+    },
+    {
+      "block": 23,
+      "sourceRangeReference": "Collects: Spider-Gwen 19-23",
+      "occurrenceCount": 5
+    },
+    {
+      "block": 24,
+      "sourceRangeReference": "Collects: Spider-Gwen 24-29",
+      "occurrenceCount": 6
+    },
+    {
+      "block": 25,
+      "sourceRangeReference": "Collects: Spider-Gwen 30-34",
+      "occurrenceCount": 5
+    },
+    {
+      "block": 26,
+      "sourceRangeReference": "Collects: Spider-Geddon 0-5, Spider-Geddon: Vault Of Spiders 1-2",
+      "occurrenceCount": 8
+    },
+    {
+      "block": 27,
+      "sourceRangeReference": "Collects: Spider-Gwen: Ghost-Spider 1-4",
+      "occurrenceCount": 4
+    },
+    {
+      "block": 28,
+      "sourceRangeReference": "Collects: Spider-Gwen: Ghost Spider #5-10.",
+      "occurrenceCount": 6
+    },
+    {
+      "block": 29,
+      "sourceRangeReference": "Collects: Ghost-Spider (2019) #1-5.",
+      "occurrenceCount": 5
+    },
+    {
+      "block": 30,
+      "sourceRangeReference": "Collects: Ghost-Spider (2019) #6-10.",
+      "occurrenceCount": 5
+    },
+    {
+      "block": 31,
+      "sourceRangeReference": "Collects: Spider-Gwen: Gwenverse #1 to #5",
+      "occurrenceCount": 5
+    },
+    {
+      "block": 32,
+      "sourceRangeReference": "Collects: Spider-Man (2022) #1 to #7",
+      "occurrenceCount": 7
+    },
+    {
+      "block": 33,
+      "sourceRangeReference": "Collects: Spider-Gwen: Shadow Clones (2023) #1 to #5",
+      "occurrenceCount": 5
+    }
+  ],
+  "excludedSourceReferences": [
+    "Gwenom vs Carnage: the page links a collected-edition recommendation and describes a King in Black miniseries tie-in, but supplies no issue numbers or issue sequence. No range is invented or imported from the linked guide."
+  ],
+  "identityDecisions": [
+    {
+      "seriesId": 19670,
+      "note": "The five pre-Secret-Wars singles are series 19670, not the supplied Vol. 0 collection URL 19671. The source explicitly distinguishes this five-issue run from the separate ongoing."
+    },
+    {
+      "seriesId": 20499,
+      "note": "Silk #7-8 are the post-Secret-Wars ongoing in series 20499. Supplied series 19661 is the earlier seven-issue 2015 run, not this crossover."
+    },
+    {
+      "seriesId": 20505,
+      "note": "The source post-Secret-Wars Spider-Gwen run is series 20505, distinct from the five-issue 2015 run even where title, year and issue number coincide."
+    },
+    {
+      "seriesId": 20618,
+      "note": "The actual source names Spider-Woman #6-7, not #7-8 from the supplied shorthand."
+    },
+    {
+      "seriesId": 21280,
+      "note": "The explicit source sequence names Spider-Women Alpha. Exact provider metadata identifies its standalone 2016 #1."
+    },
+    {
+      "seriesId": 21442,
+      "note": "The explicit source sequence names Spider-Women Omega. Exact provider metadata identifies its standalone 2016 #1."
+    },
+    {
+      "seriesId": 33961,
+      "note": "Gwenverse is the 2022 five-issue series. Latest Additions placement does not establish a later series year."
+    }
+  ],
+  "sourceOrderDecision": "Collects paragraphs precede the explicit Spider-Women and Sitting In A Tree lists. Canonical comics retain that first textual position, not a reconstructed crossover chronology. Six later references in each explicit crossover list are recorded as backward repeats; the new Alpha and Omega identities remain at their first positions.",
+  "sourceOccurrenceCount": 139,
+  "canonicalCount": 127,
+  "repeatCount": 12,
+  "gapCount": 0,
+  "occurrences": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "Edge of Spider-Verse (2014) #1",
+      "sourceRangeReference": "Collects: Edge Of Spider -Verse 1-5",
+      "normalizedSeriesTitle": "Edge of Spider-Verse",
+      "seriesYear": 2014,
+      "issueNumber": "1",
+      "block": 1,
+      "seriesId": 19075,
+      "disposition": "exact",
+      "issueId": 50954
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "Edge of Spider-Verse (2014) #2",
+      "sourceRangeReference": "Collects: Edge Of Spider -Verse 1-5",
+      "normalizedSeriesTitle": "Edge of Spider-Verse",
+      "seriesYear": 2014,
+      "issueNumber": "2",
+      "block": 1,
+      "seriesId": 19075,
+      "disposition": "exact",
+      "issueId": 50955
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "Edge of Spider-Verse (2014) #3",
+      "sourceRangeReference": "Collects: Edge Of Spider -Verse 1-5",
+      "normalizedSeriesTitle": "Edge of Spider-Verse",
+      "seriesYear": 2014,
+      "issueNumber": "3",
+      "block": 1,
+      "seriesId": 19075,
+      "disposition": "exact",
+      "issueId": 50956
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "Edge of Spider-Verse (2014) #4",
+      "sourceRangeReference": "Collects: Edge Of Spider -Verse 1-5",
+      "normalizedSeriesTitle": "Edge of Spider-Verse",
+      "seriesYear": 2014,
+      "issueNumber": "4",
+      "block": 1,
+      "seriesId": 19075,
+      "disposition": "exact",
+      "issueId": 50962
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "Edge of Spider-Verse (2014) #5",
+      "sourceRangeReference": "Collects: Edge Of Spider -Verse 1-5",
+      "normalizedSeriesTitle": "Edge of Spider-Verse",
+      "seriesYear": 2014,
+      "issueNumber": "5",
+      "block": 1,
+      "seriesId": 19075,
+      "disposition": "exact",
+      "issueId": 50963
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "The Amazing Spider-Man (2014) #7",
+      "sourceRangeReference": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2014,
+      "issueNumber": "7",
+      "block": 2,
+      "seriesId": 17285,
+      "disposition": "exact",
+      "issueId": 45806
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "The Amazing Spider-Man (2014) #8",
+      "sourceRangeReference": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2014,
+      "issueNumber": "8",
+      "block": 2,
+      "seriesId": 17285,
+      "disposition": "exact",
+      "issueId": 45807
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "The Amazing Spider-Man (2014) #9",
+      "sourceRangeReference": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2014,
+      "issueNumber": "9",
+      "block": 2,
+      "seriesId": 17285,
+      "disposition": "exact",
+      "issueId": 45808
+    },
+    {
+      "sourcePosition": 9,
+      "sourceIssueReference": "The Amazing Spider-Man (2014) #10",
+      "sourceRangeReference": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2014,
+      "issueNumber": "10",
+      "block": 2,
+      "seriesId": 17285,
+      "disposition": "exact",
+      "issueId": 45809
+    },
+    {
+      "sourcePosition": 10,
+      "sourceIssueReference": "The Amazing Spider-Man (2014) #11",
+      "sourceRangeReference": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2014,
+      "issueNumber": "11",
+      "block": 2,
+      "seriesId": 17285,
+      "disposition": "exact",
+      "issueId": 45810
+    },
+    {
+      "sourcePosition": 11,
+      "sourceIssueReference": "The Amazing Spider-Man (2014) #12",
+      "sourceRangeReference": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2014,
+      "issueNumber": "12",
+      "block": 2,
+      "seriesId": 17285,
+      "disposition": "exact",
+      "issueId": 45811
+    },
+    {
+      "sourcePosition": 12,
+      "sourceIssueReference": "The Amazing Spider-Man (2014) #13",
+      "sourceRangeReference": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2014,
+      "issueNumber": "13",
+      "block": 2,
+      "seriesId": 17285,
+      "disposition": "exact",
+      "issueId": 50350
+    },
+    {
+      "sourcePosition": 13,
+      "sourceIssueReference": "The Amazing Spider-Man (2014) #14",
+      "sourceRangeReference": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2014,
+      "issueNumber": "14",
+      "block": 2,
+      "seriesId": 17285,
+      "disposition": "exact",
+      "issueId": 51320
+    },
+    {
+      "sourcePosition": 14,
+      "sourceIssueReference": "The Amazing Spider-Man (2014) #15",
+      "sourceRangeReference": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2014,
+      "issueNumber": "15",
+      "block": 2,
+      "seriesId": 17285,
+      "disposition": "exact",
+      "issueId": 51324
+    },
+    {
+      "sourcePosition": 15,
+      "sourceIssueReference": "Superior Spider-Man (2013) #32",
+      "sourceRangeReference": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1",
+      "normalizedSeriesTitle": "Superior Spider-Man",
+      "seriesYear": 2013,
+      "issueNumber": "32",
+      "block": 2,
+      "seriesId": 17554,
+      "disposition": "exact",
+      "issueId": 50924
+    },
+    {
+      "sourcePosition": 16,
+      "sourceIssueReference": "Superior Spider-Man (2013) #33",
+      "sourceRangeReference": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1",
+      "normalizedSeriesTitle": "Superior Spider-Man",
+      "seriesYear": 2013,
+      "issueNumber": "33",
+      "block": 2,
+      "seriesId": 17554,
+      "disposition": "exact",
+      "issueId": 50960
+    },
+    {
+      "sourcePosition": 17,
+      "sourceIssueReference": "Spider-Verse (2014) #1",
+      "sourceRangeReference": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1",
+      "normalizedSeriesTitle": "Spider-Verse",
+      "seriesYear": 2014,
+      "issueNumber": "1",
+      "block": 2,
+      "seriesId": 18892,
+      "disposition": "exact",
+      "issueId": 50554
+    },
+    {
+      "sourcePosition": 18,
+      "sourceIssueReference": "Spider-Verse (2014) #2",
+      "sourceRangeReference": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1",
+      "normalizedSeriesTitle": "Spider-Verse",
+      "seriesYear": 2014,
+      "issueNumber": "2",
+      "block": 2,
+      "seriesId": 18892,
+      "disposition": "exact",
+      "issueId": 53336
+    },
+    {
+      "sourcePosition": 19,
+      "sourceIssueReference": "Spider-Verse Team-Up (2014) #1",
+      "sourceRangeReference": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1",
+      "normalizedSeriesTitle": "Spider-Verse Team-Up",
+      "seriesYear": 2014,
+      "issueNumber": "1",
+      "block": 2,
+      "seriesId": 18893,
+      "disposition": "exact",
+      "issueId": 50555
+    },
+    {
+      "sourcePosition": 20,
+      "sourceIssueReference": "Spider-Verse Team-Up (2014) #2",
+      "sourceRangeReference": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1",
+      "normalizedSeriesTitle": "Spider-Verse Team-Up",
+      "seriesYear": 2014,
+      "issueNumber": "2",
+      "block": 2,
+      "seriesId": 18893,
+      "disposition": "exact",
+      "issueId": 50556
+    },
+    {
+      "sourcePosition": 21,
+      "sourceIssueReference": "Spider-Verse Team-Up (2014) #3",
+      "sourceRangeReference": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1",
+      "normalizedSeriesTitle": "Spider-Verse Team-Up",
+      "seriesYear": 2014,
+      "issueNumber": "3",
+      "block": 2,
+      "seriesId": 18893,
+      "disposition": "exact",
+      "issueId": 50557
+    },
+    {
+      "sourcePosition": 22,
+      "sourceIssueReference": "Scarlet Spiders (2014) #1",
+      "sourceRangeReference": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1",
+      "normalizedSeriesTitle": "Scarlet Spiders",
+      "seriesYear": 2014,
+      "issueNumber": "1",
+      "block": 2,
+      "seriesId": 18889,
+      "disposition": "exact",
+      "issueId": 50537
+    },
+    {
+      "sourcePosition": 23,
+      "sourceIssueReference": "Scarlet Spiders (2014) #2",
+      "sourceRangeReference": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1",
+      "normalizedSeriesTitle": "Scarlet Spiders",
+      "seriesYear": 2014,
+      "issueNumber": "2",
+      "block": 2,
+      "seriesId": 18889,
+      "disposition": "exact",
+      "issueId": 50538
+    },
+    {
+      "sourcePosition": 24,
+      "sourceIssueReference": "Scarlet Spiders (2014) #3",
+      "sourceRangeReference": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1",
+      "normalizedSeriesTitle": "Scarlet Spiders",
+      "seriesYear": 2014,
+      "issueNumber": "3",
+      "block": 2,
+      "seriesId": 18889,
+      "disposition": "exact",
+      "issueId": 50539
+    },
+    {
+      "sourcePosition": 25,
+      "sourceIssueReference": "Spider-Woman (2014) #1",
+      "sourceRangeReference": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1",
+      "normalizedSeriesTitle": "Spider-Woman",
+      "seriesYear": 2014,
+      "issueNumber": "1",
+      "block": 2,
+      "seriesId": 18894,
+      "disposition": "exact",
+      "issueId": 50561
+    },
+    {
+      "sourcePosition": 26,
+      "sourceIssueReference": "Spider-Woman (2014) #2",
+      "sourceRangeReference": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1",
+      "normalizedSeriesTitle": "Spider-Woman",
+      "seriesYear": 2014,
+      "issueNumber": "2",
+      "block": 2,
+      "seriesId": 18894,
+      "disposition": "exact",
+      "issueId": 50562
+    },
+    {
+      "sourcePosition": 27,
+      "sourceIssueReference": "Spider-Woman (2014) #3",
+      "sourceRangeReference": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1",
+      "normalizedSeriesTitle": "Spider-Woman",
+      "seriesYear": 2014,
+      "issueNumber": "3",
+      "block": 2,
+      "seriesId": 18894,
+      "disposition": "exact",
+      "issueId": 49504
+    },
+    {
+      "sourcePosition": 28,
+      "sourceIssueReference": "Spider-Woman (2014) #4",
+      "sourceRangeReference": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1",
+      "normalizedSeriesTitle": "Spider-Woman",
+      "seriesYear": 2014,
+      "issueNumber": "4",
+      "block": 2,
+      "seriesId": 18894,
+      "disposition": "exact",
+      "issueId": 49511
+    },
+    {
+      "sourcePosition": 29,
+      "sourceIssueReference": "Spider-Man 2099 (2014) #6",
+      "sourceRangeReference": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2014,
+      "issueNumber": "6",
+      "block": 2,
+      "seriesId": 18891,
+      "disposition": "exact",
+      "issueId": 50546
+    },
+    {
+      "sourcePosition": 30,
+      "sourceIssueReference": "Spider-Man 2099 (2014) #7",
+      "sourceRangeReference": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2014,
+      "issueNumber": "7",
+      "block": 2,
+      "seriesId": 18891,
+      "disposition": "exact",
+      "issueId": 50547
+    },
+    {
+      "sourcePosition": 31,
+      "sourceIssueReference": "Spider-Man 2099 (2014) #8",
+      "sourceRangeReference": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2014,
+      "issueNumber": "8",
+      "block": 2,
+      "seriesId": 18891,
+      "disposition": "exact",
+      "issueId": 50548
+    },
+    {
+      "sourcePosition": 32,
+      "sourceIssueReference": "Free Comic Book Day (Guardians of the Galaxy) (2014) #1",
+      "sourceRangeReference": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1",
+      "normalizedSeriesTitle": "Free Comic Book Day (Guardians of the Galaxy)",
+      "seriesYear": 2014,
+      "issueNumber": "1",
+      "block": 2,
+      "seriesId": 18555,
+      "disposition": "exact",
+      "issueId": 49348
+    },
+    {
+      "sourcePosition": 33,
+      "sourceIssueReference": "Spider-Gwen (2015) #1",
+      "sourceRangeReference": "Collects: Spider-Gwen 1-5",
+      "normalizedSeriesTitle": "Spider-Gwen",
+      "seriesYear": 2015,
+      "issueNumber": "1",
+      "block": 3,
+      "seriesId": 19670,
+      "disposition": "exact",
+      "issueId": 52521
+    },
+    {
+      "sourcePosition": 34,
+      "sourceIssueReference": "Spider-Gwen (2015) #2",
+      "sourceRangeReference": "Collects: Spider-Gwen 1-5",
+      "normalizedSeriesTitle": "Spider-Gwen",
+      "seriesYear": 2015,
+      "issueNumber": "2",
+      "block": 3,
+      "seriesId": 19670,
+      "disposition": "exact",
+      "issueId": 52527
+    },
+    {
+      "sourcePosition": 35,
+      "sourceIssueReference": "Spider-Gwen (2015) #3",
+      "sourceRangeReference": "Collects: Spider-Gwen 1-5",
+      "normalizedSeriesTitle": "Spider-Gwen",
+      "seriesYear": 2015,
+      "issueNumber": "3",
+      "block": 3,
+      "seriesId": 19670,
+      "disposition": "exact",
+      "issueId": 52529
+    },
+    {
+      "sourcePosition": 36,
+      "sourceIssueReference": "Spider-Gwen (2015) #4",
+      "sourceRangeReference": "Collects: Spider-Gwen 1-5",
+      "normalizedSeriesTitle": "Spider-Gwen",
+      "seriesYear": 2015,
+      "issueNumber": "4",
+      "block": 3,
+      "seriesId": 19670,
+      "disposition": "exact",
+      "issueId": 52530
+    },
+    {
+      "sourcePosition": 37,
+      "sourceIssueReference": "Spider-Gwen (2015) #5",
+      "sourceRangeReference": "Collects: Spider-Gwen 1-5",
+      "normalizedSeriesTitle": "Spider-Gwen",
+      "seriesYear": 2015,
+      "issueNumber": "5",
+      "block": 3,
+      "seriesId": 19670,
+      "disposition": "exact",
+      "issueId": 52531
+    },
+    {
+      "sourcePosition": 38,
+      "sourceIssueReference": "Spider-Gwen (2015) #1",
+      "sourceRangeReference": "Collects: Spider-Gwen 1-6",
+      "normalizedSeriesTitle": "Spider-Gwen",
+      "seriesYear": 2015,
+      "issueNumber": "1",
+      "block": 4,
+      "seriesId": 20505,
+      "disposition": "exact",
+      "issueId": 55674
+    },
+    {
+      "sourcePosition": 39,
+      "sourceIssueReference": "Spider-Gwen (2015) #2",
+      "sourceRangeReference": "Collects: Spider-Gwen 1-6",
+      "normalizedSeriesTitle": "Spider-Gwen",
+      "seriesYear": 2015,
+      "issueNumber": "2",
+      "block": 4,
+      "seriesId": 20505,
+      "disposition": "exact",
+      "issueId": 55676
+    },
+    {
+      "sourcePosition": 40,
+      "sourceIssueReference": "Spider-Gwen (2015) #3",
+      "sourceRangeReference": "Collects: Spider-Gwen 1-6",
+      "normalizedSeriesTitle": "Spider-Gwen",
+      "seriesYear": 2015,
+      "issueNumber": "3",
+      "block": 4,
+      "seriesId": 20505,
+      "disposition": "exact",
+      "issueId": 55678
+    },
+    {
+      "sourcePosition": 41,
+      "sourceIssueReference": "Spider-Gwen (2015) #4",
+      "sourceRangeReference": "Collects: Spider-Gwen 1-6",
+      "normalizedSeriesTitle": "Spider-Gwen",
+      "seriesYear": 2015,
+      "issueNumber": "4",
+      "block": 4,
+      "seriesId": 20505,
+      "disposition": "exact",
+      "issueId": 55679
+    },
+    {
+      "sourcePosition": 42,
+      "sourceIssueReference": "Spider-Gwen (2015) #5",
+      "sourceRangeReference": "Collects: Spider-Gwen 1-6",
+      "normalizedSeriesTitle": "Spider-Gwen",
+      "seriesYear": 2015,
+      "issueNumber": "5",
+      "block": 4,
+      "seriesId": 20505,
+      "disposition": "exact",
+      "issueId": 55680
+    },
+    {
+      "sourcePosition": 43,
+      "sourceIssueReference": "Spider-Gwen (2015) #6",
+      "sourceRangeReference": "Collects: Spider-Gwen 1-6",
+      "normalizedSeriesTitle": "Spider-Gwen",
+      "seriesYear": 2015,
+      "issueNumber": "6",
+      "block": 4,
+      "seriesId": 20505,
+      "disposition": "exact",
+      "issueId": 55682
+    },
+    {
+      "sourcePosition": 44,
+      "sourceIssueReference": "Silk (2015) #7",
+      "sourceRangeReference": "Collects: Silk 7-8, Spider-Gwen 7-8, Spider-Woman 6-7",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "7",
+      "block": 5,
+      "seriesId": 20499,
+      "disposition": "exact",
+      "issueId": 55646
+    },
+    {
+      "sourcePosition": 45,
+      "sourceIssueReference": "Silk (2015) #8",
+      "sourceRangeReference": "Collects: Silk 7-8, Spider-Gwen 7-8, Spider-Woman 6-7",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "8",
+      "block": 5,
+      "seriesId": 20499,
+      "disposition": "exact",
+      "issueId": 55647
+    },
+    {
+      "sourcePosition": 46,
+      "sourceIssueReference": "Spider-Gwen (2015) #7",
+      "sourceRangeReference": "Collects: Silk 7-8, Spider-Gwen 7-8, Spider-Woman 6-7",
+      "normalizedSeriesTitle": "Spider-Gwen",
+      "seriesYear": 2015,
+      "issueNumber": "7",
+      "block": 5,
+      "seriesId": 20505,
+      "disposition": "exact",
+      "issueId": 55683
+    },
+    {
+      "sourcePosition": 47,
+      "sourceIssueReference": "Spider-Gwen (2015) #8",
+      "sourceRangeReference": "Collects: Silk 7-8, Spider-Gwen 7-8, Spider-Woman 6-7",
+      "normalizedSeriesTitle": "Spider-Gwen",
+      "seriesYear": 2015,
+      "issueNumber": "8",
+      "block": 5,
+      "seriesId": 20505,
+      "disposition": "exact",
+      "issueId": 55684
+    },
+    {
+      "sourcePosition": 48,
+      "sourceIssueReference": "Spider-Woman (2015) #6",
+      "sourceRangeReference": "Collects: Silk 7-8, Spider-Gwen 7-8, Spider-Woman 6-7",
+      "normalizedSeriesTitle": "Spider-Woman",
+      "seriesYear": 2015,
+      "issueNumber": "6",
+      "block": 5,
+      "seriesId": 20618,
+      "disposition": "exact",
+      "issueId": 56169
+    },
+    {
+      "sourcePosition": 49,
+      "sourceIssueReference": "Spider-Woman (2015) #7",
+      "sourceRangeReference": "Collects: Silk 7-8, Spider-Gwen 7-8, Spider-Woman 6-7",
+      "normalizedSeriesTitle": "Spider-Woman",
+      "seriesYear": 2015,
+      "issueNumber": "7",
+      "block": 5,
+      "seriesId": 20618,
+      "disposition": "exact",
+      "issueId": 56170
+    },
+    {
+      "sourcePosition": 50,
+      "sourceIssueReference": "Spider-Women Alpha",
+      "sourceRangeReference": "Spider-Women Alpha",
+      "normalizedSeriesTitle": "Spider-Women Alpha",
+      "seriesYear": 2016,
+      "issueNumber": "1",
+      "block": 6,
+      "seriesId": 21280,
+      "disposition": "exact",
+      "issueId": 58381
+    },
+    {
+      "sourcePosition": 51,
+      "sourceIssueReference": "Spider-Gwen #7",
+      "sourceRangeReference": "Spider-Gwen #7",
+      "normalizedSeriesTitle": "Spider-Gwen",
+      "seriesYear": 2015,
+      "issueNumber": "7",
+      "block": 7,
+      "seriesId": 20505,
+      "disposition": "repeat",
+      "issueId": 55683,
+      "canonicalRow": 46
+    },
+    {
+      "sourcePosition": 52,
+      "sourceIssueReference": "Silk #7",
+      "sourceRangeReference": "Silk #7",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "7",
+      "block": 8,
+      "seriesId": 20499,
+      "disposition": "repeat",
+      "issueId": 55646,
+      "canonicalRow": 44
+    },
+    {
+      "sourcePosition": 53,
+      "sourceIssueReference": "Spider-Woman #6",
+      "sourceRangeReference": "Spider-Woman #6",
+      "normalizedSeriesTitle": "Spider-Woman",
+      "seriesYear": 2015,
+      "issueNumber": "6",
+      "block": 9,
+      "seriesId": 20618,
+      "disposition": "repeat",
+      "issueId": 56169,
+      "canonicalRow": 48
+    },
+    {
+      "sourcePosition": 54,
+      "sourceIssueReference": "Spider-Gwen #8",
+      "sourceRangeReference": "Spider-Gwen #8",
+      "normalizedSeriesTitle": "Spider-Gwen",
+      "seriesYear": 2015,
+      "issueNumber": "8",
+      "block": 10,
+      "seriesId": 20505,
+      "disposition": "repeat",
+      "issueId": 55684,
+      "canonicalRow": 47
+    },
+    {
+      "sourcePosition": 55,
+      "sourceIssueReference": "Silk #8",
+      "sourceRangeReference": "Silk #8",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "8",
+      "block": 11,
+      "seriesId": 20499,
+      "disposition": "repeat",
+      "issueId": 55647,
+      "canonicalRow": 45
+    },
+    {
+      "sourcePosition": 56,
+      "sourceIssueReference": "Spider-Woman #7",
+      "sourceRangeReference": "Spider-Woman #7",
+      "normalizedSeriesTitle": "Spider-Woman",
+      "seriesYear": 2015,
+      "issueNumber": "7",
+      "block": 12,
+      "seriesId": 20618,
+      "disposition": "repeat",
+      "issueId": 56170,
+      "canonicalRow": 49
+    },
+    {
+      "sourcePosition": 57,
+      "sourceIssueReference": "Spider-Women Omega",
+      "sourceRangeReference": "Spider-Women Omega",
+      "normalizedSeriesTitle": "Spider-Women Omega",
+      "seriesYear": 2016,
+      "issueNumber": "1",
+      "block": 13,
+      "seriesId": 21442,
+      "disposition": "exact",
+      "issueId": 58832
+    },
+    {
+      "sourcePosition": 58,
+      "sourceIssueReference": "Spider-Gwen (2015) #9",
+      "sourceRangeReference": "Collects: Spider-Gwen (2015B) #9-13",
+      "normalizedSeriesTitle": "Spider-Gwen",
+      "seriesYear": 2015,
+      "issueNumber": "9",
+      "block": 14,
+      "seriesId": 20505,
+      "disposition": "exact",
+      "issueId": 55685
+    },
+    {
+      "sourcePosition": 59,
+      "sourceIssueReference": "Spider-Gwen (2015) #10",
+      "sourceRangeReference": "Collects: Spider-Gwen (2015B) #9-13",
+      "normalizedSeriesTitle": "Spider-Gwen",
+      "seriesYear": 2015,
+      "issueNumber": "10",
+      "block": 14,
+      "seriesId": 20505,
+      "disposition": "exact",
+      "issueId": 55686
+    },
+    {
+      "sourcePosition": 60,
+      "sourceIssueReference": "Spider-Gwen (2015) #11",
+      "sourceRangeReference": "Collects: Spider-Gwen (2015B) #9-13",
+      "normalizedSeriesTitle": "Spider-Gwen",
+      "seriesYear": 2015,
+      "issueNumber": "11",
+      "block": 14,
+      "seriesId": 20505,
+      "disposition": "exact",
+      "issueId": 55687
+    },
+    {
+      "sourcePosition": 61,
+      "sourceIssueReference": "Spider-Gwen (2015) #12",
+      "sourceRangeReference": "Collects: Spider-Gwen (2015B) #9-13",
+      "normalizedSeriesTitle": "Spider-Gwen",
+      "seriesYear": 2015,
+      "issueNumber": "12",
+      "block": 14,
+      "seriesId": 20505,
+      "disposition": "exact",
+      "issueId": 55688
+    },
+    {
+      "sourcePosition": 62,
+      "sourceIssueReference": "Spider-Gwen (2015) #13",
+      "sourceRangeReference": "Collects: Spider-Gwen (2015B) #9-13",
+      "normalizedSeriesTitle": "Spider-Gwen",
+      "seriesYear": 2015,
+      "issueNumber": "13",
+      "block": 14,
+      "seriesId": 20505,
+      "disposition": "exact",
+      "issueId": 55689
+    },
+    {
+      "sourcePosition": 63,
+      "sourceIssueReference": "Spider-Gwen (2015) #14",
+      "sourceRangeReference": "Collects: Spider-Gwen 14-15, Annual 1, All-New Wolverine Annual 1",
+      "normalizedSeriesTitle": "Spider-Gwen",
+      "seriesYear": 2015,
+      "issueNumber": "14",
+      "block": 15,
+      "seriesId": 20505,
+      "disposition": "exact",
+      "issueId": 55690
+    },
+    {
+      "sourcePosition": 64,
+      "sourceIssueReference": "Spider-Gwen (2015) #15",
+      "sourceRangeReference": "Collects: Spider-Gwen 14-15, Annual 1, All-New Wolverine Annual 1",
+      "normalizedSeriesTitle": "Spider-Gwen",
+      "seriesYear": 2015,
+      "issueNumber": "15",
+      "block": 15,
+      "seriesId": 20505,
+      "disposition": "exact",
+      "issueId": 55691
+    },
+    {
+      "sourcePosition": 65,
+      "sourceIssueReference": "Spider-Gwen Annual (2016) #1",
+      "sourceRangeReference": "Collects: Spider-Gwen 14-15, Annual 1, All-New Wolverine Annual 1",
+      "normalizedSeriesTitle": "Spider-Gwen Annual",
+      "seriesYear": 2016,
+      "issueNumber": "1",
+      "block": 15,
+      "seriesId": 21441,
+      "disposition": "exact",
+      "issueId": 58831
+    },
+    {
+      "sourcePosition": 66,
+      "sourceIssueReference": "All-New Wolverine Annual (2016) #1",
+      "sourceRangeReference": "Collects: Spider-Gwen 14-15, Annual 1, All-New Wolverine Annual 1",
+      "normalizedSeriesTitle": "All-New Wolverine Annual",
+      "seriesYear": 2016,
+      "issueNumber": "1",
+      "block": 15,
+      "seriesId": 21853,
+      "disposition": "exact",
+      "issueId": 59897
+    },
+    {
+      "sourcePosition": 67,
+      "sourceIssueReference": "Spider-Man (2016) #12",
+      "sourceRangeReference": "Collects: Spider-Man (2016) #12-14, Spider-Gwen (2015B) #16-18",
+      "normalizedSeriesTitle": "Spider-Man",
+      "seriesYear": 2016,
+      "issueNumber": "12",
+      "block": 16,
+      "seriesId": 20508,
+      "disposition": "exact",
+      "issueId": 55706
+    },
+    {
+      "sourcePosition": 68,
+      "sourceIssueReference": "Spider-Man (2016) #13",
+      "sourceRangeReference": "Collects: Spider-Man (2016) #12-14, Spider-Gwen (2015B) #16-18",
+      "normalizedSeriesTitle": "Spider-Man",
+      "seriesYear": 2016,
+      "issueNumber": "13",
+      "block": 16,
+      "seriesId": 20508,
+      "disposition": "exact",
+      "issueId": 55707
+    },
+    {
+      "sourcePosition": 69,
+      "sourceIssueReference": "Spider-Man (2016) #14",
+      "sourceRangeReference": "Collects: Spider-Man (2016) #12-14, Spider-Gwen (2015B) #16-18",
+      "normalizedSeriesTitle": "Spider-Man",
+      "seriesYear": 2016,
+      "issueNumber": "14",
+      "block": 16,
+      "seriesId": 20508,
+      "disposition": "exact",
+      "issueId": 55708
+    },
+    {
+      "sourcePosition": 70,
+      "sourceIssueReference": "Spider-Gwen (2015) #16",
+      "sourceRangeReference": "Collects: Spider-Man (2016) #12-14, Spider-Gwen (2015B) #16-18",
+      "normalizedSeriesTitle": "Spider-Gwen",
+      "seriesYear": 2015,
+      "issueNumber": "16",
+      "block": 16,
+      "seriesId": 20505,
+      "disposition": "exact",
+      "issueId": 55692
+    },
+    {
+      "sourcePosition": 71,
+      "sourceIssueReference": "Spider-Gwen (2015) #17",
+      "sourceRangeReference": "Collects: Spider-Man (2016) #12-14, Spider-Gwen (2015B) #16-18",
+      "normalizedSeriesTitle": "Spider-Gwen",
+      "seriesYear": 2015,
+      "issueNumber": "17",
+      "block": 16,
+      "seriesId": 20505,
+      "disposition": "exact",
+      "issueId": 61063
+    },
+    {
+      "sourcePosition": 72,
+      "sourceIssueReference": "Spider-Gwen (2015) #18",
+      "sourceRangeReference": "Collects: Spider-Man (2016) #12-14, Spider-Gwen (2015B) #16-18",
+      "normalizedSeriesTitle": "Spider-Gwen",
+      "seriesYear": 2015,
+      "issueNumber": "18",
+      "block": 16,
+      "seriesId": 20505,
+      "disposition": "exact",
+      "issueId": 61064
+    },
+    {
+      "sourcePosition": 73,
+      "sourceIssueReference": "Spider-Man #12",
+      "sourceRangeReference": "Spider-Man #12",
+      "normalizedSeriesTitle": "Spider-Man",
+      "seriesYear": 2016,
+      "issueNumber": "12",
+      "block": 17,
+      "seriesId": 20508,
+      "disposition": "repeat",
+      "issueId": 55706,
+      "canonicalRow": 61
+    },
+    {
+      "sourcePosition": 74,
+      "sourceIssueReference": "Spider-Gwen #16",
+      "sourceRangeReference": "Spider-Gwen #16",
+      "normalizedSeriesTitle": "Spider-Gwen",
+      "seriesYear": 2015,
+      "issueNumber": "16",
+      "block": 18,
+      "seriesId": 20505,
+      "disposition": "repeat",
+      "issueId": 55692,
+      "canonicalRow": 64
+    },
+    {
+      "sourcePosition": 75,
+      "sourceIssueReference": "Spider-Man #13",
+      "sourceRangeReference": "Spider-Man #13",
+      "normalizedSeriesTitle": "Spider-Man",
+      "seriesYear": 2016,
+      "issueNumber": "13",
+      "block": 19,
+      "seriesId": 20508,
+      "disposition": "repeat",
+      "issueId": 55707,
+      "canonicalRow": 62
+    },
+    {
+      "sourcePosition": 76,
+      "sourceIssueReference": "Spider-Gwen #17",
+      "sourceRangeReference": "Spider-Gwen #17",
+      "normalizedSeriesTitle": "Spider-Gwen",
+      "seriesYear": 2015,
+      "issueNumber": "17",
+      "block": 20,
+      "seriesId": 20505,
+      "disposition": "repeat",
+      "issueId": 61063,
+      "canonicalRow": 65
+    },
+    {
+      "sourcePosition": 77,
+      "sourceIssueReference": "Spider-Man #14",
+      "sourceRangeReference": "Spider-Man #14",
+      "normalizedSeriesTitle": "Spider-Man",
+      "seriesYear": 2016,
+      "issueNumber": "14",
+      "block": 21,
+      "seriesId": 20508,
+      "disposition": "repeat",
+      "issueId": 55708,
+      "canonicalRow": 63
+    },
+    {
+      "sourcePosition": 78,
+      "sourceIssueReference": "Spider-Gwen #18",
+      "sourceRangeReference": "Spider-Gwen #18",
+      "normalizedSeriesTitle": "Spider-Gwen",
+      "seriesYear": 2015,
+      "issueNumber": "18",
+      "block": 22,
+      "seriesId": 20505,
+      "disposition": "repeat",
+      "issueId": 61064,
+      "canonicalRow": 66
+    },
+    {
+      "sourcePosition": 79,
+      "sourceIssueReference": "Spider-Gwen (2015) #19",
+      "sourceRangeReference": "Collects: Spider-Gwen 19-23",
+      "normalizedSeriesTitle": "Spider-Gwen",
+      "seriesYear": 2015,
+      "issueNumber": "19",
+      "block": 23,
+      "seriesId": 20505,
+      "disposition": "exact",
+      "issueId": 61065
+    },
+    {
+      "sourcePosition": 80,
+      "sourceIssueReference": "Spider-Gwen (2015) #20",
+      "sourceRangeReference": "Collects: Spider-Gwen 19-23",
+      "normalizedSeriesTitle": "Spider-Gwen",
+      "seriesYear": 2015,
+      "issueNumber": "20",
+      "block": 23,
+      "seriesId": 20505,
+      "disposition": "exact",
+      "issueId": 61066
+    },
+    {
+      "sourcePosition": 81,
+      "sourceIssueReference": "Spider-Gwen (2015) #21",
+      "sourceRangeReference": "Collects: Spider-Gwen 19-23",
+      "normalizedSeriesTitle": "Spider-Gwen",
+      "seriesYear": 2015,
+      "issueNumber": "21",
+      "block": 23,
+      "seriesId": 20505,
+      "disposition": "exact",
+      "issueId": 61067
+    },
+    {
+      "sourcePosition": 82,
+      "sourceIssueReference": "Spider-Gwen (2015) #22",
+      "sourceRangeReference": "Collects: Spider-Gwen 19-23",
+      "normalizedSeriesTitle": "Spider-Gwen",
+      "seriesYear": 2015,
+      "issueNumber": "22",
+      "block": 23,
+      "seriesId": 20505,
+      "disposition": "exact",
+      "issueId": 61068
+    },
+    {
+      "sourcePosition": 83,
+      "sourceIssueReference": "Spider-Gwen (2015) #23",
+      "sourceRangeReference": "Collects: Spider-Gwen 19-23",
+      "normalizedSeriesTitle": "Spider-Gwen",
+      "seriesYear": 2015,
+      "issueNumber": "23",
+      "block": 23,
+      "seriesId": 20505,
+      "disposition": "exact",
+      "issueId": 61069
+    },
+    {
+      "sourcePosition": 84,
+      "sourceIssueReference": "Spider-Gwen (2015) #24",
+      "sourceRangeReference": "Collects: Spider-Gwen 24-29",
+      "normalizedSeriesTitle": "Spider-Gwen",
+      "seriesYear": 2015,
+      "issueNumber": "24",
+      "block": 24,
+      "seriesId": 20505,
+      "disposition": "exact",
+      "issueId": 61070
+    },
+    {
+      "sourcePosition": 85,
+      "sourceIssueReference": "Spider-Gwen (2015) #25",
+      "sourceRangeReference": "Collects: Spider-Gwen 24-29",
+      "normalizedSeriesTitle": "Spider-Gwen",
+      "seriesYear": 2015,
+      "issueNumber": "25",
+      "block": 24,
+      "seriesId": 20505,
+      "disposition": "exact",
+      "issueId": 61071
+    },
+    {
+      "sourcePosition": 86,
+      "sourceIssueReference": "Spider-Gwen (2015) #26",
+      "sourceRangeReference": "Collects: Spider-Gwen 24-29",
+      "normalizedSeriesTitle": "Spider-Gwen",
+      "seriesYear": 2015,
+      "issueNumber": "26",
+      "block": 24,
+      "seriesId": 20505,
+      "disposition": "exact",
+      "issueId": 61072
+    },
+    {
+      "sourcePosition": 87,
+      "sourceIssueReference": "Spider-Gwen (2015) #27",
+      "sourceRangeReference": "Collects: Spider-Gwen 24-29",
+      "normalizedSeriesTitle": "Spider-Gwen",
+      "seriesYear": 2015,
+      "issueNumber": "27",
+      "block": 24,
+      "seriesId": 20505,
+      "disposition": "exact",
+      "issueId": 61073
+    },
+    {
+      "sourcePosition": 88,
+      "sourceIssueReference": "Spider-Gwen (2015) #28",
+      "sourceRangeReference": "Collects: Spider-Gwen 24-29",
+      "normalizedSeriesTitle": "Spider-Gwen",
+      "seriesYear": 2015,
+      "issueNumber": "28",
+      "block": 24,
+      "seriesId": 20505,
+      "disposition": "exact",
+      "issueId": 65924
+    },
+    {
+      "sourcePosition": 89,
+      "sourceIssueReference": "Spider-Gwen (2015) #29",
+      "sourceRangeReference": "Collects: Spider-Gwen 24-29",
+      "normalizedSeriesTitle": "Spider-Gwen",
+      "seriesYear": 2015,
+      "issueNumber": "29",
+      "block": 24,
+      "seriesId": 20505,
+      "disposition": "exact",
+      "issueId": 66292
+    },
+    {
+      "sourcePosition": 90,
+      "sourceIssueReference": "Spider-Gwen (2015) #30",
+      "sourceRangeReference": "Collects: Spider-Gwen 30-34",
+      "normalizedSeriesTitle": "Spider-Gwen",
+      "seriesYear": 2015,
+      "issueNumber": "30",
+      "block": 25,
+      "seriesId": 20505,
+      "disposition": "exact",
+      "issueId": 66554
+    },
+    {
+      "sourcePosition": 91,
+      "sourceIssueReference": "Spider-Gwen (2015) #31",
+      "sourceRangeReference": "Collects: Spider-Gwen 30-34",
+      "normalizedSeriesTitle": "Spider-Gwen",
+      "seriesYear": 2015,
+      "issueNumber": "31",
+      "block": 25,
+      "seriesId": 20505,
+      "disposition": "exact",
+      "issueId": 66921
+    },
+    {
+      "sourcePosition": 92,
+      "sourceIssueReference": "Spider-Gwen (2015) #32",
+      "sourceRangeReference": "Collects: Spider-Gwen 30-34",
+      "normalizedSeriesTitle": "Spider-Gwen",
+      "seriesYear": 2015,
+      "issueNumber": "32",
+      "block": 25,
+      "seriesId": 20505,
+      "disposition": "exact",
+      "issueId": 67550
+    },
+    {
+      "sourcePosition": 93,
+      "sourceIssueReference": "Spider-Gwen (2015) #33",
+      "sourceRangeReference": "Collects: Spider-Gwen 30-34",
+      "normalizedSeriesTitle": "Spider-Gwen",
+      "seriesYear": 2015,
+      "issueNumber": "33",
+      "block": 25,
+      "seriesId": 20505,
+      "disposition": "exact",
+      "issueId": 69470
+    },
+    {
+      "sourcePosition": 94,
+      "sourceIssueReference": "Spider-Gwen (2015) #34",
+      "sourceRangeReference": "Collects: Spider-Gwen 30-34",
+      "normalizedSeriesTitle": "Spider-Gwen",
+      "seriesYear": 2015,
+      "issueNumber": "34",
+      "block": 25,
+      "seriesId": 20505,
+      "disposition": "exact",
+      "issueId": 69471
+    },
+    {
+      "sourcePosition": 95,
+      "sourceIssueReference": "Spider-Geddon (2018) #0",
+      "sourceRangeReference": "Collects: Spider-Geddon 0-5, Spider-Geddon: Vault Of Spiders 1-2",
+      "normalizedSeriesTitle": "Spider-Geddon",
+      "seriesYear": 2018,
+      "issueNumber": "0",
+      "block": 26,
+      "seriesId": 26001,
+      "disposition": "exact",
+      "issueId": 71335
+    },
+    {
+      "sourcePosition": 96,
+      "sourceIssueReference": "Spider-Geddon (2018) #1",
+      "sourceRangeReference": "Collects: Spider-Geddon 0-5, Spider-Geddon: Vault Of Spiders 1-2",
+      "normalizedSeriesTitle": "Spider-Geddon",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "block": 26,
+      "seriesId": 26001,
+      "disposition": "exact",
+      "issueId": 71336
+    },
+    {
+      "sourcePosition": 97,
+      "sourceIssueReference": "Spider-Geddon (2018) #2",
+      "sourceRangeReference": "Collects: Spider-Geddon 0-5, Spider-Geddon: Vault Of Spiders 1-2",
+      "normalizedSeriesTitle": "Spider-Geddon",
+      "seriesYear": 2018,
+      "issueNumber": "2",
+      "block": 26,
+      "seriesId": 26001,
+      "disposition": "exact",
+      "issueId": 71337
+    },
+    {
+      "sourcePosition": 98,
+      "sourceIssueReference": "Spider-Geddon (2018) #3",
+      "sourceRangeReference": "Collects: Spider-Geddon 0-5, Spider-Geddon: Vault Of Spiders 1-2",
+      "normalizedSeriesTitle": "Spider-Geddon",
+      "seriesYear": 2018,
+      "issueNumber": "3",
+      "block": 26,
+      "seriesId": 26001,
+      "disposition": "exact",
+      "issueId": 71338
+    },
+    {
+      "sourcePosition": 99,
+      "sourceIssueReference": "Spider-Geddon (2018) #4",
+      "sourceRangeReference": "Collects: Spider-Geddon 0-5, Spider-Geddon: Vault Of Spiders 1-2",
+      "normalizedSeriesTitle": "Spider-Geddon",
+      "seriesYear": 2018,
+      "issueNumber": "4",
+      "block": 26,
+      "seriesId": 26001,
+      "disposition": "exact",
+      "issueId": 71339
+    },
+    {
+      "sourcePosition": 100,
+      "sourceIssueReference": "Spider-Geddon (2018) #5",
+      "sourceRangeReference": "Collects: Spider-Geddon 0-5, Spider-Geddon: Vault Of Spiders 1-2",
+      "normalizedSeriesTitle": "Spider-Geddon",
+      "seriesYear": 2018,
+      "issueNumber": "5",
+      "block": 26,
+      "seriesId": 26001,
+      "disposition": "exact",
+      "issueId": 71340
+    },
+    {
+      "sourcePosition": 101,
+      "sourceIssueReference": "Vault of Spiders (2018) #1",
+      "sourceRangeReference": "Collects: Spider-Geddon 0-5, Spider-Geddon: Vault Of Spiders 1-2",
+      "normalizedSeriesTitle": "Vault of Spiders",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "block": 26,
+      "seriesId": 26176,
+      "disposition": "exact",
+      "issueId": 71341
+    },
+    {
+      "sourcePosition": 102,
+      "sourceIssueReference": "Vault of Spiders (2018) #2",
+      "sourceRangeReference": "Collects: Spider-Geddon 0-5, Spider-Geddon: Vault Of Spiders 1-2",
+      "normalizedSeriesTitle": "Vault of Spiders",
+      "seriesYear": 2018,
+      "issueNumber": "2",
+      "block": 26,
+      "seriesId": 26176,
+      "disposition": "exact",
+      "issueId": 71846
+    },
+    {
+      "sourcePosition": 103,
+      "sourceIssueReference": "Spider-Gwen: Ghost-Spider (2018) #1",
+      "sourceRangeReference": "Collects: Spider-Gwen: Ghost-Spider 1-4",
+      "normalizedSeriesTitle": "Spider-Gwen: Ghost-Spider",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "block": 27,
+      "seriesId": 26003,
+      "disposition": "exact",
+      "issueId": 71342
+    },
+    {
+      "sourcePosition": 104,
+      "sourceIssueReference": "Spider-Gwen: Ghost-Spider (2018) #2",
+      "sourceRangeReference": "Collects: Spider-Gwen: Ghost-Spider 1-4",
+      "normalizedSeriesTitle": "Spider-Gwen: Ghost-Spider",
+      "seriesYear": 2018,
+      "issueNumber": "2",
+      "block": 27,
+      "seriesId": 26003,
+      "disposition": "exact",
+      "issueId": 71343
+    },
+    {
+      "sourcePosition": 105,
+      "sourceIssueReference": "Spider-Gwen: Ghost-Spider (2018) #3",
+      "sourceRangeReference": "Collects: Spider-Gwen: Ghost-Spider 1-4",
+      "normalizedSeriesTitle": "Spider-Gwen: Ghost-Spider",
+      "seriesYear": 2018,
+      "issueNumber": "3",
+      "block": 27,
+      "seriesId": 26003,
+      "disposition": "exact",
+      "issueId": 71344
+    },
+    {
+      "sourcePosition": 106,
+      "sourceIssueReference": "Spider-Gwen: Ghost-Spider (2018) #4",
+      "sourceRangeReference": "Collects: Spider-Gwen: Ghost-Spider 1-4",
+      "normalizedSeriesTitle": "Spider-Gwen: Ghost-Spider",
+      "seriesYear": 2018,
+      "issueNumber": "4",
+      "block": 27,
+      "seriesId": 26003,
+      "disposition": "exact",
+      "issueId": 71345
+    },
+    {
+      "sourcePosition": 107,
+      "sourceIssueReference": "Spider-Gwen: Ghost-Spider (2018) #5",
+      "sourceRangeReference": "Collects: Spider-Gwen: Ghost Spider #5-10.",
+      "normalizedSeriesTitle": "Spider-Gwen: Ghost-Spider",
+      "seriesYear": 2018,
+      "issueNumber": "5",
+      "block": 28,
+      "seriesId": 26003,
+      "disposition": "exact",
+      "issueId": 71346
+    },
+    {
+      "sourcePosition": 108,
+      "sourceIssueReference": "Spider-Gwen: Ghost-Spider (2018) #6",
+      "sourceRangeReference": "Collects: Spider-Gwen: Ghost Spider #5-10.",
+      "normalizedSeriesTitle": "Spider-Gwen: Ghost-Spider",
+      "seriesYear": 2018,
+      "issueNumber": "6",
+      "block": 28,
+      "seriesId": 26003,
+      "disposition": "exact",
+      "issueId": 71347
+    },
+    {
+      "sourcePosition": 109,
+      "sourceIssueReference": "Spider-Gwen: Ghost-Spider (2018) #7",
+      "sourceRangeReference": "Collects: Spider-Gwen: Ghost Spider #5-10.",
+      "normalizedSeriesTitle": "Spider-Gwen: Ghost-Spider",
+      "seriesYear": 2018,
+      "issueNumber": "7",
+      "block": 28,
+      "seriesId": 26003,
+      "disposition": "exact",
+      "issueId": 71348
+    },
+    {
+      "sourcePosition": 110,
+      "sourceIssueReference": "Spider-Gwen: Ghost-Spider (2018) #8",
+      "sourceRangeReference": "Collects: Spider-Gwen: Ghost Spider #5-10.",
+      "normalizedSeriesTitle": "Spider-Gwen: Ghost-Spider",
+      "seriesYear": 2018,
+      "issueNumber": "8",
+      "block": 28,
+      "seriesId": 26003,
+      "disposition": "exact",
+      "issueId": 71349
+    },
+    {
+      "sourcePosition": 111,
+      "sourceIssueReference": "Spider-Gwen: Ghost-Spider (2018) #9",
+      "sourceRangeReference": "Collects: Spider-Gwen: Ghost Spider #5-10.",
+      "normalizedSeriesTitle": "Spider-Gwen: Ghost-Spider",
+      "seriesYear": 2018,
+      "issueNumber": "9",
+      "block": 28,
+      "seriesId": 26003,
+      "disposition": "exact",
+      "issueId": 71350
+    },
+    {
+      "sourcePosition": 112,
+      "sourceIssueReference": "Spider-Gwen: Ghost-Spider (2018) #10",
+      "sourceRangeReference": "Collects: Spider-Gwen: Ghost Spider #5-10.",
+      "normalizedSeriesTitle": "Spider-Gwen: Ghost-Spider",
+      "seriesYear": 2018,
+      "issueNumber": "10",
+      "block": 28,
+      "seriesId": 26003,
+      "disposition": "exact",
+      "issueId": 71351
+    },
+    {
+      "sourcePosition": 113,
+      "sourceIssueReference": "Ghost-Spider (2019) #1",
+      "sourceRangeReference": "Collects: Ghost-Spider (2019) #1-5.",
+      "normalizedSeriesTitle": "Ghost-Spider",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "block": 29,
+      "seriesId": 27622,
+      "disposition": "exact",
+      "issueId": 76995
+    },
+    {
+      "sourcePosition": 114,
+      "sourceIssueReference": "Ghost-Spider (2019) #2",
+      "sourceRangeReference": "Collects: Ghost-Spider (2019) #1-5.",
+      "normalizedSeriesTitle": "Ghost-Spider",
+      "seriesYear": 2019,
+      "issueNumber": "2",
+      "block": 29,
+      "seriesId": 27622,
+      "disposition": "exact",
+      "issueId": 76996
+    },
+    {
+      "sourcePosition": 115,
+      "sourceIssueReference": "Ghost-Spider (2019) #3",
+      "sourceRangeReference": "Collects: Ghost-Spider (2019) #1-5.",
+      "normalizedSeriesTitle": "Ghost-Spider",
+      "seriesYear": 2019,
+      "issueNumber": "3",
+      "block": 29,
+      "seriesId": 27622,
+      "disposition": "exact",
+      "issueId": 76997
+    },
+    {
+      "sourcePosition": 116,
+      "sourceIssueReference": "Ghost-Spider (2019) #4",
+      "sourceRangeReference": "Collects: Ghost-Spider (2019) #1-5.",
+      "normalizedSeriesTitle": "Ghost-Spider",
+      "seriesYear": 2019,
+      "issueNumber": "4",
+      "block": 29,
+      "seriesId": 27622,
+      "disposition": "exact",
+      "issueId": 76998
+    },
+    {
+      "sourcePosition": 117,
+      "sourceIssueReference": "Ghost-Spider (2019) #5",
+      "sourceRangeReference": "Collects: Ghost-Spider (2019) #1-5.",
+      "normalizedSeriesTitle": "Ghost-Spider",
+      "seriesYear": 2019,
+      "issueNumber": "5",
+      "block": 29,
+      "seriesId": 27622,
+      "disposition": "exact",
+      "issueId": 76999
+    },
+    {
+      "sourcePosition": 118,
+      "sourceIssueReference": "Ghost-Spider (2019) #6",
+      "sourceRangeReference": "Collects: Ghost-Spider (2019) #6-10.",
+      "normalizedSeriesTitle": "Ghost-Spider",
+      "seriesYear": 2019,
+      "issueNumber": "6",
+      "block": 30,
+      "seriesId": 27622,
+      "disposition": "exact",
+      "issueId": 84143
+    },
+    {
+      "sourcePosition": 119,
+      "sourceIssueReference": "Ghost-Spider (2019) #7",
+      "sourceRangeReference": "Collects: Ghost-Spider (2019) #6-10.",
+      "normalizedSeriesTitle": "Ghost-Spider",
+      "seriesYear": 2019,
+      "issueNumber": "7",
+      "block": 30,
+      "seriesId": 27622,
+      "disposition": "exact",
+      "issueId": 84144
+    },
+    {
+      "sourcePosition": 120,
+      "sourceIssueReference": "Ghost-Spider (2019) #8",
+      "sourceRangeReference": "Collects: Ghost-Spider (2019) #6-10.",
+      "normalizedSeriesTitle": "Ghost-Spider",
+      "seriesYear": 2019,
+      "issueNumber": "8",
+      "block": 30,
+      "seriesId": 27622,
+      "disposition": "exact",
+      "issueId": 84145
+    },
+    {
+      "sourcePosition": 121,
+      "sourceIssueReference": "Ghost-Spider (2019) #9",
+      "sourceRangeReference": "Collects: Ghost-Spider (2019) #6-10.",
+      "normalizedSeriesTitle": "Ghost-Spider",
+      "seriesYear": 2019,
+      "issueNumber": "9",
+      "block": 30,
+      "seriesId": 27622,
+      "disposition": "exact",
+      "issueId": 84146
+    },
+    {
+      "sourcePosition": 122,
+      "sourceIssueReference": "Ghost-Spider (2019) #10",
+      "sourceRangeReference": "Collects: Ghost-Spider (2019) #6-10.",
+      "normalizedSeriesTitle": "Ghost-Spider",
+      "seriesYear": 2019,
+      "issueNumber": "10",
+      "block": 30,
+      "seriesId": 27622,
+      "disposition": "exact",
+      "issueId": 84147
+    },
+    {
+      "sourcePosition": 123,
+      "sourceIssueReference": "Spider-Gwen: Gwenverse (2022) #1",
+      "sourceRangeReference": "Collects: Spider-Gwen: Gwenverse #1 to #5",
+      "normalizedSeriesTitle": "Spider-Gwen: Gwenverse",
+      "seriesYear": 2022,
+      "issueNumber": "1",
+      "block": 31,
+      "seriesId": 33961,
+      "disposition": "exact",
+      "issueId": 98443
+    },
+    {
+      "sourcePosition": 124,
+      "sourceIssueReference": "Spider-Gwen: Gwenverse (2022) #2",
+      "sourceRangeReference": "Collects: Spider-Gwen: Gwenverse #1 to #5",
+      "normalizedSeriesTitle": "Spider-Gwen: Gwenverse",
+      "seriesYear": 2022,
+      "issueNumber": "2",
+      "block": 31,
+      "seriesId": 33961,
+      "disposition": "exact",
+      "issueId": 98444
+    },
+    {
+      "sourcePosition": 125,
+      "sourceIssueReference": "Spider-Gwen: Gwenverse (2022) #3",
+      "sourceRangeReference": "Collects: Spider-Gwen: Gwenverse #1 to #5",
+      "normalizedSeriesTitle": "Spider-Gwen: Gwenverse",
+      "seriesYear": 2022,
+      "issueNumber": "3",
+      "block": 31,
+      "seriesId": 33961,
+      "disposition": "exact",
+      "issueId": 98445
+    },
+    {
+      "sourcePosition": 126,
+      "sourceIssueReference": "Spider-Gwen: Gwenverse (2022) #4",
+      "sourceRangeReference": "Collects: Spider-Gwen: Gwenverse #1 to #5",
+      "normalizedSeriesTitle": "Spider-Gwen: Gwenverse",
+      "seriesYear": 2022,
+      "issueNumber": "4",
+      "block": 31,
+      "seriesId": 33961,
+      "disposition": "exact",
+      "issueId": 98446
+    },
+    {
+      "sourcePosition": 127,
+      "sourceIssueReference": "Spider-Gwen: Gwenverse (2022) #5",
+      "sourceRangeReference": "Collects: Spider-Gwen: Gwenverse #1 to #5",
+      "normalizedSeriesTitle": "Spider-Gwen: Gwenverse",
+      "seriesYear": 2022,
+      "issueNumber": "5",
+      "block": 31,
+      "seriesId": 33961,
+      "disposition": "exact",
+      "issueId": 98447
+    },
+    {
+      "sourcePosition": 128,
+      "sourceIssueReference": "Spider-Man (2022) #1",
+      "sourceRangeReference": "Collects: Spider-Man (2022) #1 to #7",
+      "normalizedSeriesTitle": "Spider-Man",
+      "seriesYear": 2022,
+      "issueNumber": "1",
+      "block": 32,
+      "seriesId": 34328,
+      "disposition": "exact",
+      "issueId": 99743
+    },
+    {
+      "sourcePosition": 129,
+      "sourceIssueReference": "Spider-Man (2022) #2",
+      "sourceRangeReference": "Collects: Spider-Man (2022) #1 to #7",
+      "normalizedSeriesTitle": "Spider-Man",
+      "seriesYear": 2022,
+      "issueNumber": "2",
+      "block": 32,
+      "seriesId": 34328,
+      "disposition": "exact",
+      "issueId": 99744
+    },
+    {
+      "sourcePosition": 130,
+      "sourceIssueReference": "Spider-Man (2022) #3",
+      "sourceRangeReference": "Collects: Spider-Man (2022) #1 to #7",
+      "normalizedSeriesTitle": "Spider-Man",
+      "seriesYear": 2022,
+      "issueNumber": "3",
+      "block": 32,
+      "seriesId": 34328,
+      "disposition": "exact",
+      "issueId": 99745
+    },
+    {
+      "sourcePosition": 131,
+      "sourceIssueReference": "Spider-Man (2022) #4",
+      "sourceRangeReference": "Collects: Spider-Man (2022) #1 to #7",
+      "normalizedSeriesTitle": "Spider-Man",
+      "seriesYear": 2022,
+      "issueNumber": "4",
+      "block": 32,
+      "seriesId": 34328,
+      "disposition": "exact",
+      "issueId": 99746
+    },
+    {
+      "sourcePosition": 132,
+      "sourceIssueReference": "Spider-Man (2022) #5",
+      "sourceRangeReference": "Collects: Spider-Man (2022) #1 to #7",
+      "normalizedSeriesTitle": "Spider-Man",
+      "seriesYear": 2022,
+      "issueNumber": "5",
+      "block": 32,
+      "seriesId": 34328,
+      "disposition": "exact",
+      "issueId": 99747
+    },
+    {
+      "sourcePosition": 133,
+      "sourceIssueReference": "Spider-Man (2022) #6",
+      "sourceRangeReference": "Collects: Spider-Man (2022) #1 to #7",
+      "normalizedSeriesTitle": "Spider-Man",
+      "seriesYear": 2022,
+      "issueNumber": "6",
+      "block": 32,
+      "seriesId": 34328,
+      "disposition": "exact",
+      "issueId": 99748
+    },
+    {
+      "sourcePosition": 134,
+      "sourceIssueReference": "Spider-Man (2022) #7",
+      "sourceRangeReference": "Collects: Spider-Man (2022) #1 to #7",
+      "normalizedSeriesTitle": "Spider-Man",
+      "seriesYear": 2022,
+      "issueNumber": "7",
+      "block": 32,
+      "seriesId": 34328,
+      "disposition": "exact",
+      "issueId": 99749
+    },
+    {
+      "sourcePosition": 135,
+      "sourceIssueReference": "Spider-Gwen: Shadow Clones (2023) #1",
+      "sourceRangeReference": "Collects: Spider-Gwen: Shadow Clones (2023) #1 to #5",
+      "normalizedSeriesTitle": "Spider-Gwen: Shadow Clones",
+      "seriesYear": 2023,
+      "issueNumber": "1",
+      "block": 33,
+      "seriesId": 36645,
+      "disposition": "exact",
+      "issueId": 105951
+    },
+    {
+      "sourcePosition": 136,
+      "sourceIssueReference": "Spider-Gwen: Shadow Clones (2023) #2",
+      "sourceRangeReference": "Collects: Spider-Gwen: Shadow Clones (2023) #1 to #5",
+      "normalizedSeriesTitle": "Spider-Gwen: Shadow Clones",
+      "seriesYear": 2023,
+      "issueNumber": "2",
+      "block": 33,
+      "seriesId": 36645,
+      "disposition": "exact",
+      "issueId": 105952
+    },
+    {
+      "sourcePosition": 137,
+      "sourceIssueReference": "Spider-Gwen: Shadow Clones (2023) #3",
+      "sourceRangeReference": "Collects: Spider-Gwen: Shadow Clones (2023) #1 to #5",
+      "normalizedSeriesTitle": "Spider-Gwen: Shadow Clones",
+      "seriesYear": 2023,
+      "issueNumber": "3",
+      "block": 33,
+      "seriesId": 36645,
+      "disposition": "exact",
+      "issueId": 105954
+    },
+    {
+      "sourcePosition": 138,
+      "sourceIssueReference": "Spider-Gwen: Shadow Clones (2023) #4",
+      "sourceRangeReference": "Collects: Spider-Gwen: Shadow Clones (2023) #1 to #5",
+      "normalizedSeriesTitle": "Spider-Gwen: Shadow Clones",
+      "seriesYear": 2023,
+      "issueNumber": "4",
+      "block": 33,
+      "seriesId": 36645,
+      "disposition": "exact",
+      "issueId": 105955
+    },
+    {
+      "sourcePosition": 139,
+      "sourceIssueReference": "Spider-Gwen: Shadow Clones (2023) #5",
+      "sourceRangeReference": "Collects: Spider-Gwen: Shadow Clones (2023) #1 to #5",
+      "normalizedSeriesTitle": "Spider-Gwen: Shadow Clones",
+      "seriesYear": 2023,
+      "issueNumber": "5",
+      "block": 33,
+      "seriesId": 36645,
+      "disposition": "exact",
+      "issueId": 105956
+    }
+  ],
+  "metadataHydration": {
+    "policy": "Reuse pinned factual metadata with source hashes; fetch only missing exact issue details. Store no synopsis or artwork bytes and make no availability claim.",
+    "reusedCount": 60,
+    "fetchedCount": 67,
+    "records": [
+      {
+        "issueId": 45806,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "655bcc36f0f5164b0d5bcffcbe94c3f45a8540d5ec59108cb3d949bc793f392c",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 45807,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "655bcc36f0f5164b0d5bcffcbe94c3f45a8540d5ec59108cb3d949bc793f392c",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 45808,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "655bcc36f0f5164b0d5bcffcbe94c3f45a8540d5ec59108cb3d949bc793f392c",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 45809,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "655bcc36f0f5164b0d5bcffcbe94c3f45a8540d5ec59108cb3d949bc793f392c",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 45810,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "655bcc36f0f5164b0d5bcffcbe94c3f45a8540d5ec59108cb3d949bc793f392c",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 45811,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "655bcc36f0f5164b0d5bcffcbe94c3f45a8540d5ec59108cb3d949bc793f392c",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 49348,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/venom_reading_order.json",
+        "sha256": "0f88035e00a59a51842956c873d6daeceb47524ac2f9966b71d7cea09e9e40ff",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 49504,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/spider_verse.json",
+        "sha256": "a35fb332b13c524cd65697f97b7de66275485a624afa991884c3c1512470e046",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 49511,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/spider_verse.json",
+        "sha256": "a35fb332b13c524cd65697f97b7de66275485a624afa991884c3c1512470e046",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 50350,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "655bcc36f0f5164b0d5bcffcbe94c3f45a8540d5ec59108cb3d949bc793f392c",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 50537,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/spider_verse.json",
+        "sha256": "a35fb332b13c524cd65697f97b7de66275485a624afa991884c3c1512470e046",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 50538,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/spider_verse.json",
+        "sha256": "a35fb332b13c524cd65697f97b7de66275485a624afa991884c3c1512470e046",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 50539,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/spider_verse.json",
+        "sha256": "a35fb332b13c524cd65697f97b7de66275485a624afa991884c3c1512470e046",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 50546,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/spider_verse.json",
+        "sha256": "a35fb332b13c524cd65697f97b7de66275485a624afa991884c3c1512470e046",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 50547,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/spider_verse.json",
+        "sha256": "a35fb332b13c524cd65697f97b7de66275485a624afa991884c3c1512470e046",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 50548,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/spider_verse.json",
+        "sha256": "a35fb332b13c524cd65697f97b7de66275485a624afa991884c3c1512470e046",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 50554,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/spider_verse.json",
+        "sha256": "a35fb332b13c524cd65697f97b7de66275485a624afa991884c3c1512470e046",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 50555,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/spider_verse.json",
+        "sha256": "a35fb332b13c524cd65697f97b7de66275485a624afa991884c3c1512470e046",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 50556,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/spider_verse.json",
+        "sha256": "a35fb332b13c524cd65697f97b7de66275485a624afa991884c3c1512470e046",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 50557,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/spider_verse.json",
+        "sha256": "a35fb332b13c524cd65697f97b7de66275485a624afa991884c3c1512470e046",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 50561,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/spider_verse.json",
+        "sha256": "a35fb332b13c524cd65697f97b7de66275485a624afa991884c3c1512470e046",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 50562,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/spider_verse.json",
+        "sha256": "a35fb332b13c524cd65697f97b7de66275485a624afa991884c3c1512470e046",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 50924,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "655bcc36f0f5164b0d5bcffcbe94c3f45a8540d5ec59108cb3d949bc793f392c",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 50954,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "655bcc36f0f5164b0d5bcffcbe94c3f45a8540d5ec59108cb3d949bc793f392c",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 50955,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "655bcc36f0f5164b0d5bcffcbe94c3f45a8540d5ec59108cb3d949bc793f392c",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 50956,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "655bcc36f0f5164b0d5bcffcbe94c3f45a8540d5ec59108cb3d949bc793f392c",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 50960,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "655bcc36f0f5164b0d5bcffcbe94c3f45a8540d5ec59108cb3d949bc793f392c",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 50962,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "655bcc36f0f5164b0d5bcffcbe94c3f45a8540d5ec59108cb3d949bc793f392c",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 50963,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "655bcc36f0f5164b0d5bcffcbe94c3f45a8540d5ec59108cb3d949bc793f392c",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 51320,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "655bcc36f0f5164b0d5bcffcbe94c3f45a8540d5ec59108cb3d949bc793f392c",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 51324,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "655bcc36f0f5164b0d5bcffcbe94c3f45a8540d5ec59108cb3d949bc793f392c",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 52521,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/52521",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "06fc30412db79c9e77817d509bc898f91ffd2cc5957ae4520b72dd28d1210545"
+      },
+      {
+        "issueId": 52527,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/52527",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "1d21eb9b97d63651f02b4b784d713a7f8a0833f63fcdaf46bdd05cf439af3c1e"
+      },
+      {
+        "issueId": 52529,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/52529",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "265929e67e1b382d055df601fc0669ab3086f73f47e76d2c088239706d207bdf"
+      },
+      {
+        "issueId": 52530,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/52530",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "87307433838a1128ecf6a995b87bf9785a140b0c0baff249491ff8c954aad124"
+      },
+      {
+        "issueId": 52531,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/52531",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "1802f0233b0838fddbb7cb582c9aeea6bf180845f6e58f7be6b46eaa41c10b23"
+      },
+      {
+        "issueId": 53336,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/spider_verse.json",
+        "sha256": "a35fb332b13c524cd65697f97b7de66275485a624afa991884c3c1512470e046",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 55646,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/55646",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "2a5c8edb9cfd2d5eadb67181132dbcc19899ebe4081250ca93b528a4d40f1bc6"
+      },
+      {
+        "issueId": 55647,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/55647",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "bc08459b3d1fc996e866ddc494cd105bf0bfdf95f727cf68d055b32390bca1b1"
+      },
+      {
+        "issueId": 55674,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/55674",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "4211d7892c8c8c6732bf1ff66f645537be5a3eb82c8feb453bfe67cf90a346be"
+      },
+      {
+        "issueId": 55676,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/55676",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "36e59ced2441f5984d2c8ec3cfe5393854808f73251ebd5f2238f501be0950c1"
+      },
+      {
+        "issueId": 55678,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/55678",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "cec583dfec1986c1f4e936ce8a455524ba7cf68216caef32ebbc427eb2f738e6"
+      },
+      {
+        "issueId": 55679,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/55679",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "b632e89cf104394ca5823d07898793359d4b161d101487a789504776d50a797b"
+      },
+      {
+        "issueId": 55680,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/55680",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "30f99ee61f9b50b917330be20210ef6717e3056586261729b49ff3fd1bc5ffc6"
+      },
+      {
+        "issueId": 55682,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/55682",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "a44c51db57d7318167a071fd1bd3ee71eb71cc873469867e656552e723f6d6ec"
+      },
+      {
+        "issueId": 55683,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/55683",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "2db773afd430b20f8b9d9b2cc7e5bf815292f91ced8e6dc83b16e1c7c12a5d5b"
+      },
+      {
+        "issueId": 55684,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/55684",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "73d57d07af70084fda2fd6b52aad94636b75aa8c99e3341eec07a639559157e7"
+      },
+      {
+        "issueId": 55685,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/55685",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "35c06cf034282c23348b5158d859cf6309e3e8a72601b95394055d06dd3af221"
+      },
+      {
+        "issueId": 55686,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/55686",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "4c5f680a34ce4ca7448fc9501ba3021f44588b149f984356b3ea9752c8da5c90"
+      },
+      {
+        "issueId": 55687,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/55687",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "91188181dad690110d2302d8edc801b2ac79f79de0be23766ea841d1ed8d0d98"
+      },
+      {
+        "issueId": 55688,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/55688",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "3b6045c2464bb64c2f63c0779482090a96dc736e758850e6ca8fb0f348b15df8"
+      },
+      {
+        "issueId": 55689,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/55689",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "d57c8a18106e69cd63d5548dcd346df528b31ad33a3cc513d4ae32c4c70946c9"
+      },
+      {
+        "issueId": 55690,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/55690",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "badbfd6f0b167e17c8cba093e55ea2086a7c028cb33e6b9a0391060ef98e8ccd"
+      },
+      {
+        "issueId": 55691,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/55691",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "39c2efb8a571fc1d1b05f8519ce3ce90ce89cda723a42fa4e95d9856d291a121"
+      },
+      {
+        "issueId": 55692,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/55692",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "82768e2b729ecff68dee03fe55221723c926e158422ab16c60278f52c638fceb"
+      },
+      {
+        "issueId": 55706,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/55706",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "563d10012f84265a723e966d6651175f32735d93601732f427487637a74b1cb1"
+      },
+      {
+        "issueId": 55707,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/55707",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "6aaf731d4e5e96aa5d7c4951049d80267bd60f298edf91a403a7ef35d2ca4a32"
+      },
+      {
+        "issueId": 55708,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/55708",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "67ab2d0640d1dbcf1f135106407479c6ec34e391deb7afa5e7777d0946fede96"
+      },
+      {
+        "issueId": 56169,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/56169",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "ae062bc32f112c5b23cf3bfe67a1f2346f761abac79cf7991b8de9ea83662bc7"
+      },
+      {
+        "issueId": 56170,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/56170",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "1e40675f50198eb3ab76a619b3b1c1ec15c6d00fcaf0c91e00b780be2c7b15a1"
+      },
+      {
+        "issueId": 58381,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/58381",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "16f90d1dcc206c3fc76c0fdcc3d04a6d60f648ba258fe956dedd28059d2a1891"
+      },
+      {
+        "issueId": 58831,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/58831",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "56c8ff755a1186b82f03c3f96b546d98fda5fb426fd1bc361a9415a44eb972e2"
+      },
+      {
+        "issueId": 58832,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/58832",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "2ece3a3b3a2003332a45830a8816196ee7324b295c05dfac696a3f2728fe7047"
+      },
+      {
+        "issueId": 59897,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/59897",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "3a27d5e77a4f98e8556fb4d4026ff84bcee04a65ff35dcf580461db3c27095a7"
+      },
+      {
+        "issueId": 61063,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/61063",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "31ec3a3b5ace09ae0ffa6f6f7f5920353b4f8b8880163d8a93e34f930754ef0c"
+      },
+      {
+        "issueId": 61064,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/61064",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "220b7174f10242900d70db686fb46470196ebcedc16c7ceeaa38f59146d79082"
+      },
+      {
+        "issueId": 61065,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/61065",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "291180a43cb3ac59cdd442e329e2e8d7c05992ce1a1b457cd32f8e7079cd6c3b"
+      },
+      {
+        "issueId": 61066,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/61066",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "6e7cb4885aa737cc9d88eb43e3200e4fb48249112c13b521ee8c29c7b4219195"
+      },
+      {
+        "issueId": 61067,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/61067",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "c89bcde54c0bdf99c6a2c35fdec83ed5779472e29ccf521fd90c6774c87c2ac3"
+      },
+      {
+        "issueId": 61068,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/61068",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "337f3bdac943b04a1fe351d3caf8d3d62a0c0ffa5d60d9c456bb8cb6b0398e56"
+      },
+      {
+        "issueId": 61069,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/61069",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "febb0fa57b2e8db255cef9f84fa109f2a3e00b6f375e96e27cfefb702ad22efd"
+      },
+      {
+        "issueId": 61070,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/61070",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "dc1abedb6aa00290edcdd9bcaa442d8f52d3b985b5c3864f83c8336f18a0f668"
+      },
+      {
+        "issueId": 61071,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/61071",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "95799a04fe38378de998bc9efd83fad52f64d57dbcaf91a4c066fa99052235cd"
+      },
+      {
+        "issueId": 61072,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/61072",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "86cea119ba57a5ed39937a5a97920519429829929f7b86fae63734ef7cb76afc"
+      },
+      {
+        "issueId": 61073,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/61073",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "5278784584b0c15c5adc4a36144a067e163d7a6e3fc3045c3790fa5e856cc879"
+      },
+      {
+        "issueId": 65924,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/65924",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "fb819aab476fcc579a4d79ba05716b438fd143642b575762b5e8c1de47549de6"
+      },
+      {
+        "issueId": 66292,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/66292",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "75d44180dbf9beff1cd2bfff5024c47f7d15041a279bdcdbc021845807861d26"
+      },
+      {
+        "issueId": 66554,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/66554",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "1501d1e2bf687e14d273d10372599e26d22c645c15af2f084ceb7e7aabcdc499"
+      },
+      {
+        "issueId": 66921,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/66921",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "2dbbe087aca3388bf21aebac5d2e93421b18a707c15aceb5b05e17f95381153e"
+      },
+      {
+        "issueId": 67550,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/67550",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "d8d8b9fd09be778964cad10ff81af0e8a147b9b5766b3e1ddc20587432a844cb"
+      },
+      {
+        "issueId": 69470,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/69470",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "0c7308d33771122c51e0b8ac030fbe08c458c9f611e08e699bbe4572e57ab70c"
+      },
+      {
+        "issueId": 69471,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/69471",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "1170d0d258e4f2525f9c315c28ddbb0afb8ef345d1a0c0e51240c027ad05a9ff"
+      },
+      {
+        "issueId": 71335,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/spider_geddon.json",
+        "sha256": "7a73893ca5bc43376352410c131e9a6658cf99663312957c68aefd8c55fdfc11",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 71336,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "655bcc36f0f5164b0d5bcffcbe94c3f45a8540d5ec59108cb3d949bc793f392c",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 71337,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "655bcc36f0f5164b0d5bcffcbe94c3f45a8540d5ec59108cb3d949bc793f392c",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 71338,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "655bcc36f0f5164b0d5bcffcbe94c3f45a8540d5ec59108cb3d949bc793f392c",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 71339,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "655bcc36f0f5164b0d5bcffcbe94c3f45a8540d5ec59108cb3d949bc793f392c",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 71340,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "655bcc36f0f5164b0d5bcffcbe94c3f45a8540d5ec59108cb3d949bc793f392c",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 71341,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "655bcc36f0f5164b0d5bcffcbe94c3f45a8540d5ec59108cb3d949bc793f392c",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 71342,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/spider_geddon.json",
+        "sha256": "7a73893ca5bc43376352410c131e9a6658cf99663312957c68aefd8c55fdfc11",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 71343,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/spider_geddon.json",
+        "sha256": "7a73893ca5bc43376352410c131e9a6658cf99663312957c68aefd8c55fdfc11",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 71344,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/spider_geddon.json",
+        "sha256": "7a73893ca5bc43376352410c131e9a6658cf99663312957c68aefd8c55fdfc11",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 71345,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/71345",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "5694cf111744bca8effd63d6371d516988c7afc794fee1dfe665ce9151647760"
+      },
+      {
+        "issueId": 71346,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/71346",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "20b5ef06e57cc944e7ee146b9341263a3770d860c54bf185da3f18df13e509b3"
+      },
+      {
+        "issueId": 71347,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/71347",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "214ee3c956d667d276ff6ee62eb37fce6c9a2ec34414ecb0782c01faab4707bb"
+      },
+      {
+        "issueId": 71348,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/71348",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "2100c3096b6cbac5587ffa1dd34a49f93c5fac4e3a41b28c1f07aba227df6cf2"
+      },
+      {
+        "issueId": 71349,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/71349",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "2e6fab6f0462736971d6f4228e65f06ee414bf695c810e7a392a921a0c09f236"
+      },
+      {
+        "issueId": 71350,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/71350",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "07cfe7caa0df2472509609c7699e1eabc4c9a8aeb5f0c272072d2ae46cd1ef53"
+      },
+      {
+        "issueId": 71351,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/71351",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "33bd0ff03bbeda946436bb27a401c6409839db1f8c48b84de1892e2ac4a6be8d"
+      },
+      {
+        "issueId": 71846,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "655bcc36f0f5164b0d5bcffcbe94c3f45a8540d5ec59108cb3d949bc793f392c",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 76995,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "655bcc36f0f5164b0d5bcffcbe94c3f45a8540d5ec59108cb3d949bc793f392c",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 76996,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "655bcc36f0f5164b0d5bcffcbe94c3f45a8540d5ec59108cb3d949bc793f392c",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 76997,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "655bcc36f0f5164b0d5bcffcbe94c3f45a8540d5ec59108cb3d949bc793f392c",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 76998,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "655bcc36f0f5164b0d5bcffcbe94c3f45a8540d5ec59108cb3d949bc793f392c",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 76999,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "655bcc36f0f5164b0d5bcffcbe94c3f45a8540d5ec59108cb3d949bc793f392c",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 84143,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "655bcc36f0f5164b0d5bcffcbe94c3f45a8540d5ec59108cb3d949bc793f392c",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 84144,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "655bcc36f0f5164b0d5bcffcbe94c3f45a8540d5ec59108cb3d949bc793f392c",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 84145,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "655bcc36f0f5164b0d5bcffcbe94c3f45a8540d5ec59108cb3d949bc793f392c",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 84146,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "655bcc36f0f5164b0d5bcffcbe94c3f45a8540d5ec59108cb3d949bc793f392c",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 84147,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "655bcc36f0f5164b0d5bcffcbe94c3f45a8540d5ec59108cb3d949bc793f392c",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 98443,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/98443",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "b49ecc566d643219fa3ae3c46a36668ff9570ecb81f6e40ca3c3cf7e73538b14"
+      },
+      {
+        "issueId": 98444,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/98444",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "a0fb6c4ce0f46a6fc73addd29d942c67f261465af22392535b9cbd0a697b847c"
+      },
+      {
+        "issueId": 98445,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/98445",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "de2ecf597b9ad8feebd02cba842e3304762475382e91b7aaa3bc49162f210fb9"
+      },
+      {
+        "issueId": 98446,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/98446",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "89b9b26f56bf9bf2c31519e5f308b632fc4d2be22611e23b719b1a4673f5a2a3"
+      },
+      {
+        "issueId": 98447,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/98447",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "091ff261bed7019d9372c3d66777f49eb672cbab6e789999dc71ffd42e31ba14"
+      },
+      {
+        "issueId": 99743,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "655bcc36f0f5164b0d5bcffcbe94c3f45a8540d5ec59108cb3d949bc793f392c",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 99744,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "655bcc36f0f5164b0d5bcffcbe94c3f45a8540d5ec59108cb3d949bc793f392c",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 99745,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "655bcc36f0f5164b0d5bcffcbe94c3f45a8540d5ec59108cb3d949bc793f392c",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 99746,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "655bcc36f0f5164b0d5bcffcbe94c3f45a8540d5ec59108cb3d949bc793f392c",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 99747,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "655bcc36f0f5164b0d5bcffcbe94c3f45a8540d5ec59108cb3d949bc793f392c",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 99748,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "655bcc36f0f5164b0d5bcffcbe94c3f45a8540d5ec59108cb3d949bc793f392c",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 99749,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "655bcc36f0f5164b0d5bcffcbe94c3f45a8540d5ec59108cb3d949bc793f392c",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response. number -> issueNumber, url -> detailUrl, onSale -> onSaleDate, mu -> unlimitedDate, cover.ext -> cover.extension. Existing availability hints are not refreshed.",
+        "hashBasis": "UTF-8 source text with LF line endings"
+      },
+      {
+        "issueId": 105951,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/105951",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "a9582387aaed43e549a335627e02b8e7a2f4ed0503a2227a206f85714d478be2"
+      },
+      {
+        "issueId": 105952,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/105952",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "776233d38231137517b7f2f93129b9fc4292090daa7a22fb6ddffe6d05bdc636"
+      },
+      {
+        "issueId": 105954,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/105954",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "a2750e2d8bfb642699650c00bdeb637f0d14543945e267754dce4644ceff8d53"
+      },
+      {
+        "issueId": 105955,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/105955",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "389f127e13a53f6914e24cfbd2133b8acd4bc0f6f9c3d23776caabd31cbb98df"
+      },
+      {
+        "issueId": 105956,
+        "kind": "fetched-metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/105956",
+        "retrievedAt": "2026-09-15",
+        "bodySha256": "df17351948d81cabe2176532697e60804bbb87f5538fbc8cd1bb4d23e978711b"
+      }
+    ]
+  },
+  "metadataLookups": [
+    {
+      "url": "https://marvel.emreparker.com/v1/series/19670/issues?limit=200&offset=0",
+      "status": 200,
+      "error": null
+    },
+    {
+      "url": "https://marvel.emreparker.com/v1/series/20505/issues?limit=200&offset=0",
+      "status": 200,
+      "error": null
+    },
+    {
+      "url": "https://marvel.emreparker.com/v1/series/20499/issues?limit=200&offset=0",
+      "status": 200,
+      "error": null
+    },
+    {
+      "url": "https://marvel.emreparker.com/v1/series/20618/issues?limit=200&offset=0",
+      "status": 200,
+      "error": null
+    },
+    {
+      "url": "https://marvel.emreparker.com/v1/series/21280/issues?limit=200&offset=0",
+      "status": 200,
+      "error": null
+    },
+    {
+      "url": "https://marvel.emreparker.com/v1/series/21441/issues?limit=200&offset=0",
+      "status": 200,
+      "error": null
+    },
+    {
+      "url": "https://marvel.emreparker.com/v1/series/21442/issues?limit=200&offset=0",
+      "status": 200,
+      "error": null
+    },
+    {
+      "url": "https://marvel.emreparker.com/v1/series/21853/issues?limit=200&offset=0",
+      "status": 200,
+      "error": null
+    },
+    {
+      "url": "https://marvel.emreparker.com/v1/series/20508/issues?limit=200&offset=0",
+      "status": 200,
+      "error": null
+    },
+    {
+      "url": "https://marvel.emreparker.com/v1/series/26003/issues?limit=200&offset=0",
+      "status": 200,
+      "error": null
+    },
+    {
+      "url": "https://marvel.emreparker.com/v1/series/33961/issues?limit=200&offset=0",
+      "status": 200,
+      "error": null
+    },
+    {
+      "url": "https://marvel.emreparker.com/v1/series/36645/issues?limit=200&offset=0",
+      "status": 200,
+      "error": null
+    }
+  ]
+}

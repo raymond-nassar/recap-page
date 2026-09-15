@@ -100,6 +100,7 @@ test('popularity sorting keeps the ranked stories first and the rest in their cu
     'The Defenders',
     'Adam Warlock',
     'Groot',
+    'Spider-Gwen / Ghost-Spider',
     'Star-Lord',
     'Modern X-Men Fast Track',
     'Thanos',
