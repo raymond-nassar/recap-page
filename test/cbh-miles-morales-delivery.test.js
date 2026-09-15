@@ -140,10 +140,10 @@ test('Miles unresolved originals remain explicit tracked source gaps rather than
   }
 });
 
-test('Miles approvals preserve the complete reviewed library and frozen evidence', async () => {
+test('Miles approvals preserve the reviewed library and frozen evidence', async () => {
   const report = await readJson(`scripts/data/cbh-overlaps/${id}.json`);
   const current = await buildReportForMapping(
-    `scripts/data/cbh-mappings/${id}.json`, [], { excludedOrderIds: ['spider-man-2099-reading-order'] },
+    `scripts/data/cbh-mappings/${id}.json`, [], { excludedOrderIds: ['best-ultron-reading-order', 'spider-man-2099-reading-order'] },
   );
   const manifest = await readJson('src/data/curated-lists.json');
   assert.doesNotThrow(() => validateFrozenPacket(packet));
@@ -153,10 +153,11 @@ test('Miles approvals preserve the complete reviewed library and frozen evidence
   assert.doesNotThrow(() => validateApprovalDigest(mapping.relationshipReview, id));
   assert.deepEqual(current.comparisons, report.comparisons);
   assert.equal(current.libraryDigest, report.libraryDigest);
-  assert.equal(report.comparisonCount, manifest.lists.length - 2);
+  assert.equal(report.comparisonCount, manifest.lists.length - 3);
   assert.doesNotThrow(() => assertApprovedRelationshipReview({
     packet, mapping, report, currentLibraryDigest: current.libraryDigest,
-    expectedOrderIds: manifest.lists.filter((row) => row.id !== id && row.id !== 'spider-man-2099-reading-order').map((row) => row.id),
+    expectedOrderIds: manifest.lists.filter((row) => row.id !== id
+      && row.id !== 'best-ultron-reading-order' && row.id !== 'spider-man-2099-reading-order').map((row) => row.id),
   }));
 });
 

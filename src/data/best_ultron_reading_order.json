@@ -1,0 +1,2613 @@
+{
+  "id": "best-ultron-reading-order",
+  "name": "Ultron",
+  "description": "Read Comic Book Herald's selected Ultron stories, including animated-continuity Ultron Revolution. Runs from the original Avengers through The Ultron Agenda and includes the standalone Rage of Ultron graphic novel.",
+  "source": "https://www.comicbookherald.com/best-ultron-reading-order/",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-09-15T05:20:03.688Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 91,
+  "collections": 16,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 7304,
+      "title": "Avengers (1963) #54",
+      "number": "54",
+      "url": "https://www.marvel.com/comics/issue/7304/avengers_1963_54",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1968-07-01T00:00:00+0000",
+      "mu": "1968-07-01T00:00:00+0000",
+      "digitalId": 4220,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/4e96f9eba545a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "George Tuska",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Issues: Avengers #54-#58"
+    },
+    {
+      "issueId": 7305,
+      "title": "Avengers (1963) #55",
+      "number": "55",
+      "url": "https://www.marvel.com/comics/issue/7305/avengers_1963_55",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1968-08-01T00:00:00+0000",
+      "mu": "1968-08-01T00:00:00+0000",
+      "digitalId": 4221,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/a0/4e96fbc1e4a29",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Issues: Avengers #54-#58"
+    },
+    {
+      "issueId": 7306,
+      "title": "Avengers (1963) #56",
+      "number": "56",
+      "url": "https://www.marvel.com/comics/issue/7306/avengers_1963_56",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1968-09-01T00:00:00+0000",
+      "mu": "1968-09-01T00:00:00+0000",
+      "digitalId": 4222,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/e0/4e96fd7967b6f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Issues: Avengers #54-#58"
+    },
+    {
+      "issueId": 7307,
+      "title": "Avengers (1963) #57",
+      "number": "57",
+      "url": "https://www.marvel.com/comics/issue/7307/avengers_1963_57",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1968-10-01T00:00:00+0000",
+      "mu": "1968-10-01T00:00:00+0000",
+      "digitalId": 4223,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/30/4e96fe30c0e1c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "George Klein",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Issues: Avengers #54-#58"
+    },
+    {
+      "issueId": 7308,
+      "title": "Avengers (1963) #58",
+      "number": "58",
+      "url": "https://www.marvel.com/comics/issue/7308/avengers_1963_58",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1968-11-01T00:00:00+0000",
+      "mu": "1968-11-01T00:00:00+0000",
+      "digitalId": 4224,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/0/04/4e96feecb36f3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "George Klein",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Issues: Avengers #54-#58"
+    },
+    {
+      "issueId": 7317,
+      "title": "Avengers (1963) #66",
+      "number": "66",
+      "url": "https://www.marvel.com/comics/issue/7317/avengers_1963_66",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1969-07-01T00:00:00+0000",
+      "mu": "1969-07-01T00:00:00+0000",
+      "digitalId": 8002,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/4d49e1a8e5b50",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Syd Shores",
+          "role": "cover artist"
+        },
+        {
+          "name": "Barry Windsor-Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Issues: Avengers #66-#68"
+    },
+    {
+      "issueId": 7318,
+      "title": "Avengers (1963) #67",
+      "number": "67",
+      "url": "https://www.marvel.com/comics/issue/7318/avengers_1963_67",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1969-08-01T00:00:00+0000",
+      "mu": "1969-08-01T00:00:00+0000",
+      "digitalId": 8003,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/4d49e284c4a21",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Issues: Avengers #66-#68"
+    },
+    {
+      "issueId": 7319,
+      "title": "Avengers (1963) #68",
+      "number": "68",
+      "url": "https://www.marvel.com/comics/issue/7319/avengers_1963_68",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1969-09-01T00:00:00+0000",
+      "mu": "1969-09-01T00:00:00+0000",
+      "digitalId": 8004,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/4bb8552a427d7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Issues: Avengers #66-#68"
+    },
+    {
+      "issueId": 7016,
+      "title": "Avengers (1963) #157",
+      "number": "157",
+      "url": "https://www.marvel.com/comics/issue/7016/avengers_1963_157",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1977-03-01T00:00:00+0000",
+      "mu": "1977-03-01T00:00:00+0000",
+      "digitalId": 29203,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/58810d7ad5a8a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Pablo Marcos",
+          "role": "cover artist"
+        },
+        {
+          "name": "Don Heck",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Conway",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Issues: Avengers #157-#168"
+    },
+    {
+      "issueId": 7017,
+      "title": "Avengers (1963) #158",
+      "number": "158",
+      "url": "https://www.marvel.com/comics/issue/7017/avengers_1963_158",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1977-04-01T00:00:00+0000",
+      "mu": "1977-04-01T00:00:00+0000",
+      "digitalId": 29204,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/03/5881143318ed7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Pablo Marcos",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Shooter",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Issues: Avengers #157-#168"
+    },
+    {
+      "issueId": 7018,
+      "title": "Avengers (1963) #159",
+      "number": "159",
+      "url": "https://www.marvel.com/comics/issue/7018/avengers_1963_159",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1977-05-01T00:00:00+0000",
+      "mu": "1977-05-01T00:00:00+0000",
+      "digitalId": 29205,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/03/58811ae078378",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Pablo Marcos",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Shooter",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Issues: Avengers #157-#168"
+    },
+    {
+      "issueId": 7020,
+      "title": "Avengers (1963) #160",
+      "number": "160",
+      "url": "https://www.marvel.com/comics/issue/7020/avengers_1963_160",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1977-06-01T00:00:00+0000",
+      "mu": "1977-06-01T00:00:00+0000",
+      "digitalId": 29206,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/03/5881252a130c9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Pablo Marcos",
+          "role": "cover artist"
+        },
+        {
+          "name": "George Perez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Shooter",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Issues: Avengers #157-#168"
+    },
+    {
+      "issueId": 7021,
+      "title": "Avengers (1963) #161",
+      "number": "161",
+      "url": "https://www.marvel.com/comics/issue/7021/avengers_1963_161",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1977-07-01T00:00:00+0000",
+      "mu": "1977-07-01T00:00:00+0000",
+      "digitalId": 1460,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/53ee63451e15a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Pablo Marcos",
+          "role": "cover artist"
+        },
+        {
+          "name": "George Perez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Shooter",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Issues: Avengers #157-#168"
+    },
+    {
+      "issueId": 7022,
+      "title": "Avengers (1963) #162",
+      "number": "162",
+      "url": "https://www.marvel.com/comics/issue/7022/avengers_1963_162",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1977-08-01T00:00:00+0000",
+      "mu": "1977-08-01T00:00:00+0000",
+      "digitalId": 1461,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/e0/4bc38130b76f0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Pablo Marcos",
+          "role": "cover artist"
+        },
+        {
+          "name": "George Perez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Shooter",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Issues: Avengers #157-#168"
+    },
+    {
+      "issueId": 7023,
+      "title": "Avengers (1963) #163",
+      "number": "163",
+      "url": "https://www.marvel.com/comics/issue/7023/avengers_1963_163",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1977-09-01T00:00:00+0000",
+      "mu": "1977-09-01T00:00:00+0000",
+      "digitalId": 5138,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/4bb6de930d782",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Pablo Marcos",
+          "role": "cover artist"
+        },
+        {
+          "name": "George Tuska",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Shooter",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Issues: Avengers #157-#168"
+    },
+    {
+      "issueId": 7024,
+      "title": "Avengers (1963) #164",
+      "number": "164",
+      "url": "https://www.marvel.com/comics/issue/7024/avengers_1963_164",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1977-10-01T00:00:00+0000",
+      "mu": "1977-10-01T00:00:00+0000",
+      "digitalId": 29207,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/5882354e0c05e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Pablo Marcos",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Byrne",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Shooter",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Issues: Avengers #157-#168"
+    },
+    {
+      "issueId": 7025,
+      "title": "Avengers (1963) #165",
+      "number": "165",
+      "url": "https://www.marvel.com/comics/issue/7025/avengers_1963_165",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1977-11-01T00:00:00+0000",
+      "mu": "1977-11-01T00:00:00+0000",
+      "digitalId": 29215,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/20/588240641db1d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Pablo Marcos",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Byrne",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Shooter",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Issues: Avengers #157-#168"
+    },
+    {
+      "issueId": 7026,
+      "title": "Avengers (1963) #166",
+      "number": "166",
+      "url": "https://www.marvel.com/comics/issue/7026/avengers_1963_166",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1977-12-01T00:00:00+0000",
+      "mu": "1977-12-01T00:00:00+0000",
+      "digitalId": 29217,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/50/588249b45a947",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Pablo Marcos",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Byrne",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Shooter",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Issues: Avengers #157-#168"
+    },
+    {
+      "issueId": 7027,
+      "title": "Avengers (1963) #167",
+      "number": "167",
+      "url": "https://www.marvel.com/comics/issue/7027/avengers_1963_167",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1978-01-01T00:00:00+0000",
+      "mu": "1978-01-01T00:00:00+0000",
+      "digitalId": 1462,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/d0/4bc47cf65429e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Pablo Marcos",
+          "role": "cover artist"
+        },
+        {
+          "name": "George Perez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Shooter",
+          "role": "writer"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Issues: Avengers #157-#168"
+    },
+    {
+      "issueId": 7028,
+      "title": "Avengers (1963) #168",
+      "number": "168",
+      "url": "https://www.marvel.com/comics/issue/7028/avengers_1963_168",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1978-02-01T00:00:00+0000",
+      "mu": "1978-02-01T00:00:00+0000",
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Issues: Avengers #157-#168"
+    },
+    {
+      "issueId": 10580,
+      "title": "Secret Wars (1984) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/10580/secret_wars_1984_1",
+      "seriesId": 2063,
+      "seriesName": "Secret Wars (1984 - 1985)",
+      "onSale": "1984-05-10T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Issues: Secret Wars #1-#12"
+    },
+    {
+      "issueId": 10584,
+      "title": "Secret Wars (1984) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/10584/secret_wars_1984_2",
+      "seriesId": 2063,
+      "seriesName": "Secret Wars (1984 - 1985)",
+      "onSale": "1984-06-10T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Issues: Secret Wars #1-#12"
+    },
+    {
+      "issueId": 10585,
+      "title": "Secret Wars (1984) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/10585/secret_wars_1984_3",
+      "seriesId": 2063,
+      "seriesName": "Secret Wars (1984 - 1985)",
+      "onSale": "1984-07-10T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Issues: Secret Wars #1-#12"
+    },
+    {
+      "issueId": 10586,
+      "title": "Secret Wars (1984) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/10586/secret_wars_1984_4",
+      "seriesId": 2063,
+      "seriesName": "Secret Wars (1984 - 1985)",
+      "onSale": "1984-08-10T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Issues: Secret Wars #1-#12"
+    },
+    {
+      "issueId": 10587,
+      "title": "Secret Wars (1984) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/10587/secret_wars_1984_5",
+      "seriesId": 2063,
+      "seriesName": "Secret Wars (1984 - 1985)",
+      "onSale": "1984-09-10T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Issues: Secret Wars #1-#12"
+    },
+    {
+      "issueId": 10588,
+      "title": "Secret Wars (1984) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/10588/secret_wars_1984_6",
+      "seriesId": 2063,
+      "seriesName": "Secret Wars (1984 - 1985)",
+      "onSale": "1984-10-10T00:00:00+0000",
+      "mu": "2007-11-28T00:00:00+0000",
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Issues: Secret Wars #1-#12"
+    },
+    {
+      "issueId": 10589,
+      "title": "Secret Wars (1984) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/10589/secret_wars_1984_7",
+      "seriesId": 2063,
+      "seriesName": "Secret Wars (1984 - 1985)",
+      "onSale": "1984-11-10T00:00:00+0000",
+      "mu": "2008-09-17T00:00:00+0000",
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Issues: Secret Wars #1-#12"
+    },
+    {
+      "issueId": 10590,
+      "title": "Secret Wars (1984) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/10590/secret_wars_1984_8",
+      "seriesId": 2063,
+      "seriesName": "Secret Wars (1984 - 1985)",
+      "onSale": "1984-12-10T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Issues: Secret Wars #1-#12"
+    },
+    {
+      "issueId": 10591,
+      "title": "Secret Wars (1984) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/10591/secret_wars_1984_9",
+      "seriesId": 2063,
+      "seriesName": "Secret Wars (1984 - 1985)",
+      "onSale": "1985-01-10T00:00:00+0000",
+      "mu": "2009-08-04T00:00:00+0000",
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Issues: Secret Wars #1-#12"
+    },
+    {
+      "issueId": 10581,
+      "title": "Secret Wars (1984) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/10581/secret_wars_1984_10",
+      "seriesId": 2063,
+      "seriesName": "Secret Wars (1984 - 1985)",
+      "onSale": "1985-02-10T00:00:00+0000",
+      "mu": "2009-08-11T00:00:00+0000",
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Issues: Secret Wars #1-#12"
+    },
+    {
+      "issueId": 10582,
+      "title": "Secret Wars (1984) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/10582/secret_wars_1984_11",
+      "seriesId": 2063,
+      "seriesName": "Secret Wars (1984 - 1985)",
+      "onSale": "1985-03-10T00:00:00+0000",
+      "mu": "2009-11-06T00:00:00+0000",
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Issues: Secret Wars #1-#12"
+    },
+    {
+      "issueId": 10583,
+      "title": "Secret Wars (1984) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/10583/secret_wars_1984_12",
+      "seriesId": 2063,
+      "seriesName": "Secret Wars (1984 - 1985)",
+      "onSale": "1985-04-10T00:00:00+0000",
+      "mu": "2009-11-20T00:00:00+0000",
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Issues: Secret Wars #1-#12"
+    },
+    {
+      "issueId": 17500,
+      "title": "Avengers (1998) #19",
+      "number": "19",
+      "url": "https://www.marvel.com/comics/issue/17500/avengers_1998_19",
+      "seriesId": 354,
+      "seriesName": "Avengers (1998 - 2004)",
+      "onSale": "1999-08-01T00:00:00+0000",
+      "mu": "2012-07-20T00:00:00+0000",
+      "digitalId": 16193,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/58540cc26f8fc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Vey",
+          "role": "cover artist"
+        },
+        {
+          "name": "George Perez",
+          "role": "penciler"
+        },
+        {
+          "name": "Kurt Busiek",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Issues: Avengers #19-#22"
+    },
+    {
+      "issueId": 17502,
+      "title": "Avengers (1998) #20",
+      "number": "20",
+      "url": "https://www.marvel.com/comics/issue/17502/avengers_1998_20",
+      "seriesId": 354,
+      "seriesName": "Avengers (1998 - 2004)",
+      "onSale": "1999-09-01T00:00:00+0000",
+      "mu": "2012-12-10T11:28:06+0000",
+      "digitalId": 16203,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/00/58540da5bdc24",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Vey",
+          "role": "cover artist"
+        },
+        {
+          "name": "George Perez",
+          "role": "penciler"
+        },
+        {
+          "name": "Kurt Busiek",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Issues: Avengers #19-#22"
+    },
+    {
+      "issueId": 17503,
+      "title": "Avengers (1998) #21",
+      "number": "21",
+      "url": "https://www.marvel.com/comics/issue/17503/avengers_1998_21",
+      "seriesId": 354,
+      "seriesName": "Avengers (1998 - 2004)",
+      "onSale": "1999-10-01T00:00:00+0000",
+      "mu": "2012-07-23T00:00:00+0000",
+      "digitalId": 16215,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/90/58595924577e1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Vey",
+          "role": "cover artist"
+        },
+        {
+          "name": "George Perez",
+          "role": "penciler"
+        },
+        {
+          "name": "Kurt Busiek",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Issues: Avengers #19-#22"
+    },
+    {
+      "issueId": 17504,
+      "title": "Avengers (1998) #22",
+      "number": "22",
+      "url": "https://www.marvel.com/comics/issue/17504/avengers_1998_22",
+      "seriesId": 354,
+      "seriesName": "Avengers (1998 - 2004)",
+      "onSale": "1999-11-01T00:00:00+0000",
+      "mu": "2012-07-23T00:00:00+0000",
+      "digitalId": 16218,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/70/585959e0b9571",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Vey",
+          "role": "cover artist"
+        },
+        {
+          "name": "George Perez",
+          "role": "penciler"
+        },
+        {
+          "name": "Kurt Busiek",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Issues: Avengers #19-#22"
+    },
+    {
+      "issueId": 6097,
+      "title": "The Mighty Avengers (2007) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/6097/the_mighty_avengers_2007_1",
+      "seriesId": 1866,
+      "seriesName": "The Mighty Avengers (2007 - 2010)",
+      "onSale": "2007-03-07T00:00:00+0000",
+      "mu": "2008-09-06T00:00:00+0000",
+      "digitalId": 8400,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/10/4f7b2c8211fc3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Frank Cho",
+          "role": "penciler"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Issues: Mighty Avengers #1-#6"
+    },
+    {
+      "issueId": 6301,
+      "title": "The Mighty Avengers (2007) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/6301/the_mighty_avengers_2007_2",
+      "seriesId": 1866,
+      "seriesName": "The Mighty Avengers (2007 - 2010)",
+      "onSale": "2007-04-18T00:00:00+0000",
+      "mu": "2007-04-18T00:00:00+0000",
+      "digitalId": 8401,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/e0/4f7c77a91cff1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Frank Cho",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Issues: Mighty Avengers #1-#6"
+    },
+    {
+      "issueId": 13477,
+      "title": "The Mighty Avengers (2007) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/13477/the_mighty_avengers_2007_3",
+      "seriesId": 1866,
+      "seriesName": "The Mighty Avengers (2007 - 2010)",
+      "onSale": "2007-05-16T00:00:00+0000",
+      "mu": "2007-05-16T00:00:00+0000",
+      "digitalId": 8402,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/e0/4d2509011df09",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Frank Cho",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Issues: Mighty Avengers #1-#6"
+    },
+    {
+      "issueId": 15855,
+      "title": "The Mighty Avengers (2007) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/15855/the_mighty_avengers_2007_4",
+      "seriesId": 1866,
+      "seriesName": "The Mighty Avengers (2007 - 2010)",
+      "onSale": "2007-07-25T00:00:00+0000",
+      "mu": "2007-07-25T00:00:00+0000",
+      "digitalId": 8403,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/03/51964c76b4104",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Frank Cho",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Issues: Mighty Avengers #1-#6"
+    },
+    {
+      "issueId": 15965,
+      "title": "The Mighty Avengers (2007) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/15965/the_mighty_avengers_2007_5",
+      "seriesId": 1866,
+      "seriesName": "The Mighty Avengers (2007 - 2010)",
+      "onSale": "2007-10-17T00:00:00+0000",
+      "mu": "2007-10-17T00:00:00+0000",
+      "digitalId": 8404,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/b0/4d2510c2c44fd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Frank Cho",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Issues: Mighty Avengers #1-#6"
+    },
+    {
+      "issueId": 16519,
+      "title": "The Mighty Avengers (2007) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/16519/the_mighty_avengers_2007_6",
+      "seriesId": 1866,
+      "seriesName": "The Mighty Avengers (2007 - 2010)",
+      "onSale": "2007-12-19T00:00:00+0000",
+      "mu": "2007-12-19T00:00:00+0000",
+      "digitalId": 8405,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/c0/513a76d6247d9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Frank Cho",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Issues: Mighty Avengers #1-#6"
+    },
+    {
+      "issueId": 17271,
+      "title": "Annihilation: Conquest (2007) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/17271/annihilation_conquest_2007_1",
+      "seriesId": 3061,
+      "seriesName": "Annihilation: Conquest (2007)",
+      "onSale": "2007-11-07T00:00:00+0000",
+      "mu": "2007-11-07T00:00:00+0000",
+      "digitalId": 7930,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/30/4e8381b35e231",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Raney",
+          "role": "penciler"
+        },
+        {
+          "name": "Aleksi Briclot",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Issues: Annihilation: Conquest #1-#6"
+    },
+    {
+      "issueId": 17405,
+      "title": "Annihilation: Conquest (2007) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/17405/annihilation_conquest_2007_2",
+      "seriesId": 3061,
+      "seriesName": "Annihilation: Conquest (2007)",
+      "onSale": "2007-12-05T00:00:00+0000",
+      "mu": "2007-12-05T00:00:00+0000",
+      "digitalId": 7931,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/50/4e8384c84cd95",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Raney",
+          "role": "penciler"
+        },
+        {
+          "name": "Aleksi Briclot",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Issues: Annihilation: Conquest #1-#6"
+    },
+    {
+      "issueId": 17645,
+      "title": "Annihilation: Conquest (2007) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/17645/annihilation_conquest_2007_3",
+      "seriesId": 3061,
+      "seriesName": "Annihilation: Conquest (2007)",
+      "onSale": "2008-01-02T00:00:00+0000",
+      "mu": "2008-01-02T00:00:00+0000",
+      "digitalId": 10630,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/00/4e83867ba1c87",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Raney",
+          "role": "penciler"
+        },
+        {
+          "name": "Aleksi Briclot",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Issues: Annihilation: Conquest #1-#6"
+    },
+    {
+      "issueId": 20686,
+      "title": "Annihilation: Conquest (2007) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/20686/annihilation_conquest_2007_4",
+      "seriesId": 3061,
+      "seriesName": "Annihilation: Conquest (2007)",
+      "onSale": "2008-02-06T00:00:00+0000",
+      "mu": "2008-02-06T00:00:00+0000",
+      "digitalId": 10631,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/b0/4e83879785c16",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Raney",
+          "role": "penciler"
+        },
+        {
+          "name": "Aleksi Briclot",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Issues: Annihilation: Conquest #1-#6"
+    },
+    {
+      "issueId": 20885,
+      "title": "Annihilation: Conquest (2007) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/20885/annihilation_conquest_2007_5",
+      "seriesId": 3061,
+      "seriesName": "Annihilation: Conquest (2007)",
+      "onSale": "2008-03-12T00:00:00+0000",
+      "mu": "2008-03-12T00:00:00+0000",
+      "digitalId": 10633,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/90/4e8389572567c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Raney",
+          "role": "penciler"
+        },
+        {
+          "name": "Aleksi Briclot",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Issues: Annihilation: Conquest #1-#6"
+    },
+    {
+      "issueId": 21016,
+      "title": "Annihilation: Conquest (2007) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/21016/annihilation_conquest_2007_6",
+      "seriesId": 3061,
+      "seriesName": "Annihilation: Conquest (2007)",
+      "onSale": "2008-04-16T00:00:00+0000",
+      "mu": "2008-04-16T00:00:00+0000",
+      "digitalId": 10635,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/50/4e81eebde62e0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Raney",
+          "role": "penciler"
+        },
+        {
+          "name": "Wellinton Alves",
+          "role": "penciler"
+        },
+        {
+          "name": "Aleksi Briclot",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Issues: Annihilation: Conquest #1-#6"
+    },
+    {
+      "issueId": 15891,
+      "title": "ANNIHILATION: CONQUEST PROLOGUE 1 (2007) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/15891/annihilation_conquest_prologue_1_2007_1",
+      "seriesId": 2420,
+      "seriesName": "ANNIHILATION: CONQUEST PROLOGUE 1 (2007)",
+      "onSale": "2007-06-20T00:00:00+0000",
+      "mu": "2007-06-20T00:00:00+0000",
+      "digitalId": 7932,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/513a75867ca5d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Aleksi Briclot",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "one-shot prologue"
+    },
+    {
+      "issueId": 15972,
+      "title": "Nova (2007) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/15972/nova_2007_4",
+      "seriesId": 2504,
+      "seriesName": "Nova (2007 - 2010)",
+      "onSale": "2007-07-11T00:00:00+0000",
+      "mu": "2007-07-11T00:00:00+0000",
+      "digitalId": 8485,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/10/578e841c9535a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Denham",
+          "role": "penciler"
+        },
+        {
+          "name": "Sean Chen",
+          "role": "penciler"
+        },
+        {
+          "name": "Adi Granov",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "issues #4-#7 of Nova"
+    },
+    {
+      "issueId": 16157,
+      "title": "Nova (2007) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/16157/nova_2007_5",
+      "seriesId": 2504,
+      "seriesName": "Nova (2007 - 2010)",
+      "onSale": "2007-08-08T00:00:00+0000",
+      "mu": "2007-08-08T00:00:00+0000",
+      "digitalId": 8486,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/30/578e8ce1cfd47",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Denham",
+          "role": "penciler"
+        },
+        {
+          "name": "Sean Chen",
+          "role": "penciler"
+        },
+        {
+          "name": "Adi Granov",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "issues #4-#7 of Nova"
+    },
+    {
+      "issueId": 16532,
+      "title": "Nova (2007) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/16532/nova_2007_6",
+      "seriesId": 2504,
+      "seriesName": "Nova (2007 - 2010)",
+      "onSale": "2007-09-12T00:00:00+0000",
+      "mu": "2007-09-12T00:00:00+0000",
+      "digitalId": 8487,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/52c5d44533c73",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Denham",
+          "role": "penciler"
+        },
+        {
+          "name": "Sean Chen",
+          "role": "penciler"
+        },
+        {
+          "name": "Adi Granov",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "issues #4-#7 of Nova"
+    },
+    {
+      "issueId": 16533,
+      "title": "Nova (2007) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/16533/nova_2007_7",
+      "seriesId": 2504,
+      "seriesName": "Nova (2007 - 2010)",
+      "onSale": "2007-10-10T00:00:00+0000",
+      "mu": "2007-10-10T00:00:00+0000",
+      "digitalId": 8488,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/20/578f7d527a4e4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Denham",
+          "role": "penciler"
+        },
+        {
+          "name": "Sean Chen",
+          "role": "penciler"
+        },
+        {
+          "name": "Adi Granov",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "issues #4-#7 of Nova"
+    },
+    {
+      "issueId": 39852,
+      "title": "Avengers (2010) #12.1",
+      "number": "12.1",
+      "url": "https://www.marvel.com/comics/issue/39852/avengers_2010_12.1",
+      "seriesId": 9085,
+      "seriesName": "Avengers (2010 - 2012)",
+      "onSale": "2011-04-27T00:00:00+0000",
+      "mu": "2011-07-12T09:15:40+0000",
+      "digitalId": 20671,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/80/5a2013c308ae7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Paul Neary",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Issues: Avengers Assemble #12.1"
+    },
+    {
+      "issueId": 50076,
+      "title": "Avengers: Rage of Ultron (2015)",
+      "number": "0",
+      "url": "https://www.marvel.com/comics/issue/50076/avengers_rage_of_ultron_2015",
+      "seriesId": 18790,
+      "seriesName": "Avengers: Rage of Ultron (2015)",
+      "onSale": "2015-04-01T00:00:00+0000",
+      "mu": "2016-09-05T00:00:00+0000",
+      "digitalId": 37115,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/551ac0dd8a896",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 112,
+      "creators": [
+        {
+          "name": "Jerome Opena",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Morales",
+          "role": "penciler"
+        },
+        {
+          "name": "Pepe Larraz",
+          "role": "penciler"
+        },
+        {
+          "name": "Rick Remender",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Rage of Ultron (OGN)"
+    },
+    {
+      "issueId": 7078,
+      "title": "Avengers (1963) #212",
+      "number": "212",
+      "url": "https://www.marvel.com/comics/issue/7078/avengers_1963_212",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1981-10-01T00:00:00+0000",
+      "mu": "1981-10-01T00:00:00+0000",
+      "digitalId": 29770,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/80/587fc2ebc405e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alan Kupperberg",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Shooter",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Issues: Avengers #212=#230"
+    },
+    {
+      "issueId": 7079,
+      "title": "Avengers (1963) #213",
+      "number": "213",
+      "url": "https://www.marvel.com/comics/issue/7079/avengers_1963_213",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1981-11-01T00:00:00+0000",
+      "mu": "1981-11-01T00:00:00+0000",
+      "digitalId": 29771,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/70/587fc3e6cd974",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bob Hall",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Shooter",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Issues: Avengers #212=#230"
+    },
+    {
+      "issueId": 7080,
+      "title": "Avengers (1963) #214",
+      "number": "214",
+      "url": "https://www.marvel.com/comics/issue/7080/avengers_1963_214",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1981-12-01T00:00:00+0000",
+      "mu": "1981-12-01T00:00:00+0000",
+      "digitalId": 5155,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/587fc4c41d266",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bob Hall",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Shooter",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Issues: Avengers #212=#230"
+    },
+    {
+      "issueId": 7081,
+      "title": "Avengers (1963) #215",
+      "number": "215",
+      "url": "https://www.marvel.com/comics/issue/7081/avengers_1963_215",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1982-01-01T00:00:00+0000",
+      "mu": "1982-01-01T00:00:00+0000",
+      "digitalId": 29772,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/30/587fc5e7d4e5b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alan Weiss",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Shooter",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Issues: Avengers #212=#230"
+    },
+    {
+      "issueId": 7082,
+      "title": "Avengers (1963) #216",
+      "number": "216",
+      "url": "https://www.marvel.com/comics/issue/7082/avengers_1963_216",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1982-02-01T00:00:00+0000",
+      "mu": "1982-02-01T00:00:00+0000",
+      "digitalId": 29775,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/90/587fc755ee56e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alan Weiss",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Shooter",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Issues: Avengers #212=#230"
+    },
+    {
+      "issueId": 7083,
+      "title": "Avengers (1963) #217",
+      "number": "217",
+      "url": "https://www.marvel.com/comics/issue/7083/avengers_1963_217",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1982-03-01T00:00:00+0000",
+      "mu": "1982-03-01T00:00:00+0000",
+      "digitalId": 29776,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/10/587fc83d304f7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bob Hall",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Shooter",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Issues: Avengers #212=#230"
+    },
+    {
+      "issueId": 7084,
+      "title": "Avengers (1963) #218",
+      "number": "218",
+      "url": "https://www.marvel.com/comics/issue/7084/avengers_1963_218",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1982-04-01T00:00:00+0000",
+      "mu": "1982-04-01T00:00:00+0000",
+      "digitalId": 29778,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/40/587fc92e71d82",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brett Breeding",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chic Stone",
+          "role": "cover artist"
+        },
+        {
+          "name": "Frank Giacoia",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jack Abel",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Rubinstein",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marie Severin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Don Perlin",
+          "role": "penciler"
+        },
+        {
+          "name": "J.M. DeMatteis",
+          "role": "writer"
+        },
+        {
+          "name": "Jim Shooter",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Issues: Avengers #212=#230"
+    },
+    {
+      "issueId": 7085,
+      "title": "Avengers (1963) #219",
+      "number": "219",
+      "url": "https://www.marvel.com/comics/issue/7085/avengers_1963_219",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1982-05-01T00:00:00+0000",
+      "mu": "1982-05-01T00:00:00+0000",
+      "digitalId": 29779,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/50/587fc9fa8e181",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "Vince Colletta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bob Hall",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Shooter",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Issues: Avengers #212=#230"
+    },
+    {
+      "issueId": 7087,
+      "title": "Avengers (1963) #220",
+      "number": "220",
+      "url": "https://www.marvel.com/comics/issue/7087/avengers_1963_220",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1982-06-01T00:00:00+0000",
+      "mu": "1982-06-01T00:00:00+0000",
+      "digitalId": 29781,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/a0/5873c01012bde",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bob Hall",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Shooter",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Issues: Avengers #212=#230"
+    },
+    {
+      "issueId": 7088,
+      "title": "Avengers (1963) #221",
+      "number": "221",
+      "url": "https://www.marvel.com/comics/issue/7088/avengers_1963_221",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1982-07-01T00:00:00+0000",
+      "mu": "1982-07-01T00:00:00+0000",
+      "digitalId": 5156,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/5873c1266a7ff",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Brett Breeding",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bob Hall",
+          "role": "penciler"
+        },
+        {
+          "name": "David Michelinie",
+          "role": "writer"
+        },
+        {
+          "name": "Jim Shooter",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Issues: Avengers #212=#230"
+    },
+    {
+      "issueId": 7089,
+      "title": "Avengers (1963) #222",
+      "number": "222",
+      "url": "https://www.marvel.com/comics/issue/7089/avengers_1963_222",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1982-08-01T00:00:00+0000",
+      "mu": "1982-08-01T00:00:00+0000",
+      "digitalId": 29789,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/60/5873c2547f8f5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gregory Ben Larocque",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Shooter",
+          "role": "writer"
+        },
+        {
+          "name": "Steven Grant",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Issues: Avengers #212=#230"
+    },
+    {
+      "issueId": 7090,
+      "title": "Avengers (1963) #223",
+      "number": "223",
+      "url": "https://www.marvel.com/comics/issue/7090/avengers_1963_223",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1982-09-01T00:00:00+0000",
+      "mu": "1982-09-01T00:00:00+0000",
+      "digitalId": 29792,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/e0/5873c420b3ae2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Brett Breeding",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gregory Ben Larocque",
+          "role": "penciler"
+        },
+        {
+          "name": "David Michelinie",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Issues: Avengers #212=#230"
+    },
+    {
+      "issueId": 7091,
+      "title": "Avengers (1963) #224",
+      "number": "224",
+      "url": "https://www.marvel.com/comics/issue/7091/avengers_1963_224",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1982-10-01T00:00:00+0000",
+      "mu": "1982-10-01T00:00:00+0000",
+      "digitalId": 29795,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/5873c5fb27208",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Brett Breeding",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Trapani",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bright",
+          "role": "penciler"
+        },
+        {
+          "name": "Alan Zelenetz",
+          "role": "writer"
+        },
+        {
+          "name": "Jim Shooter",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Issues: Avengers #212=#230"
+    },
+    {
+      "issueId": 7092,
+      "title": "Avengers (1963) #225",
+      "number": "225",
+      "url": "https://www.marvel.com/comics/issue/7092/avengers_1963_225",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1982-11-01T00:00:00+0000",
+      "mu": "1982-11-01T00:00:00+0000",
+      "digitalId": 29798,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/b0/5873c6fbb9aa5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Chic Stone",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gregory Ben Larocque",
+          "role": "penciler"
+        },
+        {
+          "name": "Steven Grant",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Issues: Avengers #212=#230"
+    },
+    {
+      "issueId": 7093,
+      "title": "Avengers (1963) #226",
+      "number": "226",
+      "url": "https://www.marvel.com/comics/issue/7093/avengers_1963_226",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1982-12-01T00:00:00+0000",
+      "mu": "1982-12-01T00:00:00+0000",
+      "digitalId": 29801,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/00/5873c83973779",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Chic Stone",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gregory Ben Larocque",
+          "role": "penciler"
+        },
+        {
+          "name": "Steven Grant",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Issues: Avengers #212=#230"
+    },
+    {
+      "issueId": 7094,
+      "title": "Avengers (1963) #227",
+      "number": "227",
+      "url": "https://www.marvel.com/comics/issue/7094/avengers_1963_227",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1983-01-01T00:00:00+0000",
+      "mu": "1983-01-01T00:00:00+0000",
+      "digitalId": 29325,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/03/5873c902601f6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Brett Breeding",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Issues: Avengers #212=#230"
+    },
+    {
+      "issueId": 7095,
+      "title": "Avengers (1963) #228",
+      "number": "228",
+      "url": "https://www.marvel.com/comics/issue/7095/avengers_1963_228",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1983-02-01T00:00:00+0000",
+      "mu": "1983-02-01T00:00:00+0000",
+      "digitalId": 29332,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/5873ca1508ae9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Brett Breeding",
+          "role": "cover artist"
+        },
+        {
+          "name": "Al Milgrom",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Issues: Avengers #212=#230"
+    },
+    {
+      "issueId": 7096,
+      "title": "Avengers (1963) #229",
+      "number": "229",
+      "url": "https://www.marvel.com/comics/issue/7096/avengers_1963_229",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1983-03-01T00:00:00+0000",
+      "mu": "1983-03-01T00:00:00+0000",
+      "digitalId": 29333,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/5873cb2e8b09d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "Al Milgrom",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Issues: Avengers #212=#230"
+    },
+    {
+      "issueId": 7098,
+      "title": "Avengers (1963) #230",
+      "number": "230",
+      "url": "https://www.marvel.com/comics/issue/7098/avengers_1963_230",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1983-04-01T00:00:00+0000",
+      "mu": "1983-04-01T00:00:00+0000",
+      "digitalId": 29335,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/5873cc13d32e3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "Al Milgrom",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Issues: Avengers #212=#230"
+    },
+    {
+      "issueId": 59631,
+      "title": "Marvel Universe Avengers: Ultron Revolution (2016) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/59631/marvel_universe_avengers_ultron_revolution_2016_1",
+      "seriesId": 21698,
+      "seriesName": "Marvel Universe Avengers: Ultron Revolution (2016 - 2017)",
+      "onSale": "2016-07-06T00:00:00+0000",
+      "mu": "2017-01-09T00:00:00+0000",
+      "digitalId": 42050,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/20/57753076e249e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "Collects: Marvel Universe Avengers: Ultron Revolution #1 to #4"
+    },
+    {
+      "issueId": 59632,
+      "title": "Marvel Universe Avengers: Ultron Revolution (2016) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/59632/marvel_universe_avengers_ultron_revolution_2016_2",
+      "seriesId": 21698,
+      "seriesName": "Marvel Universe Avengers: Ultron Revolution (2016 - 2017)",
+      "onSale": "2016-08-03T00:00:00+0000",
+      "mu": "2017-02-06T00:00:00+0000",
+      "digitalId": 42266,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/c0/579677fd3f636",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Vc Joe Caramagna",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Collects: Marvel Universe Avengers: Ultron Revolution #1 to #4"
+    },
+    {
+      "issueId": 59633,
+      "title": "Marvel Universe Avengers: Ultron Revolution (2016) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/59633/marvel_universe_avengers_ultron_revolution_2016_3",
+      "seriesId": 21698,
+      "seriesName": "Marvel Universe Avengers: Ultron Revolution (2016 - 2017)",
+      "onSale": "2016-09-07T00:00:00+0000",
+      "mu": "2017-03-13T00:00:00+0000",
+      "digitalId": 42596,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/80/57c5966e79d1d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Vc Joe Caramagna",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Marvel Universe Avengers: Ultron Revolution #1 to #4"
+    },
+    {
+      "issueId": 59634,
+      "title": "Marvel Universe Avengers: Ultron Revolution (2016) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/59634/marvel_universe_avengers_ultron_revolution_2016_4",
+      "seriesId": 21698,
+      "seriesName": "Marvel Universe Avengers: Ultron Revolution (2016 - 2017)",
+      "onSale": "2016-10-05T00:00:00+0000",
+      "mu": "2017-04-10T00:00:00+0000",
+      "digitalId": 42796,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/c0/57e5925d05f24",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Vc Joe Caramagna",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Marvel Universe Avengers: Ultron Revolution #1 to #4"
+    },
+    {
+      "issueId": 59635,
+      "title": "Marvel Universe Avengers: Ultron Revolution (2016) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/59635/marvel_universe_avengers_ultron_revolution_2016_5",
+      "seriesId": 21698,
+      "seriesName": "Marvel Universe Avengers: Ultron Revolution (2016 - 2017)",
+      "onSale": "2016-11-02T00:00:00+0000",
+      "mu": "2017-05-08T00:00:00+0000",
+      "digitalId": 43169,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/a0/580e592c7214f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Vc Joe Caramagna",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Marvel Universe Avengers: Ultron Revolution #5 to #8"
+    },
+    {
+      "issueId": 59636,
+      "title": "Marvel Universe Avengers: Ultron Revolution (2016) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/59636/marvel_universe_avengers_ultron_revolution_2016_6",
+      "seriesId": 21698,
+      "seriesName": "Marvel Universe Avengers: Ultron Revolution (2016 - 2017)",
+      "onSale": "2016-12-14T00:00:00+0000",
+      "mu": "2017-06-19T00:00:00+0000",
+      "digitalId": 43429,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/00/583da2935bb2a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Vc Joe Caramagna",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Marvel Universe Avengers: Ultron Revolution #5 to #8"
+    },
+    {
+      "issueId": 59637,
+      "title": "Marvel Universe Avengers: Ultron Revolution (2016) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/59637/marvel_universe_avengers_ultron_revolution_2016_7",
+      "seriesId": 21698,
+      "seriesName": "Marvel Universe Avengers: Ultron Revolution (2016 - 2017)",
+      "onSale": "2017-01-04T00:00:00+0000",
+      "mu": "2017-07-10T00:00:00+0000",
+      "digitalId": 43817,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/58668a640cb8c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Various Various",
+          "role": "penciler"
+        },
+        {
+          "name": "Vc Joe Caramagna",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Marvel Universe Avengers: Ultron Revolution #5 to #8"
+    },
+    {
+      "issueId": 59638,
+      "title": "Marvel Universe Avengers: Ultron Revolution (2016) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/59638/marvel_universe_avengers_ultron_revolution_2016_8",
+      "seriesId": 21698,
+      "seriesName": "Marvel Universe Avengers: Ultron Revolution (2016 - 2017)",
+      "onSale": "2017-02-01T00:00:00+0000",
+      "mu": "2017-08-07T00:00:00+0000",
+      "digitalId": 44040,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/30/588b89c67966e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Vc Joe Caramagna",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Marvel Universe Avengers: Ultron Revolution #5 to #8"
+    },
+    {
+      "issueId": 59639,
+      "title": "Marvel Universe Avengers: Ultron Revolution (2016) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/59639/marvel_universe_avengers_ultron_revolution_2016_9",
+      "seriesId": 21698,
+      "seriesName": "Marvel Universe Avengers: Ultron Revolution (2016 - 2017)",
+      "onSale": "2017-03-01T00:00:00+0000",
+      "mu": "2017-09-04T00:00:00+0000",
+      "digitalId": 44295,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/c0/58af1bcc10058",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Vc Joe Caramagna",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Marvel Universe Avengers: Ultron Revolution #9 to #12"
+    },
+    {
+      "issueId": 59640,
+      "title": "Marvel Universe Avengers: Ultron Revolution (2016) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/59640/marvel_universe_avengers_ultron_revolution_2016_10",
+      "seriesId": 21698,
+      "seriesName": "Marvel Universe Avengers: Ultron Revolution (2016 - 2017)",
+      "onSale": "2017-05-03T00:00:00+0000",
+      "mu": "2017-05-03T00:00:00+0000",
+      "digitalId": 45086,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/5900abc638f89",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Joe Caramagna",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Marvel Universe Avengers: Ultron Revolution #9 to #12"
+    },
+    {
+      "issueId": 59641,
+      "title": "Marvel Universe Avengers: Ultron Revolution (2016) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/59641/marvel_universe_avengers_ultron_revolution_2016_11",
+      "seriesId": 21698,
+      "seriesName": "Marvel Universe Avengers: Ultron Revolution (2016 - 2017)",
+      "onSale": "2017-06-14T00:00:00+0000",
+      "mu": "2017-12-18T00:00:00+0000",
+      "digitalId": 44758,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/c0/5939929763faf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "Collects: Marvel Universe Avengers: Ultron Revolution #9 to #12"
+    },
+    {
+      "issueId": 59642,
+      "title": "Marvel Universe Avengers: Ultron Revolution (2016) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/59642/marvel_universe_avengers_ultron_revolution_2016_12",
+      "seriesId": 21698,
+      "seriesName": "Marvel Universe Avengers: Ultron Revolution (2016 - 2017)",
+      "onSale": "2017-08-02T00:00:00+0000",
+      "mu": "2018-02-05T00:00:00+0000",
+      "digitalId": 45493,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/30/596d16ae8dfd7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "Collects: Marvel Universe Avengers: Ultron Revolution #9 to #12"
+    },
+    {
+      "issueId": 70799,
+      "title": "Tony Stark: Iron Man (2018) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/70799/tony_stark_iron_man_2018_15",
+      "seriesId": 24309,
+      "seriesName": "Tony Stark: Iron Man (2018 - 2019)",
+      "onSale": "2019-08-21T00:00:00+0000",
+      "mu": "2020-02-24T00:00:00+0000",
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "collectedIn": "Collects: Tony Stark: Iron Man (2018) #15 to #19"
+    },
+    {
+      "issueId": 70800,
+      "title": "Tony Stark: Iron Man (2018) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/70800/tony_stark_iron_man_2018_16",
+      "seriesId": 24309,
+      "seriesName": "Tony Stark: Iron Man (2018 - 2019)",
+      "onSale": "2019-09-18T00:00:00+0000",
+      "mu": "2019-09-18T00:00:00+0000",
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "collectedIn": "Collects: Tony Stark: Iron Man (2018) #15 to #19"
+    },
+    {
+      "issueId": 79897,
+      "title": "Tony Stark: Iron Man (2018) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/79897/tony_stark_iron_man_2018_17",
+      "seriesId": 24309,
+      "seriesName": "Tony Stark: Iron Man (2018 - 2019)",
+      "onSale": "2019-10-23T00:00:00+0000",
+      "mu": "2019-10-23T00:00:00+0000",
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "collectedIn": "Collects: Tony Stark: Iron Man (2018) #15 to #19"
+    },
+    {
+      "issueId": 79898,
+      "title": "Tony Stark: Iron Man (2018) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/79898/tony_stark_iron_man_2018_18",
+      "seriesId": 24309,
+      "seriesName": "Tony Stark: Iron Man (2018 - 2019)",
+      "onSale": "2019-11-20T00:00:00+0000",
+      "mu": "2019-11-20T00:00:00+0000",
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "collectedIn": "Collects: Tony Stark: Iron Man (2018) #15 to #19"
+    },
+    {
+      "issueId": 79899,
+      "title": "Tony Stark: Iron Man (2018) #19",
+      "number": "19",
+      "url": "https://www.marvel.com/comics/issue/79899/tony_stark_iron_man_2018_19",
+      "seriesId": 24309,
+      "seriesName": "Tony Stark: Iron Man (2018 - 2019)",
+      "onSale": "2019-12-18T00:00:00+0000",
+      "mu": "2020-06-22T00:00:00+0000",
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "collectedIn": "Collects: Tony Stark: Iron Man (2018) #15 to #19"
+    }
+  ]
+}

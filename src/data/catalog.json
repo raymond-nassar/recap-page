@@ -2532,6 +2532,49 @@
       "updatedAt": "2026-08-23T20:43:34.162Z"
     },
     {
+      "id": "best-ultron-reading-order",
+      "file": "best_ultron_reading_order.json",
+      "name": "Ultron",
+      "description": "Read Comic Book Herald's selected Ultron stories, including animated-continuity Ultron Revolution. Runs from the original Avengers through The Ultron Agenda and includes the standalone Rage of Ultron graphic novel.",
+      "type": "character-run",
+      "depth": "selected",
+      "spotlightKind": "best-of",
+      "count": 91,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 16,
+      "characters": [
+        "Ultron",
+        "Avengers",
+        "Hank Pym",
+        "Vision",
+        "Iron Man",
+        "Nova"
+      ],
+      "keywords": [
+        "Ultron",
+        "Comic Book Herald",
+        "Ultron Unlimited",
+        "Rage of Ultron",
+        "The Ultron Agenda",
+        "Ultron Revolution"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 7304,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/4e96f9eba545a",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/best-ultron-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-09-15T05:20:03.688Z"
+    },
+    {
       "id": "mephisto-reading-order",
       "file": "mephisto_reading_order.json",
       "name": "Mephisto",

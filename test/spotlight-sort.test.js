@@ -94,6 +94,7 @@ test('popularity sorting keeps the ranked stories first and the rest in their cu
     'Agatha Harkness',
     'Punisher',
     'Rocket Raccoon',
+    'Ultron',
     'Mephisto',
     'Spider-Man 2099',
     'Abomination',
