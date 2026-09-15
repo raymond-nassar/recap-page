@@ -120,6 +120,7 @@ export const CBH_LATER_ORDER_IDS = Object.freeze([
   'runaways-reading-order',
   'adam-warlock-reading-order',
   'mephisto-reading-order',
+  'miles-morales-spider-man-reading-order',
   'spider-gwen-reading-order',
   'spider-man-2099-reading-order',
 ]);

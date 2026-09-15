@@ -134,6 +134,7 @@ test('Spider-Man 2099 regenerates its full-current library relationship report w
     .map((row) => [row.orderId, row.relationship, row.sharedCount]), [
     ['amazing-spider-man-reading-order-modern-marvel-era', 'partial', 8],
     ['marvel-2099', 'partial', 45],
+    ['miles-morales-spider-man-reading-order', 'partial', 3],
     ['spider-gwen-reading-order', 'partial', 3],
     ['spider-verse', 'partial', 4],
   ]);
