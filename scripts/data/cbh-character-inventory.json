@@ -3538,13 +3538,33 @@
     "url": "https://www.comicbookherald.com/best-ultron-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "disposition": "new-order",
+    "reason": "Publishes all 91 exact comics in the source's best-of sequence across 16 blocks, including the standalone Rage of Ultron OGN and animated-continuity Ultron Revolution. No gaps or repeated sequence positions. Full-library review covers 175 other source orders with 17 approved shared relationships and no exact duplicate.",
     "sourceRetrievedAt": "2026-08-23",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "overlapIds": [
+      "all-new-all-different-avengers",
+      "annihilation-conquest",
+      "ant-man-reading-order",
+      "black-widow-reading-order",
+      "captain-marvel-ms-marvel-reading-order",
+      "civil-war-avengers",
+      "doctor-doom-primer",
+      "essential-avengers",
+      "guardians-of-the-galaxy-reading-order",
+      "heroic-age-avengers",
+      "inhumans-reading-order",
+      "iron-man-reading-order",
+      "magneto-reading-order",
+      "marvel-super-heroes-secret-wars",
+      "question-of-the-week-do-you-have-a-hulk-reading-order",
+      "venom-reading-order",
+      "wolverine-reading-order"
+    ],
+    "catalogIds": [
+      "best-ultron-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Ultron"
     ],
@@ -3554,7 +3574,7 @@
     "duplicateFlags": [],
     "sourceContentSha256": "846fe372b0f22472f63778b761f07fa84ad8b2e2e3378ab8ff850936674bff8f",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 118,

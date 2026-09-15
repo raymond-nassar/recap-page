@@ -2070,6 +2070,42 @@
       "coverIssueId": 11353
     },
     {
+      "id": "best-ultron-reading-order",
+      "name": "Ultron",
+      "description": "Read Comic Book Herald's selected Ultron stories, including animated-continuity Ultron Revolution. Runs from the original Avengers through The Ultron Agenda and includes the standalone Rage of Ultron graphic novel.",
+      "type": "character-run",
+      "spotlightKind": "best-of",
+      "depth": "selected",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "best-ultron-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/best-ultron-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "best_ultron_reading_order.json",
+      "characters": [
+        "Ultron",
+        "Avengers",
+        "Hank Pym",
+        "Vision",
+        "Iron Man",
+        "Nova"
+      ],
+      "keywords": [
+        "Ultron",
+        "Comic Book Herald",
+        "Ultron Unlimited",
+        "Rage of Ultron",
+        "The Ultron Agenda",
+        "Ultron Revolution"
+      ],
+      "expect": 91,
+      "timeline": null,
+      "coverIssueId": 7304
+    },
+    {
       "id": "mephisto-reading-order",
       "name": "Mephisto",
       "description": "Follow Mephisto through Silver Surfer, Thor, Ghost Rider, Doctor Strange and Marvel crossovers, in Comic Book Herald guide order. Five unresolved original comics remain marked as gaps.",
