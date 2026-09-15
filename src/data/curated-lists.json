@@ -4813,6 +4813,43 @@
       "coverIssueId": 10284
     },
     {
+      "id": "falcon-sam-wilson-captain-america-reading-order",
+      "name": "Falcon / Sam Wilson / Captain America",
+      "description": "Follow Sam Wilson from the Falcon's beginnings to Captain America and Symbol of Truth, in Comic Book Herald guide order. Repeated collection references appear once.",
+      "type": "character-run",
+      "spotlightKind": "complete-guide",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "falcon-sam-wilson-captain-america-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/falcon-sam-wilson-captain-america-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "falcon_sam_wilson_captain_america_reading_order.json",
+      "characters": [
+        "Falcon",
+        "Sam Wilson",
+        "Captain America",
+        "Steve Rogers",
+        "Winter Soldier",
+        "Avengers"
+      ],
+      "keywords": [
+        "Falcon",
+        "Sam Wilson",
+        "Captain America",
+        "Comic Book Herald",
+        "Nick Spencer",
+        "Christopher Priest",
+        "Symbol of Truth"
+      ],
+      "expect": 494,
+      "timeline": null,
+      "coverIssueId": 105605
+    },
+    {
       "id": "fantastic-four-reading-order",
       "name": "Fantastic Four",
       "description": "A complete Fantastic Four character reading order.",
