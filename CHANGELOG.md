@@ -20,6 +20,13 @@ Adds a Spider-Man: Miles Morales Reading List credited and linked to Comic Book 
 reading sequence, and Secret Empire #9-10 retain their known identities despite missing provider
 details. Existing Reading Lists and saved progress are unchanged.
 
+### Follow Spider-Gwen into her Ghost-Spider years
+
+Adds a Spider-Gwen / Ghost-Spider Reading List credited and linked to Comic Book Herald,
+with 127 comics in guide order, including its crossover issues and Latest Additions.
+Repeated references appear once, and the unnumbered Gwenom vs Carnage collection is
+documented without inventing an issue range. Existing Reading Lists and saved progress are unchanged.
+
 ### Give reading-list sources visible credit
 
 Reading List cards now show a linked source website and snapshot date without requiring an

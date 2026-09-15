@@ -3165,13 +3165,20 @@
     "url": "https://www.comicbookherald.com/spider-gwen-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "disposition": "new-order",
+    "reason": "Publishes all 127 source-defined comics from 139 occurrences across 19 collection paragraphs and 14 crossover bullets. Twelve backward repeats preserve first occurrences; the unnumbered Gwenom vs Carnage collection is explicitly outside the issue boundary. Four partial relationships are approved with no exact or subset duplicate.",
     "sourceRetrievedAt": "2026-08-23",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "overlapIds": [
+      "amazing-spider-man-reading-order-modern-marvel-era",
+      "spider-geddon",
+      "spider-verse",
+      "venom-reading-order"
+    ],
+    "catalogIds": [
+      "spider-gwen-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Spider-Gwen"
     ],
@@ -3181,7 +3188,7 @@
     "duplicateFlags": [],
     "sourceContentSha256": "6eebb8aed91144abc3e7138f40b2046158e6e21377093fc7be37583081498085",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 105,
@@ -3924,6 +3931,7 @@
       "mephisto-reading-order",
       "silver-surfer-reading-order",
       "spider-geddon",
+      "spider-gwen-reading-order",
       "spider-verse",
       "venom-reading-order",
       "war-of-the-realms",

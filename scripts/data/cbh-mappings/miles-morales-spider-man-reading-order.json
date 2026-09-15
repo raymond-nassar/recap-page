@@ -14454,7 +14454,7 @@
     }
   ],
   "mappingDigest": "b2e484b138bbb225f86e08263b2cb3e0ddcd6b261d5550bc4b4fde9a2507f561",
-  "packetReview": "Source census and discrepancies: scripts/data/cbh-source-ledgers/miles-morales-spider-man-reading-order.json. Scope Issue 496, gap Issue 500. The owner-requested Miles Morales character guide follows its own full source selection and explicit crossover sequences. All 21 overlaps are partial; none duplicates or subsumes another guide. Keep both source-defined lists and every shared issue. One unresolved original remains a placeholder and two known originals retain provider refusals.",
+  "packetReview": "Source census and discrepancies: scripts/data/cbh-source-ledgers/miles-morales-spider-man-reading-order.json. Scope Issue 496, gap Issue 500. The owner-requested Miles Morales character guide follows its own full source selection and explicit crossover sequences. All 22 overlaps are partial; none duplicates or subsumes another guide. This includes 41 shared issues with the newly published Spider-Gwen guide; preserve both source-specific sequences. Keep both source-defined lists and every shared issue. One unresolved original remains a placeholder and two known originals retain provider refusals.",
   "approvedManifest": {
     "id": "miles-morales-spider-man-reading-order",
     "name": "Spider-Man: Miles Morales",
@@ -14493,12 +14493,12 @@
   "relationshipReview": {
     "authorityType": "stronger-model",
     "authorityIdentity": "GPT-6 Astra",
-    "rationale": "The owner-requested Miles Morales character guide follows its own full source selection and explicit crossover sequences. All 21 overlaps are partial; none duplicates or subsumes another guide. Keep both source-defined lists and every shared issue. One unresolved original remains a placeholder and two known originals retain provider refusals.",
-    "reviewedAt": "2026-09-15T05:25:34.070Z",
+    "rationale": "The owner-requested Miles Morales character guide follows its own full source selection and explicit crossover sequences. All 22 overlaps are partial; none duplicates or subsumes another guide. This includes 41 shared issues with the newly published Spider-Gwen guide; preserve both source-specific sequences. Keep both source-defined lists and every shared issue. One unresolved original remains a placeholder and two known originals retain provider refusals.",
+    "reviewedAt": "2026-09-15T06:01:42.752Z",
     "packetDigest": "1d23d52cd00261cf42be86fe3bd1e801e390a6271868ac6365f8b9cd8ea1357e",
     "mappingDigest": "b2e484b138bbb225f86e08263b2cb3e0ddcd6b261d5550bc4b4fde9a2507f561",
-    "reportDigest": "d28d5df1ecdc4737db7ba395d78f9bbff1feab80bebc903861d30e5dfb61a979",
-    "libraryDigest": "fe9c85b28714866b320f69a5bef7a4b99aa7aca79da07346ff86dbbe913370ca",
+    "reportDigest": "50ea85eb457947268e12a75dfda96c6983f4ca335db4c6c1b8bffa274308d783",
+    "libraryDigest": "706752e1389029ea813bd4dda98bc2ab90788ad2d2510a8df6f4277eb94c41c1",
     "peerDigests": {},
     "dispositions": [
       {
@@ -14508,7 +14508,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "absolute-carnage",
@@ -14517,7 +14517,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 9 shared issues are only part of each guide. Preserve the Miles Morales source sequence and the existing character or event list without deleting shared issues.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "adam-warlock-reading-order",
@@ -14526,7 +14526,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "agatha-harkness-reading-order",
@@ -14535,7 +14535,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "age-of-x-man",
@@ -14544,7 +14544,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "agents-of-atlas-reading-order",
@@ -14553,7 +14553,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "all-new-all-different-avengers",
@@ -14562,7 +14562,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 10 shared issues are only part of each guide. Preserve the Miles Morales source sequence and the existing character or event list without deleting shared issues.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
@@ -14571,7 +14571,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 83 shared issues are only part of each guide. Preserve the Miles Morales source sequence and the existing character or event list without deleting shared issues.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "annihilation",
@@ -14580,7 +14580,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "annihilation-conquest",
@@ -14589,7 +14589,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "ant-man-reading-order",
@@ -14598,7 +14598,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 13 shared issues are only part of each guide. Preserve the Miles Morales source sequence and the existing character or event list without deleting shared issues.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "apocalypse-wars",
@@ -14607,7 +14607,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "atlantis-attacks",
@@ -14616,7 +14616,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "avengers-defenders-war",
@@ -14625,7 +14625,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "avengers-disassembled",
@@ -14634,7 +14634,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "avengers-enemy-within",
@@ -14643,7 +14643,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "axis",
@@ -14652,7 +14652,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "black-panther-reading-order",
@@ -14661,7 +14661,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 1 shared issues are only part of each guide. Preserve the Miles Morales source sequence and the existing character or event list without deleting shared issues.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "black-widow-reading-order",
@@ -14670,7 +14670,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 12 shared issues are only part of each guide. Preserve the Miles Morales source sequence and the existing character or event list without deleting shared issues.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "bloodties",
@@ -14679,7 +14679,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "captain-america-best-of",
@@ -14688,7 +14688,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "captain-america-reading-order-modern-marvel-era",
@@ -14697,7 +14697,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "captain-marvel-ms-marvel-reading-order",
@@ -14706,7 +14706,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 7 shared issues are only part of each guide. Preserve the Miles Morales source sequence and the existing character or event list without deleting shared issues.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "chaos-war",
@@ -14715,7 +14715,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "childs-play",
@@ -14724,7 +14724,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "civil-war",
@@ -14733,7 +14733,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "civil-war-avengers",
@@ -14742,7 +14742,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "civil-war-essential",
@@ -14751,7 +14751,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "clone-conspiracy",
@@ -14760,7 +14760,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "contest-of-champions",
@@ -14769,7 +14769,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "damnation",
@@ -14778,7 +14778,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "daredevil-reading-order",
@@ -14787,7 +14787,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "dark-phoenix-saga",
@@ -14796,7 +14796,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "dark-reign-avengers",
@@ -14805,7 +14805,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "dark-web",
@@ -14814,7 +14814,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "days-of-future-past",
@@ -14823,7 +14823,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "days-of-future-present",
@@ -14832,7 +14832,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "dead-mans-hand",
@@ -14841,7 +14841,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "deadpool-best-of",
@@ -14850,7 +14850,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "death-of-doctor-strange",
@@ -14859,7 +14859,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "devils-reign",
@@ -14868,7 +14868,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "doctor-doom-primer",
@@ -14877,7 +14877,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 9 shared issues are only part of each guide. Preserve the Miles Morales source sequence and the existing character or event list without deleting shared issues.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "doctor-strange-multiverse-of-madness",
@@ -14886,7 +14886,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "doctor-strange-reading-order",
@@ -14895,7 +14895,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "doomwar",
@@ -14904,7 +14904,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "eighth-day",
@@ -14913,7 +14913,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "essential-avengers",
@@ -14922,7 +14922,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "evolutionary-war",
@@ -14931,7 +14931,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "fall-house-x-rise-powers-x",
@@ -14940,7 +14940,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "fall-of-the-mutants",
@@ -14949,7 +14949,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "fantastic-four-reading-order",
@@ -14958,7 +14958,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 2 shared issues are only part of each guide. Preserve the Miles Morales source sequence and the existing character or event list without deleting shared issues.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "fatal-attractions",
@@ -14967,7 +14967,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "generations",
@@ -14976,7 +14976,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 1 shared issues are only part of each guide. Preserve the Miles Morales source sequence and the existing character or event list without deleting shared issues.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "groot-reading-order",
@@ -14985,7 +14985,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "guardians-of-the-galaxy-reading-order",
@@ -14994,7 +14994,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "heroes-reborn-2021",
@@ -15003,7 +15003,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "heroic-age-avengers",
@@ -15012,7 +15012,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "hickman-full",
@@ -15021,7 +15021,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 10 shared issues are only part of each guide. Preserve the Miles Morales source sequence and the existing character or event list without deleting shared issues.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "hickman-minimal",
@@ -15030,7 +15030,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 10 shared issues are only part of each guide. Preserve the Miles Morales source sequence and the existing character or event list without deleting shared issues.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "hickman-x-men",
@@ -15039,7 +15039,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "house-of-m",
@@ -15048,7 +15048,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "house-of-m-essential",
@@ -15057,7 +15057,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "hunt-for-wolverine",
@@ -15066,7 +15066,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "hunt-for-xavier",
@@ -15075,7 +15075,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "inferno",
@@ -15084,7 +15084,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "infinite-destinies",
@@ -15093,7 +15093,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 1 shared issues are only part of each guide. Preserve the Miles Morales source sequence and the existing character or event list without deleting shared issues.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "infinity-countdown-wars",
@@ -15102,7 +15102,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "inhumans-reading-order",
@@ -15111,7 +15111,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "inhumans-vs-x-men",
@@ -15120,7 +15120,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "iron-man-2020",
@@ -15129,7 +15129,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "iron-man-reading-order",
@@ -15138,7 +15138,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 2 shared issues are only part of each guide. Preserve the Miles Morales source sequence and the existing character or event list without deleting shared issues.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "judgment-day",
@@ -15147,7 +15147,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "king-in-black",
@@ -15156,7 +15156,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "kravens-last-hunt",
@@ -15165,7 +15165,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "kree-skrull-war",
@@ -15174,7 +15174,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "last-annihilation",
@@ -15183,7 +15183,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "loki-reading-order",
@@ -15192,7 +15192,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "magneto-reading-order",
@@ -15201,7 +15201,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "magneto-war",
@@ -15210,7 +15210,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "marvel-2099",
@@ -15219,7 +15219,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "marvel-fresh-start-avengers",
@@ -15228,7 +15228,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x",
@@ -15237,7 +15237,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "marvel-multiverse",
@@ -15246,7 +15246,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "marvel-super-heroes-secret-wars",
@@ -15255,7 +15255,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "marvel-what-if",
@@ -15264,7 +15264,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "marvels-best-phoenix-comics",
@@ -15273,7 +15273,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "maximum-security",
@@ -15282,7 +15282,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "mephisto-reading-order",
@@ -15291,7 +15291,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 6 shared issues are only part of each guide. Preserve the Miles Morales source sequence and the existing character or event list without deleting shared issues.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "messiah-complex",
@@ -15300,7 +15300,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "messiah-war",
@@ -15309,7 +15309,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "midnight-massacre",
@@ -15318,7 +15318,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "minimum-carnage",
@@ -15327,7 +15327,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "modern-x-men-fast-track",
@@ -15336,7 +15336,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "monsters-unleashed",
@@ -15345,7 +15345,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "moon-knight-reading-order",
@@ -15354,7 +15354,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "muir-island-saga",
@@ -15363,7 +15363,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "mutant-massacre",
@@ -15372,7 +15372,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "mys-tech-wars",
@@ -15381,7 +15381,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "necrosha",
@@ -15390,7 +15390,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "new-ultimate-universe",
@@ -15399,7 +15399,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "new-ultimate-universe-trades",
@@ -15408,7 +15408,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "nick-fury-reading-order",
@@ -15417,7 +15417,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "operation-galactic-storm",
@@ -15426,7 +15426,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "operation-zero-tolerance",
@@ -15435,7 +15435,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "original-clone-saga",
@@ -15444,7 +15444,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "phalanx-covenant",
@@ -15453,7 +15453,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "phalanx-reading-order",
@@ -15462,7 +15462,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "phoenix-saga",
@@ -15471,7 +15471,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "planet-hulk",
@@ -15480,7 +15480,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "punisher-reading-order",
@@ -15489,7 +15489,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "question-of-the-week-do-you-have-a-hulk-reading-order",
@@ -15498,7 +15498,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "reckoning-war",
@@ -15507,7 +15507,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "reed-richards-and-sue-storms-wedding",
@@ -15516,7 +15516,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "revolutionary-war",
@@ -15525,7 +15525,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "rise-of-the-midnight-sons",
@@ -15534,7 +15534,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "rocket-raccoon-reading-order",
@@ -15543,7 +15543,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "runaways-reading-order",
@@ -15552,7 +15552,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "scarlet-witch-best-of",
@@ -15561,7 +15561,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "second-coming",
@@ -15570,7 +15570,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "secret-invasion",
@@ -15579,7 +15579,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "secret-invasion-essential",
@@ -15588,7 +15588,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "secret-war",
@@ -15597,7 +15597,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "secret-wars-ii",
@@ -15606,7 +15606,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "setup-to-modern-timeline",
@@ -15615,7 +15615,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "shadowland",
@@ -15624,7 +15624,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "silent-war",
@@ -15633,7 +15633,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "silver-surfer-reading-order",
@@ -15642,7 +15642,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 4 shared issues are only part of each guide. Preserve the Miles Morales source sequence and the existing character or event list without deleting shared issues.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "sins-of-sinister",
@@ -15651,7 +15651,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "spider-geddon",
@@ -15660,7 +15660,16 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 8 shared issues are only part of each guide. Preserve the Miles Morales source sequence and the existing character or event list without deleting shared issues.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
+      },
+      {
+        "orderId": "spider-gwen-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6 Astra",
+        "rationale": "The 41 shared issues are only part of each guide. Preserve the Miles Morales source sequence and the existing character or event list without deleting shared issues.",
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "spider-island",
@@ -15669,7 +15678,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "spider-man-best-of",
@@ -15678,7 +15687,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "spider-man-far-from-home",
@@ -15687,7 +15696,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "spider-man-identity-crisis",
@@ -15696,7 +15705,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "spider-man-no-way-home",
@@ -15705,7 +15714,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "spider-man-the-other",
@@ -15714,7 +15723,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "spider-verse",
@@ -15723,7 +15732,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 26 shared issues are only part of each guide. Preserve the Miles Morales source sequence and the existing character or event list without deleting shared issues.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "star-lord-reading-order",
@@ -15732,7 +15741,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "thanos-imperative",
@@ -15741,7 +15750,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "thanos-reading-order",
@@ -15750,7 +15759,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "thanos-war",
@@ -15759,7 +15768,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "the-defenders-reading-order",
@@ -15768,7 +15777,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "the-night-gwen-stacy-died",
@@ -15777,7 +15786,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "thor-best-of",
@@ -15786,7 +15795,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "time-and-time-again",
@@ -15795,7 +15804,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "ultimate-marvel-intro",
@@ -15804,7 +15813,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "venom-reading-order",
@@ -15813,7 +15822,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 8 shared issues are only part of each guide. Preserve the Miles Morales source sequence and the existing character or event list without deleting shared issues.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "venomverse",
@@ -15822,7 +15831,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "wandavision",
@@ -15831,7 +15840,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "war-of-kings",
@@ -15840,7 +15849,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "war-of-the-realms",
@@ -15849,7 +15858,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 7 shared issues are only part of each guide. Preserve the Miles Morales source sequence and the existing character or event list without deleting shared issues.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "white-tiger-ava-ayala",
@@ -15858,7 +15867,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "wolverine-goes-to-hell",
@@ -15867,7 +15876,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "wolverine-reading-order",
@@ -15876,7 +15885,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 1 shared issues are only part of each guide. Preserve the Miles Morales source sequence and the existing character or event list without deleting shared issues.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "world-war-hulk-aftersmash",
@@ -15885,7 +15894,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "wraith-war",
@@ -15894,7 +15903,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "x-cutioners-song",
@@ -15903,7 +15912,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "x-force-reading-order",
@@ -15912,7 +15921,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "x-men-age-of-x",
@@ -15921,7 +15930,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "x-men-battle-of-the-atom",
@@ -15930,7 +15939,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "x-men-curse-of-the-mutants",
@@ -15939,7 +15948,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "x-men-divided-we-stand",
@@ -15948,7 +15957,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "x-men-extermination",
@@ -15957,7 +15966,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "x-men-inferno",
@@ -15966,7 +15975,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "x-men-manifest-destiny",
@@ -15975,7 +15984,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "x-men-nation-x",
@@ -15984,7 +15993,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "x-men-regenesis",
@@ -15993,7 +16002,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "x-men-schism",
@@ -16002,7 +16011,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "x-men-trial-of-jean-grey",
@@ -16011,7 +16020,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "x-men-utopia",
@@ -16020,7 +16029,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "x-of-swords",
@@ -16029,7 +16038,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "x-termination",
@@ -16038,7 +16047,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "x-tinction-agenda",
@@ -16047,7 +16056,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "xmen-claremont",
@@ -16056,7 +16065,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "xmen-claremont-complete",
@@ -16065,7 +16074,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       },
       {
         "orderId": "young-avengers-reading-order",
@@ -16074,9 +16083,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained distinct-guide policy",
         "rationale": "No shared issue IDs; this separately sourced character guide does not duplicate the existing list.",
-        "reviewedAt": "2026-09-15T05:25:34.070Z"
+        "reviewedAt": "2026-09-15T06:01:42.752Z"
       }
     ],
-    "approvalDigest": "caa8ed910a3b5cd8a9963fcc0c6f76a12e80cbddb76633f2a30f1d0eeff3c95c"
+    "approvalDigest": "ad583d9f404fb82a7c4cb73bc19b3fac5befe61915b0472343daf08a86cdbfbf"
   }
 }
