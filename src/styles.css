@@ -1440,7 +1440,6 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: 6px; padding: 
 .catalog-card-disclosures {
   display: flex; flex-wrap: wrap; align-items: flex-start; gap: 0 var(--space-5); margin-top: var(--space-2);
 }
-.catalog-card-disclosures > .result-source { margin: 0; }
 .result-path { margin: 0; }
 .result-path > summary {
   display: inline-flex; align-items: center; min-height: 24px; cursor: pointer;
@@ -1471,20 +1470,9 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: 6px; padding: 
 .result-title { font-size: var(--t-body); font-weight: 600; margin: 0; }
 .result-meta { color: var(--muted); font-size: var(--t-caption); }
 .result progress { width: 120px; }
-.result-source { margin: var(--space-2) 0 0; }
-.result-source a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
-.result-source a:hover { color: var(--text); }
-/* The provenance disclosure. Its own marker rather than the browser's, because the default one
-   sits outside the text box and pushed the summary out of line with the rest of the row. 24px is
-   the pointer target floor in WCAG 2.5.8, and a caption-sized word does not reach it on its own. */
-.result-src { margin: var(--space-2) 0 0; }
-.result-src > summary {
-  display: inline-flex; align-items: center; min-height: 24px; cursor: pointer;
-  color: var(--muted); font-size: var(--t-caption); list-style: none; width: fit-content;
-}
-.result-src > summary::-webkit-details-marker { display: none; }
-.result-src > summary::before { content: "\25B8"; margin-right: var(--space-3); }
-.result-src[open] > summary::before { content: "\25BE"; }
+.result-source { margin: var(--space-2) 0 0; overflow-wrap: anywhere; }
+.result-source a, .footer-sources a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+.result-source a:hover, .footer-sources a:hover { color: var(--text); }
 /* The row is a flex line with nothing set to hold its size, so at 640 CSS pixels, which is what
    200 per cent zoom reports, the pill was the part that gave way: the title kept its width and
    "Already in your library" broke across three lines beside a one-line row. Fixing the pill and
@@ -1528,10 +1516,10 @@ progress { accent-color: var(--accent); height: 6px; }
 .app-footer {
   border-top: 1px solid var(--line); margin-top: var(--space-10); padding-top: var(--space-6);
   color: var(--muted); font-size: var(--t-caption);
-  display: flex; align-items: baseline; gap: var(--space-2); white-space: nowrap;
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-2);
 }
 .wrap > footer.app-footer { max-width: none; }
-@media (max-width: 900px) { .app-footer { flex-wrap: wrap; white-space: normal; } }
+.footer-sources { flex-basis: 100%; overflow-wrap: anywhere; }
 
 /* The footer states the bare minimum on every screen; the full disclaimers live in About,
    one click away, so they are never more than a link from wherever the reader is. */

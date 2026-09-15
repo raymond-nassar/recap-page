@@ -126,7 +126,7 @@ test('browse screens render safe cover-led cards with one-sentence summaries', (
   assert.match(body, /paintCoverUrl\(img, fallback, catalogCoverUrl\(list\)/);
   assert.match(body, /desc\.textContent = firstSentence\(list\.description\)/);
   assert.match(body, /class: 'catalog-card'/);
-  assert.match(body, /attributionLine\(list\)/, 'Source disclosure left the clean card');
+  assert.match(body, /attributionLine\(list, \{ compact: true \}\)/, 'Visible source credit left the card');
   assert.doesNotMatch(body, /pathChooser\(/, 'variant radios are still standing on every card');
   assert.match(
     styles,

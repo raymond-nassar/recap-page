@@ -65,6 +65,20 @@ test('current shipped identity and short attribution use Recap Page', () => {
   assert.match(reading, /textContent = 'Recap Page'/);
 });
 
+test('the persistent footer links to the external reading-list curators', () => {
+  const html = readFileSync(join(SHIPPED, 'index.html'), 'utf8');
+  const footer = html.match(/<footer class="app-footer">([\s\S]*?)<\/footer>/)?.[1];
+  assert.ok(footer);
+  assert.match(footer, /Reading List sources:/);
+  for (const [href, label] of [
+    ['https://www.comicbookherald.com/', 'Comic Book Herald'],
+    ['https://comicbookreadingorders.com/', 'Comic Book Reading Orders'],
+    ['https://github.com/emreparker/marvel-comics', 'emreparker/marvel-comics'],
+  ]) {
+    assert.ok(footer.includes(`<a href="${href}" target="_blank" rel="noopener noreferrer">${label}</a>`), label);
+  }
+});
+
 test('no en or em dash reaches the screen through markup or styling', () => {
   const files = walk(SHIPPED);
   // A walk that finds nothing would pass this test while checking nothing at all.
