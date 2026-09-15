@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-15T01:29:23.554Z",
+  "generatedAt": "2026-09-15T05:21:35.424Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -2573,6 +2573,48 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-09-15T01:29:23.554Z"
+    },
+    {
+      "id": "spider-man-2099-reading-order",
+      "file": "spider_man_2099_reading_order.json",
+      "name": "Spider-Man 2099",
+      "description": "Follow Miguel O'Hara from the original 2099 comics through Exiles, Spider-Verse and his later adventures in Comic Book Herald guide order. 15 unresolved original comics remain marked as gaps.",
+      "type": "character-run",
+      "depth": "partial",
+      "spotlightKind": "other",
+      "count": 170,
+      "placeholderCount": 15,
+      "emptyRecordCount": 0,
+      "collections": 24,
+      "characters": [
+        "Spider-Man 2099",
+        "Miguel O'Hara",
+        "Spider-Man",
+        "Exiles"
+      ],
+      "keywords": [
+        "Spider-Man 2099",
+        "Spider Man 2099",
+        "Miguel O'Hara",
+        "2099",
+        "Fall of the Hammer",
+        "Exodus",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 10865,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/d0/5bc8dcc780c86",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/spider-man-2099-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-09-15T05:21:35.424Z"
     },
     {
       "id": "silver-surfer-reading-order",

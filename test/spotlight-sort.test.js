@@ -95,6 +95,7 @@ test('popularity sorting keeps the ranked stories first and the rest in their cu
     'Punisher',
     'Rocket Raccoon',
     'Mephisto',
+    'Spider-Man 2099',
     'Abomination',
     'The Defenders',
     'Adam Warlock',

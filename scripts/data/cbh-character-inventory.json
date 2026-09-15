@@ -3190,13 +3190,19 @@
     "url": "https://www.comicbookherald.com/spider-man-2099-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "disposition": "new-order",
+    "reason": "Publishes 155 exact issues and 15 explicit metadata gaps from 177 source occurrences across 24 issue-bearing blocks; seven later repeats refer to first canonical issues. The complete-library report has 175 reviewed relationships and no exact duplicate. Scope and gap follow-up are recorded in Issue 497.",
     "sourceRetrievedAt": "2026-08-23",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "overlapIds": [
+      "amazing-spider-man-reading-order-modern-marvel-era",
+      "marvel-2099",
+      "spider-verse"
+    ],
+    "catalogIds": [
+      "spider-man-2099-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Spider-Man (2099)"
     ],
@@ -3206,7 +3212,7 @@
     "duplicateFlags": [],
     "sourceContentSha256": "7bae37f162579f9f2e9feafdcb8ac7168d5ef1ea3f99d1c4497b46ae11447ed2",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 106,

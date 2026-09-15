@@ -1,0 +1,2472 @@
+{
+  "schemaVersion": 1,
+  "id": "spider-man-2099-reading-order",
+  "inventoryId": "spider-man-2099-reading-order",
+  "sourceUrl": "https://www.comicbookherald.com/spider-man-2099-reading-order/",
+  "sourceRetrievedAt": "2026-09-15",
+  "sourceIssueBearingBlocksSha256": "7d2317d370e8e4aae5d53545a60512d74f60b60ae32eb7dcc68e5d3273ce3dac",
+  "sourceBoundary": "All 23 Collects blocks and the explicit Fall of the Hammer sequence on the full Spider-Man 2099 guide, from the original 1992 run through all four Latest Additions blocks ending with Miguel O'Hara - Spider-Man: 2099 (2024) #5. Collection order is retained; later repeated issue references point backward to the first occurrence. Named annuals, original one-shots and material-from issues retain original identities. Linked guides are not expanded; no source commentary or artwork is copied.",
+  "excludedSourceReferences": [],
+  "sourceOccurrenceCount": 177,
+  "canonicalSourcePositions": true,
+  "repeatedSourceReferences": [
+    {
+      "sourcePosition": 31,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #15",
+      "sourceRangeReference": "Fall of the Hammer explicit sequence: Spider-Man 2099 #15, Spider-Man 2099 #16, Ravage 2099 #15, X-Men 2099 #5, Doom 2099 #14, Punisher 2099 #13, 2099 Unlimited #4",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "15",
+      "canonicalRow": 16
+    },
+    {
+      "sourcePosition": 32,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #16",
+      "sourceRangeReference": "Fall of the Hammer explicit sequence: Spider-Man 2099 #15, Spider-Man 2099 #16, Ravage 2099 #15, X-Men 2099 #5, Doom 2099 #14, Punisher 2099 #13, 2099 Unlimited #4",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "16",
+      "canonicalRow": 17
+    },
+    {
+      "sourcePosition": 33,
+      "sourceIssueReference": "Ravage 2099 (1992) #15",
+      "sourceRangeReference": "Fall of the Hammer explicit sequence: Spider-Man 2099 #15, Spider-Man 2099 #16, Ravage 2099 #15, X-Men 2099 #5, Doom 2099 #14, Punisher 2099 #13, 2099 Unlimited #4",
+      "normalizedSeriesTitle": "Ravage 2099",
+      "seriesYear": 1992,
+      "issueNumber": "15",
+      "canonicalRow": 24
+    },
+    {
+      "sourcePosition": 34,
+      "sourceIssueReference": "X-Men 2099 (1993) #5",
+      "sourceRangeReference": "Fall of the Hammer explicit sequence: Spider-Man 2099 #15, Spider-Man 2099 #16, Ravage 2099 #15, X-Men 2099 #5, Doom 2099 #14, Punisher 2099 #13, 2099 Unlimited #4",
+      "normalizedSeriesTitle": "X-Men 2099",
+      "seriesYear": 1993,
+      "issueNumber": "5",
+      "canonicalRow": 25
+    },
+    {
+      "sourcePosition": 35,
+      "sourceIssueReference": "Doom 2099 (1993) #14",
+      "sourceRangeReference": "Fall of the Hammer explicit sequence: Spider-Man 2099 #15, Spider-Man 2099 #16, Ravage 2099 #15, X-Men 2099 #5, Doom 2099 #14, Punisher 2099 #13, 2099 Unlimited #4",
+      "normalizedSeriesTitle": "Doom 2099",
+      "seriesYear": 1993,
+      "issueNumber": "14",
+      "canonicalRow": 26
+    },
+    {
+      "sourcePosition": 36,
+      "sourceIssueReference": "Punisher 2099 (1993) #13",
+      "sourceRangeReference": "Fall of the Hammer explicit sequence: Spider-Man 2099 #15, Spider-Man 2099 #16, Ravage 2099 #15, X-Men 2099 #5, Doom 2099 #14, Punisher 2099 #13, 2099 Unlimited #4",
+      "normalizedSeriesTitle": "Punisher 2099",
+      "seriesYear": 1993,
+      "issueNumber": "13",
+      "canonicalRow": 27
+    },
+    {
+      "sourcePosition": 155,
+      "sourceIssueReference": "Spider-Man 2099 Meets Spider-Man (1995) #1",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #22-25, Spider-Man 2099 Meets Spider-Man (1995)",
+      "normalizedSeriesTitle": "Spider-Man 2099 Meets Spider-Man",
+      "seriesYear": 1995,
+      "issueNumber": "1",
+      "canonicalRow": 45
+    }
+  ],
+  "sourceGaps": [
+    {
+      "sourcePosition": 15,
+      "sourceIssueReference": "2099 Unlimited (1993) #1",
+      "sourceRangeReference": "Collects: Spider-Man 2099 11-14, Material From 2099 Unlimited 1-3, Spider-Man 2099 Annual 1",
+      "normalizedSeriesTitle": "2099 Unlimited",
+      "seriesYear": 1993,
+      "issueNumber": "1",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-09-15",
+      "auditBasis": "The supplied 2099 Unlimited series endpoint and broad-title issue search do not establish the exact original issue identity. Preserve the source position as an open metadata gap, not an availability exclusion.",
+      "evidenceSources": [
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/spider-man-2099-reading-order/",
+          "retrievedAt": "2026-09-15"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=2099%20Unlimited&limit=100",
+          "retrievedAt": "2026-09-15"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/series/20018/issues?limit=200&offset=0",
+          "retrievedAt": "2026-09-15"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/501",
+          "retrievedAt": "2026-09-15"
+        }
+      ],
+      "evidenceDigest": "75c135fc97cd38aef51c06eb08c0e8c462ac422247a9bd7018a6594dea307d2f"
+    },
+    {
+      "sourcePosition": 16,
+      "sourceIssueReference": "2099 Unlimited (1993) #2",
+      "sourceRangeReference": "Collects: Spider-Man 2099 11-14, Material From 2099 Unlimited 1-3, Spider-Man 2099 Annual 1",
+      "normalizedSeriesTitle": "2099 Unlimited",
+      "seriesYear": 1993,
+      "issueNumber": "2",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-09-15",
+      "auditBasis": "The supplied 2099 Unlimited series endpoint and broad-title issue search do not establish the exact original issue identity. Preserve the source position as an open metadata gap, not an availability exclusion.",
+      "evidenceSources": [
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/spider-man-2099-reading-order/",
+          "retrievedAt": "2026-09-15"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=2099%20Unlimited&limit=100",
+          "retrievedAt": "2026-09-15"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/series/20018/issues?limit=200&offset=0",
+          "retrievedAt": "2026-09-15"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/501",
+          "retrievedAt": "2026-09-15"
+        }
+      ],
+      "evidenceDigest": "8f09515760bc1c49ee2b8081bf823899f71e581eecc626653ca401598f03e29b"
+    },
+    {
+      "sourcePosition": 17,
+      "sourceIssueReference": "2099 Unlimited (1993) #3",
+      "sourceRangeReference": "Collects: Spider-Man 2099 11-14, Material From 2099 Unlimited 1-3, Spider-Man 2099 Annual 1",
+      "normalizedSeriesTitle": "2099 Unlimited",
+      "seriesYear": 1993,
+      "issueNumber": "3",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-09-15",
+      "auditBasis": "The supplied 2099 Unlimited series endpoint and broad-title issue search do not establish the exact original issue identity. Preserve the source position as an open metadata gap, not an availability exclusion.",
+      "evidenceSources": [
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/spider-man-2099-reading-order/",
+          "retrievedAt": "2026-09-15"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=2099%20Unlimited&limit=100",
+          "retrievedAt": "2026-09-15"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/series/20018/issues?limit=200&offset=0",
+          "retrievedAt": "2026-09-15"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/501",
+          "retrievedAt": "2026-09-15"
+        }
+      ],
+      "evidenceDigest": "33c34336dbaaf40d4c3d6f3e620025b096de08f643d94eaeedcea8e40e89fd41"
+    },
+    {
+      "sourcePosition": 37,
+      "sourceIssueReference": "2099 Unlimited (1993) #4",
+      "sourceRangeReference": "Fall of the Hammer explicit sequence: Spider-Man 2099 #15, Spider-Man 2099 #16, Ravage 2099 #15, X-Men 2099 #5, Doom 2099 #14, Punisher 2099 #13, 2099 Unlimited #4",
+      "normalizedSeriesTitle": "2099 Unlimited",
+      "seriesYear": 1993,
+      "issueNumber": "4",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-09-15",
+      "auditBasis": "The supplied 2099 Unlimited series endpoint and broad-title issue search do not establish the exact original issue identity. Preserve the source position as an open metadata gap, not an availability exclusion.",
+      "evidenceSources": [
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/spider-man-2099-reading-order/",
+          "retrievedAt": "2026-09-15"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=2099%20Unlimited&limit=100",
+          "retrievedAt": "2026-09-15"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/series/20018/issues?limit=200&offset=0",
+          "retrievedAt": "2026-09-15"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/501",
+          "retrievedAt": "2026-09-15"
+        }
+      ],
+      "evidenceDigest": "3a4135a98aa0505e4f299d1671ce1ad2a30944b1d935a0e67e97e24fa45fb8f8"
+    },
+    {
+      "sourcePosition": 49,
+      "sourceIssueReference": "2099 Unlimited (1993) #8",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 23-33, Material From 2099 Unlimited 8",
+      "normalizedSeriesTitle": "2099 Unlimited",
+      "seriesYear": 1993,
+      "issueNumber": "8",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-09-15",
+      "auditBasis": "The supplied 2099 Unlimited series endpoint and broad-title issue search do not establish the exact original issue identity. Preserve the source position as an open metadata gap, not an availability exclusion.",
+      "evidenceSources": [
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/spider-man-2099-reading-order/",
+          "retrievedAt": "2026-09-15"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=2099%20Unlimited&limit=100",
+          "retrievedAt": "2026-09-15"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/series/20018/issues?limit=200&offset=0",
+          "retrievedAt": "2026-09-15"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/501",
+          "retrievedAt": "2026-09-15"
+        }
+      ],
+      "evidenceDigest": "7381125f3866325d416215a12458867fb197924d54fa5dfa2a8f592f54b0fc51"
+    },
+    {
+      "sourcePosition": 57,
+      "sourceIssueReference": "2099 Unlimited (1993) #9",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 34-38, Special; Spider-Man 2099 Meets Spider-Man; Material From 2099 Unlimited 9-10",
+      "normalizedSeriesTitle": "2099 Unlimited",
+      "seriesYear": 1993,
+      "issueNumber": "9",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-09-15",
+      "auditBasis": "The supplied 2099 Unlimited series endpoint and broad-title issue search do not establish the exact original issue identity. Preserve the source position as an open metadata gap, not an availability exclusion.",
+      "evidenceSources": [
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/spider-man-2099-reading-order/",
+          "retrievedAt": "2026-09-15"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=2099%20Unlimited&limit=100",
+          "retrievedAt": "2026-09-15"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/series/20018/issues?limit=200&offset=0",
+          "retrievedAt": "2026-09-15"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/501",
+          "retrievedAt": "2026-09-15"
+        }
+      ],
+      "evidenceDigest": "c0508adeee474638194b860d2cca94e735270426e9f614dba4bbb256534ae8b1"
+    },
+    {
+      "sourcePosition": 58,
+      "sourceIssueReference": "2099 Unlimited (1993) #10",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 34-38, Special; Spider-Man 2099 Meets Spider-Man; Material From 2099 Unlimited 9-10",
+      "normalizedSeriesTitle": "2099 Unlimited",
+      "seriesYear": 1993,
+      "issueNumber": "10",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-09-15",
+      "auditBasis": "The supplied 2099 Unlimited series endpoint and broad-title issue search do not establish the exact original issue identity. Preserve the source position as an open metadata gap, not an availability exclusion.",
+      "evidenceSources": [
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/spider-man-2099-reading-order/",
+          "retrievedAt": "2026-09-15"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=2099%20Unlimited&limit=100",
+          "retrievedAt": "2026-09-15"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/series/20018/issues?limit=200&offset=0",
+          "retrievedAt": "2026-09-15"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/501",
+          "retrievedAt": "2026-09-15"
+        }
+      ],
+      "evidenceDigest": "1e5d3d311d87b54884aab7b7f8139ec7122ac1f2167bb37037bfeed8430fbcf4"
+    },
+    {
+      "sourcePosition": 59,
+      "sourceIssueReference": "2099: World of Tomorrow (1996) #1",
+      "sourceRangeReference": "Collects: 2099: World Of Tomorrow #1 To #8",
+      "normalizedSeriesTitle": "2099: World of Tomorrow",
+      "seriesYear": 1996,
+      "issueNumber": "1",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-09-15",
+      "auditBasis": "No exact original 2099: World of Tomorrow series appears in the pinned series index or the configured broad-title issue search. The owner also found no dedicated Marvel series page. These are metadata gaps, not evidence of Marvel Unlimited unavailability; no collections or unrelated Tomorrow titles substitute for #1-8.",
+      "evidenceSources": [
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/spider-man-2099-reading-order/",
+          "retrievedAt": "2026-09-15"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=World%20of%20Tomorrow&limit=100",
+          "retrievedAt": "2026-09-15"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/501",
+          "retrievedAt": "2026-09-15"
+        }
+      ],
+      "evidenceDigest": "ceb11921ad5b13e14e3d7e6f65e46fdc84c919e640454a0eb2b0118b4d2099a4"
+    },
+    {
+      "sourcePosition": 60,
+      "sourceIssueReference": "2099: World of Tomorrow (1996) #2",
+      "sourceRangeReference": "Collects: 2099: World Of Tomorrow #1 To #8",
+      "normalizedSeriesTitle": "2099: World of Tomorrow",
+      "seriesYear": 1996,
+      "issueNumber": "2",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-09-15",
+      "auditBasis": "No exact original 2099: World of Tomorrow series appears in the pinned series index or the configured broad-title issue search. The owner also found no dedicated Marvel series page. These are metadata gaps, not evidence of Marvel Unlimited unavailability; no collections or unrelated Tomorrow titles substitute for #1-8.",
+      "evidenceSources": [
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/spider-man-2099-reading-order/",
+          "retrievedAt": "2026-09-15"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=World%20of%20Tomorrow&limit=100",
+          "retrievedAt": "2026-09-15"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/501",
+          "retrievedAt": "2026-09-15"
+        }
+      ],
+      "evidenceDigest": "ae4e044e653da7a1d5de1267f3760e7c7ce11800be9197e54a48b214bff150e0"
+    },
+    {
+      "sourcePosition": 61,
+      "sourceIssueReference": "2099: World of Tomorrow (1996) #3",
+      "sourceRangeReference": "Collects: 2099: World Of Tomorrow #1 To #8",
+      "normalizedSeriesTitle": "2099: World of Tomorrow",
+      "seriesYear": 1996,
+      "issueNumber": "3",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-09-15",
+      "auditBasis": "No exact original 2099: World of Tomorrow series appears in the pinned series index or the configured broad-title issue search. The owner also found no dedicated Marvel series page. These are metadata gaps, not evidence of Marvel Unlimited unavailability; no collections or unrelated Tomorrow titles substitute for #1-8.",
+      "evidenceSources": [
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/spider-man-2099-reading-order/",
+          "retrievedAt": "2026-09-15"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=World%20of%20Tomorrow&limit=100",
+          "retrievedAt": "2026-09-15"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/501",
+          "retrievedAt": "2026-09-15"
+        }
+      ],
+      "evidenceDigest": "1d0a841aed76e4e908e89cf57bb62a158c367f1b50f9cb81f9a61314d2b589f7"
+    },
+    {
+      "sourcePosition": 62,
+      "sourceIssueReference": "2099: World of Tomorrow (1996) #4",
+      "sourceRangeReference": "Collects: 2099: World Of Tomorrow #1 To #8",
+      "normalizedSeriesTitle": "2099: World of Tomorrow",
+      "seriesYear": 1996,
+      "issueNumber": "4",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-09-15",
+      "auditBasis": "No exact original 2099: World of Tomorrow series appears in the pinned series index or the configured broad-title issue search. The owner also found no dedicated Marvel series page. These are metadata gaps, not evidence of Marvel Unlimited unavailability; no collections or unrelated Tomorrow titles substitute for #1-8.",
+      "evidenceSources": [
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/spider-man-2099-reading-order/",
+          "retrievedAt": "2026-09-15"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=World%20of%20Tomorrow&limit=100",
+          "retrievedAt": "2026-09-15"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/501",
+          "retrievedAt": "2026-09-15"
+        }
+      ],
+      "evidenceDigest": "67a56670221722955c86bdd9f7bddbe7535077ee6c7bf1c2b176e4321b00d3f8"
+    },
+    {
+      "sourcePosition": 63,
+      "sourceIssueReference": "2099: World of Tomorrow (1996) #5",
+      "sourceRangeReference": "Collects: 2099: World Of Tomorrow #1 To #8",
+      "normalizedSeriesTitle": "2099: World of Tomorrow",
+      "seriesYear": 1996,
+      "issueNumber": "5",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-09-15",
+      "auditBasis": "No exact original 2099: World of Tomorrow series appears in the pinned series index or the configured broad-title issue search. The owner also found no dedicated Marvel series page. These are metadata gaps, not evidence of Marvel Unlimited unavailability; no collections or unrelated Tomorrow titles substitute for #1-8.",
+      "evidenceSources": [
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/spider-man-2099-reading-order/",
+          "retrievedAt": "2026-09-15"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=World%20of%20Tomorrow&limit=100",
+          "retrievedAt": "2026-09-15"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/501",
+          "retrievedAt": "2026-09-15"
+        }
+      ],
+      "evidenceDigest": "44a066018955a2cbc0845ebd359068cd6518bfd3b71d999be8f6e1ae016058eb"
+    },
+    {
+      "sourcePosition": 64,
+      "sourceIssueReference": "2099: World of Tomorrow (1996) #6",
+      "sourceRangeReference": "Collects: 2099: World Of Tomorrow #1 To #8",
+      "normalizedSeriesTitle": "2099: World of Tomorrow",
+      "seriesYear": 1996,
+      "issueNumber": "6",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-09-15",
+      "auditBasis": "No exact original 2099: World of Tomorrow series appears in the pinned series index or the configured broad-title issue search. The owner also found no dedicated Marvel series page. These are metadata gaps, not evidence of Marvel Unlimited unavailability; no collections or unrelated Tomorrow titles substitute for #1-8.",
+      "evidenceSources": [
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/spider-man-2099-reading-order/",
+          "retrievedAt": "2026-09-15"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=World%20of%20Tomorrow&limit=100",
+          "retrievedAt": "2026-09-15"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/501",
+          "retrievedAt": "2026-09-15"
+        }
+      ],
+      "evidenceDigest": "a1f818d080572ec4f65444d8c88fc0956acbddb1fbc088541d5ef00ee2382c44"
+    },
+    {
+      "sourcePosition": 65,
+      "sourceIssueReference": "2099: World of Tomorrow (1996) #7",
+      "sourceRangeReference": "Collects: 2099: World Of Tomorrow #1 To #8",
+      "normalizedSeriesTitle": "2099: World of Tomorrow",
+      "seriesYear": 1996,
+      "issueNumber": "7",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-09-15",
+      "auditBasis": "No exact original 2099: World of Tomorrow series appears in the pinned series index or the configured broad-title issue search. The owner also found no dedicated Marvel series page. These are metadata gaps, not evidence of Marvel Unlimited unavailability; no collections or unrelated Tomorrow titles substitute for #1-8.",
+      "evidenceSources": [
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/spider-man-2099-reading-order/",
+          "retrievedAt": "2026-09-15"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=World%20of%20Tomorrow&limit=100",
+          "retrievedAt": "2026-09-15"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/501",
+          "retrievedAt": "2026-09-15"
+        }
+      ],
+      "evidenceDigest": "61b3ec4f5783b66bc258f5cb7b7482d3037574f56aae6a8063cf81485d17a198"
+    },
+    {
+      "sourcePosition": 66,
+      "sourceIssueReference": "2099: World of Tomorrow (1996) #8",
+      "sourceRangeReference": "Collects: 2099: World Of Tomorrow #1 To #8",
+      "normalizedSeriesTitle": "2099: World of Tomorrow",
+      "seriesYear": 1996,
+      "issueNumber": "8",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-09-15",
+      "auditBasis": "No exact original 2099: World of Tomorrow series appears in the pinned series index or the configured broad-title issue search. The owner also found no dedicated Marvel series page. These are metadata gaps, not evidence of Marvel Unlimited unavailability; no collections or unrelated Tomorrow titles substitute for #1-8.",
+      "evidenceSources": [
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/spider-man-2099-reading-order/",
+          "retrievedAt": "2026-09-15"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=World%20of%20Tomorrow&limit=100",
+          "retrievedAt": "2026-09-15"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/501",
+          "retrievedAt": "2026-09-15"
+        }
+      ],
+      "evidenceDigest": "fc18aa6c330f311ed6c9c0c096da23a035b7ff658aac74b988b01087a7ce362b"
+    }
+  ],
+  "expectedCount": 155,
+  "proposedManifest": {
+    "id": "spider-man-2099-reading-order",
+    "name": "Spider-Man 2099",
+    "description": "Follow Miguel O'Hara from the original 2099 comics through Exiles, Spider-Verse and his later adventures in Comic Book Herald guide order. 15 unresolved original comics remain marked as gaps.",
+    "type": "character-run",
+    "spotlightKind": "other",
+    "depth": "partial",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "spider-man-2099-reading-order.md",
+    "sourcePage": "https://www.comicbookherald.com/spider-man-2099-reading-order/",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "spider_man_2099_reading_order.json",
+    "characters": [
+      "Spider-Man 2099",
+      "Miguel O'Hara",
+      "Spider-Man",
+      "Exiles"
+    ],
+    "keywords": [
+      "Spider-Man 2099",
+      "Spider Man 2099",
+      "Miguel O'Hara",
+      "2099",
+      "Fall of the Hammer",
+      "Exodus",
+      "Comic Book Herald"
+    ],
+    "expect": 170,
+    "timeline": null,
+    "coverIssueId": 10865
+  },
+  "insertionAnchor": {
+    "beforeId": "silver-surfer-reading-order"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-6 Astra",
+    "reviewedAt": "2026-09-15T05:17:55.445Z",
+    "rationale": "Reviewed all issue-bearing source blocks and explicit Hammer sequence against local original-issue facts and configured metadata. Preserved the 1994 annual, distinct Spider-Man 2099 runs, named one-shots, all Latest Additions and backward repeats. Unresolved originals remain open gaps under owner-approved gap-tolerant publication in Issue 497."
+  },
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #1",
+      "sourceRangeReference": "Collects: Spider-Man 2099 1-10",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "1",
+      "seriesId": 2070,
+      "candidateIssueId": 10865,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #2",
+      "sourceRangeReference": "Collects: Spider-Man 2099 1-10",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "2",
+      "seriesId": 2070,
+      "candidateIssueId": 10876,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #3",
+      "sourceRangeReference": "Collects: Spider-Man 2099 1-10",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "3",
+      "seriesId": 2070,
+      "candidateIssueId": 10887,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #4",
+      "sourceRangeReference": "Collects: Spider-Man 2099 1-10",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "4",
+      "seriesId": 2070,
+      "candidateIssueId": 10898,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #5",
+      "sourceRangeReference": "Collects: Spider-Man 2099 1-10",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "5",
+      "seriesId": 2070,
+      "candidateIssueId": 10906,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #6",
+      "sourceRangeReference": "Collects: Spider-Man 2099 1-10",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "6",
+      "seriesId": 2070,
+      "candidateIssueId": 10907,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #7",
+      "sourceRangeReference": "Collects: Spider-Man 2099 1-10",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "7",
+      "seriesId": 2070,
+      "candidateIssueId": 10908,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #8",
+      "sourceRangeReference": "Collects: Spider-Man 2099 1-10",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "8",
+      "seriesId": 2070,
+      "candidateIssueId": 10909,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 9,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #9",
+      "sourceRangeReference": "Collects: Spider-Man 2099 1-10",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "9",
+      "seriesId": 2070,
+      "candidateIssueId": 10910,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 10,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #10",
+      "sourceRangeReference": "Collects: Spider-Man 2099 1-10",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "10",
+      "seriesId": 2070,
+      "candidateIssueId": 10866,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 11,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #11",
+      "sourceRangeReference": "Collects: Spider-Man 2099 11-14, Material From 2099 Unlimited 1-3, Spider-Man 2099 Annual 1",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "11",
+      "seriesId": 2070,
+      "candidateIssueId": 10867,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 12,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #12",
+      "sourceRangeReference": "Collects: Spider-Man 2099 11-14, Material From 2099 Unlimited 1-3, Spider-Man 2099 Annual 1",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "12",
+      "seriesId": 2070,
+      "candidateIssueId": 10868,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 13,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #13",
+      "sourceRangeReference": "Collects: Spider-Man 2099 11-14, Material From 2099 Unlimited 1-3, Spider-Man 2099 Annual 1",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "13",
+      "seriesId": 2070,
+      "candidateIssueId": 10869,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 14,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #14",
+      "sourceRangeReference": "Collects: Spider-Man 2099 11-14, Material From 2099 Unlimited 1-3, Spider-Man 2099 Annual 1",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "14",
+      "seriesId": 2070,
+      "candidateIssueId": 10870,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 18,
+      "sourceIssueReference": "Spider-Man 2099 Annual (1994) #1",
+      "sourceRangeReference": "Collects: Spider-Man 2099 11-14, Material From 2099 Unlimited 1-3, Spider-Man 2099 Annual 1",
+      "normalizedSeriesTitle": "Spider-Man 2099 Annual",
+      "seriesYear": 1994,
+      "issueNumber": "1",
+      "seriesId": 20022,
+      "candidateIssueId": 53431,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The Annual #1 in the second original collection is the separately indexed Spider-Man 2099 Annual (1994), not a 1993 annual."
+    },
+    {
+      "sourcePosition": 19,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #15",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 15-22, Ravage 2099 15, X-Men 2099 5, Doom 2099 14, Punisher 2099 13",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "15",
+      "seriesId": 2070,
+      "candidateIssueId": 10871,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 20,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #16",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 15-22, Ravage 2099 15, X-Men 2099 5, Doom 2099 14, Punisher 2099 13",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "16",
+      "seriesId": 2070,
+      "candidateIssueId": 10872,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 21,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #17",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 15-22, Ravage 2099 15, X-Men 2099 5, Doom 2099 14, Punisher 2099 13",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "17",
+      "seriesId": 2070,
+      "candidateIssueId": 10873,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 22,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #18",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 15-22, Ravage 2099 15, X-Men 2099 5, Doom 2099 14, Punisher 2099 13",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "18",
+      "seriesId": 2070,
+      "candidateIssueId": 10874,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 23,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #19",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 15-22, Ravage 2099 15, X-Men 2099 5, Doom 2099 14, Punisher 2099 13",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "19",
+      "seriesId": 2070,
+      "candidateIssueId": 10875,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 24,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #20",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 15-22, Ravage 2099 15, X-Men 2099 5, Doom 2099 14, Punisher 2099 13",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "20",
+      "seriesId": 2070,
+      "candidateIssueId": 10877,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 25,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #21",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 15-22, Ravage 2099 15, X-Men 2099 5, Doom 2099 14, Punisher 2099 13",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "21",
+      "seriesId": 2070,
+      "candidateIssueId": 10878,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 26,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #22",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 15-22, Ravage 2099 15, X-Men 2099 5, Doom 2099 14, Punisher 2099 13",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "22",
+      "seriesId": 2070,
+      "candidateIssueId": 10879,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 27,
+      "sourceIssueReference": "Ravage 2099 (1992) #15",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 15-22, Ravage 2099 15, X-Men 2099 5, Doom 2099 14, Punisher 2099 13",
+      "normalizedSeriesTitle": "Ravage 2099",
+      "seriesYear": 1992,
+      "issueNumber": "15",
+      "seriesId": 20021,
+      "candidateIssueId": 53430,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 20021 (Ravage 2099 (1992)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 28,
+      "sourceIssueReference": "X-Men 2099 (1993) #5",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 15-22, Ravage 2099 15, X-Men 2099 5, Doom 2099 14, Punisher 2099 13",
+      "normalizedSeriesTitle": "X-Men 2099",
+      "seriesYear": 1993,
+      "issueNumber": "5",
+      "seriesId": 16423,
+      "candidateIssueId": 43366,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 16423 (X-Men 2099 (1993 - 1996)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 29,
+      "sourceIssueReference": "Doom 2099 (1993) #14",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 15-22, Ravage 2099 15, X-Men 2099 5, Doom 2099 14, Punisher 2099 13",
+      "normalizedSeriesTitle": "Doom 2099",
+      "seriesYear": 1993,
+      "issueNumber": "14",
+      "seriesId": 20019,
+      "candidateIssueId": 53428,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 20019 (Doom 2099 (1993)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 30,
+      "sourceIssueReference": "Punisher 2099 (1993) #13",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 15-22, Ravage 2099 15, X-Men 2099 5, Doom 2099 14, Punisher 2099 13",
+      "normalizedSeriesTitle": "Punisher 2099",
+      "seriesYear": 1993,
+      "issueNumber": "13",
+      "seriesId": 20020,
+      "candidateIssueId": 53429,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 20020 (Punisher 2099 (1993)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 38,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #23",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 23-33, Material From 2099 Unlimited 8",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "23",
+      "seriesId": 2070,
+      "candidateIssueId": 10880,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 39,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #24",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 23-33, Material From 2099 Unlimited 8",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "24",
+      "seriesId": 2070,
+      "candidateIssueId": 10881,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 40,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #25",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 23-33, Material From 2099 Unlimited 8",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "25",
+      "seriesId": 2070,
+      "candidateIssueId": 10882,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 41,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #26",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 23-33, Material From 2099 Unlimited 8",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "26",
+      "seriesId": 2070,
+      "candidateIssueId": 10883,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 42,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #27",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 23-33, Material From 2099 Unlimited 8",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "27",
+      "seriesId": 2070,
+      "candidateIssueId": 10884,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 43,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #28",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 23-33, Material From 2099 Unlimited 8",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "28",
+      "seriesId": 2070,
+      "candidateIssueId": 10885,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 44,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #29",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 23-33, Material From 2099 Unlimited 8",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "29",
+      "seriesId": 2070,
+      "candidateIssueId": 10886,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 45,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #30",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 23-33, Material From 2099 Unlimited 8",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "30",
+      "seriesId": 2070,
+      "candidateIssueId": 10888,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 46,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #31",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 23-33, Material From 2099 Unlimited 8",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "31",
+      "seriesId": 2070,
+      "candidateIssueId": 10889,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 47,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #32",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 23-33, Material From 2099 Unlimited 8",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "32",
+      "seriesId": 2070,
+      "candidateIssueId": 10890,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 48,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #33",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 23-33, Material From 2099 Unlimited 8",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "33",
+      "seriesId": 2070,
+      "candidateIssueId": 10891,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 50,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #34",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 34-38, Special; Spider-Man 2099 Meets Spider-Man; Material From 2099 Unlimited 9-10",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "34",
+      "seriesId": 2070,
+      "candidateIssueId": 10892,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 51,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #35",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 34-38, Special; Spider-Man 2099 Meets Spider-Man; Material From 2099 Unlimited 9-10",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "35",
+      "seriesId": 2070,
+      "candidateIssueId": 10893,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 52,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #36",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 34-38, Special; Spider-Man 2099 Meets Spider-Man; Material From 2099 Unlimited 9-10",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "36",
+      "seriesId": 2070,
+      "candidateIssueId": 10894,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 53,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #37",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 34-38, Special; Spider-Man 2099 Meets Spider-Man; Material From 2099 Unlimited 9-10",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "37",
+      "seriesId": 2070,
+      "candidateIssueId": 10895,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 54,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #38",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 34-38, Special; Spider-Man 2099 Meets Spider-Man; Material From 2099 Unlimited 9-10",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "38",
+      "seriesId": 2070,
+      "candidateIssueId": 10896,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 55,
+      "sourceIssueReference": "Spider-Man 2099 Special (1995) #1",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 34-38, Special; Spider-Man 2099 Meets Spider-Man; Material From 2099 Unlimited 9-10",
+      "normalizedSeriesTitle": "Spider-Man 2099 Special",
+      "seriesYear": 1995,
+      "issueNumber": "1",
+      "seriesId": 27380,
+      "candidateIssueId": 76328,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source Special in the Venom 2099 collection is the original Spider-Man 2099 Special (1995) #1, not a standalone Venom crossover series."
+    },
+    {
+      "sourcePosition": 56,
+      "sourceIssueReference": "Spider-Man 2099 Meets Spider-Man (1995) #1",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 34-38, Special; Spider-Man 2099 Meets Spider-Man; Material From 2099 Unlimited 9-10",
+      "normalizedSeriesTitle": "Spider-Man 2099 Meets Spider-Man",
+      "seriesYear": 1995,
+      "issueNumber": "1",
+      "seriesId": 44665,
+      "candidateIssueId": 65143,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source original one-shot resolves to pinned issue 65143 in current provider series 44665. The supplied series 23705 is not used; provider spelling appends a redundant 1 to the series title."
+    },
+    {
+      "sourcePosition": 67,
+      "sourceIssueReference": "Captain Marvel (2000) #27",
+      "sourceRangeReference": "Collects: Captain Marvel (2000) #27 To #29",
+      "normalizedSeriesTitle": "Captain Marvel",
+      "seriesYear": 2000,
+      "issueNumber": "27",
+      "seriesId": 690,
+      "candidateIssueId": 22841,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 690 (Captain Marvel (2000 - 2002)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 68,
+      "sourceIssueReference": "Captain Marvel (2000) #28",
+      "sourceRangeReference": "Collects: Captain Marvel (2000) #27 To #29",
+      "normalizedSeriesTitle": "Captain Marvel",
+      "seriesYear": 2000,
+      "issueNumber": "28",
+      "seriesId": 690,
+      "candidateIssueId": 22842,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 690 (Captain Marvel (2000 - 2002)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 69,
+      "sourceIssueReference": "Captain Marvel (2000) #29",
+      "sourceRangeReference": "Collects: Captain Marvel (2000) #27 To #29",
+      "normalizedSeriesTitle": "Captain Marvel",
+      "seriesYear": 2000,
+      "issueNumber": "29",
+      "seriesId": 690,
+      "candidateIssueId": 22843,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 690 (Captain Marvel (2000 - 2002)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 70,
+      "sourceIssueReference": "Exiles (2001) #75",
+      "sourceRangeReference": "Collects: Exiles #75-89, Exiles Annual #1",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2001,
+      "issueNumber": "75",
+      "seriesId": 479,
+      "candidateIssueId": 3378,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 479 (Exiles (2001 - 2008)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 71,
+      "sourceIssueReference": "Exiles (2001) #76",
+      "sourceRangeReference": "Collects: Exiles #75-89, Exiles Annual #1",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2001,
+      "issueNumber": "76",
+      "seriesId": 479,
+      "candidateIssueId": 3379,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 479 (Exiles (2001 - 2008)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 72,
+      "sourceIssueReference": "Exiles (2001) #77",
+      "sourceRangeReference": "Collects: Exiles #75-89, Exiles Annual #1",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2001,
+      "issueNumber": "77",
+      "seriesId": 479,
+      "candidateIssueId": 3498,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 479 (Exiles (2001 - 2008)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 73,
+      "sourceIssueReference": "Exiles (2001) #78",
+      "sourceRangeReference": "Collects: Exiles #75-89, Exiles Annual #1",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2001,
+      "issueNumber": "78",
+      "seriesId": 479,
+      "candidateIssueId": 3902,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 479 (Exiles (2001 - 2008)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 74,
+      "sourceIssueReference": "Exiles (2001) #79",
+      "sourceRangeReference": "Collects: Exiles #75-89, Exiles Annual #1",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2001,
+      "issueNumber": "79",
+      "seriesId": 479,
+      "candidateIssueId": 4034,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 479 (Exiles (2001 - 2008)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 75,
+      "sourceIssueReference": "Exiles (2001) #80",
+      "sourceRangeReference": "Collects: Exiles #75-89, Exiles Annual #1",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2001,
+      "issueNumber": "80",
+      "seriesId": 479,
+      "candidateIssueId": 4148,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 479 (Exiles (2001 - 2008)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 76,
+      "sourceIssueReference": "Exiles (2001) #81",
+      "sourceRangeReference": "Collects: Exiles #75-89, Exiles Annual #1",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2001,
+      "issueNumber": "81",
+      "seriesId": 479,
+      "candidateIssueId": 4149,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 479 (Exiles (2001 - 2008)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 77,
+      "sourceIssueReference": "Exiles (2001) #82",
+      "sourceRangeReference": "Collects: Exiles #75-89, Exiles Annual #1",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2001,
+      "issueNumber": "82",
+      "seriesId": 479,
+      "candidateIssueId": 4258,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 479 (Exiles (2001 - 2008)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 78,
+      "sourceIssueReference": "Exiles (2001) #83",
+      "sourceRangeReference": "Collects: Exiles #75-89, Exiles Annual #1",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2001,
+      "issueNumber": "83",
+      "seriesId": 479,
+      "candidateIssueId": 4259,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 479 (Exiles (2001 - 2008)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 79,
+      "sourceIssueReference": "Exiles (2001) #84",
+      "sourceRangeReference": "Collects: Exiles #75-89, Exiles Annual #1",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2001,
+      "issueNumber": "84",
+      "seriesId": 479,
+      "candidateIssueId": 4418,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 479 (Exiles (2001 - 2008)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 80,
+      "sourceIssueReference": "Exiles (2001) #85",
+      "sourceRangeReference": "Collects: Exiles #75-89, Exiles Annual #1",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2001,
+      "issueNumber": "85",
+      "seriesId": 479,
+      "candidateIssueId": 4805,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 479 (Exiles (2001 - 2008)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 81,
+      "sourceIssueReference": "Exiles (2001) #86",
+      "sourceRangeReference": "Collects: Exiles #75-89, Exiles Annual #1",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2001,
+      "issueNumber": "86",
+      "seriesId": 479,
+      "candidateIssueId": 5093,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 479 (Exiles (2001 - 2008)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 82,
+      "sourceIssueReference": "Exiles (2001) #87",
+      "sourceRangeReference": "Collects: Exiles #75-89, Exiles Annual #1",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2001,
+      "issueNumber": "87",
+      "seriesId": 479,
+      "candidateIssueId": 5244,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 479 (Exiles (2001 - 2008)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 83,
+      "sourceIssueReference": "Exiles (2001) #88",
+      "sourceRangeReference": "Collects: Exiles #75-89, Exiles Annual #1",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2001,
+      "issueNumber": "88",
+      "seriesId": 479,
+      "candidateIssueId": 5546,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 479 (Exiles (2001 - 2008)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 84,
+      "sourceIssueReference": "Exiles (2001) #89",
+      "sourceRangeReference": "Collects: Exiles #75-89, Exiles Annual #1",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2001,
+      "issueNumber": "89",
+      "seriesId": 479,
+      "candidateIssueId": 5668,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 479 (Exiles (2001 - 2008)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 85,
+      "sourceIssueReference": "Exiles Annual (2006) #1",
+      "sourceRangeReference": "Collects: Exiles #75-89, Exiles Annual #1",
+      "normalizedSeriesTitle": "Exiles Annual",
+      "seriesYear": 2006,
+      "issueNumber": "1",
+      "seriesId": 1146,
+      "candidateIssueId": 5732,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source Exiles Annual #1 is the original 2006 annual, not a collection despite the provider series title ending in 1."
+    },
+    {
+      "sourcePosition": 86,
+      "sourceIssueReference": "Exiles (2001) #90",
+      "sourceRangeReference": "Collects: Exiles #90-100, Days Of Then & Now; X-Men: Die By The Sword #1-5",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2001,
+      "issueNumber": "90",
+      "seriesId": 479,
+      "candidateIssueId": 5806,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 479 (Exiles (2001 - 2008)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 87,
+      "sourceIssueReference": "Exiles (2001) #91",
+      "sourceRangeReference": "Collects: Exiles #90-100, Days Of Then & Now; X-Men: Die By The Sword #1-5",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2001,
+      "issueNumber": "91",
+      "seriesId": 479,
+      "candidateIssueId": 6005,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 479 (Exiles (2001 - 2008)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 88,
+      "sourceIssueReference": "Exiles (2001) #92",
+      "sourceRangeReference": "Collects: Exiles #90-100, Days Of Then & Now; X-Men: Die By The Sword #1-5",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2001,
+      "issueNumber": "92",
+      "seriesId": 479,
+      "candidateIssueId": 6154,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 479 (Exiles (2001 - 2008)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 89,
+      "sourceIssueReference": "Exiles (2001) #93",
+      "sourceRangeReference": "Collects: Exiles #90-100, Days Of Then & Now; X-Men: Die By The Sword #1-5",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2001,
+      "issueNumber": "93",
+      "seriesId": 479,
+      "candidateIssueId": 6334,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 479 (Exiles (2001 - 2008)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 90,
+      "sourceIssueReference": "Exiles (2001) #94",
+      "sourceRangeReference": "Collects: Exiles #90-100, Days Of Then & Now; X-Men: Die By The Sword #1-5",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2001,
+      "issueNumber": "94",
+      "seriesId": 479,
+      "candidateIssueId": 13429,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 479 (Exiles (2001 - 2008)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 91,
+      "sourceIssueReference": "Exiles (2001) #95",
+      "sourceRangeReference": "Collects: Exiles #90-100, Days Of Then & Now; X-Men: Die By The Sword #1-5",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2001,
+      "issueNumber": "95",
+      "seriesId": 479,
+      "candidateIssueId": 15811,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 479 (Exiles (2001 - 2008)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 92,
+      "sourceIssueReference": "Exiles (2001) #96",
+      "sourceRangeReference": "Collects: Exiles #90-100, Days Of Then & Now; X-Men: Die By The Sword #1-5",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2001,
+      "issueNumber": "96",
+      "seriesId": 479,
+      "candidateIssueId": 15929,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 479 (Exiles (2001 - 2008)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 93,
+      "sourceIssueReference": "Exiles (2001) #97",
+      "sourceRangeReference": "Collects: Exiles #90-100, Days Of Then & Now; X-Men: Die By The Sword #1-5",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2001,
+      "issueNumber": "97",
+      "seriesId": 479,
+      "candidateIssueId": 16110,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 479 (Exiles (2001 - 2008)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 94,
+      "sourceIssueReference": "Exiles (2001) #98",
+      "sourceRangeReference": "Collects: Exiles #90-100, Days Of Then & Now; X-Men: Die By The Sword #1-5",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2001,
+      "issueNumber": "98",
+      "seriesId": 479,
+      "candidateIssueId": 16455,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 479 (Exiles (2001 - 2008)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 95,
+      "sourceIssueReference": "Exiles (2001) #99",
+      "sourceRangeReference": "Collects: Exiles #90-100, Days Of Then & Now; X-Men: Die By The Sword #1-5",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2001,
+      "issueNumber": "99",
+      "seriesId": 479,
+      "candidateIssueId": 16456,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 479 (Exiles (2001 - 2008)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 96,
+      "sourceIssueReference": "Exiles (2001) #100",
+      "sourceRangeReference": "Collects: Exiles #90-100, Days Of Then & Now; X-Men: Die By The Sword #1-5",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2001,
+      "issueNumber": "100",
+      "seriesId": 479,
+      "candidateIssueId": 17345,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 479 (Exiles (2001 - 2008)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 97,
+      "sourceIssueReference": "Exiles: Days of Then and Now (2008) #1",
+      "sourceRangeReference": "Collects: Exiles #90-100, Days Of Then & Now; X-Men: Die By The Sword #1-5",
+      "normalizedSeriesTitle": "Exiles: Days of Then and Now",
+      "seriesYear": 2008,
+      "issueNumber": "1",
+      "seriesId": 3420,
+      "candidateIssueId": 17659,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source Days Of Then & Now is the original 2008 Exiles one-shot. Provider series spelling expands & to and and appends a redundant 1."
+    },
+    {
+      "sourcePosition": 98,
+      "sourceIssueReference": "X-Men: Die by the Sword (2007) #1",
+      "sourceRangeReference": "Collects: Exiles #90-100, Days Of Then & Now; X-Men: Die By The Sword #1-5",
+      "normalizedSeriesTitle": "X-Men: Die by the Sword",
+      "seriesYear": 2007,
+      "issueNumber": "1",
+      "seriesId": 2890,
+      "candidateIssueId": 16590,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 2890 (X-Men: Die by the Sword (2007 - 2008)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 99,
+      "sourceIssueReference": "X-Men: Die by the Sword (2007) #2",
+      "sourceRangeReference": "Collects: Exiles #90-100, Days Of Then & Now; X-Men: Die By The Sword #1-5",
+      "normalizedSeriesTitle": "X-Men: Die by the Sword",
+      "seriesYear": 2007,
+      "issueNumber": "2",
+      "seriesId": 2890,
+      "candidateIssueId": 16591,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 2890 (X-Men: Die by the Sword (2007 - 2008)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 100,
+      "sourceIssueReference": "X-Men: Die by the Sword (2007) #3",
+      "sourceRangeReference": "Collects: Exiles #90-100, Days Of Then & Now; X-Men: Die By The Sword #1-5",
+      "normalizedSeriesTitle": "X-Men: Die by the Sword",
+      "seriesYear": 2007,
+      "issueNumber": "3",
+      "seriesId": 2890,
+      "candidateIssueId": 17282,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 2890 (X-Men: Die by the Sword (2007 - 2008)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 101,
+      "sourceIssueReference": "X-Men: Die by the Sword (2007) #4",
+      "sourceRangeReference": "Collects: Exiles #90-100, Days Of Then & Now; X-Men: Die By The Sword #1-5",
+      "normalizedSeriesTitle": "X-Men: Die by the Sword",
+      "seriesYear": 2007,
+      "issueNumber": "4",
+      "seriesId": 2890,
+      "candidateIssueId": 17414,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 2890 (X-Men: Die by the Sword (2007 - 2008)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 102,
+      "sourceIssueReference": "X-Men: Die by the Sword (2007) #5",
+      "sourceRangeReference": "Collects: Exiles #90-100, Days Of Then & Now; X-Men: Die By The Sword #1-5",
+      "normalizedSeriesTitle": "X-Men: Die by the Sword",
+      "seriesYear": 2007,
+      "issueNumber": "5",
+      "seriesId": 2890,
+      "candidateIssueId": 17415,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 2890 (X-Men: Die by the Sword (2007 - 2008)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 103,
+      "sourceIssueReference": "Timestorm 2009/2099 (2009) #1",
+      "sourceRangeReference": "Collects: Timestorm 2009/2099 #1-4, Spider-Man One-Shot, And X-Men One-Shot",
+      "normalizedSeriesTitle": "Timestorm 2009/2099",
+      "seriesYear": 2009,
+      "issueNumber": "1",
+      "seriesId": 7220,
+      "candidateIssueId": 24042,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 7220 (Timestorm 2009/2099 (2009)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 104,
+      "sourceIssueReference": "Timestorm 2009/2099 (2009) #2",
+      "sourceRangeReference": "Collects: Timestorm 2009/2099 #1-4, Spider-Man One-Shot, And X-Men One-Shot",
+      "normalizedSeriesTitle": "Timestorm 2009/2099",
+      "seriesYear": 2009,
+      "issueNumber": "2",
+      "seriesId": 7220,
+      "candidateIssueId": 24242,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 7220 (Timestorm 2009/2099 (2009)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 105,
+      "sourceIssueReference": "Timestorm 2009/2099 (2009) #3",
+      "sourceRangeReference": "Collects: Timestorm 2009/2099 #1-4, Spider-Man One-Shot, And X-Men One-Shot",
+      "normalizedSeriesTitle": "Timestorm 2009/2099",
+      "seriesYear": 2009,
+      "issueNumber": "3",
+      "seriesId": 7220,
+      "candidateIssueId": 26770,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 7220 (Timestorm 2009/2099 (2009)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 106,
+      "sourceIssueReference": "Timestorm 2009/2099 (2009) #4",
+      "sourceRangeReference": "Collects: Timestorm 2009/2099 #1-4, Spider-Man One-Shot, And X-Men One-Shot",
+      "normalizedSeriesTitle": "Timestorm 2009/2099",
+      "seriesYear": 2009,
+      "issueNumber": "4",
+      "seriesId": 7220,
+      "candidateIssueId": 26771,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 7220 (Timestorm 2009/2099 (2009)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 107,
+      "sourceIssueReference": "Timestorm 2009/2099: Spider-Man (2009) #1",
+      "sourceRangeReference": "Collects: Timestorm 2009/2099 #1-4, Spider-Man One-Shot, And X-Men One-Shot",
+      "normalizedSeriesTitle": "Timestorm 2009/2099: Spider-Man",
+      "seriesYear": 2009,
+      "issueNumber": "1",
+      "seriesId": 8466,
+      "candidateIssueId": 26774,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source Spider-Man One-Shot under Timestorm is the separately indexed Timestorm 2009/2099: Spider-Man (2009) #1."
+    },
+    {
+      "sourcePosition": 108,
+      "sourceIssueReference": "Timestorm 2009/2099: X-Men (2009) #1",
+      "sourceRangeReference": "Collects: Timestorm 2009/2099 #1-4, Spider-Man One-Shot, And X-Men One-Shot",
+      "normalizedSeriesTitle": "Timestorm 2009/2099: X-Men",
+      "seriesYear": 2009,
+      "issueNumber": "1",
+      "seriesId": 8467,
+      "candidateIssueId": 26775,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source X-Men One-Shot under Timestorm is the separately indexed Timestorm 2009/2099: X-Men (2009) #1."
+    },
+    {
+      "sourcePosition": 109,
+      "sourceIssueReference": "Superior Spider-Man (2013) #17",
+      "sourceRangeReference": "Collects: Superior Spider-Man #17 To #19",
+      "normalizedSeriesTitle": "Superior Spider-Man",
+      "seriesYear": 2013,
+      "issueNumber": "17",
+      "seriesId": 17554,
+      "candidateIssueId": 47381,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 17554 (Superior Spider-Man (2013 - 2014)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 110,
+      "sourceIssueReference": "Superior Spider-Man (2013) #18",
+      "sourceRangeReference": "Collects: Superior Spider-Man #17 To #19",
+      "normalizedSeriesTitle": "Superior Spider-Man",
+      "seriesYear": 2013,
+      "issueNumber": "18",
+      "seriesId": 17554,
+      "candidateIssueId": 47382,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 17554 (Superior Spider-Man (2013 - 2014)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 111,
+      "sourceIssueReference": "Superior Spider-Man (2013) #19",
+      "sourceRangeReference": "Collects: Superior Spider-Man #17 To #19",
+      "normalizedSeriesTitle": "Superior Spider-Man",
+      "seriesYear": 2013,
+      "issueNumber": "19",
+      "seriesId": 17554,
+      "candidateIssueId": 47383,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 17554 (Superior Spider-Man (2013 - 2014)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 112,
+      "sourceIssueReference": "Spider-Man 2099 (2014) #1",
+      "sourceRangeReference": "Collects: Spider-Man 2099 1-5, Amazing Spider-Man 1",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2014,
+      "issueNumber": "1",
+      "seriesId": 18891,
+      "candidateIssueId": 50890,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Out of Time and Spider-Verse use the 2014 Spider-Man 2099 run."
+    },
+    {
+      "sourcePosition": 113,
+      "sourceIssueReference": "Spider-Man 2099 (2014) #2",
+      "sourceRangeReference": "Collects: Spider-Man 2099 1-5, Amazing Spider-Man 1",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2014,
+      "issueNumber": "2",
+      "seriesId": 18891,
+      "candidateIssueId": 50932,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Out of Time and Spider-Verse use the 2014 Spider-Man 2099 run."
+    },
+    {
+      "sourcePosition": 114,
+      "sourceIssueReference": "Spider-Man 2099 (2014) #3",
+      "sourceRangeReference": "Collects: Spider-Man 2099 1-5, Amazing Spider-Man 1",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2014,
+      "issueNumber": "3",
+      "seriesId": 18891,
+      "candidateIssueId": 50953,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Out of Time and Spider-Verse use the 2014 Spider-Man 2099 run."
+    },
+    {
+      "sourcePosition": 115,
+      "sourceIssueReference": "Spider-Man 2099 (2014) #4",
+      "sourceRangeReference": "Collects: Spider-Man 2099 1-5, Amazing Spider-Man 1",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2014,
+      "issueNumber": "4",
+      "seriesId": 18891,
+      "candidateIssueId": 50544,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Out of Time and Spider-Verse use the 2014 Spider-Man 2099 run."
+    },
+    {
+      "sourcePosition": 116,
+      "sourceIssueReference": "Spider-Man 2099 (2014) #5",
+      "sourceRangeReference": "Collects: Spider-Man 2099 1-5, Amazing Spider-Man 1",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2014,
+      "issueNumber": "5",
+      "seriesId": 18891,
+      "candidateIssueId": 50545,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Out of Time and Spider-Verse use the 2014 Spider-Man 2099 run."
+    },
+    {
+      "sourcePosition": 117,
+      "sourceIssueReference": "Amazing Spider-Man (2014) #1",
+      "sourceRangeReference": "Collects: Spider-Man 2099 1-5, Amazing Spider-Man 1",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 2014,
+      "issueNumber": "1",
+      "seriesId": 17285,
+      "candidateIssueId": 45798,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Amazing Spider-Man #1 alongside Out of Time is the 2014 run, not the 2018 Latest Additions run."
+    },
+    {
+      "sourcePosition": 118,
+      "sourceIssueReference": "Spider-Man 2099 (2014) #6",
+      "sourceRangeReference": "Collects: Spider -Man 2099 6-12",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2014,
+      "issueNumber": "6",
+      "seriesId": 18891,
+      "candidateIssueId": 50546,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Out of Time and Spider-Verse use the 2014 Spider-Man 2099 run."
+    },
+    {
+      "sourcePosition": 119,
+      "sourceIssueReference": "Spider-Man 2099 (2014) #7",
+      "sourceRangeReference": "Collects: Spider -Man 2099 6-12",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2014,
+      "issueNumber": "7",
+      "seriesId": 18891,
+      "candidateIssueId": 50547,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Out of Time and Spider-Verse use the 2014 Spider-Man 2099 run."
+    },
+    {
+      "sourcePosition": 120,
+      "sourceIssueReference": "Spider-Man 2099 (2014) #8",
+      "sourceRangeReference": "Collects: Spider -Man 2099 6-12",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2014,
+      "issueNumber": "8",
+      "seriesId": 18891,
+      "candidateIssueId": 50548,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Out of Time and Spider-Verse use the 2014 Spider-Man 2099 run."
+    },
+    {
+      "sourcePosition": 121,
+      "sourceIssueReference": "Spider-Man 2099 (2014) #9",
+      "sourceRangeReference": "Collects: Spider -Man 2099 6-12",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2014,
+      "issueNumber": "9",
+      "seriesId": 18891,
+      "candidateIssueId": 50549,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Out of Time and Spider-Verse use the 2014 Spider-Man 2099 run."
+    },
+    {
+      "sourcePosition": 122,
+      "sourceIssueReference": "Spider-Man 2099 (2014) #10",
+      "sourceRangeReference": "Collects: Spider -Man 2099 6-12",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2014,
+      "issueNumber": "10",
+      "seriesId": 18891,
+      "candidateIssueId": 50550,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Out of Time and Spider-Verse use the 2014 Spider-Man 2099 run."
+    },
+    {
+      "sourcePosition": 123,
+      "sourceIssueReference": "Spider-Man 2099 (2014) #11",
+      "sourceRangeReference": "Collects: Spider -Man 2099 6-12",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2014,
+      "issueNumber": "11",
+      "seriesId": 18891,
+      "candidateIssueId": 50551,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Out of Time and Spider-Verse use the 2014 Spider-Man 2099 run."
+    },
+    {
+      "sourcePosition": 124,
+      "sourceIssueReference": "Spider-Man 2099 (2014) #12",
+      "sourceRangeReference": "Collects: Spider -Man 2099 6-12",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2014,
+      "issueNumber": "12",
+      "seriesId": 18891,
+      "candidateIssueId": 50552,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Out of Time and Spider-Verse use the 2014 Spider-Man 2099 run."
+    },
+    {
+      "sourcePosition": 125,
+      "sourceIssueReference": "Secret Wars 2099 (2015) #1",
+      "sourceRangeReference": "Collects: Secret Wars 2099 #1-5",
+      "normalizedSeriesTitle": "Secret Wars 2099",
+      "seriesYear": 2015,
+      "issueNumber": "1",
+      "seriesId": 19649,
+      "candidateIssueId": 52457,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 19649 (Secret Wars 2099 (2015)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 126,
+      "sourceIssueReference": "Secret Wars 2099 (2015) #2",
+      "sourceRangeReference": "Collects: Secret Wars 2099 #1-5",
+      "normalizedSeriesTitle": "Secret Wars 2099",
+      "seriesYear": 2015,
+      "issueNumber": "2",
+      "seriesId": 19649,
+      "candidateIssueId": 52459,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 19649 (Secret Wars 2099 (2015)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 127,
+      "sourceIssueReference": "Secret Wars 2099 (2015) #3",
+      "sourceRangeReference": "Collects: Secret Wars 2099 #1-5",
+      "normalizedSeriesTitle": "Secret Wars 2099",
+      "seriesYear": 2015,
+      "issueNumber": "3",
+      "seriesId": 19649,
+      "candidateIssueId": 52460,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 19649 (Secret Wars 2099 (2015)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 128,
+      "sourceIssueReference": "Secret Wars 2099 (2015) #4",
+      "sourceRangeReference": "Collects: Secret Wars 2099 #1-5",
+      "normalizedSeriesTitle": "Secret Wars 2099",
+      "seriesYear": 2015,
+      "issueNumber": "4",
+      "seriesId": 19649,
+      "candidateIssueId": 52461,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 19649 (Secret Wars 2099 (2015)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 129,
+      "sourceIssueReference": "Secret Wars 2099 (2015) #5",
+      "sourceRangeReference": "Collects: Secret Wars 2099 #1-5",
+      "normalizedSeriesTitle": "Secret Wars 2099",
+      "seriesYear": 2015,
+      "issueNumber": "5",
+      "seriesId": 19649,
+      "candidateIssueId": 52462,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 19649 (Secret Wars 2099 (2015)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 130,
+      "sourceIssueReference": "Spider-Man 2099 (2015) #1",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #1 To #5",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2015,
+      "issueNumber": "1",
+      "seriesId": 20511,
+      "candidateIssueId": 55711,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Smack to the Future through Back to Future Shock use the separate 2015 Spider-Man 2099 run."
+    },
+    {
+      "sourcePosition": 131,
+      "sourceIssueReference": "Spider-Man 2099 (2015) #2",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #1 To #5",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2015,
+      "issueNumber": "2",
+      "seriesId": 20511,
+      "candidateIssueId": 55713,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Smack to the Future through Back to Future Shock use the separate 2015 Spider-Man 2099 run."
+    },
+    {
+      "sourcePosition": 132,
+      "sourceIssueReference": "Spider-Man 2099 (2015) #3",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #1 To #5",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2015,
+      "issueNumber": "3",
+      "seriesId": 20511,
+      "candidateIssueId": 55715,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Smack to the Future through Back to Future Shock use the separate 2015 Spider-Man 2099 run."
+    },
+    {
+      "sourcePosition": 133,
+      "sourceIssueReference": "Spider-Man 2099 (2015) #4",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #1 To #5",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2015,
+      "issueNumber": "4",
+      "seriesId": 20511,
+      "candidateIssueId": 55716,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Smack to the Future through Back to Future Shock use the separate 2015 Spider-Man 2099 run."
+    },
+    {
+      "sourcePosition": 134,
+      "sourceIssueReference": "Spider-Man 2099 (2015) #5",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #1 To #5",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2015,
+      "issueNumber": "5",
+      "seriesId": 20511,
+      "candidateIssueId": 55717,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Smack to the Future through Back to Future Shock use the separate 2015 Spider-Man 2099 run."
+    },
+    {
+      "sourcePosition": 135,
+      "sourceIssueReference": "Spider-Man 2099 (2015) #6",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #6-10",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2015,
+      "issueNumber": "6",
+      "seriesId": 20511,
+      "candidateIssueId": 55718,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Smack to the Future through Back to Future Shock use the separate 2015 Spider-Man 2099 run."
+    },
+    {
+      "sourcePosition": 136,
+      "sourceIssueReference": "Spider-Man 2099 (2015) #7",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #6-10",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2015,
+      "issueNumber": "7",
+      "seriesId": 20511,
+      "candidateIssueId": 55719,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Smack to the Future through Back to Future Shock use the separate 2015 Spider-Man 2099 run."
+    },
+    {
+      "sourcePosition": 137,
+      "sourceIssueReference": "Spider-Man 2099 (2015) #8",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #6-10",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2015,
+      "issueNumber": "8",
+      "seriesId": 20511,
+      "candidateIssueId": 55720,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Smack to the Future through Back to Future Shock use the separate 2015 Spider-Man 2099 run."
+    },
+    {
+      "sourcePosition": 138,
+      "sourceIssueReference": "Spider-Man 2099 (2015) #9",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #6-10",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2015,
+      "issueNumber": "9",
+      "seriesId": 20511,
+      "candidateIssueId": 55721,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Smack to the Future through Back to Future Shock use the separate 2015 Spider-Man 2099 run."
+    },
+    {
+      "sourcePosition": 139,
+      "sourceIssueReference": "Spider-Man 2099 (2015) #10",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #6-10",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2015,
+      "issueNumber": "10",
+      "seriesId": 20511,
+      "candidateIssueId": 55722,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Smack to the Future through Back to Future Shock use the separate 2015 Spider-Man 2099 run."
+    },
+    {
+      "sourcePosition": 140,
+      "sourceIssueReference": "Spider-Man 2099 (2015) #11",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #11 To #16",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2015,
+      "issueNumber": "11",
+      "seriesId": 20511,
+      "candidateIssueId": 55723,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Smack to the Future through Back to Future Shock use the separate 2015 Spider-Man 2099 run."
+    },
+    {
+      "sourcePosition": 141,
+      "sourceIssueReference": "Spider-Man 2099 (2015) #12",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #11 To #16",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2015,
+      "issueNumber": "12",
+      "seriesId": 20511,
+      "candidateIssueId": 55724,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Smack to the Future through Back to Future Shock use the separate 2015 Spider-Man 2099 run."
+    },
+    {
+      "sourcePosition": 142,
+      "sourceIssueReference": "Spider-Man 2099 (2015) #13",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #11 To #16",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2015,
+      "issueNumber": "13",
+      "seriesId": 20511,
+      "candidateIssueId": 55725,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Smack to the Future through Back to Future Shock use the separate 2015 Spider-Man 2099 run."
+    },
+    {
+      "sourcePosition": 143,
+      "sourceIssueReference": "Spider-Man 2099 (2015) #14",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #11 To #16",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2015,
+      "issueNumber": "14",
+      "seriesId": 20511,
+      "candidateIssueId": 55726,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Smack to the Future through Back to Future Shock use the separate 2015 Spider-Man 2099 run."
+    },
+    {
+      "sourcePosition": 144,
+      "sourceIssueReference": "Spider-Man 2099 (2015) #15",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #11 To #16",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2015,
+      "issueNumber": "15",
+      "seriesId": 20511,
+      "candidateIssueId": 55727,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Smack to the Future through Back to Future Shock use the separate 2015 Spider-Man 2099 run."
+    },
+    {
+      "sourcePosition": 145,
+      "sourceIssueReference": "Spider-Man 2099 (2015) #16",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #11 To #16",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2015,
+      "issueNumber": "16",
+      "seriesId": 20511,
+      "candidateIssueId": 55728,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Smack to the Future through Back to Future Shock use the separate 2015 Spider-Man 2099 run."
+    },
+    {
+      "sourcePosition": 146,
+      "sourceIssueReference": "Spider-Man 2099 (2015) #17",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #17-21",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2015,
+      "issueNumber": "17",
+      "seriesId": 20511,
+      "candidateIssueId": 60245,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Smack to the Future through Back to Future Shock use the separate 2015 Spider-Man 2099 run."
+    },
+    {
+      "sourcePosition": 147,
+      "sourceIssueReference": "Spider-Man 2099 (2015) #18",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #17-21",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2015,
+      "issueNumber": "18",
+      "seriesId": 20511,
+      "candidateIssueId": 60246,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Smack to the Future through Back to Future Shock use the separate 2015 Spider-Man 2099 run."
+    },
+    {
+      "sourcePosition": 148,
+      "sourceIssueReference": "Spider-Man 2099 (2015) #19",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #17-21",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2015,
+      "issueNumber": "19",
+      "seriesId": 20511,
+      "candidateIssueId": 60247,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Smack to the Future through Back to Future Shock use the separate 2015 Spider-Man 2099 run."
+    },
+    {
+      "sourcePosition": 149,
+      "sourceIssueReference": "Spider-Man 2099 (2015) #20",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #17-21",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2015,
+      "issueNumber": "20",
+      "seriesId": 20511,
+      "candidateIssueId": 60248,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Smack to the Future through Back to Future Shock use the separate 2015 Spider-Man 2099 run."
+    },
+    {
+      "sourcePosition": 150,
+      "sourceIssueReference": "Spider-Man 2099 (2015) #21",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #17-21",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2015,
+      "issueNumber": "21",
+      "seriesId": 20511,
+      "candidateIssueId": 60779,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Smack to the Future through Back to Future Shock use the separate 2015 Spider-Man 2099 run."
+    },
+    {
+      "sourcePosition": 151,
+      "sourceIssueReference": "Spider-Man 2099 (2015) #22",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #22-25, Spider-Man 2099 Meets Spider-Man (1995)",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2015,
+      "issueNumber": "22",
+      "seriesId": 20511,
+      "candidateIssueId": 60780,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Smack to the Future through Back to Future Shock use the separate 2015 Spider-Man 2099 run."
+    },
+    {
+      "sourcePosition": 152,
+      "sourceIssueReference": "Spider-Man 2099 (2015) #23",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #22-25, Spider-Man 2099 Meets Spider-Man (1995)",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2015,
+      "issueNumber": "23",
+      "seriesId": 20511,
+      "candidateIssueId": 60781,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Smack to the Future through Back to Future Shock use the separate 2015 Spider-Man 2099 run."
+    },
+    {
+      "sourcePosition": 153,
+      "sourceIssueReference": "Spider-Man 2099 (2015) #24",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #22-25, Spider-Man 2099 Meets Spider-Man (1995)",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2015,
+      "issueNumber": "24",
+      "seriesId": 20511,
+      "candidateIssueId": 60782,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Smack to the Future through Back to Future Shock use the separate 2015 Spider-Man 2099 run."
+    },
+    {
+      "sourcePosition": 154,
+      "sourceIssueReference": "Spider-Man 2099 (2015) #25",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #22-25, Spider-Man 2099 Meets Spider-Man (1995)",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2015,
+      "issueNumber": "25",
+      "seriesId": 20511,
+      "candidateIssueId": 60783,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Smack to the Future through Back to Future Shock use the separate 2015 Spider-Man 2099 run."
+    },
+    {
+      "sourcePosition": 156,
+      "sourceIssueReference": "Amazing Spider-Man (2018) #32",
+      "sourceRangeReference": "Collects: Amazing Spider-Man (2018) #32 to #36",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "32",
+      "seriesId": 24396,
+      "candidateIssueId": 77100,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source reference uses verified series 24396 (The Amazing Spider-Man (2018 - 2022)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 157,
+      "sourceIssueReference": "Amazing Spider-Man (2018) #33",
+      "sourceRangeReference": "Collects: Amazing Spider-Man (2018) #32 to #36",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "33",
+      "seriesId": 24396,
+      "candidateIssueId": 77101,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source reference uses verified series 24396 (The Amazing Spider-Man (2018 - 2022)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 158,
+      "sourceIssueReference": "Amazing Spider-Man (2018) #34",
+      "sourceRangeReference": "Collects: Amazing Spider-Man (2018) #32 to #36",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "34",
+      "seriesId": 24396,
+      "candidateIssueId": 77102,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source reference uses verified series 24396 (The Amazing Spider-Man (2018 - 2022)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 159,
+      "sourceIssueReference": "Amazing Spider-Man (2018) #35",
+      "sourceRangeReference": "Collects: Amazing Spider-Man (2018) #32 to #36",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "35",
+      "seriesId": 24396,
+      "candidateIssueId": 77103,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source reference uses verified series 24396 (The Amazing Spider-Man (2018 - 2022)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 160,
+      "sourceIssueReference": "Amazing Spider-Man (2018) #36",
+      "sourceRangeReference": "Collects: Amazing Spider-Man (2018) #32 to #36",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "36",
+      "seriesId": 24396,
+      "candidateIssueId": 77104,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source reference uses verified series 24396 (The Amazing Spider-Man (2018 - 2022)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 161,
+      "sourceIssueReference": "Spider-Man 2099: Exodus Alpha (2022) #1",
+      "sourceRangeReference": "Collects: Spider-Man 2099: Exodus Alpha, Spider-Man 2099: Exodus #1 to #5, Spider-Man 2099: Exodus Omega",
+      "normalizedSeriesTitle": "Spider-Man 2099: Exodus Alpha",
+      "seriesYear": 2022,
+      "issueNumber": "1",
+      "seriesId": 33910,
+      "candidateIssueId": 98308,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exodus Alpha is a named original one-shot with its own verified series, not issue 1 of Exodus."
+    },
+    {
+      "sourcePosition": 162,
+      "sourceIssueReference": "Spider-Man 2099: Exodus (2022) #1",
+      "sourceRangeReference": "Collects: Spider-Man 2099: Exodus Alpha, Spider-Man 2099: Exodus #1 to #5, Spider-Man 2099: Exodus Omega",
+      "normalizedSeriesTitle": "Spider-Man 2099: Exodus",
+      "seriesYear": 2022,
+      "issueNumber": "1",
+      "seriesId": 33908,
+      "candidateIssueId": 98302,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 33908 (Spider-Man 2099: Exodus (2022)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 163,
+      "sourceIssueReference": "Spider-Man 2099: Exodus (2022) #2",
+      "sourceRangeReference": "Collects: Spider-Man 2099: Exodus Alpha, Spider-Man 2099: Exodus #1 to #5, Spider-Man 2099: Exodus Omega",
+      "normalizedSeriesTitle": "Spider-Man 2099: Exodus",
+      "seriesYear": 2022,
+      "issueNumber": "2",
+      "seriesId": 33908,
+      "candidateIssueId": 98303,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 33908 (Spider-Man 2099: Exodus (2022)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 164,
+      "sourceIssueReference": "Spider-Man 2099: Exodus (2022) #3",
+      "sourceRangeReference": "Collects: Spider-Man 2099: Exodus Alpha, Spider-Man 2099: Exodus #1 to #5, Spider-Man 2099: Exodus Omega",
+      "normalizedSeriesTitle": "Spider-Man 2099: Exodus",
+      "seriesYear": 2022,
+      "issueNumber": "3",
+      "seriesId": 33908,
+      "candidateIssueId": 98304,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 33908 (Spider-Man 2099: Exodus (2022)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 165,
+      "sourceIssueReference": "Spider-Man 2099: Exodus (2022) #4",
+      "sourceRangeReference": "Collects: Spider-Man 2099: Exodus Alpha, Spider-Man 2099: Exodus #1 to #5, Spider-Man 2099: Exodus Omega",
+      "normalizedSeriesTitle": "Spider-Man 2099: Exodus",
+      "seriesYear": 2022,
+      "issueNumber": "4",
+      "seriesId": 33908,
+      "candidateIssueId": 98305,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 33908 (Spider-Man 2099: Exodus (2022)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 166,
+      "sourceIssueReference": "Spider-Man 2099: Exodus (2022) #5",
+      "sourceRangeReference": "Collects: Spider-Man 2099: Exodus Alpha, Spider-Man 2099: Exodus #1 to #5, Spider-Man 2099: Exodus Omega",
+      "normalizedSeriesTitle": "Spider-Man 2099: Exodus",
+      "seriesYear": 2022,
+      "issueNumber": "5",
+      "seriesId": 33908,
+      "candidateIssueId": 98306,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 33908 (Spider-Man 2099: Exodus (2022)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 167,
+      "sourceIssueReference": "Spider-Man 2099: Exodus Omega (2022) #1",
+      "sourceRangeReference": "Collects: Spider-Man 2099: Exodus Alpha, Spider-Man 2099: Exodus #1 to #5, Spider-Man 2099: Exodus Omega",
+      "normalizedSeriesTitle": "Spider-Man 2099: Exodus Omega",
+      "seriesYear": 2022,
+      "issueNumber": "1",
+      "seriesId": 33911,
+      "candidateIssueId": 98309,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exodus Omega is a named original one-shot with its own verified series, not issue 5 of Exodus."
+    },
+    {
+      "sourcePosition": 168,
+      "sourceIssueReference": "Spider-Man 2099: Dark Genesis (2023) #1",
+      "sourceRangeReference": "Collects: Spider-Man 2099: Dark Genesis (2023) #1 to #5",
+      "normalizedSeriesTitle": "Spider-Man 2099: Dark Genesis",
+      "seriesYear": 2023,
+      "issueNumber": "1",
+      "seriesId": 37062,
+      "candidateIssueId": 107472,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 37062 (Spider-Man 2099: Dark Genesis (2023)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 169,
+      "sourceIssueReference": "Spider-Man 2099: Dark Genesis (2023) #2",
+      "sourceRangeReference": "Collects: Spider-Man 2099: Dark Genesis (2023) #1 to #5",
+      "normalizedSeriesTitle": "Spider-Man 2099: Dark Genesis",
+      "seriesYear": 2023,
+      "issueNumber": "2",
+      "seriesId": 37062,
+      "candidateIssueId": 107474,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 37062 (Spider-Man 2099: Dark Genesis (2023)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 170,
+      "sourceIssueReference": "Spider-Man 2099: Dark Genesis (2023) #3",
+      "sourceRangeReference": "Collects: Spider-Man 2099: Dark Genesis (2023) #1 to #5",
+      "normalizedSeriesTitle": "Spider-Man 2099: Dark Genesis",
+      "seriesYear": 2023,
+      "issueNumber": "3",
+      "seriesId": 37062,
+      "candidateIssueId": 107475,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 37062 (Spider-Man 2099: Dark Genesis (2023)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 171,
+      "sourceIssueReference": "Spider-Man 2099: Dark Genesis (2023) #4",
+      "sourceRangeReference": "Collects: Spider-Man 2099: Dark Genesis (2023) #1 to #5",
+      "normalizedSeriesTitle": "Spider-Man 2099: Dark Genesis",
+      "seriesYear": 2023,
+      "issueNumber": "4",
+      "seriesId": 37062,
+      "candidateIssueId": 107476,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 37062 (Spider-Man 2099: Dark Genesis (2023)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 172,
+      "sourceIssueReference": "Spider-Man 2099: Dark Genesis (2023) #5",
+      "sourceRangeReference": "Collects: Spider-Man 2099: Dark Genesis (2023) #1 to #5",
+      "normalizedSeriesTitle": "Spider-Man 2099: Dark Genesis",
+      "seriesYear": 2023,
+      "issueNumber": "5",
+      "seriesId": 37062,
+      "candidateIssueId": 107477,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 37062 (Spider-Man 2099: Dark Genesis (2023)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 173,
+      "sourceIssueReference": "Miguel O'Hara - Spider-Man: 2099 (2024) #1",
+      "sourceRangeReference": "Collects: Miguel O'Hara - Spider-Man: 2099 (2024) #1 to #5",
+      "normalizedSeriesTitle": "Miguel O'Hara - Spider-Man: 2099",
+      "seriesYear": 2024,
+      "issueNumber": "1",
+      "seriesId": 38959,
+      "candidateIssueId": 113510,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 38959 (Miguel O'hara - Spider-Man: 2099 (2024)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 174,
+      "sourceIssueReference": "Miguel O'Hara - Spider-Man: 2099 (2024) #2",
+      "sourceRangeReference": "Collects: Miguel O'Hara - Spider-Man: 2099 (2024) #1 to #5",
+      "normalizedSeriesTitle": "Miguel O'Hara - Spider-Man: 2099",
+      "seriesYear": 2024,
+      "issueNumber": "2",
+      "seriesId": 38959,
+      "candidateIssueId": 113511,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 38959 (Miguel O'hara - Spider-Man: 2099 (2024)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 175,
+      "sourceIssueReference": "Miguel O'Hara - Spider-Man: 2099 (2024) #3",
+      "sourceRangeReference": "Collects: Miguel O'Hara - Spider-Man: 2099 (2024) #1 to #5",
+      "normalizedSeriesTitle": "Miguel O'Hara - Spider-Man: 2099",
+      "seriesYear": 2024,
+      "issueNumber": "3",
+      "seriesId": 38959,
+      "candidateIssueId": 113512,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 38959 (Miguel O'hara - Spider-Man: 2099 (2024)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 176,
+      "sourceIssueReference": "Miguel O'Hara - Spider-Man: 2099 (2024) #4",
+      "sourceRangeReference": "Collects: Miguel O'Hara - Spider-Man: 2099 (2024) #1 to #5",
+      "normalizedSeriesTitle": "Miguel O'Hara - Spider-Man: 2099",
+      "seriesYear": 2024,
+      "issueNumber": "4",
+      "seriesId": 38959,
+      "candidateIssueId": 113513,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 38959 (Miguel O'hara - Spider-Man: 2099 (2024)); preserve its issue identity and source position."
+    },
+    {
+      "sourcePosition": 177,
+      "sourceIssueReference": "Miguel O'Hara - Spider-Man: 2099 (2024) #5",
+      "sourceRangeReference": "Collects: Miguel O'Hara - Spider-Man: 2099 (2024) #1 to #5",
+      "normalizedSeriesTitle": "Miguel O'Hara - Spider-Man: 2099",
+      "seriesYear": 2024,
+      "issueNumber": "5",
+      "seriesId": 38959,
+      "candidateIssueId": 113514,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source reference uses verified series 38959 (Miguel O'hara - Spider-Man: 2099 (2024)); preserve its issue identity and source position."
+    }
+  ],
+  "packetDigest": "95850383e21eec6c3d319f1232b093c89a899835b045a2a718e3655f7e2f2127"
+}

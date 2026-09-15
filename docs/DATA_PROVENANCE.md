@@ -877,10 +877,10 @@ the book id out of an address the reader pastes.
 
 The generated catalog currently publishes three independent Reading Paths with 100 stops: two
 authored paths with 10 and 12 stops from the curated manifest at
-`src/data/curated-lists.json:5716-5754`, plus the 78-stop Marvel Knights to Planet X path generated
+`src/data/curated-lists.json:5751-5789`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all three at
-`src/data/catalog.json:9527-9652`.
+`src/data/catalog.json:9569-9694`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -919,3 +919,45 @@ and the missing records are not a claim about Marvel Unlimited availability.
 Metadata for 413 resolved comics is reused from pinned payloads with file hashes and explicit
 field-name adaptation recorded in the ledger. The remaining 138 issue records were fetched from
 the configured metadata provider. Reuse does not claim that older availability hints were refreshed.
+
+## Spider-Man 2099 source boundary
+
+The [Spider-Man 2099 Reading Order - Comic Book Herald](https://www.comicbookherald.com/spider-man-2099-reading-order/)
+page was retrieved on 2026-09-15. Its 23 collection blocks and explicit Fall of the Hammer sequence
+define 177 issue occurrences across 170 distinct original identities. Seven later references
+point backward to the first occurrence rather than duplicating Reading List entries. All four
+issue-bearing Latest Additions blocks are included, ending with Miguel O'Hara - Spider-Man:
+2099 (2024) #5. Linked guides are not expanded.
+
+The factual ledger, frozen packet, exact mapping and full-library relationship report live under
+`scripts/data/cbh-source-ledgers`, `scripts/data/cbh-packets`, `scripts/data/cbh-mappings` and
+`scripts/data/cbh-overlaps`, each named `spider-man-2099-reading-order.json`.
+[Issue #497](https://github.com/raymond-nassar/recap-page/issues/497) records owner direction and
+the supplied series hints. The new character guide is distinct from the broader Marvel 2099
+event order, whose source scope and historical omissions remain unchanged.
+
+The annual in the second original collection is Spider-Man 2099 Annual (1994) #1, not a
+1993 annual. Fall of the Hammer and Spider-Man 2099 vs. Venom 2099 remain source arc labels,
+not invented series: their actual original issues, the Special, and the Meets Spider-Man
+one-shot retain separate identities. The latter uses verified issue 65143 in current provider
+series 44665 rather than the supplied series 23705. The original 1992, 2014 and 2015
+Spider-Man 2099 runs remain distinct. Timestorm's two named one-shots and Exodus Alpha/Omega
+are separate original comics, not replacements with neighboring numbered issues.
+
+Source positions 59-66 preserve 2099: World of Tomorrow (1996) #1-8. The owner's inability
+to find a dedicated Marvel series page is recorded as research, never as proof of Marvel
+Unlimited unavailability. Original gaps cannot be filled with collections or unrelated titles.
+Only factual issue references are retained; no source narrative or comic artwork is copied.
+
+The published list contains 155 exact comics and 15 visible metadata-gap placeholders.
+The seven source-defined 2099 Unlimited issues and eight World of Tomorrow issues are tracked
+in [Issue #501](https://github.com/raymond-nassar/recap-page/issues/501), with exact source positions
+and failed lookups. The supplied 2099 Unlimited series endpoint returned 404; successful
+broad-title searches returned no items for either title. Neither outcome establishes availability.
+The full source-library review covers 175 other orders: three partial relationships and 172
+with no shared issue identities.
+
+Metadata for 57 comics is reused from pinned payloads with file hashes and explicit field
+adaptation. The remaining 98 issue records were fetched through the configured rate-limited
+provider. The ledger distinguishes reuse from fresh HTTP responses; optional missing fields
+remain null or empty, synopsis text is not shipped, and covers remain URLs only.
