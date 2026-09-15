@@ -61,6 +61,7 @@ const EXPECTED_HREFS = [
   '#feedback',
   '#getting-started',
   `${REPOSITORY}#readme`,
+  'https://www.comicbookherald.com/where-do-i-start-with-avengers-trade-collections/',
   'https://apps.microsoft.com/detail/9PDJ7XR9Q40Q',
   `${REPOSITORY}/releases/latest/download/marvel-reading-tracker-windows.zip`,
   `${REPOSITORY}/blob/main/docs/RUNNING.md`,
