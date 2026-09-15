@@ -197,6 +197,7 @@ async function buildReportForMapping(mappingPath, peerPaths = [], options = {}) 
     excludedOrderIds: [
       ...(options.excludedOrderIds ?? CBH_LATER_ORDER_IDS),
       'mephisto-reading-order',
+      'spider-gwen-reading-order',
       ironManCandidateId,
       modernXMenCandidateId,
       guardiansCandidateId,
@@ -617,7 +618,7 @@ function exclusionsForReviewedReport(manifest, report, candidateId, peerIds = []
 }
 
 async function libraryDigestForScope(manifest, excludedIds) {
-  const excluded = new Set([...excludedIds, guardiansCandidateId, 'adam-warlock-reading-order', 'mephisto-reading-order']);
+  const excluded = new Set([...excludedIds, guardiansCandidateId, 'adam-warlock-reading-order', 'mephisto-reading-order', 'spider-gwen-reading-order']);
   const lists = manifest.lists.filter((entry) => !excluded.has(entry.id));
   const paths = (manifest.paths ?? []).filter((entry) => (
     !excluded.has(entry.id)
@@ -706,7 +707,7 @@ test('Abomination preserves the unresolved Hulk annual and selects the exact 198
   }
 });
 
-test('the character inventory preserves every central disposition, ships thirty-seven spotlights, and records five approved reuses', async () => {
+test('the character inventory preserves every central disposition, ships thirty-eight spotlights, and records five approved reuses', async () => {
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
   assert.doesNotThrow(() => validateInventoryState(inventory));
   assert.equal(inventory.length, 129);
@@ -717,10 +718,10 @@ test('the character inventory preserves every central disposition, ships thirty-
     counts[record.centralDisposition] = (counts[record.centralDisposition] ?? 0) + 1;
     return counts;
   }, {});
-  assert.equal(dispositionCounts.deferred, 79);
+  assert.equal(dispositionCounts.deferred, 78);
   assert.equal(dispositionCounts.excluded, 7);
   assert.equal(dispositionCounts.blocked, 1);
-  assert.equal(dispositionCounts['pilot-approved'], 37);
+  assert.equal(dispositionCounts['pilot-approved'], 38);
   assert.equal(dispositionCounts['reuse-existing'], 5);
 
   const shipped = inventory.filter((record) => record.deliveryStatus === 'shipped');
@@ -755,6 +756,7 @@ test('the character inventory preserves every central disposition, ships thirty-
     'rocket-raccoon-reading-order',
     'runaways-reading-order',
     'silver-surfer-reading-order',
+    'spider-gwen-reading-order',
     starLordInventoryId,
     'the-complete-thanos-reading-order-guide',
     venomCandidateId,
@@ -898,10 +900,12 @@ test('Adam Warlock publishes the settled source with one exact resolution and th
   const currentReport = await buildCurrentReportForMapping(
     path.join(root, 'scripts', 'data', 'cbh-mappings', `${id}.json`),
     [],
-    { excludedOrderIds: ['mephisto-reading-order'] },
+    { excludedOrderIds: ['mephisto-reading-order', 'spider-gwen-reading-order'] },
   );
   const expectedOrderIds = manifest.lists
-    .filter((entry) => entry.id !== id && entry.id !== 'mephisto-reading-order')
+    .filter((entry) => entry.id !== id
+      && entry.id !== 'mephisto-reading-order'
+      && entry.id !== 'spider-gwen-reading-order')
     .map((entry) => entry.id);
 
   assert.doesNotThrow(() => validateFrozenPacket(packet));
@@ -1311,7 +1315,7 @@ test('Black Widow settles issue 311 with exact identities and availability exclu
   const currentReport = await buildCurrentReportForMapping(
     path.join(root, 'scripts', 'data', 'cbh-mappings', `${id}.json`),
     [],
-    { excludedOrderIds: ['mephisto-reading-order'] },
+    { excludedOrderIds: ['mephisto-reading-order', 'spider-gwen-reading-order'] },
   );
   const expectedExact = new Map([
     [7, 6908],
@@ -1929,7 +1933,7 @@ test('the Punisher guide preserves its full source ledger through publication', 
   assert.equal(mapping.approvedSourceCount, 857);
   assert.equal(report.candidateCount, 544);
   assert.equal(report.comparisonCount, 158);
-  assert.equal(report.comparisonCount, manifest.lists.length - 17);
+  assert.equal(report.comparisonCount, manifest.lists.length - 18);
   assert.deepEqual(regeneratedReport, report);
   assert.doesNotThrow(() => assertApprovedRelationshipReview({
     packet,
@@ -2501,6 +2505,7 @@ test('Silver Surfer settles all four issue #304 gaps without losing source posit
      && id !== 'marvel-2099'
      && id !== runawaysCandidateId
      && id !== 'mephisto-reading-order'
+     && id !== 'spider-gwen-reading-order'
      && id !== 'adam-warlock-reading-order')
     .sort();
   const reviewedLibraryDigest = await libraryDigestForScope(
@@ -4132,7 +4137,9 @@ test('the frozen Star-Lord evidence stays complete, fresh, distinct, and exact',
     mapping.rows.map((row) => String(row.selectedIssueId)),
   );
   const starLordIndex = manifest.lists.findIndex((entry) => entry.id === starLordCandidateId);
-  assert.equal(manifest.lists[starLordIndex - 1].id, grootCandidateId);
+  const previousEntries = manifest.lists.slice(0, starLordIndex)
+    .filter((entry) => entry.id !== 'spider-gwen-reading-order');
+  assert.equal(previousEntries.at(-1).id, grootCandidateId);
   assert.equal(manifest.lists[starLordIndex + 1].id, ironManCandidateId);
   assert.equal(manifest.lists[starLordIndex + 2].id, modernXMenCandidateId);
   assert.equal(manifest.lists[starLordIndex + 3].id, 'thanos-reading-order');
@@ -4460,10 +4467,10 @@ test('the first character batch stays exact through evidence, catalog, and gener
 
   const allBatchIds = evidence.flatMap((item) => item.mapping.rows.map((row) => String(row.selectedIssueId)));
   assert.equal(new Set(allBatchIds).size, 81);
-  assert.equal(catalog.lists.length, 252);
+  assert.equal(catalog.lists.length, 253);
   const characterRuns = catalog.lists.filter((entry) => entry.type === 'character-run');
-  assert.equal(characterRuns.length, 47);
-  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 46);
+  assert.equal(characterRuns.length, 48);
+  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 47);
 });
 
 test('Venom preserves every source occurrence through its published guide', async () => {
@@ -4807,7 +4814,7 @@ test('X-Force publishes the exact settled source and bounded complete-library re
   assert.equal(mapping.candidateMetadata.length, 285);
   assert.deepEqual(mapping.sourceGapResolutions, packet.sourceGapResolutions);
   assert.equal(report.candidateCount, 285);
-  assert.equal(report.comparisonCount, manifest.lists.length - 10);
+  assert.equal(report.comparisonCount, manifest.lists.length - 11);
   assert.deepEqual(
     report.comparisons
       .filter((comparison) => comparison.relationship !== 'none')

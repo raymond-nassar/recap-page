@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-15T01:29:23.554Z",
+  "generatedAt": "2026-09-15T04:55:40.783Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -2843,6 +2843,51 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-23T22:42:20.583Z"
+    },
+    {
+      "id": "spider-gwen-reading-order",
+      "file": "spider_gwen_reading_order.json",
+      "name": "Spider-Gwen / Ghost-Spider",
+      "description": "Follow Gwen Stacy from Edge of Spider-Verse through Spider-Gwen, Ghost-Spider, Gwenverse and Shadow Clones in Comic Book Herald guide order. Includes the source-defined crossover comics; the unnumbered Gwenom vs Carnage collection is not expanded.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 127,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 21,
+      "characters": [
+        "Spider-Gwen",
+        "Ghost-Spider",
+        "Gwen Stacy",
+        "Silk",
+        "Spider-Woman",
+        "Miles Morales"
+      ],
+      "keywords": [
+        "Spider-Gwen",
+        "Ghost-Spider",
+        "Ghost Spider",
+        "Gwen Stacy",
+        "Spider-Women",
+        "Gwenverse",
+        "Shadow Clones",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 50955,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/54109754c5bd4",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/spider-gwen-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-09-15T04:55:40.783Z"
     },
     {
       "id": "star-lord-reading-order",

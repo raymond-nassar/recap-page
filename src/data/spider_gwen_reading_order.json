@@ -1,0 +1,4100 @@
+{
+  "id": "spider-gwen-reading-order",
+  "name": "Spider-Gwen / Ghost-Spider",
+  "description": "Follow Gwen Stacy from Edge of Spider-Verse through Spider-Gwen, Ghost-Spider, Gwenverse and Shadow Clones in Comic Book Herald guide order. Includes the source-defined crossover comics; the unnumbered Gwenom vs Carnage collection is not expanded.",
+  "source": "https://www.comicbookherald.com/spider-gwen-reading-order/",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-09-15T04:55:40.783Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 127,
+  "collections": 21,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 50954,
+      "title": "Edge of Spider-Verse (2014) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/50954/edge_of_spider-verse_2014_1",
+      "seriesId": 19075,
+      "seriesName": "Edge of Spider-Verse (2014)",
+      "onSale": "2014-09-10T00:00:00+0000",
+      "mu": "2015-03-09T00:00:00+0000",
+      "digitalId": 34833,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/f0/54077c53eb597",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Richard Isanove",
+          "role": "penciler"
+        },
+        {
+          "name": "David Hine",
+          "role": "writer"
+        },
+        {
+          "name": "Fabrice Sapolsky",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Edge Of Spider -Verse 1-5"
+    },
+    {
+      "issueId": 50955,
+      "title": "Edge of Spider-Verse (2014) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/50955/edge_of_spider-verse_2014_2",
+      "seriesId": 19075,
+      "seriesName": "Edge of Spider-Verse (2014)",
+      "onSale": "2014-09-17T00:00:00+0000",
+      "mu": "2015-03-16T00:00:00+0000",
+      "digitalId": 34834,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/54109754c5bd4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jason Latour",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Edge Of Spider -Verse 1-5"
+    },
+    {
+      "issueId": 50956,
+      "title": "Edge of Spider-Verse (2014) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/50956/edge_of_spider-verse_2014_3",
+      "seriesId": 19075,
+      "seriesName": "Edge of Spider-Verse (2014)",
+      "onSale": "2014-09-24T00:00:00+0000",
+      "mu": "2015-03-30T00:00:00+0000",
+      "digitalId": 34835,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/d0/541730e2e3216",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dustin Weaver",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Edge Of Spider -Verse 1-5"
+    },
+    {
+      "issueId": 50962,
+      "title": "Edge of Spider-Verse (2014) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/50962/edge_of_spider-verse_2014_4",
+      "seriesId": 19075,
+      "seriesName": "Edge of Spider-Verse (2014)",
+      "onSale": "2014-10-01T00:00:00+0000",
+      "mu": "2015-04-06T00:00:00+0000",
+      "digitalId": 34919,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/70/5421de2443130",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Garry Brown",
+          "role": "penciler"
+        },
+        {
+          "name": "Clay Mcleod Chapman",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Edge Of Spider -Verse 1-5"
+    },
+    {
+      "issueId": 50963,
+      "title": "Edge of Spider-Verse (2014) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/50963/edge_of_spider-verse_2014_5",
+      "seriesId": 19075,
+      "seriesName": "Edge of Spider-Verse (2014)",
+      "onSale": "2014-10-15T00:00:00+0000",
+      "mu": "2015-04-13T00:00:00+0000",
+      "digitalId": 34920,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/03/54341fb346055",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jake Wyatt",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerard Way",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Edge Of Spider -Verse 1-5"
+    },
+    {
+      "issueId": 45806,
+      "title": "The Amazing Spider-Man (2014) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/45806/the_amazing_spider-man_2014_7",
+      "seriesId": 17285,
+      "seriesName": "The Amazing Spider-Man (2014 - 2015)",
+      "onSale": "2014-10-08T00:00:00+0000",
+      "mu": "2015-04-06T00:00:00+0000",
+      "digitalId": 34914,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/54298bbf3eb62",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Giuseppe Camuncoli",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1"
+    },
+    {
+      "issueId": 45807,
+      "title": "The Amazing Spider-Man (2014) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/45807/the_amazing_spider-man_2014_8",
+      "seriesId": 17285,
+      "seriesName": "The Amazing Spider-Man (2014 - 2015)",
+      "onSale": "2014-10-22T00:00:00+0000",
+      "mu": "2015-04-20T00:00:00+0000",
+      "digitalId": 34917,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/543832fa96b3b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Giuseppe Camuncoli",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1"
+    },
+    {
+      "issueId": 45808,
+      "title": "The Amazing Spider-Man (2014) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/45808/the_amazing_spider-man_2014_9",
+      "seriesId": 17285,
+      "seriesName": "The Amazing Spider-Man (2014 - 2015)",
+      "onSale": "2014-11-05T00:00:00+0000",
+      "mu": "2015-05-04T00:00:00+0000",
+      "digitalId": 35347,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/10/544018036c563",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Olivier Coipel",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1"
+    },
+    {
+      "issueId": 45809,
+      "title": "The Amazing Spider-Man (2014) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/45809/the_amazing_spider-man_2014_10",
+      "seriesId": 17285,
+      "seriesName": "The Amazing Spider-Man (2014 - 2015)",
+      "onSale": "2014-11-19T00:00:00+0000",
+      "mu": "2015-05-11T00:00:00+0000",
+      "digitalId": 35346,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/546220a7a879a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Olivier Coipel",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1"
+    },
+    {
+      "issueId": 45810,
+      "title": "The Amazing Spider-Man (2014) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/45810/the_amazing_spider-man_2014_11",
+      "seriesId": 17285,
+      "seriesName": "The Amazing Spider-Man (2014 - 2015)",
+      "onSale": "2014-12-10T00:00:00+0000",
+      "mu": "2015-06-01T00:00:00+0000",
+      "digitalId": 35762,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/5481e4efac784",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Olivier Coipel",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1"
+    },
+    {
+      "issueId": 45811,
+      "title": "The Amazing Spider-Man (2014) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/45811/the_amazing_spider-man_2014_12",
+      "seriesId": 17285,
+      "seriesName": "The Amazing Spider-Man (2014 - 2015)",
+      "onSale": "2015-01-07T00:00:00+0000",
+      "mu": "2015-07-06T00:00:00+0000",
+      "digitalId": 35764,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/f0/54a17618be321",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Olivier Coipel",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1"
+    },
+    {
+      "issueId": 50350,
+      "title": "The Amazing Spider-Man (2014) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/50350/the_amazing_spider-man_2014_13",
+      "seriesId": 17285,
+      "seriesName": "The Amazing Spider-Man (2014 - 2015)",
+      "onSale": "2015-01-21T00:00:00+0000",
+      "mu": "2015-07-20T00:00:00+0000",
+      "digitalId": 35765,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/03/54b431983083b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Olivier Coipel",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1"
+    },
+    {
+      "issueId": 51320,
+      "title": "The Amazing Spider-Man (2014) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/51320/the_amazing_spider-man_2014_14",
+      "seriesId": 17285,
+      "seriesName": "The Amazing Spider-Man (2014 - 2015)",
+      "onSale": "2015-02-11T00:00:00+0000",
+      "mu": "2015-08-03T00:00:00+0000",
+      "digitalId": 36588,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/54cbf2d706709",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Giuseppe Camuncoli",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1"
+    },
+    {
+      "issueId": 51324,
+      "title": "The Amazing Spider-Man (2014) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/51324/the_amazing_spider-man_2014_15",
+      "seriesId": 17285,
+      "seriesName": "The Amazing Spider-Man (2014 - 2015)",
+      "onSale": "2015-02-25T00:00:00+0000",
+      "mu": "2015-08-17T00:00:00+0000",
+      "digitalId": 36717,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/54e36dc309b16",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Giuseppe Camuncoli",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1"
+    },
+    {
+      "issueId": 50924,
+      "title": "Superior Spider-Man (2013) #32",
+      "number": "32",
+      "url": "https://www.marvel.com/comics/issue/50924/superior_spider-man_2013_32",
+      "seriesId": 17554,
+      "seriesName": "Superior Spider-Man (2013 - 2014)",
+      "onSale": "2014-08-06T00:00:00+0000",
+      "mu": "2015-02-02T00:00:00+0000",
+      "digitalId": 34601,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/53da9b744d937",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Giuseppe Camuncoli",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1"
+    },
+    {
+      "issueId": 50960,
+      "title": "Superior Spider-Man (2013) #33",
+      "number": "33",
+      "url": "https://www.marvel.com/comics/issue/50960/superior_spider-man_2013_33",
+      "seriesId": 17554,
+      "seriesName": "Superior Spider-Man (2013 - 2014)",
+      "onSale": "2014-09-17T00:00:00+0000",
+      "mu": "2015-03-23T00:00:00+0000",
+      "digitalId": 34846,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/90/541204ca14924",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Giuseppe Camuncoli",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1"
+    },
+    {
+      "issueId": 50554,
+      "title": "Spider-Verse (2014) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/50554/spider-verse_2014_1",
+      "seriesId": 18892,
+      "seriesName": "Spider-Verse (2014 - 2015)",
+      "onSale": "2014-11-12T00:00:00+0000",
+      "mu": "2015-05-11T00:00:00+0000",
+      "digitalId": 35428,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/a0/545d017cdbb04",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Giuseppe Camuncoli",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        },
+        {
+          "name": "Katie Cook",
+          "role": "writer"
+        },
+        {
+          "name": "Robbie Thompson",
+          "role": "writer"
+        },
+        {
+          "name": "Skottie Young",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1"
+    },
+    {
+      "issueId": 53336,
+      "title": "Spider-Verse (2014) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/53336/spider-verse_2014_2",
+      "seriesId": 18892,
+      "seriesName": "Spider-Verse (2014 - 2015)",
+      "onSale": "2015-01-14T00:00:00+0000",
+      "mu": "2015-01-14T00:00:00+0000",
+      "digitalId": 36320,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/90/55b6423472961",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Alvaro Lopez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Francisco Herrera",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kris Anka",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ty Templeton",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Lafuente",
+          "role": "penciler"
+        },
+        {
+          "name": "Giuseppe Camuncoli",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        },
+        {
+          "name": "Enrique Puig",
+          "role": "writer"
+        },
+        {
+          "name": "Jed Mackay",
+          "role": "writer"
+        },
+        {
+          "name": "Kathryn Immonen",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1"
+    },
+    {
+      "issueId": 50555,
+      "title": "Spider-Verse Team-Up (2014) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/50555/spider-verse_team-up_2014_1",
+      "seriesId": 18893,
+      "seriesName": "Spider-Verse Team-Up (2014 - 2015)",
+      "onSale": "2014-11-05T00:00:00+0000",
+      "mu": "2015-05-04T00:00:00+0000",
+      "digitalId": 35378,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/30/5447fa3500c75",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David a. Williams",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1"
+    },
+    {
+      "issueId": 50556,
+      "title": "Spider-Verse Team-Up (2014) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/50556/spider-verse_team-up_2014_2",
+      "seriesId": 18893,
+      "seriesName": "Spider-Verse Team-Up (2014 - 2015)",
+      "onSale": "2014-12-10T00:00:00+0000",
+      "mu": "2015-06-08T00:00:00+0000",
+      "digitalId": 35775,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/548609b2af091",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dave Williams",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        },
+        {
+          "name": "Gerry Conway",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1"
+    },
+    {
+      "issueId": 50557,
+      "title": "Spider-Verse Team-Up (2014) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/50557/spider-verse_team-up_2014_3",
+      "seriesId": 18893,
+      "seriesName": "Spider-Verse Team-Up (2014 - 2015)",
+      "onSale": "2015-01-21T00:00:00+0000",
+      "mu": "2015-07-27T00:00:00+0000",
+      "digitalId": 36364,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/20/54b5861aec4bc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jamal Campbell",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1"
+    },
+    {
+      "issueId": 50537,
+      "title": "Scarlet Spiders (2014) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/50537/scarlet_spiders_2014_1",
+      "seriesId": 18889,
+      "seriesName": "Scarlet Spiders (2014 - 2015)",
+      "onSale": "2014-11-26T00:00:00+0000",
+      "mu": "2015-05-25T00:00:00+0000",
+      "digitalId": 35390,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/90/546d053fade9d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Nakayama",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Costa",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1"
+    },
+    {
+      "issueId": 50538,
+      "title": "Scarlet Spiders (2014) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/50538/scarlet_spiders_2014_2",
+      "seriesId": 18889,
+      "seriesName": "Scarlet Spiders (2014 - 2015)",
+      "onSale": "2014-12-17T00:00:00+0000",
+      "mu": "2014-12-17T00:00:00+0000",
+      "digitalId": 35778,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/548f0e2345c4d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Paco Diaz",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Nakayama",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Costa",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1"
+    },
+    {
+      "issueId": 50539,
+      "title": "Scarlet Spiders (2014) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/50539/scarlet_spiders_2014_3",
+      "seriesId": 18889,
+      "seriesName": "Scarlet Spiders (2014 - 2015)",
+      "onSale": "2015-01-21T00:00:00+0000",
+      "mu": "2015-07-27T00:00:00+0000",
+      "digitalId": 36368,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/54b57dd8249f0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Nakayama",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Costa",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1"
+    },
+    {
+      "issueId": 50561,
+      "title": "Spider-Woman (2014) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/50561/spider-woman_2014_1",
+      "seriesId": 18894,
+      "seriesName": "Spider-Woman (2014 - 2015)",
+      "onSale": "2014-11-19T00:00:00+0000",
+      "mu": "2014-11-19T00:00:00+0000",
+      "digitalId": 35387,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/60/5bb4df6192f3c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jay Leisten",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Dennis \"Hopeless\" Hallum",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1"
+    },
+    {
+      "issueId": 50562,
+      "title": "Spider-Woman (2014) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/50562/spider-woman_2014_2",
+      "seriesId": 18894,
+      "seriesName": "Spider-Woman (2014 - 2015)",
+      "onSale": "2014-12-17T00:00:00+0000",
+      "mu": "2014-12-17T00:00:00+0000",
+      "digitalId": 35789,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/5491a2cb86d43",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jay Leisten",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Dennis \"Hopeless\" Hallum",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1"
+    },
+    {
+      "issueId": 49504,
+      "title": "Spider-Woman (2014) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/49504/spider-woman_2014_3",
+      "seriesId": 18894,
+      "seriesName": "Spider-Woman (2014 - 2015)",
+      "onSale": "2015-01-21T00:00:00+0000",
+      "mu": "2015-07-27T00:00:00+0000",
+      "digitalId": 36363,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/54b80f58c36a5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Dennis \"Hopeless\" Hallum",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1"
+    },
+    {
+      "issueId": 49511,
+      "title": "Spider-Woman (2014) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/49511/spider-woman_2014_4",
+      "seriesId": 18894,
+      "seriesName": "Spider-Woman (2014 - 2015)",
+      "onSale": "2015-02-11T00:00:00+0000",
+      "mu": "2015-08-17T00:00:00+0000",
+      "digitalId": 36688,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/54cfc182556c0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Dennis \"Hopeless\" Hallum",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1"
+    },
+    {
+      "issueId": 50546,
+      "title": "Spider-Man 2099 (2014) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/50546/spider-man_2099_2014_6",
+      "seriesId": 18891,
+      "seriesName": "Spider-Man 2099 (2014 - 2015)",
+      "onSale": "2014-11-26T00:00:00+0000",
+      "mu": "2015-05-25T00:00:00+0000",
+      "digitalId": 35452,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/546d0a295a5e3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1"
+    },
+    {
+      "issueId": 50547,
+      "title": "Spider-Man 2099 (2014) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/50547/spider-man_2099_2014_7",
+      "seriesId": 18891,
+      "seriesName": "Spider-Man 2099 (2014 - 2015)",
+      "onSale": "2015-01-07T00:00:00+0000",
+      "mu": "2015-07-06T00:00:00+0000",
+      "digitalId": 36170,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/54a2cd44d8076",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1"
+    },
+    {
+      "issueId": 50548,
+      "title": "Spider-Man 2099 (2014) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/50548/spider-man_2099_2014_8",
+      "seriesId": 18891,
+      "seriesName": "Spider-Man 2099 (2014 - 2015)",
+      "onSale": "2015-01-28T00:00:00+0000",
+      "mu": "2015-07-27T00:00:00+0000",
+      "digitalId": 36383,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/f0/54be7ca2bbfd3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1"
+    },
+    {
+      "issueId": 49348,
+      "title": "Free Comic Book Day (Guardians of the Galaxy) (2014) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/49348/free_comic_book_day_guardians_of_the_galaxy_2014_1",
+      "seriesId": 18555,
+      "seriesName": "Free Comic Book Day (Guardians of the Galaxy) (2014)",
+      "onSale": "2014-05-03T00:00:00+0000",
+      "mu": "2014-11-03T00:00:00+0000",
+      "digitalId": 33979,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/57ed592d268b3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "John Dell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Nick Bradshaw",
+          "role": "cover artist"
+        },
+        {
+          "name": "Giuseppe Camuncoli",
+          "role": "penciler"
+        },
+        {
+          "name": "Sara Pichelli",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Amazing Spider-Man (2014) #7-15, Superior Spider-Man #32-33, Spider-Verse #1-2, Spider-Verse Team-Up #1-3, Scarlet Spiders #1-3, Spider-Woman (2014) #1-4, Spider-Man 2099 (2014) #6-8 And Material From Free Comic Book Day 2014 (Guardians Of The Galaxy) #1"
+    },
+    {
+      "issueId": 52521,
+      "title": "Spider-Gwen (2015) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/52521/spider-gwen_2015_1",
+      "seriesId": 19670,
+      "seriesName": "Spider-Gwen (2015)",
+      "onSale": "2015-02-25T00:00:00+0000",
+      "mu": "2015-08-31T00:00:00+0000",
+      "digitalId": 36751,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/54e76184ca452",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Robbi Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Latour",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen 1-5"
+    },
+    {
+      "issueId": 52527,
+      "title": "Spider-Gwen (2015) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/52527/spider-gwen_2015_2",
+      "seriesId": 19670,
+      "seriesName": "Spider-Gwen (2015)",
+      "onSale": "2015-03-11T00:00:00+0000",
+      "mu": "2015-10-05T17:20:49+0000",
+      "digitalId": 36921,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/90/54fdd0d3aaa25",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Robbi Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Latour",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen 1-5"
+    },
+    {
+      "issueId": 52529,
+      "title": "Spider-Gwen (2015) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/52529/spider-gwen_2015_3",
+      "seriesId": 19670,
+      "seriesName": "Spider-Gwen (2015)",
+      "onSale": "2015-04-01T00:00:00+0000",
+      "mu": "2015-10-05T00:00:00+0000",
+      "digitalId": 37146,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/551439adeb1c7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Robbi Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Latour",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen 1-5"
+    },
+    {
+      "issueId": 52530,
+      "title": "Spider-Gwen (2015) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/52530/spider-gwen_2015_4",
+      "seriesId": 19670,
+      "seriesName": "Spider-Gwen (2015)",
+      "onSale": "2015-05-06T00:00:00+0000",
+      "mu": "2015-11-02T00:00:00+0000",
+      "digitalId": 38166,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/5547d6706a7c3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Robbi Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Latour",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen 1-5"
+    },
+    {
+      "issueId": 52531,
+      "title": "Spider-Gwen (2015) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/52531/spider-gwen_2015_5",
+      "seriesId": 19670,
+      "seriesName": "Spider-Gwen (2015)",
+      "onSale": "2015-06-10T00:00:00+0000",
+      "mu": "2015-12-14T00:00:00+0000",
+      "digitalId": 38892,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/20/566f24b3dcd3a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Robbi Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Latour",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen 1-5"
+    },
+    {
+      "issueId": 55674,
+      "title": "Spider-Gwen (2015) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/55674/spider-gwen_2015_1",
+      "seriesId": 20505,
+      "seriesName": "Spider-Gwen (2015 - 2018)",
+      "onSale": "2015-10-14T00:00:00+0000",
+      "mu": "2016-04-18T00:00:00+0000",
+      "digitalId": 40247,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/561bd33743ec3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Robbi Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Latour",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen 1-6"
+    },
+    {
+      "issueId": 55676,
+      "title": "Spider-Gwen (2015) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/55676/spider-gwen_2015_2",
+      "seriesId": 20505,
+      "seriesName": "Spider-Gwen (2015 - 2018)",
+      "onSale": "2015-11-11T00:00:00+0000",
+      "mu": "2016-05-16T00:00:00+0000",
+      "digitalId": 40470,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/5640d65c71c45",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Robbi Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Latour",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen 1-6"
+    },
+    {
+      "issueId": 55678,
+      "title": "Spider-Gwen (2015) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/55678/spider-gwen_2015_3",
+      "seriesId": 20505,
+      "seriesName": "Spider-Gwen (2015 - 2018)",
+      "onSale": "2015-12-09T00:00:00+0000",
+      "mu": "2016-06-13T00:00:00+0000",
+      "digitalId": 40661,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/c0/565f64baddf82",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Robbi Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Latour",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen 1-6"
+    },
+    {
+      "issueId": 55679,
+      "title": "Spider-Gwen (2015) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/55679/spider-gwen_2015_4",
+      "seriesId": 20505,
+      "seriesName": "Spider-Gwen (2015 - 2018)",
+      "onSale": "2016-01-13T00:00:00+0000",
+      "mu": "2016-01-13T00:00:00+0000",
+      "digitalId": 40861,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/60/567ac11d1111e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Robbi Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Latour",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen 1-6"
+    },
+    {
+      "issueId": 55680,
+      "title": "Spider-Gwen (2015) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/55680/spider-gwen_2015_5",
+      "seriesId": 20505,
+      "seriesName": "Spider-Gwen (2015 - 2018)",
+      "onSale": "2016-02-10T00:00:00+0000",
+      "mu": "2016-02-10T00:00:00+0000",
+      "digitalId": 41128,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/e0/56ab895a06783",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Chris Visions",
+          "role": "cover artist"
+        },
+        {
+          "name": "Robbi Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Latour",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen 1-6"
+    },
+    {
+      "issueId": 55682,
+      "title": "Spider-Gwen (2015) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/55682/spider-gwen_2015_6",
+      "seriesId": 20505,
+      "seriesName": "Spider-Gwen (2015 - 2018)",
+      "onSale": "2016-03-09T00:00:00+0000",
+      "mu": "2016-09-12T00:00:00+0000",
+      "digitalId": 41369,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/60/56d9b6f383f29",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Robbi Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Latour",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen 1-6"
+    },
+    {
+      "issueId": 55646,
+      "title": "Silk (2015) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/55646/silk_2015_7",
+      "seriesId": 20499,
+      "seriesName": "Silk (2015 - 2017)",
+      "onSale": "2016-04-20T00:00:00+0000",
+      "mu": "2016-10-24T00:00:00+0000",
+      "digitalId": 41902,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/03/570e8f1755264",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Tana Ford",
+          "role": "penciler"
+        },
+        {
+          "name": "Yasmine Putri",
+          "role": "penciler"
+        },
+        {
+          "name": "Robbie Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Silk 7-8, Spider-Gwen 7-8, Spider-Woman 6-7"
+    },
+    {
+      "issueId": 55647,
+      "title": "Silk (2015) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/55647/silk_2015_8",
+      "seriesId": 20499,
+      "seriesName": "Silk (2015 - 2017)",
+      "onSale": "2016-05-11T00:00:00+0000",
+      "mu": "2016-11-14T00:00:00+0000",
+      "digitalId": 41556,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/20/5727ac9bc78f5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Tana Ford",
+          "role": "penciler"
+        },
+        {
+          "name": "Yasmine Putri",
+          "role": "penciler"
+        },
+        {
+          "name": "Robbie Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Silk 7-8, Spider-Gwen 7-8, Spider-Woman 6-7"
+    },
+    {
+      "issueId": 55683,
+      "title": "Spider-Gwen (2015) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/55683/spider-gwen_2015_7",
+      "seriesId": 20505,
+      "seriesName": "Spider-Gwen (2015 - 2018)",
+      "onSale": "2016-04-13T00:00:00+0000",
+      "mu": "2016-10-10T00:00:00+0000",
+      "digitalId": 41688,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/a0/56faecb27f725",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Bengal",
+          "role": "penciler"
+        },
+        {
+          "name": "Yasmine Putri",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Latour",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Silk 7-8, Spider-Gwen 7-8, Spider-Woman 6-7"
+    },
+    {
+      "issueId": 55684,
+      "title": "Spider-Gwen (2015) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/55684/spider-gwen_2015_8",
+      "seriesId": 20505,
+      "seriesName": "Spider-Gwen (2015 - 2018)",
+      "onSale": "2016-05-04T00:00:00+0000",
+      "mu": "2016-11-07T00:00:00+0000",
+      "digitalId": 41530,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/a0/571e81438fb34",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Bengal",
+          "role": "penciler"
+        },
+        {
+          "name": "Yasmine Putri",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Latour",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Silk 7-8, Spider-Gwen 7-8, Spider-Woman 6-7"
+    },
+    {
+      "issueId": 56169,
+      "title": "Spider-Woman (2015) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/56169/spider-woman_2015_6",
+      "seriesId": 20618,
+      "seriesName": "Spider-Woman (2015 - 2017)",
+      "onSale": "2016-04-27T00:00:00+0000",
+      "mu": "2016-10-31T00:00:00+0000",
+      "digitalId": 41956,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/571a733cdf442",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Joelle Jones",
+          "role": "penciler"
+        },
+        {
+          "name": "Yasmine Putri",
+          "role": "penciler"
+        },
+        {
+          "name": "Dennis \"Hopeless\" Hallum",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Silk 7-8, Spider-Gwen 7-8, Spider-Woman 6-7"
+    },
+    {
+      "issueId": 56170,
+      "title": "Spider-Woman (2015) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/56170/spider-woman_2015_7",
+      "seriesId": 20618,
+      "seriesName": "Spider-Woman (2015 - 2017)",
+      "onSale": "2016-05-18T00:00:00+0000",
+      "mu": "2016-11-21T00:00:00+0000",
+      "digitalId": 41582,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/572ba2c82609c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Joelle Jones",
+          "role": "penciler"
+        },
+        {
+          "name": "Yasmine Putri",
+          "role": "penciler"
+        },
+        {
+          "name": "Dennis \"Hopeless\" Hallum",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Silk 7-8, Spider-Gwen 7-8, Spider-Woman 6-7"
+    },
+    {
+      "issueId": 58381,
+      "title": "Spider-Women Alpha (2016) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/58381/spider-women_alpha_2016_1",
+      "seriesId": 21280,
+      "seriesName": "Spider-Women Alpha (2016)",
+      "onSale": "2016-04-06T00:00:00+0000",
+      "mu": "2016-10-03T00:00:00+0000",
+      "digitalId": 41663,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/80/56feca389dbab",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Yasmine Putri",
+          "role": "penciler"
+        },
+        {
+          "name": "Dennis \"Hopeless\" Hallum",
+          "role": "writer"
+        },
+        {
+          "name": "Jason Latour",
+          "role": "writer"
+        },
+        {
+          "name": "Robbie Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Spider-Women Alpha"
+    },
+    {
+      "issueId": 58832,
+      "title": "Spider-Women Omega (2016) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/58832/spider-women_omega_2016_1",
+      "seriesId": 21442,
+      "seriesName": "Spider-Women Omega (2016)",
+      "onSale": "2016-06-01T00:00:00+0000",
+      "mu": "2016-12-05T00:00:00+0000",
+      "digitalId": 41615,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/b0/5d9ce26c6db4e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Nico Leon",
+          "role": "penciler"
+        },
+        {
+          "name": "Yasmine Putri",
+          "role": "penciler"
+        },
+        {
+          "name": "Dennis \"Hopeless\" Hallum",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Spider-Women Omega"
+    },
+    {
+      "issueId": 55685,
+      "title": "Spider-Gwen (2015) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/55685/spider-gwen_2015_9",
+      "seriesId": 20505,
+      "seriesName": "Spider-Gwen (2015 - 2018)",
+      "onSale": "2016-06-15T00:00:00+0000",
+      "mu": "2016-12-19T00:00:00+0000",
+      "digitalId": 41779,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/10/5751e28634648",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Robbi Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Latour",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen (2015B) #9-13"
+    },
+    {
+      "issueId": 55686,
+      "title": "Spider-Gwen (2015) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/55686/spider-gwen_2015_10",
+      "seriesId": 20505,
+      "seriesName": "Spider-Gwen (2015 - 2018)",
+      "onSale": "2016-07-27T00:00:00+0000",
+      "mu": "2017-01-30T00:00:00+0000",
+      "digitalId": 42084,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/03/57927d840423b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Robbi Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Latour",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen (2015B) #9-13"
+    },
+    {
+      "issueId": 55687,
+      "title": "Spider-Gwen (2015) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/55687/spider-gwen_2015_11",
+      "seriesId": 20505,
+      "seriesName": "Spider-Gwen (2015 - 2018)",
+      "onSale": "2016-08-31T00:00:00+0000",
+      "mu": "2017-03-06T00:00:00+0000",
+      "digitalId": 42309,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/57c479c8cb02f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Robbi Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Latour",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen (2015B) #9-13"
+    },
+    {
+      "issueId": 55688,
+      "title": "Spider-Gwen (2015) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/55688/spider-gwen_2015_12",
+      "seriesId": 20505,
+      "seriesName": "Spider-Gwen (2015 - 2018)",
+      "onSale": "2016-09-28T00:00:00+0000",
+      "mu": "2017-04-03T00:00:00+0000",
+      "digitalId": 42674,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/80/57d2c660b1003",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Robbi Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Latour",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen (2015B) #9-13"
+    },
+    {
+      "issueId": 55689,
+      "title": "Spider-Gwen (2015) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/55689/spider-gwen_2015_13",
+      "seriesId": 20505,
+      "seriesName": "Spider-Gwen (2015 - 2018)",
+      "onSale": "2016-10-19T00:00:00+0000",
+      "mu": "2017-04-24T00:00:00+0000",
+      "digitalId": 42814,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/00/57f54feb9c0f5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Robbi Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Latour",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen (2015B) #9-13"
+    },
+    {
+      "issueId": 55690,
+      "title": "Spider-Gwen (2015) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/55690/spider-gwen_2015_14",
+      "seriesId": 20505,
+      "seriesName": "Spider-Gwen (2015 - 2018)",
+      "onSale": "2016-11-23T00:00:00+0000",
+      "mu": "2017-05-29T00:00:00+0000",
+      "digitalId": 43249,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/582c974a2d720",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Robbi Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Latour",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen 14-15, Annual 1, All-New Wolverine Annual 1"
+    },
+    {
+      "issueId": 55691,
+      "title": "Spider-Gwen (2015) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/55691/spider-gwen_2015_15",
+      "seriesId": 20505,
+      "seriesName": "Spider-Gwen (2015 - 2018)",
+      "onSale": "2016-12-21T00:00:00+0000",
+      "mu": "2017-06-26T00:00:00+0000",
+      "digitalId": 43450,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/d0/5845cfa68eec1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Robbi Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Latour",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen 14-15, Annual 1, All-New Wolverine Annual 1"
+    },
+    {
+      "issueId": 58831,
+      "title": "Spider-Gwen Annual (2016) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/58831/spider-gwen_annual_2016_1",
+      "seriesId": 21441,
+      "seriesName": "Spider-Gwen Annual (2016)",
+      "onSale": "2016-06-29T00:00:00+0000",
+      "mu": "2017-01-02T00:00:00+0000",
+      "digitalId": 41832,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/d0/576bef8fc6a0e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Annapaola Martello",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Brunner",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Visions",
+          "role": "penciler"
+        },
+        {
+          "name": "James Harren",
+          "role": "penciler"
+        },
+        {
+          "name": "Michael Walsh",
+          "role": "penciler"
+        },
+        {
+          "name": "Robbi Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Veronica Fish",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Latour",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen 14-15, Annual 1, All-New Wolverine Annual 1"
+    },
+    {
+      "issueId": 59897,
+      "title": "All-New Wolverine Annual (2016) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/59897/all-new_wolverine_annual_2016_1",
+      "seriesId": 21853,
+      "seriesName": "All-New Wolverine Annual (2016)",
+      "onSale": "2016-08-31T00:00:00+0000",
+      "mu": "2017-03-06T00:00:00+0000",
+      "digitalId": 42332,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/50/57bb5dbe71c8a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Cameron Stewart",
+          "role": "penciler"
+        },
+        {
+          "name": "Marcio Takara",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Taylor",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen 14-15, Annual 1, All-New Wolverine Annual 1"
+    },
+    {
+      "issueId": 55706,
+      "title": "Spider-Man (2016) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/55706/spider-man_2016_12",
+      "seriesId": 20508,
+      "seriesName": "Spider-Man (2016 - 2018)",
+      "onSale": "2017-01-11T00:00:00+0000",
+      "mu": "2017-07-17T00:00:00+0000",
+      "digitalId": 43841,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/60/585c248ef3e9f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sara Pichelli",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man (2016) #12-14, Spider-Gwen (2015B) #16-18"
+    },
+    {
+      "issueId": 55707,
+      "title": "Spider-Man (2016) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/55707/spider-man_2016_13",
+      "seriesId": 20508,
+      "seriesName": "Spider-Man (2016 - 2018)",
+      "onSale": "2017-02-15T00:00:00+0000",
+      "mu": "2017-08-21T00:00:00+0000",
+      "digitalId": 44094,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/f0/589deb5c4a277",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sara Pichelli",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man (2016) #12-14, Spider-Gwen (2015B) #16-18"
+    },
+    {
+      "issueId": 55708,
+      "title": "Spider-Man (2016) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/55708/spider-man_2016_14",
+      "seriesId": 20508,
+      "seriesName": "Spider-Man (2016 - 2018)",
+      "onSale": "2017-03-15T00:00:00+0000",
+      "mu": "2017-03-15T00:00:00+0000",
+      "digitalId": 44315,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/58c17b9c3d332",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sara Pichelli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man (2016) #12-14, Spider-Gwen (2015B) #16-18"
+    },
+    {
+      "issueId": 55692,
+      "title": "Spider-Gwen (2015) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/55692/spider-gwen_2015_16",
+      "seriesId": 20505,
+      "seriesName": "Spider-Gwen (2015 - 2018)",
+      "onSale": "2017-01-18T00:00:00+0000",
+      "mu": "2017-07-24T00:00:00+0000",
+      "digitalId": 43839,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/03/5874030a84e36",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Robbi Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Latour",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man (2016) #12-14, Spider-Gwen (2015B) #16-18"
+    },
+    {
+      "issueId": 61063,
+      "title": "Spider-Gwen (2015) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/61063/spider-gwen_2015_17",
+      "seriesId": 20505,
+      "seriesName": "Spider-Gwen (2015 - 2018)",
+      "onSale": "2017-02-22T00:00:00+0000",
+      "mu": "2017-08-28T00:00:00+0000",
+      "digitalId": 44093,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/10/58a48292dd791",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Robbi Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Latour",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man (2016) #12-14, Spider-Gwen (2015B) #16-18"
+    },
+    {
+      "issueId": 61064,
+      "title": "Spider-Gwen (2015) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/61064/spider-gwen_2015_18",
+      "seriesId": 20505,
+      "seriesName": "Spider-Gwen (2015 - 2018)",
+      "onSale": "2017-03-22T00:00:00+0000",
+      "mu": "2017-03-22T00:00:00+0000",
+      "digitalId": 44314,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/70/58cbef1162af8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Robbi Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Latour",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man (2016) #12-14, Spider-Gwen (2015B) #16-18"
+    },
+    {
+      "issueId": 61065,
+      "title": "Spider-Gwen (2015) #19",
+      "number": "19",
+      "url": "https://www.marvel.com/comics/issue/61065/spider-gwen_2015_19",
+      "seriesId": 20505,
+      "seriesName": "Spider-Gwen (2015 - 2018)",
+      "onSale": "2017-05-03T00:00:00+0000",
+      "mu": "2017-11-06T00:00:00+0000",
+      "digitalId": 44532,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/70/5903927e21452",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Robbi Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Latour",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen 19-23"
+    },
+    {
+      "issueId": 61066,
+      "title": "Spider-Gwen (2015) #20",
+      "number": "20",
+      "url": "https://www.marvel.com/comics/issue/61066/spider-gwen_2015_20",
+      "seriesId": 20505,
+      "seriesName": "Spider-Gwen (2015 - 2018)",
+      "onSale": "2017-05-31T00:00:00+0000",
+      "mu": "2017-12-04T00:00:00+0000",
+      "digitalId": 44771,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/20/5925b60737199",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Robbi Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Latour",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen 19-23"
+    },
+    {
+      "issueId": 61067,
+      "title": "Spider-Gwen (2015) #21",
+      "number": "21",
+      "url": "https://www.marvel.com/comics/issue/61067/spider-gwen_2015_21",
+      "seriesId": 20505,
+      "seriesName": "Spider-Gwen (2015 - 2018)",
+      "onSale": "2017-06-28T00:00:00+0000",
+      "mu": "2018-01-01T00:00:00+0000",
+      "digitalId": 44996,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/00/594c2ae9e8b73",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Robbi Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Latour",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen 19-23"
+    },
+    {
+      "issueId": 61068,
+      "title": "Spider-Gwen (2015) #22",
+      "number": "22",
+      "url": "https://www.marvel.com/comics/issue/61068/spider-gwen_2015_22",
+      "seriesId": 20505,
+      "seriesName": "Spider-Gwen (2015 - 2018)",
+      "onSale": "2017-07-26T00:00:00+0000",
+      "mu": "2018-01-29T00:00:00+0000",
+      "digitalId": 45260,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/596d13826ee0d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jorge Coelho",
+          "role": "cover artist"
+        },
+        {
+          "name": "Robbi Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Latour",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen 19-23"
+    },
+    {
+      "issueId": 61069,
+      "title": "Spider-Gwen (2015) #23",
+      "number": "23",
+      "url": "https://www.marvel.com/comics/issue/61069/spider-gwen_2015_23",
+      "seriesId": 20505,
+      "seriesName": "Spider-Gwen (2015 - 2018)",
+      "onSale": "2017-08-30T00:00:00+0000",
+      "mu": "2018-03-05T00:00:00+0000",
+      "digitalId": 45460,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/50/59934d5439d72",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Hannah Blumenreich",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kris Anka",
+          "role": "cover artist"
+        },
+        {
+          "name": "Robbi Rodriguez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jordan Gibson",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Latour",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen 19-23"
+    },
+    {
+      "issueId": 61070,
+      "title": "Spider-Gwen (2015) #24",
+      "number": "24",
+      "url": "https://www.marvel.com/comics/issue/61070/spider-gwen_2015_24",
+      "seriesId": 20505,
+      "seriesName": "Spider-Gwen (2015 - 2018)",
+      "onSale": "2017-09-27T00:00:00+0000",
+      "mu": "2018-04-02T00:00:00+0000",
+      "digitalId": 45739,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/10/59c289eb6383a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Robbi Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Latour",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen 24-29"
+    },
+    {
+      "issueId": 61071,
+      "title": "Spider-Gwen (2015) #25",
+      "number": "25",
+      "url": "https://www.marvel.com/comics/issue/61071/spider-gwen_2015_25",
+      "seriesId": 20505,
+      "seriesName": "Spider-Gwen (2015 - 2018)",
+      "onSale": "2017-10-18T00:00:00+0000",
+      "mu": "2018-04-23T00:00:00+0000",
+      "digitalId": 45994,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/59dfdd3078b52",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "John Dell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Robbi Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Latour",
+          "role": "writer"
+        },
+        {
+          "name": "Robbie Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen 24-29"
+    },
+    {
+      "issueId": 61072,
+      "title": "Spider-Gwen (2015) #26",
+      "number": "26",
+      "url": "https://www.marvel.com/comics/issue/61072/spider-gwen_2015_26",
+      "seriesId": 20505,
+      "seriesName": "Spider-Gwen (2015 - 2018)",
+      "onSale": "2017-11-29T00:00:00+0000",
+      "mu": "2018-06-04T00:00:00+0000",
+      "digitalId": 46322,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/10/5a14ad2e10611",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Robbi Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Latour",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen 24-29"
+    },
+    {
+      "issueId": 61073,
+      "title": "Spider-Gwen (2015) #27",
+      "number": "27",
+      "url": "https://www.marvel.com/comics/issue/61073/spider-gwen_2015_27",
+      "seriesId": 20505,
+      "seriesName": "Spider-Gwen (2015 - 2018)",
+      "onSale": "2017-12-20T00:00:00+0000",
+      "mu": "2018-06-25T00:00:00+0000",
+      "digitalId": 46666,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/5a3172f9d62a6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Olivia Margraf",
+          "role": "cover artist"
+        },
+        {
+          "name": "Veronica Fish",
+          "role": "cover artist"
+        },
+        {
+          "name": "Robbi Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Latour",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen 24-29"
+    },
+    {
+      "issueId": 65924,
+      "title": "Spider-Gwen (2015) #28",
+      "number": "28",
+      "url": "https://www.marvel.com/comics/issue/65924/spider-gwen_2015_28",
+      "seriesId": 20505,
+      "seriesName": "Spider-Gwen (2015 - 2018)",
+      "onSale": "2018-01-31T00:00:00+0000",
+      "mu": "2018-08-06T00:00:00+0000",
+      "digitalId": 47147,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/10/5a68ee7466c71",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Robbi Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Latour",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen 24-29"
+    },
+    {
+      "issueId": 66292,
+      "title": "Spider-Gwen (2015) #29",
+      "number": "29",
+      "url": "https://www.marvel.com/comics/issue/66292/spider-gwen_2015_29",
+      "seriesId": 20505,
+      "seriesName": "Spider-Gwen (2015 - 2018)",
+      "onSale": "2018-02-28T00:00:00+0000",
+      "mu": "2018-09-03T00:00:00+0000",
+      "digitalId": 47344,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/00/5a8de919ce940",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Robbi Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Latour",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen 24-29"
+    },
+    {
+      "issueId": 66554,
+      "title": "Spider-Gwen (2015) #30",
+      "number": "30",
+      "url": "https://www.marvel.com/comics/issue/66554/spider-gwen_2015_30",
+      "seriesId": 20505,
+      "seriesName": "Spider-Gwen (2015 - 2018)",
+      "onSale": "2018-03-21T00:00:00+0000",
+      "mu": "2018-09-24T00:00:00+0000",
+      "digitalId": 47592,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/a0/5aa95f6aefa8c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Robbi Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Latour",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen 30-34"
+    },
+    {
+      "issueId": 66921,
+      "title": "Spider-Gwen (2015) #31",
+      "number": "31",
+      "url": "https://www.marvel.com/comics/issue/66921/spider-gwen_2015_31",
+      "seriesId": 20505,
+      "seriesName": "Spider-Gwen (2015 - 2018)",
+      "onSale": "2018-04-25T00:00:00+0000",
+      "mu": "2018-10-29T00:00:00+0000",
+      "digitalId": 47815,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/40/5ad7af7b0df26",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Robbi Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Latour",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen 30-34"
+    },
+    {
+      "issueId": 67550,
+      "title": "Spider-Gwen (2015) #32",
+      "number": "32",
+      "url": "https://www.marvel.com/comics/issue/67550/spider-gwen_2015_32",
+      "seriesId": 20505,
+      "seriesName": "Spider-Gwen (2015 - 2018)",
+      "onSale": "2018-05-30T00:00:00+0000",
+      "mu": "2018-12-03T00:00:00+0000",
+      "digitalId": 48009,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/90/5b05c2ccc921b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Robbi Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Latour",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen 30-34"
+    },
+    {
+      "issueId": 69470,
+      "title": "Spider-Gwen (2015) #33",
+      "number": "33",
+      "url": "https://www.marvel.com/comics/issue/69470/spider-gwen_2015_33",
+      "seriesId": 20505,
+      "seriesName": "Spider-Gwen (2015 - 2018)",
+      "onSale": "2018-06-20T00:00:00+0000",
+      "mu": "2018-12-24T00:00:00+0000",
+      "digitalId": 48305,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/80/5b21873b113bb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Chris Visions",
+          "role": "cover artist"
+        },
+        {
+          "name": "Robbi Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Latour",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen 30-34"
+    },
+    {
+      "issueId": 69471,
+      "title": "Spider-Gwen (2015) #34",
+      "number": "34",
+      "url": "https://www.marvel.com/comics/issue/69471/spider-gwen_2015_34",
+      "seriesId": 20505,
+      "seriesName": "Spider-Gwen (2015 - 2018)",
+      "onSale": "2018-07-18T00:00:00+0000",
+      "mu": "2019-01-21T00:00:00+0000",
+      "digitalId": 48599,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/d0/5b467342ba3da",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Robbi Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Latour",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen 30-34"
+    },
+    {
+      "issueId": 71335,
+      "title": "Spider-Geddon (2018)",
+      "number": "0",
+      "url": "https://www.marvel.com/comics/issue/71335/spider-geddon_2018",
+      "seriesId": 26001,
+      "seriesName": "Spider-Geddon (2018 - 2019)",
+      "onSale": "2018-09-26T00:00:00+0000",
+      "mu": "2019-04-01T00:00:00+0000",
+      "digitalId": 49210,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/c0/5ba0041c09f75",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "David Baldeon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Javier Garron",
+          "role": "cover artist"
+        },
+        {
+          "name": "Clayton Crain",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        },
+        {
+          "name": "Jed Mackay",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Geddon 0-5, Spider-Geddon: Vault Of Spiders 1-2"
+    },
+    {
+      "issueId": 71336,
+      "title": "Spider-Geddon (2018) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/71336/spider-geddon_2018_1",
+      "seriesId": 26001,
+      "seriesName": "Spider-Geddon (2018 - 2019)",
+      "onSale": "2018-10-10T00:00:00+0000",
+      "mu": "2019-04-15T00:00:00+0000",
+      "digitalId": 49489,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/5bb52f886e24f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jorge Molina",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Geddon 0-5, Spider-Geddon: Vault Of Spiders 1-2"
+    },
+    {
+      "issueId": 71337,
+      "title": "Spider-Geddon (2018) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/71337/spider-geddon_2018_2",
+      "seriesId": 26001,
+      "seriesName": "Spider-Geddon (2018 - 2019)",
+      "onSale": "2018-10-24T00:00:00+0000",
+      "mu": "2019-04-29T00:00:00+0000",
+      "digitalId": 49490,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/e0/5bc8ff2007aad",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jorge Molina",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Geddon 0-5, Spider-Geddon: Vault Of Spiders 1-2"
+    },
+    {
+      "issueId": 71338,
+      "title": "Spider-Geddon (2018) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/71338/spider-geddon_2018_3",
+      "seriesId": 26001,
+      "seriesName": "Spider-Geddon (2018 - 2019)",
+      "onSale": "2018-11-07T00:00:00+0000",
+      "mu": "2019-05-13T00:00:00+0000",
+      "digitalId": 49732,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/20/5bdb683633520",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jose Marzan Jr.",
+          "role": "cover artist"
+        },
+        {
+          "name": "Todd Nauck",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlo Barberi",
+          "role": "penciler"
+        },
+        {
+          "name": "Jorge Molina",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Geddon 0-5, Spider-Geddon: Vault Of Spiders 1-2"
+    },
+    {
+      "issueId": 71339,
+      "title": "Spider-Geddon (2018) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/71339/spider-geddon_2018_4",
+      "seriesId": 26001,
+      "seriesName": "Spider-Geddon (2018 - 2019)",
+      "onSale": "2018-11-21T00:00:00+0000",
+      "mu": "2019-05-27T00:00:00+0000",
+      "digitalId": 49733,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/60/5beca83bdfcc8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jay Leisten",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jose Marzan Jr.",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlo Barberi",
+          "role": "penciler"
+        },
+        {
+          "name": "Jorge Molina",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Geddon 0-5, Spider-Geddon: Vault Of Spiders 1-2"
+    },
+    {
+      "issueId": 71340,
+      "title": "Spider-Geddon (2018) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/71340/spider-geddon_2018_5",
+      "seriesId": 26001,
+      "seriesName": "Spider-Geddon (2018 - 2019)",
+      "onSale": "2018-12-19T00:00:00+0000",
+      "mu": "2019-06-24T00:00:00+0000",
+      "digitalId": 50090,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/5c12b66e27a8c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Jay Leisten",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jose Marzan Jr.",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stefano Caselli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlo Barberi",
+          "role": "penciler"
+        },
+        {
+          "name": "Joey Vazquez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jorge Molina",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Geddon 0-5, Spider-Geddon: Vault Of Spiders 1-2"
+    },
+    {
+      "issueId": 71341,
+      "title": "Vault of Spiders (2018) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/71341/vault_of_spiders_2018_1",
+      "seriesId": 26176,
+      "seriesName": "Vault of Spiders (2018)",
+      "onSale": "2018-10-31T00:00:00+0000",
+      "mu": "2019-05-06T00:00:00+0000",
+      "digitalId": 49569,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/5bd206f4c099a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Alberto Alburquerque",
+          "role": "cover artist"
+        },
+        {
+          "name": "Javier Pulido",
+          "role": "cover artist"
+        },
+        {
+          "name": "Juan Gedeon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Koblish",
+          "role": "cover artist"
+        },
+        {
+          "name": "Giuseppe Camuncoli",
+          "role": "penciler"
+        },
+        {
+          "name": "Cullen Bunn",
+          "role": "writer"
+        },
+        {
+          "name": "James Asmus",
+          "role": "writer"
+        },
+        {
+          "name": "Jed Mackay",
+          "role": "writer"
+        },
+        {
+          "name": "Nilah Magruder",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Geddon 0-5, Spider-Geddon: Vault Of Spiders 1-2"
+    },
+    {
+      "issueId": 71846,
+      "title": "Vault of Spiders (2018) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/71846/vault_of_spiders_2018_2",
+      "seriesId": 26176,
+      "seriesName": "Vault of Spiders (2018)",
+      "onSale": "2018-11-14T00:00:00+0000",
+      "mu": "2019-05-20T00:00:00+0000",
+      "digitalId": 49772,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/b0/5be370d7aca3a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrew Hennessy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Giuseppe Camuncoli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Koblish",
+          "role": "cover artist"
+        },
+        {
+          "name": "Todd Harris",
+          "role": "cover artist"
+        },
+        {
+          "name": "David a. Williams",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Cullen Bunn",
+          "role": "writer"
+        },
+        {
+          "name": "Geoffrey Thorne",
+          "role": "writer"
+        },
+        {
+          "name": "Jed Mackay",
+          "role": "writer"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Geddon 0-5, Spider-Geddon: Vault Of Spiders 1-2"
+    },
+    {
+      "issueId": 71342,
+      "title": "Spider-Gwen: Ghost-Spider (2018) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/71342/spider-gwen_ghost-spider_2018_1",
+      "seriesId": 26003,
+      "seriesName": "Spider-Gwen: Ghost-Spider (2018 - 2019)",
+      "onSale": "2018-10-24T00:00:00+0000",
+      "mu": "2019-04-29T00:00:00+0000",
+      "digitalId": 49551,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/04/5bc8ffb89c93c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rosi Kampe",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bengal",
+          "role": "penciler"
+        },
+        {
+          "name": "Seanan Mcguire",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen: Ghost-Spider 1-4"
+    },
+    {
+      "issueId": 71343,
+      "title": "Spider-Gwen: Ghost-Spider (2018) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/71343/spider-gwen_ghost-spider_2018_2",
+      "seriesId": 26003,
+      "seriesName": "Spider-Gwen: Ghost-Spider (2018 - 2019)",
+      "onSale": "2018-11-28T00:00:00+0000",
+      "mu": "2019-06-03T00:00:00+0000",
+      "digitalId": 49800,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/5bf4795c193c3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rosi Kampe",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bengal",
+          "role": "penciler"
+        },
+        {
+          "name": "Seanan Mcguire",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen: Ghost-Spider 1-4"
+    },
+    {
+      "issueId": 71344,
+      "title": "Spider-Gwen: Ghost-Spider (2018) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/71344/spider-gwen_ghost-spider_2018_3",
+      "seriesId": 26003,
+      "seriesName": "Spider-Gwen: Ghost-Spider (2018 - 2019)",
+      "onSale": "2018-12-12T00:00:00+0000",
+      "mu": "2019-06-17T00:00:00+0000",
+      "digitalId": 50051,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/a0/5c081c38d9229",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rosi Kampe",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bengal",
+          "role": "penciler"
+        },
+        {
+          "name": "Seanan Mcguire",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen: Ghost-Spider 1-4"
+    },
+    {
+      "issueId": 71345,
+      "title": "Spider-Gwen: Ghost-Spider (2018) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/71345/spider-gwen_ghost-spider_2018_4",
+      "seriesId": 26003,
+      "seriesName": "Spider-Gwen: Ghost-Spider (2018 - 2019)",
+      "onSale": "2019-01-09T00:00:00+0000",
+      "mu": "2019-07-15T00:00:00+0000",
+      "digitalId": 50381,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/20/5c2f6ae7d2acd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rosi Kampe",
+          "role": "cover artist"
+        },
+        {
+          "name": "Takeshi Miyazawa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bengal",
+          "role": "penciler"
+        },
+        {
+          "name": "Seanan Mcguire",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen: Ghost-Spider 1-4"
+    },
+    {
+      "issueId": 71346,
+      "title": "Spider-Gwen: Ghost-Spider (2018) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/71346/spider-gwen_ghost-spider_2018_5",
+      "seriesId": 26003,
+      "seriesName": "Spider-Gwen: Ghost-Spider (2018 - 2019)",
+      "onSale": "2019-02-13T00:00:00+0000",
+      "mu": "2019-02-13T00:00:00+0000",
+      "digitalId": 50616,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/b0/5c5c594ddd56a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Takeshi Miyazawa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bengal",
+          "role": "penciler"
+        },
+        {
+          "name": "Seanan Mcguire",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen: Ghost Spider #5-10."
+    },
+    {
+      "issueId": 71347,
+      "title": "Spider-Gwen: Ghost-Spider (2018) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/71347/spider-gwen_ghost-spider_2018_6",
+      "seriesId": 26003,
+      "seriesName": "Spider-Gwen: Ghost-Spider (2018 - 2019)",
+      "onSale": "2019-03-13T00:00:00+0000",
+      "mu": "2019-09-16T00:00:00+0000",
+      "digitalId": 50885,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/b0/5c802ab9b1018",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Takeshi Miyazawa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bengal",
+          "role": "penciler"
+        },
+        {
+          "name": "Seanan Mcguire",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen: Ghost Spider #5-10."
+    },
+    {
+      "issueId": 71348,
+      "title": "Spider-Gwen: Ghost-Spider (2018) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/71348/spider-gwen_ghost-spider_2018_7",
+      "seriesId": 26003,
+      "seriesName": "Spider-Gwen: Ghost-Spider (2018 - 2019)",
+      "onSale": "2019-04-03T00:00:00+0000",
+      "mu": "2019-10-07T00:00:00+0000",
+      "digitalId": 51092,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/90/5c9bfabaa2ac4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Takeshi Miyazawa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bengal",
+          "role": "penciler"
+        },
+        {
+          "name": "Seanan Mcguire",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen: Ghost Spider #5-10."
+    },
+    {
+      "issueId": 71349,
+      "title": "Spider-Gwen: Ghost-Spider (2018) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/71349/spider-gwen_ghost-spider_2018_8",
+      "seriesId": 26003,
+      "seriesName": "Spider-Gwen: Ghost-Spider (2018 - 2019)",
+      "onSale": "2019-05-01T00:00:00+0000",
+      "mu": "2019-11-04T00:00:00+0000",
+      "digitalId": 51367,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/5cc1e1774b286",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Takeshi Miyazawa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bengal",
+          "role": "penciler"
+        },
+        {
+          "name": "Seanan Mcguire",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen: Ghost Spider #5-10."
+    },
+    {
+      "issueId": 71350,
+      "title": "Spider-Gwen: Ghost-Spider (2018) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/71350/spider-gwen_ghost-spider_2018_9",
+      "seriesId": 26003,
+      "seriesName": "Spider-Gwen: Ghost-Spider (2018 - 2019)",
+      "onSale": "2019-06-05T00:00:00+0000",
+      "mu": "2019-12-09T00:00:00+0000",
+      "digitalId": 51684,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/c0/5ced96b7e703c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Takeshi Miyazawa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bengal",
+          "role": "penciler"
+        },
+        {
+          "name": "Seanan Mcguire",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen: Ghost Spider #5-10."
+    },
+    {
+      "issueId": 71351,
+      "title": "Spider-Gwen: Ghost-Spider (2018) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/71351/spider-gwen_ghost-spider_2018_10",
+      "seriesId": 26003,
+      "seriesName": "Spider-Gwen: Ghost-Spider (2018 - 2019)",
+      "onSale": "2019-07-03T00:00:00+0000",
+      "mu": "2020-01-06T00:00:00+0000",
+      "digitalId": 51896,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/5d126db67bc83",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Takeshi Miyazawa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bengal",
+          "role": "penciler"
+        },
+        {
+          "name": "Rosi Kampe",
+          "role": "penciler"
+        },
+        {
+          "name": "Seanan Mcguire",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen: Ghost Spider #5-10."
+    },
+    {
+      "issueId": 76995,
+      "title": "Ghost-Spider (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/76995/ghost-spider_2019_1",
+      "seriesId": 27622,
+      "seriesName": "Ghost-Spider (2019 - 2020)",
+      "onSale": "2019-08-21T00:00:00+0000",
+      "mu": "2020-02-24T00:00:00+0000",
+      "digitalId": 52375,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/f0/5d54227864b7f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rosi Kampe",
+          "role": "cover artist"
+        },
+        {
+          "name": "Takeshi Miyazawa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jorge Molina",
+          "role": "penciler"
+        },
+        {
+          "name": "Seanan Mcguire",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Ghost-Spider (2019) #1-5."
+    },
+    {
+      "issueId": 76996,
+      "title": "Ghost-Spider (2019) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/76996/ghost-spider_2019_2",
+      "seriesId": 27622,
+      "seriesName": "Ghost-Spider (2019 - 2020)",
+      "onSale": "2019-09-25T00:00:00+0000",
+      "mu": "2020-03-30T00:00:00+0000",
+      "digitalId": 52586,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/40/5d7f93169c9b3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rosi Kampe",
+          "role": "cover artist"
+        },
+        {
+          "name": "Takeshi Miyazawa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jorge Molina",
+          "role": "penciler"
+        },
+        {
+          "name": "Seanan Mcguire",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Ghost-Spider (2019) #1-5."
+    },
+    {
+      "issueId": 76997,
+      "title": "Ghost-Spider (2019) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/76997/ghost-spider_2019_3",
+      "seriesId": 27622,
+      "seriesName": "Ghost-Spider (2019 - 2020)",
+      "onSale": "2019-10-23T00:00:00+0000",
+      "mu": "2020-04-27T00:00:00+0000",
+      "digitalId": 52797,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/60/5da4ca37e8a83",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rosi Kampe",
+          "role": "cover artist"
+        },
+        {
+          "name": "Takeshi Miyazawa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jorge Molina",
+          "role": "penciler"
+        },
+        {
+          "name": "Seanan Mcguire",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Ghost-Spider (2019) #1-5."
+    },
+    {
+      "issueId": 76998,
+      "title": "Ghost-Spider (2019) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/76998/ghost-spider_2019_4",
+      "seriesId": 27622,
+      "seriesName": "Ghost-Spider (2019 - 2020)",
+      "onSale": "2019-11-27T00:00:00+0000",
+      "mu": "2020-06-01T00:00:00+0000",
+      "digitalId": 52993,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/60/5dc9db9ecfa02",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rosi Kampe",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jorge Molina",
+          "role": "penciler"
+        },
+        {
+          "name": "Takeshi Miyazawa",
+          "role": "penciler"
+        },
+        {
+          "name": "Seanan Mcguire",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Ghost-Spider (2019) #1-5."
+    },
+    {
+      "issueId": 76999,
+      "title": "Ghost-Spider (2019) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/76999/ghost-spider_2019_5",
+      "seriesId": 27622,
+      "seriesName": "Ghost-Spider (2019 - 2020)",
+      "onSale": "2019-12-18T00:00:00+0000",
+      "mu": "2020-06-22T00:00:00+0000",
+      "digitalId": 53255,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/60/5defb28db0be8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ig Guara",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rosi Kampe",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jorge Molina",
+          "role": "penciler"
+        },
+        {
+          "name": "Takeshi Miyazawa",
+          "role": "penciler"
+        },
+        {
+          "name": "Seanan Mcguire",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Ghost-Spider (2019) #1-5."
+    },
+    {
+      "issueId": 84143,
+      "title": "Ghost-Spider (2019) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/84143/ghost-spider_2019_6",
+      "seriesId": 27622,
+      "seriesName": "Ghost-Spider (2019 - 2020)",
+      "onSale": "2020-01-08T00:00:00+0000",
+      "mu": "2020-01-08T00:00:00+0000",
+      "digitalId": 53555,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/00/5e149e1974634",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ig Guara",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Rosi Kampe",
+          "role": "penciler"
+        },
+        {
+          "name": "Seanan Mcguire",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Ghost-Spider (2019) #6-10."
+    },
+    {
+      "issueId": 84144,
+      "title": "Ghost-Spider (2019) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/84144/ghost-spider_2019_7",
+      "seriesId": 27622,
+      "seriesName": "Ghost-Spider (2019 - 2020)",
+      "onSale": "2020-02-19T00:00:00+0000",
+      "mu": "2020-08-24T00:00:00+0000",
+      "digitalId": 53963,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/03/5e28a36006437",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ig Guara",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Pope",
+          "role": "cover artist"
+        },
+        {
+          "name": "Seanan Mcguire",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Ghost-Spider (2019) #6-10."
+    },
+    {
+      "issueId": 84145,
+      "title": "Ghost-Spider (2019) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/84145/ghost-spider_2019_8",
+      "seriesId": 27622,
+      "seriesName": "Ghost-Spider (2019 - 2020)",
+      "onSale": "2020-03-18T00:00:00+0000",
+      "mu": "2020-09-21T00:00:00+0000",
+      "digitalId": 54263,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/f0/5e67bd7dbee82",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ig Guara",
+          "role": "cover artist"
+        },
+        {
+          "name": "Takeshi Miyazawa",
+          "role": "penciler"
+        },
+        {
+          "name": "Seanan Mcguire",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Ghost-Spider (2019) #6-10."
+    },
+    {
+      "issueId": 84146,
+      "title": "Ghost-Spider (2019) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/84146/ghost-spider_2019_9",
+      "seriesId": 27622,
+      "seriesName": "Ghost-Spider (2019 - 2020)",
+      "onSale": "2020-08-12T00:00:00+0000",
+      "mu": "2020-11-16T00:00:00+0000",
+      "digitalId": 54616,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/80/5e9e074f67ed8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ig Guara",
+          "role": "cover artist"
+        },
+        {
+          "name": "Takeshi Miyazawa",
+          "role": "penciler"
+        },
+        {
+          "name": "Seanan Mcguire",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Ghost-Spider (2019) #6-10."
+    },
+    {
+      "issueId": 84147,
+      "title": "Ghost-Spider (2019) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/84147/ghost-spider_2019_10",
+      "seriesId": 27622,
+      "seriesName": "Ghost-Spider (2019 - 2020)",
+      "onSale": "2020-08-26T00:00:00+0000",
+      "mu": "2020-11-30T00:00:00+0000",
+      "digitalId": 54890,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/b0/5f0cbcf04bfad",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ig Guara",
+          "role": "cover artist"
+        },
+        {
+          "name": "Takeshi Miyazawa",
+          "role": "penciler"
+        },
+        {
+          "name": "Seanan Mcguire",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Ghost-Spider (2019) #6-10."
+    },
+    {
+      "issueId": 98443,
+      "title": "Spider-Gwen: Gwenverse (2022) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/98443/spider-gwen_gwenverse_2022_1",
+      "seriesId": 33961,
+      "seriesName": "Spider-Gwen: Gwenverse (2022)",
+      "onSale": "2022-03-09T00:00:00+0000",
+      "mu": "2022-06-13T00:00:00+0000",
+      "digitalId": 58646,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/03/62278032cb374",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Jodi Nishijima",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Nakayama",
+          "role": "penciler"
+        },
+        {
+          "name": "Tim Seeley",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen: Gwenverse #1 to #5"
+    },
+    {
+      "issueId": 98444,
+      "title": "Spider-Gwen: Gwenverse (2022) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/98444/spider-gwen_gwenverse_2022_2",
+      "seriesId": 33961,
+      "seriesName": "Spider-Gwen: Gwenverse (2022)",
+      "onSale": "2022-04-20T00:00:00+0000",
+      "mu": "2022-07-25T00:00:00+0000",
+      "digitalId": 58831,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/c0/6259cb69ad3fc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jodi Nishijima",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Nakayama",
+          "role": "penciler"
+        },
+        {
+          "name": "Tim Seeley",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen: Gwenverse #1 to #5"
+    },
+    {
+      "issueId": 98445,
+      "title": "Spider-Gwen: Gwenverse (2022) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/98445/spider-gwen_gwenverse_2022_3",
+      "seriesId": 33961,
+      "seriesName": "Spider-Gwen: Gwenverse (2022)",
+      "onSale": "2022-06-15T00:00:00+0000",
+      "mu": "2022-09-19T00:00:00+0000",
+      "digitalId": 59373,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/62b9e13d5d35f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jodi Nishijima",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Nakayama",
+          "role": "penciler"
+        },
+        {
+          "name": "Tim Seeley",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen: Gwenverse #1 to #5"
+    },
+    {
+      "issueId": 98446,
+      "title": "Spider-Gwen: Gwenverse (2022) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/98446/spider-gwen_gwenverse_2022_4",
+      "seriesId": 33961,
+      "seriesName": "Spider-Gwen: Gwenverse (2022)",
+      "onSale": "2022-07-20T00:00:00+0000",
+      "mu": "2022-10-24T00:00:00+0000",
+      "digitalId": 59629,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/62dab304759f4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jodi Nishijima",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Nakayama",
+          "role": "penciler"
+        },
+        {
+          "name": "Tim Seeley",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen: Gwenverse #1 to #5"
+    },
+    {
+      "issueId": 98447,
+      "title": "Spider-Gwen: Gwenverse (2022) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/98447/spider-gwen_gwenverse_2022_5",
+      "seriesId": 33961,
+      "seriesName": "Spider-Gwen: Gwenverse (2022)",
+      "onSale": "2022-08-24T00:00:00+0000",
+      "mu": "2022-11-28T00:00:00+0000",
+      "digitalId": 60015,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/6305074cba9ff",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jodi Nishijima",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Nakayama",
+          "role": "penciler"
+        },
+        {
+          "name": "Tim Seeley",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen: Gwenverse #1 to #5"
+    },
+    {
+      "issueId": 99743,
+      "title": "Spider-Man (2022) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/99743/spider-man_2022_1",
+      "seriesId": 34328,
+      "seriesName": "Spider-Man (2022 - Present)",
+      "onSale": "2022-10-05T00:00:00+0000",
+      "mu": "2023-01-09T00:00:00+0000",
+      "digitalId": 60584,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/10/633cefa06d1f4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "John Dell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man (2022) #1 to #7"
+    },
+    {
+      "issueId": 99744,
+      "title": "Spider-Man (2022) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/99744/spider-man_2022_2",
+      "seriesId": 34328,
+      "seriesName": "Spider-Man (2022 - Present)",
+      "onSale": "2022-11-09T00:00:00+0000",
+      "mu": "2023-02-13T00:00:00+0000",
+      "digitalId": 60765,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/63658b3e8ce52",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "John Dell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man (2022) #1 to #7"
+    },
+    {
+      "issueId": 99745,
+      "title": "Spider-Man (2022) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/99745/spider-man_2022_3",
+      "seriesId": 34328,
+      "seriesName": "Spider-Man (2022 - Present)",
+      "onSale": "2022-12-07T00:00:00+0000",
+      "mu": "2023-03-13T00:00:00+0000",
+      "digitalId": 61074,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/e0/63863cee9feb0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "John Dell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man (2022) #1 to #7"
+    },
+    {
+      "issueId": 99746,
+      "title": "Spider-Man (2022) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/99746/spider-man_2022_4",
+      "seriesId": 34328,
+      "seriesName": "Spider-Man (2022 - Present)",
+      "onSale": "2023-01-04T00:00:00+0000",
+      "mu": "2023-01-04T00:00:00+0000",
+      "digitalId": 61244,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/00/63b477fd894a2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrew Hennessy",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Dell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man (2022) #1 to #7"
+    },
+    {
+      "issueId": 99747,
+      "title": "Spider-Man (2022) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/99747/spider-man_2022_5",
+      "seriesId": 34328,
+      "seriesName": "Spider-Man (2022 - Present)",
+      "onSale": "2023-02-15T00:00:00+0000",
+      "mu": "2023-02-15T00:00:00+0000",
+      "digitalId": 61872,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/63ed387e42511",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "John Dell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Julian Shaw",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        },
+        {
+          "name": "Justin Reynolds",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man (2022) #1 to #7"
+    },
+    {
+      "issueId": 99748,
+      "title": "Spider-Man (2022) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/99748/spider-man_2022_6",
+      "seriesId": 34328,
+      "seriesName": "Spider-Man (2022 - Present)",
+      "onSale": "2023-03-01T00:00:00+0000",
+      "mu": "2023-03-01T00:00:00+0000",
+      "digitalId": 62003,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/80/63f4e99912dd9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "John Dell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man (2022) #1 to #7"
+    },
+    {
+      "issueId": 99749,
+      "title": "Spider-Man (2022) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/99749/spider-man_2022_7",
+      "seriesId": 34328,
+      "seriesName": "Spider-Man (2022 - Present)",
+      "onSale": "2023-04-05T00:00:00+0000",
+      "mu": "2023-04-05T00:00:00+0000",
+      "digitalId": 62229,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/641e085a427c5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrew Hennessy",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Dell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man (2022) #1 to #7"
+    },
+    {
+      "issueId": 105951,
+      "title": "Spider-Gwen: Shadow Clones (2023) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/105951/spider-gwen_shadow_clones_2023_1",
+      "seriesId": 36645,
+      "seriesName": "Spider-Gwen: Shadow Clones (2023)",
+      "onSale": "2023-03-01T00:00:00+0000",
+      "mu": "2023-03-01T00:00:00+0000",
+      "digitalId": 62002,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/50/63f4e977546b4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Kei Zama",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Nakayama",
+          "role": "penciler"
+        },
+        {
+          "name": "Emily Kim",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen: Shadow Clones (2023) #1 to #5"
+    },
+    {
+      "issueId": 105952,
+      "title": "Spider-Gwen: Shadow Clones (2023) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/105952/spider-gwen_shadow_clones_2023_2",
+      "seriesId": 36645,
+      "seriesName": "Spider-Gwen: Shadow Clones (2023)",
+      "onSale": "2023-04-05T00:00:00+0000",
+      "mu": "2023-04-05T00:00:00+0000",
+      "digitalId": 62228,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/03/641e083761e69",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kei Zama",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Nakayama",
+          "role": "penciler"
+        },
+        {
+          "name": "Emily Kim",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen: Shadow Clones (2023) #1 to #5"
+    },
+    {
+      "issueId": 105954,
+      "title": "Spider-Gwen: Shadow Clones (2023) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/105954/spider-gwen_shadow_clones_2023_3",
+      "seriesId": 36645,
+      "seriesName": "Spider-Gwen: Shadow Clones (2023)",
+      "onSale": "2023-05-10T00:00:00+0000",
+      "mu": "2023-08-14T00:00:00+0000",
+      "digitalId": 62531,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/10/645110c8c6adf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kei Zama",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Nakayama",
+          "role": "penciler"
+        },
+        {
+          "name": "Emily Kim",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen: Shadow Clones (2023) #1 to #5"
+    },
+    {
+      "issueId": 105955,
+      "title": "Spider-Gwen: Shadow Clones (2023) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/105955/spider-gwen_shadow_clones_2023_4",
+      "seriesId": 36645,
+      "seriesName": "Spider-Gwen: Shadow Clones (2023)",
+      "onSale": "2023-06-14T00:00:00+0000",
+      "mu": "2023-06-02T14:18:00+0000",
+      "digitalId": 62786,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/b0/6487367d58538",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "OREN JUNIOR",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Nakayama",
+          "role": "penciler"
+        },
+        {
+          "name": "Kei Zama",
+          "role": "penciler"
+        },
+        {
+          "name": "Emily Kim",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen: Shadow Clones (2023) #1 to #5"
+    },
+    {
+      "issueId": 105956,
+      "title": "Spider-Gwen: Shadow Clones (2023) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/105956/spider-gwen_shadow_clones_2023_5",
+      "seriesId": 36645,
+      "seriesName": "Spider-Gwen: Shadow Clones (2023)",
+      "onSale": "2023-07-19T00:00:00+0000",
+      "mu": "2023-06-30T09:36:00+0000",
+      "digitalId": 63012,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/b0/64b04dd71202f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Belardino Brabo",
+          "role": "cover artist"
+        },
+        {
+          "name": "G Geoffo",
+          "role": "cover artist"
+        },
+        {
+          "name": "OREN JUNIOR",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Nakayama",
+          "role": "penciler"
+        },
+        {
+          "name": "Kei Zama",
+          "role": "penciler"
+        },
+        {
+          "name": "Emily Kim",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Gwen: Shadow Clones (2023) #1 to #5"
+    }
+  ]
+}
