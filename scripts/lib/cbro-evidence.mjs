@@ -123,6 +123,7 @@ export const CBH_LATER_ORDER_IDS = Object.freeze([
   'best-ultron-reading-order',
   'miles-morales-spider-man-reading-order',
   'spider-gwen-reading-order',
+  'spider-man-2099-reading-order',
 ]);
 export const CBRO_PACKET_REVIEW = 'MRT-003 central CBRO source review';
 export const CBRO_SELECTED_IDS = Object.freeze([

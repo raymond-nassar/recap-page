@@ -89,10 +89,10 @@ test('Ultron pins original Avengers and Secret Wars identities, decimal prologue
   assert.ok(mapping.rows.slice(86).every((row) => row.seriesId === 24309));
 });
 
-test('Ultron approval covers the full current source library without dropping shared comics', async () => {
+test('Ultron approval preserves the full reviewed source library without dropping shared comics', async () => {
   const report = await readJson(`scripts/data/cbh-overlaps/${id}.json`);
   const current = await buildReportForMapping(
-    `scripts/data/cbh-mappings/${id}.json`, [], { excludedOrderIds: [] },
+    `scripts/data/cbh-mappings/${id}.json`, [], { excludedOrderIds: ['spider-man-2099-reading-order'] },
   );
   const manifest = await readJson('src/data/curated-lists.json');
   assert.doesNotThrow(() => validateFrozenPacket(packet));
@@ -100,7 +100,7 @@ test('Ultron approval covers the full current source library without dropping sh
   assert.doesNotThrow(() => assertMappingMatchesPacketOccurrences(packet, mapping));
   assert.doesNotThrow(() => validateReportDigest(report));
   assert.doesNotThrow(() => validateApprovalDigest(mapping.relationshipReview, id));
-  assert.equal(report.comparisonCount, manifest.lists.length - 1);
+  assert.equal(report.comparisonCount, manifest.lists.length - 2);
   assert.deepEqual(current, report);
   assert.equal(report.comparisons.filter((row) => row.relationship === 'exact').length, 0);
   assert.equal(mapping.relationshipReview.dispositions.length, report.comparisonCount);

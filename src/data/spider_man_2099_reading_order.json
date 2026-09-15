@@ -1,0 +1,5296 @@
+{
+  "id": "spider-man-2099-reading-order",
+  "name": "Spider-Man 2099",
+  "description": "Follow Miguel O'Hara from the original 2099 comics through Exiles, Spider-Verse and his later adventures in Comic Book Herald guide order. 15 unresolved original comics remain marked as gaps.",
+  "source": "https://www.comicbookherald.com/spider-man-2099-reading-order/",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-09-15T05:21:35.424Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 170,
+  "collections": 24,
+  "placeholders": 15,
+  "unresolved": [
+    {
+      "title": "2099 Unlimited (1993) #1",
+      "url": null,
+      "read": false,
+      "index": 14,
+      "section": "Collects: Spider-Man 2099 11-14, Material From 2099 Unlimited 1-3, Spider-Man 2099 Annual 1",
+      "sourceKey": "15"
+    },
+    {
+      "title": "2099 Unlimited (1993) #2",
+      "url": null,
+      "read": false,
+      "index": 15,
+      "section": "Collects: Spider-Man 2099 11-14, Material From 2099 Unlimited 1-3, Spider-Man 2099 Annual 1",
+      "sourceKey": "16"
+    },
+    {
+      "title": "2099 Unlimited (1993) #3",
+      "url": null,
+      "read": false,
+      "index": 16,
+      "section": "Collects: Spider-Man 2099 11-14, Material From 2099 Unlimited 1-3, Spider-Man 2099 Annual 1",
+      "sourceKey": "17"
+    },
+    {
+      "title": "2099 Unlimited (1993) #4",
+      "url": null,
+      "read": false,
+      "index": 30,
+      "section": "Fall of the Hammer explicit sequence: Spider-Man 2099 #15, Spider-Man 2099 #16, Ravage 2099 #15, X-Men 2099 #5, Doom 2099 #14, Punisher 2099 #13, 2099 Unlimited #4",
+      "sourceKey": "37"
+    },
+    {
+      "title": "2099 Unlimited (1993) #8",
+      "url": null,
+      "read": false,
+      "index": 42,
+      "section": "Collects: Spider-Man 2099 (1992) 23-33, Material From 2099 Unlimited 8",
+      "sourceKey": "49"
+    },
+    {
+      "title": "2099 Unlimited (1993) #9",
+      "url": null,
+      "read": false,
+      "index": 50,
+      "section": "Collects: Spider-Man 2099 (1992) 34-38, Special; Spider-Man 2099 Meets Spider-Man; Material From 2099 Unlimited 9-10",
+      "sourceKey": "57"
+    },
+    {
+      "title": "2099 Unlimited (1993) #10",
+      "url": null,
+      "read": false,
+      "index": 51,
+      "section": "Collects: Spider-Man 2099 (1992) 34-38, Special; Spider-Man 2099 Meets Spider-Man; Material From 2099 Unlimited 9-10",
+      "sourceKey": "58"
+    },
+    {
+      "title": "2099: World of Tomorrow (1996) #1",
+      "url": null,
+      "read": false,
+      "index": 52,
+      "section": "Collects: 2099: World Of Tomorrow #1 To #8",
+      "sourceKey": "59"
+    },
+    {
+      "title": "2099: World of Tomorrow (1996) #2",
+      "url": null,
+      "read": false,
+      "index": 53,
+      "section": "Collects: 2099: World Of Tomorrow #1 To #8",
+      "sourceKey": "60"
+    },
+    {
+      "title": "2099: World of Tomorrow (1996) #3",
+      "url": null,
+      "read": false,
+      "index": 54,
+      "section": "Collects: 2099: World Of Tomorrow #1 To #8",
+      "sourceKey": "61"
+    },
+    {
+      "title": "2099: World of Tomorrow (1996) #4",
+      "url": null,
+      "read": false,
+      "index": 55,
+      "section": "Collects: 2099: World Of Tomorrow #1 To #8",
+      "sourceKey": "62"
+    },
+    {
+      "title": "2099: World of Tomorrow (1996) #5",
+      "url": null,
+      "read": false,
+      "index": 56,
+      "section": "Collects: 2099: World Of Tomorrow #1 To #8",
+      "sourceKey": "63"
+    },
+    {
+      "title": "2099: World of Tomorrow (1996) #6",
+      "url": null,
+      "read": false,
+      "index": 57,
+      "section": "Collects: 2099: World Of Tomorrow #1 To #8",
+      "sourceKey": "64"
+    },
+    {
+      "title": "2099: World of Tomorrow (1996) #7",
+      "url": null,
+      "read": false,
+      "index": 58,
+      "section": "Collects: 2099: World Of Tomorrow #1 To #8",
+      "sourceKey": "65"
+    },
+    {
+      "title": "2099: World of Tomorrow (1996) #8",
+      "url": null,
+      "read": false,
+      "index": 59,
+      "section": "Collects: 2099: World Of Tomorrow #1 To #8",
+      "sourceKey": "66"
+    }
+  ],
+  "items": [
+    {
+      "issueId": 10865,
+      "title": "Spider-Man 2099 (1992) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/10865/spider-man_2099_1992_1",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1992-11-01T00:00:00+0000",
+      "mu": "1992-11-01T00:00:00+0000",
+      "digitalId": 3459,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/d0/5bc8dcc780c86",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 1-10"
+    },
+    {
+      "issueId": 10876,
+      "title": "Spider-Man 2099 (1992) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/10876/spider-man_2099_1992_2",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1992-12-01T00:00:00+0000",
+      "mu": "1992-12-01T00:00:00+0000",
+      "digitalId": 1168,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/80/5bc8e64e9eaaa",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 1-10"
+    },
+    {
+      "issueId": 10887,
+      "title": "Spider-Man 2099 (1992) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/10887/spider-man_2099_1992_3",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1993-01-01T00:00:00+0000",
+      "mu": "1993-01-01T00:00:00+0000",
+      "digitalId": 12312,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/00/5bc8ec6468ea7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 1-10"
+    },
+    {
+      "issueId": 10898,
+      "title": "Spider-Man 2099 (1992) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/10898/spider-man_2099_1992_4",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1993-02-01T00:00:00+0000",
+      "mu": "1993-02-01T00:00:00+0000",
+      "digitalId": 21510,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/00/5bc8f21998af3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 1-10"
+    },
+    {
+      "issueId": 10906,
+      "title": "Spider-Man 2099 (1992) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/10906/spider-man_2099_1992_5",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1993-03-01T00:00:00+0000",
+      "mu": "1993-03-01T00:00:00+0000",
+      "digitalId": 21519,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/5bcdd618832d0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 1-10"
+    },
+    {
+      "issueId": 10907,
+      "title": "Spider-Man 2099 (1992) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/10907/spider-man_2099_1992_6",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1993-04-01T00:00:00+0000",
+      "mu": "1993-04-01T00:00:00+0000",
+      "digitalId": 21514,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/80/5bcddd9dd723d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 1-10"
+    },
+    {
+      "issueId": 10908,
+      "title": "Spider-Man 2099 (1992) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/10908/spider-man_2099_1992_7",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1993-05-01T00:00:00+0000",
+      "mu": "1993-05-01T00:00:00+0000",
+      "digitalId": 21546,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/d0/5bcde5ee687da",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 1-10"
+    },
+    {
+      "issueId": 10909,
+      "title": "Spider-Man 2099 (1992) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/10909/spider-man_2099_1992_8",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1993-06-01T00:00:00+0000",
+      "mu": "1993-06-01T00:00:00+0000",
+      "digitalId": 21534,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/20/5bcdeca408d4f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 1-10"
+    },
+    {
+      "issueId": 10910,
+      "title": "Spider-Man 2099 (1992) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/10910/spider-man_2099_1992_9",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1993-07-01T00:00:00+0000",
+      "mu": "1993-07-01T00:00:00+0000",
+      "digitalId": 21527,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/5bce079397db1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Mckenna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kelley Jones",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 1-10"
+    },
+    {
+      "issueId": 10866,
+      "title": "Spider-Man 2099 (1992) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/10866/spider-man_2099_1992_10",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1993-08-01T00:00:00+0000",
+      "mu": "1993-08-01T00:00:00+0000",
+      "digitalId": 21521,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/d0/5bce07f601423",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 1-10"
+    },
+    {
+      "issueId": 10867,
+      "title": "Spider-Man 2099 (1992) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/10867/spider-man_2099_1992_11",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1993-09-10T00:00:00+0000",
+      "mu": "2016-12-26T00:00:00+0000",
+      "digitalId": 36437,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/58344f5aa4634",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 11-14, Material From 2099 Unlimited 1-3, Spider-Man 2099 Annual 1"
+    },
+    {
+      "issueId": 10868,
+      "title": "Spider-Man 2099 (1992) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/10868/spider-man_2099_1992_12",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1993-10-10T00:00:00+0000",
+      "mu": "2016-12-26T00:00:00+0000",
+      "digitalId": 36438,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/583450da19dc5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 11-14, Material From 2099 Unlimited 1-3, Spider-Man 2099 Annual 1"
+    },
+    {
+      "issueId": 10869,
+      "title": "Spider-Man 2099 (1992) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/10869/spider-man_2099_1992_13",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1993-11-10T00:00:00+0000",
+      "mu": "2016-12-26T00:00:00+0000",
+      "digitalId": 36439,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/f0/58345198b1fc7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 11-14, Material From 2099 Unlimited 1-3, Spider-Man 2099 Annual 1"
+    },
+    {
+      "issueId": 10870,
+      "title": "Spider-Man 2099 (1992) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/10870/spider-man_2099_1992_14",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1993-12-10T00:00:00+0000",
+      "mu": "2016-12-26T00:00:00+0000",
+      "digitalId": 36440,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/50/58345288835d5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Donald Hudson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Grindberg",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 11-14, Material From 2099 Unlimited 1-3, Spider-Man 2099 Annual 1"
+    },
+    {
+      "issueId": -1566582229,
+      "title": "2099 Unlimited (1993) #1",
+      "number": "1",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Collects: Spider-Man 2099 11-14, Material From 2099 Unlimited 1-3, Spider-Man 2099 Annual 1"
+    },
+    {
+      "issueId": -1616915086,
+      "title": "2099 Unlimited (1993) #2",
+      "number": "2",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Collects: Spider-Man 2099 11-14, Material From 2099 Unlimited 1-3, Spider-Man 2099 Annual 1"
+    },
+    {
+      "issueId": -1600137467,
+      "title": "2099 Unlimited (1993) #3",
+      "number": "3",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Collects: Spider-Man 2099 11-14, Material From 2099 Unlimited 1-3, Spider-Man 2099 Annual 1"
+    },
+    {
+      "issueId": 53431,
+      "title": "Spider-Man 2099 Annual (1994) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/53431/spider-man_2099_annual_1994_1",
+      "seriesId": 20022,
+      "seriesName": "Spider-Man 2099 Annual (1994)",
+      "onSale": "1994-09-01T00:00:00+0000",
+      "mu": "2016-12-26T00:00:00+0000",
+      "digitalId": 36463,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/00/583df5e468351",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 11-14, Material From 2099 Unlimited 1-3, Spider-Man 2099 Annual 1"
+    },
+    {
+      "issueId": 10871,
+      "title": "Spider-Man 2099 (1992) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/10871/spider-man_2099_1992_15",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1994-01-10T00:00:00+0000",
+      "mu": "2016-12-26T00:00:00+0000",
+      "digitalId": 36441,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/58345329bd43c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (1992) 15-22, Ravage 2099 15, X-Men 2099 5, Doom 2099 14, Punisher 2099 13"
+    },
+    {
+      "issueId": 10872,
+      "title": "Spider-Man 2099 (1992) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/10872/spider-man_2099_1992_16",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1994-02-10T00:00:00+0000",
+      "mu": "2016-12-26T00:00:00+0000",
+      "digitalId": 36442,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/583454a09e6a4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Smith",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (1992) 15-22, Ravage 2099 15, X-Men 2099 5, Doom 2099 14, Punisher 2099 13"
+    },
+    {
+      "issueId": 10873,
+      "title": "Spider-Man 2099 (1992) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/10873/spider-man_2099_1992_17",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1994-03-10T00:00:00+0000",
+      "mu": "2016-12-26T00:00:00+0000",
+      "digitalId": 36443,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/b0/583455106384f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (1992) 15-22, Ravage 2099 15, X-Men 2099 5, Doom 2099 14, Punisher 2099 13"
+    },
+    {
+      "issueId": 10874,
+      "title": "Spider-Man 2099 (1992) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/10874/spider-man_2099_1992_18",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1994-04-10T00:00:00+0000",
+      "mu": "2016-12-26T00:00:00+0000",
+      "digitalId": 36444,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/60/5834556d8915f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Greg Adams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Harry Candilance",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ralph Cabrera",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Batista",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (1992) 15-22, Ravage 2099 15, X-Men 2099 5, Doom 2099 14, Punisher 2099 13"
+    },
+    {
+      "issueId": 10875,
+      "title": "Spider-Man 2099 (1992) #19",
+      "number": "19",
+      "url": "https://www.marvel.com/comics/issue/10875/spider-man_2099_1992_19",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1994-05-10T00:00:00+0000",
+      "mu": "2016-12-26T00:00:00+0000",
+      "digitalId": 36445,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/30/583456c68c762",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ralph Cabrera",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Batista",
+          "role": "penciler"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (1992) 15-22, Ravage 2099 15, X-Men 2099 5, Doom 2099 14, Punisher 2099 13"
+    },
+    {
+      "issueId": 10877,
+      "title": "Spider-Man 2099 (1992) #20",
+      "number": "20",
+      "url": "https://www.marvel.com/comics/issue/10877/spider-man_2099_1992_20",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1994-06-10T00:00:00+0000",
+      "mu": "2016-12-26T00:00:00+0000",
+      "digitalId": 36446,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/80/5834579776b6b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ralph Cabrera",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Batista",
+          "role": "penciler"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (1992) 15-22, Ravage 2099 15, X-Men 2099 5, Doom 2099 14, Punisher 2099 13"
+    },
+    {
+      "issueId": 10878,
+      "title": "Spider-Man 2099 (1992) #21",
+      "number": "21",
+      "url": "https://www.marvel.com/comics/issue/10878/spider-man_2099_1992_21",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1994-07-10T00:00:00+0000",
+      "mu": "2016-12-26T00:00:00+0000",
+      "digitalId": 36447,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/a0/5834581f6f9ff",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "John Nyberg",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Fern",
+          "role": "penciler"
+        },
+        {
+          "name": "Ian Edginton",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (1992) 15-22, Ravage 2099 15, X-Men 2099 5, Doom 2099 14, Punisher 2099 13"
+    },
+    {
+      "issueId": 10879,
+      "title": "Spider-Man 2099 (1992) #22",
+      "number": "22",
+      "url": "https://www.marvel.com/comics/issue/10879/spider-man_2099_1992_22",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1994-08-10T00:00:00+0000",
+      "mu": "2016-12-26T00:00:00+0000",
+      "digitalId": 36448,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/20/583458ae35558",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Donald Hudson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Batista",
+          "role": "penciler"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (1992) 15-22, Ravage 2099 15, X-Men 2099 5, Doom 2099 14, Punisher 2099 13"
+    },
+    {
+      "issueId": 53430,
+      "title": "Ravage 2099 (1992) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/53430/ravage_2099_1992_15",
+      "seriesId": 20021,
+      "seriesName": "Ravage 2099 (1992)",
+      "onSale": "1994-03-01T00:00:00+0000",
+      "mu": "2016-12-26T00:00:00+0000",
+      "digitalId": 36460,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/5835b78b41b22",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Grant Miehm",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "Pat Mills",
+          "role": "writer"
+        },
+        {
+          "name": "Tony Skinner",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (1992) 15-22, Ravage 2099 15, X-Men 2099 5, Doom 2099 14, Punisher 2099 13"
+    },
+    {
+      "issueId": 43366,
+      "title": "X-Men 2099 (1993) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/43366/x-men_2099_1993_5",
+      "seriesId": 16423,
+      "seriesName": "X-Men 2099 (1993 - 1996)",
+      "onSale": "1994-02-01T00:00:00+0000",
+      "mu": "2016-12-12T00:00:00+0000",
+      "digitalId": 32067,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/5845d0edc5028",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "John Francis Moore",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (1992) 15-22, Ravage 2099 15, X-Men 2099 5, Doom 2099 14, Punisher 2099 13"
+    },
+    {
+      "issueId": 53428,
+      "title": "Doom 2099 (1993) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/53428/doom_2099_1993_14",
+      "seriesId": 20019,
+      "seriesName": "Doom 2099 (1993)",
+      "onSale": "1994-02-01T00:00:00+0000",
+      "mu": "2016-12-12T00:00:00+0000",
+      "digitalId": 36458,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/c0/57ebddd5852d4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "John Francis Moore",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (1992) 15-22, Ravage 2099 15, X-Men 2099 5, Doom 2099 14, Punisher 2099 13"
+    },
+    {
+      "issueId": 53429,
+      "title": "Punisher 2099 (1993) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/53429/punisher_2099_1993_13",
+      "seriesId": 20020,
+      "seriesName": "Punisher 2099 (1993)",
+      "onSale": "1994-02-01T00:00:00+0000",
+      "mu": "2016-12-26T00:00:00+0000",
+      "digitalId": 36459,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/5825ea9b2a494",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Morgan",
+          "role": "penciler"
+        },
+        {
+          "name": "Pat Mills",
+          "role": "writer"
+        },
+        {
+          "name": "Tony Skinner",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (1992) 15-22, Ravage 2099 15, X-Men 2099 5, Doom 2099 14, Punisher 2099 13"
+    },
+    {
+      "issueId": -1331401373,
+      "title": "2099 Unlimited (1993) #4",
+      "number": "4",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Fall of the Hammer explicit sequence: Spider-Man 2099 #15, Spider-Man 2099 #16, Ravage 2099 #15, X-Men 2099 #5, Doom 2099 #14, Punisher 2099 #13, 2099 Unlimited #4"
+    },
+    {
+      "issueId": 10880,
+      "title": "Spider-Man 2099 (1992) #23",
+      "number": "23",
+      "url": "https://www.marvel.com/comics/issue/10880/spider-man_2099_1992_23",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1994-09-01T00:00:00+0000",
+      "mu": "1994-09-01T00:00:00+0000",
+      "digitalId": 44927,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/5925d515bfd93",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Donald Hudson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Batista",
+          "role": "penciler"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (1992) 23-33, Material From 2099 Unlimited 8"
+    },
+    {
+      "issueId": 10881,
+      "title": "Spider-Man 2099 (1992) #24",
+      "number": "24",
+      "url": "https://www.marvel.com/comics/issue/10881/spider-man_2099_1992_24",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1994-10-01T00:00:00+0000",
+      "mu": "1994-10-01T00:00:00+0000",
+      "digitalId": 44928,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/e0/5925d62621df9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (1992) 23-33, Material From 2099 Unlimited 8"
+    },
+    {
+      "issueId": 10882,
+      "title": "Spider-Man 2099 (1992) #25",
+      "number": "25",
+      "url": "https://www.marvel.com/comics/issue/10882/spider-man_2099_1992_25",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1994-11-01T00:00:00+0000",
+      "mu": "1994-11-01T00:00:00+0000",
+      "digitalId": 44929,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/5925d4ea49a22",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Ivy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Donald Hudson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Malcolm Davis",
+          "role": "penciler"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Grindberg",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerard Jones",
+          "role": "writer"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (1992) 23-33, Material From 2099 Unlimited 8"
+    },
+    {
+      "issueId": 10883,
+      "title": "Spider-Man 2099 (1992) #26",
+      "number": "26",
+      "url": "https://www.marvel.com/comics/issue/10883/spider-man_2099_1992_26",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1994-12-01T00:00:00+0000",
+      "mu": "1994-12-01T00:00:00+0000",
+      "digitalId": 44930,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/e0/5925d5017b1bb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jimmy Palmiotti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Peter Palmiotti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Vincent Giarrano",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe St. Pierre",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (1992) 23-33, Material From 2099 Unlimited 8"
+    },
+    {
+      "issueId": 10884,
+      "title": "Spider-Man 2099 (1992) #27",
+      "number": "27",
+      "url": "https://www.marvel.com/comics/issue/10884/spider-man_2099_1992_27",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1995-01-01T00:00:00+0000",
+      "mu": "1995-01-01T00:00:00+0000",
+      "digitalId": 44931,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/5925d60ce633c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Donald Hudson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jimmy Palmiotti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe St. Pierre",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (1992) 23-33, Material From 2099 Unlimited 8"
+    },
+    {
+      "issueId": 10885,
+      "title": "Spider-Man 2099 (1992) #28",
+      "number": "28",
+      "url": "https://www.marvel.com/comics/issue/10885/spider-man_2099_1992_28",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1995-02-01T00:00:00+0000",
+      "mu": "1995-02-01T00:00:00+0000",
+      "digitalId": 44932,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/f0/5925d67116808",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "David Boller",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jimmy Palmiotti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe St. Pierre",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (1992) 23-33, Material From 2099 Unlimited 8"
+    },
+    {
+      "issueId": 10886,
+      "title": "Spider-Man 2099 (1992) #29",
+      "number": "29",
+      "url": "https://www.marvel.com/comics/issue/10886/spider-man_2099_1992_29",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1995-03-01T00:00:00+0000",
+      "mu": "1995-03-01T00:00:00+0000",
+      "digitalId": 44933,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/10/5925d68fef1b5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "David Boller",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jimmy Palmiotti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe St. Pierre",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (1992) 23-33, Material From 2099 Unlimited 8"
+    },
+    {
+      "issueId": 10888,
+      "title": "Spider-Man 2099 (1992) #30",
+      "number": "30",
+      "url": "https://www.marvel.com/comics/issue/10888/spider-man_2099_1992_30",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1995-04-01T00:00:00+0000",
+      "mu": "1995-04-01T00:00:00+0000",
+      "digitalId": 44934,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/5925d6a58d221",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "David Boller",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jimmy Palmiotti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roger Robinson",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (1992) 23-33, Material From 2099 Unlimited 8"
+    },
+    {
+      "issueId": 10889,
+      "title": "Spider-Man 2099 (1992) #31",
+      "number": "31",
+      "url": "https://www.marvel.com/comics/issue/10889/spider-man_2099_1992_31",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1995-05-01T00:00:00+0000",
+      "mu": "1995-05-01T00:00:00+0000",
+      "digitalId": 44935,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/5925d5423bbd2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jimmy Palmiotti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roger Robinson",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (1992) 23-33, Material From 2099 Unlimited 8"
+    },
+    {
+      "issueId": 10890,
+      "title": "Spider-Man 2099 (1992) #32",
+      "number": "32",
+      "url": "https://www.marvel.com/comics/issue/10890/spider-man_2099_1992_32",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1995-06-01T00:00:00+0000",
+      "mu": "1995-06-01T00:00:00+0000",
+      "digitalId": 44936,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/03/5925d66638d22",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "David Boller",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jimmy Palmiotti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roger Robinson",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (1992) 23-33, Material From 2099 Unlimited 8"
+    },
+    {
+      "issueId": 10891,
+      "title": "Spider-Man 2099 (1992) #33",
+      "number": "33",
+      "url": "https://www.marvel.com/comics/issue/10891/spider-man_2099_1992_33",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1995-07-01T00:00:00+0000",
+      "mu": "1995-07-01T00:00:00+0000",
+      "digitalId": 44937,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/5925d602cd25b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "David Boller",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stephen Baskerville",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andrew Wildman",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (1992) 23-33, Material From 2099 Unlimited 8"
+    },
+    {
+      "issueId": -1432854148,
+      "title": "2099 Unlimited (1993) #8",
+      "number": "8",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Collects: Spider-Man 2099 (1992) 23-33, Material From 2099 Unlimited 8"
+    },
+    {
+      "issueId": 10892,
+      "title": "Spider-Man 2099 (1992) #34",
+      "number": "34",
+      "url": "https://www.marvel.com/comics/issue/10892/spider-man_2099_1992_34",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1995-08-01T00:00:00+0000",
+      "mu": "1995-08-01T00:00:00+0000",
+      "digitalId": 51191,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/5ca37f43e048f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "David Boller",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stephen Baskerville",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andrew Wildman",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (1992) 34-38, Special; Spider-Man 2099 Meets Spider-Man; Material From 2099 Unlimited 9-10"
+    },
+    {
+      "issueId": 10893,
+      "title": "Spider-Man 2099 (1992) #35",
+      "number": "35",
+      "url": "https://www.marvel.com/comics/issue/10893/spider-man_2099_1992_35",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1995-09-01T00:00:00+0000",
+      "mu": "1995-09-01T00:00:00+0000",
+      "digitalId": 51192,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/c0/5ca37e40a6350",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Stephen Baskerville",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andrew Wildman",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (1992) 34-38, Special; Spider-Man 2099 Meets Spider-Man; Material From 2099 Unlimited 9-10"
+    },
+    {
+      "issueId": 10894,
+      "title": "Spider-Man 2099 (1992) #36",
+      "number": "36",
+      "url": "https://www.marvel.com/comics/issue/10894/spider-man_2099_1992_36",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1995-10-01T00:00:00+0000",
+      "mu": "1995-10-01T00:00:00+0000",
+      "digitalId": 51193,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/a0/5ca37e0fab0ec",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Brad Vancata",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keith Pollard",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (1992) 34-38, Special; Spider-Man 2099 Meets Spider-Man; Material From 2099 Unlimited 9-10"
+    },
+    {
+      "issueId": 10895,
+      "title": "Spider-Man 2099 (1992) #37",
+      "number": "37",
+      "url": "https://www.marvel.com/comics/issue/10895/spider-man_2099_1992_37",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1995-11-01T00:00:00+0000",
+      "mu": "1995-11-01T00:00:00+0000",
+      "digitalId": 51194,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/5ca37db783e35",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Stephen Baskerville",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andrew Wildman",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (1992) 34-38, Special; Spider-Man 2099 Meets Spider-Man; Material From 2099 Unlimited 9-10"
+    },
+    {
+      "issueId": 10896,
+      "title": "Spider-Man 2099 (1992) #38",
+      "number": "38",
+      "url": "https://www.marvel.com/comics/issue/10896/spider-man_2099_1992_38",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1995-12-01T00:00:00+0000",
+      "mu": "1995-12-01T00:00:00+0000",
+      "digitalId": 51195,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/5ca37f61b7927",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "David Boller",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stephen Baskerville",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andrew Wildman",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (1992) 34-38, Special; Spider-Man 2099 Meets Spider-Man; Material From 2099 Unlimited 9-10"
+    },
+    {
+      "issueId": 76328,
+      "title": "Spider-Man 2099 Special (1995) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/76328/spider-man_2099_special_1995_1",
+      "seriesId": 27380,
+      "seriesName": "Spider-Man 2099 Special (1995)",
+      "onSale": "1995-11-01T00:00:00+0000",
+      "mu": "2019-04-08T00:00:00+0000",
+      "digitalId": 51200,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/e0/5ca37e22bae72",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Gabriel Morrissette",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Hildebrandt",
+          "role": "penciler"
+        },
+        {
+          "name": "Joe St. Pierre",
+          "role": "penciler"
+        },
+        {
+          "name": "Tim Hildebrandt",
+          "role": "penciler"
+        },
+        {
+          "name": "Vince Giarrano",
+          "role": "penciler"
+        },
+        {
+          "name": "Ian Edginton",
+          "role": "writer"
+        },
+        {
+          "name": "Jonathan Peterson",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (1992) 34-38, Special; Spider-Man 2099 Meets Spider-Man; Material From 2099 Unlimited 9-10"
+    },
+    {
+      "issueId": 65143,
+      "title": "SPIDER-MAN 2099 MEETS SPIDER-MAN 1 (1995) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/65143/spider-man_2099_meets_spider-man_1_1995_1",
+      "seriesId": 44665,
+      "seriesName": "SPIDER-MAN 2099 MEETS SPIDER-MAN 1 (1995 - Present)",
+      "onSale": "1995-11-01T00:00:00+0000",
+      "mu": "1995-11-01T00:00:00+0000",
+      "digitalId": 46445,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/59c2d555a03dd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (1992) 34-38, Special; Spider-Man 2099 Meets Spider-Man; Material From 2099 Unlimited 9-10"
+    },
+    {
+      "issueId": -1332335529,
+      "title": "2099 Unlimited (1993) #9",
+      "number": "9",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Collects: Spider-Man 2099 (1992) 34-38, Special; Spider-Man 2099 Meets Spider-Man; Material From 2099 Unlimited 9-10"
+    },
+    {
+      "issueId": -1516889338,
+      "title": "2099 Unlimited (1993) #10",
+      "number": "10",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Collects: Spider-Man 2099 (1992) 34-38, Special; Spider-Man 2099 Meets Spider-Man; Material From 2099 Unlimited 9-10"
+    },
+    {
+      "issueId": -1500111719,
+      "title": "2099: World of Tomorrow (1996) #1",
+      "number": "1",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Collects: 2099: World Of Tomorrow #1 To #8"
+    },
+    {
+      "issueId": -1617062181,
+      "title": "2099: World of Tomorrow (1996) #2",
+      "number": "2",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Collects: 2099: World Of Tomorrow #1 To #8"
+    },
+    {
+      "issueId": -1633839800,
+      "title": "2099: World of Tomorrow (1996) #3",
+      "number": "3",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Collects: 2099: World Of Tomorrow #1 To #8"
+    },
+    {
+      "issueId": -1650617419,
+      "title": "2099: World of Tomorrow (1996) #4",
+      "number": "4",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Collects: 2099: World Of Tomorrow #1 To #8"
+    },
+    {
+      "issueId": -1667395038,
+      "title": "2099: World of Tomorrow (1996) #5",
+      "number": "5",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Collects: 2099: World Of Tomorrow #1 To #8"
+    },
+    {
+      "issueId": -1549951705,
+      "title": "2099: World of Tomorrow (1996) #6",
+      "number": "6",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Collects: 2099: World Of Tomorrow #1 To #8"
+    },
+    {
+      "issueId": -1566729324,
+      "title": "2099: World of Tomorrow (1996) #7",
+      "number": "7",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Collects: 2099: World Of Tomorrow #1 To #8"
+    },
+    {
+      "issueId": -1583506943,
+      "title": "2099: World of Tomorrow (1996) #8",
+      "number": "8",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Collects: 2099: World Of Tomorrow #1 To #8"
+    },
+    {
+      "issueId": 22841,
+      "title": "Captain Marvel (2000) #27",
+      "number": "27",
+      "url": "https://www.marvel.com/comics/issue/22841/captain_marvel_2000_27",
+      "seriesId": 690,
+      "seriesName": "Captain Marvel (2000 - 2002)",
+      "onSale": "2002-03-01T00:00:00+0000",
+      "mu": "2002-03-01T00:00:00+0000",
+      "digitalId": 49098,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/70/56aa27d4ea8f4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Anibal Rodriguez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Cross",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Captain Marvel (2000) #27 To #29"
+    },
+    {
+      "issueId": 22842,
+      "title": "Captain Marvel (2000) #28",
+      "number": "28",
+      "url": "https://www.marvel.com/comics/issue/22842/captain_marvel_2000_28",
+      "seriesId": 690,
+      "seriesName": "Captain Marvel (2000 - 2002)",
+      "onSale": "2002-03-01T00:00:00+0000",
+      "mu": "2002-03-01T00:00:00+0000",
+      "digitalId": 49099,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/90/56aa292fcc9ed",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Rich Perrotta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Batista",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Captain Marvel (2000) #27 To #29"
+    },
+    {
+      "issueId": 22843,
+      "title": "Captain Marvel (2000) #29",
+      "number": "29",
+      "url": "https://www.marvel.com/comics/issue/22843/captain_marvel_2000_29",
+      "seriesId": 690,
+      "seriesName": "Captain Marvel (2000 - 2002)",
+      "onSale": "2002-04-01T00:00:00+0000",
+      "mu": "2002-04-01T00:00:00+0000",
+      "digitalId": 49100,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/70/56aa290f7ab9e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Anibal Rodriguez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Cross",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Captain Marvel (2000) #27 To #29"
+    },
+    {
+      "issueId": 3378,
+      "title": "Exiles (2001) #75",
+      "number": "75",
+      "url": "https://www.marvel.com/comics/issue/3378/exiles_2001_75",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2006-01-11T00:00:00+0000",
+      "mu": "2006-01-11T00:00:00+0000",
+      "digitalId": 5834,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/70/5d5d8ea7bbb63",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "Collects: Exiles #75-89, Exiles Annual #1"
+    },
+    {
+      "issueId": 3379,
+      "title": "Exiles (2001) #76",
+      "number": "76",
+      "url": "https://www.marvel.com/comics/issue/3379/exiles_2001_76",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2006-01-25T00:00:00+0000",
+      "mu": "2006-01-25T00:00:00+0000",
+      "digitalId": 5835,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/5d5d9a53a3c35",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "Collects: Exiles #75-89, Exiles Annual #1"
+    },
+    {
+      "issueId": 3498,
+      "title": "Exiles (2001) #77",
+      "number": "77",
+      "url": "https://www.marvel.com/comics/issue/3498/exiles_2001_77",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2006-02-22T00:00:00+0000",
+      "mu": "2006-02-22T00:00:00+0000",
+      "digitalId": 5836,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/60/5d5da2460b11b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "Collects: Exiles #75-89, Exiles Annual #1"
+    },
+    {
+      "issueId": 3902,
+      "title": "Exiles (2001) #78",
+      "number": "78",
+      "url": "https://www.marvel.com/comics/issue/3902/exiles_2001_78",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2006-03-22T00:00:00+0000",
+      "mu": "2006-03-22T00:00:00+0000",
+      "digitalId": 5837,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/5d5da8f36262d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "Collects: Exiles #75-89, Exiles Annual #1"
+    },
+    {
+      "issueId": 4034,
+      "title": "Exiles (2001) #79",
+      "number": "79",
+      "url": "https://www.marvel.com/comics/issue/4034/exiles_2001_79",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2006-04-12T00:00:00+0000",
+      "mu": "2006-04-12T00:00:00+0000",
+      "digitalId": 5838,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/5d5e9145d45d6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "Collects: Exiles #75-89, Exiles Annual #1"
+    },
+    {
+      "issueId": 4148,
+      "title": "Exiles (2001) #80",
+      "number": "80",
+      "url": "https://www.marvel.com/comics/issue/4148/exiles_2001_80",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2006-05-03T00:00:00+0000",
+      "mu": "2006-05-03T00:00:00+0000",
+      "digitalId": 5839,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/50/5d5eb7a8a3cce",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "Collects: Exiles #75-89, Exiles Annual #1"
+    },
+    {
+      "issueId": 4149,
+      "title": "Exiles (2001) #81",
+      "number": "81",
+      "url": "https://www.marvel.com/comics/issue/4149/exiles_2001_81",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2006-05-24T00:00:00+0000",
+      "mu": "2006-05-24T00:00:00+0000",
+      "digitalId": 5840,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/20/5d5ec5e945276",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "Collects: Exiles #75-89, Exiles Annual #1"
+    },
+    {
+      "issueId": 4258,
+      "title": "Exiles (2001) #82",
+      "number": "82",
+      "url": "https://www.marvel.com/comics/issue/4258/exiles_2001_82",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2006-06-14T00:00:00+0000",
+      "mu": "2006-06-14T00:00:00+0000",
+      "digitalId": 5841,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/5d5ec7624dc08",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "Collects: Exiles #75-89, Exiles Annual #1"
+    },
+    {
+      "issueId": 4259,
+      "title": "Exiles (2001) #83",
+      "number": "83",
+      "url": "https://www.marvel.com/comics/issue/4259/exiles_2001_83",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2006-06-28T00:00:00+0000",
+      "mu": "2006-06-28T00:00:00+0000",
+      "digitalId": 5842,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/e0/5d5ef48ed3c18",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "Collects: Exiles #75-89, Exiles Annual #1"
+    },
+    {
+      "issueId": 4418,
+      "title": "Exiles (2001) #84",
+      "number": "84",
+      "url": "https://www.marvel.com/comics/issue/4418/exiles_2001_84",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2006-07-26T00:00:00+0000",
+      "mu": "2006-07-26T00:00:00+0000",
+      "digitalId": 2974,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/a0/5d5ef793c0fa3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "Collects: Exiles #75-89, Exiles Annual #1"
+    },
+    {
+      "issueId": 4805,
+      "title": "Exiles (2001) #85",
+      "number": "85",
+      "url": "https://www.marvel.com/comics/issue/4805/exiles_2001_85",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2006-08-23T00:00:00+0000",
+      "mu": "2006-08-23T00:00:00+0000",
+      "digitalId": 5844,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/c0/5d600622cea5d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "Collects: Exiles #75-89, Exiles Annual #1"
+    },
+    {
+      "issueId": 5093,
+      "title": "Exiles (2001) #86",
+      "number": "86",
+      "url": "https://www.marvel.com/comics/issue/5093/exiles_2001_86",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2006-09-20T00:00:00+0000",
+      "mu": "2006-09-20T00:00:00+0000",
+      "digitalId": 5845,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/a0/57ead6986e881",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "Collects: Exiles #75-89, Exiles Annual #1"
+    },
+    {
+      "issueId": 5244,
+      "title": "Exiles (2001) #87",
+      "number": "87",
+      "url": "https://www.marvel.com/comics/issue/5244/exiles_2001_87",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2006-10-25T00:00:00+0000",
+      "mu": "2006-10-25T00:00:00+0000",
+      "digitalId": 5846,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/57ead768bf214",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "Collects: Exiles #75-89, Exiles Annual #1"
+    },
+    {
+      "issueId": 5546,
+      "title": "Exiles (2001) #88",
+      "number": "88",
+      "url": "https://www.marvel.com/comics/issue/5546/exiles_2001_88",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2006-11-22T00:00:00+0000",
+      "mu": "2006-11-22T00:00:00+0000",
+      "digitalId": 5847,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/10/57ead64a91a2b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "Collects: Exiles #75-89, Exiles Annual #1"
+    },
+    {
+      "issueId": 5668,
+      "title": "Exiles (2001) #89",
+      "number": "89",
+      "url": "https://www.marvel.com/comics/issue/5668/exiles_2001_89",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2006-12-27T00:00:00+0000",
+      "mu": "2006-12-27T00:00:00+0000",
+      "digitalId": 5848,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/40/57ead66a0bf5c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "Collects: Exiles #75-89, Exiles Annual #1"
+    },
+    {
+      "issueId": 5732,
+      "title": "EXILES ANNUAL 1 (2006) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/5732/exiles_annual_1_2006_1",
+      "seriesId": 1146,
+      "seriesName": "EXILES ANNUAL 1 (2006)",
+      "onSale": "2006-12-13T00:00:00+0000",
+      "mu": "2006-12-13T00:00:00+0000",
+      "digitalId": 5849,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/576c4a76d4224",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [],
+      "collectedIn": "Collects: Exiles #75-89, Exiles Annual #1"
+    },
+    {
+      "issueId": 5806,
+      "title": "Exiles (2001) #90",
+      "number": "90",
+      "url": "https://www.marvel.com/comics/issue/5806/exiles_2001_90",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2007-01-17T00:00:00+0000",
+      "mu": "2007-01-17T00:00:00+0000",
+      "digitalId": 4070,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/5d71150d259f4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dave Meikis",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Pelletier",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Collects: Exiles #90-100, Days Of Then & Now; X-Men: Die By The Sword #1-5"
+    },
+    {
+      "issueId": 6005,
+      "title": "Exiles (2001) #91",
+      "number": "91",
+      "url": "https://www.marvel.com/comics/issue/6005/exiles_2001_91",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2007-02-14T00:00:00+0000",
+      "mu": "2007-02-14T00:00:00+0000",
+      "digitalId": 8146,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/5d713307afb79",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dave Meikis",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Pelletier",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Collects: Exiles #90-100, Days Of Then & Now; X-Men: Die By The Sword #1-5"
+    },
+    {
+      "issueId": 6154,
+      "title": "Exiles (2001) #92",
+      "number": "92",
+      "url": "https://www.marvel.com/comics/issue/6154/exiles_2001_92",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2007-03-21T00:00:00+0000",
+      "mu": "2007-03-21T00:00:00+0000",
+      "digitalId": 8147,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/00/5d71343866000",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dave Meikis",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Pelletier",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Collects: Exiles #90-100, Days Of Then & Now; X-Men: Die By The Sword #1-5"
+    },
+    {
+      "issueId": 6334,
+      "title": "Exiles (2001) #93",
+      "number": "93",
+      "url": "https://www.marvel.com/comics/issue/6334/exiles_2001_93",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2007-04-25T00:00:00+0000",
+      "mu": "2007-04-25T00:00:00+0000",
+      "digitalId": 8148,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/5d71595ad0c1f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dave Meikis",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Pelletier",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Collects: Exiles #90-100, Days Of Then & Now; X-Men: Die By The Sword #1-5"
+    },
+    {
+      "issueId": 13429,
+      "title": "Exiles (2001) #94",
+      "number": "94",
+      "url": "https://www.marvel.com/comics/issue/13429/exiles_2001_94",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2007-05-16T00:00:00+0000",
+      "mu": "2007-05-16T00:00:00+0000",
+      "digitalId": 8149,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/80/57ead7f81bcae",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dave Meikis",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Pelletier",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Collects: Exiles #90-100, Days Of Then & Now; X-Men: Die By The Sword #1-5"
+    },
+    {
+      "issueId": 15811,
+      "title": "Exiles (2001) #95",
+      "number": "95",
+      "url": "https://www.marvel.com/comics/issue/15811/exiles_2001_95",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2007-06-13T00:00:00+0000",
+      "mu": "2007-06-13T00:00:00+0000",
+      "digitalId": 8150,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/e0/57eadb3bb1454",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Tomm Coker",
+          "role": "cover artist"
+        }
+      ],
+      "collectedIn": "Collects: Exiles #90-100, Days Of Then & Now; X-Men: Die By The Sword #1-5"
+    },
+    {
+      "issueId": 15929,
+      "title": "Exiles (2001) #96",
+      "number": "96",
+      "url": "https://www.marvel.com/comics/issue/15929/exiles_2001_96",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2007-07-11T00:00:00+0000",
+      "mu": "2007-07-11T00:00:00+0000",
+      "digitalId": 8151,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/70/57eadd2a8d18d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Norman Lee",
+          "role": "cover artist"
+        },
+        {
+          "name": "Clayton Henry",
+          "role": "penciler"
+        },
+        {
+          "name": "Tomm Coker",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Exiles #90-100, Days Of Then & Now; X-Men: Die By The Sword #1-5"
+    },
+    {
+      "issueId": 16110,
+      "title": "Exiles (2001) #97",
+      "number": "97",
+      "url": "https://www.marvel.com/comics/issue/16110/exiles_2001_97",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2007-08-08T00:00:00+0000",
+      "mu": "2007-08-08T00:00:00+0000",
+      "digitalId": 8152,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/50/57eadcd63faaf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Norman Lee",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Scott",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Exiles #90-100, Days Of Then & Now; X-Men: Die By The Sword #1-5"
+    },
+    {
+      "issueId": 16455,
+      "title": "Exiles (2001) #98",
+      "number": "98",
+      "url": "https://www.marvel.com/comics/issue/16455/exiles_2001_98",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2007-09-05T00:00:00+0000",
+      "mu": "2007-09-05T00:00:00+0000",
+      "digitalId": 8153,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/5d7263e55b5b1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Amilton Santos",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ronan Cliquet",
+          "role": "penciler"
+        },
+        {
+          "name": "Tomm Coker",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Exiles #90-100, Days Of Then & Now; X-Men: Die By The Sword #1-5"
+    },
+    {
+      "issueId": 16456,
+      "title": "Exiles (2001) #99",
+      "number": "99",
+      "url": "https://www.marvel.com/comics/issue/16456/exiles_2001_99",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2007-10-03T00:00:00+0000",
+      "mu": "2007-10-03T00:00:00+0000",
+      "digitalId": 8154,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/d0/5d7271acb9ff7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Norman Lee",
+          "role": "cover artist"
+        },
+        {
+          "name": "Clayton Henry",
+          "role": "penciler"
+        },
+        {
+          "name": "Tomm Coker",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Exiles #90-100, Days Of Then & Now; X-Men: Die By The Sword #1-5"
+    },
+    {
+      "issueId": 17345,
+      "title": "Exiles (2001) #100",
+      "number": "100",
+      "url": "https://www.marvel.com/comics/issue/17345/exiles_2001_100",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2007-12-19T00:00:00+0000",
+      "mu": "2007-12-19T00:00:00+0000",
+      "digitalId": 8155,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/d0/5d7287c5357c1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 72,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Terry Pallot",
+          "role": "cover artist"
+        },
+        {
+          "name": "Francis Tsai",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Grummett",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Exiles #90-100, Days Of Then & Now; X-Men: Die By The Sword #1-5"
+    },
+    {
+      "issueId": 17659,
+      "title": "EXILES: DAYS OF THEN AND NOW 1 (2008) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/17659/exiles_days_of_then_and_now_1_2008_1",
+      "seriesId": 3420,
+      "seriesName": "EXILES: DAYS OF THEN AND NOW 1 (2008)",
+      "onSale": "2008-01-02T00:00:00+0000",
+      "mu": "2008-01-02T00:00:00+0000",
+      "digitalId": 10706,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/e0/576c4d6030313",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Sandu Florea",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Koblish",
+          "role": "cover artist"
+        },
+        {
+          "name": "Terry Pallot",
+          "role": "cover artist"
+        },
+        {
+          "name": "Vicente Cifuentes",
+          "role": "cover artist"
+        },
+        {
+          "name": "Zach Howard",
+          "role": "cover artist"
+        },
+        {
+          "name": "Arnold Pander",
+          "role": "penciler"
+        },
+        {
+          "name": "Carlos Ferreira",
+          "role": "penciler"
+        },
+        {
+          "name": "Mario Gully",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Azaceta",
+          "role": "penciler"
+        },
+        {
+          "name": "Wayne Nichols",
+          "role": "penciler"
+        },
+        {
+          "name": "Francis Tsai",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Mike Raicht",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Exiles #90-100, Days Of Then & Now; X-Men: Die By The Sword #1-5"
+    },
+    {
+      "issueId": 16590,
+      "title": "X-Men: Die by the Sword (2007) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/16590/x-men_die_by_the_sword_2007_1",
+      "seriesId": 2890,
+      "seriesName": "X-Men: Die by the Sword (2007 - 2008)",
+      "onSale": "2007-10-10T00:00:00+0000",
+      "mu": "2007-10-10T00:00:00+0000",
+      "digitalId": 8874,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/60/58d14ebc35cd6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Raul Fonts",
+          "role": "cover artist"
+        },
+        {
+          "name": "Juan Santacruz",
+          "role": "penciler"
+        },
+        {
+          "name": "Jelena Kevic Djurdjevic",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Exiles #90-100, Days Of Then & Now; X-Men: Die By The Sword #1-5"
+    },
+    {
+      "issueId": 16591,
+      "title": "X-Men: Die by the Sword (2007) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/16591/x-men_die_by_the_sword_2007_2",
+      "seriesId": 2890,
+      "seriesName": "X-Men: Die by the Sword (2007 - 2008)",
+      "onSale": "2007-10-24T00:00:00+0000",
+      "mu": "2007-10-24T00:00:00+0000",
+      "digitalId": 8875,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/40/58d15aeb7adec",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Raul Fonts",
+          "role": "cover artist"
+        },
+        {
+          "name": "Juan Santacruz",
+          "role": "penciler"
+        },
+        {
+          "name": "Jelena Kevic Djurdjevic",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Exiles #90-100, Days Of Then & Now; X-Men: Die By The Sword #1-5"
+    },
+    {
+      "issueId": 17282,
+      "title": "X-Men: Die by the Sword (2007) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/17282/x-men_die_by_the_sword_2007_3",
+      "seriesId": 2890,
+      "seriesName": "X-Men: Die by the Sword (2007 - 2008)",
+      "onSale": "2007-11-14T00:00:00+0000",
+      "mu": "2007-11-14T00:00:00+0000",
+      "digitalId": 8876,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/58d164d1d679c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrew Pepoy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Norberto Fernandez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Raul Fonts",
+          "role": "cover artist"
+        },
+        {
+          "name": "C Cafu",
+          "role": "penciler"
+        },
+        {
+          "name": "Jelena Kevic Djurdjevic",
+          "role": "penciler"
+        },
+        {
+          "name": "Juan Santacruz",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Exiles #90-100, Days Of Then & Now; X-Men: Die By The Sword #1-5"
+    },
+    {
+      "issueId": 17414,
+      "title": "X-Men: Die by the Sword (2007) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/17414/x-men_die_by_the_sword_2007_4",
+      "seriesId": 2890,
+      "seriesName": "X-Men: Die by the Sword (2007 - 2008)",
+      "onSale": "2007-12-05T00:00:00+0000",
+      "mu": "2007-12-05T00:00:00+0000",
+      "digitalId": 8877,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/50/58d16e971b8ff",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Norberto Fernandez",
+          "role": "cover artist"
+        },
+        {
+          "name": "C Cafu",
+          "role": "penciler"
+        },
+        {
+          "name": "Jelena Kevic Djurdjevic",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Exiles #90-100, Days Of Then & Now; X-Men: Die By The Sword #1-5"
+    },
+    {
+      "issueId": 17415,
+      "title": "X-Men: Die by the Sword (2007) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/17415/x-men_die_by_the_sword_2007_5",
+      "seriesId": 2890,
+      "seriesName": "X-Men: Die by the Sword (2007 - 2008)",
+      "onSale": "2007-12-12T00:00:00+0000",
+      "mu": "2007-12-12T00:00:00+0000",
+      "digitalId": 8878,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/03/58d18134507b5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Raul Fonts",
+          "role": "cover artist"
+        },
+        {
+          "name": "Juan Santacruz",
+          "role": "penciler"
+        },
+        {
+          "name": "Jelena Kevic Djurdjevic",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Exiles #90-100, Days Of Then & Now; X-Men: Die By The Sword #1-5"
+    },
+    {
+      "issueId": 24042,
+      "title": "Timestorm 2009/2099 (2009) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/24042/timestorm_20092099_2009_1",
+      "seriesId": 7220,
+      "seriesName": "Timestorm 2009/2099 (2009)",
+      "onSale": "2009-04-08T00:00:00+0000",
+      "mu": "2009-04-08T00:00:00+0000",
+      "digitalId": 15767,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/5c11774beed81",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Andrew Hennessy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Vicente Cifuentes",
+          "role": "cover artist"
+        },
+        {
+          "name": "Eric Battle",
+          "role": "penciler"
+        },
+        {
+          "name": "Christopher Shy",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Brian Reed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Timestorm 2009/2099 #1-4, Spider-Man One-Shot, And X-Men One-Shot"
+    },
+    {
+      "issueId": 24242,
+      "title": "Timestorm 2009/2099 (2009) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/24242/timestorm_20092099_2009_2",
+      "seriesId": 7220,
+      "seriesName": "Timestorm 2009/2099 (2009)",
+      "onSale": "2009-05-20T00:00:00+0000",
+      "mu": "2009-05-20T00:00:00+0000",
+      "digitalId": 15836,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/5c1177b077f75",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrew Hennessy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Vicente Cifuentes",
+          "role": "cover artist"
+        },
+        {
+          "name": "Eric Battle",
+          "role": "penciler"
+        },
+        {
+          "name": "R.B. Silva",
+          "role": "penciler"
+        },
+        {
+          "name": "Salvador Larroca",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Reed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Timestorm 2009/2099 #1-4, Spider-Man One-Shot, And X-Men One-Shot"
+    },
+    {
+      "issueId": 26770,
+      "title": "Timestorm 2009/2099 (2009) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/26770/timestorm_20092099_2009_3",
+      "seriesId": 7220,
+      "seriesName": "Timestorm 2009/2099 (2009)",
+      "onSale": "2009-07-15T00:00:00+0000",
+      "mu": "2009-07-15T00:00:00+0000",
+      "digitalId": 15837,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/5c11777060a9d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrew Hennessy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Eric Battle",
+          "role": "penciler"
+        },
+        {
+          "name": "R.B. Silva",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Raney",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Reed",
+          "role": "writer"
+        },
+        {
+          "name": "Dave Wiltfong",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Timestorm 2009/2099 #1-4, Spider-Man One-Shot, And X-Men One-Shot"
+    },
+    {
+      "issueId": 26771,
+      "title": "Timestorm 2009/2099 (2009) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/26771/timestorm_20092099_2009_4",
+      "seriesId": 7220,
+      "seriesName": "Timestorm 2009/2099 (2009)",
+      "onSale": "2009-08-26T00:00:00+0000",
+      "mu": "2011-06-10T00:00:00+0000",
+      "digitalId": 16623,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/5c11779b528ef",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alex Silva",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andrew Hennessy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Nelson Pereira",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Eric Battle",
+          "role": "penciler"
+        },
+        {
+          "name": "John Bosco",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Raney",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Reed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Timestorm 2009/2099 #1-4, Spider-Man One-Shot, And X-Men One-Shot"
+    },
+    {
+      "issueId": 26774,
+      "title": "TIMESTORM 2009/2099: SPIDER-MAN 1 (2009) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/26774/timestorm_20092099_spider-man_1_2009_1",
+      "seriesId": 8466,
+      "seriesName": "TIMESTORM 2009/2099: SPIDER-MAN 1 (2009)",
+      "onSale": "2009-06-03T00:00:00+0000",
+      "mu": "2009-06-03T00:00:00+0000",
+      "digitalId": 12530,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/b0/4bb4ec764b1aa",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Wes Craig",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Reed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Timestorm 2009/2099 #1-4, Spider-Man One-Shot, And X-Men One-Shot"
+    },
+    {
+      "issueId": 26775,
+      "title": "TIMESTORM 2009/2099: X-MEN 1 (2009) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/26775/timestorm_20092099_x-men_1_2009_1",
+      "seriesId": 8467,
+      "seriesName": "TIMESTORM 2009/2099: X-MEN 1 (2009)",
+      "onSale": "2009-06-24T00:00:00+0000",
+      "mu": "2009-06-24T00:00:00+0000",
+      "digitalId": 12723,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/5c11778725ccb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Paul Renaud",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Reed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Timestorm 2009/2099 #1-4, Spider-Man One-Shot, And X-Men One-Shot"
+    },
+    {
+      "issueId": 47381,
+      "title": "Superior Spider-Man (2013) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/47381/superior_spider-man_2013_17",
+      "seriesId": 17554,
+      "seriesName": "Superior Spider-Man (2013 - 2014)",
+      "onSale": "2013-09-04T00:00:00+0000",
+      "mu": "2014-03-03T00:00:00+0000",
+      "digitalId": 31381,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/a0/521bb64dc1632",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ryan Stegman",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Superior Spider-Man #17 To #19"
+    },
+    {
+      "issueId": 47382,
+      "title": "Superior Spider-Man (2013) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/47382/superior_spider-man_2013_18",
+      "seriesId": 17554,
+      "seriesName": "Superior Spider-Man (2013 - 2014)",
+      "onSale": "2013-09-18T00:00:00+0000",
+      "mu": "2014-03-24T00:00:00+0000",
+      "digitalId": 31517,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/e0/522f3b416c803",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ryan Stegman",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Superior Spider-Man #17 To #19"
+    },
+    {
+      "issueId": 47383,
+      "title": "Superior Spider-Man (2013) #19",
+      "number": "19",
+      "url": "https://www.marvel.com/comics/issue/47383/superior_spider-man_2013_19",
+      "seriesId": 17554,
+      "seriesName": "Superior Spider-Man (2013 - 2014)",
+      "onSale": "2013-10-16T00:00:00+0000",
+      "mu": "2014-04-21T00:00:00+0000",
+      "digitalId": 31732,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/e0/5254245c51603",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ryan Stegman",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Superior Spider-Man #17 To #19"
+    },
+    {
+      "issueId": 50890,
+      "title": "Spider-Man 2099 (2014) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/50890/spider-man_2099_2014_1",
+      "seriesId": 18891,
+      "seriesName": "Spider-Man 2099 (2014 - 2015)",
+      "onSale": "2014-07-09T00:00:00+0000",
+      "mu": "2015-01-12T00:00:00+0000",
+      "digitalId": 34263,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/a0/53b2f50325035",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Simone Bianchi",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 1-5, Amazing Spider-Man 1"
+    },
+    {
+      "issueId": 50932,
+      "title": "Spider-Man 2099 (2014) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/50932/spider-man_2099_2014_2",
+      "seriesId": 18891,
+      "seriesName": "Spider-Man 2099 (2014 - 2015)",
+      "onSale": "2014-08-13T00:00:00+0000",
+      "mu": "2015-02-09T00:00:00+0000",
+      "digitalId": 34678,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/53e123483f7cb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alexander Lozano",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 1-5, Amazing Spider-Man 1"
+    },
+    {
+      "issueId": 50953,
+      "title": "Spider-Man 2099 (2014) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/50953/spider-man_2099_2014_3",
+      "seriesId": 18891,
+      "seriesName": "Spider-Man 2099 (2014 - 2015)",
+      "onSale": "2014-09-03T00:00:00+0000",
+      "mu": "2015-03-02T00:00:00+0000",
+      "digitalId": 34831,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/40/54f8b28debf78",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Will Sliney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 1-5, Amazing Spider-Man 1"
+    },
+    {
+      "issueId": 50544,
+      "title": "Spider-Man 2099 (2014) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/50544/spider-man_2099_2014_4",
+      "seriesId": 18891,
+      "seriesName": "Spider-Man 2099 (2014 - 2015)",
+      "onSale": "2014-10-01T00:00:00+0000",
+      "mu": "2015-04-06T00:00:00+0000",
+      "digitalId": 35497,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/d0/54233d61859fd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 1-5, Amazing Spider-Man 1"
+    },
+    {
+      "issueId": 50545,
+      "title": "Spider-Man 2099 (2014) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/50545/spider-man_2099_2014_5",
+      "seriesId": 18891,
+      "seriesName": "Spider-Man 2099 (2014 - 2015)",
+      "onSale": "2014-10-15T00:00:00+0000",
+      "mu": "2015-04-20T00:00:00+0000",
+      "digitalId": 34973,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/a0/54343c0d6a701",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 1-5, Amazing Spider-Man 1"
+    },
+    {
+      "issueId": 45798,
+      "title": "The Amazing Spider-Man (2014) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/45798/the_amazing_spider-man_2014_1",
+      "seriesId": 17285,
+      "seriesName": "The Amazing Spider-Man (2014 - 2015)",
+      "onSale": "2014-04-30T00:00:00+0000",
+      "mu": "2014-10-27T00:00:00+0000",
+      "digitalId": 33592,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/f0/5cfaa9ca8a2bd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 64,
+      "creators": [
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 1-5, Amazing Spider-Man 1"
+    },
+    {
+      "issueId": 50546,
+      "title": "Spider-Man 2099 (2014) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/50546/spider-man_2099_2014_6",
+      "seriesId": 18891,
+      "seriesName": "Spider-Man 2099 (2014 - 2015)",
+      "onSale": "2014-11-26T00:00:00+0000",
+      "mu": "2015-05-25T00:00:00+0000",
+      "digitalId": 35452,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/546d0a295a5e3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider -Man 2099 6-12"
+    },
+    {
+      "issueId": 50547,
+      "title": "Spider-Man 2099 (2014) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/50547/spider-man_2099_2014_7",
+      "seriesId": 18891,
+      "seriesName": "Spider-Man 2099 (2014 - 2015)",
+      "onSale": "2015-01-07T00:00:00+0000",
+      "mu": "2015-07-06T00:00:00+0000",
+      "digitalId": 36170,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/54a2cd44d8076",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider -Man 2099 6-12"
+    },
+    {
+      "issueId": 50548,
+      "title": "Spider-Man 2099 (2014) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/50548/spider-man_2099_2014_8",
+      "seriesId": 18891,
+      "seriesName": "Spider-Man 2099 (2014 - 2015)",
+      "onSale": "2015-01-28T00:00:00+0000",
+      "mu": "2015-07-27T00:00:00+0000",
+      "digitalId": 36383,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/f0/54be7ca2bbfd3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider -Man 2099 6-12"
+    },
+    {
+      "issueId": 50549,
+      "title": "Spider-Man 2099 (2014) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/50549/spider-man_2099_2014_9",
+      "seriesId": 18891,
+      "seriesName": "Spider-Man 2099 (2014 - 2015)",
+      "onSale": "2015-02-25T00:00:00+0000",
+      "mu": "2015-08-31T00:00:00+0000",
+      "digitalId": 36753,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/03/54e796a032912",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider -Man 2099 6-12"
+    },
+    {
+      "issueId": 50550,
+      "title": "Spider-Man 2099 (2014) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/50550/spider-man_2099_2014_10",
+      "seriesId": 18891,
+      "seriesName": "Spider-Man 2099 (2014 - 2015)",
+      "onSale": "2015-03-11T00:00:00+0000",
+      "mu": "2015-09-14T00:00:00+0000",
+      "digitalId": 36932,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/a0/54fdd912db6fd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider -Man 2099 6-12"
+    },
+    {
+      "issueId": 50551,
+      "title": "Spider-Man 2099 (2014) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/50551/spider-man_2099_2014_11",
+      "seriesId": 18891,
+      "seriesName": "Spider-Man 2099 (2014 - 2015)",
+      "onSale": "2015-04-08T00:00:00+0000",
+      "mu": "2015-10-12T00:00:00+0000",
+      "digitalId": 37362,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/03/551e9e1924691",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider -Man 2099 6-12"
+    },
+    {
+      "issueId": 50552,
+      "title": "Spider-Man 2099 (2014) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/50552/spider-man_2099_2014_12",
+      "seriesId": 18891,
+      "seriesName": "Spider-Man 2099 (2014 - 2015)",
+      "onSale": "2015-05-13T00:00:00+0000",
+      "mu": "2015-11-16T00:00:00+0000",
+      "digitalId": 38265,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/c0/554ccb0c7a2c5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider -Man 2099 6-12"
+    },
+    {
+      "issueId": 52457,
+      "title": "Secret Wars 2099 (2015) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/52457/secret_wars_2099_2015_1",
+      "seriesId": 19649,
+      "seriesName": "Secret Wars 2099 (2015)",
+      "onSale": "2015-05-27T00:00:00+0000",
+      "mu": "2015-11-30T00:00:00+0000",
+      "digitalId": 38664,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/a0/5564c6dbbf64d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dave Rapoza",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Secret Wars 2099 #1-5"
+    },
+    {
+      "issueId": 52459,
+      "title": "Secret Wars 2099 (2015) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/52459/secret_wars_2099_2015_2",
+      "seriesId": 19649,
+      "seriesName": "Secret Wars 2099 (2015)",
+      "onSale": "2015-06-10T00:00:00+0000",
+      "mu": "2015-12-14T00:00:00+0000",
+      "digitalId": 38890,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/00/566f2974cb3d6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dave Rapoza",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Secret Wars 2099 #1-5"
+    },
+    {
+      "issueId": 52460,
+      "title": "Secret Wars 2099 (2015) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/52460/secret_wars_2099_2015_3",
+      "seriesId": 19649,
+      "seriesName": "Secret Wars 2099 (2015)",
+      "onSale": "2015-07-08T00:00:00+0000",
+      "mu": "2016-01-04T00:00:00+0000",
+      "digitalId": 39235,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/559adb134e3df",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dave Rapoza",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Secret Wars 2099 #1-5"
+    },
+    {
+      "issueId": 52461,
+      "title": "Secret Wars 2099 (2015) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/52461/secret_wars_2099_2015_4",
+      "seriesId": 19649,
+      "seriesName": "Secret Wars 2099 (2015)",
+      "onSale": "2015-08-12T00:00:00+0000",
+      "mu": "2016-02-08T00:00:00+0000",
+      "digitalId": 39685,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/55c51d67f1dc4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Will Sliney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dave Rapoza",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Secret Wars 2099 #1-5"
+    },
+    {
+      "issueId": 52462,
+      "title": "Secret Wars 2099 (2015) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/52462/secret_wars_2099_2015_5",
+      "seriesId": 19649,
+      "seriesName": "Secret Wars 2099 (2015)",
+      "onSale": "2015-09-09T00:00:00+0000",
+      "mu": "2016-03-14T00:00:00+0000",
+      "digitalId": 39904,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/55e4bb919c2c7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Will Sliney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dave Rapoza",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Secret Wars 2099 #1-5"
+    },
+    {
+      "issueId": 55711,
+      "title": "Spider-Man 2099 (2015) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/55711/spider-man_2099_2015_1",
+      "seriesId": 20511,
+      "seriesName": "Spider-Man 2099 (2015 - 2017)",
+      "onSale": "2015-10-14T00:00:00+0000",
+      "mu": "2016-04-18T00:00:00+0000",
+      "digitalId": 40248,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/561bd3753ed72",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (2015) #1 To #5"
+    },
+    {
+      "issueId": 55713,
+      "title": "Spider-Man 2099 (2015) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/55713/spider-man_2099_2015_2",
+      "seriesId": 20511,
+      "seriesName": "Spider-Man 2099 (2015 - 2017)",
+      "onSale": "2015-10-28T00:00:00+0000",
+      "mu": "2016-04-25T00:00:00+0000",
+      "digitalId": 40346,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/562688eca5e26",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (2015) #1 To #5"
+    },
+    {
+      "issueId": 55715,
+      "title": "Spider-Man 2099 (2015) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/55715/spider-man_2099_2015_3",
+      "seriesId": 20511,
+      "seriesName": "Spider-Man 2099 (2015 - 2017)",
+      "onSale": "2015-11-11T00:00:00+0000",
+      "mu": "2016-05-16T00:00:00+0000",
+      "digitalId": 40471,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/a0/5640d6412d203",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (2015) #1 To #5"
+    },
+    {
+      "issueId": 55716,
+      "title": "Spider-Man 2099 (2015) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/55716/spider-man_2099_2015_4",
+      "seriesId": 20511,
+      "seriesName": "Spider-Man 2099 (2015 - 2017)",
+      "onSale": "2015-12-09T00:00:00+0000",
+      "mu": "2016-06-13T00:00:00+0000",
+      "digitalId": 40662,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/5665cdcb16653",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (2015) #1 To #5"
+    },
+    {
+      "issueId": 55717,
+      "title": "Spider-Man 2099 (2015) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/55717/spider-man_2099_2015_5",
+      "seriesId": 20511,
+      "seriesName": "Spider-Man 2099 (2015 - 2017)",
+      "onSale": "2016-01-06T00:00:00+0000",
+      "mu": "2016-07-04T00:00:00+0000",
+      "digitalId": 40806,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/568440ca0945b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (2015) #1 To #5"
+    },
+    {
+      "issueId": 55718,
+      "title": "Spider-Man 2099 (2015) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/55718/spider-man_2099_2015_6",
+      "seriesId": 20511,
+      "seriesName": "Spider-Man 2099 (2015 - 2017)",
+      "onSale": "2016-02-10T00:00:00+0000",
+      "mu": "2016-08-08T00:00:00+0000",
+      "digitalId": 41129,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/80/56ab87dbaf6c4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Will Sliney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (2015) #6-10"
+    },
+    {
+      "issueId": 55719,
+      "title": "Spider-Man 2099 (2015) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/55719/spider-man_2099_2015_7",
+      "seriesId": 20511,
+      "seriesName": "Spider-Man 2099 (2015 - 2017)",
+      "onSale": "2016-02-24T00:00:00+0000",
+      "mu": "2016-08-22T00:00:00+0000",
+      "digitalId": 41229,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/10/56c7487ad239e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Will Sliney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (2015) #6-10"
+    },
+    {
+      "issueId": 55720,
+      "title": "Spider-Man 2099 (2015) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/55720/spider-man_2099_2015_8",
+      "seriesId": 20511,
+      "seriesName": "Spider-Man 2099 (2015 - 2017)",
+      "onSale": "2016-03-09T00:00:00+0000",
+      "mu": "2016-09-12T00:00:00+0000",
+      "digitalId": 41370,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/56d9b70542d1c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Will Sliney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (2015) #6-10"
+    },
+    {
+      "issueId": 55721,
+      "title": "Spider-Man 2099 (2015) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/55721/spider-man_2099_2015_9",
+      "seriesId": 20511,
+      "seriesName": "Spider-Man 2099 (2015 - 2017)",
+      "onSale": "2016-04-06T00:00:00+0000",
+      "mu": "2016-04-06T00:00:00+0000",
+      "digitalId": 41662,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/a0/56fec9aadcefc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Will Sliney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (2015) #6-10"
+    },
+    {
+      "issueId": 55722,
+      "title": "Spider-Man 2099 (2015) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/55722/spider-man_2099_2015_10",
+      "seriesId": 20511,
+      "seriesName": "Spider-Man 2099 (2015 - 2017)",
+      "onSale": "2016-05-04T00:00:00+0000",
+      "mu": "2016-11-07T00:00:00+0000",
+      "digitalId": 41531,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/571e847ce60ca",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler"
+        },
+        {
+          "name": "William Sliney",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (2015) #6-10"
+    },
+    {
+      "issueId": 55723,
+      "title": "Spider-Man 2099 (2015) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/55723/spider-man_2099_2015_11",
+      "seriesId": 20511,
+      "seriesName": "Spider-Man 2099 (2015 - 2017)",
+      "onSale": "2016-06-01T00:00:00+0000",
+      "mu": "2016-12-05T00:00:00+0000",
+      "digitalId": 41750,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/5744bdc911824",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "William Sliney",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (2015) #11 To #16"
+    },
+    {
+      "issueId": 55724,
+      "title": "Spider-Man 2099 (2015) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/55724/spider-man_2099_2015_12",
+      "seriesId": 20511,
+      "seriesName": "Spider-Man 2099 (2015 - 2017)",
+      "onSale": "2016-07-06T00:00:00+0000",
+      "mu": "2017-01-02T00:00:00+0000",
+      "digitalId": 42055,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/b0/57753ba53baa0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (2015) #11 To #16"
+    },
+    {
+      "issueId": 55725,
+      "title": "Spider-Man 2099 (2015) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/55725/spider-man_2099_2015_13",
+      "seriesId": 20511,
+      "seriesName": "Spider-Man 2099 (2015 - 2017)",
+      "onSale": "2016-08-10T00:00:00+0000",
+      "mu": "2017-02-13T00:00:00+0000",
+      "digitalId": 42288,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/03/57a36771b8922",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler"
+        },
+        {
+          "name": "William Sliney",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (2015) #11 To #16"
+    },
+    {
+      "issueId": 55726,
+      "title": "Spider-Man 2099 (2015) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/55726/spider-man_2099_2015_14",
+      "seriesId": 20511,
+      "seriesName": "Spider-Man 2099 (2015 - 2017)",
+      "onSale": "2016-08-31T00:00:00+0000",
+      "mu": "2017-03-06T00:00:00+0000",
+      "digitalId": 42344,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/57c0a4670eb99",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler"
+        },
+        {
+          "name": "William Sliney",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (2015) #11 To #16"
+    },
+    {
+      "issueId": 55727,
+      "title": "Spider-Man 2099 (2015) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/55727/spider-man_2099_2015_15",
+      "seriesId": 20511,
+      "seriesName": "Spider-Man 2099 (2015 - 2017)",
+      "onSale": "2016-09-14T00:00:00+0000",
+      "mu": "2017-03-20T00:00:00+0000",
+      "digitalId": 42647,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/20/57c9842b5a856",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler"
+        },
+        {
+          "name": "William Sliney",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (2015) #11 To #16"
+    },
+    {
+      "issueId": 55728,
+      "title": "Spider-Man 2099 (2015) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/55728/spider-man_2099_2015_16",
+      "seriesId": 20511,
+      "seriesName": "Spider-Man 2099 (2015 - 2017)",
+      "onSale": "2016-10-05T00:00:00+0000",
+      "mu": "2017-04-10T00:00:00+0000",
+      "digitalId": 42799,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/57e593820b2a2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler"
+        },
+        {
+          "name": "William Sliney",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (2015) #11 To #16"
+    },
+    {
+      "issueId": 60245,
+      "title": "Spider-Man 2099 (2015) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/60245/spider-man_2099_2015_17",
+      "seriesId": 20511,
+      "seriesName": "Spider-Man 2099 (2015 - 2017)",
+      "onSale": "2016-11-02T00:00:00+0000",
+      "mu": "2017-05-08T00:00:00+0000",
+      "digitalId": 43175,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/c0/580500f9310e1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler"
+        },
+        {
+          "name": "William Sliney",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (2015) #17-21"
+    },
+    {
+      "issueId": 60246,
+      "title": "Spider-Man 2099 (2015) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/60246/spider-man_2099_2015_18",
+      "seriesId": 20511,
+      "seriesName": "Spider-Man 2099 (2015 - 2017)",
+      "onSale": "2016-12-07T00:00:00+0000",
+      "mu": "2017-06-12T00:00:00+0000",
+      "digitalId": 43384,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/80/583da4cc99e98",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler"
+        },
+        {
+          "name": "William Sliney",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (2015) #17-21"
+    },
+    {
+      "issueId": 60247,
+      "title": "Spider-Man 2099 (2015) #19",
+      "number": "19",
+      "url": "https://www.marvel.com/comics/issue/60247/spider-man_2099_2015_19",
+      "seriesId": 20511,
+      "seriesName": "Spider-Man 2099 (2015 - 2017)",
+      "onSale": "2017-01-04T00:00:00+0000",
+      "mu": "2017-07-10T00:00:00+0000",
+      "digitalId": 43842,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/585c282c61e41",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler"
+        },
+        {
+          "name": "William Sliney",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (2015) #17-21"
+    },
+    {
+      "issueId": 60248,
+      "title": "Spider-Man 2099 (2015) #20",
+      "number": "20",
+      "url": "https://www.marvel.com/comics/issue/60248/spider-man_2099_2015_20",
+      "seriesId": 20511,
+      "seriesName": "Spider-Man 2099 (2015 - 2017)",
+      "onSale": "2017-02-01T00:00:00+0000",
+      "mu": "2017-08-07T00:00:00+0000",
+      "digitalId": 44044,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/588b761860ab0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler"
+        },
+        {
+          "name": "William Sliney",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (2015) #17-21"
+    },
+    {
+      "issueId": 60779,
+      "title": "Spider-Man 2099 (2015) #21",
+      "number": "21",
+      "url": "https://www.marvel.com/comics/issue/60779/spider-man_2099_2015_21",
+      "seriesId": 20511,
+      "seriesName": "Spider-Man 2099 (2015 - 2017)",
+      "onSale": "2017-03-01T00:00:00+0000",
+      "mu": "2017-09-04T00:00:00+0000",
+      "digitalId": 44316,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/30/58b08b785d647",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Will Sliney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (2015) #17-21"
+    },
+    {
+      "issueId": 60780,
+      "title": "Spider-Man 2099 (2015) #22",
+      "number": "22",
+      "url": "https://www.marvel.com/comics/issue/60780/spider-man_2099_2015_22",
+      "seriesId": 20511,
+      "seriesName": "Spider-Man 2099 (2015 - 2017)",
+      "onSale": "2017-04-12T00:00:00+0000",
+      "mu": "2017-10-16T00:00:00+0000",
+      "digitalId": 44507,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/90/58e7f8464346f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Will Sliney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (2015) #22-25, Spider-Man 2099 Meets Spider-Man (1995)"
+    },
+    {
+      "issueId": 60781,
+      "title": "Spider-Man 2099 (2015) #23",
+      "number": "23",
+      "url": "https://www.marvel.com/comics/issue/60781/spider-man_2099_2015_23",
+      "seriesId": 20511,
+      "seriesName": "Spider-Man 2099 (2015 - 2017)",
+      "onSale": "2017-05-03T00:00:00+0000",
+      "mu": "2017-11-06T00:00:00+0000",
+      "digitalId": 44773,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/10/59039288a91fc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Will Sliney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (2015) #22-25, Spider-Man 2099 Meets Spider-Man (1995)"
+    },
+    {
+      "issueId": 60782,
+      "title": "Spider-Man 2099 (2015) #24",
+      "number": "24",
+      "url": "https://www.marvel.com/comics/issue/60782/spider-man_2099_2015_24",
+      "seriesId": 20511,
+      "seriesName": "Spider-Man 2099 (2015 - 2017)",
+      "onSale": "2017-06-21T00:00:00+0000",
+      "mu": "2017-12-25T00:00:00+0000",
+      "digitalId": 44998,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/5941a9bdc2b39",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Will Sliney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (2015) #22-25, Spider-Man 2099 Meets Spider-Man (1995)"
+    },
+    {
+      "issueId": 60783,
+      "title": "Spider-Man 2099 (2015) #25",
+      "number": "25",
+      "url": "https://www.marvel.com/comics/issue/60783/spider-man_2099_2015_25",
+      "seriesId": 20511,
+      "seriesName": "Spider-Man 2099 (2015 - 2017)",
+      "onSale": "2017-07-19T00:00:00+0000",
+      "mu": "2018-01-22T00:00:00+0000",
+      "digitalId": 45228,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/80/5967f57f1c5c8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Will Sliney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Francesco Mattina",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099 (2015) #22-25, Spider-Man 2099 Meets Spider-Man (1995)"
+    },
+    {
+      "issueId": 77100,
+      "title": "The Amazing Spider-Man (2018) #32",
+      "number": "32",
+      "url": "https://www.marvel.com/comics/issue/77100/the_amazing_spider-man_2018_32",
+      "seriesId": 24396,
+      "seriesName": "The Amazing Spider-Man (2018 - 2022)",
+      "onSale": "2019-10-23T00:00:00+0000",
+      "mu": "2020-04-27T00:00:00+0000",
+      "digitalId": 52719,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/e0/5da4ca85c15bc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Patrick Gleason",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Amazing Spider-Man (2018) #32 to #36"
+    },
+    {
+      "issueId": 77101,
+      "title": "The Amazing Spider-Man (2018) #33",
+      "number": "33",
+      "url": "https://www.marvel.com/comics/issue/77101/the_amazing_spider-man_2018_33",
+      "seriesId": 24396,
+      "seriesName": "The Amazing Spider-Man (2018 - 2022)",
+      "onSale": "2019-11-06T00:00:00+0000",
+      "mu": "2020-05-11T00:00:00+0000",
+      "digitalId": 52967,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/5db8423029ef1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Patrick Gleason",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Amazing Spider-Man (2018) #32 to #36"
+    },
+    {
+      "issueId": 77102,
+      "title": "The Amazing Spider-Man (2018) #34",
+      "number": "34",
+      "url": "https://www.marvel.com/comics/issue/77102/the_amazing_spider-man_2018_34",
+      "seriesId": 24396,
+      "seriesName": "The Amazing Spider-Man (2018 - 2022)",
+      "onSale": "2019-11-20T00:00:00+0000",
+      "mu": "2020-05-25T00:00:00+0000",
+      "digitalId": 52968,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/5dc98ae0c6851",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Patrick Gleason",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Amazing Spider-Man (2018) #32 to #36"
+    },
+    {
+      "issueId": 77103,
+      "title": "The Amazing Spider-Man (2018) #35",
+      "number": "35",
+      "url": "https://www.marvel.com/comics/issue/77103/the_amazing_spider-man_2018_35",
+      "seriesId": 24396,
+      "seriesName": "The Amazing Spider-Man (2018 - 2022)",
+      "onSale": "2019-12-04T00:00:00+0000",
+      "mu": "2020-06-08T00:00:00+0000",
+      "digitalId": 53208,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/5ddc132871629",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jan Bazaldua",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tony Daniel",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Amazing Spider-Man (2018) #32 to #36"
+    },
+    {
+      "issueId": 77104,
+      "title": "The Amazing Spider-Man (2018) #36",
+      "number": "36",
+      "url": "https://www.marvel.com/comics/issue/77104/the_amazing_spider-man_2018_36",
+      "seriesId": 24396,
+      "seriesName": "The Amazing Spider-Man (2018 - 2022)",
+      "onSale": "2019-12-18T00:00:00+0000",
+      "mu": "2020-06-22T00:00:00+0000",
+      "digitalId": 53209,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/80/5defb29e6441b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jan Bazaldua",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tony Daniel",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Amazing Spider-Man (2018) #32 to #36"
+    },
+    {
+      "issueId": 98308,
+      "title": "Spider-Man 2099: Exodus Alpha (2022) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/98308/spider-man_2099_exodus_alpha_2022_1",
+      "seriesId": 33910,
+      "seriesName": "Spider-Man 2099: Exodus Alpha (2022)",
+      "onSale": "2022-05-04T00:00:00+0000",
+      "mu": "2022-08-08T00:00:00+0000",
+      "digitalId": 59376,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/6268517aabb66",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Paul Fry",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Orlando",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099: Exodus Alpha, Spider-Man 2099: Exodus #1 to #5, Spider-Man 2099: Exodus Omega"
+    },
+    {
+      "issueId": 98302,
+      "title": "Spider-Man 2099: Exodus (2022) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/98302/spider-man_2099_exodus_2022_1",
+      "seriesId": 33908,
+      "seriesName": "Spider-Man 2099: Exodus (2022)",
+      "onSale": "2022-05-25T00:00:00+0000",
+      "mu": "2022-08-29T00:00:00+0000",
+      "digitalId": 59374,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/a0/62b9e1e117828",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dave Wachter",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jp Mayer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ryan Stegman",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Orlando",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099: Exodus Alpha, Spider-Man 2099: Exodus #1 to #5, Spider-Man 2099: Exodus Omega"
+    },
+    {
+      "issueId": 98303,
+      "title": "Spider-Man 2099: Exodus (2022) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/98303/spider-man_2099_exodus_2022_2",
+      "seriesId": 33908,
+      "seriesName": "Spider-Man 2099: Exodus (2022)",
+      "onSale": "2022-06-15T00:00:00+0000",
+      "mu": "2022-09-19T00:00:00+0000",
+      "digitalId": 59375,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/03/6328560d9c781",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jp Mayer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marco Castiello",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ryan Stegman",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Orlando",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099: Exodus Alpha, Spider-Man 2099: Exodus #1 to #5, Spider-Man 2099: Exodus Omega"
+    },
+    {
+      "issueId": 98304,
+      "title": "Spider-Man 2099: Exodus (2022) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/98304/spider-man_2099_exodus_2022_3",
+      "seriesId": 33908,
+      "seriesName": "Spider-Man 2099: Exodus (2022)",
+      "onSale": "2022-06-29T00:00:00+0000",
+      "mu": "2022-10-03T00:00:00+0000",
+      "digitalId": 59631,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/10/62b9e0b69abac",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jp Mayer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ze Carlos",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ryan Stegman",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Orlando",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099: Exodus Alpha, Spider-Man 2099: Exodus #1 to #5, Spider-Man 2099: Exodus Omega"
+    },
+    {
+      "issueId": 98305,
+      "title": "Spider-Man 2099: Exodus (2022) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/98305/spider-man_2099_exodus_2022_4",
+      "seriesId": 33908,
+      "seriesName": "Spider-Man 2099: Exodus (2022)",
+      "onSale": "2022-07-13T00:00:00+0000",
+      "mu": "2022-10-17T00:00:00+0000",
+      "digitalId": 59632,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/e0/62d0457d6586d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alessandro Miracolo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jp Mayer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ryan Stegman",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Orlando",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099: Exodus Alpha, Spider-Man 2099: Exodus #1 to #5, Spider-Man 2099: Exodus Omega"
+    },
+    {
+      "issueId": 98306,
+      "title": "Spider-Man 2099: Exodus (2022) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/98306/spider-man_2099_exodus_2022_5",
+      "seriesId": 33908,
+      "seriesName": "Spider-Man 2099: Exodus (2022)",
+      "onSale": "2022-08-03T00:00:00+0000",
+      "mu": "2022-11-07T00:00:00+0000",
+      "digitalId": 59633,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/10/62dab25ce3f8a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jp Mayer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kim Jacinto",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ryan Stegman",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Orlando",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099: Exodus Alpha, Spider-Man 2099: Exodus #1 to #5, Spider-Man 2099: Exodus Omega"
+    },
+    {
+      "issueId": 98309,
+      "title": "Spider-Man 2099: Exodus Omega (2022) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/98309/spider-man_2099_exodus_omega_2022_1",
+      "seriesId": 33911,
+      "seriesName": "Spider-Man 2099: Exodus Omega (2022)",
+      "onSale": "2022-09-07T00:00:00+0000",
+      "mu": "2022-12-12T00:00:00+0000",
+      "digitalId": 60016,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/e0/630506996c617",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Paul Fry",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Orlando",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099: Exodus Alpha, Spider-Man 2099: Exodus #1 to #5, Spider-Man 2099: Exodus Omega"
+    },
+    {
+      "issueId": 107472,
+      "title": "Spider-Man 2099: Dark Genesis (2023) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/107472/spider-man_2099_dark_genesis_2023_1",
+      "seriesId": 37062,
+      "seriesName": "Spider-Man 2099: Dark Genesis (2023)",
+      "onSale": "2023-05-03T00:00:00+0000",
+      "mu": "2023-04-13T10:11:00+0000",
+      "digitalId": 62533,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/d0/6451120b64b83",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Justin Mason",
+          "role": "cover artist"
+        },
+        {
+          "name": "Nick Bradshaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Orlando",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099: Dark Genesis (2023) #1 to #5"
+    },
+    {
+      "issueId": 107474,
+      "title": "Spider-Man 2099: Dark Genesis (2023) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/107474/spider-man_2099_dark_genesis_2023_2",
+      "seriesId": 37062,
+      "seriesName": "Spider-Man 2099: Dark Genesis (2023)",
+      "onSale": "2023-05-10T00:00:00+0000",
+      "mu": "2023-08-14T00:00:00+0000",
+      "digitalId": 62534,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/50/645110c852746",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Justin Mason",
+          "role": "cover artist"
+        },
+        {
+          "name": "Nick Bradshaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Orlando",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099: Dark Genesis (2023) #1 to #5"
+    },
+    {
+      "issueId": 107475,
+      "title": "Spider-Man 2099: Dark Genesis (2023) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/107475/spider-man_2099_dark_genesis_2023_3",
+      "seriesId": 37062,
+      "seriesName": "Spider-Man 2099: Dark Genesis (2023)",
+      "onSale": "2023-05-17T00:00:00+0000",
+      "mu": "2023-08-21T00:00:00+0000",
+      "digitalId": 62535,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/03/6451104b49d89",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Justin Mason",
+          "role": "cover artist"
+        },
+        {
+          "name": "Nick Bradshaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Orlando",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099: Dark Genesis (2023) #1 to #5"
+    },
+    {
+      "issueId": 107476,
+      "title": "Spider-Man 2099: Dark Genesis (2023) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/107476/spider-man_2099_dark_genesis_2023_4",
+      "seriesId": 37062,
+      "seriesName": "Spider-Man 2099: Dark Genesis (2023)",
+      "onSale": "2023-05-24T00:00:00+0000",
+      "mu": "2023-05-05T12:55:00+0000",
+      "digitalId": 62536,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/646b6a5cb3474",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Justin Mason",
+          "role": "cover artist"
+        },
+        {
+          "name": "Nick Bradshaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Orlando",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099: Dark Genesis (2023) #1 to #5"
+    },
+    {
+      "issueId": 107477,
+      "title": "Spider-Man 2099: Dark Genesis (2023) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/107477/spider-man_2099_dark_genesis_2023_5",
+      "seriesId": 37062,
+      "seriesName": "Spider-Man 2099: Dark Genesis (2023)",
+      "onSale": "2023-05-31T00:00:00+0000",
+      "mu": "2023-05-09T18:42:00+0000",
+      "digitalId": 62537,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/10/646e7792c8a15",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Justin Mason",
+          "role": "cover artist"
+        },
+        {
+          "name": "Nick Bradshaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Orlando",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Spider-Man 2099: Dark Genesis (2023) #1 to #5"
+    },
+    {
+      "issueId": 113510,
+      "title": "Miguel O'hara - Spider-Man: 2099 (2024) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/113510/miguel_ohara_-_spider-man_2099_2024_1",
+      "seriesId": 38959,
+      "seriesName": "Miguel O'hara - Spider-Man: 2099 (2024)",
+      "onSale": "2024-01-03T00:00:00+0000",
+      "mu": "2023-12-08T00:00:00+0000",
+      "digitalId": 64522,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/03/6596e173b7350",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Devmalya Pramanik",
+          "role": "cover artist"
+        },
+        {
+          "name": "Nick Bradshaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Orlando",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Miguel O'Hara - Spider-Man: 2099 (2024) #1 to #5"
+    },
+    {
+      "issueId": 113511,
+      "title": "Miguel O'hara - Spider-Man: 2099 (2024) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/113511/miguel_ohara_-_spider-man_2099_2024_2",
+      "seriesId": 38959,
+      "seriesName": "Miguel O'hara - Spider-Man: 2099 (2024)",
+      "onSale": "2024-01-10T00:00:00+0000",
+      "mu": "2024-01-04T00:00:00+0000",
+      "digitalId": 64523,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/03/6596e1177a716",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Michael Dowling",
+          "role": "cover artist"
+        },
+        {
+          "name": "Nick Bradshaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Orlando",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Miguel O'Hara - Spider-Man: 2099 (2024) #1 to #5"
+    },
+    {
+      "issueId": 113512,
+      "title": "Miguel O'hara - Spider-Man: 2099 (2024) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/113512/miguel_ohara_-_spider-man_2099_2024_3",
+      "seriesId": 38959,
+      "seriesName": "Miguel O'hara - Spider-Man: 2099 (2024)",
+      "onSale": "2024-01-17T00:00:00+0000",
+      "mu": "2024-01-11T00:00:00+0000",
+      "digitalId": 64524,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/65a00c66ab557",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jason Muhr",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Bradshaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Orlando",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Miguel O'Hara - Spider-Man: 2099 (2024) #1 to #5"
+    },
+    {
+      "issueId": 113513,
+      "title": "Miguel O'hara - Spider-Man: 2099 (2024) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/113513/miguel_ohara_-_spider-man_2099_2024_4",
+      "seriesId": 38959,
+      "seriesName": "Miguel O'hara - Spider-Man: 2099 (2024)",
+      "onSale": "2024-01-24T00:00:00+0000",
+      "mu": "2024-01-11T00:00:00+0000",
+      "digitalId": 64525,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/65a93b2e706c4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jonas Trindade",
+          "role": "cover artist"
+        },
+        {
+          "name": "Christopher Campana",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Bradshaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Orlando",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Miguel O'Hara - Spider-Man: 2099 (2024) #1 to #5"
+    },
+    {
+      "issueId": 113514,
+      "title": "Miguel O'hara - Spider-Man: 2099 (2024) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/113514/miguel_ohara_-_spider-man_2099_2024_5",
+      "seriesId": 38959,
+      "seriesName": "Miguel O'hara - Spider-Man: 2099 (2024)",
+      "onSale": "2024-01-31T00:00:00+0000",
+      "mu": "2024-01-18T00:00:00+0000",
+      "digitalId": 64526,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/65b2c8d6c8d6e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Stefano Raffaele",
+          "role": "cover artist"
+        },
+        {
+          "name": "Nick Bradshaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Orlando",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Miguel O'Hara - Spider-Man: 2099 (2024) #1 to #5"
+    }
+  ]
+}

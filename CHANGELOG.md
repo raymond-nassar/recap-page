@@ -13,6 +13,13 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Follow Spider-Man 2099 from his origins to Miguel O'Hara
+
+Adds a Spider-Man 2099 Reading List credited and linked to Comic Book Herald, including the
+original run, Exiles, the later Spider-Man 2099 runs and the guide's latest additions.
+Unresolved original comics remain marked as gaps rather than being replaced or silently omitted.
+Existing Reading Lists and saved progress are unchanged.
+
 ### Read selected Ultron stories
 
 Adds a Best of Ultron Reading List credited and linked to Comic Book Herald, with all 91
