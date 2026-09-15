@@ -878,10 +878,10 @@ the book id out of an address the reader pastes.
 
 The generated catalog currently publishes three independent Reading Paths with 100 stops: two
 authored paths with 10 and 12 stops from the curated manifest at
-`src/data/curated-lists.json:5898-5936`, plus the 78-stop Marvel Knights to Planet X path generated
+`src/data/curated-lists.json:5936-5974`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all three at
-`src/data/catalog.json:9744-9869`.
+`src/data/catalog.json:9789-9914`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -1108,3 +1108,33 @@ the shared build-time limiter. Mapping-only reconstruction leaves unavailable op
 reuse is not a fresh HTTP response. The complete-library review covers 179 other source orders:
 31 partial relationships, four existing-subset relationships and 144 with no shared issue.
 No source commentary, artwork bytes or runtime dependency is added.
+
+## Donny Cates creator guide
+
+The [Donny Cates Marvel Universe reading order](https://www.comicbookherald.com/donny-cates-marvel-universe-reading-order-2017/)
+was retrieved on 2026-09-15. Its six sequence sections define 88 original issues, normalized into
+35 ordered range blocks, from Doctor Strange #381 through Thor (2020) #5. The list uses
+`creator-run` and `selected`, appears on the line-wide shelf, and does not claim to collect every
+comic written by Cates. The existing intake identity and position are retained; the build-time
+guide-type enum now accepts the same creator classification already supported by the app.
+
+The source ledger, packet, mapping and relationship report use
+`donny-cates-marvel-universe-reading-order-2017.json` in their maintained `scripts/data/cbh-*`
+directories. [Issue #514](https://github.com/raymond-nassar/recap-page/issues/514) preserves the
+owner's original series hints, including malformed URL slugs, and approved scope decisions.
+Exact provider issue links identify originals; publisher pages were not scraped to repair hints.
+
+The Doctor Strange collection summary is reconciled to the source's explicit Damnation
+interleaving, not read as a second pass. The source recommends the entire five-issue Death of the
+Inhumans limited series without a numbered collection line; its count and collection link are
+retained beside the five verified originals. Thanos Wins uses Thanos (2016) #13-18 and its annual.
+Venom: War of the Realms uses Venom (2018) #13-16 in the same series, not a separate title.
+The Absolute Carnage pointer remains separate from the existing 31-row event checklist.
+Neither that pointer nor the contextual War of the Realms core-event mention is expanded.
+
+All 88 identities resolve without gaps or repeated checklist rows. Metadata hydration reuses
+76 exact pinned payloads with file hashes and explicit field adaptations, then fetches 12 missing
+issue-detail records through the shared limiter. Reconstructed payloads are not represented as
+fresh HTTP responses. The complete-library review covers 180 other source orders: 16 partial
+relationships and 164 with no shared issues. No source narrative, artwork bytes or runtime
+dependency is added, and missing optional metadata remains empty rather than an availability claim.

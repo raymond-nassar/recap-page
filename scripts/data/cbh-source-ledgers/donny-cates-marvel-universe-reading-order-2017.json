@@ -1,0 +1,4014 @@
+{
+  "schemaVersion": 1,
+  "id": "donny-cates-marvel-universe-reading-order-2017",
+  "sourceUrl": "https://www.comicbookherald.com/donny-cates-marvel-universe-reading-order-2017/",
+  "sourceRetrievedAt": "2026-09-15",
+  "scopeIssue": "https://github.com/raymond-nassar/recap-page/issues/514",
+  "sourcePageTitle": "Donny Cates Marvel Universe Reading Order (2017 - )",
+  "sourceBoundary": "The source-defined reading sequence from Doctor Strange #381 through Thor (2020) #5, including the explicitly recommended five-issue Death of the Inhumans limited series. Follow the printed interleavings rather than collection-summary order. Do not expand linked event guides, unnumbered contextual runs, or later issues.",
+  "sourceContentSha256": "6613be7fdfbdcdae362d7a20127929513dee4400a48348a51d79db03bb62465f",
+  "sourceContentHashBasis": "SHA-256 of UTF-8 live .entry-content innerHTML, calculated in browser; source narrative and artwork are not retained.",
+  "sourceIssueBearingBlocksSha256": "fceec102e919e036b64d9707c574009326671489941aa3a23fb98858bf8d7ef2",
+  "blockDigestBasis": "SHA-256 of JSON array of normalized sourceRangeReference strings in block order; source alias and numeric range spelling normalized.",
+  "sourceSections": [
+    "The Marvel Universe of Donny Cates - Secret Empire & Doctor Strange",
+    "Donny Cates' Thanos Saga",
+    "Cates on Venom, Inhumans, and Marvel Knights",
+    "Donny Cates Cosmic Comics",
+    "Marvel Events by Donny Cates",
+    "Cosmic Thor & Venom Island"
+  ],
+  "seriesHints": [
+    [
+      20457,
+      "Doctor Strange",
+      2015
+    ],
+    [
+      24016,
+      "Doctor Strange: Damnation",
+      2018
+    ],
+    [
+      22653,
+      "Thanos",
+      2016
+    ],
+    [
+      26009,
+      "Thanos Annual",
+      2018
+    ],
+    [
+      24329,
+      "Cosmic Ghost Rider",
+      2018
+    ],
+    [
+      24340,
+      "Infinity Wars Prime",
+      2018
+    ],
+    [
+      25951,
+      "Thanos Legacy",
+      2018
+    ],
+    [
+      24738,
+      "Death of the Inhumans",
+      2018
+    ],
+    [
+      24310,
+      "Venom",
+      2018
+    ],
+    [
+      25942,
+      "Web of Venom: Ve'Nam",
+      2018
+    ],
+    [
+      26486,
+      "Venom Annual",
+      2018
+    ],
+    [
+      25943,
+      "Web of Venom: Carnage Born",
+      2018
+    ],
+    [
+      25944,
+      "Web of Venom: Unleashed",
+      2019
+    ],
+    [
+      25945,
+      "Web of Venom: Cult of Carnage",
+      2019
+    ],
+    [
+      26685,
+      "Marvel Knights 20th",
+      2018
+    ],
+    [
+      26480,
+      "Guardians of the Galaxy",
+      2019
+    ],
+    [
+      26930,
+      "Silver Surfer: Black",
+      2019
+    ],
+    [
+      27554,
+      "Guardians of the Galaxy Annual",
+      2019
+    ],
+    [
+      28031,
+      "Thor",
+      2020
+    ]
+  ],
+  "blocks": [
+    {
+      "seriesId": 20457,
+      "title": "Doctor Strange",
+      "year": 2015,
+      "first": 381,
+      "last": 385,
+      "sourceRangeReference": "Doctor Strange #381-385",
+      "position": 1,
+      "occurrenceCount": 5
+    },
+    {
+      "seriesId": 24016,
+      "title": "Doctor Strange: Damnation",
+      "year": 2018,
+      "first": 1,
+      "last": 1,
+      "sourceRangeReference": "Doctor Strange: Damnation #1",
+      "position": 2,
+      "occurrenceCount": 1
+    },
+    {
+      "seriesId": 20457,
+      "title": "Doctor Strange",
+      "year": 2015,
+      "first": 386,
+      "last": 386,
+      "sourceRangeReference": "Doctor Strange #386",
+      "position": 3,
+      "occurrenceCount": 1
+    },
+    {
+      "seriesId": 24016,
+      "title": "Doctor Strange: Damnation",
+      "year": 2018,
+      "first": 2,
+      "last": 2,
+      "sourceRangeReference": "Doctor Strange: Damnation #2",
+      "position": 4,
+      "occurrenceCount": 1
+    },
+    {
+      "seriesId": 20457,
+      "title": "Doctor Strange",
+      "year": 2015,
+      "first": 387,
+      "last": 387,
+      "sourceRangeReference": "Doctor Strange #387",
+      "position": 5,
+      "occurrenceCount": 1
+    },
+    {
+      "seriesId": 24016,
+      "title": "Doctor Strange: Damnation",
+      "year": 2018,
+      "first": 3,
+      "last": 3,
+      "sourceRangeReference": "Doctor Strange: Damnation #3",
+      "position": 6,
+      "occurrenceCount": 1
+    },
+    {
+      "seriesId": 20457,
+      "title": "Doctor Strange",
+      "year": 2015,
+      "first": 388,
+      "last": 388,
+      "sourceRangeReference": "Doctor Strange #388",
+      "position": 7,
+      "occurrenceCount": 1
+    },
+    {
+      "seriesId": 24016,
+      "title": "Doctor Strange: Damnation",
+      "year": 2018,
+      "first": 4,
+      "last": 4,
+      "sourceRangeReference": "Doctor Strange: Damnation #4",
+      "position": 8,
+      "occurrenceCount": 1
+    },
+    {
+      "seriesId": 20457,
+      "title": "Doctor Strange",
+      "year": 2015,
+      "first": 389,
+      "last": 389,
+      "sourceRangeReference": "Doctor Strange #389",
+      "position": 9,
+      "occurrenceCount": 1
+    },
+    {
+      "seriesId": 20457,
+      "title": "Doctor Strange",
+      "year": 2015,
+      "first": 390,
+      "last": 390,
+      "sourceRangeReference": "Doctor Strange #390",
+      "position": 10,
+      "occurrenceCount": 1
+    },
+    {
+      "seriesId": 22653,
+      "title": "Thanos",
+      "year": 2016,
+      "first": 13,
+      "last": 18,
+      "sourceRangeReference": "Thanos Wins: Thanos #13-18, Thanos Annual #1",
+      "position": 11,
+      "occurrenceCount": 6
+    },
+    {
+      "seriesId": 26009,
+      "title": "Thanos Annual",
+      "year": 2018,
+      "first": 1,
+      "last": 1,
+      "sourceRangeReference": "Thanos Wins: Thanos #13-18, Thanos Annual #1",
+      "position": 12,
+      "occurrenceCount": 1
+    },
+    {
+      "seriesId": 24329,
+      "title": "Cosmic Ghost Rider",
+      "year": 2018,
+      "first": 1,
+      "last": 5,
+      "sourceRangeReference": "Cosmic Ghost Rider #1-5",
+      "position": 13,
+      "occurrenceCount": 5
+    },
+    {
+      "seriesId": 24340,
+      "title": "Infinity Wars Prime",
+      "year": 2018,
+      "first": 1,
+      "last": 1,
+      "sourceRangeReference": "Infinity Wars Prime #1",
+      "position": 14,
+      "occurrenceCount": 1
+    },
+    {
+      "seriesId": 25951,
+      "title": "Thanos Legacy",
+      "year": 2018,
+      "first": 1,
+      "last": 1,
+      "sourceRangeReference": "Thanos Legacy #1",
+      "position": 15,
+      "occurrenceCount": 1
+    },
+    {
+      "seriesId": 24738,
+      "title": "Death of the Inhumans",
+      "year": 2018,
+      "first": 1,
+      "last": 5,
+      "sourceRangeReference": "Death of the Inhumans: source recommends the entire five-issue limited series",
+      "position": 16,
+      "occurrenceCount": 5
+    },
+    {
+      "seriesId": 24310,
+      "title": "Venom",
+      "year": 2018,
+      "first": 1,
+      "last": 5,
+      "sourceRangeReference": "Venom #1-5",
+      "position": 17,
+      "occurrenceCount": 5
+    },
+    {
+      "seriesId": 25942,
+      "title": "Web of Venom: Ve'Nam",
+      "year": 2018,
+      "first": 1,
+      "last": 1,
+      "sourceRangeReference": "Web of Venom: Ve'Nam #1",
+      "position": 18,
+      "occurrenceCount": 1
+    },
+    {
+      "seriesId": 26486,
+      "title": "Venom Annual",
+      "year": 2018,
+      "first": 1,
+      "last": 1,
+      "sourceRangeReference": "Venom Annual #1",
+      "position": 19,
+      "occurrenceCount": 1
+    },
+    {
+      "seriesId": 24310,
+      "title": "Venom",
+      "year": 2018,
+      "first": 6,
+      "last": 8,
+      "sourceRangeReference": "Venom #6-8",
+      "position": 20,
+      "occurrenceCount": 3
+    },
+    {
+      "seriesId": 25943,
+      "title": "Web of Venom: Carnage Born",
+      "year": 2018,
+      "first": 1,
+      "last": 1,
+      "sourceRangeReference": "Web of Venom: Carnage Born #1",
+      "position": 21,
+      "occurrenceCount": 1
+    },
+    {
+      "seriesId": 24310,
+      "title": "Venom",
+      "year": 2018,
+      "first": 9,
+      "last": 9,
+      "sourceRangeReference": "Venom #9",
+      "position": 22,
+      "occurrenceCount": 1
+    },
+    {
+      "seriesId": 25944,
+      "title": "Web of Venom: Unleashed",
+      "year": 2019,
+      "first": 1,
+      "last": 1,
+      "sourceRangeReference": "Web of Venom: Unleashed #1",
+      "position": 23,
+      "occurrenceCount": 1
+    },
+    {
+      "seriesId": 24310,
+      "title": "Venom",
+      "year": 2018,
+      "first": 10,
+      "last": 12,
+      "sourceRangeReference": "Venom #10-12",
+      "position": 24,
+      "occurrenceCount": 3
+    },
+    {
+      "seriesId": 25945,
+      "title": "Web of Venom: Cult of Carnage",
+      "year": 2019,
+      "first": 1,
+      "last": 1,
+      "sourceRangeReference": "Web of Venom: Cult of Carnage #1",
+      "position": 25,
+      "occurrenceCount": 1
+    },
+    {
+      "seriesId": 26685,
+      "title": "Marvel Knights 20th",
+      "year": 2018,
+      "first": 1,
+      "last": 6,
+      "sourceRangeReference": "Marvel Knights 20th #1-6",
+      "position": 26,
+      "occurrenceCount": 6
+    },
+    {
+      "seriesId": 26480,
+      "title": "Guardians of the Galaxy",
+      "year": 2019,
+      "first": 1,
+      "last": 5,
+      "sourceRangeReference": "Guardians of the Galaxy #1-5",
+      "position": 27,
+      "occurrenceCount": 5
+    },
+    {
+      "seriesId": 26930,
+      "title": "Silver Surfer: Black",
+      "year": 2019,
+      "first": 1,
+      "last": 1,
+      "sourceRangeReference": "Silver Surfer: Black #1",
+      "position": 28,
+      "occurrenceCount": 1
+    },
+    {
+      "seriesId": 27554,
+      "title": "Guardians of the Galaxy Annual",
+      "year": 2019,
+      "first": 1,
+      "last": 1,
+      "sourceRangeReference": "Guardians of the Galaxy Annual #1",
+      "position": 29,
+      "occurrenceCount": 1
+    },
+    {
+      "seriesId": 26480,
+      "title": "Guardians of the Galaxy",
+      "year": 2019,
+      "first": 6,
+      "last": 6,
+      "sourceRangeReference": "Guardians of the Galaxy #6",
+      "position": 30,
+      "occurrenceCount": 1
+    },
+    {
+      "seriesId": 26930,
+      "title": "Silver Surfer: Black",
+      "year": 2019,
+      "first": 2,
+      "last": 5,
+      "sourceRangeReference": "Silver Surfer: Black #2-5",
+      "position": 31,
+      "occurrenceCount": 4
+    },
+    {
+      "seriesId": 24310,
+      "title": "Venom",
+      "year": 2018,
+      "first": 13,
+      "last": 16,
+      "sourceRangeReference": "Venom: War of the Realms: Venom #13-16",
+      "position": 32,
+      "occurrenceCount": 4
+    },
+    {
+      "seriesId": 26480,
+      "title": "Guardians of the Galaxy",
+      "year": 2019,
+      "first": 7,
+      "last": 12,
+      "sourceRangeReference": "Guardians of the Galaxy #7-12",
+      "position": 33,
+      "occurrenceCount": 6
+    },
+    {
+      "seriesId": 24310,
+      "title": "Venom",
+      "year": 2018,
+      "first": 21,
+      "last": 25,
+      "sourceRangeReference": "Venom #21-25",
+      "position": 34,
+      "occurrenceCount": 5
+    },
+    {
+      "seriesId": 28031,
+      "title": "Thor",
+      "year": 2020,
+      "first": 1,
+      "last": 5,
+      "sourceRangeReference": "Thor #1-5",
+      "position": 35,
+      "occurrenceCount": 5
+    }
+  ],
+  "excludedSourceReferences": [
+    "Creator-owned introductory recommendations: Buzzkill, God Country, Redneck and Babyteeth are outside this Marvel sequence.",
+    "Related reading orders for Jonathan Hickman and Brian Michael Bendis are navigation, not source rows.",
+    "Secret Empire and Marvel Legacy are contextual links, not numbered selections.",
+    "Doctor Strange by Donny Cates collection overview names the same issues whose proper reading order is explicitly printed below it; follow that interleaving once, not a second collection pass.",
+    "The complete Damnation guide is a pointer; only the four Damnation issues explicitly interleaved here are selected.",
+    "Infinity Countdown and Infinity Wars contextual links do not expand the explicit Infinity Wars Prime #1 and Thanos Legacy #1 pair.",
+    "War of the Realms core event and Thor: God of Thunder are contextual pointers without numbered selections. Venom #13-16 remains in the source sequence.",
+    "Absolute Carnage is an unnumbered collection and dedicated-guide pointer. The existing absolute-carnage catalog checklist remains separate; no core issues or tie-ins are recursively inserted."
+  ],
+  "limitedSeriesExpansion": {
+    "title": "Death of the Inhumans",
+    "sourceCount": 5,
+    "seriesId": 24738,
+    "sourceLink": "http://www.amazon.com/Death-Inhumans-Donny-Cates/dp/130291300X/ref=as_li_bk_tl/?tag=combooher05-20&linkId=35c88f188ac0fc393580810ba7555a22&linkCode=ktl",
+    "basis": "The source recommends the entire five-issue limited series. It has no numbered Collects line; the provider and pinned series index confirm exactly five original issues, #1-5."
+  },
+  "eventPointerEvidence": {
+    "absoluteCarnage": {
+      "sourceUrl": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/absolute-carnage-reading-order/",
+      "existingOrderId": "absolute-carnage",
+      "existingCount": 31,
+      "coreIssueIds": [
+        76012,
+        76014,
+        76015,
+        76016,
+        78960
+      ],
+      "basis": "Existing dedicated checklist coverage verified in the repository, not inferred from Miles Morales work. No fresh audit of every external event tie-in and no recursive expansion in this creator guide."
+    },
+    "warOfTheRealms": {
+      "sourceUrl": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/war-of-the-realms-reading-order/",
+      "basis": "Unnumbered contextual core-event reference; only Venom (2018) #13-16 is source-enumerated."
+    }
+  },
+  "occurrences": [
+    {
+      "sourcePosition": 1,
+      "block": 1,
+      "seriesId": 20457,
+      "normalizedSeriesTitle": "Doctor Strange",
+      "seriesYear": 2015,
+      "issueNumber": "381",
+      "sourceIssueReference": "Doctor Strange (2015) #381",
+      "sourceRangeReference": "Doctor Strange #381-385",
+      "evidence": {
+        "candidate": {
+          "id": 65070,
+          "title": "Doctor Strange",
+          "issueTitle": "Doctor Strange (2015) #381",
+          "seriesTitle": "Doctor Strange",
+          "apiSeriesName": "Doctor Strange (2015 - 2018)",
+          "seriesId": 20457,
+          "issueNumber": "381",
+          "seriesYear": 2015,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/65070/doctor_strange_2015_381",
+          "onSaleDate": "2017-11-15T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/doctor-strange-reading-order.json",
+        "fileSha256": "cd54b5fe75e3062465dd03ef0ae3647a10e230ab4693d29cda2ad2cf9503b707",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 65070
+    },
+    {
+      "sourcePosition": 2,
+      "block": 1,
+      "seriesId": 20457,
+      "normalizedSeriesTitle": "Doctor Strange",
+      "seriesYear": 2015,
+      "issueNumber": "382",
+      "sourceIssueReference": "Doctor Strange (2015) #382",
+      "sourceRangeReference": "Doctor Strange #381-385",
+      "evidence": {
+        "candidate": {
+          "id": 65278,
+          "title": "Doctor Strange",
+          "issueTitle": "Doctor Strange (2015) #382",
+          "seriesTitle": "Doctor Strange",
+          "apiSeriesName": "Doctor Strange (2015 - 2018)",
+          "seriesId": 20457,
+          "issueNumber": "382",
+          "seriesYear": 2015,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/65278/doctor_strange_2015_382",
+          "onSaleDate": "2017-12-06T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/doctor-strange-reading-order.json",
+        "fileSha256": "cd54b5fe75e3062465dd03ef0ae3647a10e230ab4693d29cda2ad2cf9503b707",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 65278
+    },
+    {
+      "sourcePosition": 3,
+      "block": 1,
+      "seriesId": 20457,
+      "normalizedSeriesTitle": "Doctor Strange",
+      "seriesYear": 2015,
+      "issueNumber": "383",
+      "sourceIssueReference": "Doctor Strange (2015) #383",
+      "sourceRangeReference": "Doctor Strange #381-385",
+      "evidence": {
+        "candidate": {
+          "id": 65279,
+          "title": "Doctor Strange",
+          "issueTitle": "Doctor Strange (2015) #383",
+          "seriesTitle": "Doctor Strange",
+          "apiSeriesName": "Doctor Strange (2015 - 2018)",
+          "seriesId": 20457,
+          "issueNumber": "383",
+          "seriesYear": 2015,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/65279/doctor_strange_2015_383",
+          "onSaleDate": "2017-12-20T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/doctor-strange-reading-order.json",
+        "fileSha256": "cd54b5fe75e3062465dd03ef0ae3647a10e230ab4693d29cda2ad2cf9503b707",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 65279
+    },
+    {
+      "sourcePosition": 4,
+      "block": 1,
+      "seriesId": 20457,
+      "normalizedSeriesTitle": "Doctor Strange",
+      "seriesYear": 2015,
+      "issueNumber": "384",
+      "sourceIssueReference": "Doctor Strange (2015) #384",
+      "sourceRangeReference": "Doctor Strange #381-385",
+      "evidence": {
+        "candidate": {
+          "id": 65905,
+          "title": "Doctor Strange",
+          "issueTitle": "Doctor Strange (2015) #384",
+          "seriesTitle": "Doctor Strange",
+          "apiSeriesName": "Doctor Strange (2015 - 2018)",
+          "seriesId": 20457,
+          "issueNumber": "384",
+          "seriesYear": 2015,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/65905/doctor_strange_2015_384",
+          "onSaleDate": "2018-01-17T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/doctor-strange-reading-order.json",
+        "fileSha256": "cd54b5fe75e3062465dd03ef0ae3647a10e230ab4693d29cda2ad2cf9503b707",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 65905
+    },
+    {
+      "sourcePosition": 5,
+      "block": 1,
+      "seriesId": 20457,
+      "normalizedSeriesTitle": "Doctor Strange",
+      "seriesYear": 2015,
+      "issueNumber": "385",
+      "sourceIssueReference": "Doctor Strange (2015) #385",
+      "sourceRangeReference": "Doctor Strange #381-385",
+      "evidence": {
+        "candidate": {
+          "id": 66197,
+          "title": "Doctor Strange",
+          "issueTitle": "Doctor Strange (2015) #385",
+          "seriesTitle": "Doctor Strange",
+          "apiSeriesName": "Doctor Strange (2015 - 2018)",
+          "seriesId": 20457,
+          "issueNumber": "385",
+          "seriesYear": 2015,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/66197/doctor_strange_2015_385",
+          "onSaleDate": "2018-02-14T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/doctor-strange-reading-order.json",
+        "fileSha256": "cd54b5fe75e3062465dd03ef0ae3647a10e230ab4693d29cda2ad2cf9503b707",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 66197
+    },
+    {
+      "sourcePosition": 6,
+      "block": 2,
+      "seriesId": 24016,
+      "normalizedSeriesTitle": "Doctor Strange: Damnation",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "sourceIssueReference": "Doctor Strange: Damnation (2018) #1",
+      "sourceRangeReference": "Doctor Strange: Damnation #1",
+      "evidence": {
+        "candidate": {
+          "id": 66279,
+          "title": "Doctor Strange: Damnation",
+          "issueTitle": "Doctor Strange: Damnation (2018) #1",
+          "seriesTitle": "Doctor Strange: Damnation",
+          "apiSeriesName": "Doctor Strange: Damnation (2018)",
+          "seriesId": 24016,
+          "issueNumber": "1",
+          "seriesYear": 2018,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/66279/doctor_strange_damnation_2018_1",
+          "onSaleDate": "2018-02-21T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/damnation.json",
+        "fileSha256": "9b019bfbcfeddc2bebb70bd956413ea09211c210400b31d892624e2a9949e5c3",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 66279
+    },
+    {
+      "sourcePosition": 7,
+      "block": 3,
+      "seriesId": 20457,
+      "normalizedSeriesTitle": "Doctor Strange",
+      "seriesYear": 2015,
+      "issueNumber": "386",
+      "sourceIssueReference": "Doctor Strange (2015) #386",
+      "sourceRangeReference": "Doctor Strange #386",
+      "evidence": {
+        "candidate": {
+          "id": 66278,
+          "title": "Doctor Strange",
+          "issueTitle": "Doctor Strange (2015) #386",
+          "seriesTitle": "Doctor Strange",
+          "apiSeriesName": "Doctor Strange (2015 - 2018)",
+          "seriesId": 20457,
+          "issueNumber": "386",
+          "seriesYear": 2015,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/66278/doctor_strange_2015_386",
+          "onSaleDate": "2018-02-28T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/damnation.json",
+        "fileSha256": "9b019bfbcfeddc2bebb70bd956413ea09211c210400b31d892624e2a9949e5c3",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 66278
+    },
+    {
+      "sourcePosition": 8,
+      "block": 4,
+      "seriesId": 24016,
+      "normalizedSeriesTitle": "Doctor Strange: Damnation",
+      "seriesYear": 2018,
+      "issueNumber": "2",
+      "sourceIssueReference": "Doctor Strange: Damnation (2018) #2",
+      "sourceRangeReference": "Doctor Strange: Damnation #2",
+      "evidence": {
+        "candidate": {
+          "id": 66409,
+          "title": "Doctor Strange: Damnation",
+          "issueTitle": "Doctor Strange: Damnation (2018) #2",
+          "seriesTitle": "Doctor Strange: Damnation",
+          "apiSeriesName": "Doctor Strange: Damnation (2018)",
+          "seriesId": 24016,
+          "issueNumber": "2",
+          "seriesYear": 2018,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/66409/doctor_strange_damnation_2018_2",
+          "onSaleDate": "2018-03-07T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/damnation.json",
+        "fileSha256": "9b019bfbcfeddc2bebb70bd956413ea09211c210400b31d892624e2a9949e5c3",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 66409
+    },
+    {
+      "sourcePosition": 9,
+      "block": 5,
+      "seriesId": 20457,
+      "normalizedSeriesTitle": "Doctor Strange",
+      "seriesYear": 2015,
+      "issueNumber": "387",
+      "sourceIssueReference": "Doctor Strange (2015) #387",
+      "sourceRangeReference": "Doctor Strange #387",
+      "evidence": {
+        "candidate": {
+          "id": 66493,
+          "title": "Doctor Strange",
+          "issueTitle": "Doctor Strange (2015) #387",
+          "seriesTitle": "Doctor Strange",
+          "apiSeriesName": "Doctor Strange (2015 - 2018)",
+          "seriesId": 20457,
+          "issueNumber": "387",
+          "seriesYear": 2015,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/66493/doctor_strange_2015_387",
+          "onSaleDate": "2018-03-14T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/damnation.json",
+        "fileSha256": "9b019bfbcfeddc2bebb70bd956413ea09211c210400b31d892624e2a9949e5c3",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 66493
+    },
+    {
+      "sourcePosition": 10,
+      "block": 6,
+      "seriesId": 24016,
+      "normalizedSeriesTitle": "Doctor Strange: Damnation",
+      "seriesYear": 2018,
+      "issueNumber": "3",
+      "sourceIssueReference": "Doctor Strange: Damnation (2018) #3",
+      "sourceRangeReference": "Doctor Strange: Damnation #3",
+      "evidence": {
+        "candidate": {
+          "id": 66540,
+          "title": "Doctor Strange: Damnation",
+          "issueTitle": "Doctor Strange: Damnation (2018) #3",
+          "seriesTitle": "Doctor Strange: Damnation",
+          "apiSeriesName": "Doctor Strange: Damnation (2018)",
+          "seriesId": 24016,
+          "issueNumber": "3",
+          "seriesYear": 2018,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/66540/doctor_strange_damnation_2018_3",
+          "onSaleDate": "2018-03-21T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/damnation.json",
+        "fileSha256": "9b019bfbcfeddc2bebb70bd956413ea09211c210400b31d892624e2a9949e5c3",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 66540
+    },
+    {
+      "sourcePosition": 11,
+      "block": 7,
+      "seriesId": 20457,
+      "normalizedSeriesTitle": "Doctor Strange",
+      "seriesYear": 2015,
+      "issueNumber": "388",
+      "sourceIssueReference": "Doctor Strange (2015) #388",
+      "sourceRangeReference": "Doctor Strange #388",
+      "evidence": {
+        "candidate": {
+          "id": 66762,
+          "title": "Doctor Strange",
+          "issueTitle": "Doctor Strange (2015) #388",
+          "seriesTitle": "Doctor Strange",
+          "apiSeriesName": "Doctor Strange (2015 - 2018)",
+          "seriesId": 20457,
+          "issueNumber": "388",
+          "seriesYear": 2015,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/66762/doctor_strange_2015_388",
+          "onSaleDate": "2018-04-11T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/damnation.json",
+        "fileSha256": "9b019bfbcfeddc2bebb70bd956413ea09211c210400b31d892624e2a9949e5c3",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 66762
+    },
+    {
+      "sourcePosition": 12,
+      "block": 8,
+      "seriesId": 24016,
+      "normalizedSeriesTitle": "Doctor Strange: Damnation",
+      "seriesYear": 2018,
+      "issueNumber": "4",
+      "sourceIssueReference": "Doctor Strange: Damnation (2018) #4",
+      "sourceRangeReference": "Doctor Strange: Damnation #4",
+      "evidence": {
+        "candidate": {
+          "id": 66910,
+          "title": "Doctor Strange: Damnation",
+          "issueTitle": "Doctor Strange: Damnation (2018) #4",
+          "seriesTitle": "Doctor Strange: Damnation",
+          "apiSeriesName": "Doctor Strange: Damnation (2018)",
+          "seriesId": 24016,
+          "issueNumber": "4",
+          "seriesYear": 2018,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/66910/doctor_strange_damnation_2018_4",
+          "onSaleDate": "2018-04-25T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/damnation.json",
+        "fileSha256": "9b019bfbcfeddc2bebb70bd956413ea09211c210400b31d892624e2a9949e5c3",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 66910
+    },
+    {
+      "sourcePosition": 13,
+      "block": 9,
+      "seriesId": 20457,
+      "normalizedSeriesTitle": "Doctor Strange",
+      "seriesYear": 2015,
+      "issueNumber": "389",
+      "sourceIssueReference": "Doctor Strange (2015) #389",
+      "sourceRangeReference": "Doctor Strange #389",
+      "evidence": {
+        "candidate": {
+          "id": 66909,
+          "title": "Doctor Strange",
+          "issueTitle": "Doctor Strange (2015) #389",
+          "seriesTitle": "Doctor Strange",
+          "apiSeriesName": "Doctor Strange (2015 - 2018)",
+          "seriesId": 20457,
+          "issueNumber": "389",
+          "seriesYear": 2015,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/66909/doctor_strange_2015_389",
+          "onSaleDate": "2018-04-25T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/damnation.json",
+        "fileSha256": "9b019bfbcfeddc2bebb70bd956413ea09211c210400b31d892624e2a9949e5c3",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 66909
+    },
+    {
+      "sourcePosition": 14,
+      "block": 10,
+      "seriesId": 20457,
+      "normalizedSeriesTitle": "Doctor Strange",
+      "seriesYear": 2015,
+      "issueNumber": "390",
+      "sourceIssueReference": "Doctor Strange (2015) #390",
+      "sourceRangeReference": "Doctor Strange #390",
+      "evidence": {
+        "candidate": {
+          "id": 67330,
+          "title": "Doctor Strange",
+          "issueTitle": "Doctor Strange (2015) #390",
+          "seriesTitle": "Doctor Strange",
+          "apiSeriesName": "Doctor Strange (2015 - 2018)",
+          "seriesId": 20457,
+          "issueNumber": "390",
+          "seriesYear": 2015,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/67330/doctor_strange_2015_390",
+          "onSaleDate": "2018-05-23T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/doctor-strange-reading-order.json",
+        "fileSha256": "cd54b5fe75e3062465dd03ef0ae3647a10e230ab4693d29cda2ad2cf9503b707",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 67330
+    },
+    {
+      "sourcePosition": 15,
+      "block": 11,
+      "seriesId": 22653,
+      "normalizedSeriesTitle": "Thanos",
+      "seriesYear": 2016,
+      "issueNumber": "13",
+      "sourceIssueReference": "Thanos (2016) #13",
+      "sourceRangeReference": "Thanos Wins: Thanos #13-18, Thanos Annual #1",
+      "evidence": {
+        "candidate": {
+          "id": 61709,
+          "title": "Thanos",
+          "issueTitle": "Thanos (2016) #13",
+          "seriesTitle": "Thanos",
+          "apiSeriesName": "Thanos (2016 - 2018)",
+          "seriesId": 22653,
+          "issueNumber": "13",
+          "seriesYear": 2016,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/61709/thanos_2016_13",
+          "onSaleDate": "2017-11-22T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/thanos-reading-order.json",
+        "fileSha256": "1087ed71314a2093a49d79423d6217808b048260100d42a540bb253d4caae9d4",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 61709
+    },
+    {
+      "sourcePosition": 16,
+      "block": 11,
+      "seriesId": 22653,
+      "normalizedSeriesTitle": "Thanos",
+      "seriesYear": 2016,
+      "issueNumber": "14",
+      "sourceIssueReference": "Thanos (2016) #14",
+      "sourceRangeReference": "Thanos Wins: Thanos #13-18, Thanos Annual #1",
+      "evidence": {
+        "candidate": {
+          "id": 61710,
+          "title": "Thanos",
+          "issueTitle": "Thanos (2016) #14",
+          "seriesTitle": "Thanos",
+          "apiSeriesName": "Thanos (2016 - 2018)",
+          "seriesId": 22653,
+          "issueNumber": "14",
+          "seriesYear": 2016,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/61710/thanos_2016_14",
+          "onSaleDate": "2017-12-27T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/thanos-reading-order.json",
+        "fileSha256": "1087ed71314a2093a49d79423d6217808b048260100d42a540bb253d4caae9d4",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 61710
+    },
+    {
+      "sourcePosition": 17,
+      "block": 11,
+      "seriesId": 22653,
+      "normalizedSeriesTitle": "Thanos",
+      "seriesYear": 2016,
+      "issueNumber": "15",
+      "sourceIssueReference": "Thanos (2016) #15",
+      "sourceRangeReference": "Thanos Wins: Thanos #13-18, Thanos Annual #1",
+      "evidence": {
+        "candidate": {
+          "id": 61711,
+          "title": "Thanos",
+          "issueTitle": "Thanos (2016) #15",
+          "seriesTitle": "Thanos",
+          "apiSeriesName": "Thanos (2016 - 2018)",
+          "seriesId": 22653,
+          "issueNumber": "15",
+          "seriesYear": 2016,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/61711/thanos_2016_15",
+          "onSaleDate": "2018-01-24T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/thanos-reading-order.json",
+        "fileSha256": "1087ed71314a2093a49d79423d6217808b048260100d42a540bb253d4caae9d4",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 61711
+    },
+    {
+      "sourcePosition": 18,
+      "block": 11,
+      "seriesId": 22653,
+      "normalizedSeriesTitle": "Thanos",
+      "seriesYear": 2016,
+      "issueNumber": "16",
+      "sourceIssueReference": "Thanos (2016) #16",
+      "sourceRangeReference": "Thanos Wins: Thanos #13-18, Thanos Annual #1",
+      "evidence": {
+        "candidate": {
+          "id": 61712,
+          "title": "Thanos",
+          "issueTitle": "Thanos (2016) #16",
+          "seriesTitle": "Thanos",
+          "apiSeriesName": "Thanos (2016 - 2018)",
+          "seriesId": 22653,
+          "issueNumber": "16",
+          "seriesYear": 2016,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/61712/thanos_2016_16",
+          "onSaleDate": "2018-02-28T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/thanos-reading-order.json",
+        "fileSha256": "1087ed71314a2093a49d79423d6217808b048260100d42a540bb253d4caae9d4",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 61712
+    },
+    {
+      "sourcePosition": 19,
+      "block": 11,
+      "seriesId": 22653,
+      "normalizedSeriesTitle": "Thanos",
+      "seriesYear": 2016,
+      "issueNumber": "17",
+      "sourceIssueReference": "Thanos (2016) #17",
+      "sourceRangeReference": "Thanos Wins: Thanos #13-18, Thanos Annual #1",
+      "evidence": {
+        "candidate": {
+          "id": 66560,
+          "title": "Thanos",
+          "issueTitle": "Thanos (2016) #17",
+          "seriesTitle": "Thanos",
+          "apiSeriesName": "Thanos (2016 - 2018)",
+          "seriesId": 22653,
+          "issueNumber": "17",
+          "seriesYear": 2016,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/66560/thanos_2016_17",
+          "onSaleDate": "2018-03-21T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/thanos-reading-order.json",
+        "fileSha256": "1087ed71314a2093a49d79423d6217808b048260100d42a540bb253d4caae9d4",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 66560
+    },
+    {
+      "sourcePosition": 20,
+      "block": 11,
+      "seriesId": 22653,
+      "normalizedSeriesTitle": "Thanos",
+      "seriesYear": 2016,
+      "issueNumber": "18",
+      "sourceIssueReference": "Thanos (2016) #18",
+      "sourceRangeReference": "Thanos Wins: Thanos #13-18, Thanos Annual #1",
+      "evidence": {
+        "candidate": {
+          "id": 66797,
+          "title": "Thanos",
+          "seriesTitle": "Thanos",
+          "issueTitle": "Thanos (2016) #18",
+          "apiSeriesName": "Thanos (2016 - 2018)",
+          "seriesId": 22653,
+          "issueNumber": "18",
+          "seriesYear": 2016,
+          "detailUrl": "https://www.marvel.com/comics/issue/66797/thanos_2016_18",
+          "onSaleDate": "2018-04-11T00:00:00+0000"
+        },
+        "url": "https://marvel.emreparker.com/v1/series/22653/issues?limit=200&offset=0",
+        "responseBodySha256": "50f3f1f89c31b73d3b311618204493a1fa57999ecca1c195928430387e806281",
+        "retrievedAt": "2026-09-15T15:16:43.581Z",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 66797
+    },
+    {
+      "sourcePosition": 21,
+      "block": 12,
+      "seriesId": 26009,
+      "normalizedSeriesTitle": "Thanos Annual",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "sourceIssueReference": "Thanos Annual (2018) #1",
+      "sourceRangeReference": "Thanos Wins: Thanos #13-18, Thanos Annual #1",
+      "evidence": {
+        "candidate": {
+          "id": 66923,
+          "title": "Thanos Annual",
+          "issueTitle": "Thanos Annual (2018) #1",
+          "seriesTitle": "Thanos Annual",
+          "apiSeriesName": "Thanos Annual (2018)",
+          "seriesId": 26009,
+          "issueNumber": "1",
+          "seriesYear": 2016,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/66923/thanos_annual_2018_1",
+          "onSaleDate": "2018-04-25T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/thanos-reading-order.json",
+        "fileSha256": "1087ed71314a2093a49d79423d6217808b048260100d42a540bb253d4caae9d4",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 66923
+    },
+    {
+      "sourcePosition": 22,
+      "block": 13,
+      "seriesId": 24329,
+      "normalizedSeriesTitle": "Cosmic Ghost Rider",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "sourceIssueReference": "Cosmic Ghost Rider (2018) #1",
+      "sourceRangeReference": "Cosmic Ghost Rider #1-5",
+      "evidence": {
+        "candidate": {
+          "id": 67319,
+          "title": "Cosmic Ghost Rider",
+          "issueTitle": "Cosmic Ghost Rider (2018) #1",
+          "seriesTitle": "Cosmic Ghost Rider",
+          "apiSeriesName": "Cosmic Ghost Rider (2018)",
+          "seriesId": 24329,
+          "issueNumber": "1",
+          "seriesYear": 2018,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/67319/cosmic_ghost_rider_2018_1",
+          "onSaleDate": "2018-07-04T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/thanos-reading-order.json",
+        "fileSha256": "1087ed71314a2093a49d79423d6217808b048260100d42a540bb253d4caae9d4",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 67319
+    },
+    {
+      "sourcePosition": 23,
+      "block": 13,
+      "seriesId": 24329,
+      "normalizedSeriesTitle": "Cosmic Ghost Rider",
+      "seriesYear": 2018,
+      "issueNumber": "2",
+      "sourceIssueReference": "Cosmic Ghost Rider (2018) #2",
+      "sourceRangeReference": "Cosmic Ghost Rider #1-5",
+      "evidence": {
+        "candidate": {
+          "id": 67320,
+          "title": "Cosmic Ghost Rider",
+          "issueTitle": "Cosmic Ghost Rider (2018) #2",
+          "seriesTitle": "Cosmic Ghost Rider",
+          "apiSeriesName": "Cosmic Ghost Rider (2018)",
+          "seriesId": 24329,
+          "issueNumber": "2",
+          "seriesYear": 2018,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/67320/cosmic_ghost_rider_2018_2",
+          "onSaleDate": "2018-08-01T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/thanos-reading-order.json",
+        "fileSha256": "1087ed71314a2093a49d79423d6217808b048260100d42a540bb253d4caae9d4",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 67320
+    },
+    {
+      "sourcePosition": 24,
+      "block": 13,
+      "seriesId": 24329,
+      "normalizedSeriesTitle": "Cosmic Ghost Rider",
+      "seriesYear": 2018,
+      "issueNumber": "3",
+      "sourceIssueReference": "Cosmic Ghost Rider (2018) #3",
+      "sourceRangeReference": "Cosmic Ghost Rider #1-5",
+      "evidence": {
+        "candidate": {
+          "id": 67321,
+          "title": "Cosmic Ghost Rider",
+          "issueTitle": "Cosmic Ghost Rider (2018) #3",
+          "seriesTitle": "Cosmic Ghost Rider",
+          "apiSeriesName": "Cosmic Ghost Rider (2018)",
+          "seriesId": 24329,
+          "issueNumber": "3",
+          "seriesYear": 2018,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/67321/cosmic_ghost_rider_2018_3",
+          "onSaleDate": "2018-09-05T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/thanos-reading-order.json",
+        "fileSha256": "1087ed71314a2093a49d79423d6217808b048260100d42a540bb253d4caae9d4",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 67321
+    },
+    {
+      "sourcePosition": 25,
+      "block": 13,
+      "seriesId": 24329,
+      "normalizedSeriesTitle": "Cosmic Ghost Rider",
+      "seriesYear": 2018,
+      "issueNumber": "4",
+      "sourceIssueReference": "Cosmic Ghost Rider (2018) #4",
+      "sourceRangeReference": "Cosmic Ghost Rider #1-5",
+      "evidence": {
+        "candidate": {
+          "id": 67322,
+          "title": "Cosmic Ghost Rider",
+          "issueTitle": "Cosmic Ghost Rider (2018) #4",
+          "seriesTitle": "Cosmic Ghost Rider",
+          "apiSeriesName": "Cosmic Ghost Rider (2018)",
+          "seriesId": 24329,
+          "issueNumber": "4",
+          "seriesYear": 2018,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/67322/cosmic_ghost_rider_2018_4",
+          "onSaleDate": "2018-10-03T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/thanos-reading-order.json",
+        "fileSha256": "1087ed71314a2093a49d79423d6217808b048260100d42a540bb253d4caae9d4",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 67322
+    },
+    {
+      "sourcePosition": 26,
+      "block": 13,
+      "seriesId": 24329,
+      "normalizedSeriesTitle": "Cosmic Ghost Rider",
+      "seriesYear": 2018,
+      "issueNumber": "5",
+      "sourceIssueReference": "Cosmic Ghost Rider (2018) #5",
+      "sourceRangeReference": "Cosmic Ghost Rider #1-5",
+      "evidence": {
+        "candidate": {
+          "id": 67323,
+          "title": "Cosmic Ghost Rider",
+          "issueTitle": "Cosmic Ghost Rider (2018) #5",
+          "seriesTitle": "Cosmic Ghost Rider",
+          "apiSeriesName": "Cosmic Ghost Rider (2018)",
+          "seriesId": 24329,
+          "issueNumber": "5",
+          "seriesYear": 2018,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/67323/cosmic_ghost_rider_2018_5",
+          "onSaleDate": "2018-11-14T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/thanos-reading-order.json",
+        "fileSha256": "1087ed71314a2093a49d79423d6217808b048260100d42a540bb253d4caae9d4",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 67323
+    },
+    {
+      "sourcePosition": 27,
+      "block": 14,
+      "seriesId": 24340,
+      "normalizedSeriesTitle": "Infinity Wars Prime",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "sourceIssueReference": "Infinity Wars Prime (2018) #1",
+      "sourceRangeReference": "Infinity Wars Prime #1",
+      "evidence": {
+        "candidate": {
+          "id": 67349,
+          "digitalId": 48615,
+          "title": "Infinity Wars Prime (2018) #1",
+          "issueNumber": "1",
+          "description": null,
+          "modified": "2023-11-08T18:24:38+0000",
+          "pageCount": 40,
+          "detailUrl": "https://www.marvel.com/comics/issue/67349/infinity_wars_prime_2018_1",
+          "seriesId": 24340,
+          "seriesName": "Infinity Wars Prime (2018)",
+          "onSaleDate": "2018-07-25T00:00:00+0000",
+          "unlimitedDate": "2019-01-28T00:00:00+0000",
+          "yearPage": 2018,
+          "creators": [
+            {
+              "id": 4991,
+              "name": "Frank Martin",
+              "role": "colorist"
+            },
+            {
+              "id": 8822,
+              "name": "Jordan D. White",
+              "role": "editor"
+            },
+            {
+              "id": 12980,
+              "name": "Vc Cory Petit",
+              "role": "letterer"
+            },
+            {
+              "id": 312,
+              "name": "Mike Deodato",
+              "role": "penciler"
+            },
+            {
+              "id": 11680,
+              "name": "Gerry Duggan",
+              "role": "writer"
+            }
+          ],
+          "cover": {
+            "path": "http://i.annihil.us/u/prod/marvel/i/mg/5/f0/5b52272a8fa14",
+            "extension": "jpg"
+          },
+          "seriesTitle": "Infinity Wars Prime",
+          "seriesYear": 2018,
+          "manualSeriesSelection": true,
+          "manualSeriesSelectionApproved": true
+        },
+        "file": "scripts/data/cbh-mappings/black-widow-reading-order.json",
+        "fileSha256": "a2899bd3b1a18a760e2f7b2fdf513216c12a6b8ccb598c649779b695bcb48761",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 67349
+    },
+    {
+      "sourcePosition": 28,
+      "block": 15,
+      "seriesId": 25951,
+      "normalizedSeriesTitle": "Thanos Legacy",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "sourceIssueReference": "Thanos Legacy (2018) #1",
+      "sourceRangeReference": "Thanos Legacy #1",
+      "evidence": {
+        "candidate": {
+          "id": 71037,
+          "title": "Thanos Legacy",
+          "issueTitle": "Thanos Legacy (2018) #1",
+          "seriesTitle": "Thanos Legacy",
+          "apiSeriesName": "Thanos Legacy (2018)",
+          "seriesId": 25951,
+          "issueNumber": "1",
+          "seriesYear": 2018,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/71037/thanos_legacy_2018_1",
+          "onSaleDate": "2018-09-05T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/infinity-countdown-wars.json",
+        "fileSha256": "fb884c0e0a4f831bf7470602b09f17fed53051092762f689f181f6f913b4603a",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 71037
+    },
+    {
+      "sourcePosition": 29,
+      "block": 16,
+      "seriesId": 24738,
+      "normalizedSeriesTitle": "Death of the Inhumans",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "sourceIssueReference": "Death of the Inhumans (2018) #1",
+      "sourceRangeReference": "Death of the Inhumans: source recommends the entire five-issue limited series",
+      "evidence": {
+        "candidate": {
+          "id": 68250,
+          "title": "Death of Inhumans",
+          "issueTitle": "Death of Inhumans (2018) #1",
+          "seriesTitle": "Death of Inhumans",
+          "seriesId": 24738,
+          "issueNumber": "1",
+          "seriesYear": 2018,
+          "detailUrl": "https://www.marvel.com/comics/issue/68250/death_of_inhumans_2018_1"
+        },
+        "file": "scripts/data/cbh-mappings/inhumans-reading-order.json",
+        "fileSha256": "80164603cee8b323cd214043184d3b7f5b83540ade3741c1110ea50520464ff3",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 68250
+    },
+    {
+      "sourcePosition": 30,
+      "block": 16,
+      "seriesId": 24738,
+      "normalizedSeriesTitle": "Death of the Inhumans",
+      "seriesYear": 2018,
+      "issueNumber": "2",
+      "sourceIssueReference": "Death of the Inhumans (2018) #2",
+      "sourceRangeReference": "Death of the Inhumans: source recommends the entire five-issue limited series",
+      "evidence": {
+        "candidate": {
+          "id": 68252,
+          "title": "Death of Inhumans",
+          "issueTitle": "Death of Inhumans (2018) #2",
+          "seriesTitle": "Death of Inhumans",
+          "seriesId": 24738,
+          "issueNumber": "2",
+          "seriesYear": 2018,
+          "detailUrl": "https://www.marvel.com/comics/issue/68252/death_of_inhumans_2018_2"
+        },
+        "file": "scripts/data/cbh-mappings/inhumans-reading-order.json",
+        "fileSha256": "80164603cee8b323cd214043184d3b7f5b83540ade3741c1110ea50520464ff3",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 68252
+    },
+    {
+      "sourcePosition": 31,
+      "block": 16,
+      "seriesId": 24738,
+      "normalizedSeriesTitle": "Death of the Inhumans",
+      "seriesYear": 2018,
+      "issueNumber": "3",
+      "sourceIssueReference": "Death of the Inhumans (2018) #3",
+      "sourceRangeReference": "Death of the Inhumans: source recommends the entire five-issue limited series",
+      "evidence": {
+        "candidate": {
+          "id": 68253,
+          "title": "Death of Inhumans",
+          "issueTitle": "Death of Inhumans (2018) #3",
+          "seriesTitle": "Death of Inhumans",
+          "seriesId": 24738,
+          "issueNumber": "3",
+          "seriesYear": 2018,
+          "detailUrl": "https://www.marvel.com/comics/issue/68253/death_of_inhumans_2018_3"
+        },
+        "file": "scripts/data/cbh-mappings/inhumans-reading-order.json",
+        "fileSha256": "80164603cee8b323cd214043184d3b7f5b83540ade3741c1110ea50520464ff3",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 68253
+    },
+    {
+      "sourcePosition": 32,
+      "block": 16,
+      "seriesId": 24738,
+      "normalizedSeriesTitle": "Death of the Inhumans",
+      "seriesYear": 2018,
+      "issueNumber": "4",
+      "sourceIssueReference": "Death of the Inhumans (2018) #4",
+      "sourceRangeReference": "Death of the Inhumans: source recommends the entire five-issue limited series",
+      "evidence": {
+        "candidate": {
+          "id": 68254,
+          "title": "Death of Inhumans",
+          "issueTitle": "Death of Inhumans (2018) #4",
+          "seriesTitle": "Death of Inhumans",
+          "seriesId": 24738,
+          "issueNumber": "4",
+          "seriesYear": 2018,
+          "detailUrl": "https://www.marvel.com/comics/issue/68254/death_of_inhumans_2018_4"
+        },
+        "file": "scripts/data/cbh-mappings/inhumans-reading-order.json",
+        "fileSha256": "80164603cee8b323cd214043184d3b7f5b83540ade3741c1110ea50520464ff3",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 68254
+    },
+    {
+      "sourcePosition": 33,
+      "block": 16,
+      "seriesId": 24738,
+      "normalizedSeriesTitle": "Death of the Inhumans",
+      "seriesYear": 2018,
+      "issueNumber": "5",
+      "sourceIssueReference": "Death of the Inhumans (2018) #5",
+      "sourceRangeReference": "Death of the Inhumans: source recommends the entire five-issue limited series",
+      "evidence": {
+        "candidate": {
+          "id": 68255,
+          "title": "Death of Inhumans",
+          "issueTitle": "Death of Inhumans (2018) #5",
+          "seriesTitle": "Death of Inhumans",
+          "seriesId": 24738,
+          "issueNumber": "5",
+          "seriesYear": 2018,
+          "detailUrl": "https://www.marvel.com/comics/issue/68255/death_of_inhumans_2018_5"
+        },
+        "file": "scripts/data/cbh-mappings/inhumans-reading-order.json",
+        "fileSha256": "80164603cee8b323cd214043184d3b7f5b83540ade3741c1110ea50520464ff3",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 68255
+    },
+    {
+      "sourcePosition": 34,
+      "block": 17,
+      "seriesId": 24310,
+      "normalizedSeriesTitle": "Venom",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "sourceIssueReference": "Venom (2018) #1",
+      "sourceRangeReference": "Venom #1-5",
+      "evidence": {
+        "candidate": {
+          "id": 67577,
+          "title": "Venom",
+          "issueTitle": "Venom (2018) #1",
+          "seriesTitle": "Venom",
+          "apiSeriesName": "Venom (2018 - 2021)",
+          "seriesId": 24310,
+          "issueNumber": "1",
+          "seriesYear": 2018,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/67577/venom_2018_1",
+          "onSaleDate": "2018-05-09T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/miles-morales-spider-man-reading-order.json",
+        "fileSha256": "a7a46dd5507e71a3f23d3c9de2b4c266af74c1c8098387b3237c849ecf9e87b5",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 67577
+    },
+    {
+      "sourcePosition": 35,
+      "block": 17,
+      "seriesId": 24310,
+      "normalizedSeriesTitle": "Venom",
+      "seriesYear": 2018,
+      "issueNumber": "2",
+      "sourceIssueReference": "Venom (2018) #2",
+      "sourceRangeReference": "Venom #1-5",
+      "evidence": {
+        "candidate": {
+          "id": 70036,
+          "title": "Venom",
+          "issueTitle": "Venom (2018) #2",
+          "seriesTitle": "Venom",
+          "apiSeriesName": "Venom (2018 - 2021)",
+          "seriesId": 24310,
+          "issueNumber": "2",
+          "seriesYear": 2018,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/70036/venom_2018_2",
+          "onSaleDate": "2018-06-13T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/miles-morales-spider-man-reading-order.json",
+        "fileSha256": "a7a46dd5507e71a3f23d3c9de2b4c266af74c1c8098387b3237c849ecf9e87b5",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 70036
+    },
+    {
+      "sourcePosition": 36,
+      "block": 17,
+      "seriesId": 24310,
+      "normalizedSeriesTitle": "Venom",
+      "seriesYear": 2018,
+      "issueNumber": "3",
+      "sourceIssueReference": "Venom (2018) #3",
+      "sourceRangeReference": "Venom #1-5",
+      "evidence": {
+        "candidate": {
+          "id": 70045,
+          "title": "Venom",
+          "issueTitle": "Venom (2018) #3",
+          "seriesTitle": "Venom",
+          "apiSeriesName": "Venom (2018 - 2021)",
+          "seriesId": 24310,
+          "issueNumber": "3",
+          "seriesYear": 2018,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/70045/venom_2018_3",
+          "onSaleDate": "2018-06-27T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/miles-morales-spider-man-reading-order.json",
+        "fileSha256": "a7a46dd5507e71a3f23d3c9de2b4c266af74c1c8098387b3237c849ecf9e87b5",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 70045
+    },
+    {
+      "sourcePosition": 37,
+      "block": 17,
+      "seriesId": 24310,
+      "normalizedSeriesTitle": "Venom",
+      "seriesYear": 2018,
+      "issueNumber": "4",
+      "sourceIssueReference": "Venom (2018) #4",
+      "sourceRangeReference": "Venom #1-5",
+      "evidence": {
+        "candidate": {
+          "id": 70051,
+          "title": "Venom",
+          "issueTitle": "Venom (2018) #4",
+          "seriesTitle": "Venom",
+          "apiSeriesName": "Venom (2018 - 2021)",
+          "seriesId": 24310,
+          "issueNumber": "4",
+          "seriesYear": 2018,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/70051/venom_2018_4",
+          "onSaleDate": "2018-07-25T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/miles-morales-spider-man-reading-order.json",
+        "fileSha256": "a7a46dd5507e71a3f23d3c9de2b4c266af74c1c8098387b3237c849ecf9e87b5",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 70051
+    },
+    {
+      "sourcePosition": 38,
+      "block": 17,
+      "seriesId": 24310,
+      "normalizedSeriesTitle": "Venom",
+      "seriesYear": 2018,
+      "issueNumber": "5",
+      "sourceIssueReference": "Venom (2018) #5",
+      "sourceRangeReference": "Venom #1-5",
+      "evidence": {
+        "candidate": {
+          "id": 67293,
+          "title": "Venom",
+          "issueTitle": "Venom (2018) #5",
+          "seriesTitle": "Venom",
+          "apiSeriesName": "Venom (2018 - 2021)",
+          "seriesId": 24310,
+          "issueNumber": "5",
+          "seriesYear": 2018,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/67293/venom_2018_5",
+          "onSaleDate": "2018-08-22T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/miles-morales-spider-man-reading-order.json",
+        "fileSha256": "a7a46dd5507e71a3f23d3c9de2b4c266af74c1c8098387b3237c849ecf9e87b5",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 67293
+    },
+    {
+      "sourcePosition": 39,
+      "block": 18,
+      "seriesId": 25942,
+      "normalizedSeriesTitle": "Web of Venom: Ve'Nam",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "sourceIssueReference": "Web of Venom: Ve'Nam (2018) #1",
+      "sourceRangeReference": "Web of Venom: Ve'Nam #1",
+      "evidence": {
+        "candidate": {
+          "id": 71028,
+          "title": "Web of Venom: Ve'nam",
+          "issueTitle": "Web of Venom: Ve'nam (2018) #1",
+          "seriesTitle": "Web of Venom: Ve'nam",
+          "apiSeriesName": "Web of Venom: Ve'nam (2018)",
+          "seriesId": 25942,
+          "issueNumber": "1",
+          "seriesYear": 2018,
+          "detailUrl": "https://www.marvel.com/comics/issue/71028/web_of_venom_venam_2018_1",
+          "onSaleDate": "2018-08-29T00:00:00+0000"
+        },
+        "file": "src/data/venom_reading_order.json",
+        "fileSha256": "ce23f28324776eb8e22778e6ced9ed276b2bdb94dac2272021d5587ddb05325b",
+        "fieldAdaptation": "Pinned browser issueId/title/number/url/seriesName/onSale adapted to candidate id/issueTitle/issueNumber/detailUrl/apiSeriesName/onSaleDate; provider title/year parsed from seriesName.",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 71028
+    },
+    {
+      "sourcePosition": 40,
+      "block": 19,
+      "seriesId": 26486,
+      "normalizedSeriesTitle": "Venom Annual",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "sourceIssueReference": "Venom Annual (2018) #1",
+      "sourceRangeReference": "Venom Annual #1",
+      "evidence": {
+        "candidate": {
+          "id": 73500,
+          "title": "Venom Annual",
+          "issueTitle": "Venom Annual (2018) #1",
+          "seriesTitle": "Venom Annual",
+          "apiSeriesName": "Venom Annual (2018)",
+          "seriesId": 26486,
+          "issueNumber": "1",
+          "seriesYear": 2018,
+          "detailUrl": "https://www.marvel.com/comics/issue/73500/venom_annual_2018_1",
+          "onSaleDate": "2018-10-17T00:00:00+0000"
+        },
+        "file": "src/data/venom_reading_order.json",
+        "fileSha256": "ce23f28324776eb8e22778e6ced9ed276b2bdb94dac2272021d5587ddb05325b",
+        "fieldAdaptation": "Pinned browser issueId/title/number/url/seriesName/onSale adapted to candidate id/issueTitle/issueNumber/detailUrl/apiSeriesName/onSaleDate; provider title/year parsed from seriesName.",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 73500
+    },
+    {
+      "sourcePosition": 41,
+      "block": 20,
+      "seriesId": 24310,
+      "normalizedSeriesTitle": "Venom",
+      "seriesYear": 2018,
+      "issueNumber": "6",
+      "sourceIssueReference": "Venom (2018) #6",
+      "sourceRangeReference": "Venom #6-8",
+      "evidence": {
+        "candidate": {
+          "id": 67294,
+          "title": "Venom",
+          "issueTitle": "Venom (2018) #6",
+          "seriesTitle": "Venom",
+          "apiSeriesName": "Venom (2018 - 2021)",
+          "seriesId": 24310,
+          "issueNumber": "6",
+          "seriesYear": 2018,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/67294/venom_2018_6",
+          "onSaleDate": "2018-09-19T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/miles-morales-spider-man-reading-order.json",
+        "fileSha256": "a7a46dd5507e71a3f23d3c9de2b4c266af74c1c8098387b3237c849ecf9e87b5",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 67294
+    },
+    {
+      "sourcePosition": 42,
+      "block": 20,
+      "seriesId": 24310,
+      "normalizedSeriesTitle": "Venom",
+      "seriesYear": 2018,
+      "issueNumber": "7",
+      "sourceIssueReference": "Venom (2018) #7",
+      "sourceRangeReference": "Venom #6-8",
+      "evidence": {
+        "candidate": {
+          "id": 67295,
+          "title": "Venom",
+          "issueTitle": "Venom (2018) #7",
+          "seriesTitle": "Venom",
+          "apiSeriesName": "Venom (2018 - 2021)",
+          "seriesId": 24310,
+          "issueNumber": "7",
+          "seriesYear": 2018,
+          "detailUrl": "https://www.marvel.com/comics/issue/67295/venom_2018_7",
+          "onSaleDate": "2018-10-10T00:00:00+0000"
+        },
+        "file": "src/data/venom_reading_order.json",
+        "fileSha256": "ce23f28324776eb8e22778e6ced9ed276b2bdb94dac2272021d5587ddb05325b",
+        "fieldAdaptation": "Pinned browser issueId/title/number/url/seriesName/onSale adapted to candidate id/issueTitle/issueNumber/detailUrl/apiSeriesName/onSaleDate; provider title/year parsed from seriesName.",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 67295
+    },
+    {
+      "sourcePosition": 43,
+      "block": 20,
+      "seriesId": 24310,
+      "normalizedSeriesTitle": "Venom",
+      "seriesYear": 2018,
+      "issueNumber": "8",
+      "sourceIssueReference": "Venom (2018) #8",
+      "sourceRangeReference": "Venom #6-8",
+      "evidence": {
+        "candidate": {
+          "id": 67296,
+          "title": "Venom",
+          "issueTitle": "Venom (2018) #8",
+          "seriesTitle": "Venom",
+          "apiSeriesName": "Venom (2018 - 2021)",
+          "seriesId": 24310,
+          "issueNumber": "8",
+          "seriesYear": 2018,
+          "detailUrl": "https://www.marvel.com/comics/issue/67296/venom_2018_8",
+          "onSaleDate": "2018-11-14T00:00:00+0000"
+        },
+        "file": "src/data/venom_reading_order.json",
+        "fileSha256": "ce23f28324776eb8e22778e6ced9ed276b2bdb94dac2272021d5587ddb05325b",
+        "fieldAdaptation": "Pinned browser issueId/title/number/url/seriesName/onSale adapted to candidate id/issueTitle/issueNumber/detailUrl/apiSeriesName/onSaleDate; provider title/year parsed from seriesName.",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 67296
+    },
+    {
+      "sourcePosition": 44,
+      "block": 21,
+      "seriesId": 25943,
+      "normalizedSeriesTitle": "Web of Venom: Carnage Born",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "sourceIssueReference": "Web of Venom: Carnage Born (2018) #1",
+      "sourceRangeReference": "Web of Venom: Carnage Born #1",
+      "evidence": {
+        "candidate": {
+          "id": 71029,
+          "title": "Web of Venom: Carnage Born",
+          "issueTitle": "Web of Venom: Carnage Born (2018) #1",
+          "seriesTitle": "Web of Venom: Carnage Born",
+          "apiSeriesName": "Web of Venom: Carnage Born (2018)",
+          "seriesId": 25943,
+          "issueNumber": "1",
+          "seriesYear": 2018,
+          "detailUrl": "https://www.marvel.com/comics/issue/71029/web_of_venom_carnage_born_2018_1",
+          "onSaleDate": "2018-11-21T00:00:00+0000"
+        },
+        "file": "src/data/venom_reading_order.json",
+        "fileSha256": "ce23f28324776eb8e22778e6ced9ed276b2bdb94dac2272021d5587ddb05325b",
+        "fieldAdaptation": "Pinned browser issueId/title/number/url/seriesName/onSale adapted to candidate id/issueTitle/issueNumber/detailUrl/apiSeriesName/onSaleDate; provider title/year parsed from seriesName.",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 71029
+    },
+    {
+      "sourcePosition": 45,
+      "block": 22,
+      "seriesId": 24310,
+      "normalizedSeriesTitle": "Venom",
+      "seriesYear": 2018,
+      "issueNumber": "9",
+      "sourceIssueReference": "Venom (2018) #9",
+      "sourceRangeReference": "Venom #9",
+      "evidence": {
+        "candidate": {
+          "id": 67297,
+          "title": "Venom",
+          "issueTitle": "Venom (2018) #9",
+          "seriesTitle": "Venom",
+          "apiSeriesName": "Venom (2018 - 2021)",
+          "seriesId": 24310,
+          "issueNumber": "9",
+          "seriesYear": 2018,
+          "detailUrl": "https://www.marvel.com/comics/issue/67297/venom_2018_9",
+          "onSaleDate": "2018-12-05T00:00:00+0000"
+        },
+        "file": "src/data/venom_reading_order.json",
+        "fileSha256": "ce23f28324776eb8e22778e6ced9ed276b2bdb94dac2272021d5587ddb05325b",
+        "fieldAdaptation": "Pinned browser issueId/title/number/url/seriesName/onSale adapted to candidate id/issueTitle/issueNumber/detailUrl/apiSeriesName/onSaleDate; provider title/year parsed from seriesName.",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 67297
+    },
+    {
+      "sourcePosition": 46,
+      "block": 23,
+      "seriesId": 25944,
+      "normalizedSeriesTitle": "Web of Venom: Unleashed",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "sourceIssueReference": "Web of Venom: Unleashed (2019) #1",
+      "sourceRangeReference": "Web of Venom: Unleashed #1",
+      "evidence": {
+        "candidate": {
+          "id": 71030,
+          "title": "Web Of Venom: Venom Unleashed",
+          "issueTitle": "Web Of Venom: Venom Unleashed (2019) #1",
+          "seriesTitle": "Web Of Venom: Venom Unleashed",
+          "apiSeriesName": "Web Of Venom: Venom Unleashed (2019)",
+          "seriesId": 25944,
+          "issueNumber": "1",
+          "seriesYear": 2019,
+          "detailUrl": "https://www.marvel.com/comics/issue/71030/web_of_venom_venom_unleashed_2019_1",
+          "onSaleDate": "2019-01-09T00:00:00+0000"
+        },
+        "file": "src/data/venom_reading_order.json",
+        "fileSha256": "ce23f28324776eb8e22778e6ced9ed276b2bdb94dac2272021d5587ddb05325b",
+        "fieldAdaptation": "Pinned browser issueId/title/number/url/seriesName/onSale adapted to candidate id/issueTitle/issueNumber/detailUrl/apiSeriesName/onSaleDate; provider title/year parsed from seriesName.",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 71030
+    },
+    {
+      "sourcePosition": 47,
+      "block": 24,
+      "seriesId": 24310,
+      "normalizedSeriesTitle": "Venom",
+      "seriesYear": 2018,
+      "issueNumber": "10",
+      "sourceIssueReference": "Venom (2018) #10",
+      "sourceRangeReference": "Venom #10-12",
+      "evidence": {
+        "candidate": {
+          "id": 67298,
+          "title": "Venom",
+          "issueTitle": "Venom (2018) #10",
+          "seriesTitle": "Venom",
+          "apiSeriesName": "Venom (2018 - 2021)",
+          "seriesId": 24310,
+          "issueNumber": "10",
+          "seriesYear": 2018,
+          "detailUrl": "https://www.marvel.com/comics/issue/67298/venom_2018_10",
+          "onSaleDate": "2019-01-16T00:00:00+0000"
+        },
+        "file": "src/data/venom_reading_order.json",
+        "fileSha256": "ce23f28324776eb8e22778e6ced9ed276b2bdb94dac2272021d5587ddb05325b",
+        "fieldAdaptation": "Pinned browser issueId/title/number/url/seriesName/onSale adapted to candidate id/issueTitle/issueNumber/detailUrl/apiSeriesName/onSaleDate; provider title/year parsed from seriesName.",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 67298
+    },
+    {
+      "sourcePosition": 48,
+      "block": 24,
+      "seriesId": 24310,
+      "normalizedSeriesTitle": "Venom",
+      "seriesYear": 2018,
+      "issueNumber": "11",
+      "sourceIssueReference": "Venom (2018) #11",
+      "sourceRangeReference": "Venom #10-12",
+      "evidence": {
+        "candidate": {
+          "id": 67299,
+          "title": "Venom",
+          "issueTitle": "Venom (2018) #11",
+          "seriesTitle": "Venom",
+          "apiSeriesName": "Venom (2018 - 2021)",
+          "seriesId": 24310,
+          "issueNumber": "11",
+          "seriesYear": 2018,
+          "detailUrl": "https://www.marvel.com/comics/issue/67299/venom_2018_11",
+          "onSaleDate": "2019-02-20T00:00:00+0000"
+        },
+        "file": "src/data/venom_reading_order.json",
+        "fileSha256": "ce23f28324776eb8e22778e6ced9ed276b2bdb94dac2272021d5587ddb05325b",
+        "fieldAdaptation": "Pinned browser issueId/title/number/url/seriesName/onSale adapted to candidate id/issueTitle/issueNumber/detailUrl/apiSeriesName/onSaleDate; provider title/year parsed from seriesName.",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 67299
+    },
+    {
+      "sourcePosition": 49,
+      "block": 24,
+      "seriesId": 24310,
+      "normalizedSeriesTitle": "Venom",
+      "seriesYear": 2018,
+      "issueNumber": "12",
+      "sourceIssueReference": "Venom (2018) #12",
+      "sourceRangeReference": "Venom #10-12",
+      "evidence": {
+        "candidate": {
+          "id": 67300,
+          "title": "Venom",
+          "issueTitle": "Venom (2018) #12",
+          "seriesTitle": "Venom",
+          "apiSeriesName": "Venom (2018 - 2021)",
+          "seriesId": 24310,
+          "issueNumber": "12",
+          "seriesYear": 2018,
+          "detailUrl": "https://www.marvel.com/comics/issue/67300/venom_2018_12",
+          "onSaleDate": "2019-03-20T00:00:00+0000"
+        },
+        "file": "src/data/venom_reading_order.json",
+        "fileSha256": "ce23f28324776eb8e22778e6ced9ed276b2bdb94dac2272021d5587ddb05325b",
+        "fieldAdaptation": "Pinned browser issueId/title/number/url/seriesName/onSale adapted to candidate id/issueTitle/issueNumber/detailUrl/apiSeriesName/onSaleDate; provider title/year parsed from seriesName.",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 67300
+    },
+    {
+      "sourcePosition": 50,
+      "block": 25,
+      "seriesId": 25945,
+      "normalizedSeriesTitle": "Web of Venom: Cult of Carnage",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "sourceIssueReference": "Web of Venom: Cult of Carnage (2019) #1",
+      "sourceRangeReference": "Web of Venom: Cult of Carnage #1",
+      "evidence": {
+        "candidate": {
+          "id": 71031,
+          "title": "Web Of Venom: Cult Of Carnage",
+          "issueTitle": "Web Of Venom: Cult Of Carnage (2019) #1",
+          "seriesTitle": "Web Of Venom: Cult Of Carnage",
+          "apiSeriesName": "Web Of Venom: Cult Of Carnage (2019)",
+          "seriesId": 25945,
+          "issueNumber": "1",
+          "seriesYear": 2019,
+          "detailUrl": "https://www.marvel.com/comics/issue/71031/web_of_venom_cult_of_carnage_2019_1",
+          "onSaleDate": "2019-04-10T00:00:00+0000"
+        },
+        "file": "src/data/venom_reading_order.json",
+        "fileSha256": "ce23f28324776eb8e22778e6ced9ed276b2bdb94dac2272021d5587ddb05325b",
+        "fieldAdaptation": "Pinned browser issueId/title/number/url/seriesName/onSale adapted to candidate id/issueTitle/issueNumber/detailUrl/apiSeriesName/onSaleDate; provider title/year parsed from seriesName.",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 71031
+    },
+    {
+      "sourcePosition": 51,
+      "block": 26,
+      "seriesId": 26685,
+      "normalizedSeriesTitle": "Marvel Knights 20th",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "sourceIssueReference": "Marvel Knights 20th (2018) #1",
+      "sourceRangeReference": "Marvel Knights 20th #1-6",
+      "evidence": {
+        "candidate": {
+          "id": 74044,
+          "title": "Marvel Knights 20th",
+          "seriesTitle": "Marvel Knights 20th",
+          "issueTitle": "Marvel Knights 20th (2018) #1",
+          "apiSeriesName": "Marvel Knights 20th (2018 - 2019)",
+          "seriesId": 26685,
+          "issueNumber": "1",
+          "seriesYear": 2018,
+          "detailUrl": "https://www.marvel.com/comics/issue/74044/marvel_knights_20th_2018_1",
+          "onSaleDate": "2018-11-07T00:00:00+0000"
+        },
+        "url": "https://marvel.emreparker.com/v1/series/26685/issues?limit=200&offset=0",
+        "responseBodySha256": "9e36b12f0940a324a406b404130c0d77488f6e89f96ccb70e0b0fdef3fe0ca3e",
+        "retrievedAt": "2026-09-15T15:16:43.827Z",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 74044
+    },
+    {
+      "sourcePosition": 52,
+      "block": 26,
+      "seriesId": 26685,
+      "normalizedSeriesTitle": "Marvel Knights 20th",
+      "seriesYear": 2018,
+      "issueNumber": "2",
+      "sourceIssueReference": "Marvel Knights 20th (2018) #2",
+      "sourceRangeReference": "Marvel Knights 20th #1-6",
+      "evidence": {
+        "candidate": {
+          "id": 74045,
+          "title": "Marvel Knights 20th",
+          "seriesTitle": "Marvel Knights 20th",
+          "issueTitle": "Marvel Knights 20th (2018) #2",
+          "apiSeriesName": "Marvel Knights 20th (2018 - 2019)",
+          "seriesId": 26685,
+          "issueNumber": "2",
+          "seriesYear": 2018,
+          "detailUrl": "https://www.marvel.com/comics/issue/74045/marvel_knights_20th_2018_2",
+          "onSaleDate": "2018-11-21T00:00:00+0000"
+        },
+        "url": "https://marvel.emreparker.com/v1/series/26685/issues?limit=200&offset=0",
+        "responseBodySha256": "9e36b12f0940a324a406b404130c0d77488f6e89f96ccb70e0b0fdef3fe0ca3e",
+        "retrievedAt": "2026-09-15T15:16:43.827Z",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 74045
+    },
+    {
+      "sourcePosition": 53,
+      "block": 26,
+      "seriesId": 26685,
+      "normalizedSeriesTitle": "Marvel Knights 20th",
+      "seriesYear": 2018,
+      "issueNumber": "3",
+      "sourceIssueReference": "Marvel Knights 20th (2018) #3",
+      "sourceRangeReference": "Marvel Knights 20th #1-6",
+      "evidence": {
+        "candidate": {
+          "id": 74046,
+          "title": "Marvel Knights 20th",
+          "seriesTitle": "Marvel Knights 20th",
+          "issueTitle": "Marvel Knights 20th (2018) #3",
+          "apiSeriesName": "Marvel Knights 20th (2018 - 2019)",
+          "seriesId": 26685,
+          "issueNumber": "3",
+          "seriesYear": 2018,
+          "detailUrl": "https://www.marvel.com/comics/issue/74046/marvel_knights_20th_2018_3",
+          "onSaleDate": "2018-12-05T00:00:00+0000"
+        },
+        "url": "https://marvel.emreparker.com/v1/series/26685/issues?limit=200&offset=0",
+        "responseBodySha256": "9e36b12f0940a324a406b404130c0d77488f6e89f96ccb70e0b0fdef3fe0ca3e",
+        "retrievedAt": "2026-09-15T15:16:43.827Z",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 74046
+    },
+    {
+      "sourcePosition": 54,
+      "block": 26,
+      "seriesId": 26685,
+      "normalizedSeriesTitle": "Marvel Knights 20th",
+      "seriesYear": 2018,
+      "issueNumber": "4",
+      "sourceIssueReference": "Marvel Knights 20th (2018) #4",
+      "sourceRangeReference": "Marvel Knights 20th #1-6",
+      "evidence": {
+        "candidate": {
+          "id": 74047,
+          "title": "Marvel Knights 20th",
+          "seriesTitle": "Marvel Knights 20th",
+          "issueTitle": "Marvel Knights 20th (2018) #4",
+          "apiSeriesName": "Marvel Knights 20th (2018 - 2019)",
+          "seriesId": 26685,
+          "issueNumber": "4",
+          "seriesYear": 2018,
+          "detailUrl": "https://www.marvel.com/comics/issue/74047/marvel_knights_20th_2018_4",
+          "onSaleDate": "2018-12-19T00:00:00+0000"
+        },
+        "url": "https://marvel.emreparker.com/v1/series/26685/issues?limit=200&offset=0",
+        "responseBodySha256": "9e36b12f0940a324a406b404130c0d77488f6e89f96ccb70e0b0fdef3fe0ca3e",
+        "retrievedAt": "2026-09-15T15:16:43.827Z",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 74047
+    },
+    {
+      "sourcePosition": 55,
+      "block": 26,
+      "seriesId": 26685,
+      "normalizedSeriesTitle": "Marvel Knights 20th",
+      "seriesYear": 2018,
+      "issueNumber": "5",
+      "sourceIssueReference": "Marvel Knights 20th (2018) #5",
+      "sourceRangeReference": "Marvel Knights 20th #1-6",
+      "evidence": {
+        "candidate": {
+          "id": 74048,
+          "title": "Marvel Knights 20th",
+          "seriesTitle": "Marvel Knights 20th",
+          "issueTitle": "Marvel Knights 20th (2018) #5",
+          "apiSeriesName": "Marvel Knights 20th (2018 - 2019)",
+          "seriesId": 26685,
+          "issueNumber": "5",
+          "seriesYear": 2018,
+          "detailUrl": "https://www.marvel.com/comics/issue/74048/marvel_knights_20th_2018_5",
+          "onSaleDate": "2019-01-02T00:00:00+0000"
+        },
+        "url": "https://marvel.emreparker.com/v1/series/26685/issues?limit=200&offset=0",
+        "responseBodySha256": "9e36b12f0940a324a406b404130c0d77488f6e89f96ccb70e0b0fdef3fe0ca3e",
+        "retrievedAt": "2026-09-15T15:16:43.827Z",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 74048
+    },
+    {
+      "sourcePosition": 56,
+      "block": 26,
+      "seriesId": 26685,
+      "normalizedSeriesTitle": "Marvel Knights 20th",
+      "seriesYear": 2018,
+      "issueNumber": "6",
+      "sourceIssueReference": "Marvel Knights 20th (2018) #6",
+      "sourceRangeReference": "Marvel Knights 20th #1-6",
+      "evidence": {
+        "candidate": {
+          "id": 74049,
+          "title": "Marvel Knights 20th",
+          "seriesTitle": "Marvel Knights 20th",
+          "issueTitle": "Marvel Knights 20th (2018) #6",
+          "apiSeriesName": "Marvel Knights 20th (2018 - 2019)",
+          "seriesId": 26685,
+          "issueNumber": "6",
+          "seriesYear": 2018,
+          "detailUrl": "https://www.marvel.com/comics/issue/74049/marvel_knights_20th_2018_6",
+          "onSaleDate": "2019-01-30T00:00:00+0000"
+        },
+        "url": "https://marvel.emreparker.com/v1/series/26685/issues?limit=200&offset=0",
+        "responseBodySha256": "9e36b12f0940a324a406b404130c0d77488f6e89f96ccb70e0b0fdef3fe0ca3e",
+        "retrievedAt": "2026-09-15T15:16:43.827Z",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 74049
+    },
+    {
+      "sourcePosition": 57,
+      "block": 27,
+      "seriesId": 26480,
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "sourceIssueReference": "Guardians of the Galaxy (2019) #1",
+      "sourceRangeReference": "Guardians of the Galaxy #1-5",
+      "evidence": {
+        "candidate": {
+          "id": 73420,
+          "title": "Guardians of the Galaxy",
+          "issueTitle": "Guardians of the Galaxy (2019) #1",
+          "seriesTitle": "Guardians of the Galaxy",
+          "apiSeriesName": "Guardians of the Galaxy (2019)",
+          "seriesId": 26480,
+          "issueNumber": "1",
+          "seriesYear": 2019,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/73420/guardians_of_the_galaxy_2019_1",
+          "onSaleDate": "2019-01-23T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/guardians-of-the-galaxy-reading-order.json",
+        "fileSha256": "db8fb02d9bca434647122ebef4449446f10be1efb44b3fa8e776dd4e121ee0c6",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 73420
+    },
+    {
+      "sourcePosition": 58,
+      "block": 27,
+      "seriesId": 26480,
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2019,
+      "issueNumber": "2",
+      "sourceIssueReference": "Guardians of the Galaxy (2019) #2",
+      "sourceRangeReference": "Guardians of the Galaxy #1-5",
+      "evidence": {
+        "candidate": {
+          "id": 73421,
+          "title": "Guardians of the Galaxy",
+          "issueTitle": "Guardians of the Galaxy (2019) #2",
+          "seriesTitle": "Guardians of the Galaxy",
+          "apiSeriesName": "Guardians of the Galaxy (2019)",
+          "seriesId": 26480,
+          "issueNumber": "2",
+          "seriesYear": 2019,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/73421/guardians_of_the_galaxy_2019_2",
+          "onSaleDate": "2019-02-20T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/guardians-of-the-galaxy-reading-order.json",
+        "fileSha256": "db8fb02d9bca434647122ebef4449446f10be1efb44b3fa8e776dd4e121ee0c6",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 73421
+    },
+    {
+      "sourcePosition": 59,
+      "block": 27,
+      "seriesId": 26480,
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2019,
+      "issueNumber": "3",
+      "sourceIssueReference": "Guardians of the Galaxy (2019) #3",
+      "sourceRangeReference": "Guardians of the Galaxy #1-5",
+      "evidence": {
+        "candidate": {
+          "id": 73422,
+          "title": "Guardians of the Galaxy",
+          "issueTitle": "Guardians of the Galaxy (2019) #3",
+          "seriesTitle": "Guardians of the Galaxy",
+          "apiSeriesName": "Guardians of the Galaxy (2019)",
+          "seriesId": 26480,
+          "issueNumber": "3",
+          "seriesYear": 2019,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/73422/guardians_of_the_galaxy_2019_3",
+          "onSaleDate": "2019-03-20T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/guardians-of-the-galaxy-reading-order.json",
+        "fileSha256": "db8fb02d9bca434647122ebef4449446f10be1efb44b3fa8e776dd4e121ee0c6",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 73422
+    },
+    {
+      "sourcePosition": 60,
+      "block": 27,
+      "seriesId": 26480,
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2019,
+      "issueNumber": "4",
+      "sourceIssueReference": "Guardians of the Galaxy (2019) #4",
+      "sourceRangeReference": "Guardians of the Galaxy #1-5",
+      "evidence": {
+        "candidate": {
+          "id": 73423,
+          "title": "Guardians of the Galaxy",
+          "issueTitle": "Guardians of the Galaxy (2019) #4",
+          "seriesTitle": "Guardians of the Galaxy",
+          "apiSeriesName": "Guardians of the Galaxy (2019)",
+          "seriesId": 26480,
+          "issueNumber": "4",
+          "seriesYear": 2019,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/73423/guardians_of_the_galaxy_2019_4",
+          "onSaleDate": "2019-04-17T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/guardians-of-the-galaxy-reading-order.json",
+        "fileSha256": "db8fb02d9bca434647122ebef4449446f10be1efb44b3fa8e776dd4e121ee0c6",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 73423
+    },
+    {
+      "sourcePosition": 61,
+      "block": 27,
+      "seriesId": 26480,
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2019,
+      "issueNumber": "5",
+      "sourceIssueReference": "Guardians of the Galaxy (2019) #5",
+      "sourceRangeReference": "Guardians of the Galaxy #1-5",
+      "evidence": {
+        "candidate": {
+          "id": 73424,
+          "title": "Guardians of the Galaxy",
+          "issueTitle": "Guardians of the Galaxy (2019) #5",
+          "seriesTitle": "Guardians of the Galaxy",
+          "apiSeriesName": "Guardians of the Galaxy (2019)",
+          "seriesId": 26480,
+          "issueNumber": "5",
+          "seriesYear": 2019,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/73424/guardians_of_the_galaxy_2019_5",
+          "onSaleDate": "2019-05-15T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/guardians-of-the-galaxy-reading-order.json",
+        "fileSha256": "db8fb02d9bca434647122ebef4449446f10be1efb44b3fa8e776dd4e121ee0c6",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 73424
+    },
+    {
+      "sourcePosition": 62,
+      "block": 28,
+      "seriesId": 26930,
+      "normalizedSeriesTitle": "Silver Surfer: Black",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "sourceIssueReference": "Silver Surfer: Black (2019) #1",
+      "sourceRangeReference": "Silver Surfer: Black #1",
+      "evidence": {
+        "candidate": {
+          "id": 74840,
+          "title": "Silver Surfer: Black",
+          "issueTitle": "Silver Surfer: Black (2019) #1",
+          "seriesTitle": "Silver Surfer: Black",
+          "apiSeriesName": "Silver Surfer: Black (2019)",
+          "seriesId": 26930,
+          "issueNumber": "1",
+          "seriesYear": 2019,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/74840/silver_surfer_black_2019_1",
+          "onSaleDate": "2019-06-12T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/silver-surfer-reading-order.json",
+        "fileSha256": "476d7128826a73a68317d1d95c83d5c6b89bc3095b81a849590773d2a0fa5958",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 74840
+    },
+    {
+      "sourcePosition": 63,
+      "block": 29,
+      "seriesId": 27554,
+      "normalizedSeriesTitle": "Guardians of the Galaxy Annual",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "sourceIssueReference": "Guardians of the Galaxy Annual (2019) #1",
+      "sourceRangeReference": "Guardians of the Galaxy Annual #1",
+      "evidence": {
+        "candidate": {
+          "id": 76749,
+          "title": "GUARDIANS OF THE GALAXY ANNUAL 1",
+          "issueTitle": "GUARDIANS OF THE GALAXY ANNUAL 1 (2019) #1",
+          "seriesTitle": "GUARDIANS OF THE GALAXY ANNUAL 1",
+          "apiSeriesName": "GUARDIANS OF THE GALAXY ANNUAL 1 (2019)",
+          "seriesId": 27554,
+          "issueNumber": "1",
+          "seriesYear": 2019,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/76749/guardians_of_the_galaxy_annual_1_2019_1",
+          "onSaleDate": "2019-06-05T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/guardians-of-the-galaxy-reading-order.json",
+        "fileSha256": "db8fb02d9bca434647122ebef4449446f10be1efb44b3fa8e776dd4e121ee0c6",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 76749
+    },
+    {
+      "sourcePosition": 64,
+      "block": 30,
+      "seriesId": 26480,
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2019,
+      "issueNumber": "6",
+      "sourceIssueReference": "Guardians of the Galaxy (2019) #6",
+      "sourceRangeReference": "Guardians of the Galaxy #6",
+      "evidence": {
+        "candidate": {
+          "id": 73425,
+          "title": "Guardians of the Galaxy",
+          "issueTitle": "Guardians of the Galaxy (2019) #6",
+          "seriesTitle": "Guardians of the Galaxy",
+          "apiSeriesName": "Guardians of the Galaxy (2019)",
+          "seriesId": 26480,
+          "issueNumber": "6",
+          "seriesYear": 2019,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/73425/guardians_of_the_galaxy_2019_6",
+          "onSaleDate": "2019-06-19T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/guardians-of-the-galaxy-reading-order.json",
+        "fileSha256": "db8fb02d9bca434647122ebef4449446f10be1efb44b3fa8e776dd4e121ee0c6",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 73425
+    },
+    {
+      "sourcePosition": 65,
+      "block": 31,
+      "seriesId": 26930,
+      "normalizedSeriesTitle": "Silver Surfer: Black",
+      "seriesYear": 2019,
+      "issueNumber": "2",
+      "sourceIssueReference": "Silver Surfer: Black (2019) #2",
+      "sourceRangeReference": "Silver Surfer: Black #2-5",
+      "evidence": {
+        "candidate": {
+          "id": 74841,
+          "title": "Silver Surfer: Black",
+          "issueTitle": "Silver Surfer: Black (2019) #2",
+          "seriesTitle": "Silver Surfer: Black",
+          "apiSeriesName": "Silver Surfer: Black (2019)",
+          "seriesId": 26930,
+          "issueNumber": "2",
+          "seriesYear": 2019,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/74841/silver_surfer_black_2019_2",
+          "onSaleDate": "2019-07-17T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/silver-surfer-reading-order.json",
+        "fileSha256": "476d7128826a73a68317d1d95c83d5c6b89bc3095b81a849590773d2a0fa5958",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 74841
+    },
+    {
+      "sourcePosition": 66,
+      "block": 31,
+      "seriesId": 26930,
+      "normalizedSeriesTitle": "Silver Surfer: Black",
+      "seriesYear": 2019,
+      "issueNumber": "3",
+      "sourceIssueReference": "Silver Surfer: Black (2019) #3",
+      "sourceRangeReference": "Silver Surfer: Black #2-5",
+      "evidence": {
+        "candidate": {
+          "id": 74842,
+          "title": "Silver Surfer: Black",
+          "issueTitle": "Silver Surfer: Black (2019) #3",
+          "seriesTitle": "Silver Surfer: Black",
+          "apiSeriesName": "Silver Surfer: Black (2019)",
+          "seriesId": 26930,
+          "issueNumber": "3",
+          "seriesYear": 2019,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/74842/silver_surfer_black_2019_3",
+          "onSaleDate": "2019-08-14T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/silver-surfer-reading-order.json",
+        "fileSha256": "476d7128826a73a68317d1d95c83d5c6b89bc3095b81a849590773d2a0fa5958",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 74842
+    },
+    {
+      "sourcePosition": 67,
+      "block": 31,
+      "seriesId": 26930,
+      "normalizedSeriesTitle": "Silver Surfer: Black",
+      "seriesYear": 2019,
+      "issueNumber": "4",
+      "sourceIssueReference": "Silver Surfer: Black (2019) #4",
+      "sourceRangeReference": "Silver Surfer: Black #2-5",
+      "evidence": {
+        "candidate": {
+          "id": 74843,
+          "title": "Silver Surfer: Black",
+          "issueTitle": "Silver Surfer: Black (2019) #4",
+          "seriesTitle": "Silver Surfer: Black",
+          "apiSeriesName": "Silver Surfer: Black (2019)",
+          "seriesId": 26930,
+          "issueNumber": "4",
+          "seriesYear": 2019,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/74843/silver_surfer_black_2019_4",
+          "onSaleDate": "2019-09-11T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/silver-surfer-reading-order.json",
+        "fileSha256": "476d7128826a73a68317d1d95c83d5c6b89bc3095b81a849590773d2a0fa5958",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 74843
+    },
+    {
+      "sourcePosition": 68,
+      "block": 31,
+      "seriesId": 26930,
+      "normalizedSeriesTitle": "Silver Surfer: Black",
+      "seriesYear": 2019,
+      "issueNumber": "5",
+      "sourceIssueReference": "Silver Surfer: Black (2019) #5",
+      "sourceRangeReference": "Silver Surfer: Black #2-5",
+      "evidence": {
+        "candidate": {
+          "id": 74844,
+          "title": "Silver Surfer: Black",
+          "issueTitle": "Silver Surfer: Black (2019) #5",
+          "seriesTitle": "Silver Surfer: Black",
+          "apiSeriesName": "Silver Surfer: Black (2019)",
+          "seriesId": 26930,
+          "issueNumber": "5",
+          "seriesYear": 2019,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/74844/silver_surfer_black_2019_5",
+          "onSaleDate": "2019-10-30T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/silver-surfer-reading-order.json",
+        "fileSha256": "476d7128826a73a68317d1d95c83d5c6b89bc3095b81a849590773d2a0fa5958",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 74844
+    },
+    {
+      "sourcePosition": 69,
+      "block": 32,
+      "seriesId": 24310,
+      "normalizedSeriesTitle": "Venom",
+      "seriesYear": 2018,
+      "issueNumber": "13",
+      "sourceIssueReference": "Venom (2018) #13",
+      "sourceRangeReference": "Venom: War of the Realms: Venom #13-16",
+      "evidence": {
+        "candidate": {
+          "id": 74065,
+          "title": "Venom",
+          "issueTitle": "Venom (2018) #13",
+          "seriesTitle": "Venom",
+          "apiSeriesName": "Venom (2018 - 2021)",
+          "seriesId": 24310,
+          "issueNumber": "13",
+          "seriesYear": 2018,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/74065/venom_2018_13",
+          "onSaleDate": "2019-04-24T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/war-of-the-realms.json",
+        "fileSha256": "13ebe51113b9b0f4827c11dc7d8f561a2426bc9b919e5edef8e92c27a4103929",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 74065
+    },
+    {
+      "sourcePosition": 70,
+      "block": 32,
+      "seriesId": 24310,
+      "normalizedSeriesTitle": "Venom",
+      "seriesYear": 2018,
+      "issueNumber": "14",
+      "sourceIssueReference": "Venom (2018) #14",
+      "sourceRangeReference": "Venom: War of the Realms: Venom #13-16",
+      "evidence": {
+        "candidate": {
+          "id": 74066,
+          "title": "Venom",
+          "issueTitle": "Venom (2018) #14",
+          "seriesTitle": "Venom",
+          "apiSeriesName": "Venom (2018 - 2021)",
+          "seriesId": 24310,
+          "issueNumber": "14",
+          "seriesYear": 2018,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/74066/venom_2018_14",
+          "onSaleDate": "2019-05-22T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/war-of-the-realms.json",
+        "fileSha256": "13ebe51113b9b0f4827c11dc7d8f561a2426bc9b919e5edef8e92c27a4103929",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 74066
+    },
+    {
+      "sourcePosition": 71,
+      "block": 32,
+      "seriesId": 24310,
+      "normalizedSeriesTitle": "Venom",
+      "seriesYear": 2018,
+      "issueNumber": "15",
+      "sourceIssueReference": "Venom (2018) #15",
+      "sourceRangeReference": "Venom: War of the Realms: Venom #13-16",
+      "evidence": {
+        "candidate": {
+          "id": 74067,
+          "title": "Venom",
+          "issueTitle": "Venom (2018) #15",
+          "seriesTitle": "Venom",
+          "apiSeriesName": "Venom (2018 - 2021)",
+          "seriesId": 24310,
+          "issueNumber": "15",
+          "seriesYear": 2018,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/74067/venom_2018_15",
+          "onSaleDate": "2019-06-12T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/war-of-the-realms.json",
+        "fileSha256": "13ebe51113b9b0f4827c11dc7d8f561a2426bc9b919e5edef8e92c27a4103929",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 74067
+    },
+    {
+      "sourcePosition": 72,
+      "block": 32,
+      "seriesId": 24310,
+      "normalizedSeriesTitle": "Venom",
+      "seriesYear": 2018,
+      "issueNumber": "16",
+      "sourceIssueReference": "Venom (2018) #16",
+      "sourceRangeReference": "Venom: War of the Realms: Venom #13-16",
+      "evidence": {
+        "candidate": {
+          "id": 74068,
+          "title": "Venom",
+          "issueTitle": "Venom (2018) #16",
+          "seriesTitle": "Venom",
+          "apiSeriesName": "Venom (2018 - 2021)",
+          "seriesId": 24310,
+          "issueNumber": "16",
+          "seriesYear": 2018,
+          "detailUrl": "https://www.marvel.com/comics/issue/74068/venom_2018_16",
+          "onSaleDate": "2019-07-10T00:00:00+0000"
+        },
+        "file": "src/data/venom_reading_order.json",
+        "fileSha256": "ce23f28324776eb8e22778e6ced9ed276b2bdb94dac2272021d5587ddb05325b",
+        "fieldAdaptation": "Pinned browser issueId/title/number/url/seriesName/onSale adapted to candidate id/issueTitle/issueNumber/detailUrl/apiSeriesName/onSaleDate; provider title/year parsed from seriesName.",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 74068
+    },
+    {
+      "sourcePosition": 73,
+      "block": 33,
+      "seriesId": 26480,
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2019,
+      "issueNumber": "7",
+      "sourceIssueReference": "Guardians of the Galaxy (2019) #7",
+      "sourceRangeReference": "Guardians of the Galaxy #7-12",
+      "evidence": {
+        "candidate": {
+          "id": 73426,
+          "title": "Guardians of the Galaxy",
+          "issueTitle": "Guardians of the Galaxy (2019) #7",
+          "seriesTitle": "Guardians of the Galaxy",
+          "apiSeriesName": "Guardians of the Galaxy (2019)",
+          "seriesId": 26480,
+          "issueNumber": "7",
+          "seriesYear": 2019,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/73426/guardians_of_the_galaxy_2019_7",
+          "onSaleDate": "2019-07-24T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/guardians-of-the-galaxy-reading-order.json",
+        "fileSha256": "db8fb02d9bca434647122ebef4449446f10be1efb44b3fa8e776dd4e121ee0c6",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 73426
+    },
+    {
+      "sourcePosition": 74,
+      "block": 33,
+      "seriesId": 26480,
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2019,
+      "issueNumber": "8",
+      "sourceIssueReference": "Guardians of the Galaxy (2019) #8",
+      "sourceRangeReference": "Guardians of the Galaxy #7-12",
+      "evidence": {
+        "candidate": {
+          "id": 73427,
+          "title": "Guardians of the Galaxy",
+          "issueTitle": "Guardians of the Galaxy (2019) #8",
+          "seriesTitle": "Guardians of the Galaxy",
+          "apiSeriesName": "Guardians of the Galaxy (2019)",
+          "seriesId": 26480,
+          "issueNumber": "8",
+          "seriesYear": 2019,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/73427/guardians_of_the_galaxy_2019_8",
+          "onSaleDate": "2019-08-21T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/guardians-of-the-galaxy-reading-order.json",
+        "fileSha256": "db8fb02d9bca434647122ebef4449446f10be1efb44b3fa8e776dd4e121ee0c6",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 73427
+    },
+    {
+      "sourcePosition": 75,
+      "block": 33,
+      "seriesId": 26480,
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2019,
+      "issueNumber": "9",
+      "sourceIssueReference": "Guardians of the Galaxy (2019) #9",
+      "sourceRangeReference": "Guardians of the Galaxy #7-12",
+      "evidence": {
+        "candidate": {
+          "id": 73428,
+          "title": "Guardians of the Galaxy",
+          "issueTitle": "Guardians of the Galaxy (2019) #9",
+          "seriesTitle": "Guardians of the Galaxy",
+          "apiSeriesName": "Guardians of the Galaxy (2019)",
+          "seriesId": 26480,
+          "issueNumber": "9",
+          "seriesYear": 2019,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/73428/guardians_of_the_galaxy_2019_9",
+          "onSaleDate": "2019-09-18T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/guardians-of-the-galaxy-reading-order.json",
+        "fileSha256": "db8fb02d9bca434647122ebef4449446f10be1efb44b3fa8e776dd4e121ee0c6",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 73428
+    },
+    {
+      "sourcePosition": 76,
+      "block": 33,
+      "seriesId": 26480,
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2019,
+      "issueNumber": "10",
+      "sourceIssueReference": "Guardians of the Galaxy (2019) #10",
+      "sourceRangeReference": "Guardians of the Galaxy #7-12",
+      "evidence": {
+        "candidate": {
+          "id": 73429,
+          "title": "Guardians of the Galaxy",
+          "issueTitle": "Guardians of the Galaxy (2019) #10",
+          "seriesTitle": "Guardians of the Galaxy",
+          "apiSeriesName": "Guardians of the Galaxy (2019)",
+          "seriesId": 26480,
+          "issueNumber": "10",
+          "seriesYear": 2019,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/73429/guardians_of_the_galaxy_2019_10",
+          "onSaleDate": "2019-10-16T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/guardians-of-the-galaxy-reading-order.json",
+        "fileSha256": "db8fb02d9bca434647122ebef4449446f10be1efb44b3fa8e776dd4e121ee0c6",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 73429
+    },
+    {
+      "sourcePosition": 77,
+      "block": 33,
+      "seriesId": 26480,
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2019,
+      "issueNumber": "11",
+      "sourceIssueReference": "Guardians of the Galaxy (2019) #11",
+      "sourceRangeReference": "Guardians of the Galaxy #7-12",
+      "evidence": {
+        "candidate": {
+          "id": 73430,
+          "title": "Guardians of the Galaxy",
+          "issueTitle": "Guardians of the Galaxy (2019) #11",
+          "seriesTitle": "Guardians of the Galaxy",
+          "apiSeriesName": "Guardians of the Galaxy (2019)",
+          "seriesId": 26480,
+          "issueNumber": "11",
+          "seriesYear": 2019,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/73430/guardians_of_the_galaxy_2019_11",
+          "onSaleDate": "2019-11-13T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/guardians-of-the-galaxy-reading-order.json",
+        "fileSha256": "db8fb02d9bca434647122ebef4449446f10be1efb44b3fa8e776dd4e121ee0c6",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 73430
+    },
+    {
+      "sourcePosition": 78,
+      "block": 33,
+      "seriesId": 26480,
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2019,
+      "issueNumber": "12",
+      "sourceIssueReference": "Guardians of the Galaxy (2019) #12",
+      "sourceRangeReference": "Guardians of the Galaxy #7-12",
+      "evidence": {
+        "candidate": {
+          "id": 73431,
+          "title": "Guardians of the Galaxy",
+          "issueTitle": "Guardians of the Galaxy (2019) #12",
+          "seriesTitle": "Guardians of the Galaxy",
+          "apiSeriesName": "Guardians of the Galaxy (2019)",
+          "seriesId": 26480,
+          "issueNumber": "12",
+          "seriesYear": 2019,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/73431/guardians_of_the_galaxy_2019_12",
+          "onSaleDate": "2019-12-18T00:00:00+0000"
+        },
+        "file": "scripts/data/cbh-mappings/guardians-of-the-galaxy-reading-order.json",
+        "fileSha256": "db8fb02d9bca434647122ebef4449446f10be1efb44b3fa8e776dd4e121ee0c6",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 73431
+    },
+    {
+      "sourcePosition": 79,
+      "block": 34,
+      "seriesId": 24310,
+      "normalizedSeriesTitle": "Venom",
+      "seriesYear": 2018,
+      "issueNumber": "21",
+      "sourceIssueReference": "Venom (2018) #21",
+      "sourceRangeReference": "Venom #21-25",
+      "evidence": {
+        "candidate": {
+          "id": 77174,
+          "title": "Venom",
+          "issueTitle": "Venom (2018) #21",
+          "seriesTitle": "Venom",
+          "apiSeriesName": "Venom (2018 - 2021)",
+          "seriesId": 24310,
+          "issueNumber": "21",
+          "seriesYear": 2018,
+          "detailUrl": "https://www.marvel.com/comics/issue/77174/venom_2018_21",
+          "onSaleDate": "2019-12-26T00:00:00+0000"
+        },
+        "file": "src/data/venom_reading_order.json",
+        "fileSha256": "ce23f28324776eb8e22778e6ced9ed276b2bdb94dac2272021d5587ddb05325b",
+        "fieldAdaptation": "Pinned browser issueId/title/number/url/seriesName/onSale adapted to candidate id/issueTitle/issueNumber/detailUrl/apiSeriesName/onSaleDate; provider title/year parsed from seriesName.",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 77174
+    },
+    {
+      "sourcePosition": 80,
+      "block": 34,
+      "seriesId": 24310,
+      "normalizedSeriesTitle": "Venom",
+      "seriesYear": 2018,
+      "issueNumber": "22",
+      "sourceIssueReference": "Venom (2018) #22",
+      "sourceRangeReference": "Venom #21-25",
+      "evidence": {
+        "candidate": {
+          "id": 77175,
+          "title": "Venom",
+          "issueTitle": "Venom (2018) #22",
+          "seriesTitle": "Venom",
+          "apiSeriesName": "Venom (2018 - 2021)",
+          "seriesId": 24310,
+          "issueNumber": "22",
+          "seriesYear": 2018,
+          "detailUrl": "https://www.marvel.com/comics/issue/77175/venom_2018_22",
+          "onSaleDate": "2020-01-08T00:00:00+0000"
+        },
+        "file": "src/data/venom_reading_order.json",
+        "fileSha256": "ce23f28324776eb8e22778e6ced9ed276b2bdb94dac2272021d5587ddb05325b",
+        "fieldAdaptation": "Pinned browser issueId/title/number/url/seriesName/onSale adapted to candidate id/issueTitle/issueNumber/detailUrl/apiSeriesName/onSaleDate; provider title/year parsed from seriesName.",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 77175
+    },
+    {
+      "sourcePosition": 81,
+      "block": 34,
+      "seriesId": 24310,
+      "normalizedSeriesTitle": "Venom",
+      "seriesYear": 2018,
+      "issueNumber": "23",
+      "sourceIssueReference": "Venom (2018) #23",
+      "sourceRangeReference": "Venom #21-25",
+      "evidence": {
+        "candidate": {
+          "id": 77176,
+          "title": "Venom",
+          "issueTitle": "Venom (2018) #23",
+          "seriesTitle": "Venom",
+          "apiSeriesName": "Venom (2018 - 2021)",
+          "seriesId": 24310,
+          "issueNumber": "23",
+          "seriesYear": 2018,
+          "detailUrl": "https://www.marvel.com/comics/issue/77176/venom_2018_23",
+          "onSaleDate": "2020-02-12T00:00:00+0000"
+        },
+        "file": "src/data/venom_reading_order.json",
+        "fileSha256": "ce23f28324776eb8e22778e6ced9ed276b2bdb94dac2272021d5587ddb05325b",
+        "fieldAdaptation": "Pinned browser issueId/title/number/url/seriesName/onSale adapted to candidate id/issueTitle/issueNumber/detailUrl/apiSeriesName/onSaleDate; provider title/year parsed from seriesName.",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 77176
+    },
+    {
+      "sourcePosition": 82,
+      "block": 34,
+      "seriesId": 24310,
+      "normalizedSeriesTitle": "Venom",
+      "seriesYear": 2018,
+      "issueNumber": "24",
+      "sourceIssueReference": "Venom (2018) #24",
+      "sourceRangeReference": "Venom #21-25",
+      "evidence": {
+        "candidate": {
+          "id": 77177,
+          "title": "Venom",
+          "issueTitle": "Venom (2018) #24",
+          "seriesTitle": "Venom",
+          "apiSeriesName": "Venom (2018 - 2021)",
+          "seriesId": 24310,
+          "issueNumber": "24",
+          "seriesYear": 2018,
+          "detailUrl": "https://www.marvel.com/comics/issue/77177/venom_2018_24",
+          "onSaleDate": "2020-03-11T00:00:00+0000"
+        },
+        "file": "src/data/venom_reading_order.json",
+        "fileSha256": "ce23f28324776eb8e22778e6ced9ed276b2bdb94dac2272021d5587ddb05325b",
+        "fieldAdaptation": "Pinned browser issueId/title/number/url/seriesName/onSale adapted to candidate id/issueTitle/issueNumber/detailUrl/apiSeriesName/onSaleDate; provider title/year parsed from seriesName.",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 77177
+    },
+    {
+      "sourcePosition": 83,
+      "block": 34,
+      "seriesId": 24310,
+      "normalizedSeriesTitle": "Venom",
+      "seriesYear": 2018,
+      "issueNumber": "25",
+      "sourceIssueReference": "Venom (2018) #25",
+      "sourceRangeReference": "Venom #21-25",
+      "evidence": {
+        "candidate": {
+          "id": 77178,
+          "title": "Venom",
+          "issueTitle": "Venom (2018) #25",
+          "seriesTitle": "Venom",
+          "apiSeriesName": "Venom (2018 - 2021)",
+          "seriesId": 24310,
+          "issueNumber": "25",
+          "seriesYear": 2018,
+          "detailUrl": "https://www.marvel.com/comics/issue/77178/venom_2018_25",
+          "onSaleDate": "2020-05-27T00:00:00+0000"
+        },
+        "file": "src/data/venom_reading_order.json",
+        "fileSha256": "ce23f28324776eb8e22778e6ced9ed276b2bdb94dac2272021d5587ddb05325b",
+        "fieldAdaptation": "Pinned browser issueId/title/number/url/seriesName/onSale adapted to candidate id/issueTitle/issueNumber/detailUrl/apiSeriesName/onSaleDate; provider title/year parsed from seriesName.",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 77178
+    },
+    {
+      "sourcePosition": 84,
+      "block": 35,
+      "seriesId": 28031,
+      "normalizedSeriesTitle": "Thor",
+      "seriesYear": 2020,
+      "issueNumber": "1",
+      "sourceIssueReference": "Thor (2020) #1",
+      "sourceRangeReference": "Thor #1-5",
+      "evidence": {
+        "candidate": {
+          "id": 78627,
+          "title": "Thor",
+          "seriesTitle": "Thor",
+          "issueTitle": "Thor (2020) #1",
+          "apiSeriesName": "Thor (2020 - 2023)",
+          "seriesId": 28031,
+          "issueNumber": "1",
+          "seriesYear": 2020,
+          "detailUrl": "https://www.marvel.com/comics/issue/78627/thor_2020_1",
+          "onSaleDate": "2020-01-01T00:00:00+0000"
+        },
+        "url": "https://marvel.emreparker.com/v1/series/28031/issues?limit=200&offset=0",
+        "responseBodySha256": "23f7930502783fa06589f6e29ab60566a80b84d87f0e0c0c7eee7bde11fd72c2",
+        "retrievedAt": "2026-09-15T15:16:44.079Z",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 78627
+    },
+    {
+      "sourcePosition": 85,
+      "block": 35,
+      "seriesId": 28031,
+      "normalizedSeriesTitle": "Thor",
+      "seriesYear": 2020,
+      "issueNumber": "2",
+      "sourceIssueReference": "Thor (2020) #2",
+      "sourceRangeReference": "Thor #1-5",
+      "evidence": {
+        "candidate": {
+          "id": 78628,
+          "title": "Thor",
+          "seriesTitle": "Thor",
+          "issueTitle": "Thor (2020) #2",
+          "apiSeriesName": "Thor (2020 - 2023)",
+          "seriesId": 28031,
+          "issueNumber": "2",
+          "seriesYear": 2020,
+          "detailUrl": "https://www.marvel.com/comics/issue/78628/thor_2020_2",
+          "onSaleDate": "2020-01-29T00:00:00+0000"
+        },
+        "url": "https://marvel.emreparker.com/v1/series/28031/issues?limit=200&offset=0",
+        "responseBodySha256": "23f7930502783fa06589f6e29ab60566a80b84d87f0e0c0c7eee7bde11fd72c2",
+        "retrievedAt": "2026-09-15T15:16:44.079Z",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 78628
+    },
+    {
+      "sourcePosition": 86,
+      "block": 35,
+      "seriesId": 28031,
+      "normalizedSeriesTitle": "Thor",
+      "seriesYear": 2020,
+      "issueNumber": "3",
+      "sourceIssueReference": "Thor (2020) #3",
+      "sourceRangeReference": "Thor #1-5",
+      "evidence": {
+        "candidate": {
+          "id": 78629,
+          "title": "Thor",
+          "seriesTitle": "Thor",
+          "issueTitle": "Thor (2020) #3",
+          "apiSeriesName": "Thor (2020 - 2023)",
+          "seriesId": 28031,
+          "issueNumber": "3",
+          "seriesYear": 2020,
+          "detailUrl": "https://www.marvel.com/comics/issue/78629/thor_2020_3",
+          "onSaleDate": "2020-02-12T00:00:00+0000"
+        },
+        "url": "https://marvel.emreparker.com/v1/series/28031/issues?limit=200&offset=0",
+        "responseBodySha256": "23f7930502783fa06589f6e29ab60566a80b84d87f0e0c0c7eee7bde11fd72c2",
+        "retrievedAt": "2026-09-15T15:16:44.079Z",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 78629
+    },
+    {
+      "sourcePosition": 87,
+      "block": 35,
+      "seriesId": 28031,
+      "normalizedSeriesTitle": "Thor",
+      "seriesYear": 2020,
+      "issueNumber": "4",
+      "sourceIssueReference": "Thor (2020) #4",
+      "sourceRangeReference": "Thor #1-5",
+      "evidence": {
+        "candidate": {
+          "id": 78630,
+          "title": "Thor",
+          "seriesTitle": "Thor",
+          "issueTitle": "Thor (2020) #4",
+          "apiSeriesName": "Thor (2020 - 2023)",
+          "seriesId": 28031,
+          "issueNumber": "4",
+          "seriesYear": 2020,
+          "detailUrl": "https://www.marvel.com/comics/issue/78630/thor_2020_4",
+          "onSaleDate": "2020-03-11T00:00:00+0000"
+        },
+        "url": "https://marvel.emreparker.com/v1/series/28031/issues?limit=200&offset=0",
+        "responseBodySha256": "23f7930502783fa06589f6e29ab60566a80b84d87f0e0c0c7eee7bde11fd72c2",
+        "retrievedAt": "2026-09-15T15:16:44.079Z",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 78630
+    },
+    {
+      "sourcePosition": 88,
+      "block": 35,
+      "seriesId": 28031,
+      "normalizedSeriesTitle": "Thor",
+      "seriesYear": 2020,
+      "issueNumber": "5",
+      "sourceIssueReference": "Thor (2020) #5",
+      "sourceRangeReference": "Thor #1-5",
+      "evidence": {
+        "candidate": {
+          "id": 78631,
+          "title": "Thor",
+          "seriesTitle": "Thor",
+          "issueTitle": "Thor (2020) #5",
+          "apiSeriesName": "Thor (2020 - 2023)",
+          "seriesId": 28031,
+          "issueNumber": "5",
+          "seriesYear": 2020,
+          "detailUrl": "https://www.marvel.com/comics/issue/78631/thor_2020_5",
+          "onSaleDate": "2020-06-24T00:00:00+0000"
+        },
+        "url": "https://marvel.emreparker.com/v1/series/28031/issues?limit=200&offset=0",
+        "responseBodySha256": "23f7930502783fa06589f6e29ab60566a80b84d87f0e0c0c7eee7bde11fd72c2",
+        "retrievedAt": "2026-09-15T15:16:44.079Z",
+        "candidateMetadataBasis": "Final candidate fields use the exact hydrated issue body recorded at this sourcePosition in metadataHydration; provider seriesName supplies title/year rather than any previous source alias."
+      },
+      "disposition": "exact",
+      "issueId": 78631
+    }
+  ],
+  "counts": {
+    "exact": 88,
+    "repeat": 0,
+    "gap": 0
+  },
+  "metadataHydration": {
+    "reused": 76,
+    "fetched": 12,
+    "records": [
+      {
+        "sourcePosition": 1,
+        "issueId": 65070,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/doctor_strange_reading_order.json",
+        "fileSha256": "a33a7aa22b183caa6d9076dbeaefe74b990e618968950e4c492f3b64669b6304",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "8c93a764de83a2a141fa05427d273670b201555a2e6f552b1d3d8ddd92b6b588"
+      },
+      {
+        "sourcePosition": 2,
+        "issueId": 65278,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/doctor_strange_reading_order.json",
+        "fileSha256": "a33a7aa22b183caa6d9076dbeaefe74b990e618968950e4c492f3b64669b6304",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "27b7e984bca67a2509f09fe335d0b786a7b9b110914764f90f310f82a21f0a06"
+      },
+      {
+        "sourcePosition": 3,
+        "issueId": 65279,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/doctor_strange_reading_order.json",
+        "fileSha256": "a33a7aa22b183caa6d9076dbeaefe74b990e618968950e4c492f3b64669b6304",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "bd642a208f4040bf995e4985cc7d01b42d810fe9a5d902cb3a96d7feaa1d56cf"
+      },
+      {
+        "sourcePosition": 4,
+        "issueId": 65905,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/doctor_strange_reading_order.json",
+        "fileSha256": "a33a7aa22b183caa6d9076dbeaefe74b990e618968950e4c492f3b64669b6304",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "dbffe00deccb5b02feed16bfcae4df13f5b82647d251b3484c35bce8812f9c2c"
+      },
+      {
+        "sourcePosition": 5,
+        "issueId": 66197,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/doctor_strange_reading_order.json",
+        "fileSha256": "a33a7aa22b183caa6d9076dbeaefe74b990e618968950e4c492f3b64669b6304",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "118446469aaa170247e78f46039549becf341b664506b9a7b56b8f82e671e304"
+      },
+      {
+        "sourcePosition": 6,
+        "issueId": 66279,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/damnation.json",
+        "fileSha256": "908a4b18797e44d3167891e3353e0940aa6bde78b0508e8d2848dd0b510cc5ff",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "f998465999623629e525e18d36fa31e4733a3f4668912f2a6a10be52b134c07e"
+      },
+      {
+        "sourcePosition": 7,
+        "issueId": 66278,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/damnation.json",
+        "fileSha256": "908a4b18797e44d3167891e3353e0940aa6bde78b0508e8d2848dd0b510cc5ff",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "20672de36c3c26baf6a0cbf90cf0a0ab6070c1581c89770e25cbb63769052a86"
+      },
+      {
+        "sourcePosition": 8,
+        "issueId": 66409,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/damnation.json",
+        "fileSha256": "908a4b18797e44d3167891e3353e0940aa6bde78b0508e8d2848dd0b510cc5ff",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "b98136487ca5c744553ddc3837dc10829d3ef2616486147ce1aa6e9d37555784"
+      },
+      {
+        "sourcePosition": 9,
+        "issueId": 66493,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/damnation.json",
+        "fileSha256": "908a4b18797e44d3167891e3353e0940aa6bde78b0508e8d2848dd0b510cc5ff",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "5fa6ff18a6cae135d2aaea437baa9f3a48bf2d7754bd1582251b597cc3323379"
+      },
+      {
+        "sourcePosition": 10,
+        "issueId": 66540,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/damnation.json",
+        "fileSha256": "908a4b18797e44d3167891e3353e0940aa6bde78b0508e8d2848dd0b510cc5ff",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "179d6db1c5854e69c3f625c636f99fcd83269c2c24b95d0ee88ed542ff94e04c"
+      },
+      {
+        "sourcePosition": 11,
+        "issueId": 66762,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/damnation.json",
+        "fileSha256": "908a4b18797e44d3167891e3353e0940aa6bde78b0508e8d2848dd0b510cc5ff",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "7022f2433422e22137fd314d273032bdfb8207af596f984f5e206b43c4172825"
+      },
+      {
+        "sourcePosition": 12,
+        "issueId": 66910,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/damnation.json",
+        "fileSha256": "908a4b18797e44d3167891e3353e0940aa6bde78b0508e8d2848dd0b510cc5ff",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "585d6d08fdb1c88d8be53fc6f05c943aaa2585142b7518c93bc210f69a5db95b"
+      },
+      {
+        "sourcePosition": 13,
+        "issueId": 66909,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/damnation.json",
+        "fileSha256": "908a4b18797e44d3167891e3353e0940aa6bde78b0508e8d2848dd0b510cc5ff",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "d4c89fb370fe3ee3bfe78fb71c24da814ce6bebd1add612e058d714b04f77e3f"
+      },
+      {
+        "sourcePosition": 14,
+        "issueId": 67330,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/doctor_strange_reading_order.json",
+        "fileSha256": "a33a7aa22b183caa6d9076dbeaefe74b990e618968950e4c492f3b64669b6304",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "5c83817d4f744070b37d4f2a613167cd9646b919e4d41aa43034dead22835077"
+      },
+      {
+        "sourcePosition": 15,
+        "issueId": 61709,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/thanos_reading_order.json",
+        "fileSha256": "1b6ea5d57232f75b62bb0cf8247b81f044fcdae729dfdb370154708252833b91",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "b3d5c0533ba2f449a472002b705533ad51306828772591e68f04c003a7ce2aac"
+      },
+      {
+        "sourcePosition": 16,
+        "issueId": 61710,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/thanos_reading_order.json",
+        "fileSha256": "1b6ea5d57232f75b62bb0cf8247b81f044fcdae729dfdb370154708252833b91",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "92411dacd4b3099f51cfda6cdc0e38a6e0e57b9e85cf4ba8102aae99e68c2dfd"
+      },
+      {
+        "sourcePosition": 17,
+        "issueId": 61711,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/thanos_reading_order.json",
+        "fileSha256": "1b6ea5d57232f75b62bb0cf8247b81f044fcdae729dfdb370154708252833b91",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "9ffaa06fa985de7c2c0ee873e63e6ddb4ff2297fe1fffdb7aa1d46c2003229a8"
+      },
+      {
+        "sourcePosition": 18,
+        "issueId": 61712,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/thanos_reading_order.json",
+        "fileSha256": "1b6ea5d57232f75b62bb0cf8247b81f044fcdae729dfdb370154708252833b91",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "cb4aca32e340a14606150def6c19cc0506787a5c18a2128094dff5cf1c0b099b"
+      },
+      {
+        "sourcePosition": 19,
+        "issueId": 66560,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/thanos_reading_order.json",
+        "fileSha256": "1b6ea5d57232f75b62bb0cf8247b81f044fcdae729dfdb370154708252833b91",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "a580407c98f8fff1e4c17f7a92e5c5d87ae29548b835aa2e71b4959f4d0df609"
+      },
+      {
+        "sourcePosition": 20,
+        "issueId": 66797,
+        "kind": "fresh-provider-issue-response",
+        "url": "https://marvel.emreparker.com/v1/issues/66797",
+        "retrievedAt": "2026-09-15T15:17:56.785Z",
+        "bodySha256": "ca274a635631de3b1d3ccbf19b4fb2a96f74360e25ae42fd1e827e213441e84c"
+      },
+      {
+        "sourcePosition": 21,
+        "issueId": 66923,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/thanos_reading_order.json",
+        "fileSha256": "1b6ea5d57232f75b62bb0cf8247b81f044fcdae729dfdb370154708252833b91",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "cfb2d0b6f082caf96ead2a74ff3399887310639c7d48eaf06405d3c2968ab403"
+      },
+      {
+        "sourcePosition": 22,
+        "issueId": 67319,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/thanos_reading_order.json",
+        "fileSha256": "1b6ea5d57232f75b62bb0cf8247b81f044fcdae729dfdb370154708252833b91",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "9be0f402836fb3569a35c40fa1cf54691038f8332958d2d87f36f2b1cb996534"
+      },
+      {
+        "sourcePosition": 23,
+        "issueId": 67320,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/thanos_reading_order.json",
+        "fileSha256": "1b6ea5d57232f75b62bb0cf8247b81f044fcdae729dfdb370154708252833b91",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "344ba310f0053ec44d01988267024d5fc7c838a94f568f0a472b8ef9f9fd424a"
+      },
+      {
+        "sourcePosition": 24,
+        "issueId": 67321,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/thanos_reading_order.json",
+        "fileSha256": "1b6ea5d57232f75b62bb0cf8247b81f044fcdae729dfdb370154708252833b91",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "2b68209db4e8f0833b3207bdc6fec3702b3256653c28658ee72e7dd41cf9ba96"
+      },
+      {
+        "sourcePosition": 25,
+        "issueId": 67322,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/thanos_reading_order.json",
+        "fileSha256": "1b6ea5d57232f75b62bb0cf8247b81f044fcdae729dfdb370154708252833b91",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "92aff5197d4ddb36b495c4b5e7c7738efeb0f48a3723785d627dade9445cc1b1"
+      },
+      {
+        "sourcePosition": 26,
+        "issueId": 67323,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/thanos_reading_order.json",
+        "fileSha256": "1b6ea5d57232f75b62bb0cf8247b81f044fcdae729dfdb370154708252833b91",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "c4bd8de7b14e3062f1634e568dccc08d7987b68aae265632bf9acaeb5ebfc94b"
+      },
+      {
+        "sourcePosition": 27,
+        "issueId": 67349,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/black_widow_reading_order.json",
+        "fileSha256": "3eb72e148f5868d6de5de19c745f45fa50b2cda3e8c446b610f911f008ffa4c2",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "ff882d78d51412b90a7a36500bdef4c2f353e7347d9c81e939db8d69b92916ba"
+      },
+      {
+        "sourcePosition": 28,
+        "issueId": 71037,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/infinity_countdown_wars.json",
+        "fileSha256": "ea9a219522cd903e3e85316afae4ef31693df17d0877f3d45e4d87f6061f7c78",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "58dd057612c4310f9eb6005e2b0f770eb2108cab1248c3cc78f81149420fc890"
+      },
+      {
+        "sourcePosition": 29,
+        "issueId": 68250,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/inhumans_reading_order.json",
+        "fileSha256": "a8cd8541cfa82e29e3fa110359ae235bf38ab5afe820d86c469bb2b04ebe22db",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "1ab1df7ab1cff74a939063e0a4acd7f33e70173c536589a83b959c0e79fb8ebb"
+      },
+      {
+        "sourcePosition": 30,
+        "issueId": 68252,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/inhumans_reading_order.json",
+        "fileSha256": "a8cd8541cfa82e29e3fa110359ae235bf38ab5afe820d86c469bb2b04ebe22db",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "6a7a36b478d020b975cb046855c76c774650ea9f4c784fcc1c60fadcbed7ea4f"
+      },
+      {
+        "sourcePosition": 31,
+        "issueId": 68253,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/inhumans_reading_order.json",
+        "fileSha256": "a8cd8541cfa82e29e3fa110359ae235bf38ab5afe820d86c469bb2b04ebe22db",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "b66f613425ea22c20a8abef4ef774363c0160ef17f28560e7f37180cf3c719e0"
+      },
+      {
+        "sourcePosition": 32,
+        "issueId": 68254,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/inhumans_reading_order.json",
+        "fileSha256": "a8cd8541cfa82e29e3fa110359ae235bf38ab5afe820d86c469bb2b04ebe22db",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "1bc825a4d22953fa2937bb07b4cb7fa1ea9bc1b8b2b283cfd79f90c772ec2862"
+      },
+      {
+        "sourcePosition": 33,
+        "issueId": 68255,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/inhumans_reading_order.json",
+        "fileSha256": "a8cd8541cfa82e29e3fa110359ae235bf38ab5afe820d86c469bb2b04ebe22db",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "d59439a532dfab44aa6bdeeab5f004a27ad2265b9084bd50209390c0cd1052be"
+      },
+      {
+        "sourcePosition": 34,
+        "issueId": 67577,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/miles_morales_spider_man_reading_order.json",
+        "fileSha256": "1b3b75a186e8073ae29e1b4c933c6c7a7767a0574c4363fcf6417f798726dc8a",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "85f77174c0ff54398237b65364600f3b0b89b338e8ba34436432c163db045ce7"
+      },
+      {
+        "sourcePosition": 35,
+        "issueId": 70036,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/miles_morales_spider_man_reading_order.json",
+        "fileSha256": "1b3b75a186e8073ae29e1b4c933c6c7a7767a0574c4363fcf6417f798726dc8a",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "914061ea06999baaea07134a6f23d773e9eeedb0fb21dc687ad945318a55c9e6"
+      },
+      {
+        "sourcePosition": 36,
+        "issueId": 70045,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/miles_morales_spider_man_reading_order.json",
+        "fileSha256": "1b3b75a186e8073ae29e1b4c933c6c7a7767a0574c4363fcf6417f798726dc8a",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "44abefdd5f63aff8388172bbf47513a0d577257c6ac4af1ac6711a386eca4f61"
+      },
+      {
+        "sourcePosition": 37,
+        "issueId": 70051,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/miles_morales_spider_man_reading_order.json",
+        "fileSha256": "1b3b75a186e8073ae29e1b4c933c6c7a7767a0574c4363fcf6417f798726dc8a",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "bc296e0fcb7bcf874ab2ee3cac1011d7c219399b95747f78a923abe3534dccd0"
+      },
+      {
+        "sourcePosition": 38,
+        "issueId": 67293,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/miles_morales_spider_man_reading_order.json",
+        "fileSha256": "1b3b75a186e8073ae29e1b4c933c6c7a7767a0574c4363fcf6417f798726dc8a",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "0800bed16154ea8b28d4a752c1c9860f132a59b3f731480c5309b536ec43444b"
+      },
+      {
+        "sourcePosition": 39,
+        "issueId": 71028,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/venom_reading_order.json",
+        "fileSha256": "ce23f28324776eb8e22778e6ced9ed276b2bdb94dac2272021d5587ddb05325b",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "7d3ad3065a0fcc76ca641b571bbc36d8df916e02216255f02f49364a75e1eb2b"
+      },
+      {
+        "sourcePosition": 40,
+        "issueId": 73500,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/venom_reading_order.json",
+        "fileSha256": "ce23f28324776eb8e22778e6ced9ed276b2bdb94dac2272021d5587ddb05325b",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "d7459f8c0e2de9b7c4b0a8b068a340cb7a25614cc5b2f62b68c337f3108df6cb"
+      },
+      {
+        "sourcePosition": 41,
+        "issueId": 67294,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/miles_morales_spider_man_reading_order.json",
+        "fileSha256": "1b3b75a186e8073ae29e1b4c933c6c7a7767a0574c4363fcf6417f798726dc8a",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "d98dd77e9830ac7b565cd80a1aa86ab964ec04007590e1f6b13a60a0c86873c8"
+      },
+      {
+        "sourcePosition": 42,
+        "issueId": 67295,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/venom_reading_order.json",
+        "fileSha256": "ce23f28324776eb8e22778e6ced9ed276b2bdb94dac2272021d5587ddb05325b",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "e23ffe3428b1a23d19d74d2fcaa1c8e0e9512af2af69892314edece0ab4dc17d"
+      },
+      {
+        "sourcePosition": 43,
+        "issueId": 67296,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/venom_reading_order.json",
+        "fileSha256": "ce23f28324776eb8e22778e6ced9ed276b2bdb94dac2272021d5587ddb05325b",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "fbca5eb3c916de6755efe735292b2b957be6c56bcf9e1e04dcaa884925161271"
+      },
+      {
+        "sourcePosition": 44,
+        "issueId": 71029,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/venom_reading_order.json",
+        "fileSha256": "ce23f28324776eb8e22778e6ced9ed276b2bdb94dac2272021d5587ddb05325b",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "73eec4dd319b762f5c7d8b8f82581bb4e904a3e2efc22560ea3642e17628ecb8"
+      },
+      {
+        "sourcePosition": 45,
+        "issueId": 67297,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/venom_reading_order.json",
+        "fileSha256": "ce23f28324776eb8e22778e6ced9ed276b2bdb94dac2272021d5587ddb05325b",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "b34e2fcd2eadf82a99ac9f98f1ba88a247ef1dd906eaed24471675fe286059f3"
+      },
+      {
+        "sourcePosition": 46,
+        "issueId": 71030,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/venom_reading_order.json",
+        "fileSha256": "ce23f28324776eb8e22778e6ced9ed276b2bdb94dac2272021d5587ddb05325b",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "c17b0d6ec345e6a4d848a285accb7cda15a19d3175f1a80d3a91e969eeb72aba"
+      },
+      {
+        "sourcePosition": 47,
+        "issueId": 67298,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/venom_reading_order.json",
+        "fileSha256": "ce23f28324776eb8e22778e6ced9ed276b2bdb94dac2272021d5587ddb05325b",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "3db5c75d11976aa51b7ed5998608f23d857897a8beb64adb4ae84c4b69bf964f"
+      },
+      {
+        "sourcePosition": 48,
+        "issueId": 67299,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/venom_reading_order.json",
+        "fileSha256": "ce23f28324776eb8e22778e6ced9ed276b2bdb94dac2272021d5587ddb05325b",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "f1d573cb13b123dc70f40f3e55355d4b00ebd5bf1d16d5004903c6c866d4f7d6"
+      },
+      {
+        "sourcePosition": 49,
+        "issueId": 67300,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/venom_reading_order.json",
+        "fileSha256": "ce23f28324776eb8e22778e6ced9ed276b2bdb94dac2272021d5587ddb05325b",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "c2569d628e9cf9c5f0f5272dd156ea19559299b33a909f62e29370b1db5ead48"
+      },
+      {
+        "sourcePosition": 50,
+        "issueId": 71031,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/venom_reading_order.json",
+        "fileSha256": "ce23f28324776eb8e22778e6ced9ed276b2bdb94dac2272021d5587ddb05325b",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "01fb1f156addcf80cafe663eb31d82f3aa3b2f3a3bf273002ae7247bcfdb98f7"
+      },
+      {
+        "sourcePosition": 51,
+        "issueId": 74044,
+        "kind": "fresh-provider-issue-response",
+        "url": "https://marvel.emreparker.com/v1/issues/74044",
+        "retrievedAt": "2026-09-15T15:17:56.792Z",
+        "bodySha256": "09f87d690ae250c8644727c72c454b5e80f861e4859b9a343dd7d15ed240a0b4"
+      },
+      {
+        "sourcePosition": 52,
+        "issueId": 74045,
+        "kind": "fresh-provider-issue-response",
+        "url": "https://marvel.emreparker.com/v1/issues/74045",
+        "retrievedAt": "2026-09-15T15:17:56.997Z",
+        "bodySha256": "210f52bd71c87dc2458500cae60cf14d67be3a646847bff022c765acb33c2ae1"
+      },
+      {
+        "sourcePosition": 53,
+        "issueId": 74046,
+        "kind": "fresh-provider-issue-response",
+        "url": "https://marvel.emreparker.com/v1/issues/74046",
+        "retrievedAt": "2026-09-15T15:17:57.174Z",
+        "bodySha256": "e798df197cbe64171e85b528918d55a0b3597f3d686e1df868c72220ea32412d"
+      },
+      {
+        "sourcePosition": 54,
+        "issueId": 74047,
+        "kind": "fresh-provider-issue-response",
+        "url": "https://marvel.emreparker.com/v1/issues/74047",
+        "retrievedAt": "2026-09-15T15:17:57.212Z",
+        "bodySha256": "8b51ef0652de5152712402dbae3de5da111a8cca966a1f8260879d928cbcfd9a"
+      },
+      {
+        "sourcePosition": 55,
+        "issueId": 74048,
+        "kind": "fresh-provider-issue-response",
+        "url": "https://marvel.emreparker.com/v1/issues/74048",
+        "retrievedAt": "2026-09-15T15:17:57.377Z",
+        "bodySha256": "bd9dcc6f558b917cc8726f2dfdac5dcd4ef00b46956df2a741f52b9f445e4837"
+      },
+      {
+        "sourcePosition": 56,
+        "issueId": 74049,
+        "kind": "fresh-provider-issue-response",
+        "url": "https://marvel.emreparker.com/v1/issues/74049",
+        "retrievedAt": "2026-09-15T15:17:57.412Z",
+        "bodySha256": "66b70e64a2fd1ad3cbe4a9de9ead5dd0c2789db866ccac460c84005dd8bd68db"
+      },
+      {
+        "sourcePosition": 57,
+        "issueId": 73420,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/guardians_of_the_galaxy_reading_order.json",
+        "fileSha256": "ef813a6c8dcd64a96b7d3dff5055c8f5be2bd7a1880b3e296f7692efc62159e3",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "d894fe744ca500a85d84ded0fd9e83e36b45fa0dc6e096c0f79ccdd189afa3cb"
+      },
+      {
+        "sourcePosition": 58,
+        "issueId": 73421,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/guardians_of_the_galaxy_reading_order.json",
+        "fileSha256": "ef813a6c8dcd64a96b7d3dff5055c8f5be2bd7a1880b3e296f7692efc62159e3",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "03ccdb718314625ca09803555d3470a165a0de477e1d5c9c3a611704d60294b7"
+      },
+      {
+        "sourcePosition": 59,
+        "issueId": 73422,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/guardians_of_the_galaxy_reading_order.json",
+        "fileSha256": "ef813a6c8dcd64a96b7d3dff5055c8f5be2bd7a1880b3e296f7692efc62159e3",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "b77aa75376c42cd410c9fdec674bcb3ab83242e2403e113e927cdb8fb271f0d3"
+      },
+      {
+        "sourcePosition": 60,
+        "issueId": 73423,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/guardians_of_the_galaxy_reading_order.json",
+        "fileSha256": "ef813a6c8dcd64a96b7d3dff5055c8f5be2bd7a1880b3e296f7692efc62159e3",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "0f08866e37bc53a6bafb766f977ead110076fed0e8dacbbecce6ee916784b3c9"
+      },
+      {
+        "sourcePosition": 61,
+        "issueId": 73424,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/guardians_of_the_galaxy_reading_order.json",
+        "fileSha256": "ef813a6c8dcd64a96b7d3dff5055c8f5be2bd7a1880b3e296f7692efc62159e3",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "f979af70228ae9fccfecdc6a48fdb7dc40bd57ce9f156c5b7e7177859416601c"
+      },
+      {
+        "sourcePosition": 62,
+        "issueId": 74840,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/silver_surfer_reading_order.json",
+        "fileSha256": "638006bcc164b4014b9e0a326e701c774bb081cc90d319470bf131bf46100814",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "df0be17e9194b920ccb6aee064598564bec2e3b48918da3005d9d66c89a81f1e"
+      },
+      {
+        "sourcePosition": 63,
+        "issueId": 76749,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/guardians_of_the_galaxy_reading_order.json",
+        "fileSha256": "ef813a6c8dcd64a96b7d3dff5055c8f5be2bd7a1880b3e296f7692efc62159e3",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "b93f8949924009fbc254860db6261d7987762590a974c91b453a448d14dfe5b8"
+      },
+      {
+        "sourcePosition": 64,
+        "issueId": 73425,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/guardians_of_the_galaxy_reading_order.json",
+        "fileSha256": "ef813a6c8dcd64a96b7d3dff5055c8f5be2bd7a1880b3e296f7692efc62159e3",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "436325b5c943f018788199812c189880b04dc8141a24d9e3e4d7ab29bfa6e20b"
+      },
+      {
+        "sourcePosition": 65,
+        "issueId": 74841,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/silver_surfer_reading_order.json",
+        "fileSha256": "638006bcc164b4014b9e0a326e701c774bb081cc90d319470bf131bf46100814",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "a67de612f8ae396eafa656292548e033f578d3e8e629e38dfb1189e329e02463"
+      },
+      {
+        "sourcePosition": 66,
+        "issueId": 74842,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/silver_surfer_reading_order.json",
+        "fileSha256": "638006bcc164b4014b9e0a326e701c774bb081cc90d319470bf131bf46100814",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "d3ce7ada034a212533202cbc00783a8a762be62450c94294ab0b2111ffea55a9"
+      },
+      {
+        "sourcePosition": 67,
+        "issueId": 74843,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/silver_surfer_reading_order.json",
+        "fileSha256": "638006bcc164b4014b9e0a326e701c774bb081cc90d319470bf131bf46100814",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "fa781294330b709bef3e6dca5175f50eb6c24634e25b3386cf4158f5c0922a62"
+      },
+      {
+        "sourcePosition": 68,
+        "issueId": 74844,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/silver_surfer_reading_order.json",
+        "fileSha256": "638006bcc164b4014b9e0a326e701c774bb081cc90d319470bf131bf46100814",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "0820e4ffd93ce4aea4f7b289cfb025b19a5e74b14123e7852f0215f6333b2f42"
+      },
+      {
+        "sourcePosition": 69,
+        "issueId": 74065,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/venom_reading_order.json",
+        "fileSha256": "ce23f28324776eb8e22778e6ced9ed276b2bdb94dac2272021d5587ddb05325b",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "ed84103f0fad8a544fe5faa968a83f87105f211381fc7e53b63c752facba77b0"
+      },
+      {
+        "sourcePosition": 70,
+        "issueId": 74066,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/venom_reading_order.json",
+        "fileSha256": "ce23f28324776eb8e22778e6ced9ed276b2bdb94dac2272021d5587ddb05325b",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "4b8d70d58ce8f7fd1d39b63fe44751a3fe86330054c946934b9ce9c5fd562dba"
+      },
+      {
+        "sourcePosition": 71,
+        "issueId": 74067,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/venom_reading_order.json",
+        "fileSha256": "ce23f28324776eb8e22778e6ced9ed276b2bdb94dac2272021d5587ddb05325b",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "966994eef0246459bcc6e5e18244e32a553a6459349b4027b242d5bc9bb4b958"
+      },
+      {
+        "sourcePosition": 72,
+        "issueId": 74068,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/venom_reading_order.json",
+        "fileSha256": "ce23f28324776eb8e22778e6ced9ed276b2bdb94dac2272021d5587ddb05325b",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "f87e12ce4fa10087507b7d1054eb5fdb99555349b6fe22628d4247f6e852d447"
+      },
+      {
+        "sourcePosition": 73,
+        "issueId": 73426,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/guardians_of_the_galaxy_reading_order.json",
+        "fileSha256": "ef813a6c8dcd64a96b7d3dff5055c8f5be2bd7a1880b3e296f7692efc62159e3",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "7d620f2b862797517d782e9fbe9df59b1a1e9a85f63b420e194ec143a8482691"
+      },
+      {
+        "sourcePosition": 74,
+        "issueId": 73427,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/guardians_of_the_galaxy_reading_order.json",
+        "fileSha256": "ef813a6c8dcd64a96b7d3dff5055c8f5be2bd7a1880b3e296f7692efc62159e3",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "9072fa1b76aa28b40628852f4a87599be9e56c34107ea3eb7e1006ce81550f8c"
+      },
+      {
+        "sourcePosition": 75,
+        "issueId": 73428,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/guardians_of_the_galaxy_reading_order.json",
+        "fileSha256": "ef813a6c8dcd64a96b7d3dff5055c8f5be2bd7a1880b3e296f7692efc62159e3",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "1ee5253e1a17361687de7a58da64008100ae6aa0c625e134029bb6a89893e26d"
+      },
+      {
+        "sourcePosition": 76,
+        "issueId": 73429,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/guardians_of_the_galaxy_reading_order.json",
+        "fileSha256": "ef813a6c8dcd64a96b7d3dff5055c8f5be2bd7a1880b3e296f7692efc62159e3",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "49810dfa7e7ce68c0c7b54697b5120092c41db19606062588d6f8da5afb2b478"
+      },
+      {
+        "sourcePosition": 77,
+        "issueId": 73430,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/guardians_of_the_galaxy_reading_order.json",
+        "fileSha256": "ef813a6c8dcd64a96b7d3dff5055c8f5be2bd7a1880b3e296f7692efc62159e3",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "dc38359ea999b5b620b07bfc31770a7765b08bf4279767df82ab9da86b59340c"
+      },
+      {
+        "sourcePosition": 78,
+        "issueId": 73431,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/guardians_of_the_galaxy_reading_order.json",
+        "fileSha256": "ef813a6c8dcd64a96b7d3dff5055c8f5be2bd7a1880b3e296f7692efc62159e3",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "8ec4ba339bfdbed80fc50a96d33e3730e596ae0d6d075ca5c139ea74f73888dc"
+      },
+      {
+        "sourcePosition": 79,
+        "issueId": 77174,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/venom_reading_order.json",
+        "fileSha256": "ce23f28324776eb8e22778e6ced9ed276b2bdb94dac2272021d5587ddb05325b",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "09ee8c1767341aa9eee5a31a6709c13feb666d9bc6da9e4334da39c1280c5437"
+      },
+      {
+        "sourcePosition": 80,
+        "issueId": 77175,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/venom_reading_order.json",
+        "fileSha256": "ce23f28324776eb8e22778e6ced9ed276b2bdb94dac2272021d5587ddb05325b",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "d8cca5b10bd165d75b9769664a20c4300a5314b018b5b730df88964149d3ecc1"
+      },
+      {
+        "sourcePosition": 81,
+        "issueId": 77176,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/venom_reading_order.json",
+        "fileSha256": "ce23f28324776eb8e22778e6ced9ed276b2bdb94dac2272021d5587ddb05325b",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "3b0640548c352b1461feb162d70dcd424e55c15e382b0dd7c7bc945032de5861"
+      },
+      {
+        "sourcePosition": 82,
+        "issueId": 77177,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/venom_reading_order.json",
+        "fileSha256": "ce23f28324776eb8e22778e6ced9ed276b2bdb94dac2272021d5587ddb05325b",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "7b3b1d950ee68da36f4e1b3d8b1aa523122831712443c40c7b7f82663358e431"
+      },
+      {
+        "sourcePosition": 83,
+        "issueId": 77178,
+        "kind": "reconstructed-pinned-payload",
+        "file": "src/data/venom_reading_order.json",
+        "fileSha256": "ce23f28324776eb8e22778e6ced9ed276b2bdb94dac2272021d5587ddb05325b",
+        "fieldAdaptation": "issueId->id; number->issueNumber; url->detailUrl; onSale->onSaleDate; mu->unlimitedDate; cover.ext->cover.extension with cover.path unchanged. Other retained fields copied; description null. Not a fresh HTTP response.",
+        "bodySha256": "78a9ec4b59cde727534533ce9e1c49393e2491f14038de47745443a61dc74afa"
+      },
+      {
+        "sourcePosition": 84,
+        "issueId": 78627,
+        "kind": "fresh-provider-issue-response",
+        "url": "https://marvel.emreparker.com/v1/issues/78627",
+        "retrievedAt": "2026-09-15T15:17:57.591Z",
+        "bodySha256": "25adbbb088a673620e1357f3cf16fac8c84f271d1758d6cf76121b8e375ce5c2"
+      },
+      {
+        "sourcePosition": 85,
+        "issueId": 78628,
+        "kind": "fresh-provider-issue-response",
+        "url": "https://marvel.emreparker.com/v1/issues/78628",
+        "retrievedAt": "2026-09-15T15:17:57.623Z",
+        "bodySha256": "dc2b77b73c5f89a992ef9307a1e7c9076a9e5d371f387b9490c5d9523b06fa66"
+      },
+      {
+        "sourcePosition": 86,
+        "issueId": 78629,
+        "kind": "fresh-provider-issue-response",
+        "url": "https://marvel.emreparker.com/v1/issues/78629",
+        "retrievedAt": "2026-09-15T15:17:57.817Z",
+        "bodySha256": "9a094eaf3946967db97e52b0ce442e1f703cf4365bc783cd5921ebbd1ed97ce2"
+      },
+      {
+        "sourcePosition": 87,
+        "issueId": 78630,
+        "kind": "fresh-provider-issue-response",
+        "url": "https://marvel.emreparker.com/v1/issues/78630",
+        "retrievedAt": "2026-09-15T15:17:57.834Z",
+        "bodySha256": "602892f286cfb470f467d502565c2c5104c1c0c36e24ce98a602a0759722abfa"
+      },
+      {
+        "sourcePosition": 88,
+        "issueId": 78631,
+        "kind": "fresh-provider-issue-response",
+        "url": "https://marvel.emreparker.com/v1/issues/78631",
+        "retrievedAt": "2026-09-15T15:17:58.018Z",
+        "bodySha256": "49e530126d15d7fc0c54211f5db9cbf084c8ae748d3ad591377b9870ba62df0b"
+      }
+    ]
+  }
+}

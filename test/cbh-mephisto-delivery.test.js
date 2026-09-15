@@ -89,7 +89,7 @@ test('Mephisto packet, mapping and relationship approval retain their digest con
   const report = await readJson(`scripts/data/cbh-overlaps/${id}.json`);
   const currentReport = await buildReportForMapping(
     `scripts/data/cbh-mappings/${id}.json`, [], {
-      excludedOrderIds: ['miles-morales-spider-man-reading-order', 'spider-gwen-reading-order', 'best-ultron-reading-order', 'winter-soldier-bucky-barnes-reading-order', 'spider-man-2099-reading-order'],
+      excludedOrderIds: ['miles-morales-spider-man-reading-order', 'spider-gwen-reading-order', 'best-ultron-reading-order', 'winter-soldier-bucky-barnes-reading-order', 'spider-man-2099-reading-order', 'donny-cates-marvel-universe-reading-order-2017'],
     },
   );
   assert.doesNotThrow(() => validateFrozenPacket(packet));

@@ -978,15 +978,34 @@
     "id": "donny-cates-marvel-universe-reading-order-2017",
     "title": "Donny Cates' Marvel Universe Reading Order",
     "url": "https://www.comicbookherald.com/donny-cates-marvel-universe-reading-order-2017/",
-    "guideType": "character-run",
+    "guideType": "creator-run",
     "window": null,
-    "disposition": "excluded",
-    "reason": "The source is author-centric, topical, or catalog-oriented rather than a character or team reading path.",
-    "sourceRetrievedAt": "2026-08-23",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "excluded",
+    "disposition": "new-order",
+    "reason": "Issue #514 authorizes this creator-focused source: 88 exact original comics in source order, with event pointers left separate. Reuses the existing packet pipeline and line-wide shelf without character spotlight classification.",
+    "sourceRetrievedAt": "2026-09-15",
+    "overlapIds": [
+      "black-widow-reading-order",
+      "damnation",
+      "doctor-strange-reading-order",
+      "guardians-of-the-galaxy-reading-order",
+      "infinity-countdown-wars",
+      "inhumans-reading-order",
+      "loki-reading-order",
+      "mephisto-reading-order",
+      "miles-morales-spider-man-reading-order",
+      "moon-knight-reading-order",
+      "rocket-raccoon-reading-order",
+      "silver-surfer-reading-order",
+      "spider-man-no-way-home",
+      "thanos-reading-order",
+      "venom-reading-order",
+      "war-of-the-realms"
+    ],
+    "catalogIds": [
+      "donny-cates-marvel-universe-reading-order-2017"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Donny Cates' Marvel Universe Reading Order"
     ],
@@ -994,9 +1013,9 @@
       29
     ],
     "duplicateFlags": [],
-    "sourceContentSha256": "1da4a9e53453ff9304f90d874ffbf88edd41cb2b61cb7adc4f49311e7f627d00",
+    "sourceContentSha256": "6613be7fdfbdcdae362d7a20127929513dee4400a48348a51d79db03bb62465f",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 30,

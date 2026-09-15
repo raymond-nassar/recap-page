@@ -509,6 +509,44 @@
       "coverIssueId": 66416
     },
     {
+      "id": "donny-cates-marvel-universe-reading-order-2017",
+      "name": "Donny Cates' Marvel Universe",
+      "description": "Comic Book Herald's selected Donny Cates Marvel sequence, from Doctor Strange and Thanos Wins through Venom Island and Thor #1-5. Includes the source's guest-written connections; linked event guides stay separate.",
+      "type": "creator-run",
+      "depth": "selected",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "donny-cates-marvel-universe-reading-order-2017.md",
+      "sourcePage": "https://www.comicbookherald.com/donny-cates-marvel-universe-reading-order-2017/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "donny_cates_marvel_universe_reading_order_2017.json",
+      "characters": [
+        "Doctor Strange",
+        "Thanos",
+        "Cosmic Ghost Rider",
+        "Venom",
+        "Inhumans",
+        "Guardians of the Galaxy",
+        "Silver Surfer",
+        "Thor"
+      ],
+      "keywords": [
+        "Donny Cates",
+        "Cates",
+        "Marvel Universe",
+        "Thanos Wins",
+        "Damnation",
+        "Venom Island",
+        "Marvel Knights"
+      ],
+      "expect": 88,
+      "timeline": 2017,
+      "coverIssueId": 65070
+    },
+    {
       "id": "damnation",
       "name": "Marvel Damnation",
       "description": "Fifteen chapters combining the four-part event with Doctor Strange, Iron Fist, Scarlet Spider, and Ghost Rider.",
