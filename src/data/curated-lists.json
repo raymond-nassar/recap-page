@@ -2070,6 +2070,42 @@
       "coverIssueId": 11353
     },
     {
+      "id": "mephisto-reading-order",
+      "name": "Mephisto",
+      "description": "Follow Mephisto through Silver Surfer, Thor, Ghost Rider, Doctor Strange and Marvel crossovers, in Comic Book Herald guide order. Five unresolved original comics remain marked as gaps.",
+      "type": "character-run",
+      "spotlightKind": "other",
+      "depth": "partial",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "mephisto-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/mephisto-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "mephisto_reading_order.json",
+      "characters": [
+        "Mephisto",
+        "Silver Surfer",
+        "Thor",
+        "Ghost Rider",
+        "Doctor Strange",
+        "Doctor Doom"
+      ],
+      "keywords": [
+        "Mephisto",
+        "Comic Book Herald",
+        "Triumph and Torment",
+        "Damnation",
+        "One More Day",
+        "Hell Lord"
+      ],
+      "expect": 556,
+      "timeline": null,
+      "coverIssueId": 16098
+    },
+    {
       "id": "silver-surfer-reading-order",
       "name": "Silver Surfer",
       "description": "A source-ordered Silver Surfer reading path from Galactus through the latest additions.",

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-07T07:16:05.457Z",
+  "generatedAt": "2026-09-15T01:29:23.554Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -2530,6 +2530,49 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-23T20:43:34.162Z"
+    },
+    {
+      "id": "mephisto-reading-order",
+      "file": "mephisto_reading_order.json",
+      "name": "Mephisto",
+      "description": "Follow Mephisto through Silver Surfer, Thor, Ghost Rider, Doctor Strange and Marvel crossovers, in Comic Book Herald guide order. Five unresolved original comics remain marked as gaps.",
+      "type": "character-run",
+      "depth": "partial",
+      "spotlightKind": "other",
+      "count": 556,
+      "placeholderCount": 5,
+      "emptyRecordCount": 0,
+      "collections": 57,
+      "characters": [
+        "Mephisto",
+        "Silver Surfer",
+        "Thor",
+        "Ghost Rider",
+        "Doctor Strange",
+        "Doctor Doom"
+      ],
+      "keywords": [
+        "Mephisto",
+        "Comic Book Herald",
+        "Triumph and Torment",
+        "Damnation",
+        "One More Day",
+        "Hell Lord"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 16098,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/f0/51b6392403f2c",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/mephisto-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-09-15T01:29:23.554Z"
     },
     {
       "id": "silver-surfer-reading-order",
@@ -8255,7 +8298,7 @@
       "source": "https://www.comicbookherald.com/omnibussin-nick-fury-from-war-world-ii-to-s-h-i-e-l-d/",
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
-      "updatedAt": "2026-08-28T02:42:59.318Z"
+      "updatedAt": "2026-09-07T19:47:51.755Z"
     },
     {
       "id": "avengers-disassembled",

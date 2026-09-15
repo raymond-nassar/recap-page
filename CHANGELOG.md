@@ -13,6 +13,12 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Follow Mephisto across the Marvel Universe
+
+Adds a Mephisto Reading List credited and linked to Comic Book Herald, with 551 resolved comics
+in guide order. Five unresolved originals remain marked as gaps rather than being replaced or
+silently omitted. Existing Reading Lists and saved progress are unchanged.
+
 ### Prepare a temporary package for an existing Store draft
 
 Maintainers have a protected, manual handoff for the qualified 2.1.0 Store bundle
