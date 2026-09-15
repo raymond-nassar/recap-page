@@ -53,14 +53,14 @@ test('each bundled Reading List resolves through its grouped story to one canoni
 
 test('Character Spotlight taxonomy accounts for every reading and preserves grouped stories', () => {
   const spotlights = shelfLists(catalog.lists, 'spotlights');
-  assert.equal(spotlights.length, 49);
-  assert.equal(groupCatalog(spotlights).length, 48);
+  assert.equal(spotlights.length, 50);
+  assert.equal(groupCatalog(spotlights).length, 49);
 
   const bestOf = filterBySpotlightKind(spotlights, 'best-of');
   const completeGuide = filterBySpotlightKind(spotlights, 'complete-guide');
   const other = filterBySpotlightKind(spotlights, 'other');
   const expected = [
-    ['best-of', 6, 6],
+    ['best-of', 7, 7],
     ['complete-guide', 35, 35],
     ['other', 8, 7],
   ];

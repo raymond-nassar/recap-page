@@ -13,6 +13,13 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Read selected Ultron stories
+
+Adds a Best of Ultron Reading List credited and linked to Comic Book Herald, with all 91
+selected comics in source order. It includes the original Rage of Ultron graphic novel and
+clearly identifies Ultron Revolution as animated continuity. Unnumbered recommendations and
+linked event guides are not expanded into invented issue runs. Saved progress is unchanged.
+
 ### Follow Miles Morales from the Ultimate Universe to Earth-616
 
 Adds a Spider-Man: Miles Morales Reading List credited and linked to Comic Book Herald, with
