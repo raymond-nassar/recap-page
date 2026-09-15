@@ -94,6 +94,7 @@ test('popularity sorting keeps the ranked stories first and the rest in their cu
     'Agatha Harkness',
     'Punisher',
     'Rocket Raccoon',
+    'Ultron',
     'Mephisto',
     'Abomination',
     'The Defenders',
@@ -111,5 +112,6 @@ test('popularity sorting keeps the ranked stories first and the rest in their cu
     'There is Only Doom',
     'The Best Deadpool Comics To Start With!',
     'Nick Fury and S.H.I.E.L.D.',
+    'Spider-Man: Miles Morales',
   ]);
 });

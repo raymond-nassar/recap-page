@@ -1075,11 +1075,12 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // Wolverine replaces 29 placeholders with 14 exact issues while preserving the remaining 756
   // title-derived placeholder identities.
   // Ant-Man adds three exact official links with explicit provider refusals.
-  // Winter Soldier adds four unresolved source originals without replacing their identities.
-  assert.equal(claimed, 1003, 'the payload placeholder total moved; re-derive the figures in the record');
-  assert.equal(placeholders, 1003, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
-  assert.equal(empty, 197);
-  assert.equal(affected, 18);
+  // Miles adds one unresolved original and two known Secret Empire identities with refused metadata.
+  // Winter Soldier adds four distinct unresolved source originals.
+  assert.equal(claimed, 1004, 'the payload placeholder total moved; re-derive the figures in the record');
+  assert.equal(placeholders, 1004, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
+  assert.equal(empty, 199);
+  assert.equal(affected, 19);
 });
 
 // Every check above passes with the import path reverted, because they all call the counter
@@ -1306,8 +1307,9 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // The final Amazing Spider-Man settlement replaces 96 distinct negative placeholders with 23
   // distinct exact refused identities, reducing the current distinct refused total by 73.
   // Wolverine replaces 29 negative placeholder identities with provider-resolved exact issues.
+  // Miles adds one distinct placeholder; both refused Secret Empire IDs already occur elsewhere.
   // Winter Soldier contributes four distinct source-position placeholders.
-  assert.equal(refused.length, 1222);
+  assert.equal(refused.length, 1223);
   assert.equal(pendingIssueIds(s).length, 0, 'the app is still offering to fetch details that do not exist');
 });
 

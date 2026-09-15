@@ -2070,6 +2070,42 @@
       "coverIssueId": 11353
     },
     {
+      "id": "best-ultron-reading-order",
+      "name": "Ultron",
+      "description": "Read Comic Book Herald's selected Ultron stories, including animated-continuity Ultron Revolution. Runs from the original Avengers through The Ultron Agenda and includes the standalone Rage of Ultron graphic novel.",
+      "type": "character-run",
+      "spotlightKind": "best-of",
+      "depth": "selected",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "best-ultron-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/best-ultron-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "best_ultron_reading_order.json",
+      "characters": [
+        "Ultron",
+        "Avengers",
+        "Hank Pym",
+        "Vision",
+        "Iron Man",
+        "Nova"
+      ],
+      "keywords": [
+        "Ultron",
+        "Comic Book Herald",
+        "Ultron Unlimited",
+        "Rage of Ultron",
+        "The Ultron Agenda",
+        "Ultron Revolution"
+      ],
+      "expect": 91,
+      "timeline": null,
+      "coverIssueId": 7304
+    },
+    {
       "id": "mephisto-reading-order",
       "name": "Mephisto",
       "description": "Follow Mephisto through Silver Surfer, Thor, Ghost Rider, Doctor Strange and Marvel crossovers, in Comic Book Herald guide order. Five unresolved original comics remain marked as gaps.",
@@ -5355,6 +5391,41 @@
       "expect": 12,
       "timeline": 2005,
       "coverIssueId": 2453
+    },
+    {
+      "id": "miles-morales-spider-man-reading-order",
+      "name": "Spider-Man: Miles Morales",
+      "description": "Follow Miles from the Ultimate Universe to Earth-616, the Champions and Trial By Spider in Comic Book Herald guide order. One unresolved comic remains marked as a gap.",
+      "type": "character-run",
+      "spotlightKind": "other",
+      "depth": "partial",
+      "beginner": true,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "miles-morales-spider-man-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/miles-morales-spider-man-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "miles_morales_spider_man_reading_order.json",
+      "characters": [
+        "Miles Morales",
+        "Spider-Man",
+        "Champions",
+        "Spider-Gwen",
+        "Avengers"
+      ],
+      "keywords": [
+        "Miles Morales",
+        "Comic Book Herald",
+        "Ultimate Spider-Man",
+        "Spider-Men",
+        "Spider-Verse",
+        "Trial By Spider"
+      ],
+      "expect": 386,
+      "timeline": null,
+      "coverIssueId": 38394
     },
     {
       "id": "amazing-spider-man-reading-order-modern-marvel-era",

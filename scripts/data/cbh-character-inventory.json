@@ -3545,13 +3545,33 @@
     "url": "https://www.comicbookherald.com/best-ultron-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "disposition": "new-order",
+    "reason": "Publishes all 91 exact comics in the source's best-of sequence across 16 blocks, including the standalone Rage of Ultron OGN and animated-continuity Ultron Revolution. No gaps or repeated sequence positions. Full-library review covers 177 other source orders with 17 approved shared relationships and no exact duplicate.",
     "sourceRetrievedAt": "2026-08-23",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "overlapIds": [
+      "all-new-all-different-avengers",
+      "annihilation-conquest",
+      "ant-man-reading-order",
+      "black-widow-reading-order",
+      "captain-marvel-ms-marvel-reading-order",
+      "civil-war-avengers",
+      "doctor-doom-primer",
+      "essential-avengers",
+      "guardians-of-the-galaxy-reading-order",
+      "heroic-age-avengers",
+      "inhumans-reading-order",
+      "iron-man-reading-order",
+      "magneto-reading-order",
+      "marvel-super-heroes-secret-wars",
+      "question-of-the-week-do-you-have-a-hulk-reading-order",
+      "venom-reading-order",
+      "wolverine-reading-order"
+    ],
+    "catalogIds": [
+      "best-ultron-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Ultron"
     ],
@@ -3561,7 +3581,7 @@
     "duplicateFlags": [],
     "sourceContentSha256": "846fe372b0f22472f63778b761f07fa84ad8b2e2e3378ab8ff850936674bff8f",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 118,
@@ -3682,6 +3702,7 @@
       "king-in-black",
       "loki-reading-order",
       "magneto-reading-order",
+      "miles-morales-spider-man-reading-order",
       "punisher-reading-order",
       "question-of-the-week-do-you-have-a-hulk-reading-order",
       "runaways-reading-order",
@@ -3937,6 +3958,56 @@
     ],
     "duplicateFlags": [],
     "sourceContentSha256": "b3412d7769cf1851534fae82633489621ad95242c197d7886b9022930cbeb2c1",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "approved"
+  },
+  {
+    "position": 130,
+    "id": "miles-morales-spider-man-reading-order",
+    "title": "Spider-Man: Miles Morales",
+    "url": "https://www.comicbookherald.com/miles-morales-spider-man-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "new-order",
+    "reason": "Owner-requested standalone guide intake, separate from the original hub census. Preserves 400 collection references through explicit sequencing as 395 effective occurrences: 385 exact comics, one identity gap and nine repeats. Two exact Secret Empire identities retain provider refusals. sourceContentSha256 hashes normalized factual blocks, not HTML. Issue 496 owns scope; Issue 500 tracks gaps.",
+    "sourceRetrievedAt": "2026-09-15",
+    "overlapIds": [
+      "absolute-carnage",
+      "all-new-all-different-avengers",
+      "amazing-spider-man-reading-order-modern-marvel-era",
+      "ant-man-reading-order",
+      "black-panther-reading-order",
+      "black-widow-reading-order",
+      "captain-marvel-ms-marvel-reading-order",
+      "doctor-doom-primer",
+      "fantastic-four-reading-order",
+      "generations",
+      "hickman-full",
+      "hickman-minimal",
+      "infinite-destinies",
+      "iron-man-reading-order",
+      "mephisto-reading-order",
+      "silver-surfer-reading-order",
+      "spider-geddon",
+      "spider-gwen-reading-order",
+      "spider-verse",
+      "venom-reading-order",
+      "war-of-the-realms",
+      "wolverine-reading-order"
+    ],
+    "catalogIds": [
+      "miles-morales-spider-man-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
+    "labels": [
+      "Spider-Man: Miles Morales"
+    ],
+    "sourcePositions": [
+      1
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "f7bab40e8ee464c6863bf7b32b77423bb87db7041e2b934770f287f967cc0c08",
     "sourceBoundaryStatus": "exact-page-snapshot",
     "metadataHorizonStatus": "approved"
   }

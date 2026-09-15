@@ -197,7 +197,9 @@ async function buildReportForMapping(mappingPath, peerPaths = [], options = {}) 
     excludedOrderIds: [
       ...(options.excludedOrderIds ?? CBH_LATER_ORDER_IDS),
       'mephisto-reading-order',
-      'spider-gwen-reading-order', 'winter-soldier-bucky-barnes-reading-order',
+      'best-ultron-reading-order', 'winter-soldier-bucky-barnes-reading-order',
+      'miles-morales-spider-man-reading-order',
+      'spider-gwen-reading-order',
       ironManCandidateId,
       modernXMenCandidateId,
       guardiansCandidateId,
@@ -618,7 +620,7 @@ function exclusionsForReviewedReport(manifest, report, candidateId, peerIds = []
 }
 
 async function libraryDigestForScope(manifest, excludedIds) {
-  const excluded = new Set([...excludedIds, guardiansCandidateId, 'adam-warlock-reading-order', 'mephisto-reading-order', 'spider-gwen-reading-order', 'winter-soldier-bucky-barnes-reading-order']);
+  const excluded = new Set([...excludedIds, guardiansCandidateId, 'adam-warlock-reading-order', 'mephisto-reading-order', 'miles-morales-spider-man-reading-order', 'spider-gwen-reading-order', 'best-ultron-reading-order', 'winter-soldier-bucky-barnes-reading-order']);
   const lists = manifest.lists.filter((entry) => !excluded.has(entry.id));
   const paths = (manifest.paths ?? []).filter((entry) => (
     !excluded.has(entry.id)
@@ -707,21 +709,21 @@ test('Abomination preserves the unresolved Hulk annual and selects the exact 198
   }
 });
 
-test('the character inventory preserves every central disposition, ships thirty-nine spotlights, and records five approved reuses', async () => {
+test('the character inventory preserves every central disposition, ships forty-one spotlights, and records five approved reuses', async () => {
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
   assert.doesNotThrow(() => validateInventoryState(inventory));
-  assert.equal(inventory.length, 129);
-  assert.equal(new Set(inventory.map((record) => record.id)).size, 129);
-  assert.equal(new Set(inventory.map((record) => record.url)).size, 129);
+  assert.equal(inventory.length, 130);
+  assert.equal(new Set(inventory.map((record) => record.id)).size, 130);
+  assert.equal(new Set(inventory.map((record) => record.url)).size, 130);
 
   const dispositionCounts = inventory.reduce((counts, record) => {
     counts[record.centralDisposition] = (counts[record.centralDisposition] ?? 0) + 1;
     return counts;
   }, {});
-  assert.equal(dispositionCounts.deferred, 77);
+  assert.equal(dispositionCounts.deferred, 76);
   assert.equal(dispositionCounts.excluded, 7);
   assert.equal(dispositionCounts.blocked, 1);
-  assert.equal(dispositionCounts['pilot-approved'], 39);
+  assert.equal(dispositionCounts['pilot-approved'], 41);
   assert.equal(dispositionCounts['reuse-existing'], 5);
 
   const shipped = inventory.filter((record) => record.deliveryStatus === 'shipped');
@@ -760,10 +762,12 @@ test('the character inventory preserves every central disposition, ships thirty-
     starLordInventoryId,
     'the-complete-thanos-reading-order-guide',
     venomCandidateId,
+    'best-ultron-reading-order',
     'white-tiger-ava-ayala',
     'winter-soldier-bucky-barnes-reading-order', 'wolverine-reading-order',
     xForceCandidateId,
     youngAvengersCandidateId,
+    'miles-morales-spider-man-reading-order',
   ]);
   const ready = inventory.find((record) => record.id === 'black-panther-reading-order');
   assert.equal(ready?.centralDisposition, 'pilot-approved');
@@ -900,12 +904,13 @@ test('Adam Warlock publishes the settled source with one exact resolution and th
   const currentReport = await buildCurrentReportForMapping(
     path.join(root, 'scripts', 'data', 'cbh-mappings', `${id}.json`),
     [],
-    { excludedOrderIds: ['mephisto-reading-order', 'spider-gwen-reading-order', 'winter-soldier-bucky-barnes-reading-order'] },
+    { excludedOrderIds: ['mephisto-reading-order', 'miles-morales-spider-man-reading-order', 'spider-gwen-reading-order', 'best-ultron-reading-order', 'winter-soldier-bucky-barnes-reading-order'] },
   );
   const expectedOrderIds = manifest.lists
-    .filter((entry) => entry.id !== id
-      && entry.id !== 'mephisto-reading-order'
-      && !['spider-gwen-reading-order', 'winter-soldier-bucky-barnes-reading-order'].includes(entry.id))
+    .filter((entry) => entry.id !== id && entry.id !== 'mephisto-reading-order'
+      && entry.id !== 'miles-morales-spider-man-reading-order'
+      && entry.id !== 'spider-gwen-reading-order'
+      && !['best-ultron-reading-order', 'winter-soldier-bucky-barnes-reading-order'].includes(entry.id))
     .map((entry) => entry.id);
 
   assert.doesNotThrow(() => validateFrozenPacket(packet));
@@ -1315,7 +1320,7 @@ test('Black Widow settles issue 311 with exact identities and availability exclu
   const currentReport = await buildCurrentReportForMapping(
     path.join(root, 'scripts', 'data', 'cbh-mappings', `${id}.json`),
     [],
-    { excludedOrderIds: ['mephisto-reading-order', 'spider-gwen-reading-order', 'winter-soldier-bucky-barnes-reading-order'] },
+    { excludedOrderIds: ['mephisto-reading-order', 'miles-morales-spider-man-reading-order', 'spider-gwen-reading-order', 'best-ultron-reading-order', 'winter-soldier-bucky-barnes-reading-order'] },
   );
   const expectedExact = new Map([
     [7, 6908],
@@ -1933,7 +1938,7 @@ test('the Punisher guide preserves its full source ledger through publication', 
   assert.equal(mapping.approvedSourceCount, 857);
   assert.equal(report.candidateCount, 544);
   assert.equal(report.comparisonCount, 158);
-  assert.equal(report.comparisonCount, manifest.lists.length - 19);
+  assert.equal(report.comparisonCount, manifest.lists.length - 21);
   assert.deepEqual(regeneratedReport, report);
   assert.doesNotThrow(() => assertApprovedRelationshipReview({
     packet,
@@ -2505,7 +2510,9 @@ test('Silver Surfer settles all four issue #304 gaps without losing source posit
      && id !== 'marvel-2099'
      && id !== runawaysCandidateId
      && id !== 'mephisto-reading-order'
-     && !['spider-gwen-reading-order', 'winter-soldier-bucky-barnes-reading-order'].includes(id)
+     && id !== 'miles-morales-spider-man-reading-order'
+     && id !== 'spider-gwen-reading-order'
+     && !['best-ultron-reading-order', 'winter-soldier-bucky-barnes-reading-order'].includes(id)
      && id !== 'adam-warlock-reading-order')
     .sort();
   const reviewedLibraryDigest = await libraryDigestForScope(
@@ -2789,11 +2796,11 @@ test('the character inventory rejects incomplete evidence and source sets', asyn
   const missingField = inventory.map((record) => ({ ...record }));
   delete missingField[0].sourceContentSha256;
   assert.throws(() => validateInventoryState(missingField), /sourceContentSha256/i);
-  assert.throws(() => validateInventoryState(inventory.slice(0, -1)), /exactly 129 records/i);
+  assert.throws(() => validateInventoryState(inventory.slice(0, -1)), /exactly 130 records/i);
   assert.throws(
     () => validateInventoryState([
       ...inventory.slice(0, -1),
-      { ...inventory[0], position: 129 },
+      { ...inventory[0], position: 130 },
     ]),
     /duplicate inventory id/i,
   );
@@ -4136,7 +4143,7 @@ test('the frozen Star-Lord evidence stays complete, fresh, distinct, and exact',
     generated.items.map((item) => String(item.issueId)),
     mapping.rows.map((row) => String(row.selectedIssueId)),
   );
-  const starLordChronology = manifest.lists.filter((entry) => !['spider-gwen-reading-order', 'winter-soldier-bucky-barnes-reading-order'].includes(entry.id));
+  const starLordChronology = manifest.lists.filter((entry) => !['best-ultron-reading-order', 'miles-morales-spider-man-reading-order', 'spider-gwen-reading-order', 'winter-soldier-bucky-barnes-reading-order'].includes(entry.id));
   const starLordIndex = starLordChronology.findIndex((entry) => entry.id === starLordCandidateId);
   assert.equal(starLordChronology[starLordIndex - 1].id, grootCandidateId);
   assert.equal(starLordChronology[starLordIndex + 1].id, ironManCandidateId);
@@ -4466,10 +4473,10 @@ test('the first character batch stays exact through evidence, catalog, and gener
 
   const allBatchIds = evidence.flatMap((item) => item.mapping.rows.map((row) => String(row.selectedIssueId)));
   assert.equal(new Set(allBatchIds).size, 81);
-  assert.equal(catalog.lists.length, 254);
+  assert.equal(catalog.lists.length, 256);
   const characterRuns = catalog.lists.filter((entry) => entry.type === 'character-run');
-  assert.equal(characterRuns.length, 49);
-  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 48);
+  assert.equal(characterRuns.length, 51);
+  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 50);
 });
 
 test('Venom preserves every source occurrence through its published guide', async () => {
@@ -4813,7 +4820,7 @@ test('X-Force publishes the exact settled source and bounded complete-library re
   assert.equal(mapping.candidateMetadata.length, 285);
   assert.deepEqual(mapping.sourceGapResolutions, packet.sourceGapResolutions);
   assert.equal(report.candidateCount, 285);
-  assert.equal(report.comparisonCount, manifest.lists.length - 12);
+  assert.equal(report.comparisonCount, manifest.lists.length - 14);
   assert.deepEqual(
     report.comparisons
       .filter((comparison) => comparison.relationship !== 'none')
