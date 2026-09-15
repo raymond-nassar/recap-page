@@ -2363,6 +2363,44 @@
       "coverIssueId": 11353
     },
     {
+      "id": "spider-gwen-reading-order",
+      "name": "Spider-Gwen / Ghost-Spider",
+      "description": "Follow Gwen Stacy from Edge of Spider-Verse through Spider-Gwen, Ghost-Spider, Gwenverse and Shadow Clones in Comic Book Herald guide order. Includes the source-defined crossover comics; the unnumbered Gwenom vs Carnage collection is not expanded.",
+      "type": "character-run",
+      "spotlightKind": "complete-guide",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "spider-gwen-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/spider-gwen-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "spider_gwen_reading_order.json",
+      "characters": [
+        "Spider-Gwen",
+        "Ghost-Spider",
+        "Gwen Stacy",
+        "Silk",
+        "Spider-Woman",
+        "Miles Morales"
+      ],
+      "keywords": [
+        "Spider-Gwen",
+        "Ghost-Spider",
+        "Ghost Spider",
+        "Gwen Stacy",
+        "Spider-Women",
+        "Gwenverse",
+        "Shadow Clones",
+        "Comic Book Herald"
+      ],
+      "expect": 127,
+      "timeline": null,
+      "coverIssueId": 50955
+    },
+    {
       "id": "star-lord-reading-order",
       "name": "Star-Lord",
       "description": "Peter Quill from his earliest cosmic adventures through the Guardians, solo series, and Old Man Quill.",
@@ -5315,6 +5353,41 @@
       "expect": 12,
       "timeline": 2005,
       "coverIssueId": 2453
+    },
+    {
+      "id": "miles-morales-spider-man-reading-order",
+      "name": "Spider-Man: Miles Morales",
+      "description": "Follow Miles from the Ultimate Universe to Earth-616, the Champions and Trial By Spider in Comic Book Herald guide order. One unresolved comic remains marked as a gap.",
+      "type": "character-run",
+      "spotlightKind": "other",
+      "depth": "partial",
+      "beginner": true,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "miles-morales-spider-man-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/miles-morales-spider-man-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "miles_morales_spider_man_reading_order.json",
+      "characters": [
+        "Miles Morales",
+        "Spider-Man",
+        "Champions",
+        "Spider-Gwen",
+        "Avengers"
+      ],
+      "keywords": [
+        "Miles Morales",
+        "Comic Book Herald",
+        "Ultimate Spider-Man",
+        "Spider-Men",
+        "Spider-Verse",
+        "Trial By Spider"
+      ],
+      "expect": 386,
+      "timeline": null,
+      "coverIssueId": 38394
     },
     {
       "id": "amazing-spider-man-reading-order-modern-marvel-era",

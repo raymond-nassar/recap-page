@@ -3594,11 +3594,11 @@
     "authorityType": "stronger-model",
     "authorityIdentity": "GPT-6 Astra",
     "rationale": "This owner-requested best-of guide retains the source page selection and sequence across Ultron stories and animated-continuity additions. Other character and event guides serve distinct source-defined purposes. Retain all shared issues in both lists; no exact duplicate exists.",
-    "reviewedAt": "2026-09-15T05:20:02.994Z",
+    "reviewedAt": "2026-09-15T06:18:16.120Z",
     "packetDigest": "cb076e98c2657aae24fd49dcfa51286f16f72dc9b938427fc469374f5c2a24cd",
     "mappingDigest": "625ce8b08c41ef42ab5764c52cb6577b12d65d6c27032861ba5c4b1ebd3aa44e",
-    "reportDigest": "c8799f2c5439b408d6f909746a4b841b4aefaf58fd438ca0f10b480b4209257c",
-    "libraryDigest": "fe9c85b28714866b320f69a5bef7a4b99aa7aca79da07346ff86dbbe913370ca",
+    "reportDigest": "a32fd401450a49f80379bc2d72d4025eb183d628ef2e287acd70d1c87de51f7e",
+    "libraryDigest": "a8dd7152b8e42c13d64bed13dc367ebc7caf763136bc41fd2e9433cda7332916",
     "peerDigests": {},
     "dispositions": [
       {
@@ -3608,7 +3608,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "absolute-carnage",
@@ -3617,7 +3617,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "adam-warlock-reading-order",
@@ -3626,7 +3626,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "agatha-harkness-reading-order",
@@ -3635,7 +3635,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "age-of-x-man",
@@ -3644,7 +3644,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "agents-of-atlas-reading-order",
@@ -3653,7 +3653,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "all-new-all-different-avengers",
@@ -3662,7 +3662,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 1 shared issues cover only part of each guide. Preserve this Ultron-specific source selection and the other independently scoped guide without removing shared comics.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
@@ -3671,7 +3671,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "annihilation",
@@ -3680,7 +3680,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "annihilation-conquest",
@@ -3689,7 +3689,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 11 shared issues cover only part of each guide. Preserve this Ultron-specific source selection and the other independently scoped guide without removing shared comics.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "ant-man-reading-order",
@@ -3698,7 +3698,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 32 shared issues cover only part of each guide. Preserve this Ultron-specific source selection and the other independently scoped guide without removing shared comics.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "apocalypse-wars",
@@ -3707,7 +3707,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "atlantis-attacks",
@@ -3716,7 +3716,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "avengers-defenders-war",
@@ -3725,7 +3725,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "avengers-disassembled",
@@ -3734,7 +3734,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "avengers-enemy-within",
@@ -3743,7 +3743,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "axis",
@@ -3752,7 +3752,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "black-panther-reading-order",
@@ -3761,7 +3761,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "black-widow-reading-order",
@@ -3770,7 +3770,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 10 shared issues cover only part of each guide. Preserve this Ultron-specific source selection and the other independently scoped guide without removing shared comics.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "bloodties",
@@ -3779,7 +3779,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "captain-america-best-of",
@@ -3788,7 +3788,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "captain-america-reading-order-modern-marvel-era",
@@ -3797,7 +3797,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "captain-marvel-ms-marvel-reading-order",
@@ -3806,7 +3806,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 23 shared issues cover only part of each guide. Preserve this Ultron-specific source selection and the other independently scoped guide without removing shared comics.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "chaos-war",
@@ -3815,7 +3815,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "childs-play",
@@ -3824,7 +3824,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "civil-war",
@@ -3833,7 +3833,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "civil-war-avengers",
@@ -3842,7 +3842,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 6 shared issues cover only part of each guide. Preserve this Ultron-specific source selection and the other independently scoped guide without removing shared comics.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "civil-war-essential",
@@ -3851,7 +3851,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "clone-conspiracy",
@@ -3860,7 +3860,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "contest-of-champions",
@@ -3869,7 +3869,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "damnation",
@@ -3878,7 +3878,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "daredevil-reading-order",
@@ -3887,7 +3887,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "dark-phoenix-saga",
@@ -3896,7 +3896,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "dark-reign-avengers",
@@ -3905,7 +3905,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "dark-web",
@@ -3914,7 +3914,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "days-of-future-past",
@@ -3923,7 +3923,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "days-of-future-present",
@@ -3932,7 +3932,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "dead-mans-hand",
@@ -3941,7 +3941,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "deadpool-best-of",
@@ -3950,7 +3950,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "death-of-doctor-strange",
@@ -3959,7 +3959,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "devils-reign",
@@ -3968,7 +3968,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "doctor-doom-primer",
@@ -3977,7 +3977,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 12 shared issues cover only part of each guide. Preserve this Ultron-specific source selection and the other independently scoped guide without removing shared comics.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "doctor-strange-multiverse-of-madness",
@@ -3986,7 +3986,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "doctor-strange-reading-order",
@@ -3995,7 +3995,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "doomwar",
@@ -4004,7 +4004,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "eighth-day",
@@ -4013,7 +4013,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "essential-avengers",
@@ -4022,7 +4022,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 17 shared issues cover only part of each guide. Preserve this Ultron-specific source selection and the other independently scoped guide without removing shared comics.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "evolutionary-war",
@@ -4031,7 +4031,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "fall-house-x-rise-powers-x",
@@ -4040,7 +4040,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "fall-of-the-mutants",
@@ -4049,7 +4049,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "fantastic-four-reading-order",
@@ -4058,7 +4058,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "fatal-attractions",
@@ -4067,7 +4067,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "generations",
@@ -4076,7 +4076,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "groot-reading-order",
@@ -4085,7 +4085,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "guardians-of-the-galaxy-reading-order",
@@ -4094,7 +4094,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 2 shared issues cover only part of each guide. Preserve this Ultron-specific source selection and the other independently scoped guide without removing shared comics.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "heroes-reborn-2021",
@@ -4103,7 +4103,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "heroic-age-avengers",
@@ -4112,7 +4112,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 1 shared issues cover only part of each guide. Preserve this Ultron-specific source selection and the other independently scoped guide without removing shared comics.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "hickman-full",
@@ -4121,7 +4121,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "hickman-minimal",
@@ -4130,7 +4130,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "hickman-x-men",
@@ -4139,7 +4139,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "house-of-m",
@@ -4148,7 +4148,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "house-of-m-essential",
@@ -4157,7 +4157,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "hunt-for-wolverine",
@@ -4166,7 +4166,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "hunt-for-xavier",
@@ -4175,7 +4175,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "inferno",
@@ -4184,7 +4184,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "infinite-destinies",
@@ -4193,7 +4193,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "infinity-countdown-wars",
@@ -4202,7 +4202,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "inhumans-reading-order",
@@ -4211,7 +4211,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 4 shared issues cover only part of each guide. Preserve this Ultron-specific source selection and the other independently scoped guide without removing shared comics.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "inhumans-vs-x-men",
@@ -4220,7 +4220,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "iron-man-2020",
@@ -4229,7 +4229,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "iron-man-reading-order",
@@ -4238,7 +4238,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 11 shared issues cover only part of each guide. Preserve this Ultron-specific source selection and the other independently scoped guide without removing shared comics.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "judgment-day",
@@ -4247,7 +4247,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "king-in-black",
@@ -4256,7 +4256,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "kravens-last-hunt",
@@ -4265,7 +4265,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "kree-skrull-war",
@@ -4274,7 +4274,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "last-annihilation",
@@ -4283,7 +4283,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "loki-reading-order",
@@ -4292,7 +4292,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "magneto-reading-order",
@@ -4301,7 +4301,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 3 shared issues cover only part of each guide. Preserve this Ultron-specific source selection and the other independently scoped guide without removing shared comics.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "magneto-war",
@@ -4310,7 +4310,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "marvel-2099",
@@ -4319,7 +4319,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "marvel-fresh-start-avengers",
@@ -4328,7 +4328,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x",
@@ -4337,7 +4337,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "marvel-multiverse",
@@ -4346,7 +4346,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "marvel-super-heroes-secret-wars",
@@ -4355,7 +4355,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "All 12 issues of the existing event guide are selected within this broader Ultron best-of page. Keep its focused event route and this source-defined character selection, with all shared comics in place.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "marvel-what-if",
@@ -4364,7 +4364,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "marvels-best-phoenix-comics",
@@ -4373,7 +4373,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "maximum-security",
@@ -4382,7 +4382,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "mephisto-reading-order",
@@ -4391,7 +4391,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "messiah-complex",
@@ -4400,7 +4400,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "messiah-war",
@@ -4409,7 +4409,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "midnight-massacre",
@@ -4418,7 +4418,16 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
+      },
+      {
+        "orderId": "miles-morales-spider-man-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Maintained CBH no-overlap policy",
+        "rationale": "No shared exact issue identities; retain both independently sourced guides.",
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "minimum-carnage",
@@ -4427,7 +4436,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "modern-x-men-fast-track",
@@ -4436,7 +4445,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "monsters-unleashed",
@@ -4445,7 +4454,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "moon-knight-reading-order",
@@ -4454,7 +4463,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "muir-island-saga",
@@ -4463,7 +4472,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "mutant-massacre",
@@ -4472,7 +4481,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "mys-tech-wars",
@@ -4481,7 +4490,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "necrosha",
@@ -4490,7 +4499,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "new-ultimate-universe",
@@ -4499,7 +4508,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "new-ultimate-universe-trades",
@@ -4508,7 +4517,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "nick-fury-reading-order",
@@ -4517,7 +4526,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "operation-galactic-storm",
@@ -4526,7 +4535,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "operation-zero-tolerance",
@@ -4535,7 +4544,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "original-clone-saga",
@@ -4544,7 +4553,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "phalanx-covenant",
@@ -4553,7 +4562,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "phalanx-reading-order",
@@ -4562,7 +4571,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "phoenix-saga",
@@ -4571,7 +4580,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "planet-hulk",
@@ -4580,7 +4589,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "punisher-reading-order",
@@ -4589,7 +4598,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "question-of-the-week-do-you-have-a-hulk-reading-order",
@@ -4598,7 +4607,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 12 shared issues cover only part of each guide. Preserve this Ultron-specific source selection and the other independently scoped guide without removing shared comics.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "reckoning-war",
@@ -4607,7 +4616,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "reed-richards-and-sue-storms-wedding",
@@ -4616,7 +4625,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "revolutionary-war",
@@ -4625,7 +4634,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "rise-of-the-midnight-sons",
@@ -4634,7 +4643,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "rocket-raccoon-reading-order",
@@ -4643,7 +4652,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "runaways-reading-order",
@@ -4652,7 +4661,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "scarlet-witch-best-of",
@@ -4661,7 +4670,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "second-coming",
@@ -4670,7 +4679,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "secret-invasion",
@@ -4679,7 +4688,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "secret-invasion-essential",
@@ -4688,7 +4697,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "secret-war",
@@ -4697,7 +4706,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "secret-wars-ii",
@@ -4706,7 +4715,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "setup-to-modern-timeline",
@@ -4715,7 +4724,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "shadowland",
@@ -4724,7 +4733,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "silent-war",
@@ -4733,7 +4742,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "silver-surfer-reading-order",
@@ -4742,7 +4751,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "sins-of-sinister",
@@ -4751,7 +4760,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "spider-geddon",
@@ -4760,7 +4769,16 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
+      },
+      {
+        "orderId": "spider-gwen-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Maintained CBH no-overlap policy",
+        "rationale": "No shared exact issue identities; retain both independently sourced guides.",
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "spider-island",
@@ -4769,7 +4787,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "spider-man-best-of",
@@ -4778,7 +4796,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "spider-man-far-from-home",
@@ -4787,7 +4805,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "spider-man-identity-crisis",
@@ -4796,7 +4814,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "spider-man-no-way-home",
@@ -4805,7 +4823,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "spider-man-the-other",
@@ -4814,7 +4832,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "spider-verse",
@@ -4823,7 +4841,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "star-lord-reading-order",
@@ -4832,7 +4850,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "thanos-imperative",
@@ -4841,7 +4859,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "thanos-reading-order",
@@ -4850,7 +4868,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "thanos-war",
@@ -4859,7 +4877,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "the-defenders-reading-order",
@@ -4868,7 +4886,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "the-night-gwen-stacy-died",
@@ -4877,7 +4895,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "thor-best-of",
@@ -4886,7 +4904,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "time-and-time-again",
@@ -4895,7 +4913,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "ultimate-marvel-intro",
@@ -4904,7 +4922,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "venom-reading-order",
@@ -4913,7 +4931,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 1 shared issues cover only part of each guide. Preserve this Ultron-specific source selection and the other independently scoped guide without removing shared comics.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "venomverse",
@@ -4922,7 +4940,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "wandavision",
@@ -4931,7 +4949,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "war-of-kings",
@@ -4940,7 +4958,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "war-of-the-realms",
@@ -4949,7 +4967,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "white-tiger-ava-ayala",
@@ -4958,7 +4976,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "wolverine-goes-to-hell",
@@ -4967,7 +4985,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "wolverine-reading-order",
@@ -4976,7 +4994,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 1 shared issues cover only part of each guide. Preserve this Ultron-specific source selection and the other independently scoped guide without removing shared comics.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "world-war-hulk-aftersmash",
@@ -4985,7 +5003,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "wraith-war",
@@ -4994,7 +5012,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "x-cutioners-song",
@@ -5003,7 +5021,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "x-force-reading-order",
@@ -5012,7 +5030,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "x-men-age-of-x",
@@ -5021,7 +5039,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "x-men-battle-of-the-atom",
@@ -5030,7 +5048,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "x-men-curse-of-the-mutants",
@@ -5039,7 +5057,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "x-men-divided-we-stand",
@@ -5048,7 +5066,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "x-men-extermination",
@@ -5057,7 +5075,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "x-men-inferno",
@@ -5066,7 +5084,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "x-men-manifest-destiny",
@@ -5075,7 +5093,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "x-men-nation-x",
@@ -5084,7 +5102,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "x-men-regenesis",
@@ -5093,7 +5111,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "x-men-schism",
@@ -5102,7 +5120,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "x-men-trial-of-jean-grey",
@@ -5111,7 +5129,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "x-men-utopia",
@@ -5120,7 +5138,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "x-of-swords",
@@ -5129,7 +5147,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "x-termination",
@@ -5138,7 +5156,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "x-tinction-agenda",
@@ -5147,7 +5165,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "xmen-claremont",
@@ -5156,7 +5174,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "xmen-claremont-complete",
@@ -5165,7 +5183,7 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       },
       {
         "orderId": "young-avengers-reading-order",
@@ -5174,9 +5192,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Maintained CBH no-overlap policy",
         "rationale": "No shared exact issue identities; retain both independently sourced guides.",
-        "reviewedAt": "2026-09-15T05:20:02.994Z"
+        "reviewedAt": "2026-09-15T06:18:16.120Z"
       }
     ],
-    "approvalDigest": "7692b01bee699f90088615ef7585a45a61783288f80358385d9faf8aa478614e"
+    "approvalDigest": "d97ba31bbef468f06d05bdbdfe86590219544747b9bfbc9e79d3641bde862d67"
   }
 }
