@@ -94,6 +94,7 @@ export function createDataView({
   notify,
   onExportJson,
   onExportMarkdown,
+  onExportOrder,
   onRestore,
   onUndoRestore,
   onSetCovers,
@@ -147,6 +148,7 @@ export function createDataView({
     nodes.btnExportJson.addEventListener('click', onExportJson);
 
     nodes.btnExportMd.addEventListener('click', onExportMarkdown);
+    nodes.btnExportOrder.addEventListener('click', onExportOrder);
 
     nodes.restoreFile.addEventListener('change', async (e) => {
       const file = e.target.files?.[0];

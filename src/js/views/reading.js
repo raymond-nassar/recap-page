@@ -115,6 +115,7 @@ export function createReadingView({
   onCancelHydrate,
   onCancelSynopsis,
   onExportMarkdown,
+  onExportOrder,
   onHydrate,
   onStartSynopsis,
   openIssueFocus,
@@ -402,6 +403,7 @@ export function createReadingView({
     });
 
     $('#btn-export-md').addEventListener('click', onExportMarkdown);
+    $('#btn-export-order').addEventListener('click', onExportOrder);
     $('#btn-hydrate').addEventListener('click', () => onHydrate(activeListId()));
     $('#btn-cancel-hydrate').addEventListener('click', onCancelHydrate);
     $('#btn-synopsis').addEventListener('click', onStartSynopsis);

@@ -13,6 +13,13 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Share an order without personal reading data
+
+Adds **Export order only** to Reading and Backup & settings. It downloads a local Markdown order
+with unread checkboxes, official links, section labels and available source credits, but no notes,
+descriptions, reading history or availability overrides. The confirmation explains the exclusions.
+Personal Markdown and lossless JSON backups remain separate, and saved reader data is unchanged.
+
 ### Follow Bucky Barnes and the Winter Soldier
 
 Adds a Bucky Barnes / Winter Soldier Reading List credited and linked to Comic Book Herald,
