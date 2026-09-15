@@ -23,6 +23,7 @@ const laterReviewedIds = new Set([
   'best-ultron-reading-order', 'winter-soldier-bucky-barnes-reading-order',
   'miles-morales-spider-man-reading-order',
   'spider-gwen-reading-order',
+  'spider-man-2099-reading-order',
   'captain-marvel-ms-marvel-reading-order',
   'wolverine-reading-order',
   'doctor-strange-reading-order',
@@ -118,7 +119,7 @@ test('batch four preserves source order and independently verified shelf chronol
     manifest.lists.length - FOURTH_PACKET_IDS.length,
   );
   assert.ok(manifest.lists.length >= 66);
-  assert.equal(catalog.lists.length, 256);
+  assert.equal(catalog.lists.length, 257);
 
   const sorted = sortCatalog(parseCatalog(catalog).lists);
   assert.deepEqual(

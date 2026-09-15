@@ -1,0 +1,4210 @@
+{
+  "schemaVersion": 1,
+  "id": "spider-man-2099-reading-order",
+  "sourcePageTitle": "Spider-Man 2099 Reading Order - Comic Book Herald",
+  "sourceUrl": "https://www.comicbookherald.com/spider-man-2099-reading-order/",
+  "sourceRetrievedAt": "2026-09-15",
+  "sourceIssueBearingBlocksSha256": "7d2317d370e8e4aae5d53545a60512d74f60b60ae32eb7dcc68e5d3273ce3dac",
+  "scopeIssue": "https://github.com/raymond-nassar/recap-page/issues/497",
+  "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/501",
+  "sourceBoundary": "All 23 Collects blocks and the explicit Fall of the Hammer sequence on the full Spider-Man 2099 guide, from the original 1992 run through all four Latest Additions blocks ending with Miguel O'Hara - Spider-Man: 2099 (2024) #5. Collection order is retained; later repeated issue references point backward to the first occurrence. Named annuals, original one-shots and material-from issues retain original identities. Linked guides are not expanded; no source commentary or artwork is copied.",
+  "sourceTextNormalization": "Issue-bearing factual blocks only. Typography is normalized to ASCII apostrophes and hyphens; source issue references expand collection ranges and use verified publication spelling/year. No article prose or image bytes are retained.",
+  "blocks": [
+    {
+      "block": 1,
+      "sourceRangeReference": "Collects: Spider-Man 2099 1-10",
+      "occurrenceCount": 10
+    },
+    {
+      "block": 2,
+      "sourceRangeReference": "Collects: Spider-Man 2099 11-14, Material From 2099 Unlimited 1-3, Spider-Man 2099 Annual 1",
+      "occurrenceCount": 8
+    },
+    {
+      "block": 3,
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 15-22, Ravage 2099 15, X-Men 2099 5, Doom 2099 14, Punisher 2099 13",
+      "occurrenceCount": 12
+    },
+    {
+      "block": 4,
+      "sourceRangeReference": "Fall of the Hammer explicit sequence: Spider-Man 2099 #15, Spider-Man 2099 #16, Ravage 2099 #15, X-Men 2099 #5, Doom 2099 #14, Punisher 2099 #13, 2099 Unlimited #4",
+      "occurrenceCount": 7
+    },
+    {
+      "block": 5,
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 23-33, Material From 2099 Unlimited 8",
+      "occurrenceCount": 12
+    },
+    {
+      "block": 6,
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 34-38, Special; Spider-Man 2099 Meets Spider-Man; Material From 2099 Unlimited 9-10",
+      "occurrenceCount": 9
+    },
+    {
+      "block": 7,
+      "sourceRangeReference": "Collects: 2099: World Of Tomorrow #1 To #8",
+      "occurrenceCount": 8
+    },
+    {
+      "block": 8,
+      "sourceRangeReference": "Collects: Captain Marvel (2000) #27 To #29",
+      "occurrenceCount": 3
+    },
+    {
+      "block": 9,
+      "sourceRangeReference": "Collects: Exiles #75-89, Exiles Annual #1",
+      "occurrenceCount": 16
+    },
+    {
+      "block": 10,
+      "sourceRangeReference": "Collects: Exiles #90-100, Days Of Then & Now; X-Men: Die By The Sword #1-5",
+      "occurrenceCount": 17
+    },
+    {
+      "block": 11,
+      "sourceRangeReference": "Collects: Timestorm 2009/2099 #1-4, Spider-Man One-Shot, And X-Men One-Shot",
+      "occurrenceCount": 6
+    },
+    {
+      "block": 12,
+      "sourceRangeReference": "Collects: Superior Spider-Man #17 To #19",
+      "occurrenceCount": 3
+    },
+    {
+      "block": 13,
+      "sourceRangeReference": "Collects: Spider-Man 2099 1-5, Amazing Spider-Man 1",
+      "occurrenceCount": 6
+    },
+    {
+      "block": 14,
+      "sourceRangeReference": "Collects: Spider -Man 2099 6-12",
+      "occurrenceCount": 7
+    },
+    {
+      "block": 15,
+      "sourceRangeReference": "Collects: Secret Wars 2099 #1-5",
+      "occurrenceCount": 5
+    },
+    {
+      "block": 16,
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #1 To #5",
+      "occurrenceCount": 5
+    },
+    {
+      "block": 17,
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #6-10",
+      "occurrenceCount": 5
+    },
+    {
+      "block": 18,
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #11 To #16",
+      "occurrenceCount": 6
+    },
+    {
+      "block": 19,
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #17-21",
+      "occurrenceCount": 5
+    },
+    {
+      "block": 20,
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #22-25, Spider-Man 2099 Meets Spider-Man (1995)",
+      "occurrenceCount": 5
+    },
+    {
+      "block": 21,
+      "sourceRangeReference": "Collects: Amazing Spider-Man (2018) #32 to #36",
+      "occurrenceCount": 5
+    },
+    {
+      "block": 22,
+      "sourceRangeReference": "Collects: Spider-Man 2099: Exodus Alpha, Spider-Man 2099: Exodus #1 to #5, Spider-Man 2099: Exodus Omega",
+      "occurrenceCount": 7
+    },
+    {
+      "block": 23,
+      "sourceRangeReference": "Collects: Spider-Man 2099: Dark Genesis (2023) #1 to #5",
+      "occurrenceCount": 5
+    },
+    {
+      "block": 24,
+      "sourceRangeReference": "Collects: Miguel O'Hara - Spider-Man: 2099 (2024) #1 to #5",
+      "occurrenceCount": 5
+    }
+  ],
+  "occurrences": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #1",
+      "sourceRangeReference": "Collects: Spider-Man 2099 1-10",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "1",
+      "block": 1,
+      "disposition": "exact",
+      "seriesId": 2070,
+      "issueId": 10865,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633"
+      }
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #2",
+      "sourceRangeReference": "Collects: Spider-Man 2099 1-10",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "2",
+      "block": 1,
+      "disposition": "exact",
+      "seriesId": 2070,
+      "issueId": 10876,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633"
+      }
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #3",
+      "sourceRangeReference": "Collects: Spider-Man 2099 1-10",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "3",
+      "block": 1,
+      "disposition": "exact",
+      "seriesId": 2070,
+      "issueId": 10887,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633"
+      }
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #4",
+      "sourceRangeReference": "Collects: Spider-Man 2099 1-10",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "4",
+      "block": 1,
+      "disposition": "exact",
+      "seriesId": 2070,
+      "issueId": 10898,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633"
+      }
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #5",
+      "sourceRangeReference": "Collects: Spider-Man 2099 1-10",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "5",
+      "block": 1,
+      "disposition": "exact",
+      "seriesId": 2070,
+      "issueId": 10906,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633"
+      }
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #6",
+      "sourceRangeReference": "Collects: Spider-Man 2099 1-10",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "6",
+      "block": 1,
+      "disposition": "exact",
+      "seriesId": 2070,
+      "issueId": 10907,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633"
+      }
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #7",
+      "sourceRangeReference": "Collects: Spider-Man 2099 1-10",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "7",
+      "block": 1,
+      "disposition": "exact",
+      "seriesId": 2070,
+      "issueId": 10908,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633"
+      }
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #8",
+      "sourceRangeReference": "Collects: Spider-Man 2099 1-10",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "8",
+      "block": 1,
+      "disposition": "exact",
+      "seriesId": 2070,
+      "issueId": 10909,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633"
+      }
+    },
+    {
+      "sourcePosition": 9,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #9",
+      "sourceRangeReference": "Collects: Spider-Man 2099 1-10",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "9",
+      "block": 1,
+      "disposition": "exact",
+      "seriesId": 2070,
+      "issueId": 10910,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633"
+      }
+    },
+    {
+      "sourcePosition": 10,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #10",
+      "sourceRangeReference": "Collects: Spider-Man 2099 1-10",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "10",
+      "block": 1,
+      "disposition": "exact",
+      "seriesId": 2070,
+      "issueId": 10866,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633"
+      }
+    },
+    {
+      "sourcePosition": 11,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #11",
+      "sourceRangeReference": "Collects: Spider-Man 2099 11-14, Material From 2099 Unlimited 1-3, Spider-Man 2099 Annual 1",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "11",
+      "block": 2,
+      "disposition": "exact",
+      "seriesId": 2070,
+      "issueId": 10867,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633"
+      }
+    },
+    {
+      "sourcePosition": 12,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #12",
+      "sourceRangeReference": "Collects: Spider-Man 2099 11-14, Material From 2099 Unlimited 1-3, Spider-Man 2099 Annual 1",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "12",
+      "block": 2,
+      "disposition": "exact",
+      "seriesId": 2070,
+      "issueId": 10868,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633"
+      }
+    },
+    {
+      "sourcePosition": 13,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #13",
+      "sourceRangeReference": "Collects: Spider-Man 2099 11-14, Material From 2099 Unlimited 1-3, Spider-Man 2099 Annual 1",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "13",
+      "block": 2,
+      "disposition": "exact",
+      "seriesId": 2070,
+      "issueId": 10869,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633"
+      }
+    },
+    {
+      "sourcePosition": 14,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #14",
+      "sourceRangeReference": "Collects: Spider-Man 2099 11-14, Material From 2099 Unlimited 1-3, Spider-Man 2099 Annual 1",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "14",
+      "block": 2,
+      "disposition": "exact",
+      "seriesId": 2070,
+      "issueId": 10870,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633"
+      }
+    },
+    {
+      "sourcePosition": 15,
+      "sourceIssueReference": "2099 Unlimited (1993) #1",
+      "sourceRangeReference": "Collects: Spider-Man 2099 11-14, Material From 2099 Unlimited 1-3, Spider-Man 2099 Annual 1",
+      "normalizedSeriesTitle": "2099 Unlimited",
+      "seriesYear": 1993,
+      "issueNumber": "1",
+      "block": 2,
+      "disposition": "gap"
+    },
+    {
+      "sourcePosition": 16,
+      "sourceIssueReference": "2099 Unlimited (1993) #2",
+      "sourceRangeReference": "Collects: Spider-Man 2099 11-14, Material From 2099 Unlimited 1-3, Spider-Man 2099 Annual 1",
+      "normalizedSeriesTitle": "2099 Unlimited",
+      "seriesYear": 1993,
+      "issueNumber": "2",
+      "block": 2,
+      "disposition": "gap"
+    },
+    {
+      "sourcePosition": 17,
+      "sourceIssueReference": "2099 Unlimited (1993) #3",
+      "sourceRangeReference": "Collects: Spider-Man 2099 11-14, Material From 2099 Unlimited 1-3, Spider-Man 2099 Annual 1",
+      "normalizedSeriesTitle": "2099 Unlimited",
+      "seriesYear": 1993,
+      "issueNumber": "3",
+      "block": 2,
+      "disposition": "gap"
+    },
+    {
+      "sourcePosition": 18,
+      "sourceIssueReference": "Spider-Man 2099 Annual (1994) #1",
+      "sourceRangeReference": "Collects: Spider-Man 2099 11-14, Material From 2099 Unlimited 1-3, Spider-Man 2099 Annual 1",
+      "normalizedSeriesTitle": "Spider-Man 2099 Annual",
+      "seriesYear": 1994,
+      "issueNumber": "1",
+      "block": 2,
+      "disposition": "exact",
+      "seriesId": 20022,
+      "issueId": 53431,
+      "selectionNote": "The Annual #1 in the second original collection is the separately indexed Spider-Man 2099 Annual (1994), not a 1993 annual.",
+      "metadataEvidence": {
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633"
+      }
+    },
+    {
+      "sourcePosition": 19,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #15",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 15-22, Ravage 2099 15, X-Men 2099 5, Doom 2099 14, Punisher 2099 13",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "15",
+      "block": 3,
+      "disposition": "exact",
+      "seriesId": 2070,
+      "issueId": 10871,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633"
+      }
+    },
+    {
+      "sourcePosition": 20,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #16",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 15-22, Ravage 2099 15, X-Men 2099 5, Doom 2099 14, Punisher 2099 13",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "16",
+      "block": 3,
+      "disposition": "exact",
+      "seriesId": 2070,
+      "issueId": 10872,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633"
+      }
+    },
+    {
+      "sourcePosition": 21,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #17",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 15-22, Ravage 2099 15, X-Men 2099 5, Doom 2099 14, Punisher 2099 13",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "17",
+      "block": 3,
+      "disposition": "exact",
+      "seriesId": 2070,
+      "issueId": 10873,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633"
+      }
+    },
+    {
+      "sourcePosition": 22,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #18",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 15-22, Ravage 2099 15, X-Men 2099 5, Doom 2099 14, Punisher 2099 13",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "18",
+      "block": 3,
+      "disposition": "exact",
+      "seriesId": 2070,
+      "issueId": 10874,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633"
+      }
+    },
+    {
+      "sourcePosition": 23,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #19",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 15-22, Ravage 2099 15, X-Men 2099 5, Doom 2099 14, Punisher 2099 13",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "19",
+      "block": 3,
+      "disposition": "exact",
+      "seriesId": 2070,
+      "issueId": 10875,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633"
+      }
+    },
+    {
+      "sourcePosition": 24,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #20",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 15-22, Ravage 2099 15, X-Men 2099 5, Doom 2099 14, Punisher 2099 13",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "20",
+      "block": 3,
+      "disposition": "exact",
+      "seriesId": 2070,
+      "issueId": 10877,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633"
+      }
+    },
+    {
+      "sourcePosition": 25,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #21",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 15-22, Ravage 2099 15, X-Men 2099 5, Doom 2099 14, Punisher 2099 13",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "21",
+      "block": 3,
+      "disposition": "exact",
+      "seriesId": 2070,
+      "issueId": 10878,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633"
+      }
+    },
+    {
+      "sourcePosition": 26,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #22",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 15-22, Ravage 2099 15, X-Men 2099 5, Doom 2099 14, Punisher 2099 13",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "22",
+      "block": 3,
+      "disposition": "exact",
+      "seriesId": 2070,
+      "issueId": 10879,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633"
+      }
+    },
+    {
+      "sourcePosition": 27,
+      "sourceIssueReference": "Ravage 2099 (1992) #15",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 15-22, Ravage 2099 15, X-Men 2099 5, Doom 2099 14, Punisher 2099 13",
+      "normalizedSeriesTitle": "Ravage 2099",
+      "seriesYear": 1992,
+      "issueNumber": "15",
+      "block": 3,
+      "disposition": "exact",
+      "seriesId": 20021,
+      "issueId": 53430,
+      "selectionNote": "The source reference uses verified series 20021 (Ravage 2099 (1992)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633"
+      }
+    },
+    {
+      "sourcePosition": 28,
+      "sourceIssueReference": "X-Men 2099 (1993) #5",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 15-22, Ravage 2099 15, X-Men 2099 5, Doom 2099 14, Punisher 2099 13",
+      "normalizedSeriesTitle": "X-Men 2099",
+      "seriesYear": 1993,
+      "issueNumber": "5",
+      "block": 3,
+      "disposition": "exact",
+      "seriesId": 16423,
+      "issueId": 43366,
+      "selectionNote": "The source reference uses verified series 16423 (X-Men 2099 (1993 - 1996)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633"
+      }
+    },
+    {
+      "sourcePosition": 29,
+      "sourceIssueReference": "Doom 2099 (1993) #14",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 15-22, Ravage 2099 15, X-Men 2099 5, Doom 2099 14, Punisher 2099 13",
+      "normalizedSeriesTitle": "Doom 2099",
+      "seriesYear": 1993,
+      "issueNumber": "14",
+      "block": 3,
+      "disposition": "exact",
+      "seriesId": 20019,
+      "issueId": 53428,
+      "selectionNote": "The source reference uses verified series 20019 (Doom 2099 (1993)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633"
+      }
+    },
+    {
+      "sourcePosition": 30,
+      "sourceIssueReference": "Punisher 2099 (1993) #13",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 15-22, Ravage 2099 15, X-Men 2099 5, Doom 2099 14, Punisher 2099 13",
+      "normalizedSeriesTitle": "Punisher 2099",
+      "seriesYear": 1993,
+      "issueNumber": "13",
+      "block": 3,
+      "disposition": "exact",
+      "seriesId": 20020,
+      "issueId": 53429,
+      "selectionNote": "The source reference uses verified series 20020 (Punisher 2099 (1993)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633"
+      }
+    },
+    {
+      "sourcePosition": 31,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #15",
+      "sourceRangeReference": "Fall of the Hammer explicit sequence: Spider-Man 2099 #15, Spider-Man 2099 #16, Ravage 2099 #15, X-Men 2099 #5, Doom 2099 #14, Punisher 2099 #13, 2099 Unlimited #4",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "15",
+      "block": 4,
+      "disposition": "repeat",
+      "canonicalRow": 16
+    },
+    {
+      "sourcePosition": 32,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #16",
+      "sourceRangeReference": "Fall of the Hammer explicit sequence: Spider-Man 2099 #15, Spider-Man 2099 #16, Ravage 2099 #15, X-Men 2099 #5, Doom 2099 #14, Punisher 2099 #13, 2099 Unlimited #4",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "16",
+      "block": 4,
+      "disposition": "repeat",
+      "canonicalRow": 17
+    },
+    {
+      "sourcePosition": 33,
+      "sourceIssueReference": "Ravage 2099 (1992) #15",
+      "sourceRangeReference": "Fall of the Hammer explicit sequence: Spider-Man 2099 #15, Spider-Man 2099 #16, Ravage 2099 #15, X-Men 2099 #5, Doom 2099 #14, Punisher 2099 #13, 2099 Unlimited #4",
+      "normalizedSeriesTitle": "Ravage 2099",
+      "seriesYear": 1992,
+      "issueNumber": "15",
+      "block": 4,
+      "disposition": "repeat",
+      "canonicalRow": 24
+    },
+    {
+      "sourcePosition": 34,
+      "sourceIssueReference": "X-Men 2099 (1993) #5",
+      "sourceRangeReference": "Fall of the Hammer explicit sequence: Spider-Man 2099 #15, Spider-Man 2099 #16, Ravage 2099 #15, X-Men 2099 #5, Doom 2099 #14, Punisher 2099 #13, 2099 Unlimited #4",
+      "normalizedSeriesTitle": "X-Men 2099",
+      "seriesYear": 1993,
+      "issueNumber": "5",
+      "block": 4,
+      "disposition": "repeat",
+      "canonicalRow": 25
+    },
+    {
+      "sourcePosition": 35,
+      "sourceIssueReference": "Doom 2099 (1993) #14",
+      "sourceRangeReference": "Fall of the Hammer explicit sequence: Spider-Man 2099 #15, Spider-Man 2099 #16, Ravage 2099 #15, X-Men 2099 #5, Doom 2099 #14, Punisher 2099 #13, 2099 Unlimited #4",
+      "normalizedSeriesTitle": "Doom 2099",
+      "seriesYear": 1993,
+      "issueNumber": "14",
+      "block": 4,
+      "disposition": "repeat",
+      "canonicalRow": 26
+    },
+    {
+      "sourcePosition": 36,
+      "sourceIssueReference": "Punisher 2099 (1993) #13",
+      "sourceRangeReference": "Fall of the Hammer explicit sequence: Spider-Man 2099 #15, Spider-Man 2099 #16, Ravage 2099 #15, X-Men 2099 #5, Doom 2099 #14, Punisher 2099 #13, 2099 Unlimited #4",
+      "normalizedSeriesTitle": "Punisher 2099",
+      "seriesYear": 1993,
+      "issueNumber": "13",
+      "block": 4,
+      "disposition": "repeat",
+      "canonicalRow": 27
+    },
+    {
+      "sourcePosition": 37,
+      "sourceIssueReference": "2099 Unlimited (1993) #4",
+      "sourceRangeReference": "Fall of the Hammer explicit sequence: Spider-Man 2099 #15, Spider-Man 2099 #16, Ravage 2099 #15, X-Men 2099 #5, Doom 2099 #14, Punisher 2099 #13, 2099 Unlimited #4",
+      "normalizedSeriesTitle": "2099 Unlimited",
+      "seriesYear": 1993,
+      "issueNumber": "4",
+      "block": 4,
+      "disposition": "gap"
+    },
+    {
+      "sourcePosition": 38,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #23",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 23-33, Material From 2099 Unlimited 8",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "23",
+      "block": 5,
+      "disposition": "exact",
+      "seriesId": 2070,
+      "issueId": 10880,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633"
+      }
+    },
+    {
+      "sourcePosition": 39,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #24",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 23-33, Material From 2099 Unlimited 8",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "24",
+      "block": 5,
+      "disposition": "exact",
+      "seriesId": 2070,
+      "issueId": 10881,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633"
+      }
+    },
+    {
+      "sourcePosition": 40,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #25",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 23-33, Material From 2099 Unlimited 8",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "25",
+      "block": 5,
+      "disposition": "exact",
+      "seriesId": 2070,
+      "issueId": 10882,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633"
+      }
+    },
+    {
+      "sourcePosition": 41,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #26",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 23-33, Material From 2099 Unlimited 8",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "26",
+      "block": 5,
+      "disposition": "exact",
+      "seriesId": 2070,
+      "issueId": 10883,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633"
+      }
+    },
+    {
+      "sourcePosition": 42,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #27",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 23-33, Material From 2099 Unlimited 8",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "27",
+      "block": 5,
+      "disposition": "exact",
+      "seriesId": 2070,
+      "issueId": 10884,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633"
+      }
+    },
+    {
+      "sourcePosition": 43,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #28",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 23-33, Material From 2099 Unlimited 8",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "28",
+      "block": 5,
+      "disposition": "exact",
+      "seriesId": 2070,
+      "issueId": 10885,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633"
+      }
+    },
+    {
+      "sourcePosition": 44,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #29",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 23-33, Material From 2099 Unlimited 8",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "29",
+      "block": 5,
+      "disposition": "exact",
+      "seriesId": 2070,
+      "issueId": 10886,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633"
+      }
+    },
+    {
+      "sourcePosition": 45,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #30",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 23-33, Material From 2099 Unlimited 8",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "30",
+      "block": 5,
+      "disposition": "exact",
+      "seriesId": 2070,
+      "issueId": 10888,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633"
+      }
+    },
+    {
+      "sourcePosition": 46,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #31",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 23-33, Material From 2099 Unlimited 8",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "31",
+      "block": 5,
+      "disposition": "exact",
+      "seriesId": 2070,
+      "issueId": 10889,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633"
+      }
+    },
+    {
+      "sourcePosition": 47,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #32",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 23-33, Material From 2099 Unlimited 8",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "32",
+      "block": 5,
+      "disposition": "exact",
+      "seriesId": 2070,
+      "issueId": 10890,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633"
+      }
+    },
+    {
+      "sourcePosition": 48,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #33",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 23-33, Material From 2099 Unlimited 8",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "33",
+      "block": 5,
+      "disposition": "exact",
+      "seriesId": 2070,
+      "issueId": 10891,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633"
+      }
+    },
+    {
+      "sourcePosition": 49,
+      "sourceIssueReference": "2099 Unlimited (1993) #8",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 23-33, Material From 2099 Unlimited 8",
+      "normalizedSeriesTitle": "2099 Unlimited",
+      "seriesYear": 1993,
+      "issueNumber": "8",
+      "block": 5,
+      "disposition": "gap"
+    },
+    {
+      "sourcePosition": 50,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #34",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 34-38, Special; Spider-Man 2099 Meets Spider-Man; Material From 2099 Unlimited 9-10",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "34",
+      "block": 6,
+      "disposition": "exact",
+      "seriesId": 2070,
+      "issueId": 10892,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633"
+      }
+    },
+    {
+      "sourcePosition": 51,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #35",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 34-38, Special; Spider-Man 2099 Meets Spider-Man; Material From 2099 Unlimited 9-10",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "35",
+      "block": 6,
+      "disposition": "exact",
+      "seriesId": 2070,
+      "issueId": 10893,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633"
+      }
+    },
+    {
+      "sourcePosition": 52,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #36",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 34-38, Special; Spider-Man 2099 Meets Spider-Man; Material From 2099 Unlimited 9-10",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "36",
+      "block": 6,
+      "disposition": "exact",
+      "seriesId": 2070,
+      "issueId": 10894,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633"
+      }
+    },
+    {
+      "sourcePosition": 53,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #37",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 34-38, Special; Spider-Man 2099 Meets Spider-Man; Material From 2099 Unlimited 9-10",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "37",
+      "block": 6,
+      "disposition": "exact",
+      "seriesId": 2070,
+      "issueId": 10895,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633"
+      }
+    },
+    {
+      "sourcePosition": 54,
+      "sourceIssueReference": "Spider-Man 2099 (1992) #38",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 34-38, Special; Spider-Man 2099 Meets Spider-Man; Material From 2099 Unlimited 9-10",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 1992,
+      "issueNumber": "38",
+      "block": 6,
+      "disposition": "exact",
+      "seriesId": 2070,
+      "issueId": 10896,
+      "selectionNote": "The source reference uses verified series 2070 (Spider-Man 2099 (1992 - 1996)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633"
+      }
+    },
+    {
+      "sourcePosition": 55,
+      "sourceIssueReference": "Spider-Man 2099 Special (1995) #1",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 34-38, Special; Spider-Man 2099 Meets Spider-Man; Material From 2099 Unlimited 9-10",
+      "normalizedSeriesTitle": "Spider-Man 2099 Special",
+      "seriesYear": 1995,
+      "issueNumber": "1",
+      "block": 6,
+      "disposition": "exact",
+      "seriesId": 27380,
+      "issueId": 76328,
+      "selectionNote": "The source Special in the Venom 2099 collection is the original Spider-Man 2099 Special (1995) #1, not a standalone Venom crossover series.",
+      "metadataEvidence": {
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633"
+      }
+    },
+    {
+      "sourcePosition": 56,
+      "sourceIssueReference": "Spider-Man 2099 Meets Spider-Man (1995) #1",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 34-38, Special; Spider-Man 2099 Meets Spider-Man; Material From 2099 Unlimited 9-10",
+      "normalizedSeriesTitle": "Spider-Man 2099 Meets Spider-Man",
+      "seriesYear": 1995,
+      "issueNumber": "1",
+      "block": 6,
+      "disposition": "exact",
+      "seriesId": 44665,
+      "issueId": 65143,
+      "selectionNote": "The source original one-shot resolves to pinned issue 65143 in current provider series 44665. The supplied series 23705 is not used; provider spelling appends a redundant 1 to the series title.",
+      "metadataEvidence": {
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633"
+      }
+    },
+    {
+      "sourcePosition": 57,
+      "sourceIssueReference": "2099 Unlimited (1993) #9",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 34-38, Special; Spider-Man 2099 Meets Spider-Man; Material From 2099 Unlimited 9-10",
+      "normalizedSeriesTitle": "2099 Unlimited",
+      "seriesYear": 1993,
+      "issueNumber": "9",
+      "block": 6,
+      "disposition": "gap"
+    },
+    {
+      "sourcePosition": 58,
+      "sourceIssueReference": "2099 Unlimited (1993) #10",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (1992) 34-38, Special; Spider-Man 2099 Meets Spider-Man; Material From 2099 Unlimited 9-10",
+      "normalizedSeriesTitle": "2099 Unlimited",
+      "seriesYear": 1993,
+      "issueNumber": "10",
+      "block": 6,
+      "disposition": "gap"
+    },
+    {
+      "sourcePosition": 59,
+      "sourceIssueReference": "2099: World of Tomorrow (1996) #1",
+      "sourceRangeReference": "Collects: 2099: World Of Tomorrow #1 To #8",
+      "normalizedSeriesTitle": "2099: World of Tomorrow",
+      "seriesYear": 1996,
+      "issueNumber": "1",
+      "block": 7,
+      "disposition": "gap"
+    },
+    {
+      "sourcePosition": 60,
+      "sourceIssueReference": "2099: World of Tomorrow (1996) #2",
+      "sourceRangeReference": "Collects: 2099: World Of Tomorrow #1 To #8",
+      "normalizedSeriesTitle": "2099: World of Tomorrow",
+      "seriesYear": 1996,
+      "issueNumber": "2",
+      "block": 7,
+      "disposition": "gap"
+    },
+    {
+      "sourcePosition": 61,
+      "sourceIssueReference": "2099: World of Tomorrow (1996) #3",
+      "sourceRangeReference": "Collects: 2099: World Of Tomorrow #1 To #8",
+      "normalizedSeriesTitle": "2099: World of Tomorrow",
+      "seriesYear": 1996,
+      "issueNumber": "3",
+      "block": 7,
+      "disposition": "gap"
+    },
+    {
+      "sourcePosition": 62,
+      "sourceIssueReference": "2099: World of Tomorrow (1996) #4",
+      "sourceRangeReference": "Collects: 2099: World Of Tomorrow #1 To #8",
+      "normalizedSeriesTitle": "2099: World of Tomorrow",
+      "seriesYear": 1996,
+      "issueNumber": "4",
+      "block": 7,
+      "disposition": "gap"
+    },
+    {
+      "sourcePosition": 63,
+      "sourceIssueReference": "2099: World of Tomorrow (1996) #5",
+      "sourceRangeReference": "Collects: 2099: World Of Tomorrow #1 To #8",
+      "normalizedSeriesTitle": "2099: World of Tomorrow",
+      "seriesYear": 1996,
+      "issueNumber": "5",
+      "block": 7,
+      "disposition": "gap"
+    },
+    {
+      "sourcePosition": 64,
+      "sourceIssueReference": "2099: World of Tomorrow (1996) #6",
+      "sourceRangeReference": "Collects: 2099: World Of Tomorrow #1 To #8",
+      "normalizedSeriesTitle": "2099: World of Tomorrow",
+      "seriesYear": 1996,
+      "issueNumber": "6",
+      "block": 7,
+      "disposition": "gap"
+    },
+    {
+      "sourcePosition": 65,
+      "sourceIssueReference": "2099: World of Tomorrow (1996) #7",
+      "sourceRangeReference": "Collects: 2099: World Of Tomorrow #1 To #8",
+      "normalizedSeriesTitle": "2099: World of Tomorrow",
+      "seriesYear": 1996,
+      "issueNumber": "7",
+      "block": 7,
+      "disposition": "gap"
+    },
+    {
+      "sourcePosition": 66,
+      "sourceIssueReference": "2099: World of Tomorrow (1996) #8",
+      "sourceRangeReference": "Collects: 2099: World Of Tomorrow #1 To #8",
+      "normalizedSeriesTitle": "2099: World of Tomorrow",
+      "seriesYear": 1996,
+      "issueNumber": "8",
+      "block": 7,
+      "disposition": "gap"
+    },
+    {
+      "sourcePosition": 67,
+      "sourceIssueReference": "Captain Marvel (2000) #27",
+      "sourceRangeReference": "Collects: Captain Marvel (2000) #27 To #29",
+      "normalizedSeriesTitle": "Captain Marvel",
+      "seriesYear": 2000,
+      "issueNumber": "27",
+      "block": 8,
+      "disposition": "exact",
+      "seriesId": 690,
+      "issueId": 22841,
+      "selectionNote": "The source reference uses verified series 690 (Captain Marvel (2000 - 2002)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/690/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:41.529Z",
+        "sha256": "0b3401b7c81231799d0a5ab102e6cec256cc3565d75585ad4d941118f08a2378"
+      }
+    },
+    {
+      "sourcePosition": 68,
+      "sourceIssueReference": "Captain Marvel (2000) #28",
+      "sourceRangeReference": "Collects: Captain Marvel (2000) #27 To #29",
+      "normalizedSeriesTitle": "Captain Marvel",
+      "seriesYear": 2000,
+      "issueNumber": "28",
+      "block": 8,
+      "disposition": "exact",
+      "seriesId": 690,
+      "issueId": 22842,
+      "selectionNote": "The source reference uses verified series 690 (Captain Marvel (2000 - 2002)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/690/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:41.529Z",
+        "sha256": "0b3401b7c81231799d0a5ab102e6cec256cc3565d75585ad4d941118f08a2378"
+      }
+    },
+    {
+      "sourcePosition": 69,
+      "sourceIssueReference": "Captain Marvel (2000) #29",
+      "sourceRangeReference": "Collects: Captain Marvel (2000) #27 To #29",
+      "normalizedSeriesTitle": "Captain Marvel",
+      "seriesYear": 2000,
+      "issueNumber": "29",
+      "block": 8,
+      "disposition": "exact",
+      "seriesId": 690,
+      "issueId": 22843,
+      "selectionNote": "The source reference uses verified series 690 (Captain Marvel (2000 - 2002)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/690/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:41.529Z",
+        "sha256": "0b3401b7c81231799d0a5ab102e6cec256cc3565d75585ad4d941118f08a2378"
+      }
+    },
+    {
+      "sourcePosition": 70,
+      "sourceIssueReference": "Exiles (2001) #75",
+      "sourceRangeReference": "Collects: Exiles #75-89, Exiles Annual #1",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2001,
+      "issueNumber": "75",
+      "block": 9,
+      "disposition": "exact",
+      "seriesId": 479,
+      "issueId": 3378,
+      "selectionNote": "The source reference uses verified series 479 (Exiles (2001 - 2008)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/479/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:41.735Z",
+        "sha256": "ee81d098d425a15d612e27fd35b3c81d346b591f866966b4ccfcda260bf56b3b"
+      }
+    },
+    {
+      "sourcePosition": 71,
+      "sourceIssueReference": "Exiles (2001) #76",
+      "sourceRangeReference": "Collects: Exiles #75-89, Exiles Annual #1",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2001,
+      "issueNumber": "76",
+      "block": 9,
+      "disposition": "exact",
+      "seriesId": 479,
+      "issueId": 3379,
+      "selectionNote": "The source reference uses verified series 479 (Exiles (2001 - 2008)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/479/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:41.735Z",
+        "sha256": "ee81d098d425a15d612e27fd35b3c81d346b591f866966b4ccfcda260bf56b3b"
+      }
+    },
+    {
+      "sourcePosition": 72,
+      "sourceIssueReference": "Exiles (2001) #77",
+      "sourceRangeReference": "Collects: Exiles #75-89, Exiles Annual #1",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2001,
+      "issueNumber": "77",
+      "block": 9,
+      "disposition": "exact",
+      "seriesId": 479,
+      "issueId": 3498,
+      "selectionNote": "The source reference uses verified series 479 (Exiles (2001 - 2008)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/479/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:41.735Z",
+        "sha256": "ee81d098d425a15d612e27fd35b3c81d346b591f866966b4ccfcda260bf56b3b"
+      }
+    },
+    {
+      "sourcePosition": 73,
+      "sourceIssueReference": "Exiles (2001) #78",
+      "sourceRangeReference": "Collects: Exiles #75-89, Exiles Annual #1",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2001,
+      "issueNumber": "78",
+      "block": 9,
+      "disposition": "exact",
+      "seriesId": 479,
+      "issueId": 3902,
+      "selectionNote": "The source reference uses verified series 479 (Exiles (2001 - 2008)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/479/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:41.735Z",
+        "sha256": "ee81d098d425a15d612e27fd35b3c81d346b591f866966b4ccfcda260bf56b3b"
+      }
+    },
+    {
+      "sourcePosition": 74,
+      "sourceIssueReference": "Exiles (2001) #79",
+      "sourceRangeReference": "Collects: Exiles #75-89, Exiles Annual #1",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2001,
+      "issueNumber": "79",
+      "block": 9,
+      "disposition": "exact",
+      "seriesId": 479,
+      "issueId": 4034,
+      "selectionNote": "The source reference uses verified series 479 (Exiles (2001 - 2008)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/479/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:41.735Z",
+        "sha256": "ee81d098d425a15d612e27fd35b3c81d346b591f866966b4ccfcda260bf56b3b"
+      }
+    },
+    {
+      "sourcePosition": 75,
+      "sourceIssueReference": "Exiles (2001) #80",
+      "sourceRangeReference": "Collects: Exiles #75-89, Exiles Annual #1",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2001,
+      "issueNumber": "80",
+      "block": 9,
+      "disposition": "exact",
+      "seriesId": 479,
+      "issueId": 4148,
+      "selectionNote": "The source reference uses verified series 479 (Exiles (2001 - 2008)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/479/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:41.735Z",
+        "sha256": "ee81d098d425a15d612e27fd35b3c81d346b591f866966b4ccfcda260bf56b3b"
+      }
+    },
+    {
+      "sourcePosition": 76,
+      "sourceIssueReference": "Exiles (2001) #81",
+      "sourceRangeReference": "Collects: Exiles #75-89, Exiles Annual #1",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2001,
+      "issueNumber": "81",
+      "block": 9,
+      "disposition": "exact",
+      "seriesId": 479,
+      "issueId": 4149,
+      "selectionNote": "The source reference uses verified series 479 (Exiles (2001 - 2008)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/479/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:41.735Z",
+        "sha256": "ee81d098d425a15d612e27fd35b3c81d346b591f866966b4ccfcda260bf56b3b"
+      }
+    },
+    {
+      "sourcePosition": 77,
+      "sourceIssueReference": "Exiles (2001) #82",
+      "sourceRangeReference": "Collects: Exiles #75-89, Exiles Annual #1",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2001,
+      "issueNumber": "82",
+      "block": 9,
+      "disposition": "exact",
+      "seriesId": 479,
+      "issueId": 4258,
+      "selectionNote": "The source reference uses verified series 479 (Exiles (2001 - 2008)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/479/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:41.735Z",
+        "sha256": "ee81d098d425a15d612e27fd35b3c81d346b591f866966b4ccfcda260bf56b3b"
+      }
+    },
+    {
+      "sourcePosition": 78,
+      "sourceIssueReference": "Exiles (2001) #83",
+      "sourceRangeReference": "Collects: Exiles #75-89, Exiles Annual #1",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2001,
+      "issueNumber": "83",
+      "block": 9,
+      "disposition": "exact",
+      "seriesId": 479,
+      "issueId": 4259,
+      "selectionNote": "The source reference uses verified series 479 (Exiles (2001 - 2008)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/479/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:41.735Z",
+        "sha256": "ee81d098d425a15d612e27fd35b3c81d346b591f866966b4ccfcda260bf56b3b"
+      }
+    },
+    {
+      "sourcePosition": 79,
+      "sourceIssueReference": "Exiles (2001) #84",
+      "sourceRangeReference": "Collects: Exiles #75-89, Exiles Annual #1",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2001,
+      "issueNumber": "84",
+      "block": 9,
+      "disposition": "exact",
+      "seriesId": 479,
+      "issueId": 4418,
+      "selectionNote": "The source reference uses verified series 479 (Exiles (2001 - 2008)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/479/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:41.735Z",
+        "sha256": "ee81d098d425a15d612e27fd35b3c81d346b591f866966b4ccfcda260bf56b3b"
+      }
+    },
+    {
+      "sourcePosition": 80,
+      "sourceIssueReference": "Exiles (2001) #85",
+      "sourceRangeReference": "Collects: Exiles #75-89, Exiles Annual #1",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2001,
+      "issueNumber": "85",
+      "block": 9,
+      "disposition": "exact",
+      "seriesId": 479,
+      "issueId": 4805,
+      "selectionNote": "The source reference uses verified series 479 (Exiles (2001 - 2008)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/479/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:41.735Z",
+        "sha256": "ee81d098d425a15d612e27fd35b3c81d346b591f866966b4ccfcda260bf56b3b"
+      }
+    },
+    {
+      "sourcePosition": 81,
+      "sourceIssueReference": "Exiles (2001) #86",
+      "sourceRangeReference": "Collects: Exiles #75-89, Exiles Annual #1",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2001,
+      "issueNumber": "86",
+      "block": 9,
+      "disposition": "exact",
+      "seriesId": 479,
+      "issueId": 5093,
+      "selectionNote": "The source reference uses verified series 479 (Exiles (2001 - 2008)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/479/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:41.735Z",
+        "sha256": "ee81d098d425a15d612e27fd35b3c81d346b591f866966b4ccfcda260bf56b3b"
+      }
+    },
+    {
+      "sourcePosition": 82,
+      "sourceIssueReference": "Exiles (2001) #87",
+      "sourceRangeReference": "Collects: Exiles #75-89, Exiles Annual #1",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2001,
+      "issueNumber": "87",
+      "block": 9,
+      "disposition": "exact",
+      "seriesId": 479,
+      "issueId": 5244,
+      "selectionNote": "The source reference uses verified series 479 (Exiles (2001 - 2008)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/479/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:41.735Z",
+        "sha256": "ee81d098d425a15d612e27fd35b3c81d346b591f866966b4ccfcda260bf56b3b"
+      }
+    },
+    {
+      "sourcePosition": 83,
+      "sourceIssueReference": "Exiles (2001) #88",
+      "sourceRangeReference": "Collects: Exiles #75-89, Exiles Annual #1",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2001,
+      "issueNumber": "88",
+      "block": 9,
+      "disposition": "exact",
+      "seriesId": 479,
+      "issueId": 5546,
+      "selectionNote": "The source reference uses verified series 479 (Exiles (2001 - 2008)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/479/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:41.735Z",
+        "sha256": "ee81d098d425a15d612e27fd35b3c81d346b591f866966b4ccfcda260bf56b3b"
+      }
+    },
+    {
+      "sourcePosition": 84,
+      "sourceIssueReference": "Exiles (2001) #89",
+      "sourceRangeReference": "Collects: Exiles #75-89, Exiles Annual #1",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2001,
+      "issueNumber": "89",
+      "block": 9,
+      "disposition": "exact",
+      "seriesId": 479,
+      "issueId": 5668,
+      "selectionNote": "The source reference uses verified series 479 (Exiles (2001 - 2008)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/479/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:41.735Z",
+        "sha256": "ee81d098d425a15d612e27fd35b3c81d346b591f866966b4ccfcda260bf56b3b"
+      }
+    },
+    {
+      "sourcePosition": 85,
+      "sourceIssueReference": "Exiles Annual (2006) #1",
+      "sourceRangeReference": "Collects: Exiles #75-89, Exiles Annual #1",
+      "normalizedSeriesTitle": "Exiles Annual",
+      "seriesYear": 2006,
+      "issueNumber": "1",
+      "block": 9,
+      "disposition": "exact",
+      "seriesId": 1146,
+      "issueId": 5732,
+      "selectionNote": "The source Exiles Annual #1 is the original 2006 annual, not a collection despite the provider series title ending in 1.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/1146/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:41.937Z",
+        "sha256": "defbaf147ff21e6b22613e86cfdde37c4db5ab490af8b53c0a571b54b94f1182"
+      }
+    },
+    {
+      "sourcePosition": 86,
+      "sourceIssueReference": "Exiles (2001) #90",
+      "sourceRangeReference": "Collects: Exiles #90-100, Days Of Then & Now; X-Men: Die By The Sword #1-5",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2001,
+      "issueNumber": "90",
+      "block": 10,
+      "disposition": "exact",
+      "seriesId": 479,
+      "issueId": 5806,
+      "selectionNote": "The source reference uses verified series 479 (Exiles (2001 - 2008)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/479/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:41.735Z",
+        "sha256": "ee81d098d425a15d612e27fd35b3c81d346b591f866966b4ccfcda260bf56b3b"
+      }
+    },
+    {
+      "sourcePosition": 87,
+      "sourceIssueReference": "Exiles (2001) #91",
+      "sourceRangeReference": "Collects: Exiles #90-100, Days Of Then & Now; X-Men: Die By The Sword #1-5",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2001,
+      "issueNumber": "91",
+      "block": 10,
+      "disposition": "exact",
+      "seriesId": 479,
+      "issueId": 6005,
+      "selectionNote": "The source reference uses verified series 479 (Exiles (2001 - 2008)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/479/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:41.735Z",
+        "sha256": "ee81d098d425a15d612e27fd35b3c81d346b591f866966b4ccfcda260bf56b3b"
+      }
+    },
+    {
+      "sourcePosition": 88,
+      "sourceIssueReference": "Exiles (2001) #92",
+      "sourceRangeReference": "Collects: Exiles #90-100, Days Of Then & Now; X-Men: Die By The Sword #1-5",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2001,
+      "issueNumber": "92",
+      "block": 10,
+      "disposition": "exact",
+      "seriesId": 479,
+      "issueId": 6154,
+      "selectionNote": "The source reference uses verified series 479 (Exiles (2001 - 2008)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/479/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:41.735Z",
+        "sha256": "ee81d098d425a15d612e27fd35b3c81d346b591f866966b4ccfcda260bf56b3b"
+      }
+    },
+    {
+      "sourcePosition": 89,
+      "sourceIssueReference": "Exiles (2001) #93",
+      "sourceRangeReference": "Collects: Exiles #90-100, Days Of Then & Now; X-Men: Die By The Sword #1-5",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2001,
+      "issueNumber": "93",
+      "block": 10,
+      "disposition": "exact",
+      "seriesId": 479,
+      "issueId": 6334,
+      "selectionNote": "The source reference uses verified series 479 (Exiles (2001 - 2008)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/479/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:41.735Z",
+        "sha256": "ee81d098d425a15d612e27fd35b3c81d346b591f866966b4ccfcda260bf56b3b"
+      }
+    },
+    {
+      "sourcePosition": 90,
+      "sourceIssueReference": "Exiles (2001) #94",
+      "sourceRangeReference": "Collects: Exiles #90-100, Days Of Then & Now; X-Men: Die By The Sword #1-5",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2001,
+      "issueNumber": "94",
+      "block": 10,
+      "disposition": "exact",
+      "seriesId": 479,
+      "issueId": 13429,
+      "selectionNote": "The source reference uses verified series 479 (Exiles (2001 - 2008)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/479/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:41.735Z",
+        "sha256": "ee81d098d425a15d612e27fd35b3c81d346b591f866966b4ccfcda260bf56b3b"
+      }
+    },
+    {
+      "sourcePosition": 91,
+      "sourceIssueReference": "Exiles (2001) #95",
+      "sourceRangeReference": "Collects: Exiles #90-100, Days Of Then & Now; X-Men: Die By The Sword #1-5",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2001,
+      "issueNumber": "95",
+      "block": 10,
+      "disposition": "exact",
+      "seriesId": 479,
+      "issueId": 15811,
+      "selectionNote": "The source reference uses verified series 479 (Exiles (2001 - 2008)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/479/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:41.735Z",
+        "sha256": "ee81d098d425a15d612e27fd35b3c81d346b591f866966b4ccfcda260bf56b3b"
+      }
+    },
+    {
+      "sourcePosition": 92,
+      "sourceIssueReference": "Exiles (2001) #96",
+      "sourceRangeReference": "Collects: Exiles #90-100, Days Of Then & Now; X-Men: Die By The Sword #1-5",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2001,
+      "issueNumber": "96",
+      "block": 10,
+      "disposition": "exact",
+      "seriesId": 479,
+      "issueId": 15929,
+      "selectionNote": "The source reference uses verified series 479 (Exiles (2001 - 2008)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/479/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:41.735Z",
+        "sha256": "ee81d098d425a15d612e27fd35b3c81d346b591f866966b4ccfcda260bf56b3b"
+      }
+    },
+    {
+      "sourcePosition": 93,
+      "sourceIssueReference": "Exiles (2001) #97",
+      "sourceRangeReference": "Collects: Exiles #90-100, Days Of Then & Now; X-Men: Die By The Sword #1-5",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2001,
+      "issueNumber": "97",
+      "block": 10,
+      "disposition": "exact",
+      "seriesId": 479,
+      "issueId": 16110,
+      "selectionNote": "The source reference uses verified series 479 (Exiles (2001 - 2008)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/479/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:41.735Z",
+        "sha256": "ee81d098d425a15d612e27fd35b3c81d346b591f866966b4ccfcda260bf56b3b"
+      }
+    },
+    {
+      "sourcePosition": 94,
+      "sourceIssueReference": "Exiles (2001) #98",
+      "sourceRangeReference": "Collects: Exiles #90-100, Days Of Then & Now; X-Men: Die By The Sword #1-5",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2001,
+      "issueNumber": "98",
+      "block": 10,
+      "disposition": "exact",
+      "seriesId": 479,
+      "issueId": 16455,
+      "selectionNote": "The source reference uses verified series 479 (Exiles (2001 - 2008)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/479/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:41.735Z",
+        "sha256": "ee81d098d425a15d612e27fd35b3c81d346b591f866966b4ccfcda260bf56b3b"
+      }
+    },
+    {
+      "sourcePosition": 95,
+      "sourceIssueReference": "Exiles (2001) #99",
+      "sourceRangeReference": "Collects: Exiles #90-100, Days Of Then & Now; X-Men: Die By The Sword #1-5",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2001,
+      "issueNumber": "99",
+      "block": 10,
+      "disposition": "exact",
+      "seriesId": 479,
+      "issueId": 16456,
+      "selectionNote": "The source reference uses verified series 479 (Exiles (2001 - 2008)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/479/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:41.735Z",
+        "sha256": "ee81d098d425a15d612e27fd35b3c81d346b591f866966b4ccfcda260bf56b3b"
+      }
+    },
+    {
+      "sourcePosition": 96,
+      "sourceIssueReference": "Exiles (2001) #100",
+      "sourceRangeReference": "Collects: Exiles #90-100, Days Of Then & Now; X-Men: Die By The Sword #1-5",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2001,
+      "issueNumber": "100",
+      "block": 10,
+      "disposition": "exact",
+      "seriesId": 479,
+      "issueId": 17345,
+      "selectionNote": "The source reference uses verified series 479 (Exiles (2001 - 2008)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/479/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:41.735Z",
+        "sha256": "ee81d098d425a15d612e27fd35b3c81d346b591f866966b4ccfcda260bf56b3b"
+      }
+    },
+    {
+      "sourcePosition": 97,
+      "sourceIssueReference": "Exiles: Days of Then and Now (2008) #1",
+      "sourceRangeReference": "Collects: Exiles #90-100, Days Of Then & Now; X-Men: Die By The Sword #1-5",
+      "normalizedSeriesTitle": "Exiles: Days of Then and Now",
+      "seriesYear": 2008,
+      "issueNumber": "1",
+      "block": 10,
+      "disposition": "exact",
+      "seriesId": 3420,
+      "issueId": 17659,
+      "selectionNote": "The source Days Of Then & Now is the original 2008 Exiles one-shot. Provider series spelling expands & to and and appends a redundant 1.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/3420/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:42.132Z",
+        "sha256": "a566c26b16f09edee450760cee10863d6df685bea221e9673f04eed788d33bb7"
+      }
+    },
+    {
+      "sourcePosition": 98,
+      "sourceIssueReference": "X-Men: Die by the Sword (2007) #1",
+      "sourceRangeReference": "Collects: Exiles #90-100, Days Of Then & Now; X-Men: Die By The Sword #1-5",
+      "normalizedSeriesTitle": "X-Men: Die by the Sword",
+      "seriesYear": 2007,
+      "issueNumber": "1",
+      "block": 10,
+      "disposition": "exact",
+      "seriesId": 2890,
+      "issueId": 16590,
+      "selectionNote": "The source reference uses verified series 2890 (X-Men: Die by the Sword (2007 - 2008)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/2890/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:42.334Z",
+        "sha256": "678365e61eb9307b27778c6930df165cd4cf9d61226262c6d95fac3117749771"
+      }
+    },
+    {
+      "sourcePosition": 99,
+      "sourceIssueReference": "X-Men: Die by the Sword (2007) #2",
+      "sourceRangeReference": "Collects: Exiles #90-100, Days Of Then & Now; X-Men: Die By The Sword #1-5",
+      "normalizedSeriesTitle": "X-Men: Die by the Sword",
+      "seriesYear": 2007,
+      "issueNumber": "2",
+      "block": 10,
+      "disposition": "exact",
+      "seriesId": 2890,
+      "issueId": 16591,
+      "selectionNote": "The source reference uses verified series 2890 (X-Men: Die by the Sword (2007 - 2008)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/2890/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:42.334Z",
+        "sha256": "678365e61eb9307b27778c6930df165cd4cf9d61226262c6d95fac3117749771"
+      }
+    },
+    {
+      "sourcePosition": 100,
+      "sourceIssueReference": "X-Men: Die by the Sword (2007) #3",
+      "sourceRangeReference": "Collects: Exiles #90-100, Days Of Then & Now; X-Men: Die By The Sword #1-5",
+      "normalizedSeriesTitle": "X-Men: Die by the Sword",
+      "seriesYear": 2007,
+      "issueNumber": "3",
+      "block": 10,
+      "disposition": "exact",
+      "seriesId": 2890,
+      "issueId": 17282,
+      "selectionNote": "The source reference uses verified series 2890 (X-Men: Die by the Sword (2007 - 2008)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/2890/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:42.334Z",
+        "sha256": "678365e61eb9307b27778c6930df165cd4cf9d61226262c6d95fac3117749771"
+      }
+    },
+    {
+      "sourcePosition": 101,
+      "sourceIssueReference": "X-Men: Die by the Sword (2007) #4",
+      "sourceRangeReference": "Collects: Exiles #90-100, Days Of Then & Now; X-Men: Die By The Sword #1-5",
+      "normalizedSeriesTitle": "X-Men: Die by the Sword",
+      "seriesYear": 2007,
+      "issueNumber": "4",
+      "block": 10,
+      "disposition": "exact",
+      "seriesId": 2890,
+      "issueId": 17414,
+      "selectionNote": "The source reference uses verified series 2890 (X-Men: Die by the Sword (2007 - 2008)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/2890/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:42.334Z",
+        "sha256": "678365e61eb9307b27778c6930df165cd4cf9d61226262c6d95fac3117749771"
+      }
+    },
+    {
+      "sourcePosition": 102,
+      "sourceIssueReference": "X-Men: Die by the Sword (2007) #5",
+      "sourceRangeReference": "Collects: Exiles #90-100, Days Of Then & Now; X-Men: Die By The Sword #1-5",
+      "normalizedSeriesTitle": "X-Men: Die by the Sword",
+      "seriesYear": 2007,
+      "issueNumber": "5",
+      "block": 10,
+      "disposition": "exact",
+      "seriesId": 2890,
+      "issueId": 17415,
+      "selectionNote": "The source reference uses verified series 2890 (X-Men: Die by the Sword (2007 - 2008)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/2890/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:42.334Z",
+        "sha256": "678365e61eb9307b27778c6930df165cd4cf9d61226262c6d95fac3117749771"
+      }
+    },
+    {
+      "sourcePosition": 103,
+      "sourceIssueReference": "Timestorm 2009/2099 (2009) #1",
+      "sourceRangeReference": "Collects: Timestorm 2009/2099 #1-4, Spider-Man One-Shot, And X-Men One-Shot",
+      "normalizedSeriesTitle": "Timestorm 2009/2099",
+      "seriesYear": 2009,
+      "issueNumber": "1",
+      "block": 11,
+      "disposition": "exact",
+      "seriesId": 7220,
+      "issueId": 24042,
+      "selectionNote": "The source reference uses verified series 7220 (Timestorm 2009/2099 (2009)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/7220/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:42.745Z",
+        "sha256": "170b446d64d51257599b0598723d32de2a71097f946451829a4199a9f1e1d287"
+      }
+    },
+    {
+      "sourcePosition": 104,
+      "sourceIssueReference": "Timestorm 2009/2099 (2009) #2",
+      "sourceRangeReference": "Collects: Timestorm 2009/2099 #1-4, Spider-Man One-Shot, And X-Men One-Shot",
+      "normalizedSeriesTitle": "Timestorm 2009/2099",
+      "seriesYear": 2009,
+      "issueNumber": "2",
+      "block": 11,
+      "disposition": "exact",
+      "seriesId": 7220,
+      "issueId": 24242,
+      "selectionNote": "The source reference uses verified series 7220 (Timestorm 2009/2099 (2009)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/7220/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:42.745Z",
+        "sha256": "170b446d64d51257599b0598723d32de2a71097f946451829a4199a9f1e1d287"
+      }
+    },
+    {
+      "sourcePosition": 105,
+      "sourceIssueReference": "Timestorm 2009/2099 (2009) #3",
+      "sourceRangeReference": "Collects: Timestorm 2009/2099 #1-4, Spider-Man One-Shot, And X-Men One-Shot",
+      "normalizedSeriesTitle": "Timestorm 2009/2099",
+      "seriesYear": 2009,
+      "issueNumber": "3",
+      "block": 11,
+      "disposition": "exact",
+      "seriesId": 7220,
+      "issueId": 26770,
+      "selectionNote": "The source reference uses verified series 7220 (Timestorm 2009/2099 (2009)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/7220/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:42.745Z",
+        "sha256": "170b446d64d51257599b0598723d32de2a71097f946451829a4199a9f1e1d287"
+      }
+    },
+    {
+      "sourcePosition": 106,
+      "sourceIssueReference": "Timestorm 2009/2099 (2009) #4",
+      "sourceRangeReference": "Collects: Timestorm 2009/2099 #1-4, Spider-Man One-Shot, And X-Men One-Shot",
+      "normalizedSeriesTitle": "Timestorm 2009/2099",
+      "seriesYear": 2009,
+      "issueNumber": "4",
+      "block": 11,
+      "disposition": "exact",
+      "seriesId": 7220,
+      "issueId": 26771,
+      "selectionNote": "The source reference uses verified series 7220 (Timestorm 2009/2099 (2009)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/7220/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:42.745Z",
+        "sha256": "170b446d64d51257599b0598723d32de2a71097f946451829a4199a9f1e1d287"
+      }
+    },
+    {
+      "sourcePosition": 107,
+      "sourceIssueReference": "Timestorm 2009/2099: Spider-Man (2009) #1",
+      "sourceRangeReference": "Collects: Timestorm 2009/2099 #1-4, Spider-Man One-Shot, And X-Men One-Shot",
+      "normalizedSeriesTitle": "Timestorm 2009/2099: Spider-Man",
+      "seriesYear": 2009,
+      "issueNumber": "1",
+      "block": 11,
+      "disposition": "exact",
+      "seriesId": 8466,
+      "issueId": 26774,
+      "selectionNote": "The source Spider-Man One-Shot under Timestorm is the separately indexed Timestorm 2009/2099: Spider-Man (2009) #1.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/8466/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:42.960Z",
+        "sha256": "e2019208ff9cee3882634b14a1cffc2c96502424ca9bdf72a4302754d97d6629"
+      }
+    },
+    {
+      "sourcePosition": 108,
+      "sourceIssueReference": "Timestorm 2009/2099: X-Men (2009) #1",
+      "sourceRangeReference": "Collects: Timestorm 2009/2099 #1-4, Spider-Man One-Shot, And X-Men One-Shot",
+      "normalizedSeriesTitle": "Timestorm 2009/2099: X-Men",
+      "seriesYear": 2009,
+      "issueNumber": "1",
+      "block": 11,
+      "disposition": "exact",
+      "seriesId": 8467,
+      "issueId": 26775,
+      "selectionNote": "The source X-Men One-Shot under Timestorm is the separately indexed Timestorm 2009/2099: X-Men (2009) #1.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/8467/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:43.154Z",
+        "sha256": "30dfb912f6906ea6074de0cd32f918d98d4f4384c7b8f11e3a2ebeba4638519b"
+      }
+    },
+    {
+      "sourcePosition": 109,
+      "sourceIssueReference": "Superior Spider-Man (2013) #17",
+      "sourceRangeReference": "Collects: Superior Spider-Man #17 To #19",
+      "normalizedSeriesTitle": "Superior Spider-Man",
+      "seriesYear": 2013,
+      "issueNumber": "17",
+      "block": 12,
+      "disposition": "exact",
+      "seriesId": 17554,
+      "issueId": 47381,
+      "selectionNote": "The source reference uses verified series 17554 (Superior Spider-Man (2013 - 2014)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "e3d9ccb458743de6a55c6289c24f3c6a2fb9076cea14d5a91e796f71017bfb45"
+      }
+    },
+    {
+      "sourcePosition": 110,
+      "sourceIssueReference": "Superior Spider-Man (2013) #18",
+      "sourceRangeReference": "Collects: Superior Spider-Man #17 To #19",
+      "normalizedSeriesTitle": "Superior Spider-Man",
+      "seriesYear": 2013,
+      "issueNumber": "18",
+      "block": 12,
+      "disposition": "exact",
+      "seriesId": 17554,
+      "issueId": 47382,
+      "selectionNote": "The source reference uses verified series 17554 (Superior Spider-Man (2013 - 2014)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "e3d9ccb458743de6a55c6289c24f3c6a2fb9076cea14d5a91e796f71017bfb45"
+      }
+    },
+    {
+      "sourcePosition": 111,
+      "sourceIssueReference": "Superior Spider-Man (2013) #19",
+      "sourceRangeReference": "Collects: Superior Spider-Man #17 To #19",
+      "normalizedSeriesTitle": "Superior Spider-Man",
+      "seriesYear": 2013,
+      "issueNumber": "19",
+      "block": 12,
+      "disposition": "exact",
+      "seriesId": 17554,
+      "issueId": 47383,
+      "selectionNote": "The source reference uses verified series 17554 (Superior Spider-Man (2013 - 2014)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "e3d9ccb458743de6a55c6289c24f3c6a2fb9076cea14d5a91e796f71017bfb45"
+      }
+    },
+    {
+      "sourcePosition": 112,
+      "sourceIssueReference": "Spider-Man 2099 (2014) #1",
+      "sourceRangeReference": "Collects: Spider-Man 2099 1-5, Amazing Spider-Man 1",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2014,
+      "issueNumber": "1",
+      "block": 13,
+      "disposition": "exact",
+      "seriesId": 18891,
+      "issueId": 50890,
+      "selectionNote": "Out of Time and Spider-Verse use the 2014 Spider-Man 2099 run.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/18891/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:43.354Z",
+        "sha256": "193e88545d5bc318296af282d3ca0fb4cd5321280835f05dd33d5863792ce8fb"
+      }
+    },
+    {
+      "sourcePosition": 113,
+      "sourceIssueReference": "Spider-Man 2099 (2014) #2",
+      "sourceRangeReference": "Collects: Spider-Man 2099 1-5, Amazing Spider-Man 1",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2014,
+      "issueNumber": "2",
+      "block": 13,
+      "disposition": "exact",
+      "seriesId": 18891,
+      "issueId": 50932,
+      "selectionNote": "Out of Time and Spider-Verse use the 2014 Spider-Man 2099 run.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/18891/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:43.354Z",
+        "sha256": "193e88545d5bc318296af282d3ca0fb4cd5321280835f05dd33d5863792ce8fb"
+      }
+    },
+    {
+      "sourcePosition": 114,
+      "sourceIssueReference": "Spider-Man 2099 (2014) #3",
+      "sourceRangeReference": "Collects: Spider-Man 2099 1-5, Amazing Spider-Man 1",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2014,
+      "issueNumber": "3",
+      "block": 13,
+      "disposition": "exact",
+      "seriesId": 18891,
+      "issueId": 50953,
+      "selectionNote": "Out of Time and Spider-Verse use the 2014 Spider-Man 2099 run.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/18891/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:43.354Z",
+        "sha256": "193e88545d5bc318296af282d3ca0fb4cd5321280835f05dd33d5863792ce8fb"
+      }
+    },
+    {
+      "sourcePosition": 115,
+      "sourceIssueReference": "Spider-Man 2099 (2014) #4",
+      "sourceRangeReference": "Collects: Spider-Man 2099 1-5, Amazing Spider-Man 1",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2014,
+      "issueNumber": "4",
+      "block": 13,
+      "disposition": "exact",
+      "seriesId": 18891,
+      "issueId": 50544,
+      "selectionNote": "Out of Time and Spider-Verse use the 2014 Spider-Man 2099 run.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/18891/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:43.354Z",
+        "sha256": "193e88545d5bc318296af282d3ca0fb4cd5321280835f05dd33d5863792ce8fb"
+      }
+    },
+    {
+      "sourcePosition": 116,
+      "sourceIssueReference": "Spider-Man 2099 (2014) #5",
+      "sourceRangeReference": "Collects: Spider-Man 2099 1-5, Amazing Spider-Man 1",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2014,
+      "issueNumber": "5",
+      "block": 13,
+      "disposition": "exact",
+      "seriesId": 18891,
+      "issueId": 50545,
+      "selectionNote": "Out of Time and Spider-Verse use the 2014 Spider-Man 2099 run.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/18891/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:43.354Z",
+        "sha256": "193e88545d5bc318296af282d3ca0fb4cd5321280835f05dd33d5863792ce8fb"
+      }
+    },
+    {
+      "sourcePosition": 117,
+      "sourceIssueReference": "Amazing Spider-Man (2014) #1",
+      "sourceRangeReference": "Collects: Spider-Man 2099 1-5, Amazing Spider-Man 1",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 2014,
+      "issueNumber": "1",
+      "block": 13,
+      "disposition": "exact",
+      "seriesId": 17285,
+      "issueId": 45798,
+      "selectionNote": "Amazing Spider-Man #1 alongside Out of Time is the 2014 run, not the 2018 Latest Additions run.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/17285/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:43.572Z",
+        "sha256": "ceadb402628d21c99a990413592ac13840ae7c63f688e45c82aa0081ba0e9729"
+      }
+    },
+    {
+      "sourcePosition": 118,
+      "sourceIssueReference": "Spider-Man 2099 (2014) #6",
+      "sourceRangeReference": "Collects: Spider -Man 2099 6-12",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2014,
+      "issueNumber": "6",
+      "block": 14,
+      "disposition": "exact",
+      "seriesId": 18891,
+      "issueId": 50546,
+      "selectionNote": "Out of Time and Spider-Verse use the 2014 Spider-Man 2099 run.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/18891/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:43.354Z",
+        "sha256": "193e88545d5bc318296af282d3ca0fb4cd5321280835f05dd33d5863792ce8fb"
+      }
+    },
+    {
+      "sourcePosition": 119,
+      "sourceIssueReference": "Spider-Man 2099 (2014) #7",
+      "sourceRangeReference": "Collects: Spider -Man 2099 6-12",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2014,
+      "issueNumber": "7",
+      "block": 14,
+      "disposition": "exact",
+      "seriesId": 18891,
+      "issueId": 50547,
+      "selectionNote": "Out of Time and Spider-Verse use the 2014 Spider-Man 2099 run.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/18891/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:43.354Z",
+        "sha256": "193e88545d5bc318296af282d3ca0fb4cd5321280835f05dd33d5863792ce8fb"
+      }
+    },
+    {
+      "sourcePosition": 120,
+      "sourceIssueReference": "Spider-Man 2099 (2014) #8",
+      "sourceRangeReference": "Collects: Spider -Man 2099 6-12",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2014,
+      "issueNumber": "8",
+      "block": 14,
+      "disposition": "exact",
+      "seriesId": 18891,
+      "issueId": 50548,
+      "selectionNote": "Out of Time and Spider-Verse use the 2014 Spider-Man 2099 run.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/18891/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:43.354Z",
+        "sha256": "193e88545d5bc318296af282d3ca0fb4cd5321280835f05dd33d5863792ce8fb"
+      }
+    },
+    {
+      "sourcePosition": 121,
+      "sourceIssueReference": "Spider-Man 2099 (2014) #9",
+      "sourceRangeReference": "Collects: Spider -Man 2099 6-12",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2014,
+      "issueNumber": "9",
+      "block": 14,
+      "disposition": "exact",
+      "seriesId": 18891,
+      "issueId": 50549,
+      "selectionNote": "Out of Time and Spider-Verse use the 2014 Spider-Man 2099 run.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/18891/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:43.354Z",
+        "sha256": "193e88545d5bc318296af282d3ca0fb4cd5321280835f05dd33d5863792ce8fb"
+      }
+    },
+    {
+      "sourcePosition": 122,
+      "sourceIssueReference": "Spider-Man 2099 (2014) #10",
+      "sourceRangeReference": "Collects: Spider -Man 2099 6-12",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2014,
+      "issueNumber": "10",
+      "block": 14,
+      "disposition": "exact",
+      "seriesId": 18891,
+      "issueId": 50550,
+      "selectionNote": "Out of Time and Spider-Verse use the 2014 Spider-Man 2099 run.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/18891/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:43.354Z",
+        "sha256": "193e88545d5bc318296af282d3ca0fb4cd5321280835f05dd33d5863792ce8fb"
+      }
+    },
+    {
+      "sourcePosition": 123,
+      "sourceIssueReference": "Spider-Man 2099 (2014) #11",
+      "sourceRangeReference": "Collects: Spider -Man 2099 6-12",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2014,
+      "issueNumber": "11",
+      "block": 14,
+      "disposition": "exact",
+      "seriesId": 18891,
+      "issueId": 50551,
+      "selectionNote": "Out of Time and Spider-Verse use the 2014 Spider-Man 2099 run.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/18891/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:43.354Z",
+        "sha256": "193e88545d5bc318296af282d3ca0fb4cd5321280835f05dd33d5863792ce8fb"
+      }
+    },
+    {
+      "sourcePosition": 124,
+      "sourceIssueReference": "Spider-Man 2099 (2014) #12",
+      "sourceRangeReference": "Collects: Spider -Man 2099 6-12",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2014,
+      "issueNumber": "12",
+      "block": 14,
+      "disposition": "exact",
+      "seriesId": 18891,
+      "issueId": 50552,
+      "selectionNote": "Out of Time and Spider-Verse use the 2014 Spider-Man 2099 run.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/18891/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:43.354Z",
+        "sha256": "193e88545d5bc318296af282d3ca0fb4cd5321280835f05dd33d5863792ce8fb"
+      }
+    },
+    {
+      "sourcePosition": 125,
+      "sourceIssueReference": "Secret Wars 2099 (2015) #1",
+      "sourceRangeReference": "Collects: Secret Wars 2099 #1-5",
+      "normalizedSeriesTitle": "Secret Wars 2099",
+      "seriesYear": 2015,
+      "issueNumber": "1",
+      "block": 15,
+      "disposition": "exact",
+      "seriesId": 19649,
+      "issueId": 52457,
+      "selectionNote": "The source reference uses verified series 19649 (Secret Wars 2099 (2015)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/19649/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:43.768Z",
+        "sha256": "2da1dd807f1a1f1680ef85e229b31c68a801188abf80daed67ef8bbf6e38aea5"
+      }
+    },
+    {
+      "sourcePosition": 126,
+      "sourceIssueReference": "Secret Wars 2099 (2015) #2",
+      "sourceRangeReference": "Collects: Secret Wars 2099 #1-5",
+      "normalizedSeriesTitle": "Secret Wars 2099",
+      "seriesYear": 2015,
+      "issueNumber": "2",
+      "block": 15,
+      "disposition": "exact",
+      "seriesId": 19649,
+      "issueId": 52459,
+      "selectionNote": "The source reference uses verified series 19649 (Secret Wars 2099 (2015)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/19649/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:43.768Z",
+        "sha256": "2da1dd807f1a1f1680ef85e229b31c68a801188abf80daed67ef8bbf6e38aea5"
+      }
+    },
+    {
+      "sourcePosition": 127,
+      "sourceIssueReference": "Secret Wars 2099 (2015) #3",
+      "sourceRangeReference": "Collects: Secret Wars 2099 #1-5",
+      "normalizedSeriesTitle": "Secret Wars 2099",
+      "seriesYear": 2015,
+      "issueNumber": "3",
+      "block": 15,
+      "disposition": "exact",
+      "seriesId": 19649,
+      "issueId": 52460,
+      "selectionNote": "The source reference uses verified series 19649 (Secret Wars 2099 (2015)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/19649/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:43.768Z",
+        "sha256": "2da1dd807f1a1f1680ef85e229b31c68a801188abf80daed67ef8bbf6e38aea5"
+      }
+    },
+    {
+      "sourcePosition": 128,
+      "sourceIssueReference": "Secret Wars 2099 (2015) #4",
+      "sourceRangeReference": "Collects: Secret Wars 2099 #1-5",
+      "normalizedSeriesTitle": "Secret Wars 2099",
+      "seriesYear": 2015,
+      "issueNumber": "4",
+      "block": 15,
+      "disposition": "exact",
+      "seriesId": 19649,
+      "issueId": 52461,
+      "selectionNote": "The source reference uses verified series 19649 (Secret Wars 2099 (2015)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/19649/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:43.768Z",
+        "sha256": "2da1dd807f1a1f1680ef85e229b31c68a801188abf80daed67ef8bbf6e38aea5"
+      }
+    },
+    {
+      "sourcePosition": 129,
+      "sourceIssueReference": "Secret Wars 2099 (2015) #5",
+      "sourceRangeReference": "Collects: Secret Wars 2099 #1-5",
+      "normalizedSeriesTitle": "Secret Wars 2099",
+      "seriesYear": 2015,
+      "issueNumber": "5",
+      "block": 15,
+      "disposition": "exact",
+      "seriesId": 19649,
+      "issueId": 52462,
+      "selectionNote": "The source reference uses verified series 19649 (Secret Wars 2099 (2015)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/19649/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:43.768Z",
+        "sha256": "2da1dd807f1a1f1680ef85e229b31c68a801188abf80daed67ef8bbf6e38aea5"
+      }
+    },
+    {
+      "sourcePosition": 130,
+      "sourceIssueReference": "Spider-Man 2099 (2015) #1",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #1 To #5",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2015,
+      "issueNumber": "1",
+      "block": 16,
+      "disposition": "exact",
+      "seriesId": 20511,
+      "issueId": 55711,
+      "selectionNote": "Smack to the Future through Back to Future Shock use the separate 2015 Spider-Man 2099 run.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/20511/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:43.969Z",
+        "sha256": "e5f242a06fdeff8a65990ef4d0bfc1b9bdef748a0f82d16fc6695885cd7ee876"
+      }
+    },
+    {
+      "sourcePosition": 131,
+      "sourceIssueReference": "Spider-Man 2099 (2015) #2",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #1 To #5",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2015,
+      "issueNumber": "2",
+      "block": 16,
+      "disposition": "exact",
+      "seriesId": 20511,
+      "issueId": 55713,
+      "selectionNote": "Smack to the Future through Back to Future Shock use the separate 2015 Spider-Man 2099 run.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/20511/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:43.969Z",
+        "sha256": "e5f242a06fdeff8a65990ef4d0bfc1b9bdef748a0f82d16fc6695885cd7ee876"
+      }
+    },
+    {
+      "sourcePosition": 132,
+      "sourceIssueReference": "Spider-Man 2099 (2015) #3",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #1 To #5",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2015,
+      "issueNumber": "3",
+      "block": 16,
+      "disposition": "exact",
+      "seriesId": 20511,
+      "issueId": 55715,
+      "selectionNote": "Smack to the Future through Back to Future Shock use the separate 2015 Spider-Man 2099 run.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/20511/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:43.969Z",
+        "sha256": "e5f242a06fdeff8a65990ef4d0bfc1b9bdef748a0f82d16fc6695885cd7ee876"
+      }
+    },
+    {
+      "sourcePosition": 133,
+      "sourceIssueReference": "Spider-Man 2099 (2015) #4",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #1 To #5",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2015,
+      "issueNumber": "4",
+      "block": 16,
+      "disposition": "exact",
+      "seriesId": 20511,
+      "issueId": 55716,
+      "selectionNote": "Smack to the Future through Back to Future Shock use the separate 2015 Spider-Man 2099 run.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/20511/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:43.969Z",
+        "sha256": "e5f242a06fdeff8a65990ef4d0bfc1b9bdef748a0f82d16fc6695885cd7ee876"
+      }
+    },
+    {
+      "sourcePosition": 134,
+      "sourceIssueReference": "Spider-Man 2099 (2015) #5",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #1 To #5",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2015,
+      "issueNumber": "5",
+      "block": 16,
+      "disposition": "exact",
+      "seriesId": 20511,
+      "issueId": 55717,
+      "selectionNote": "Smack to the Future through Back to Future Shock use the separate 2015 Spider-Man 2099 run.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/20511/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:43.969Z",
+        "sha256": "e5f242a06fdeff8a65990ef4d0bfc1b9bdef748a0f82d16fc6695885cd7ee876"
+      }
+    },
+    {
+      "sourcePosition": 135,
+      "sourceIssueReference": "Spider-Man 2099 (2015) #6",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #6-10",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2015,
+      "issueNumber": "6",
+      "block": 17,
+      "disposition": "exact",
+      "seriesId": 20511,
+      "issueId": 55718,
+      "selectionNote": "Smack to the Future through Back to Future Shock use the separate 2015 Spider-Man 2099 run.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/20511/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:43.969Z",
+        "sha256": "e5f242a06fdeff8a65990ef4d0bfc1b9bdef748a0f82d16fc6695885cd7ee876"
+      }
+    },
+    {
+      "sourcePosition": 136,
+      "sourceIssueReference": "Spider-Man 2099 (2015) #7",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #6-10",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2015,
+      "issueNumber": "7",
+      "block": 17,
+      "disposition": "exact",
+      "seriesId": 20511,
+      "issueId": 55719,
+      "selectionNote": "Smack to the Future through Back to Future Shock use the separate 2015 Spider-Man 2099 run.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/20511/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:43.969Z",
+        "sha256": "e5f242a06fdeff8a65990ef4d0bfc1b9bdef748a0f82d16fc6695885cd7ee876"
+      }
+    },
+    {
+      "sourcePosition": 137,
+      "sourceIssueReference": "Spider-Man 2099 (2015) #8",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #6-10",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2015,
+      "issueNumber": "8",
+      "block": 17,
+      "disposition": "exact",
+      "seriesId": 20511,
+      "issueId": 55720,
+      "selectionNote": "Smack to the Future through Back to Future Shock use the separate 2015 Spider-Man 2099 run.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/20511/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:43.969Z",
+        "sha256": "e5f242a06fdeff8a65990ef4d0bfc1b9bdef748a0f82d16fc6695885cd7ee876"
+      }
+    },
+    {
+      "sourcePosition": 138,
+      "sourceIssueReference": "Spider-Man 2099 (2015) #9",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #6-10",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2015,
+      "issueNumber": "9",
+      "block": 17,
+      "disposition": "exact",
+      "seriesId": 20511,
+      "issueId": 55721,
+      "selectionNote": "Smack to the Future through Back to Future Shock use the separate 2015 Spider-Man 2099 run.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/20511/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:43.969Z",
+        "sha256": "e5f242a06fdeff8a65990ef4d0bfc1b9bdef748a0f82d16fc6695885cd7ee876"
+      }
+    },
+    {
+      "sourcePosition": 139,
+      "sourceIssueReference": "Spider-Man 2099 (2015) #10",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #6-10",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2015,
+      "issueNumber": "10",
+      "block": 17,
+      "disposition": "exact",
+      "seriesId": 20511,
+      "issueId": 55722,
+      "selectionNote": "Smack to the Future through Back to Future Shock use the separate 2015 Spider-Man 2099 run.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/20511/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:43.969Z",
+        "sha256": "e5f242a06fdeff8a65990ef4d0bfc1b9bdef748a0f82d16fc6695885cd7ee876"
+      }
+    },
+    {
+      "sourcePosition": 140,
+      "sourceIssueReference": "Spider-Man 2099 (2015) #11",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #11 To #16",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2015,
+      "issueNumber": "11",
+      "block": 18,
+      "disposition": "exact",
+      "seriesId": 20511,
+      "issueId": 55723,
+      "selectionNote": "Smack to the Future through Back to Future Shock use the separate 2015 Spider-Man 2099 run.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/20511/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:43.969Z",
+        "sha256": "e5f242a06fdeff8a65990ef4d0bfc1b9bdef748a0f82d16fc6695885cd7ee876"
+      }
+    },
+    {
+      "sourcePosition": 141,
+      "sourceIssueReference": "Spider-Man 2099 (2015) #12",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #11 To #16",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2015,
+      "issueNumber": "12",
+      "block": 18,
+      "disposition": "exact",
+      "seriesId": 20511,
+      "issueId": 55724,
+      "selectionNote": "Smack to the Future through Back to Future Shock use the separate 2015 Spider-Man 2099 run.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/20511/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:43.969Z",
+        "sha256": "e5f242a06fdeff8a65990ef4d0bfc1b9bdef748a0f82d16fc6695885cd7ee876"
+      }
+    },
+    {
+      "sourcePosition": 142,
+      "sourceIssueReference": "Spider-Man 2099 (2015) #13",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #11 To #16",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2015,
+      "issueNumber": "13",
+      "block": 18,
+      "disposition": "exact",
+      "seriesId": 20511,
+      "issueId": 55725,
+      "selectionNote": "Smack to the Future through Back to Future Shock use the separate 2015 Spider-Man 2099 run.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/20511/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:43.969Z",
+        "sha256": "e5f242a06fdeff8a65990ef4d0bfc1b9bdef748a0f82d16fc6695885cd7ee876"
+      }
+    },
+    {
+      "sourcePosition": 143,
+      "sourceIssueReference": "Spider-Man 2099 (2015) #14",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #11 To #16",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2015,
+      "issueNumber": "14",
+      "block": 18,
+      "disposition": "exact",
+      "seriesId": 20511,
+      "issueId": 55726,
+      "selectionNote": "Smack to the Future through Back to Future Shock use the separate 2015 Spider-Man 2099 run.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/20511/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:43.969Z",
+        "sha256": "e5f242a06fdeff8a65990ef4d0bfc1b9bdef748a0f82d16fc6695885cd7ee876"
+      }
+    },
+    {
+      "sourcePosition": 144,
+      "sourceIssueReference": "Spider-Man 2099 (2015) #15",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #11 To #16",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2015,
+      "issueNumber": "15",
+      "block": 18,
+      "disposition": "exact",
+      "seriesId": 20511,
+      "issueId": 55727,
+      "selectionNote": "Smack to the Future through Back to Future Shock use the separate 2015 Spider-Man 2099 run.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/20511/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:43.969Z",
+        "sha256": "e5f242a06fdeff8a65990ef4d0bfc1b9bdef748a0f82d16fc6695885cd7ee876"
+      }
+    },
+    {
+      "sourcePosition": 145,
+      "sourceIssueReference": "Spider-Man 2099 (2015) #16",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #11 To #16",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2015,
+      "issueNumber": "16",
+      "block": 18,
+      "disposition": "exact",
+      "seriesId": 20511,
+      "issueId": 55728,
+      "selectionNote": "Smack to the Future through Back to Future Shock use the separate 2015 Spider-Man 2099 run.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/20511/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:43.969Z",
+        "sha256": "e5f242a06fdeff8a65990ef4d0bfc1b9bdef748a0f82d16fc6695885cd7ee876"
+      }
+    },
+    {
+      "sourcePosition": 146,
+      "sourceIssueReference": "Spider-Man 2099 (2015) #17",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #17-21",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2015,
+      "issueNumber": "17",
+      "block": 19,
+      "disposition": "exact",
+      "seriesId": 20511,
+      "issueId": 60245,
+      "selectionNote": "Smack to the Future through Back to Future Shock use the separate 2015 Spider-Man 2099 run.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/20511/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:43.969Z",
+        "sha256": "e5f242a06fdeff8a65990ef4d0bfc1b9bdef748a0f82d16fc6695885cd7ee876"
+      }
+    },
+    {
+      "sourcePosition": 147,
+      "sourceIssueReference": "Spider-Man 2099 (2015) #18",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #17-21",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2015,
+      "issueNumber": "18",
+      "block": 19,
+      "disposition": "exact",
+      "seriesId": 20511,
+      "issueId": 60246,
+      "selectionNote": "Smack to the Future through Back to Future Shock use the separate 2015 Spider-Man 2099 run.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/20511/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:43.969Z",
+        "sha256": "e5f242a06fdeff8a65990ef4d0bfc1b9bdef748a0f82d16fc6695885cd7ee876"
+      }
+    },
+    {
+      "sourcePosition": 148,
+      "sourceIssueReference": "Spider-Man 2099 (2015) #19",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #17-21",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2015,
+      "issueNumber": "19",
+      "block": 19,
+      "disposition": "exact",
+      "seriesId": 20511,
+      "issueId": 60247,
+      "selectionNote": "Smack to the Future through Back to Future Shock use the separate 2015 Spider-Man 2099 run.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/20511/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:43.969Z",
+        "sha256": "e5f242a06fdeff8a65990ef4d0bfc1b9bdef748a0f82d16fc6695885cd7ee876"
+      }
+    },
+    {
+      "sourcePosition": 149,
+      "sourceIssueReference": "Spider-Man 2099 (2015) #20",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #17-21",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2015,
+      "issueNumber": "20",
+      "block": 19,
+      "disposition": "exact",
+      "seriesId": 20511,
+      "issueId": 60248,
+      "selectionNote": "Smack to the Future through Back to Future Shock use the separate 2015 Spider-Man 2099 run.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/20511/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:43.969Z",
+        "sha256": "e5f242a06fdeff8a65990ef4d0bfc1b9bdef748a0f82d16fc6695885cd7ee876"
+      }
+    },
+    {
+      "sourcePosition": 150,
+      "sourceIssueReference": "Spider-Man 2099 (2015) #21",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #17-21",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2015,
+      "issueNumber": "21",
+      "block": 19,
+      "disposition": "exact",
+      "seriesId": 20511,
+      "issueId": 60779,
+      "selectionNote": "Smack to the Future through Back to Future Shock use the separate 2015 Spider-Man 2099 run.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/20511/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:43.969Z",
+        "sha256": "e5f242a06fdeff8a65990ef4d0bfc1b9bdef748a0f82d16fc6695885cd7ee876"
+      }
+    },
+    {
+      "sourcePosition": 151,
+      "sourceIssueReference": "Spider-Man 2099 (2015) #22",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #22-25, Spider-Man 2099 Meets Spider-Man (1995)",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2015,
+      "issueNumber": "22",
+      "block": 20,
+      "disposition": "exact",
+      "seriesId": 20511,
+      "issueId": 60780,
+      "selectionNote": "Smack to the Future through Back to Future Shock use the separate 2015 Spider-Man 2099 run.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/20511/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:43.969Z",
+        "sha256": "e5f242a06fdeff8a65990ef4d0bfc1b9bdef748a0f82d16fc6695885cd7ee876"
+      }
+    },
+    {
+      "sourcePosition": 152,
+      "sourceIssueReference": "Spider-Man 2099 (2015) #23",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #22-25, Spider-Man 2099 Meets Spider-Man (1995)",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2015,
+      "issueNumber": "23",
+      "block": 20,
+      "disposition": "exact",
+      "seriesId": 20511,
+      "issueId": 60781,
+      "selectionNote": "Smack to the Future through Back to Future Shock use the separate 2015 Spider-Man 2099 run.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/20511/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:43.969Z",
+        "sha256": "e5f242a06fdeff8a65990ef4d0bfc1b9bdef748a0f82d16fc6695885cd7ee876"
+      }
+    },
+    {
+      "sourcePosition": 153,
+      "sourceIssueReference": "Spider-Man 2099 (2015) #24",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #22-25, Spider-Man 2099 Meets Spider-Man (1995)",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2015,
+      "issueNumber": "24",
+      "block": 20,
+      "disposition": "exact",
+      "seriesId": 20511,
+      "issueId": 60782,
+      "selectionNote": "Smack to the Future through Back to Future Shock use the separate 2015 Spider-Man 2099 run.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/20511/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:43.969Z",
+        "sha256": "e5f242a06fdeff8a65990ef4d0bfc1b9bdef748a0f82d16fc6695885cd7ee876"
+      }
+    },
+    {
+      "sourcePosition": 154,
+      "sourceIssueReference": "Spider-Man 2099 (2015) #25",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #22-25, Spider-Man 2099 Meets Spider-Man (1995)",
+      "normalizedSeriesTitle": "Spider-Man 2099",
+      "seriesYear": 2015,
+      "issueNumber": "25",
+      "block": 20,
+      "disposition": "exact",
+      "seriesId": 20511,
+      "issueId": 60783,
+      "selectionNote": "Smack to the Future through Back to Future Shock use the separate 2015 Spider-Man 2099 run.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/20511/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:43.969Z",
+        "sha256": "e5f242a06fdeff8a65990ef4d0bfc1b9bdef748a0f82d16fc6695885cd7ee876"
+      }
+    },
+    {
+      "sourcePosition": 155,
+      "sourceIssueReference": "Spider-Man 2099 Meets Spider-Man (1995) #1",
+      "sourceRangeReference": "Collects: Spider-Man 2099 (2015) #22-25, Spider-Man 2099 Meets Spider-Man (1995)",
+      "normalizedSeriesTitle": "Spider-Man 2099 Meets Spider-Man",
+      "seriesYear": 1995,
+      "issueNumber": "1",
+      "block": 20,
+      "disposition": "repeat",
+      "canonicalRow": 45
+    },
+    {
+      "sourcePosition": 156,
+      "sourceIssueReference": "Amazing Spider-Man (2018) #32",
+      "sourceRangeReference": "Collects: Amazing Spider-Man (2018) #32 to #36",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "32",
+      "block": 21,
+      "disposition": "exact",
+      "seriesId": 24396,
+      "issueId": 77100,
+      "selectionNote": "The source reference uses verified series 24396 (The Amazing Spider-Man (2018 - 2022)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "e3d9ccb458743de6a55c6289c24f3c6a2fb9076cea14d5a91e796f71017bfb45"
+      }
+    },
+    {
+      "sourcePosition": 157,
+      "sourceIssueReference": "Amazing Spider-Man (2018) #33",
+      "sourceRangeReference": "Collects: Amazing Spider-Man (2018) #32 to #36",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "33",
+      "block": 21,
+      "disposition": "exact",
+      "seriesId": 24396,
+      "issueId": 77101,
+      "selectionNote": "The source reference uses verified series 24396 (The Amazing Spider-Man (2018 - 2022)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "e3d9ccb458743de6a55c6289c24f3c6a2fb9076cea14d5a91e796f71017bfb45"
+      }
+    },
+    {
+      "sourcePosition": 158,
+      "sourceIssueReference": "Amazing Spider-Man (2018) #34",
+      "sourceRangeReference": "Collects: Amazing Spider-Man (2018) #32 to #36",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "34",
+      "block": 21,
+      "disposition": "exact",
+      "seriesId": 24396,
+      "issueId": 77102,
+      "selectionNote": "The source reference uses verified series 24396 (The Amazing Spider-Man (2018 - 2022)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "e3d9ccb458743de6a55c6289c24f3c6a2fb9076cea14d5a91e796f71017bfb45"
+      }
+    },
+    {
+      "sourcePosition": 159,
+      "sourceIssueReference": "Amazing Spider-Man (2018) #35",
+      "sourceRangeReference": "Collects: Amazing Spider-Man (2018) #32 to #36",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "35",
+      "block": 21,
+      "disposition": "exact",
+      "seriesId": 24396,
+      "issueId": 77103,
+      "selectionNote": "The source reference uses verified series 24396 (The Amazing Spider-Man (2018 - 2022)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "e3d9ccb458743de6a55c6289c24f3c6a2fb9076cea14d5a91e796f71017bfb45"
+      }
+    },
+    {
+      "sourcePosition": 160,
+      "sourceIssueReference": "Amazing Spider-Man (2018) #36",
+      "sourceRangeReference": "Collects: Amazing Spider-Man (2018) #32 to #36",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "36",
+      "block": 21,
+      "disposition": "exact",
+      "seriesId": 24396,
+      "issueId": 77104,
+      "selectionNote": "The source reference uses verified series 24396 (The Amazing Spider-Man (2018 - 2022)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "e3d9ccb458743de6a55c6289c24f3c6a2fb9076cea14d5a91e796f71017bfb45"
+      }
+    },
+    {
+      "sourcePosition": 161,
+      "sourceIssueReference": "Spider-Man 2099: Exodus Alpha (2022) #1",
+      "sourceRangeReference": "Collects: Spider-Man 2099: Exodus Alpha, Spider-Man 2099: Exodus #1 to #5, Spider-Man 2099: Exodus Omega",
+      "normalizedSeriesTitle": "Spider-Man 2099: Exodus Alpha",
+      "seriesYear": 2022,
+      "issueNumber": "1",
+      "block": 22,
+      "disposition": "exact",
+      "seriesId": 33910,
+      "issueId": 98308,
+      "selectionNote": "Exodus Alpha is a named original one-shot with its own verified series, not issue 1 of Exodus.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/33910/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:44.192Z",
+        "sha256": "ae75f200cf270094a52c1471285fd528ead0a83c926ca82a62da1a7cf02cd177"
+      }
+    },
+    {
+      "sourcePosition": 162,
+      "sourceIssueReference": "Spider-Man 2099: Exodus (2022) #1",
+      "sourceRangeReference": "Collects: Spider-Man 2099: Exodus Alpha, Spider-Man 2099: Exodus #1 to #5, Spider-Man 2099: Exodus Omega",
+      "normalizedSeriesTitle": "Spider-Man 2099: Exodus",
+      "seriesYear": 2022,
+      "issueNumber": "1",
+      "block": 22,
+      "disposition": "exact",
+      "seriesId": 33908,
+      "issueId": 98302,
+      "selectionNote": "The source reference uses verified series 33908 (Spider-Man 2099: Exodus (2022)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/33908/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:44.393Z",
+        "sha256": "60800df193e301fafcb9cc332f5c859b99de5ee808f64b4a6f9172687130f4fc"
+      }
+    },
+    {
+      "sourcePosition": 163,
+      "sourceIssueReference": "Spider-Man 2099: Exodus (2022) #2",
+      "sourceRangeReference": "Collects: Spider-Man 2099: Exodus Alpha, Spider-Man 2099: Exodus #1 to #5, Spider-Man 2099: Exodus Omega",
+      "normalizedSeriesTitle": "Spider-Man 2099: Exodus",
+      "seriesYear": 2022,
+      "issueNumber": "2",
+      "block": 22,
+      "disposition": "exact",
+      "seriesId": 33908,
+      "issueId": 98303,
+      "selectionNote": "The source reference uses verified series 33908 (Spider-Man 2099: Exodus (2022)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/33908/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:44.393Z",
+        "sha256": "60800df193e301fafcb9cc332f5c859b99de5ee808f64b4a6f9172687130f4fc"
+      }
+    },
+    {
+      "sourcePosition": 164,
+      "sourceIssueReference": "Spider-Man 2099: Exodus (2022) #3",
+      "sourceRangeReference": "Collects: Spider-Man 2099: Exodus Alpha, Spider-Man 2099: Exodus #1 to #5, Spider-Man 2099: Exodus Omega",
+      "normalizedSeriesTitle": "Spider-Man 2099: Exodus",
+      "seriesYear": 2022,
+      "issueNumber": "3",
+      "block": 22,
+      "disposition": "exact",
+      "seriesId": 33908,
+      "issueId": 98304,
+      "selectionNote": "The source reference uses verified series 33908 (Spider-Man 2099: Exodus (2022)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/33908/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:44.393Z",
+        "sha256": "60800df193e301fafcb9cc332f5c859b99de5ee808f64b4a6f9172687130f4fc"
+      }
+    },
+    {
+      "sourcePosition": 165,
+      "sourceIssueReference": "Spider-Man 2099: Exodus (2022) #4",
+      "sourceRangeReference": "Collects: Spider-Man 2099: Exodus Alpha, Spider-Man 2099: Exodus #1 to #5, Spider-Man 2099: Exodus Omega",
+      "normalizedSeriesTitle": "Spider-Man 2099: Exodus",
+      "seriesYear": 2022,
+      "issueNumber": "4",
+      "block": 22,
+      "disposition": "exact",
+      "seriesId": 33908,
+      "issueId": 98305,
+      "selectionNote": "The source reference uses verified series 33908 (Spider-Man 2099: Exodus (2022)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/33908/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:44.393Z",
+        "sha256": "60800df193e301fafcb9cc332f5c859b99de5ee808f64b4a6f9172687130f4fc"
+      }
+    },
+    {
+      "sourcePosition": 166,
+      "sourceIssueReference": "Spider-Man 2099: Exodus (2022) #5",
+      "sourceRangeReference": "Collects: Spider-Man 2099: Exodus Alpha, Spider-Man 2099: Exodus #1 to #5, Spider-Man 2099: Exodus Omega",
+      "normalizedSeriesTitle": "Spider-Man 2099: Exodus",
+      "seriesYear": 2022,
+      "issueNumber": "5",
+      "block": 22,
+      "disposition": "exact",
+      "seriesId": 33908,
+      "issueId": 98306,
+      "selectionNote": "The source reference uses verified series 33908 (Spider-Man 2099: Exodus (2022)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/33908/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:44.393Z",
+        "sha256": "60800df193e301fafcb9cc332f5c859b99de5ee808f64b4a6f9172687130f4fc"
+      }
+    },
+    {
+      "sourcePosition": 167,
+      "sourceIssueReference": "Spider-Man 2099: Exodus Omega (2022) #1",
+      "sourceRangeReference": "Collects: Spider-Man 2099: Exodus Alpha, Spider-Man 2099: Exodus #1 to #5, Spider-Man 2099: Exodus Omega",
+      "normalizedSeriesTitle": "Spider-Man 2099: Exodus Omega",
+      "seriesYear": 2022,
+      "issueNumber": "1",
+      "block": 22,
+      "disposition": "exact",
+      "seriesId": 33911,
+      "issueId": 98309,
+      "selectionNote": "Exodus Omega is a named original one-shot with its own verified series, not issue 5 of Exodus.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/33911/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:44.647Z",
+        "sha256": "fc0b5746fa6aefc9b00f2dbe060178d64b821968a5a0d3e80ab87573a8f113a1"
+      }
+    },
+    {
+      "sourcePosition": 168,
+      "sourceIssueReference": "Spider-Man 2099: Dark Genesis (2023) #1",
+      "sourceRangeReference": "Collects: Spider-Man 2099: Dark Genesis (2023) #1 to #5",
+      "normalizedSeriesTitle": "Spider-Man 2099: Dark Genesis",
+      "seriesYear": 2023,
+      "issueNumber": "1",
+      "block": 23,
+      "disposition": "exact",
+      "seriesId": 37062,
+      "issueId": 107472,
+      "selectionNote": "The source reference uses verified series 37062 (Spider-Man 2099: Dark Genesis (2023)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/37062/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:44.894Z",
+        "sha256": "7d4c3c3324a28496edc1baf8f2d2e7b7363e4fbb2ba7c257ed1d01b3d366697e"
+      }
+    },
+    {
+      "sourcePosition": 169,
+      "sourceIssueReference": "Spider-Man 2099: Dark Genesis (2023) #2",
+      "sourceRangeReference": "Collects: Spider-Man 2099: Dark Genesis (2023) #1 to #5",
+      "normalizedSeriesTitle": "Spider-Man 2099: Dark Genesis",
+      "seriesYear": 2023,
+      "issueNumber": "2",
+      "block": 23,
+      "disposition": "exact",
+      "seriesId": 37062,
+      "issueId": 107474,
+      "selectionNote": "The source reference uses verified series 37062 (Spider-Man 2099: Dark Genesis (2023)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/37062/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:44.894Z",
+        "sha256": "7d4c3c3324a28496edc1baf8f2d2e7b7363e4fbb2ba7c257ed1d01b3d366697e"
+      }
+    },
+    {
+      "sourcePosition": 170,
+      "sourceIssueReference": "Spider-Man 2099: Dark Genesis (2023) #3",
+      "sourceRangeReference": "Collects: Spider-Man 2099: Dark Genesis (2023) #1 to #5",
+      "normalizedSeriesTitle": "Spider-Man 2099: Dark Genesis",
+      "seriesYear": 2023,
+      "issueNumber": "3",
+      "block": 23,
+      "disposition": "exact",
+      "seriesId": 37062,
+      "issueId": 107475,
+      "selectionNote": "The source reference uses verified series 37062 (Spider-Man 2099: Dark Genesis (2023)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/37062/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:44.894Z",
+        "sha256": "7d4c3c3324a28496edc1baf8f2d2e7b7363e4fbb2ba7c257ed1d01b3d366697e"
+      }
+    },
+    {
+      "sourcePosition": 171,
+      "sourceIssueReference": "Spider-Man 2099: Dark Genesis (2023) #4",
+      "sourceRangeReference": "Collects: Spider-Man 2099: Dark Genesis (2023) #1 to #5",
+      "normalizedSeriesTitle": "Spider-Man 2099: Dark Genesis",
+      "seriesYear": 2023,
+      "issueNumber": "4",
+      "block": 23,
+      "disposition": "exact",
+      "seriesId": 37062,
+      "issueId": 107476,
+      "selectionNote": "The source reference uses verified series 37062 (Spider-Man 2099: Dark Genesis (2023)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/37062/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:44.894Z",
+        "sha256": "7d4c3c3324a28496edc1baf8f2d2e7b7363e4fbb2ba7c257ed1d01b3d366697e"
+      }
+    },
+    {
+      "sourcePosition": 172,
+      "sourceIssueReference": "Spider-Man 2099: Dark Genesis (2023) #5",
+      "sourceRangeReference": "Collects: Spider-Man 2099: Dark Genesis (2023) #1 to #5",
+      "normalizedSeriesTitle": "Spider-Man 2099: Dark Genesis",
+      "seriesYear": 2023,
+      "issueNumber": "5",
+      "block": 23,
+      "disposition": "exact",
+      "seriesId": 37062,
+      "issueId": 107477,
+      "selectionNote": "The source reference uses verified series 37062 (Spider-Man 2099: Dark Genesis (2023)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/37062/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:44.894Z",
+        "sha256": "7d4c3c3324a28496edc1baf8f2d2e7b7363e4fbb2ba7c257ed1d01b3d366697e"
+      }
+    },
+    {
+      "sourcePosition": 173,
+      "sourceIssueReference": "Miguel O'Hara - Spider-Man: 2099 (2024) #1",
+      "sourceRangeReference": "Collects: Miguel O'Hara - Spider-Man: 2099 (2024) #1 to #5",
+      "normalizedSeriesTitle": "Miguel O'Hara - Spider-Man: 2099",
+      "seriesYear": 2024,
+      "issueNumber": "1",
+      "block": 24,
+      "disposition": "exact",
+      "seriesId": 38959,
+      "issueId": 113510,
+      "selectionNote": "The source reference uses verified series 38959 (Miguel O'hara - Spider-Man: 2099 (2024)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/38959/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:45.123Z",
+        "sha256": "acc96a6f6efe3235f89ed3cdffd321d336999a2b732521bdb4224d986763625c"
+      }
+    },
+    {
+      "sourcePosition": 174,
+      "sourceIssueReference": "Miguel O'Hara - Spider-Man: 2099 (2024) #2",
+      "sourceRangeReference": "Collects: Miguel O'Hara - Spider-Man: 2099 (2024) #1 to #5",
+      "normalizedSeriesTitle": "Miguel O'Hara - Spider-Man: 2099",
+      "seriesYear": 2024,
+      "issueNumber": "2",
+      "block": 24,
+      "disposition": "exact",
+      "seriesId": 38959,
+      "issueId": 113511,
+      "selectionNote": "The source reference uses verified series 38959 (Miguel O'hara - Spider-Man: 2099 (2024)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/38959/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:45.123Z",
+        "sha256": "acc96a6f6efe3235f89ed3cdffd321d336999a2b732521bdb4224d986763625c"
+      }
+    },
+    {
+      "sourcePosition": 175,
+      "sourceIssueReference": "Miguel O'Hara - Spider-Man: 2099 (2024) #3",
+      "sourceRangeReference": "Collects: Miguel O'Hara - Spider-Man: 2099 (2024) #1 to #5",
+      "normalizedSeriesTitle": "Miguel O'Hara - Spider-Man: 2099",
+      "seriesYear": 2024,
+      "issueNumber": "3",
+      "block": 24,
+      "disposition": "exact",
+      "seriesId": 38959,
+      "issueId": 113512,
+      "selectionNote": "The source reference uses verified series 38959 (Miguel O'hara - Spider-Man: 2099 (2024)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/38959/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:45.123Z",
+        "sha256": "acc96a6f6efe3235f89ed3cdffd321d336999a2b732521bdb4224d986763625c"
+      }
+    },
+    {
+      "sourcePosition": 176,
+      "sourceIssueReference": "Miguel O'Hara - Spider-Man: 2099 (2024) #4",
+      "sourceRangeReference": "Collects: Miguel O'Hara - Spider-Man: 2099 (2024) #1 to #5",
+      "normalizedSeriesTitle": "Miguel O'Hara - Spider-Man: 2099",
+      "seriesYear": 2024,
+      "issueNumber": "4",
+      "block": 24,
+      "disposition": "exact",
+      "seriesId": 38959,
+      "issueId": 113513,
+      "selectionNote": "The source reference uses verified series 38959 (Miguel O'hara - Spider-Man: 2099 (2024)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/38959/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:45.123Z",
+        "sha256": "acc96a6f6efe3235f89ed3cdffd321d336999a2b732521bdb4224d986763625c"
+      }
+    },
+    {
+      "sourcePosition": 177,
+      "sourceIssueReference": "Miguel O'Hara - Spider-Man: 2099 (2024) #5",
+      "sourceRangeReference": "Collects: Miguel O'Hara - Spider-Man: 2099 (2024) #1 to #5",
+      "normalizedSeriesTitle": "Miguel O'Hara - Spider-Man: 2099",
+      "seriesYear": 2024,
+      "issueNumber": "5",
+      "block": 24,
+      "disposition": "exact",
+      "seriesId": 38959,
+      "issueId": 113514,
+      "selectionNote": "The source reference uses verified series 38959 (Miguel O'hara - Spider-Man: 2099 (2024)); preserve its issue identity and source position.",
+      "metadataEvidence": {
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/series/38959/issues?limit=200&offset=0",
+        "retrievedAt": "2026-09-15T05:16:45.123Z",
+        "sha256": "acc96a6f6efe3235f89ed3cdffd321d336999a2b732521bdb4224d986763625c"
+      }
+    }
+  ],
+  "identityNotes": {
+    "annual": "The Annual #1 in the second original collection is the separately indexed Spider-Man 2099 Annual (1994), not a 1993 annual.",
+    "special": "The source Special in the Venom 2099 collection is the original Spider-Man 2099 Special (1995) #1, not a standalone Venom crossover series.",
+    "meets": "The source original one-shot resolves to pinned issue 65143 in current provider series 44665. The supplied series 23705 is not used; provider spelling appends a redundant 1 to the series title.",
+    "days": "The source Days Of Then & Now is the original 2008 Exiles one-shot. Provider series spelling expands & to and and appends a redundant 1.",
+    "exilesAnnual": "The source Exiles Annual #1 is the original 2006 annual, not a collection despite the provider series title ending in 1.",
+    "timestormSpider": "The source Spider-Man One-Shot under Timestorm is the separately indexed Timestorm 2009/2099: Spider-Man (2009) #1.",
+    "timestormXmen": "The source X-Men One-Shot under Timestorm is the separately indexed Timestorm 2009/2099: X-Men (2009) #1.",
+    "return": "Out of Time and Spider-Verse use the 2014 Spider-Man 2099 run.",
+    "amazing": "Amazing Spider-Man #1 alongside Out of Time is the 2014 run, not the 2018 Latest Additions run.",
+    "future": "Smack to the Future through Back to Future Shock use the separate 2015 Spider-Man 2099 run.",
+    "alpha": "Exodus Alpha is a named original one-shot with its own verified series, not issue 1 of Exodus.",
+    "omega": "Exodus Omega is a named original one-shot with its own verified series, not issue 5 of Exodus."
+  },
+  "metadataHydration": {
+    "policy": "Reuse exact pinned records with hashes and explicit field adaptation; fetch only missing originals. Optional metadata is not invented and availability hints do not prove access.",
+    "reusedCount": 57,
+    "fetchedCount": 98,
+    "records": [
+      {
+        "issueId": 3378,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/3378",
+        "retrievedAt": "2026-09-15T05:19:13.733Z"
+      },
+      {
+        "issueId": 3379,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/3379",
+        "retrievedAt": "2026-09-15T05:19:13.871Z"
+      },
+      {
+        "issueId": 3498,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/3498",
+        "retrievedAt": "2026-09-15T05:19:13.948Z"
+      },
+      {
+        "issueId": 3902,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/3902",
+        "retrievedAt": "2026-09-15T05:19:14.073Z"
+      },
+      {
+        "issueId": 4034,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/4034",
+        "retrievedAt": "2026-09-15T05:19:14.165Z"
+      },
+      {
+        "issueId": 4148,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/4148",
+        "retrievedAt": "2026-09-15T05:19:14.266Z"
+      },
+      {
+        "issueId": 4149,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/4149",
+        "retrievedAt": "2026-09-15T05:19:14.382Z"
+      },
+      {
+        "issueId": 4258,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/4258",
+        "retrievedAt": "2026-09-15T05:19:14.472Z"
+      },
+      {
+        "issueId": 4259,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/4259",
+        "retrievedAt": "2026-09-15T05:19:14.576Z"
+      },
+      {
+        "issueId": 4418,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/4418",
+        "retrievedAt": "2026-09-15T05:19:14.663Z"
+      },
+      {
+        "issueId": 4805,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/4805",
+        "retrievedAt": "2026-09-15T05:19:14.773Z"
+      },
+      {
+        "issueId": 5093,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/5093",
+        "retrievedAt": "2026-09-15T05:19:14.854Z"
+      },
+      {
+        "issueId": 5244,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/5244",
+        "retrievedAt": "2026-09-15T05:19:14.969Z"
+      },
+      {
+        "issueId": 5546,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/5546",
+        "retrievedAt": "2026-09-15T05:19:15.048Z"
+      },
+      {
+        "issueId": 5668,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/5668",
+        "retrievedAt": "2026-09-15T05:19:15.173Z"
+      },
+      {
+        "issueId": 5732,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/5732",
+        "retrievedAt": "2026-09-15T05:19:15.245Z"
+      },
+      {
+        "issueId": 5806,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/5806",
+        "retrievedAt": "2026-09-15T05:19:15.369Z"
+      },
+      {
+        "issueId": 6005,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/6005",
+        "retrievedAt": "2026-09-15T05:19:23.511Z"
+      },
+      {
+        "issueId": 6154,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/6154",
+        "retrievedAt": "2026-09-15T05:19:23.444Z"
+      },
+      {
+        "issueId": 6334,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/6334",
+        "retrievedAt": "2026-09-15T05:19:23.686Z"
+      },
+      {
+        "issueId": 10865,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 10866,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 10867,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 10868,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 10869,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 10870,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 10871,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 10872,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 10873,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 10874,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 10875,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 10876,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 10877,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 10878,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 10879,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 10880,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 10881,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 10882,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 10883,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 10884,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 10885,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 10886,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 10887,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 10888,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 10889,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 10890,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 10891,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 10892,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 10893,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 10894,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 10895,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 10896,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 10898,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 10906,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 10907,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 10908,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 10909,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 10910,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 13429,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/13429",
+        "retrievedAt": "2026-09-15T05:19:23.712Z"
+      },
+      {
+        "issueId": 15811,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/15811",
+        "retrievedAt": "2026-09-15T05:19:23.880Z"
+      },
+      {
+        "issueId": 15929,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/15929",
+        "retrievedAt": "2026-09-15T05:19:23.944Z"
+      },
+      {
+        "issueId": 16110,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/16110",
+        "retrievedAt": "2026-09-15T05:19:24.073Z"
+      },
+      {
+        "issueId": 16455,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/16455",
+        "retrievedAt": "2026-09-15T05:19:24.153Z"
+      },
+      {
+        "issueId": 16456,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/16456",
+        "retrievedAt": "2026-09-15T05:19:24.287Z"
+      },
+      {
+        "issueId": 16590,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/16590",
+        "retrievedAt": "2026-09-15T05:19:24.588Z"
+      },
+      {
+        "issueId": 16591,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/16591",
+        "retrievedAt": "2026-09-15T05:19:24.678Z"
+      },
+      {
+        "issueId": 17282,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/17282",
+        "retrievedAt": "2026-09-15T05:19:24.785Z"
+      },
+      {
+        "issueId": 17345,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/17345",
+        "retrievedAt": "2026-09-15T05:19:24.376Z"
+      },
+      {
+        "issueId": 17414,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/17414",
+        "retrievedAt": "2026-09-15T05:19:24.875Z"
+      },
+      {
+        "issueId": 17415,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/17415",
+        "retrievedAt": "2026-09-15T05:19:24.981Z"
+      },
+      {
+        "issueId": 17659,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/17659",
+        "retrievedAt": "2026-09-15T05:19:24.485Z"
+      },
+      {
+        "issueId": 22841,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/22841",
+        "retrievedAt": "2026-09-15T05:19:13.490Z"
+      },
+      {
+        "issueId": 22842,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/22842",
+        "retrievedAt": "2026-09-15T05:19:13.514Z"
+      },
+      {
+        "issueId": 22843,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/22843",
+        "retrievedAt": "2026-09-15T05:19:13.684Z"
+      },
+      {
+        "issueId": 24042,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/24042",
+        "retrievedAt": "2026-09-15T05:19:25.071Z"
+      },
+      {
+        "issueId": 24242,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/24242",
+        "retrievedAt": "2026-09-15T05:19:25.179Z"
+      },
+      {
+        "issueId": 26770,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/26770",
+        "retrievedAt": "2026-09-15T05:19:25.273Z"
+      },
+      {
+        "issueId": 26771,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/26771",
+        "retrievedAt": "2026-09-15T05:19:25.416Z"
+      },
+      {
+        "issueId": 26774,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/26774",
+        "retrievedAt": "2026-09-15T05:19:33.449Z"
+      },
+      {
+        "issueId": 26775,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/26775",
+        "retrievedAt": "2026-09-15T05:19:33.483Z"
+      },
+      {
+        "issueId": 43366,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 45798,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/45798",
+        "retrievedAt": "2026-09-15T05:20:13.465Z"
+      },
+      {
+        "issueId": 47381,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "e3d9ccb458743de6a55c6289c24f3c6a2fb9076cea14d5a91e796f71017bfb45",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 47382,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "e3d9ccb458743de6a55c6289c24f3c6a2fb9076cea14d5a91e796f71017bfb45",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 47383,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "e3d9ccb458743de6a55c6289c24f3c6a2fb9076cea14d5a91e796f71017bfb45",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 50544,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/50544",
+        "retrievedAt": "2026-09-15T05:20:13.491Z"
+      },
+      {
+        "issueId": 50545,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/spider_verse.json",
+        "sha256": "e18f1a589264ab87afa6c8c3345dfc8df7266bdaf83af5eb563b74d82ccc2b1b",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 50546,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/spider_verse.json",
+        "sha256": "e18f1a589264ab87afa6c8c3345dfc8df7266bdaf83af5eb563b74d82ccc2b1b",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 50547,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/spider_verse.json",
+        "sha256": "e18f1a589264ab87afa6c8c3345dfc8df7266bdaf83af5eb563b74d82ccc2b1b",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 50548,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/spider_verse.json",
+        "sha256": "e18f1a589264ab87afa6c8c3345dfc8df7266bdaf83af5eb563b74d82ccc2b1b",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 50549,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/50549",
+        "retrievedAt": "2026-09-15T05:20:13.711Z"
+      },
+      {
+        "issueId": 50550,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/50550",
+        "retrievedAt": "2026-09-15T05:20:13.726Z"
+      },
+      {
+        "issueId": 50551,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/50551",
+        "retrievedAt": "2026-09-15T05:20:13.911Z"
+      },
+      {
+        "issueId": 50552,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/50552",
+        "retrievedAt": "2026-09-15T05:20:13.942Z"
+      },
+      {
+        "issueId": 50890,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/50890",
+        "retrievedAt": "2026-09-15T05:19:33.703Z"
+      },
+      {
+        "issueId": 50932,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/50932",
+        "retrievedAt": "2026-09-15T05:19:33.711Z"
+      },
+      {
+        "issueId": 50953,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/50953",
+        "retrievedAt": "2026-09-15T05:19:33.913Z"
+      },
+      {
+        "issueId": 52457,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/52457",
+        "retrievedAt": "2026-09-15T05:20:14.116Z"
+      },
+      {
+        "issueId": 52459,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/52459",
+        "retrievedAt": "2026-09-15T05:20:14.150Z"
+      },
+      {
+        "issueId": 52460,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/52460",
+        "retrievedAt": "2026-09-15T05:20:14.312Z"
+      },
+      {
+        "issueId": 52461,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/52461",
+        "retrievedAt": "2026-09-15T05:20:14.357Z"
+      },
+      {
+        "issueId": 52462,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/52462",
+        "retrievedAt": "2026-09-15T05:20:14.535Z"
+      },
+      {
+        "issueId": 53428,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 53429,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 53430,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 53431,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 55711,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/55711",
+        "retrievedAt": "2026-09-15T05:20:14.590Z"
+      },
+      {
+        "issueId": 55713,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/55713",
+        "retrievedAt": "2026-09-15T05:20:14.741Z"
+      },
+      {
+        "issueId": 55715,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/55715",
+        "retrievedAt": "2026-09-15T05:20:14.790Z"
+      },
+      {
+        "issueId": 55716,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/55716",
+        "retrievedAt": "2026-09-15T05:20:14.947Z"
+      },
+      {
+        "issueId": 55717,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/55717",
+        "retrievedAt": "2026-09-15T05:20:14.982Z"
+      },
+      {
+        "issueId": 55718,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/55718",
+        "retrievedAt": "2026-09-15T05:20:15.167Z"
+      },
+      {
+        "issueId": 55719,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/55719",
+        "retrievedAt": "2026-09-15T05:20:15.183Z"
+      },
+      {
+        "issueId": 55720,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/55720",
+        "retrievedAt": "2026-09-15T05:20:15.386Z"
+      },
+      {
+        "issueId": 55721,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/55721",
+        "retrievedAt": "2026-09-15T05:20:15.382Z"
+      },
+      {
+        "issueId": 55722,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/55722",
+        "retrievedAt": "2026-09-15T05:20:23.427Z"
+      },
+      {
+        "issueId": 55723,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/55723",
+        "retrievedAt": "2026-09-15T05:20:23.511Z"
+      },
+      {
+        "issueId": 55724,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/55724",
+        "retrievedAt": "2026-09-15T05:20:23.721Z"
+      },
+      {
+        "issueId": 55725,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/55725",
+        "retrievedAt": "2026-09-15T05:20:23.722Z"
+      },
+      {
+        "issueId": 55726,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/55726",
+        "retrievedAt": "2026-09-15T05:20:23.914Z"
+      },
+      {
+        "issueId": 55727,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/55727",
+        "retrievedAt": "2026-09-15T05:20:23.961Z"
+      },
+      {
+        "issueId": 55728,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/55728",
+        "retrievedAt": "2026-09-15T05:20:24.101Z"
+      },
+      {
+        "issueId": 60245,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/60245",
+        "retrievedAt": "2026-09-15T05:20:24.184Z"
+      },
+      {
+        "issueId": 60246,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/60246",
+        "retrievedAt": "2026-09-15T05:20:24.317Z"
+      },
+      {
+        "issueId": 60247,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/60247",
+        "retrievedAt": "2026-09-15T05:20:24.380Z"
+      },
+      {
+        "issueId": 60248,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/60248",
+        "retrievedAt": "2026-09-15T05:20:24.503Z"
+      },
+      {
+        "issueId": 60779,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/60779",
+        "retrievedAt": "2026-09-15T05:20:24.581Z"
+      },
+      {
+        "issueId": 60780,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/60780",
+        "retrievedAt": "2026-09-15T05:20:24.740Z"
+      },
+      {
+        "issueId": 60781,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/60781",
+        "retrievedAt": "2026-09-15T05:20:24.806Z"
+      },
+      {
+        "issueId": 60782,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/60782",
+        "retrievedAt": "2026-09-15T05:20:24.943Z"
+      },
+      {
+        "issueId": 60783,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/60783",
+        "retrievedAt": "2026-09-15T05:20:25.023Z"
+      },
+      {
+        "issueId": 65143,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 76328,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/marvel_2099.json",
+        "sha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 77100,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "e3d9ccb458743de6a55c6289c24f3c6a2fb9076cea14d5a91e796f71017bfb45",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 77101,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "e3d9ccb458743de6a55c6289c24f3c6a2fb9076cea14d5a91e796f71017bfb45",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 77102,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "e3d9ccb458743de6a55c6289c24f3c6a2fb9076cea14d5a91e796f71017bfb45",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 77103,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "e3d9ccb458743de6a55c6289c24f3c6a2fb9076cea14d5a91e796f71017bfb45",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 77104,
+        "kind": "reconstructed-from-pinned-payload",
+        "file": "src/data/amazing_spider_man_reading_order_modern_marvel_era.json",
+        "sha256": "e3d9ccb458743de6a55c6289c24f3c6a2fb9076cea14d5a91e796f71017bfb45",
+        "note": "Field-name adaptation of pinned facts, not a fresh HTTP response or refreshed availability claim."
+      },
+      {
+        "issueId": 98302,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/98302",
+        "retrievedAt": "2026-09-15T05:20:25.238Z"
+      },
+      {
+        "issueId": 98303,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/98303",
+        "retrievedAt": "2026-09-15T05:20:25.380Z"
+      },
+      {
+        "issueId": 98304,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/98304",
+        "retrievedAt": "2026-09-15T05:20:25.440Z"
+      },
+      {
+        "issueId": 98305,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/98305",
+        "retrievedAt": "2026-09-15T05:20:33.504Z"
+      },
+      {
+        "issueId": 98306,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/98306",
+        "retrievedAt": "2026-09-15T05:20:33.453Z"
+      },
+      {
+        "issueId": 98308,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/98308",
+        "retrievedAt": "2026-09-15T05:20:25.146Z"
+      },
+      {
+        "issueId": 98309,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/98309",
+        "retrievedAt": "2026-09-15T05:20:33.706Z"
+      },
+      {
+        "issueId": 107472,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/107472",
+        "retrievedAt": "2026-09-15T05:20:33.719Z"
+      },
+      {
+        "issueId": 107474,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/107474",
+        "retrievedAt": "2026-09-15T05:20:33.925Z"
+      },
+      {
+        "issueId": 107475,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/107475",
+        "retrievedAt": "2026-09-15T05:21:13.769Z"
+      },
+      {
+        "issueId": 107476,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/107476",
+        "retrievedAt": "2026-09-15T05:21:13.862Z"
+      },
+      {
+        "issueId": 107477,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/107477",
+        "retrievedAt": "2026-09-15T05:21:13.973Z"
+      },
+      {
+        "issueId": 113510,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/113510",
+        "retrievedAt": "2026-09-15T05:21:14.082Z"
+      },
+      {
+        "issueId": 113511,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/113511",
+        "retrievedAt": "2026-09-15T05:21:14.185Z"
+      },
+      {
+        "issueId": 113512,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/113512",
+        "retrievedAt": "2026-09-15T05:21:14.289Z"
+      },
+      {
+        "issueId": 113513,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/113513",
+        "retrievedAt": "2026-09-15T05:21:14.397Z"
+      },
+      {
+        "issueId": 113514,
+        "kind": "metadata-api",
+        "url": "https://marvel.emreparker.com/v1/issues/113514",
+        "retrievedAt": "2026-09-15T05:21:14.488Z"
+      }
+    ]
+  }
+}
