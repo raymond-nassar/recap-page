@@ -249,7 +249,13 @@
                 <button type="button" class="quiet" id="btn-rename-list">Rename</button>
                 <button type="button" class="quiet" id="btn-list-note">Note</button>
                 <button type="button" class="quiet" id="btn-duplicate-list">Duplicate</button>
-                <button type="button" class="quiet" id="btn-export-md">Export as Markdown</button>
+                <details id="list-export">
+                  <summary class="quiet">Export</summary>
+                  <div class="field-row">
+                    <button type="button" class="quiet" id="btn-export-md">Export personal checklist</button>
+                    <button type="button" class="quiet" id="btn-export-order">Export order only</button>
+                  </div>
+                </details>
                 <span class="grow"></span>
                 <span id="hydration-status" class="rail-hint" hidden></span>
                 <button type="button" class="quiet" id="btn-hydrate" hidden>Fetch missing details</button>
@@ -805,8 +811,10 @@
                 <p class="rail-hint">Export regularly. Clearing site data for this address erases your progress.</p>
                 <div class="field-row">
                   <button type="button" id="btn-export-json" class="btn">Download JSON backup</button>
-                  <button type="button" id="btn-export-md-2" class="btn btn-g">Export current list as Markdown</button>
+                  <button type="button" id="btn-export-md-2" class="btn btn-g">Export personal checklist</button>
+                  <button type="button" id="btn-export-order-2" class="btn btn-g" aria-describedby="export-order-hint">Export order only</button>
                 </div>
+                <p class="rail-hint" id="export-order-hint">Order-only Markdown excludes notes, descriptions, reading progress and availability overrides. Personal Markdown includes notes and read checkboxes, but notes do not re-import. JSON is the lossless reader-data backup.</p>
 
                 <h4>Restore from a backup</h4>
                 <p class="rail-hint">A snapshot of your current data is kept, so a restore can be undone once.</p>

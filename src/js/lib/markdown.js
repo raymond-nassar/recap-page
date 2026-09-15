@@ -2,6 +2,7 @@
 // Upstream format: - [ ] [Title](https://www.marvel.com/comics/issue/<id>/<slug>)
 
 import { readerUrl } from '../reader.js';
+import { sourceLabel, sourceLink, sourceLicense } from './catalog.js';
 
 const MARVEL_ISSUE_RE = /^https?:\/\/(?:www\.)?marvel\.com\/comics\/issue\/(\d+)(?:\/([^/?#]*))?/i;
 // Link text allows backslash escapes so a title containing "]" survives a
@@ -233,7 +234,7 @@ export function stripInlineMarkdown(s) {
 // what parseChecklist reads back as a section. Without this, exporting a trade order and
 // re-importing it would silently flatten it into an ordinary issue list, and the reader would
 // have no way to tell from the file that anything had been lost.
-export function serializeChecklist({ name, description, items, note }) {
+export function serializeChecklist({ name, description, items, note, resetSections = false }) {
   const lines = [];
   if (name) lines.push(`# ${name}`, '');
   if (description) lines.push(description, '');
@@ -247,6 +248,8 @@ export function serializeChecklist({ name, description, items, note }) {
       if (next) {
         if (wroteItem) lines.push('');
         lines.push(`## ${next}`, '');
+      } else if (wroteItem && resetSections) {
+        lines.push('', '# Continued order', '');
       }
     }
     const box = it.read ? '- [x]' : '- [ ]';
@@ -298,4 +301,46 @@ export function resolveUniqueExact(title, candidates) {
   if (matches.length === 1) return { status: 'resolved', match: matches[0] };
   if (matches.length === 0) return { status: 'unmatched', matches: candidates ?? [] };
   return { status: 'ambiguous', matches };
+}
+
+export function serializeReadingOrder({ name, items, source = null }) {
+  const line = (text) => String(text ?? '').replace(/[\r\n]+/g, ' ');
+  const credit = sourceLabel(source);
+  const link = sourceLink(source);
+  const license = sourceLicense(source);
+  const attribution = credit ? [`Source: ${line(credit)}`] : ['Source attribution is unavailable.'];
+  if (link && link !== credit) attribution.push(`Source link: <${link}>`);
+  if (license && license !== credit) attribution.push(`Source license: ${line(license)}`);
+  if (source?.sourceSection) attribution.push(`Source section: ${line(source.sourceSection)}`);
+
+  // listItems includes private fields. Name every permitted field so future personal state
+  // cannot silently become part of a file intended for someone else.
+  return serializeChecklist({
+    name: line(name),
+    description: attribution.join('\n'),
+    resetSections: true,
+    items: items.map((item) => {
+      const digitalId = item.digitalId ?? digitalIdFromUrl(item.url);
+      const readerOnly = item.issueId < 0 && readerIssueId(digitalId) !== null;
+      let url = isSafeMarvelUrl(item.url) ? item.url : null;
+      if (url) {
+        const book = digitalIdFromUrl(url);
+        const official = new URL(url);
+        official.username = '';
+        official.password = '';
+        official.search = '';
+        official.hash = '';
+        url = book ? readerUrl(book) : official.href;
+      }
+      if (item.issueId > 0 && issueIdFromUrl(url) !== item.issueId) url = null;
+      return {
+        issueId: readerOnly ? readerIssueId(digitalId) : item.issueId,
+        digitalId,
+        title: line(item.title),
+        url,
+        collectedIn: line(item.collectedIn),
+        read: false,
+      };
+    }),
+  });
 }

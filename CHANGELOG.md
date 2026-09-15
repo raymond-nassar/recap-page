@@ -26,6 +26,13 @@ explicitly. The candidate is 3.0.0 because schema 3 makes older builds refuse or
 instead of discarding these choices. Older backups remain readable, the storage key and address
 are unchanged, and no release is made by this change.
 
+### Share an order without personal reading data
+
+Adds **Export order only** to Reading and Backup & settings. It downloads a local Markdown order
+with unread checkboxes, official links, section labels and available source credits, but no notes,
+descriptions, reading history or availability overrides. The confirmation explains the exclusions.
+Personal Markdown and lossless JSON backups remain separate, and saved reader data is unchanged.
+
 ### Follow Bucky Barnes and the Winter Soldier
 
 Adds a Bucky Barnes / Winter Soldier Reading List credited and linked to Comic Book Herald,

@@ -111,7 +111,7 @@ network before the page loads, and exits nonzero on a failed journey. The tempor
 reading progress at the standard app address untouched. The targeted `cache-generations`,
 `catalog-gaps`, `reading-paths`, `reading-path-stop-actions`, `issue-return-visibility`,
 `reading-shortcut`, `reading-list-empty-441`, `issue-action-names`, `issue-443-row-actions`,
-`defer-next`, `defer-lifecycle`, and `defer-persistence` journeys require
+`defer-next`, `defer-lifecycle`, `defer-persistence`, and `order-only-export` journeys require
 `http://127.0.0.1:8787/`; they use that origin only inside Edge's temporary automation profile.
 Stop the normal app server before any targeted run so the runner can bind that port. Each journey
 prints its own assertion and timing totals.
