@@ -110,7 +110,8 @@ The check normally serves the app on an ephemeral port, uses an isolated profile
 network before the page loads, and exits nonzero on a failed journey. The temporary port keeps the
 reading progress at the standard app address untouched. The targeted `cache-generations`,
 `catalog-gaps`, `reading-paths`, `reading-path-stop-actions`, `issue-return-visibility`,
-`reading-shortcut`, `reading-list-empty-441`, `issue-action-names`, and `issue-443-row-actions` journeys require
+`reading-shortcut`, `reading-list-empty-441`, `issue-action-names`, `issue-443-row-actions`,
+`defer-next`, `defer-lifecycle`, and `defer-persistence` journeys require
 `http://127.0.0.1:8787/`; they use that origin only inside Edge's temporary automation profile.
 Stop the normal app server before any targeted run so the runner can bind that port. Each journey
 prints its own assertion and timing totals.
@@ -133,6 +134,13 @@ without explicit owner approval; calculate its command
 cardinality first.
 
 ## Run the upgrade check
+
+The same invocation also pins the pre-deferral schema-2 build at
+`ba23627bd7d094b649a7c3d113ab659bf88b4a8e`. It saves nonempty schema-3 intent in the
+candidate, tries ordinary writes from both a live stale older tab and a freshly loaded older
+build at the same isolated origin, and returns to the candidate. Exact canonical bytes,
+retained read timestamps, list identity and order must survive; deliberate destructive recovery
+is not part of the downgrade-refusal claim.
 
 The upgrade runner reconstructs the v1.4.0 app from local Git history, runs that historical build,
 and then replaces its folder with the current candidate at the same browser address:

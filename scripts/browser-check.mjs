@@ -4189,7 +4189,7 @@ const SCENARIOS = [
         };
       });
       t.check('schema load preserves the complete legacy list and its local/global fields',
-        loaded.schemaVersion === 2
+        loaded.schemaVersion === 3
         && loaded.name === 'Marvel Knights to Planet X'
         && loaded.catalogId === 'marvel-knights-to-planet-x'
         && loaded.note === 'Legacy list note'
@@ -4252,7 +4252,7 @@ const SCENARIOS = [
         };
       });
       t.check('an individually added chapter shares progress without splitting or changing the umbrella',
-        shared.schemaVersion === 2
+        shared.schemaVersion === 3
         && shared.listCount === 2
         && shared.legacyItems === 487
         && shared.legacyCatalogId === 'marvel-knights-to-planet-x'
@@ -9486,6 +9486,8 @@ const SCENARIOS = [
 
       const library = fixtureReadingState();
       const saved = library.lists.fixture;
+      library.schemaVersion = 3;
+      saved.deferredIssueIds = [];
       library.lists = {
         sibling: { ...saved, id: 'sibling', name: 'Saved complete version', catalogId: 'browser-check-three-main' },
         exact: { ...saved, id: 'exact', name: 'Saved short version', catalogId: 'browser-check-three-short' },
@@ -11464,7 +11466,7 @@ SCENARIOS.push({
       for (const index of [0, 19]) {
         const row = `#rows .row:nth-child(${index + 1})`;
         const toggle = `${row} .row-actions-toggle`;
-        const actions = ['open', 'info', 'up', 'down', 'override', 'remove'];
+        const actions = ['open', 'info', 'defer', 'up', 'down', 'override', 'remove'];
         const narrow = viewport.width <= 620;
         await page.mouse.move(0, 0);
         if (narrow) {
@@ -11502,7 +11504,7 @@ SCENARIOS.push({
           }
         }
         t.check(`${size} row ${index}: every action has full visible bounds and five pointer hit targets`,
-          pointers.length === 6 && pointers.every((p) => p.visible && p.hits && !p.clips.length),
+          pointers.length === actions.length && pointers.every((p) => p.visible && p.hits && !p.clips.length),
           JSON.stringify(pointers));
         await page.mouse.move(0, 0);
         await page.$eval(narrow ? toggle : `${row} .rnote`, (el) => el.focus());
@@ -11515,11 +11517,11 @@ SCENARIOS.push({
           if (geometry.focused) await page.keyboard.press('Enter');
         }
         t.check(`${size} row ${index}: Tab reaches every action with its complete unobscured focus ring`,
-          keyboard.length === 6 && keyboard.every((g) => g.focused && g.ring > 0
+          keyboard.length === actions.length && keyboard.every((g) => g.focused && g.ring > 0
             && g.visible && g.hits && g.ringHits && !g.clips.length), JSON.stringify(keyboard));
         const activations = await page.evaluate(() => window.__mrt443Activations.splice(0));
-        t.check(`${size} row ${index}: all six actions receive trusted pointer and keyboard activation`,
-          activations.length === 12 && activations.every((event, i) => event.trusted
+        t.check(`${size} row ${index}: all seven actions receive trusted pointer and keyboard activation`,
+          activations.length === actions.length * 2 && activations.every((event, i) => event.trusted
             && event.act === actions[i % actions.length]), JSON.stringify(activations));
         if (narrow) {
           const hintVisible = await page.evaluate(() => {
@@ -12612,7 +12614,7 @@ async function withStack(fn, { port = 0 } = {}) {
 async function main() {
   const prove = process.argv.includes('--prove');
   const only = process.argv.find((a) => a.startsWith('--only='))?.slice('--only='.length) ?? null;
-  const port = ['cache-generations', 'catalog-gaps', 'reading-paths', 'reading-path-stop-actions', 'issue-return-visibility', 'reading-shortcut', 'reading-list-empty-441', 'issue-action-names', 'issue-443-row-actions'].includes(only) ? DEFAULT_PORT : 0;
+  const port = ['cache-generations', 'catalog-gaps', 'reading-paths', 'reading-path-stop-actions', 'issue-return-visibility', 'reading-shortcut', 'reading-list-empty-441', 'issue-action-names', 'issue-443-row-actions', 'defer-next', 'defer-lifecycle', 'defer-persistence'].includes(only) ? DEFAULT_PORT : 0;
 
   const code = await withStack(async ({ browser, origin, driver, edge }) => {
     console.log(`driver  ${driver}`);
@@ -13376,6 +13378,8 @@ MUTATIONS.push({
 
 SCENARIOS.push((await import('./browser-preview-scroll-452.mjs')).previewScroll452);
 SCENARIOS.push((await import('./browser-source-credits.mjs')).sourceCredits);
+const deferral = await import('./browser-defer.mjs');
+SCENARIOS.push(deferral.deferNext, deferral.deferLifecycle, deferral.deferPersistence);
 
 // Without this an unexpected throw leaves an unhandled rejection, which Node reports as a bare
 // stack and exits 1 on. Exit 1 is this check's word for "an assertion failed", so an internal

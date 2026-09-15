@@ -1,5 +1,6 @@
 import { uiIcon } from '../lib/uiIcon.js';
 import { isLaunchable } from '../reader.js';
+import { deferredCount } from '../lib/model.js';
 
 const CONTINUE_NO_LIST = 'Continue reading';
 const CATEGORY_ICONS = {
@@ -28,6 +29,7 @@ export function createHomeView({
   onOpen,
   onRead,
   onReview,
+  onReviewDeferred,
   openPreview,
   paintCover,
   paintCoverUrl,
@@ -49,6 +51,7 @@ export function createHomeView({
     });
     nodes.continueOpen.addEventListener('click', onOpen);
     nodes.continueReview.addEventListener('click', onReview);
+    nodes.continueDeferred.addEventListener('click', onReviewDeferred);
   }
 
   function ensureFirstRun() {
@@ -105,13 +108,15 @@ export function createHomeView({
     }
 
     const { read, total } = listProgress(getState(), id);
+    const deferred = deferredCount(getState(), id);
     const issue = upNext(getState(), id);
     nodes.continueHeading.textContent = list.name;
     nodes.continueBar.setAttribute('aria-valuemax', String(total));
     nodes.continueBar.setAttribute('aria-valuenow', String(read));
-    nodes.continueBar.setAttribute('aria-valuetext', `${read} of ${total} issues read`);
+    nodes.continueBar.setAttribute('aria-valuetext', `${read} of ${total} issues read${deferred ? `. ${deferred} deferred` : ''}`);
     nodes.continueFill.style.setProperty('width', `${total ? ((read / total) * 100).toFixed(1) : 0}%`);
-    nodes.continueCount.textContent = `${read} of ${total} issue${total === 1 ? '' : 's'} read`;
+    nodes.continueCount.textContent = `${read} of ${total} issue${total === 1 ? '' : 's'} read${deferred ? `. ${deferred} deferred` : ''}`;
+    nodes.continueDeferred.hidden = deferred === 0;
 
     if (issue) {
       nodes.continueNext.textContent = `Next: ${issue.title}`;
@@ -129,7 +134,8 @@ export function createHomeView({
     } else {
       nodes.continueNext.textContent = total === 0
         ? 'No issues in this Reading List yet. Open it to add comics.'
-        : 'You have read every issue in this order.';
+        : deferred ? `Nothing queued. ${deferred} unread issue${deferred === 1 ? ' is' : 's are'} deferred.`
+          : 'You have read every issue in this order.';
       nodes.continueRead.hidden = true;
       paintCoverUrl(
         nodes.continueImage,

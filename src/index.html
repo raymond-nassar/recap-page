@@ -179,6 +179,7 @@
                     <button type="button" class="btn" id="btn-chero-read">Read next issue →</button>
                     <button type="button" class="btn btn-g" id="btn-chero-open">Open the list</button>
                     <button type="button" class="btn btn-g" id="btn-chero-review">Review earlier issues</button>
+                    <button type="button" class="btn btn-g" id="btn-chero-deferred" hidden>Review deferred</button>
                   </div>
                 </div>
               </div>
@@ -307,6 +308,7 @@
                       <button type="button" class="btn btn-g has-tooltip" id="btn-hero-done" data-tooltip="Keyboard shortcut: D" aria-keyshortcuts="d">
                         Done, next
                       </button>
+                      <button type="button" class="btn btn-g" id="btn-hero-defer">Defer for later</button>
                       <a class="btn btn-link" id="btn-hero-info" target="_blank" rel="noopener noreferrer">
                         Issue page ↗
                       </a>
@@ -326,6 +328,13 @@
                 <h2 id="all-read-h" tabindex="-1">That is the whole order, read.</h2>
                 <p>Every issue in this list is ticked off. Pick another order, or start a new list.</p>
               </div>
+
+              <section id="all-deferred" class="empty-state" hidden aria-labelledby="all-deferred-h">
+                <h2 id="all-deferred-h" tabindex="-1">Nothing queued</h2>
+                <p id="all-deferred-count"></p>
+                <p>These comics are still unread. Resume an issue to put it back in normal continuation without changing its place.</p>
+                <button type="button" class="btn" id="btn-review-deferred">Review deferred</button>
+              </section>
 
               <button type="button" class="btn btn-g" id="btn-review-earlier" aria-expanded="false" aria-controls="review-earlier">Review earlier issues</button>
               <section id="review-earlier" class="review-earlier" hidden aria-labelledby="review-h">
