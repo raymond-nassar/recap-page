@@ -13,6 +13,14 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Export a plain reading list for other apps
+
+Personal Markdown export now previews a readable checklist in saved reading order, including
+read checkboxes by default. Descriptions, collected editions, official links and notes are optional;
+notes stay out unless selected for that export. Checkboxes can be replaced with ordinary bullets.
+Both personal export buttons offer these choices. The separate order-only export still produces
+an unread order with available source credits. JSON backups, saved progress and importing are unchanged.
+
 ### Defer unread comics in one Reading List
 
 Keep a comic unread while continuing past it in just one saved list. **Defer for later** and

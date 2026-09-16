@@ -234,33 +234,48 @@ export function stripInlineMarkdown(s) {
 // what parseChecklist reads back as a section. Without this, exporting a trade order and
 // re-importing it would silently flatten it into an ordinary issue list, and the reader would
 // have no way to tell from the file that anything had been lost.
-export function serializeChecklist({ name, description, items, note, resetSections = false }) {
+export function serializeChecklist({ name, description, items, note, resetSections = false }, {
+  includeProgress = true,
+  includeLinks = true,
+  includeDescription = true,
+  includeSections = true,
+  includeNotes = true,
+  literal = false,
+} = {}) {
   const lines = [];
-  if (name) lines.push(`# ${name}`, '');
-  if (description) lines.push(description, '');
-  if (note) lines.push(...quoteNote(note), '');
+  const text = (value, singleLine = false) => (literal ? literalMarkdown(value, singleLine) : value);
+  if (name) lines.push(`# ${text(name, true)}`, '');
+  if (includeDescription && description) {
+    lines.push(...(literal ? quoteNote(text(description)) : [description]), '');
+  }
+  if (includeNotes && note) lines.push(...quoteNote(text(note)), '');
   let section;
   let wroteItem = false;
   for (const it of items) {
-    const next = it.collectedIn || null;
+    const next = includeSections ? it.collectedIn || null : null;
     if (next !== section) {
       section = next;
       if (next) {
         if (wroteItem) lines.push('');
-        lines.push(`## ${next}`, '');
+        lines.push(`## ${text(next, true)}`, '');
       } else if (wroteItem && resetSections) {
         lines.push('', '# Continued order', '');
       }
     }
-    const box = it.read ? '- [x]' : '- [ ]';
-    const canonicalReaderUrl = readerIssueId(it.digitalId) === Number(it.issueId)
-      ? readerUrl(it.digitalId)
+    const box = includeProgress ? (it.read ? '- [x]' : '- [ ]') : '-';
+    const reference = literal ? projectIssueReference(it) : it;
+    const canonicalReaderUrl = readerIssueId(reference.digitalId) === Number(reference.issueId)
+      ? readerUrl(reference.digitalId)
       : null;
-    const url = canonicalReaderUrl
-      || it.url
-      || (it.issueId > 0 ? `https://www.marvel.com/comics/issue/${it.issueId}/` : null);
-    lines.push(url ? `${box} [${escapeLinkText(it.title)}](${url})` : `${box} ${it.title}`);
-    if (it.note) lines.push(...quoteNote(it.note));
+    const candidateUrl = canonicalReaderUrl
+      || reference.url
+      || (reference.issueId > 0 ? `https://www.marvel.com/comics/issue/${reference.issueId}/` : null);
+    const url = includeLinks
+      ? (literal ? candidateUrl?.replace(/\(/g, '%28').replace(/\)/g, '%29') : candidateUrl)
+      : null;
+    const title = text(it.title, true);
+    lines.push(url ? `${box} [${literal ? title : escapeLinkText(title)}](${url})` : `${box} ${title}`);
+    if (includeNotes && it.note) lines.push(...quoteNote(text(it.note)));
     wroteItem = true;
   }
   lines.push('');
@@ -275,11 +290,11 @@ function quoteNote(note) {
   return String(note).split(/\r?\n/).map((line) => `> ${line}`.trimEnd());
 }
 
-// The backslash must be escaped first, or escaping "]" would corrupt any title that already
-// contained a backslash: "a\" + "]" would emit "a\\]", which reads back as a literal backslash
-// followed by an unescaped "]" and terminates the link early.
-export function escapeLinkText(s) {
-  return String(s).replace(/\\/g, '\\\\').replace(/\]/g, '\\]');
+// Replacing a backslash introduced by an earlier escape changes the text it protects.
+// One pass only visits original characters, so a title containing both "\" and "]"
+// keeps the same link text in the linked codec and the readable export.
+export function escapeLinkText(s, literal = false) {
+  return String(s).replace(literal ? /[\\`*_[\]]/g : /[\\\]]/g, '\\$&');
 }
 
 // Normalization used only for exact-match title resolution. Deliberately strict:
@@ -303,6 +318,32 @@ export function resolveUniqueExact(title, candidates) {
   return { status: 'ambiguous', matches };
 }
 
+function literalMarkdown(value, singleLine = false) {
+  const text = String(value ?? '').replace(/\r\n?/g, '\n');
+  const content = singleLine ? text.replace(/[\r\n]+/g, ' ') : text;
+  return escapeLinkText(content, true)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
+function projectIssueReference(item) {
+  const digitalId = item.digitalId ?? digitalIdFromUrl(item.url);
+  const readerOnly = item.issueId < 0 && readerIssueId(digitalId) !== null;
+  let url = isSafeMarvelUrl(item.url) ? item.url : null;
+  if (url) {
+    const book = digitalIdFromUrl(url);
+    const official = new URL(url);
+    official.username = '';
+    official.password = '';
+    official.search = '';
+    official.hash = '';
+    url = book ? readerUrl(book) : official.href;
+  }
+  if (item.issueId > 0 && issueIdFromUrl(url) !== item.issueId) url = null;
+  return { issueId: readerOnly ? readerIssueId(digitalId) : item.issueId, digitalId, url };
+}
+
 export function serializeReadingOrder({ name, items, source = null }) {
   const line = (text) => String(text ?? '').replace(/[\r\n]+/g, ' ');
   const credit = sourceLabel(source);
@@ -319,28 +360,11 @@ export function serializeReadingOrder({ name, items, source = null }) {
     name: line(name),
     description: attribution.join('\n'),
     resetSections: true,
-    items: items.map((item) => {
-      const digitalId = item.digitalId ?? digitalIdFromUrl(item.url);
-      const readerOnly = item.issueId < 0 && readerIssueId(digitalId) !== null;
-      let url = isSafeMarvelUrl(item.url) ? item.url : null;
-      if (url) {
-        const book = digitalIdFromUrl(url);
-        const official = new URL(url);
-        official.username = '';
-        official.password = '';
-        official.search = '';
-        official.hash = '';
-        url = book ? readerUrl(book) : official.href;
-      }
-      if (item.issueId > 0 && issueIdFromUrl(url) !== item.issueId) url = null;
-      return {
-        issueId: readerOnly ? readerIssueId(digitalId) : item.issueId,
-        digitalId,
-        title: line(item.title),
-        url,
-        collectedIn: line(item.collectedIn),
-        read: false,
-      };
-    }),
+    items: items.map((item) => ({
+      ...projectIssueReference(item),
+      title: line(item.title),
+      collectedIn: line(item.collectedIn),
+      read: false,
+    })),
   });
 }

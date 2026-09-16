@@ -7988,7 +7988,13 @@ const SCENARIOS = [
       t.check('a synopsis run makes zero provider requests for the reader record',
         synopsisRequests === 0, String(synopsisRequests));
 
+      await click(page, '#list-export > summary');
+      await page.focus('#btn-export-md');
       await click(page, '#btn-export-md');
+      await page.waitForSelector('#markdown-export[open]');
+      await click(page, '#markdown-export input[name="includeLinks"]');
+      await click(page, '#markdown-export input[name="includeSections"]');
+      await click(page, '#markdown-export button[type="submit"]');
       await page.waitForFunction(() => (window.__mrtDownloads ?? []).length > 0, { timeout: 15000 });
       const markdown = await page.evaluate(() => window.__mrtDownloads.at(-1)?.text ?? '');
       const exportedLinks = [...markdown.matchAll(/\]\(([^)]+)\)/g)].map((match) => match[1]);
@@ -13378,6 +13384,7 @@ MUTATIONS.push({
 
 SCENARIOS.push((await import('./browser-preview-scroll-452.mjs')).previewScroll452);
 SCENARIOS.push((await import('./browser-source-credits.mjs')).sourceCredits);
+SCENARIOS.push((await import('./browser-markdown-export.mjs')).readableMarkdownExport);
 const deferral = await import('./browser-defer.mjs');
 SCENARIOS.push(deferral.deferNext, deferral.deferLifecycle, deferral.deferPersistence);
 SCENARIOS.push((await import('./browser-order-export.mjs')).orderOnlyExport);
