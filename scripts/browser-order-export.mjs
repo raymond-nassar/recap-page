@@ -1,4 +1,4 @@
-import { createEmptyState, createList, addIssuesToList } from '../src/js/lib/model.js';
+import { createEmptyState, createList, addIssuesToList, setDeferred } from '../src/js/lib/model.js';
 import { parseChecklist, readerIssueId } from '../src/js/lib/markdown.js';
 
 const bookId = readerIssueId(129648);
@@ -14,6 +14,7 @@ let state = createList(createEmptyState(), {
   description: 'PRIVATE DESCRIPTION', note: 'PRIVATE LIST NOTE',
 });
 state = addIssuesToList(state, 'order-export', items).state;
+state = setDeferred(state, 'order-export', 900003);
 state.read = { 900001: 1777777777777, [bookId]: 1777777777777 };
 state.overrides = { 900001: 'available', 900003: 'unavailable' };
 state.notes = { 900001: 'PRIVATE ISSUE NOTE' };
@@ -96,8 +97,12 @@ export const orderOnlyExport = {
         && localStorage.getItem('mrt.state.v2') === raw, before.state));
 
     await click(page, '#btn-export-md');
+    await page.waitForSelector('#markdown-export[open]');
+    await click(page, '#markdown-export input[name="includeDescription"]');
+    await click(page, '#markdown-export input[name="includeNotes"]');
+    await click(page, '#markdown-export button[type="submit"]');
     const personal = await downloaded(page, 1);
-    t.check('personal export still contains private notes, description and read checkboxes',
+    t.check('personal export includes explicitly selected notes and description with read checkboxes',
       personal.includes('PRIVATE LIST NOTE') && personal.includes('PRIVATE ISSUE NOTE')
       && personal.includes('PRIVATE DESCRIPTION') && personal.includes('- [x]'), personal);
 
@@ -112,7 +117,7 @@ export const orderOnlyExport = {
     const parsed = parseChecklist(markdown);
     const rows = [...parsed.entries, ...parsed.unresolved].sort((a, b) => a.index - b.index);
     t.check('the downloaded order excludes personal data and starts every row unread',
-      !/PRIVATE|1777777777777|\[x\]|override/i.test(markdown)
+      !/PRIVATE|1777777777777|\[x\]|override|deferred/i.test(markdown)
       && rows.length === 4 && rows.every((row) => row.read === false), markdown);
     t.check('mixed official, manual and unresolved positions retain their exact order and labels',
       JSON.stringify(rows.map((row) => [row.issueId ?? null, row.title, row.section])) === JSON.stringify([
@@ -130,7 +135,8 @@ export const orderOnlyExport = {
     delete backupBefore.exportedAt;
     delete backupAfter.exportedAt;
     t.check('JSON reader-data backup contents are unchanged by exporting',
-      JSON.stringify(backupBefore) === JSON.stringify(backupAfter));
+      JSON.stringify(backupBefore) === JSON.stringify(backupAfter)
+        && backupAfter.lists['order-export'].deferredIssueIds.join() === '900003');
     t.check('all export actions leave the original stored bytes and network counters unchanged',
       await page.evaluate((snapshot) => localStorage.getItem('mrt.state.v2') === snapshot.state
         && window.__exportFetches === snapshot.calls, before), JSON.stringify(external));
@@ -167,9 +173,10 @@ export const orderOnlyExport = {
       imported.saved.issues[900003].url === items[3].url
       && imported.saved.issues[bookId].digitalId === 129648
       && imported.saved.issues[bookId].source === 'manual');
-    t.check('fresh import contains no read marks, notes or overrides',
+    t.check('fresh import contains no read marks, notes, overrides or deferrals',
       Object.keys(imported.saved.read).length === 0 && Object.keys(imported.saved.notes).length === 0
-      && Object.keys(imported.saved.overrides).length === 0 && !list.note, JSON.stringify(imported.saved));
+      && Object.keys(imported.saved.overrides).length === 0 && !list.note
+      && list.deferredIssueIds.length === 0, JSON.stringify(imported.saved));
     t.check('the unresolved manual position remains explicitly offered for resolution',
       imported.report.includes('1 line had no Marvel issue link')
       && imported.report.includes(items[1].title), imported.report);
@@ -178,6 +185,7 @@ export const orderOnlyExport = {
       const saved = JSON.parse(localStorage.getItem('mrt.state.v2'));
       saved.lists[saved.active].itemIds = [];
       saved.lists[saved.active].collectedIn = {};
+      saved.lists[saved.active].deferredIssueIds = [];
       localStorage.setItem('mrt.state.v2', JSON.stringify(saved));
     });
     await page.goto(`${page.__origin}/#/data`, { waitUntil: 'load' });

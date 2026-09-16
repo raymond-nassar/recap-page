@@ -4,6 +4,27 @@ Recap Page runs on your own computer and opens in a normal web browser. This gui
 download, source setup, first run, safe upgrades, and the problems most likely to look like lost
 reading progress.
 
+## Take a reading list to another app
+
+Open **Export** on Reading and choose **Export personal checklist**, or use **Export personal
+checklist** in **Backup & settings**. Review the file preview, then choose **Download Markdown**.
+
+The default file contains the list title and every comic in its saved reading order, with read
+checkboxes. Filtering the reading screen does not remove comics from the export.
+Deferred comics also keep their saved positions. Clear
+**Read checkboxes** if you want ordinary bullets instead.
+
+List descriptions, collected-edition headings, official comic links and personal notes are optional.
+**My list and issue notes** starts off every time, so a previous export cannot silently include
+private notes in the next one. Only known details are used; exporting does not look anything up
+or change your saved data.
+
+This personal `.md` file includes read checkboxes by default.
+For an unread order with available source credit, use **Export order only** instead.
+Neither Markdown file is a complete backup.
+Use **Download JSON backup** when you need to restore your lists, notes, progress and other saved
+choices in Recap Page.
+
 ## Choose how to run it
 
 All three routes open the same app at the same address. You can switch between them without moving or
@@ -335,8 +356,9 @@ rather than inventing a credit. Manual or unresolved comics without a supported 
 checklist rows. Import shows those rows for deliberate resolution rather than guessing an identity.
 An empty list can be exported, but importing a file with no issues does not create a list.
 
-**Export personal checklist** keeps notes and read checkboxes in Markdown. Notes do not re-import
-from either Markdown format. **Download JSON backup** is the lossless reader-data backup, including
+**Export personal checklist** opens a preview with read checkboxes by default and notes available
+only when explicitly selected. Notes do not re-import from either Markdown format.
+**Download JSON backup** is the lossless reader-data backup, including
 notes and progress; use it to protect your saved data rather than sharing it as an order.
 
 ## Getting help
