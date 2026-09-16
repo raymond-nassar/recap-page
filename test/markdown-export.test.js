@@ -83,7 +83,7 @@ test('readable user text cannot inject headings, checklist rows, HTML or Markdow
     description: '# Not a heading\n<img src="https://example.com/a">',
     note: '[private link](https://example.com)',
     items: [{
-      title: '**Comic**\n- [x] Injected <script> & [link](https://example.com)',
+      title: '**Comic**\\variant\n- [x] Injected <script> <SCRIPT> & [link](https://example.com)',
       read: false, note: '# Also not a heading\n- [ ] Not a comic',
       collectedIn: 'Group\n## Injected',
     }],
@@ -91,8 +91,10 @@ test('readable user text cannot inject headings, checklist rows, HTML or Markdow
   assert.equal(result.split('\n').filter((line) => /^- /.test(line)).length, 1);
   assert.equal(result.split('\n').filter((line) => /^# /.test(line)).length, 1);
   assert.equal(result.split('\n').filter((line) => /^## /.test(line)).length, 1);
-  assert.doesNotMatch(result, /<script>|<img|\*\*Comic\*\*|(?<!\\)\[private link\]\(/);
+  assert.doesNotMatch(result, /<(?:script|img)\b|\*\*Comic\*\*|(?<!\\)\[private link\]\(/i);
   assert.match(result, /&lt;script&gt;/);
+  assert.match(result, /&lt;SCRIPT&gt;/);
+  assert.match(result, /\\\\variant/);
   assert.match(result, /> # Also not a heading/);
 });
 

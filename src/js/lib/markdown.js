@@ -290,11 +290,11 @@ function quoteNote(note) {
   return String(note).split(/\r?\n/).map((line) => `> ${line}`.trimEnd());
 }
 
-// The backslash must be escaped first, or escaping "]" would corrupt any title that already
-// contained a backslash: "a\" + "]" would emit "a\\]", which reads back as a literal backslash
-// followed by an unescaped "]" and terminates the link early.
-export function escapeLinkText(s) {
-  return String(s).replace(/\\/g, '\\\\').replace(/\]/g, '\\]');
+// Replacing a backslash introduced by an earlier escape changes the text it protects.
+// One pass only visits original characters, so a title containing both "\" and "]"
+// keeps the same link text in the linked codec and the readable export.
+export function escapeLinkText(s, literal = false) {
+  return String(s).replace(literal ? /[\\`*_[\]]/g : /[\\\]]/g, '\\$&');
 }
 
 // Normalization used only for exact-match title resolution. Deliberately strict:
@@ -320,11 +320,11 @@ export function resolveUniqueExact(title, candidates) {
 
 function literalMarkdown(value, singleLine = false) {
   const text = String(value ?? '').replace(/\r\n?/g, '\n');
-  return escapeLinkText(singleLine ? text.replace(/[\r\n]+/g, ' ') : text)
+  const content = singleLine ? text.replace(/[\r\n]+/g, ' ') : text;
+  return escapeLinkText(content, true)
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/[`*_[]/g, '\\$&');
+    .replace(/>/g, '&gt;');
 }
 
 function projectIssueReference(item) {
