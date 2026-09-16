@@ -39,7 +39,8 @@ test('Miles source census accounts for all collections, explicit instructions an
     Array.from({ length: 395 }, (_, index) => index + 1));
   assert.deepEqual(packet.repeatedSourceReferences.map((row) => row.sourcePosition),
     [237, 273, 274, 275, 290, 291, 292, 326, 384]);
-  assert.equal(packet.rows.length + packet.sourceGaps.length, 386);
+  assert.equal(packet.rows.length + (packet.sourceGaps?.length ?? 0)
+    + packet.excludedSourceRows.length, 386);
   assert.deepEqual(mapping.rows.map((row) => [row.sourcePosition, row.selectedIssueId]),
     ledger.occurrences.filter((row) => row.disposition === 'exact')
       .map((row) => [row.sourcePosition, row.issueId]));
@@ -124,26 +125,28 @@ test('Miles keeps Champions and Spider-Verse volumes, decimals, legacy numbering
   assert.ok(!rows.some((row) => row.seriesId === 26025));
 });
 
-test('Miles unresolved originals remain explicit tracked source gaps rather than substitutions', () => {
-  assert.deepEqual(packet.sourceGaps.map((gap) => [
-    gap.sourcePosition, gap.normalizedSeriesTitle, gap.issueNumber,
-  ]), [[67, 'Ultimate Prologue', '1']]);
+test('Miles owner-excluded original remains audited rather than substituted', () => {
+  assert.equal(packet.sourceGaps, undefined);
+  assert.deepEqual(packet.excludedSourceRows.map((row) => [
+    row.sourcePosition, row.sourceIssueReference,
+  ]), [[67, 'Ultimate Prologue (2013) #1']]);
   assert.deepEqual(mapping.rows.filter((row) => row.seriesId === 23020
     && ['9', '10'].includes(row.issueNumber)).map((row) => row.selectedIssueId), [64259, 64285]);
   assert.deepEqual(mapping.sourceGaps, packet.sourceGaps);
-  for (const gap of packet.sourceGaps) {
-    assert.equal(gap.kind, 'published-metadata-gap');
-    assert.equal(gap.status, 'open');
-    assert.ok(gap.evidenceSources.some((source) => source.kind === 'tracking-issue'));
-    assert.ok(gap.evidenceSources.some((source) => source.kind === 'metadata-api'));
-    assert.ok(!mapping.rows.some((row) => row.sourcePosition === gap.sourcePosition));
-  }
+  assert.deepEqual(mapping.excludedSourceRows, packet.excludedSourceRows);
+  assert.deepEqual(mapping.sourceGapResolutions, packet.sourceGapResolutions);
+  const previousGap = ledger.ownerApprovedExclusions[0].previousGap;
+  assert.equal(previousGap.sourcePosition, 67);
+  assert.equal(previousGap.kind, 'published-metadata-gap');
+  assert.equal(previousGap.status, 'open');
+  assert.ok(previousGap.evidenceSources.some((source) => source.kind === 'tracking-issue'));
+  assert.ok(!mapping.rows.some((row) => row.sourcePosition === 67));
 });
 
 test('Miles approvals preserve the reviewed library and frozen evidence', async () => {
   const report = await readJson(`scripts/data/cbh-overlaps/${id}.json`);
   const current = await buildReportForMapping(
-    `scripts/data/cbh-mappings/${id}.json`, [], { excludedOrderIds: ['best-ultron-reading-order', 'winter-soldier-bucky-barnes-reading-order', 'spider-man-2099-reading-order', 'donny-cates-marvel-universe-reading-order-2017', 'falcon-sam-wilson-captain-america-reading-order'] },
+    `scripts/data/cbh-mappings/${id}.json`, [], { excludedOrderIds: [] },
   );
   const manifest = await readJson('src/data/curated-lists.json');
   assert.doesNotThrow(() => validateFrozenPacket(packet));
@@ -153,11 +156,10 @@ test('Miles approvals preserve the reviewed library and frozen evidence', async 
   assert.doesNotThrow(() => validateApprovalDigest(mapping.relationshipReview, id));
   assert.deepEqual(current.comparisons, report.comparisons);
   assert.equal(current.libraryDigest, report.libraryDigest);
-  assert.equal(report.comparisonCount, manifest.lists.length - 6);
+  assert.equal(report.comparisonCount, manifest.lists.length - 1);
   assert.doesNotThrow(() => assertApprovedRelationshipReview({
     packet, mapping, report, currentLibraryDigest: current.libraryDigest,
-    expectedOrderIds: manifest.lists.filter((row) => row.id !== id
-      && !['best-ultron-reading-order', 'winter-soldier-bucky-barnes-reading-order', 'donny-cates-marvel-universe-reading-order-2017', 'falcon-sam-wilson-captain-america-reading-order'].includes(row.id) && row.id !== 'spider-man-2099-reading-order').map((row) => row.id),
+    expectedOrderIds: manifest.lists.filter((row) => row.id !== id).map((row) => row.id),
   }));
 });
 
@@ -171,14 +173,12 @@ test('Miles checklist and catalog publish the exact vector with credit and no co
   assert.equal(markdown.replace(/\r\n/g, '\n'), buildMarkdown(mapping));
   const parsed = parseChecklist(markdown);
   assert.equal(parsed.entries.length, mapping.rows.length);
-  assert.equal(parsed.unresolved.length, packet.sourceGaps.length);
-  assert.equal(payload.items.length, 386);
+  assert.equal(parsed.unresolved.length, 0);
+  assert.equal(payload.items.length, 385);
   assert.deepEqual(payload.items.filter((item) => !item.placeholder).map((item) => item.issueId),
     mapping.rows.map((row) => row.selectedIssueId));
   assert.equal(new Set(payload.items.map((item) => item.issueId)).size, payload.items.length);
-  assert.equal(payload.items.filter((item) => item.placeholder).length, packet.sourceGaps.length);
-  assert.ok(payload.items.filter((item) => item.placeholder)
-    .every((item) => item.issueId < 0 && item.digitalId == null));
+  assert.equal(payload.items.filter((item) => item.placeholder).length, 0);
   assert.ok(payload.items.every((item) => item.description == null));
   assert.deepEqual(payload.items.filter((item) => item.detailsRefused).map((item) => item.issueId),
     [64259, 64285]);

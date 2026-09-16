@@ -2,7 +2,7 @@
   "candidateId": "donny-cates-marvel-universe-reading-order-2017",
   "packetDigest": "e3564c0e2da38c026ae3202fcb283552cec11801ca39a4803be3a6b97f6d3d08",
   "mappingDigest": "4d90563c2db0e277514b38638700820e28aff003ad4bf8f203229b9fbd3ff67d",
-  "libraryDigest": "38b56318640e24753e6887513ec8e08f05643397d08a6f8ee15bc091c8f6760d",
+  "libraryDigest": "e0ff6be0b0b1cfc932a36491840f8127dc619724916e8641683c9cd12a0eb808",
   "peerDigests": {},
   "candidateCount": 88,
   "comparisonCount": 181,
@@ -1251,5 +1251,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "754d1b780c7ce73f84289c928a3b514b43a66508175bc861686a7755e6ecb2bd"
+  "reportDigest": "4f4bdf4242ba31160f00ff68c4e92a5f2a5f61935780ce2532a9be0052586d1d"
 }

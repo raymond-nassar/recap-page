@@ -95,48 +95,11 @@
       "canonicalRow": 370
     }
   ],
-  "sourceGaps": [
-    {
-      "sourcePosition": 67,
-      "sourceIssueReference": "Ultimate Prologue (2013) #1",
-      "sourceRangeReference": "Cataclysm: Cataclysm: The Ultimates' Last Stand #1-5; Cataclysm: Ultimate Spider-Man #1-3; Cataclysm: Ultimate X-Men #1-3; Cataclysm: Ultimates #1-3; Hunger #1-4; Cataclysm #0.1; Ultimate Prologue #1",
-      "normalizedSeriesTitle": "Ultimate Prologue",
-      "seriesYear": 2013,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-09-15",
-      "auditBasis": "No exact original identity in the vendored series index. Ultimate Prologue search returned no results; broader Prologue search returned six unrelated comics. Numbered search failed with HTTP 500 and the corresponding Marvel Database page returned 404. Do not substitute another prologue or a collection.",
-      "evidenceSources": [
-        {
-          "kind": "guide",
-          "url": "https://www.comicbookherald.com/miles-morales-spider-man-reading-order/",
-          "retrievedAt": "2026-09-15"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Prologue&limit=200",
-          "retrievedAt": "2026-09-15"
-        },
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Ultimate%20Prologue&limit=200",
-          "retrievedAt": "2026-09-15"
-        },
-        {
-          "kind": "tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/500",
-          "retrievedAt": "2026-09-15"
-        }
-      ],
-      "evidenceDigest": "740ff0a38544cef6613ec62d4dd0f9fd0bc4bc6e9bbe0b66789ea7cbb9c6a040"
-    }
-  ],
   "expectedCount": 385,
   "proposedManifest": {
     "id": "miles-morales-spider-man-reading-order",
     "name": "Spider-Man: Miles Morales",
-    "description": "Follow Miles from the Ultimate Universe to Earth-616, the Champions and Trial By Spider in Comic Book Herald guide order. One unresolved comic remains marked as a gap.",
+    "description": "Follow Miles from the Ultimate Universe to Earth-616, the Champions and Trial By Spider in Comic Book Herald guide order.",
     "type": "character-run",
     "spotlightKind": "other",
     "depth": "partial",
@@ -164,7 +127,7 @@
       "Spider-Verse",
       "Trial By Spider"
     ],
-    "expect": 386,
+    "expect": 385,
     "timeline": null,
     "coverIssueId": 38394
   },
@@ -174,8 +137,9 @@
   "sourceReview": {
     "authorityType": "stronger-model",
     "authorityIdentity": "GPT-6 Astra",
-    "rationale": "Reviewed all 60 collection blocks, all explicit crossover directions and source omissions. Six early collection mentions are explicitly deferred to their crossover positions, not dropped. All 400 collection references and the additional Ultimates #18.1 are accounted for. Distinct volumes, annuals, decimal and LR labels, one unresolved identity and two provider refusals retain exact provenance. Scope Issue 496; gap Issue 500.",
-    "reviewedAt": "2026-09-15T05:12:19.202Z"
+    "rationale": "Renewed the accepted frozen source boundary for Issue 500. The owner approved omitting source position 67 after their Marvel Unlimited search and the withdrawn Amazon listing evidence, without substituting another comic or claiming nonexistence. All 395 source occurrences remain accounted for as 385 unchanged exact comics, one explicit exclusion and nine repeats. The two separately evidenced Secret Empire supplements preserve real provider refusals, owner page counts, the explicit 14/24 credit projection, allowed-CDN cover URLs and null unknown reader/availability fields. Narrative and image bytes are not published. Final publication remains subject to owner review of the separate pull request.",
+    "reviewedAt": "2026-09-16T07:50:21.016Z",
+    "metadataSupplementDigest": "8026e7baf66cf3d8d3205638a889cbd6f15c7fd9ff9684daa77b477d38f8f4ba"
   },
   "rows": [
     {
@@ -4449,5 +4413,46 @@
       "manualSeriesSelectionApproved": false
     }
   ],
-  "packetDigest": "1d23d52cd00261cf42be86fe3bd1e801e390a6271868ac6365f8b9cd8ea1357e"
+  "packetDigest": "783765f036d70ce0464481ecc87e4e8dc343d22a3dac22343d60370158d311ef",
+  "excludedSourceRows": [
+    {
+      "sourcePosition": 67,
+      "sourceIssueReference": "Ultimate Prologue (2013) #1",
+      "reason": "Owner-approved omission after an unsuccessful Marvel Unlimited title search and contemporary reporting that Ultimate Prologue was withdrawn from an Amazon collection listing. No replacement or claim of nonexistence.",
+      "decisionScope": "Miles Morales guide only; retain the original source position and do not substitute Survive! or another comic."
+    }
+  ],
+  "sourceGapResolutions": [
+    {
+      "sourcePosition": 67,
+      "previousSourceIssueReference": "Ultimate Prologue (2013) #1",
+      "previousSourceRangeReference": "Cataclysm: Cataclysm: The Ultimates' Last Stand #1-5; Cataclysm: Ultimate Spider-Man #1-3; Cataclysm: Ultimate X-Men #1-3; Cataclysm: Ultimates #1-3; Hunger #1-4; Cataclysm #0.1; Ultimate Prologue #1",
+      "previousNormalizedSeriesTitle": "Ultimate Prologue",
+      "previousSeriesYear": 2013,
+      "previousIssueNumber": "1",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "Owner-approved omission after an unsuccessful Marvel Unlimited title search and contemporary reporting that Ultimate Prologue was withdrawn from an Amazon collection listing. No replacement or claim of nonexistence.",
+      "decisionScope": "Miles Morales guide only; retain the original source position and do not substitute Survive! or another comic.",
+      "checkedAt": "2026-09-16",
+      "auditBasis": "The owner approved omitting this preserved source reference after searching Marvel Unlimited. Bleeding Cool reported that the Amazon listing removed the name in November 2013. Neither establishes a renamed issue or licenses a substitute.",
+      "evidenceSources": [
+        {
+          "kind": "contemporary-listing-report",
+          "url": "https://bleedingcool.com/comics/so-what-is-marvels-ultimate-prologue/",
+          "retrievedAt": "2026-09-16"
+        },
+        {
+          "kind": "owner-omission-approval",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/500#issuecomment-5693130623",
+          "retrievedAt": "2026-09-16"
+        },
+        {
+          "kind": "reviewed-source-evidence",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/500#issuecomment-5693093457",
+          "retrievedAt": "2026-09-16"
+        }
+      ],
+      "evidenceDigest": "2f41e69a1c3b99cd0b2456cf3b6cef346e3d0b3f4704beb1b4d1c54caf166cea"
+    }
+  ]
 }

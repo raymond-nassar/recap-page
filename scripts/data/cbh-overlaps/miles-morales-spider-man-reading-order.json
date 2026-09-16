@@ -1,18 +1,19 @@
 {
   "candidateId": "miles-morales-spider-man-reading-order",
-  "packetDigest": "1d23d52cd00261cf42be86fe3bd1e801e390a6271868ac6365f8b9cd8ea1357e",
-  "mappingDigest": "b2e484b138bbb225f86e08263b2cb3e0ddcd6b261d5550bc4b4fde9a2507f561",
-  "libraryDigest": "706752e1389029ea813bd4dda98bc2ab90788ad2d2510a8df6f4277eb94c41c1",
+  "packetDigest": "783765f036d70ce0464481ecc87e4e8dc343d22a3dac22343d60370158d311ef",
+  "mappingDigest": "a8c47217aab1f8f5eff984e40f9738c9995284f586bb145de114f0cbd9059014",
+  "libraryDigest": "a0e3f75836f748532524348f310f695dc5163e9aad1ac9a179c66a6c606b9784",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 395,
-    "sourceIdentityCount": 386,
+    "sourceIdentityCount": 385,
     "includedIssueCount": 385,
-    "sourceGapCount": 1,
-    "repeatedSourceReferenceCount": 9
+    "sourceGapCount": 0,
+    "repeatedSourceReferenceCount": 9,
+    "excludedSourceRowCount": 1
   },
   "candidateCount": 385,
-  "comparisonCount": 176,
+  "comparisonCount": 181,
   "comparisons": [
     {
       "orderId": "abomination-reading-order",
@@ -236,6 +237,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "best-ultron-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "black-panther-reading-order",
       "sharedCount": 1,
       "sharedIds": [
@@ -431,6 +438,19 @@
       "relationship": "none"
     },
     {
+      "orderId": "donny-cates-marvel-universe-reading-order-2017",
+      "sharedCount": 6,
+      "sharedIds": [
+        "67577",
+        "70036",
+        "70045",
+        "70051",
+        "67293",
+        "67294"
+      ],
+      "relationship": "partial"
+    },
+    {
       "orderId": "doomwar",
       "sharedCount": 0,
       "sharedIds": [],
@@ -453,6 +473,29 @@
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
+    },
+    {
+      "orderId": "falcon-sam-wilson-captain-america-reading-order",
+      "sharedCount": 16,
+      "sharedIds": [
+        "55351",
+        "55354",
+        "55356",
+        "55357",
+        "55358",
+        "55359",
+        "55360",
+        "55361",
+        "55362",
+        "55363",
+        "55364",
+        "55365",
+        "55366",
+        "55367",
+        "55368",
+        "60276"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "fall-house-x-rise-powers-x",
@@ -1048,6 +1091,16 @@
       "relationship": "none"
     },
     {
+      "orderId": "spider-man-2099-reading-order",
+      "sharedCount": 3,
+      "sharedIds": [
+        "50546",
+        "50547",
+        "50548"
+      ],
+      "relationship": "partial"
+    },
+    {
       "orderId": "spider-man-best-of",
       "sharedCount": 0,
       "sharedIds": [],
@@ -1218,6 +1271,24 @@
       "relationship": "none"
     },
     {
+      "orderId": "winter-soldier-bucky-barnes-reading-order",
+      "sharedCount": 11,
+      "sharedIds": [
+        "52447",
+        "52450",
+        "52451",
+        "52452",
+        "52453",
+        "52454",
+        "52455",
+        "52456",
+        "57620",
+        "55360",
+        "55361"
+      ],
+      "relationship": "partial"
+    },
+    {
       "orderId": "wolverine-goes-to-hell",
       "sharedCount": 0,
       "sharedIds": [],
@@ -1364,5 +1435,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "50ea85eb457947268e12a75dfda96c6983f4ca335db4c6c1b8bffa274308d783"
+  "reportDigest": "12fe86c3a532d2e246c6b3b2d0f12436ed89a4627f658504b9f9bc302b069c89"
 }

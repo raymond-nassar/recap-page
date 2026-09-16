@@ -1075,12 +1075,12 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // Wolverine replaces 29 placeholders with 14 exact issues while preserving the remaining 756
   // title-derived placeholder identities.
   // Ant-Man adds three exact official links with explicit provider refusals.
-  // Miles adds one unresolved original and two known Secret Empire identities with refused metadata.
+  // Miles omits its owner-excluded source row; two Secret Empire records gain independently pinned details.
   // Winter Soldier adds four distinct unresolved source originals.
-  assert.equal(claimed, 1019, 'the payload placeholder total moved; re-derive the figures in the record');
-  assert.equal(placeholders, 1019, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
-  assert.equal(empty, 199);
-  assert.equal(affected, 19);
+  assert.equal(claimed, 1018, 'the payload placeholder total moved; re-derive the figures in the record');
+  assert.equal(placeholders, 1018, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
+  assert.equal(empty, 197);
+  assert.equal(affected, 18);
 });
 
 // Every check above passes with the import path reverted, because they all call the counter
@@ -1307,9 +1307,9 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // The final Amazing Spider-Man settlement replaces 96 distinct negative placeholders with 23
   // distinct exact refused identities, reducing the current distinct refused total by 73.
   // Wolverine replaces 29 negative placeholder identities with provider-resolved exact issues.
-  // Miles adds one distinct placeholder; both refused Secret Empire IDs already occur elsewhere.
+  // Miles omits one distinct placeholder; both Secret Empire IDs retain their recorded provider refusals.
   // Winter Soldier contributes four distinct source-position placeholders.
-  assert.equal(refused.length, 1238);
+  assert.equal(refused.length, 1237);
   assert.equal(pendingIssueIds(s).length, 0, 'the app is still offering to fetch details that do not exist');
 });
 
