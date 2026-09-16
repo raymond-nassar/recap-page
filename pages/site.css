@@ -85,6 +85,7 @@ h2,
 h3,
 p,
 ul,
+ol,
 figure {
   margin-top: 0;
 }
@@ -307,6 +308,13 @@ code {
 
 .button:hover {
   border-color: var(--accent);
+}
+
+.walkthrough {
+  display: grid;
+  gap: var(--space-4);
+  padding-left: var(--space-5);
+  margin-bottom: var(--space-5);
 }
 
 .demo-grid {

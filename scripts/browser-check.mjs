@@ -3232,10 +3232,10 @@ const SCENARIOS = [
         bestOf: await readSubset('best-of'),
       };
       t.check('desktop All, Complete, and Best of counts classify Adam exactly once',
-        desktop.all.readings === 52 && desktop.all.stories === 51
-        && desktop.all.cards === 51 && desktop.all.adamCards === 1
-        && desktop.complete.readings === 35 && desktop.complete.stories === 35
-        && desktop.complete.cards === 35 && desktop.complete.adamCards === 1
+        desktop.all.readings === 53 && desktop.all.stories === 52
+        && desktop.all.cards === 52 && desktop.all.adamCards === 1
+        && desktop.complete.readings === 36 && desktop.complete.stories === 36
+        && desktop.complete.cards === 36 && desktop.complete.adamCards === 1
         && desktop.bestOf.readings === 7 && desktop.bestOf.stories === 7
         && desktop.bestOf.cards === 7 && desktop.bestOf.adamCards === 0,
         JSON.stringify(desktop));
@@ -3248,10 +3248,10 @@ const SCENARIOS = [
         overflow: await page.evaluate(() => document.documentElement.scrollWidth > innerWidth),
       };
       t.check('narrow All, Complete, and Best of counts preserve Adam without horizontal overflow',
-        narrow.all.readings === 52 && narrow.all.stories === 51
-        && narrow.all.cards === 51 && narrow.all.adamCards === 1
-        && narrow.complete.readings === 35 && narrow.complete.stories === 35
-        && narrow.complete.cards === 35 && narrow.complete.adamCards === 1
+        narrow.all.readings === 53 && narrow.all.stories === 52
+        && narrow.all.cards === 52 && narrow.all.adamCards === 1
+        && narrow.complete.readings === 36 && narrow.complete.stories === 36
+        && narrow.complete.cards === 36 && narrow.complete.adamCards === 1
         && narrow.bestOf.readings === 7 && narrow.bestOf.stories === 7
         && narrow.bestOf.cards === 7 && narrow.bestOf.adamCards === 0
         && !narrow.overflow,

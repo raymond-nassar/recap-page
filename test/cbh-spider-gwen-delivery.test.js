@@ -115,7 +115,7 @@ test('Spider-Gwen digests and approval preserve the reviewed source library', as
   const manifest = await readJson('src/data/curated-lists.json');
   const currentReport = await buildReportForMapping(
     `scripts/data/cbh-mappings/${id}.json`, [], {
-      excludedOrderIds: ['miles-morales-spider-man-reading-order', 'best-ultron-reading-order', 'winter-soldier-bucky-barnes-reading-order', 'spider-man-2099-reading-order'],
+      excludedOrderIds: ['miles-morales-spider-man-reading-order', 'best-ultron-reading-order', 'winter-soldier-bucky-barnes-reading-order', 'spider-man-2099-reading-order', 'donny-cates-marvel-universe-reading-order-2017', 'falcon-sam-wilson-captain-america-reading-order'],
     },
   );
   assert.doesNotThrow(() => validateFrozenPacket(packet));
@@ -127,7 +127,7 @@ test('Spider-Gwen digests and approval preserve the reviewed source library', as
   assert.deepEqual(report.comparisons.map((row) => row.orderId).sort(),
     manifest.lists.filter((row) => row.id !== id
       && row.id !== 'miles-morales-spider-man-reading-order'
-      && !['best-ultron-reading-order', 'winter-soldier-bucky-barnes-reading-order'].includes(row.id) && row.id !== 'spider-man-2099-reading-order').map((row) => row.id).sort());
+      && !['best-ultron-reading-order', 'winter-soldier-bucky-barnes-reading-order', 'donny-cates-marvel-universe-reading-order-2017', 'falcon-sam-wilson-captain-america-reading-order'].includes(row.id) && row.id !== 'spider-man-2099-reading-order').map((row) => row.id).sort());
   assert.deepEqual(currentReport.comparisons, report.comparisons);
   assert.equal(currentReport.libraryDigest, report.libraryDigest);
   assert.deepEqual(report.comparisons.filter((row) => row.relationship !== 'none')

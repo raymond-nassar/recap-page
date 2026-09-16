@@ -509,6 +509,44 @@
       "coverIssueId": 66416
     },
     {
+      "id": "donny-cates-marvel-universe-reading-order-2017",
+      "name": "Donny Cates' Marvel Universe",
+      "description": "Comic Book Herald's selected Donny Cates Marvel sequence, from Doctor Strange and Thanos Wins through Venom Island and Thor #1-5. Includes the source's guest-written connections; linked event guides stay separate.",
+      "type": "creator-run",
+      "depth": "selected",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "donny-cates-marvel-universe-reading-order-2017.md",
+      "sourcePage": "https://www.comicbookherald.com/donny-cates-marvel-universe-reading-order-2017/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "donny_cates_marvel_universe_reading_order_2017.json",
+      "characters": [
+        "Doctor Strange",
+        "Thanos",
+        "Cosmic Ghost Rider",
+        "Venom",
+        "Inhumans",
+        "Guardians of the Galaxy",
+        "Silver Surfer",
+        "Thor"
+      ],
+      "keywords": [
+        "Donny Cates",
+        "Cates",
+        "Marvel Universe",
+        "Thanos Wins",
+        "Damnation",
+        "Venom Island",
+        "Marvel Knights"
+      ],
+      "expect": 88,
+      "timeline": 2017,
+      "coverIssueId": 65070
+    },
+    {
       "id": "damnation",
       "name": "Marvel Damnation",
       "description": "Fifteen chapters combining the four-part event with Doctor Strange, Iron Fist, Scarlet Spider, and Ghost Rider.",
@@ -4811,6 +4849,43 @@
       "expect": 28,
       "timeline": 2000,
       "coverIssueId": 10284
+    },
+    {
+      "id": "falcon-sam-wilson-captain-america-reading-order",
+      "name": "Falcon / Sam Wilson / Captain America",
+      "description": "Follow Sam Wilson from the Falcon's beginnings to Captain America and Symbol of Truth, in Comic Book Herald guide order. Repeated collection references appear once.",
+      "type": "character-run",
+      "spotlightKind": "complete-guide",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "falcon-sam-wilson-captain-america-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/falcon-sam-wilson-captain-america-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "falcon_sam_wilson_captain_america_reading_order.json",
+      "characters": [
+        "Falcon",
+        "Sam Wilson",
+        "Captain America",
+        "Steve Rogers",
+        "Winter Soldier",
+        "Avengers"
+      ],
+      "keywords": [
+        "Falcon",
+        "Sam Wilson",
+        "Captain America",
+        "Comic Book Herald",
+        "Nick Spencer",
+        "Christopher Priest",
+        "Symbol of Truth"
+      ],
+      "expect": 494,
+      "timeline": null,
+      "coverIssueId": 105605
     },
     {
       "id": "fantastic-four-reading-order",

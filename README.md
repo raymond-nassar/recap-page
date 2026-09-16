@@ -2,14 +2,30 @@
 
 **A private reading companion for Marvel Unlimited.** [Open the project home](https://raymond-nassar.github.io/recap-page/) for a quick tour, setup, help and project questions.
 
-Recap Page turns long comic events and character runs into clear reading sessions. Pick a curated
-reading order, follow it issue by issue, and keep your place without creating an account.
-Everything runs locally in your browser.
+Follow a Marvel story across series, open the next unread comic, and keep your place. Recap Page
+runs locally in your desktop browser without an account; it is not a native phone app.
+No automatic device sync or offline comic reading.
 
 It does not include comics, bypass a subscription, or replace Marvel Unlimited. When a direct
-Marvel Unlimited link is available, **Read** opens the official reader in a new tab. Otherwise the
+Marvel Unlimited link is available, **Read** opens the official reader in a separate tab. Otherwise the
 new tab looks up that link and falls back to the issue's official page on marvel.com when none can
-be resolved. You need your own subscription to read included issues.
+be resolved. An official issue page is not guaranteed access. You need your own subscription
+to read included issues.
+
+## A reading session, from start to resume
+
+This example uses made-up progress, not someone's reading history.
+
+1. In **Browse**, add **Civil War: An Avengers Reading List**, compiled from
+   [Comic Book Herald's guide](https://www.comicbookherald.com/where-do-i-start-with-avengers-trade-collections/).
+2. Imagine the first six comics are marked read. **Civil War (2006) #7** is the next unread issue.
+3. Choose **Read** to open the official reader where a link is available.
+4. Return to Recap Page and choose **Done, next** yourself. **New Avengers (2004) #21** becomes next;
+   reading is not detected automatically.
+5. Stop here, then reopen this Reading List in the same browser profile to resume at that unread comic.
+
+Read markers are shared for the same issue across overlapping Reading Lists; each list keeps its
+own order. The sample views below show a different list, with cover art off.
 
 ![Recap Page Home with a recommended starting guide and focused discovery choices,
 with cover art off](docs/screenshots/home-960.png)

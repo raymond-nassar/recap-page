@@ -8,7 +8,7 @@ export const GUIDE_TYPES = Object.freeze([
   'bridge',
   'fast-track',
   'commerce',
-  'character-run',
+  'character-run', 'creator-run',
 ]);
 
 export const DISPOSITIONS = Object.freeze([
