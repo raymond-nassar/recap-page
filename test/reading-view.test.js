@@ -13,6 +13,7 @@ import {
   setIssueNote,
   setListNote,
   renameList, moveItem, removeFromList, setOverride, upsertIssue, exportBackup,
+  setDeferred, isDeferred, listReadingProgress,
 } from '../src/js/lib/model.js';
 import { Store, KEY } from '../src/js/storage.js';
 import { DEFAULT_FILTER, READING_FILTERS } from '../src/js/lib/readingFilters.js';
@@ -345,7 +346,8 @@ function harness(overrides = {}) {
   ]);
   for (const id of ['review-earlier', 'btn-review-earlier', 'review-h', 'review-context',
     'review-position', 'review-candidate', 'review-earlier-button', 'review-later-button',
-    'review-close', 'review-full-order']) {
+    'review-close', 'review-full-order', 'all-deferred', 'all-deferred-h', 'all-deferred-count',
+    'btn-review-deferred', 'btn-hero-defer']) {
     nodes[id] = node({ id, hidden: id === 'review-earlier' });
     selectorMap.set(`#${id}`, nodes[id]);
   }
@@ -1000,6 +1002,69 @@ function removalOffer(h) {
   assert.equal(notice.dismiss.label, 'Dismiss');
   return notice;
 }
+
+test('510 Reading deferral, Done, shelf and review agree without false completion or source changes', () => {
+  const h = removalHarness({ fullOpen: false, state: markRead(seededState(), 1, false) });
+  try {
+    const ids = [...h.state().lists['list-a'].itemIds];
+    h.nodes['btn-hero-defer'].fire('click');
+    assert.equal(isDeferred(h.state(), 'list-a', 1), true);
+    assert.equal(h.nodes.heroTitle.textContent, h.state().issues[2].title);
+    assert.equal(h.nodes.shelf.childNodes.length, 1);
+    h.nodes['btn-hero-defer'].fire('click');
+    h.nodes.btnHeroDone.fire('click');
+    assert.equal(h.nodes.allRead.hidden, true);
+    assert.equal(h.nodes['all-deferred'].hidden, false);
+    assert.equal(globalThis.document.activeElement, h.nodes['all-deferred-h']);
+    assert.match(h.calls.announce.at(-1), /Nothing queued.*2 unread issues are deferred/);
+    assert.deepEqual(listReadingProgress(h.state(), 'list-a'), { read: 1, total: 3, deferred: 2, queued: 0 });
+    assert.deepEqual(h.state().lists['list-a'].itemIds, ids);
+    h.nodes['btn-review-deferred'].fire('click');
+    assert.equal(h.nodes.full.open, true);
+    assert.equal(h.view.currentFilter(), 'deferred');
+    assert.equal(globalThis.document.activeElement.value, 'deferred');
+    assert.deepEqual(h.calls.showView.at(-1), { name: 'read', opts: { push: true, focus: false } });
+    const actions = [];
+    walk(h.nodes.rows, (entry) => { if (entry.dataset?.act === 'defer') actions.push(entry); });
+    assert.equal(actions.length, 2);
+    actions[0].fire('click');
+    assert.equal(isDeferred(h.state(), 'list-a', 1), false);
+    assert.equal(h.nodes.heroTitle.textContent, h.state().issues[1].title);
+    assert.deepEqual(h.state().lists['list-a'].itemIds, ids);
+  } finally { h.restore(); }
+});
+
+test('510 failed deferral keeps the same hero, focus and bytes without a success announcement', () => {
+  const h = removalHarness();
+  try {
+    h.nodes['btn-hero-defer'].focus();
+    const before = h.storage.getItem(KEY);
+    const title = h.nodes.heroTitle.textContent;
+    h.storage.failWrites = 1;
+    h.nodes['btn-hero-defer'].fire('click');
+    assert.equal(h.storage.getItem(KEY), before);
+    assert.equal(h.nodes.heroTitle.textContent, title);
+    assert.equal(globalThis.document.activeElement, h.nodes['btn-hero-defer']);
+    assert.match(h.calls.announce.at(-1), /could not be saved/);
+  } finally { h.restore(); }
+});
+
+test('510 membership Undo retains later member choices and latent intent through global read changes', () => {
+  const h = removalHarness();
+  try {
+    h.store.update((state) => setDeferred(state, 'list-a', 2));
+    removalAction(h, 2).fire('click');
+    const offer = removalOffer(h);
+    h.store.update((state) => markRead(setDeferred(state, 'list-a', 3), 2, true, 510));
+    assert.equal(removalOffer(h), offer);
+    offer.action.onClick();
+    assert.deepEqual(h.state().lists['list-a'].deferredIssueIds, [2, 3]);
+    assert.equal(h.state().read[2], 510);
+    assert.equal(listReadingProgress(h.state(), 'list-a').deferred, 1);
+    h.store.update((state) => markRead(state, 2, false));
+    assert.equal(listReadingProgress(h.state(), 'list-a').deferred, 2);
+  } finally { h.restore(); }
+});
 
 test('444 removal Undo survives synchronous Store repaint without replaying later metadata or progress', () => {
   const h = removalHarness();

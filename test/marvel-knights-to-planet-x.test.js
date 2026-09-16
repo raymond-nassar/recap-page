@@ -192,7 +192,7 @@ test('a saved umbrella stays intact and shares read progress with a later chapte
   ).state;
 
   assert.equal(state.schemaVersion, SCHEMA_VERSION);
-  assert.equal(SCHEMA_VERSION, 2);
+  assert.equal(SCHEMA_VERSION, 3);
   assert.deepEqual(state.lists['legacy-umbrella'].itemIds, legacyIds);
   assert.equal(state.lists['legacy-umbrella'].catalogId, guideId);
   assert.deepEqual(listProgress(state, 'legacy-umbrella'), { read: 1, total: 487 });

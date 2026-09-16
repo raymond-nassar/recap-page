@@ -116,6 +116,29 @@ function issue(issueId = 42) {
   };
 }
 
+test('510 issue details report only saved-list deferral and refresh retained intent without restricting Read', async () => {
+  const state = {
+    issues: { 42: issue() }, read: {}, overrides: {}, notes: {},
+    lists: { saved: { name: 'Saved order', itemIds: [42], deferredIssueIds: [42] } },
+  };
+  const h = harness({ state });
+  h.view.wire();
+  await h.view.render({ issueId: 42, context: { kind: 'list', id: 'saved' } });
+  assert.match(h.nodes.context.textContent, /Deferred in this Reading List/);
+  h.nodes.read.listeners.click({});
+  assert.equal(h.calls.read.length, 1);
+  assert.deepEqual(state.read, {});
+  state.read[42] = 510;
+  h.view.refreshReader();
+  assert.match(h.nodes.context.textContent, /Read; deferral kept if marked unread/);
+  state.lists.saved.deferredIssueIds = [];
+  h.view.refreshReader();
+  assert.doesNotMatch(h.nodes.context.textContent, /defer/i);
+  state.lists.saved.deferredIssueIds = [42];
+  await h.view.render({ issueId: 42 });
+  assert.equal(h.nodes.context.textContent, '');
+});
+
 test('445 a mode reset during explicit fetching keeps returned text without reviving old reveal choices', async () => {
   let hiding = true;
   let text = null;

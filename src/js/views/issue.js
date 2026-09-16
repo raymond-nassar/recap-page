@@ -1,6 +1,7 @@
 import { labelledName } from '../lib/accname.js';
 import { issuePresentation, resolveIssueFocus } from '../lib/issueFocus.js';
 import { renderSynopsisDescription } from '../lib/synopsisDisclosure.js';
+import { isDeferred, isRead } from '../lib/model.js';
 
 export function createIssueView({
   coverUrl,
@@ -42,10 +43,14 @@ export function createIssueView({
     });
   }
 
-  function issueContextText(context) {
+  function issueContextText(context, issueId) {
     if (!context) return '';
     const position = context.total ? `${context.position} of ${context.total}` : '';
-    return [context.name, context.collectedIn, position].filter(Boolean).join(' · ');
+    const deferred = context.kind === 'list' && isDeferred(getState(), context.id, issueId);
+    const intent = deferred
+      ? isRead(getState(), issueId) ? 'Read; deferral kept if marked unread' : 'Deferred in this Reading List'
+      : '';
+    return [context.name, context.collectedIn, position, intent].filter(Boolean).join(' · ');
   }
 
   function paint(result) {
@@ -90,7 +95,7 @@ export function createIssueView({
       description: synopsisFallback(issue, getSynopsis(issue.issueId)),
     });
     nodes.heading.textContent = presentation.title;
-    nodes.context.textContent = issueContextText(context);
+    nodes.context.textContent = issueContextText(context, issue.issueId);
     nodes.status.textContent = result.contextStatus === 'stale'
       ? 'The list or bundled order in this link no longer contains this issue. Showing issue details without that context.'
       : '';
@@ -230,6 +235,7 @@ export function createIssueView({
   function refreshReader() {
     if (!currentResult?.issue) return;
     const nodes = elements();
+    nodes.context.textContent = issueContextText(currentResult.context, currentResult.issue.issueId);
     const focused = nodes.read.ownerDocument?.activeElement === nodes.read && nodes.read.getClientRects().length > 0;
     const { launchable, temporary } = readerPresentation(currentResult.issue, currentResult.source);
     nodes.read.hidden = !launchable;
