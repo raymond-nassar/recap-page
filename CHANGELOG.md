@@ -80,9 +80,11 @@ linked event guides are not expanded into invented issue runs. Saved progress is
 ### Follow Miles Morales from the Ultimate Universe to Earth-616
 
 Adds a Spider-Man: Miles Morales Reading List credited and linked to Comic Book Herald, with
-385 resolved comics and one explicit Ultimate Prologue gap. Crossover chapters keep the guide's
-reading sequence, and Secret Empire #9-10 retain their known identities despite missing provider
-details. Existing Reading Lists and saved progress are unchanged.
+385 resolved comics. The owner-approved Ultimate Prologue omission remains documented in the
+source history without a replacement comic. Secret Empire #9-10 now include reviewed release
+dates, 39/41 page counts, credits and Marvel cover URLs despite the provider's missing records.
+Unverified reader IDs and availability dates stay empty. New imports use the corrected list;
+existing saved Reading Lists, notes and progress are not automatically rewritten.
 
 ### Follow Spider-Gwen into her Ghost-Spider years
 
