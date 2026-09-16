@@ -9,7 +9,7 @@ import {
   createList, deleteList, setActive, addIssuesToList, isRead, upNext, listProgress, listItems, exportBackup, migrate,
   coverUrl, listForCatalogId, SCHEMA_VERSION, MAX_BACKUP_BYTES, orderGapSentences,
 } from './lib/model.js';
-import { serializeChecklist } from './lib/markdown.js';
+import { serializeChecklist, serializeReadingOrder } from './lib/markdown.js';
 import { DEFAULT_LIST_NAME, LIBRARY_VIEWS } from './lib/library.js';
 import {
   parseCatalog, groupCatalog,
@@ -1812,6 +1812,7 @@ async function startIssueSynopsis(isCurrent) {
 // ------------------------------------------------------------------ curated orders
 
 let catalogLoad = null;
+let catalogSnapshot = null;
 
 // Typing in the search box re-renders on every keystroke, so a slow first load could otherwise
 // start a second fetch while the first is still in flight and let the two renders finish out of
@@ -1822,7 +1823,8 @@ function loadCatalog() {
     // Served from our own origin, so the catalog works with no internet connection.
     const res = await fetch('./data/catalog.json', { cache: 'no-cache' });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    return parseCatalog(await res.json());
+    catalogSnapshot = parseCatalog(await res.json());
+    return catalogSnapshot;
   })().catch((err) => {
     catalogLoad = null;
     throw err;
@@ -2037,6 +2039,7 @@ const dataView = createDataView({
     btnCheckLocalConnection: $('#btn-check-local-connection'),
     btnExportJson: $('#btn-export-json'),
     btnExportMd: $('#btn-export-md-2'),
+    btnExportOrder: $('#btn-export-order-2'),
     restoreFile: $('#restore-file'),
     undoRestore: $('#btn-undo-restore'),
     formSettings: $('#form-settings'),
@@ -2058,6 +2061,7 @@ const dataView = createDataView({
     announce('Backup downloaded.');
   },
   onExportMarkdown: exportMarkdown,
+  onExportOrder: exportReadingOrder,
   onRestore: (text) => {
     const res = store.restore(text);
     readerLinkView.reconcile({ changed: res.changed });
@@ -2781,6 +2785,7 @@ const readingView = createReadingView({
   onCancelHydrate: () => hydrator.cancel(),
   onCancelSynopsis: () => synopsisRunner.cancel(),
   onExportMarkdown: exportMarkdown,
+  onExportOrder: exportReadingOrder,
   onHydrate: (listId) => hydrator.start(listId),
   onStartSynopsis: startSynopsisRun,
   openIssueFocus,
@@ -3201,4 +3206,29 @@ function setFallbackInitials(fallback, value) {
   fallback.dataset.initialFirst = first;
   fallback.dataset.initialSecond = second;
   fallback.classList.toggle('one-initial', !second);
+}
+
+async function exportReadingOrder() {
+  clearNotice('order-export');
+  const id = activeListId();
+  const list = store.state.lists[id];
+  if (!list) return notify('#app-report', 'No list is selected.', 'warn', 'order-export');
+  const source = catalogSnapshot?.lists.find((entry) => entry.id === list.catalogId) ?? null;
+  try {
+    const md = serializeReadingOrder({ name: list.name, items: listItems(store.state, id), source });
+    const yes = await askConfirm({
+      title: `Export only the order for "${list.name}"?`,
+      body: 'This local Markdown file includes the list name, ordered issue titles, official links and section labels. '
+        + 'It excludes notes, descriptions, read marks, timestamps and availability overrides; every checkbox starts unread. '
+        + (source ? 'Available source credit is included. ' : 'Source attribution is unavailable in the loaded catalog. ')
+        + 'Nothing is uploaded or changed. Personal Markdown keeps notes and read checkboxes, but notes do not re-import. '
+        + 'Use the JSON backup for lossless reader data.',
+      confirmLabel: 'Download order only',
+    });
+    if (!yes) return;
+    download(`${slug(list.name)}-order-only.md`, md, 'text/markdown');
+    announce('Order-only Markdown downloaded. Your saved reading data is unchanged.');
+  } catch (err) {
+    notify('#app-report', `Could not export the reading order: ${err.message}. Your saved reading data is unchanged.`, 'error', 'order-export');
+  }
 }
