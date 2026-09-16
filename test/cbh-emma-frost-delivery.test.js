@@ -192,9 +192,12 @@ test('Emma metadata reconstruction preserves pinned covers and independently rec
   const reused = records.filter((row) => row.kind === 'reconstructed-from-pinned-payload');
   assert.equal(reused.length, 417);
   const files = [...new Set(reused.map((row) => row.file))];
+  const fileHash = (text) => createHash('sha256').update(text.replace(/\r\n/g, '\n')).digest('hex');
   const sources = new Map(await Promise.all(files.map(async (file) => {
-    const bytes = await readFile(file);
-    return [file, { hash: createHash('sha256').update(bytes).digest('hex'), data: JSON.parse(bytes) }];
+    const text = await readFile(file, 'utf8');
+    const lf = text.replace(/\r\n/g, '\n');
+    assert.equal(fileHash(lf), fileHash(lf.replace(/\n/g, '\r\n')));
+    return [file, { hash: fileHash(text), data: JSON.parse(text) }];
   })));
   for (const record of reused) {
     const source = sources.get(record.file);
@@ -202,6 +205,17 @@ test('Emma metadata reconstruction preserves pinned covers and independently rec
     const item = source.data.items.find((row) => row.issueId === record.issueId);
     assert.ok(item);
     assert.deepEqual(byId.get(record.issueId).cover, item.cover ?? null);
+  }
+  assert.match(ledger.fileHashEncoding, /CRLF normalized to LF/);
+  const pending = [ledger];
+  while (pending.length) {
+    const value = pending.pop();
+    if (!value || typeof value !== 'object') continue;
+    if (value.file && value.fileSha256) {
+      assert.equal(fileHash(await readFile(value.file, 'utf8')), value.fileSha256);
+      assert.match(value.observedFileSha256, /^[a-f0-9]{64}$/);
+    }
+    for (const child of Object.values(value)) if (child && typeof child === 'object') pending.push(child);
   }
   const issueZero = records.find((row) => row.issueId === 42332);
   assert.equal(issueZero.requiredFieldReconstruction.value, '0');

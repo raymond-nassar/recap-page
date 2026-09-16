@@ -1283,3 +1283,7 @@ sparse pinned records regain titles and series names from separately pinned exac
 facts, and one regains its issue-zero number. Reused files and supplemental fields have explicit
 hash provenance; reconstructed records are not fresh HTTP responses. No synopsis prose,
 artwork bytes, runtime dependency, origin or saved-state change is introduced.
+
+Emma's source-file fingerprints normalize CRLF to LF before hashing UTF-8 text so Windows
+and Linux verify the same committed content. The originally observed checkout-byte hashes
+remain alongside them. Provider-body and source-page hashes are not normalized.
