@@ -1,12 +1,12 @@
 {
   "parentId": "marvel-knights-to-planet-x",
-  "generatedAt": "2026-09-16T07:50:21.016Z",
-  "pairCount": 68,
-  "chapterCountWithOverlap": 49,
-  "existingListCount": 19,
-  "sharedOccurrenceCount": 383,
+  "generatedAt": "2026-09-16T16:03:06.010Z",
+  "pairCount": 78,
+  "chapterCountWithOverlap": 51,
+  "existingListCount": 20,
+  "sharedOccurrenceCount": 416,
   "internalChildOverlapCount": 0,
-  "matrixSha256": "5a1c5d50c9ac183f6a3cffd82fb4e598f9ef077e0cee56e41f7e2dbcbada30e7",
+  "matrixSha256": "b94c21580478bade163e24d21f4a3dacd4b4ab4c994705adccf7975c33bda38e",
   "existingLists": [
     {
       "id": "amazing-spider-man-reading-order-modern-marvel-era",
@@ -19,6 +19,10 @@
     {
       "id": "doctor-doom-primer",
       "sharedCount": 1
+    },
+    {
+      "id": "emma-frost-reading-order",
+      "sharedCount": 33
     },
     {
       "id": "fantastic-four-reading-order",
@@ -142,6 +146,15 @@
     },
     {
       "chapterId": "marvel-knights-to-planet-x-05",
+      "existingListId": "emma-frost-reading-order",
+      "sharedCount": 2,
+      "sharedIssueIds": [
+        14934,
+        14935
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-05",
       "existingListId": "modern-x-men-fast-track",
       "sharedCount": 3,
       "sharedIssueIds": [
@@ -205,6 +218,20 @@
     },
     {
       "chapterId": "marvel-knights-to-planet-x-12",
+      "existingListId": "emma-frost-reading-order",
+      "sharedCount": 7,
+      "sharedIssueIds": [
+        18997,
+        14936,
+        14937,
+        14938,
+        14939,
+        14940,
+        14941
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-12",
       "existingListId": "modern-x-men-fast-track",
       "sharedCount": 7,
       "sharedIssueIds": [
@@ -252,6 +279,17 @@
         18960,
         18961,
         18962
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-15",
+      "existingListId": "emma-frost-reading-order",
+      "sharedCount": 4,
+      "sharedIssueIds": [
+        14942,
+        14943,
+        14944,
+        14945
       ]
     },
     {
@@ -383,6 +421,14 @@
     },
     {
       "chapterId": "marvel-knights-to-planet-x-29",
+      "existingListId": "emma-frost-reading-order",
+      "sharedCount": 1,
+      "sharedIssueIds": [
+        14947
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-29",
       "existingListId": "modern-x-men-fast-track",
       "sharedCount": 2,
       "sharedIssueIds": [
@@ -410,6 +456,14 @@
         14447,
         14448,
         14449
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-32",
+      "existingListId": "emma-frost-reading-order",
+      "sharedCount": 1,
+      "sharedIssueIds": [
+        14950
       ]
     },
     {
@@ -480,6 +534,29 @@
         43161,
         43162,
         43163
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-37",
+      "existingListId": "emma-frost-reading-order",
+      "sharedCount": 4,
+      "sharedIssueIds": [
+        15023,
+        15024,
+        15025,
+        15026
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-42",
+      "existingListId": "emma-frost-reading-order",
+      "sharedCount": 5,
+      "sharedIssueIds": [
+        14953,
+        14954,
+        14955,
+        14956,
+        14957
       ]
     },
     {
@@ -804,6 +881,25 @@
       ]
     },
     {
+      "chapterId": "marvel-knights-to-planet-x-71",
+      "existingListId": "emma-frost-reading-order",
+      "sharedCount": 2,
+      "sharedIssueIds": [
+        127,
+        132
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-73",
+      "existingListId": "emma-frost-reading-order",
+      "sharedCount": 3,
+      "sharedIssueIds": [
+        14958,
+        14959,
+        14960
+      ]
+    },
+    {
       "chapterId": "marvel-knights-to-planet-x-73",
       "existingListId": "magneto-reading-order",
       "sharedCount": 4,
@@ -875,6 +971,17 @@
       "sharedIssueIds": [
         290,
         361
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-78",
+      "existingListId": "emma-frost-reading-order",
+      "sharedCount": 4,
+      "sharedIssueIds": [
+        14965,
+        125,
+        123,
+        420
       ]
     },
     {

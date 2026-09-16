@@ -13,6 +13,13 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Follow Emma Frost from the White Queen to Krakoa
+
+Adds an Emma Frost Reading List credited and linked to Comic Book Herald. It follows the
+guide's Emma Frost cuts, with collection contents where no cut is given, through the latest
+additions. Explicit reading placements and distinct series volumes are preserved. Unresolved
+originals remain visible as gaps, and nothing already saved changes.
+
 ### Follow Vision from his Avengers origins
 
 Adds a Vision Reading List credited and linked to Comic Book Herald, through the guide's

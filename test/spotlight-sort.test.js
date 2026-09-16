@@ -89,6 +89,7 @@ test('popularity sorting keeps the ranked stories first and the rest in their cu
     'Runaways',
     'Amazing Spider-Man',
     'Vision',
+    'Emma Frost',
     'Agents of Atlas',
     'White Tiger: Ava Ayala',
     'Phalanx',
