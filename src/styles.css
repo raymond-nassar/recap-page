@@ -1756,6 +1756,9 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 .ask textarea { box-sizing: border-box; font-family: inherit; font-size: var(--t-body); min-height: 6rem; }
 .ask-foot { display: flex; justify-content: flex-end; gap: var(--space-4); flex-wrap: wrap; }
 .ask-foot .btn { min-height: 44px; }
+.markdown-export fieldset { min-width: 0; border: 0; padding: 0; margin: 0 0 var(--space-6); }
+.markdown-export .checkbox { display: flex; gap: var(--space-3); align-items: center; min-height: 44px; }
+.markdown-export input[type="checkbox"] { width: auto; min-height: auto; }
 
 /* ============================================================ preferences */
 

@@ -233,31 +233,43 @@ export function stripInlineMarkdown(s) {
 // what parseChecklist reads back as a section. Without this, exporting a trade order and
 // re-importing it would silently flatten it into an ordinary issue list, and the reader would
 // have no way to tell from the file that anything had been lost.
-export function serializeChecklist({ name, description, items, note }) {
+export function serializeChecklist({ name, description, items, note }, {
+  includeProgress = true,
+  includeLinks = true,
+  includeDescription = true,
+  includeSections = true,
+  includeNotes = true,
+  literal = false,
+} = {}) {
   const lines = [];
-  if (name) lines.push(`# ${name}`, '');
-  if (description) lines.push(description, '');
-  if (note) lines.push(...quoteNote(note), '');
+  const text = (value, singleLine = false) => (literal ? literalMarkdown(value, singleLine) : value);
+  if (name) lines.push(`# ${text(name, true)}`, '');
+  if (includeDescription && description) {
+    lines.push(...(literal ? quoteNote(text(description)) : [description]), '');
+  }
+  if (includeNotes && note) lines.push(...quoteNote(text(note)), '');
   let section;
   let wroteItem = false;
   for (const it of items) {
-    const next = it.collectedIn || null;
+    const next = includeSections ? it.collectedIn || null : null;
     if (next !== section) {
       section = next;
       if (next) {
         if (wroteItem) lines.push('');
-        lines.push(`## ${next}`, '');
+        lines.push(`## ${text(next, true)}`, '');
       }
     }
-    const box = it.read ? '- [x]' : '- [ ]';
+    const box = includeProgress ? (it.read ? '- [x]' : '- [ ]') : '-';
     const canonicalReaderUrl = readerIssueId(it.digitalId) === Number(it.issueId)
       ? readerUrl(it.digitalId)
       : null;
-    const url = canonicalReaderUrl
+    const candidateUrl = canonicalReaderUrl
       || it.url
       || (it.issueId > 0 ? `https://www.marvel.com/comics/issue/${it.issueId}/` : null);
-    lines.push(url ? `${box} [${escapeLinkText(it.title)}](${url})` : `${box} ${it.title}`);
-    if (it.note) lines.push(...quoteNote(it.note));
+    const url = includeLinks ? (literal ? readableLink(candidateUrl) : candidateUrl) : null;
+    const title = text(it.title, true);
+    lines.push(url ? `${box} [${literal ? title : escapeLinkText(title)}](${url})` : `${box} ${title}`);
+    if (includeNotes && it.note) lines.push(...quoteNote(text(it.note)));
     wroteItem = true;
   }
   lines.push('');
@@ -298,4 +310,20 @@ export function resolveUniqueExact(title, candidates) {
   if (matches.length === 1) return { status: 'resolved', match: matches[0] };
   if (matches.length === 0) return { status: 'unmatched', matches: candidates ?? [] };
   return { status: 'ambiguous', matches };
+}
+
+function literalMarkdown(value, singleLine = false) {
+  const text = String(value ?? '').replace(/\r\n?/g, '\n');
+  return (singleLine ? text.replace(/[\r\n]+/g, ' ') : text)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/[\\`*_[\]]/g, '\\$&');
+}
+
+function readableLink(value) {
+  if (!isSafeMarvelUrl(value)) return null;
+  const url = new URL(value);
+  if (url.username || url.password) return null;
+  return url.href.replace(/\(/g, '%28').replace(/\)/g, '%29');
 }

@@ -13,6 +13,13 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Export a plain reading list for other apps
+
+Markdown export now previews a readable checklist in saved reading order. Descriptions, collected
+editions, official links and personal notes are optional, and notes stay out unless selected for
+that export. Read checkboxes can be replaced with ordinary bullets. Both export buttons offer the
+same choices. JSON backups, saved progress and checklist importing are unchanged.
+
 ### Follow Bucky Barnes and the Winter Soldier
 
 Adds a Bucky Barnes / Winter Soldier Reading List credited and linked to Comic Book Herald,

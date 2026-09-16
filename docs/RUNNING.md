@@ -4,6 +4,24 @@ Recap Page runs on your own computer and opens in a normal web browser. This gui
 download, source setup, first run, safe upgrades, and the problems most likely to look like lost
 reading progress.
 
+## Take a reading list to another app
+
+Choose **Export as Markdown** on the reading screen, or **Export current list as Markdown**
+in **Backup & settings**. Review the file preview, then choose **Download Markdown**.
+
+The default file contains the list title and every comic in its saved reading order, with read
+checkboxes. Filtering the reading screen does not remove comics from the export. Clear
+**Read checkboxes** if you want ordinary bullets instead.
+
+List descriptions, collected-edition headings, official comic links and personal notes are optional.
+**My list and issue notes** starts off every time, so a previous export cannot silently include
+private notes in the next one. Only known details are used; exporting does not look anything up
+or change your saved data.
+
+The `.md` file is a readable copy for other apps or operating systems, not a complete backup.
+Use **Download JSON backup** when you need to restore your lists, notes, progress and other saved
+choices in Recap Page.
+
 ## Choose how to run it
 
 All three routes open the same app at the same address. You can switch between them without moving or

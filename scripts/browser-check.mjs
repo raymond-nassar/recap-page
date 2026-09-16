@@ -7989,6 +7989,10 @@ const SCENARIOS = [
         synopsisRequests === 0, String(synopsisRequests));
 
       await click(page, '#btn-export-md');
+      await page.waitForSelector('#markdown-export[open]');
+      await click(page, '#markdown-export input[name="includeLinks"]');
+      await click(page, '#markdown-export input[name="includeSections"]');
+      await click(page, '#markdown-export button[type="submit"]');
       await page.waitForFunction(() => (window.__mrtDownloads ?? []).length > 0, { timeout: 15000 });
       const markdown = await page.evaluate(() => window.__mrtDownloads.at(-1)?.text ?? '');
       const exportedLinks = [...markdown.matchAll(/\]\(([^)]+)\)/g)].map((match) => match[1]);
@@ -13376,6 +13380,7 @@ MUTATIONS.push({
 
 SCENARIOS.push((await import('./browser-preview-scroll-452.mjs')).previewScroll452);
 SCENARIOS.push((await import('./browser-source-credits.mjs')).sourceCredits);
+SCENARIOS.push((await import('./browser-markdown-export.mjs')).readableMarkdownExport);
 
 // Without this an unexpected throw leaves an unhandled rejection, which Node reports as a bare
 // stack and exits 1 on. Exit 1 is this check's word for "an assertion failed", so an internal
