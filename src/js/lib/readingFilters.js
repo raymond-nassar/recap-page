@@ -25,6 +25,7 @@ import { availability, STATE } from './availability.js';
 export const READING_FILTERS = [
   { value: 'all', label: 'All', match: () => true },
   { value: 'unread', label: 'Unread', match: (item) => !item.read },
+  { value: 'deferred', label: 'Deferred', match: (item) => !item.read && Boolean(item.deferred) },
   { value: 'read', label: 'Read', match: (item) => Boolean(item.read) },
   {
     value: 'unlimited',

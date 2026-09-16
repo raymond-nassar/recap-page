@@ -3,6 +3,7 @@ import {
   listProgress,
   orderStates,
   orderWord,
+  deferredCount,
 } from '../../lib/model.js';
 import { labelledName } from '../../lib/accname.js';
 
@@ -39,11 +40,12 @@ export function createSavedListsPresenter({
     return state.listOrder.map((id) => {
       const list = state.lists[id];
       const { read, total } = listProgress(state, id);
-      const count = `${read} / ${total}`;
-      const context = `issues read, ${orderWord(completionState(read, total))}. Open this list`;
+      const deferred = deferredCount(state, id);
+      const count = `${read} / ${total}${deferred ? `. ${deferred} deferred` : ''}`;
+      const context = `issues read${deferred ? `; ${deferred} deferred` : ''}, ${orderWord(completionState(read, total))}. Open this list`;
       return el('li', {}, el('button', {
         type: 'button',
-        'aria-label': labelledName(`${list.name} ${count}`, context),
+        'aria-label': labelledName(`${list.name} ${read} / ${total}`, context),
         onclick: () => openList(id),
       }, tile(list, state, read, total, count)));
     });

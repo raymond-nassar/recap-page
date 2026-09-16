@@ -30,6 +30,7 @@ import { promisify } from 'node:util';
 const REPO = process.cwd();
 const OLD_REF = 'v1.4.0';
 const OLD_VERSION = OLD_REF.slice(1);
+const SCHEMA2_REF = 'ba23627bd7d094b649a7c3d113ab659bf88b4a8e';
 const NEW_VERSION = JSON.parse(await readFile(join(REPO, 'package.json'), 'utf8')).version;
 const STATE_KEY = 'mrt.state.v2';
 const OLD_ORDER_ADD = 'button[aria-label="Add to library: House of M: main series"]';
@@ -416,6 +417,90 @@ async function runUpgrade({ puppeteer, edge, mutation }) {
       await stray.close();
     } finally {
       await stopServer(control);
+    }
+
+    if (!mutation) {
+      const schema2Dir = join(base, 'MarvelReadingTracker-schema2');
+      await installHistorical({ repo: REPO, ref: SCHEMA2_REF, dest: schema2Dir });
+      await page.evaluate((key) => {
+        const state = JSON.parse(localStorage.getItem(key));
+        state.schemaVersion = 2;
+        for (const list of Object.values(state.lists)) delete list.deferredIssueIds;
+        localStorage.setItem(key, JSON.stringify(state));
+      }, STATE_KEY);
+      await stopServer(server);
+      server = await startServer(schema2Dir, port);
+      const stale = await browser.newPage();
+      await stale.setViewport({ width: 1280, height: 900 });
+      await stale.evaluateOnNewDocument(OFFLINE_STUB);
+      await boot(stale, origin, `#/read/${before.listId}`);
+      const baseline = await stale.evaluate(async () => {
+        const model = await import('./js/lib/model.js');
+        const { Store } = await import('./js/storage.js');
+        const store = window.__oldStore = new Store();
+        store.load();
+        store.update((state) => model.renameList(state, state.active, 'Downgrade fixture'));
+        return { schema: model.SCHEMA_VERSION, ok: store.lastUpdateOk, token: store.seenToken };
+      });
+      check('downgrade-baseline', 'pinned pre-feature build really writes schema 2',
+        baseline.schema === 2 && baseline.ok && !!baseline.token, JSON.stringify(baseline));
+
+      await stopServer(server);
+      server = await startServer(newDir, port);
+      await boot(page, origin, `#/read/${before.listId}`);
+      const candidate = await page.evaluate(async () => {
+        const model = await import('./js/lib/model.js');
+        const { Store, KEY } = await import('./js/storage.js');
+        const store = new Store();
+        store.load();
+        const [readId, unreadId] = store.state.lists[store.state.active].itemIds;
+        store.update((state) => model.setDeferred(
+          model.setDeferred(model.markRead(state, readId, true, 510), state.active, readId),
+          state.active, unreadId,
+        ));
+        return { schema: model.SCHEMA_VERSION, ok: store.lastUpdateOk, raw: localStorage.getItem(KEY),
+          token: store.seenToken, state: store.state };
+      });
+      check('downgrade-candidate', 'candidate saves unread and read-with-retained schema 3 intent',
+        candidate.schema === 3 && candidate.ok && candidate.token !== baseline.token
+        && candidate.state.lists[before.listId].deferredIssueIds.length === 2
+        && Object.values(candidate.state.read).includes(510));
+      const staleResult = await stale.evaluate(async () => {
+        const { renameList } = await import('./js/lib/model.js');
+        const store = window.__oldStore;
+        store.update((state) => renameList(state, state.active, 'Stale overwrite attempt'));
+        return { ok: store.lastUpdateOk, raw: localStorage.getItem('mrt.state.v2') };
+      });
+      check('downgrade-stale', 'live older tab cannot overwrite the newer candidate token',
+        !staleResult.ok && staleResult.raw === candidate.raw);
+
+      await stopServer(server);
+      server = await startServer(schema2Dir, port);
+      await boot(page, origin);
+      const refused = await page.evaluate(async () => {
+        const { SCHEMA_VERSION, createList } = await import('./js/lib/model.js');
+        const { Store, KEY } = await import('./js/storage.js');
+        const store = new Store();
+        store.load();
+        const blocked = store.blocked;
+        store.update((state) => createList(state, { name: 'Ordinary old-build write' }));
+        return { schema: SCHEMA_VERSION, blocked, ok: store.lastUpdateOk, raw: localStorage.getItem(KEY) };
+      });
+      check('downgrade-refusal', 'fresh older build refuses ordinary writes and preserves canonical bytes',
+        refused.schema === 2 && refused.blocked && !refused.ok && refused.raw === candidate.raw);
+      await stopServer(server);
+      server = await startServer(newDir, port);
+      await boot(page, origin, `#/read/${before.listId}`);
+      const returned = await page.evaluate(async () => {
+        const { Store, KEY } = await import('./js/storage.js');
+        const store = new Store();
+        store.load();
+        return { blocked: store.blocked, raw: localStorage.getItem(KEY), state: store.state };
+      });
+      check('downgrade-return', 'returning candidate recovers exact intent, read timestamps, list identity and order',
+        !returned.blocked && returned.raw === candidate.raw
+        && JSON.stringify(returned.state) === JSON.stringify(candidate.state));
+      await stale.close();
     }
   } finally {
     await browser?.close().catch(() => {});
