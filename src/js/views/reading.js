@@ -4,7 +4,6 @@ import {
   isRead,
   listForCatalogId,
   listItems,
-  listProgress,
   markRead,
   moveItem,
   pendingIssueIds,
@@ -18,6 +17,7 @@ import {
   toggleRead,
   upNext,
   coverUrl,
+  isDeferred, setDeferred, queuedIssueIds, listReadingProgress,
 } from '../lib/model.js';
 import { availability, describe, localDayString, SHORT, STATE } from '../lib/availability.js';
 import { labelledName } from '../lib/accname.js';
@@ -432,6 +432,12 @@ export function createReadingView({
       }
     });
     $('#btn-hero-done').addEventListener('click', () => markCurrentRead());
+    $('#btn-hero-defer').addEventListener('click', () => {
+      const id = activeListId();
+      const issue = upNext(getState(), id);
+      if (issue) changeDeferral(id, issue.issueId, true, { hero: true });
+    });
+    $('#btn-review-deferred').addEventListener('click', openDeferred);
   }
 
   // Every notice under this key travels between views, so dismissal must withdraw both the notice
@@ -491,10 +497,12 @@ export function createReadingView({
     const transition = recordDirectProgressSave({ wasRead, state, issueId: issue.issueId });
     if (!transition) return;
     const next = upNext(getState(), activeListId());
+    const { deferred } = listReadingProgress(getState(), activeListId());
     announce(withSaveEducation(next
       ? `${issue.title} marked read. Next up: ${next.title}.`
-      : `${issue.title} marked read. That is the whole order finished.`, transition));
-    if (!next) $('#all-read-h').focus({ preventScroll: true });
+      : deferred ? `${issue.title} marked read. Nothing queued. ${deferred} unread issue${deferred === 1 ? ' is' : 's are'} deferred.`
+        : `${issue.title} marked read. That is the whole order finished.`, transition));
+    if (!next) $(deferred ? '#all-deferred-h' : '#all-read-h').focus({ preventScroll: true });
   }
 
   function render() {
@@ -514,7 +522,7 @@ export function createReadingView({
       return;
     }
 
-    const { read, total } = listProgress(getState(), id);
+    const { read, total, deferred } = listReadingProgress(getState(), id);
     const seriesCount = new Set(
       list.itemIds.map((issueId) => getState().issues[issueId]?.seriesName).filter(Boolean),
     ).size;
@@ -537,7 +545,7 @@ export function createReadingView({
     $('#btn-list-note').textContent = list.note ? 'Edit note' : 'Note';
     $('#ring-arc').setAttribute('stroke-dashoffset', String(RING_CIRCUMFERENCE * (1 - pct)));
     $('#ring-label').textContent = total ? `${Math.round(pct * 100)}%` : '';
-    $('#ring-sub').textContent = !total ? 'Nothing in this list' : read === total ? 'All read' : `${read} of ${total} read`;
+    $('#ring-sub').textContent = !total ? 'Nothing in this list' : read === total ? 'All read' : `${read} of ${total} read${deferred ? `. ${deferred} deferred` : ''}`;
 
     renderHero();
     renderShelf();
@@ -550,10 +558,13 @@ export function createReadingView({
     const id = activeListId();
     const issue = upNext(getState(), id);
     const empty = getState().lists[id]?.itemIds.length === 0;
+    const { read, total, deferred } = listReadingProgress(getState(), id);
 
     $('#hero').hidden = !issue;
     $('#reading-empty').hidden = !empty;
-    $('#all-read').hidden = empty || !getState().lists[id] || !!issue;
+    $('#all-read').hidden = total === 0 || read !== total;
+    $('#all-deferred').hidden = !!issue || deferred === 0;
+    $('#all-deferred-count').textContent = `${deferred} unread issue${deferred === 1 ? ' is' : 's are'} deferred in this Reading List.`;
     $('#shelf-sec').hidden = !issue;
     if (!issue) {
       $('#hero-title').textContent = HERO_NO_ISSUE;
@@ -563,7 +574,6 @@ export function createReadingView({
 
     const override = getState().overrides[issue.issueId];
     const position = (getState().lists[id]?.itemIds.indexOf(issue.issueId) ?? -1) + 1;
-    const total = getState().lists[id]?.itemIds.length ?? 0;
     const presentation = issuePresentation(issue, {
       override,
       position,
@@ -628,7 +638,8 @@ export function createReadingView({
     const id = activeListId();
     const shelf = $('#shelf');
 
-    const upcoming = listItems(getState(), id).filter((item) => !item.read).slice(1, SHELF_SIZE + 1);
+    const queued = new Set(queuedIssueIds(getState(), id).slice(1, SHELF_SIZE + 1));
+    const upcoming = listItems(getState(), id).filter((item) => queued.has(item.issueId));
     $('#shelf-sec').hidden = upcoming.length === 0;
     $('#shelf-note').textContent = `${upcoming.length} ${upcoming.length === 1 ? 'issue' : 'issues'}`;
 
@@ -818,6 +829,8 @@ export function createReadingView({
               children: item.title,
             }),
             el('div', { class: 'rm' }, [
+              item.deferred ? el('span', { class: 'badge badge-unknown' }, item.read
+                ? 'Read; deferral kept if marked unread' : 'Deferred in this list') : null,
               item.seriesName ? el('span', { text: seriesOnly(item.seriesName) }) : null,
               el('span', { class: `badge ${badgeClass}` }, [
                 `${SHORT[av.state]} ${av.state === STATE.EXPECTED ? 'Unlimited' : SHORT_LABEL[av.state] ?? 'unknown'}`,
@@ -857,7 +870,8 @@ export function createReadingView({
     $('#full-action').textContent = $('#full').open
       ? 'Hide full Reading List'
       : `View all ${total} issue${total === 1 ? '' : 's'}`;
-    $('#full-count').textContent = !total ? 'No issues yet' : unread ? `${unread} unread` : 'All read';
+    const deferred = all.filter((item) => item.deferred && !item.read).length;
+    $('#full-count').textContent = !total ? 'No issues yet' : unread ? `${unread} unread${deferred ? `. ${deferred} deferred` : ''}` : 'All read';
   }
 
   function writeOrderStrip(details, all, activeFilter) {
@@ -912,6 +926,15 @@ export function createReadingView({
           dataset: { key: item.issueId, act: 'info', tooltip: 'Open issue page on marvel.com' },
         }, 'Info')
         : null,
+      !item.read || item.deferred ? el('button', {
+        type: 'button',
+        class: 'mini',
+        'aria-label': labelledName(item.deferred
+          ? item.read ? 'Clear deferral' : 'Resume in this list'
+          : 'Defer for later', item.title),
+        dataset: { key: item.issueId, act: 'defer' },
+        onclick: () => changeDeferral(listId, item.issueId, !item.deferred),
+      }, item.deferred ? item.read ? 'Clear deferral' : 'Resume in this list' : 'Defer for later') : null,
       el('button', {
         type: 'button',
         class: 'mini has-tooltip',
@@ -1129,6 +1152,7 @@ export function createReadingView({
         listId, issueId, index,
         title: current.issues[issueId]?.title ?? `Issue ${issueId}`,
         collectedIn: list.collectedIn?.[issueId],
+        deferred: isDeferred(current, listId, issueId),
         itemIds: next.lists[listId].itemIds,
         editions: next.lists[listId].collectedIn,
       };
@@ -1177,7 +1201,50 @@ export function createReadingView({
     announce(`${removed.title} is back in ${restored.name}, in its original position.`);
   }
 
+  function openDeferred() {
+    if (!Object.hasOwn(getState().lists, activeListId() ?? '')) {
+      announce('That Reading List is no longer saved.');
+      return;
+    }
+    endFilterRun({ commit: false });
+    filterAddressed = true;
+    setFullOrderFromRoute(true);
+    setFilter('deferred');
+    renderRows();
+    showView('read', { push: true, focus: false });
+    const radio = [...document.querySelectorAll('input[name="filter"]')].find((item) => item.value === 'deferred');
+    (radio ?? $('#full > summary')).focus();
+  }
+
+  function changeDeferral(listId, issueId, value, { hero = false } = {}) {
+    let changed = false;
+    const { ok, state } = updateState((current) => {
+      const next = setDeferred(current, listId, issueId, value);
+      changed = next !== current;
+      return next;
+    });
+    if (!ok || !changed) {
+      announce(ok ? 'That issue or its deferral changed. No new change was saved.'
+        : 'That deferral change could not be saved.');
+      return;
+    }
+    const title = state.issues[issueId]?.title ?? `Issue ${issueId}`;
+    announce(value ? `${title} deferred in this Reading List.${isRead(state, issueId) ? ' The deferral will apply if marked unread.' : ' It is still unread.'}`
+      : `${title}: deferral cleared in this Reading List. Its position and read status were kept.`);
+    if (hero) {
+      const target = upNext(state, listId) ? '#btn-hero-defer'
+        : listReadingProgress(state, listId).deferred ? '#all-deferred-h' : '#all-read-h';
+      $(target).focus({ preventScroll: true });
+    } else if (document.activeElement === document.body || !document.activeElement?.getClientRects().length) {
+      // Rebuilt narrow rows close their actions panel, so its matching control cannot take focus.
+      const more = [...$('#rows').querySelectorAll('[data-act="more"]')]
+        .find((control) => Number(control.dataset.key) === issueId);
+      focusRemovalTarget(more);
+    }
+  }
+
   return {
+    openDeferred,
     currentFilter: () => filter,
     endFilterRun,
     filterTraversalSnapshot,

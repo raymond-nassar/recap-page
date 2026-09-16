@@ -16,7 +16,7 @@ the prose rather than in a binary nobody can diff.
 ## The three entry points
 
 The app is served from one origin and has three pages, each loading exactly one module. The tracker
-itself is loaded at `src/index.html:1132`. The launch page, which is the tab a reader's issue opens
+itself is loaded at `src/index.html:1141`. The launch page, which is the tab a reader's issue opens
 into, is loaded at `src/open.html:19`. A fault-injection harness that exists for development and is
 no part of the running app is loaded at `src/dev-faults.html:135`.
 
@@ -230,6 +230,17 @@ reading progress.
 
 ## Marking one issue read
 
+Deferral uses this same Store transaction, but belongs to the saved list rather than the shared
+read map. Schema 3 stores each list's `deferredIssueIds` as a bounded, deduplicated subset in
+membership order. Older schemas migrate with no choices. The existing future-schema and stale
+write guards protect the same storage key when a reader returns to an older build.
+
+`queuedIssueIds` supplies both next selection and Coming up, excluding read and deferred comics.
+`listProgress` still reports actual read/total only; `listReadingProgress` adds queued and deferred
+unread counts. Read status takes precedence without clearing stored intent. Membership Undo
+merges only the removed member's captured choice, never another member's later intent or current
+global read timestamps.
+
 This is the loop that makes the app feel like an app, and it is worth following exactly once,
 because every ordinary change a reader makes takes the same path. A list rename, an import, a
 reordering and a background metadata fill all go through the same call.
@@ -267,8 +278,8 @@ sequenceDiagram
 The parts of that worth saying in words.
 
 **The transform is pure and the store is the only writer.** The button's handler at
-`src/js/views/reading.js:788-790` hands the store a function; the function itself, at
-`src/js/lib/model.js:653-655`, returns a new state and touches nothing. Everything that decides
+`src/js/views/reading.js:799-801` hands the store a function; the function itself, at
+`src/js/lib/model.js:658-660`, returns a new state and touches nothing. Everything that decides
 whether a write happened, whether it stuck, and what the screen shows next lives in one method,
 `src/js/storage.js:372-399`.
 
@@ -288,7 +299,7 @@ synchronization. Catalog and generated publishing panels render when their route
 the reading view, each row is compared against a cache key built from the whole item and its node is
 reused when nothing changed, while the full order is skipped entirely when its container is closed.
 Focus is captured before a rebuild and restored by identity afterwards, at
-`src/js/views/reading.js:690`, which is what keeps the keyboard where the reader left it. The row list is
+`src/js/views/reading.js:701`, which is what keeps the keyboard where the reader left it. The row list is
 committed by moving nodes rather than replacing the container, at
 `src/js/views/reading.js:40-48`.
 
@@ -514,21 +525,21 @@ paths remains a separate stop in each sequence.
 Home and Browse render the same gateway descriptor from the resolved catalog and both open one
 Reading paths view. The controller constructs that view with catalog loading, Store reads, route
 intent and history effects rather than giving it those concrete owners, at
-`src/js/main.js:3147-3198`. The selected id lives only in the validated `path` query of the hash
+`src/js/main.js:3149-3200`. The selected id lives only in the validated `path` query of the hash
 route, not in saved reader state, as enforced at `src/js/lib/route.js:160-195`.
 
 The view owns the resolved paths, selected structure, selector identity and async generation. It
 rejects stale or hidden continuations, falls back to the first resolved path when the requested id
 is absent or invalid, and asks the controller to canonically replace that route at
-`src/js/views/reading-paths.js:113-149`. A deliberate selector change instead asks the controller to
-push history, at `src/js/views/reading-paths.js:152-158`.
+`src/js/views/reading-paths.js:114-150`. A deliberate selector change instead asks the controller to
+push history, at `src/js/views/reading-paths.js:153-159`.
 
 Progress is a projection of the Store onto each stop. The Reading Paths module prefers the imported
 list whose catalog id exactly matches the stop, then the first imported sibling in catalog order,
-then reports **Not added**, at `src/js/views/reading-paths.js:10-25`. Cross-tab state replacement and
+then reports **Not added**, at `src/js/views/reading-paths.js:10-26`. Cross-tab state replacement and
 whole-origin clearing call the constructed view's progress repaint at
 `src/js/main.js:119-143`; that repaint updates progress and the stop action in place at
-`src/js/views/reading-paths.js:50-65`, preserving the selector and action DOM identities.
+`src/js/views/reading-paths.js:51-66`, preserving the selector and action DOM identities.
 
 Stop actions reuse the existing Preview dialog for unowned stories, including its reading-option
 choice, source disclosure and gap metadata. Owned stops open the actual saved list represented by
@@ -540,7 +551,7 @@ Catalog shelves, Preview and generated publishing pages share one constructed pr
 contract for cards, path choice, source disclosure and path links. That internal module owns the
 choice without importing the controller or another concrete view, while the controller injects
 navigation, imports, Store effects and publishing-page orchestration at
-`src/js/main.js:3041-3145`.
+`src/js/main.js:3043-3147`.
 
 ## Modern Timeline position is a Store projection
 
@@ -561,7 +572,7 @@ The shared presentation contract removes the previous positional state and paint
 current label, hidden message, completion state or unavailable message at
 `src/js/views/shared/catalog-presentation.js:278-328`. Only a visible current story receives
 `aria-current="step"`. The controller injects live state and current-view knowledge at
-`src/js/main.js:3058-3090`, while the existing Store-driven render path calls the position-only
+`src/js/main.js:3060-3092`, while the existing Store-driven render path calls the position-only
 refresh at `src/js/main.js:2530-2552`. That refresh leaves cards, controls, focus, scroll and
 transient path choice intact across same-tab and cross-tab state changes.
 

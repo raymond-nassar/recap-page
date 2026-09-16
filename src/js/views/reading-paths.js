@@ -3,7 +3,7 @@ import { labelledName } from '../lib/accname.js';
 import {
   completionState,
   listForCatalogId,
-  listProgress,
+  listReadingProgress,
   orderWord,
 } from '../lib/model.js';
 
@@ -13,7 +13,7 @@ export function readingPathProgress(state, stop) {
     .map((list) => listForCatalogId(state, list.id))
     .find(Boolean);
   if (!imported) return null;
-  const { read, total } = listProgress(state, imported.id);
+  const { read, total, deferred } = listReadingProgress(state, imported.id);
   return {
     listId: imported.id,
     catalogId: imported.catalogId,
@@ -22,12 +22,13 @@ export function readingPathProgress(state, stop) {
     total,
     state: completionState(read, total),
     match: exact ? 'exact' : 'sibling',
+    ...(deferred ? { deferred } : {}),
   };
 }
 
 function progressText(progress) {
   if (!progress) return 'Not added';
-  return `${progress.read} of ${progress.total} issues read in ${progress.name}. ${orderWord(progress.state)}.${progress.match === 'sibling' ? ' Alternate reading version.' : ''}`;
+  return `${progress.read} of ${progress.total} issues read in ${progress.name}. ${progress.deferred ? `${progress.deferred} deferred. ` : ''}${orderWord(progress.state)}.${progress.match === 'sibling' ? ' Alternate reading version.' : ''}`;
 }
 
 export function createReadingPathsView({

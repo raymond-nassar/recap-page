@@ -2953,6 +2953,7 @@ const homeView = createHomeView({
     continueRead: $('#btn-chero-read'),
     continueOpen: $('#btn-chero-open'),
     continueReview: $('#btn-chero-review'),
+    continueDeferred: $('#btn-chero-deferred'),
     yoursSection: $('#home-yours'),
     yoursList: $('#home-yours-list'),
     firstRun: $('#home-first-run'),
@@ -2992,6 +2993,7 @@ const homeView = createHomeView({
     showView('read', { push: true });
     readingView.openReview();
   },
+  onReviewDeferred: () => readingView.openDeferred(),
   paintCover,
   paintCoverUrl,
   recommendedList: modernTimelineFeaturedList,

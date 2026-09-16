@@ -21,6 +21,19 @@ notes stay out unless selected for that export. Checkboxes can be replaced with 
 Both personal export buttons offer these choices. The separate order-only export still produces
 an unread order with available source credits. JSON backups, saved progress and importing are unchanged.
 
+### Defer unread comics in one Reading List
+
+Keep a comic unread while continuing past it in just one saved list. **Defer for later** and
+**Resume in this list** preserve its position, availability and shared read history. Home,
+Reading and Reading Paths count deferred unread comics separately, and **Nothing queued**
+does not pretend the order is finished. **Review deferred** opens those comics directly.
+
+Choices survive reload, independent copies, membership Undo and JSON backup restore. Marking
+a comic read retains its list's choice for a later unread change; **Clear deferral** removes it
+explicitly. The candidate is 3.0.0 because schema 3 makes older builds refuse ordinary writes
+instead of discarding these choices. Older backups remain readable, the storage key and address
+are unchanged, and no release is made by this change.
+
 ### Share an order without personal reading data
 
 Adds **Export order only** to Reading and Backup & settings. It downloads a local Markdown order

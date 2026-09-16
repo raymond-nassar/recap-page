@@ -1,3 +1,5 @@
+import { SCHEMA_VERSION } from '../src/js/lib/model.js';
+
 const expected = [
   '# Spider-Man reading list', '',
   '- [x] Amazing Spider-Man (2018) #1',
@@ -9,10 +11,10 @@ export const readableMarkdownExport = {
   id: 'readable-markdown-export',
   title: 'readable Markdown export is private by default and preserves the whole list',
   async run(page, t) {
-    await page.evaluateOnNewDocument(() => {
+    await page.evaluateOnNewDocument((schemaVersion) => {
       localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
       localStorage.setItem('mrt.state.v2', JSON.stringify({
-        schemaVersion: 2,
+        schemaVersion,
         issues: Object.fromEntries([1, 2, 3].map((id) => [id, {
           issueId: id,
           title: `Amazing Spider-Man (2018) #${id}`,
@@ -25,6 +27,7 @@ export const readableMarkdownExport = {
             id: 'markdown-fixture', name: 'Spider-Man reading list',
             description: 'An optional description.', note: 'Private list note.',
             itemIds: [1, 2, 3], collectedIn: { 1: 'First collection', 2: 'First collection' },
+            deferredIssueIds: [2],
           },
         },
         listOrder: ['markdown-fixture'],
@@ -39,7 +42,7 @@ export const readableMarkdownExport = {
         window.__exportRequests += 1;
         return fetch(...args);
       };
-    });
+    }, SCHEMA_VERSION);
     await page.goto(`${page.__origin}/?catalog=browser-check#/read/markdown-fixture`, { waitUntil: 'load' });
     await page.waitForSelector('#list-export > summary', { visible: true });
     await page.focus('#list-export > summary');
@@ -66,8 +69,9 @@ export const readableMarkdownExport = {
     };
 
     await open('#btn-export-md');
-    t.check('reading export previews the exact plain checklist, including the filtered read comic',
-      await preview() === expected);
+    t.check('reading export keeps the filtered read comic and an actually deferred comic in exact order',
+      await preview() === expected && await page.$eval('#rows [data-act="defer"][data-key="2"]',
+        (node) => node.textContent === 'Resume in this list'));
     t.check('native export dialog contains the keyboard focus',
       await page.evaluate(() => document.querySelector('#markdown-export').contains(document.activeElement)));
     t.check('personal notes and other optional details start unchecked',
@@ -149,10 +153,12 @@ export const readableMarkdownExport = {
     await page.$eval('#btn-export-json', (node) => node.click());
     await page.waitForFunction(() => window.__mrtDownloads.length === 4);
     const backup = await page.evaluate(() => JSON.parse(window.__mrtDownloads.at(-1).text));
-    t.check('the separate JSON backup still preserves notes, progress and availability overrides',
+    t.check('the separate JSON backup preserves notes, progress, availability overrides and deferral',
       backup.notes[1] === 'Private issue note.' && backup.read[1] === 123456789
         && backup.overrides[1] === 'available'
-        && backup.lists['markdown-fixture'].note === 'Private list note.');
+        && backup.lists['markdown-fixture'].note === 'Private list note.'
+        && backup.schemaVersion === SCHEMA_VERSION
+        && backup.lists['markdown-fixture'].deferredIssueIds.join() === '2');
 
     await page.evaluate(() => { location.hash = '#/read/markdown-fixture'; });
     await page.waitForSelector('#view-read:not([hidden])');
