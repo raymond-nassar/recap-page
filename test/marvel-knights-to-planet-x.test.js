@@ -45,6 +45,7 @@ const currentOverlaps = [
   ['question-of-the-week-do-you-have-a-hulk-reading-order', 32],
   ['runaways-reading-order', 12],
   ['silver-surfer-reading-order', 1],
+  ['the-vision-reading-order', 12],
   ['venom-reading-order', 5],
   ['young-avengers-reading-order', 6],
 ].sort(([left], [right]) => left.localeCompare(right));

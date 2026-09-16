@@ -1682,6 +1682,42 @@
       "timeline": 2020
     },
     {
+      "id": "the-vision-reading-order",
+      "name": "Vision",
+      "description": "Follow Vision through his Avengers origins, Scarlet Witch, West Coast Avengers and later solo and team stories in Comic Book Herald guide order. Four unresolved originals remain marked as gaps.",
+      "type": "character-run",
+      "spotlightKind": "other",
+      "depth": "partial",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "the-vision-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/the-vision-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "the_vision_reading_order.json",
+      "characters": [
+        "Vision",
+        "Scarlet Witch",
+        "Avengers",
+        "Viv Vision",
+        "Ultron"
+      ],
+      "keywords": [
+        "Vision",
+        "Scarlet Witch",
+        "Avengers Icons",
+        "Comic Book Herald",
+        "Vision Quest",
+        "Avengers A.I.",
+        "No Surrender"
+      ],
+      "expect": 497,
+      "timeline": null,
+      "coverIssueId": 7307
+    },
+    {
       "id": "doctor-strange-multiverse-of-madness",
       "name": "Doctor Strange: Multiverse of Madness",
       "description": "Seventeen issue-specific picks connecting Doctor Strange, the Illuminati, and the multiverse, limited to the recommendations this companion guide names by issue.",

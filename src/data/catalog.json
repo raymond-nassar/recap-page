@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-15T15:32:55.851Z",
+  "generatedAt": "2026-09-16T07:48:58.404Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -2058,6 +2058,49 @@
       "sourceOrigin": "Assembled from Marvel series metadata (publication order)",
       "sourceLicense": null,
       "updatedAt": "2026-08-05T06:45:31.621Z"
+    },
+    {
+      "id": "the-vision-reading-order",
+      "file": "the_vision_reading_order.json",
+      "name": "Vision",
+      "description": "Follow Vision through his Avengers origins, Scarlet Witch, West Coast Avengers and later solo and team stories in Comic Book Herald guide order. Four unresolved originals remain marked as gaps.",
+      "type": "character-run",
+      "depth": "partial",
+      "spotlightKind": "other",
+      "count": 497,
+      "placeholderCount": 4,
+      "emptyRecordCount": 0,
+      "collections": 44,
+      "characters": [
+        "Vision",
+        "Scarlet Witch",
+        "Avengers",
+        "Viv Vision",
+        "Ultron"
+      ],
+      "keywords": [
+        "Vision",
+        "Scarlet Witch",
+        "Avengers Icons",
+        "Comic Book Herald",
+        "Vision Quest",
+        "Avengers A.I.",
+        "No Surrender"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 7307,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/30/4e96fe30c0e1c",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/the-vision-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-09-16T07:48:58.404Z"
     },
     {
       "id": "doctor-strange-multiverse-of-madness",
