@@ -3597,8 +3597,8 @@
     "reviewedAt": "2026-09-15T06:18:16.120Z",
     "packetDigest": "cb076e98c2657aae24fd49dcfa51286f16f72dc9b938427fc469374f5c2a24cd",
     "mappingDigest": "625ce8b08c41ef42ab5764c52cb6577b12d65d6c27032861ba5c4b1ebd3aa44e",
-    "reportDigest": "a32fd401450a49f80379bc2d72d4025eb183d628ef2e287acd70d1c87de51f7e",
-    "libraryDigest": "a8dd7152b8e42c13d64bed13dc367ebc7caf763136bc41fd2e9433cda7332916",
+    "reportDigest": "e76432d655348cb3b688f03ed9a5c62a900ca182a5bc8b8e5377fbbf72835d07",
+    "libraryDigest": "02ace0f705338a3f2666679a06cf53a87cc2570258df4fbe515fd1e9f0af22bc",
     "peerDigests": {},
     "dispositions": [
       {
@@ -5195,6 +5195,15 @@
         "reviewedAt": "2026-09-15T06:18:16.120Z"
       }
     ],
-    "approvalDigest": "d97ba31bbef468f06d05bdbdfe86590219544747b9bfbc9e79d3641bde862d67"
+    "approvalDigest": "55b507988b1dc6b6d4833f1845517fff8e5da21934c6131f92d17fd090687900",
+    "libraryMetadataRefresh": {
+      "authorityType": "stronger-model",
+      "authorityIdentity": "GPT-6 Astra",
+      "reviewedAt": "2026-09-16T07:50:21.016Z",
+      "sourceIssue": "https://github.com/raymond-nassar/recap-page/issues/500",
+      "rationale": "Every comparison and the original review scope are unchanged. Rebind the library metadata after the Miles description and expected count change; retain the original per-comparison decisions and review timestamps.",
+      "previousLibraryDigest": "a8dd7152b8e42c13d64bed13dc367ebc7caf763136bc41fd2e9433cda7332916",
+      "unchangedComparisonsDigest": "f9dfeab8767e2b64eb28600f31b1bbd19b4f69c0ff1a3f76f38d17dad1d6fb78"
+    }
   }
 }

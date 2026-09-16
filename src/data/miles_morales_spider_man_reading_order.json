@@ -1,25 +1,16 @@
 {
   "id": "miles-morales-spider-man-reading-order",
   "name": "Spider-Man: Miles Morales",
-  "description": "Follow Miles from the Ultimate Universe to Earth-616, the Champions and Trial By Spider in Comic Book Herald guide order. One unresolved comic remains marked as a gap.",
+  "description": "Follow Miles from the Ultimate Universe to Earth-616, the Champions and Trial By Spider in Comic Book Herald guide order.",
   "source": "https://www.comicbookherald.com/miles-morales-spider-man-reading-order/",
   "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
   "sourceLicense": null,
-  "generatedAt": "2026-09-15T05:16:18.121Z",
+  "generatedAt": "2026-09-16T07:50:21.016Z",
   "apiBase": "https://marvel.emreparker.com/v1",
-  "count": 386,
+  "count": 385,
   "collections": 60,
-  "placeholders": 1,
-  "unresolved": [
-    {
-      "title": "Ultimate Prologue (2013) #1",
-      "url": null,
-      "read": false,
-      "index": 66,
-      "section": "Cataclysm: Cataclysm: The Ultimates' Last Stand #1-5; Cataclysm: Ultimate Spider-Man #1-3; Cataclysm: Ultimate X-Men #1-3; Cataclysm: Ultimates #1-3; Hunger #1-4; Cataclysm #0.1; Ultimate Prologue #1",
-      "sourceKey": "67"
-    }
-  ],
+  "placeholders": 0,
+  "unresolved": [],
   "items": [
     {
       "issueId": 38394,
@@ -1925,23 +1916,6 @@
       "description": null,
       "pageCount": 32,
       "creators": [],
-      "collectedIn": "Cataclysm: Cataclysm: The Ultimates' Last Stand #1-5; Cataclysm: Ultimate Spider-Man #1-3; Cataclysm: Ultimate X-Men #1-3; Cataclysm: Ultimates #1-3; Hunger #1-4; Cataclysm #0.1; Ultimate Prologue #1"
-    },
-    {
-      "issueId": -541501618,
-      "title": "Ultimate Prologue (2013) #1",
-      "number": "1",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
       "collectedIn": "Cataclysm: Cataclysm: The Ultimates' Last Stand #1-5; Cataclysm: Ultimate Spider-Man #1-3; Cataclysm: Ultimate X-Men #1-3; Cataclysm: Ultimates #1-3; Hunger #1-4; Cataclysm #0.1; Ultimate Prologue #1"
     },
     {
@@ -7096,16 +7070,76 @@
       "issueId": 64259,
       "title": "Secret Empire (2017) #9",
       "number": "9",
-      "url": "https://www.marvel.com/comics/issue/64259/read",
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
+      "url": "https://www.marvel.com/comics/issue/64259/secret_empire_2017_9",
+      "seriesId": 23020,
+      "seriesName": "Secret Empire (2017)",
+      "onSale": "2017-08-23",
       "mu": null,
       "digitalId": null,
-      "cover": null,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/60/5988e073b98b3",
+        "ext": "webp"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
+      "pageCount": 39,
+      "creators": [
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Rod Reis",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Alanguilan",
+          "role": "inker"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "inker"
+        },
+        {
+          "name": "Joe Pimentel",
+          "role": "inker"
+        },
+        {
+          "name": "Rod Reis",
+          "role": "inker"
+        },
+        {
+          "name": "Sunny Gho",
+          "role": "colorist"
+        },
+        {
+          "name": "Dono Sánchez-Almara",
+          "role": "colorist"
+        },
+        {
+          "name": "Rod Reis",
+          "role": "colorist"
+        },
+        {
+          "name": "Travis Lanham",
+          "role": "letterer"
+        },
+        {
+          "name": "Tom Brevoort",
+          "role": "editor"
+        },
+        {
+          "name": "Alanna Smith",
+          "role": "editor"
+        }
+      ],
       "detailsRefused": true,
       "collectedIn": "Secret Empire: Secret Empire #0; Free Comic Book Day 2017 (Secret Empire #1); Secret Empire #1-10; Secret Empire Omega #1"
     },
@@ -7114,15 +7148,115 @@
       "title": "Secret Empire (2017) #10",
       "number": "10",
       "url": "https://www.marvel.com/comics/issue/64285/secret_empire_2017_10",
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
+      "seriesId": 23020,
+      "seriesName": "Secret Empire (2017)",
+      "onSale": "2017-08-30",
       "mu": null,
       "digitalId": null,
-      "cover": null,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/00/59934fc355cb6",
+        "ext": "webp"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
+      "pageCount": 41,
+      "creators": [
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        },
+        {
+          "name": "Steve McNiven",
+          "role": "penciler"
+        },
+        {
+          "name": "Rod Reis",
+          "role": "penciler"
+        },
+        {
+          "name": "David Marquez",
+          "role": "penciler"
+        },
+        {
+          "name": "Paco Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Juan Vlasco",
+          "role": "penciler"
+        },
+        {
+          "name": "Jay Leisten",
+          "role": "inker"
+        },
+        {
+          "name": "Rod Reis",
+          "role": "inker"
+        },
+        {
+          "name": "David Marquez",
+          "role": "inker"
+        },
+        {
+          "name": "Paco Medina",
+          "role": "inker"
+        },
+        {
+          "name": "Juan Vlasco",
+          "role": "inker"
+        },
+        {
+          "name": "Matthew Wilson",
+          "role": "colorist"
+        },
+        {
+          "name": "Rod Reis",
+          "role": "colorist"
+        },
+        {
+          "name": "David Marquez",
+          "role": "colorist"
+        },
+        {
+          "name": "Travis Lanham",
+          "role": "letterer"
+        },
+        {
+          "name": "Tom Brevoort",
+          "role": "editor"
+        },
+        {
+          "name": "Alanna Smith",
+          "role": "editor"
+        },
+        {
+          "name": "Paco Medina",
+          "role": "colorist"
+        },
+        {
+          "name": "Juan Vlasco",
+          "role": "colorist"
+        },
+        {
+          "name": "Jesus Aburtov",
+          "role": "colorist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "colorist"
+        },
+        {
+          "name": "Jesus Aburtov",
+          "role": "inker"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "inker"
+        },
+        {
+          "name": "Jesus Aburtov",
+          "role": "penciler"
+        }
+      ],
       "detailsRefused": true,
       "collectedIn": "Secret Empire: Secret Empire #0; Free Comic Book Day 2017 (Secret Empire #1); Secret Empire #1-10; Secret Empire Omega #1"
     },

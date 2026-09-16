@@ -107,6 +107,7 @@ function harness({
     continueRead: node({ text: 'Read next' }),
     continueOpen: node({ text: 'Open Reading List' }),
     continueReview: node(),
+    continueDeferred: node(),
     yoursSection: node(),
     yoursList: node(),
     gateways: [firstGateway, secondGateway],
@@ -114,6 +115,7 @@ function harness({
   };
   const list = { id: 'a', name: 'Alpha order', itemIds: [7, 8] };
   const state = {
+    read: {},
     listOrder: populated ? ['a'] : [],
     lists: populated ? { a: list } : {},
   };
@@ -179,6 +181,7 @@ function harness({
     onNavigateCategory: (category) => calls.navigate.push(category.route),
     onOpen: () => { calls.open += 1; },
     onReview: () => calls.navigate.push('review'),
+    onReviewDeferred: () => calls.navigate.push('deferred'),
     onRead: (...args) => calls.read.push(args),
     readerPresentation,
     openPreview: (entry) => calls.preview.push(entry.id),
@@ -192,6 +195,25 @@ function harness({
   });
   return { calls, categories, nodes, state, view };
 }
+
+test('510 Home distinguishes deferred work from completion and exposes a separate review action', () => {
+  const h = harness({ populated: true, nextIssue: null, progress: { read: 1, total: 2 } });
+  h.state.read[7] = 510;
+  h.state.lists.a.deferredIssueIds = [7, 8];
+  h.view.wire();
+  h.view.render();
+  assert.equal(h.nodes.continueCount.textContent, '1 of 2 issues read. 1 deferred');
+  assert.equal(h.nodes.continueNext.textContent, 'Nothing queued. 1 unread issue is deferred.');
+  assert.equal(h.nodes.continueRead.hidden, true);
+  assert.equal(h.nodes.continueDeferred.hidden, false);
+  assert.equal(h.nodes.continueBar.attributes['aria-valuenow'], '1');
+  h.nodes.continueDeferred.listeners.click();
+  assert.deepEqual(h.calls.navigate, ['deferred']);
+  assert.deepEqual(h.calls.read, []);
+  h.state.read[8] = 511;
+  h.view.render();
+  assert.equal(h.nodes.continueDeferred.hidden, true);
+});
 
 test('Home view owns first-run, saved-list, recommendation, and shared gateway presentation', async () => {
   const h = harness();

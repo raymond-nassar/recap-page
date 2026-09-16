@@ -113,8 +113,10 @@ export default [
     // The upgrade check is the same shape for the same reason.
     files: [
       'scripts/browser-check.mjs',
+      'scripts/browser-defer.mjs',
       'scripts/browser-preview-scroll-452.mjs',
       'scripts/browser-source-credits.mjs',
+      'scripts/browser-markdown-export.mjs',
       'scripts/browser-order-export.mjs',
       'scripts/capture-store-assets.mjs',
       'scripts/upgrade-check.mjs',

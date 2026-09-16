@@ -20246,11 +20246,11 @@
     "authorityType": "stronger-model",
     "authorityIdentity": "GPT-6 Astra",
     "rationale": "Issue 521 requests the Vision source page, not a merged event or team chronology. All source-required shared comics remain at their first canonical source position. Each comparison was reviewed against the full current source manifest; no comic was dropped to remove overlap.",
-    "reviewedAt": "2026-09-16T08:02:30.190Z",
-    "reportDigest": "532548228b456d1db6f841c3c824add9f1e27b5e408063e406c59bb24b6f58d8",
+    "reviewedAt": "2026-09-16T14:49:38.552Z",
+    "reportDigest": "f7cd3160711e6a5b3ccb012a476129bd51c7296876c90aa77100ade451a55e83",
     "packetDigest": "17ca636649050b1ef9c77c2e4556c3856f84485007a0044f9a2f852f7d6d0fe0",
     "mappingDigest": "19438a7e227ea1cc4acd116896ae806198b7a5b09b5ff571a942d26c0d8f4d87",
-    "libraryDigest": "3761c3b190afdb20c20903aec6dc63a78d3ca541b2f3588e0362fa3716778169",
+    "libraryDigest": "2117fcfce4e9710f46927c603b6c86f7ac4d213f97ffde8911a9985234b39bbf",
     "peerDigests": {},
     "sourceCounts": {
       "sourceOccurrenceCount": 531,
@@ -20267,7 +20267,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 2 shared comics with abomination-reading-order are source-required intersections with a different guide, not an exact duplicate. Preserve both independent source scopes and every shared comic.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "absolute-carnage",
@@ -20276,7 +20276,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with absolute-carnage; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "adam-warlock-reading-order",
@@ -20285,7 +20285,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with adam-warlock-reading-order; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "agatha-harkness-reading-order",
@@ -20294,7 +20294,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 25 shared comics with agatha-harkness-reading-order are source-required intersections with a different guide, not an exact duplicate. Preserve both independent source scopes and every shared comic.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "age-of-x-man",
@@ -20303,7 +20303,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with age-of-x-man; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "agents-of-atlas-reading-order",
@@ -20312,7 +20312,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with agents-of-atlas-reading-order; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "all-new-all-different-avengers",
@@ -20321,7 +20321,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 21 shared comics with all-new-all-different-avengers are source-required intersections with a different guide, not an exact duplicate. Preserve both independent source scopes and every shared comic.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
@@ -20330,7 +20330,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 10 shared comics with amazing-spider-man-reading-order-modern-marvel-era are source-required intersections with a different guide, not an exact duplicate. Preserve both independent source scopes and every shared comic.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "annihilation",
@@ -20339,7 +20339,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with annihilation; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "annihilation-conquest",
@@ -20348,7 +20348,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with annihilation-conquest; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "ant-man-reading-order",
@@ -20357,7 +20357,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 94 shared comics with ant-man-reading-order are source-required intersections with a different guide, not an exact duplicate. Preserve both independent source scopes and every shared comic.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "apocalypse-wars",
@@ -20366,7 +20366,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with apocalypse-wars; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "atlantis-attacks",
@@ -20375,7 +20375,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 1 shared comics with atlantis-attacks are source-required intersections with a different guide, not an exact duplicate. Preserve both independent source scopes and every shared comic.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "avengers-defenders-war",
@@ -20384,7 +20384,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with avengers-defenders-war; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "avengers-disassembled",
@@ -20393,7 +20393,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 5 comics in avengers-disassembled are an explicit source-required part of the broader Vision progression. Keep that separate focused reading and retain every shared comic here.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "avengers-enemy-within",
@@ -20402,7 +20402,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with avengers-enemy-within; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "axis",
@@ -20411,7 +20411,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with axis; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "best-ultron-reading-order",
@@ -20420,7 +20420,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 10 shared comics with best-ultron-reading-order are source-required intersections with a different guide, not an exact duplicate. Preserve both independent source scopes and every shared comic.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "black-panther-reading-order",
@@ -20429,7 +20429,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 1 shared comics with black-panther-reading-order are source-required intersections with a different guide, not an exact duplicate. Preserve both independent source scopes and every shared comic.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "black-widow-reading-order",
@@ -20438,7 +20438,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 94 shared comics with black-widow-reading-order are source-required intersections with a different guide, not an exact duplicate. Preserve both independent source scopes and every shared comic.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "bloodties",
@@ -20447,7 +20447,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with bloodties; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "captain-america-best-of",
@@ -20456,7 +20456,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with captain-america-best-of; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "captain-america-reading-order-modern-marvel-era",
@@ -20465,7 +20465,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with captain-america-reading-order-modern-marvel-era; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "captain-marvel-ms-marvel-reading-order",
@@ -20474,7 +20474,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 66 shared comics with captain-marvel-ms-marvel-reading-order are source-required intersections with a different guide, not an exact duplicate. Preserve both independent source scopes and every shared comic.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "chaos-war",
@@ -20483,7 +20483,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 3 shared comics with chaos-war are source-required intersections with a different guide, not an exact duplicate. Preserve both independent source scopes and every shared comic.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "childs-play",
@@ -20492,7 +20492,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with childs-play; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "civil-war",
@@ -20501,7 +20501,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 7 shared comics with civil-war are source-required intersections with a different guide, not an exact duplicate. Preserve both independent source scopes and every shared comic.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "civil-war-avengers",
@@ -20510,7 +20510,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 7 shared comics with civil-war-avengers are source-required intersections with a different guide, not an exact duplicate. Preserve both independent source scopes and every shared comic.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "civil-war-essential",
@@ -20519,7 +20519,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 7 comics in civil-war-essential are an explicit source-required part of the broader Vision progression. Keep that separate focused reading and retain every shared comic here.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "clone-conspiracy",
@@ -20528,7 +20528,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with clone-conspiracy; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "contest-of-champions",
@@ -20537,7 +20537,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with contest-of-champions; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "damnation",
@@ -20546,7 +20546,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with damnation; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "daredevil-reading-order",
@@ -20555,7 +20555,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with daredevil-reading-order; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "dark-phoenix-saga",
@@ -20564,7 +20564,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with dark-phoenix-saga; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "dark-reign-avengers",
@@ -20573,7 +20573,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 11 shared comics with dark-reign-avengers are source-required intersections with a different guide, not an exact duplicate. Preserve both independent source scopes and every shared comic.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "dark-web",
@@ -20582,7 +20582,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with dark-web; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "days-of-future-past",
@@ -20591,7 +20591,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with days-of-future-past; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "days-of-future-present",
@@ -20600,7 +20600,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with days-of-future-present; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "dead-mans-hand",
@@ -20609,7 +20609,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with dead-mans-hand; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "deadpool-best-of",
@@ -20618,7 +20618,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with deadpool-best-of; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "death-of-doctor-strange",
@@ -20627,7 +20627,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with death-of-doctor-strange; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "devils-reign",
@@ -20636,7 +20636,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with devils-reign; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "doctor-doom-primer",
@@ -20645,7 +20645,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with doctor-doom-primer; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "doctor-strange-multiverse-of-madness",
@@ -20654,7 +20654,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with doctor-strange-multiverse-of-madness; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "doctor-strange-reading-order",
@@ -20663,7 +20663,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 9 shared comics with doctor-strange-reading-order are source-required intersections with a different guide, not an exact duplicate. Preserve both independent source scopes and every shared comic.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "donny-cates-marvel-universe-reading-order-2017",
@@ -20672,7 +20672,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with donny-cates-marvel-universe-reading-order-2017; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "doomwar",
@@ -20681,7 +20681,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with doomwar; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "eighth-day",
@@ -20690,7 +20690,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with eighth-day; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "essential-avengers",
@@ -20699,7 +20699,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 28 shared comics with essential-avengers are source-required intersections with a different guide, not an exact duplicate. Preserve both independent source scopes and every shared comic.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "evolutionary-war",
@@ -20708,7 +20708,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with evolutionary-war; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "falcon-sam-wilson-captain-america-reading-order",
@@ -20717,7 +20717,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 40 shared comics with falcon-sam-wilson-captain-america-reading-order are source-required intersections with a different guide, not an exact duplicate. Preserve both independent source scopes and every shared comic.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "fall-house-x-rise-powers-x",
@@ -20726,7 +20726,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with fall-house-x-rise-powers-x; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "fall-of-the-mutants",
@@ -20735,7 +20735,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with fall-of-the-mutants; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "fantastic-four-reading-order",
@@ -20744,7 +20744,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 20 shared comics with fantastic-four-reading-order are source-required intersections with a different guide, not an exact duplicate. Preserve both independent source scopes and every shared comic.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "fatal-attractions",
@@ -20753,7 +20753,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with fatal-attractions; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "generations",
@@ -20762,7 +20762,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with generations; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "groot-reading-order",
@@ -20771,7 +20771,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with groot-reading-order; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "guardians-of-the-galaxy-reading-order",
@@ -20780,7 +20780,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 1 shared comics with guardians-of-the-galaxy-reading-order are source-required intersections with a different guide, not an exact duplicate. Preserve both independent source scopes and every shared comic.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "heroes-reborn-2021",
@@ -20789,7 +20789,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with heroes-reborn-2021; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "heroic-age-avengers",
@@ -20798,7 +20798,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 1 shared comics with heroic-age-avengers are source-required intersections with a different guide, not an exact duplicate. Preserve both independent source scopes and every shared comic.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "hickman-full",
@@ -20807,7 +20807,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with hickman-full; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "hickman-minimal",
@@ -20816,7 +20816,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with hickman-minimal; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "hickman-x-men",
@@ -20825,7 +20825,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with hickman-x-men; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "house-of-m",
@@ -20834,7 +20834,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with house-of-m; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "house-of-m-essential",
@@ -20843,7 +20843,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with house-of-m-essential; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "hunt-for-wolverine",
@@ -20852,7 +20852,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with hunt-for-wolverine; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "hunt-for-xavier",
@@ -20861,7 +20861,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with hunt-for-xavier; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "inferno",
@@ -20870,7 +20870,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with inferno; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "infinite-destinies",
@@ -20879,7 +20879,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with infinite-destinies; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "infinity-countdown-wars",
@@ -20888,7 +20888,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with infinity-countdown-wars; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "inhumans-reading-order",
@@ -20897,7 +20897,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 1 shared comics with inhumans-reading-order are source-required intersections with a different guide, not an exact duplicate. Preserve both independent source scopes and every shared comic.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "inhumans-vs-x-men",
@@ -20906,7 +20906,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with inhumans-vs-x-men; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "iron-man-2020",
@@ -20915,7 +20915,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with iron-man-2020; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "iron-man-reading-order",
@@ -20924,7 +20924,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 8 shared comics with iron-man-reading-order are source-required intersections with a different guide, not an exact duplicate. Preserve both independent source scopes and every shared comic.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "judgment-day",
@@ -20933,7 +20933,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with judgment-day; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "king-in-black",
@@ -20942,7 +20942,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with king-in-black; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "kravens-last-hunt",
@@ -20951,7 +20951,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with kravens-last-hunt; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "kree-skrull-war",
@@ -20960,7 +20960,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with kree-skrull-war; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "last-annihilation",
@@ -20969,7 +20969,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with last-annihilation; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "loki-reading-order",
@@ -20978,7 +20978,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with loki-reading-order; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "magneto-reading-order",
@@ -20987,7 +20987,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 13 shared comics with magneto-reading-order are source-required intersections with a different guide, not an exact duplicate. Preserve both independent source scopes and every shared comic.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "magneto-war",
@@ -20996,7 +20996,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with magneto-war; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "marvel-2099",
@@ -21005,7 +21005,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with marvel-2099; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "marvel-fresh-start-avengers",
@@ -21014,7 +21014,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 10 shared comics with marvel-fresh-start-avengers are source-required intersections with a different guide, not an exact duplicate. Preserve both independent source scopes and every shared comic.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x",
@@ -21023,7 +21023,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 12 shared comics with marvel-knights-to-planet-x are source-required intersections with a different guide, not an exact duplicate. Preserve both independent source scopes and every shared comic.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "marvel-multiverse",
@@ -21032,7 +21032,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with marvel-multiverse; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "marvel-super-heroes-secret-wars",
@@ -21041,7 +21041,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with marvel-super-heroes-secret-wars; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "marvel-what-if",
@@ -21050,7 +21050,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with marvel-what-if; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "marvels-best-phoenix-comics",
@@ -21059,7 +21059,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with marvels-best-phoenix-comics; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "maximum-security",
@@ -21068,7 +21068,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 5 shared comics with maximum-security are source-required intersections with a different guide, not an exact duplicate. Preserve both independent source scopes and every shared comic.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "mephisto-reading-order",
@@ -21077,7 +21077,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 36 shared comics with mephisto-reading-order are source-required intersections with a different guide, not an exact duplicate. Preserve both independent source scopes and every shared comic.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "messiah-complex",
@@ -21086,7 +21086,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with messiah-complex; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "messiah-war",
@@ -21095,7 +21095,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with messiah-war; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "midnight-massacre",
@@ -21104,7 +21104,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with midnight-massacre; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "miles-morales-spider-man-reading-order",
@@ -21113,7 +21113,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 30 shared comics with miles-morales-spider-man-reading-order are source-required intersections with a different guide, not an exact duplicate. Preserve both independent source scopes and every shared comic.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "minimum-carnage",
@@ -21122,7 +21122,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with minimum-carnage; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "modern-x-men-fast-track",
@@ -21131,7 +21131,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with modern-x-men-fast-track; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "monsters-unleashed",
@@ -21140,7 +21140,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with monsters-unleashed; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "moon-knight-reading-order",
@@ -21149,7 +21149,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 21 shared comics with moon-knight-reading-order are source-required intersections with a different guide, not an exact duplicate. Preserve both independent source scopes and every shared comic.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "muir-island-saga",
@@ -21158,7 +21158,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with muir-island-saga; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "mutant-massacre",
@@ -21167,7 +21167,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with mutant-massacre; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "mys-tech-wars",
@@ -21176,7 +21176,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with mys-tech-wars; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "necrosha",
@@ -21185,7 +21185,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with necrosha; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "new-ultimate-universe",
@@ -21194,7 +21194,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with new-ultimate-universe; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "new-ultimate-universe-trades",
@@ -21203,7 +21203,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with new-ultimate-universe-trades; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "nick-fury-reading-order",
@@ -21212,7 +21212,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with nick-fury-reading-order; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "operation-galactic-storm",
@@ -21221,7 +21221,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 18 shared comics with operation-galactic-storm are source-required intersections with a different guide, not an exact duplicate. Preserve both independent source scopes and every shared comic.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "operation-zero-tolerance",
@@ -21230,7 +21230,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with operation-zero-tolerance; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "original-clone-saga",
@@ -21239,7 +21239,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with original-clone-saga; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "phalanx-covenant",
@@ -21248,7 +21248,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with phalanx-covenant; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "phalanx-reading-order",
@@ -21257,7 +21257,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with phalanx-reading-order; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "phoenix-saga",
@@ -21266,7 +21266,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with phoenix-saga; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "planet-hulk",
@@ -21275,7 +21275,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with planet-hulk; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "punisher-reading-order",
@@ -21284,7 +21284,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with punisher-reading-order; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "question-of-the-week-do-you-have-a-hulk-reading-order",
@@ -21293,7 +21293,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 18 shared comics with question-of-the-week-do-you-have-a-hulk-reading-order are source-required intersections with a different guide, not an exact duplicate. Preserve both independent source scopes and every shared comic.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "reckoning-war",
@@ -21302,7 +21302,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with reckoning-war; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "reed-richards-and-sue-storms-wedding",
@@ -21311,7 +21311,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with reed-richards-and-sue-storms-wedding; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "revolutionary-war",
@@ -21320,7 +21320,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with revolutionary-war; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "rise-of-the-midnight-sons",
@@ -21329,7 +21329,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with rise-of-the-midnight-sons; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "rocket-raccoon-reading-order",
@@ -21338,7 +21338,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 10 shared comics with rocket-raccoon-reading-order are source-required intersections with a different guide, not an exact duplicate. Preserve both independent source scopes and every shared comic.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "runaways-reading-order",
@@ -21347,7 +21347,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with runaways-reading-order; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "scarlet-witch-best-of",
@@ -21356,7 +21356,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 31 shared comics with scarlet-witch-best-of are source-required intersections with a different guide, not an exact duplicate. Preserve both independent source scopes and every shared comic.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "second-coming",
@@ -21365,7 +21365,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with second-coming; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "secret-invasion",
@@ -21374,7 +21374,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with secret-invasion; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "secret-invasion-essential",
@@ -21383,7 +21383,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with secret-invasion-essential; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "secret-war",
@@ -21392,7 +21392,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with secret-war; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "secret-wars-ii",
@@ -21401,7 +21401,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with secret-wars-ii; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "setup-to-modern-timeline",
@@ -21410,7 +21410,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with setup-to-modern-timeline; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "shadowland",
@@ -21419,7 +21419,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with shadowland; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "silent-war",
@@ -21428,7 +21428,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with silent-war; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "silver-surfer-reading-order",
@@ -21437,7 +21437,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with silver-surfer-reading-order; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "sins-of-sinister",
@@ -21446,7 +21446,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with sins-of-sinister; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "spider-geddon",
@@ -21455,7 +21455,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with spider-geddon; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "spider-gwen-reading-order",
@@ -21464,7 +21464,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with spider-gwen-reading-order; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "spider-island",
@@ -21473,7 +21473,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with spider-island; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "spider-man-2099-reading-order",
@@ -21482,7 +21482,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with spider-man-2099-reading-order; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "spider-man-best-of",
@@ -21491,7 +21491,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with spider-man-best-of; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "spider-man-far-from-home",
@@ -21500,7 +21500,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with spider-man-far-from-home; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "spider-man-identity-crisis",
@@ -21509,7 +21509,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with spider-man-identity-crisis; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "spider-man-no-way-home",
@@ -21518,7 +21518,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with spider-man-no-way-home; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "spider-man-the-other",
@@ -21527,7 +21527,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with spider-man-the-other; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "spider-verse",
@@ -21536,7 +21536,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with spider-verse; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "star-lord-reading-order",
@@ -21545,7 +21545,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with star-lord-reading-order; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "thanos-imperative",
@@ -21554,7 +21554,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with thanos-imperative; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "thanos-reading-order",
@@ -21563,7 +21563,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 2 shared comics with thanos-reading-order are source-required intersections with a different guide, not an exact duplicate. Preserve both independent source scopes and every shared comic.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "thanos-war",
@@ -21572,7 +21572,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 2 shared comics with thanos-war are source-required intersections with a different guide, not an exact duplicate. Preserve both independent source scopes and every shared comic.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "the-defenders-reading-order",
@@ -21581,7 +21581,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 4 shared comics with the-defenders-reading-order are source-required intersections with a different guide, not an exact duplicate. Preserve both independent source scopes and every shared comic.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "the-night-gwen-stacy-died",
@@ -21590,7 +21590,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with the-night-gwen-stacy-died; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "thor-best-of",
@@ -21599,7 +21599,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with thor-best-of; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "time-and-time-again",
@@ -21608,7 +21608,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with time-and-time-again; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "ultimate-marvel-intro",
@@ -21617,7 +21617,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with ultimate-marvel-intro; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "venom-reading-order",
@@ -21626,7 +21626,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with venom-reading-order; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "venomverse",
@@ -21635,7 +21635,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with venomverse; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "wandavision",
@@ -21644,7 +21644,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 48 shared comics with wandavision are source-required intersections with a different guide, not an exact duplicate. Preserve both independent source scopes and every shared comic.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "war-of-kings",
@@ -21653,7 +21653,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with war-of-kings; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "war-of-the-realms",
@@ -21662,7 +21662,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with war-of-the-realms; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "white-tiger-ava-ayala",
@@ -21671,7 +21671,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with white-tiger-ava-ayala; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "winter-soldier-bucky-barnes-reading-order",
@@ -21680,7 +21680,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 10 shared comics with winter-soldier-bucky-barnes-reading-order are source-required intersections with a different guide, not an exact duplicate. Preserve both independent source scopes and every shared comic.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "wolverine-goes-to-hell",
@@ -21689,7 +21689,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with wolverine-goes-to-hell; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "wolverine-reading-order",
@@ -21698,7 +21698,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 11 shared comics with wolverine-reading-order are source-required intersections with a different guide, not an exact duplicate. Preserve both independent source scopes and every shared comic.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "world-war-hulk-aftersmash",
@@ -21707,7 +21707,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with world-war-hulk-aftersmash; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "wraith-war",
@@ -21716,7 +21716,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 2 shared comics with wraith-war are source-required intersections with a different guide, not an exact duplicate. Preserve both independent source scopes and every shared comic.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "x-cutioners-song",
@@ -21725,7 +21725,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with x-cutioners-song; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "x-force-reading-order",
@@ -21734,7 +21734,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with x-force-reading-order; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "x-men-age-of-x",
@@ -21743,7 +21743,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with x-men-age-of-x; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "x-men-battle-of-the-atom",
@@ -21752,7 +21752,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with x-men-battle-of-the-atom; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "x-men-curse-of-the-mutants",
@@ -21761,7 +21761,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with x-men-curse-of-the-mutants; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "x-men-divided-we-stand",
@@ -21770,7 +21770,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with x-men-divided-we-stand; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "x-men-extermination",
@@ -21779,7 +21779,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with x-men-extermination; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "x-men-inferno",
@@ -21788,7 +21788,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with x-men-inferno; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "x-men-manifest-destiny",
@@ -21797,7 +21797,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with x-men-manifest-destiny; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "x-men-nation-x",
@@ -21806,7 +21806,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with x-men-nation-x; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "x-men-regenesis",
@@ -21815,7 +21815,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with x-men-regenesis; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "x-men-schism",
@@ -21824,7 +21824,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with x-men-schism; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "x-men-trial-of-jean-grey",
@@ -21833,7 +21833,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with x-men-trial-of-jean-grey; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "x-men-utopia",
@@ -21842,7 +21842,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with x-men-utopia; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "x-of-swords",
@@ -21851,7 +21851,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with x-of-swords; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "x-termination",
@@ -21860,7 +21860,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with x-termination; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "x-tinction-agenda",
@@ -21869,7 +21869,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with x-tinction-agenda; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "xmen-claremont",
@@ -21878,7 +21878,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with xmen-claremont; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "xmen-claremont-complete",
@@ -21887,7 +21887,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 no-overlap policy",
         "rationale": "No selected exact Vision issue is shared with xmen-claremont-complete; no duplicate or subset exists.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       },
       {
         "orderId": "young-avengers-reading-order",
@@ -21896,10 +21896,10 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra",
         "rationale": "The 14 shared comics with young-avengers-reading-order are source-required intersections with a different guide, not an exact duplicate. Preserve both independent source scopes and every shared comic.",
-        "reviewedAt": "2026-09-16T08:02:30.190Z"
+        "reviewedAt": "2026-09-16T14:49:38.552Z"
       }
     ],
-    "approvalDigest": "7f3c9da965d6348dea98762c54f839a0e7add1241ea0c0d65403a1ff399fa9d4"
+    "approvalDigest": "053b00e6d21b4b512082c08b7e3156e7408c624df1974664610f6614239ad2a7"
   },
   "approvedManifest": {
     "id": "the-vision-reading-order",

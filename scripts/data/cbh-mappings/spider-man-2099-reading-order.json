@@ -6498,8 +6498,8 @@
     "reviewedAt": "2026-09-15T06:31:21.770Z",
     "packetDigest": "95850383e21eec6c3d319f1232b093c89a899835b045a2a718e3655f7e2f2127",
     "mappingDigest": "19b8d34126a5a13f571a047386d1fe10f65d3616ef56aed5b673b621f56f57b9",
-    "reportDigest": "7561bcae68c0cab48e2be45c38abf6f270e5ecd565fd20de21440915e7f9d11b",
-    "libraryDigest": "dc76427c64ff508722ef4c025ba92824b8e7dc9ac8ae8618d2c6dc793fae2246",
+    "reportDigest": "6ee6e4ac2048d9f6e8bbd2c47c957a06d4d998127d5678a1f7793d2a0554fc70",
+    "libraryDigest": "0a32f80fef3ecdc5e0b9fa8623f0c64e44f92d1516da4bbd1c9842dff7deea14",
     "peerDigests": {},
     "dispositions": [
       {
@@ -8105,7 +8105,16 @@
         "reviewedAt": "2026-09-15T06:31:21.770Z"
       }
     ],
-    "approvalDigest": "49e3789911ae7f955aa96ff5e1748e7215482716bdbe1c0b3d6aa89a3c27b473"
+    "approvalDigest": "3bf44bbb911fb92c905d06a3f8a71230467dbc305576ebfb350b1f5aec061a85",
+    "libraryMetadataRefresh": {
+      "authorityType": "stronger-model",
+      "authorityIdentity": "GPT-6 Astra",
+      "reviewedAt": "2026-09-16T07:50:21.016Z",
+      "sourceIssue": "https://github.com/raymond-nassar/recap-page/issues/500",
+      "rationale": "Every comparison and the original review scope are unchanged. Rebind the library metadata after the Miles description and expected count change; retain the original per-comparison decisions and review timestamps.",
+      "previousLibraryDigest": "dc76427c64ff508722ef4c025ba92824b8e7dc9ac8ae8618d2c6dc793fae2246",
+      "unchangedComparisonsDigest": "baa1f65fe5c673a1d22dbcefd9301bfe9b70435385cc340e4842767f9613cbe6"
+    }
   },
   "packetReview": "Source, discrepancy and metadata evidence: scripts/data/cbh-source-ledgers/spider-man-2099-reading-order.json; scope Issue 497. This owner-requested Spider-Man 2099 character guide follows the exact CBH source order from 1992 through 2024. Its broader and later character scope is distinct from the existing Marvel 2099 event and the other character/event guides. Shared issues keep their first source positions; unresolved originals remain explicit gaps. No exact duplicate exists.",
   "approvedManifest": {

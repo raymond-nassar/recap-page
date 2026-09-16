@@ -20,6 +20,27 @@ latest Avengers Inc. additions. Repeated collections share one checklist entry, 
 Vision series remain distinct, and unresolved originals stay visibly marked as gaps.
 Existing Reading Lists and saved progress are unchanged.
 
+### Export a plain reading list for other apps
+
+Personal Markdown export now previews a readable checklist in saved reading order, including
+read checkboxes by default. Descriptions, collected editions, official links and notes are optional;
+notes stay out unless selected for that export. Checkboxes can be replaced with ordinary bullets.
+Both personal export buttons offer these choices. The separate order-only export still produces
+an unread order with available source credits. JSON backups, saved progress and importing are unchanged.
+
+### Defer unread comics in one Reading List
+
+Keep a comic unread while continuing past it in just one saved list. **Defer for later** and
+**Resume in this list** preserve its position, availability and shared read history. Home,
+Reading and Reading Paths count deferred unread comics separately, and **Nothing queued**
+does not pretend the order is finished. **Review deferred** opens those comics directly.
+
+Choices survive reload, independent copies, membership Undo and JSON backup restore. Marking
+a comic read retains its list's choice for a later unread change; **Clear deferral** removes it
+explicitly. The candidate is 3.0.0 because schema 3 makes older builds refuse ordinary writes
+instead of discarding these choices. Older backups remain readable, the storage key and address
+are unchanged, and no release is made by this change.
+
 ### Share an order without personal reading data
 
 Adds **Export order only** to Reading and Backup & settings. It downloads a local Markdown order
@@ -66,9 +87,11 @@ linked event guides are not expanded into invented issue runs. Saved progress is
 ### Follow Miles Morales from the Ultimate Universe to Earth-616
 
 Adds a Spider-Man: Miles Morales Reading List credited and linked to Comic Book Herald, with
-385 resolved comics and one explicit Ultimate Prologue gap. Crossover chapters keep the guide's
-reading sequence, and Secret Empire #9-10 retain their known identities despite missing provider
-details. Existing Reading Lists and saved progress are unchanged.
+385 resolved comics. The owner-approved Ultimate Prologue omission remains documented in the
+source history without a replacement comic. Secret Empire #9-10 now include reviewed release
+dates, 39/41 page counts, credits and Marvel cover URLs despite the provider's missing records.
+Unverified reader IDs and availability dates stay empty. New imports use the corrected list;
+existing saved Reading Lists, notes and progress are not automatically rewritten.
 
 ### Follow Spider-Gwen into her Ghost-Spider years
 

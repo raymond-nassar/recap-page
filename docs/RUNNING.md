@@ -4,6 +4,27 @@ Recap Page runs on your own computer and opens in a normal web browser. This gui
 download, source setup, first run, safe upgrades, and the problems most likely to look like lost
 reading progress.
 
+## Take a reading list to another app
+
+Open **Export** on Reading and choose **Export personal checklist**, or use **Export personal
+checklist** in **Backup & settings**. Review the file preview, then choose **Download Markdown**.
+
+The default file contains the list title and every comic in its saved reading order, with read
+checkboxes. Filtering the reading screen does not remove comics from the export.
+Deferred comics also keep their saved positions. Clear
+**Read checkboxes** if you want ordinary bullets instead.
+
+List descriptions, collected-edition headings, official comic links and personal notes are optional.
+**My list and issue notes** starts off every time, so a previous export cannot silently include
+private notes in the next one. Only known details are used; exporting does not look anything up
+or change your saved data.
+
+This personal `.md` file includes read checkboxes by default.
+For an unread order with available source credit, use **Export order only** instead.
+Neither Markdown file is a complete backup.
+Use **Download JSON backup** when you need to restore your lists, notes, progress and other saved
+choices in Recap Page.
+
 ## Choose how to run it
 
 All three routes open the same app at the same address. You can switch between them without moving or
@@ -153,11 +174,32 @@ address.
 Progress is also separate by browser and browser profile. Opening Recap Page in Firefox does not
 show progress saved in Edge, and it does not remove the Edge copy.
 
+## Defer a comic without marking it read
+
+Choose **Defer for later** on the next comic or in a row's actions to keep it unread while
+continuing past it in this Reading List only. Other lists keep their own choices. The comic stays
+in its original position, and **All** and **Unread** still include it.
+
+**Review deferred** on Home or Reading opens the full list with the **Deferred** filter selected.
+Choose **Resume in this list** to make a comic eligible again at its existing position. Reading
+progress always counts actual read comics; deferred unread comics are counted separately. When
+only deferred unread comics remain, **Nothing queued** replaces the finished-order message.
+
+Read markers remain shared across lists. Marking a deferred comic read does not erase its list's
+choice: marking it unread later makes that choice apply again. A read row with retained intent
+offers **Clear deferral** to remove that choice without changing its read status.
+
+Duplicating a list copies its choices independently. A newly imported list starts without any
+deferrals. JSON backups preserve them, including retained choices on read comics.
+
 ## Undo an issue removal
 
 **Remove from list** takes an issue out immediately. **Undo remove** puts it back in the same
 position and collected edition without undoing later read progress, notes or availability choices.
 Other Reading Lists are not changed.
+
+Undo also restores that removed comic's deferral choice. Later choices for other comics and any
+global read changes are kept, even if the restored comic is now read.
 
 Only the most recently **successfully** removed issue can be put back this way. The offer has no
 countdown and stays in memory for this tab, not in backups. **Dismiss**, reloading the page or
@@ -182,6 +224,12 @@ browser address, not to the folder being replaced.
 Major versions mark a substantial new generation of the app and are also required when saved data
 changes in a way an older build cannot read. Release notes state whether progress remains
 compatible. Export a backup before upgrading.
+
+The 3.0 candidate uses saved-data schema 3 for per-list deferrals, retaining the same browser
+address and storage key. It reads older backups without inventing deferral choices. After this
+build saves progress, older schema-2 builds refuse ordinary edits rather than silently dropping
+the new choices. Return to a compatible build to continue. **Start fresh** is a deliberate
+destructive recovery action, not a way to downgrade without losing progress.
 
 ## Troubleshooting
 
@@ -308,8 +356,9 @@ rather than inventing a credit. Manual or unresolved comics without a supported 
 checklist rows. Import shows those rows for deliberate resolution rather than guessing an identity.
 An empty list can be exported, but importing a file with no issues does not create a list.
 
-**Export personal checklist** keeps notes and read checkboxes in Markdown. Notes do not re-import
-from either Markdown format. **Download JSON backup** is the lossless reader-data backup, including
+**Export personal checklist** opens a preview with read checkboxes by default and notes available
+only when explicitly selected. Notes do not re-import from either Markdown format.
+**Download JSON backup** is the lossless reader-data backup, including
 notes and progress; use it to protect your saved data rather than sharing it as an order.
 
 ## Getting help

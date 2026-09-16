@@ -277,8 +277,8 @@ answered here by assertion.
 
 ## The chain the metadata came down
 
-Every issue-level record in this repository arrived through three hands, and it is worth naming
-all three because each one narrows what the last can offer.
+Most bundled issue metadata follows this three-stage chain. Guide-specific independent factual
+supplements are documented below rather than represented as responses from this provider.
 
 1. **Marvel's own API**, which is where the records originate and which has since been shut
    down.
@@ -318,13 +318,13 @@ orders: **null means nobody granted anything for this file, not that the file is
 
 Two hundred and sixty-one pinned reading-order payloads sit under
 [`src/data/`](../src/data): 260 visible catalog files and one noncatalog partition parent. They hold
-24,780 issue records covering 16,816 distinct issues. The visible files hold 24,293 of those records;
+24,779 issue records covering 16,815 distinct tracked identities. The visible files hold 24,292 of those records;
 the extra 487 are the retained Marvel Knights to Planet X parent whose ordinary children partition
-the same vector. Each record copies from the upstream API:
+the same vector. Records use these fields:
 `issueId`, `title`,
 `number`, `url`, `seriesId`, `seriesName`, `onSale`, `mu`, `digitalId`, `pageCount`, a `cover`
-object of `path` and `ext`, and `creators` of `name` and `role`. Across all 261 payloads, 20,080
-records carry a cover URL and 18,805 carry creator credits.
+object of `path` and `ext`, and `creators` of `name` and `role`. Across all 261 payloads, 20,082
+records carry a cover URL and 18,807 carry creator credits.
 
 `description` was the field to look at hardest and is now empty. The others are facts about a
 publication: which issue, in which series, on what date. A description was Marvel's own prose
@@ -333,10 +333,10 @@ The key is `null` on every record, the vendoring script no longer writes it, and
 A further 41, 7,193 characters, were removed from the design mockups described below, which a
 first pass missed because it looked only at the files the catalog names.
 
-Of the visible records, 1,023 are unopenable placeholders for unresolved source positions and 199
+Of the visible records, 1,022 are unopenable placeholders for unresolved source positions and 197
 non-placeholder records carry neither a series ID nor a digital ID after an upstream refusal. Those
-1,222 gap positions affect 28 catalog entries: thirteen carry placeholders, nineteen carry empty records, and
-four carry both kinds. One legacy item retains a placeholder flag alongside real identity and launch
+1,219 gap positions affect 27 catalog entries: twelve carry placeholders, eighteen carry empty records, and
+three carry both kinds. One legacy item retains a placeholder flag alongside real identity and launch
 metadata, so it belongs to neither gap category. Placeholder
 IDs are computed here by [`scripts/vendor-orders.mjs`](../scripts/vendor-orders.mjs) from the order
 and source identity and then negated, so none can be read as one of Marvel's. These records preserve
@@ -409,7 +409,7 @@ authored work, which is why they are named separately rather than left to this s
 | Field | Holds |
 |---|---|
 | `sourceOrigin` | Prose. Where the order came from and who compiled it. Always present. This is what the catalog shows a reader, because it is the credit that is owed |
-| `sourceLicense` | An SPDX expression, or `null`. Only a licence actually conveyed with the vendored order. `null` on all 259 pinned reading-order payloads today |
+| `sourceLicense` | An SPDX expression, or `null`. Only a licence actually conveyed with the vendored order. `null` on all 260 pinned reading-order payloads today |
 | `sourcePage` | A link a reader can follow to the upstream, when there is one |
 | `sourceSection` | A visible heading that distinguishes several guides on one exact page. Absent for an ordinary whole-page source |
 | `spotlightKind` | An editorial classification required only for character runs. `best-of` and `complete-guide` make distinct, reviewable claims about a guide's scope; `other` records that neither claim is accurate. It is authored here and is never copied or inferred from an upstream field |
@@ -707,7 +707,7 @@ The first is that displaying a description and shipping a copy of one are differ
 those terms rather than two degrees of one act. Using Content inside an App is what the licence is
 for, on a condition the attribution page states plainly: "You must attribute Marvel as the source
 of data whenever you display any results from the Marvel Comics API". The app now names both the
-Marvel origin and its actual route at `src/index.html:1054`. Redistributing Content outside an App, and sublicensing it onward, are the
+Marvel origin and its actual route at `src/index.html:1063`. Redistributing Content outside an App, and sublicensing it onward, are the
 two things sections 4 and 5 name. An MIT grant is a sublicence to everyone who receives a copy, and
 offers them "sublicense, and/or sell".
 
@@ -752,8 +752,8 @@ app renders that state today rather than hypothetically. Those 675 do not render
 606 carry a series or digital id and get the sentence saying no synopsis is recorded, while 69 hold
 neither and get the sentence saying the snapshot has no record of the issue at all, which is the
 distinction drawn further up this document and worth keeping in view. The shared presentation
-reaches the interface in the reading hero at `src/js/views/reading.js:571` and the issue-details view at
-`src/js/views/issue.js:90`. The function behind both already answers for the absence at
+reaches the interface in the reading hero at `src/js/views/reading.js:581` and the issue-details view at
+`src/js/views/issue.js:95`. The function behind both already answers for the absence at
 `src/js/views/reading.js:79-87`, with a test asserting the sentence it returns. It is also reversible:
 the project this repository fetched from still serves the field,
 the contract check having run on 2026-08-15 with 33 of 33 assumptions holding, so the vendoring
@@ -927,7 +927,7 @@ The [Miles Morales guide](https://www.comicbookherald.com/miles-morales-spider-m
 was retrieved on 2026-09-15. Its 60 collection blocks name 400 comic references. The explicit
 Divided We Fall instructions defer six issues from the preceding collection to the crossover
 and add Ultimates #18.1. This yields 395 effective source occurrences: 385 resolved originals,
-one unresolved identity and nine backward repeats. The published list contains 386 entries.
+one owner-approved exclusion and nine backward repeats. The published list contains 385 entries.
 
 The source ledger, packet, mapping and relationship report are named
 `miles-morales-spider-man-reading-order.json` under the corresponding `scripts/data/cbh-*`
@@ -950,17 +950,43 @@ despite that issue's 2014 release. The source's Amazing Spider-Man Annual #19 is
 the series begun in 1964, not a substituted modern annual. Five Last Remains LR issues retain
 their independently verified IDs while the provider numbers them 50.1 through 54.1.
 
-Ultimate Prologue #1 remains an explicit placeholder. Secret Empire #9 and #10 retain the exact
-IDs already established by the Black Widow mapping, with empty optional metadata and
-`detailsRefused` after the provider returned HTTP 404. [Issue #500](https://github.com/raymond-nassar/recap-page/issues/500)
-records all three gaps and failed lookups; [Issue #496](https://github.com/raymond-nassar/recap-page/issues/496)
-owns the publication scope. No gap is a claim about Marvel Unlimited availability.
+Ultimate Prologue #1 is an owner-approved source exclusion at position 67, not a substitute comic.
+The owner could not find the title in Marvel Unlimited and
+[approved its omission](https://github.com/raymond-nassar/recap-page/issues/500#issuecomment-5693130623).
+[Contemporary reporting](https://bleedingcool.com/comics/so-what-is-marvels-ultimate-prologue/),
+retrieved on 2026-09-16, records the label's removal from an Amazon collection listing. This does
+not prove nonexistence or establish an alias to Survive! The ledger retains the original gap,
+failed lookups and exact source reference, while the packet records a `source-exclusion`
+transition. The other 385 exact issue identities stay in the same sequence.
 
-Vendoring replayed 383 successful full issue responses and the two recorded refusals without
-issuing another live request or fabricating a successful response. The ledger records the
-response digests and identity corrections. Publisher descriptions and image bytes are not
-included. The relationship approval covers all 176 other source orders, including 22 partial
-overlaps and no exact duplicate.
+Secret Empire #9 and #10 retain originals 64259 and 64285 in series 23020. The
+[owner's supplied metadata](https://github.com/raymond-nassar/recap-page/issues/500#issuecomment-5693240536),
+Marvel Database revisions and independent catalog entries supply separately reviewed factual
+fields, not successful provider responses. The owner supplied 39 and 41 pages respectively.
+There are 14 published story-credit entries for #9 and 24 for #10. All 25 source entries for #10
+remain in the ledger, including the deliberately omitted Ron Lim penciler entry; his inker and
+colorist entries remain. This follows the owner's count decision without changing the app's cap.
+
+The owner also supplied official issue and cover URLs. Header-only checks found matching asset
+responses on the already-permitted `i.annihil.us` host, including the renderer's portrait size.
+No artwork bytes were read or saved. Both records retain `detailsRefused` from the actual HTTP
+404 responses; digital-reader IDs and availability dates remain null, and no synopsis is pinned.
+The original 383 successful response records and two refusals remain in the historical vendor
+evidence. The other 383 issue records in this payload are unchanged by the follow-up.
+
+These two factual supplements are deliberately hand-pinned. Ordinary provider vendoring does
+not apply them. Until a new provider resolution is reviewed, preserve the pinned records or
+reapply the ledger's `ownerMetadataSupplements[].pinnedFields` after vendoring, then run the
+Miles settlement tests and `npm run vendor -- --catalog-only`. The source-review digest binds
+the complete supplement evidence, and the regression tests reject erased fields or silent
+credit truncation. Never manufacture successful API cache entries from owner or wiki data.
+
+[Issue #500](https://github.com/raymond-nassar/recap-page/issues/500) owns this follow-up and the
+remaining provider limitations; [Issue #496](https://github.com/raymond-nassar/recap-page/issues/496)
+owns the original guide publication. The renewed relationship approval covers all 181 other
+source orders: 26 partial overlaps and no exact or subset duplicate. Five later guides retain
+their original comparison sets and scopes with explicitly recorded metadata-only library
+binding refreshes. New imports receive the corrected data; saved libraries are not rewritten.
 
 ### Spider-Gwen / Ghost-Spider source guide
 

@@ -1491,7 +1491,7 @@
       "issueNumber": "1",
       "sourceIssueReference": "Ultimate Prologue (2013) #1",
       "sourceRangeReference": "Cataclysm: Cataclysm: The Ultimates' Last Stand #1-5; Cataclysm: Ultimate Spider-Man #1-3; Cataclysm: Ultimate X-Men #1-3; Cataclysm: Ultimates #1-3; Hunger #1-4; Cataclysm #0.1; Ultimate Prologue #1",
-      "disposition": "gap"
+      "disposition": "owner-excluded"
     },
     {
       "sourcePosition": 68,
@@ -9054,5 +9054,706 @@
       "bodySha256": "ad808c71d0da38c9b030b3809d32a617735a3e209fb2745d5b4d50c4d02a5626"
     }
   ],
-  "metadataReplay": "Vendoring replays the recorded 383 successful full issue responses and two actual HTTP 404 responses. No live network request or fabricated successful response is used; provider refusals remain detailsRefused in the payload."
+  "metadataReplay": "Vendoring replays the recorded 383 successful full issue responses and two actual HTTP 404 responses. No live network request or fabricated successful response is used; provider refusals remain detailsRefused in the payload.",
+  "ownerApprovedExclusions": [
+    {
+      "sourcePosition": 67,
+      "sourceIssueReference": "Ultimate Prologue (2013) #1",
+      "reason": "Owner-approved omission after an unsuccessful Marvel Unlimited title search and contemporary reporting that Ultimate Prologue was withdrawn from an Amazon collection listing. No replacement or claim of nonexistence.",
+      "decisionScope": "Miles Morales guide only; retain the original source position and do not substitute Survive! or another comic.",
+      "previousGap": {
+        "sourcePosition": 67,
+        "sourceIssueReference": "Ultimate Prologue (2013) #1",
+        "sourceRangeReference": "Cataclysm: Cataclysm: The Ultimates' Last Stand #1-5; Cataclysm: Ultimate Spider-Man #1-3; Cataclysm: Ultimate X-Men #1-3; Cataclysm: Ultimates #1-3; Hunger #1-4; Cataclysm #0.1; Ultimate Prologue #1",
+        "normalizedSeriesTitle": "Ultimate Prologue",
+        "seriesYear": 2013,
+        "issueNumber": "1",
+        "kind": "published-metadata-gap",
+        "status": "open",
+        "checkedAt": "2026-09-15",
+        "auditBasis": "No exact original identity in the vendored series index. Ultimate Prologue search returned no results; broader Prologue search returned six unrelated comics. Numbered search failed with HTTP 500 and the corresponding Marvel Database page returned 404. Do not substitute another prologue or a collection.",
+        "evidenceSources": [
+          {
+            "kind": "guide",
+            "url": "https://www.comicbookherald.com/miles-morales-spider-man-reading-order/",
+            "retrievedAt": "2026-09-15"
+          },
+          {
+            "kind": "metadata-api",
+            "url": "https://marvel.emreparker.com/v1/search/issues?q=Prologue&limit=200",
+            "retrievedAt": "2026-09-15"
+          },
+          {
+            "kind": "metadata-api",
+            "url": "https://marvel.emreparker.com/v1/search/issues?q=Ultimate%20Prologue&limit=200",
+            "retrievedAt": "2026-09-15"
+          },
+          {
+            "kind": "tracking-issue",
+            "url": "https://github.com/raymond-nassar/recap-page/issues/500",
+            "retrievedAt": "2026-09-15"
+          }
+        ],
+        "evidenceDigest": "740ff0a38544cef6613ec62d4dd0f9fd0bc4bc6e9bbe0b66789ea7cbb9c6a040"
+      },
+      "resolution": {
+        "sourcePosition": 67,
+        "previousSourceIssueReference": "Ultimate Prologue (2013) #1",
+        "previousSourceRangeReference": "Cataclysm: Cataclysm: The Ultimates' Last Stand #1-5; Cataclysm: Ultimate Spider-Man #1-3; Cataclysm: Ultimate X-Men #1-3; Cataclysm: Ultimates #1-3; Hunger #1-4; Cataclysm #0.1; Ultimate Prologue #1",
+        "previousNormalizedSeriesTitle": "Ultimate Prologue",
+        "previousSeriesYear": 2013,
+        "previousIssueNumber": "1",
+        "resolutionKind": "source-exclusion",
+        "exclusionReason": "Owner-approved omission after an unsuccessful Marvel Unlimited title search and contemporary reporting that Ultimate Prologue was withdrawn from an Amazon collection listing. No replacement or claim of nonexistence.",
+        "decisionScope": "Miles Morales guide only; retain the original source position and do not substitute Survive! or another comic.",
+        "checkedAt": "2026-09-16",
+        "auditBasis": "The owner approved omitting this preserved source reference after searching Marvel Unlimited. Bleeding Cool reported that the Amazon listing removed the name in November 2013. Neither establishes a renamed issue or licenses a substitute.",
+        "evidenceSources": [
+          {
+            "kind": "contemporary-listing-report",
+            "url": "https://bleedingcool.com/comics/so-what-is-marvels-ultimate-prologue/",
+            "retrievedAt": "2026-09-16"
+          },
+          {
+            "kind": "owner-omission-approval",
+            "url": "https://github.com/raymond-nassar/recap-page/issues/500#issuecomment-5693130623",
+            "retrievedAt": "2026-09-16"
+          },
+          {
+            "kind": "reviewed-source-evidence",
+            "url": "https://github.com/raymond-nassar/recap-page/issues/500#issuecomment-5693093457",
+            "retrievedAt": "2026-09-16"
+          }
+        ],
+        "evidenceDigest": "2f41e69a1c3b99cd0b2456cf3b6cef346e3d0b3f4704beb1b4d1c54caf166cea"
+      }
+    }
+  ],
+  "ownerMetadataSupplements": [
+    {
+      "issueId": 64259,
+      "sourcePosition": 234,
+      "checkedAt": "2026-09-16",
+      "origin": "Owner-supplied factual metadata, independently corroborated where recorded; not a configured-provider response.",
+      "pinnedFields": {
+        "url": "https://www.marvel.com/comics/issue/64259/secret_empire_2017_9",
+        "seriesId": 23020,
+        "seriesName": "Secret Empire (2017)",
+        "onSale": "2017-08-23",
+        "pageCount": 39,
+        "creators": [
+          {
+            "name": "Nick Spencer",
+            "role": "writer"
+          },
+          {
+            "name": "Leinil Francis Yu",
+            "role": "penciler"
+          },
+          {
+            "name": "Joe Bennett",
+            "role": "penciler"
+          },
+          {
+            "name": "Rod Reis",
+            "role": "penciler"
+          },
+          {
+            "name": "Gerry Alanguilan",
+            "role": "inker"
+          },
+          {
+            "name": "Leinil Francis Yu",
+            "role": "inker"
+          },
+          {
+            "name": "Joe Pimentel",
+            "role": "inker"
+          },
+          {
+            "name": "Rod Reis",
+            "role": "inker"
+          },
+          {
+            "name": "Sunny Gho",
+            "role": "colorist"
+          },
+          {
+            "name": "Dono Sánchez-Almara",
+            "role": "colorist"
+          },
+          {
+            "name": "Rod Reis",
+            "role": "colorist"
+          },
+          {
+            "name": "Travis Lanham",
+            "role": "letterer"
+          },
+          {
+            "name": "Tom Brevoort",
+            "role": "editor"
+          },
+          {
+            "name": "Alanna Smith",
+            "role": "editor"
+          }
+        ],
+        "cover": {
+          "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/60/5988e073b98b3",
+          "ext": "webp"
+        }
+      },
+      "fieldSources": {
+        "onSale": [
+          "wiki-revision",
+          "independent-catalog",
+          "owner-metadata"
+        ],
+        "creators": [
+          "wiki-revision",
+          "owner-metadata",
+          "owner-page-counts-and-credit-limit"
+        ],
+        "pageCount": [
+          "owner-page-counts-and-credit-limit"
+        ],
+        "cover": [
+          "owner-covers",
+          "header-only-cdn-corroboration"
+        ],
+        "url": [
+          "owner-covers"
+        ],
+        "seriesId": [
+          "previous-exact-identity"
+        ],
+        "seriesName": [
+          "previous-exact-identity",
+          "owner-metadata"
+        ]
+      },
+      "sourceCredits": [
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Rod Reis",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Alanguilan",
+          "role": "inker"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "inker"
+        },
+        {
+          "name": "Joe Pimentel",
+          "role": "inker"
+        },
+        {
+          "name": "Rod Reis",
+          "role": "inker"
+        },
+        {
+          "name": "Sunny Gho",
+          "role": "colorist"
+        },
+        {
+          "name": "Dono Sánchez-Almara",
+          "role": "colorist"
+        },
+        {
+          "name": "Rod Reis",
+          "role": "colorist"
+        },
+        {
+          "name": "Travis Lanham",
+          "role": "letterer"
+        },
+        {
+          "name": "Tom Brevoort",
+          "role": "editor"
+        },
+        {
+          "name": "Alanna Smith",
+          "role": "editor"
+        }
+      ],
+      "creditProjection": {
+        "maximumEntries": 24,
+        "ordering": "Existing raw-source/wiki-parser order",
+        "retainedEntries": 14,
+        "omittedEntries": [],
+        "decisionUrl": "https://github.com/raymond-nassar/recap-page/issues/500#issuecomment-5693337376"
+      },
+      "providerRefusal": {
+        "url": "https://marvel.emreparker.com/v1/issues/64259",
+        "status": 404,
+        "checkedAt": "2026-09-15T15:20:09.234Z",
+        "response": {
+          "detail": "Issue 64259 not found"
+        },
+        "provenance": "https://github.com/raymond-nassar/recap-page/issues/500#issuecomment-5682971813"
+      },
+      "coverHeaderEvidence": {
+        "suppliedUrl": "https://cdn.marvel.com/u/prod/marvel/i/mg/4/60/5988e073b98b3/detail.webp",
+        "requests": [
+          {
+            "url": "https://cdn.marvel.com/u/prod/marvel/i/mg/4/60/5988e073b98b3/detail.webp",
+            "checkedAt": "2026-09-16T06:51:52.359Z",
+            "method": "HEAD",
+            "status": 200,
+            "headers": {
+              "content-type": "image/webp",
+              "content-length": "104352",
+              "etag": "\"7a21062e7b29b45bf3358bf2490175d6\"",
+              "last-modified": "Wed, 12 Aug 2026 01:03:18 GMT",
+              "location": null
+            },
+            "bodyRead": false
+          },
+          {
+            "url": "https://i.annihil.us/u/prod/marvel/i/mg/4/60/5988e073b98b3/detail.webp",
+            "checkedAt": "2026-09-16T06:51:52.731Z",
+            "method": "HEAD",
+            "status": 200,
+            "headers": {
+              "content-type": "image/webp",
+              "content-length": "104352",
+              "etag": "\"7a21062e7b29b45bf3358bf2490175d6\"",
+              "last-modified": "Wed, 12 Aug 2026 01:03:18 GMT",
+              "location": null
+            },
+            "bodyRead": false
+          },
+          {
+            "url": "https://i.annihil.us/u/prod/marvel/i/mg/4/60/5988e073b98b3/portrait_uncanny.webp",
+            "checkedAt": "2026-09-16T06:51:52.787Z",
+            "method": "HEAD",
+            "status": 200,
+            "headers": {
+              "content-type": "image/webp",
+              "content-length": "38692",
+              "etag": "\"b1adf5b487f7d7fe8de7237fccd67af5\"",
+              "last-modified": "Tue, 09 Jun 2026 15:25:01 GMT",
+              "location": null
+            },
+            "bodyRead": false
+          }
+        ],
+        "bodiesRead": false
+      },
+      "unknownFields": [
+        "digitalId",
+        "mu"
+      ],
+      "evidenceSources": [
+        {
+          "kind": "header-only-cdn-corroboration",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/500#issuecomment-5693301235",
+          "retrievedAt": "2026-09-16"
+        },
+        {
+          "kind": "independent-catalog",
+          "url": "https://freshcomics.us/issue/JUN170871/secret-empire-9",
+          "retrievedAt": "2026-09-16"
+        },
+        {
+          "kind": "owner-covers",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/500#issuecomment-5693301235",
+          "retrievedAt": "2026-09-16"
+        },
+        {
+          "kind": "owner-metadata",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/500#issuecomment-5693240536",
+          "retrievedAt": "2026-09-16"
+        },
+        {
+          "kind": "owner-page-counts-and-credit-limit",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/500#issuecomment-5693337376",
+          "retrievedAt": "2026-09-16"
+        },
+        {
+          "kind": "previous-exact-identity",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/311",
+          "retrievedAt": "2026-09-16"
+        },
+        {
+          "kind": "wiki-revision",
+          "url": "https://marvel.fandom.com/wiki/Secret_Empire_Vol_1_9?oldid=11015910",
+          "retrievedAt": "2026-09-16"
+        }
+      ],
+      "evidenceDigest": "73c063b5d806abba8f74b65848b80d17c176eb893f01840b704a051ec7db7323"
+    },
+    {
+      "issueId": 64285,
+      "sourcePosition": 235,
+      "checkedAt": "2026-09-16",
+      "origin": "Owner-supplied factual metadata, independently corroborated where recorded; not a configured-provider response.",
+      "pinnedFields": {
+        "url": "https://www.marvel.com/comics/issue/64285/secret_empire_2017_10",
+        "seriesId": 23020,
+        "seriesName": "Secret Empire (2017)",
+        "onSale": "2017-08-30",
+        "pageCount": 41,
+        "creators": [
+          {
+            "name": "Nick Spencer",
+            "role": "writer"
+          },
+          {
+            "name": "Steve McNiven",
+            "role": "penciler"
+          },
+          {
+            "name": "Rod Reis",
+            "role": "penciler"
+          },
+          {
+            "name": "David Marquez",
+            "role": "penciler"
+          },
+          {
+            "name": "Paco Medina",
+            "role": "penciler"
+          },
+          {
+            "name": "Juan Vlasco",
+            "role": "penciler"
+          },
+          {
+            "name": "Jay Leisten",
+            "role": "inker"
+          },
+          {
+            "name": "Rod Reis",
+            "role": "inker"
+          },
+          {
+            "name": "David Marquez",
+            "role": "inker"
+          },
+          {
+            "name": "Paco Medina",
+            "role": "inker"
+          },
+          {
+            "name": "Juan Vlasco",
+            "role": "inker"
+          },
+          {
+            "name": "Matthew Wilson",
+            "role": "colorist"
+          },
+          {
+            "name": "Rod Reis",
+            "role": "colorist"
+          },
+          {
+            "name": "David Marquez",
+            "role": "colorist"
+          },
+          {
+            "name": "Travis Lanham",
+            "role": "letterer"
+          },
+          {
+            "name": "Tom Brevoort",
+            "role": "editor"
+          },
+          {
+            "name": "Alanna Smith",
+            "role": "editor"
+          },
+          {
+            "name": "Paco Medina",
+            "role": "colorist"
+          },
+          {
+            "name": "Juan Vlasco",
+            "role": "colorist"
+          },
+          {
+            "name": "Jesus Aburtov",
+            "role": "colorist"
+          },
+          {
+            "name": "Ron Lim",
+            "role": "colorist"
+          },
+          {
+            "name": "Jesus Aburtov",
+            "role": "inker"
+          },
+          {
+            "name": "Ron Lim",
+            "role": "inker"
+          },
+          {
+            "name": "Jesus Aburtov",
+            "role": "penciler"
+          }
+        ],
+        "cover": {
+          "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/00/59934fc355cb6",
+          "ext": "webp"
+        }
+      },
+      "fieldSources": {
+        "onSale": [
+          "wiki-revision",
+          "independent-catalog",
+          "owner-metadata"
+        ],
+        "creators": [
+          "wiki-revision",
+          "owner-metadata",
+          "owner-page-counts-and-credit-limit"
+        ],
+        "pageCount": [
+          "owner-page-counts-and-credit-limit"
+        ],
+        "cover": [
+          "owner-covers",
+          "header-only-cdn-corroboration"
+        ],
+        "url": [
+          "owner-covers"
+        ],
+        "seriesId": [
+          "previous-exact-identity"
+        ],
+        "seriesName": [
+          "previous-exact-identity",
+          "owner-metadata"
+        ]
+      },
+      "sourceCredits": [
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        },
+        {
+          "name": "Steve McNiven",
+          "role": "penciler"
+        },
+        {
+          "name": "Rod Reis",
+          "role": "penciler"
+        },
+        {
+          "name": "David Marquez",
+          "role": "penciler"
+        },
+        {
+          "name": "Paco Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Juan Vlasco",
+          "role": "penciler"
+        },
+        {
+          "name": "Jay Leisten",
+          "role": "inker"
+        },
+        {
+          "name": "Rod Reis",
+          "role": "inker"
+        },
+        {
+          "name": "David Marquez",
+          "role": "inker"
+        },
+        {
+          "name": "Paco Medina",
+          "role": "inker"
+        },
+        {
+          "name": "Juan Vlasco",
+          "role": "inker"
+        },
+        {
+          "name": "Matthew Wilson",
+          "role": "colorist"
+        },
+        {
+          "name": "Rod Reis",
+          "role": "colorist"
+        },
+        {
+          "name": "David Marquez",
+          "role": "colorist"
+        },
+        {
+          "name": "Travis Lanham",
+          "role": "letterer"
+        },
+        {
+          "name": "Tom Brevoort",
+          "role": "editor"
+        },
+        {
+          "name": "Alanna Smith",
+          "role": "editor"
+        },
+        {
+          "name": "Paco Medina",
+          "role": "colorist"
+        },
+        {
+          "name": "Juan Vlasco",
+          "role": "colorist"
+        },
+        {
+          "name": "Jesus Aburtov",
+          "role": "colorist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "colorist"
+        },
+        {
+          "name": "Jesus Aburtov",
+          "role": "inker"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "inker"
+        },
+        {
+          "name": "Jesus Aburtov",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        }
+      ],
+      "creditProjection": {
+        "maximumEntries": 24,
+        "ordering": "Existing raw-source/wiki-parser order",
+        "retainedEntries": 24,
+        "omittedEntries": [
+          {
+            "name": "Ron Lim",
+            "role": "penciler"
+          }
+        ],
+        "decisionUrl": "https://github.com/raymond-nassar/recap-page/issues/500#issuecomment-5693337376"
+      },
+      "providerRefusal": {
+        "url": "https://marvel.emreparker.com/v1/issues/64285",
+        "status": 404,
+        "checkedAt": "2026-09-15T15:20:10.634Z",
+        "response": {
+          "detail": "Issue 64285 not found"
+        },
+        "provenance": "https://github.com/raymond-nassar/recap-page/issues/500#issuecomment-5682971813"
+      },
+      "coverHeaderEvidence": {
+        "suppliedUrl": "https://cdn.marvel.com/u/prod/marvel/i/mg/7/00/59934fc355cb6/detail.webp",
+        "requests": [
+          {
+            "url": "https://cdn.marvel.com/u/prod/marvel/i/mg/7/00/59934fc355cb6/detail.webp",
+            "checkedAt": "2026-09-16T06:51:52.358Z",
+            "method": "HEAD",
+            "status": 200,
+            "headers": {
+              "content-type": "image/webp",
+              "content-length": "104464",
+              "etag": "\"25f0f2ef81ff4d1d35f38832a1591778\"",
+              "last-modified": "Wed, 12 Aug 2026 00:29:52 GMT",
+              "location": null
+            },
+            "bodyRead": false
+          },
+          {
+            "url": "https://i.annihil.us/u/prod/marvel/i/mg/7/00/59934fc355cb6/detail.webp",
+            "checkedAt": "2026-09-16T06:51:52.989Z",
+            "method": "HEAD",
+            "status": 200,
+            "headers": {
+              "content-type": "image/webp",
+              "content-length": "104464",
+              "etag": "\"25f0f2ef81ff4d1d35f38832a1591778\"",
+              "last-modified": "Wed, 12 Aug 2026 00:29:52 GMT",
+              "location": null
+            },
+            "bodyRead": false
+          },
+          {
+            "url": "https://i.annihil.us/u/prod/marvel/i/mg/7/00/59934fc355cb6/portrait_uncanny.webp",
+            "checkedAt": "2026-09-16T06:51:53.039Z",
+            "method": "HEAD",
+            "status": 200,
+            "headers": {
+              "content-type": "image/webp",
+              "content-length": "37336",
+              "etag": "\"37233b1912d8116039c1b6068ba888b3\"",
+              "last-modified": "Tue, 09 Jun 2026 15:25:01 GMT",
+              "location": null
+            },
+            "bodyRead": false
+          }
+        ],
+        "bodiesRead": false
+      },
+      "unknownFields": [
+        "digitalId",
+        "mu"
+      ],
+      "evidenceSources": [
+        {
+          "kind": "header-only-cdn-corroboration",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/500#issuecomment-5693301235",
+          "retrievedAt": "2026-09-16"
+        },
+        {
+          "kind": "independent-catalog",
+          "url": "https://freshcomics.us/issue/JUN170877/secret-empire-10",
+          "retrievedAt": "2026-09-16"
+        },
+        {
+          "kind": "owner-covers",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/500#issuecomment-5693301235",
+          "retrievedAt": "2026-09-16"
+        },
+        {
+          "kind": "owner-metadata",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/500#issuecomment-5693240536",
+          "retrievedAt": "2026-09-16"
+        },
+        {
+          "kind": "owner-page-counts-and-credit-limit",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/500#issuecomment-5693337376",
+          "retrievedAt": "2026-09-16"
+        },
+        {
+          "kind": "previous-exact-identity",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/311",
+          "retrievedAt": "2026-09-16"
+        },
+        {
+          "kind": "wiki-revision",
+          "url": "https://marvel.fandom.com/wiki/Secret_Empire_Vol_1_10?oldid=11014217",
+          "retrievedAt": "2026-09-16"
+        }
+      ],
+      "evidenceDigest": "2aa1dc75d981c61d1a675b4f39d2f973abd950ade9f56822544922951ac33cae"
+    }
+  ]
 }

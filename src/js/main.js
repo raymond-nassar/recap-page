@@ -9,7 +9,8 @@ import {
   createList, deleteList, setActive, addIssuesToList, isRead, upNext, listProgress, listItems, exportBackup, migrate,
   coverUrl, listForCatalogId, SCHEMA_VERSION, MAX_BACKUP_BYTES, orderGapSentences,
 } from './lib/model.js';
-import { serializeChecklist, serializeReadingOrder } from './lib/markdown.js';
+import { chooseMarkdownExport } from './views/markdown-export.js';
+import { serializeReadingOrder } from './lib/markdown.js';
 import { DEFAULT_LIST_NAME, LIBRARY_VIEWS } from './lib/library.js';
 import {
   parseCatalog, groupCatalog,
@@ -1986,18 +1987,23 @@ export function backupFileRefusal(file) {
   return `That file is ${describeSize(size)}. A backup this app writes is far smaller than the ${describeSize(MAX_BACKUP_BYTES)} limit, so this one was not read and nothing was changed.`;
 }
 
-function exportMarkdown() {
+async function exportMarkdown() {
   const id = activeListId();
   const list = store.state.lists[id];
   if (!list) return notify('#restore-report', 'No list is selected.', 'warn');
-  const md = serializeChecklist({
-    name: list.name,
-    description: list.description,
-    note: list.note,
-    items: listItems(store.state, id),
-  });
-  download(`${slug(list.name)}.md`, md, 'text/markdown');
-  announce('Markdown checklist downloaded.');
+  try {
+    const md = await chooseMarkdownExport({
+      name: list.name,
+      description: list.description,
+      note: list.note,
+      items: listItems(store.state, id),
+    });
+    if (md === null) return;
+    download(`${slug(list.name)}.md`, md, 'text/markdown');
+    announce('Markdown Reading List downloaded.');
+  } catch (error) {
+    notify('#app-report', `Could not export Markdown: ${error.message}`, 'error');
+  }
 }
 
 const recoveryView = createRecoveryView({
@@ -2947,6 +2953,7 @@ const homeView = createHomeView({
     continueRead: $('#btn-chero-read'),
     continueOpen: $('#btn-chero-open'),
     continueReview: $('#btn-chero-review'),
+    continueDeferred: $('#btn-chero-deferred'),
     yoursSection: $('#home-yours'),
     yoursList: $('#home-yours-list'),
     firstRun: $('#home-first-run'),
@@ -2986,6 +2993,7 @@ const homeView = createHomeView({
     showView('read', { push: true });
     readingView.openReview();
   },
+  onReviewDeferred: () => readingView.openDeferred(),
   paintCover,
   paintCoverUrl,
   recommendedList: modernTimelineFeaturedList,

@@ -80,7 +80,6 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Hunger (2013) #3 <!-- mrt:source-occurrence=64 -->](https://www.marvel.com/comics/issue/48175/hunger_2013_3)
 - [ ] [Hunger (2013) #4 <!-- mrt:source-occurrence=65 -->](https://www.marvel.com/comics/issue/48176/hunger_2013_4)
 - [ ] [Cataclysm (2013) #0.1 <!-- mrt:source-occurrence=66 -->](https://www.marvel.com/comics/issue/48295/cataclysm_2013_0.1)
-- [ ] Ultimate Prologue (2013) #1 <!-- mrt:source-occurrence=67 -->
 ## Revival: Miles Morales: Ultimate Spider-Man #1-5; Ultimate Spider-Man #200
 - [ ] [Miles Morales: Ultimate Spider-Man (2014) #1 <!-- mrt:source-occurrence=68 -->](https://www.marvel.com/comics/issue/49200/miles_morales_ultimate_spider-man_2014_1)
 - [ ] [Miles Morales: Ultimate Spider-Man (2014) #2 <!-- mrt:source-occurrence=69 -->](https://www.marvel.com/comics/issue/49202/miles_morales_ultimate_spider-man_2014_2)
@@ -270,7 +269,7 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Secret Empire (2017) #6 <!-- mrt:source-occurrence=231 -->](https://www.marvel.com/comics/issue/63753/secret_empire_2017_6)
 - [ ] [Secret Empire (2017) #7 <!-- mrt:source-occurrence=232 -->](https://www.marvel.com/comics/issue/63869/secret_empire_2017_7)
 - [ ] [Secret Empire (2017) #8 <!-- mrt:source-occurrence=233 -->](https://www.marvel.com/comics/issue/64166/secret_empire_2017_8)
-- [ ] [Secret Empire (2017) #9 <!-- mrt:source-occurrence=234 -->](https://www.marvel.com/comics/issue/64259/read)
+- [ ] [Secret Empire (2017) #9 <!-- mrt:source-occurrence=234 -->](https://www.marvel.com/comics/issue/64259/secret_empire_2017_9)
 - [ ] [Secret Empire (2017) #10 <!-- mrt:source-occurrence=235 -->](https://www.marvel.com/comics/issue/64285/secret_empire_2017_10)
 - [ ] [Secret Empire Omega (2017) #1 <!-- mrt:source-occurrence=236 -->](https://www.marvel.com/comics/issue/64438/secret_empire_omega_2017_1)
 ## Champions Vol. 2: Champions #6-12

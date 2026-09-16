@@ -4082,7 +4082,7 @@
     "guideType": "character-run",
     "window": null,
     "disposition": "new-order",
-    "reason": "Owner-requested standalone guide intake, separate from the original hub census. Preserves 400 collection references through explicit sequencing as 395 effective occurrences: 385 exact comics, one identity gap and nine repeats. Two exact Secret Empire identities retain provider refusals. sourceContentSha256 hashes normalized factual blocks, not HTML. Issue 496 owns scope; Issue 500 tracks gaps.",
+    "reason": "Owner-requested standalone guide. Preserves 400 collection references through explicit sequencing as 395 effective occurrences: 385 exact comics, one owner-approved source exclusion and nine repeats. Two exact Secret Empire originals retain provider refusals while separately evidenced owner metadata supplies dates, credits, page counts and cover URLs. Unknown reader IDs and availability dates remain empty. sourceContentSha256 hashes normalized factual blocks, not HTML. Issue 496 owns the original publication; Issue 500 owns this follow-up.",
     "sourceRetrievedAt": "2026-09-15",
     "overlapIds": [
       "absolute-carnage",
@@ -4093,6 +4093,8 @@
       "black-widow-reading-order",
       "captain-marvel-ms-marvel-reading-order",
       "doctor-doom-primer",
+      "donny-cates-marvel-universe-reading-order-2017",
+      "falcon-sam-wilson-captain-america-reading-order",
       "fantastic-four-reading-order",
       "generations",
       "hickman-full",
@@ -4103,9 +4105,11 @@
       "silver-surfer-reading-order",
       "spider-geddon",
       "spider-gwen-reading-order",
+      "spider-man-2099-reading-order",
       "spider-verse",
       "venom-reading-order",
       "war-of-the-realms",
+      "winter-soldier-bucky-barnes-reading-order",
       "wolverine-reading-order"
     ],
     "catalogIds": [

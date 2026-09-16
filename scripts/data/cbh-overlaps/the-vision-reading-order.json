@@ -2,7 +2,7 @@
   "candidateId": "the-vision-reading-order",
   "packetDigest": "17ca636649050b1ef9c77c2e4556c3856f84485007a0044f9a2f852f7d6d0fe0",
   "mappingDigest": "19438a7e227ea1cc4acd116896ae806198b7a5b09b5ff571a942d26c0d8f4d87",
-  "libraryDigest": "3761c3b190afdb20c20903aec6dc63a78d3ca541b2f3588e0362fa3716778169",
+  "libraryDigest": "2117fcfce4e9710f46927c603b6c86f7ac4d213f97ffde8911a9985234b39bbf",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 531,
@@ -1919,5 +1919,5 @@
       "relationship": "partial"
     }
   ],
-  "reportDigest": "532548228b456d1db6f841c3c824add9f1e27b5e408063e406c59bb24b6f58d8"
+  "reportDigest": "f7cd3160711e6a5b3ccb012a476129bd51c7296876c90aa77100ade451a55e83"
 }

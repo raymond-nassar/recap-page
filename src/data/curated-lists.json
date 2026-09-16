@@ -5541,7 +5541,7 @@
     {
       "id": "miles-morales-spider-man-reading-order",
       "name": "Spider-Man: Miles Morales",
-      "description": "Follow Miles from the Ultimate Universe to Earth-616, the Champions and Trial By Spider in Comic Book Herald guide order. One unresolved comic remains marked as a gap.",
+      "description": "Follow Miles from the Ultimate Universe to Earth-616, the Champions and Trial By Spider in Comic Book Herald guide order.",
       "type": "character-run",
       "spotlightKind": "other",
       "depth": "partial",
@@ -5569,7 +5569,7 @@
         "Spider-Verse",
         "Trial By Spider"
       ],
-      "expect": 386,
+      "expect": 385,
       "timeline": null,
       "coverIssueId": 38394
     },

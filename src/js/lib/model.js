@@ -9,7 +9,8 @@
 import { compareIssues } from './sort.js';
 import { allowedCoverUrl } from './coverHost.js';
 
-export const SCHEMA_VERSION = 2;
+// Schema 2 rebuilds lists without unknown fields, so accepting deferral there would lose it on downgrade.
+export const SCHEMA_VERSION = 3;
 
 // The list map is keyed by ids that come from a restored backup, so a reader whose file happens to
 // contain a list called `__proto__` or `constructor` used to lose it. An ordinary object answers
@@ -391,7 +392,7 @@ function normalizeCollectedIn(raw, itemIds) {
   return out;
 }
 
-export function createList(state, { name, description = '', id = newId(), itemIds = [], catalogId = null, note = '', collectedIn = {} } = {}) {
+export function createList(state, { name, description = '', id = newId(), itemIds = [], catalogId = null, note = '', collectedIn = {}, deferredIssueIds = [] } = {}) {
   const listId = id;
   const ids = dedupe(itemIds.map(Number).filter((n) => Number.isInteger(n) && n !== 0));
   const list = {
@@ -409,6 +410,7 @@ export function createList(state, { name, description = '', id = newId(), itemId
     catalogId: catalogId ? String(catalogId).slice(0, MAX_NAME) : null,
     itemIds: ids,
     collectedIn: normalizeCollectedIn(collectedIn, ids),
+    deferredIssueIds: normalizeDeferredIds(deferredIssueIds, ids),
   };
   return {
     ...state,
@@ -457,6 +459,7 @@ export function duplicateList(state, listId, { name } = {}) {
     // reader duplicating a trade order to reshuffle it would otherwise get a flat issue list
     // and no way to see which volume anything came from.
     collectedIn: { ...(source.collectedIn ?? {}) },
+    deferredIssueIds: [...(source.deferredIssueIds ?? [])],
   };
 
   const listOrder = [...state.listOrder];
@@ -611,7 +614,8 @@ export function removeFromList(state, listId, issueId) {
   // holds it.
   const collectedIn = { ...(list.collectedIn ?? {}) };
   delete collectedIn[id];
-  return { ...state, lists: withList(state.lists, listId, { ...list, itemIds, collectedIn }) };
+  const deferredIssueIds = (list.deferredIssueIds ?? []).filter((value) => value !== id);
+  return { ...state, lists: withList(state.lists, listId, { ...list, itemIds, collectedIn, deferredIssueIds }) };
 }
 
 export function moveItem(state, listId, issueId, delta) {
@@ -623,7 +627,8 @@ export function moveItem(state, listId, issueId, delta) {
   const to = clamp(from + delta, 0, itemIds.length - 1);
   if (to === from) return state;
   itemIds.splice(to, 0, ...itemIds.splice(from, 1));
-  return { ...state, lists: withList(state.lists, listId, { ...list, itemIds }) };
+  const deferredIssueIds = normalizeDeferredIds(list.deferredIssueIds, itemIds);
+  return { ...state, lists: withList(state.lists, listId, { ...list, itemIds, deferredIssueIds }) };
 }
 
 export function moveItemTo(state, listId, issueId, index) {
@@ -706,9 +711,7 @@ export function setListNote(state, listId, text) {
 // ---------------------------------------------------------------- derived
 
 export function upNext(state, listId) {
-  const list = state.lists[listId];
-  if (!list) return null;
-  const id = list.itemIds.find((i) => !isRead(state, i));
+  const id = queuedIssueIds(state, listId)[0];
   return id == null ? null : (state.issues[id] ?? { issueId: id, title: `Issue ${id}` });
 }
 
@@ -888,6 +891,7 @@ export function migrate(raw) {
   const version = Number(raw.schemaVersion ?? 1);
 
   if (version === SCHEMA_VERSION) return coerce(raw);
+  if (version === 2) return coerce(raw, { legacy: true });
 
   if (version < 2) {
     // v1 stored full item objects inside each list, with a per-list `read` boolean.
@@ -953,6 +957,7 @@ export function migrate(raw) {
         catalogId: null,
         itemIds,
         collectedIn,
+        deferredIssueIds: [],
       };
       listOrder.push(listId);
       active ??= listId;
@@ -964,7 +969,7 @@ export function migrate(raw) {
   throw new Error(`Unsupported schema version ${version}; this build understands ${SCHEMA_VERSION}.`);
 }
 
-function coerce(raw) {
+function coerce(raw, { legacy = false } = {}) {
   const base = createEmptyState();
   const issues = {};
   for (const v of Object.values(raw.issues ?? {})) {
@@ -1006,6 +1011,7 @@ function coerce(raw) {
       // why this is not a schema version bump: the field's absence is a valid state, not an
       // older shape needing migration.
       collectedIn: normalizeCollectedIn(v.collectedIn, itemIds),
+      deferredIssueIds: normalizeDeferredIds(legacy ? undefined : v.deferredIssueIds, itemIds),
     };
   }
   // Filtered to strings before anything else, because the membership test is a property lookup and
@@ -1156,9 +1162,11 @@ export function listItems(state, listId) {
   const list = state.lists[listId];
   if (!list) return [];
   const editions = list.collectedIn ?? {};
+  const deferred = new Set(list.deferredIssueIds ?? []);
   return list.itemIds.map((id) => ({
     ...(state.issues[id] ?? { issueId: id, title: `Issue ${id}`, hydrated: false, source: 'unknown' }),
     read: isRead(state, id),
+    deferred: deferred.has(id),
     override: state.overrides[id] ?? null,
     note: issueNote(state, id),
     collectedIn: editions[id] ?? null,
@@ -1286,7 +1294,7 @@ export function heldCount(state, items) {
 }
 
 // Membership is the only lost data: adding through addIssuesToList would also merge old metadata.
-export function restoreRemovedIssue(state, listId, issueId, { index, collectedIn } = {}) {
+export function restoreRemovedIssue(state, listId, issueId, { index, collectedIn, deferred = false } = {}) {
   const list = state.lists[listId];
   const id = Number(issueId);
   if (!list || !Number.isInteger(id) || id === 0 || list.itemIds.includes(id)
@@ -1296,8 +1304,58 @@ export function restoreRemovedIssue(state, listId, issueId, { index, collectedIn
   const editions = { ...(list.collectedIn ?? {}) };
   if (collectedIn === undefined) delete editions[id];
   else editions[id] = collectedIn;
+  const deferredIssueIds = normalizeDeferredIds(
+    deferred ? [...(list.deferredIssueIds ?? []), id] : list.deferredIssueIds, itemIds,
+  );
   return {
     ...state,
-    lists: withList(state.lists, listId, { ...list, itemIds, collectedIn: editions }),
+    lists: withList(state.lists, listId, { ...list, itemIds, collectedIn: editions, deferredIssueIds }),
   };
+}
+
+function normalizeDeferredIds(value, itemIds) {
+  if (value === undefined) return [];
+  if (!Array.isArray(value)) throw new Error('Deferred issue IDs must be an array.');
+  if (value.length > MAX_ISSUES) throw new Error(`A list cannot declare more than ${MAX_ISSUES} deferred issue IDs.`);
+  const members = new Set(itemIds);
+  const deferred = new Set();
+  for (const id of value) {
+    if (!Number.isInteger(id) || id === 0 || !members.has(id)) {
+      throw new Error('Every deferred issue ID must be a nonzero integer belonging to its Reading List.');
+    }
+    deferred.add(id);
+  }
+  return itemIds.filter((id) => deferred.has(id));
+}
+
+export function isDeferred(state, listId, issueId) {
+  return state.lists[listId]?.deferredIssueIds?.includes(Number(issueId)) ?? false;
+}
+
+export function setDeferred(state, listId, issueId, value = true) {
+  const list = state.lists[listId];
+  const id = Number(issueId);
+  if (!list?.itemIds.includes(id) || isDeferred(state, listId, id) === Boolean(value)) return state;
+  const held = list.deferredIssueIds ?? [];
+  const deferredIssueIds = normalizeDeferredIds(value ? [...held, id] : held.filter((n) => n !== id), list.itemIds);
+  return { ...state, lists: withList(state.lists, listId, { ...list, deferredIssueIds }) };
+}
+
+export function queuedIssueIds(state, listId) {
+  const list = state.lists[listId];
+  if (!list) return [];
+  const deferred = new Set(list.deferredIssueIds ?? []);
+  return list.itemIds.filter((id) => !isRead(state, id) && !deferred.has(id));
+}
+
+export function listReadingProgress(state, listId) {
+  const progress = listProgress(state, listId);
+  const deferred = deferredCount(state, listId);
+  return { ...progress, deferred, queued: progress.total - progress.read - deferred };
+}
+
+export function deferredCount(state, listId) {
+  return (state.lists[listId]?.deferredIssueIds ?? []).reduce(
+    (count, id) => count + (isRead(state, id) ? 0 : 1), 0,
+  );
 }
