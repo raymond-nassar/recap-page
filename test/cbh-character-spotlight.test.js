@@ -197,7 +197,9 @@ async function buildReportForMapping(mappingPath, peerPaths = [], options = {}) 
     excludedOrderIds: [
       ...(options.excludedOrderIds ?? CBH_LATER_ORDER_IDS),
       'mephisto-reading-order',
-      'best-ultron-reading-order', 'winter-soldier-bucky-barnes-reading-order', 'falcon-sam-wilson-captain-america-reading-order',
+      'best-ultron-reading-order', 'winter-soldier-bucky-barnes-reading-order',
+      'donny-cates-marvel-universe-reading-order-2017',
+      'falcon-sam-wilson-captain-america-reading-order',
       'miles-morales-spider-man-reading-order',
       'spider-gwen-reading-order',
       'spider-man-2099-reading-order',
@@ -621,7 +623,7 @@ function exclusionsForReviewedReport(manifest, report, candidateId, peerIds = []
 }
 
 async function libraryDigestForScope(manifest, excludedIds) {
-  const excluded = new Set([...excludedIds, guardiansCandidateId, 'adam-warlock-reading-order', 'mephisto-reading-order', 'miles-morales-spider-man-reading-order', 'spider-gwen-reading-order', 'best-ultron-reading-order', 'winter-soldier-bucky-barnes-reading-order', 'falcon-sam-wilson-captain-america-reading-order', 'spider-man-2099-reading-order']);
+  const excluded = new Set([...excludedIds, guardiansCandidateId, 'adam-warlock-reading-order', 'mephisto-reading-order', 'miles-morales-spider-man-reading-order', 'spider-gwen-reading-order', 'best-ultron-reading-order', 'winter-soldier-bucky-barnes-reading-order', 'spider-man-2099-reading-order', 'donny-cates-marvel-universe-reading-order-2017', 'falcon-sam-wilson-captain-america-reading-order']);
   const lists = manifest.lists.filter((entry) => !excluded.has(entry.id));
   const paths = (manifest.paths ?? []).filter((entry) => (
     !excluded.has(entry.id)
@@ -710,7 +712,7 @@ test('Abomination preserves the unresolved Hulk annual and selects the exact 198
   }
 });
 
-test('the character inventory preserves every central disposition, ships forty-three spotlights, and records five approved reuses', async () => {
+test('the character inventory preserves every central disposition, ships forty-three spotlights plus one creator guide, and records five approved reuses', async () => {
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
   assert.doesNotThrow(() => validateInventoryState(inventory));
   assert.equal(inventory.length, 130);
@@ -722,9 +724,9 @@ test('the character inventory preserves every central disposition, ships forty-t
     return counts;
   }, {});
   assert.equal(dispositionCounts.deferred, 74);
-  assert.equal(dispositionCounts.excluded, 7);
+  assert.equal(dispositionCounts.excluded, 6);
   assert.equal(dispositionCounts.blocked, 1);
-  assert.equal(dispositionCounts['pilot-approved'], 43);
+  assert.equal(dispositionCounts['pilot-approved'], 44);
   assert.equal(dispositionCounts['reuse-existing'], 5);
 
   const shipped = inventory.filter((record) => record.deliveryStatus === 'shipped');
@@ -743,6 +745,7 @@ test('the character inventory preserves every central disposition, ships forty-t
     'deadpool-reading-order',
     'the-defenders-reading-order',
     'doctor-strange-reading-order',
+    'donny-cates-marvel-universe-reading-order-2017',
     'falcon-sam-wilson-captain-america-reading-order',
     'fantastic-four-reading-order',
     grootCandidateId,
@@ -907,13 +910,13 @@ test('Adam Warlock publishes the settled source with one exact resolution and th
   const currentReport = await buildCurrentReportForMapping(
     path.join(root, 'scripts', 'data', 'cbh-mappings', `${id}.json`),
     [],
-    { excludedOrderIds: ['mephisto-reading-order', 'miles-morales-spider-man-reading-order', 'spider-gwen-reading-order', 'best-ultron-reading-order', 'winter-soldier-bucky-barnes-reading-order', 'falcon-sam-wilson-captain-america-reading-order', 'spider-man-2099-reading-order'] },
+    { excludedOrderIds: ['mephisto-reading-order', 'miles-morales-spider-man-reading-order', 'spider-gwen-reading-order', 'best-ultron-reading-order', 'winter-soldier-bucky-barnes-reading-order', 'spider-man-2099-reading-order', 'donny-cates-marvel-universe-reading-order-2017', 'falcon-sam-wilson-captain-america-reading-order'] },
   );
   const expectedOrderIds = manifest.lists
     .filter((entry) => entry.id !== id && entry.id !== 'mephisto-reading-order'
       && entry.id !== 'miles-morales-spider-man-reading-order'
       && entry.id !== 'spider-gwen-reading-order'
-      && !['best-ultron-reading-order', 'winter-soldier-bucky-barnes-reading-order', 'falcon-sam-wilson-captain-america-reading-order'].includes(entry.id)
+      && !['best-ultron-reading-order', 'winter-soldier-bucky-barnes-reading-order', 'donny-cates-marvel-universe-reading-order-2017', 'falcon-sam-wilson-captain-america-reading-order'].includes(entry.id)
       && entry.id !== 'spider-man-2099-reading-order')
     .map((entry) => entry.id);
 
@@ -1324,7 +1327,7 @@ test('Black Widow settles issue 311 with exact identities and availability exclu
   const currentReport = await buildCurrentReportForMapping(
     path.join(root, 'scripts', 'data', 'cbh-mappings', `${id}.json`),
     [],
-    { excludedOrderIds: ['mephisto-reading-order', 'miles-morales-spider-man-reading-order', 'spider-gwen-reading-order', 'best-ultron-reading-order', 'winter-soldier-bucky-barnes-reading-order', 'falcon-sam-wilson-captain-america-reading-order', 'spider-man-2099-reading-order'] },
+    { excludedOrderIds: ['mephisto-reading-order', 'miles-morales-spider-man-reading-order', 'spider-gwen-reading-order', 'best-ultron-reading-order', 'winter-soldier-bucky-barnes-reading-order', 'spider-man-2099-reading-order', 'donny-cates-marvel-universe-reading-order-2017', 'falcon-sam-wilson-captain-america-reading-order'] },
   );
   const expectedExact = new Map([
     [7, 6908],
@@ -1942,7 +1945,7 @@ test('the Punisher guide preserves its full source ledger through publication', 
   assert.equal(mapping.approvedSourceCount, 857);
   assert.equal(report.candidateCount, 544);
   assert.equal(report.comparisonCount, 158);
-  assert.equal(report.comparisonCount, manifest.lists.length - 23);
+  assert.equal(report.comparisonCount, manifest.lists.length - 24);
   assert.deepEqual(regeneratedReport, report);
   assert.doesNotThrow(() => assertApprovedRelationshipReview({
     packet,
@@ -2516,7 +2519,7 @@ test('Silver Surfer settles all four issue #304 gaps without losing source posit
      && id !== 'mephisto-reading-order'
      && id !== 'miles-morales-spider-man-reading-order'
      && id !== 'spider-gwen-reading-order'
-     && !['best-ultron-reading-order', 'winter-soldier-bucky-barnes-reading-order', 'falcon-sam-wilson-captain-america-reading-order'].includes(id)
+     && !['best-ultron-reading-order', 'winter-soldier-bucky-barnes-reading-order', 'donny-cates-marvel-universe-reading-order-2017', 'falcon-sam-wilson-captain-america-reading-order'].includes(id)
      && id !== 'spider-man-2099-reading-order'
      && id !== 'adam-warlock-reading-order')
     .sort();
@@ -4148,7 +4151,7 @@ test('the frozen Star-Lord evidence stays complete, fresh, distinct, and exact',
     generated.items.map((item) => String(item.issueId)),
     mapping.rows.map((row) => String(row.selectedIssueId)),
   );
-  const starLordChronology = manifest.lists.filter((entry) => !['best-ultron-reading-order', 'miles-morales-spider-man-reading-order', 'spider-gwen-reading-order', 'spider-man-2099-reading-order', 'winter-soldier-bucky-barnes-reading-order', 'falcon-sam-wilson-captain-america-reading-order'].includes(entry.id));
+  const starLordChronology = manifest.lists.filter((entry) => !['best-ultron-reading-order', 'miles-morales-spider-man-reading-order', 'spider-gwen-reading-order', 'spider-man-2099-reading-order', 'winter-soldier-bucky-barnes-reading-order', 'donny-cates-marvel-universe-reading-order-2017', 'falcon-sam-wilson-captain-america-reading-order'].includes(entry.id));
   const starLordIndex = starLordChronology.findIndex((entry) => entry.id === starLordCandidateId);
   assert.equal(starLordChronology[starLordIndex - 1].id, grootCandidateId);
   assert.equal(starLordChronology[starLordIndex + 1].id, ironManCandidateId);
@@ -4478,7 +4481,7 @@ test('the first character batch stays exact through evidence, catalog, and gener
 
   const allBatchIds = evidence.flatMap((item) => item.mapping.rows.map((row) => String(row.selectedIssueId)));
   assert.equal(new Set(allBatchIds).size, 81);
-  assert.equal(catalog.lists.length, 258);
+  assert.equal(catalog.lists.length, 259);
   const characterRuns = catalog.lists.filter((entry) => entry.type === 'character-run');
   assert.equal(characterRuns.length, 53);
   assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 52);
@@ -4825,7 +4828,7 @@ test('X-Force publishes the exact settled source and bounded complete-library re
   assert.equal(mapping.candidateMetadata.length, 285);
   assert.deepEqual(mapping.sourceGapResolutions, packet.sourceGapResolutions);
   assert.equal(report.candidateCount, 285);
-  assert.equal(report.comparisonCount, manifest.lists.length - 16);
+  assert.equal(report.comparisonCount, manifest.lists.length - 17);
   assert.deepEqual(
     report.comparisons
       .filter((comparison) => comparison.relationship !== 'none')

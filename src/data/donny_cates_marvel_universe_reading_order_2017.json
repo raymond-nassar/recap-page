@@ -1,0 +1,3020 @@
+{
+  "id": "donny-cates-marvel-universe-reading-order-2017",
+  "name": "Donny Cates' Marvel Universe",
+  "description": "Comic Book Herald's selected Donny Cates Marvel sequence, from Doctor Strange and Thanos Wins through Venom Island and Thor #1-5. Includes the source's guest-written connections; linked event guides stay separate.",
+  "source": "https://www.comicbookherald.com/donny-cates-marvel-universe-reading-order-2017/",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-09-15T15:21:15.386Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 88,
+  "collections": 34,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 65070,
+      "title": "Doctor Strange (2015) #381",
+      "number": "381",
+      "url": "https://www.marvel.com/comics/issue/65070/doctor_strange_2015_381",
+      "seriesId": 20457,
+      "seriesName": "Doctor Strange (2015 - 2018)",
+      "onSale": "2017-11-15T00:00:00+0000",
+      "mu": "2018-05-21T00:00:00+0000",
+      "digitalId": 46394,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/e0/5a0348d6c4bad",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gabriel Hernandez Walta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Del Mundo",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Doctor Strange #381-385"
+    },
+    {
+      "issueId": 65278,
+      "title": "Doctor Strange (2015) #382",
+      "number": "382",
+      "url": "https://www.marvel.com/comics/issue/65278/doctor_strange_2015_382",
+      "seriesId": 20457,
+      "seriesName": "Doctor Strange (2015 - 2018)",
+      "onSale": "2017-12-06T00:00:00+0000",
+      "mu": "2018-06-11T00:00:00+0000",
+      "digitalId": 46755,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/5a1f33d6cc198",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gabriel Hernandez Walta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Del Mundo",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Doctor Strange #381-385"
+    },
+    {
+      "issueId": 65279,
+      "title": "Doctor Strange (2015) #383",
+      "number": "383",
+      "url": "https://www.marvel.com/comics/issue/65279/doctor_strange_2015_383",
+      "seriesId": 20457,
+      "seriesName": "Doctor Strange (2015 - 2018)",
+      "onSale": "2017-12-20T00:00:00+0000",
+      "mu": "2018-06-25T00:00:00+0000",
+      "digitalId": 46756,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/70/5a317107aeabd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gabriel Hernandez Walta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Del Mundo",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Doctor Strange #381-385"
+    },
+    {
+      "issueId": 65905,
+      "title": "Doctor Strange (2015) #384",
+      "number": "384",
+      "url": "https://www.marvel.com/comics/issue/65905/doctor_strange_2015_384",
+      "seriesId": 20457,
+      "seriesName": "Doctor Strange (2015 - 2018)",
+      "onSale": "2018-01-17T00:00:00+0000",
+      "mu": "2018-07-23T00:00:00+0000",
+      "digitalId": 47099,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/03/5a56670e01958",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gabriel Hernandez Walta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Del Mundo",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Doctor Strange #381-385"
+    },
+    {
+      "issueId": 66197,
+      "title": "Doctor Strange (2015) #385",
+      "number": "385",
+      "url": "https://www.marvel.com/comics/issue/66197/doctor_strange_2015_385",
+      "seriesId": 20457,
+      "seriesName": "Doctor Strange (2015 - 2018)",
+      "onSale": "2018-02-14T00:00:00+0000",
+      "mu": "2018-08-20T00:00:00+0000",
+      "digitalId": 47240,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/5a7b4c83d3135",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gabriel Hernandez Walta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Del Mundo",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Doctor Strange #381-385"
+    },
+    {
+      "issueId": 66279,
+      "title": "Doctor Strange: Damnation (2018) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/66279/doctor_strange_damnation_2018_1",
+      "seriesId": 24016,
+      "seriesName": "Doctor Strange: Damnation (2018)",
+      "onSale": "2018-02-21T00:00:00+0000",
+      "mu": "2018-08-27T00:00:00+0000",
+      "digitalId": 47331,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/e0/5a8482de58425",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Rod Reis",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Doctor Strange: Damnation #1"
+    },
+    {
+      "issueId": 66278,
+      "title": "Doctor Strange (2015) #386",
+      "number": "386",
+      "url": "https://www.marvel.com/comics/issue/66278/doctor_strange_2015_386",
+      "seriesId": 20457,
+      "seriesName": "Doctor Strange (2015 - 2018)",
+      "onSale": "2018-02-28T00:00:00+0000",
+      "mu": "2018-09-03T00:00:00+0000",
+      "digitalId": 47330,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/f0/5a8de83963235",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Niko Henrichon",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Doctor Strange #386"
+    },
+    {
+      "issueId": 66409,
+      "title": "Doctor Strange: Damnation (2018) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/66409/doctor_strange_damnation_2018_2",
+      "seriesId": 24016,
+      "seriesName": "Doctor Strange: Damnation (2018)",
+      "onSale": "2018-03-07T00:00:00+0000",
+      "mu": "2018-03-07T00:00:00+0000",
+      "digitalId": 47475,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/50/5a972938c09f6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Szymon Kudranski",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rod Reis",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Doctor Strange: Damnation #2"
+    },
+    {
+      "issueId": 66493,
+      "title": "Doctor Strange (2015) #387",
+      "number": "387",
+      "url": "https://www.marvel.com/comics/issue/66493/doctor_strange_2015_387",
+      "seriesId": 20457,
+      "seriesName": "Doctor Strange (2015 - 2018)",
+      "onSale": "2018-03-14T00:00:00+0000",
+      "mu": "2018-09-17T00:00:00+0000",
+      "digitalId": 47556,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/5aa062f87d277",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Del Mundo",
+          "role": "penciler"
+        },
+        {
+          "name": "Niko Henrichon",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Doctor Strange #387"
+    },
+    {
+      "issueId": 66540,
+      "title": "Doctor Strange: Damnation (2018) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/66540/doctor_strange_damnation_2018_3",
+      "seriesId": 24016,
+      "seriesName": "Doctor Strange: Damnation (2018)",
+      "onSale": "2018-03-21T00:00:00+0000",
+      "mu": "2018-09-24T00:00:00+0000",
+      "digitalId": 47580,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/e0/5aa95ee48dc38",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Szymon Kudranski",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rod Reis",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Doctor Strange: Damnation #3"
+    },
+    {
+      "issueId": 66762,
+      "title": "Doctor Strange (2015) #388",
+      "number": "388",
+      "url": "https://www.marvel.com/comics/issue/66762/doctor_strange_2015_388",
+      "seriesId": 20457,
+      "seriesName": "Doctor Strange (2015 - 2018)",
+      "onSale": "2018-04-11T00:00:00+0000",
+      "mu": "2018-10-15T00:00:00+0000",
+      "digitalId": 47727,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/00/5ac523752ee1c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Del Mundo",
+          "role": "penciler"
+        },
+        {
+          "name": "Niko Henrichon",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Doctor Strange #388"
+    },
+    {
+      "issueId": 66910,
+      "title": "Doctor Strange: Damnation (2018) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/66910/doctor_strange_damnation_2018_4",
+      "seriesId": 24016,
+      "seriesName": "Doctor Strange: Damnation (2018)",
+      "onSale": "2018-04-25T00:00:00+0000",
+      "mu": "2018-10-29T00:00:00+0000",
+      "digitalId": 47804,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/5ad7ae60567da",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Szymon Kudranski",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rod Reis",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Doctor Strange: Damnation #4"
+    },
+    {
+      "issueId": 66909,
+      "title": "Doctor Strange (2015) #389",
+      "number": "389",
+      "url": "https://www.marvel.com/comics/issue/66909/doctor_strange_2015_389",
+      "seriesId": 20457,
+      "seriesName": "Doctor Strange (2015 - 2018)",
+      "onSale": "2018-04-25T00:00:00+0000",
+      "mu": "2018-10-29T00:00:00+0000",
+      "digitalId": 47803,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/70/5ad7ae4c77c16",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Del Mundo",
+          "role": "penciler"
+        },
+        {
+          "name": "Niko Henrichon",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Doctor Strange #389"
+    },
+    {
+      "issueId": 67330,
+      "title": "Doctor Strange (2015) #390",
+      "number": "390",
+      "url": "https://www.marvel.com/comics/issue/67330/doctor_strange_2015_390",
+      "seriesId": 20457,
+      "seriesName": "Doctor Strange (2015 - 2018)",
+      "onSale": "2018-05-23T00:00:00+0000",
+      "mu": "2018-11-26T00:00:00+0000",
+      "digitalId": 47978,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/5afc7f9ff1edd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Del Mundo",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Doctor Strange #390"
+    },
+    {
+      "issueId": 61709,
+      "title": "Thanos (2016) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/61709/thanos_2016_13",
+      "seriesId": 22653,
+      "seriesName": "Thanos (2016 - 2018)",
+      "onSale": "2017-11-22T00:00:00+0000",
+      "mu": "2018-05-28T00:00:00+0000",
+      "digitalId": 46315,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/5a0c68d009e35",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Marc Deering",
+          "role": "cover artist"
+        },
+        {
+          "name": "Geoff Shaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        },
+        {
+          "name": "Robbie Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Thanos Wins: Thanos #13-18, Thanos Annual #1"
+    },
+    {
+      "issueId": 61710,
+      "title": "Thanos (2016) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/61710/thanos_2016_14",
+      "seriesId": 22653,
+      "seriesName": "Thanos (2016 - 2018)",
+      "onSale": "2017-12-27T00:00:00+0000",
+      "mu": "2018-07-02T00:00:00+0000",
+      "digitalId": 46662,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/5a31a389eb9a7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Geoff Shaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Thanos Wins: Thanos #13-18, Thanos Annual #1"
+    },
+    {
+      "issueId": 61711,
+      "title": "Thanos (2016) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/61711/thanos_2016_15",
+      "seriesId": 22653,
+      "seriesName": "Thanos (2016 - 2018)",
+      "onSale": "2018-01-24T00:00:00+0000",
+      "mu": "2018-07-30T00:00:00+0000",
+      "digitalId": 47025,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/f0/5a6111deb8b7c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Geoff Shaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Thanos Wins: Thanos #13-18, Thanos Annual #1"
+    },
+    {
+      "issueId": 61712,
+      "title": "Thanos (2016) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/61712/thanos_2016_16",
+      "seriesId": 22653,
+      "seriesName": "Thanos (2016 - 2018)",
+      "onSale": "2018-02-28T00:00:00+0000",
+      "mu": "2018-09-03T00:00:00+0000",
+      "digitalId": 47281,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/e0/5a8de8a2211af",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Geoff Shaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Thanos Wins: Thanos #13-18, Thanos Annual #1"
+    },
+    {
+      "issueId": 66560,
+      "title": "Thanos (2016) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/66560/thanos_2016_17",
+      "seriesId": 22653,
+      "seriesName": "Thanos (2016 - 2018)",
+      "onSale": "2018-03-21T00:00:00+0000",
+      "mu": "2018-09-24T00:00:00+0000",
+      "digitalId": 47597,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/90/5aa9609b6ef2d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Geoff Shaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Thanos Wins: Thanos #13-18, Thanos Annual #1"
+    },
+    {
+      "issueId": 66797,
+      "title": "Thanos (2016) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/66797/thanos_2016_18",
+      "seriesId": 22653,
+      "seriesName": "Thanos (2016 - 2018)",
+      "onSale": "2018-04-11T00:00:00+0000",
+      "mu": "2018-10-15T00:00:00+0000",
+      "digitalId": 47734,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/5ac5243e8ee80",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Geoff Shaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Thanos Wins: Thanos #13-18, Thanos Annual #1"
+    },
+    {
+      "issueId": 66923,
+      "title": "Thanos Annual (2018) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/66923/thanos_annual_2018_1",
+      "seriesId": 26009,
+      "seriesName": "Thanos Annual (2018)",
+      "onSale": "2018-04-25T00:00:00+0000",
+      "mu": "2018-10-29T00:00:00+0000",
+      "digitalId": 47817,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/40/5d8bdade920f1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Andre Lima Araujo",
+          "role": "cover artist"
+        },
+        {
+          "name": "F Flaviano",
+          "role": "cover artist"
+        },
+        {
+          "name": "Frazer Irving",
+          "role": "cover artist"
+        },
+        {
+          "name": "Geoff Shaw",
+          "role": "cover artist"
+        },
+        {
+          "name": "Katie Cook",
+          "role": "cover artist"
+        },
+        {
+          "name": "Will Robson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        },
+        {
+          "name": "Christopher Hastings",
+          "role": "writer"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Thanos Wins: Thanos #13-18, Thanos Annual #1"
+    },
+    {
+      "issueId": 67319,
+      "title": "Cosmic Ghost Rider (2018) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/67319/cosmic_ghost_rider_2018_1",
+      "seriesId": 24329,
+      "seriesName": "Cosmic Ghost Rider (2018)",
+      "onSale": "2018-07-04T00:00:00+0000",
+      "mu": "2019-01-07T00:00:00+0000",
+      "digitalId": 48539,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/5b340884f147b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dylan Burnett",
+          "role": "cover artist"
+        },
+        {
+          "name": "Geoff Shaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Cosmic Ghost Rider #1-5"
+    },
+    {
+      "issueId": 67320,
+      "title": "Cosmic Ghost Rider (2018) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/67320/cosmic_ghost_rider_2018_2",
+      "seriesId": 24329,
+      "seriesName": "Cosmic Ghost Rider (2018)",
+      "onSale": "2018-08-01T00:00:00+0000",
+      "mu": "2019-02-04T00:00:00+0000",
+      "digitalId": 48936,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/5b58d1ef11580",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dylan Burnett",
+          "role": "cover artist"
+        },
+        {
+          "name": "Geoff Shaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Cosmic Ghost Rider #1-5"
+    },
+    {
+      "issueId": 67321,
+      "title": "Cosmic Ghost Rider (2018) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/67321/cosmic_ghost_rider_2018_3",
+      "seriesId": 24329,
+      "seriesName": "Cosmic Ghost Rider (2018)",
+      "onSale": "2018-09-05T00:00:00+0000",
+      "mu": "2019-03-11T00:00:00+0000",
+      "digitalId": 49111,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/40/5b8829f9d72c2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dylan Burnett",
+          "role": "cover artist"
+        },
+        {
+          "name": "Geoff Shaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Cosmic Ghost Rider #1-5"
+    },
+    {
+      "issueId": 67322,
+      "title": "Cosmic Ghost Rider (2018) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/67322/cosmic_ghost_rider_2018_4",
+      "seriesId": 24329,
+      "seriesName": "Cosmic Ghost Rider (2018)",
+      "onSale": "2018-10-03T00:00:00+0000",
+      "mu": "2019-04-08T00:00:00+0000",
+      "digitalId": 49457,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/e0/5bae6af5421a6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dylan Burnett",
+          "role": "cover artist"
+        },
+        {
+          "name": "Geoff Shaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Cosmic Ghost Rider #1-5"
+    },
+    {
+      "issueId": 67323,
+      "title": "Cosmic Ghost Rider (2018) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/67323/cosmic_ghost_rider_2018_5",
+      "seriesId": 24329,
+      "seriesName": "Cosmic Ghost Rider (2018)",
+      "onSale": "2018-11-14T00:00:00+0000",
+      "mu": "2019-05-20T00:00:00+0000",
+      "digitalId": 49749,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/d0/5be372e50a26a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dylan Burnett",
+          "role": "cover artist"
+        },
+        {
+          "name": "Geoff Shaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Cosmic Ghost Rider #1-5"
+    },
+    {
+      "issueId": 67349,
+      "title": "Infinity Wars Prime (2018) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/67349/infinity_wars_prime_2018_1",
+      "seriesId": 24340,
+      "seriesName": "Infinity Wars Prime (2018)",
+      "onSale": "2018-07-25T00:00:00+0000",
+      "mu": "2019-01-28T00:00:00+0000",
+      "digitalId": 48615,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/f0/5b52272a8fa14",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Mike Deodato",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Infinity Wars Prime #1"
+    },
+    {
+      "issueId": 71037,
+      "title": "Thanos Legacy (2018) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/71037/thanos_legacy_2018_1",
+      "seriesId": 25951,
+      "seriesName": "Thanos Legacy (2018)",
+      "onSale": "2018-09-05T00:00:00+0000",
+      "mu": "2019-03-11T00:00:00+0000",
+      "digitalId": 49121,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/00/5b882ae7de763",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Brian Level",
+          "role": "cover artist"
+        },
+        {
+          "name": "Cory Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "Geoff Shaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Thanos Legacy #1"
+    },
+    {
+      "issueId": 68250,
+      "title": "Death of Inhumans (2018) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/68250/death_of_inhumans_2018_1",
+      "seriesId": 24738,
+      "seriesName": "Death of Inhumans (2018)",
+      "onSale": "2018-07-04T00:00:00+0000",
+      "mu": "2019-01-07T00:00:00+0000",
+      "digitalId": 48541,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/f0/5b3407f4ecbad",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Ariel Olivetti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kaare Andrews",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Death of the Inhumans: source recommends the entire five-issue limited series"
+    },
+    {
+      "issueId": 68252,
+      "title": "Death of Inhumans (2018) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/68252/death_of_inhumans_2018_2",
+      "seriesId": 24738,
+      "seriesName": "Death of Inhumans (2018)",
+      "onSale": "2018-08-01T00:00:00+0000",
+      "mu": "2019-02-04T00:00:00+0000",
+      "digitalId": 48938,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/5b58cfd5e5501",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ariel Olivetti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kaare Andrews",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Death of the Inhumans: source recommends the entire five-issue limited series"
+    },
+    {
+      "issueId": 68253,
+      "title": "Death of Inhumans (2018) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/68253/death_of_inhumans_2018_3",
+      "seriesId": 24738,
+      "seriesName": "Death of Inhumans (2018)",
+      "onSale": "2018-09-05T00:00:00+0000",
+      "mu": "2019-03-11T00:00:00+0000",
+      "digitalId": 49113,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/30/5b8829cd5e573",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ariel Olivetti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kaare Andrews",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Death of the Inhumans: source recommends the entire five-issue limited series"
+    },
+    {
+      "issueId": 68254,
+      "title": "Death of Inhumans (2018) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/68254/death_of_inhumans_2018_4",
+      "seriesId": 24738,
+      "seriesName": "Death of Inhumans (2018)",
+      "onSale": "2018-10-03T00:00:00+0000",
+      "mu": "2019-04-08T00:00:00+0000",
+      "digitalId": 49459,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/f0/5bae6bb782033",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ariel Olivetti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kaare Andrews",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Death of the Inhumans: source recommends the entire five-issue limited series"
+    },
+    {
+      "issueId": 68255,
+      "title": "Death of Inhumans (2018) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/68255/death_of_inhumans_2018_5",
+      "seriesId": 24738,
+      "seriesName": "Death of Inhumans (2018)",
+      "onSale": "2018-11-07T00:00:00+0000",
+      "mu": "2019-05-13T00:00:00+0000",
+      "digitalId": 49720,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/b0/5bdb686af3c57",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ariel Olivetti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kaare Andrews",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Death of the Inhumans: source recommends the entire five-issue limited series"
+    },
+    {
+      "issueId": 67577,
+      "title": "Venom (2018) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/67577/venom_2018_1",
+      "seriesId": 24310,
+      "seriesName": "Venom (2018 - 2021)",
+      "onSale": "2018-05-09T00:00:00+0000",
+      "mu": "2018-11-12T00:00:00+0000",
+      "digitalId": 47964,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/a0/5aea3123880ca",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Jp Mayer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ryan Stegman",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Venom #1-5"
+    },
+    {
+      "issueId": 70036,
+      "title": "Venom (2018) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/70036/venom_2018_2",
+      "seriesId": 24310,
+      "seriesName": "Venom (2018 - 2021)",
+      "onSale": "2018-06-13T00:00:00+0000",
+      "mu": "2018-12-17T00:00:00+0000",
+      "digitalId": 48290,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/30/5b170645cd139",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jp Mayer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ryan Stegman",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Venom #1-5"
+    },
+    {
+      "issueId": 70045,
+      "title": "Venom (2018) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/70045/venom_2018_3",
+      "seriesId": 24310,
+      "seriesName": "Venom (2018 - 2021)",
+      "onSale": "2018-06-27T00:00:00+0000",
+      "mu": "2018-12-31T00:00:00+0000",
+      "digitalId": 48291,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/5b2c18753dc80",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jp Mayer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ryan Stegman",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Venom #1-5"
+    },
+    {
+      "issueId": 70051,
+      "title": "Venom (2018) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/70051/venom_2018_4",
+      "seriesId": 24310,
+      "seriesName": "Venom (2018 - 2021)",
+      "onSale": "2018-07-25T00:00:00+0000",
+      "mu": "2019-01-28T00:00:00+0000",
+      "digitalId": 48624,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/5b50b93347dae",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jp Mayer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ryan Stegman",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Venom #1-5"
+    },
+    {
+      "issueId": 67293,
+      "title": "Venom (2018) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/67293/venom_2018_5",
+      "seriesId": 24310,
+      "seriesName": "Venom (2018 - 2021)",
+      "onSale": "2018-08-22T00:00:00+0000",
+      "mu": "2019-02-25T00:00:00+0000",
+      "digitalId": 48902,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/5b748dca25006",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jp Mayer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ryan Stegman",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Venom #1-5"
+    },
+    {
+      "issueId": 71028,
+      "title": "Web of Venom: Ve'nam (2018) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/71028/web_of_venom_venam_2018_1",
+      "seriesId": 25942,
+      "seriesName": "Web of Venom: Ve'nam (2018)",
+      "onSale": "2018-08-29T00:00:00+0000",
+      "mu": "2019-03-04T00:00:00+0000",
+      "digitalId": 48925,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/5b7ed4e3097d6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Jp Mayer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Juanan Ramirez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ryan Stegman",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Web of Venom: Ve'Nam #1"
+    },
+    {
+      "issueId": 73500,
+      "title": "Venom Annual (2018) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/73500/venom_annual_2018_1",
+      "seriesId": 26486,
+      "seriesName": "Venom Annual (2018)",
+      "onSale": "2018-10-17T00:00:00+0000",
+      "mu": "2019-04-22T00:00:00+0000",
+      "digitalId": 49531,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/5bbe672843bc9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Kev Walker",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tigh Walker",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paulo Siqueira",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "David Michelinie",
+          "role": "writer"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        },
+        {
+          "name": "Jeff Loveness",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Venom Annual #1"
+    },
+    {
+      "issueId": 67294,
+      "title": "Venom (2018) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/67294/venom_2018_6",
+      "seriesId": 24310,
+      "seriesName": "Venom (2018 - 2021)",
+      "onSale": "2018-09-19T00:00:00+0000",
+      "mu": "2019-03-25T00:00:00+0000",
+      "digitalId": 49192,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/0/04/5b999adc73adf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jp Mayer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ryan Stegman",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Venom #6-8"
+    },
+    {
+      "issueId": 67295,
+      "title": "Venom (2018) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/67295/venom_2018_7",
+      "seriesId": 24310,
+      "seriesName": "Venom (2018 - 2021)",
+      "onSale": "2018-10-10T00:00:00+0000",
+      "mu": "2018-10-10T00:00:00+0000",
+      "digitalId": 49505,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/a0/5bb52fbf8585a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Iban Coello",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jp Mayer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ryan Stegman",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Venom #6-8"
+    },
+    {
+      "issueId": 67296,
+      "title": "Venom (2018) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/67296/venom_2018_8",
+      "seriesId": 24310,
+      "seriesName": "Venom (2018 - 2021)",
+      "onSale": "2018-11-14T00:00:00+0000",
+      "mu": "2018-11-14T00:00:00+0000",
+      "digitalId": 49773,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/5be370c6634f0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Iban Coello",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jp Mayer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ryan Stegman",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Venom #6-8"
+    },
+    {
+      "issueId": 71029,
+      "title": "Web of Venom: Carnage Born (2018) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/71029/web_of_venom_carnage_born_2018_1",
+      "seriesId": 25943,
+      "seriesName": "Web of Venom: Carnage Born (2018)",
+      "onSale": "2018-11-21T00:00:00+0000",
+      "mu": "2019-05-27T00:00:00+0000",
+      "digitalId": 49788,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/20/5beca8bc5cb46",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Danilo S. Beyruth",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kyle Hotz",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Web of Venom: Carnage Born #1"
+    },
+    {
+      "issueId": 67297,
+      "title": "Venom (2018) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/67297/venom_2018_9",
+      "seriesId": 24310,
+      "seriesName": "Venom (2018 - 2021)",
+      "onSale": "2018-12-05T00:00:00+0000",
+      "mu": "2019-06-10T00:00:00+0000",
+      "digitalId": 50061,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/10/5bff099c48309",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jp Mayer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ryan Stegman",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Venom #9"
+    },
+    {
+      "issueId": 71030,
+      "title": "Web Of Venom: Venom Unleashed (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/71030/web_of_venom_venom_unleashed_2019_1",
+      "seriesId": 25944,
+      "seriesName": "Web Of Venom: Venom Unleashed (2019)",
+      "onSale": "2019-01-09T00:00:00+0000",
+      "mu": "2019-07-15T00:00:00+0000",
+      "digitalId": 50356,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/a0/5c2f6ac82d94d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "John Livesay",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jp Mayer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marc Deering",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roberto Poggi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Juan Gedeon",
+          "role": "penciler"
+        },
+        {
+          "name": "Kyle Hotz",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan Stegman",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Web of Venom: Unleashed #1"
+    },
+    {
+      "issueId": 67298,
+      "title": "Venom (2018) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/67298/venom_2018_10",
+      "seriesId": 24310,
+      "seriesName": "Venom (2018 - 2021)",
+      "onSale": "2019-01-16T00:00:00+0000",
+      "mu": "2019-07-22T00:00:00+0000",
+      "digitalId": 50410,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/60/5c37960786519",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jp Mayer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ryan Stegman",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Venom #10-12"
+    },
+    {
+      "issueId": 67299,
+      "title": "Venom (2018) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/67299/venom_2018_11",
+      "seriesId": 24310,
+      "seriesName": "Venom (2018 - 2021)",
+      "onSale": "2019-02-20T00:00:00+0000",
+      "mu": "2019-08-26T00:00:00+0000",
+      "digitalId": 50624,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/40/5c6492ffa9691",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Joshua Cassara",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jp Mayer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ryan Stegman",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Venom #10-12"
+    },
+    {
+      "issueId": 67300,
+      "title": "Venom (2018) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/67300/venom_2018_12",
+      "seriesId": 24310,
+      "seriesName": "Venom (2018 - 2021)",
+      "onSale": "2019-03-20T00:00:00+0000",
+      "mu": "2019-09-23T00:00:00+0000",
+      "digitalId": 50934,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/5c881ac2b8c39",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Joshua Cassara",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jp Mayer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ryan Stegman",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Venom #10-12"
+    },
+    {
+      "issueId": 71031,
+      "title": "Web Of Venom: Cult Of Carnage (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/71031/web_of_venom_cult_of_carnage_2019_1",
+      "seriesId": 25945,
+      "seriesName": "Web Of Venom: Cult Of Carnage (2019)",
+      "onSale": "2019-04-10T00:00:00+0000",
+      "mu": "2019-10-14T00:00:00+0000",
+      "digitalId": 51107,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/10/5ca3bdf12a022",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Danilo S. Beyruth",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joshua Cassara",
+          "role": "penciler"
+        },
+        {
+          "name": "Frank Tieri",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Web of Venom: Cult of Carnage #1"
+    },
+    {
+      "issueId": 74044,
+      "title": "Marvel Knights 20th (2018) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/74044/marvel_knights_20th_2018_1",
+      "seriesId": 26685,
+      "seriesName": "Marvel Knights 20th (2018 - 2019)",
+      "onSale": "2018-11-07T00:00:00+0000",
+      "mu": "2019-05-13T00:00:00+0000",
+      "digitalId": 49727,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/90/5bdb68ce1d74e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Derek Fridolfs",
+          "role": "cover artist"
+        },
+        {
+          "name": "Geoff Shaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Travel Foreman",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Knights 20th #1-6"
+    },
+    {
+      "issueId": 74045,
+      "title": "Marvel Knights 20th (2018) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/74045/marvel_knights_20th_2018_2",
+      "seriesId": 26685,
+      "seriesName": "Marvel Knights 20th (2018 - 2019)",
+      "onSale": "2018-11-21T00:00:00+0000",
+      "mu": "2019-05-27T00:00:00+0000",
+      "digitalId": 49728,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/80/5becacaabd4f2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Niko Henrichon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Geoff Shaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Matthew Rosenberg",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Knights 20th #1-6"
+    },
+    {
+      "issueId": 74046,
+      "title": "Marvel Knights 20th (2018) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/74046/marvel_knights_20th_2018_3",
+      "seriesId": 26685,
+      "seriesName": "Marvel Knights 20th (2018 - 2019)",
+      "onSale": "2018-12-05T00:00:00+0000",
+      "mu": "2019-06-10T00:00:00+0000",
+      "digitalId": 50005,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/10/5bff0b6ee033e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Damian Couceiro",
+          "role": "penciler"
+        },
+        {
+          "name": "Geoff Shaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        },
+        {
+          "name": "Tini Howard",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Knights 20th #1-6"
+    },
+    {
+      "issueId": 74047,
+      "title": "Marvel Knights 20th (2018) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/74047/marvel_knights_20th_2018_4",
+      "seriesId": 26685,
+      "seriesName": "Marvel Knights 20th (2018 - 2019)",
+      "onSale": "2018-12-19T00:00:00+0000",
+      "mu": "2019-06-24T00:00:00+0000",
+      "digitalId": 50006,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/f0/5c12b370d733f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Joshua Cassara",
+          "role": "cover artist"
+        },
+        {
+          "name": "Geoff Shaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        },
+        {
+          "name": "Vita Ayala",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Knights 20th #1-6"
+    },
+    {
+      "issueId": 74048,
+      "title": "Marvel Knights 20th (2018) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/74048/marvel_knights_20th_2018_5",
+      "seriesId": 26685,
+      "seriesName": "Marvel Knights 20th (2018 - 2019)",
+      "onSale": "2019-01-02T00:00:00+0000",
+      "mu": "2019-07-08T00:00:00+0000",
+      "digitalId": 50339,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/10/5c23ed4d6b7a2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Niko Henrichon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Geoff Shaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Matthew Rosenberg",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Knights 20th #1-6"
+    },
+    {
+      "issueId": 74049,
+      "title": "Marvel Knights 20th (2018) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/74049/marvel_knights_20th_2018_6",
+      "seriesId": 26685,
+      "seriesName": "Marvel Knights 20th (2018 - 2019)",
+      "onSale": "2019-01-30T00:00:00+0000",
+      "mu": "2019-08-05T00:00:00+0000",
+      "digitalId": 50340,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/5c48f929c24c2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Kim Jacinto",
+          "role": "cover artist"
+        },
+        {
+          "name": "Richard Friend",
+          "role": "cover artist"
+        },
+        {
+          "name": "Geoff Shaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Travel Foreman",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Knights 20th #1-6"
+    },
+    {
+      "issueId": 73420,
+      "title": "Guardians of the Galaxy (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/73420/guardians_of_the_galaxy_2019_1",
+      "seriesId": 26480,
+      "seriesName": "Guardians of the Galaxy (2019)",
+      "onSale": "2019-01-23T00:00:00+0000",
+      "mu": "2019-07-29T00:00:00+0000",
+      "digitalId": 50420,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/5c3f94442d3e9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Geoff Shaw",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Marquez",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Guardians of the Galaxy #1-5"
+    },
+    {
+      "issueId": 73421,
+      "title": "Guardians of the Galaxy (2019) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/73421/guardians_of_the_galaxy_2019_2",
+      "seriesId": 26480,
+      "seriesName": "Guardians of the Galaxy (2019)",
+      "onSale": "2019-02-20T00:00:00+0000",
+      "mu": "2019-08-26T00:00:00+0000",
+      "digitalId": 50576,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/5c6492add5288",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Geoff Shaw",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Marquez",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Guardians of the Galaxy #1-5"
+    },
+    {
+      "issueId": 73422,
+      "title": "Guardians of the Galaxy (2019) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/73422/guardians_of_the_galaxy_2019_3",
+      "seriesId": 26480,
+      "seriesName": "Guardians of the Galaxy (2019)",
+      "onSale": "2019-03-20T00:00:00+0000",
+      "mu": "2019-09-23T00:00:00+0000",
+      "digitalId": 50874,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/10/5c8816e4ed8c4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Geoff Shaw",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Marquez",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Guardians of the Galaxy #1-5"
+    },
+    {
+      "issueId": 73423,
+      "title": "Guardians of the Galaxy (2019) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/73423/guardians_of_the_galaxy_2019_4",
+      "seriesId": 26480,
+      "seriesName": "Guardians of the Galaxy (2019)",
+      "onSale": "2019-04-17T00:00:00+0000",
+      "mu": "2019-10-21T00:00:00+0000",
+      "digitalId": 51084,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/5cacf6e71392a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Geoff Shaw",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Marquez",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Guardians of the Galaxy #1-5"
+    },
+    {
+      "issueId": 73424,
+      "title": "Guardians of the Galaxy (2019) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/73424/guardians_of_the_galaxy_2019_5",
+      "seriesId": 26480,
+      "seriesName": "Guardians of the Galaxy (2019)",
+      "onSale": "2019-05-15T00:00:00+0000",
+      "mu": "2019-11-18T00:00:00+0000",
+      "digitalId": 51358,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/5cd447994c012",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Geoff Shaw",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Marquez",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Guardians of the Galaxy #1-5"
+    },
+    {
+      "issueId": 74840,
+      "title": "Silver Surfer: Black (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/74840/silver_surfer_black_2019_1",
+      "seriesId": 26930,
+      "seriesName": "Silver Surfer: Black (2019)",
+      "onSale": "2019-06-12T00:00:00+0000",
+      "mu": "2019-12-16T00:00:00+0000",
+      "digitalId": 51728,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/80/5cf6d5584e794",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Tradd Moore",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Silver Surfer: Black #1"
+    },
+    {
+      "issueId": 76749,
+      "title": "GUARDIANS OF THE GALAXY ANNUAL 1 (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/76749/guardians_of_the_galaxy_annual_1_2019_1",
+      "seriesId": 27554,
+      "seriesName": "GUARDIANS OF THE GALAXY ANNUAL 1 (2019)",
+      "onSale": "2019-06-05T00:00:00+0000",
+      "mu": "2019-12-09T00:00:00+0000",
+      "digitalId": 51675,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/b0/5ced97cf6e221",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Filipe Andrade",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ibrahim Moustafa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Yildiray Cinar",
+          "role": "cover artist"
+        },
+        {
+          "name": "Giuseppe Camuncoli",
+          "role": "penciler"
+        },
+        {
+          "name": "John Mccrea",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        },
+        {
+          "name": "Lonnie Nadler",
+          "role": "writer"
+        },
+        {
+          "name": "Tini Howard",
+          "role": "writer"
+        },
+        {
+          "name": "Zac Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Guardians of the Galaxy Annual #1"
+    },
+    {
+      "issueId": 73425,
+      "title": "Guardians of the Galaxy (2019) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/73425/guardians_of_the_galaxy_2019_6",
+      "seriesId": 26480,
+      "seriesName": "Guardians of the Galaxy (2019)",
+      "onSale": "2019-06-19T00:00:00+0000",
+      "mu": "2019-12-23T00:00:00+0000",
+      "digitalId": 51674,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/03/5d1275007565e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Geoff Shaw",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Marquez",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Guardians of the Galaxy #6"
+    },
+    {
+      "issueId": 74841,
+      "title": "Silver Surfer: Black (2019) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/74841/silver_surfer_black_2019_2",
+      "seriesId": 26930,
+      "seriesName": "Silver Surfer: Black (2019)",
+      "onSale": "2019-07-17T00:00:00+0000",
+      "mu": "2020-01-20T00:00:00+0000",
+      "digitalId": 51932,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/5d25ef5c15933",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Tradd Moore",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Silver Surfer: Black #2-5"
+    },
+    {
+      "issueId": 74842,
+      "title": "Silver Surfer: Black (2019) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/74842/silver_surfer_black_2019_3",
+      "seriesId": 26930,
+      "seriesName": "Silver Surfer: Black (2019)",
+      "onSale": "2019-08-14T00:00:00+0000",
+      "mu": "2020-02-17T00:00:00+0000",
+      "digitalId": 52354,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/50/5d4c2bee9a25e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Tradd Moore",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Silver Surfer: Black #2-5"
+    },
+    {
+      "issueId": 74843,
+      "title": "Silver Surfer: Black (2019) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/74843/silver_surfer_black_2019_4",
+      "seriesId": 26930,
+      "seriesName": "Silver Surfer: Black (2019)",
+      "onSale": "2019-09-11T00:00:00+0000",
+      "mu": "2020-03-16T00:00:00+0000",
+      "digitalId": 52539,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/5d700ec6de479",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Tradd Moore",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Silver Surfer: Black #2-5"
+    },
+    {
+      "issueId": 74844,
+      "title": "Silver Surfer: Black (2019) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/74844/silver_surfer_black_2019_5",
+      "seriesId": 26930,
+      "seriesName": "Silver Surfer: Black (2019)",
+      "onSale": "2019-10-30T00:00:00+0000",
+      "mu": "2020-05-04T00:00:00+0000",
+      "digitalId": 52707,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/5daf69a954d52",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Tradd Moore",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Silver Surfer: Black #2-5"
+    },
+    {
+      "issueId": 74065,
+      "title": "Venom (2018) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/74065/venom_2018_13",
+      "seriesId": 24310,
+      "seriesName": "Venom (2018 - 2021)",
+      "onSale": "2019-04-24T00:00:00+0000",
+      "mu": "2019-10-28T00:00:00+0000",
+      "digitalId": 51136,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/f0/5cb89be01b360",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Iban Coello",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jp Mayer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ryan Stegman",
+          "role": "penciler"
+        },
+        {
+          "name": "Cullen Bunn",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Venom: War of the Realms: Venom #13-16"
+    },
+    {
+      "issueId": 74066,
+      "title": "Venom (2018) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/74066/venom_2018_14",
+      "seriesId": 24310,
+      "seriesName": "Venom (2018 - 2021)",
+      "onSale": "2019-05-22T00:00:00+0000",
+      "mu": "2019-11-25T00:00:00+0000",
+      "digitalId": 51409,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/e0/5cd9cc2cd388f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Iban Coello",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kyle Hotz",
+          "role": "penciler"
+        },
+        {
+          "name": "Cullen Bunn",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Venom: War of the Realms: Venom #13-16"
+    },
+    {
+      "issueId": 74067,
+      "title": "Venom (2018) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/74067/venom_2018_15",
+      "seriesId": 24310,
+      "seriesName": "Venom (2018 - 2021)",
+      "onSale": "2019-06-12T00:00:00+0000",
+      "mu": "2019-12-16T00:00:00+0000",
+      "digitalId": 51735,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/c0/5cf7e066e7dbc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Mobili",
+          "role": "cover artist"
+        },
+        {
+          "name": "Iban Coello",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roberto Poggi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alberto Alburquerque",
+          "role": "penciler"
+        },
+        {
+          "name": "Kyle Hotz",
+          "role": "penciler"
+        },
+        {
+          "name": "Clay Chapman",
+          "role": "writer"
+        },
+        {
+          "name": "Cullen Bunn",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Venom: War of the Realms: Venom #13-16"
+    },
+    {
+      "issueId": 74068,
+      "title": "Venom (2018) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/74068/venom_2018_16",
+      "seriesId": 24310,
+      "seriesName": "Venom (2018 - 2021)",
+      "onSale": "2019-07-10T00:00:00+0000",
+      "mu": "2020-01-13T00:00:00+0000",
+      "digitalId": 51940,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/5d1bc37c279b5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juan Gedeon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joshua Cassara",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Venom: War of the Realms: Venom #13-16"
+    },
+    {
+      "issueId": 73426,
+      "title": "Guardians of the Galaxy (2019) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/73426/guardians_of_the_galaxy_2019_7",
+      "seriesId": 26480,
+      "seriesName": "Guardians of the Galaxy (2019)",
+      "onSale": "2019-07-24T00:00:00+0000",
+      "mu": "2020-01-27T00:00:00+0000",
+      "digitalId": 51973,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/40/5d2c925998db5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Cory Smith",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Marquez",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Guardians of the Galaxy #7-12"
+    },
+    {
+      "issueId": 73427,
+      "title": "Guardians of the Galaxy (2019) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/73427/guardians_of_the_galaxy_2019_8",
+      "seriesId": 26480,
+      "seriesName": "Guardians of the Galaxy (2019)",
+      "onSale": "2019-08-21T00:00:00+0000",
+      "mu": "2020-02-24T00:00:00+0000",
+      "digitalId": 52376,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/50/5d54220f5349c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Cory Smith",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Guardians of the Galaxy #7-12"
+    },
+    {
+      "issueId": 73428,
+      "title": "Guardians of the Galaxy (2019) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/73428/guardians_of_the_galaxy_2019_9",
+      "seriesId": 26480,
+      "seriesName": "Guardians of the Galaxy (2019)",
+      "onSale": "2019-09-18T00:00:00+0000",
+      "mu": "2020-03-23T00:00:00+0000",
+      "digitalId": 52488,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/90/5d7671935d0b3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Cory Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "Patch Zircher",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Guardians of the Galaxy #7-12"
+    },
+    {
+      "issueId": 73429,
+      "title": "Guardians of the Galaxy (2019) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/73429/guardians_of_the_galaxy_2019_10",
+      "seriesId": 26480,
+      "seriesName": "Guardians of the Galaxy (2019)",
+      "onSale": "2019-10-16T00:00:00+0000",
+      "mu": "2020-04-20T00:00:00+0000",
+      "digitalId": 52798,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/30/5d97b0f77809b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Cory Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "Patch Zircher",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Guardians of the Galaxy #7-12"
+    },
+    {
+      "issueId": 73430,
+      "title": "Guardians of the Galaxy (2019) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/73430/guardians_of_the_galaxy_2019_11",
+      "seriesId": 26480,
+      "seriesName": "Guardians of the Galaxy (2019)",
+      "onSale": "2019-11-13T00:00:00+0000",
+      "mu": "2020-05-18T00:00:00+0000",
+      "digitalId": 52994,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/5dc0926cf295c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Cory Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "Geoff Shaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Guardians of the Galaxy #7-12"
+    },
+    {
+      "issueId": 73431,
+      "title": "Guardians of the Galaxy (2019) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/73431/guardians_of_the_galaxy_2019_12",
+      "seriesId": 26480,
+      "seriesName": "Guardians of the Galaxy (2019)",
+      "onSale": "2019-12-18T00:00:00+0000",
+      "mu": "2020-06-22T00:00:00+0000",
+      "digitalId": 53257,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/40/5defb2a6bffd2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Ariel Olivetti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dylan Burnett",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tradd Moore",
+          "role": "cover artist"
+        },
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Cory Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "Geoff Shaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Juann Cabal",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Guardians of the Galaxy #7-12"
+    },
+    {
+      "issueId": 77174,
+      "title": "Venom (2018) #21",
+      "number": "21",
+      "url": "https://www.marvel.com/comics/issue/77174/venom_2018_21",
+      "seriesId": 24310,
+      "seriesName": "Venom (2018 - 2021)",
+      "onSale": "2019-12-26T00:00:00+0000",
+      "mu": "2020-06-29T00:00:00+0000",
+      "digitalId": 53305,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/5df907c12a5f6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andy Owens",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Venom #21-25"
+    },
+    {
+      "issueId": 77175,
+      "title": "Venom (2018) #22",
+      "number": "22",
+      "url": "https://www.marvel.com/comics/issue/77175/venom_2018_22",
+      "seriesId": 24310,
+      "seriesName": "Venom (2018 - 2021)",
+      "onSale": "2020-01-08T00:00:00+0000",
+      "mu": "2020-01-08T00:00:00+0000",
+      "digitalId": 53604,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/e0/5e0a65f02d524",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andy Owens",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Venom #21-25"
+    },
+    {
+      "issueId": 77176,
+      "title": "Venom (2018) #23",
+      "number": "23",
+      "url": "https://www.marvel.com/comics/issue/77176/venom_2018_23",
+      "seriesId": 24310,
+      "seriesName": "Venom (2018 - 2021)",
+      "onSale": "2020-02-12T00:00:00+0000",
+      "mu": "2020-08-17T00:00:00+0000",
+      "digitalId": 54019,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/5e28a42f5fe01",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andy Owens",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Venom #21-25"
+    },
+    {
+      "issueId": 77177,
+      "title": "Venom (2018) #24",
+      "number": "24",
+      "url": "https://www.marvel.com/comics/issue/77177/venom_2018_24",
+      "seriesId": 24310,
+      "seriesName": "Venom (2018 - 2021)",
+      "onSale": "2020-03-11T00:00:00+0000",
+      "mu": "2020-09-14T00:00:00+0000",
+      "digitalId": 54354,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/5e5835b67d2d0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andy Owens",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Venom #21-25"
+    },
+    {
+      "issueId": 77178,
+      "title": "Venom (2018) #25",
+      "number": "25",
+      "url": "https://www.marvel.com/comics/issue/77178/venom_2018_25",
+      "seriesId": 24310,
+      "seriesName": "Venom (2018 - 2021)",
+      "onSale": "2020-05-27T00:00:00+0000",
+      "mu": "2020-10-05T00:00:00+0000",
+      "digitalId": 54663,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/5e8653cc71ba6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 56,
+      "creators": [
+        {
+          "name": "Andy Owens",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jp Mayer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan Stegman",
+          "role": "penciler"
+        },
+        {
+          "name": "David Michelinie",
+          "role": "writer"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Venom #21-25"
+    },
+    {
+      "issueId": 78627,
+      "title": "Thor (2020) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/78627/thor_2020_1",
+      "seriesId": 28031,
+      "seriesName": "Thor (2020 - 2023)",
+      "onSale": "2020-01-01T00:00:00+0000",
+      "mu": "2020-06-22T00:00:00+0000",
+      "digitalId": 53601,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/b0/5e00da382a27d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Nic Klein",
+          "role": "cover artist"
+        },
+        {
+          "name": "Olivier Coipel",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Thor #1-5"
+    },
+    {
+      "issueId": 78628,
+      "title": "Thor (2020) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/78628/thor_2020_2",
+      "seriesId": 28031,
+      "seriesName": "Thor (2020 - 2023)",
+      "onSale": "2020-01-29T00:00:00+0000",
+      "mu": "2020-06-22T00:00:00+0000",
+      "digitalId": 53602,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/70/5e28905e7597c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Nic Klein",
+          "role": "cover artist"
+        },
+        {
+          "name": "Olivier Coipel",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Thor #1-5"
+    },
+    {
+      "issueId": 78629,
+      "title": "Thor (2020) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/78629/thor_2020_3",
+      "seriesId": 28031,
+      "seriesName": "Thor (2020 - 2023)",
+      "onSale": "2020-02-12T00:00:00+0000",
+      "mu": "2020-06-22T00:00:00+0000",
+      "digitalId": 54017,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/b0/5e3b35788688f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Nic Klein",
+          "role": "cover artist"
+        },
+        {
+          "name": "Olivier Coipel",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Thor #1-5"
+    },
+    {
+      "issueId": 78630,
+      "title": "Thor (2020) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/78630/thor_2020_4",
+      "seriesId": 28031,
+      "seriesName": "Thor (2020 - 2023)",
+      "onSale": "2020-03-11T00:00:00+0000",
+      "mu": "2020-06-22T00:00:00+0000",
+      "digitalId": 54351,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/5e5835cd50309",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Nic Klein",
+          "role": "cover artist"
+        },
+        {
+          "name": "Olivier Coipel",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Thor #1-5"
+    },
+    {
+      "issueId": 78631,
+      "title": "Thor (2020) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/78631/thor_2020_5",
+      "seriesId": 28031,
+      "seriesName": "Thor (2020 - 2023)",
+      "onSale": "2020-06-24T00:00:00+0000",
+      "mu": "2020-10-12T00:00:00+0000",
+      "digitalId": 54661,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/c0/5e86534691b2c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Nic Klein",
+          "role": "cover artist"
+        },
+        {
+          "name": "Olivier Coipel",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Thor #1-5"
+    }
+  ]
+}

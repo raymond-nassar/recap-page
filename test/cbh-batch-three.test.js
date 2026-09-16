@@ -21,7 +21,9 @@ const overlapsDir = path.join(root, 'scripts', 'data', 'cbh-overlaps');
 const sharedXMenPage = 'https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/x-men-events-from-messiah-complex-to-avengers-vs-x-men-2007-to-2012/';
 const laterReviewedIds = new Set([
   'mephisto-reading-order',
-  'best-ultron-reading-order', 'winter-soldier-bucky-barnes-reading-order', 'falcon-sam-wilson-captain-america-reading-order',
+  'best-ultron-reading-order', 'winter-soldier-bucky-barnes-reading-order',
+  'donny-cates-marvel-universe-reading-order-2017',
+  'falcon-sam-wilson-captain-america-reading-order',
   'miles-morales-spider-man-reading-order',
   'spider-gwen-reading-order',
   'spider-man-2099-reading-order',
@@ -121,7 +123,7 @@ test('batch three preserves the approved source queue and independently verified
     manifest.lists.length - THIRD_PACKET_IDS.length,
   );
   assert.ok(manifest.lists.length >= 66);
-  assert.equal(catalog.lists.length, 258);
+  assert.equal(catalog.lists.length, 259);
 
   const sorted = sortCatalog(parseCatalog(catalog).lists);
   assert.deepEqual(

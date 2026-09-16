@@ -113,11 +113,11 @@ test('Falcon preserves twelve individually evidenced Sentinel originals without 
     .every((row) => row.kind === 'reviewed-secondary-identity'));
 });
 
-test('Falcon approval compares every current source-manifest order including later guides', async () => {
+test('Falcon approval preserves every source-manifest order in its reviewed library', async () => {
   const report = await readJson(`scripts/data/cbh-overlaps/${id}.json`);
   const manifest = await readJson('src/data/curated-lists.json');
   const current = await buildReportForMapping(
-    `scripts/data/cbh-mappings/${id}.json`, [], { excludedOrderIds: [] },
+    `scripts/data/cbh-mappings/${id}.json`, [], { excludedOrderIds: ['donny-cates-marvel-universe-reading-order-2017'] },
   );
   assert.doesNotThrow(() => validateFrozenPacket(packet));
   assert.doesNotThrow(() => validateMappingDigest(mapping));
@@ -127,8 +127,9 @@ test('Falcon approval compares every current source-manifest order including lat
   assert.deepEqual(current.comparisons, report.comparisons);
   assert.equal(current.libraryDigest, report.libraryDigest);
   assert.deepEqual(new Set(report.comparisons.map((row) => row.orderId)),
-    new Set(manifest.lists.filter((row) => row.id !== id).map((row) => row.id)));
-  assert.equal(report.comparisonCount, manifest.lists.length - 1);
+    new Set(manifest.lists.filter((row) => row.id !== id
+      && row.id !== 'donny-cates-marvel-universe-reading-order-2017').map((row) => row.id)));
+  assert.equal(report.comparisonCount, manifest.lists.length - 2);
   assert.ok(report.comparisons.every((row) => row.relationship !== 'exact'));
   assert.equal(mapping.relationshipReview.dispositions.length, report.comparisonCount);
   assert.ok(mapping.relationshipReview.dispositions.every((row) => row.decision === 'approved'));

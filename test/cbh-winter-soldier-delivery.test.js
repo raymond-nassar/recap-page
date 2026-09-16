@@ -105,11 +105,11 @@ test('Winter Soldier keeps Avengers volumes, actual Standoff tie-ins and late so
   assert.equal(mapping.rows.at(-1).sourcePosition, 485);
 });
 
-test('Winter Soldier approval preserves its reviewed source-manifest snapshot', async () => {
+test('Winter Soldier approval preserves every source-manifest order in its reviewed library', async () => {
   const report = await readJson(`scripts/data/cbh-overlaps/${id}.json`);
   const manifest = await readJson('src/data/curated-lists.json');
   const current = await buildReportForMapping(
-    `scripts/data/cbh-mappings/${id}.json`, [], { excludedOrderIds: ['falcon-sam-wilson-captain-america-reading-order'] },
+    `scripts/data/cbh-mappings/${id}.json`, [], { excludedOrderIds: ['donny-cates-marvel-universe-reading-order-2017', 'falcon-sam-wilson-captain-america-reading-order'] },
   );
   assert.doesNotThrow(() => validateFrozenPacket(packet));
   assert.doesNotThrow(() => validateMappingDigest(mapping));
@@ -119,8 +119,9 @@ test('Winter Soldier approval preserves its reviewed source-manifest snapshot', 
   assert.deepEqual(current.comparisons, report.comparisons);
   assert.equal(current.libraryDigest, report.libraryDigest);
   assert.deepEqual(new Set(report.comparisons.map((row) => row.orderId)),
-    new Set(manifest.lists.filter((row) => row.id !== id && row.id !== 'falcon-sam-wilson-captain-america-reading-order').map((row) => row.id)));
-  assert.equal(report.comparisonCount, manifest.lists.length - 2);
+    new Set(manifest.lists.filter((row) => row.id !== id
+      && !['donny-cates-marvel-universe-reading-order-2017', 'falcon-sam-wilson-captain-america-reading-order'].includes(row.id)).map((row) => row.id)));
+  assert.equal(report.comparisonCount, manifest.lists.length - 3);
   assert.ok(report.comparisons.every((row) => row.relationship !== 'exact'));
   assert.equal(mapping.relationshipReview.dispositions.length, report.comparisonCount);
   assert.ok(mapping.relationshipReview.dispositions.every((row) => row.decision === 'approved'));

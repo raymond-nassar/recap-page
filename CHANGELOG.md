@@ -13,6 +13,13 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Follow Donny Cates across the Marvel Universe
+
+Adds a creator-focused Reading List credited and linked to Comic Book Herald, with 88 comics
+from Doctor Strange and Thanos Wins through Venom Island and Thor #1-5. The source's interleaved
+issues and guest-written connections stay in order; linked event guides remain separate.
+Existing Reading Lists and saved progress are unchanged.
+
 ### Follow Sam Wilson as Falcon and Captain America
 
 Adds a Falcon / Sam Wilson / Captain America Reading List credited and linked to Comic Book
