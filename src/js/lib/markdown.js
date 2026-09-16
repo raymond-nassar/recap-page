@@ -2,6 +2,7 @@
 // Upstream format: - [ ] [Title](https://www.marvel.com/comics/issue/<id>/<slug>)
 
 import { readerUrl } from '../reader.js';
+import { sourceLabel, sourceLink, sourceLicense } from './catalog.js';
 
 const MARVEL_ISSUE_RE = /^https?:\/\/(?:www\.)?marvel\.com\/comics\/issue\/(\d+)(?:\/([^/?#]*))?/i;
 // Link text allows backslash escapes so a title containing "]" survives a
@@ -233,7 +234,7 @@ export function stripInlineMarkdown(s) {
 // what parseChecklist reads back as a section. Without this, exporting a trade order and
 // re-importing it would silently flatten it into an ordinary issue list, and the reader would
 // have no way to tell from the file that anything had been lost.
-export function serializeChecklist({ name, description, items, note }, {
+export function serializeChecklist({ name, description, items, note, resetSections = false }, {
   includeProgress = true,
   includeLinks = true,
   includeDescription = true,
@@ -257,16 +258,21 @@ export function serializeChecklist({ name, description, items, note }, {
       if (next) {
         if (wroteItem) lines.push('');
         lines.push(`## ${text(next, true)}`, '');
+      } else if (wroteItem && resetSections) {
+        lines.push('', '# Continued order', '');
       }
     }
     const box = includeProgress ? (it.read ? '- [x]' : '- [ ]') : '-';
-    const canonicalReaderUrl = readerIssueId(it.digitalId) === Number(it.issueId)
-      ? readerUrl(it.digitalId)
+    const reference = literal ? projectIssueReference(it) : it;
+    const canonicalReaderUrl = readerIssueId(reference.digitalId) === Number(reference.issueId)
+      ? readerUrl(reference.digitalId)
       : null;
     const candidateUrl = canonicalReaderUrl
-      || it.url
-      || (it.issueId > 0 ? `https://www.marvel.com/comics/issue/${it.issueId}/` : null);
-    const url = includeLinks ? (literal ? readableLink(candidateUrl) : candidateUrl) : null;
+      || reference.url
+      || (reference.issueId > 0 ? `https://www.marvel.com/comics/issue/${reference.issueId}/` : null);
+    const url = includeLinks
+      ? (literal ? candidateUrl?.replace(/\(/g, '%28').replace(/\)/g, '%29') : candidateUrl)
+      : null;
     const title = text(it.title, true);
     lines.push(url ? `${box} [${literal ? title : escapeLinkText(title)}](${url})` : `${box} ${title}`);
     if (includeNotes && it.note) lines.push(...quoteNote(text(it.note)));
@@ -314,16 +320,51 @@ export function resolveUniqueExact(title, candidates) {
 
 function literalMarkdown(value, singleLine = false) {
   const text = String(value ?? '').replace(/\r\n?/g, '\n');
-  return (singleLine ? text.replace(/[\r\n]+/g, ' ') : text)
+  return escapeLinkText(singleLine ? text.replace(/[\r\n]+/g, ' ') : text)
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
-    .replace(/[\\`*_[\]]/g, '\\$&');
+    .replace(/[`*_[]/g, '\\$&');
 }
 
-function readableLink(value) {
-  if (!isSafeMarvelUrl(value)) return null;
-  const url = new URL(value);
-  if (url.username || url.password) return null;
-  return url.href.replace(/\(/g, '%28').replace(/\)/g, '%29');
+function projectIssueReference(item) {
+  const digitalId = item.digitalId ?? digitalIdFromUrl(item.url);
+  const readerOnly = item.issueId < 0 && readerIssueId(digitalId) !== null;
+  let url = isSafeMarvelUrl(item.url) ? item.url : null;
+  if (url) {
+    const book = digitalIdFromUrl(url);
+    const official = new URL(url);
+    official.username = '';
+    official.password = '';
+    official.search = '';
+    official.hash = '';
+    url = book ? readerUrl(book) : official.href;
+  }
+  if (item.issueId > 0 && issueIdFromUrl(url) !== item.issueId) url = null;
+  return { issueId: readerOnly ? readerIssueId(digitalId) : item.issueId, digitalId, url };
+}
+
+export function serializeReadingOrder({ name, items, source = null }) {
+  const line = (text) => String(text ?? '').replace(/[\r\n]+/g, ' ');
+  const credit = sourceLabel(source);
+  const link = sourceLink(source);
+  const license = sourceLicense(source);
+  const attribution = credit ? [`Source: ${line(credit)}`] : ['Source attribution is unavailable.'];
+  if (link && link !== credit) attribution.push(`Source link: <${link}>`);
+  if (license && license !== credit) attribution.push(`Source license: ${line(license)}`);
+  if (source?.sourceSection) attribution.push(`Source section: ${line(source.sourceSection)}`);
+
+  // listItems includes private fields. Name every permitted field so future personal state
+  // cannot silently become part of a file intended for someone else.
+  return serializeChecklist({
+    name: line(name),
+    description: attribution.join('\n'),
+    resetSections: true,
+    items: items.map((item) => ({
+      ...projectIssueReference(item),
+      title: line(item.title),
+      collectedIn: line(item.collectedIn),
+      read: false,
+    })),
+  });
 }

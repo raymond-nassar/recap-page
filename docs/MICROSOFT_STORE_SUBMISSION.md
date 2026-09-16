@@ -147,23 +147,31 @@ Recap Page
 
 ### Short description
 
-Plan and track long Marvel Unlimited reading journeys with curated orders, clear next issue
-guidance, private notes, and local progress. Recap Page contains no comics and requires your own
-subscription for reading.
+Follow Marvel stories across series with credited reading orders. Open the next unread comic,
+mark it read yourself, and resume with local progress. Recap Page contains no comics and requires
+your own Marvel Unlimited subscription for reading.
 
 ### Long description
 
-Recap Page is a private reading companion that opens in your installed default web browser. It helps
-turn long Marvel comic events, character runs, eras, and continuity paths into manageable reading
-sessions.
+Recap Page is a private reading companion that runs locally in your desktop's default web browser.
+Follow a Marvel story across series, open the next unread comic, and keep your place.
+It is not a native phone app. No automatic device sync or offline comic reading.
 
-Browse curated reading lists and Reading Paths, see what comes next, mark issues read or unread, add
-private notes, and track custom issues. Your progress stays in your browser profile. There is no
-account, advertising, analytics, or telemetry.
+A reading session, using made-up progress rather than someone's reading history:
 
-When you choose Read, Recap Page opens Marvel Unlimited in your default browser when a direct reader
-link is available. Otherwise it opens the official issue page. Reading requires your own Marvel
-Unlimited subscription.
+1. In Browse, add Civil War: An Avengers Reading List, compiled from Comic Book Herald's guide:
+   https://www.comicbookherald.com/where-do-i-start-with-avengers-trade-collections/
+2. Imagine the first six comics are marked read. Civil War (2006) #7 is the next unread issue.
+3. Choose Read. The official reader opens in a separate tab when a link is available. Otherwise the
+   new tab looks up the link and falls back to an official issue page, not guaranteed access.
+4. Return to Recap Page and choose Done, next yourself. New Avengers (2004) #21 becomes next;
+   reading is not detected automatically.
+5. Stop here, then reopen this Reading List in the same browser profile to resume at that unread comic.
+
+Read markers are shared for the same issue across overlapping Reading Lists; each list keeps its
+own order. Browse Reading Paths, add private notes, or track custom issues without changing that
+reading loop. Your progress stays in your browser profile. There is no account, advertising,
+analytics, or telemetry. Reading requires your own Marvel Unlimited subscription.
 
 Recap Page contains no comic pages. Cover art is optional and loads directly from Marvel image
 hosts. Search and issue details use a community metadata service. An optional manual lookup can open

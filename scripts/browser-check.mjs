@@ -3232,10 +3232,10 @@ const SCENARIOS = [
         bestOf: await readSubset('best-of'),
       };
       t.check('desktop All, Complete, and Best of counts classify Adam exactly once',
-        desktop.all.readings === 52 && desktop.all.stories === 51
-        && desktop.all.cards === 51 && desktop.all.adamCards === 1
-        && desktop.complete.readings === 35 && desktop.complete.stories === 35
-        && desktop.complete.cards === 35 && desktop.complete.adamCards === 1
+        desktop.all.readings === 53 && desktop.all.stories === 52
+        && desktop.all.cards === 52 && desktop.all.adamCards === 1
+        && desktop.complete.readings === 36 && desktop.complete.stories === 36
+        && desktop.complete.cards === 36 && desktop.complete.adamCards === 1
         && desktop.bestOf.readings === 7 && desktop.bestOf.stories === 7
         && desktop.bestOf.cards === 7 && desktop.bestOf.adamCards === 0,
         JSON.stringify(desktop));
@@ -3248,10 +3248,10 @@ const SCENARIOS = [
         overflow: await page.evaluate(() => document.documentElement.scrollWidth > innerWidth),
       };
       t.check('narrow All, Complete, and Best of counts preserve Adam without horizontal overflow',
-        narrow.all.readings === 52 && narrow.all.stories === 51
-        && narrow.all.cards === 51 && narrow.all.adamCards === 1
-        && narrow.complete.readings === 35 && narrow.complete.stories === 35
-        && narrow.complete.cards === 35 && narrow.complete.adamCards === 1
+        narrow.all.readings === 53 && narrow.all.stories === 52
+        && narrow.all.cards === 52 && narrow.all.adamCards === 1
+        && narrow.complete.readings === 36 && narrow.complete.stories === 36
+        && narrow.complete.cards === 36 && narrow.complete.adamCards === 1
         && narrow.bestOf.readings === 7 && narrow.bestOf.stories === 7
         && narrow.bestOf.cards === 7 && narrow.bestOf.adamCards === 0
         && !narrow.overflow,
@@ -7988,6 +7988,8 @@ const SCENARIOS = [
       t.check('a synopsis run makes zero provider requests for the reader record',
         synopsisRequests === 0, String(synopsisRequests));
 
+      await click(page, '#list-export > summary');
+      await page.focus('#btn-export-md');
       await click(page, '#btn-export-md');
       await page.waitForSelector('#markdown-export[open]');
       await click(page, '#markdown-export input[name="includeLinks"]');
@@ -12616,7 +12618,7 @@ async function withStack(fn, { port = 0 } = {}) {
 async function main() {
   const prove = process.argv.includes('--prove');
   const only = process.argv.find((a) => a.startsWith('--only='))?.slice('--only='.length) ?? null;
-  const port = ['cache-generations', 'catalog-gaps', 'reading-paths', 'reading-path-stop-actions', 'issue-return-visibility', 'reading-shortcut', 'reading-list-empty-441', 'issue-action-names', 'issue-443-row-actions'].includes(only) ? DEFAULT_PORT : 0;
+  const port = ['cache-generations', 'catalog-gaps', 'reading-paths', 'reading-path-stop-actions', 'issue-return-visibility', 'reading-shortcut', 'reading-list-empty-441', 'issue-action-names', 'issue-443-row-actions', 'order-only-export'].includes(only) ? DEFAULT_PORT : 0;
 
   const code = await withStack(async ({ browser, origin, driver, edge }) => {
     console.log(`driver  ${driver}`);
@@ -13381,6 +13383,7 @@ MUTATIONS.push({
 SCENARIOS.push((await import('./browser-preview-scroll-452.mjs')).previewScroll452);
 SCENARIOS.push((await import('./browser-source-credits.mjs')).sourceCredits);
 SCENARIOS.push((await import('./browser-markdown-export.mjs')).readableMarkdownExport);
+SCENARIOS.push((await import('./browser-order-export.mjs')).orderOnlyExport);
 
 // Without this an unexpected throw leaves an unhandled rejection, which Node reports as a bare
 // stack and exits 1 on. Exit 1 is this check's word for "an assertion failed", so an internal

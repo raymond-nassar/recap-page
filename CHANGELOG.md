@@ -15,10 +15,33 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ### Export a plain reading list for other apps
 
-Markdown export now previews a readable checklist in saved reading order. Descriptions, collected
-editions, official links and personal notes are optional, and notes stay out unless selected for
-that export. Read checkboxes can be replaced with ordinary bullets. Both export buttons offer the
-same choices. JSON backups, saved progress and checklist importing are unchanged.
+Personal Markdown export now previews a readable checklist in saved reading order, including
+read checkboxes by default. Descriptions, collected editions, official links and notes are optional;
+notes stay out unless selected for that export. Checkboxes can be replaced with ordinary bullets.
+Both personal export buttons offer these choices. The separate order-only export still produces
+an unread order with available source credits. JSON backups, saved progress and importing are unchanged.
+
+### Share an order without personal reading data
+
+Adds **Export order only** to Reading and Backup & settings. It downloads a local Markdown order
+with unread checkboxes, official links, section labels and available source credits, but no notes,
+descriptions, reading history or availability overrides. The confirmation explains the exclusions.
+Personal Markdown and lossless JSON backups remain separate, and saved reader data is unchanged.
+
+### Follow Donny Cates across the Marvel Universe
+
+Adds a creator-focused Reading List credited and linked to Comic Book Herald, with 88 comics
+from Doctor Strange and Thanos Wins through Venom Island and Thor #1-5. The source's interleaved
+issues and guest-written connections stay in order; linked event guides remain separate.
+Existing Reading Lists and saved progress are unchanged.
+
+### Follow Sam Wilson as Falcon and Captain America
+
+Adds a Falcon / Sam Wilson / Captain America Reading List credited and linked to Comic Book
+Herald, with 494 original comics through the guide's latest Symbol of Truth additions.
+Repeated collection references appear once, and linked events are not expanded beyond the
+issues the guide names. Twelve verified Sentinel of Liberty originals retain unknown optional
+details rather than being replaced or omitted. Existing Reading Lists and saved progress are unchanged.
 
 ### Follow Bucky Barnes and the Winter Soldier
 

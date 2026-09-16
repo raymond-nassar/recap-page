@@ -79,6 +79,22 @@ test('wire delegates cover toggle to onSetCovers', () => {
   assert.deepEqual(calls, [true]);
 });
 
+test('wire keeps order-only, personal Markdown and JSON callbacks separate', () => {
+  const calls = [];
+  const nodes = stubElements();
+  const view = createDataView(stubDeps({
+    elements: () => nodes,
+    onExportOrder: () => calls.push('order'),
+    onExportMarkdown: () => calls.push('personal'),
+    onExportJson: () => calls.push('json'),
+  }));
+  view.wire();
+  nodes.btnExportOrder._fire();
+  nodes.btnExportMd._fire();
+  nodes.btnExportJson._fire();
+  assert.deepEqual(calls, ['order', 'personal', 'json']);
+});
+
 test('wire delegates both reading shortcut choices to onSetReadingShortcut', () => {
   const calls = [];
   const nodes = stubElements();
@@ -210,6 +226,7 @@ function stubElements() {
     btnCheckLocalConnection: stubNode(),
     btnExportJson: stubNode(),
     btnExportMd: stubNode(),
+    btnExportOrder: stubNode(),
     restoreFile: stubNode(),
     undoRestore: stubNode(),
     formSettings: stubNode(),

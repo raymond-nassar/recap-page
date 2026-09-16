@@ -14,12 +14,13 @@ const list = {
   name: 'Spider-Man reading list',
   description: 'An optional description.',
   note: 'My private list note.',
+  deferredIssueIds: [2],
   items: [
     {
       issueId: 1, title: 'Amazing Spider-Man (2018) #1', read: true,
       note: 'My private issue note.', collectedIn: 'First collection', override: 'available',
     },
-    { issueId: 2, title: 'Amazing Spider-Man (2018) #2', read: false },
+    { issueId: 2, title: 'Amazing Spider-Man (2018) #2', read: false, deferred: true },
     { issueId: -3, title: 'Amazing Spider-Man (2018) #3', read: false },
   ],
 };
@@ -61,12 +62,17 @@ test('optional links retain the canonical reader address and known provider iden
     items: [
       { title: 'Reader comic', issueId: readerIssueId(129648), digitalId: 129648, read: true },
       { title: 'Provider comic', issueId: 6482, read: false },
+      { title: 'Manual book', issueId: -1234, digitalId: 1067, read: true },
+      { title: 'Pasted book', issueId: -2345, url: 'http://read.marvel.com/#/book/129648/page/8', read: false },
       { title: 'Unknown comic', issueId: -1, read: false },
     ],
   };
   const result = serializeChecklist(data, { ...plain, includeLinks: true });
   assert.match(result, /\[Reader comic\]\(https:\/\/read\.marvel\.com\/#\/book\/129648\)/);
   assert.match(result, /\[Provider comic\]\(https:\/\/www\.marvel\.com\/comics\/issue\/6482\/\)/);
+  assert.match(result, /- \[x\] \[Manual book\]\(https:\/\/read\.marvel\.com\/#\/book\/1067\)/);
+  assert.match(result, /\[Pasted book\]\(https:\/\/read\.marvel\.com\/#\/book\/129648\)/);
+  assert.doesNotMatch(result, /page\/8/);
   assert.match(result, /- \[ \] Unknown comic\n$/);
   assert.doesNotMatch(serializeChecklist(data, plain), /https:|129648|6482/);
 });
@@ -90,7 +96,7 @@ test('readable user text cannot inject headings, checklist rows, HTML or Markdow
   assert.match(result, /> # Also not a heading/);
 });
 
-test('readable links refuse nonofficial and credential-bearing URLs and escape destinations', () => {
+test('readable links exclude nonofficial URLs and private URL state and escape destinations', () => {
   const data = {
     items: [
       { issueId: -1, title: 'Unsafe', url: 'javascript:alert(1)' },

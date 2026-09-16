@@ -6,8 +6,8 @@ reading progress.
 
 ## Take a reading list to another app
 
-Choose **Export as Markdown** on the reading screen, or **Export current list as Markdown**
-in **Backup & settings**. Review the file preview, then choose **Download Markdown**.
+Open **Export** on Reading and choose **Export personal checklist**, or use **Export personal
+checklist** in **Backup & settings**. Review the file preview, then choose **Download Markdown**.
 
 The default file contains the list title and every comic in its saved reading order, with read
 checkboxes. Filtering the reading screen does not remove comics from the export. Clear
@@ -18,7 +18,9 @@ List descriptions, collected-edition headings, official comic links and personal
 private notes in the next one. Only known details are used; exporting does not look anything up
 or change your saved data.
 
-The `.md` file is a readable copy for other apps or operating systems, not a complete backup.
+This personal `.md` file includes read checkboxes by default.
+For an unread order with available source credit, use **Export order only** instead.
+Neither Markdown file is a complete backup.
 Use **Download JSON backup** when you need to restore your lists, notes, progress and other saved
 choices in Recap Page.
 
@@ -310,6 +312,26 @@ Check all three parts of the storage location:
 
 Returning to the original address and profile restores the original view because the progress was
 never deleted.
+
+## Export an order without your reading history
+
+Open **Export** on Reading and choose **Export order only**, or use the same action in
+**Backup & settings**, to download a local Markdown
+file for someone else. The confirmation explains what is included before downloading: the list
+name, ordered issue titles, official links and section labels. Every checkbox starts unread.
+Notes, descriptions, read timestamps and availability overrides are excluded, and your saved
+reading data is unchanged. Nothing is uploaded.
+
+An exact matching entry in the already-loaded catalog supplies available source credits and its
+source link. Export does not fetch the catalog; when attribution is unavailable, the file says so
+rather than inventing a credit. Manual or unresolved comics without a supported link remain plain
+checklist rows. Import shows those rows for deliberate resolution rather than guessing an identity.
+An empty list can be exported, but importing a file with no issues does not create a list.
+
+**Export personal checklist** opens a preview with read checkboxes by default and notes available
+only when explicitly selected. Notes do not re-import from either Markdown format.
+**Download JSON backup** is the lossless reader-data backup, including
+notes and progress; use it to protect your saved data rather than sharing it as an order.
 
 ## Getting help
 

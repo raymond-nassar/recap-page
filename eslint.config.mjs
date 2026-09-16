@@ -116,6 +116,7 @@ export default [
       'scripts/browser-preview-scroll-452.mjs',
       'scripts/browser-source-credits.mjs',
       'scripts/browser-markdown-export.mjs',
+      'scripts/browser-order-export.mjs',
       'scripts/capture-store-assets.mjs',
       'scripts/upgrade-check.mjs',
     ],

@@ -41,6 +41,9 @@ export const readableMarkdownExport = {
       };
     });
     await page.goto(`${page.__origin}/?catalog=browser-check#/read/markdown-fixture`, { waitUntil: 'load' });
+    await page.waitForSelector('#list-export > summary', { visible: true });
+    await page.focus('#list-export > summary');
+    await page.keyboard.press('Enter');
     await page.waitForSelector('#btn-export-md', { visible: true });
     await page.$eval('#full', (node) => { node.open = true; });
     await page.$eval('#reading-filters input[value="unread"]', (node) => node.click());
@@ -70,13 +73,15 @@ export const readableMarkdownExport = {
     t.check('personal notes and other optional details start unchecked',
       await page.$$eval('#markdown-export input', (inputs) => inputs.every(
         (input) => input.checked === (input.name === 'includeProgress'),
+      )) && await page.$eval('#markdown-export-description', (node) => (
+        node.textContent.includes('read checkboxes by default') && node.textContent.includes('Export order only')
       )));
     const first = await download(1);
     t.check('downloaded text matches the preview and uses Markdown MIME type',
       first.text === expected && first.type === 'text/markdown', JSON.stringify(first));
     t.check('download closes and removes the dialog and returns focus to its opener',
       await page.evaluate(() => !document.querySelector('#markdown-export')
-        && document.activeElement.id === 'btn-export-md'));
+        && document.activeElement.id === 'btn-export-md' && document.querySelector('#list-export').open));
 
     await open('#btn-export-md');
     await page.$$eval('#markdown-export input', (inputs) => {

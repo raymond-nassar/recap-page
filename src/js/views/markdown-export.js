@@ -9,9 +9,10 @@ export function chooseMarkdownExport(list) {
   dialog.setAttribute('aria-describedby', 'markdown-export-description');
   dialog.innerHTML = `
     <form method="dialog">
-      <h2 id="markdown-export-title">Export as Markdown</h2>
-      <p id="markdown-export-description" class="rail-hint">A readable copy of this list for other apps.
-        Your saved list stays unchanged. Use a JSON backup to restore your data.</p>
+      <h2 id="markdown-export-title">Export personal checklist</h2>
+      <p id="markdown-export-description" class="rail-hint">A readable copy with your read checkboxes by default.
+        For a shareable unread order with source credits, use Export order only. Your saved list stays unchanged.
+        Use a JSON backup to restore your data.</p>
       <fieldset>
         <legend>Include in the file</legend>
         <label class="checkbox"><input type="checkbox" name="includeProgress" checked> Read checkboxes</label>
@@ -34,7 +35,7 @@ export function chooseMarkdownExport(list) {
     const options = Object.fromEntries(
       [...form.querySelectorAll('input')].map((input) => [input.name, input.checked]),
     );
-    preview.value = serializeChecklist(list, { ...options, literal: true });
+    preview.value = serializeChecklist({ ...list, resetSections: true }, { ...options, literal: true });
   };
   update();
   form.addEventListener('change', update);

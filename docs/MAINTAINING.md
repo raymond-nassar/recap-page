@@ -110,7 +110,7 @@ The check normally serves the app on an ephemeral port, uses an isolated profile
 network before the page loads, and exits nonzero on a failed journey. The temporary port keeps the
 reading progress at the standard app address untouched. The targeted `cache-generations`,
 `catalog-gaps`, `reading-paths`, `reading-path-stop-actions`, `issue-return-visibility`,
-`reading-shortcut`, `reading-list-empty-441`, `issue-action-names`, and `issue-443-row-actions` journeys require
+`reading-shortcut`, `reading-list-empty-441`, `issue-action-names`, `issue-443-row-actions`, and `order-only-export` journeys require
 `http://127.0.0.1:8787/`; they use that origin only inside Edge's temporary automation profile.
 Stop the normal app server before any targeted run so the runner can bind that port. Each journey
 prints its own assertion and timing totals.
@@ -356,6 +356,11 @@ the Earth-1610 boundary separate from the post-Secret-Wars and 2023 continuity g
 preparation locates the packet's stable id in exactly one maintained inventory, then applies the
 same packet, mapping, relationship, approval, authoring, and freshness checks. Do not merge their
 queue counts or treat a character disposition as a modern continuity result.
+
+Creator guides already present in the character intake retain their identity and position but use
+`guideType: creator-run`, not a character classification. The Donny Cates guide is the maintained
+example. Its manifest also uses `creator-run`, needs no `spotlightKind`, and appears on the line-wide
+shelf. Scope and reading depth describe the source selection, not an exhaustive creator bibliography.
 
 Movie and streaming companion guides live in
 `scripts/data/cbh-mcu-companion-inventory.json`. That inventory preserves all fourteen user-selected
