@@ -20,6 +20,14 @@ from Doctor Strange and Thanos Wins through Venom Island and Thor #1-5. The sour
 issues and guest-written connections stay in order; linked event guides remain separate.
 Existing Reading Lists and saved progress are unchanged.
 
+### Follow Sam Wilson as Falcon and Captain America
+
+Adds a Falcon / Sam Wilson / Captain America Reading List credited and linked to Comic Book
+Herald, with 494 original comics through the guide's latest Symbol of Truth additions.
+Repeated collection references appear once, and linked events are not expanded beyond the
+issues the guide names. Twelve verified Sentinel of Liberty originals retain unknown optional
+details rather than being replaced or omitted. Existing Reading Lists and saved progress are unchanged.
+
 ### Follow Bucky Barnes and the Winter Soldier
 
 Adds a Bucky Barnes / Winter Soldier Reading List credited and linked to Comic Book Herald,

@@ -150,7 +150,7 @@ test('Captain America modern publishes its one atomic issue and preserves 68 sem
 
   const peersWithIssue = [];
   for (const entry of manifest.lists) {
-    if ([id, 'winter-soldier-bucky-barnes-reading-order', 'donny-cates-marvel-universe-reading-order-2017'].includes(entry.id)) continue;
+    if ([id, 'winter-soldier-bucky-barnes-reading-order', 'donny-cates-marvel-universe-reading-order-2017', 'falcon-sam-wilson-captain-america-reading-order'].includes(entry.id)) continue;
     const peer = await readJson('src', 'data', entry.out);
     if (peer.items.some((item) => item.issueId === 6010 && item.placeholder !== true)) {
       peersWithIssue.push(entry.id);
