@@ -1077,8 +1077,9 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // Ant-Man adds three exact official links with explicit provider refusals.
   // Miles omits its owner-excluded source row; two Secret Empire records gain independently pinned details.
   // Winter Soldier adds four distinct unresolved source originals.
-  assert.equal(claimed, 1018, 'the payload placeholder total moved; re-derive the figures in the record');
-  assert.equal(placeholders, 1018, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
+  // Vision adds four distinct unresolved source originals without changing the refused identities.
+  assert.equal(claimed, 1022, 'the payload placeholder total moved; re-derive the figures in the record');
+  assert.equal(placeholders, 1022, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
   assert.equal(empty, 197);
   assert.equal(affected, 18);
 });
@@ -1309,7 +1310,8 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // Wolverine replaces 29 negative placeholder identities with provider-resolved exact issues.
   // Miles omits one distinct placeholder; both Secret Empire IDs retain their recorded provider refusals.
   // Winter Soldier contributes four distinct source-position placeholders.
-  assert.equal(refused.length, 1237);
+  // Vision contributes four more distinct source-position placeholders.
+  assert.equal(refused.length, 1241);
   assert.equal(pendingIssueIds(s).length, 0, 'the app is still offering to fetch details that do not exist');
 });
 

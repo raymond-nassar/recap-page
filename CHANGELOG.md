@@ -13,6 +13,13 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Follow Vision from his Avengers origins
+
+Adds a Vision Reading List credited and linked to Comic Book Herald, through the guide's
+latest Avengers Inc. additions. Repeated collections share one checklist entry, different
+Vision series remain distinct, and unresolved originals stay visibly marked as gaps.
+Existing Reading Lists and saved progress are unchanged.
+
 ### Export a plain reading list for other apps
 
 Personal Markdown export now previews a readable checklist in saved reading order, including

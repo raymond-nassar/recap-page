@@ -92,7 +92,7 @@ test('Ultron pins original Avengers and Secret Wars identities, decimal prologue
 test('Ultron approval preserves the full reviewed source library without dropping shared comics', async () => {
   const report = await readJson(`scripts/data/cbh-overlaps/${id}.json`);
   const current = await buildReportForMapping(
-    `scripts/data/cbh-mappings/${id}.json`, [], { excludedOrderIds: ['spider-man-2099-reading-order', 'winter-soldier-bucky-barnes-reading-order', 'donny-cates-marvel-universe-reading-order-2017', 'falcon-sam-wilson-captain-america-reading-order'] },
+    `scripts/data/cbh-mappings/${id}.json`, [], { excludedOrderIds: ['spider-man-2099-reading-order', 'winter-soldier-bucky-barnes-reading-order', 'donny-cates-marvel-universe-reading-order-2017', 'falcon-sam-wilson-captain-america-reading-order', 'the-vision-reading-order'] },
   );
   const manifest = await readJson('src/data/curated-lists.json');
   assert.doesNotThrow(() => validateFrozenPacket(packet));
@@ -100,7 +100,7 @@ test('Ultron approval preserves the full reviewed source library without droppin
   assert.doesNotThrow(() => assertMappingMatchesPacketOccurrences(packet, mapping));
   assert.doesNotThrow(() => validateReportDigest(report));
   assert.doesNotThrow(() => validateApprovalDigest(mapping.relationshipReview, id));
-  assert.equal(report.comparisonCount, manifest.lists.length - 5);
+  assert.equal(report.comparisonCount, manifest.lists.length - 6);
   assert.deepEqual(current, report);
   assert.equal(report.comparisons.filter((row) => row.relationship === 'exact').length, 0);
   assert.equal(mapping.relationshipReview.dispositions.length, report.comparisonCount);

@@ -1,12 +1,12 @@
 {
   "parentId": "marvel-knights-to-planet-x",
-  "generatedAt": "2026-09-15T15:32:55.851Z",
-  "pairCount": 67,
-  "chapterCountWithOverlap": 48,
-  "existingListCount": 18,
-  "sharedOccurrenceCount": 371,
+  "generatedAt": "2026-09-16T07:50:21.016Z",
+  "pairCount": 68,
+  "chapterCountWithOverlap": 49,
+  "existingListCount": 19,
+  "sharedOccurrenceCount": 383,
   "internalChildOverlapCount": 0,
-  "matrixSha256": "3d3248a1618cd287d28068e6a3604fab3087575f85cbcf7b19440b82fa69fb34",
+  "matrixSha256": "5a1c5d50c9ac183f6a3cffd82fb4e598f9ef077e0cee56e41f7e2dbcbada30e7",
   "existingLists": [
     {
       "id": "amazing-spider-man-reading-order-modern-marvel-era",
@@ -67,6 +67,10 @@
     {
       "id": "spider-man-no-way-home",
       "sharedCount": 3
+    },
+    {
+      "id": "the-vision-reading-order",
+      "sharedCount": 12
     },
     {
       "id": "venom-reading-order",
@@ -584,6 +588,25 @@
         12854,
         12855,
         12856
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-50",
+      "existingListId": "the-vision-reading-order",
+      "sharedCount": 12,
+      "sharedIssueIds": [
+        17551,
+        17552,
+        17553,
+        17554,
+        17555,
+        324,
+        4648,
+        375,
+        4940,
+        348,
+        4925,
+        4937
       ]
     },
     {
