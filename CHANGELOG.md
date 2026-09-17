@@ -13,6 +13,12 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Shorter synopsis prompts
+
+Synopsis fetch confirmations now use two concise sentences, keeping the source, temporary
+storage and request-allowance details. Single-issue prompts retain the spoiler warning without
+the whole-list timing notice. Fetching behavior and saved reading progress are unchanged.
+
 ### Follow Emma Frost from the White Queen to Krakoa
 
 Adds an Emma Frost Reading List credited and linked to Comic Book Herald. It follows the

@@ -1713,26 +1713,15 @@ function openInReader(issue, event, source) {
 
 // ------------------------------------------------------------------ synopsis fetching
 
-export const SYNOPSIS_SERVICE_FALLBACK = 'the community Marvel metadata service';
-
-export function synopsisServiceName(baseUrl) {
-  try {
-    return new URL(String(baseUrl)).host || SYNOPSIS_SERVICE_FALLBACK;
-  } catch {
-    return SYNOPSIS_SERVICE_FALLBACK;
-  }
-}
-
-export function synopsisDisclaimer(baseUrl) {
+export function synopsisDisclaimer({ reveal = false } = {}) {
   return {
-    title: 'Fetch synopses from the community metadata service?',
-    body: 'Issue synopses are not part of this tracker. They come from the community Marvel metadata '
-      + `service at ${synopsisServiceName(baseUrl)}, which is not affiliated with Marvel, and the text `
-      + 'itself is Marvel’s. Nothing fetched is saved: the synopses are held for this browser tab '
-      + 'only, they are not written into your lists, they are not included in a backup, and they are '
-      + 'gone when you reload. Fetching a whole Reading List takes a few minutes and uses your '
-      + 'request allowance.',
-    confirmLabel: 'Fetch synopses',
+    title: reveal ? 'Fetch and reveal this description?' : 'Fetch synopses from the community metadata service?',
+    body: "Marvel's synopses come from an unaffiliated community service, "
+      + 'and stay in this tab until reload. '
+      + (reveal
+        ? 'This description may contain spoilers and fetching it uses your request allowance.'
+        : 'Fetching a whole Reading List takes a few minutes and uses your request allowance.'),
+    confirmLabel: reveal ? 'Fetch and reveal' : 'Fetch synopses',
   };
 }
 
@@ -1785,7 +1774,7 @@ function onSynopsisStatus(status) {
 async function startSynopsisRun() {
   const list = store.state.lists[activeListId()];
   if (!list) return;
-  const yes = await askConfirm(synopsisDisclaimer(settings.apiBase));
+  const yes = await askConfirm(synopsisDisclaimer());
   if (!yes) return;
   synopsisRunner.start(list.id);
 }
@@ -1794,13 +1783,7 @@ async function startIssueSynopsis(isCurrent) {
   const issueId = issueView.result()?.issue?.issueId;
   if (!Number.isInteger(issueId) || issueId < 1 || synopsisRunner.active) return false;
   const requestApi = api;
-  const disclaimer = synopsisDisclaimer(settings.apiBase);
-  const yes = await askConfirm({
-    ...disclaimer,
-    title: 'Fetch and reveal this description?',
-    body: `This issue's description may contain spoilers. ${disclaimer.body}`,
-    confirmLabel: 'Fetch and reveal',
-  });
+  const yes = await askConfirm(synopsisDisclaimer({ reveal: true }));
   if (!yes || !isCurrent() || api !== requestApi || synopsisRunner.active
     || view !== 'issue' || issueRoute?.issueId !== issueId) return false;
   issueSynopsisId = issueId;
@@ -2100,8 +2083,8 @@ const dataView = createDataView({
     hydrator.api = api;
     // The synopsis runner holds its own reference for the same reason the hydrator does, so it
     // needs the same rebinding. A run already in flight is stopped rather than switched, and what
-    // it fetched is dropped: the reader agreed to a dialog naming the old service, and that
-    // agreement does not carry over to a different one.
+    // it fetched is dropped: changing services must not mix prose from different sources or
+    // carry the reader's existing synopsis consent over to a new source.
     issueSynopsisId = null;
     if (synopsisRunner.active) synopsisRunner.cancel();
     synopsisRunner.api = api;

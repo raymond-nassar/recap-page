@@ -30,7 +30,6 @@ import {
   sanitizeStoredIssueDescriptions,
   synopsisAnnouncement,
   synopsisDisclaimer,
-  synopsisServiceName,
   synopsisStatusLine,
   writeCachePurgeMark,
 } from '../src/js/main.js';
@@ -1221,29 +1220,34 @@ test('every issue is still asked about exactly once', () => {
   assert.equal(new Set(order).size, 30);
 });
 
-// ------------------------------------------------------------------ what the disclaimer names
+// ------------------------------------------------------------------ synopsis consent copy
 
-// The dialog exists to say where the prose comes from before the reader agrees to fetch it. The API
-// base is theirs to change, so a hard-coded host means a reader who has pointed the app somewhere
-// else is shown the name of a third party the request will not go to, which defeats the control the
-// dialog is.
-test('the disclaimer names the service that will actually be asked', () => {
-  assert.equal(synopsisServiceName('https://marvel.emreparker.com/v1'), 'marvel.emreparker.com');
-  assert.match(synopsisDisclaimer('https://mirror.example.org/v1').body, /mirror\.example\.org/);
-  assert.doesNotMatch(synopsisDisclaimer('https://mirror.example.org/v1').body, /emreparker/);
+test('Reading List synopsis consent uses the approved two-sentence message', () => {
+  assert.equal(synopsisDisclaimer().body,
+    "Marvel's synopses come from an unaffiliated community service, and stay in this tab until reload. "
+    + 'Fetching a whole Reading List takes a few minutes and uses your request allowance.');
 });
 
-test('a base that is not a usable URL is described in words rather than guessed at', () => {
-  assert.equal(synopsisServiceName('not a url'), 'the community Marvel metadata service');
-  assert.equal(synopsisServiceName(undefined), 'the community Marvel metadata service');
-});
-
-test('the disclaimer still makes all four promises about what is not kept', () => {
-  const { body } = synopsisDisclaimer('https://marvel.emreparker.com/v1');
-  assert.match(body, /held for this browser tab only/);
-  assert.match(body, /not written into your lists/);
-  assert.match(body, /not included in a backup/);
-  assert.match(body, /gone when you reload/);
+test('synopsis consent stays within two short sentences for list and issue fetches', () => {
+  for (const reveal of [false, true]) {
+    const { body, title, confirmLabel } = synopsisDisclaimer({ reveal });
+    assert.equal(body.split(/(?<=[.!?])\s+/).length, 2, body);
+    assert.ok(body.split(/\s+/).length <= 40, body);
+    assert.match(body, /Marvel's synopses/);
+    assert.match(body, /unaffiliated community service/);
+    assert.match(body, /this tab until reload/);
+    assert.match(body, /uses your request allowance/);
+    if (reveal) {
+      assert.match(body, /may contain spoilers/);
+      assert.doesNotMatch(body, /whole Reading List|few minutes/);
+      assert.equal(title, 'Fetch and reveal this description?');
+      assert.equal(confirmLabel, 'Fetch and reveal');
+    } else {
+      assert.match(body, /whole Reading List takes a few minutes/);
+      assert.equal(title, 'Fetch synopses from the community metadata service?');
+      assert.equal(confirmLabel, 'Fetch synopses');
+    }
+  }
 });
 
 test('a run that could not reach some issues is announced as such, not as finished', () => {
