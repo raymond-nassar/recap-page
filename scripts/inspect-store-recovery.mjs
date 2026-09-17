@@ -53,6 +53,22 @@ function summary(submission, expectedId) {
   };
 }
 
+export function uploadMetadata(value) {
+  const url = new URL(value);
+  demand(/^[a-z0-9-]+(?:\.[a-z0-9-]+)+$/i.test(url.hostname) && url.hostname.length <= 253,
+    'Invalid upload hostname');
+  const expiry = Date.parse(url.searchParams.get('se'));
+  return {
+    hostname: url.hostname,
+    https: url.protocol === 'https:',
+    ingestionPath: url.pathname.startsWith('/ingestion/'),
+    hasCredentials: Boolean(url.username || url.password),
+    hasFragment: Boolean(url.hash),
+    hasSignature: url.searchParams.has('sig'),
+    expiresAt: Number.isFinite(expiry) ? new Date(expiry).toISOString() : null,
+  };
+}
+
 export async function inspect(request) {
   const application = await request(API);
   demand(application?.id === PRODUCT, 'Application identity differs');
@@ -65,6 +81,7 @@ export async function inspect(request) {
     productId: PRODUCT,
     published: summary(published, publishedId),
     pending: pending === null ? null : summary(pending, pendingId),
+    upload: pending === null ? null : uploadMetadata(pending.fileUploadUrl),
   };
 }
 

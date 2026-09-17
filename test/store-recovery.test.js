@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { inspect, fingerprint } from '../scripts/inspect-store-recovery.mjs';
+import { inspect, fingerprint, uploadMetadata } from '../scripts/inspect-store-recovery.mjs';
 
 test('Store creation accepts exactly 200 and 201 without broadening other requests', () => {
   const source = readFileSync(new URL('../scripts/publish-store-update.ps1', import.meta.url), 'utf8');
@@ -58,4 +58,15 @@ test('Store inspection stays protected, manual, read-only and does not persist p
   assert.equal((script.match(/method: 'POST'/g) ?? []).length, 1);
   assert.equal((script.match(/method: 'GET'/g) ?? []).length, 1);
   assert.doesNotMatch(script, /method: '(PUT|DELETE)'|writeFile|console\.log|\/commit/);
+});
+
+test('Store upload diagnostics expose only hostname and validated flags, never path or authorization', () => {
+  assert.deepEqual(uploadMetadata(
+    'https://example.blob.core.windows.net/ingestion/private-file?sig=private-signature&se=2099-01-01',
+  ), {
+    hostname: 'example.blob.core.windows.net',
+    https: true, ingestionPath: true, hasCredentials: false, hasFragment: false,
+    hasSignature: true, expiresAt: '2099-01-01T00:00:00.000Z',
+  });
+  assert.throws(() => uploadMetadata('not a URL'));
 });
