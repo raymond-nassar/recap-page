@@ -1754,6 +1754,43 @@
       "coverIssueId": 12446
     },
     {
+      "id": "doctor-octopus-otto-octavius-reading-order",
+      "name": "Doctor Octopus / Otto Octavius",
+      "description": "Follow Doctor Octopus from his early Spider-Man battles through Superior Spider-Man and Superior Octopus, using Comic Book Herald's explicit collection contents and standalone issues. Unresolved originals remain marked as gaps.",
+      "type": "character-run",
+      "spotlightKind": "other",
+      "depth": "partial",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "doctor-octopus-otto-octavius-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/doctor-octopus-otto-octavius-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "doctor_octopus_otto_octavius_reading_order.json",
+      "characters": [
+        "Doctor Octopus",
+        "Otto Octavius",
+        "Doc Ock",
+        "Superior Spider-Man",
+        "Superior Octopus",
+        "Spider-Man"
+      ],
+      "keywords": [
+        "Doctor Octopus",
+        "Otto Octavius",
+        "Doc Ock",
+        "Superior Spider-Man",
+        "Superior Octopus",
+        "Sinister Six",
+        "Comic Book Herald"
+      ],
+      "expect": 492,
+      "timeline": null,
+      "coverIssueId": 6704
+    },
+    {
       "id": "doctor-strange-multiverse-of-madness",
       "name": "Doctor Strange: Multiverse of Madness",
       "description": "Seventeen issue-specific picks connecting Doctor Strange, the Illuminati, and the multiverse, limited to the recommendations this companion guide names by issue.",

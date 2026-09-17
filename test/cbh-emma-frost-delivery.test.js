@@ -136,11 +136,14 @@ test('Emma retains exact unresolved source positions rather than selecting neigh
   assert.match(packet.sourceGaps[1].auditBasis, /106802 and 115803/);
 });
 
-test('Emma relationship approval regenerates against every current source-manifest order', async () => {
+test('Emma relationship approval regenerates against its reviewed source-manifest orders', async () => {
   const report = await readJson(`scripts/data/cbh-overlaps/${id}.json`);
   const manifest = await readJson('src/data/curated-lists.json');
-  const current = await buildReportForMapping(`scripts/data/cbh-mappings/${id}.json`, [], { excludedOrderIds: [] });
-  const expectedOrderIds = manifest.lists.filter((row) => row.id !== id).map((row) => row.id);
+  const current = await buildReportForMapping(`scripts/data/cbh-mappings/${id}.json`, [], {
+    excludedOrderIds: ['doctor-octopus-otto-octavius-reading-order'],
+  });
+  const expectedOrderIds = manifest.lists
+    .filter((row) => row.id !== id && row.id !== 'doctor-octopus-otto-octavius-reading-order').map((row) => row.id);
   assert.deepEqual(current, report);
   assert.equal(report.comparisonCount, 183);
   assert.deepEqual(new Set(report.comparisons.map((row) => row.orderId)), new Set(expectedOrderIds));

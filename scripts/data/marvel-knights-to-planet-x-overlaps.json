@@ -1,12 +1,12 @@
 {
   "parentId": "marvel-knights-to-planet-x",
-  "generatedAt": "2026-09-16T16:03:06.010Z",
-  "pairCount": 78,
+  "generatedAt": "2026-09-17T08:09:16.051Z",
+  "pairCount": 81,
   "chapterCountWithOverlap": 51,
-  "existingListCount": 20,
-  "sharedOccurrenceCount": 416,
+  "existingListCount": 21,
+  "sharedOccurrenceCount": 431,
   "internalChildOverlapCount": 0,
-  "matrixSha256": "b94c21580478bade163e24d21f4a3dacd4b4ab4c994705adccf7975c33bda38e",
+  "matrixSha256": "7c9ddfbe5b79442ffb1f90e1b543394d5fda85aa83eea0f9f8c031802b7fe871",
   "existingLists": [
     {
       "id": "amazing-spider-man-reading-order-modern-marvel-era",
@@ -19,6 +19,10 @@
     {
       "id": "doctor-doom-primer",
       "sharedCount": 1
+    },
+    {
+      "id": "doctor-octopus-otto-octavius-reading-order",
+      "sharedCount": 15
     },
     {
       "id": "emma-frost-reading-order",
@@ -205,6 +209,19 @@
     },
     {
       "chapterId": "marvel-knights-to-planet-x-07",
+      "existingListId": "doctor-octopus-otto-octavius-reading-order",
+      "sharedCount": 6,
+      "sharedIssueIds": [
+        3583,
+        43123,
+        43125,
+        43128,
+        43130,
+        43132
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-07",
       "existingListId": "spider-man-best-of",
       "sharedCount": 6,
       "sharedIssueIds": [
@@ -369,8 +386,31 @@
       ]
     },
     {
+      "chapterId": "marvel-knights-to-planet-x-21",
+      "existingListId": "doctor-octopus-otto-octavius-reading-order",
+      "sharedCount": 3,
+      "sharedIssueIds": [
+        43134,
+        43137,
+        43139
+      ]
+    },
+    {
       "chapterId": "marvel-knights-to-planet-x-24",
       "existingListId": "amazing-spider-man-reading-order-modern-marvel-era",
+      "sharedCount": 6,
+      "sharedIssueIds": [
+        43141,
+        43143,
+        43145,
+        43147,
+        43148,
+        43149
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-24",
+      "existingListId": "doctor-octopus-otto-octavius-reading-order",
       "sharedCount": 6,
       "sharedIssueIds": [
         43141,

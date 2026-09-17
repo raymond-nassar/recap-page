@@ -204,9 +204,9 @@ test('Vision approval preserves its complete publication-time source-library sna
   const report = await readJson(`scripts/data/cbh-overlaps/${id}.json`);
   const manifest = await readJson('src/data/curated-lists.json');
   const current = await buildReportForMapping(
-    `scripts/data/cbh-mappings/${id}.json`, [], { excludedOrderIds: ['emma-frost-reading-order'] },
+    `scripts/data/cbh-mappings/${id}.json`, [], { excludedOrderIds: ['emma-frost-reading-order', 'doctor-octopus-otto-octavius-reading-order'] },
   );
-  const expectedOrderIds = manifest.lists.filter((row) => row.id !== id && row.id !== 'emma-frost-reading-order').map((row) => row.id);
+  const expectedOrderIds = manifest.lists.filter((row) => row.id !== id && row.id !== 'emma-frost-reading-order' && row.id !== 'doctor-octopus-otto-octavius-reading-order').map((row) => row.id);
   assert.deepEqual(current, report);
   assert.equal(report.comparisonCount, expectedOrderIds.length);
   assert.deepEqual(new Set(report.comparisons.map((row) => row.orderId)), new Set(expectedOrderIds));

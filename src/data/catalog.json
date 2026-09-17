@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-16T16:03:06.010Z",
+  "generatedAt": "2026-09-17T08:09:16.051Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -2144,6 +2144,50 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-09-16T16:03:06.010Z"
+    },
+    {
+      "id": "doctor-octopus-otto-octavius-reading-order",
+      "file": "doctor_octopus_otto_octavius_reading_order.json",
+      "name": "Doctor Octopus / Otto Octavius",
+      "description": "Follow Doctor Octopus from his early Spider-Man battles through Superior Spider-Man and Superior Octopus, using Comic Book Herald's explicit collection contents and standalone issues. Unresolved originals remain marked as gaps.",
+      "type": "character-run",
+      "depth": "partial",
+      "spotlightKind": "other",
+      "count": 492,
+      "placeholderCount": 10,
+      "emptyRecordCount": 0,
+      "collections": 59,
+      "characters": [
+        "Doctor Octopus",
+        "Otto Octavius",
+        "Doc Ock",
+        "Superior Spider-Man",
+        "Superior Octopus",
+        "Spider-Man"
+      ],
+      "keywords": [
+        "Doctor Octopus",
+        "Otto Octavius",
+        "Doc Ock",
+        "Superior Spider-Man",
+        "Superior Octopus",
+        "Sinister Six",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 6704,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/5192af86dd120",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/doctor-octopus-otto-octavius-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-09-17T08:09:16.051Z"
     },
     {
       "id": "doctor-strange-multiverse-of-madness",
