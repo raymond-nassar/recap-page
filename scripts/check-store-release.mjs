@@ -218,8 +218,57 @@ export function validateApiPackageReplacement(submission, bundleName) {
   return { replacedBundleName: replaceable[0], bundleName: basename(bundleName) };
 }
 
-export function prepareApiDraft(submission, bundleName, submissionId) {
+export function validateReleaseNotes(notes, packageVersion) {
+  const source = record(notes, 'release notes');
+  if (Object.keys(source).sort().join(',') !== 'locale,text,version') {
+    throw new Error('release notes must contain only locale, text and version');
+  }
+  if (typeof source.version !== 'string' || `${source.version}.0` !== packageVersion) {
+    throw new Error('release notes version must match the Store package version');
+  }
+  parseVersion(packageVersion);
+  if (source.locale !== 'en-us') throw new Error('release notes locale must be en-us');
+  if (typeof source.text !== 'string' || source.text.length > 1500 ||
+      source.text !== source.text.trim() ||
+      !source.text.split('\n').every((line) => /^- \S[^\r]*$/.test(line))) {
+    throw new Error('release notes must be nonempty bullet lines of at most 1500 characters');
+  }
+  return source;
+}
+
+function releaseNotesField(submission, locale) {
+  const listings = requiredKey(
+    record(submission, 'submission'),
+    ['Listings', 'listings'],
+    'submission.Listings',
+  ).value;
+  record(listings, 'submission.Listings');
+  if (!Object.hasOwn(listings, locale)) {
+    throw new Error(`submission.Listings must contain ${locale}`);
+  }
+  const listing = requiredKey(
+    record(listings[locale], `submission.Listings.${locale}`),
+    ['BaseListing', 'baseListing'],
+    'listing.BaseListing',
+  ).value;
+  const field = requiredKey(
+    record(listing, 'listing.BaseListing'),
+    ['ReleaseNotes', 'releaseNotes'],
+    'listing.ReleaseNotes',
+  );
+  if (typeof field.value !== 'string') throw new Error('listing.ReleaseNotes must be a string');
+  return { listing, ...field };
+}
+
+export function validateReleaseNotesTarget(submission, notes, packageVersion) {
+  const source = validateReleaseNotes(notes, packageVersion);
+  releaseNotesField(submission, source.locale);
+  return source;
+}
+
+export function prepareApiDraft(submission, bundleName, submissionId, notes, packageVersion) {
   const draft = structuredClone(record(submission, 'submission'));
+  const source = validateReleaseNotesTarget(draft, notes, packageVersion);
   validateSubmissionIdentity(draft, submissionId);
   requireFreePricing(draft, 'submission');
   const { replacedBundleName } = validateApiPackageReplacement(draft, bundleName);
@@ -253,11 +302,17 @@ export function prepareApiDraft(submission, bundleName, submissionId) {
   draft[fields.mode.key] = 'Immediate';
   draft[fields.date.key] = null;
   fields.rollout.value[fields.enabled.key] = false;
+  const noteField = releaseNotesField(draft, source.locale);
+  noteField.listing[noteField.key] = source.text;
   return draft;
 }
 
-export function verifyDraft(submission, bundleName, submissionId) {
+export function verifyDraft(submission, bundleName, submissionId, notes, packageVersion) {
   const draft = record(submission, 'submission');
+  const source = validateReleaseNotesTarget(draft, notes, packageVersion);
+  if (releaseNotesField(draft, source.locale).value !== source.text) {
+    throw new Error('submission release notes do not match the approved release notes');
+  }
   validateSubmissionIdentity(draft, submissionId);
   const packages = requiredKey(
     draft,
@@ -323,7 +378,7 @@ function readJson(path, label) {
 function usage() {
   throw new Error(
     'usage: check-store-release.mjs '
-    + '<release|application|activation|submission|api-package|prepare-api-draft|verify-draft|commit> '
+    + '<release|application|activation|submission|api-package|notes|notes-target|prepare-api-draft|verify-draft|commit> '
     + '<arguments>',
   );
 }
@@ -340,11 +395,23 @@ function main(args) {
     validatePublishedSubmission(readJson(values[0], 'published submission'), values[1]);
   } else if (mode === 'api-package' && values.length === 2) {
     validateApiPackageReplacement(readJson(values[0], 'submission'), values[1]);
-  } else if (mode === 'prepare-api-draft' && values.length === 4) {
-    const draft = prepareApiDraft(readJson(values[0], 'submission'), values[2], values[3]);
+  } else if (mode === 'notes' && values.length === 2) {
+    validateReleaseNotes(readJson(values[0], 'release notes'), values[1]);
+  } else if (mode === 'notes-target' && values.length === 3) {
+    validateReleaseNotesTarget(
+      readJson(values[0], 'submission'), readJson(values[1], 'release notes'), values[2],
+    );
+  } else if (mode === 'prepare-api-draft' && values.length === 6) {
+    const draft = prepareApiDraft(
+      readJson(values[0], 'submission'), values[2], values[3],
+      readJson(values[4], 'release notes'), values[5],
+    );
     writeFileSync(values[1], `${JSON.stringify(draft)}\n`, { flag: 'wx' });
-  } else if (mode === 'verify-draft' && values.length === 3) {
-    verifyDraft(readJson(values[0], 'submission'), values[1], values[2]);
+  } else if (mode === 'verify-draft' && values.length === 5) {
+    verifyDraft(
+      readJson(values[0], 'submission'), values[1], values[2],
+      readJson(values[3], 'release notes'), values[4],
+    );
   } else if (mode === 'commit' && values.length === 1) {
     validateCommitResponse(readJson(values[0], 'commit response'));
   } else {

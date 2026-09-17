@@ -13,6 +13,25 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+## 3.0.0
+
+### Read at your own pace
+
+- Defer unread comics in one Reading List, then review or resume them without changing shared read history.
+- Share a clean reading order without notes, history or personal availability choices.
+- Preview personal checklist exports and choose checkboxes, bullets and optional details.
+- Explore new Comic Book Herald character and creator guides, with source credits kept visible.
+- Get shorter synopsis confirmations that retain the important source and privacy details.
+
+Export a JSON backup before upgrading. Your saved progress carries forward and older backups remain
+readable, but older application versions cannot safely edit the new schema 3 choices. Keep using
+version 3 or later after upgrading, in the same browser profile at the unchanged address.
+
+### Keep Store update notes current
+
+The Store release workflow now validates version-bound English release notes before creating a
+submission and checks their exact read-back before committing it. Other listing content is preserved.
+
 ### Follow Doctor Octopus through his Superior identities
 
 Adds a Doctor Octopus / Otto Octavius Reading List credited and linked to Comic Book Herald.
@@ -58,9 +77,9 @@ does not pretend the order is finished. **Review deferred** opens those comics d
 
 Choices survive reload, independent copies, membership Undo and JSON backup restore. Marking
 a comic read retains its list's choice for a later unread change; **Clear deferral** removes it
-explicitly. The candidate is 3.0.0 because schema 3 makes older builds refuse ordinary writes
+explicitly. Version 3.0.0 uses schema 3 so older builds refuse ordinary writes
 instead of discarding these choices. Older backups remain readable, the storage key and address
-are unchanged, and no release is made by this change.
+are unchanged.
 
 ### Share an order without personal reading data
 

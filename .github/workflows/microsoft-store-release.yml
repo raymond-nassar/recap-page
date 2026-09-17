@@ -179,6 +179,7 @@ jobs:
             -ProductId '${{ vars.MICROSOFT_STORE_PRODUCT_ID }}' `
             -BundlePath '${{ steps.release.outputs.bundle }}' `
             -ExpectedVersion '${{ steps.release.outputs.store_version }}' `
+            -ReleaseNotesPath './docs/releases/${{ steps.release.outputs.app_version }}-store.json' `
             -WorkDirectory '${{ steps.release.outputs.temp_root }}'
 
       - name: Recheck the bundle before mutation
@@ -209,6 +210,7 @@ jobs:
             -ProductId '${{ vars.MICROSOFT_STORE_PRODUCT_ID }}' `
             -BundlePath '${{ steps.release.outputs.bundle }}' `
             -ExpectedVersion '${{ steps.release.outputs.store_version }}' `
+            -ReleaseNotesPath './docs/releases/${{ steps.release.outputs.app_version }}-store.json' `
             -WorkDirectory '${{ steps.release.outputs.temp_root }}'
 
       - name: Write an allowlisted outcome summary
@@ -227,7 +229,7 @@ jobs:
             "* SHA-256: ${{ steps.bundle_hash.outputs.sha256 }}"
             '* WACK: passed'
             $(if ($env:GITHUB_EVENT_NAME -eq 'release') {
-              '* Partner Center: submission accepted for certification'
+              '* Partner Center: commit started; certification status not yet verified'
             } else {
               '* Partner Center: read-only activation rehearsal passed'
             })

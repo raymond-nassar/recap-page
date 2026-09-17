@@ -11,6 +11,8 @@ import {
   validateCommitResponse,
   validatePublishedSubmission,
   validateReleaseEvent,
+  validateReleaseNotes,
+  validateReleaseNotesTarget,
   validateSubmissionIdentity,
   verifyDraft,
 } from '../scripts/check-store-release.mjs';
@@ -82,9 +84,13 @@ function submission(overrides = {}) {
         PackageRolloutPercentage: 25,
       },
     },
-    Listings: { 'en-us': { BaseListing: { Description: 'Preserved' } } },
+    Listings: { 'en-us': { BaseListing: { Description: 'Preserved', ReleaseNotes: 'Earlier notes' } } },
     ...overrides,
   };
+}
+
+function notes(version = nextVersion) {
+  return { version: version.slice(0, -2), locale: 'en-us', text: '- Read at your own pace.' };
 }
 
 test('release validation accepts only the exact published application release', () => {
@@ -174,7 +180,7 @@ test('API draft preparation replaces one bundle and preserves unrelated fields',
     replacedBundleName: bundleName,
     bundleName,
   });
-  const draft = prepareApiDraft(original, replacement, 'submission-id');
+  const draft = prepareApiDraft(original, replacement, 'submission-id', notes(), nextVersion);
   assert.equal(original.TargetPublishMode, 'Manual');
   assert.equal(draft.TargetPublishMode, 'Immediate');
   assert.equal(draft.TargetPublishDate, null);
@@ -188,7 +194,7 @@ test('API draft preparation replaces one bundle and preserves unrelated fields',
     minimumDirectXVersion: 'None',
     minimumSystemRam: 'None',
   });
-  assert.deepEqual(verifyDraft(draft, replacement, 'submission-id'), {
+  assert.deepEqual(verifyDraft(draft, replacement, 'submission-id', notes(), nextVersion), {
     bundleName: replacement,
     targetPublishMode: 'Immediate',
   });
@@ -197,7 +203,7 @@ test('API draft preparation replaces one bundle and preserves unrelated fields',
 test('draft validation fails on missing, duplicate, or malformed submission fields', () => {
   const replacement = `RecapPage_${nextVersion}_x64_arm64.msixbundle`;
   assert.throws(
-    () => prepareApiDraft(submission(), bundleName, 'submission-id'),
+    () => prepareApiDraft(submission(), bundleName, 'submission-id', notes(), nextVersion),
     /already contains/,
   );
   assert.throws(
@@ -215,6 +221,8 @@ test('draft validation fails on missing, duplicate, or malformed submission fiel
       submission({ TargetPublishMode: null }),
       replacement,
       'submission-id',
+      notes(),
+      nextVersion,
     ),
     /must not be null/,
   );
@@ -223,6 +231,8 @@ test('draft validation fails on missing, duplicate, or malformed submission fiel
       submission({ PackageDeliveryOptions: {} }),
       replacement,
       'submission-id',
+      notes(),
+      nextVersion,
     ),
     /PackageRollout/,
   );
@@ -232,12 +242,111 @@ test('draft validation fails on missing, duplicate, or malformed submission fiel
   );
   assert.throws(
     () => {
-      const malformed = prepareApiDraft(submission(), replacement, 'submission-id');
+      const malformed = prepareApiDraft(submission(), replacement, 'submission-id', notes(), nextVersion);
       malformed.TargetPublishMode = 'Manual';
-      return verifyDraft(malformed, replacement, 'submission-id');
+      return verifyDraft(malformed, replacement, 'submission-id', notes(), nextVersion);
     },
     /must be Immediate/,
   );
+});
+
+test('Store release notes require the exact version, supported locale and bounded bullets', () => {
+  assert.deepEqual(validateReleaseNotes(notes(), nextVersion), notes());
+  for (const invalid of [
+    { ...notes(), version: '0.0.0' },
+    { ...notes(), locale: 'fr-fr' },
+    { ...notes(), text: '' },
+    { ...notes(), text: 'Not a bullet' },
+    { ...notes(), text: '- ' },
+    { ...notes(), text: '- Valid\n\n- Extra blank' },
+    { ...notes(), text: `- ${'x'.repeat(1499)}` },
+    { ...notes(), text: '- Has a trailing newline\n' },
+    { ...notes(), extra: 'not allowed' },
+  ]) {
+    assert.throws(() => validateReleaseNotes(invalid, nextVersion), /release notes/);
+  }
+  assert.equal(validateReleaseNotes({ ...notes(), text: `- ${'x'.repeat(1498)}` }, nextVersion).text.length, 1500);
+});
+
+test('Store notes update only the approved locale without changing the source submission', () => {
+  const original = submission();
+  original.Listings['fr-fr'] = { BaseListing: { ReleaseNotes: 'Conserver', Description: 'Autre' } };
+  original.Listings['en-us'].BaseListing.Images = [{ FileName: 'existing.png', FileStatus: 'Uploaded' }];
+  const before = structuredClone(original);
+  const replacement = `RecapPage_${nextVersion}_x64_arm64.msixbundle`;
+  const draft = prepareApiDraft(original, replacement, 'submission-id', notes(), nextVersion);
+  assert.equal(draft.Listings['en-us'].BaseListing.ReleaseNotes, notes().text);
+  const expectedListings = structuredClone(before.Listings);
+  expectedListings['en-us'].BaseListing.ReleaseNotes = notes().text;
+  assert.deepEqual(draft.Listings, expectedListings);
+  assert.deepEqual(original, before);
+  const lowerCase = {
+    ...original,
+    listings: { 'en-us': { baseListing: { releaseNotes: 'Earlier notes', description: 'Preserved' } } },
+  };
+  delete lowerCase.Listings;
+  const lowerDraft = prepareApiDraft(lowerCase, replacement, 'submission-id', notes(), nextVersion);
+  assert.equal(lowerDraft.listings['en-us'].baseListing.releaseNotes, notes().text);
+  verifyDraft(lowerDraft, replacement, 'submission-id', notes(), nextVersion);
+});
+
+test('Store notes reject missing or ambiguous destination fields before preparing a draft', () => {
+  for (const listings of [
+    {},
+    { 'en-us': null },
+    { 'en-us': { BaseListing: {} } },
+    { 'en-us': { BaseListing: { ReleaseNotes: null } } },
+    { 'en-us': { BaseListing: { ReleaseNotes: '', releaseNotes: '' } } },
+    { 'en-us': { BaseListing: { ReleaseNotes: '' }, baseListing: { releaseNotes: '' } } },
+  ]) {
+    assert.throws(
+      () => validateReleaseNotesTarget(submission({ Listings: listings }), notes(), nextVersion),
+      /submission|listing/,
+    );
+  }
+  assert.throws(
+    () => validateReleaseNotesTarget(submission({ listings: {} }), notes(), nextVersion),
+    /exactly one recognized field/,
+  );
+});
+
+test('Store draft read-back rejects changed release notes', () => {
+  const replacement = `RecapPage_${nextVersion}_x64_arm64.msixbundle`;
+  const draft = prepareApiDraft(submission(), replacement, 'submission-id', notes(), nextVersion);
+  draft.Listings['en-us'].BaseListing.ReleaseNotes = 'Earlier notes';
+  assert.throws(
+    () => verifyDraft(draft, replacement, 'submission-id', notes(), nextVersion),
+    /release notes do not match/,
+  );
+  delete draft.Listings['en-us'].BaseListing.ReleaseNotes;
+  assert.throws(
+    () => verifyDraft(draft, replacement, 'submission-id', notes(), nextVersion),
+    /ReleaseNotes/,
+  );
+});
+
+test('Store notes are version-bound in both workflow paths and validated before draft creation', () => {
+  for (const name of ['Validate Partner Center without mutation', 'Submit one Store update']) {
+    assert.match(step(name), /-ReleaseNotesPath '\.\/docs\/releases\/\$\{\{ steps\.release\.outputs\.app_version \}\}-store\.json'/);
+  }
+  const payloadCheck = apiScript.indexOf("Invoke-StoreCheck -Arguments @('notes',");
+  const destinationCheck = apiScript.indexOf("Invoke-StoreCheck -Arguments @('notes-target',");
+  const validateExit = apiScript.indexOf("if ($Mode -eq 'Validate')");
+  const createDraft = apiScript.indexOf("-Method 'POST' -Uri $submissionBase");
+  const verifyNotes = apiScript.indexOf("'verify-draft', $verifiedPath, $bundleName, $submissionId, $ReleaseNotesPath, $ExpectedVersion");
+  const commit = apiScript.indexOf('-Uri "$submissionUrl/commit"');
+  assert.ok(payloadCheck > 0 && payloadCheck < destinationCheck);
+  assert.ok(destinationCheck < validateExit && validateExit < createDraft);
+  assert.match(apiScript, /'prepare-api-draft',[\s\S]*?\$submissionId,\s*\$ReleaseNotesPath,\s*\$ExpectedVersion/);
+  assert.ok(verifyNotes > createDraft && verifyNotes < commit);
+});
+
+test('the committed Store notes match the canonical application release', () => {
+  const current = JSON.parse(readFileSync(
+    new URL(`../docs/releases/${pkg.version}-store.json`, import.meta.url), 'utf8',
+  ));
+  validateReleaseNotes(current, `${pkg.version}.0`);
+  assert.doesNotMatch(current.text, /[\u2013\u2014]/);
 });
 
 test('commit validation accepts only the expected asynchronous start', () => {

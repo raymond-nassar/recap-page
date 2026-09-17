@@ -14,6 +14,9 @@ param(
   [string]$ExpectedVersion,
 
   [Parameter(Mandatory = $true)]
+  [string]$ReleaseNotesPath,
+
+  [Parameter(Mandatory = $true)]
   [string]$WorkDirectory
 )
 
@@ -157,6 +160,7 @@ if (-not (Test-Path -LiteralPath $BundlePath -PathType Leaf)) {
   throw 'The validated Store bundle is missing.'
 }
 New-Item -ItemType Directory -Path $WorkDirectory -Force | Out-Null
+Invoke-StoreCheck -Arguments @('notes', $ReleaseNotesPath, $ExpectedVersion)
 
 $tokenBody = @(
   'grant_type=client_credentials'
@@ -203,6 +207,7 @@ $publishedBody = Invoke-SingleHttpRequest `
 Write-PrivateText -Path $publishedPath -Value $publishedBody
 Invoke-StoreCheck -Arguments @('api-package', $publishedPath, (Split-Path $BundlePath -Leaf))
 Invoke-StoreCheck -Arguments @('submission', $publishedPath, $ExpectedVersion)
+Invoke-StoreCheck -Arguments @('notes-target', $publishedPath, $ReleaseNotesPath, $ExpectedVersion)
 if ($Mode -eq 'Validate') {
   Write-Output 'Microsoft Store read-only activation rehearsal passed.'
   exit 0
@@ -226,7 +231,9 @@ Invoke-StoreCheck -Arguments @(
   $createdPath,
   $preparedPath,
   $bundleName,
-  $submissionId
+  $submissionId,
+  $ReleaseNotesPath,
+  $ExpectedVersion
 )
 
 $archivePath = Join-Path $WorkDirectory 'store-upload.zip'
@@ -247,7 +254,9 @@ $verifiedPath = Join-Path $WorkDirectory 'verified-submission.json'
 $verifiedBody = Invoke-SingleHttpRequest `
   -Method 'GET' -Uri $submissionUrl -Headers $headers -ExpectedStatus @(200)
 Write-PrivateText -Path $verifiedPath -Value $verifiedBody
-Invoke-StoreCheck -Arguments @('verify-draft', $verifiedPath, $bundleName, $submissionId)
+Invoke-StoreCheck -Arguments @(
+  'verify-draft', $verifiedPath, $bundleName, $submissionId, $ReleaseNotesPath, $ExpectedVersion
+)
 
 $commitPath = Join-Path $WorkDirectory 'commit-response.json'
 $commitBody = Invoke-SingleHttpRequest `
@@ -255,4 +264,4 @@ $commitBody = Invoke-SingleHttpRequest `
 Write-PrivateText -Path $commitPath -Value $commitBody
 Invoke-StoreCheck -Arguments @('commit', $commitPath)
 
-Write-Output 'Microsoft Store submission was accepted for certification.'
+Write-Output 'Microsoft Store submission commit started; certification status is not yet verified.'
