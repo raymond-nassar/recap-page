@@ -13,6 +13,12 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Recover Store publication without replacing a draft
+
+Store submission creation accepts the observed HTTP 201 success as well as HTTP 200.
+A protected, read-only inspection reports the existing draft and published baseline without
+exposing credentials, upload links or listing content. It never creates, deletes or submits a draft.
+
 ## 3.0.0
 
 ### Read at your own pace

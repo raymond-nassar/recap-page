@@ -215,7 +215,7 @@ if ($Mode -eq 'Validate') {
 
 $createdPath = Join-Path $WorkDirectory 'created-submission.json'
 $createdBody = Invoke-SingleHttpRequest `
-  -Method 'POST' -Uri $submissionBase -Headers $headers -ExpectedStatus @(200)
+  -Method 'POST' -Uri $submissionBase -Headers $headers -ExpectedStatus @(200, 201)
 Write-PrivateText -Path $createdPath -Value $createdBody
 $created = Read-JsonObject $createdPath
 $submissionId = [string]$created.id
