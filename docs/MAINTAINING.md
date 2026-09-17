@@ -1060,3 +1060,22 @@ ambiguous listing field is a blocker, not permission to create or substitute one
 
 Run `node --test test/microsoft-store-release.test.js` for the payload and delivery contracts.
 Repeat the protected read-only rehearsal after changing publisher behavior, as required above.
+
+### Finish the identified 3.0.0 draft
+
+The temporary **Recover the existing 3.0.0 Store draft** workflow is only for submission
+`1152921505701916536`, identified by protected inspection run `35208196676`.
+It binds that pending draft and published baseline `1152921505701831258` to the observed content
+fingerprints. Changed content, another ID, processing status or a rerun stops before mutation.
+Do not use it for another release or rerun a failed mutation.
+
+Reviewed tooling and the immutable `40b6a529dbdc462799f613d9a3430912f7dde22e` application are checked
+out separately. The hosted Windows runner builds and inspects the unchanged 3.0.0 application,
+runs WACK, and binds the upload archive to that exact bundle. Packages and raw responses are not
+published as artifacts. Generated packages, temporary trust and scratch material are removed.
+
+The recovery preserves existing listing, pricing and publication intent. Only the old bundle is
+replaced and the approved English bullet notes are updated. Exact metadata read-back and a final
+application/baseline check precede one commit request. Only a valid `CommitStarted` response counts
+as submission started, never as certification or publication. A response error or timeout may
+follow a successful mutation: inspect the same draft read-only instead of trying again.
