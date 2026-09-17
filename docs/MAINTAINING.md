@@ -1041,6 +1041,8 @@ If creation succeeds but a later step fails, do not rerun the publisher or delet
 Dispatch **Read-only Store recovery inspection** from the default branch and approve only that
 reviewed run through the existing production environment. Its report contains the exact pending
 and last-published IDs, statuses, package versions, publication modes and content fingerprints.
+Upload diagnostics include only the hostname, expiry and boolean checks. The path, signature,
+query string and full upload URL are never included.
 It performs only authentication and Store GET requests, keeps raw responses in process memory,
 and uploads no artifact. A failed inspection is not evidence that no pending draft exists.
 An API-created draft must be finished through the API, not edited through Partner Center.
