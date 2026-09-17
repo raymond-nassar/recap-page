@@ -200,13 +200,13 @@ test('Vision retains four exact gap identities and distinguishes missing metadat
   assert.match(packet.sourceGaps.at(-1).auditBasis, /not evidence of comic absence/);
 });
 
-test('Vision approval covers every current source-manifest order without historical exclusions', async () => {
+test('Vision approval preserves its complete publication-time source-library snapshot', async () => {
   const report = await readJson(`scripts/data/cbh-overlaps/${id}.json`);
   const manifest = await readJson('src/data/curated-lists.json');
   const current = await buildReportForMapping(
-    `scripts/data/cbh-mappings/${id}.json`, [], { excludedOrderIds: [] },
+    `scripts/data/cbh-mappings/${id}.json`, [], { excludedOrderIds: ['emma-frost-reading-order'] },
   );
-  const expectedOrderIds = manifest.lists.filter((row) => row.id !== id).map((row) => row.id);
+  const expectedOrderIds = manifest.lists.filter((row) => row.id !== id && row.id !== 'emma-frost-reading-order').map((row) => row.id);
   assert.deepEqual(current, report);
   assert.equal(report.comparisonCount, expectedOrderIds.length);
   assert.deepEqual(new Set(report.comparisons.map((row) => row.orderId)), new Set(expectedOrderIds));

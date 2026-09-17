@@ -81,7 +81,7 @@ test('batch two preserves the approved queue, exact substitutions, and catalog c
     manifest.lists.length - PACKET_IDS.length,
   );
   assert.ok(manifest.lists.length >= 66);
-  assert.equal(catalog.lists.length, 260);
+  assert.equal(catalog.lists.length, 261);
 
   const manifestPacket = manifest.lists.filter((entry) => PACKET_IDS.includes(entry.id));
   const catalogPacket = catalog.lists.filter((entry) => PACKET_IDS.includes(entry.id));
@@ -222,7 +222,7 @@ test('batch two has no aggregate identity, source, sequence, or pre-publication 
     'best-ultron-reading-order', 'winter-soldier-bucky-barnes-reading-order',
     'donny-cates-marvel-universe-reading-order-2017',
     'falcon-sam-wilson-captain-america-reading-order',
-    'the-vision-reading-order',
+    'the-vision-reading-order', 'emma-frost-reading-order',
     'miles-morales-spider-man-reading-order',
     'spider-gwen-reading-order',
     'spider-man-2099-reading-order',
