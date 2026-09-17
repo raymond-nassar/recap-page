@@ -36,6 +36,7 @@ const currentOverlaps = [
     id !== 'captain-america-reading-order-modern-marvel-era'
   )),
   ['daredevil-reading-order', 73],
+  ['doctor-octopus-otto-octavius-reading-order', 15],
   ['emma-frost-reading-order', 33],
   ['fantastic-four-reading-order', 23],
   ['iron-man-reading-order', 6],

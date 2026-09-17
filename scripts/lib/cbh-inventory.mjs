@@ -29,7 +29,7 @@ export const DELIVERY_STATUSES = Object.freeze([
 ]);
 
 export const BASELINE_COUNT = 86;
-export const CHARACTER_INVENTORY_COUNT = 130;
+export const CHARACTER_INVENTORY_COUNT = 131;
 export const CBH_SOURCE_PROVIDER = Object.freeze({
   id: 'comic-book-herald',
   hosts: Object.freeze(['www.comicbookherald.com']),

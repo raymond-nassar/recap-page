@@ -4201,5 +4201,62 @@
     "sourceContentSha256": "f7bab40e8ee464c6863bf7b32b77423bb87db7041e2b934770f287f967cc0c08",
     "sourceBoundaryStatus": "exact-page-snapshot",
     "metadataHorizonStatus": "approved"
+  },
+  {
+    "position": 131,
+    "id": "doctor-octopus-otto-octavius-reading-order",
+    "title": "Doctor Octopus / Otto Octavius",
+    "url": "https://www.comicbookherald.com/doctor-octopus-otto-octavius-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "new-order",
+    "reason": "The full explicit source selection retains 499 occurrences: 482 exact originals, ten visible metadata gaps and seven backward repeats. Current-library review approves 27 partial and two existing-subset relationships; 155 have no shared issue.",
+    "sourceRetrievedAt": "2026-09-17",
+    "overlapIds": [
+      "all-new-all-different-avengers",
+      "amazing-spider-man-reading-order-modern-marvel-era",
+      "black-widow-reading-order",
+      "clone-conspiracy",
+      "daredevil-reading-order",
+      "doctor-strange-reading-order",
+      "evolutionary-war",
+      "fantastic-four-reading-order",
+      "guardians-of-the-galaxy-reading-order",
+      "iron-man-reading-order",
+      "loki-reading-order",
+      "marvel-knights-to-planet-x",
+      "miles-morales-spider-man-reading-order",
+      "original-clone-saga",
+      "punisher-reading-order",
+      "question-of-the-week-do-you-have-a-hulk-reading-order",
+      "secret-wars-ii",
+      "spider-geddon",
+      "spider-gwen-reading-order",
+      "spider-man-2099-reading-order",
+      "spider-man-best-of",
+      "spider-verse",
+      "thanos-reading-order",
+      "the-night-gwen-stacy-died",
+      "the-vision-reading-order",
+      "venom-reading-order",
+      "war-of-the-realms",
+      "white-tiger-ava-ayala",
+      "xmen-claremont-complete"
+    ],
+    "catalogIds": [
+      "doctor-octopus-otto-octavius-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
+    "labels": [
+      "Doctor Octopus / Otto Octavius"
+    ],
+    "sourcePositions": [
+      131
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "a30255af7ebf4ff3229430dc10adbd7584782e421198bb4ac66e695a3b21f26f",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "approved"
   }
 ]

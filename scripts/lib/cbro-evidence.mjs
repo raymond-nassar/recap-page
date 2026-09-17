@@ -120,7 +120,7 @@ export const CBH_LATER_ORDER_IDS = Object.freeze([
   'runaways-reading-order',
   'adam-warlock-reading-order',
   'mephisto-reading-order',
-  'best-ultron-reading-order', 'winter-soldier-bucky-barnes-reading-order', 'falcon-sam-wilson-captain-america-reading-order', 'the-vision-reading-order', 'emma-frost-reading-order',
+  'best-ultron-reading-order', 'winter-soldier-bucky-barnes-reading-order', 'falcon-sam-wilson-captain-america-reading-order', 'the-vision-reading-order', 'emma-frost-reading-order', 'doctor-octopus-otto-octavius-reading-order',
   'miles-morales-spider-man-reading-order',
   'spider-gwen-reading-order',
   'spider-man-2099-reading-order', 'donny-cates-marvel-universe-reading-order-2017',

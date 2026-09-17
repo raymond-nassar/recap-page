@@ -13,6 +13,14 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Follow Doctor Octopus through his Superior identities
+
+Adds a Doctor Octopus / Otto Octavius Reading List credited and linked to Comic Book Herald.
+It preserves the guide's collection contents and standalone issues, keeps different Spider-Man
+volumes distinct, and shows unresolved originals as gaps rather than removing them.
+Repeated source mentions share one checklist entry. Existing Reading Lists and saved progress
+are unchanged.
+
 ### Shorter synopsis prompts
 
 Synopsis fetch confirmations now use two concise sentences, keeping the source, temporary

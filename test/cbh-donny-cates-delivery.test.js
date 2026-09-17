@@ -100,7 +100,7 @@ test('Donny Cates approval covers the full reviewed source manifest before the V
   const report = await readJson(`scripts/data/cbh-overlaps/${id}.json`);
   const manifest = await readJson('src/data/curated-lists.json');
   const current = await buildReportForMapping(
-    `scripts/data/cbh-mappings/${id}.json`, [], { excludedOrderIds: ['the-vision-reading-order', 'emma-frost-reading-order'] },
+    `scripts/data/cbh-mappings/${id}.json`, [], { excludedOrderIds: ['the-vision-reading-order', 'emma-frost-reading-order', 'doctor-octopus-otto-octavius-reading-order'] },
   );
   assert.doesNotThrow(() => validateFrozenPacket(packet));
   assert.doesNotThrow(() => validateMappingDigest(mapping));
@@ -110,8 +110,8 @@ test('Donny Cates approval covers the full reviewed source manifest before the V
   assert.deepEqual(current.comparisons, report.comparisons);
   assert.equal(current.libraryDigest, report.libraryDigest);
   assert.deepEqual(new Set(report.comparisons.map((row) => row.orderId)),
-    new Set(manifest.lists.filter((row) => row.id !== id && row.id !== 'the-vision-reading-order' && row.id !== 'emma-frost-reading-order').map((row) => row.id)));
-  assert.equal(report.comparisonCount, manifest.lists.length - 3);
+    new Set(manifest.lists.filter((row) => row.id !== id && row.id !== 'the-vision-reading-order' && row.id !== 'emma-frost-reading-order' && row.id !== 'doctor-octopus-otto-octavius-reading-order').map((row) => row.id)));
+  assert.equal(report.comparisonCount, manifest.lists.length - 4);
   assert.ok(report.comparisons.every((row) => row.relationship !== 'exact'));
   assert.equal(mapping.relationshipReview.dispositions.length, report.comparisonCount);
 });
