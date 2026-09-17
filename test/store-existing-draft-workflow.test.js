@@ -230,7 +230,7 @@ test('always cleanup removes run-scoped generated material, exact package and tr
   assert.equal(field(cleanup.block, 'shell', 8), 'powershell');
   assert.equal(field(cleanup.block, 'working-directory', 8), '${{ github.workspace }}');
   assert.equal(field(workflow, 'RECOVERY_ROOT', 6),
-    '${{ runner.temp }}\\recap-store-recovery-${{ github.run_id }}-${{ github.run_attempt }}');
+    '${{ github.workspace }}\\recap-store-recovery-${{ github.run_id }}-${{ github.run_attempt }}');
   for (const variable of ['TEMP', 'TMP']) {
     assert.ok(step('Bind reviewed tooling and qualified source').run.includes(
       `"${variable}=$(Join-Path $env:RECOVERY_ROOT 'scratch')"`));
