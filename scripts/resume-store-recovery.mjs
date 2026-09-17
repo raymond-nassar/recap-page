@@ -16,6 +16,7 @@ export const TARGET = Object.freeze({
   notesFingerprint: '3c96294836f4e98fc25eb8d7aa82b4d5d55be4fc9460969c878c4c31a828e402',
   bundle: 'RecapPage_3.0.0.0_x64_arm64.msixbundle',
   version: '3.0.0.0',
+  uploadHost: 'ingestionpackagesprod1.blob.core.windows.net',
 });
 const API = `https://manage.devcenter.microsoft.com/v1.0/my/applications/${TARGET.product}`;
 const DRAFT = `${API}/submissions/${TARGET.draft}`;
@@ -80,7 +81,7 @@ export function verifyRecovery(actual, prepared, notes) {
 
 export function uploadLocation(value, now = Date.now()) {
   const url = new URL(value);
-  demand(url.protocol === 'https:' && /^productingestionbin\d+\.blob\.core\.windows\.net$/.test(url.hostname)
+  demand(url.protocol === 'https:' && url.hostname === TARGET.uploadHost
     && !url.username && !url.password && !url.port && !url.hash,
   'Upload location is not the expected Microsoft ingestion service');
   demand(url.pathname.startsWith('/ingestion/') && url.searchParams.has('sig')

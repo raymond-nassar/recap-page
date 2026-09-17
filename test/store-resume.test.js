@@ -21,7 +21,7 @@ function draft() {
     },
     targetPublishMode: 'Immediate', targetPublishDate: '1601-01-01T00:00:00Z',
     packageDeliveryOptions: { packageRollout: { isPackageRollout: false } },
-    fileUploadUrl: 'https://productingestionbin1.blob.core.windows.net/ingestion/example?sig=fixture&se=2099-01-01',
+    fileUploadUrl: 'https://ingestionpackagesprod1.blob.core.windows.net/ingestion/example?sig=fixture&se=2099-01-01',
   };
 }
 function prepared() {
@@ -67,6 +67,7 @@ test('Store recovery upload rejects expired or untrusted locations', () => {
   for (const url of [
     'https://example.com/ingestion/a?sig=x&se=2099-01-01',
     'http://productingestionbin1.blob.core.windows.net/ingestion/a?sig=x&se=2099-01-01',
+    'https://productingestionbin1.blob.core.windows.net/ingestion/a?sig=x&se=2099-01-01',
     draft().fileUploadUrl.replace('2099', '2000'),
     draft().fileUploadUrl.replace('sig=', 'absent='),
   ]) assert.throws(() => uploadLocation(url));

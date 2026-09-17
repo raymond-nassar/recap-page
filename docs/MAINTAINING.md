@@ -1067,6 +1067,7 @@ Repeat the protected read-only rehearsal after changing publisher behavior, as r
 
 The temporary **Recover the existing 3.0.0 Store draft** workflow is only for submission
 `1152921505701916536`, identified by protected inspection run `35208196676`.
+The exact upload host is bound from protected inspection `35211901090`, not a documentation example.
 It binds that pending draft and published baseline `1152921505701831258` to the observed content
 fingerprints. Changed content, another ID, processing status or a rerun stops before mutation.
 Do not use it for another release or rerun a failed mutation.
