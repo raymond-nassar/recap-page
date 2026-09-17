@@ -17,7 +17,8 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 Store submission creation accepts the observed HTTP 201 success as well as HTTP 200.
 A protected, read-only inspection reports the existing draft and published baseline without
-exposing credentials, upload links or listing content. It never creates, deletes or submits a draft.
+exposing credentials, upload links or listing content. A separate protected recovery resumes only
+the identified 3.0.0 draft, preserving its other content and checking the rebuilt package before submission.
 
 ## 3.0.0
 

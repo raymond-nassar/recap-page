@@ -1,0 +1,319 @@
+name: Recover the existing 3.0.0 Store draft
+
+# Second-stage recovery only. Remove after the reviewed existing draft is committed.
+# No creation, deletion, retries, artifacts, or claim of successful publication.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: microsoft-store-production
+  cancel-in-progress: false
+
+jobs:
+  recover:
+    if: >-
+      github.event_name == 'workflow_dispatch' &&
+      github.event.repository.default_branch == 'main' &&
+      github.ref == 'refs/heads/main' &&
+      github.run_attempt == 1
+    environment: microsoft-store-production
+    runs-on: windows-2022
+    timeout-minutes: 160
+    defaults:
+      run:
+        shell: pwsh
+        working-directory: application
+    env:
+      WINAPP_CLI_TELEMETRY_OPTOUT: '1'
+      DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+      RECOVERY_ROOT: ${{ runner.temp }}\recap-store-recovery-${{ github.run_id }}-${{ github.run_attempt }}
+    steps:
+      - name: Check out reviewed tooling
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        timeout-minutes: 2
+        with:
+          ref: ${{ github.workflow_sha }}
+          path: tooling
+          persist-credentials: false
+
+      - name: Check out qualified application
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        timeout-minutes: 2
+        with:
+          ref: 40b6a529dbdc462799f613d9a3430912f7dde22e
+          path: application
+          persist-credentials: false
+
+      - name: Set up build driver
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        timeout-minutes: 4
+        with:
+          node-version: '24.20.0'
+
+      - name: Bind reviewed tooling and qualified source
+        timeout-minutes: 3
+        run: |
+          $ErrorActionPreference = 'Stop'
+          New-Item -ItemType Directory -Path (Join-Path $env:RECOVERY_ROOT 'scratch') | Out-Null
+          @'
+          const fs = require('node:fs');
+          const path = require('node:path');
+          const { execFileSync } = require('node:child_process');
+          // BEGIN recovery source contract
+          const APPLICATION = '40b6a529dbdc462799f613d9a3430912f7dde22e';
+          const TREE = '1fb29569aa3b17a095ee6da4adf837d50e708e14';
+          const REPOSITORY = 'raymond-nassar/recap-page';
+          const WORKFLOW = '.github/workflows/store-existing-draft-recovery.yml';
+          const TAG = 'refs/tags/v3.0.0';
+          function demand(condition) {
+            if (!condition) throw new Error('Recovery source binding failed.');
+          }
+          function releaseCommit(text) {
+            const rows = text.trim().split(/\r?\n/).map((line) => line.split(/\s+/));
+            demand(rows.length >= 1 && rows.length <= 2);
+            demand(rows.every(([sha, ref, extra]) => /^[0-9a-f]{40}$/.test(sha)
+              && [TAG, `${TAG}^{}`].includes(ref) && extra === undefined));
+            demand(rows.filter(([, ref]) => ref === TAG).length === 1);
+            demand(new Set(rows.map(([, ref]) => ref)).size === rows.length);
+            return (rows.find(([, ref]) => ref === `${TAG}^{}`) || rows[0])[0];
+          }
+          function bind(observed, env) {
+            demand(env.GITHUB_REPOSITORY === REPOSITORY
+              && env.GITHUB_EVENT_NAME === 'workflow_dispatch'
+              && env.DEFAULT_BRANCH === 'main' && env.GITHUB_REF === 'refs/heads/main'
+              && env.GITHUB_RUN_ATTEMPT === '1'
+              && env.GITHUB_WORKFLOW_REF === `${REPOSITORY}/${WORKFLOW}@refs/heads/main`
+              && /^[0-9a-f]{40}$/.test(env.GITHUB_WORKFLOW_SHA)
+              && env.GITHUB_WORKFLOW_SHA === env.GITHUB_SHA);
+            demand(observed.toolingHead === env.GITHUB_WORKFLOW_SHA
+              && /^[0-9a-f]{40}$/.test(observed.toolingTree)
+              && observed.toolingTree === observed.reviewedTree && observed.toolingStatus === '');
+            demand(observed.applicationHead === APPLICATION && observed.applicationTree === TREE
+              && observed.version === '3.0.0' && observed.applicationStatus === ''
+              && releaseCommit(observed.releaseTag) === APPLICATION);
+          }
+          // END recovery source contract
+          try {
+            const env = process.env;
+            const application = path.join(env.GITHUB_WORKSPACE, 'application');
+            const tooling = path.join(env.GITHUB_WORKSPACE, 'tooling');
+            const git = (cwd, ...args) => execFileSync('git', args, {
+              cwd, encoding: 'utf8', timeout: 60000, stdio: ['ignore', 'pipe', 'pipe'],
+            }).trim();
+            bind({
+              toolingHead: git(tooling, 'rev-parse', 'HEAD'),
+              toolingTree: git(tooling, 'rev-parse', 'HEAD^{tree}'),
+              reviewedTree: git(tooling, 'rev-parse', `${env.GITHUB_WORKFLOW_SHA}^{tree}`),
+              toolingStatus: git(tooling, 'status', '--porcelain', '--untracked-files=all'),
+              applicationHead: git(application, 'rev-parse', 'HEAD'),
+              applicationTree: git(application, 'rev-parse', 'HEAD^{tree}'),
+              applicationStatus: git(application, 'status', '--porcelain', '--untracked-files=all'),
+              version: JSON.parse(fs.readFileSync(path.join(application, 'package.json'), 'utf8')).version,
+              releaseTag: git(application, 'ls-remote', '--exit-code', 'origin', TAG, `${TAG}^{}`),
+            }, env);
+          } catch {
+            process.stderr.write('Recovery source binding failed; private details suppressed.\n');
+            process.exitCode = 1;
+          }
+          '@ | Set-Content -LiteralPath (Join-Path $env:RECOVERY_ROOT 'bind.cjs') -Encoding utf8
+          node (Join-Path $env:RECOVERY_ROOT 'bind.cjs')
+          if ($LASTEXITCODE -ne 0) { throw 'Source binding failed.' }
+          @(
+            "TEMP=$(Join-Path $env:RECOVERY_ROOT 'scratch')"
+            "TMP=$(Join-Path $env:RECOVERY_ROOT 'scratch')"
+          ) | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+
+      - name: Install locked application inspection tooling
+        timeout-minutes: 4
+        run: |
+          npm ci --ignore-scripts *> $null
+          if ($LASTEXITCODE -ne 0) { throw 'Application inspection tooling installation failed.' }
+
+      - name: Install checksum-verified WinApp CLI
+        timeout-minutes: 6
+        run: |
+          $ErrorActionPreference = 'Stop'
+          try {
+            $archive = Join-Path $env:RECOVERY_ROOT 'scratch\winappcli-x64-v0.6.0.zip'
+            $toolRoot = Join-Path $env:RECOVERY_ROOT 'scratch\winappcli-x64-v0.6.0'
+            Invoke-WebRequest `
+              -Uri 'https://github.com/microsoft/winappCli/releases/download/v0.6.0/winappcli-x64.zip' `
+              -OutFile $archive
+            $actual = (Get-FileHash -Algorithm SHA256 -LiteralPath $archive).Hash
+            if ($actual -ne 'F6DC42E3B4E4709C8F617003008E2CFDD9A51735E04E7170D60EDDA258DB78A8') {
+              throw 'Checksum mismatch.'
+            }
+            Expand-Archive -LiteralPath $archive -DestinationPath $toolRoot
+            $output = @(& (Join-Path $toolRoot 'winapp.exe') --version)
+            if ($LASTEXITCODE -ne 0 -or $output.Count -eq 0 -or
+                @('0.6.0', 'v0.6.0') -notcontains $output[-1].Trim()) {
+              throw 'Version mismatch.'
+            }
+            $toolRoot | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+          } catch { throw 'Checksum-verified WinApp setup failed; private details suppressed.' }
+
+      - name: Build production native launchers
+        timeout-minutes: 12
+        run: |
+          try {
+            ./scripts/build-native-launcher.ps1 *> $null
+            if (-not $?) { throw 'Build failed.' }
+          } catch { throw 'Qualified production native build failed.' }
+
+      - name: Pack qualified Store bundle once
+        timeout-minutes: 15
+        run: |
+          npm run msix:pack *> $null
+          if ($LASTEXITCODE -ne 0) { throw 'Qualified Store packaging failed.' }
+
+      - name: Inspect packages structurally
+        timeout-minutes: 10
+        run: |
+          npm run msix:inspect -- --structural *> $null
+          if ($LASTEXITCODE -ne 0) { throw 'Structural inspection failed.' }
+
+      - name: Record validated bundle hash
+        id: bundle_hash
+        timeout-minutes: 2
+        run: |
+          $hash = (Get-FileHash -Algorithm SHA256 `
+            -LiteralPath '.\dist\msix\RecapPage_3.0.0.0_x64_arm64.msixbundle').Hash.ToLowerInvariant()
+          if ($hash -cnotmatch '^[0-9a-f]{64}$') { throw 'Invalid bundle hash.' }
+          "sha256=$hash" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
+
+      - name: Run WACK on exact qualified packages
+        timeout-minutes: 55
+        env:
+          GITHUB_STEP_SUMMARY: ''
+        run: |
+          try {
+            ./scripts/run-wack.ps1 `
+              -X64Package '.\dist\msix\RecapPage_3.0.0.0_x64.msix' `
+              -Bundle '.\dist\msix\RecapPage_3.0.0.0_x64_arm64.msixbundle' `
+              -Certificate '.\dist\msix\RecapPage-local-proof.cer' *> $null
+            if (-not $?) { throw 'WACK failed.' }
+          } catch { throw 'Qualified WACK execution or cleanup failed.' }
+
+      - name: Rebind sources and archive the unchanged bundle
+        id: archive_hash
+        timeout-minutes: 4
+        env:
+          EXPECTED_BUNDLE_SHA256: ${{ steps.bundle_hash.outputs.sha256 }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          node (Join-Path $env:RECOVERY_ROOT 'bind.cjs')
+          if ($LASTEXITCODE -ne 0) { throw 'Pre-mutation source binding failed.' }
+          $bundle = (Resolve-Path -LiteralPath '.\dist\msix\RecapPage_3.0.0.0_x64_arm64.msixbundle').Path
+          $archive = Join-Path $env:RECOVERY_ROOT 'store-upload.zip'
+          if ($env:EXPECTED_BUNDLE_SHA256 -cnotmatch '^[0-9a-f]{64}$' -or
+              (Get-FileHash -Algorithm SHA256 -LiteralPath $bundle).Hash.ToLowerInvariant() -cne $env:EXPECTED_BUNDLE_SHA256) {
+            throw 'Bundle changed after WACK.'
+          }
+          Compress-Archive -LiteralPath $bundle -DestinationPath $archive -CompressionLevel Optimal
+          if ((Get-FileHash -Algorithm SHA256 -LiteralPath $bundle).Hash.ToLowerInvariant() -cne $env:EXPECTED_BUNDLE_SHA256) {
+            throw 'Bundle changed during archive creation.'
+          }
+          try {
+            $zip = [IO.Compression.ZipFile]::OpenRead($archive)
+            try {
+              if ($zip.Entries.Count -ne 1 -or
+                  $zip.Entries[0].FullName -cne 'RecapPage_3.0.0.0_x64_arm64.msixbundle') {
+                throw 'ZIP entry allowlist differs.'
+              }
+              $stream = $zip.Entries[0].Open()
+              try {
+                $sha256 = [Security.Cryptography.SHA256]::Create()
+                try {
+                  $entryHash = [Convert]::ToHexString($sha256.ComputeHash($stream)).ToLowerInvariant()
+                } finally { $sha256.Dispose() }
+              } finally { $stream.Dispose() }
+              if ($entryHash -cne $env:EXPECTED_BUNDLE_SHA256) {
+                throw 'ZIP entry differs from the WACK bundle.'
+              }
+              # Hash the ZIP while its read handle still excludes writers.
+              $archiveHash = (Get-FileHash -Algorithm SHA256 -LiteralPath $archive).Hash.ToLowerInvariant()
+              if ($archiveHash -cnotmatch '^[0-9a-f]{64}$') { throw 'Invalid ZIP hash.' }
+            } finally { $zip.Dispose() }
+          } catch { throw 'Recovery ZIP binding failed; private details suppressed.' }
+          "sha256=$archiveHash" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
+
+      - name: Resume the fixed existing draft once
+        timeout-minutes: 25
+        env:
+          EXPECTED_BUNDLE_SHA256: ${{ steps.bundle_hash.outputs.sha256 }}
+          EXPECTED_ARCHIVE_SHA256: ${{ steps.archive_hash.outputs.sha256 }}
+          PARTNER_CENTER_CLIENT_ID: ${{ secrets.PARTNER_CENTER_CLIENT_ID }}
+          PARTNER_CENTER_CLIENT_SECRET: ${{ secrets.PARTNER_CENTER_CLIENT_SECRET }}
+          PARTNER_CENTER_TENANT_ID: ${{ secrets.PARTNER_CENTER_TENANT_ID }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          if ($env:GITHUB_RUN_ATTEMPT -ne '1') { throw 'Recovery reruns are forbidden.' }
+          $bundle = (Resolve-Path -LiteralPath '.\dist\msix\RecapPage_3.0.0.0_x64_arm64.msixbundle').Path
+          $archive = (Resolve-Path -LiteralPath (Join-Path $env:RECOVERY_ROOT 'store-upload.zip')).Path
+          $notes = (Resolve-Path -LiteralPath '.\docs\releases\3.0.0-store.json').Path
+          if ($env:EXPECTED_BUNDLE_SHA256 -cnotmatch '^[0-9a-f]{64}$' -or
+              (Get-FileHash -Algorithm SHA256 -LiteralPath $bundle).Hash.ToLowerInvariant() -cne $env:EXPECTED_BUNDLE_SHA256) {
+            throw 'Bundle changed before recovery.'
+          }
+          # Only the reviewed tooling script authenticates and guards/mutates the fixed pending draft.
+          # Its success means commit started, never certification or publication.
+          node (Join-Path $env:GITHUB_WORKSPACE 'tooling\scripts\resume-store-recovery.mjs') $bundle $archive $notes
+          if ($LASTEXITCODE -ne 0) {
+            throw 'Recovery did not confirm commit started. State may be uncertain; do not rerun.'
+          }
+          @(
+            '## Existing Store draft recovery'
+            '* Application commit: 40b6a529dbdc462799f613d9a3430912f7dde22e'
+            '* Application tree: 1fb29569aa3b17a095ee6da4adf837d50e708e14'
+            "* Tooling commit: $env:GITHUB_WORKFLOW_SHA"
+            "* Bundle SHA-256: $env:EXPECTED_BUNDLE_SHA256"
+            '* Commit started; publication and certification are not verified.'
+          ) | Add-Content -LiteralPath $env:GITHUB_STEP_SUMMARY
+
+      - name: Remove all generated recovery material
+        if: always()
+        timeout-minutes: 8
+        shell: powershell
+        working-directory: ${{ github.workspace }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $failures = @()
+          $cer = Join-Path $env:GITHUB_WORKSPACE 'application\dist\msix\RecapPage-local-proof.cer'
+          try {
+            $packages = @(Get-AppxPackage -Name PanelStackLabs.RecapPage |
+              Where-Object PackageFamilyName -eq 'PanelStackLabs.RecapPage_we33aa8nvkpcc')
+            foreach ($package in $packages) { Remove-AppxPackage -Package $package.PackageFullName }
+            if (@(Get-AppxPackage -Name PanelStackLabs.RecapPage |
+                Where-Object PackageFamilyName -eq 'PanelStackLabs.RecapPage_we33aa8nvkpcc').Count -ne 0) {
+              throw 'Package residue.'
+            }
+          } catch { $failures += [Exception]::new('WACK package cleanup failed.') }
+          try {
+            if (Test-Path -LiteralPath $cer) {
+              $certificate = [Security.Cryptography.X509Certificates.X509Certificate2]::new($cer)
+              try {
+                $trusted = "Cert:\LocalMachine\TrustedPeople\$($certificate.Thumbprint)"
+                if (Test-Path -LiteralPath $trusted) { Remove-Item -LiteralPath $trusted -Force }
+                if (Test-Path -LiteralPath $trusted) { throw 'Certificate residue.' }
+              } finally { $certificate.Dispose() }
+            }
+          } catch { $failures += [Exception]::new('WACK trust cleanup failed.') }
+          # TEMP/TMP isolate packer, inspector and WACK scratch under this run's root.
+          # Native builder uses RUNNER_TEMP directly; include it even after interruption.
+          foreach ($path in @(
+            (Join-Path $env:GITHUB_WORKSPACE 'application\dist'),
+            (Join-Path $env:GITHUB_WORKSPACE 'application\node_modules'),
+            (Join-Path $env:RUNNER_TEMP "recap-native-build-$env:GITHUB_RUN_ID-$env:GITHUB_RUN_ATTEMPT"),
+            $env:RECOVERY_ROOT
+          )) {
+            try {
+              if (Test-Path -LiteralPath $path) { Remove-Item -LiteralPath $path -Recurse -Force }
+              if (Test-Path -LiteralPath $path) { throw 'Generated material remains.' }
+            } catch { $failures += [Exception]::new('Generated recovery material cleanup failed.') }
+          }
+          if ($failures.Count -ne 0) {
+            throw [AggregateException]::new('Recovery cleanup boundaries failed.', [Exception[]]$failures)
+          }
