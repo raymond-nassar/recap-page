@@ -131,7 +131,7 @@ test('Store recovery HTTP transport accepts 202 only for commit and blocks other
   t.mock.method(globalThis, 'fetch', async (url, options) => {
     calls.push({ url, options });
     assert.equal(options.redirect, 'error');
-    if (url.includes('login.microsoftonline.com')) {
+    if (new URL(url).hostname === 'login.microsoftonline.com') {
       return { status: 200, json: async () => ({ access_token: 'fixture' }) };
     }
     return { status, json: async () => ({ status: 'CommitStarted' }) };
