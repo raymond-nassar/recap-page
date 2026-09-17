@@ -67,7 +67,7 @@ Severity: 2, single-rater estimate
 Rationale: occurs on the single most repeated action in the product, persists for the life of the
 list, and grows with list length, but degrades speed rather than blocking the task
 Confidence: Measured
-Evidence: `docs/ux-artifacts/render-cost.json`, `src/js/main.js:86-92`, `src/js/main.js:2530-2552`
+Evidence: `docs/ux-artifacts/render-cost.json`, `src/js/main.js:86-92`, `src/js/main.js:2513-2535`
 Source: live UI framing, reacted to the store wiring while reading `src/js/main.js`
 Impact: marking one issue read rebuilds the rail, all 219 rows and the progress block, which is
 4,485 DOM nodes and 1,533 row controls, at a median of 21.9 ms synchronous and 75.7 ms to paint,
@@ -86,7 +86,7 @@ Severity: 3, single-rater estimate
 Rationale: affects several primary flows, is permanent rather than transient, and splits the
 product's voice in two at exactly the moments a reader is deciding something
 Confidence: Observed
-Evidence: `src/js/main.js:1878`, `src/js/views/reading.js:347-355`, `src/js/views/reading.js:372-386`, against
+Evidence: `src/js/main.js:1861`, `src/js/views/reading.js:347-355`, `src/js/views/reading.js:372-386`, against
 `src/js/main.js:511-536`
 Source: heuristic 4 sweep, code-only framing
 Impact: the application has a careful in-page notice system with live regions, and then reports

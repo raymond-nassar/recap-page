@@ -1415,8 +1415,8 @@ const MUTATIONS = [
     breaks: 'synopsis-consent',
     why: 'declining the synopsis disclaimer starts the run the reader refused',
     rewriteMain: (source) => source.replace(
-      / {2}const yes = await askConfirm\(synopsisDisclaimer\(settings\.apiBase\)\);\r?\n {2}if \(!yes\) return;\r?\n {2}synopsisRunner\.start\(list\.id\);/,
-      `  const yes = await askConfirm(synopsisDisclaimer(settings.apiBase));
+      / {2}const yes = await askConfirm\(synopsisDisclaimer\(\)\);\r?\n {2}if \(!yes\) return;\r?\n {2}synopsisRunner\.start\(list\.id\);/,
+      `  const yes = await askConfirm(synopsisDisclaimer());
   if (false && !yes) return;
   synopsisRunner.start(list.id);`,
     ),
@@ -7037,7 +7037,8 @@ const SCENARIOS = [
       await page.waitForSelector('#ask[open]');
       t.check('individual consent explicitly warns of exposure and retains the storage promises',
         await page.$eval('#ask-body', (node) => node.textContent.includes('may contain spoilers')
-          && node.textContent.includes('Nothing fetched is saved')));
+          && node.textContent.includes('stay in this tab until reload')
+          && node.textContent.trim().split(/(?<=[.!?])\s+/).length === 2));
       await click(page, '#ask-cancel');
       await frames();
       t.check('declining individual consent makes no synopsis request',
@@ -7151,13 +7152,10 @@ const SCENARIOS = [
       }));
       t.check('the synopsis disclaimer opens before any issue request starts',
         before.open && before.requests.length === 0, JSON.stringify(before));
-      t.check('the synopsis disclaimer names the service and temporary retention promise',
-        before.body.includes(new URL(DEFAULT_BASE).host)
-          && before.body.includes('Nothing fetched is saved')
-          && before.body.includes('browser tab only')
-          && before.body.includes('not written into your lists')
-          && before.body.includes('not included in a backup')
-          && before.body.includes('gone when you reload'),
+      t.check('the synopsis disclaimer uses the approved two-sentence message',
+        before.body === "Marvel's synopses come from an unaffiliated community service, "
+          + 'and stay in this tab until reload. '
+          + 'Fetching a whole Reading List takes a few minutes and uses your request allowance.',
         before.body);
       t.check('nothing is fetched while synopsis consent remains unanswered',
         before.requests.length === 0 && !before.description.includes('Fixture synopsis from'),
@@ -7346,8 +7344,9 @@ const SCENARIOS = [
       await click(page, '#btn-synopsis');
       await page.waitForFunction(() => document.querySelector('#ask')?.open === true, { timeout: 15000 });
       const disclaimer = await page.$eval('#ask-body', (node) => node.textContent.replace(/\s+/g, ' ').trim());
-      t.check('the next synopsis disclaimer names the newly typed service address',
-        disclaimer.includes('synopsis-next.example.test'), disclaimer);
+      t.check('the next synopsis consent keeps the community-source and temporary-retention notice',
+        disclaimer.includes('unaffiliated community service')
+          && disclaimer.includes('stay in this tab until reload'), disclaimer);
       await click(page, '#ask-ok');
       await page.waitForFunction(
         (count) => (window.__mrtIssueRequestLog ?? []).length > count,
