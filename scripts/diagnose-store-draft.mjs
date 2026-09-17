@@ -11,12 +11,25 @@ export function reconstructOriginal(published, current, expectedFingerprint) {
     else delete original[key];
   }
   const carried = structuredClone(current);
-  carried.applicationPackages = original.applicationPackages;
+  if (Array.isArray(original.applicationPackages) && Array.isArray(carried.applicationPackages)) {
+    const old = carried.applicationPackages.filter((entry) => entry.fileStatus === 'PendingDelete');
+    const added = carried.applicationPackages.filter((entry) =>
+      entry.fileStatus === 'PendingUpload' && entry.fileName === TARGET.bundle);
+    if (original.applicationPackages.length !== 1
+      || original.applicationPackages[0].fileStatus !== 'Uploaded'
+      || carried.applicationPackages.length !== 2 || old.length !== 1 || added.length !== 1
+      || old[0].fileName !== original.applicationPackages[0].fileName) {
+      throw new Error('Current package edits do not match the accepted update');
+    }
+    carried.applicationPackages = [{
+      ...old[0], fileStatus: original.applicationPackages[0].fileStatus,
+    }];
+  }
   if (carried.listings?.['en-us']?.baseListing && original.listings?.['en-us']?.baseListing) {
     carried.listings['en-us'].baseListing.releaseNotes = original.listings['en-us'].baseListing.releaseNotes;
   }
   const keys = [...new Set([...Object.keys(original), ...Object.keys(carried)])].filter((key) =>
-    !['id', 'status', 'fileUploadUrl', 'statusDetails', 'applicationPackages'].includes(key)
+    !['id', 'status', 'fileUploadUrl', 'statusDetails'].includes(key)
     && JSON.stringify(original[key]) !== JSON.stringify(carried[key]));
   if (keys.length > 8) throw new Error('Reconstruction exceeds the bounded observed-field search');
   // Only values observed in the two authenticated resources participate; the original seal decides.
@@ -101,6 +114,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
       'Diagnostic identity, status or approved baseline differs',
       'Diagnostic difference population exceeds its bound',
       'Unsafe diagnostic field name',
+      'Current package edits do not match the accepted update',
     ];
     const reason = safeReasons.includes(error.message) ? error.message : 'External request or response validation failed';
     process.stderr.write(`Read-only draft diagnosis failed at ${stage}: ${reason}. No mutation attempted; private response details suppressed.\n`);

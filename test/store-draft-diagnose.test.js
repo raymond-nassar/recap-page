@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { fingerprint } from '../scripts/inspect-store-recovery.mjs';
 import { reconstructOriginal, differences } from '../scripts/diagnose-store-draft.mjs';
+import { TARGET } from '../scripts/resume-store-recovery.mjs';
 
 test('draft reconstruction is accepted only with the exact original sealed fingerprint', () => {
   const published = { id: '123', status: 'Published', friendlyName: 'Submission 1', listing: 'Original', carriedFlag: false };
@@ -13,6 +14,31 @@ test('draft reconstruction is accepted only with the exact original sealed finge
   assert.throws(() => reconstructOriginal(published, { ...current, friendlyName: 'Wrong' }, fingerprint(original)), /exactly/);
   const tooMany = Object.fromEntries(Array.from({ length: 9 }, (_, index) => [`field${index}`, true]));
   assert.throws(() => reconstructOriginal({}, tooMany, fingerprint({})), /bounded/);
+});
+
+test('draft reconstruction inverts only the accepted package edits and retains cloned metadata', () => {
+  const published = {
+    id: '123', status: 'Published',
+    applicationPackages: [{ id: 'published', fileName: 'old.msixbundle', fileStatus: 'Uploaded' }],
+  };
+  const original = {
+    ...published, id: '456', status: 'PendingCommit',
+    applicationPackages: [{ id: 'cloned', fileName: 'old.msixbundle', fileStatus: 'Uploaded' }],
+  };
+  const current = structuredClone(original);
+  current.applicationPackages[0].fileStatus = 'PendingDelete';
+  current.applicationPackages.push({ fileName: TARGET.bundle, fileStatus: 'PendingUpload' });
+  assert.deepEqual(reconstructOriginal(published, current, fingerprint(original)), original);
+  for (const mutate of [
+    (copy) => { copy.applicationPackages[1].fileName = 'other.msixbundle'; },
+    (copy) => { copy.applicationPackages[0].fileName = 'other-old.msixbundle'; },
+    (copy) => { copy.applicationPackages[0].fileStatus = 'Uploaded'; },
+    (copy) => { copy.applicationPackages.push({ fileName: 'extra.msixbundle' }); },
+  ]) {
+    const invalid = structuredClone(current);
+    mutate(invalid);
+    assert.throws(() => reconstructOriginal(published, invalid, fingerprint(original)), /accepted update/);
+  }
 });
 
 test('draft diagnosis emits difference paths and hashes but never private values or upload locations', () => {

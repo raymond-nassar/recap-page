@@ -1049,6 +1049,8 @@ original only if its sealed fingerprint matches exactly, then reports changed fi
 hashes rather than private values. A failed reconstruction is a blocker, not permission to guess.
 The bounded reconstruction uses only values observed in the authenticated baseline and current
 draft, with at most eight differing fields and an exact full-fingerprint match required.
+Its package-array candidate reverses only the known replacement: remove the exact added target,
+restore the retained old entry's observed Uploaded status, and preserve its authenticated metadata.
 It performs only authentication and Store GET requests, keeps raw responses in process memory,
 and uploads no artifact. A failed inspection is not evidence that no pending draft exists.
 An API-created draft must be finished through the API, not edited through Partner Center.
