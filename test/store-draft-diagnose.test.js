@@ -5,12 +5,14 @@ import { fingerprint } from '../scripts/inspect-store-recovery.mjs';
 import { reconstructOriginal, differences } from '../scripts/diagnose-store-draft.mjs';
 
 test('draft reconstruction is accepted only with the exact original sealed fingerprint', () => {
-  const published = { id: '123', status: 'Published', friendlyName: 'Submission 1', listing: 'Original' };
-  const original = { ...published, id: '456', status: 'PendingCommit', friendlyName: 'Submission 2' };
+  const published = { id: '123', status: 'Published', friendlyName: 'Submission 1', listing: 'Original', carriedFlag: false };
+  const original = { ...published, id: '456', status: 'PendingCommit', friendlyName: 'Submission 2', carriedFlag: true };
   const current = { ...original, listing: 'Modified' };
   assert.deepEqual(reconstructOriginal(published, current, fingerprint(original)), original);
   assert.throws(() => reconstructOriginal({ ...published, listing: 'Wrong' }, current, fingerprint(original)), /exactly/);
   assert.throws(() => reconstructOriginal(published, { ...current, friendlyName: 'Wrong' }, fingerprint(original)), /exactly/);
+  const tooMany = Object.fromEntries(Array.from({ length: 9 }, (_, index) => [`field${index}`, true]));
+  assert.throws(() => reconstructOriginal({}, tooMany, fingerprint({})), /bounded/);
 });
 
 test('draft diagnosis emits difference paths and hashes but never private values or upload locations', () => {

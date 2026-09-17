@@ -1047,6 +1047,8 @@ After an update passes but read-back differs, **Read-only Store draft difference
 can compare the fixed 3.0.0 draft without another upload, update or commit. It reconstructs the
 original only if its sealed fingerprint matches exactly, then reports changed field paths and
 hashes rather than private values. A failed reconstruction is a blocker, not permission to guess.
+The bounded reconstruction uses only values observed in the authenticated baseline and current
+draft, with at most eight differing fields and an exact full-fingerprint match required.
 It performs only authentication and Store GET requests, keeps raw responses in process memory,
 and uploads no artifact. A failed inspection is not evidence that no pending draft exists.
 An API-created draft must be finished through the API, not edited through Partner Center.

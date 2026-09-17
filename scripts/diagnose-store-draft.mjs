@@ -6,14 +6,30 @@ import { prepareApiDraft } from './check-store-release.mjs';
 
 export function reconstructOriginal(published, current, expectedFingerprint) {
   const original = structuredClone(published);
-  for (const key of ['id', 'status', 'friendlyName']) {
+  for (const key of ['id', 'status']) {
     if (Object.hasOwn(current, key)) original[key] = current[key];
     else delete original[key];
   }
-  if (fingerprint(original) !== expectedFingerprint) {
-    throw new Error('The original draft could not be reconstructed exactly');
+  const carried = structuredClone(current);
+  carried.applicationPackages = original.applicationPackages;
+  if (carried.listings?.['en-us']?.baseListing && original.listings?.['en-us']?.baseListing) {
+    carried.listings['en-us'].baseListing.releaseNotes = original.listings['en-us'].baseListing.releaseNotes;
   }
-  return original;
+  const keys = [...new Set([...Object.keys(original), ...Object.keys(carried)])].filter((key) =>
+    !['id', 'status', 'fileUploadUrl', 'statusDetails', 'applicationPackages'].includes(key)
+    && JSON.stringify(original[key]) !== JSON.stringify(carried[key]));
+  if (keys.length > 8) throw new Error('Reconstruction exceeds the bounded observed-field search');
+  // Only values observed in the two authenticated resources participate; the original seal decides.
+  for (let mask = 0; mask < 2 ** keys.length; mask += 1) {
+    const candidate = structuredClone(original);
+    keys.forEach((key, index) => {
+      if ((mask & (1 << index)) === 0) return;
+      if (Object.hasOwn(carried, key)) candidate[key] = carried[key];
+      else delete candidate[key];
+    });
+    if (fingerprint(candidate) === expectedFingerprint) return candidate;
+  }
+  throw new Error('The original draft could not be reconstructed exactly');
 }
 
 export function differences(expected, actual, path = '') {
@@ -62,19 +78,32 @@ export function diagnose(published, current, notes) {
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  let stage = 'authentication';
   try {
     const request = await authenticatedRequest();
     const root = `https://manage.devcenter.microsoft.com/v1.0/my/applications/${TARGET.product}`;
+    stage = 'application binding';
     bindApplication(await request(root));
+    stage = 'published baseline read';
     const published = await request(`${root}/submissions/${TARGET.published}`);
+    stage = 'current draft read';
     const current = await request(`${root}/submissions/${TARGET.draft}`);
+    stage = 'sealed reconstruction and comparison';
     const notes = JSON.parse(readFileSync(new URL('../docs/releases/3.0.0-store.json', import.meta.url), 'utf8'));
     const result = diagnose(published, current, notes);
     const output = JSON.stringify(result, null, 2);
     process.stdout.write(`${output}\n`);
     appendFileSync(process.env.GITHUB_STEP_SUMMARY, `## Read-only draft difference diagnosis\n\n\`\`\`json\n${output}\n\`\`\`\n`);
-  } catch {
-    process.stderr.write('Read-only draft diagnosis failed. No mutation attempted; private response details suppressed.\n');
+  } catch (error) {
+    const safeReasons = [
+      'The original draft could not be reconstructed exactly',
+      'Reconstruction exceeds the bounded observed-field search',
+      'Diagnostic identity, status or approved baseline differs',
+      'Diagnostic difference population exceeds its bound',
+      'Unsafe diagnostic field name',
+    ];
+    const reason = safeReasons.includes(error.message) ? error.message : 'External request or response validation failed';
+    process.stderr.write(`Read-only draft diagnosis failed at ${stage}: ${reason}. No mutation attempted; private response details suppressed.\n`);
     process.exitCode = 1;
   }
 }
