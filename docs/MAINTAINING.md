@@ -1035,6 +1035,18 @@ stages and original preview flags. No proof result alone authorizes a PR or Stor
 
 ## Store release-note payloads
 
+### Inspect a stopped Store submission
+
+If creation succeeds but a later step fails, do not rerun the publisher or delete the draft.
+Dispatch **Read-only Store recovery inspection** from the default branch and approve only that
+reviewed run through the existing production environment. Its report contains the exact pending
+and last-published IDs, statuses, package versions, publication modes and content fingerprints.
+It performs only authentication and Store GET requests, keeps raw responses in process memory,
+and uploads no artifact. A failed inspection is not evidence that no pending draft exists.
+An API-created draft must be finished through the API, not edited through Partner Center.
+Any mutation requires a separately reviewed, exact-draft recovery; ordinary publishing still
+rejects pending submissions. The public release tag and qualified package source remain immutable.
+
 Each release owns `docs/releases/<application-version>-store.json` with exactly `version`, `locale`
 and `text`. Use the canonical application version, `en-us`, and concise hyphen-bullet lines of at
 most 1500 characters in total. Include important upgrade compatibility guidance; do not copy GitHub
