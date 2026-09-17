@@ -1043,6 +1043,10 @@ reviewed run through the existing production environment. Its report contains th
 and last-published IDs, statuses, package versions, publication modes and content fingerprints.
 Upload diagnostics include only the hostname, expiry and boolean checks. The path, signature,
 query string and full upload URL are never included.
+After an update passes but read-back differs, **Read-only Store draft difference diagnosis**
+can compare the fixed 3.0.0 draft without another upload, update or commit. It reconstructs the
+original only if its sealed fingerprint matches exactly, then reports changed field paths and
+hashes rather than private values. A failed reconstruction is a blocker, not permission to guess.
 It performs only authentication and Store GET requests, keeps raw responses in process memory,
 and uploads no artifact. A failed inspection is not evidence that no pending draft exists.
 An API-created draft must be finished through the API, not edited through Partner Center.
