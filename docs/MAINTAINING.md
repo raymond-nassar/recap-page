@@ -628,8 +628,8 @@ than accepting a missing value. Do not test the contract by creating a draft.
 
 ### Operate a Store update
 
-Complete the ordinary release preparation below. Publishing a non-draft, non-prerelease GitHub
-release whose tag is exactly `v<version>` starts the Store job. The environment approval is the
+Complete the ordinary release preparation below, including version-bound Store notes. Publishing a
+non-draft, non-prerelease GitHub release tagged `v<version>` starts the Store job. Approval is the
 owner's authorization to build and submit that release. Reject approval if the Store product has
 pending work or if the release was not intended as the next Store update.
 
@@ -640,10 +640,10 @@ immediate publication with rollout disabled, verify that exact draft, and commit
 Each HTTP mutation is sent once without an automatic retry policy. The create request fails rather
 than deleting an existing pending submission.
 
-A successful job summary means Partner Center accepted the submission for certification. It does
-not mean certification passed or customers can see the update. Microsoft publishes automatically
-after certification, which can take up to three business days. There is no second manual publishing
-hold and the workflow does not wait or poll.
+A successful job records Partner Center's asynchronous `CommitStarted` acknowledgement. Confirm
+later processing and certification separately; it does not prove customers can see the update.
+Microsoft publishes automatically after certification, which can take up to three business days.
+There is no second manual publishing hold and the workflow does not wait or poll.
 
 ### Recover a Store update
 
@@ -1032,3 +1032,19 @@ The existing native-only workflow input is a cheap compiler/preflight gate, not 
 certification. A complete run rebuilds its own producer artifacts at the same settled source head.
 Keep the finite approved run budget, exact input hashes, actual inner command counts, skipped
 stages and original preview flags. No proof result alone authorizes a PR or Store release.
+
+## Store release-note payloads
+
+Each release owns `docs/releases/<application-version>-store.json` with exactly `version`, `locale`
+and `text`. Use the canonical application version, `en-us`, and concise hyphen-bullet lines of at
+most 1500 characters in total. Include important upgrade compatibility guidance; do not copy GitHub
+download instructions into Store notes.
+
+Both protected workflow paths pass that file to `publish-store-update.ps1` as `ReleaseNotesPath`.
+The publisher validates the version, text and existing English base listing before creating a draft.
+It changes only that listing's release notes, preserving other languages, descriptions, images and
+unrelated settings. Exact note read-back is required before the one-time draft commit. A missing or
+ambiguous listing field is a blocker, not permission to create or substitute one.
+
+Run `node --test test/microsoft-store-release.test.js` for the payload and delivery contracts.
+Repeat the protected read-only rehearsal after changing publisher behavior, as required above.
