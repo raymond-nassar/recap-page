@@ -932,7 +932,10 @@ test('server ownership requires the listening packaged executable and server com
   }), true);
   assert.equal(invocation[0], 'powershell');
   assert.deepEqual(invocation[1].slice(0, 3), ['-NoProfile', '-NonInteractive', '-Command']);
-  assert.match(invocation[1].join(' '), /OwningProcess -eq 41/);
+  assert.match(invocation[1][3], /^\$recapProcessId = 41;\n/);
+  assert.match(invocation[1][3], /if \(Test-RecapServerOwner \$recapProcessId\)/);
+  assert.match(invocation[1][3], /Get-CimInstance Win32_Process -Filter "ProcessId = \$recapProcessId" -ErrorAction Stop/);
+  assert.doesNotMatch(invocation[1][3], /Get-NetTCPConnection|Add-Type|CodeDom|csc\.exe/);
   assert.deepEqual(invocation[2], { encoding: 'utf8', timeout: 8000, windowsHide: true });
   assert.equal(verifyServerProcess(41, {
     ...options,

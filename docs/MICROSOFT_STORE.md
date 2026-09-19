@@ -219,6 +219,12 @@ health response before opening the browser, then exits. Another activation reuse
 server. It does not bind a port, read browser storage, write package files, or make an external
 network request.
 
+Server reuse still requires the exact loopback listener, its owning process, the packaged runtime
+image and the packaged server command. The ownership query uses the inbox IP Helper API rather than
+loading the slower PowerShell network-management provider. Failed or incomplete verification remains
+unknown, not permission to reuse a foreign server. The verifier's existing eight-second limit and
+the launcher's readiness deadlines are unchanged.
+
 Three earlier activation routes were measured or evaluated:
 
 - **Direct manifest parameters** launched the correct Node command and opened the correct browser

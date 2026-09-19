@@ -13,13 +13,23 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+## 3.0.1
+
+### Keep overlapping Windows launches reliable
+
+The packaged Windows launcher checks the local server's network ownership through the Windows
+IP Helper API instead of loading the slower network-management provider. It still verifies the
+package runtime and server command, uses the same address and retains its existing deadlines.
+This addresses a server-verification error observed during overlapping starts on the newer
+Windows ARM64 environment. Your saved progress and the schema introduced in 3.0.0 are unchanged.
+
 ### Confirm automated Store submission progress
 
 Store updates now check preserved settings without rejecting documented server-only normalization,
 commit once, and observe ingestion with explicit pending, certification and failure outcomes.
 A protected catch-up option uses the corrected publisher with an already published application's
 immutable source, without replacing its tag or download. Default manual rehearsal remains read-only.
-Application version and saved reading progress are unchanged.
+The release process does not change saved reading progress.
 
 ### Recover Store publication without replacing a draft
 

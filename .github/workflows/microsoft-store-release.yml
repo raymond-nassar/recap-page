@@ -177,7 +177,7 @@ jobs:
         run: >-
           node --test .store-tooling/test/version.test.js .store-tooling/test/msix-packaging.test.js
           .store-tooling/test/wack-workflow.test.js .store-tooling/test/microsoft-store-release.test.js
-          .store-tooling/test/store-publisher.test.js
+          .store-tooling/test/store-publisher.test.js .store-tooling/test/server-ownership.test.js
 
       - name: Build the production native launchers
         timeout-minutes: 12
