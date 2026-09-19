@@ -943,7 +943,7 @@ test('server ownership requires the listening packaged executable and server com
   assert.equal(invocation[1][3], serverOwnershipCommand(41));
   assert.match(invocation[1][3], /ReadAllText\('(?:[^'\r\n]|'')*VerifyServer\.ps1'\)\)\) -recapProcessId 41 } catch/);
   assert.doesNotMatch(invocation[1][3], /Get-NetTCPConnection|Add-Type|CodeDom|csc\.exe/);
-  assert.deepEqual(invocation[2], { encoding: 'utf8', timeout: 8000, windowsHide: true });
+  assert.deepEqual(invocation[2], { encoding: 'utf8', timeout: 8000, windowsHide: true, stdio: 'pipe' });
   assert.equal(verifyServerProcess(41, {
     ...options,
     execFile: () => JSON.stringify({

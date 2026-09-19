@@ -490,9 +490,9 @@ inline SourceResolution resolveSource(const WindowFact& raw, const ProcessGraph&
 inline constexpr size_t SemanticOperationLimit = 256, SemanticRecordLimit = 16384;
 inline constexpr wchar_t SemanticAumid[] = L"PanelStackLabs.RecapPage_we33aa8nvkpcc!App";
 inline constexpr wchar_t SemanticListenerScript[] = LR"SEM($row = Get-NetTCPConnection -State Listen -ErrorAction Stop | Where-Object { $_.LocalAddress -eq '127.0.0.1' -and $_.LocalPort -eq 8787 } | Select-Object -First 1; if ($row) { $row.OwningProcess })SEM";
-inline constexpr wchar_t ServerVerifierPrefix[] = LR"OWN(try { & ([ScriptBlock]::Create([IO.File]::ReadAllText(')OWN";
+inline constexpr wchar_t ServerVerifierPrefix[] = LR"OWN(try { Write-Output ('RCPV1 language '+$ExecutionContext.SessionState.LanguageMode); Write-Output 'RCPV1 loader enter 0 -1'; & ([ScriptBlock]::Create([IO.File]::ReadAllText(')OWN";
 inline constexpr wchar_t ServerVerifierMiddle[] = LR"OWN('))) -recapProcessId )OWN";
-inline constexpr wchar_t ServerVerifierSuffix[] = LR"OWN( } catch { [Console]::Error.WriteLine('Server ownership query failed.'); exit 1 })OWN";
+inline constexpr wchar_t ServerVerifierSuffix[] = LR"OWN( } catch { Write-Output 'RCPV1 loader exception -1 -1'; exit 1 })OWN";
 inline bool serverVerifierScript(const std::wstring& script, const std::wstring& layout) {
     const std::wstring prefix = ServerVerifierPrefix, middle = ServerVerifierMiddle, suffix = ServerVerifierSuffix;
     if (script.size() > 32768 || script.size() < prefix.size() + middle.size() + suffix.size() + 1 ||

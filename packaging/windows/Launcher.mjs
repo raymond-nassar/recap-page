@@ -83,16 +83,121 @@ export async function probeServer(
     }
     const processId = Number(response.headers.get(SERVER_PROCESS_HEADER));
     if (!Number.isInteger(processId) || processId <= 0) return { status: 'foreign' };
-    const ownership = await verifyProcess(processId);
+    let diagnostic;
+    const ownership = await verifyProcess(processId, {
+      onDiagnostic: (value) => { diagnostic = cleanVerificationDiagnostic(value); },
+    });
     if (ownership === true) return { status: 'ready', processId };
-    if (ownership === false) return { status: 'foreign' };
-    return { status: 'verifying', processId };
+    const detail = diagnostic ? { diagnostic } : {};
+    if (ownership === false) return { status: 'foreign', ...detail };
+    return { status: 'verifying', processId, ...detail };
   } finally {
     clearTimeout(timer);
   }
 }
 
 export const SERVER_OWNERSHIP_HELPER = join(ROOT, 'VerifyServer.ps1');
+const VERIFIER_STAGES = new Set(['process', 'loader', 'interop', 'ip-size', 'ip-query', 'ip-decode', 'ip-owner', 'wmi', 'identity']);
+const VERIFIER_REASONS = new Set(['spawn', 'timeout', 'exception', 'native-return', 'invalid-buffer', 'missing', 'mismatch', 'invalid-response', 'not-owned']);
+const VERIFIER_ENTRY_STAGES = new Set(['loader', 'interop', 'ip-size', 'ip-query', 'ip-decode', 'wmi']);
+const VERIFIER_LANGUAGES = new Set(['Unknown', 'FullLanguage', 'ConstrainedLanguage', 'RestrictedLanguage', 'NoLanguage']);
+
+function diagnosticNumber(value) {
+  return Number.isInteger(value) && value >= -2147483648 && value <= 0xffffffff;
+}
+
+function cleanVerificationDiagnostic(value) {
+  if (!value || !VERIFIER_STAGES.has(value.stage) || !VERIFIER_REASONS.has(value.reason)
+      || !diagnosticNumber(value.exit) || !diagnosticNumber(value.code)
+      || !Number.isInteger(value.elapsed) || value.elapsed < 0 || value.elapsed > 2147483647
+      || ![-1, 0, 1].includes(value.node64) || ![-1, 0, 1].includes(value.ps64)
+      || !VERIFIER_LANGUAGES.has(value.language ?? 'Unknown')) return undefined;
+  const { stage, reason, exit, code, elapsed, node64, ps64 } = value;
+  return { stage, reason, exit, code, elapsed, node64, ps64, language: value.language ?? 'Unknown' };
+}
+
+export function verificationDiagnosticLine(value) {
+  const fact = cleanVerificationDiagnostic(value);
+  return fact
+    ? `Verification diagnostic: stage=${fact.stage} reason=${fact.reason} exit=${fact.exit} code=${fact.code} elapsed=${fact.elapsed} node64=${fact.node64} ps64=${fact.ps64} language=${fact.language}`
+    : null;
+}
+
+function verificationDiagnosticLines(value) {
+  const line = verificationDiagnosticLine(value);
+  return line ? [line] : [];
+}
+
+function verifierPacket(value) {
+  if (Buffer.isBuffer(value)) {
+    if (value.length > 128) return null;
+    value = value.toString('utf8');
+  }
+  if (typeof value !== 'string' || value.length > 128) return null;
+  const match = /^RCPV1 ([a-z-]+) ([a-z-]+) (-?(?:0|[1-9]\d{0,9})) (-1|4|8)(?:\r?\n)?$/.exec(value);
+  if (!match || match[0] !== value || !VERIFIER_STAGES.has(match[1])
+      || !(VERIFIER_REASONS.has(match[2]) || match[2] === 'enter' && VERIFIER_ENTRY_STAGES.has(match[1]) && match[3] === '0')
+      || !diagnosticNumber(Number(match[3])) || String(Number(match[3])) !== match[3]) return null;
+  if (match[4] === '-1' && !(match[1] === 'loader'
+      && (match[2] === 'enter' && match[3] === '0' || match[2] === 'exception' && match[3] === '-1'))) return null;
+  return { stage: match[1], reason: match[2], code: Number(match[3]), ps64: match[4] === '8' ? 1 : match[4] === '4' ? 0 : -1 };
+}
+
+function verifierTranscript(value) {
+  const result = { entry: null, failure: null };
+  if (Buffer.isBuffer(value)) {
+    if (value.length >= 1024) return result;
+    value = value.toString('utf8');
+  }
+  if (typeof value !== 'string' || value.length >= 1024 || Buffer.byteLength(value, 'utf8') >= 1024) return result;
+  const lines = value.split(/\r?\n/);
+  if (lines.at(-1) === '') lines.pop();
+  if (lines.length > 7) return result;
+  let valid = true;
+  for (const [index, line] of lines.entries()) {
+    const packet = verifierPacket(line);
+    if (!packet) {
+      valid = false;
+    } else if (packet.reason === 'enter') {
+      result.entry = packet;
+    } else if (!result.failure && index === lines.length - 1) {
+      result.failure = packet;
+    } else {
+      valid = false;
+    }
+  }
+  if (!valid) result.failure = null;
+  return result;
+}
+
+function verifierOutput(value) {
+  const result = { valid: true, framed: false, payload: '', language: 'Unknown', entry: null, failure: null };
+  if (value == null) return result;
+  if (Buffer.isBuffer(value)) value = value.toString('utf8');
+  if (typeof value !== 'string') return { ...result, valid: false };
+  let offset = 0;
+  let frames = 0;
+  let languages = 0;
+  while (value.startsWith('RCPV1 ', offset)) {
+    const end = value.indexOf('\n', offset);
+    if (end < 0 || end - offset > 128 || ++frames > 4 || end + 1 >= 1024) return { ...result, valid: false };
+    const line = value.slice(offset, end).replace(/\r$/, '');
+    const mode = /^RCPV1 language (FullLanguage|ConstrainedLanguage|RestrictedLanguage|NoLanguage)$/.exec(line);
+    if (mode && mode[0] === line && ++languages <= 2 && !result.failure) {
+      result.language = mode[1];
+    } else {
+      const packet = verifierPacket(line);
+      if (!packet || packet.stage !== 'loader' || packet.ps64 !== -1 || result.failure) return { ...result, valid: false };
+      if (packet.reason === 'enter') result.entry = packet;
+      else if (packet.reason === 'exception') result.failure = packet;
+      else return { ...result, valid: false };
+    }
+    result.framed = true;
+    offset = end + 1;
+  }
+  result.payload = value.slice(offset).trim();
+  return result;
+}
 
 function validProcessId(processId) {
   return Number.isInteger(processId) && processId > 0 && processId <= 0xffffffff;
@@ -101,7 +206,7 @@ function validProcessId(processId) {
 export function serverOwnershipCommand(processId, helperPath = SERVER_OWNERSHIP_HELPER) {
   if (!validProcessId(processId)) throw new RangeError('Invalid server process ID.');
   const literal = helperPath.replaceAll("'", "''");
-  return `try { & ([ScriptBlock]::Create([IO.File]::ReadAllText('${literal}'))) -recapProcessId ${processId} } catch { [Console]::Error.WriteLine('Server ownership query failed.'); exit 1 }`;
+  return `try { Write-Output ('RCPV1 language '+$ExecutionContext.SessionState.LanguageMode); Write-Output 'RCPV1 loader enter 0 -1'; & ([ScriptBlock]::Create([IO.File]::ReadAllText('${literal}'))) -recapProcessId ${processId} } catch { Write-Output 'RCPV1 loader exception -1 -1'; exit 1 }`;
 }
 
 export function verifyServerProcess(
@@ -110,25 +215,87 @@ export function verifyServerProcess(
     executable = process.execPath,
     server = join(ROOT, 'server.mjs'),
     execFile = execFileSync,
+    onDiagnostic,
   } = {},
 ) {
-  if (!validProcessId(processId)) return false;
+  const started = performance.now();
+  let language = 'Unknown';
+  onDiagnostic?.(null);
+  const report = (stage, reason, exit = -1, code = -1, ps64 = -1) => {
+    onDiagnostic?.({
+      stage, reason, exit: diagnosticNumber(exit) ? exit : -1,
+      code: diagnosticNumber(code) ? code : -1,
+      elapsed: Math.min(2147483647, Math.max(0, Math.round(performance.now() - started))),
+      node64: ['x64', 'arm64'].includes(process.arch) ? 1 : ['ia32', 'arm'].includes(process.arch) ? 0 : -1,
+      ps64, language,
+    });
+  };
+  if (!validProcessId(processId)) {
+    report('identity', 'invalid-response');
+    return false;
+  }
   const script = serverOwnershipCommand(processId);
+  let raw;
   try {
-    const raw = execFile(
+    raw = execFile(
       'powershell',
       ['-NoProfile', '-NonInteractive', '-Command', script],
       {
         encoding: 'utf8',
         timeout: 8000,
         windowsHide: true,
+        stdio: 'pipe',
       },
-    ).trim();
-    if (!raw) return false;
+    );
+  } catch (error) {
+    const output = verifierOutput(error?.stdout);
+    language = output.language;
+    const transcript = verifierTranscript(error?.stderr);
+    const entry = transcript.entry ?? output.entry;
+    const failure = transcript.failure ?? (output.valid ? output.failure : null);
+    if (error?.code === 'ETIMEDOUT') {
+      report(entry?.stage ?? 'process', 'timeout', error?.status, -1, entry?.ps64 ?? -1);
+    } else if (['ENOENT', 'EACCES', 'EPERM', 'ENOEXEC', 'ENOTDIR'].includes(error?.code)) {
+      report('process', 'spawn', error?.status, error?.errno);
+    } else if (failure) {
+      report(failure.stage, failure.reason, error?.status, failure.code, failure.ps64);
+    } else if (entry) {
+      report(entry.stage, 'exception', error?.status, -1, entry.ps64);
+    } else {
+      report('process', error?.stderr?.length || !output.valid ? 'invalid-response' : 'exception', error?.status);
+    }
+    return null;
+  }
+  const output = verifierOutput(raw);
+  language = output.language;
+  if (!output.valid || output.failure || output.framed && !output.payload) {
+    report(output.failure?.stage ?? 'identity', output.failure?.reason ?? 'invalid-response', 0);
+    return null;
+  }
+  raw = output.payload;
+  if (!raw) {
+    report('identity', 'missing', 0);
+    return false;
+  }
+  try {
     const candidate = JSON.parse(raw);
-    return candidate.ExecutablePath?.toLowerCase() === executable.toLowerCase()
+    if (!candidate || typeof candidate !== 'object' || Array.isArray(candidate)) throw new Error('Invalid verifier response.');
+    if (Object.hasOwn(candidate, 'VerifierDiagnostic')) {
+      const packet = verifierPacket(candidate.VerifierDiagnostic);
+      if (Object.keys(candidate).length !== 1 || !packet || packet.code !== 0
+          || !(packet.stage === 'ip-owner' && packet.reason === 'not-owned'
+            || packet.stage === 'wmi' && packet.reason === 'missing')) throw new Error('Invalid verifier response.');
+      report(packet.stage, packet.reason, 0, packet.code, packet.ps64);
+      return false;
+    }
+    const owned = candidate.ExecutablePath?.toLowerCase() === executable.toLowerCase()
       && candidate.CommandLine?.toLowerCase().includes(server.toLowerCase());
+    if (owned === true) return true;
+    const ps64 = candidate.VerifierPointerBytes === 8 ? 1 : candidate.VerifierPointerBytes === 4 ? 0 : -1;
+    report('identity', candidate.ExecutablePath == null || candidate.CommandLine == null ? 'missing' : 'mismatch', 0, -1, ps64);
+    return owned === false ? false : null;
   } catch {
+    report('identity', 'invalid-response', 0);
     return null;
   }
 }
@@ -344,6 +511,7 @@ export async function coordinateLaunch({
       lines: [
         'Recap Page answered, but Windows could not verify its server process.',
         'Try starting Recap Page again. If this continues, restart Windows.',
+        ...verificationDiagnosticLines(state.diagnostic),
       ],
     };
   }
@@ -419,6 +587,7 @@ export async function coordinateLaunch({
       lines: [
         'Recap Page answered, but Windows could not verify its server process.',
         'Try starting Recap Page again. If this continues, restart Windows.',
+        ...verificationDiagnosticLines(state.diagnostic),
       ],
     };
   }
@@ -440,6 +609,7 @@ export async function coordinateLaunch({
         'Close that program, then start Recap Page again.',
         'Do not start Recap Page on a different port. Your reading progress is stored at',
         `${ORIGIN}/ and another port opens a separate browser storage location.`,
+        ...verificationDiagnosticLines(state.diagnostic),
       ],
     };
   }
