@@ -160,6 +160,9 @@ jobs:
           if ($LASTEXITCODE -ne 0 -or $tagCommit -ne $env:SOURCE_SHA) {
             throw 'The checked-out commit does not match the published release tag.'
           }
+          if ($env:GITHUB_EVENT_NAME -eq 'release' -and $tagCommit -ne $env:GITHUB_SHA) {
+            throw 'The release tag changed after the published event.'
+          }
           git fetch --no-tags origin $env:DEFAULT_BRANCH
           if ($LASTEXITCODE -ne 0) {
             throw 'The default branch could not be fetched for provenance validation.'

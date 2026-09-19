@@ -426,6 +426,8 @@ test('catch-up submission binds immutable application source separately from rev
   assert.match(metadata, /gh api "repos\/\$env:GITHUB_REPOSITORY\/releases\/tags\/\$env:RELEASE_TAG"/);
   assert.match(metadata, /DISPATCH_MODE -ne 'Validate' -or \$env:RELEASE_TAG -or \$env:EXPECTED_SOURCE_SHA/);
   assert.match(step('Prove release commit provenance'), /git merge-base --is-ancestor/);
+  assert.match(step('Prove release commit provenance'),
+    /GITHUB_EVENT_NAME -eq 'release' -and \$tagCommit -ne \$env:GITHUB_SHA/);
   assert.match(step('Submit one Store update'), /\.\/\.store-tooling\/scripts\/publish-store-update\.ps1/);
   assert.doesNotMatch(workflow, /gh release create|git tag|git push|cancel-in-progress: true/);
 });
