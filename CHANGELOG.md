@@ -18,7 +18,7 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 ### Keep overlapping Windows launches reliable
 
 The packaged Windows launcher checks the local server's network ownership through the Windows
-IP Helper API instead of loading the slower network-management provider. It still verifies the
+IP Helper and WMI APIs instead of loading network-management and CIM cmdlet modules. It still verifies the
 package runtime and server command, uses the same address and retains its existing deadlines.
 This addresses a server-verification error observed during overlapping starts on the newer
 Windows ARM64 environment. Your saved progress and the schema introduced in 3.0.0 are unchanged.

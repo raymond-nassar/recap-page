@@ -52,7 +52,7 @@ function closingStartupInputs(installed) {
   if (!evidence) throw new Error('mandatory installed startup inputs are missing');
   const snapshot = bindInstalledInputs(installed.InstallLocation, evidence.variant);
   if (snapshot.digest !== evidence.snapshot.digest) throw new Error('installed startup inputs changed');
-  console.log('DIAG installed-startup-inputs files=9 matched=9 snapshot=complete');
+  console.log(`DIAG installed-startup-inputs files=${snapshot.files} matched=${snapshot.files} snapshot=complete`);
   return snapshot;
 }
 
@@ -272,7 +272,7 @@ function installPackage(
   }
   const snapshot = bindInstalledInputs(installed.InstallLocation, startup.variant);
   installedStartup.set(installed.InstallLocation, { ...startup, snapshot });
-  console.log('DIAG installed-startup-inputs files=9 matched=9 snapshot=complete');
+  console.log(`DIAG installed-startup-inputs files=${snapshot.files} matched=${snapshot.files} snapshot=complete`);
   return installed;
 }
 
@@ -615,6 +615,7 @@ async function generation() {
 const INSTALLED_LAUNCHER_FILES = Object.freeze([
   Object.freeze(['runtime', 'node.exe']),
   Object.freeze(['Launcher.mjs']),
+  Object.freeze(['VerifyServer.ps1']),
   Object.freeze(['server.mjs']),
   Object.freeze(['src', 'msix-generation.json']),
 ]);

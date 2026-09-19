@@ -138,7 +138,7 @@ function startupLayoutFixture() {
     close() { rmSync(root, { recursive: true, force: true }); },
   };
 }
-async function populateStartupLayout(fixture, architecture = 'x64', version = '2.0.3.0') {
+async function populateStartupLayout(fixture, architecture = 'x64', version = '2.0.3.0', beforeBuild = () => {}) {
   const { SOURCE_FILES, startupSourceInputs, hashBytes, buildStartupVariant } = await import('../scripts/lib/startup-contract.mjs');
   for (const [path, source] of SOURCE_FILES) fixture.put(path, readFileSync(join(ROOT, ...source.split('/'))));
   fixture.put('AppxManifest.xml', read(MANIFEST).replace(/Version="[^"]+"/, `Version="${version}"`)
@@ -149,6 +149,7 @@ async function populateStartupLayout(fixture, architecture = 'x64', version = '2
   fixture.put('native-build.json', nativeBytes);
   fixture.put('src/msix-generation.json', JSON.stringify({ packageVersion: version, generation: 'a'.repeat(64) }));
   const native = { digest: hashBytes(nativeBytes), record: { outputs: [{ architecture, sha256: hashBytes(Buffer.from('native-fixture')) }] } };
+  beforeBuild();
   return buildStartupVariant({ layout: fixture.root, architecture, version, native,
     nodeHash: hashBytes(Buffer.from('node-fixture')), sourceInputs: startupSourceInputs(ROOT) });
 }
@@ -161,12 +162,12 @@ test('startup expectations bind three package variants and reject an unlisted ex
       const variant = await populateStartupLayout(fixture, architecture, version);
       assert.equal(variant.identity.architecture, architecture);
       assert.equal(variant.identity.version, version);
-      assert.equal(variant.files.length, 9);
+      assert.equal(variant.files.length, 10);
     } finally { fixture.close(); }
   }
   const fixture = startupLayoutFixture();
   try {
-    for (const path of ['packaging/windows/Launcher.mjs', 'server.mjs', 'src/js/lib/coverHost.js', 'src/js/lib/localServer.js']) {
+    for (const path of ['packaging/windows/Launcher.mjs', 'packaging/windows/VerifyServer.ps1', 'server.mjs', 'src/js/lib/coverHost.js', 'src/js/lib/localServer.js']) {
       fixture.put(path, readFileSync(join(ROOT, ...path.split('/'))));
     }
     fixture.put('server.mjs', read(join(ROOT, 'server.mjs')) + "\nimport './unexpected.mjs';\n");
@@ -201,7 +202,7 @@ export { apparentImport, apparentRequire };
       .replace(/^import /gm, '  import /* declaration */ ')
       .replace("import('node:child_process')", "import /* dynamic */ ('node:child_process')")
       + "\nexport { readFile as nativeRead } from 'node:fs/promises';\n");
-    assert.equal(startupSourceInputs(fixture.root).length, 4);
+    assert.equal(startupSourceInputs(fixture.root).length, 5);
     t.diagnostic('startup-source-syntax fixtures=8 rejected=7 allowed=1 modules-executed=0');
   } finally { fixture.close(); }
 });
@@ -211,7 +212,7 @@ test('installed startup bindings reject altered inputs activation ambiguity and 
   const fixture = startupLayoutFixture();
   try {
     const variant = await populateStartupLayout(fixture);
-    assert.equal(bindInstalledInputs(fixture.root, variant).files, 9);
+    assert.equal(bindInstalledInputs(fixture.root, variant).files, 10);
     for (const input of variant.files) {
       const file = join(fixture.root, ...input.path.split('/'));
       const bytes = readFileSync(file);
@@ -219,6 +220,13 @@ test('installed startup bindings reject altered inputs activation ambiguity and 
       assert.throws(() => bindInstalledInputs(fixture.root, variant), /input-mismatch/);
       fixture.put(input.path, bytes);
     }
+    const helper = join(fixture.root, 'VerifyServer.ps1');
+    const helperBytes = readFileSync(helper);
+    rmSync(helper);
+    assert.throws(() => bindInstalledInputs(fixture.root, variant), /input-missing/);
+    fixture.put('VerifyServer.ps1', helperBytes);
+    await assert.rejects(populateStartupLayout(fixture, 'x64', '2.0.3.0',
+      () => fixture.put('VerifyServer.ps1', 'changed before package inspection')), /input-mismatch/);
     assert.throws(() => validateActivationManifest(read(MANIFEST) + '<Application Id="extra">', 'x64', '2.0.2.0'), /input-mismatch/);
     assert.throws(() => boundedFile(fixture.root, '../escaped'), /input-mismatch/);
     assert.throws(() => validateExpectations({ schemaVersion: 2 }, {
@@ -914,7 +922,7 @@ test('the coordinator health probe requires identity and exact generation', asyn
 });
 
 test('server ownership requires the listening packaged executable and server command', async () => {
-  const { verifyServerProcess } = await import('../packaging/windows/Launcher.mjs');
+  const { verifyServerProcess, serverOwnershipCommand } = await import('../packaging/windows/Launcher.mjs');
   let invocation;
   const options = {
     executable: 'C:\\Package\\runtime\\node.exe',
@@ -932,9 +940,8 @@ test('server ownership requires the listening packaged executable and server com
   }), true);
   assert.equal(invocation[0], 'powershell');
   assert.deepEqual(invocation[1].slice(0, 3), ['-NoProfile', '-NonInteractive', '-Command']);
-  assert.match(invocation[1][3], /^\$recapProcessId = 41;\n/);
-  assert.match(invocation[1][3], /if \(Test-RecapServerOwner \$recapProcessId\)/);
-  assert.match(invocation[1][3], /Get-CimInstance Win32_Process -Filter "ProcessId = \$recapProcessId" -ErrorAction Stop/);
+  assert.equal(invocation[1][3], serverOwnershipCommand(41));
+  assert.match(invocation[1][3], /ReadAllText\('(?:[^'\r\n]|'')*VerifyServer\.ps1'\)\)\) -recapProcessId 41 } catch/);
   assert.doesNotMatch(invocation[1][3], /Get-NetTCPConnection|Add-Type|CodeDom|csc\.exe/);
   assert.deepEqual(invocation[2], { encoding: 'utf8', timeout: 8000, windowsHide: true });
   assert.equal(verifyServerProcess(41, {
@@ -1250,7 +1257,7 @@ test('busy-port proof captures the installed supervisor without Windows Terminal
           root: stagingRoot,
           executable: join(stagingRoot, 'runtime', 'node.exe'),
           launcher: join(stagingRoot, 'Launcher.mjs'),
-          files: ['runtime\\node.exe', 'Launcher.mjs', 'server.mjs', 'src\\msix-generation.json'],
+          files: ['runtime\\node.exe', 'Launcher.mjs', 'VerifyServer.ps1', 'server.mjs', 'src\\msix-generation.json'],
         };
       },
       spawnImpl: (...args) => {
@@ -1425,6 +1432,7 @@ test('busy-port proof stages only the exact installed launcher inputs', async ()
   const relativeFiles = [
     ['runtime', 'node.exe'],
     ['Launcher.mjs'],
+    ['VerifyServer.ps1'],
     ['server.mjs'],
     ['src', 'msix-generation.json'],
   ];

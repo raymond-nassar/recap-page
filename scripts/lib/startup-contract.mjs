@@ -13,12 +13,13 @@ export const CREATION_TESTS = Object.freeze([
   'test/msix-packaging.test.js', 'test/server-contract.test.js', 'test/startup-contract.test.js',
 ]);
 export const STARTUP_FILES = Object.freeze([
-  'AppxManifest.xml', 'RecapPageLauncher.exe', 'runtime/node.exe', 'Launcher.mjs',
+  'AppxManifest.xml', 'RecapPageLauncher.exe', 'runtime/node.exe', 'Launcher.mjs', 'VerifyServer.ps1',
   'server.mjs', 'src/js/lib/coverHost.js', 'src/js/lib/localServer.js',
   'native-build.json', 'src/msix-generation.json',
 ]);
 export const SOURCE_FILES = Object.freeze([
   ['Launcher.mjs', 'packaging/windows/Launcher.mjs'],
+  ['VerifyServer.ps1', 'packaging/windows/VerifyServer.ps1'],
   ['server.mjs', 'server.mjs'],
   ['src/js/lib/coverHost.js', 'src/js/lib/coverHost.js'],
   ['src/js/lib/localServer.js', 'src/js/lib/localServer.js'],
@@ -108,6 +109,7 @@ export function startupSourceInputs(root = ROOT) {
   const linter = new Linter();
   const inputs = SOURCE_FILES.map(([path, source]) => ({ ...boundedFile(root, source), path }));
   for (const [path, source] of SOURCE_FILES) {
+    if (path === 'VerifyServer.ps1') continue;
     const text = readFileSync(join(root, ...source.split('/')), 'utf8');
     const imports = [];
     const dynamic = [];

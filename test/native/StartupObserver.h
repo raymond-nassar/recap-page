@@ -490,72 +490,29 @@ inline SourceResolution resolveSource(const WindowFact& raw, const ProcessGraph&
 inline constexpr size_t SemanticOperationLimit = 256, SemanticRecordLimit = 16384;
 inline constexpr wchar_t SemanticAumid[] = L"PanelStackLabs.RecapPage_we33aa8nvkpcc!App";
 inline constexpr wchar_t SemanticListenerScript[] = LR"SEM($row = Get-NetTCPConnection -State Listen -ErrorAction Stop | Where-Object { $_.LocalAddress -eq '127.0.0.1' -and $_.LocalPort -eq 8787 } | Select-Object -First 1; if ($row) { $row.OwningProcess })SEM";
-inline constexpr wchar_t ServerOwnershipBody[] = LR"OWN($ErrorActionPreference = 'Stop'
-try {
-$assembly = [AppDomain]::CurrentDomain.DefineDynamicAssembly([Reflection.AssemblyName]::new('RecapPageTcpOwner'), [Reflection.Emit.AssemblyBuilderAccess]::Run)
-$module = $assembly.DefineDynamicModule('RecapPageTcpOwner')
-$native = $module.DefineType('Native', 'Public,Sealed,Abstract')
-$parameters = [Type[]]@([IntPtr], [uint32].MakeByRefType(), [int32], [uint32], [int32], [uint32])
-$method = $native.DefinePInvokeMethod('GetExtendedTcpTable', 'iphlpapi.dll', 'Public,Static,PinvokeImpl', 'Standard', [uint32], $parameters, 'Winapi', 'Ansi')
-$method.SetImplementationFlags($method.GetMethodImplementationFlags() -bor [Reflection.MethodImplAttributes]::PreserveSig)
-$nativeType = $native.CreateType()
-$row = $module.DefineType('Row', 'Public,SequentialLayout,Sealed', [ValueType])
-foreach ($field in @('State', 'LocalAddress', 'LocalPort', 'RemoteAddress', 'RemotePort', 'OwningPid')) {
-  [void]$row.DefineField($field, [uint32], 'Public')
-}
-$rowType = $row.CreateType()
-$table = $module.DefineType('Table', 'Public,SequentialLayout,Sealed', [ValueType])
-[void]$table.DefineField('Count', [uint32], 'Public')
-[void]$table.DefineField('First', $rowType, 'Public')
-$tableType = $table.CreateType()
-$rowOffset = [Runtime.InteropServices.Marshal]::OffsetOf($tableType, 'First').ToInt32()
-$rowSize = [Runtime.InteropServices.Marshal]::SizeOf([type]$rowType)
-$loopback = [BitConverter]::ToUInt32([byte[]]@(127, 0, 0, 1), 0)
-$serverPort = 8787
-$maxTableBytes = 16777216
-function Test-RecapListener([IntPtr]$buffer, [uint32]$size, [uint32]$ownerId) {
-  if ($buffer -eq [IntPtr]::Zero -or $size -lt $rowOffset -or $size -gt $maxTableBytes) {
-    throw 'Invalid TCP listener buffer.'
-  }
-  $count = [uint32][Runtime.InteropServices.Marshal]::ReadInt32($buffer)
-  if ($count -gt (($size - $rowOffset) / $rowSize)) { throw 'Invalid TCP listener row count.' }
-  for ($index = 0; $index -lt $count; $index++) {
-    $position = [IntPtr]::Add($buffer, $rowOffset + $index * $rowSize)
-    $entry = [Runtime.InteropServices.Marshal]::PtrToStructure($position, [type]$rowType)
-    $portBytes = [BitConverter]::GetBytes($entry.LocalPort)
-    $port = ([int]$portBytes[0] -shl 8) -bor [int]$portBytes[1]
-    if ($entry.State -eq 2 -and $entry.LocalAddress -eq $loopback -and $port -eq $serverPort -and $entry.OwningPid -eq $ownerId) {
-      return $true
+inline constexpr wchar_t ServerVerifierPrefix[] = LR"OWN(try { & ([ScriptBlock]::Create([IO.File]::ReadAllText(')OWN";
+inline constexpr wchar_t ServerVerifierMiddle[] = LR"OWN('))) -recapProcessId )OWN";
+inline constexpr wchar_t ServerVerifierSuffix[] = LR"OWN( } catch { [Console]::Error.WriteLine('Server ownership query failed.'); exit 1 })OWN";
+inline bool serverVerifierScript(const std::wstring& script, const std::wstring& layout) {
+    const std::wstring prefix = ServerVerifierPrefix, middle = ServerVerifierMiddle, suffix = ServerVerifierSuffix;
+    if (script.size() > 32768 || script.size() < prefix.size() + middle.size() + suffix.size() + 1 ||
+        script.compare(0, prefix.size(), prefix) || script.compare(script.size() - suffix.size(), suffix.size(), suffix))
+        return false;
+    const auto split = script.rfind(middle, script.size() - suffix.size());
+    if (split == std::wstring::npos || split < prefix.size()) return false;
+    const auto pid = script.substr(split + middle.size(), script.size() - suffix.size() - split - middle.size());
+    if (pid.empty() || pid.size() > 10 || pid[0] == L'0' || pid.find_first_not_of(L"0123456789") != std::wstring::npos) return false;
+    if (std::stoull(pid) > MAXDWORD) return false;
+    std::wstring expected;
+    for (const auto value : layout + L"\\VerifyServer.ps1") {
+        expected += value;
+        if (value == L'\'') expected += value;
     }
-  }
-  return $false
+    const auto path = script.substr(prefix.size(), split - prefix.size());
+    return path.size() == expected.size() &&
+        CompareStringOrdinal(path.data(), static_cast<int>(path.size()), expected.data(),
+                             static_cast<int>(expected.size()), TRUE) == CSTR_EQUAL;
 }
-function Test-RecapServerOwner([uint32]$ownerId) {
-  $size = [uint32]0
-  $result = $nativeType::GetExtendedTcpTable([IntPtr]::Zero, [ref]$size, 0, 2, 3, 0)
-  if ($result -ne 122) { throw 'TCP listener size query failed.' }
-  if ($size -lt $rowOffset -or $size -gt $maxTableBytes) { throw 'Invalid TCP listener table size.' }
-  $capacity = $size
-  $buffer = [Runtime.InteropServices.Marshal]::AllocHGlobal([int]$capacity)
-  try {
-    $result = $nativeType::GetExtendedTcpTable($buffer, [ref]$size, 0, 2, 3, 0)
-    if ($result -ne 0) { throw 'TCP listener query failed.' }
-    if ($size -gt $capacity) { throw 'TCP listener table grew.' }
-    return (Test-RecapListener $buffer $size $ownerId)
-  } finally {
-    [Runtime.InteropServices.Marshal]::FreeHGlobal($buffer)
-  }
-}
-if (Test-RecapServerOwner $recapProcessId) {
-  $process = Get-CimInstance Win32_Process -Filter "ProcessId = $recapProcessId" -ErrorAction Stop
-  if ($process) {
-    $process | Select-Object ExecutablePath,CommandLine | ConvertTo-Json -Compress
-  }
-}
-} catch {
-  [Console]::Error.WriteLine('Server ownership query failed.')
-  exit 1
-})OWN";
 inline constexpr wchar_t SemanticPackagePrefix[] = L"$since = [datetime]'";
 inline constexpr wchar_t SemanticPackageSuffix[] = LR"SEM('; $rows = Get-CimInstance Win32_Process | ForEach-Object { $created = [datetime]$_.CreationDate; if ($created -ge $since) { [pscustomobject]@{ Name = $_.Name; ProcessId = $_.ProcessId; ParentProcessId = $_.ParentProcessId; ExecutablePath = $_.ExecutablePath; CreationDate = $created.ToString("o"); CommandLine = $_.CommandLine } } }; @($rows) | ConvertTo-Json -Compress)SEM";
 inline constexpr wchar_t SemanticPackageInfoScript[] = LR"SEM($p = Get-AppxPackage -Name 'PanelStackLabs.RecapPage' | Where-Object PackageFamilyName -eq 'PanelStackLabs.RecapPage_we33aa8nvkpcc' | Sort-Object Version -Descending | Select-Object -First 1; if (-not $p) { "null"; exit 0 }; $p | Select-Object Name,PackageFullName,PackageFamilyName,InstallLocation,Version | ConvertTo-Json -Compress)SEM";
@@ -2938,16 +2895,6 @@ public:
                 ? value.end.exitCode <= 1 : value.end.exitCode == (evidence.profile == startup::Profile::busy ? 1UL : 0UL));
             facts[node] = fact;
         }
-        const auto verifierScript = [](const std::wstring& script) {
-            const std::wstring prefix = L"$recapProcessId = ";
-            if (script.compare(0, prefix.size(), prefix)) return false;
-            const auto end = script.find(L";\n", prefix.size());
-            if (end == std::wstring::npos) return false;
-            const auto pid = script.substr(prefix.size(), end - prefix.size());
-            if (pid.empty() || pid.size() > 10 || pid[0] == L'0' || pid.find_first_not_of(L"0123456789") != std::wstring::npos) return false;
-            if (std::stoull(pid) > MAXDWORD) return false;
-            return script == prefix + pid + L";\n" + ServerOwnershipBody;
-        };
         std::set<size_t> external;
         for (size_t turn = 0; turn <= graph.instances.size(); ++turn) {
             bool changed = false;
@@ -2986,7 +2933,7 @@ public:
                 } else if (roles[parent] == startup::Role::coordinator && recap::samePath(image, host.verifier)) {
                     fact.role = startup::Role::verifier;
                     fact.arguments = args.size() == 5 && args[1] == L"-NoProfile" && args[2] == L"-NonInteractive" &&
-                        args[3] == L"-Command" && verifierScript(args[4]);
+                        args[3] == L"-Command" && serverVerifierScript(args[4], layout);
                 } else if (roles[parent] == startup::Role::coordinator && recap::samePath(image, host.command)) {
                     fact.role = startup::Role::command;
                     fact.arguments = args.size() == 5 && args[1] == L"/c" && args[2] == L"start" &&

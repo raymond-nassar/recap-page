@@ -2,10 +2,16 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
 import { createServer } from 'node:net';
-import { readFileSync } from 'node:fs';
-import { verifyServerProcess } from '../packaging/windows/Launcher.mjs';
+import { mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import {
+  SERVER_OWNERSHIP_HELPER, serverOwnershipCommand, verifyServerProcess,
+} from '../packaging/windows/Launcher.mjs';
 
 const windowsOnly = { skip: process.platform !== 'win32' };
+const helperSource = readFileSync(SERVER_OWNERSHIP_HELPER, 'utf8').replaceAll('\r\n', '\n');
 const identity = {
   executable: 'C:\\Package\\runtime\\node.exe',
   server: 'C:\\Package\\server.mjs',
@@ -29,10 +35,10 @@ function replaceOnce(source, before, after) {
 }
 
 function generatedSetup() {
-  const script = generatedScript();
+  const script = helperSource;
   const end = script.indexOf('if (Test-RecapServerOwner $recapProcessId) {');
   assert.ok(end > 0, 'The production verifier must contain the IP Helper implementation');
-  return script.slice(0, end);
+  return script.slice(script.indexOf("$ErrorActionPreference = 'Stop'"), end);
 }
 
 function runFixture(source, harness) {
@@ -42,20 +48,43 @@ function runFixture(source, harness) {
   ], { encoding: 'utf8', timeout: 8000, windowsHide: true }).trim();
 }
 
-test('ownership script has one PID prefix and an exported invariant body', async () => {
-  const { SERVER_OWNERSHIP_SCRIPT_BODY } = await import('../packaging/windows/Launcher.mjs');
-  assert.equal(typeof SERVER_OWNERSHIP_SCRIPT_BODY, 'string');
+test('ownership loader has one PID and an exactly quoted packaged helper path', () => {
+  assert.equal(SERVER_OWNERSHIP_HELPER, fileURLToPath(new URL('../packaging/windows/VerifyServer.ps1', import.meta.url)));
   for (const processId of [1, 41, 123456789, 0xffffffff]) {
-    assert.equal(generatedScript(processId), `$recapProcessId = ${processId};\n${SERVER_OWNERSHIP_SCRIPT_BODY}`);
+    assert.equal(generatedScript(processId), serverOwnershipCommand(processId));
   }
   assert.equal(generatedScript(123456789).match(/123456789/g).length, 1);
-  assert.match(SERVER_OWNERSHIP_SCRIPT_BODY, /if \(Test-RecapServerOwner \$recapProcessId\)/);
-  assert.match(SERVER_OWNERSHIP_SCRIPT_BODY, /-Filter "ProcessId = \$recapProcessId"/);
+  assert.equal(serverOwnershipCommand(41, "C:\\Program Files\\Owner's\\VerifyServer.ps1"),
+    "try { & ([ScriptBlock]::Create([IO.File]::ReadAllText('C:\\Program Files\\Owner''s\\VerifyServer.ps1'))) -recapProcessId 41 } catch { [Console]::Error.WriteLine('Server ownership query failed.'); exit 1 }");
+  assert.doesNotMatch(generatedScript(), /[\r\n]|ExecutionPolicy|Bypass|Get-CimInstance|Get-WmiObject/);
+  assert.doesNotMatch(helperSource.split('\n').filter((line) => !line.trimStart().startsWith('#')).join('\n'),
+    /Get-NetTCPConnection|Get-CimInstance|Get-WmiObject|Add-Type|CodeDom|csc\.exe/);
+  assert.match(helperSource, /SELECT ExecutablePath, CommandLine FROM Win32_Process WHERE ProcessId = \$recapProcessId/);
+});
+
+test('native ownership matcher binds the exact loader, packaged path and bounded PID', () => {
   const observer = readFileSync(new URL('./native/StartupObserver.h', import.meta.url), 'utf8');
-  const approved = observer.match(/ServerOwnershipBody\[\] = LR"OWN\(([\s\S]*?)\)OWN";/)?.[1];
-  assert.equal(approved?.replaceAll('\r\n', '\n'), SERVER_OWNERSHIP_SCRIPT_BODY);
-  assert.match(observer, /return script == prefix \+ pid \+ L";\\n" \+ ServerOwnershipBody;/);
+  const literal = (name) => {
+    const match = observer.match(new RegExp(`${name}\\[\\] = LR"OWN\\(([\\s\\S]*?)\\)OWN";`));
+    assert.ok(match, `${name} must exist`);
+    return match[1];
+  };
+  for (const path of ['C:\\Package\\VerifyServer.ps1', "C:\\Program Files\\Owner's\\VerifyServer.ps1"]) {
+    for (const pid of [1, 41, 0xffffffff]) {
+      assert.equal(literal('ServerVerifierPrefix') + path.replaceAll("'", "''")
+        + literal('ServerVerifierMiddle') + pid + literal('ServerVerifierSuffix'),
+      serverOwnershipCommand(pid, path));
+    }
+  }
   assert.match(observer, /std::stoull\(pid\) > MAXDWORD/);
+  assert.match(observer, /layout \+ L"\\\\VerifyServer\.ps1"/);
+  assert.match(observer, /path\.size\(\) == expected\.size\(\)/);
+  assert.match(observer, /CompareStringOrdinal/);
+  assert.match(observer, /args\[3\] == L"-Command" && serverVerifierScript\(args\[4\], layout\)/);
+  const native = readFileSync(new URL('./native/StartupTests.cpp', import.meta.url), 'utf8');
+  assert.match(native, /void installed\([^\n]+\) \{\s+serverVerifierCases\(\);/);
+  assert.match(native, /foreign verifier helper was recognized/);
+  assert.match(native, /native verifier argument roundtrip differed/);
 });
 
 test('ownership rejects invalid PIDs before creating any verifier command', () => {
@@ -63,8 +92,9 @@ test('ownership rejects invalid PIDs before creating any verifier command', () =
     assert.equal(verifyServerProcess(processId, {
       execFile: () => assert.fail('Invalid PID reached PowerShell'),
     }), false);
+    assert.throws(() => serverOwnershipCommand(processId), RangeError);
   }
-  assert.match(generatedScript(0xffffffff), /^\$recapProcessId = 4294967295;\n/);
+  assert.match(generatedScript(0xffffffff), / -recapProcessId 4294967295 } catch/);
 });
 
 test('ownership preserves exact executable, server command, empty and unknown result handling', () => {
@@ -86,34 +116,75 @@ test('ownership preserves exact executable, server command, empty and unknown re
   assert.equal(verifyServerProcess(41, { execFile: () => { throw new Error('API failure'); } }), null);
 });
 
-test('generated ownership verifier works without NetTCPIP or compiler on an owned ephemeral listener', windowsOnly, async () => {
+test('whole ownership loader executes its helper within eight seconds on an owned ephemeral listener', windowsOnly, async (t) => {
+  const directory = mkdtempSync(join(tmpdir(), "recap-owner's-"));
+  const helper = join(directory, 'VerifyServer.ps1');
   const listener = createServer();
-  await new Promise((resolve, reject) => {
-    listener.once('error', reject);
-    listener.listen(0, '127.0.0.1', resolve);
-  });
   try {
-    const { port } = listener.address();
-    let observed;
-    const invoke = (processId, prefix = '') => verifyServerProcess(processId, {
-      executable: process.execPath,
-      server: 'server-ownership.test.js',
-      execFile: (file, args, options) => {
-        // Only the isolated fixture uses an ephemeral port; product input stays fixed.
-        const script = args[3].replace('$serverPort = 8787', `$serverPort = ${port}`);
-        observed = execFileSync(file, [
-          ...args.slice(0, 3),
-          "function Get-NetTCPConnection { throw 'NetTCPIP must not load' }\n"
-          + "function Add-Type { throw 'Compiler must not start' }\n" + prefix + script,
-        ], options);
-        return observed;
-      },
+    await new Promise((resolve, reject) => {
+      listener.once('error', reject);
+      listener.listen(0, '127.0.0.1', resolve);
     });
-    assert.equal(invoke(process.pid), true, observed);
-    assert.equal(invoke(process.pid + 1, "function Get-CimInstance { throw 'Wrong owner reached CIM' }\n"), false);
-    assert.equal(invoke(process.pid, "function Get-CimInstance { throw 'CIM unavailable' }\n"), null);
+    const { port } = listener.address();
+    const fixtureSource = replaceOnce(helperSource, '$serverPort = 8787', `$serverPort = ${port}`);
+    for (const fixture of [
+      { id: 1, expected: true },
+      { id: 2, expected: false, processId: process.pid + 1 },
+      { id: 3, expected: false, executable: 'C:\\owned-fixture\\wrong.exe' },
+      { id: 4, expected: false, server: '__not_this_owned_fixture__.mjs' },
+      { id: 5, expected: null, nativeError: true },
+      { id: 6, expected: null, wmiError: true },
+      { id: 7, expected: null, timeout: true },
+      { id: 8, expected: null, missingHelper: true },
+      { id: 9, expected: null, invalidParameter: true },
+    ]) {
+      let source = fixtureSource;
+      if (fixture.nativeError) {
+        source = replaceOnce(source,
+          '$result = $nativeType::GetExtendedTcpTable([IntPtr]::Zero, [ref]$size, 0, 2, 3, 0)',
+          '$result = [uint32]5');
+      }
+      if (fixture.wmiError) source = replaceOnce(source, 'FROM Win32_Process WHERE', 'FROM RecapOwnedMissingClass WHERE');
+      if (fixture.timeout) source = replaceOnce(source, '$rows = $searcher.Get()', 'Start-Sleep -Seconds 10\n      $rows = $searcher.Get()');
+      writeFileSync(helper, source);
+      const ownerId = fixture.processId ?? process.pid;
+      let timedOut = false;
+      let exitCode = 0;
+      let stderr = '';
+      const start = performance.now();
+      const actual = verifyServerProcess(ownerId, {
+        executable: fixture.executable ?? process.execPath,
+        server: fixture.server ?? 'server-ownership.test.js',
+        execFile: (file, args, options) => {
+          assert.equal(args[3], serverOwnershipCommand(ownerId));
+          assert.equal(options.timeout, 8000);
+          let command = serverOwnershipCommand(ownerId, fixture.missingHelper ? join(directory, 'missing.ps1') : helper);
+          if (fixture.invalidParameter) command = command.replace(/ -recapProcessId \d+(?= } catch)/, ' -recapProcessId 0');
+          try {
+            return execFileSync(file, [...args.slice(0, 3), command], {
+              ...options, stdio: ['pipe', 'pipe', 'pipe'],
+            });
+          } catch (error) {
+            timedOut = error.code === 'ETIMEDOUT';
+            exitCode = error.status ?? -1;
+            stderr = String(error.stderr ?? '');
+            throw error;
+          }
+        },
+      });
+      t.diagnostic(JSON.stringify({ case: fixture.id, milliseconds: performance.now() - start, timedOut: Number(timedOut), exitCode }));
+      assert.equal(actual, fixture.expected, `Whole-loader case ${fixture.id}`);
+      assert.equal(timedOut, !!fixture.timeout, `Timeout classification for case ${fixture.id}`);
+      if (fixture.expected === null && !fixture.timeout) {
+        assert.equal(exitCode, 1);
+        assert.ok(stderr.trim() === 'Server ownership query failed.', `Fixed diagnostic for case ${fixture.id}`);
+      }
+    }
   } finally {
-    await new Promise((resolve, reject) => listener.close((error) => error ? reject(error) : resolve()));
+    if (listener.listening) {
+      await new Promise((resolve, reject) => listener.close((error) => error ? reject(error) : resolve()));
+    }
+    rmSync(directory, { recursive: true, force: true });
   }
 });
 

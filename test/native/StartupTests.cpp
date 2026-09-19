@@ -3250,7 +3250,28 @@ void reportInstalledRootTimeout(proof::Observer& observer, const std::wstring& e
     report.flush();
 }
 
+void serverVerifierCases() {
+    const std::wstring layout = L"C:\\Program Files\\Owner's";
+    const auto command = [](const std::wstring& path, const std::wstring& pid) {
+        return std::wstring(proof::ServerVerifierPrefix) + path + proof::ServerVerifierMiddle + pid + proof::ServerVerifierSuffix;
+    };
+    const std::wstring path = L"C:\\Program Files\\Owner''s\\VerifyServer.ps1";
+    for (const auto* pid : { L"1", L"41", L"4294967295" })
+        check(proof::serverVerifierScript(command(path, pid), layout), "packaged verifier loader was not recognized");
+    for (const auto* pid : { L"", L"0", L"01", L"-1", L"1.0", L"4294967296", L"41; exit 0" })
+        check(!proof::serverVerifierScript(command(path, pid), layout), "invalid verifier PID was recognized");
+    for (const auto* foreign : { L"C:\\Other\\VerifyServer.ps1", L"C:\\Program Files\\Owner's\\VerifyServer.ps1",
+                                L"C:\\Program Files\\Owner''s\\Other.ps1" })
+        check(!proof::serverVerifierScript(command(foreign, L"41"), layout), "foreign verifier helper was recognized");
+    check(!proof::serverVerifierScript(command(path, L"41") + L"; exit 0", layout), "extra verifier input was recognized");
+    const auto invoked = recap::quoted(L"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe") +
+        L" -NoProfile -NonInteractive -Command " + recap::quoted(command(path, L"41"));
+    const auto args = proof::semanticArguments(invoked);
+    check(args.size() == 5 && proof::serverVerifierScript(args[4], layout), "native verifier argument roundtrip differed");
+}
+
 void installed(const std::map<std::wstring, std::wstring>& options, std::ofstream& report) {
+    serverVerifierCases();
     wchar_t hosted[16]{};
     GetEnvironmentVariableW(L"GITHUB_ACTIONS", hosted, static_cast<DWORD>(std::size(hosted)));
     check(wcscmp(hosted, L"true") == 0, "installed observation is hosted-only");
