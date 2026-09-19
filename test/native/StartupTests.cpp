@@ -3191,6 +3191,18 @@ void diagnostic(const std::map<std::wstring, std::wstring>& options, std::ofstre
     observer.finishIdentities();
 }
 
+struct InstalledWaitState { bool timeoutReported = false; };
+
+template<class Finished, class Pending, class Emit>
+bool completeInstalledWait(InstalledWaitState& state, Finished finished, Pending pending, Emit emit) {
+    const bool complete = finished();
+    if (!state.timeoutReported && pending()) {
+        emit();
+        state.timeoutReported = true;
+    }
+    return complete;
+}
+
 void reportInstalledRootTimeout(proof::Observer& observer, const std::wstring& executable, std::ofstream& report) {
     const auto states = observer.rootStates(executable);
     report << "DIAG installed-root-health healthy=" << observer.healthy()
@@ -3259,13 +3271,9 @@ void installed(const std::map<std::wstring, std::wstring>& options, std::ofstrea
     bool dismissed = false;
     size_t operationOrdinal = 1;
     bool operationActive = false;
-    bool timeoutReported = false;
+    InstalledWaitState waitState;
     observedWait("installed-result-wait", [&] {
         collectSemanticOperations(observer, control, operationOrdinal, operationActive);
-        if (!timeoutReported && fs::exists(control / L"root-timeout.txt")) {
-            reportInstalledRootTimeout(observer, executable, report);
-            timeoutReported = true;
-        }
         const auto counts = observer.entryCounts(executable);
         write(control / L"counts.txt", "started=" + std::to_string(counts.first) +
               "\nended=" + std::to_string(counts.second) + "\n");
@@ -3293,7 +3301,10 @@ void installed(const std::map<std::wstring, std::wstring>& options, std::ofstrea
                 break;
             }
         }
-        return busy ? dismissed : fs::exists(control / L"finish.txt");
+        return completeInstalledWait(waitState,
+            [&] { return busy ? dismissed : fs::exists(control / L"finish.txt"); },
+            [&] { return fs::exists(control / L"root-timeout.txt"); },
+            [&] { reportInstalledRootTimeout(observer, executable, report); });
     }, "installed observer deadline exceeded", 600000);
     observed("semantic-channel-drain", [&] {
         proof::until([&] {

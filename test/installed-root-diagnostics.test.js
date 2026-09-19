@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { mkdtempSync, writeFileSync, rmSync, readFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
+import { runInNewContext } from 'node:vm';
 import { waitForSettledRoots } from '../scripts/msix-proof.mjs';
 
 test('installed lifecycle diagnostics retain exact count acceptance and the existing deadline', async (t) => {
@@ -55,5 +56,25 @@ test('timeout observation uses only retained exact-image root instances and fixe
   assert.match(report, /owner == state\.pid/);
   assert.match(report, /if \(emitted\+\+ == 16\) break/);
   assert.doesNotMatch(report, /<< (?:detail|button|executable)|EnumWindows|OpenProcess/);
-  assert.match(native, /!timeoutReported && fs::exists\(control \/ L"root-timeout\.txt"\)/);
+  assert.match(native, /return completeInstalledWait\(waitState,[\s\S]*fs::exists\(control \/ L"finish\.txt"\)[\s\S]*fs::exists\(control \/ L"root-timeout\.txt"\)/);
+});
+
+test('actual native handoff ordering observes a timeout published at the finish boundary once', () => {
+  const native = readFileSync(new URL('../test/native/StartupTests.cpp', import.meta.url), 'utf8');
+  const body = native.match(/bool completeInstalledWait\([^\n]+\) \{([\s\S]*?)^\}/m)?.[1];
+  assert.ok(body);
+  // The helper body is shared syntax apart from its declaration; hosted tests compile the C++ caller.
+  const invoke = runInNewContext(`(state, finished, pending, emit) => {
+    ${body.replace('const bool complete', 'const complete')}
+  }`);
+  const state = { timeoutReported: false };
+  const rows = [];
+  let published = false;
+  assert.equal(invoke(state, () => { published = true; return true; },
+    () => published, () => rows.push('observed')), true);
+  assert.deepEqual(rows, ['observed']);
+  assert.equal(invoke(state, () => true, () => true, () => rows.push('duplicate')), true);
+  assert.deepEqual(rows, ['observed']);
+  assert.equal(invoke({ timeoutReported: false }, () => false, () => false,
+    () => assert.fail('no marker')), false);
 });
