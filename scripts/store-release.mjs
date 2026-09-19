@@ -198,7 +198,9 @@ export async function publishStoreUpdate(config, {
 
 export async function runRelease(args, env = process.env) {
   let result;
+  let lastOutcome;
   const report = (outcome) => {
+    lastOutcome = { ...outcome };
     const text = formatOutcome(outcome);
     process.stdout.write(text);
     if (env.GITHUB_STEP_SUMMARY) appendFileSync(env.GITHUB_STEP_SUMMARY, text);
@@ -214,9 +216,18 @@ export async function runRelease(args, env = process.env) {
         clientId: env.PARTNER_CENTER_CLIENT_ID, clientSecret: env.PARTNER_CENTER_CLIENT_SECRET },
     }, { report, log: (text) => process.stdout.write(text) });
   } catch {
-    result = { state: 'failed', stage: 'local-input', submissionId: null,
-      status: null, commit: 'not-attempted' };
-    report(result);
+    result = { ...(lastOutcome ?? { stage: 'local-input', submissionId: null,
+      status: null, commit: 'not-attempted' }), state: 'failed' };
+    process.stderr.write(formatOutcome(result));
+    if (!lastOutcome) {
+      try {
+        report(result);
+      } catch {
+        process.stderr.write('Store input failure could not be written to the outcome summary.\n');
+      }
+    } else {
+      process.stderr.write('Store outcome reporting failed. The last submission state above remains authoritative; do not rerun.\n');
+    }
   }
   return result.state === 'failed' ? 1 : 0;
 }

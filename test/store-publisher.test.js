@@ -112,7 +112,7 @@ function fixture(options = {}) {
     }
     assert.fail('Unexpected endpoint');
   };
-  return { calls, reports, config,
+  return { calls, reports, config, fetchImpl,
     run: () => publishStoreUpdate(config, {
       fetchImpl, now: () => clock, wait: async (ms) => { clock += ms; },
       report: (value) => reports.push(value),
@@ -370,3 +370,26 @@ test('PowerShell entry point invokes the production CLI and cleans its archive a
     assert.match(readFileSync(summary, 'utf8'), /No automatic retry was performed/);
     assert.throws(() => readFileSync(join(directory, 'store-upload.zip')), { code: 'ENOENT' });
   });
+
+test('summary write failure after commit preserves the acknowledged submission and never retries', async (t) => {
+  const directory = mkdtempSync(join(tmpdir(), 'recap-store-summary-'));
+  t.after(() => rmSync(directory, { recursive: true, force: true }));
+  const f = fixture({ statuses: ['PreProcessing'] });
+  const notes = join(directory, 'notes.json');
+  const archive = join(directory, 'bundle.zip');
+  writeFileSync(notes, JSON.stringify(f.config.notes));
+  writeFileSync(archive, f.config.archive);
+  const output = [];
+  t.mock.method(globalThis, 'fetch', f.fetchImpl);
+  t.mock.method(process.stdout, 'write', (text) => { output.push(text); return true; });
+  t.mock.method(process.stderr, 'write', (text) => { output.push(text); return true; });
+  assert.equal(await runRelease(['Submit', product, bundleName, version, notes, archive], {
+    PARTNER_CENTER_TENANT_ID: 'fixture', PARTNER_CENTER_CLIENT_ID: 'PRIVATE_CLIENT',
+    PARTNER_CENTER_CLIENT_SECRET: 'PRIVATE_SECRET',
+    GITHUB_STEP_SUMMARY: join(directory, 'missing-directory', 'summary.txt'),
+  }), 1);
+  assert.deepEqual(f.mutations(), ['POST', 'upload', 'PUT', 'commit']);
+  assert.match(output.join(''), new RegExp(`submission: ${draftId}; status: CommitStarted; commit: acknowledged`));
+  assert.match(output.join(''), /outcome reporting failed/);
+  assert.doesNotMatch(output.join(''), /commit: not-attempted|stage: local-input|PRIVATE|missing-directory/);
+});
