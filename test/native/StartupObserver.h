@@ -2456,6 +2456,39 @@ public:
         }
         return { roots, complete };
     }
+    struct RootState {
+        DWORD pid = 0, exitCode = 0;
+        bool ended = false, ambiguous = false, retained = false;
+        bool signaled = false, alive = false, exitKnown = false;
+    };
+    std::vector<RootState> rootStates(const std::wstring& expected) {
+        std::lock_guard<std::mutex> lock(mutex_);
+        const ProcessGraph graph(processes_);
+        std::vector<RootState> states;
+        for (const auto& value : graph.instances) {
+            if (!recap::samePath(executablePath(value.start.pid, value.start), expected)) continue;
+            RootState state;
+            state.pid = value.start.pid;
+            state.ended = value.ended;
+            state.ambiguous = value.ambiguous;
+            const auto instance = graph.unique(state.pid, value.start.timestamp);
+            const auto retained = std::find_if(registrations_.begin(), registrations_.end(), [&](const auto& item) {
+                return instance != SIZE_MAX && item.pid == state.pid && item.imageExact &&
+                    recap::samePath(item.image, expected) &&
+                    graph.unique(item.pid, static_cast<LONGLONG>(item.witnessed)) == instance;
+            });
+            if (retained != registrations_.end()) {
+                state.retained = true;
+                const auto wait = WaitForSingleObject(retained->process.get(), 0);
+                state.signaled = wait == WAIT_OBJECT_0;
+                state.alive = wait == WAIT_TIMEOUT;
+                state.exitKnown = state.signaled &&
+                    GetExitCodeProcess(retained->process.get(), &state.exitCode) != FALSE;
+            }
+            states.push_back(state);
+        }
+        return states;
+    }
     std::vector<DWORD> registeredRoots(const std::wstring& expected, size_t count, DWORD exitCode) {
         finalExpectedRoots_ = count;
         finalSection("final-root-registration");

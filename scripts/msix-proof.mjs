@@ -549,6 +549,11 @@ async function waitForSettledRoots(count, assertAlive, root, wait = waitFor, rep
     }, 'native activation lifecycle did not settle', 30000);
   } catch (error) {
     report(`DIAG installed-root-wait expected=${count} present=${Number(present)} parsed=${Number(parsed)} started=${started} ended=${ended} observer_alive=${Number(alive)}`);
+    try {
+      publishSemanticRecord(root, 'root-timeout.txt', 'observe');
+    } catch (diagnosticError) {
+      throw new AggregateError([error, diagnosticError], 'root wait and diagnostic publication failed', { cause: diagnosticError });
+    }
     throw error;
   }
 }

@@ -3191,6 +3191,53 @@ void diagnostic(const std::map<std::wstring, std::wstring>& options, std::ofstre
     observer.finishIdentities();
 }
 
+void reportInstalledRootTimeout(proof::Observer& observer, const std::wstring& executable, std::ofstream& report) {
+    const auto states = observer.rootStates(executable);
+    report << "DIAG installed-root-health healthy=" << observer.healthy()
+           << " events_lost=" << observer.eventsLost() << " buffers_lost=" << observer.buffersLost()
+           << " exact_roots=" << states.size() << "\n";
+    size_t emitted = 0;
+    for (const auto& state : states) {
+        if (emitted++ == 16) break;
+        const char* phase = "not-observed";
+        const char* result = "not-observed";
+        bool readFailed = false;
+        if (state.alive) {
+            try {
+                const auto& windows = observer.windows();
+                const auto found = std::find_if(windows.rbegin(), windows.rend(), [&](const auto& item) {
+                    return item.owner == state.pid && item.kind == proof::WindowKind::startup;
+                });
+                if (found != windows.rend()) {
+                    const auto window = reinterpret_cast<HWND>(found->window);
+                    DWORD owner = 0;
+                    GetWindowThreadProcessId(window, &owner);
+                    if (owner == state.pid) {
+                        const auto button = controlText(GetDlgItem(window, 203));
+                        phase = button == L"Close" ? "error" : button == L"Hide startup window" ? "pending" : "unknown";
+                        if (button == L"Close") {
+                            const auto detail = controlText(GetDlgItem(window, 204));
+                            result = detail.find(L"Windows could not verify its server process") != std::wstring::npos ? "server-unverified"
+                                : detail.find(L"default browser could not be opened") != std::wstring::npos ? "browser-open-failed"
+                                : detail.find(L"Port 8787 is already in use") != std::wstring::npos ? "port-busy"
+                                : detail.find(L"Startup observation timed out") != std::wstring::npos ? "startup-timeout"
+                                : "other-error";
+                        }
+                    }
+                }
+            } catch (const std::exception&) {
+                readFailed = true;
+            }
+        }
+        report << "DIAG installed-root-state pid=" << state.pid << " ended=" << state.ended
+               << " ambiguous=" << state.ambiguous << " retained=" << state.retained
+               << " signaled=" << state.signaled << " alive=" << state.alive
+               << " exit_known=" << state.exitKnown << " exit_code=" << state.exitCode
+               << " phase=" << phase << " result=" << result << " window_read_failed=" << readFailed << "\n";
+    }
+    report.flush();
+}
+
 void installed(const std::map<std::wstring, std::wstring>& options, std::ofstream& report) {
     wchar_t hosted[16]{};
     GetEnvironmentVariableW(L"GITHUB_ACTIONS", hosted, static_cast<DWORD>(std::size(hosted)));
@@ -3212,8 +3259,13 @@ void installed(const std::map<std::wstring, std::wstring>& options, std::ofstrea
     bool dismissed = false;
     size_t operationOrdinal = 1;
     bool operationActive = false;
+    bool timeoutReported = false;
     observedWait("installed-result-wait", [&] {
         collectSemanticOperations(observer, control, operationOrdinal, operationActive);
+        if (!timeoutReported && fs::exists(control / L"root-timeout.txt")) {
+            reportInstalledRootTimeout(observer, executable, report);
+            timeoutReported = true;
+        }
         const auto counts = observer.entryCounts(executable);
         write(control / L"counts.txt", "started=" + std::to_string(counts.first) +
               "\nended=" + std::to_string(counts.second) + "\n");

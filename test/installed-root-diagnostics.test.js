@@ -27,6 +27,8 @@ test('installed lifecycle diagnostics retain exact count acceptance and the exis
       (error) => error === timeout);
     assert.equal(outputs.at(-1),
       `DIAG installed-root-wait expected=2 ${expected} observer_alive=1`);
+    assert.equal(readFileSync(join(root, 'root-timeout.txt'), 'utf8'), 'observe');
+    rmSync(join(root, 'root-timeout.txt'));
   }
   writeFileSync(join(root, 'counts.txt'), 'started=2\nended=2\n');
   const before = outputs.length;
@@ -36,4 +38,22 @@ test('installed lifecycle diagnostics retain exact count acceptance and the exis
   assert.doesNotMatch(outputs.join('\n'), /PRIVATE|counts\.txt|recap-root-counts/);
   const source = readFileSync(new URL('../scripts/msix-proof.mjs', import.meta.url), 'utf8');
   assert.match(source, /waitForSettledRoots: \(count\) => waitForSettledRoots\(count, assertAlive, root\)/);
+});
+
+test('timeout observation uses only retained exact-image root instances and fixed result labels', () => {
+  const observer = readFileSync(new URL('../test/native/StartupObserver.h', import.meta.url), 'utf8');
+  const method = observer.match(/std::vector<RootState> rootStates\([\s\S]*?return states;\s*\}/)?.[0];
+  assert.ok(method);
+  assert.match(method, /recap::samePath\(item\.image, expected\)/);
+  assert.match(method, /graph\.unique\(item\.pid, static_cast<LONGLONG>\(item\.witnessed\)\) == instance/);
+  assert.match(method, /WaitForSingleObject\(retained->process\.get\(\), 0\)/);
+  assert.doesNotMatch(method, /OpenProcess|CreateProcess|TerminateProcess/);
+  const native = readFileSync(new URL('../test/native/StartupTests.cpp', import.meta.url), 'utf8');
+  const report = native.match(/void reportInstalledRootTimeout\([\s\S]*?report\.flush\(\);\s*\}/)?.[0];
+  assert.ok(report);
+  assert.match(report, /item\.owner == state\.pid && item\.kind == proof::WindowKind::startup/);
+  assert.match(report, /owner == state\.pid/);
+  assert.match(report, /if \(emitted\+\+ == 16\) break/);
+  assert.doesNotMatch(report, /<< (?:detail|button|executable)|EnumWindows|OpenProcess/);
+  assert.match(native, /!timeoutReported && fs::exists\(control \/ L"root-timeout\.txt"\)/);
 });
