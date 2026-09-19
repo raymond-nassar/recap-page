@@ -448,14 +448,17 @@ approves deployment.
 The workflow builds from the release tag in one Windows Server 2022 job. It inspects and WACK-tests
 the exact generated bundle, verifies the same SHA-256 before submission, then checks Partner Center
 for the expected live free product, no pending submission, and a strictly higher package version.
-Manual dispatch performs the same build and read-only API checks but cannot create, upload, update,
-commit, delete, poll, or operate a flight.
+Default manual dispatch performs the same build and read-only API checks without Store mutations.
+The maintainer guide describes an explicit protected Submit dispatch for an already published tag,
+binding its immutable application source separately from the corrected publisher.
 
 An approved release creates one draft through Microsoft's submission API and captures its ID.
 Upload, update, verification, and commit remain bound to that ID, and every mutation is sent once
 without an automatic retry policy. Microsoft certification remains authoritative. After
 certification passes, Microsoft publishes the update automatically without a second manual hold.
-The workflow does not delete a pending draft or wait for certification.
+The workflow does not delete a pending draft or wait for certification to finish. It observes status
+for at most five minutes and checks the ingested package version and notes, reporting pending work
+separately from publication or failure.
 
 The [maintainer guide](MAINTAINING.md) owns environment setup order, secret names, activation
 rehearsal, release operation, and recovery. The [submission packet](MICROSOFT_STORE_SUBMISSION.md)

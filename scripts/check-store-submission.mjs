@@ -108,7 +108,7 @@ export function validateSubmission() {
     'existing pending submission',
     'package version that is not greater than the last published version',
     'Immediate publication means Microsoft publishes the update automatically after certification',
-    'never polls certification',
+    'never waits for certification to finish',
     'deletes a draft',
     'retries a Store mutation automatically',
     'do not rerun the workflow',

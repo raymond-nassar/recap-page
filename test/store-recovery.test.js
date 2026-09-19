@@ -4,12 +4,12 @@ import { readFileSync } from 'node:fs';
 import { inspect, fingerprint, uploadMetadata } from '../scripts/inspect-store-recovery.mjs';
 
 test('Store creation accepts exactly 200 and 201 without broadening other requests', () => {
-  const source = readFileSync(new URL('../scripts/publish-store-update.ps1', import.meta.url), 'utf8');
-  const create = source.match(/-Method 'POST' -Uri \$submissionBase -Headers \$headers -ExpectedStatus @\(([^)]+)\)/);
+  const source = readFileSync(new URL('../scripts/store-release.mjs', import.meta.url), 'utf8');
+  const create = source.match(/request\('POST', submissions, undefined, \[([^\]]+)\]/);
   assert.ok(create);
   assert.deepEqual(create[1].split(',').map(Number), [200, 201]);
-  assert.equal((source.match(/-ExpectedStatus @\(200, 201\)/g) ?? []).length, 1);
-  assert.match(source, /\$ExpectedStatus -notcontains \$status/);
+  assert.equal((source.match(/\[200, 201\]/g) ?? []).length, 1);
+  assert.match(source, /!statuses\.includes\(response\.status\)/);
 });
 
 function submission(id) {

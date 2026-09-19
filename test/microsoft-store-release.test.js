@@ -26,6 +26,7 @@ const apiScript = readFileSync(
   new URL('../scripts/publish-store-update.ps1', import.meta.url),
   'utf8',
 );
+const publisher = readFileSync(new URL('../scripts/store-release.mjs', import.meta.url), 'utf8');
 const bundleName = `RecapPage_${pkg.version}.0_x64_arm64.msixbundle`;
 const nextVersion = (() => {
   const parts = pkg.version.split('.').map(Number);
@@ -325,20 +326,13 @@ test('Store draft read-back rejects changed release notes', () => {
   );
 });
 
-test('Store notes are version-bound in both workflow paths and validated before draft creation', () => {
+test('Store notes are version-bound in both workflow paths using the tested production publisher', () => {
   for (const name of ['Validate Partner Center without mutation', 'Submit one Store update']) {
     assert.match(step(name), /-ReleaseNotesPath '\.\/docs\/releases\/\$\{\{ steps\.release\.outputs\.app_version \}\}-store\.json'/);
   }
-  const payloadCheck = apiScript.indexOf("Invoke-StoreCheck -Arguments @('notes',");
-  const destinationCheck = apiScript.indexOf("Invoke-StoreCheck -Arguments @('notes-target',");
-  const validateExit = apiScript.indexOf("if ($Mode -eq 'Validate')");
-  const createDraft = apiScript.indexOf("-Method 'POST' -Uri $submissionBase");
-  const verifyNotes = apiScript.indexOf("'verify-draft', $verifiedPath, $bundleName, $submissionId, $ReleaseNotesPath, $ExpectedVersion");
-  const commit = apiScript.indexOf('-Uri "$submissionUrl/commit"');
-  assert.ok(payloadCheck > 0 && payloadCheck < destinationCheck);
-  assert.ok(destinationCheck < validateExit && validateExit < createDraft);
-  assert.match(apiScript, /'prepare-api-draft',[\s\S]*?\$submissionId,\s*\$ReleaseNotesPath,\s*\$ExpectedVersion/);
-  assert.ok(verifyNotes > createDraft && verifyNotes < commit);
+  assert.match(apiScript, /& node \(Join-Path \$PSScriptRoot 'store-release\.mjs'\)/);
+  assert.match(apiScript, /\$Mode \$ProductId \$BundlePath \$ExpectedVersion \$ReleaseNotesPath \$archivePath/);
+  assert.match(workflow, /test\/store-publisher\.test\.js/);
 });
 
 test('the committed Store notes match the canonical application release', () => {
@@ -409,19 +403,31 @@ test('Store credentials are isolated to read-only and release API steps', () => 
 test('manual rehearsal cannot select the Store API mutation path', () => {
   const rehearsal = step('Validate Partner Center without mutation');
   const submission = step('Submit one Store update');
-  assert.match(rehearsal, /if: github\.event_name == 'workflow_dispatch'/);
+  assert.match(rehearsal, /if: steps\.release\.outputs\.mode == 'Validate'/);
   assert.match(rehearsal, /-Mode Validate/);
-  assert.match(submission, /if: github\.event_name == 'release'/);
+  assert.match(submission, /if: steps\.release\.outputs\.mode == 'Submit'/);
   assert.match(submission, /-Mode Submit/);
   assert.doesNotMatch(rehearsal, /-Mode Submit/);
-  const targetVersionCheck = apiScript.indexOf(
-    "Invoke-StoreCheck -Arguments @('submission'",
-  );
+  const targetVersionCheck = publisher.indexOf('validatePublishedSubmission(published, version)');
   assert.ok(
     targetVersionCheck > 0 &&
-      targetVersionCheck < apiScript.indexOf("if ($Mode -eq 'Validate')"),
+      targetVersionCheck < publisher.indexOf("if (mode === 'Validate')"),
     'read-only rehearsal exits before checking the target package version',
   );
+});
+
+test('catch-up submission binds immutable application source separately from reviewed publisher', () => {
+  assert.match(workflow, /options: \[Validate, Submit\]\r?\n\s+default: Validate/);
+  assert.match(step('Check out the reviewed publisher'), /ref: \$\{\{ github\.workflow_sha \}\}/);
+  assert.match(step('Check out the reviewed publisher'), /path: \.store-tooling/);
+  const metadata = step('Resolve release metadata');
+  assert.match(metadata, /EXPECTED_SOURCE_SHA -cnotmatch '\^\[0-9a-f\]\{40\}\$'/);
+  assert.match(metadata, /\$actual -cne \$env:EXPECTED_SOURCE_SHA/);
+  assert.match(metadata, /gh api "repos\/\$env:GITHUB_REPOSITORY\/releases\/tags\/\$env:RELEASE_TAG"/);
+  assert.match(metadata, /DISPATCH_MODE -ne 'Validate' -or \$env:RELEASE_TAG -or \$env:EXPECTED_SOURCE_SHA/);
+  assert.match(step('Prove release commit provenance'), /git merge-base --is-ancestor/);
+  assert.match(step('Submit one Store update'), /\.\/\.store-tooling\/scripts\/publish-store-update\.ps1/);
+  assert.doesNotMatch(workflow, /gh release create|git tag|git push|cancel-in-progress: true/);
 });
 
 test('the exact WACK-approved bundle is rechecked before a single upload', () => {
@@ -441,16 +447,10 @@ test('the exact WACK-approved bundle is rechecked before a single upload', () =>
 });
 
 test('Store API mutations stay bound to one submission ID without retries or deletion', () => {
-  assert.equal((apiScript.match(/\.SendAsync\(/g) ?? []).length, 2);
-  assert.doesNotMatch(apiScript, /\b(?:for|foreach|while|do)\s*\([^)]*SendAsync|Start-Sleep/);
-  assert.doesNotMatch(apiScript, /Method 'DELETE'|HttpMethod\]::Delete|MaximumRetryCount/);
-  assert.match(apiScript, /\$submissionId = \[string\]\$created\.id/);
-  assert.match(apiScript, /\$submissionUrl = "\$submissionBase\/\$\(.*\$submissionId.*\)"/);
-  assert.match(apiScript, /-Method 'PUT'[\s\S]*-Uri \$submissionUrl/);
-  assert.match(apiScript, /-Method 'GET' -Uri \$submissionUrl/);
-  assert.match(apiScript, /-Method 'POST' -Uri "\$submissionUrl\/commit"/);
-  assert.match(apiScript, /prepare-api-draft[\s\S]*\$submissionId/);
-  assert.match(apiScript, /verify-draft[\s\S]*\$submissionId/);
+  assert.doesNotMatch(publisher, /request\('DELETE'|retry/i);
+  assert.equal((publisher.match(/request\('POST', `\$\{draftUrl\}\/commit`/g) ?? []).length, 1);
+  assert.match(publisher, /redirect: 'error'/);
+  assert.match(apiScript, /finally[\s\S]*Remove-Item -LiteralPath \$archivePath -Force/);
 });
 
 test('every Store workflow step has a deadline below the job backstop', () => {

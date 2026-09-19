@@ -3,6 +3,7 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { basename } from 'node:path';
 import { extname } from 'node:path';
 import { pathToFileURL } from 'node:url';
+import { isDeepStrictEqual } from 'node:util';
 
 const VERSION_PATTERN = /^\d+\.\d+\.\d+\.\d+$/;
 
@@ -353,7 +354,11 @@ export function verifyDraft(submission, bundleName, submissionId, notes, package
   if (fields.mode.value !== 'Immediate') {
     throw new Error('submission.TargetPublishMode must be Immediate');
   }
-  if (fields.date.value !== null) throw new Error('submission.TargetPublishDate must be null');
+  // The API uses a sentinel date on read-back; only SpecificDate gives this field meaning.
+  if (fields.date.value !== null && (typeof fields.date.value !== 'string' ||
+      !Number.isFinite(Date.parse(fields.date.value)))) {
+    throw new Error('submission.TargetPublishDate must be null or a valid date');
+  }
   if (fields.enabled.value !== false) {
     throw new Error('submission gradual rollout must be disabled');
   }
@@ -365,6 +370,106 @@ export function validateCommitResponse(response) {
   const status = requiredKey(commit, ['Status', 'status'], 'commit response.Status').value;
   if (status !== 'CommitStarted') throw new Error('commit response.Status must be CommitStarted');
   return { status };
+}
+
+export function apiFields(value, dictionary = false) {
+  if (Array.isArray(value)) return value.map((entry) => apiFields(entry));
+  if (!value || typeof value !== 'object') return value;
+  const result = {};
+  const dictionaries = ['listings', 'marketSpecificPricings', 'allowTargetFutureDeviceFamilies',
+    'platformOverrides', 'deviceFamilyListings'];
+  for (const [key, entry] of Object.entries(value)) {
+    const name = dictionary ? key : key.charAt(0).toLowerCase() + key.slice(1);
+    if (Object.hasOwn(result, name)) throw new Error('Ambiguous Store response fields');
+    Object.defineProperty(result, name, {
+      value: apiFields(entry, dictionaries.includes(name)), enumerable: true,
+      writable: true, configurable: true,
+    });
+  }
+  return result;
+}
+
+export function requirePendingDraft(submission) {
+  const draft = apiFields(record(submission, 'submission'));
+  if (draft.status !== 'PendingCommit' || !Array.isArray(draft.statusDetails?.errors) ||
+      draft.statusDetails.errors.length !== 0) {
+    throw new Error('submission must be PendingCommit without errors');
+  }
+}
+
+function mutableIntent(submission) {
+  const value = apiFields(record(submission, 'submission'));
+  for (const key of ['id', 'status', 'statusDetails', 'fileUploadUrl', 'friendlyName']) delete value[key];
+  if (value.pricing) delete value.pricing.isAdvancedPricingModel;
+  if (value.targetPublishMode === 'Immediate') delete value.targetPublishDate;
+  const delivery = value.packageDeliveryOptions;
+  if (typeof delivery?.mandatoryUpdateEffectiveDate === 'string' &&
+      Number.isFinite(Date.parse(delivery.mandatoryUpdateEffectiveDate))) {
+    delivery.mandatoryUpdateEffectiveDate = new Date(delivery.mandatoryUpdateEffectiveDate).toISOString();
+  }
+  const rollout = value.packageDeliveryOptions?.packageRollout;
+  if (rollout) {
+    delete rollout.packageRolloutStatus;
+    delete rollout.fallbackSubmissionId;
+    if (rollout.isPackageRollout === false) delete rollout.packageRolloutPercentage;
+  }
+  if (Array.isArray(value.applicationPackages)) {
+    value.applicationPackages = value.applicationPackages.map((entry) => {
+      const copy = { ...entry };
+      delete copy.id;
+      if (extname(copy.fileName ?? '').toLowerCase() === '.msixbundle') {
+        // These request fields apply only to Windows 8.x packages, never MSIX.
+        delete copy.minimumDirectXVersion;
+        delete copy.minimumSystemRam;
+      }
+      return copy;
+    }).sort((left, right) => String(left.fileName).localeCompare(String(right.fileName)));
+  }
+  return value;
+}
+
+export function verifyPreservedIntent(actual, expected, bundleName) {
+  const left = mutableIntent(actual);
+  const right = mutableIntent(expected);
+  if (bundleName) {
+    const uploaded = left.applicationPackages?.find((entry) => entry.fileName === bundleName);
+    const intended = right.applicationPackages?.find((entry) => entry.fileName === bundleName);
+    if (!uploaded || !intended) throw new Error('Intended package is absent');
+    // Ingestion may fill package-derived metadata before commit. User-editable fields stay exact.
+    for (const field of ['version', 'architecture', 'languages', 'capabilities', 'targetDeviceFamilies']) {
+      if (!Object.hasOwn(intended, field)) delete uploaded[field];
+    }
+  }
+  if (!isDeepStrictEqual(left, right)) throw new Error('Unrelated submission settings changed');
+}
+
+export function validateSubmissionStatus(response) {
+  const source = apiFields(record(response, 'submission status'));
+  const groups = {
+    CommitStarted: 'acknowledged',
+    PreProcessing: 'processing',
+    Certification: 'certification',
+    PendingPublication: 'publication-pending',
+    Publishing: 'publication-pending',
+    Release: 'publication-pending',
+    Published: 'published',
+    None: 'failed',
+    PendingCommit: 'failed',
+    Canceled: 'failed',
+    CommitFailed: 'failed',
+    PreProcessingFailed: 'failed',
+    CertificationFailed: 'failed',
+    PublishFailed: 'failed',
+    ReleaseFailed: 'failed',
+  };
+  if (typeof source.status !== 'string' || !Object.hasOwn(groups, source.status)) {
+    throw new Error('Unknown Store submission status');
+  }
+  if (!Array.isArray(source.statusDetails?.errors)) {
+    throw new Error('Store status errors must be an array');
+  }
+  return { status: source.status,
+    state: source.statusDetails.errors.length ? 'failed' : groups[source.status] };
 }
 
 function readJson(path, label) {
