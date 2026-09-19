@@ -442,12 +442,7 @@ async function withNativeObservation(installed, architecture, source, mode, body
     activeSemanticCapture = semanticCapture;
     try {
       result = await body({
-        waitForSettledRoots: (count) => waitFor(() => {
-          assertAlive();
-          const counts = join(root, 'counts.txt');
-          return existsSync(counts)
-            && readFileSync(counts, 'utf8') === `started=${count}\nended=${count}\n`;
-        }, 'native activation lifecycle did not settle', 30000),
+        waitForSettledRoots: (count) => waitForSettledRoots(count, assertAlive, root),
       });
     } catch (error) {
       failures.push(error);
@@ -526,6 +521,36 @@ async function waitFor(check, message, timeout = 15000) {
     await new Promise((resolve) => setTimeout(resolve, 150));
   }
   throw new Error(`${message}${lastError ? `: ${lastError.message}` : ''}`);
+}
+
+async function waitForSettledRoots(count, assertAlive, root, wait = waitFor, report = console.error) {
+  let present = false;
+  let parsed = false;
+  let alive = false;
+  let started = 'unknown';
+  let ended = 'unknown';
+  try {
+    return await wait(() => {
+      alive = false;
+      assertAlive();
+      alive = true;
+      const path = join(root, 'counts.txt');
+      present = existsSync(path);
+      parsed = false;
+      if (!present) return false;
+      const text = readFileSync(path, 'utf8');
+      const match = /^started=(\d{1,10})\nended=(\d{1,10})\n$/.exec(text);
+      if (match && Number(match[1]) <= 0xffffffff && Number(match[2]) <= 0xffffffff) {
+        parsed = true;
+        started = Number(match[1]);
+        ended = Number(match[2]);
+      }
+      return text === `started=${count}\nended=${count}\n`;
+    }, 'native activation lifecycle did not settle', 30000);
+  } catch (error) {
+    report(`DIAG installed-root-wait expected=${count} present=${Number(present)} parsed=${Number(parsed)} started=${started} ended=${ended} observer_alive=${Number(alive)}`);
+    throw error;
+  }
 }
 
 async function waitForProcess(
@@ -1345,5 +1370,5 @@ export {
   formatProofError, listenerPid, packageInfo, packageProcesses, removePackage, retainPackageProcess,
   removeStagedLauncher, runInstalledScenario, selectListenerServer, stageInstalledLauncher,
   startInstalledLauncher, stopPids,
-  serverChildExited, waitForProcess,
+  serverChildExited, waitForProcess, waitForSettledRoots,
 };
