@@ -13,6 +13,14 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Diagnose stopped Store updates without changing them
+
+A protected, reusable read-only report identifies individual validation failures and changed
+metadata fields without exposing private values. It binds current observations to an immutable
+public release and approved notes, and can check the uploaded bundle without rebuilding or
+resubmitting it. Missing historical evidence remains explicitly unverified. Nothing in the app
+or saved reading progress changes.
+
 ## 3.0.1
 
 ### Keep overlapping Windows launches reliable
