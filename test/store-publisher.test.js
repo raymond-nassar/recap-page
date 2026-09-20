@@ -195,6 +195,18 @@ test('invalid notes, stale version and pending submission stop before creation',
   }
 });
 
+test('publisher readback failure names the exact contract and safe semantic path without another mutation', async () => {
+  const f = fixture({ readback: (draft) => { draft.listings['en-us'].baseListing.description = null; } });
+  const result = await f.run();
+  assert.equal(result.failureCode, 'READBACK_INTENT');
+  assert.equal(result.readback.checks.find((check) => check.checkId === 'READBACK_DRAFT').result, 'pass');
+  assert.ok(result.readback.semantic.differences.some((entry) =>
+    entry.path === '/listings/en-us/baseListing/description'
+    && entry.before.type === 'string' && entry.after.type === 'null'));
+  assert.deepEqual(f.mutations(), ['POST', 'upload', 'PUT']);
+  assert.doesNotMatch(formatOutcome(result), /PRIVATE|blob\.core|Private listing/);
+});
+
 test('created copy drift and wrong pending identity stop before upload', async () => {
   for (const options of [
     { wrongPending: true },

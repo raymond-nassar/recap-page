@@ -397,7 +397,7 @@ export function requirePendingDraft(submission) {
   }
 }
 
-function mutableIntent(submission) {
+export function mutableIntent(submission) {
   const value = apiFields(record(submission, 'submission'));
   for (const key of ['id', 'status', 'statusDetails', 'fileUploadUrl', 'friendlyName']) delete value[key];
   if (value.pricing) delete value.pricing.isAdvancedPricingModel;
@@ -428,7 +428,7 @@ function mutableIntent(submission) {
   return value;
 }
 
-export function verifyPreservedIntent(actual, expected, bundleName) {
+export function preservedIntentPair(actual, expected, bundleName) {
   const left = mutableIntent(actual);
   const right = mutableIntent(expected);
   if (bundleName) {
@@ -440,7 +440,12 @@ export function verifyPreservedIntent(actual, expected, bundleName) {
       if (!Object.hasOwn(intended, field)) delete uploaded[field];
     }
   }
-  if (!isDeepStrictEqual(left, right)) throw new Error('Unrelated submission settings changed');
+  return { actual: left, expected: right };
+}
+
+export function verifyPreservedIntent(actual, expected, bundleName) {
+  const pair = preservedIntentPair(actual, expected, bundleName);
+  if (!isDeepStrictEqual(pair.actual, pair.expected)) throw new Error('Unrelated submission settings changed');
 }
 
 export function validateSubmissionStatus(response) {

@@ -5,9 +5,10 @@ import { createHash } from 'node:crypto';
 import {
   apiFields, validateApplication, validateSubmissionIdentity, validatePublishedSubmission,
   validateApiPackageReplacement, validateReleaseNotes, validateReleaseNotesTarget,
-  prepareApiDraft, verifyDraft, verifyPreservedIntent, requirePendingDraft,
+  prepareApiDraft, verifyPreservedIntent, requirePendingDraft,
   validateCommitResponse, validateSubmissionStatus,
 } from './check-store-release.mjs';
+import { readbackChecks } from './store-readback.mjs';
 
 const API = 'https://manage.devcenter.microsoft.com/v1.0/my/applications';
 const OBSERVATION_MS = 5 * 60 * 1000;
@@ -51,7 +52,9 @@ export function formatOutcome(outcome) {
     : outcome.state === 'published' ? 'Store reports Published.'
       : outcome.state === 'validated' ? 'Read-only rehearsal passed; no Store mutation was sent.'
         : 'Publication is not verified. Monitor this submission; do not rerun. Microsoft publishes after certification.';
-  return `Store release: ${outcome.state}; stage: ${outcome.stage}; submission: ${outcome.submissionId ?? 'not-known'}; status: ${outcome.status ?? 'not-observed'}; commit: ${outcome.commit}; ingested package: ${outcome.package ?? 'not-observed'}; approved notes SHA-256: ${outcome.notesSha256 ?? 'not-validated'}.\n${action}\n`;
+  return `Store release: ${outcome.state}; stage: ${outcome.stage}; submission: ${outcome.submissionId ?? 'not-known'}; status: ${outcome.status ?? 'not-observed'}; commit: ${outcome.commit}; ingested package: ${outcome.package ?? 'not-observed'}; approved notes SHA-256: ${outcome.notesSha256 ?? 'not-validated'}.\n${action}\n`
+    + (outcome.failureCode ? `Failure code: ${outcome.failureCode}\n` : '')
+    + (outcome.readback ? `${JSON.stringify(outcome.readback)}\n` : '');
 }
 
 export async function publishStoreUpdate(config, {
@@ -141,15 +144,25 @@ export async function publishStoreUpdate(config, {
     const updated = apiFields(await request('PUT', draftUrl, prepared));
     validateSubmissionIdentity(updated, created.id);
     outcome.stage = 'readback';
+    outcome.failureCode = 'READBACK_REQUEST';
     const actual = apiFields(await request('GET', draftUrl));
-    requirePendingDraft(actual);
-    verifyDraft(actual, bundleName, created.id, notes, version);
-    verifyPreservedIntent(actual, prepared, bundleName);
+    const readback = readbackChecks(actual, prepared, { bundleName, pendingId: created.id, notes, version });
+    const failed = readback.checks.find((check) => check.checkId !== 'READBACK_DIFFERENCES' && check.result === 'fail');
+    if (failed) {
+      outcome.failureCode = failed.code;
+      outcome.readback = readback;
+      throw new Error('Readback contract failed');
+    }
+    outcome.failureCode = 'READBACK_APPLICATION_REFERENCES';
     bindApplication(await request('GET', root), productId, publishedId, created.id);
+    outcome.failureCode = 'READBACK_PUBLISHED_IDENTITY';
     const baseline = apiFields(await request('GET', publishedUrl));
     validateSubmissionIdentity(baseline, publishedId);
+    outcome.failureCode = 'READBACK_PUBLISHED_STATUS';
     if (baseline.status !== 'Published') throw new Error('Baseline status changed');
+    outcome.failureCode = 'READBACK_PUBLISHED_INTENT';
     verifyPreservedIntent(baseline, published);
+    delete outcome.failureCode;
     outcome.stage = 'commit';
     outcome.commit = 'attempted';
     const commit = await request('POST', `${draftUrl}/commit`, undefined, [200, 202]);

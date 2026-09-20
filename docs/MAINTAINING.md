@@ -1122,3 +1122,67 @@ replaced and the approved English bullet notes are updated. Exact metadata read-
 application/baseline check precede one commit request. Only a valid `CommitStarted` response counts
 as submission started, never as certification or publication. A response error or timeout may
 follow a successful mutation: inspect the same draft read-only instead of trying again.
+
+### Diagnose a current Store readback without changing it
+
+Use **Read-only Store readback diagnosis** for current or future stopped submissions, not the
+incident-bound 3.0.0 reconstruction or recovery workflows above. Dispatch only from the default
+branch, coordinate with the current Store operator, and retain the required owner review on
+`microsoft-store-production`. The shared production concurrency group does not cancel an active
+operation. Approval authorizes observation only, never resumption or commit.
+
+Supply `release_tag`, full `source_sha`, `expected_pending_id`, `expected_published_id`,
+`bundle_sha256` and `notes_sha256`. The notes hash is SHA-256 of the exact approved `text` string's
+UTF-8 bytes, not the JSON file. The workflow runs the reviewed diagnostic at its own workflow
+commit and reads application version and notes from a separate immutable release checkout. It
+requires an existing non-draft, non-prerelease public release, the exact tag commit on the default
+branch, a matching package version and filename, and the approved notes hash before authentication.
+It does not build MSIX packages, move a tag, alter a public release, or call the publisher.
+
+Each check reports a fixed identifier, pass/fail result and code. Store reads are limited to the
+application, exact configured published and pending submissions, pending status, and final
+application/published rechecks. Responses are held in memory; no raw response or private baseline
+is written to disk or uploaded as an artifact. HTTP errors, malformed fields and mismatches do
+not suppress independent checks. There is no retry. Authentication is the only POST; Store
+mutation count must remain zero.
+
+The report shows allowlisted statuses, numeric package versions, file statuses and filename-match
+booleans. Missing and null package versions are distinct observations, not a generic failure.
+Other values appear only as types, hashes and counts. Status messages are never emitted; only
+documented error/warning codes and counts are exposed. Paths use known API field names, a
+conservative locale allowlist and array indices; other keys are hashed. Differences are bounded
+to 100 records per view, with explicit total and truncation indicators.
+
+The expected update is constructed from the **current** published submission plus the approved
+release notes and package replacement. The semantic comparison shares the publisher's exact
+`mutableIntent` and new-package metadata handling. Additional views expose differences before
+new-package normalization and before general normalization, excluding upload authorization and
+status detail bodies. Those views are observations, not new acceptance rules. The publisher
+retains its original preflight and readback guards; failures now include fixed contract codes
+and safe semantic paths rather than only the stage name.
+
+Set `read_uploaded_bundle=true` only when the operator also authorizes an upload read. The optional
+GET accepts only an unexpired HTTPS Azure Blob ingestion URL, sends no Authorization header, and
+refuses redirects. It caps transfer and expanded bundle size at 256 MiB each, with a 60-second
+request deadline. It accepts only a single exact-name stored or deflated bundle in a non-ZIP64
+archive with no archive comment. Bytes remain in memory. The report includes the current ZIP
+hash/size, bundle hash/size and equality to the supplied qualified bundle hash. Denial, timeout,
+unsupported ZIP layout, limits or mismatch are explicit failed checks; metadata checks still
+complete. No uploaded bytes are assumed merely because metadata names the expected package.
+
+The original upload ZIP digest is **UNRECORDED**. A current upload read can establish its current
+bytes, not invent an original ZIP digest or prove when those bytes were uploaded. Without that
+read, the bundle hash is only an operator-supplied binding. Historical created/published payloads
+are explicitly unavailable, not reconstructed or resealed. Current baseline comparison cannot
+prove the historical copy relationship; sequential GETs are not an atomic snapshot. A clean
+diagnosis does not authorize a resume and does not imply that Store submission was committed or
+published. Public GitHub release state and Store submission state remain separate.
+
+The field and read-only contracts follow Microsoft's
+[submission resource](https://learn.microsoft.com/windows/uwp/monetize/manage-app-submissions),
+[submission GET](https://learn.microsoft.com/windows/uwp/monetize/get-an-app-submission),
+[status GET](https://learn.microsoft.com/windows/uwp/monetize/get-status-for-an-app-submission)
+and [commit boundary](https://learn.microsoft.com/windows/uwp/monetize/commit-an-app-submission),
+retrieved 2026-09-19. Microsoft documents package-derived fields as server-populated. In particular,
+missing new-package version may explain a strict inspection failure but does not by itself explain
+a publisher readback failure. Diagnose the actual failed checks before considering a policy change.
