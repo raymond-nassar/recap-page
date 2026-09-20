@@ -54,7 +54,7 @@ function fixture() {
     } else {
       assert.equal(init.method, 'GET');
       assert.equal(init.body, undefined);
-      if (url.includes('.blob.core.windows.net/')) {
+      if (url === pending.fileUploadUrl) {
         assert.equal(init.headers, undefined);
         return new Response('PRIVATE denied', { status: 403 });
       }
