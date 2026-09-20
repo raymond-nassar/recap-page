@@ -4,7 +4,7 @@ import { apiFields, verifyPreservedIntent, validateCommitResponse } from './chec
 import { configurationChecks, loadConfiguration, runDiagnosis } from './diagnose-store-readback.mjs';
 import { checkResult, currentReadbackChecks, statusObservation } from './store-readback.mjs';
 import { observeUploadedBundle } from './store-upload-readback.mjs';
-import { observeCommittedSubmission } from './store-release.mjs';
+import { formatOutcome, observeCommittedSubmission } from './store-release.mjs';
 
 const API = 'https://manage.devcenter.microsoft.com/v1.0/my/applications';
 
@@ -140,11 +140,10 @@ export async function commitStoreUpdate(config, {
     report(structuredClone(outcome));
     await observeCommittedSubmission({ outcome, request, draftUrl, expected: finalPending,
       bundleName, version, now, wait });
-    if (outcome.package === 'verified') outcome.notes = 'verified';
     return outcome;
   } catch {
     // Never copy exception text from authenticated transport or private Store resources.
-    outcome.state = 'failed';
+    outcome.state = outcome.commit === 'acknowledged' ? 'verification-pending' : 'failed';
     outcome.failureCode ??= `COMMIT_ONLY_${outcome.stage.toUpperCase().replaceAll('-', '_')}`;
     return outcome;
   }
@@ -169,8 +168,9 @@ export async function runCommitOnly(args, env = process.env, {
     result = structuredClone(outcome);
     const text = `${JSON.stringify(outcome, null, 2)}\n`;
     write(text);
+    write(formatOutcome(outcome));
     summarize(`## Store commit-only outcome\n\n\`\`\`json\n${text}\`\`\`\n`
-      + 'Only an observed published result verifies publication. Otherwise inspect the exact submission; do not rerun or edit it.\n');
+      + formatOutcome(outcome));
   };
   try {
     demand(args.length === 1 && ['--preflight', '--commit-only'].includes(args[0]));
@@ -184,10 +184,12 @@ export async function runCommitOnly(args, env = process.env, {
     }
     emit(result);
   } catch {
-    result = { ...result, state: 'failed', reportingOrInputFailure: true };
-    error(`${JSON.stringify(result)}\nCOMMIT_ONLY_REPORT_OR_INPUT_FAILED. Retain this submission and attempt state; do not rerun.\n`);
+    result = { ...result, state: result.commit === 'acknowledged' && result.state !== 'failed'
+      ? 'verification-pending' : 'failed', reportingOrInputFailure: true };
+    result.failureCode ??= 'COMMIT_ONLY_REPORT_OR_INPUT_FAILED';
+    error(`${JSON.stringify(result)}\n${formatOutcome(result)}COMMIT_ONLY_REPORT_OR_INPUT_FAILED. Retain this submission and attempt state; do not rerun.\n`);
   }
-  return result.state === 'failed' ? 1 : 0;
+  return ['failed', 'verification-pending'].includes(result.state) ? 1 : 0;
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {

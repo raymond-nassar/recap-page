@@ -13,6 +13,14 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Separate incomplete Store verification from Store failure
+
+After an acknowledged commit, maintainer reports now keep the last valid Store status and distinguish
+local verification blockers from confirmed Store processing failures. Package and approved-notes
+proofs are reported independently of preserved settings. Missing or mismatched required proof still
+stops the workflow without retry; no omitted setting is treated as equivalent to false.
+Nothing changes in the app, its version, public downloads or saved reading progress.
+
 ### Resume a verified Store update with one commit
 
 A separate protected maintainer workflow can finish an already uploaded update without creating,
