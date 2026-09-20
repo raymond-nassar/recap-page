@@ -437,12 +437,13 @@ draft, and commits the same ID once.
 
 Immediate publication means Microsoft publishes the update automatically after certification. It
 does not bypass certification or make workflow completion mean the update is already visible. The
-workflow never polls certification, deletes a draft, retries a Store mutation automatically, or
+workflow never waits for certification to finish, deletes a draft, retries a Store mutation automatically, or
 changes the GitHub ZIP release. Every Store mutation is one HTTP request without an automatic retry
-policy.
+policy. A bounded read-only observation reports status and ingested package verification separately.
 
 If any failure occurs at or after draft upload, do not rerun the workflow. Inspect Partner Center
-first and resolve the pending draft manually. A certification failure requires a corrected,
+read-only first. An API-created draft must continue through the API, not portal edits, after a
+separate recovery decision. A certification failure requires a corrected,
 higher-version release rather than moving or reusing the failed release tag.
 
 ## Official sources

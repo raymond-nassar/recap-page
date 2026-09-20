@@ -2,6 +2,18 @@ name: Microsoft Store release
 
 on:
   workflow_dispatch:
+    inputs:
+      mode:
+        description: Read-only rehearsal or explicitly authorized catch-up submission
+        type: choice
+        options: [Validate, Submit]
+        default: Validate
+      release_tag:
+        description: Published version tag required for Submit; leave empty for Validate
+        type: string
+      source_sha:
+        description: Full immutable application commit required for Submit
+        type: string
   release:
     types: [published]
 
@@ -33,7 +45,15 @@ jobs:
           persist-credentials: false
           ref: >-
             ${{ github.event_name == 'release' &&
-                github.event.release.tag_name || github.ref }}
+                github.event.release.tag_name || inputs.release_tag || github.ref }}
+
+      - name: Check out the reviewed publisher
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        timeout-minutes: 2
+        with:
+          ref: ${{ github.workflow_sha }}
+          path: .store-tooling
+          persist-credentials: false
 
       - name: Set up Node
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
@@ -71,6 +91,11 @@ jobs:
         id: release
         timeout-minutes: 2
         shell: pwsh
+        env:
+          DISPATCH_MODE: ${{ inputs.mode }}
+          RELEASE_TAG: ${{ github.event.release.tag_name || inputs.release_tag }}
+          EXPECTED_SOURCE_SHA: ${{ inputs.source_sha }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           $appVersion = (Get-Content -LiteralPath ./package.json -Raw |
             ConvertFrom-Json).version
@@ -79,13 +104,41 @@ jobs:
           $tempRoot = Join-Path $env:RUNNER_TEMP `
             "recap-store-$env:GITHUB_RUN_ID-$env:GITHUB_RUN_ATTEMPT"
           New-Item -ItemType Directory -Path $tempRoot -ErrorAction Stop | Out-Null
+          $mode = 'Validate'
           if ($env:GITHUB_EVENT_NAME -eq 'release') {
-            node ./scripts/check-store-release.mjs release `
+            $mode = 'Submit'
+            node ./.store-tooling/scripts/check-store-release.mjs release `
               $env:GITHUB_EVENT_PATH $appVersion $storeVersion
             if ($LASTEXITCODE -ne 0) {
               throw 'The published release does not match the package version.'
             }
+          } elseif ($env:DISPATCH_MODE -eq 'Submit') {
+            $mode = 'Submit'
+            if ($env:RELEASE_TAG -ne "v$appVersion" -or
+                $env:EXPECTED_SOURCE_SHA -cnotmatch '^[0-9a-f]{40}$') {
+              throw 'Catch-up submission requires the exact version tag and immutable source SHA.'
+            }
+            $actual = (git rev-parse HEAD).Trim()
+            if ($LASTEXITCODE -ne 0 -or $actual -cne $env:EXPECTED_SOURCE_SHA) {
+              throw 'The catch-up application checkout does not match the approved source SHA.'
+            }
+            $releaseJson = gh api "repos/$env:GITHUB_REPOSITORY/releases/tags/$env:RELEASE_TAG"
+            if ($LASTEXITCODE -ne 0) {
+              throw 'The published GitHub release could not be verified.'
+            }
+            $eventPath = Join-Path $tempRoot 'release-event.json'
+            @{ action = 'published'; release = ($releaseJson | ConvertFrom-Json) } |
+              ConvertTo-Json -Depth 100 | Set-Content -LiteralPath $eventPath -Encoding utf8
+            node ./.store-tooling/scripts/check-store-release.mjs release `
+              $eventPath $appVersion $storeVersion
+            if ($LASTEXITCODE -ne 0) {
+              throw 'Catch-up submission requires an existing non-draft, non-prerelease release.'
+            }
+          } elseif ($env:DISPATCH_MODE -ne 'Validate' -or $env:RELEASE_TAG -or $env:EXPECTED_SOURCE_SHA) {
+            throw 'Read-only rehearsal must use Validate without a release tag or source SHA.'
           }
+          "mode=$mode" >> $env:GITHUB_OUTPUT
+          "source_sha=$((git rev-parse HEAD).Trim())" >> $env:GITHUB_OUTPUT
           "app_version=$appVersion" >> $env:GITHUB_OUTPUT
           "store_version=$storeVersion" >> $env:GITHUB_OUTPUT
           "bundle_name=$bundleName" >> $env:GITHUB_OUTPUT
@@ -95,16 +148,20 @@ jobs:
           "temp_root=$tempRoot" >> $env:GITHUB_OUTPUT
 
       - name: Prove release commit provenance
-        if: github.event_name == 'release'
+        if: steps.release.outputs.mode == 'Submit'
         timeout-minutes: 2
         shell: pwsh
         env:
           DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
-          RELEASE_TAG: ${{ github.event.release.tag_name }}
+          RELEASE_TAG: ${{ github.event.release.tag_name || inputs.release_tag }}
+          SOURCE_SHA: ${{ steps.release.outputs.source_sha }}
         run: |
           $tagCommit = (git rev-parse "$env:RELEASE_TAG^{commit}").Trim()
-          if ($LASTEXITCODE -ne 0 -or $tagCommit -ne $env:GITHUB_SHA) {
+          if ($LASTEXITCODE -ne 0 -or $tagCommit -ne $env:SOURCE_SHA) {
             throw 'The checked-out commit does not match the published release tag.'
+          }
+          if ($env:GITHUB_EVENT_NAME -eq 'release' -and $tagCommit -ne $env:GITHUB_SHA) {
+            throw 'The release tag changed after the published event.'
           }
           git fetch --no-tags origin $env:DEFAULT_BRANCH
           if ($LASTEXITCODE -ne 0) {
@@ -118,8 +175,9 @@ jobs:
       - name: Run focused release tests
         timeout-minutes: 2
         run: >-
-          node --test test/version.test.js test/msix-packaging.test.js
-          test/wack-workflow.test.js test/microsoft-store-release.test.js
+          node --test .store-tooling/test/version.test.js .store-tooling/test/msix-packaging.test.js
+          .store-tooling/test/wack-workflow.test.js .store-tooling/test/microsoft-store-release.test.js
+          .store-tooling/test/store-publisher.test.js .store-tooling/test/server-ownership.test.js
 
       - name: Build the production native launchers
         timeout-minutes: 12
@@ -163,7 +221,7 @@ jobs:
           }
 
       - name: Validate Partner Center without mutation
-        if: github.event_name == 'workflow_dispatch'
+        if: steps.release.outputs.mode == 'Validate'
         timeout-minutes: 8
         shell: pwsh
         env:
@@ -174,7 +232,7 @@ jobs:
           if ([string]::IsNullOrWhiteSpace('${{ vars.MICROSOFT_STORE_PRODUCT_ID }}')) {
             throw 'MICROSOFT_STORE_PRODUCT_ID is missing.'
           }
-          ./scripts/publish-store-update.ps1 `
+          ./.store-tooling/scripts/publish-store-update.ps1 `
             -Mode Validate `
             -ProductId '${{ vars.MICROSOFT_STORE_PRODUCT_ID }}' `
             -BundlePath '${{ steps.release.outputs.bundle }}' `
@@ -183,7 +241,7 @@ jobs:
             -WorkDirectory '${{ steps.release.outputs.temp_root }}'
 
       - name: Recheck the bundle before mutation
-        if: github.event_name == 'release'
+        if: steps.release.outputs.mode == 'Submit'
         timeout-minutes: 2
         shell: pwsh
         run: |
@@ -194,7 +252,7 @@ jobs:
           }
 
       - name: Submit one Store update
-        if: github.event_name == 'release'
+        if: steps.release.outputs.mode == 'Submit'
         timeout-minutes: 25
         shell: pwsh
         env:
@@ -205,7 +263,14 @@ jobs:
           if ([string]::IsNullOrWhiteSpace('${{ vars.MICROSOFT_STORE_PRODUCT_ID }}')) {
             throw 'MICROSOFT_STORE_PRODUCT_ID is missing.'
           }
-          ./scripts/publish-store-update.ps1 `
+          @(
+            '## Authorized Store submission'
+            '* Application source: ${{ steps.release.outputs.source_sha }}'
+            '* Publisher source: ${{ github.workflow_sha }}'
+            '* Store version: ${{ steps.release.outputs.store_version }}'
+            '* Qualified bundle SHA-256: ${{ steps.bundle_hash.outputs.sha256 }}'
+          ) | Add-Content -LiteralPath $env:GITHUB_STEP_SUMMARY
+          ./.store-tooling/scripts/publish-store-update.ps1 `
             -Mode Submit `
             -ProductId '${{ vars.MICROSOFT_STORE_PRODUCT_ID }}' `
             -BundlePath '${{ steps.release.outputs.bundle }}' `
@@ -222,14 +287,15 @@ jobs:
             '## Microsoft Store release'
             ''
             "* Event: $env:GITHUB_EVENT_NAME"
-            "* Commit: $env:GITHUB_SHA"
+            "* Application source: ${{ steps.release.outputs.source_sha }}"
+            '* Publisher source: ${{ github.workflow_sha }}'
             "* Application version: ${{ steps.release.outputs.app_version }}"
             "* Store version: ${{ steps.release.outputs.store_version }}"
             "* Bundle: ${{ steps.release.outputs.bundle_name }}"
             "* SHA-256: ${{ steps.bundle_hash.outputs.sha256 }}"
             '* WACK: passed'
-            $(if ($env:GITHUB_EVENT_NAME -eq 'release') {
-              '* Partner Center: commit started; certification status not yet verified'
+            $(if ('${{ steps.release.outputs.mode }}' -eq 'Submit') {
+              '* Partner Center: see the observed submission outcome above; completion does not imply publication'
             } else {
               '* Partner Center: read-only activation rehearsal passed'
             })

@@ -13,6 +13,24 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+## 3.0.1
+
+### Keep overlapping Windows launches reliable
+
+The packaged Windows launcher uses a native helper instead of starting PowerShell to verify its
+local server. Hosted ARM64 evidence showed PowerShell reaching the verification deadline before
+its first observable operation. The helper preserves the exact listener, process and server-command
+checks, the same address and existing deadlines. Your saved progress and the schema introduced
+in 3.0.0 are unchanged.
+
+### Confirm automated Store submission progress
+
+Store updates now check preserved settings without rejecting documented server-only normalization,
+commit once, and observe ingestion with explicit pending, certification and failure outcomes.
+A protected catch-up option uses the corrected publisher with an already published application's
+immutable source, without replacing its tag or download. Default manual rehearsal remains read-only.
+The release process does not change saved reading progress.
+
 ### Recover Store publication without replacing a draft
 
 Store submission creation accepts the observed HTTP 201 success as well as HTTP 200.

@@ -1,6 +1,7 @@
 #include "StartupProtocol.h"
 #include "StartupProcess.h"
 #include "StartupObserver.h"
+#include "ServerVerifierTests.h"
 #include <ole2.h>
 #include <UIAutomation.h>
 #include <wincrypt.h>
@@ -92,6 +93,7 @@ struct CalibrationFailure : std::runtime_error {
 };
 
 const char* failureCode(const std::exception& failure) {
+    if (dynamic_cast<const recap::ownership::tests::FixtureFailure*>(&failure)) return "native-verifier-fixture-failed";
     if (const auto* setup = dynamic_cast<const FixtureSetupFailure*>(&failure)) return setup->code;
     if (const auto* record = dynamic_cast<const FixtureRecordFailure*>(&failure)) return record->code;
     if (const auto* final = dynamic_cast<const proof::FinalObservationFailure*>(&failure)) return final->code;
@@ -184,6 +186,10 @@ const char* failureCode(const std::exception& failure) {
 
 void writeFailure(std::ostream& report, const std::exception& failure, const std::string& stage) {
     report << "FAIL code=" << failureCode(failure) << " stage=" << stage << "\n";
+    if (const auto* verifier = dynamic_cast<const recap::ownership::tests::FixtureFailure*>(&failure)) {
+        report << "DIAG native-verifier-fixture condition=" << verifier->condition << "\n";
+        if (verifier->hasResult) report << "DIAG native-verifier-result " << recap::ownership::record(verifier->result);
+    }
     if (const auto* calibration = dynamic_cast<const CalibrationFailure*>(&failure))
         report << "DIAG calibration-exception primary=1 secondary_failures=" << calibration->secondary.size() << "\n";
     if (const auto* leaf = dynamic_cast<const WindowMessageFailure*>(&failure))
@@ -3191,7 +3197,153 @@ void diagnostic(const std::map<std::wstring, std::wstring>& options, std::ofstre
     observer.finishIdentities();
 }
 
+struct InstalledWaitState { bool timeoutReported = false; };
+
+template<class Finished, class Pending, class Emit>
+bool completeInstalledWait(InstalledWaitState& state, Finished finished, Pending pending, Emit emit) {
+    const bool complete = finished();
+    if (!state.timeoutReported && pending()) {
+        emit();
+        state.timeoutReported = true;
+    }
+    return complete;
+}
+
+std::string safeVerificationDiagnostic(const std::wstring& detail) {
+    const std::wstring prefix = L"Verification diagnostic: ";
+    std::wistringstream lines(detail);
+    std::wstring line;
+    std::string result;
+    size_t candidates = 0;
+    while (std::getline(lines, line)) {
+        if (!line.empty() && line.back() == L'\r') line.pop_back();
+        if (line.compare(0, prefix.size(), prefix)) continue;
+        if (++candidates != 1 || line.size() > 256) return {};
+        std::wistringstream fields(line.substr(prefix.size()));
+        std::map<std::wstring, std::wstring> values;
+        std::wstring field;
+        while (fields >> field) {
+            const auto split = field.find(L'=');
+            if (split == std::wstring::npos || !values.emplace(field.substr(0, split), field.substr(split + 1)).second)
+                return {};
+        }
+        if (values.size() != 8) return {};
+        const std::set<std::wstring> stages{ L"process", L"loader", L"interop", L"ip-size", L"ip-query",
+                                            L"ip-decode", L"ip-owner", L"wmi", L"identity" };
+        const std::set<std::wstring> reasons{ L"spawn", L"timeout", L"exception", L"native-return", L"invalid-buffer",
+                                             L"missing", L"mismatch", L"invalid-response", L"not-owned" };
+        const std::set<std::wstring> languages{ L"Unknown", L"FullLanguage", L"ConstrainedLanguage",
+                                               L"RestrictedLanguage", L"NoLanguage" };
+        if (!stages.count(values[L"stage"]) || !reasons.count(values[L"reason"])) return {};
+        if (!languages.count(values[L"language"])) return {};
+        const auto number = [&](const wchar_t* key, long long minimum, long long maximum) {
+            const auto found = values.find(key);
+            if (found == values.end()) return false;
+            const auto& text = found->second;
+            const size_t start = !text.empty() && text[0] == L'-' ? 1 : 0;
+            if (text.size() <= start || text.size() > 11 ||
+                text.find_first_not_of(L"0123456789", start) != std::wstring::npos) return false;
+            const auto value = std::stoll(text);
+            return value >= minimum && value <= maximum;
+        };
+        if (!number(L"exit", -2147483648LL, 4294967295LL) || !number(L"code", -2147483648LL, 4294967295LL) ||
+            !number(L"elapsed", 0, 2147483647LL) || !number(L"node64", -1, 1) || !number(L"ps64", -1, 1)) return {};
+        for (const auto* key : { L"stage", L"reason", L"exit", L"code", L"elapsed", L"node64", L"ps64", L"language" }) {
+            if (!result.empty()) result += ' ';
+            for (const auto value : std::wstring(key) + L"=" + values.at(key)) result += static_cast<char>(value);
+        }
+    }
+    return result;
+}
+
+void reportInstalledRootTimeout(proof::Observer& observer, const std::wstring& executable, std::ofstream& report) {
+    const auto states = observer.rootStates(executable);
+    report << "DIAG installed-root-health healthy=" << observer.healthy()
+           << " events_lost=" << observer.eventsLost() << " buffers_lost=" << observer.buffersLost()
+           << " exact_roots=" << states.size() << "\n";
+    size_t emitted = 0;
+    for (const auto& state : states) {
+        if (emitted++ == 16) break;
+        const char* phase = "not-observed";
+        const char* result = "not-observed";
+        std::string diagnostic;
+        bool readFailed = false;
+        if (state.alive) {
+            try {
+                const auto& windows = observer.windows();
+                const auto found = std::find_if(windows.rbegin(), windows.rend(), [&](const auto& item) {
+                    return item.owner == state.pid && item.kind == proof::WindowKind::startup;
+                });
+                if (found != windows.rend()) {
+                    const auto window = reinterpret_cast<HWND>(found->window);
+                    DWORD owner = 0;
+                    GetWindowThreadProcessId(window, &owner);
+                    if (owner == state.pid) {
+                        const auto button = controlText(GetDlgItem(window, 203));
+                        phase = button == L"Close" ? "error" : button == L"Hide startup window" ? "pending" : "unknown";
+                        if (button == L"Close") {
+                            const auto detail = controlText(GetDlgItem(window, 204));
+                            diagnostic = safeVerificationDiagnostic(detail);
+                            result = detail.find(L"Windows could not verify its server process") != std::wstring::npos ? "server-unverified"
+                                : detail.find(L"default browser could not be opened") != std::wstring::npos ? "browser-open-failed"
+                                : detail.find(L"Port 8787 is already in use") != std::wstring::npos ? "port-busy"
+                                : detail.find(L"Startup observation timed out") != std::wstring::npos ? "startup-timeout"
+                                : "other-error";
+                        }
+                    }
+                }
+            } catch (const std::exception&) {
+                readFailed = true;
+            }
+        }
+        report << "DIAG installed-root-state pid=" << state.pid << " ended=" << state.ended
+               << " ambiguous=" << state.ambiguous << " retained=" << state.retained
+               << " signaled=" << state.signaled << " alive=" << state.alive
+               << " exit_known=" << state.exitKnown << " exit_code=" << state.exitCode
+               << " phase=" << phase << " result=" << result << " window_read_failed=" << readFailed
+               << " verification_diagnostic_present=" << !diagnostic.empty() << "\n";
+        if (!diagnostic.empty()) report << "DIAG ownership-verification " << diagnostic << "\n";
+    }
+    report.flush();
+}
+
+void serverVerifierCases() {
+    const recap::ownership::tests::FixtureFailure fixtureFailure("server-verifier/owned-fixture",
+        recap::ownership::unknown(recap::ownership::Stage::wmi, recap::ownership::Reason::nativeReturn, E_ACCESSDENIED));
+    std::ostringstream fixtureReport;
+    writeFailure(fixtureReport, fixtureFailure, "native-server-verifier-cases");
+    check(fixtureReport.str().find("condition=owned-fixture") != std::string::npos &&
+          fixtureReport.str().find("\"owned\":null,\"stage\":\"wmi\"") != std::string::npos,
+          "native verifier fixture failure lost its bounded cause");
+    const recap::ownership::tests::FixtureFailure privateFailure("private-path private-message");
+    check(privateFailure.condition == "unknown" &&
+          std::string(privateFailure.what()) == "native verifier fixture failed",
+          "native verifier fixture failure exposed private details");
+    const std::wstring diagnostic = L"Verification diagnostic: stage=wmi reason=exception exit=1 code=-2147217405 elapsed=812 node64=1 ps64=1 language=FullLanguage";
+    check(safeVerificationDiagnostic(L"Public guidance\n" + diagnostic) ==
+          "stage=wmi reason=exception exit=1 code=-2147217405 elapsed=812 node64=1 ps64=1 language=FullLanguage",
+          "safe verifier diagnostic was not observed");
+    for (const auto& invalid : { diagnostic + L" private=secret", diagnostic + L"\n" + diagnostic,
+                                std::wstring(L"Verification diagnostic: stage=private reason=secret"),
+                                std::wstring(L"Verification diagnostic: stage=wmi reason=exception exit=1 code=private elapsed=1 node64=1 ps64=1 language=FullLanguage"),
+                                std::wstring(L"Verification diagnostic: stage=wmi reason=exception exit=1 code=1 elapsed=1 node64=1 ps64=1 language=private") })
+        check(safeVerificationDiagnostic(invalid).empty(), "unsafe verifier diagnostic was accepted");
+    const std::wstring layout = L"C:\\Program Files\\Owner's";
+    const std::wstring path = layout + L"\\RecapPageVerifier.exe";
+    for (const auto* pid : { L"1", L"41", L"4294967295" })
+        check(proof::nativeVerifierArguments({ path, pid }, layout), "native verifier arguments were not recognized");
+    for (const auto* pid : { L"", L"0", L"01", L"-1", L"1.0", L"4294967296", L"41; exit 0" })
+        check(!proof::nativeVerifierArguments({ path, pid }, layout), "invalid verifier PID was recognized");
+    check(!proof::nativeVerifierArguments({ L"C:\\Other\\RecapPageVerifier.exe", L"41" }, layout),
+          "foreign verifier helper was recognized");
+    check(!proof::nativeVerifierArguments({ path, L"41", L"extra" }, layout), "extra verifier input was recognized");
+    const auto invoked = recap::quoted(path) + L" 41";
+    const auto args = proof::semanticArguments(invoked);
+    check(proof::nativeVerifierArguments(args, layout), "native verifier argument roundtrip differed");
+}
+
 void installed(const std::map<std::wstring, std::wstring>& options, std::ofstream& report) {
+    serverVerifierCases();
     wchar_t hosted[16]{};
     GetEnvironmentVariableW(L"GITHUB_ACTIONS", hosted, static_cast<DWORD>(std::size(hosted)));
     check(wcscmp(hosted, L"true") == 0, "installed observation is hosted-only");
@@ -3202,6 +3354,16 @@ void installed(const std::map<std::wstring, std::wstring>& options, std::ofstrea
           package.wstring().find(L"__we33aa8nvkpcc") != std::wstring::npos,
           "installed observation requires the exact package family");
     const bool busy = options.at(L"--mode") == L"busy";
+    if (!busy) {
+        observed("native-server-verifier-cases", [&] {
+            try {
+                recap::ownership::tests::run((package / L"runtime" / L"node.exe").wstring(), control);
+            } catch (const recap::ownership::Failure& failure) {
+                throw recap::ownership::tests::FixtureFailure("server-verifier/setup", failure.result);
+            }
+        });
+        report << "PASS native-server-verifier-fixtures;owned-loopback=1;identity-recheck=1;cleanup=complete\n";
+    }
     beginHost(options, report, busy ? "installed-busy" : "installed-functionality");
     proof::Observer observer(true, busy ? proof::ObservationProfile::installedBusy : proof::ObservationProfile::installedFunctionality);
     observer.reportTo(report);
@@ -3212,6 +3374,7 @@ void installed(const std::map<std::wstring, std::wstring>& options, std::ofstrea
     bool dismissed = false;
     size_t operationOrdinal = 1;
     bool operationActive = false;
+    InstalledWaitState waitState;
     observedWait("installed-result-wait", [&] {
         collectSemanticOperations(observer, control, operationOrdinal, operationActive);
         const auto counts = observer.entryCounts(executable);
@@ -3241,7 +3404,10 @@ void installed(const std::map<std::wstring, std::wstring>& options, std::ofstrea
                 break;
             }
         }
-        return busy ? dismissed : fs::exists(control / L"finish.txt");
+        return completeInstalledWait(waitState,
+            [&] { return busy ? dismissed : fs::exists(control / L"finish.txt"); },
+            [&] { return fs::exists(control / L"root-timeout.txt"); },
+            [&] { reportInstalledRootTimeout(observer, executable, report); });
     }, "installed observer deadline exceeded", 600000);
     observed("semantic-channel-drain", [&] {
         proof::until([&] {

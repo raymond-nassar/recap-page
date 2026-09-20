@@ -52,7 +52,7 @@ function closingStartupInputs(installed) {
   if (!evidence) throw new Error('mandatory installed startup inputs are missing');
   const snapshot = bindInstalledInputs(installed.InstallLocation, evidence.variant);
   if (snapshot.digest !== evidence.snapshot.digest) throw new Error('installed startup inputs changed');
-  console.log('DIAG installed-startup-inputs files=9 matched=9 snapshot=complete');
+  console.log(`DIAG installed-startup-inputs files=${snapshot.files} matched=${snapshot.files} snapshot=complete`);
   return snapshot;
 }
 
@@ -272,7 +272,7 @@ function installPackage(
   }
   const snapshot = bindInstalledInputs(installed.InstallLocation, startup.variant);
   installedStartup.set(installed.InstallLocation, { ...startup, snapshot });
-  console.log('DIAG installed-startup-inputs files=9 matched=9 snapshot=complete');
+  console.log(`DIAG installed-startup-inputs files=${snapshot.files} matched=${snapshot.files} snapshot=complete`);
   return installed;
 }
 
@@ -442,12 +442,7 @@ async function withNativeObservation(installed, architecture, source, mode, body
     activeSemanticCapture = semanticCapture;
     try {
       result = await body({
-        waitForSettledRoots: (count) => waitFor(() => {
-          assertAlive();
-          const counts = join(root, 'counts.txt');
-          return existsSync(counts)
-            && readFileSync(counts, 'utf8') === `started=${count}\nended=${count}\n`;
-        }, 'native activation lifecycle did not settle', 30000),
+        waitForSettledRoots: (count) => waitForSettledRoots(count, assertAlive, root),
       });
     } catch (error) {
       failures.push(error);
@@ -528,6 +523,41 @@ async function waitFor(check, message, timeout = 15000) {
   throw new Error(`${message}${lastError ? `: ${lastError.message}` : ''}`);
 }
 
+async function waitForSettledRoots(count, assertAlive, root, wait = waitFor, report = console.error) {
+  let present = false;
+  let parsed = false;
+  let alive = false;
+  let started = 'unknown';
+  let ended = 'unknown';
+  try {
+    return await wait(() => {
+      alive = false;
+      assertAlive();
+      alive = true;
+      const path = join(root, 'counts.txt');
+      present = existsSync(path);
+      parsed = false;
+      if (!present) return false;
+      const text = readFileSync(path, 'utf8');
+      const match = /^started=(\d{1,10})\nended=(\d{1,10})\n$/.exec(text);
+      if (match && Number(match[1]) <= 0xffffffff && Number(match[2]) <= 0xffffffff) {
+        parsed = true;
+        started = Number(match[1]);
+        ended = Number(match[2]);
+      }
+      return text === `started=${count}\nended=${count}\n`;
+    }, 'native activation lifecycle did not settle', 30000);
+  } catch (error) {
+    report(`DIAG installed-root-wait expected=${count} present=${Number(present)} parsed=${Number(parsed)} started=${started} ended=${ended} observer_alive=${Number(alive)}`);
+    try {
+      publishSemanticRecord(root, 'root-timeout.txt', 'observe');
+    } catch (diagnosticError) {
+      throw new AggregateError([error, diagnosticError], 'root wait and diagnostic publication failed', { cause: diagnosticError });
+    }
+    throw error;
+  }
+}
+
 async function waitForProcess(
   installed,
   since,
@@ -585,6 +615,7 @@ async function generation() {
 const INSTALLED_LAUNCHER_FILES = Object.freeze([
   Object.freeze(['runtime', 'node.exe']),
   Object.freeze(['Launcher.mjs']),
+  Object.freeze(['RecapPageVerifier.exe']),
   Object.freeze(['server.mjs']),
   Object.freeze(['src', 'msix-generation.json']),
 ]);
@@ -1345,5 +1376,5 @@ export {
   formatProofError, listenerPid, packageInfo, packageProcesses, removePackage, retainPackageProcess,
   removeStagedLauncher, runInstalledScenario, selectListenerServer, stageInstalledLauncher,
   startInstalledLauncher, stopPids,
-  serverChildExited, waitForProcess,
+  serverChildExited, waitForProcess, waitForSettledRoots,
 };

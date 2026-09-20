@@ -640,10 +640,30 @@ immediate publication with rollout disabled, verify that exact draft, and commit
 Each HTTP mutation is sent once without an automatic retry policy. The create request fails rather
 than deleting an existing pending submission.
 
-A successful job records Partner Center's asynchronous `CommitStarted` acknowledgement. Confirm
-later processing and certification separately; it does not prove customers can see the update.
+A successful commit acknowledgement is not publication. The publisher observes status with read-only
+requests for at most five minutes, distinguishing acknowledgement, processing, certification,
+publication pending and Published. It also reads the ingested submission to verify the new package
+version and approved notes. Missing ingestion metadata remains explicitly pending; known processing
+failures, changed notes or a wrong version fail the run without another mutation. The summary keeps
+only submission ID, stage, known status, package verification and the approved notes hash.
+
 Microsoft publishes automatically after certification, which can take up to three business days.
-There is no second manual publishing hold and the workflow does not wait or poll.
+There is no second manual publishing hold. A pending observation is not a claim of delivery.
+
+#### Catch up an already published release
+
+Do not rerun an old release workflow after correcting the publisher: that run uses its old source.
+From the default branch, explicitly dispatch **Microsoft Store release** with `mode=Submit`,
+`release_tag=v<version>` and `source_sha=<full immutable application commit>`. The existing published
+release must be non-draft and non-prerelease, match the application version, and resolve to that exact
+commit on the default branch. The workflow checks out the application there and the reviewed
+publisher at the dispatch workflow commit separately. Its summary records both identities and the
+WACK-qualified bundle hash. This does not move the public tag or replace its ZIP.
+
+The normal protected environment approval still authorizes the specific submission. Default manual
+dispatch remains `Validate`, with no tag or source SHA and no Store mutation. Both paths retain the
+live-product, free-price, strictly-higher-version and no-pending-submission guards. Never use a
+catch-up submission to resume or replace an existing draft.
 
 ### Recover a Store update
 
@@ -651,7 +671,7 @@ There is no second manual publishing hold and the workflow does not wait or poll
 |---|---|
 | Failure before draft upload | Correct the source, package, configuration, or read-only state problem. A deliberate rerun is safe only after confirming Partner Center still has no pending submission. |
 | Existing pending submission found | Stop. Inspect it in Partner Center and decide manually whether to finish or delete it. The workflow never deletes it. |
-| Failure during or after draft upload | Do not rerun. Treat the result as ambiguous, inspect Partner Center, and resolve the pending draft manually before another release attempt. |
+| Failure during or after draft creation | Do not rerun. Treat the result as ambiguous and inspect the reported submission read-only. API-created submissions must continue through the API, not portal edits; any recovery requires a separate decision. |
 | Draft commit accepted | Monitor certification in Partner Center. Do not rerun the workflow or move the release tag. |
 | Certification failed | Use the certification report, correct the application, and publish a new GitHub release with a higher version. |
 | Runner lost after commit | Treat Partner Center as authoritative. The pending guard prevents another upload while Store work remains. |
@@ -669,6 +689,18 @@ The Store release and standalone certification workflows download the fixed WinA
 archive and verify SHA-256
 `f6dc42e3b4e4709c8f617003008e2cfdd9a51735e04e7170d60edda258db78a8` before extraction or
 execution.
+
+The API contract is grounded in Microsoft's [submission lifecycle](https://learn.microsoft.com/windows/uwp/monetize/manage-app-submissions),
+[commit response](https://learn.microsoft.com/windows/uwp/monetize/commit-an-app-submission),
+[status response](https://learn.microsoft.com/windows/uwp/monetize/get-status-for-an-app-submission)
+and [first-party client](https://github.com/microsoft/msstore-cli/blob/65fec5f1fd4a666db76cb76ec6c7121a4f50f38e/MSStore.API/SubmissionClient.cs),
+retrieved 2026-09-19. Learn specifies `CommitStarted`, not a numeric success code. The publisher
+accepts only 200 or 202 plus that valid body, a narrower compatibility policy than the first-party
+client's general successful-response handling. No 202 commit response was observed in the 3.0.0
+incident: it stopped before commit. Creation accepts 200/201; update and GET require 200; blob upload
+requires 201. Read-back compares unrelated mutable settings, not a whole-object hash: server status,
+upload authorization, generated submission/package identities and read-only pricing metadata are
+excluded; the publish date is irrelevant under Immediate and rollout percentage when rollout is off.
 
 ### Prepare the preserved Store draft
 

@@ -219,6 +219,14 @@ health response before opening the browser, then exits. Another activation reuse
 server. It does not bind a port, read browser storage, write package files, or make an external
 network request.
 
+Server reuse still requires the exact loopback listener, its owning process, the packaged runtime
+image and the packaged server command. A native Windows-subsystem helper uses the inbox IP Helper
+and WMI APIs without starting PowerShell, loading the CLR or creating a window. It retains process
+identity and rechecks the listener after the query. The closed startup proof binds the helper's
+exact package path, PID argument, parent and compiled bytes. Failed or incomplete verification remains
+unknown, not permission to reuse a foreign server. The verifier's existing eight-second limit and
+the launcher's readiness deadlines are unchanged.
+
 Three earlier activation routes were measured or evaluated:
 
 - **Direct manifest parameters** launched the correct Node command and opened the correct browser
@@ -275,7 +283,8 @@ and the public CER remain under ignored `dist/msix/`; the proof-only `.1` remain
 `dist/msix-proof/`. Do not commit packages, certificates, logs, or proof reports.
 
 Inspect both Store packages, the proof-only update and both bundle slices without starting a
-foreign runtime. The exact executable set is `RecapPageLauncher.exe` and `runtime\node.exe`.
+foreign runtime. The exact executable set is `RecapPageLauncher.exe`, `RecapPageVerifier.exe`
+and `runtime\node.exe`.
 The GUI requires the matching PE32+ machine, GUI subsystem and source-bound binary hash; the Node
 runtime still requires its published official hash. Extra or misplaced executable payloads fail.
 Identity, activation, support floor, updater absence and proof-version separation are checked too:
@@ -448,14 +457,17 @@ approves deployment.
 The workflow builds from the release tag in one Windows Server 2022 job. It inspects and WACK-tests
 the exact generated bundle, verifies the same SHA-256 before submission, then checks Partner Center
 for the expected live free product, no pending submission, and a strictly higher package version.
-Manual dispatch performs the same build and read-only API checks but cannot create, upload, update,
-commit, delete, poll, or operate a flight.
+Default manual dispatch performs the same build and read-only API checks without Store mutations.
+The maintainer guide describes an explicit protected Submit dispatch for an already published tag,
+binding its immutable application source separately from the corrected publisher.
 
 An approved release creates one draft through Microsoft's submission API and captures its ID.
 Upload, update, verification, and commit remain bound to that ID, and every mutation is sent once
 without an automatic retry policy. Microsoft certification remains authoritative. After
 certification passes, Microsoft publishes the update automatically without a second manual hold.
-The workflow does not delete a pending draft or wait for certification.
+The workflow does not delete a pending draft or wait for certification to finish. It observes status
+for at most five minutes and checks the ingested package version and notes, reporting pending work
+separately from publication or failure.
 
 The [maintainer guide](MAINTAINING.md) owns environment setup order, secret names, activation
 rehearsal, release operation, and recovery. The [submission packet](MICROSOFT_STORE_SUBMISSION.md)

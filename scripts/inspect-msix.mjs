@@ -14,7 +14,7 @@ import {
 } from './pack-msix.mjs';
 import { NODE_VERSION } from './pack-windows.mjs';
 import {
-  NATIVE_NAME, exactExecutablePayloads, nativePe, verifyNativeArtifact,
+  NATIVE_NAME, VERIFIER_NAME, exactExecutablePayloads, nativePe, verifyNativeArtifact,
 } from './lib/native-launcher.mjs';
 import {
   buildStartupVariant, recordDigest, sourceRevision, startupSourceInputs, validateExpectations,
@@ -262,10 +262,18 @@ async function inspectPackage(path, target, hashes, {
       id: target.id, machine: target.peMachine,
     });
     const launcherHash = await sha256(launcherPath);
-    const expectedNative = artifact.record.outputs.find((output) => output.architecture === target.id);
-    if (launcherHash !== expectedNative.sha256
+    const expectedNative = artifact.record.outputs.find((output) => output.path === `${target.id}/${NATIVE_NAME}`);
+    if (!expectedNative || launcherHash !== expectedNative.sha256
       || !(await readFile(join(unpacked, 'native-build.json'))).equals(artifact.bytes)) {
       throw new Error(`${basename(path)} native bytes or provenance differ from the verified build`);
+    }
+    const verifierImage = nativePe(await readFile(join(unpacked, VERIFIER_NAME)), {
+      id: target.id, machine: target.peMachine,
+    }, { verifier: true });
+    const verifierHash = await sha256(join(unpacked, VERIFIER_NAME));
+    const expectedVerifier = artifact.record.outputs.find((output) => output.path === `${target.id}/${VERIFIER_NAME}`);
+    if (!expectedVerifier || verifierHash !== expectedVerifier.sha256) {
+      throw new Error(`${basename(path)} verifier bytes differ from the verified build`);
     }
     const generation = JSON.parse(
       await readFile(join(unpacked, 'src', 'msix-generation.json'), 'utf8'),
@@ -286,8 +294,9 @@ async function inspectPackage(path, target, hashes, {
       application,
       fileCount: files.length,
       signed,
-      executablePayloads: [NATIVE_NAME, 'runtime\\node.exe'],
+      executablePayloads: [NATIVE_NAME, VERIFIER_NAME, 'runtime\\node.exe'],
       native: { ...nativeImage, sha256: launcherHash, inputDigest: artifact.record.inputDigest },
+      verifier: { ...verifierImage, sha256: verifierHash, inputDigest: artifact.record.inputDigest },
       nodePeMachine: `0x${nodeMachine.toString(16)}`,
       nodeSha256: nodeHash,
       generation,

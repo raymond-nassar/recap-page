@@ -83,47 +83,127 @@ export async function probeServer(
     }
     const processId = Number(response.headers.get(SERVER_PROCESS_HEADER));
     if (!Number.isInteger(processId) || processId <= 0) return { status: 'foreign' };
-    const ownership = await verifyProcess(processId);
+    let diagnostic;
+    const ownership = await verifyProcess(processId, {
+      onDiagnostic: (value) => { diagnostic = cleanVerificationDiagnostic(value); },
+    });
     if (ownership === true) return { status: 'ready', processId };
-    if (ownership === false) return { status: 'foreign' };
-    return { status: 'verifying', processId };
+    const detail = diagnostic ? { diagnostic } : {};
+    if (ownership === false) return { status: 'foreign', ...detail };
+    return { status: 'verifying', processId, ...detail };
   } finally {
     clearTimeout(timer);
+  }
+}
+
+export const SERVER_OWNERSHIP_HELPER = join(ROOT, 'RecapPageVerifier.exe');
+const VERIFIER_STAGES = new Set(['process', 'ip-size', 'ip-query', 'ip-decode', 'ip-owner', 'wmi', 'identity']);
+const VERIFIER_REASONS = new Set(['spawn', 'timeout', 'exception', 'native-return', 'invalid-buffer', 'missing', 'mismatch', 'invalid-response', 'not-owned']);
+const NATIVE_FAILURE_REASONS = new Set(['timeout', 'exception', 'native-return', 'invalid-buffer', 'missing', 'mismatch', 'invalid-response']);
+
+function diagnosticNumber(value) {
+  return Number.isInteger(value) && value >= -2147483648 && value <= 0xffffffff;
+}
+
+function cleanVerificationDiagnostic(value) {
+  if (!value || !VERIFIER_STAGES.has(value.stage) || !VERIFIER_REASONS.has(value.reason)
+      || !diagnosticNumber(value.exit) || !diagnosticNumber(value.code)
+      || !Number.isInteger(value.elapsed) || value.elapsed < 0 || value.elapsed > 2147483647
+      || ![-1, 0, 1].includes(value.node64) || value.ps64 !== -1
+      || (value.language ?? 'Unknown') !== 'Unknown') return undefined;
+  const { stage, reason, exit, code, elapsed, node64, ps64 } = value;
+  return { stage, reason, exit, code, elapsed, node64, ps64, language: value.language ?? 'Unknown' };
+}
+
+export function verificationDiagnosticLine(value) {
+  const fact = cleanVerificationDiagnostic(value);
+  return fact
+    ? `Verification diagnostic: stage=${fact.stage} reason=${fact.reason} exit=${fact.exit} code=${fact.code} elapsed=${fact.elapsed} node64=${fact.node64} ps64=${fact.ps64} language=${fact.language}`
+    : null;
+}
+
+function verificationDiagnosticLines(value) {
+  const line = verificationDiagnosticLine(value);
+  return line ? [line] : [];
+}
+
+function validProcessId(processId) {
+  return Number.isInteger(processId) && processId > 0 && processId <= 0xffffffff;
+}
+
+export function parseNativeVerifierRecord(raw) {
+  if (typeof raw !== 'string' || Buffer.byteLength(raw, 'utf8') > 256) return null;
+  try {
+    const value = JSON.parse(raw);
+    const keys = ['schema', 'owned', 'stage', 'reason', 'code', 'helperBits'];
+    if (!value || Array.isArray(value) || JSON.stringify(Object.keys(value)) !== JSON.stringify(keys)
+        || JSON.stringify(value) + '\n' !== raw || value.schema !== 'RCPN1'
+        || ![true, false, null].includes(value.owned) || !diagnosticNumber(value.code)
+        || ![32, 64].includes(value.helperBits)) return null;
+    if (value.owned === true) {
+      return value.stage === 'complete' && value.reason === 'ok' && value.code === 0 ? value : null;
+    }
+    if (value.owned === false) {
+      return value.code === 0 && (value.stage === 'ip-owner' && value.reason === 'not-owned'
+        || value.stage === 'identity' && value.reason === 'mismatch') ? value : null;
+    }
+    return VERIFIER_STAGES.has(value.stage) && NATIVE_FAILURE_REASONS.has(value.reason) ? value : null;
+  } catch {
+    return null;
   }
 }
 
 export function verifyServerProcess(
   processId,
   {
-    executable = process.execPath,
-    server = join(ROOT, 'server.mjs'),
     execFile = execFileSync,
+    onDiagnostic,
   } = {},
 ) {
-  const script = [
-    `$connection = Get-NetTCPConnection -LocalAddress 127.0.0.1 -LocalPort 8787 -State Listen -ErrorAction SilentlyContinue | Where-Object OwningProcess -eq ${processId} | Select-Object -First 1`,
-    `$process = Get-CimInstance Win32_Process -Filter "ProcessId = ${processId}" -ErrorAction SilentlyContinue`,
-    'if ($connection -and $process) {',
-    '  $process | Select-Object ExecutablePath,CommandLine | ConvertTo-Json -Compress',
-    '}',
-  ].join('; ');
+  const started = performance.now();
+  onDiagnostic?.(null);
+  const report = (stage, reason, exit = -1, code = -1) => {
+    onDiagnostic?.({
+      stage, reason, exit: diagnosticNumber(exit) ? exit : -1,
+      code: diagnosticNumber(code) ? code : -1,
+      elapsed: Math.min(2147483647, Math.max(0, Math.round(performance.now() - started))),
+      node64: ['x64', 'arm64'].includes(process.arch) ? 1 : ['ia32', 'arm'].includes(process.arch) ? 0 : -1,
+      ps64: -1, language: 'Unknown',
+    });
+  };
+  if (!validProcessId(processId)) {
+    report('identity', 'invalid-response');
+    return false;
+  }
+  let raw;
   try {
-    const raw = execFile(
-      'powershell',
-      ['-NoProfile', '-NonInteractive', '-Command', script],
+    raw = execFile(
+      SERVER_OWNERSHIP_HELPER,
+      [String(processId)],
       {
         encoding: 'utf8',
         timeout: 8000,
         windowsHide: true,
+        stdio: 'pipe',
       },
-    ).trim();
-    if (!raw) return false;
-    const candidate = JSON.parse(raw);
-    return candidate.ExecutablePath?.toLowerCase() === executable.toLowerCase()
-      && candidate.CommandLine?.toLowerCase().includes(server.toLowerCase());
-  } catch {
+    );
+  } catch (error) {
+    if (error?.code === 'ETIMEDOUT') {
+      report('process', 'timeout', error?.status);
+    } else if (['ENOENT', 'EACCES', 'EPERM', 'ENOEXEC', 'ENOTDIR'].includes(error?.code)) {
+      report('process', 'spawn', error?.status, error?.errno);
+    } else {
+      report('process', 'exception', error?.status);
+    }
     return null;
   }
+  const result = parseNativeVerifierRecord(raw);
+  if (!result) {
+    report('process', 'invalid-response', 0);
+    return null;
+  }
+  if (result.owned !== true) report(result.stage, result.reason, 0, result.code);
+  return result.owned;
 }
 
 export function isPortOccupied({
@@ -337,6 +417,7 @@ export async function coordinateLaunch({
       lines: [
         'Recap Page answered, but Windows could not verify its server process.',
         'Try starting Recap Page again. If this continues, restart Windows.',
+        ...verificationDiagnosticLines(state.diagnostic),
       ],
     };
   }
@@ -412,6 +493,7 @@ export async function coordinateLaunch({
       lines: [
         'Recap Page answered, but Windows could not verify its server process.',
         'Try starting Recap Page again. If this continues, restart Windows.',
+        ...verificationDiagnosticLines(state.diagnostic),
       ],
     };
   }
@@ -433,6 +515,7 @@ export async function coordinateLaunch({
         'Close that program, then start Recap Page again.',
         'Do not start Recap Page on a different port. Your reading progress is stored at',
         `${ORIGIN}/ and another port opens a separate browser storage location.`,
+        ...verificationDiagnosticLines(state.diagnostic),
       ],
     };
   }

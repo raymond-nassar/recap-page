@@ -138,17 +138,22 @@ function startupLayoutFixture() {
     close() { rmSync(root, { recursive: true, force: true }); },
   };
 }
-async function populateStartupLayout(fixture, architecture = 'x64', version = '2.0.3.0') {
+async function populateStartupLayout(fixture, architecture = 'x64', version = '2.0.3.0', beforeBuild = () => {}) {
   const { SOURCE_FILES, startupSourceInputs, hashBytes, buildStartupVariant } = await import('../scripts/lib/startup-contract.mjs');
   for (const [path, source] of SOURCE_FILES) fixture.put(path, readFileSync(join(ROOT, ...source.split('/'))));
   fixture.put('AppxManifest.xml', read(MANIFEST).replace(/Version="[^"]+"/, `Version="${version}"`)
     .replace(/ProcessorArchitecture="[^"]+"/, `ProcessorArchitecture="${architecture}"`));
   fixture.put('RecapPageLauncher.exe', 'native-fixture');
+  fixture.put('RecapPageVerifier.exe', 'verifier-fixture');
   fixture.put('runtime/node.exe', 'node-fixture');
   const nativeBytes = Buffer.from('native-record');
   fixture.put('native-build.json', nativeBytes);
   fixture.put('src/msix-generation.json', JSON.stringify({ packageVersion: version, generation: 'a'.repeat(64) }));
-  const native = { digest: hashBytes(nativeBytes), record: { outputs: [{ architecture, sha256: hashBytes(Buffer.from('native-fixture')) }] } };
+  const native = { digest: hashBytes(nativeBytes), record: { outputs: [
+    { architecture, path: `${architecture}/RecapPageLauncher.exe`, sha256: hashBytes(Buffer.from('native-fixture')) },
+    { architecture, path: `${architecture}/RecapPageVerifier.exe`, sha256: hashBytes(Buffer.from('verifier-fixture')) },
+  ] } };
+  beforeBuild();
   return buildStartupVariant({ layout: fixture.root, architecture, version, native,
     nodeHash: hashBytes(Buffer.from('node-fixture')), sourceInputs: startupSourceInputs(ROOT) });
 }
@@ -161,7 +166,7 @@ test('startup expectations bind three package variants and reject an unlisted ex
       const variant = await populateStartupLayout(fixture, architecture, version);
       assert.equal(variant.identity.architecture, architecture);
       assert.equal(variant.identity.version, version);
-      assert.equal(variant.files.length, 9);
+      assert.equal(variant.files.length, 10);
     } finally { fixture.close(); }
   }
   const fixture = startupLayoutFixture();
@@ -211,7 +216,7 @@ test('installed startup bindings reject altered inputs activation ambiguity and 
   const fixture = startupLayoutFixture();
   try {
     const variant = await populateStartupLayout(fixture);
-    assert.equal(bindInstalledInputs(fixture.root, variant).files, 9);
+    assert.equal(bindInstalledInputs(fixture.root, variant).files, 10);
     for (const input of variant.files) {
       const file = join(fixture.root, ...input.path.split('/'));
       const bytes = readFileSync(file);
@@ -219,6 +224,13 @@ test('installed startup bindings reject altered inputs activation ambiguity and 
       assert.throws(() => bindInstalledInputs(fixture.root, variant), /input-mismatch/);
       fixture.put(input.path, bytes);
     }
+    const helper = join(fixture.root, 'RecapPageVerifier.exe');
+    const helperBytes = readFileSync(helper);
+    rmSync(helper);
+    assert.throws(() => bindInstalledInputs(fixture.root, variant), /input-missing/);
+    fixture.put('RecapPageVerifier.exe', helperBytes);
+    await assert.rejects(populateStartupLayout(fixture, 'x64', '2.0.3.0',
+      () => fixture.put('RecapPageVerifier.exe', 'changed before package inspection')), /input-mismatch/);
     assert.throws(() => validateActivationManifest(read(MANIFEST) + '<Application Id="extra">', 'x64', '2.0.2.0'), /input-mismatch/);
     assert.throws(() => boundedFile(fixture.root, '../escaped'), /input-mismatch/);
     assert.throws(() => validateExpectations({ schemaVersion: 2 }, {
@@ -508,10 +520,10 @@ test('native PE policy requires complete architecture-matched GUI executable hea
   }
 });
 
-test('native package policy permits only the exact two executable relative paths', async () => {
+test('native package policy permits only the exact three executable relative paths', async () => {
   const { exactExecutablePayloads } = await import('../scripts/lib/native-launcher.mjs');
-  const expected = ['RecapPageLauncher.exe', 'runtime\\node.exe', 'Launcher.mjs'];
-  assert.deepEqual(exactExecutablePayloads(expected), ['recappagelauncher.exe', 'runtime/node.exe']);
+  const expected = ['RecapPageLauncher.exe', 'RecapPageVerifier.exe', 'runtime\\node.exe', 'Launcher.mjs'];
+  assert.deepEqual(exactExecutablePayloads(expected), ['recappagelauncher.exe', 'recappageverifier.exe', 'runtime/node.exe']);
   for (const paths of [
     expected.slice(1), [...expected, 'extra.exe'], [...expected, 'runtime/addon.node'],
     [...expected, 'extra.dll'], [...expected, 'node.exe'], [...expected, 'RUNTIME/NODE.EXE'],
@@ -521,15 +533,15 @@ test('native package policy permits only the exact two executable relative paths
 
 test('native artifact records reject stale inputs and changed or ambiguous outputs', async () => {
   const {
-    validateNativeRecord, inputDigest, NATIVE_INPUTS, NATIVE_TARGETS,
+    validateNativeRecord, inputDigest, NATIVE_INPUTS, NATIVE_TARGETS, NATIVE_NAMES,
   } = await import('../scripts/lib/native-launcher.mjs');
   const inputs = NATIVE_INPUTS.map((path) => ({ path, bytes: 1, sha256: 'a'.repeat(64) }));
-  const outputs = NATIVE_TARGETS.map((target) => ({
-    architecture: target.id, path: `${target.id}/RecapPageLauncher.exe`,
+  const outputs = NATIVE_TARGETS.flatMap((target) => NATIVE_NAMES.map((name) => ({
+    architecture: target.id, path: `${target.id}/${name}`,
     bytes: 512, sha256: 'b'.repeat(64), machine: target.machine, subsystem: 2, imports: [],
-  }));
+  })));
   const record = {
-    schemaVersion: 1, commit: 'a'.repeat(40), inputs, inputDigest: inputDigest(inputs), outputs,
+    schemaVersion: 2, commit: 'a'.repeat(40), inputs, inputDigest: inputDigest(inputs), outputs,
     productionDigest: null,
     toolchain: {
       image: 'win22 2026', sdk: '10.0.26100.0', compilerVersion: '19.44.35217.0',
@@ -548,6 +560,8 @@ test('native artifact records reject stale inputs and changed or ambiguous outpu
     (value) => { value.inputs.push(value.inputs[0]); },
     (value) => { value.inputs[0].path = 'unknown.cpp'; },
     (value) => { value.outputs.reverse(); },
+    (value) => { value.outputs.splice(1, 1); },
+    (value) => { value.schemaVersion = 1; },
     (value) => { value.unexpected = true; },
     (value) => { value.toolchain.sdk = 'unreviewed'; },
   ]) {
@@ -914,37 +928,28 @@ test('the coordinator health probe requires identity and exact generation', asyn
 });
 
 test('server ownership requires the listening packaged executable and server command', async () => {
-  const { verifyServerProcess } = await import('../packaging/windows/Launcher.mjs');
+  const { verifyServerProcess, SERVER_OWNERSHIP_HELPER } = await import('../packaging/windows/Launcher.mjs');
   let invocation;
-  const options = {
-    executable: 'C:\\Package\\runtime\\node.exe',
-    server: 'C:\\Package\\server.mjs',
-  };
   assert.equal(verifyServerProcess(41, {
-    ...options,
     execFile: (...args) => {
       invocation = args;
       return JSON.stringify({
-        ExecutablePath: 'C:\\Package\\runtime\\node.exe',
-        CommandLine: '"C:\\Package\\runtime\\node.exe" C:\\Package\\server.mjs',
-      });
+        schema: 'RCPN1', owned: true, stage: 'complete', reason: 'ok', code: 0, helperBits: 64,
+      }) + '\n';
     },
   }), true);
-  assert.equal(invocation[0], 'powershell');
-  assert.deepEqual(invocation[1].slice(0, 3), ['-NoProfile', '-NonInteractive', '-Command']);
-  assert.match(invocation[1].join(' '), /OwningProcess -eq 41/);
-  assert.deepEqual(invocation[2], { encoding: 'utf8', timeout: 8000, windowsHide: true });
+  assert.equal(invocation[0], SERVER_OWNERSHIP_HELPER);
+  assert.match(invocation[0], /RecapPageVerifier\.exe$/);
+  assert.deepEqual(invocation[1], ['41']);
+  assert.deepEqual(invocation[2], { encoding: 'utf8', timeout: 8000, windowsHide: true, stdio: 'pipe' });
   assert.equal(verifyServerProcess(41, {
-    ...options,
     execFile: () => JSON.stringify({
-      ExecutablePath: 'C:\\Other\\node.exe',
-      CommandLine: '"C:\\Other\\node.exe" C:\\Package\\server.mjs',
-    }),
+      schema: 'RCPN1', owned: false, stage: 'identity', reason: 'mismatch', code: 0, helperBits: 64,
+    }) + '\n',
   }), false);
   assert.equal(verifyServerProcess(41, {
-    ...options,
     execFile: () => {
-      const error = new Error('PowerShell timed out');
+      const error = new Error('Native verifier timed out');
       error.code = 'ETIMEDOUT';
       throw error;
     },
@@ -1247,7 +1252,7 @@ test('busy-port proof captures the installed supervisor without Windows Terminal
           root: stagingRoot,
           executable: join(stagingRoot, 'runtime', 'node.exe'),
           launcher: join(stagingRoot, 'Launcher.mjs'),
-          files: ['runtime\\node.exe', 'Launcher.mjs', 'server.mjs', 'src\\msix-generation.json'],
+          files: ['runtime\\node.exe', 'Launcher.mjs', 'RecapPageVerifier.exe', 'server.mjs', 'src\\msix-generation.json'],
         };
       },
       spawnImpl: (...args) => {
@@ -1422,6 +1427,7 @@ test('busy-port proof stages only the exact installed launcher inputs', async ()
   const relativeFiles = [
     ['runtime', 'node.exe'],
     ['Launcher.mjs'],
+    ['RecapPageVerifier.exe'],
     ['server.mjs'],
     ['src', 'msix-generation.json'],
   ];
