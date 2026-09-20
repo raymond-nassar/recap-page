@@ -37,6 +37,19 @@ test('native verifier invokes only the exact packaged executable with one bounde
   }
 });
 
+test('native fixture failures retain only a bounded condition and fixed native result', () => {
+  const fixture = readFileSync(new URL('./native/ServerVerifierTests.h', import.meta.url), 'utf8');
+  const driver = readFileSync(new URL('./native/StartupTests.cpp', import.meta.url), 'utf8');
+  assert.match(fixture, /class FixtureFailure : public std::runtime_error/);
+  assert.match(fixture, /value\.find_first_not_of\("abcdefghijklmnopqrstuvwxyz0123456789-"/);
+  assert.match(fixture, /throw FixtureFailure\("server-verifier\/owned-fixture", result\)/);
+  assert.match(driver, /return "native-verifier-fixture-failed"/);
+  assert.match(driver, /DIAG native-verifier-fixture condition=/);
+  assert.match(driver, /recap::ownership::record\(verifier->result\)/);
+  assert.match(driver, /privateFailure\.condition == "unknown"/);
+  assert.doesNotMatch(driver, /report << .*verifier->what\(\)/);
+});
+
 test('native verifier protocol preserves true false and unknown without claiming PowerShell bitness', () => {
   for (const helperBits of [32, 64]) {
     for (const entry of [

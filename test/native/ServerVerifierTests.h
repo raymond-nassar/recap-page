@@ -6,8 +6,23 @@
 #include <thread>
 
 namespace recap::ownership::tests {
+class FixtureFailure : public std::runtime_error {
+public:
+    std::string condition;
+    bool hasResult = false;
+    Result result;
+    explicit FixtureFailure(const char* name) : std::runtime_error("native verifier fixture failed") {
+        const std::string value(name);
+        const std::string prefix = "server-verifier/";
+        condition = value.size() > prefix.size() && value.size() <= 80 && value.compare(0, prefix.size(), prefix) == 0 &&
+            value.find_first_not_of("abcdefghijklmnopqrstuvwxyz0123456789-", prefix.size()) == std::string::npos
+            ? value.substr(prefix.size()) : "unknown";
+    }
+    FixtureFailure(const char* name, Result actual) : FixtureFailure(name) { hasResult = true; result = actual; }
+};
+
 inline void check(bool value, const char* message) {
-    if (!value) throw std::runtime_error(message);
+    if (!value) throw FixtureFailure(message);
 }
 
 class FakeApi final : public Api {
@@ -183,7 +198,7 @@ public:
         if (!AssignProcessToJobObject(job.get(), process.get()) || ResumeThread(thread.get()) == static_cast<DWORD>(-1)) {
             TerminateProcess(process.get(), 1);
             WaitForSingleObject(process.get(), 2000);
-            throw std::runtime_error("server-verifier/fixture-resume");
+            throw FixtureFailure("server-verifier/fixture-resume");
         }
     }
     OwnedNode(const OwnedNode&) = delete;
@@ -212,7 +227,7 @@ public:
             check(value >= '0' && value <= '9', "server-verifier/fixture-ready-byte");
             text += value;
         }
-        throw std::runtime_error("server-verifier/fixture-ready-timeout");
+        throw FixtureFailure("server-verifier/fixture-ready-timeout");
     }
     void stop() {
         if (WaitForSingleObject(process.get(), 0) == WAIT_TIMEOUT)
@@ -252,7 +267,7 @@ inline void run(const std::wstring& nodeRuntime, const std::filesystem::path& sc
         return verify(pid, value, api);
     };
     auto result = invoke(child.pid, expected);
-    if (result.owned != Owned::yes) throw std::runtime_error("server-verifier/owned-fixture " + record(result));
+    if (result.owned != Owned::yes) throw FixtureFailure("server-verifier/owned-fixture", result);
     check(invoke(child.pid == MAXDWORD ? child.pid - 1 : child.pid + 1, expected).owned == Owned::no,
         "server-verifier/wrong-pid");
     auto wrong = expected;

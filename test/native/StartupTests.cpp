@@ -93,6 +93,7 @@ struct CalibrationFailure : std::runtime_error {
 };
 
 const char* failureCode(const std::exception& failure) {
+    if (dynamic_cast<const recap::ownership::tests::FixtureFailure*>(&failure)) return "native-verifier-fixture-failed";
     if (const auto* setup = dynamic_cast<const FixtureSetupFailure*>(&failure)) return setup->code;
     if (const auto* record = dynamic_cast<const FixtureRecordFailure*>(&failure)) return record->code;
     if (const auto* final = dynamic_cast<const proof::FinalObservationFailure*>(&failure)) return final->code;
@@ -185,6 +186,10 @@ const char* failureCode(const std::exception& failure) {
 
 void writeFailure(std::ostream& report, const std::exception& failure, const std::string& stage) {
     report << "FAIL code=" << failureCode(failure) << " stage=" << stage << "\n";
+    if (const auto* verifier = dynamic_cast<const recap::ownership::tests::FixtureFailure*>(&failure)) {
+        report << "DIAG native-verifier-fixture condition=" << verifier->condition << "\n";
+        if (verifier->hasResult) report << "DIAG native-verifier-result " << recap::ownership::record(verifier->result);
+    }
     if (const auto* calibration = dynamic_cast<const CalibrationFailure*>(&failure))
         report << "DIAG calibration-exception primary=1 secondary_failures=" << calibration->secondary.size() << "\n";
     if (const auto* leaf = dynamic_cast<const WindowMessageFailure*>(&failure))
@@ -3303,6 +3308,17 @@ void reportInstalledRootTimeout(proof::Observer& observer, const std::wstring& e
 }
 
 void serverVerifierCases() {
+    const recap::ownership::tests::FixtureFailure fixtureFailure("server-verifier/owned-fixture",
+        recap::ownership::unknown(recap::ownership::Stage::wmi, recap::ownership::Reason::nativeReturn, E_ACCESSDENIED));
+    std::ostringstream fixtureReport;
+    writeFailure(fixtureReport, fixtureFailure, "native-server-verifier-cases");
+    check(fixtureReport.str().find("condition=owned-fixture") != std::string::npos &&
+          fixtureReport.str().find("\"owned\":null,\"stage\":\"wmi\"") != std::string::npos,
+          "native verifier fixture failure lost its bounded cause");
+    const recap::ownership::tests::FixtureFailure privateFailure("private-path private-message");
+    check(privateFailure.condition == "unknown" &&
+          std::string(privateFailure.what()) == "native verifier fixture failed",
+          "native verifier fixture failure exposed private details");
     const std::wstring diagnostic = L"Verification diagnostic: stage=wmi reason=exception exit=1 code=-2147217405 elapsed=812 node64=1 ps64=1 language=FullLanguage";
     check(safeVerificationDiagnostic(L"Public guidance\n" + diagnostic) ==
           "stage=wmi reason=exception exit=1 code=-2147217405 elapsed=812 node64=1 ps64=1 language=FullLanguage",
@@ -3340,7 +3356,11 @@ void installed(const std::map<std::wstring, std::wstring>& options, std::ofstrea
     const bool busy = options.at(L"--mode") == L"busy";
     if (!busy) {
         observed("native-server-verifier-cases", [&] {
-            recap::ownership::tests::run((package / L"runtime" / L"node.exe").wstring(), control);
+            try {
+                recap::ownership::tests::run((package / L"runtime" / L"node.exe").wstring(), control);
+            } catch (const recap::ownership::Failure& failure) {
+                throw recap::ownership::tests::FixtureFailure("server-verifier/setup", failure.result);
+            }
         });
         report << "PASS native-server-verifier-fixtures;owned-loopback=1;identity-recheck=1;cleanup=complete\n";
     }
