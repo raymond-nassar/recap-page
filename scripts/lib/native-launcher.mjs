@@ -8,12 +8,16 @@ import {
 } from './startup-contract.mjs';
 
 export const NATIVE_NAME = 'RecapPageLauncher.exe';
+export const VERIFIER_NAME = 'RecapPageVerifier.exe';
+export const NATIVE_NAMES = Object.freeze([NATIVE_NAME, VERIFIER_NAME]);
 export const NATIVE_INPUTS = Object.freeze([
   'packaging/windows/native/Launcher.cpp',
   'packaging/windows/native/Launcher.manifest',
   'packaging/windows/native/Launcher.rc',
   'packaging/windows/native/StartupProcess.h',
   'packaging/windows/native/StartupProtocol.h',
+  'packaging/windows/native/ServerVerifier.cpp',
+  'packaging/windows/native/ServerOwnership.h',
   'scripts/build-native-launcher.ps1',
   'scripts/lib/native-launcher.mjs',
   'src/icons/icon-512.png',
@@ -25,6 +29,7 @@ export const PROOF_INPUTS = Object.freeze([
   'test/native/ProofHost.cs',
   'test/native/StartupObserver.h',
   'test/native/StartupTests.cpp',
+  'test/native/ServerVerifierTests.h',
   'test/native/startup-frames.txt',
   'test/native/StartupContract.h',
   'scripts/lib/startup-contract.mjs',
@@ -54,7 +59,7 @@ function demand(condition, message) {
   if (!condition) throw new Error(`native launcher: ${message}`);
 }
 
-export function nativePe(bytes, target, { proof = false } = {}) {
+export function nativePe(bytes, target, { proof = false, verifier = false } = {}) {
   const range = (offset, size) => {
     demand(Number.isSafeInteger(offset) && offset >= 0 && size >= 0
       && offset <= bytes.length - size, 'truncated or out-of-bounds PE header');
@@ -109,7 +114,8 @@ export function nativePe(bytes, target, { proof = false } = {}) {
         demand(end > nameOffset && end - nameOffset <= 260, 'invalid imported library name');
         const name = bytes.toString('ascii', nameOffset, end).toLowerCase();
         demand(SYSTEM_IMPORTS.has(name)
-          || (proof && ['tdh.dll', 'uiautomationcore.dll', 'kernelbase.dll'].includes(name)),
+          || (proof && ['tdh.dll', 'uiautomationcore.dll', 'kernelbase.dll'].includes(name))
+          || ((proof || verifier) && ['iphlpapi.dll', 'ws2_32.dll'].includes(name)),
         `unexpected runtime dependency ${name}`);
         imports.push(name);
       }
@@ -122,7 +128,7 @@ export function nativePe(bytes, target, { proof = false } = {}) {
 export function exactExecutablePayloads(paths) {
   const actual = paths.filter((path) => /\.(?:exe|dll|node)$/i.test(path))
     .map((path) => path.replaceAll('\\', '/').toLowerCase()).sort();
-  demand(JSON.stringify(actual) === JSON.stringify(['recappagelauncher.exe', 'runtime/node.exe']),
+  demand(JSON.stringify(actual) === JSON.stringify(['recappagelauncher.exe', 'recappageverifier.exe', 'runtime/node.exe']),
     `unexpected executable payloads: ${actual.join(', ')}`);
   return actual;
 }
@@ -140,7 +146,7 @@ export function inputDigest(inputs) {
 export function validateNativeRecord(record, { commit, tree, inputs, outputs, proof = false, productionDigest = null, creationSources }) {
   exactKeys(record, ['schemaVersion', 'commit', 'inputs', 'inputDigest', 'outputs', 'toolchain', 'productionDigest',
     ...(proof ? ['creationReceipt', 'creationReceiptDigest'] : [])], 'build record');
-  demand(record.schemaVersion === (proof ? 2 : 1), 'unsupported build record');
+  demand(record.schemaVersion === (proof ? 3 : 2), 'unsupported build record');
   demand(/^[0-9a-f]{40}$/.test(record.commit) && record.commit === commit, 'stale source commit');
   demand(Array.isArray(record.inputs)
     && JSON.stringify(record.inputs) === JSON.stringify(inputs), 'source input bytes or paths differ');
@@ -216,20 +222,23 @@ async function artifactFiles(root, prefix = '') {
 }
 
 async function outputRecords(root, proof) {
-  const name = proof ? 'NativeStartupTests.exe' : NATIVE_NAME;
+  const names = proof ? ['NativeStartupTests.exe'] : NATIVE_NAMES;
   const outputs = [];
   for (const target of NATIVE_TARGETS) {
-    const path = `${target.id}/${name}`;
-    const bytes = await regularBytes(join(root, target.id, name));
-    outputs.push({ architecture: target.id, path, bytes: bytes.length, sha256: sha256(bytes), ...nativePe(bytes, target, { proof }) });
+    for (const name of names) {
+      const path = `${target.id}/${name}`;
+      const bytes = await regularBytes(join(root, target.id, name));
+      outputs.push({ architecture: target.id, path, bytes: bytes.length, sha256: sha256(bytes),
+        ...nativePe(bytes, target, { proof, verifier: name === VERIFIER_NAME }) });
+    }
   }
   return outputs;
 }
 
 export async function verifyNativeArtifact({ proof = false } = {}) {
   const root = proof ? NATIVE_PROOF_ROOT : NATIVE_ROOT;
-  const name = proof ? 'NativeStartupTests.exe' : NATIVE_NAME;
-  const expected = ['build.json', ...NATIVE_TARGETS.map(({ id }) => `${id}/${name}`)].sort();
+  const names = proof ? ['NativeStartupTests.exe'] : NATIVE_NAMES;
+  const expected = ['build.json', ...NATIVE_TARGETS.flatMap(({ id }) => names.map((name) => `${id}/${name}`))].sort();
   demand(JSON.stringify(await artifactFiles(root)) === JSON.stringify(expected), 'artifact file set differs');
   const recordBytes = await regularBytes(join(root, 'build.json'));
   const expectedDigest = process.env[proof ? 'MRT_NATIVE_PROOF_SHA256' : 'MRT_NATIVE_SHA256'];
@@ -254,7 +263,7 @@ async function recordBuild(toolchainPath, proof) {
     const root = isProof ? NATIVE_PROOF_ROOT : NATIVE_ROOT;
     const inputs = await sourceInputs(isProof);
     const record = {
-      schemaVersion: isProof ? 2 : 1, commit: head(), inputs, inputDigest: inputDigest(inputs),
+      schemaVersion: isProof ? 3 : 2, commit: head(), inputs, inputDigest: inputDigest(inputs),
       outputs: await outputRecords(root, isProof), toolchain, productionDigest,
     };
     if (isProof) {

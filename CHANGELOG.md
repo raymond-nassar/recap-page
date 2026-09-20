@@ -17,11 +17,11 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ### Keep overlapping Windows launches reliable
 
-The packaged Windows launcher checks the local server's network ownership through the Windows
-IP Helper and WMI APIs instead of loading network-management and CIM cmdlet modules. It still verifies the
-package runtime and server command, uses the same address and retains its existing deadlines.
-This addresses a server-verification error observed during overlapping starts on the newer
-Windows ARM64 environment. Your saved progress and the schema introduced in 3.0.0 are unchanged.
+The packaged Windows launcher uses a native helper instead of starting PowerShell to verify its
+local server. Hosted ARM64 evidence showed PowerShell reaching the verification deadline before
+its first observable operation. The helper preserves the exact listener, process and server-command
+checks, the same address and existing deadlines. Your saved progress and the schema introduced
+in 3.0.0 are unchanged.
 
 ### Confirm automated Store submission progress
 

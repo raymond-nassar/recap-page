@@ -1,6 +1,7 @@
 #include "StartupProtocol.h"
 #include "StartupProcess.h"
 #include "StartupObserver.h"
+#include "ServerVerifierTests.h"
 #include <ole2.h>
 #include <UIAutomation.h>
 #include <wincrypt.h>
@@ -3312,22 +3313,17 @@ void serverVerifierCases() {
                                 std::wstring(L"Verification diagnostic: stage=wmi reason=exception exit=1 code=1 elapsed=1 node64=1 ps64=1 language=private") })
         check(safeVerificationDiagnostic(invalid).empty(), "unsafe verifier diagnostic was accepted");
     const std::wstring layout = L"C:\\Program Files\\Owner's";
-    const auto command = [](const std::wstring& path, const std::wstring& pid) {
-        return std::wstring(proof::ServerVerifierPrefix) + path + proof::ServerVerifierMiddle + pid + proof::ServerVerifierSuffix;
-    };
-    const std::wstring path = L"C:\\Program Files\\Owner''s\\VerifyServer.ps1";
+    const std::wstring path = layout + L"\\RecapPageVerifier.exe";
     for (const auto* pid : { L"1", L"41", L"4294967295" })
-        check(proof::serverVerifierScript(command(path, pid), layout), "packaged verifier loader was not recognized");
+        check(proof::nativeVerifierArguments({ path, pid }, layout), "native verifier arguments were not recognized");
     for (const auto* pid : { L"", L"0", L"01", L"-1", L"1.0", L"4294967296", L"41; exit 0" })
-        check(!proof::serverVerifierScript(command(path, pid), layout), "invalid verifier PID was recognized");
-    for (const auto* foreign : { L"C:\\Other\\VerifyServer.ps1", L"C:\\Program Files\\Owner's\\VerifyServer.ps1",
-                                L"C:\\Program Files\\Owner''s\\Other.ps1" })
-        check(!proof::serverVerifierScript(command(foreign, L"41"), layout), "foreign verifier helper was recognized");
-    check(!proof::serverVerifierScript(command(path, L"41") + L"; exit 0", layout), "extra verifier input was recognized");
-    const auto invoked = recap::quoted(L"C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe") +
-        L" -NoProfile -NonInteractive -Command " + recap::quoted(command(path, L"41"));
+        check(!proof::nativeVerifierArguments({ path, pid }, layout), "invalid verifier PID was recognized");
+    check(!proof::nativeVerifierArguments({ L"C:\\Other\\RecapPageVerifier.exe", L"41" }, layout),
+          "foreign verifier helper was recognized");
+    check(!proof::nativeVerifierArguments({ path, L"41", L"extra" }, layout), "extra verifier input was recognized");
+    const auto invoked = recap::quoted(path) + L" 41";
     const auto args = proof::semanticArguments(invoked);
-    check(args.size() == 5 && proof::serverVerifierScript(args[4], layout), "native verifier argument roundtrip differed");
+    check(proof::nativeVerifierArguments(args, layout), "native verifier argument roundtrip differed");
 }
 
 void installed(const std::map<std::wstring, std::wstring>& options, std::ofstream& report) {
@@ -3342,6 +3338,12 @@ void installed(const std::map<std::wstring, std::wstring>& options, std::ofstrea
           package.wstring().find(L"__we33aa8nvkpcc") != std::wstring::npos,
           "installed observation requires the exact package family");
     const bool busy = options.at(L"--mode") == L"busy";
+    if (!busy) {
+        observed("native-server-verifier-cases", [&] {
+            recap::ownership::tests::run((package / L"runtime" / L"node.exe").wstring(), control);
+        });
+        report << "PASS native-server-verifier-fixtures;owned-loopback=1;identity-recheck=1;cleanup=complete\n";
+    }
     beginHost(options, report, busy ? "installed-busy" : "installed-functionality");
     proof::Observer observer(true, busy ? proof::ObservationProfile::installedBusy : proof::ObservationProfile::installedFunctionality);
     observer.reportTo(report);

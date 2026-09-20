@@ -10,7 +10,7 @@ import { fileURLToPath } from 'node:url';
 import {
   NODE_ARCH, NODE_VERSION, appFiles, fetchRuntime, runtimeArchiveName,
 } from './pack-windows.mjs';
-import { NATIVE_NAME, verifyNativeArtifact } from './lib/native-launcher.mjs';
+import { NATIVE_NAME, VERIFIER_NAME, verifyNativeArtifact } from './lib/native-launcher.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const pkg = JSON.parse(await readFile(join(ROOT, 'package.json'), 'utf8'));
@@ -42,7 +42,7 @@ export const PACKAGE_ARCHITECTURES = Object.freeze([
   Object.freeze({ id: 'arm64', node: 'win-arm64', peMachine: 0xaa64 }),
 ]);
 export const LAUNCHER_NAME = 'Launcher.mjs';
-export const SERVER_VERIFIER_NAME = 'VerifyServer.ps1';
+export const SERVER_VERIFIER_NAME = VERIFIER_NAME;
 
 export const MSIX_ROOT = join(ROOT, 'dist', 'msix');
 export const MSIX_PROOF_ROOT = join(ROOT, 'dist', 'msix-proof');
@@ -137,7 +137,7 @@ async function prepareLayout(staging, version, target, runtimeDir, native) {
   await mkdir(layout, { recursive: true });
   await copyApp(layout);
   await copyFile(LAUNCHER_SOURCE, join(layout, LAUNCHER_NAME));
-  await copyFile(join(ROOT, 'packaging', 'windows', SERVER_VERIFIER_NAME), join(layout, SERVER_VERIFIER_NAME));
+  await copyFile(join(native.root, target.id, VERIFIER_NAME), join(layout, VERIFIER_NAME));
   await copyFile(join(native.root, target.id, NATIVE_NAME), join(layout, NATIVE_NAME));
   await writeFile(join(layout, 'native-build.json'), native.bytes);
 

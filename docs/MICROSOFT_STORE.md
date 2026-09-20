@@ -220,10 +220,10 @@ server. It does not bind a port, read browser storage, write package files, or m
 network request.
 
 Server reuse still requires the exact loopback listener, its owning process, the packaged runtime
-image and the packaged server command. A read-only packaged helper uses the inbox IP Helper and
-WMI APIs without importing PowerShell network-management or CIM cmdlet modules. The closed startup
-proof binds the helper's exact package path and source bytes, not an arbitrary script command.
-Failed or incomplete verification remains
+image and the packaged server command. A native Windows-subsystem helper uses the inbox IP Helper
+and WMI APIs without starting PowerShell, loading the CLR or creating a window. It retains process
+identity and rechecks the listener after the query. The closed startup proof binds the helper's
+exact package path, PID argument, parent and compiled bytes. Failed or incomplete verification remains
 unknown, not permission to reuse a foreign server. The verifier's existing eight-second limit and
 the launcher's readiness deadlines are unchanged.
 
@@ -283,7 +283,8 @@ and the public CER remain under ignored `dist/msix/`; the proof-only `.1` remain
 `dist/msix-proof/`. Do not commit packages, certificates, logs, or proof reports.
 
 Inspect both Store packages, the proof-only update and both bundle slices without starting a
-foreign runtime. The exact executable set is `RecapPageLauncher.exe` and `runtime\node.exe`.
+foreign runtime. The exact executable set is `RecapPageLauncher.exe`, `RecapPageVerifier.exe`
+and `runtime\node.exe`.
 The GUI requires the matching PE32+ machine, GUI subsystem and source-bound binary hash; the Node
 runtime still requires its published official hash. Extra or misplaced executable payloads fail.
 Identity, activation, support floor, updater absence and proof-version separation are checked too:

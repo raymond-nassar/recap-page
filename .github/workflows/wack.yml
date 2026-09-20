@@ -206,7 +206,9 @@ jobs:
           path: |
             dist/native-launcher/build.json
             dist/native-launcher/x64/RecapPageLauncher.exe
+            dist/native-launcher/x64/RecapPageVerifier.exe
             dist/native-launcher/arm64/RecapPageLauncher.exe
+            dist/native-launcher/arm64/RecapPageVerifier.exe
           if-no-files-found: error
           retention-days: 1
           compression-level: 0

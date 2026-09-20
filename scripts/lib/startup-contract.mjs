@@ -13,13 +13,12 @@ export const CREATION_TESTS = Object.freeze([
   'test/msix-packaging.test.js', 'test/server-contract.test.js', 'test/startup-contract.test.js',
 ]);
 export const STARTUP_FILES = Object.freeze([
-  'AppxManifest.xml', 'RecapPageLauncher.exe', 'runtime/node.exe', 'Launcher.mjs', 'VerifyServer.ps1',
+  'AppxManifest.xml', 'RecapPageLauncher.exe', 'runtime/node.exe', 'Launcher.mjs', 'RecapPageVerifier.exe',
   'server.mjs', 'src/js/lib/coverHost.js', 'src/js/lib/localServer.js',
   'native-build.json', 'src/msix-generation.json',
 ]);
 export const SOURCE_FILES = Object.freeze([
   ['Launcher.mjs', 'packaging/windows/Launcher.mjs'],
-  ['VerifyServer.ps1', 'packaging/windows/VerifyServer.ps1'],
   ['server.mjs', 'server.mjs'],
   ['src/js/lib/coverHost.js', 'src/js/lib/coverHost.js'],
   ['src/js/lib/localServer.js', 'src/js/lib/localServer.js'],
@@ -109,7 +108,6 @@ export function startupSourceInputs(root = ROOT) {
   const linter = new Linter();
   const inputs = SOURCE_FILES.map(([path, source]) => ({ ...boundedFile(root, source), path }));
   for (const [path, source] of SOURCE_FILES) {
-    if (path === 'VerifyServer.ps1') continue;
     const text = readFileSync(join(root, ...source.split('/')), 'utf8');
     const imports = [];
     const dynamic = [];
@@ -199,9 +197,11 @@ export function buildStartupVariant({ layout, architecture, version, native, nod
     requireFact(actual?.sha256 === expected.sha256 && actual.bytes === expected.bytes);
   }
   requireFact(byPath.get('runtime/node.exe').sha256 === nodeHash);
-  const output = native.record.outputs.find((item) => item.architecture === architecture);
+  const output = native.record.outputs.find((item) => item.path === `${architecture}/RecapPageLauncher.exe`);
+  const verifier = native.record.outputs.find((item) => item.path === `${architecture}/RecapPageVerifier.exe`);
   requireFact(output && byPath.get('RecapPageLauncher.exe').sha256 === output.sha256
     && byPath.get('native-build.json').sha256 === native.digest);
+  requireFact(verifier && byPath.get('RecapPageVerifier.exe').sha256 === verifier.sha256);
   const identity = validateActivationManifest(readFileSync(join(layout, 'AppxManifest.xml'), 'utf8'), architecture, version);
   const generation = JSON.parse(readFileSync(join(layout, 'src', 'msix-generation.json'), 'utf8'));
   exactKeys(generation, ['packageVersion', 'generation'], 'input-mismatch');

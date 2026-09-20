@@ -615,7 +615,7 @@ async function generation() {
 const INSTALLED_LAUNCHER_FILES = Object.freeze([
   Object.freeze(['runtime', 'node.exe']),
   Object.freeze(['Launcher.mjs']),
-  Object.freeze(['VerifyServer.ps1']),
+  Object.freeze(['RecapPageVerifier.exe']),
   Object.freeze(['server.mjs']),
   Object.freeze(['src', 'msix-generation.json']),
 ]);
