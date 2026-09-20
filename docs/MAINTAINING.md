@@ -642,10 +642,13 @@ than deleting an existing pending submission.
 
 A successful commit acknowledgement is not publication. The publisher observes status with read-only
 requests for at most five minutes, distinguishing acknowledgement, processing, certification,
-publication pending and Published. It also reads the ingested submission to verify the new package
-version and approved notes. Missing ingestion metadata remains explicitly pending; known processing
-failures, changed notes or a wrong version fail the run without another mutation. The summary keeps
-only submission ID, stage, known status, package verification and the approved notes hash.
+publication pending and Published. It independently verifies the exact ingested package/version and
+approved notes, then checks preserved nonpackage intent. Local observation or proof blockers report
+`verification-pending`, not Store rejection, while retaining the acknowledged commit and last valid
+Store status. Required proof missing at the deadline also returns nonzero. Confirmed terminal/error
+outcomes remain `failed`. Neither result sends another mutation. Only Published with every required
+proof is a published outcome; fully verified ingestion in processing or certification remains distinct.
+The summary contains safe identity, stage/code, status, independent proof results and notes hash.
 
 Microsoft publishes automatically after certification, which can take up to three business days.
 There is no second manual publishing hold. A pending observation is not a claim of delivery.
@@ -1228,10 +1231,30 @@ submission's commit endpoint. Only HTTP 200 or 202 with a body containing solely
 status acknowledges it. The attempt and submission ID remain in the safe outcome on a timeout,
 malformed response, HTTP error or report-writing failure. Ambiguous commits receive no retry and
 no automatic follow-up GET; inspect the exact submission separately before any further decision.
-Acknowledged commits use the normal publisher's bounded status and ingested version/notes observer.
-Certification still pending after observation is explicit, not publication or a reason to resubmit.
-Only observed Published with verified ingestion is a published outcome. Reports contain safe
-identities, phases, statuses, hashes and proof results, never SAS URLs, credentials or private objects.
+Acknowledged commits use the normal publisher's shared five-minute observer. Package/version, approved
+English notes and preserved nonpackage intent have independent proof results. An editable-intent
+mismatch can leave package and notes `verified` while intent is `review-required`; the overall result
+is still `verification-pending` and the CLI/workflow exits nonzero. No mismatched field is normalized
+away. Changed notes or a wrong package likewise require review, not a claim of Store rejection.
+
+Transport errors, malformed/unknown status, unexpected None/PendingCommit after acknowledgement,
+readback identity failures and missing required proof at the deadline are also local incomplete
+verification. Reports preserve the acknowledged commit and last validated Store status, with a fixed
+stage/code; malformed status cannot overwrite it. Confirmed terminal states such as CommitFailed
+or an observed nonempty error list remain `failed`. Both failure and incomplete verification exit
+nonzero without retry. Certification with complete proofs remains a successful observation, not
+publication or a reason to resubmit. Published without all required proofs never succeeds.
+Reports contain safe identities, phases, statuses, hashes and proof results, never raw errors,
+response objects, upload paths, SAS URLs, credentials or private metadata.
+
+In particular, `allowTargetFutureDeviceFamilies` remains an editable device-family:boolean
+dictionary. Neither Microsoft's
+[submission resource](https://learn.microsoft.com/windows/uwp/monetize/manage-app-submissions) nor its
+[typed submission model](https://github.com/microsoft/msstore-cli/blob/65fec5f1fd4a666db76cb76ec6c7121a4f50f38e/MSStore.API/Packaged/Models/DevCenterSubmission.cs)
+establishes contractual equivalence between an absent key and `false` (retrieved 2026-09-20).
+Precommit comparisons are unchanged and postcommit omission still requires review. A later diagnostic
+difference can suggest why an earlier observation stopped; it cannot prove the contents of an
+earlier response that was not retained.
 
 The shared comparison permits just one new normalization: `targetPlatform` may be absent from the
 actual exact-filename-matched **old MSIX bundle** only when both expected and actual entries are

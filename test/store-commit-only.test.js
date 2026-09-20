@@ -33,6 +33,7 @@ function fixture() {
     packageDeliveryOptions: { isMandatoryUpdate: false, mandatoryUpdateEffectiveDate: '1601-01-01T00:00:00Z',
       packageRollout: { isPackageRollout: false, packageRolloutPercentage: 0, fallbackSubmissionId: '0' } },
     visibility: 'Public', automaticBackupEnabled: false,
+    allowTargetFutureDeviceFamilies: { Desktop: true, Mobile: false },
   };
   const pending = prepareApiDraft({ ...published, id: config.pendingId, status: 'PendingCommit' },
     bundleName, config.pendingId, config.notes, config.version);
@@ -115,6 +116,7 @@ test('actual commit-only transport proves remote bytes and current intent, commi
     assert.equal(result.status, 'Certification');
     assert.equal(result.package, 'verified');
     assert.equal(result.notes, 'verified');
+    assert.equal(result.intent, 'verified');
     assert.equal(result.commitAttempted, true);
     assert.equal(result.commit, 'acknowledged');
     assert.equal(result.submissionId, f.config.pendingId);
@@ -173,6 +175,7 @@ test('current metadata blockers preserve ID and stop without any Store mutation'
     (f) => { f.pending.status = 'CommitStarted'; },
     (f) => { f.pending.statusDetails.errors.push({ description: 'PRIVATE' }); },
     (f) => { f.pending.pricing.priceId = 'Paid'; },
+    (f) => { delete f.pending.allowTargetFutureDeviceFamilies.Mobile; },
     (f) => { f.pending.targetPublishMode = 'Manual'; },
     (f) => { delete f.pending.targetPublishDate; },
     (f) => { f.pending.packageDeliveryOptions.packageRollout.isPackageRollout = true; },
@@ -294,19 +297,23 @@ test('ambiguous or invalid commit response retains the attempt and ID, with no r
 });
 
 test('postcommit observation failures retain acknowledged mutation without retry', async () => {
-  for (const mutate of [
-    (f) => { f.respond = (url) => f.calls.length > 11 && url.endsWith('/status') ? new Response('PRIVATE', { status: 500 }) : undefined; },
-    (f) => { f.processingStatus = 'CertificationFailed'; },
-    (f) => { f.processingStatus = 'PRIVATE_UNKNOWN'; },
-    (f) => { f.ingested = (d) => { d.applicationPackages[1].version = '2.1.0.0'; }; },
-    (f) => { f.ingested = (d) => { d.listings['en-us'].baseListing.releaseNotes = 'Changed'; }; },
-    (f) => { f.ingested = (d) => { d.id = 'wrong'; }; },
-    (f) => { f.processingStatus = 'Published'; f.noIngestion = true; },
+  for (const [mutate, state] of [
+    [(f) => { f.respond = (url) => f.calls.length > 11 && url.endsWith('/status') ? new Response('PRIVATE', { status: 500 }) : undefined; }, 'verification-pending'],
+    [(f) => { f.processingStatus = 'CertificationFailed'; }, 'failed'],
+    [(f) => { f.processingStatus = 'CommitFailed'; }, 'failed'],
+    [(f) => { f.processingStatus = 'PRIVATE_UNKNOWN'; }, 'verification-pending'],
+    [(f) => { f.ingested = (d) => { d.applicationPackages[1].version = '2.1.0.0'; }; }, 'verification-pending'],
+    [(f) => { f.ingested = (d) => { d.listings['en-us'].baseListing.releaseNotes = 'Changed'; }; }, 'verification-pending'],
+    [(f) => { f.ingested = (d) => { d.id = 'wrong'; }; }, 'verification-pending'],
+    [(f) => { f.processingStatus = 'Published'; f.noIngestion = true; }, 'verification-pending'],
+    [(f) => { f.respond = (url, init, value) => f.calls.length > 11 && url.endsWith('/status')
+      ? new Response(JSON.stringify({ ...value, statusDetails: { errors: [{ description: 'PRIVATE' }] } })) : undefined; }, 'failed'],
   ]) {
     const f = fixture();
     mutate(f);
     const result = await f.run();
-    assert.equal(result.state, 'failed');
+    assert.equal(result.state, state);
+    if (state === 'failed') assert.equal(result.failureCode, 'STORE_PROCESSING_FAILED');
     assert.equal(result.commit, 'acknowledged');
     assert.equal(result.submissionId, f.config.pendingId);
     assert.equal(f.mutations().length, 1);
@@ -316,8 +323,8 @@ test('postcommit observation failures retain acknowledged mutation without retry
 
 test('bounded pending, certification and verified publication outcomes remain distinct', async () => {
   for (const [status, state, noIngestion, elapsed] of [
-    ['CommitStarted', 'acknowledged', true, 300000],
-    ['Certification', 'certification', true, 300000],
+    ['CommitStarted', 'verification-pending', true, 300000],
+    ['Certification', 'verification-pending', true, 300000],
     ['Certification', 'certification', false, 0],
     ['Published', 'published', false, 0],
   ]) {
@@ -326,9 +333,93 @@ test('bounded pending, certification and verified publication outcomes remain di
     f.noIngestion = noIngestion;
     const result = await f.run();
     assert.equal(result.state, state);
+    assert.equal(result.status, status);
+    if (noIngestion) assert.equal(result.failureCode, 'POSTCOMMIT_DEADLINE');
     assert.equal(f.elapsed(), elapsed);
     assert.equal(f.mutations().length, 1);
-    assert.equal(result.notes, noIngestion ? undefined : 'verified');
+    assert.equal(result.notes, status === 'CommitStarted' ? undefined : 'verified');
+  }
+});
+
+test('postcommit local verification keeps commit-only package and notes proofs without accepting editable drift', async () => {
+  for (const [status, mutate] of [
+    ['PreProcessing', (d) => { delete d.allowTargetFutureDeviceFamilies.Mobile; }],
+    ['Certification', (d) => { delete d.allowTargetFutureDeviceFamilies.Mobile; }],
+    ['Certification', (d) => { d.allowTargetFutureDeviceFamilies.Mobile = true; }],
+    ['Published', (d) => { d.visibility = 'Hidden'; }],
+  ]) {
+    const f = fixture();
+    f.processingStatus = status;
+    f.ingested = mutate;
+    const result = await f.run();
+    assert.equal(result.state, 'verification-pending');
+    assert.equal(result.status, status);
+    assert.equal(result.commit, 'acknowledged');
+    assert.equal(result.commitAttempted, true);
+    assert.equal(result.package, 'verified');
+    assert.equal(result.notes, 'verified');
+    assert.equal(result.intent, 'review-required');
+    assert.equal(result.stage, 'ingestion-intent');
+    assert.equal(result.failureCode, 'POSTCOMMIT_INTENT');
+    assert.equal(f.mutations().length, 1);
+    assert.doesNotMatch(JSON.stringify(result), /PRIVATE|blob\.core|Mobile/);
+  }
+  const f = fixture();
+  f.ingested = (d) => { d.listings['en-us'].baseListing.releaseNotes = 'PRIVATE changed'; };
+  const result = await f.run();
+  assert.equal(result.state, 'verification-pending');
+  assert.equal(result.package, 'verified');
+  assert.equal(result.notes, 'review-required');
+  assert.equal(result.failureCode, 'POSTCOMMIT_NOTES');
+});
+
+test('commit-only malformed and transport observations retain the latest valid Store lifecycle status', async () => {
+  for (const response of [
+    () => { throw new Error('PRIVATE transport'); },
+    () => new Response('PRIVATE malformed'),
+    () => new Response(JSON.stringify({ status: 'PRIVATE unknown', statusDetails: { errors: [] } })),
+    () => new Response(JSON.stringify({ status: 'Published', statusDetails: {} })),
+  ]) {
+    const f = fixture();
+    f.noIngestion = true;
+    f.respond = (url, init, value, count) => url.endsWith('/status') && count === 4 ? response() : undefined;
+    const result = await f.run();
+    assert.equal(result.state, 'verification-pending');
+    assert.equal(result.status, 'Certification');
+    assert.equal(result.commit, 'acknowledged');
+    assert.equal(result.stage, 'status');
+    assert.equal(result.failureCode, 'POSTCOMMIT_STATUS');
+    assert.equal(f.mutations().length, 1);
+    assert.doesNotMatch(JSON.stringify(result), /PRIVATE|Bearer|blob\.core/);
+  }
+});
+
+test('commit-only CLI separates nonzero local verification from Store failure and fully verified ingestion', async () => {
+  for (const [status, ingested, noIngestion, exitCode, expectedState] of [
+    ['Certification', (d) => { delete d.allowTargetFutureDeviceFamilies.Mobile; }, false, 1, 'verification-pending'],
+    ['Published', (d) => { d.visibility = 'Hidden'; }, false, 1, 'verification-pending'],
+    ['Certification', undefined, true, 1, 'verification-pending'],
+    ['CommitFailed', undefined, false, 1, 'failed'],
+    ['Certification', undefined, false, 0, 'certification'],
+    ['Published', undefined, false, 0, 'published'],
+  ]) {
+    const f = fixture();
+    Object.assign(f, { processingStatus: status, ingested, noIngestion });
+    const output = [];
+    const summaries = [];
+    assert.equal(await runCommitOnly(['--commit-only'], {}, {
+      load: () => f.config, fetchImpl: f.fetchImpl, now: f.now, wait: f.wait,
+      write: (text) => output.push(text), summarize: (text) => summaries.push(text),
+    }), exitCode);
+    for (const text of [output.join(''), summaries.join('')]) {
+      assert.match(text, new RegExp(`Store release: ${expectedState};.*status: ${status}; commit: acknowledged`));
+      if (expectedState === 'verification-pending') {
+        assert.match(text, /Local verification is blocked.*not a confirmed Store rejection/);
+        assert.doesNotMatch(text, /Store reports Published/);
+      }
+      assert.doesNotMatch(text, /PRIVATE|Bearer|blob\.core/);
+    }
+    assert.equal(f.mutations().length, 1);
   }
 });
 
@@ -354,6 +445,8 @@ test('summary or stdout failure after acknowledgement preserves attempt state in
     assert.equal(f.calls.length, 11);
     assert.match(errors.join(''), /"commitAttempted":true/);
     assert.match(errors.join(''), /"commit":"acknowledged"/);
+    assert.match(errors.join(''), /"state":"verification-pending"/);
+    assert.match(errors.join(''), /Local verification is blocked/);
     assert.match(errors.join(''), new RegExp(f.config.pendingId));
     assert.doesNotMatch(errors.join(''), /PRIVATE|Bearer|blob\.core/);
   }

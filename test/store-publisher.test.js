@@ -32,7 +32,7 @@ function baseline() {
       packageRollout: { isPackageRollout: false, packageRolloutPercentage: 0,
         packageRolloutStatus: 'PackageRolloutNotStarted', fallbackSubmissionId: '0' } },
     visibility: 'Public', automaticBackupEnabled: false,
-    allowTargetFutureDeviceFamilies: { Desktop: true },
+    allowTargetFutureDeviceFamilies: { Desktop: true, Mobile: false },
   };
 }
 
@@ -129,6 +129,7 @@ test('production flow accepts create201 and commit202, uploads and commits exact
   const result = await f.run();
   assert.deepEqual(result, { state: 'processing', stage: 'status', submissionId: draftId,
     status: 'PreProcessing', commit: 'acknowledged', package: 'verified',
+    notes: 'verified', intent: 'verified',
     notesSha256: createHash('sha256').update(f.config.notes.text).digest('hex') });
   assert.deepEqual(f.mutations(), ['POST', 'upload', 'PUT', 'commit']);
   assert.equal(f.calls.filter((call) => call.url.endsWith('/status')).length, 2);
@@ -163,6 +164,7 @@ test('production readback blocks unrelated settings, missing notes, wrong ID and
     (d) => { d.pricing.priceId = 'Paid'; },
     (d) => { d.visibility = 'Hidden'; },
     (d) => { d.automaticBackupEnabled = true; },
+    (d) => { delete d.allowTargetFutureDeviceFamilies.Mobile; },
     (d) => { d.packageDeliveryOptions.isMandatoryUpdate = true; },
     (d) => { d.packageDeliveryOptions.mandatoryUpdateEffectiveDate = '2027-01-01T00:00:00Z'; },
     (d) => { d.packageDeliveryOptions.packageRollout.isPackageRollout = true; },
@@ -243,7 +245,6 @@ test('only endpoint-specific HTTP successes with valid bodies advance the produc
     { createCode: 202 }, { uploadCode: 200 }, { updateCode: 201 }, { updateCode: 202 },
     { commitCode: 201 }, { commitCode: 203 }, { commitCode: 409 }, { commitCode: 500 },
     { commitBody: {} }, { commitBody: { status: 'PendingCommit' } }, { commitRaw: 'PRIVATE not JSON' },
-    { statusCode: 202 }, { statuses: [{ status: 'PreProcessing' }] },
   ]) {
     const f = fixture(options);
     assert.equal((await f.run()).state, 'failed');
@@ -255,7 +256,8 @@ test('ambiguous commit and status transport failure never retry a mutation and r
   for (const suffix of ['/commit', '/status']) {
     const f = fixture({ failure: (url) => url.endsWith(suffix) });
     const result = await f.run();
-    assert.equal(result.state, 'failed');
+    assert.equal(result.state, suffix === '/commit' ? 'failed' : 'verification-pending');
+    if (suffix === '/status') assert.equal(result.status, 'CommitStarted');
     assert.equal(result.submissionId, draftId);
     assert.equal(result.commit, suffix === '/commit' ? 'attempted' : 'acknowledged');
     assert.deepEqual(f.mutations(), ['POST', 'upload', 'PUT', 'commit']);
@@ -276,10 +278,12 @@ test('every pre-commit transport failure stops at that request without retry', a
   }
 });
 
-test('bounded observation reports acknowledged after five minutes without claiming publication or recommitting', async () => {
+test('bounded observation retains acknowledgement but reports incomplete verification after five minutes', async () => {
   const f = fixture({ statuses: ['CommitStarted'] });
   const result = await f.run();
-  assert.equal(result.state, 'acknowledged');
+  assert.equal(result.state, 'verification-pending');
+  assert.equal(result.status, 'CommitStarted');
+  assert.equal(result.failureCode, 'POSTCOMMIT_DEADLINE');
   assert.equal(f.elapsed(), 300000);
   assert.equal(f.calls.filter((call) => call.url.endsWith('/status')).length, 20);
   assert.deepEqual(f.mutations(), ['POST', 'upload', 'PUT', 'commit']);
@@ -291,21 +295,23 @@ test('processing, certification and publication states remain distinct from fail
     ['PreProcessing', 'processing'], ['Certification', 'certification'],
     ['PendingPublication', 'publication-pending'], ['Publishing', 'publication-pending'],
     ['Release', 'publication-pending'], ['Published', 'published'],
-    ...['None', 'PendingCommit', 'Canceled', 'CommitFailed', 'PreProcessingFailed',
+    ['None', 'verification-pending'], ['PendingCommit', 'verification-pending'],
+    ...['Canceled', 'CommitFailed', 'PreProcessingFailed',
       'CertificationFailed', 'PublishFailed', 'ReleaseFailed'].map((status) => [status, 'failed']),
   ]) {
     const f = fixture({ statuses: [status] });
     const result = await f.run();
     assert.equal(result.state, state);
     assert.equal(result.status, status);
+    if (state === 'failed') assert.equal(result.failureCode, 'STORE_PROCESSING_FAILED');
     assert.equal(f.elapsed(), 0);
   }
-  for (const status of [
-    { status: 'Published', statusDetails: { errors: [{ description: 'PRIVATE' }] } },
-    { status: 'PRIVATE unexpected', statusDetails: { errors: [] } },
+  for (const [status, state] of [
+    [{ status: 'Published', statusDetails: { errors: [{ description: 'PRIVATE' }] } }, 'failed'],
+    [{ status: 'PRIVATE unexpected', statusDetails: { errors: [] } }, 'verification-pending'],
   ]) {
     const result = await fixture({ statuses: [status] }).run();
-    assert.equal(result.state, 'failed');
+    assert.equal(result.state, state);
     assert.doesNotMatch(formatOutcome(result), /PRIVATE/);
   }
 });
@@ -313,7 +319,9 @@ test('processing, certification and publication states remain distinct from fail
 test('certification remains pending within the deadline until package ingestion is verifiable', async () => {
   const f = fixture({ statuses: ['Certification'], noIngestion: true });
   const result = await f.run();
-  assert.equal(result.state, 'certification');
+  assert.equal(result.state, 'verification-pending');
+  assert.equal(result.status, 'Certification');
+  assert.equal(result.failureCode, 'POSTCOMMIT_DEADLINE');
   assert.equal(result.package, 'pending');
   assert.equal(f.elapsed(), 300000);
   assert.deepEqual(f.mutations(), ['POST', 'upload', 'PUT', 'commit']);
@@ -326,9 +334,107 @@ test('post-commit ingestion verifies the actual version and approved notes witho
     (d) => { d.applicationPackages[1].fileName = 'old.msixbundle'; },
   ]) {
     const f = fixture({ ingested: mutate, statuses: ['Certification'] });
-    assert.equal((await f.run()).state, 'failed');
+    assert.equal((await f.run()).state, 'verification-pending');
     assert.deepEqual(f.mutations(), ['POST', 'upload', 'PUT', 'commit']);
   }
+});
+
+test('postcommit local verification keeps independent package and notes proofs without accepting editable drift', async () => {
+  for (const [status, mutate] of [
+    ['PreProcessing', (d) => { delete d.allowTargetFutureDeviceFamilies.Mobile; }],
+    ['Certification', (d) => { delete d.allowTargetFutureDeviceFamilies.Mobile; }],
+    ['Certification', (d) => { d.allowTargetFutureDeviceFamilies.Mobile = true; }],
+    ['Published', (d) => { d.visibility = 'Hidden'; }],
+  ]) {
+    const f = fixture({ statuses: [status], ingested: mutate });
+    const result = await f.run();
+    assert.equal(result.state, 'verification-pending');
+    assert.equal(result.status, status);
+    assert.equal(result.commit, 'acknowledged');
+    assert.equal(result.package, 'verified');
+    assert.equal(result.notes, 'verified');
+    assert.equal(result.intent, 'review-required');
+    assert.equal(result.stage, 'ingestion-intent');
+    assert.equal(result.failureCode, 'POSTCOMMIT_INTENT');
+    assert.deepEqual(f.mutations(), ['POST', 'upload', 'PUT', 'commit']);
+    assert.match(formatOutcome(result), /Local verification is blocked.*not a confirmed Store rejection/);
+    assert.doesNotMatch(formatOutcome(result), /Store reports Published|PRIVATE|blob\.core|Mobile/);
+  }
+  const notes = await fixture({ statuses: ['Published'],
+    ingested: (d) => { d.listings['en-us'].baseListing.releaseNotes = 'PRIVATE changed'; } }).run();
+  assert.equal(notes.state, 'verification-pending');
+  assert.equal(notes.package, 'verified');
+  assert.equal(notes.notes, 'review-required');
+  assert.equal(notes.intent, 'review-required');
+  assert.equal(notes.failureCode, 'POSTCOMMIT_NOTES');
+  const pkg = await fixture({ statuses: ['Published'],
+    ingested: (d) => { d.applicationPackages[1].version = '2.1.0.0'; } }).run();
+  assert.equal(pkg.state, 'verification-pending');
+  assert.equal(pkg.package, 'review-required');
+  assert.equal(pkg.notes, 'verified');
+  assert.equal(pkg.intent, 'verified');
+  assert.equal(pkg.failureCode, 'POSTCOMMIT_PACKAGE');
+});
+
+test('malformed and unavailable observations retain the last valid publisher lifecycle status', async () => {
+  for (const options of [
+    { statusCode: 202 },
+    { statuses: [{ status: 'PreProcessing' }] },
+    { statuses: ['Certification', { status: 'PRIVATE unknown', statusDetails: { errors: [] } }] },
+    { statuses: ['Certification', { status: 'Published', statusDetails: {} }] },
+    { statuses: ['Certification'], failure: (url, init, calls) =>
+      url.endsWith('/status') && calls.filter((entry) => entry.url.endsWith('/status')).length === 2 },
+  ]) {
+    const f = fixture({ ...options, noIngestion: true });
+    const result = await f.run();
+    assert.equal(result.state, 'verification-pending');
+    assert.equal(result.status, f.calls.filter((entry) => entry.url.endsWith('/status')).length === 2
+      ? 'Certification' : 'CommitStarted');
+    assert.equal(result.stage, 'status');
+    assert.equal(result.failureCode, 'POSTCOMMIT_STATUS');
+    assert.equal(result.commit, 'acknowledged');
+    assert.deepEqual(f.mutations(), ['POST', 'upload', 'PUT', 'commit']);
+    assert.doesNotMatch(formatOutcome(result), /PRIVATE|raw-response|blob\.core/);
+  }
+  const published = await fixture({ statuses: ['Published'], noIngestion: true }).run();
+  assert.equal(published.state, 'verification-pending');
+  assert.equal(published.status, 'Published');
+  assert.equal(published.failureCode, 'POSTCOMMIT_INGESTION_PACKAGE');
+  for (const ingested of [
+    (d) => { d.id = 'PRIVATE wrong'; },
+    (d) => { d.applicationPackages = null; },
+  ]) {
+    const result = await fixture({ statuses: ['Certification'], ingested }).run();
+    assert.equal(result.state, 'verification-pending');
+    assert.equal(result.status, 'Certification');
+    assert.notEqual(result.package, 'verified');
+  }
+});
+
+test('publisher CLI exits nonzero for local verification blockers and zero for fully verified ingestion', async (t) => {
+  const directory = mkdtempSync(join(tmpdir(), 'recap-store-observer-'));
+  t.after(() => rmSync(directory, { recursive: true, force: true }));
+  const notes = join(directory, 'notes.json');
+  const archive = join(directory, 'bundle.zip');
+  const output = [];
+  t.mock.method(process.stdout, 'write', (text) => { output.push(text); return true; });
+  for (const [ingested, exitCode] of [
+    [(d) => { delete d.allowTargetFutureDeviceFamilies.Mobile; }, 1],
+    [undefined, 0],
+  ]) {
+    const f = fixture({ statuses: ['Certification'], ingested });
+    writeFileSync(notes, JSON.stringify(f.config.notes));
+    writeFileSync(archive, f.config.archive);
+    t.mock.method(globalThis, 'fetch', f.fetchImpl);
+    assert.equal(await runRelease(['Submit', product, bundleName, version, notes, archive], {
+      PARTNER_CENTER_TENANT_ID: 'fixture', PARTNER_CENTER_CLIENT_ID: 'PRIVATE_CLIENT',
+      PARTNER_CENTER_CLIENT_SECRET: 'PRIVATE_SECRET',
+    }), exitCode);
+    assert.deepEqual(f.mutations(), ['POST', 'upload', 'PUT', 'commit']);
+  }
+  assert.match(output.join(''), /verification-pending.*status: Certification; commit: acknowledged/);
+  assert.match(output.join(''), /Local verification is blocked/);
+  assert.doesNotMatch(output.join(''), /PRIVATE|blob\.core/);
 });
 
 test('signed upload location is host-independent but never permits redirects, arbitrary hosts or expired SAS', () => {
