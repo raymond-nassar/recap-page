@@ -13,6 +13,15 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Resume a verified Store update with one commit
+
+A separate protected maintainer workflow can finish an already uploaded update without creating,
+uploading or editing another draft. Fresh checks bind the current remote archive and qualified
+bundle to approved notes and current settings before a single commit request. Readback comparison
+now tolerates only the observed omission of platform metadata on the old bundle marked for deletion.
+This change has not committed a Store submission and does not change the app version, downloads
+or saved reading progress.
+
 ### Diagnose stopped Store updates without changing them
 
 A protected, reusable read-only report identifies individual validation failures and changed

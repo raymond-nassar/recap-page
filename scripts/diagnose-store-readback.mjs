@@ -3,11 +3,11 @@ import { execFileSync } from 'node:child_process';
 import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import {
-  apiFields, prepareApiDraft, validateReleaseEvent, validateReleaseNotes, validateReleaseNotesTarget,
-  validatePublishedSubmission, validateApiPackageReplacement, verifyPreservedIntent,
+  apiFields, validateReleaseEvent, validateReleaseNotes, verifyPreservedIntent,
 } from './check-store-release.mjs';
 import {
-  sha256, kind, descriptor, checkResult, knownValue, readbackChecks, statusObservation, packageObservation,
+  sha256, kind, descriptor, checkResult, knownValue, statusObservation, packageObservation,
+  applicationReferenceChecks, currentReadbackChecks,
 } from './store-readback.mjs';
 import { observeUploadedBundle } from './store-upload-readback.mjs';
 
@@ -121,39 +121,15 @@ export async function diagnoseStoreReadback(config, { fetchImpl = globalThis.fet
     return normalized;
   };
   function references(app, prefix) {
-    check(`${prefix}_PRODUCT`, () => demand(app?.id === productId));
-    check(`${prefix}_PUBLISHED_REFERENCE`, () => demand(app?.lastPublishedApplicationSubmission?.id === publishedId));
-    check(`${prefix}_PENDING_REFERENCE`, () => demand(app?.pendingApplicationSubmission?.id === pendingId));
+    report.checks.push(...applicationReferenceChecks(app, config, prefix));
   }
   const app = await get('APPLICATION_GET', root);
-  references(app, 'APPLICATION');
   const published = await get('PUBLISHED_GET', publishedUrl);
   const pending = await get('PENDING_GET', pendingUrl);
   const status = await get('STATUS_GET', `${pendingUrl}/status`);
-  check('PUBLISHED_IDENTITY', () => demand(published?.id === publishedId));
-  check('PUBLISHED_STATUS', () => demand(published?.status === 'Published'));
-  check('PUBLISHED_FREE', () => demand(published?.pricing?.priceId === 'Free'));
-  check('PUBLISHED_VERSION_ADVANCE', () => validatePublishedSubmission(published, version));
-  check('PUBLISHED_PACKAGE_REPLACEMENT', () => validateApiPackageReplacement(published, bundleName));
-  check('PUBLISHED_NOTES_TARGET', () => validateReleaseNotesTarget(published, notes, version));
-  check('PENDING_IDENTITY', () => demand(pending?.id === pendingId));
-  check('PENDING_FREE', () => demand(pending?.pricing?.priceId === 'Free'));
-  check('PENDING_PUBLICATION_MODE', () => demand(pending?.targetPublishMode === 'Immediate'));
-  check('PENDING_ROLLOUT_DISABLED', () => demand(
-    pending?.packageDeliveryOptions?.packageRollout?.isPackageRollout === false));
-  check('PENDING_PUBLICATION_DATE', () => demand(pending?.targetPublishDate === null
-    || (typeof pending?.targetPublishDate === 'string' && Number.isFinite(Date.parse(pending.targetPublishDate)))));
-  const targets = Array.isArray(pending?.applicationPackages)
-    ? pending.applicationPackages.filter((entry) => entry?.fileName === bundleName) : [];
-  check('PENDING_TARGET_FILENAME', () => demand(targets.length === 1));
-  check('PENDING_TARGET_FILE_STATUS', () => demand(targets.length === 1 && targets[0].fileStatus === 'PendingUpload'));
-  check('PENDING_TARGET_VERSION', () => demand(targets.length === 1
-    && (!Object.hasOwn(targets[0], 'version') || targets[0].version === version)));
-  check('PENDING_NOTES_LOCALE', () => demand(Object.hasOwn(pending?.listings ?? {}, notes.locale)));
   const observedNotes = pending?.listings?.[notes.locale]?.baseListing?.releaseNotes;
-  check('PENDING_NOTES_HASH', () => demand(typeof observedNotes === 'string' && sha256(observedNotes) === config.notesSha256));
-  check('STATUS_PENDING', () => demand(status?.status === 'PendingCommit'));
-  check('STATUS_ERRORS_EMPTY', () => demand(Array.isArray(status?.statusDetails?.errors) && status.statusDetails.errors.length === 0));
+  const { checks, readback } = currentReadbackChecks({ app, published, pending, status }, config);
+  report.checks.push(...checks);
 
   report.observed = {};
   for (const [label, submission] of [['published', published], ['pending', pending]]) {
@@ -170,12 +146,6 @@ export async function diagnoseStoreReadback(config, { fetchImpl = globalThis.fet
   report.observed.notes = { ...descriptor(observedNotes),
     textSha256: typeof observedNotes === 'string' ? sha256(observedNotes) : null,
     locale: notes.locale, sourceVersion: notes.version, matches: observedNotes === notes.text };
-  let expected;
-  check('EXPECTED_UPDATE', () => {
-    expected = prepareApiDraft({ ...published, id: pendingId }, bundleName, pendingId, notes, version);
-  });
-  const readback = readbackChecks(pending, expected, { bundleName, pendingId, notes, version });
-  report.checks.push(...readback.checks);
   report.comparison = { semantic: readback.semantic, normalized: readback.normalized,
     beforeNormalization: readback.beforeNormalization };
   const uploadBound = ['APPLICATION_PRODUCT', 'APPLICATION_PENDING_REFERENCE', 'APPLICATION_PUBLISHED_REFERENCE',

@@ -57,6 +57,40 @@ export function formatOutcome(outcome) {
     + (outcome.readback ? `${JSON.stringify(outcome.readback)}\n` : '');
 }
 
+export async function observeCommittedSubmission({ outcome, request, draftUrl, expected, bundleName, version,
+  now = Date.now, wait = sleep }) {
+  outcome.stage = 'status';
+  const deadline = now() + OBSERVATION_MS;
+  while (now() < deadline) {
+    const remaining = deadline - now();
+    if (remaining <= 0) break;
+    const observed = validateSubmissionStatus(await request(
+      'GET', `${draftUrl}/status`, undefined, [200], Math.min(60000, remaining),
+    ));
+    Object.assign(outcome, observed);
+    if (outcome.state === 'failed') throw new Error('Store processing failed');
+    if (outcome.state !== 'acknowledged' && now() < deadline) {
+      const ingested = apiFields(await request(
+        'GET', draftUrl, undefined, [200], Math.min(60000, deadline - now()),
+      ));
+      validateSubmissionIdentity(ingested, outcome.submissionId);
+      verifyPreservedIntent({ ...ingested, applicationPackages: [] },
+        { ...expected, applicationPackages: [] });
+      const matches = ingested.applicationPackages?.filter((entry) => entry.fileName === bundleName);
+      if (!matches || matches.length !== 1) throw new Error('Ingested package identity differs');
+      const target = matches[0];
+      if (target.version && target.version !== version) throw new Error('Ingested package version differs');
+      outcome.package = target.version === version && target.fileStatus === 'Uploaded'
+        ? 'verified' : 'pending';
+      if (outcome.package === 'verified') return outcome;
+      if (outcome.state === 'published') throw new Error('Published package is not verified');
+    }
+    await wait(Math.min(POLL_MS, Math.max(0, deadline - now())));
+  }
+  if (outcome.state === 'published') throw new Error('Publication ingestion was not observed before the deadline');
+  return outcome;
+}
+
 export async function publishStoreUpdate(config, {
   fetchImpl = globalThis.fetch, now = Date.now, wait = sleep, report = () => {}, log = () => {},
 } = {}) {
@@ -171,35 +205,8 @@ export async function publishStoreUpdate(config, {
     outcome.status = 'CommitStarted';
     outcome.state = 'acknowledged';
     report({ ...outcome });
-    outcome.stage = 'status';
-    const deadline = now() + OBSERVATION_MS;
-    while (now() < deadline) {
-      const remaining = deadline - now();
-      if (remaining <= 0) break;
-      const observed = validateSubmissionStatus(await request(
-        'GET', `${draftUrl}/status`, undefined, [200], Math.min(60000, remaining),
-      ));
-      Object.assign(outcome, observed);
-      if (outcome.state === 'failed') throw new Error('Store processing failed');
-      if (outcome.state !== 'acknowledged' && now() < deadline) {
-        const ingested = apiFields(await request(
-          'GET', draftUrl, undefined, [200], Math.min(60000, deadline - now()),
-        ));
-        validateSubmissionIdentity(ingested, created.id);
-        verifyPreservedIntent({ ...ingested, applicationPackages: [] },
-          { ...prepared, applicationPackages: [] });
-        const matches = ingested.applicationPackages?.filter((entry) => entry.fileName === bundleName);
-        if (!matches || matches.length !== 1) throw new Error('Ingested package identity differs');
-        const target = matches[0];
-        if (target.version && target.version !== version) throw new Error('Ingested package version differs');
-        outcome.package = target.version === version && target.fileStatus === 'Uploaded'
-          ? 'verified' : 'pending';
-        if (outcome.package === 'verified') return outcome;
-        if (outcome.state === 'published') throw new Error('Published package is not verified');
-      }
-      await wait(Math.min(POLL_MS, Math.max(0, deadline - now())));
-    }
-    return outcome;
+    return await observeCommittedSubmission({ outcome, request, draftUrl, expected: prepared,
+      bundleName, version, now, wait });
   } catch {
     // External exceptions can include tokens, SAS URLs, raw response bodies and private listing data.
     outcome.state = 'failed';

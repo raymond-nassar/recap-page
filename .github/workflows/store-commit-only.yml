@@ -1,0 +1,117 @@
+name: Commit verified existing Store update
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: Existing public application release tag
+        type: string
+        required: true
+      source_sha:
+        description: Full immutable application release commit
+        type: string
+        required: true
+      expected_pending_id:
+        description: Exact PendingCommit submission already uploaded and updated
+        type: string
+        required: true
+      expected_published_id:
+        description: Exact currently published baseline approved for preserved intent
+        type: string
+        required: true
+      bundle_sha256:
+        description: SHA-256 of the previously qualified inner MSIX bundle
+        type: string
+        required: true
+      notes_sha256:
+        description: SHA-256 of the approved release-note text in UTF-8
+        type: string
+        required: true
+      current_zip_sha256:
+        description: Approved CURRENT remote upload ZIP SHA-256, not an original-upload claim
+        type: string
+        required: true
+      commit_only:
+        description: Explicitly authorize one commit after fresh proof and protected owner approval
+        type: boolean
+        default: false
+        required: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: microsoft-store-production
+  cancel-in-progress: false
+
+jobs:
+  commit:
+    if: >-
+      github.event_name == 'workflow_dispatch' &&
+      github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+    environment: microsoft-store-production
+    runs-on: ubuntu-latest
+    timeout-minutes: 32
+    env:
+      RELEASE_TAG: ${{ inputs.release_tag }}
+      SOURCE_SHA: ${{ inputs.source_sha }}
+      EXPECTED_PENDING_ID: ${{ inputs.expected_pending_id }}
+      EXPECTED_PUBLISHED_ID: ${{ inputs.expected_published_id }}
+      BUNDLE_SHA256: ${{ inputs.bundle_sha256 }}
+      NOTES_SHA256: ${{ inputs.notes_sha256 }}
+      CURRENT_ZIP_SHA256: ${{ inputs.current_zip_sha256 }}
+      STORE_COMMIT_APPROVED: ${{ inputs.commit_only }}
+      READ_UPLOADED_BUNDLE: 'true'
+      TOOLING_SHA: ${{ github.workflow_sha }}
+      DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+      MICROSOFT_STORE_PRODUCT_ID: ${{ vars.MICROSOFT_STORE_PRODUCT_ID }}
+      READBACK_SOURCE_DIRECTORY: release-source
+    steps:
+      - name: Check out reviewed commit-only tooling
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        timeout-minutes: 2
+        with:
+          ref: ${{ github.workflow_sha }}
+          persist-credentials: false
+
+      - name: Check out immutable application source as data
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        timeout-minutes: 2
+        with:
+          ref: ${{ inputs.source_sha }}
+          path: release-source
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Set up Node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        timeout-minutes: 4
+        with:
+          node-version: '24'
+
+      - name: Bind approved inputs without Store credentials
+        timeout-minutes: 2
+        env:
+          GH_TOKEN: ${{ github.token }}
+          READBACK_RELEASE_FILE: ${{ runner.temp }}/commit-only-public-release.json
+        run: |
+          if [[ ! "$RELEASE_TAG" =~ ^v[0-9]{1,5}\.[0-9]{1,5}\.[0-9]{1,5}$ ]]; then
+            echo 'PUBLIC_RELEASE_TAG_INVALID'
+            exit 1
+          fi
+          gh api "repos/$GITHUB_REPOSITORY/releases/tags/$RELEASE_TAG" > "$READBACK_RELEASE_FILE"
+          node scripts/commit-store-update.mjs --preflight
+
+      - name: Run synthetic commit-only and publisher contracts
+        timeout-minutes: 2
+        run: node --test test/store-commit-only.test.js test/store-readback.test.js test/store-upload-readback.test.js test/store-publisher.test.js test/microsoft-store-release.test.js
+
+      - name: Verify current upload and intent, then commit the exact submission once
+        if: inputs.commit_only && github.run_attempt == 1
+        timeout-minutes: 18
+        env:
+          READBACK_RELEASE_FILE: ${{ runner.temp }}/commit-only-public-release.json
+          PARTNER_CENTER_CLIENT_ID: ${{ secrets.PARTNER_CENTER_CLIENT_ID }}
+          PARTNER_CENTER_CLIENT_SECRET: ${{ secrets.PARTNER_CENTER_CLIENT_SECRET }}
+          PARTNER_CENTER_TENANT_ID: ${{ secrets.PARTNER_CENTER_TENANT_ID }}
+        run: node scripts/commit-store-update.mjs --commit-only

@@ -368,6 +368,7 @@ export function verifyDraft(submission, bundleName, submissionId, notes, package
 export function validateCommitResponse(response) {
   const commit = record(response, 'commit response');
   const status = requiredKey(commit, ['Status', 'status'], 'commit response.Status').value;
+  if (Object.keys(commit).length !== 1) throw new Error('Commit response must contain only status');
   if (status !== 'CommitStarted') throw new Error('commit response.Status must be CommitStarted');
   return { status };
 }
@@ -432,6 +433,17 @@ export function preservedIntentPair(actual, expected, bundleName) {
   const left = mutableIntent(actual);
   const right = mutableIntent(expected);
   if (bundleName) {
+    for (const intended of right.applicationPackages ?? []) {
+      const matches = left.applicationPackages?.filter((entry) => entry.fileName === intended.fileName);
+      if (intended.fileName !== bundleName && extname(intended.fileName ?? '').toLowerCase() === '.msixbundle'
+          && intended.fileStatus === 'PendingDelete' && matches?.length === 1
+          && matches[0].fileStatus === 'PendingDelete'
+          && typeof intended.targetPlatform === 'string' && intended.targetPlatform.trim()
+          && !Object.hasOwn(matches[0], 'targetPlatform')) {
+        // The Store omits this field on deleted bundles; its first-party typed client does not round-trip it.
+        delete intended.targetPlatform;
+      }
+    }
     const uploaded = left.applicationPackages?.find((entry) => entry.fileName === bundleName);
     const intended = right.applicationPackages?.find((entry) => entry.fileName === bundleName);
     if (!uploaded || !intended) throw new Error('Intended package is absent');

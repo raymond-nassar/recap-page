@@ -146,6 +146,45 @@ test('independent readback failures retain exact safe paths, types and hashes in
   assert.doesNotMatch(JSON.stringify(result), /PRIVATE_|Paid/);
 });
 
+test('deleted old bundle targetPlatform omission is the only newly accepted semantic difference', async () => {
+  const f = fixture();
+  f.published.applicationPackages[0].targetPlatform = 'PRIVATE_PLATFORM';
+  const result = await f.run();
+  assert.equal(result.state, 'observed');
+  assert.equal(result.comparison.semantic.total, 0);
+  assert.ok(result.comparison.normalized.differences.some((entry) =>
+    entry.path.endsWith('/targetPlatform') && entry.before.type === 'string' && entry.after.type === 'missing'));
+  const expected = prepareApiDraft({ ...f.published, id: f.config.pendingId },
+    f.config.bundleName, f.config.pendingId, f.config.notes, f.config.version);
+  for (const change of [
+    (actual) => { actual.applicationPackages[0].targetPlatform = null; },
+    (actual) => { actual.applicationPackages[0].targetPlatform = 'Different'; },
+    (actual) => { actual.applicationPackages[0].fileName = 'other.msixbundle'; },
+    (actual) => { actual.applicationPackages[0].fileStatus = 'Uploaded'; },
+    (actual) => { actual.applicationPackages[0].version = '2.0.0.0'; },
+    (actual) => { actual.visibility = 'Hidden'; },
+  ]) {
+    const actual = structuredClone(f.pending);
+    change(actual);
+    assert.throws(() => verifyPreservedIntent(actual, expected, f.config.bundleName));
+  }
+  for (const fileStatus of ['Uploaded', 'PendingUpload']) {
+    const actual = structuredClone(f.pending);
+    const intended = structuredClone(expected);
+    actual.applicationPackages[0].fileStatus = intended.applicationPackages[0].fileStatus = fileStatus;
+    assert.throws(() => verifyPreservedIntent(actual, intended, f.config.bundleName));
+  }
+  for (const value of ['', null, false]) {
+    const intended = structuredClone(expected);
+    intended.applicationPackages[0].targetPlatform = value;
+    assert.throws(() => verifyPreservedIntent(f.pending, intended, f.config.bundleName));
+  }
+  const intended = structuredClone(f.pending);
+  intended.applicationPackages[1].targetPlatform = 'PRIVATE_PLATFORM';
+  assert.throws(() => verifyPreservedIntent(f.pending, intended, f.config.bundleName));
+  assert.throws(() => verifyPreservedIntent(f.pending, expected));
+});
+
 test('all local immutable release, identity, notes and source guards fail before authentication', async () => {
   for (const [mutate, code] of [
     [(c) => { c.pendingId = c.publishedId; }, 'INPUT_IDENTITIES'],

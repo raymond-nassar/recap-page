@@ -2,6 +2,7 @@ import { createHash } from 'node:crypto';
 import { isDeepStrictEqual } from 'node:util';
 import {
   apiFields, mutableIntent, preservedIntentPair, requirePendingDraft, verifyDraft, verifyPreservedIntent,
+  prepareApiDraft, validatePublishedSubmission, validateApiPackageReplacement, validateReleaseNotesTarget,
 } from './check-store-release.mjs';
 
 const FIELDS = new Set(`applicationCategory pricing trialPeriod marketSpecificPricings sales priceId
@@ -11,7 +12,7 @@ const FIELDS = new Set(`applicationCategory pricing trialPeriod marketSpecificPr
   voiceTitle devStudio fileName fileStatus id imageType hardwarePreferences automaticBackupEnabled
   canInstallOnRemovableMedia isGameDvrEnabled gamingOptions hasExternalInAppProducts meetAccessibilityGuidelines
   notesForCertification applicationPackages version architecture languages capabilities minimumDirectXVersion
-  minimumSystemRam targetDeviceFamilies packageDeliveryOptions packageRollout isPackageRollout
+  minimumSystemRam targetDeviceFamilies targetPlatform packageDeliveryOptions packageRollout isPackageRollout
   packageRolloutPercentage packageRolloutStatus fallbackSubmissionId isMandatoryUpdate mandatoryUpdateEffectiveDate
   enterpriseLicensing allowMicrosoftDecideAppAvailabilityToFutureDeviceFamilies allowTargetFutureDeviceFamilies
   trailers videoFileName trailerAssets title imageList name basePriceId startDate endDate deviceFamilyListings
@@ -112,6 +113,53 @@ export function readbackChecks(actual, expected, { bundleName, pendingId, notes,
     beforeNormalization = semanticDifferences(safeResource(expected), safeResource(actual));
   }));
   return { checks, semantic, normalized, beforeNormalization };
+}
+
+export function applicationReferenceChecks(app, config, prefix = 'APPLICATION') {
+  const demand = (condition) => { if (!condition) throw new Error('Application references changed'); };
+  return [
+    checkResult(`${prefix}_PRODUCT`, () => demand(app?.id === config.productId)),
+    checkResult(`${prefix}_PUBLISHED_REFERENCE`, () => demand(app?.lastPublishedApplicationSubmission?.id === config.publishedId)),
+    checkResult(`${prefix}_PENDING_REFERENCE`, () => demand(app?.pendingApplicationSubmission?.id === config.pendingId)),
+  ];
+}
+
+export function currentReadbackChecks({ app, published, pending, status }, config) {
+  const { publishedId, pendingId, bundleName, version, notes } = config;
+  const checks = applicationReferenceChecks(app, config);
+  const demand = (condition) => { if (!condition) throw new Error('Current readback contract failed'); };
+  const check = (id, operation) => checks.push(checkResult(id, operation));
+  check('PUBLISHED_IDENTITY', () => demand(published?.id === publishedId));
+  check('PUBLISHED_STATUS', () => demand(published?.status === 'Published'));
+  check('PUBLISHED_FREE', () => demand(published?.pricing?.priceId === 'Free'));
+  check('PUBLISHED_VERSION_ADVANCE', () => validatePublishedSubmission(published, version));
+  check('PUBLISHED_PACKAGE_REPLACEMENT', () => validateApiPackageReplacement(published, bundleName));
+  check('PUBLISHED_NOTES_TARGET', () => validateReleaseNotesTarget(published, notes, version));
+  check('PENDING_IDENTITY', () => demand(pending?.id === pendingId));
+  check('PENDING_FREE', () => demand(pending?.pricing?.priceId === 'Free'));
+  check('PENDING_PUBLICATION_MODE', () => demand(pending?.targetPublishMode === 'Immediate'));
+  check('PENDING_ROLLOUT_DISABLED', () => demand(
+    pending?.packageDeliveryOptions?.packageRollout?.isPackageRollout === false));
+  check('PENDING_PUBLICATION_DATE', () => demand(pending?.targetPublishDate === null
+    || (typeof pending?.targetPublishDate === 'string' && Number.isFinite(Date.parse(pending.targetPublishDate)))));
+  const targets = Array.isArray(pending?.applicationPackages)
+    ? pending.applicationPackages.filter((entry) => entry?.fileName === bundleName) : [];
+  check('PENDING_TARGET_FILENAME', () => demand(targets.length === 1));
+  check('PENDING_TARGET_FILE_STATUS', () => demand(targets.length === 1 && targets[0].fileStatus === 'PendingUpload'));
+  check('PENDING_TARGET_VERSION', () => demand(targets.length === 1
+    && (!Object.hasOwn(targets[0], 'version') || targets[0].version === version)));
+  check('PENDING_NOTES_LOCALE', () => demand(Object.hasOwn(pending?.listings ?? {}, notes.locale)));
+  const observedNotes = pending?.listings?.[notes.locale]?.baseListing?.releaseNotes;
+  check('PENDING_NOTES_HASH', () => demand(typeof observedNotes === 'string' && sha256(observedNotes) === config.notesSha256));
+  check('STATUS_PENDING', () => demand(status?.status === 'PendingCommit'));
+  check('STATUS_ERRORS_EMPTY', () => demand(Array.isArray(status?.statusDetails?.errors) && status.statusDetails.errors.length === 0));
+  let expected;
+  check('EXPECTED_UPDATE', () => {
+    expected = prepareApiDraft({ ...published, id: pendingId }, bundleName, pendingId, notes, version);
+  });
+  const readback = readbackChecks(pending, expected, config);
+  checks.push(...readback.checks);
+  return { checks, expected, readback };
 }
 
 export function knownValue(value, allowed) {
