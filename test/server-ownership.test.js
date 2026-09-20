@@ -71,7 +71,7 @@ test('native verifier rejects noncanonical, partial, extra and contradictory rec
   const valid = wire();
   for (const raw of [
     '', 'null\n', '[]\n', 'true\n', 'private-message',
-    valid.slice(0, -1), valid + '\n', valid.replace('\n', '\r\n'),
+    valid.slice(0, -1), valid + '\n', valid.replaceAll('\n', '\r\n'),
     ' ' + valid, '\ufeff' + valid, valid + 'private-path',
     valid.replace('"owned":true', '"owned":false,"owned":true'),
     valid.replace('"code":0', '"code":0e0'), valid.replace('"code":0', '"code":-0'),

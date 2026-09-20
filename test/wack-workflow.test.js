@@ -159,6 +159,15 @@ test('WACK proof lanes upload no package, certificate, installer, or raw report'
   assert.match(runner, /throw \$primaryFailure/);
 });
 
+test('N1 mutation resolves verifier dependencies inside the copied header tree', () => {
+  const proof = readFileSync(new URL('../scripts/native-startup-proof.ps1', import.meta.url), 'utf8');
+  const fixture = readFileSync(new URL('./native/ServerVerifierTests.h', import.meta.url), 'utf8');
+  assert.match(fixture, /^#include "ServerOwnership\.h"/m);
+  assert.doesNotMatch(fixture, /#include "\.\.\/\.\.\/packaging/);
+  assert.match(proof, /@\('Launcher\.cpp', 'StartupProcess\.h', 'StartupProtocol\.h', 'ServerOwnership\.h'\)/);
+  assert.match(proof, /\$compile = [^\r\n]*StartupTests\.cpp[^\r\n]*iphlpapi\.lib ws2_32\.lib wbemuuid\.lib/);
+});
+
 test('native producer outputs and job deadlines bind every package consumer', () => {
   assert.match(workflow, /run: \.\/scripts\/build-native-launcher\.ps1 -IncludeProofTools/);
   assert.match(workflow, /run: \.\/scripts\/native-startup-proof\.ps1 -Negatives/);

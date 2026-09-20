@@ -626,7 +626,7 @@ try {
     foreach ($negative in $mutations) {
       $copy = Join-Path $scratch $negative
       New-Item -ItemType Directory -Path $copy -ErrorAction Stop | Out-Null
-      foreach ($name in @('Launcher.cpp', 'StartupProcess.h', 'StartupProtocol.h')) {
+      foreach ($name in @('Launcher.cpp', 'StartupProcess.h', 'StartupProtocol.h', 'ServerOwnership.h')) {
         Copy-Item -LiteralPath (Join-Path $root "packaging\windows\native\$name") -Destination (Join-Path $copy $name)
       }
       $changed = Join-Path $copy 'StartupProtocol.h'
@@ -673,7 +673,7 @@ bool placeFailureWindow(App& app) {
       $flags = "/nologo /std:c++17 /O2 /MT /EHsc /W4 /WX /utf-8 /GS /sdl /guard:cf /Brepro /DNDEBUG /DUNICODE /D_UNICODE /DNOMINMAX /DWIN32_LEAN_AND_MEAN /D_WIN32_WINNT=0x0A00 /DWINVER=0x0A00 /I`"$copy`" /Fo`"$copy\mutant.obj`" /Fe`"$mutant`""
       $compile = "`"$compiler`" $flags `"$copy\Launcher.cpp`" `"$resources`" /link /MACHINE:X64 /DYNAMICBASE /NXCOMPAT /HIGHENTROPYVA /GUARD:CF /MANIFEST:NO /SUBSYSTEM:WINDOWS,10.00 user32.lib gdi32.lib ole32.lib windowscodecs.lib comctl32.lib msimg32.lib"
       if ($negative -eq 'N1') {
-        $compile = "`"$compiler`" $flags `"$root\test\native\StartupTests.cpp`" /link /MACHINE:X64 /DYNAMICBASE /NXCOMPAT /HIGHENTROPYVA /GUARD:CF /MANIFEST:NO /SUBSYSTEM:CONSOLE,10.00 user32.lib gdi32.lib ole32.lib oleaut32.lib uiautomationcore.lib advapi32.lib tdh.lib shell32.lib uuid.lib"
+        $compile = "`"$compiler`" $flags `"$root\test\native\StartupTests.cpp`" /link /MACHINE:X64 /DYNAMICBASE /NXCOMPAT /HIGHENTROPYVA /GUARD:CF /MANIFEST:NO /SUBSYSTEM:CONSOLE,10.00 user32.lib gdi32.lib ole32.lib oleaut32.lib uiautomationcore.lib advapi32.lib tdh.lib shell32.lib uuid.lib iphlpapi.lib ws2_32.lib wbemuuid.lib"
       }
       & $env:ComSpec /d /s /c "call `"$setup`" -vcvars_ver=$toolVersion 10.0.26100.0 && $compile"
       if ($LASTEXITCODE -ne 0) { throw "$negative compilation failed; this is not a proven negative." }

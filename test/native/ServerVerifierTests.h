@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../packaging/windows/native/ServerOwnership.h"
+#include "ServerOwnership.h"
 #include <filesystem>
 #include <fstream>
 #include <thread>
