@@ -189,9 +189,9 @@ public:
         PROCESS_INFORMATION created{};
         auto command = recap::quoted(expected.node) + L" " + recap::quoted(expected.server);
         auto environment = recap::childEnvironment();
-        check(CreateProcessW(expected.node.c_str(), command.data(), nullptr, nullptr, TRUE,
-            CREATE_SUSPENDED | CREATE_NO_WINDOW | CREATE_UNICODE_ENVIRONMENT, environment.data(), nullptr, &startup, &created) != FALSE,
-            "server-verifier/fixture-spawn");
+        if (!CreateProcessW(expected.node.c_str(), command.data(), nullptr, nullptr, TRUE,
+            CREATE_SUSPENDED | CREATE_NO_WINDOW | CREATE_UNICODE_ENVIRONMENT, environment.data(), nullptr, &startup, &created))
+            throw FixtureFailure("server-verifier/fixture-spawn", unknown(Stage::process, Reason::nativeReturn, GetLastError()));
         process = recap::Handle(created.hProcess);
         recap::Handle thread(created.hThread);
         pid = created.dwProcessId;
@@ -247,6 +247,10 @@ inline void run(const std::wstring& nodeRuntime, const std::filesystem::path& sc
             std::error_code error;
             std::filesystem::remove(directory / L"server.mjs", error);
             error.clear();
+            std::filesystem::remove(directory / L"runtime" / L"node.exe", error);
+            error.clear();
+            std::filesystem::remove(directory / L"runtime", error);
+            error.clear();
             std::filesystem::remove(directory, error);
         }
     } cleanup{ directory };
@@ -258,7 +262,30 @@ inline void run(const std::wstring& nodeRuntime, const std::filesystem::path& sc
         file.close();
         check(static_cast<bool>(file), "server-verifier/fixture-script");
     }
-    Expectations expected{ canonicalFile(nodeRuntime), canonicalFile(script.wstring()), 0 };
+    const auto runtimeDirectory = directory / L"runtime";
+    check(std::filesystem::create_directory(runtimeDirectory), "server-verifier/fixture-runtime-directory");
+    const auto runtime = runtimeDirectory / L"node.exe";
+    check(std::filesystem::copy_file(nodeRuntime, runtime), "server-verifier/fixture-runtime-copy");
+    const auto bytes = std::filesystem::file_size(nodeRuntime);
+    check(bytes > 0 && bytes <= 160ULL * 1024 * 1024 && std::filesystem::file_size(runtime) == bytes,
+          "server-verifier/fixture-runtime-size");
+    {
+        std::ifstream source(std::filesystem::path(nodeRuntime), std::ios::binary), copied(runtime, std::ios::binary);
+        check(source && copied, "server-verifier/fixture-runtime-open");
+        std::array<char, 65536> left{}, right{};
+        uintmax_t compared = 0;
+        do {
+            source.read(left.data(), static_cast<std::streamsize>(left.size()));
+            copied.read(right.data(), static_cast<std::streamsize>(right.size()));
+            const auto count = source.gcount();
+            check(count == copied.gcount() && !source.bad() && !copied.bad() &&
+                  std::memcmp(left.data(), right.data(), static_cast<size_t>(count)) == 0,
+                  "server-verifier/fixture-runtime-bytes");
+            compared += static_cast<uintmax_t>(count);
+        } while (source.gcount() != 0);
+        check(compared == bytes, "server-verifier/fixture-runtime-complete");
+    }
+    Expectations expected{ canonicalFile(runtime.wstring()), canonicalFile(script.wstring()), 0 };
     OwnedNode child(expected);
     expected.port = child.port();
     WinApi api;
@@ -278,6 +305,10 @@ inline void run(const std::wstring& nodeRuntime, const std::filesystem::path& sc
     check(invoke(child.pid, wrong).owned == Owned::no, "server-verifier/wrong-command");
     child.stop();
     check(invoke(child.pid, expected).owned == Owned::no, "server-verifier/closed-listener");
-    check(std::filesystem::remove(script) && std::filesystem::remove(directory), "server-verifier/fixture-cleanup");
+    check(child.process.close() == ERROR_SUCCESS && child.output.close() == ERROR_SUCCESS &&
+          child.job.close() == ERROR_SUCCESS, "server-verifier/fixture-handles");
+    check(std::filesystem::remove(script) && std::filesystem::remove(runtime) &&
+          std::filesystem::remove(runtimeDirectory) && std::filesystem::remove(directory),
+          "server-verifier/fixture-cleanup");
 }
 }

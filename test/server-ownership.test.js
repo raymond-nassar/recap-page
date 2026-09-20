@@ -43,6 +43,11 @@ test('native fixture failures retain only a bounded condition and fixed native r
   assert.match(fixture, /class FixtureFailure : public std::runtime_error/);
   assert.match(fixture, /value\.find_first_not_of\("abcdefghijklmnopqrstuvwxyz0123456789-"/);
   assert.match(fixture, /throw FixtureFailure\("server-verifier\/owned-fixture", result\)/);
+  assert.match(fixture, /std::filesystem::copy_file\(nodeRuntime, runtime\)/);
+  assert.match(fixture, /std::memcmp\(left\.data\(\), right\.data\(\), static_cast<size_t>\(count\)\) == 0/);
+  assert.match(fixture, /compared == bytes/);
+  assert.match(fixture, /Expectations expected\{ canonicalFile\(runtime\.wstring\(\)\), canonicalFile\(script\.wstring\(\)\), 0 \}/);
+  assert.match(fixture, /Reason::nativeReturn, GetLastError\(\)/);
   assert.match(driver, /return "native-verifier-fixture-failed"/);
   assert.match(driver, /DIAG native-verifier-fixture condition=/);
   assert.match(driver, /recap::ownership::record\(verifier->result\)/);
