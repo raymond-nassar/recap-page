@@ -8,6 +8,18 @@ function demand(condition) {
   if (!condition) throw new Error('Upload proof contract failed');
 }
 
+const CRC_TABLE = Array.from({ length: 256 }, (_, index) => {
+  let value = index;
+  for (let bit = 0; bit < 8; bit++) value = (value >>> 1) ^ ((value & 1) ? 0xedb88320 : 0);
+  return value >>> 0;
+});
+
+function crc32(bytes) {
+  let crc = 0xffffffff;
+  for (const byte of bytes) crc = (crc >>> 8) ^ CRC_TABLE[(crc ^ byte) & 0xff];
+  return (crc ^ 0xffffffff) >>> 0;
+}
+
 export function readSingleBundle(zip, bundleName) {
   demand(Buffer.isBuffer(zip) && zip.length >= 22 && zip.length <= MAX_BYTES);
   const end = zip.length - 22;
@@ -47,7 +59,7 @@ export function readSingleBundle(zip, bundleName) {
   }
   const compressed = zip.subarray(start, dataEnd);
   const bundle = method === 0 ? compressed : inflateRawSync(compressed, { maxOutputLength: MAX_BYTES });
-  demand(bundle.length === size);
+  demand(bundle.length === size && crc32(bundle) === crc);
   return { sha256: sha256(bundle), size };
 }
 

@@ -26,7 +26,7 @@ function baseline() {
       releaseNotes: 'Old notes', description: 'Private listing', images: [{ id: 'image', fileName: 'cover.png' }],
     } }, 'fr-fr': { baseListing: { description: 'Other listing' } } },
     applicationPackages: [{ fileName: 'RecapPage_3.0.0.0_x64_arm64.msixbundle',
-      fileStatus: 'Uploaded', version: '3.0.0.0', id: 'old-package' }],
+      fileStatus: 'Uploaded', version: '3.0.0.0', id: 'old-package', targetPlatform: 'Windows' }],
     targetPublishMode: 'Immediate', targetPublishDate: null,
     packageDeliveryOptions: { isMandatoryUpdate: false, mandatoryUpdateEffectiveDate: '1601-01-01T00:00:00Z',
       packageRollout: { isPackageRollout: false, packageRolloutPercentage: 0,
@@ -179,6 +179,12 @@ test('production readback blocks unrelated settings, missing notes, wrong ID and
     assert.equal((await f.run()).state, 'failed');
     assert.deepEqual(f.mutations(), ['POST', 'upload', 'PUT']);
   }
+});
+
+test('normal publisher shares the narrow deleted-bundle targetPlatform readback correction', async () => {
+  const f = fixture({ readback: (draft) => { delete draft.applicationPackages[0].targetPlatform; } });
+  assert.equal((await f.run()).state, 'processing');
+  assert.deepEqual(f.mutations(), ['POST', 'upload', 'PUT', 'commit']);
 });
 
 test('invalid notes, stale version and pending submission stop before creation', async () => {

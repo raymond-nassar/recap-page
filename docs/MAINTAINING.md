@@ -1155,17 +1155,17 @@ to 100 records per view, with explicit total and truncation indicators.
 
 The expected update is constructed from the **current** published submission plus the approved
 release notes and package replacement. The semantic comparison shares the publisher's exact
-`mutableIntent` and new-package metadata handling. Additional views expose differences before
+`mutableIntent`, new-package metadata handling and narrow deleted-bundle omission rule below. Additional views expose differences before
 new-package normalization and before general normalization, excluding upload authorization and
 status detail bodies. Those views are observations, not new acceptance rules. The publisher
-retains its original preflight and readback guards; failures now include fixed contract codes
+retains its no-pending and higher-version preflight guards; failures include fixed contract codes
 and safe semantic paths rather than only the stage name.
 
 Set `read_uploaded_bundle=true` only when the operator also authorizes an upload read. The optional
 GET accepts only an unexpired HTTPS Azure Blob ingestion URL, sends no Authorization header, and
 refuses redirects. It caps transfer and expanded bundle size at 256 MiB each, with a 60-second
 request deadline. It accepts only a single exact-name stored or deflated bundle in a non-ZIP64
-archive with no archive comment. Bytes remain in memory. The report includes the current ZIP
+archive with no archive comment, matching sizes and a calculated payload CRC-32. Bytes remain in memory. The report includes the current ZIP
 hash/size, bundle hash/size and equality to the supplied qualified bundle hash. Denial, timeout,
 unsupported ZIP layout, limits or mismatch are explicit failed checks; metadata checks still
 complete. No uploaded bytes are assumed merely because metadata names the expected package.
@@ -1186,3 +1186,65 @@ and [commit boundary](https://learn.microsoft.com/windows/uwp/monetize/commit-an
 retrieved 2026-09-19. Microsoft documents package-derived fields as server-populated. In particular,
 missing new-package version may explain a strict inspection failure but does not by itself explain
 a publisher readback failure. Diagnose the actual failed checks before considering a policy change.
+
+### Commit an already uploaded, verified Store update
+
+Use **Commit verified existing Store update** only after the Store operator has reviewed a fresh
+read-only diagnosis and explicitly approved committing that exact current submission. This is not
+the normal publisher and not the older incident-bound recovery. It cannot create a submission,
+upload a blob, PUT a draft, delete anything, rebuild the app or change a release/tag.
+The normal publisher still refuses an existing pending submission and requires a higher version.
+
+Supply the diagnosis inputs above plus `current_zip_sha256`, the approved SHA-256 of the
+**current remote upload ZIP**, and explicitly select `commit_only=true`. The inner `bundle_sha256`
+must come from the previously qualified package, not merely its filename or API metadata.
+Never substitute the current ZIP hash for an unrecorded original-upload digest. The approved notes
+hash still covers the UTF-8 note text, not its JSON container. Inputs are reusable; no incident
+submission, release or hash is built into this path.
+
+Dispatch on the default branch with the reviewed workflow commit. Current tooling and immutable
+application source are separate checkouts; only the former executes. The existing
+`microsoft-store-production` environment must retain its required owner approval. Its shared
+concurrency group has cancellation disabled and the workflow token has only `contents: read`.
+Preflight refuses a missing explicit approval or any `GITHUB_RUN_ATTEMPT` other than `1` before
+Store authentication. A rerun cannot be used as a retry. The script also requires the explicit
+`--commit-only` command; its default operation and `--diagnose` remain read-only.
+
+The authorization is **current verified intent**: the expected current published submission plus
+the approved package replacement and notes. Historical created/published snapshots are unavailable,
+not reconstructed, recovered or resealed. Shared individual checks require the exact references,
+source/tag/version, free pricing, pending state without errors, old/new package identities and
+statuses, approved notes, immediate publication, disabled rollout and preserved editable settings.
+The remote ZIP is read afresh with the bounded single-entry, exact-name, CRC, size and inner-bundle
+hash checks. Its current ZIP hash must equal the separately approved runtime input.
+
+After byte proof, the workflow re-reads application references, published intent, pending intent,
+notes/packages and status immediately before commit. Any changed intent, upload location,
+processing state or error blocks the POST. Sequential reads cannot eliminate external races;
+coordinate with the sole Store operator and do not edit the draft in Partner Center.
+
+The only Store mutation permitted by the transport is one POST to the validated pending
+submission's commit endpoint. Only HTTP 200 or 202 with a body containing solely `CommitStarted`
+status acknowledges it. The attempt and submission ID remain in the safe outcome on a timeout,
+malformed response, HTTP error or report-writing failure. Ambiguous commits receive no retry and
+no automatic follow-up GET; inspect the exact submission separately before any further decision.
+Acknowledged commits use the normal publisher's bounded status and ingested version/notes observer.
+Certification still pending after observation is explicit, not publication or a reason to resubmit.
+Only observed Published with verified ingestion is a published outcome. Reports contain safe
+identities, phases, statuses, hashes and proof results, never SAS URLs, credentials or private objects.
+
+The shared comparison permits just one new normalization: `targetPlatform` may be absent from the
+actual exact-filename-matched **old MSIX bundle** only when both expected and actual entries are
+`PendingDelete` and the expected value is a nonempty string. Present null, a different present
+value, an active/new-package omission or any unrelated semantic change still fails. Raw diagnostic
+differences retain the known `targetPlatform` path without exposing its value.
+Microsoft's [typed package model](https://github.com/microsoft/msstore-cli/blob/65fec5f1fd4a666db76cb76ec6c7121a4f50f38e/MSStore.API/Packaged/Models/ApplicationPackage.cs)
+omits the field and has no extension-data member; its
+[submission model](https://github.com/microsoft/msstore-cli/blob/65fec5f1fd4a666db76cb76ec6c7121a4f50f38e/MSStore.API/Packaged/Models/DevCenterSubmission.cs)
+uses that package type. Those first-party non-roundtrip models and the observed omission on a
+deleted bundle support this narrow rule. The Learn package resource does not list the field;
+it does **not** explicitly designate it read-only. References retrieved 2026-09-20.
+
+This implementation alone has not committed anything to the Store. It changes no app version,
+public release, immutable download or saved reading data. Review its frozen head and green checks
+before the operator performs a separately authorized protected commit-only dispatch.
