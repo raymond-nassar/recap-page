@@ -5,9 +5,10 @@ import { createHash } from 'node:crypto';
 import {
   apiFields, validateApplication, validateSubmissionIdentity, validatePublishedSubmission,
   validateApiPackageReplacement, validateReleaseNotes, validateReleaseNotesTarget,
-  prepareApiDraft, verifyDraft, verifyPreservedIntent, requirePendingDraft,
+  prepareApiDraft, verifyPreservedIntent, requirePendingDraft,
   validateCommitResponse, validateSubmissionStatus,
 } from './check-store-release.mjs';
+import { checkResult, readbackChecks } from './store-readback.mjs';
 
 const API = 'https://manage.devcenter.microsoft.com/v1.0/my/applications';
 const OBSERVATION_MS = 5 * 60 * 1000;
@@ -46,12 +47,94 @@ function bindApplication(application, productId, publishedId, submissionId) {
 }
 
 export function formatOutcome(outcome) {
-  const action = outcome.state === 'failed'
-    ? 'Inspect this submission and the last stage before any further action. Do not rerun or edit an API-created submission in Partner Center.'
-    : outcome.state === 'published' ? 'Store reports Published.'
-      : outcome.state === 'validated' ? 'Read-only rehearsal passed; no Store mutation was sent.'
-        : 'Publication is not verified. Monitor this submission; do not rerun. Microsoft publishes after certification.';
-  return `Store release: ${outcome.state}; stage: ${outcome.stage}; submission: ${outcome.submissionId ?? 'not-known'}; status: ${outcome.status ?? 'not-observed'}; commit: ${outcome.commit}; ingested package: ${outcome.package ?? 'not-observed'}; approved notes SHA-256: ${outcome.notesSha256 ?? 'not-validated'}.\n${action}\n`;
+  const action = outcome.state === 'verification-pending'
+    ? 'Local verification is blocked or incomplete; review is required. This is not a confirmed Store rejection. Publication is not verified. Inspect the last observed Store status above; do not rerun or edit this submission.'
+    : outcome.state === 'failed'
+      ? 'Inspect this submission and the last stage before any further action. Do not rerun or edit an API-created submission in Partner Center.'
+      : outcome.state === 'published' ? 'Store reports Published.'
+        : outcome.state === 'validated' ? 'Read-only rehearsal passed; no Store mutation was sent.'
+          : 'Publication is not verified. Monitor this submission; do not rerun. Microsoft publishes after certification.';
+  return `Store release: ${outcome.state}; stage: ${outcome.stage}; submission: ${outcome.submissionId ?? 'not-known'}; status: ${outcome.status ?? 'not-observed'}; commit: ${outcome.commit}; ingested package: ${outcome.package ?? 'not-observed'}; approved notes SHA-256: ${outcome.notesSha256 ?? 'not-validated'}.\n${action}\n`
+    + `Approved notes: ${outcome.notes ?? 'not-observed'}; nonpackage intent: ${outcome.intent ?? 'not-observed'}.\n`
+    + (outcome.failureCode ? `Failure code: ${outcome.failureCode}\n` : '')
+    + (outcome.readback ? `${JSON.stringify(outcome.readback)}\n` : '');
+}
+
+export async function observeCommittedSubmission({ outcome, request, draftUrl, expected, bundleName, version,
+  now = Date.now, wait = sleep }) {
+  const deadline = now() + OBSERVATION_MS;
+  try {
+    while (now() < deadline) {
+      outcome.stage = 'status';
+      const remaining = deadline - now();
+      if (remaining <= 0) break;
+      const observed = validateSubmissionStatus(await request(
+        'GET', `${draftUrl}/status`, undefined, [200], Math.min(60000, remaining),
+      ));
+      Object.assign(outcome, observed);
+      if (outcome.state === 'failed') {
+        outcome.failureCode = 'STORE_PROCESSING_FAILED';
+        return outcome;
+      }
+      if (outcome.state === 'verification-pending') {
+        outcome.failureCode = 'POSTCOMMIT_UNEXPECTED_STATUS';
+        return outcome;
+      }
+      if (outcome.state !== 'acknowledged' && now() < deadline) {
+        outcome.stage = 'ingestion-readback';
+        const ingested = apiFields(await request(
+          'GET', draftUrl, undefined, [200], Math.min(60000, deadline - now()),
+        ));
+        outcome.stage = 'ingestion-identity';
+        validateSubmissionIdentity(ingested, outcome.submissionId);
+        // Independent proofs remain useful when a separate editable setting needs review.
+        outcome.package = 'review-required';
+        const proofs = [
+          checkResult('POSTCOMMIT_PACKAGE', () => {
+            const matches = ingested.applicationPackages?.filter((entry) => entry.fileName === bundleName);
+            if (!matches || matches.length !== 1) throw new Error('Ingested package identity differs');
+            const target = matches[0];
+            if (target.version && target.version !== version) throw new Error('Ingested package version differs');
+            outcome.package = target.version === version && target.fileStatus === 'Uploaded'
+              ? 'verified' : 'pending';
+          }),
+          checkResult('POSTCOMMIT_NOTES', () => {
+            const approved = expected.listings?.['en-us']?.baseListing?.releaseNotes;
+            if (typeof approved !== 'string' || ingested.listings?.['en-us']?.baseListing?.releaseNotes !== approved) {
+              throw new Error('Approved notes differ');
+            }
+          }),
+          checkResult('POSTCOMMIT_INTENT', () => verifyPreservedIntent(
+            { ...ingested, applicationPackages: [] }, { ...expected, applicationPackages: [] })),
+        ];
+        outcome.notes = proofs[1].result === 'pass' ? 'verified' : 'review-required';
+        outcome.intent = proofs[2].result === 'pass' ? 'verified' : 'review-required';
+        const failed = proofs.find((proof) => proof.result !== 'pass');
+        if (failed) {
+          outcome.stage = `ingestion-${failed.checkId.slice('POSTCOMMIT_'.length).toLowerCase()}`;
+          outcome.failureCode = failed.code;
+          throw new Error('Postcommit proof requires review');
+        }
+        if (now() >= deadline) break;
+        if (outcome.package === 'verified') {
+          outcome.stage = 'status';
+          return outcome;
+        }
+        outcome.stage = 'ingestion-package';
+        if (outcome.state === 'published') throw new Error('Published package is not verified');
+      }
+      outcome.stage = 'status';
+      await wait(Math.min(POLL_MS, Math.max(0, deadline - now())));
+    }
+    outcome.stage = 'observation-deadline';
+    outcome.failureCode = 'POSTCOMMIT_DEADLINE';
+    throw new Error('Required verification was not completed before the deadline');
+  } catch {
+    // Local observation failure is not evidence that the acknowledged Store commit failed.
+    outcome.state = 'verification-pending';
+    outcome.failureCode ??= `POSTCOMMIT_${outcome.stage.toUpperCase().replaceAll('-', '_')}`;
+    return outcome;
+  }
 }
 
 export async function publishStoreUpdate(config, {
@@ -141,15 +224,25 @@ export async function publishStoreUpdate(config, {
     const updated = apiFields(await request('PUT', draftUrl, prepared));
     validateSubmissionIdentity(updated, created.id);
     outcome.stage = 'readback';
+    outcome.failureCode = 'READBACK_REQUEST';
     const actual = apiFields(await request('GET', draftUrl));
-    requirePendingDraft(actual);
-    verifyDraft(actual, bundleName, created.id, notes, version);
-    verifyPreservedIntent(actual, prepared, bundleName);
+    const readback = readbackChecks(actual, prepared, { bundleName, pendingId: created.id, notes, version });
+    const failed = readback.checks.find((check) => check.checkId !== 'READBACK_DIFFERENCES' && check.result === 'fail');
+    if (failed) {
+      outcome.failureCode = failed.code;
+      outcome.readback = readback;
+      throw new Error('Readback contract failed');
+    }
+    outcome.failureCode = 'READBACK_APPLICATION_REFERENCES';
     bindApplication(await request('GET', root), productId, publishedId, created.id);
+    outcome.failureCode = 'READBACK_PUBLISHED_IDENTITY';
     const baseline = apiFields(await request('GET', publishedUrl));
     validateSubmissionIdentity(baseline, publishedId);
+    outcome.failureCode = 'READBACK_PUBLISHED_STATUS';
     if (baseline.status !== 'Published') throw new Error('Baseline status changed');
+    outcome.failureCode = 'READBACK_PUBLISHED_INTENT';
     verifyPreservedIntent(baseline, published);
+    delete outcome.failureCode;
     outcome.stage = 'commit';
     outcome.commit = 'attempted';
     const commit = await request('POST', `${draftUrl}/commit`, undefined, [200, 202]);
@@ -157,39 +250,14 @@ export async function publishStoreUpdate(config, {
     outcome.commit = 'acknowledged';
     outcome.status = 'CommitStarted';
     outcome.state = 'acknowledged';
+    outcome.stage = 'acknowledgement-report';
     report({ ...outcome });
-    outcome.stage = 'status';
-    const deadline = now() + OBSERVATION_MS;
-    while (now() < deadline) {
-      const remaining = deadline - now();
-      if (remaining <= 0) break;
-      const observed = validateSubmissionStatus(await request(
-        'GET', `${draftUrl}/status`, undefined, [200], Math.min(60000, remaining),
-      ));
-      Object.assign(outcome, observed);
-      if (outcome.state === 'failed') throw new Error('Store processing failed');
-      if (outcome.state !== 'acknowledged' && now() < deadline) {
-        const ingested = apiFields(await request(
-          'GET', draftUrl, undefined, [200], Math.min(60000, deadline - now()),
-        ));
-        validateSubmissionIdentity(ingested, created.id);
-        verifyPreservedIntent({ ...ingested, applicationPackages: [] },
-          { ...prepared, applicationPackages: [] });
-        const matches = ingested.applicationPackages?.filter((entry) => entry.fileName === bundleName);
-        if (!matches || matches.length !== 1) throw new Error('Ingested package identity differs');
-        const target = matches[0];
-        if (target.version && target.version !== version) throw new Error('Ingested package version differs');
-        outcome.package = target.version === version && target.fileStatus === 'Uploaded'
-          ? 'verified' : 'pending';
-        if (outcome.package === 'verified') return outcome;
-        if (outcome.state === 'published') throw new Error('Published package is not verified');
-      }
-      await wait(Math.min(POLL_MS, Math.max(0, deadline - now())));
-    }
-    return outcome;
+    return await observeCommittedSubmission({ outcome, request, draftUrl, expected: prepared,
+      bundleName, version, now, wait });
   } catch {
     // External exceptions can include tokens, SAS URLs, raw response bodies and private listing data.
-    outcome.state = 'failed';
+    outcome.state = outcome.commit === 'acknowledged' ? 'verification-pending' : 'failed';
+    if (outcome.commit === 'acknowledged') outcome.failureCode = 'POSTCOMMIT_REPORT';
     return outcome;
   } finally {
     report({ ...outcome });
@@ -217,7 +285,9 @@ export async function runRelease(args, env = process.env) {
     }, { report, log: (text) => process.stdout.write(text) });
   } catch {
     result = { ...(lastOutcome ?? { stage: 'local-input', submissionId: null,
-      status: null, commit: 'not-attempted' }), state: 'failed' };
+      status: null, commit: 'not-attempted' }) };
+    result.state = result.commit === 'acknowledged' && result.state !== 'failed' ? 'verification-pending' : 'failed';
+    if (result.commit === 'acknowledged') result.failureCode ??= 'POSTCOMMIT_REPORT';
     process.stderr.write(formatOutcome(result));
     if (!lastOutcome) {
       try {
@@ -229,7 +299,7 @@ export async function runRelease(args, env = process.env) {
       process.stderr.write('Store outcome reporting failed. The last submission state above remains authoritative; do not rerun.\n');
     }
   }
-  return result.state === 'failed' ? 1 : 0;
+  return ['failed', 'verification-pending'].includes(result.state) ? 1 : 0;
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {

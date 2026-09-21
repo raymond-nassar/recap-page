@@ -14,6 +14,7 @@ import {
   validateReleaseNotes,
   validateReleaseNotesTarget,
   validateSubmissionIdentity,
+  validateSubmissionStatus,
   verifyDraft,
 } from '../scripts/check-store-release.mjs';
 
@@ -349,6 +350,26 @@ test('commit validation accepts only the expected asynchronous start', () => {
   });
   assert.throws(() => validateCommitResponse({ status: 'CommitFailed' }), /CommitStarted/);
   assert.throws(() => validateCommitResponse({}), /recognized field/);
+});
+
+test('status validation distinguishes unexpected lifecycle from confirmed terminal or error outcomes', () => {
+  for (const status of ['None', 'PendingCommit']) {
+    assert.deepEqual(validateSubmissionStatus({ status, statusDetails: { errors: [] } }),
+      { status, state: 'verification-pending' });
+    assert.deepEqual(validateSubmissionStatus({ status, statusDetails: { errors: [{ code: 'InvalidState' }] } }),
+      { status, state: 'failed' });
+  }
+  for (const status of ['Canceled', 'CommitFailed', 'PreProcessingFailed', 'CertificationFailed',
+    'PublishFailed', 'ReleaseFailed']) {
+    assert.deepEqual(validateSubmissionStatus({ status, statusDetails: { errors: [] } }),
+      { status, state: 'failed' });
+  }
+  for (const response of [
+    { status: 'Unknown', statusDetails: { errors: [] } },
+    { status: 'Certification' },
+    { status: 'Published', statusDetails: { errors: null } },
+    { status: 'Published', Status: 'Published', statusDetails: { errors: [] } },
+  ]) assert.throws(() => validateSubmissionStatus(response));
 });
 
 test('the Store workflow has only approved release and rehearsal entry points', () => {

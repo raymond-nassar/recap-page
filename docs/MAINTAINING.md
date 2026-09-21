@@ -642,10 +642,13 @@ than deleting an existing pending submission.
 
 A successful commit acknowledgement is not publication. The publisher observes status with read-only
 requests for at most five minutes, distinguishing acknowledgement, processing, certification,
-publication pending and Published. It also reads the ingested submission to verify the new package
-version and approved notes. Missing ingestion metadata remains explicitly pending; known processing
-failures, changed notes or a wrong version fail the run without another mutation. The summary keeps
-only submission ID, stage, known status, package verification and the approved notes hash.
+publication pending and Published. It independently verifies the exact ingested package/version and
+approved notes, then checks preserved nonpackage intent. Local observation or proof blockers report
+`verification-pending`, not Store rejection, while retaining the acknowledged commit and last valid
+Store status. Required proof missing at the deadline also returns nonzero. Confirmed terminal/error
+outcomes remain `failed`. Neither result sends another mutation. Only Published with every required
+proof is a published outcome; fully verified ingestion in processing or certification remains distinct.
+The summary contains safe identity, stage/code, status, independent proof results and notes hash.
 
 Microsoft publishes automatically after certification, which can take up to three business days.
 There is no second manual publishing hold. A pending observation is not a claim of delivery.
@@ -1122,3 +1125,149 @@ replaced and the approved English bullet notes are updated. Exact metadata read-
 application/baseline check precede one commit request. Only a valid `CommitStarted` response counts
 as submission started, never as certification or publication. A response error or timeout may
 follow a successful mutation: inspect the same draft read-only instead of trying again.
+
+### Diagnose a current Store readback without changing it
+
+Use **Read-only Store readback diagnosis** for current or future stopped submissions, not the
+incident-bound 3.0.0 reconstruction or recovery workflows above. Dispatch only from the default
+branch, coordinate with the current Store operator, and retain the required owner review on
+`microsoft-store-production`. The shared production concurrency group does not cancel an active
+operation. Approval authorizes observation only, never resumption or commit.
+
+Supply `release_tag`, full `source_sha`, `expected_pending_id`, `expected_published_id`,
+`bundle_sha256` and `notes_sha256`. The notes hash is SHA-256 of the exact approved `text` string's
+UTF-8 bytes, not the JSON file. The workflow runs the reviewed diagnostic at its own workflow
+commit and reads application version and notes from a separate immutable release checkout. It
+requires an existing non-draft, non-prerelease public release, the exact tag commit on the default
+branch, a matching package version and filename, and the approved notes hash before authentication.
+It does not build MSIX packages, move a tag, alter a public release, or call the publisher.
+
+Each check reports a fixed identifier, pass/fail result and code. Store reads are limited to the
+application, exact configured published and pending submissions, pending status, and final
+application/published rechecks. Responses are held in memory; no raw response or private baseline
+is written to disk or uploaded as an artifact. HTTP errors, malformed fields and mismatches do
+not suppress independent checks. There is no retry. Authentication is the only POST; Store
+mutation count must remain zero.
+
+The report shows allowlisted statuses, numeric package versions, file statuses and filename-match
+booleans. Missing and null package versions are distinct observations, not a generic failure.
+Other values appear only as types, hashes and counts. Status messages are never emitted; only
+documented error/warning codes and counts are exposed. Paths use known API field names, a
+conservative locale allowlist and array indices; other keys are hashed. Differences are bounded
+to 100 records per view, with explicit total and truncation indicators.
+
+The expected update is constructed from the **current** published submission plus the approved
+release notes and package replacement. The semantic comparison shares the publisher's exact
+`mutableIntent`, new-package metadata handling and narrow deleted-bundle omission rule below. Additional views expose differences before
+new-package normalization and before general normalization, excluding upload authorization and
+status detail bodies. Those views are observations, not new acceptance rules. The publisher
+retains its no-pending and higher-version preflight guards; failures include fixed contract codes
+and safe semantic paths rather than only the stage name.
+
+Set `read_uploaded_bundle=true` only when the operator also authorizes an upload read. The optional
+GET accepts only an unexpired HTTPS Azure Blob ingestion URL, sends no Authorization header, and
+refuses redirects. It caps transfer and expanded bundle size at 256 MiB each, with a 60-second
+request deadline. It accepts only a single exact-name stored or deflated bundle in a non-ZIP64
+archive with no archive comment, matching sizes and a calculated payload CRC-32. Bytes remain in memory. The report includes the current ZIP
+hash/size, bundle hash/size and equality to the supplied qualified bundle hash. Denial, timeout,
+unsupported ZIP layout, limits or mismatch are explicit failed checks; metadata checks still
+complete. No uploaded bytes are assumed merely because metadata names the expected package.
+
+The original upload ZIP digest is **UNRECORDED**. A current upload read can establish its current
+bytes, not invent an original ZIP digest or prove when those bytes were uploaded. Without that
+read, the bundle hash is only an operator-supplied binding. Historical created/published payloads
+are explicitly unavailable, not reconstructed or resealed. Current baseline comparison cannot
+prove the historical copy relationship; sequential GETs are not an atomic snapshot. A clean
+diagnosis does not authorize a resume and does not imply that Store submission was committed or
+published. Public GitHub release state and Store submission state remain separate.
+
+The field and read-only contracts follow Microsoft's
+[submission resource](https://learn.microsoft.com/windows/uwp/monetize/manage-app-submissions),
+[submission GET](https://learn.microsoft.com/windows/uwp/monetize/get-an-app-submission),
+[status GET](https://learn.microsoft.com/windows/uwp/monetize/get-status-for-an-app-submission)
+and [commit boundary](https://learn.microsoft.com/windows/uwp/monetize/commit-an-app-submission),
+retrieved 2026-09-19. Microsoft documents package-derived fields as server-populated. In particular,
+missing new-package version may explain a strict inspection failure but does not by itself explain
+a publisher readback failure. Diagnose the actual failed checks before considering a policy change.
+
+### Commit an already uploaded, verified Store update
+
+Use **Commit verified existing Store update** only after the Store operator has reviewed a fresh
+read-only diagnosis and explicitly approved committing that exact current submission. This is not
+the normal publisher and not the older incident-bound recovery. It cannot create a submission,
+upload a blob, PUT a draft, delete anything, rebuild the app or change a release/tag.
+The normal publisher still refuses an existing pending submission and requires a higher version.
+
+Supply the diagnosis inputs above plus `current_zip_sha256`, the approved SHA-256 of the
+**current remote upload ZIP**, and explicitly select `commit_only=true`. The inner `bundle_sha256`
+must come from the previously qualified package, not merely its filename or API metadata.
+Never substitute the current ZIP hash for an unrecorded original-upload digest. The approved notes
+hash still covers the UTF-8 note text, not its JSON container. Inputs are reusable; no incident
+submission, release or hash is built into this path.
+
+Dispatch on the default branch with the reviewed workflow commit. Current tooling and immutable
+application source are separate checkouts; only the former executes. The existing
+`microsoft-store-production` environment must retain its required owner approval. Its shared
+concurrency group has cancellation disabled and the workflow token has only `contents: read`.
+Preflight refuses a missing explicit approval or any `GITHUB_RUN_ATTEMPT` other than `1` before
+Store authentication. A rerun cannot be used as a retry. The script also requires the explicit
+`--commit-only` command; its default operation and `--diagnose` remain read-only.
+
+The authorization is **current verified intent**: the expected current published submission plus
+the approved package replacement and notes. Historical created/published snapshots are unavailable,
+not reconstructed, recovered or resealed. Shared individual checks require the exact references,
+source/tag/version, free pricing, pending state without errors, old/new package identities and
+statuses, approved notes, immediate publication, disabled rollout and preserved editable settings.
+The remote ZIP is read afresh with the bounded single-entry, exact-name, CRC, size and inner-bundle
+hash checks. Its current ZIP hash must equal the separately approved runtime input.
+
+After byte proof, the workflow re-reads application references, published intent, pending intent,
+notes/packages and status immediately before commit. Any changed intent, upload location,
+processing state or error blocks the POST. Sequential reads cannot eliminate external races;
+coordinate with the sole Store operator and do not edit the draft in Partner Center.
+
+The only Store mutation permitted by the transport is one POST to the validated pending
+submission's commit endpoint. Only HTTP 200 or 202 with a body containing solely `CommitStarted`
+status acknowledges it. The attempt and submission ID remain in the safe outcome on a timeout,
+malformed response, HTTP error or report-writing failure. Ambiguous commits receive no retry and
+no automatic follow-up GET; inspect the exact submission separately before any further decision.
+Acknowledged commits use the normal publisher's shared five-minute observer. Package/version, approved
+English notes and preserved nonpackage intent have independent proof results. An editable-intent
+mismatch can leave package and notes `verified` while intent is `review-required`; the overall result
+is still `verification-pending` and the CLI/workflow exits nonzero. No mismatched field is normalized
+away. Changed notes or a wrong package likewise require review, not a claim of Store rejection.
+
+Transport errors, malformed/unknown status, unexpected None/PendingCommit after acknowledgement,
+readback identity failures and missing required proof at the deadline are also local incomplete
+verification. Reports preserve the acknowledged commit and last validated Store status, with a fixed
+stage/code; malformed status cannot overwrite it. Confirmed terminal states such as CommitFailed
+or an observed nonempty error list remain `failed`. Both failure and incomplete verification exit
+nonzero without retry. Certification with complete proofs remains a successful observation, not
+publication or a reason to resubmit. Published without all required proofs never succeeds.
+Reports contain safe identities, phases, statuses, hashes and proof results, never raw errors,
+response objects, upload paths, SAS URLs, credentials or private metadata.
+
+In particular, `allowTargetFutureDeviceFamilies` remains an editable device-family:boolean
+dictionary. Neither Microsoft's
+[submission resource](https://learn.microsoft.com/windows/uwp/monetize/manage-app-submissions) nor its
+[typed submission model](https://github.com/microsoft/msstore-cli/blob/65fec5f1fd4a666db76cb76ec6c7121a4f50f38e/MSStore.API/Packaged/Models/DevCenterSubmission.cs)
+establishes contractual equivalence between an absent key and `false` (retrieved 2026-09-20).
+Precommit comparisons are unchanged and postcommit omission still requires review. A later diagnostic
+difference can suggest why an earlier observation stopped; it cannot prove the contents of an
+earlier response that was not retained.
+
+The shared comparison permits just one new normalization: `targetPlatform` may be absent from the
+actual exact-filename-matched **old MSIX bundle** only when both expected and actual entries are
+`PendingDelete` and the expected value is a nonempty string. Present null, a different present
+value, an active/new-package omission or any unrelated semantic change still fails. Raw diagnostic
+differences retain the known `targetPlatform` path without exposing its value.
+Microsoft's [typed package model](https://github.com/microsoft/msstore-cli/blob/65fec5f1fd4a666db76cb76ec6c7121a4f50f38e/MSStore.API/Packaged/Models/ApplicationPackage.cs)
+omits the field and has no extension-data member; its
+[submission model](https://github.com/microsoft/msstore-cli/blob/65fec5f1fd4a666db76cb76ec6c7121a4f50f38e/MSStore.API/Packaged/Models/DevCenterSubmission.cs)
+uses that package type. Those first-party non-roundtrip models and the observed omission on a
+deleted bundle support this narrow rule. The Learn package resource does not list the field;
+it does **not** explicitly designate it read-only. References retrieved 2026-09-20.
+
+This implementation alone has not committed anything to the Store. It changes no app version,
+public release, immutable download or saved reading data. Review its frozen head and green checks
+before the operator performs a separately authorized protected commit-only dispatch.

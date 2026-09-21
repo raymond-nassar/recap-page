@@ -13,6 +13,31 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Separate incomplete Store verification from Store failure
+
+After an acknowledged commit, maintainer reports now keep the last valid Store status and distinguish
+local verification blockers from confirmed Store processing failures. Package and approved-notes
+proofs are reported independently of preserved settings. Missing or mismatched required proof still
+stops the workflow without retry; no omitted setting is treated as equivalent to false.
+Nothing changes in the app, its version, public downloads or saved reading progress.
+
+### Resume a verified Store update with one commit
+
+A separate protected maintainer workflow can finish an already uploaded update without creating,
+uploading or editing another draft. Fresh checks bind the current remote archive and qualified
+bundle to approved notes and current settings before a single commit request. Readback comparison
+now tolerates only the observed omission of platform metadata on the old bundle marked for deletion.
+This change has not committed a Store submission and does not change the app version, downloads
+or saved reading progress.
+
+### Diagnose stopped Store updates without changing them
+
+A protected, reusable read-only report identifies individual validation failures and changed
+metadata fields without exposing private values. It binds current observations to an immutable
+public release and approved notes, and can check the uploaded bundle without rebuilding or
+resubmitting it. Missing historical evidence remains explicitly unverified. Nothing in the app
+or saved reading progress changes.
+
 ## 3.0.1
 
 ### Keep overlapping Windows launches reliable
