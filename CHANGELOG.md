@@ -13,6 +13,16 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Added an optional Android prototype
+
+An isolated Android project bundles the shared app with larger text and touch targets, native
+file pickers, and browser handoff for reader links. The desktop installation, reading features,
+saved-data format and Windows release process stay the same. Download completion now waits for
+the platform's result so a cancelled Android export cannot count as a saved recovery copy.
+This is a sideloading prototype, not a store release; real-device acceptance remains pending.
+An opt-in Linux CI emulator job checks native integration with synthetic data before phone testing.
+See [the Android guide](docs/ANDROID.md).
+
 ### Separate incomplete Store verification from Store failure
 
 After an acknowledged commit, maintainer reports now keep the last valid Store status and distinguish

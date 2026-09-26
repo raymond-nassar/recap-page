@@ -58,6 +58,7 @@ import { createAddView, persistLongAddPage } from './views/add.js';
 import { createDataView, eraseOutcome } from './views/data.js';
 import { createRecoveryView } from './views/recovery.js';
 import { wireTooltips } from './lib/tooltips.js';
+import { saveDownload } from './lib/download.js';
 
 const SETTINGS_KEY = 'mrt.settings';
 export const CACHE_PURGE_KEY = 'mrt.cache-purge.v1';
@@ -1982,7 +1983,7 @@ async function exportMarkdown() {
       items: listItems(store.state, id),
     });
     if (md === null) return;
-    download(`${slug(list.name)}.md`, md, 'text/markdown');
+    if (!await saveDownload(`${slug(list.name)}.md`, md, 'text/markdown')) return;
     announce('Markdown Reading List downloaded.');
   } catch (error) {
     notify('#app-report', `Could not export Markdown: ${error.message}`, 'error');
@@ -2045,8 +2046,8 @@ const dataView = createDataView({
   backupFileRefusal,
   askConfirm,
   notify,
-  onExportJson: () => {
-    download('recap-page-backup.json', JSON.stringify(exportBackup(store.state), null, 2), 'application/json');
+  onExportJson: async () => {
+    if (!await download('recap-page-backup.json', JSON.stringify(exportBackup(store.state), null, 2), 'application/json')) return;
     announce('Backup downloaded.');
   },
   onExportMarkdown: exportMarkdown,
@@ -2146,13 +2147,13 @@ async function refreshCacheUsage() {
   }
 }
 
-function download(filename, text, type) {
-  const url = URL.createObjectURL(new Blob([text], { type }));
-  const a = el('a', { href: url, download: filename });
-  document.body.append(a);
-  a.click();
-  a.remove();
-  setTimeout(() => URL.revokeObjectURL(url), 1000);
+async function download(filename, text, type) {
+  try {
+    return await saveDownload(filename, text, type);
+  } catch (error) {
+    notify('#app-report', `Could not save the download: ${error.message}. Your saved data is unchanged.`, 'error');
+    return false;
+  }
 }
 
 function slug(s) {
@@ -3217,7 +3218,7 @@ async function exportReadingOrder() {
       confirmLabel: 'Download order only',
     });
     if (!yes) return;
-    download(`${slug(list.name)}-order-only.md`, md, 'text/markdown');
+    if (!await saveDownload(`${slug(list.name)}-order-only.md`, md, 'text/markdown')) return;
     announce('Order-only Markdown downloaded. Your saved reading data is unchanged.');
   } catch (err) {
     notify('#app-report', `Could not export the reading order: ${err.message}. Your saved reading data is unchanged.`, 'error', 'order-export');

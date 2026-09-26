@@ -37,6 +37,8 @@
     "store:assets": "node scripts/capture-store-assets.mjs",
     "store:check": "node scripts/check-store-submission.mjs",
     "browser": "node scripts/browser-check.mjs",
+    "android:prepare": "node scripts/prepare-android.mjs",
+    "android:browser": "node scripts/browser-android.mjs",
     "browser:prove": "node scripts/browser-check.mjs --prove",
     "upgrade": "node scripts/upgrade-check.mjs",
     "upgrade:prove": "node scripts/upgrade-check.mjs --prove",

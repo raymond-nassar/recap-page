@@ -59,7 +59,7 @@ export function createRecoveryView({
   // Set once the user has saved a copy of the unreadable data to disk themselves. It is the only
   // way out when the browser is too full to hold a second copy, which is exactly the situation
   // where the automatic salvage fails.
-  let downloadedSalvage = false;
+  let downloadedSalvage = null;
 
   // The banner as the last render left it, so its withdrawal can take the notices that were about
   // it. While the banner is up, everything the save report can hold is about the block: a refused
@@ -86,7 +86,7 @@ export function createRecoveryView({
       nodes.saveReport.replaceChildren();
       // A download confirms only the incident whose banner was showing. Carrying it into a later
       // incident could let Start fresh replace different unreadable bytes with no copy of them.
-      downloadedSalvage = false;
+      downloadedSalvage = null;
     }
     blockedBannerWasUp = blocked;
     // The pre-restore snapshot outlives a reload, so the undo affordance must be restored on
@@ -173,12 +173,13 @@ export function createRecoveryView({
     const nodes = elements();
 
     // Blocked banner: download + start fresh
-    nodes.btnDownloadSalvage.addEventListener('click', () => {
+    nodes.btnDownloadSalvage.addEventListener('click', async () => {
       const raw = salvagedRaw();
       if (!raw) return notify('#save-report', 'There was nothing left to download.', 'warn');
       const when = new Date().toISOString().slice(0, 10);
-      download(`recap-page-unreadable-${when}.json`, raw, 'application/json');
-      downloadedSalvage = true;
+      if (!await download(`recap-page-unreadable-${when}.json`, raw, 'application/json')) return;
+      // A picker can outlive this incident. Its success cannot confirm different unreadable data.
+      if (isBlocked() && salvagedRaw() === raw) downloadedSalvage = raw;
       announce('Downloaded a copy of the unreadable data.');
     });
 
@@ -192,7 +193,7 @@ export function createRecoveryView({
       if (!yes) return;
       // Not reported on failure: both failing exits assign lastError and then call onChange,
       // which already notifies here. Measured in Edge, 2 identical strings per refusal, now 1.
-      if (startFresh({ confirmedDownloaded: downloadedSalvage })) {
+      if (startFresh({ confirmedDownloaded: downloadedSalvage !== null && downloadedSalvage === salvagedRaw() })) {
         notify('#save-report', 'Started fresh. Saving is working again.', 'ok');
       }
     });
@@ -226,7 +227,7 @@ export function createRecoveryView({
         // otherwise arrive as one name and a browser-appended (1), leaving the reader unable to
         // tell which is which after the screen that could have told them is closed.
         const stamp = copy.at === null ? 'undated' : new Date(copy.at).toISOString().slice(0, 19).replace(/:/g, '-');
-        download(`recap-page-unreadable-${stamp}.json`, raw, 'application/json');
+        if (!await download(`recap-page-unreadable-${stamp}.json`, raw, 'application/json')) return;
         return notify('#salvage-report', `Downloaded the copy ${named}. It is still being kept here as well.`, 'ok');
       }
 

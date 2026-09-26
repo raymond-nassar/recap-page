@@ -3,8 +3,11 @@
 **A private reading companion for Marvel Unlimited.** [Open the project home](https://raymond-nassar.github.io/recap-page/) for a quick tour, setup, help and project questions.
 
 Follow a Marvel story across series, open the next unread comic, and keep your place. Recap Page
-runs locally in your desktop browser without an account; it is not a native phone app.
+runs locally in your desktop browser without an account; the supported release is not a native phone app.
 No automatic device sync or offline comic reading.
+
+An [experimental Android prototype](docs/ANDROID.md) is available for building and sideloading.
+It keeps the same features with phone-sized controls; physical-device acceptance is still required.
 
 It does not include comics, bypass a subscription, or replace Marvel Unlimited. When a direct
 Marvel Unlimited link is available, **Read** opens the official reader in a separate tab. Otherwise the

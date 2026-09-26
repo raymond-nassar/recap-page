@@ -9,6 +9,9 @@
 # cloning. Avoid a blanket `text=auto`, which would renormalise unrelated files.
 *.cmd text eol=crlf
 *.command text eol=lf
+packaging/android/gradlew text eol=lf
+packaging/android/gradlew.bat text eol=crlf
+scripts/android-emulator-ci.sh text eol=lf
 docs/anchors.history.json -text
 
 # Native artifacts bind raw source bytes across x64 and ARM64 checkouts.

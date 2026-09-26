@@ -131,7 +131,16 @@ test('each watched ecosystem names a directory and an interval Dependabot accept
   const entries = parseUpdates(config);
   assert.ok(entries.length > 0, 'no update entries parsed out of the config');
   for (const entry of entries) {
-    assert.equal(entry.directory, '/', `${entry.ecosystem} watches ${entry.directory}, not the root`);
+    assert.ok(entry.directory?.startsWith('/') && !entry.directory.includes('..'),
+      `${entry.ecosystem} must watch a repository-relative directory`);
+    if (entry.ecosystem === 'github-actions') {
+      assert.equal(entry.directory, '/', 'GitHub Actions must watch the repository root');
+    } else {
+      const prefix = entry.directory === '/' ? '' : `${entry.directory.slice(1)}/`;
+      assert.ok(trackedFiles().some((file) => file.startsWith(prefix)
+        && MANIFESTS.some(([pattern, ecosystem]) => ecosystem === entry.ecosystem && pattern.test(file))),
+      `${entry.ecosystem} has no dependency manifest under ${entry.directory}`);
+    }
     assert.ok(INTERVALS.has(entry.interval),
       `${entry.ecosystem} schedules on "${entry.interval}", which Dependabot rejects`);
   }

@@ -1,0 +1,87 @@
+import groovy.json.JsonSlurper
+
+plugins {
+    id 'com.android.application'
+}
+
+def repositoryRoot = rootProject.projectDir.toPath().resolve('../..').normalize().toFile()
+def metadata = new JsonSlurper().parse(new File(repositoryRoot, 'package.json'))
+def versionParts = metadata.version.tokenize('.').collect { it as int }
+if (versionParts.size() != 3 || versionParts.any { it < 0 || it > 999 } || versionParts[0] > 2000) {
+    throw new GradleException('Package version cannot be represented safely as an Android versionCode')
+}
+
+android {
+    namespace 'io.github.raymondnassar.recappage.prototype'
+    compileSdk 36
+
+    defaultConfig {
+        applicationId 'io.github.raymondnassar.recappage.prototype'
+        minSdk 26
+        targetSdk 36
+        versionCode versionParts[0] * 1000000 + versionParts[1] * 1000 + versionParts[2]
+        versionName metadata.version
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    buildTypes {
+        debug {
+            debuggable true
+        }
+    }
+    sourceSets.main.assets.srcDir layout.buildDirectory.dir('generated/assets')
+    sourceSets.main.res.srcDir layout.buildDirectory.dir('generated/recap-res')
+    lint {
+        abortOnError true
+        warningsAsErrors true
+        // The prototype deliberately pins the reviewed AGP/Gradle compatibility pair.
+        disable 'AndroidGradlePluginVersion'
+    }
+}
+
+dependencies {
+    androidTestImplementation 'androidx.test:runner:1.7.0'
+    androidTestImplementation 'androidx.test:core:1.7.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.3.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.7.0'
+    androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.3.0'
+}
+
+def prepareAssets = tasks.register('prepareAndroidAssets', Exec) {
+    workingDir repositoryRoot
+    commandLine 'node', new File(repositoryRoot, 'scripts/prepare-android.mjs').absolutePath
+    inputs.dir new File(repositoryRoot, 'src')
+    inputs.dir new File(rootProject.projectDir, 'web')
+    inputs.files new File(repositoryRoot, 'scripts/prepare-android.mjs'),
+        new File(repositoryRoot, 'server.mjs'), new File(repositoryRoot, 'package.json')
+    outputs.dir layout.buildDirectory.dir('generated/assets/recap')
+}
+
+def prepareIcon = tasks.register('prepareAndroidIcon', Copy) {
+    from new File(repositoryRoot, 'src/icons/icon-192.png')
+    into layout.buildDirectory.dir('generated/recap-res/drawable-nodpi')
+    rename { 'recap_icon.png' }
+}
+
+tasks.configureEach {
+    if (name == 'preBuild') dependsOn prepareAssets, prepareIcon
+}
+
+// No JUnit dependency is needed for the platform-independent navigation boundary.
+tasks.register('compilePolicyTests', JavaCompile) {
+    source 'src/main/java/io/github/raymondnassar/recappage/prototype/NavigationPolicy.java',
+        'src/test/java/io/github/raymondnassar/recappage/prototype/NavigationPolicyTest.java'
+    classpath = files()
+    destinationDirectory = layout.buildDirectory.dir('policy-tests')
+    sourceCompatibility = '17'
+    targetCompatibility = '17'
+}
+tasks.register('policyTest', JavaExec) {
+    dependsOn 'compilePolicyTests'
+    classpath = files(layout.buildDirectory.dir('policy-tests'))
+    mainClass = 'io.github.raymondnassar.recappage.prototype.NavigationPolicyTest'
+}
+tasks.named('check').configure { dependsOn 'policyTest' }

@@ -1,0 +1,4 @@
+body { box-sizing: border-box; min-height: 100dvh; padding: 16px; font-size: 16px; }
+.box { min-width: 0; overflow-wrap: anywhere; }
+p { font-size: 1rem; }
+a { display: inline-flex; align-items: center; justify-content: center; min-width: 48px; min-height: 48px; }

@@ -5,7 +5,7 @@
 Recap Page is a static site served by a small loopback server on your own machine. There is no
 hosted backend to attack, no account to take over and no database holding anyone else's data. The
 app has no runtime dependencies at all, so nothing in `package.json` reaches the browser. Everything
-it declares is development tooling: the four packages listed at `package.json:49-53` are the linter
+it declares is development tooling: the four packages listed at `package.json:51-55` are the linter
 and the three packages its configuration needs, and they run only on a maintainer's machine and in
 CI. Your reading progress lives in one browser storage key and never leaves the machine it was made
 on.
@@ -85,7 +85,7 @@ the reasoning you were given is yours to quote.
   the reasoning, so the threshold is something you can read rather than something you have to ask
   about.
 - **The workflows** in `.github/workflows/`. The CI workflow reads the repository and nothing else,
-  declared at `.github/workflows/ci.yml:18-19`, and anything that would give it more than that is in
+  declared at   `.github/workflows/ci.yml:24-25`, and anything that would give it more than that is in
   scope.
 
 ## Out of scope

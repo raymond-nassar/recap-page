@@ -117,7 +117,7 @@ const RUNNER_OVERHEAD_MINUTES = 1;
 test('every job in the workflow declares a deadline', () => {
   assert.deepEqual(
     jobs.map((j) => j.name),
-    ['test', 'lint'],
+    ['test', 'lint', 'android-emulator'],
     'the parser found exactly the jobs this test knows about. A job added since belongs in this list, '
       + 'and a job missing from the parse is a parser fault rather than a workflow fault',
   );
