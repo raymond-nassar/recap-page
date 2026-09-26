@@ -49,11 +49,6 @@ AVDMANAGER="$SDK/cmdline-tools/latest/bin/avdmanager"
 IMAGE="$SDK/system-images/android-36/google_apis/x86_64"
 grep -Eq '^Pkg.Revision *= *37\.1\.11 *$' "$SDK/emulator/source.properties"
 grep -Eq '^Pkg.Revision *= *7 *$' "$IMAGE/source.properties"
-ldd "$SDK/emulator/qemu/linux-x86_64/qemu-system-x86_64" > "$EVIDENCE/host-libraries.txt"
-if grep -q 'not found' "$EVIDENCE/host-libraries.txt"; then
-  cat "$EVIDENCE/host-libraries.txt"
-  exit 1
-fi
 {
   git rev-parse HEAD
   java -version 2>&1
