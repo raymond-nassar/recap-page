@@ -5,6 +5,9 @@ It reuses the existing app and reading lists, with larger text and touch targets
 no account, synchronization service, new reading feature, or change to the saved-data format.
 The supported desktop installation and Windows release process are unchanged.
 
+For volunteer testers, share [the short Android beta checklist](ANDROID_BETA.md). It needs no
+development tools and separates ordinary reading checks from optional throwaway-data restore tests.
+
 **Android viability is not yet confirmed on a physical device.** Building an APK and checking
 its web screens in a desktop browser do not prove Android file pickers, background recovery,
 or Marvel Unlimited reader compatibility. Complete the device checks below before distributing it.
