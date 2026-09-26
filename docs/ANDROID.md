@@ -149,8 +149,8 @@ Emulator results do not complete the physical-device checklist below.
 
 ### Observed emulator result
 
-The [2026-09-26 native CI run](https://github.com/raymond-nassar/recap-page/actions/runs/36264026495)
-passed on source revision `e68b1891cc83da8257a288cf4bcdfb5680ead27c`.
+The [2026-09-26 post-review native CI run](https://github.com/raymond-nassar/recap-page/actions/runs/36278075103)
+passed on source revision `1ac382df149a52172fd53558ebf113492323a407`.
 It used Android 16/API 36, the full Google APIs x86_64 image revision 7, Android Emulator 37.1.11,
 and the image's bundled WebView 133.0.6943.137. This is not a claim about the newest WebView or the
 Pixel 10 Pro's installed software.
@@ -159,7 +159,7 @@ Pixel 10 Pro's installed software.
 |---|---|
 | Startup and local progress | Bundled app/catalog loaded offline; synthetic list, read marker and note survived reload. |
 | Real system picker | DocumentsUI saved a JSON backup; cancellation created no file or progress change. |
-| Provider round trip and refusal | The real native bridge preserved 1,584 UTF-8 bytes, restored the fixture through the WebView file callback, and reported an injected write refusal without damaging it. |
+| Provider round trip and refusal | The real native bridge preserved 1,584 UTF-8 bytes, restored the fixture through the WebView file callback, and reported an injected write refusal without damaging it. A separate 2,097,164-byte export also passed exact-byte read-back. |
 | Reader popup | A real touch opened the local launcher, its opener was null, the bridge asset was refused, and the expected official URL reached an intercepted Android intent. No external reader page was rendered. |
 | Back and recreation | Back cancelled the dialog, closed navigation and returned through history; Activity recreation retained the view, list context and progress. |
 | Fonts, rotation and keyboard | Normal and 130% text, portrait/landscape and an open keyboard kept measured controls at least 48 CSS pixels and produced no horizontal page overflow. |
@@ -167,10 +167,14 @@ Pixel 10 Pro's installed software.
 All six methods passed with no skips. A separate seed, host force-stop and restart probe also
 passed without clearing app data. Deliberately breaking only the native connection marker failed
 the intended save-completion assertion before the unmodified suite ran. The ordinary Node 20
-and Node 24 jobs each passed 2,222 tests, alongside lint and repository gates.
+and Node 24 jobs each passed 2,223 tests, alongside lint and repository gates.
+
+Independent review corrections isolate Android 13 Back types from the Activity loaded on older
+versions and close failed message ports before another export can use them. The larger export
+probe exercises the actual WebView message path; it does not establish a universal device capacity.
 
 The exact emulator-tested debug APK has SHA-256
-`7e898eebc3d3c3344db1ce8bdbe31b9a8ee19a0a42a445e309f77fa1917051ce`.
+`50e26ac8e72679296a4571730da2dee23904fd8950059d82b9b3e0bc862fcb5e`.
 Actions debug signing is disposable and differs from local debug signing. Export a backup before
 switching installation sources; Android may require uninstalling a differently signed prototype.
 Large-export capacity, process death while a picker is open, other Android versions and physical
