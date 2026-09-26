@@ -143,7 +143,7 @@ test('Android assets preserve every catalog payload and the shared feature modul
     assert.match(generated, /\.\/android\/app\.js/);
     assert.ok(generated.indexOf('styles.css') < generated.indexOf('android/mobile.css'));
     assert.doesNotMatch(generated, /src="\.\/js\/app\.js"/);
-    assert.doesNotMatch(await readFile('src\\index.html', 'utf8'), /android\/(?:mobile\.css|app\.js)/);
+    assert.doesNotMatch(await readFile(join('src', 'index.html'), 'utf8'), /android\/(?:mobile\.css|app\.js)/);
     await assert.rejects(readFile(join(output, 'dev-faults.html')), { code: 'ENOENT' });
   } finally {
     await rm(scratch, { recursive: true, force: true });

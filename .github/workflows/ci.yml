@@ -231,7 +231,7 @@ jobs:
     name: Android emulator integration
     if: ${{ github.event_name == 'workflow_dispatch' && inputs.android_emulator == true }}
     runs-on: ubuntu-24.04
-    timeout-minutes: 40
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         timeout-minutes: 2
@@ -243,11 +243,13 @@ jobs:
         with:
           node-version: '24'
 
-      - name: Allow this isolated runner to use KVM
-        timeout-minutes: 2
+      - name: Prepare the isolated emulator host
+        timeout-minutes: 6
         run: |
           test -c /dev/kvm
           sudo chmod a+rw /dev/kvm
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends libpulse0
 
       - name: Run full Android with synthetic data
         timeout-minutes: 25
