@@ -1,0 +1,74 @@
+/* Loaded only by the Android package, after the shared design tokens and components. */
+:root {
+  --t-caption: 14px;
+  --t-body: 16px;
+  --t-title: 28px;
+  --t-title-lg: 32px;
+}
+
+body { line-height: 1.5; }
+body :is(button, .btn, select, summary, .checkbox, .fp > span, .path > span) {
+  min-height: 48px;
+  min-width: 48px;
+}
+body .row-actions-toggle, body .row-actions .mini { min-height: 48px; }
+body :is(button, .btn, select, input, textarea) { font-size: var(--t-body); }
+body :is(button, .btn, summary) { overflow-wrap: anywhere; white-space: normal; }
+body :is(input[type="text"], input[type="search"], input[type="url"], input[type="file"]) {
+  min-height: 48px;
+  max-width: 100%;
+}
+#view-data select, .setting > .setting-ctl, .markdown-export .checkbox { min-height: 48px; }
+#view-data input[type="file"]::file-selector-button { min-height: 48px; }
+.fp > span, .path > span { display: inline-flex; align-items: center; }
+.field-row, .list-tools, .cta, .filters, .ract, .ask-foot { gap: var(--space-4); }
+.ract { opacity: 1; }
+.row { grid-template-columns: 48px 48px minmax(0, 1fr) auto; }
+.row :is(img, .rf), .row-focus-cover { width: 48px; }
+.row-focus-title { min-height: 48px; display: flex; align-items: center; }
+.row .cb { width: 48px; height: 48px; }
+.breadcrumb a { display: inline-flex; align-items: center; min-height: 48px; }
+.setting-ctl, .headright, .hero-body, .chero-body { min-width: 0; }
+.setting-ctl.checkbox { max-width: 100%; white-space: normal; }
+.notice { overflow-wrap: anywhere; }
+#android-report[hidden] { display: none; }
+dialog.ask, dialog.preview {
+  max-width: calc(100vw - 24px);
+  max-height: calc(100dvh - 24px);
+  overflow-y: auto;
+}
+
+@media (max-width: 880px) {
+  .shell, .shell.railed { min-height: 100dvh; }
+  .rail-header { gap: var(--space-4); }
+  .rail-toggle { flex-shrink: 0; }
+  #view-home > .head { display: flex; align-items: flex-start; }
+  .home-lockup { min-width: 0; }
+  .home-brand { overflow-wrap: normal; font-size: var(--t-title-lg); }
+  .wrap { padding: var(--space-6) var(--space-6) var(--space-9); }
+  .hero-in { padding: var(--space-6); gap: var(--space-6); }
+  .hero-in .art, .chero-in .art { max-width: 112px; }
+  .row { grid-template-columns: 48px 48px minmax(0, 1fr); }
+  .row-info, .row-actions { grid-column: 1 / -1; min-width: 0; }
+  .row-actions { justify-self: stretch; }
+  .row-actions > .ract { flex-wrap: wrap; gap: var(--space-4); }
+  .ract .mini-label { display: inline; }
+  .setting { padding-right: var(--space-6); }
+  .setting > .setting-ctl { position: static; transform: none; margin-top: var(--space-5); max-width: 100%; }
+}
+
+@media (max-width: 480px) {
+  .hero .cta > .btn, .chero .cta > .btn { width: 100%; justify-content: center; }
+  .facts { gap: var(--space-6); }
+  .headright { flex-wrap: wrap; }
+  .sec-h { flex-wrap: wrap; }
+  .sec-note { text-align: left; }
+  .catalog-card-actions { grid-template-columns: minmax(0, 1fr); }
+  .card, .empty-state { padding-inline: var(--space-5); }
+  .preview-head { flex-wrap: wrap; }
+}
+
+/* On a short landscape viewport, a wrapping sticky filter can cover most of the reading area. */
+@media (max-height: 500px) {
+  #reading-filters { position: static; }
+}

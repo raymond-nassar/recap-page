@@ -2,8 +2,8 @@ version: 2
 
 # The app ships zero runtime dependencies, so every package below is development tooling and
 # reaches nobody who uses the app. That is the whole reason this file can afford to be quiet:
-# a version bump here cannot regress the browser, only the linter and the CI run, and both of
-# those fail loudly on the very next pull request.
+# npm and action updates affect lint/CI rather than browser runtime dependencies. The optional
+# Android build toolchain is watched separately and must also pass its documented APK checks.
 #
 # The advisory threshold, decided here because a threshold that lives in someone's head is not
 # one. GitHub's Dependabot security updates are enabled on this repository and open a pull
@@ -66,6 +66,20 @@ updates:
         patterns:
           - "*"
       actions-security:
+        applies-to: security-updates
+        patterns:
+          - "*"
+
+  - package-ecosystem: gradle
+    directory: /packaging/android
+    schedule:
+      interval: weekly
+      day: monday
+    groups:
+      android-build:
+        patterns:
+          - "*"
+      android-build-security:
         applies-to: security-updates
         patterns:
           - "*"

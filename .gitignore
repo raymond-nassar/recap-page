@@ -29,6 +29,15 @@ backups/
 # accident, so the ignore is here and `test/packaging.test.js` checks it is still in force.
 dist/
 
+# Optional Android prototype tooling and generated packages.
+packaging/android/.gradle/
+packaging/android/local.properties
+packaging/android/**/build/
+packaging/android/*.jks
+packaging/android/*.keystore
+packaging/android/gradle/wrapper/gradle-wrapper.jar
+packaging/android/gradle/wrapper/gradle-wrapper.jar.download
+
 # Working artifacts, held local by rule rather than by anyone remembering. `.copilot-tracking/`
 # holds one directory per phase per session; six of those files, all from the first task, are
 # committed and are the closest thing this repository has to a design rationale. Everything a later

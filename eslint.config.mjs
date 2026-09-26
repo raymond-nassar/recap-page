@@ -74,6 +74,8 @@ export default [
       '.copilot-tracking/**',
       'src/data/**',
       'src/vendor/**',
+      'packaging/android/**/build/**',
+      'packaging/android/.gradle/**',
       // Generated from src/data/hickman_full.json and consumed only by the static design
       // mockups. It is embedded JSON, so normalising its quotes would be undone the next
       // time it is regenerated.
@@ -91,7 +93,7 @@ export default [
   },
   {
     // Everything served out of src/ runs in the browser.
-    files: ['src/**/*.js'],
+    files: ['src/**/*.js', 'packaging/android/web/*.js'],
     languageOptions: { globals: globals.browser },
     rules: noEmDashInShippedCopy,
   },
@@ -113,6 +115,7 @@ export default [
     // The upgrade check is the same shape for the same reason.
     files: [
       'scripts/browser-check.mjs',
+      'scripts/browser-android.mjs',
       'scripts/browser-defer.mjs',
       'scripts/browser-preview-scroll-452.mjs',
       'scripts/browser-source-credits.mjs',

@@ -63,7 +63,7 @@ test('render withdraws a prior incident download confirmation when recovery reso
     elements: () => nodes,
     isBlocked: () => blocked,
     salvagedRaw: () => '{"incident":1}',
-    download: () => {},
+    download: () => true,
     askConfirm: async () => true,
     startFresh: (options) => {
       starts.push(options);
@@ -73,7 +73,7 @@ test('render withdraws a prior incident download confirmation when recovery reso
   view.wire();
 
   view.render();
-  nodes.btnDownloadSalvage._fire();
+  await nodes.btnDownloadSalvage._fire();
   await nodes.btnStartFresh._fire();
   blocked = false;
   view.render();
@@ -88,6 +88,35 @@ test('render withdraws a prior incident download confirmation when recovery reso
 });
 
 // -- renderSalvage reads fresh data --
+
+test('recovery waits for a completed download and never trusts cancellation or different bytes', async () => {
+  for (const outcome of ['saved', 'cancelled', 'changed']) {
+    const nodes = recoveryNodes();
+    const starts = [];
+    let raw = '{"incident":1}';
+    let complete;
+    const view = makeView({
+      elements: () => nodes,
+      isBlocked: () => true,
+      salvagedRaw: () => raw,
+      download: () => new Promise((resolve) => { complete = resolve; }),
+      askConfirm: async () => true,
+      startFresh: (options) => { starts.push(options); return false; },
+    });
+    view.wire();
+    const downloading = nodes.btnDownloadSalvage._fire();
+    await nodes.btnStartFresh._fire();
+    assert.equal(starts.at(-1).confirmedDownloaded, false, 'an open picker is not a saved backup');
+    if (outcome === 'changed') raw = '{"incident":2}';
+    complete(outcome !== 'cancelled');
+    await downloading;
+    await nodes.btnStartFresh._fire();
+    assert.equal(starts.at(-1).confirmedDownloaded, outcome === 'saved', outcome);
+    raw = '{"incident":3}';
+    await nodes.btnStartFresh._fire();
+    assert.equal(starts.at(-1).confirmedDownloaded, false, 'a previous success never confirms other bytes');
+  }
+});
 
 test('renderSalvage calls salvageCopies on every invocation', () => {
   let callCount = 0;
@@ -247,7 +276,7 @@ function makeView(overrides = {}) {
     notify: () => {},
     announce: () => {},
     askConfirm: async () => false,
-    download: () => {},
+    download: () => true,
     ...overrides,
   });
 }

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <queries>
+        <package android:name="io.github.raymondnassar.recappage.prototype" />
+    </queries>
+    <application android:allowBackup="false">
+        <!-- Exported only in the test APK; the provider checks the caller's UID itself. -->
+        <provider
+            android:name="io.github.raymondnassar.recappage.prototype.FixtureDocumentProvider"
+            android:authorities="io.github.raymondnassar.recappage.prototype.test.documents"
+            android:exported="true"
+            android:grantUriPermissions="true" />
+    </application>
+</manifest>
