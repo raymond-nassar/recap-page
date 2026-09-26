@@ -144,10 +144,40 @@ The pinned emulator/image versions in `scripts/android-emulator-ci.sh` need deli
 AndroidX dependencies are confined to the separate test APK. They are not shipped in the app.
 Emulator results do not complete the physical-device checklist below.
 
+### Observed emulator result
+
+The [2026-09-26 native CI run](https://github.com/raymond-nassar/recap-page/actions/runs/36264026495)
+passed on source revision `e68b1891cc83da8257a288cf4bcdfb5680ead27c`.
+It used Android 16/API 36, the full Google APIs x86_64 image revision 7, Android Emulator 37.1.11,
+and the image's bundled WebView 133.0.6943.137. This is not a claim about the newest WebView or the
+Pixel 10 Pro's installed software.
+
+| Native scenario | Observed result |
+|---|---|
+| Startup and local progress | Bundled app/catalog loaded offline; synthetic list, read marker and note survived reload. |
+| Real system picker | DocumentsUI saved a JSON backup; cancellation created no file or progress change. |
+| Provider round trip and refusal | The real native bridge preserved 1,584 UTF-8 bytes, restored the fixture through the WebView file callback, and reported an injected write refusal without damaging it. |
+| Reader popup | A real touch opened the local launcher, its opener was null, the bridge asset was refused, and the expected official URL reached an intercepted Android intent. No external reader page was rendered. |
+| Back and recreation | Back cancelled the dialog, closed navigation and returned through history; Activity recreation retained the view, list context and progress. |
+| Fonts, rotation and keyboard | Normal and 130% text, portrait/landscape and an open keyboard kept measured controls at least 48 CSS pixels and produced no horizontal page overflow. |
+
+All six methods passed with no skips. A separate seed, host force-stop and restart probe also
+passed without clearing app data. Deliberately breaking only the native connection marker failed
+the intended save-completion assertion before the unmodified suite ran. The ordinary Node 20
+and Node 24 jobs each passed 2,222 tests, alongside lint and repository gates.
+
+The exact emulator-tested debug APK has SHA-256
+`7e898eebc3d3c3344db1ce8bdbe31b9a8ee19a0a42a445e309f77fa1917051ce`.
+Actions debug signing is disposable and differs from local debug signing. Export a backup before
+switching installation sources; Android may require uninstalling a differently signed prototype.
+Large-export capacity, process death while a picker is open, other Android versions and physical
+Pixel/Marvel subscription behavior are not established by this run.
+
 ## Required real-device acceptance
 
 Record the phone model, Android/API version, Android System WebView package/version, app build,
-and results. These checks remain pending until somebody performs them on a physical device:
+and results. The intended owner test device is a Pixel 10 Pro. These checks remain pending until
+somebody performs them on a physical device:
 
 - [ ] Install, cold-start offline, browse bundled lists and retain progress after fully closing
   and reopening the app.
