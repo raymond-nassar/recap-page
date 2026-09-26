@@ -270,7 +270,7 @@ public final class NativeIntegrationTest {
         route("data");
         String before = stateSummary();
         String backup = (String) asyncJs(web,
-                "const m=await import('/js/lib/model.js');"
+                "const m=await import(location.origin+'/js/lib/model.js');"
                 + "const b=m.exportBackup(JSON.parse(localStorage.getItem('mrt.state.v2')));"
                 + "b.exportedAt='2026-09-26T00:00:00.000Z';return JSON.stringify(b,null,2)+'\\n';");
         stubDocument(Intent.ACTION_CREATE_DOCUMENT, FixtureDocumentProvider.SAVED);
@@ -288,7 +288,7 @@ public final class NativeIntegrationTest {
         assertEquals("Exactly one native write", 1, provider("stats").getInt("writes"));
         assertEquals("Export left reading state intact", before, stateSummary());
 
-        asyncJs(web, "const m=await import('/js/lib/model.js');"
+        asyncJs(web, "const m=await import(location.origin+'/js/lib/model.js');"
                 + "localStorage.setItem('mrt.state.v2',JSON.stringify(m.createEmptyState()));return true;");
         reload();
         route("data");
@@ -472,7 +472,7 @@ public final class NativeIntegrationTest {
 
     private void seed(boolean unknownDigitalId) throws Exception {
         String base = server == null ? "http://127.0.0.1:9/v1" : server.baseUrl();
-        asyncJs(web, "const m=await import('/js/lib/model.js');"
+        asyncJs(web, "const m=await import(location.origin+'/js/lib/model.js');"
                 + "localStorage.clear();sessionStorage.clear();"
                 + "localStorage.setItem('mrt.settings',JSON.stringify({covers:false,theme:'dark',"
                 + "hideDescriptions:true,apiBase:" + quote(base) + "}));"
@@ -690,7 +690,7 @@ public final class NativeIntegrationTest {
     private void startNativeSave(String content, String filename) throws Exception {
         evaluate(web, "(() => {window.__nativeSave={done:false};"
                 + "(async()=>{await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));"
-                + "const {saveDownload}=await import('/js/lib/download.js');"
+                + "const {saveDownload}=await import(location.origin+'/js/lib/download.js');"
                 + "return saveDownload(" + quote(filename) + "," + quote(content) + ",'application/json');})()"
                 + ".then(saved=>window.__nativeSave={done:true,saved},"
                 + "error=>window.__nativeSave={done:true,saved:false,error:String(error)});return true;})()");
