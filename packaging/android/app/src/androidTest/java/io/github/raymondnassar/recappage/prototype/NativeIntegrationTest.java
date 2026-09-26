@@ -60,6 +60,7 @@ import org.junit.runner.RunWith;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -339,6 +340,25 @@ public final class NativeIntegrationTest {
         assertEquals("One restore request reached Android", 1, countIntents(Intent.ACTION_OPEN_DOCUMENT));
         measurements.put("nativeSaveMarker", SAVE_MARKER).put("exactUtf8Bytes", backup.getBytes(StandardCharsets.UTF_8).length)
                 .put("providerSaves", 1).put("providerRestores", 1).put("providerRefusals", 1);
+
+        provider("reset");
+        stubDocument(Intent.ACTION_CREATE_DOCUMENT, FixtureDocumentProvider.SAVED);
+        String large = "{\"probe\":\"" + "x".repeat(2 * 1024 * 1024) + "\"}";
+        startNativeSave(large, "native-large-transport.json");
+        waitFor("A multi-megabyte message reaches native document completion", WAIT_MS,
+                () -> truth(web, "window.__nativeSave && window.__nativeSave.done"));
+        assertTrue("A message above Binder's transaction size must cross the actual WebView port",
+                truth(web, "window.__nativeSave.saved === true"));
+        waitFor("Large provider output stream is closed", WAIT_MS, () -> provider("stats").getInt("closedWrites") == 1);
+        // Read the document stream, not a large Bundle, which would introduce Binder into this probe.
+        try (InputStream input = instrumentation.getTargetContext().getContentResolver()
+                .openInputStream(FixtureDocumentProvider.SAVED)) {
+            assertNotNull("The large synthetic document can be read", input);
+            assertArrayEquals("Large native export preserves exact UTF-8 bytes",
+                    large.getBytes(StandardCharsets.UTF_8), input.readAllBytes());
+        }
+        assertEquals("Large export preserves reading data", before, stateSummary());
+        measurements.put("largeExportBytes", large.getBytes(StandardCharsets.UTF_8).length);
     }
 
     @Test

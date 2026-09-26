@@ -96,6 +96,27 @@ test('Android page teardown settles outstanding requests and ignores stale ports
   assert.match(f.reports.at(-1), /interrupted/);
 });
 
+test('Android message errors disconnect the failed port without breaking a newer connection', async () => {
+  const f = fixture();
+  f.connect();
+  const first = f.bridge.save(file);
+  const oldPort = f.port;
+  oldPort.onmessageerror();
+  assert.equal(await first, false);
+  assert.equal(oldPort.closed, true, 'the failed transport is closed');
+  assert.equal(await f.bridge.save(file), false, 'a retry must refuse the failed connection');
+  assert.equal(oldPort.sent.length, 1, 'a retry never posts into the failed port');
+  assert.match(f.reports.at(-1), /not ready/);
+
+  const fresh = fixture().port;
+  f.connect({ ports: [fresh] });
+  const next = f.bridge.save(file);
+  oldPort.onmessageerror();
+  assert.equal(fresh.closed, false, 'a stale error cannot disconnect the new transport');
+  fresh.reply({ v: 1, kind: 'save-result', id: fresh.sent[0].id, status: 'saved' });
+  assert.equal(await next, true);
+});
+
 test('Android Back reports page handling with the native request identity', () => {
   const f = fixture();
   f.connect();

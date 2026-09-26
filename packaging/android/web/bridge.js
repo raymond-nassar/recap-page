@@ -28,10 +28,14 @@ export function createAndroidBridge({ host, report, handleBack }) {
     request?.resolve(saved);
   }
 
-  function disconnect() {
-    finish(false, pending ? 'Download interrupted. Nothing was confirmed saved; please try again.' : null);
+  function closePort(message) {
+    finish(false, message);
     port?.close();
     port = null;
+  }
+
+  function disconnect() {
+    closePort(pending ? 'Download interrupted. Nothing was confirmed saved; please try again.' : null);
   }
 
   function receive(event, activePort) {
@@ -71,7 +75,10 @@ export function createAndroidBridge({ host, report, handleBack }) {
     port = event.ports[0];
     const activePort = port;
     port.onmessage = (message) => receive(message, activePort);
-    port.onmessageerror = () => finish(false, 'The Android download connection failed. Reopen the app and try again.');
+    port.onmessageerror = () => {
+      if (port !== activePort) return;
+      closePort('The Android download connection failed. Reopen the app and try again.');
+    };
     port.start();
   }
 

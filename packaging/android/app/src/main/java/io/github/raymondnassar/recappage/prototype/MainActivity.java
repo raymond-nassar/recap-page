@@ -35,8 +35,6 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.window.OnBackInvokedCallback;
-import android.window.OnBackInvokedDispatcher;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -71,7 +69,18 @@ public final class MainActivity extends Activity {
     private int backSequence;
     private Runnable backTimeout;
     private String lastRoute;
-    private OnBackInvokedCallback backCallback;
+    private Runnable unregisterBack;
+
+    private static final class Api33Back {
+        static Runnable register(Activity activity, Runnable action) {
+            if (Build.VERSION.SDK_INT < 33) throw new IllegalStateException("Predictive Back requires Android 13.");
+            android.window.OnBackInvokedDispatcher dispatcher = activity.getOnBackInvokedDispatcher();
+            android.window.OnBackInvokedCallback callback = action::run;
+            dispatcher.registerOnBackInvokedCallback(
+                    android.window.OnBackInvokedDispatcher.PRIORITY_DEFAULT, callback);
+            return () -> dispatcher.unregisterOnBackInvokedCallback(callback);
+        }
+    }
 
     private static final class PendingSave {
         final String id;
@@ -108,9 +117,7 @@ public final class MainActivity extends Activity {
         root.addView(web, new FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         if (Build.VERSION.SDK_INT >= 33) {
-            backCallback = this::requestBack;
-            getOnBackInvokedDispatcher().registerOnBackInvokedCallback(
-                    OnBackInvokedDispatcher.PRIORITY_DEFAULT, backCallback);
+            unregisterBack = Api33Back.register(this, this::requestBack);
         }
         lastRoute = local.policy.restoredRoute(state == null ? null : state.getString("route"));
         web.loadUrl(lastRoute);
@@ -656,9 +663,7 @@ public final class MainActivity extends Activity {
         destroyed = true;
         invalidatePage();
         for (Dialog popup : new ArrayList<>(popups)) popup.dismiss();
-        if (Build.VERSION.SDK_INT >= 33 && backCallback != null) {
-            getOnBackInvokedDispatcher().unregisterOnBackInvokedCallback(backCallback);
-        }
+        if (unregisterBack != null) unregisterBack.run();
         if (web != null) {
             root.removeView(web);
             web.stopLoading();
