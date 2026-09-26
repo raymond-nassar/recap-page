@@ -387,7 +387,7 @@ public final class NativeIntegrationTest {
     public void backAndRecreation() throws Exception {
         seed(false);
         route("read");
-        String readingRoute = text(web, "location.hash");
+        String readingRoute = normalizedRoute();
         String before = stateSummary();
         route("data");
         String dataRoute = text(web, "location.hash");
@@ -410,7 +410,8 @@ public final class NativeIntegrationTest {
         assertEquals("Navigation dismissal does not consume history", dataRoute, text(web, "location.hash"));
         device.pressBack();
         waitFor("Next Android Back reaches the prior WebView history entry", WAIT_MS,
-                () -> readingRoute.equals(text(web, "location.hash")));
+                () -> readingRoute.equals(normalizedRoute())
+                        && truth(web, "document.querySelector('#view-read').hidden === false"));
         assertFixture();
 
         route("data");
