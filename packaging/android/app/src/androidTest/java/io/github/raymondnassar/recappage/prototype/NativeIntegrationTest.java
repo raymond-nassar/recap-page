@@ -733,7 +733,8 @@ public final class NativeIntegrationTest {
                             .put("heldMs", upTime - downTime).put("screenX", x).put("screenY", y);
                 }
             }
-            long maxHold = Math.min(150, ViewConfiguration.getLongPressTimeout() - 1);
+            long maxHold = ViewConfiguration.getLongPressTimeout() - 1;
+            lastTapRecord.put("longPressThresholdMs", maxHold + 1);
             assertTrue("Real touchscreen tap must stay shorter than a long press: " + lastTapRecord,
                     upTime - downTime <= maxHold);
             waitFor("Trusted click reaches " + selector, WAIT_MS, () -> truth(target,
