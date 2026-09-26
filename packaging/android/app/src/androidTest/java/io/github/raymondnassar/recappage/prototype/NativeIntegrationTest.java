@@ -264,9 +264,11 @@ public final class NativeIntegrationTest {
         }
         waitFor("Real DocumentsUI cancellation is acknowledged", WAIT_MS, () -> reportContains("Download cancelled"));
         assertEquals("Cancelled export leaves reading data unchanged", before, stateSummary());
-        assertEquals("Cancellation must not create a file", "ABSENT",
-                device.executeShellCommand("if test -e /sdcard/Download/" + cancelledName
-                        + "; then echo PRESENT; else echo ABSENT; fi").trim());
+        String downloads = device.executeShellCommand("ls -1 /sdcard/Download");
+        assertTrue("The real saved file proves the Downloads listing succeeded",
+                java.util.Arrays.asList(downloads.split("\\r?\\n")).contains(savedName));
+        assertFalse("Cancellation must not create a file",
+                java.util.Arrays.asList(downloads.split("\\r?\\n")).contains(cancelledName));
         assertEquals("Both real picker launches are counted", 2, countIntents(Intent.ACTION_CREATE_DOCUMENT));
         intended(allOf(hasAction(Intent.ACTION_CREATE_DOCUMENT), hasCategories(Collections.singleton(Intent.CATEGORY_OPENABLE)),
                 hasType("application/json"), hasExtra(Intent.EXTRA_LOCAL_ONLY, true)),
@@ -695,14 +697,14 @@ public final class NativeIntegrationTest {
             MotionEvent down = MotionEvent.obtain(downTime, downTime, MotionEvent.ACTION_DOWN, x, y, 0);
             down.setSource(InputDevice.SOURCE_TOUCHSCREEN);
             try {
-                // The previous emulator run selected button text. Do not hold DOWN while querying UIAutomator.
-                instrumentation.sendPointerSync(down);
+                // Waiting for DOWN acknowledgement held the pointer for 289ms on the emulator.
+                assertTrue("Touchscreen DOWN is accepted", instrumentation.getUiAutomation().injectInputEvent(down, false));
             } finally {
                 upTime = SystemClock.uptimeMillis();
                 MotionEvent up = MotionEvent.obtain(downTime, upTime, MotionEvent.ACTION_UP, x, y, 0);
                 up.setSource(InputDevice.SOURCE_TOUCHSCREEN);
                 try {
-                    instrumentation.sendPointerSync(up);
+                    assertTrue("Touchscreen UP is accepted", instrumentation.getUiAutomation().injectInputEvent(up, false));
                 } finally {
                     down.recycle();
                     up.recycle();
