@@ -266,4 +266,3 @@ jobs:
           path: |
             packaging/android/app/build/native-evidence/
             packaging/android/app/build/reports/lint-results-debug.*
-            packaging/android/app/build/outputs/apk/debug/app-debug.apk

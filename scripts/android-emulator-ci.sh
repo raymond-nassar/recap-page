@@ -141,5 +141,7 @@ node scripts/check-android-instrumentation.mjs "$EVIDENCE/restart-seed.log" "$EV
 adb shell am force-stop "$APP"
 instrument restart-probe startupAndPersistence -e restartProbe true
 node scripts/check-android-instrumentation.mjs "$EVIDENCE/restart-probe.log" "$EVIDENCE/restart-probe.json" startupAndPersistence
+mkdir -p "$EVIDENCE/verified-apk"
+cp "$APK" "$EVIDENCE/verified-apk/recap-page-android-prototype.apk"
 sha256sum "$APK" "$TEST_APK" > "$EVIDENCE/apk-sha256.txt"
 git diff --exit-code

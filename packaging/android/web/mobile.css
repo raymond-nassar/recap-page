@@ -38,6 +38,12 @@ dialog.ask, dialog.preview {
   overflow-y: auto;
 }
 
+@media (min-width: 881px) {
+  .shell.railed { grid-template-columns: 56px minmax(0, 1fr); }
+  .railed .rail { padding-inline: var(--space-2); }
+  body .railed .ri { min-width: 48px; }
+}
+
 @media (max-width: 880px) {
   .shell, .shell.railed { min-height: 100dvh; }
   .rail-header { gap: var(--space-4); }

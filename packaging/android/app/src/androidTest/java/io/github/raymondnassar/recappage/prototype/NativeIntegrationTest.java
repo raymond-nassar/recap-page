@@ -27,8 +27,11 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.view.InputDevice;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.WindowInsets;
 import android.view.inspector.WindowInspector;
@@ -39,10 +42,13 @@ import androidx.test.espresso.intent.Intents;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.uiautomator.By;
+import androidx.test.uiautomator.BySelector;
+import androidx.test.uiautomator.StaleObjectException;
 import androidx.test.uiautomator.UiDevice;
 import androidx.test.uiautomator.UiObject2;
 import androidx.test.uiautomator.Until;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.After;
 import org.junit.Before;
@@ -80,6 +86,7 @@ public final class NativeIntegrationTest {
     private final Instrumentation instrumentation = InstrumentationRegistry.getInstrumentation();
     private final Map<String, String> originalSettings = new LinkedHashMap<>();
     private final JSONObject measurements = new JSONObject();
+    private final JSONArray tapDiagnostics = new JSONArray();
     private ActivityScenario<MainActivity> scenario;
     private MainActivity activity;
     private WebView web;
@@ -89,6 +96,8 @@ public final class NativeIntegrationTest {
     private String method;
     private boolean intentsInitialized;
     private boolean restartProbe;
+    private WebView lastTapTarget;
+    private JSONObject lastTapRecord;
 
     @Rule
     public final TestWatcher outcome = new TestWatcher() {
@@ -143,16 +152,22 @@ public final class NativeIntegrationTest {
                 target.getResources().getConfiguration().getLocales().get(0).toLanguageTag());
         waitFor("Normal system font scale", WAIT_MS, () -> onMain(() ->
                 Math.abs(activity.getResources().getConfiguration().fontScale - 1f) < 0.01f));
+        waitFor("Portrait orientation is restored between scenarios", WAIT_MS, () ->
+                device.getDisplayHeight() > device.getDisplayWidth()
+                        && onMain(() -> activity.getResources().getConfiguration().orientation
+                                == Configuration.ORIENTATION_PORTRAIT)
+                        && truth(web, "innerHeight > innerWidth"));
     }
 
     @After
     public void cleanUp() throws Exception {
         try {
             if (device != null && evidence != null) {
+                captureTapDiagnostics();
                 screenshot("final");
                 measurements.put("method", method).put("synthetic", true)
                         .put("restartProbe", restartProbe).put("sdk", Build.VERSION.SDK_INT)
-                        .put("buildFingerprint", Build.FINGERPRINT);
+                        .put("buildFingerprint", Build.FINGERPRINT).put("taps", tapDiagnostics);
                 onMain(() -> {
                     if (WebView.getCurrentWebViewPackage() != null) {
                         measurements.put("webViewPackage", WebView.getCurrentWebViewPackage().packageName);
@@ -224,13 +239,11 @@ public final class NativeIntegrationTest {
         tap(web, "#btn-export-json");
         String pickerPackage = awaitDocumentsUi();
         selectDownloads(pickerPackage);
-        pickerFilename().setText(savedName);
+        setPickerFilename(pickerPackage, savedName);
         screenshot("documentsui-save");
-        UiObject2 save = device.wait(Until.findObject(By.res("android:id/button1")), WAIT_MS);
-        if (save == null) save = device.wait(Until.findObject(By.text(Pattern.compile("(?i)^save$"))), 3000);
-        assertNotNull("Real DocumentsUI Save control", save);
-        save.click();
-        waitFor("Real document save completes", WAIT_MS, () -> reportContains("File saved to the location"));
+        clickPickerControl("Real document save completes",
+                By.pkg(pickerPackage).text(Pattern.compile("(?i)^save$")),
+                () -> reportContains("File saved to the location"));
         String path = "/sdcard/Download/" + savedName;
         String bytes = device.executeShellCommand("cat " + path);
         JSONObject backup = new JSONObject(bytes);
@@ -244,7 +257,7 @@ public final class NativeIntegrationTest {
         String cancelledName = "recap-native-cancel-" + System.currentTimeMillis() + ".json";
         tap(web, "#btn-export-json");
         awaitDocumentsUi();
-        pickerFilename().setText(cancelledName);
+        setPickerFilename(pickerPackage, cancelledName);
         for (int press = 0; press < 3 && isDocumentsUi(); press++) {
             device.pressBack();
             device.wait(Until.gone(By.pkg(pickerPackage).depth(0)), 1000);
@@ -399,7 +412,7 @@ public final class NativeIntegrationTest {
         assertFixture();
 
         route("data");
-        String recreationRoute = text(web, "location.hash");
+        String recreationRoute = normalizedRoute();
         MainActivity oldActivity = activity;
         WebView oldWeb = web;
         scenario.recreate();
@@ -407,7 +420,9 @@ public final class NativeIntegrationTest {
         awaitPage();
         assertNotSame("ActivityScenario.recreate makes a new Activity", oldActivity, activity);
         assertNotSame("Recreation makes a new WebView", oldWeb, web);
-        assertEquals("Validated local route survives Activity recreation", recreationRoute, text(web, "location.hash"));
+        assertEquals("Validated view and list context survive Activity recreation", recreationRoute, normalizedRoute());
+        assertTrue("Recreation displays the restored data view", truth(web,
+                "document.querySelector('#view-data').hidden === false"));
         assertEquals("Reading state survives Activity recreation", before, stateSummary());
         assertFixture();
         route("read");
@@ -579,6 +594,13 @@ public final class NativeIntegrationTest {
                         + " && document.querySelector(" + quote("#view-" + name) + ")?.hidden===false"));
     }
 
+    private String normalizedRoute() throws Exception {
+        return (String) asyncJs(web, "const {parseRoute,formatRoute}=await import(location.origin+'/js/lib/route.js');"
+                + "const r=parseRoute(location.hash);if(!r)throw Error('Unrecognized current route');"
+                + "const s=JSON.parse(localStorage.getItem('mrt.state.v2'));"
+                + "return formatRoute({...r,listId:r.listId ?? s.active});");
+    }
+
     private Object evaluate(WebView target, String expression) throws Exception {
         CountDownLatch callback = new CountDownLatch(1);
         AtomicReference<String> raw = new AtomicReference<>();
@@ -629,21 +651,108 @@ public final class NativeIntegrationTest {
         waitFor("Touchable DOM control " + selector, WAIT_MS, () -> truth(target,
                 "(() => {const e=document.querySelector(" + quote(selector) + ");"
                         + "return !!e && !e.disabled && e.getBoundingClientRect().width>0;})()"));
-        evaluate(target, "document.querySelector(" + quote(selector) + ").scrollIntoView({block:'center'})");
-        JSONObject box = (JSONObject) evaluate(target, "(() => {const r=document.querySelector("
-                + quote(selector) + ").getBoundingClientRect();return {x:r.x+r.width/2,"
-                + "y:r.y+r.height/2,viewport:innerWidth,height:innerHeight};})()");
+        evaluate(target, "(() => {window.__nativeTap={selector:" + quote(selector) + ",events:[]};"
+                + "if(!window.__nativeTapObserver){window.__nativeTapObserver=true;"
+                + "for(const type of ['pointerdown','pointerup','pointercancel','touchstart','touchend',"
+                + "'touchcancel','mousedown','mouseup','click','contextmenu']){"
+                + "document.addEventListener(type,e=>{const s=window.__nativeTap;if(!s || s.events.length>=24)return;"
+                + "const expected=document.querySelector(s.selector);const t=e.target;"
+                + "const p=e.changedTouches?.[0] ?? e;"
+                + "s.events.push({type:e.type,trusted:e.isTrusted,time:e.timeStamp,"
+                + "onTarget:!!expected && (t===expected || expected.contains(t)),"
+                + "id:t.id ?? '',classes:String(t.className ?? ''),"
+                + "text:(t.textContent ?? '').trim().slice(0,80),"
+                + "pointerType:e.pointerType ?? '',x:p.clientX,y:p.clientY,"
+                + "activation:navigator.userActivation.isActive});},{capture:true,passive:true});}}"
+                + "document.querySelector(" + quote(selector)
+                + ").scrollIntoView({block:'center',inline:'nearest',behavior:'instant'});return true;})()");
+        lastTapTarget = target;
+        lastTapRecord = new JSONObject().put("selector", selector);
+        tapDiagnostics.put(lastTapRecord);
+        try {
+            AtomicReference<JSONObject> previous = new AtomicReference<>();
+            int[] stable = { 0 };
+            waitFor("DOM hit target and native geometry settle after scrolling " + selector, WAIT_MS, () -> {
+                JSONObject current = tapGeometry(target, selector);
+                lastTapRecord.put("geometry", current);
+                boolean ready = current.getBoolean("hitTarget") && current.getBoolean("windowFocused")
+                        && current.getDouble("x") >= 0 && current.getDouble("x") < current.getDouble("viewport")
+                        && current.getDouble("y") >= 0 && current.getDouble("y") < current.getDouble("height");
+                if (ready && previous.get() != null && previous.get().toString().equals(current.toString())) {
+                    stable[0]++;
+                } else {
+                    stable[0] = 0;
+                }
+                previous.set(current);
+                return stable[0] >= 2;
+            });
+            JSONObject box = previous.get();
+            double ratio = box.getDouble("nativeWidth") / box.getDouble("viewport");
+            float x = (float) (box.getDouble("nativeX") + box.getDouble("x") * ratio);
+            float y = (float) (box.getDouble("nativeY") + box.getDouble("y") * ratio);
+            long downTime = SystemClock.uptimeMillis();
+            long upTime;
+            MotionEvent down = MotionEvent.obtain(downTime, downTime, MotionEvent.ACTION_DOWN, x, y, 0);
+            down.setSource(InputDevice.SOURCE_TOUCHSCREEN);
+            try {
+                // The previous emulator run selected button text. Do not hold DOWN while querying UIAutomator.
+                instrumentation.sendPointerSync(down);
+            } finally {
+                upTime = SystemClock.uptimeMillis();
+                MotionEvent up = MotionEvent.obtain(downTime, upTime, MotionEvent.ACTION_UP, x, y, 0);
+                up.setSource(InputDevice.SOURCE_TOUCHSCREEN);
+                try {
+                    instrumentation.sendPointerSync(up);
+                } finally {
+                    down.recycle();
+                    up.recycle();
+                    lastTapRecord.put("downTime", downTime).put("upTime", upTime)
+                            .put("heldMs", upTime - downTime).put("screenX", x).put("screenY", y);
+                }
+            }
+            long maxHold = Math.min(150, ViewConfiguration.getLongPressTimeout() - 1);
+            assertTrue("Real touchscreen tap must stay shorter than a long press: " + lastTapRecord,
+                    upTime - downTime <= maxHold);
+            waitFor("Trusted click reaches " + selector, WAIT_MS, () -> truth(target,
+                    "window.__nativeTap.events.some(e=>e.type==='click' && e.trusted && e.onTarget)"));
+            assertTrue("Real pointer DOWN and UP reach " + selector, truth(target,
+                    "['pointerdown','pointerup'].every(type=>window.__nativeTap.events.some("
+                            + "e=>e.type===type && e.trusted && e.onTarget))"));
+            assertFalse("A short tap must not open text selection", truth(target,
+                    "window.__nativeTap.events.some(e=>e.type==='contextmenu')"));
+        } finally {
+            captureTapDiagnostics();
+        }
+    }
+
+    private JSONObject tapGeometry(WebView target, String selector) throws Exception {
+        JSONObject box = (JSONObject) evaluate(target, "(() => {const e=document.querySelector("
+                + quote(selector) + ");const r=e.getBoundingClientRect();"
+                + "const x=r.x+r.width/2,y=r.y+r.height/2,hit=document.elementFromPoint(x,y);"
+                + "return {x,y,w:r.width,h:r.height,viewport:innerWidth,height:innerHeight,"
+                + "scrollX,scrollY,visualScale:visualViewport.scale,visualX:visualViewport.offsetLeft,"
+                + "visualY:visualViewport.offsetTop,hitTarget:hit===e || e.contains(hit)};})()");
         int[] nativeBox = onMain(() -> {
             int[] position = new int[2];
             target.getLocationOnScreen(position);
-            return new int[] { position[0], position[1], target.getWidth(), target.getHeight() };
+            return new int[] { position[0], position[1], target.getWidth(), target.getHeight(),
+                    target.hasWindowFocus() ? 1 : 0 };
         });
-        double ratio = nativeBox[2] / box.getDouble("viewport");
-        assertTrue("Touch target is inside the visible DOM viewport",
-                box.getDouble("y") >= 0 && box.getDouble("y") < box.getDouble("height"));
-        int x = nativeBox[0] + (int) Math.round(box.getDouble("x") * ratio);
-        int y = nativeBox[1] + (int) Math.round(box.getDouble("y") * ratio);
-        assertTrue("Real input injection reaches " + selector, device.click(x, y));
+        return box.put("nativeX", nativeBox[0]).put("nativeY", nativeBox[1])
+                .put("nativeWidth", nativeBox[2]).put("nativeHeight", nativeBox[3])
+                .put("windowFocused", nativeBox[4] == 1);
+    }
+
+    private void captureTapDiagnostics() throws Exception {
+        if (lastTapTarget == null || lastTapRecord == null) return;
+        if (onMain(() -> lastTapTarget.isAttachedToWindow())) {
+            lastTapRecord.put("observed", evaluate(lastTapTarget,
+                    "({events:window.__nativeTap?.events ?? [],selection:String(window.getSelection()).slice(0,80),"
+                            + "activation:navigator.userActivation.isActive})"));
+        } else {
+            lastTapRecord.put("targetDetached", true);
+        }
+        writeJson(evidenceName("tap-diagnostics.json"), new JSONObject().put("taps", tapDiagnostics));
     }
 
     private String awaitDocumentsUi() throws Exception {
@@ -656,22 +765,49 @@ public final class NativeIntegrationTest {
         return current != null && current.endsWith(".documentsui");
     }
 
-    private void selectDownloads(String pickerPackage) {
-        UiObject2 roots = device.wait(Until.findObject(By.desc("Show roots")), 3000);
-        if (roots != null) {
-            roots.click();
-            UiObject2 downloads = device.wait(Until.findObject(
-                    By.pkg(pickerPackage).text("Downloads")), WAIT_MS);
-            assertNotNull("Downloads is a real DocumentsUI storage root", downloads);
-            downloads.click();
-        }
-        assertNotNull("DocumentsUI displays its filename editor", pickerFilename());
+    private void selectDownloads(String pickerPackage) throws Exception {
+        BySelector drawerTitle = By.pkg(pickerPackage).text("Save to");
+        clickPickerControl("DocumentsUI storage roots are open",
+                By.pkg(pickerPackage).desc("Show roots"), () -> device.hasObject(drawerTitle));
+        clickPickerControl("Downloads root is selected and its drawer is closed",
+                By.pkg(pickerPackage).text("Downloads"),
+                () -> !device.hasObject(drawerTitle)
+                        && device.hasObject(By.pkg(pickerPackage).text("Downloads"))
+                        && device.hasObject(By.pkg(pickerPackage).clazz("android.widget.EditText")));
     }
 
-    private UiObject2 pickerFilename() {
-        UiObject2 field = device.wait(Until.findObject(By.clazz("android.widget.EditText")), WAIT_MS);
-        assertNotNull("Real DocumentsUI filename editor", field);
-        return field;
+    private void setPickerFilename(String pickerPackage, String filename) throws Exception {
+        waitFor("DocumentsUI filename is " + filename, WAIT_MS, () -> {
+            try {
+                UiObject2 field = device.findObject(By.pkg(pickerPackage).clazz("android.widget.EditText"));
+                if (field == null) return false;
+                if (filename.equals(field.getText())) return true;
+                field.setText(filename);
+            } catch (StaleObjectException replaced) {
+                // Re-query the editor after DocumentsUI rebuilds the selected location.
+            }
+            return false;
+        });
+    }
+
+    private void clickPickerControl(String message, BySelector selector, Checked<Boolean> transitioned)
+            throws Exception {
+        boolean[] clicked = { false };
+        waitFor(message, WAIT_MS, () -> {
+            if (Boolean.TRUE.equals(transitioned.get())) return true;
+            if (!clicked[0]) {
+                try {
+                    UiObject2 control = device.findObject(selector);
+                    if (control != null && control.isEnabled()) {
+                        control.click();
+                        clicked[0] = true;
+                    }
+                } catch (StaleObjectException replaced) {
+                    // Roots are asynchronously replaced; never retain a node across that transition.
+                }
+            }
+            return false;
+        });
     }
 
     private void stubDocument(String action, Uri uri) {
@@ -696,12 +832,10 @@ public final class NativeIntegrationTest {
                 + "error=>window.__nativeSave={done:true,saved:false,error:String(error)});return true;})()");
     }
 
-    private int countIntents(String action) throws Exception {
-        return onMain(() -> {
-            int count = 0;
-            for (Intent intent : Intents.getIntents()) if (action.equals(intent.getAction())) count++;
-            return count;
-        });
+    private int countIntents(String action) {
+        int count = 0;
+        for (Intent intent : Intents.getIntents()) if (action.equals(intent.getAction())) count++;
+        return count;
     }
 
     private String reportText() throws Exception {
@@ -720,7 +854,8 @@ public final class NativeIntegrationTest {
                 + "const controls=[...document.querySelectorAll('button,.btn,select,summary,.checkbox,.fp > span')]"
                 + ".filter(visible);return {body:parseFloat(getComputedStyle(document.body).fontSize),"
                 + "width:innerWidth,scrollWidth:document.documentElement.scrollWidth,count:controls.length,"
-                + "small:controls.map(e=>{const r=e.getBoundingClientRect();return {id:e.id,w:r.width,h:r.height};})"
+                + "small:controls.map(e=>{const r=e.getBoundingClientRect();return {id:e.id,"
+                + "classes:String(e.className),text:e.textContent.trim().slice(0,80),w:r.width,h:r.height};})"
                 + ".filter(r=>r.w<47.5 || r.h<47.5)};})()");
         assertTrue(label + ": body text is at least 16 CSS pixels", result.getDouble("body") >= 16);
         assertTrue(label + ": page has no horizontal overflow",

@@ -135,8 +135,9 @@ A test-only provider exercises exact-byte restore and write refusal. Reader dest
 asserted through intercepted Android intents, not by signing into Marvel or rendering comics.
 Those deliberate test doubles do not replace the production WebView clients or native message port.
 
-The job preserves test results, synthetic screenshots, emulator/WebView versions and the tested APK
-as a seven-day Actions artifact. It sends source and synthetic test evidence to this repository's
+The job preserves test results, synthetic screenshots and emulator/WebView versions as a seven-day
+Actions artifact. It includes an installable APK only after all positive checks pass, never the
+deliberately broken negative-control build. It sends source and synthetic test evidence to this repository's
 GitHub runner, never your saved reading data. It is testing infrastructure, not an app cloud service.
 The pinned emulator/image versions in `scripts/android-emulator-ci.sh` need deliberate updates.
 

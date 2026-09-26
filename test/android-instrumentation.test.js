@@ -65,5 +65,7 @@ test('Android CI stays explicitly opt-in and uses real offline Android with boun
   assert.match(runner, /restartProbe true/);
   assert.match(runner, /instrument negative providerRoundTripAndWriteFailure/);
   assert.match(runner, /check-android-instrumentation\.mjs "\$EVIDENCE\/suite\.log"/);
+  assert.doesNotMatch(workflow, /path:[\s\S]*outputs\/apk\/debug\/app-debug\.apk/);
+  assert.ok(runner.indexOf('cp "$APK" "$EVIDENCE/verified-apk/') > runner.indexOf('node scripts/check-android-instrumentation.mjs "$EVIDENCE/restart-probe.log"'));
   assert.doesNotMatch(runner, /google-atd|aosp-atd|continue-on-error/);
 });
