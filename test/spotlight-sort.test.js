@@ -91,6 +91,7 @@ test('popularity sorting keeps the ranked stories first and the rest in their cu
     'Vision',
     'Emma Frost',
     'Doctor Octopus / Otto Octavius',
+    'Nebula',
     'Agents of Atlas',
     'White Tiger: Ava Ayala',
     'Phalanx',

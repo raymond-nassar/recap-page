@@ -121,6 +121,8 @@ export const ALLOWED = new Map([
     'the positive fixture for the home-directory pattern'],
   [`${FIXTURES_FILE}|a session or workspace identifier|577facd0-f9e4` + '-4c0a-a5ff-77182d49c2c5',
     'the positive fixture for the identifier pattern, which is this session\'s own id'],
+  ['scripts/data/cbh-packets/nebula-reading-order.json|a session or workspace identifier|34c17dd0-fd0e-4422-a238-6505fd798c8e',
+    'the approved Nebula source-review identity recorded in the frozen packet'],
   [`${FIXTURES_FILE}|a private key block|-----BEGIN RSA ` + 'PRIVATE KEY-----',
     'the positive fixture for the private key pattern, a header with no key under it'],
   ...SHADOW_REVIEW_FILES.map((file) => [

@@ -1,0 +1,2884 @@
+{
+  "id": "nebula-reading-order",
+  "name": "Nebula",
+  "description": "Follow Nebula from her Avengers appearances through cosmic stories and later Guardians-era comics, in Comic Book Herald's selected issue order.",
+  "source": "https://www.comicbookherald.com/nebula-reading-order/",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-09-28T18:15:36.981Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 70,
+  "collections": 0,
+  "placeholders": 1,
+  "unresolved": [
+    {
+      "title": "Silver Surfer Annual (1988) #5",
+      "url": null,
+      "read": false,
+      "index": 22,
+      "section": "Defenders: Return Of The Defenders",
+      "sourceKey": "23"
+    }
+  ],
+  "items": [
+    {
+      "issueId": 7127,
+      "title": "Avengers (1963) #257",
+      "number": "257",
+      "url": "https://www.marvel.com/comics/issue/7127/avengers_1963_257",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1985-07-01T00:00:00+0000",
+      "mu": "1985-07-01T00:00:00+0000",
+      "digitalId": 35064,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/f0/55d4af7768b16",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Christie Scheele",
+          "role": "colorist"
+        },
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Novak",
+          "role": "letterer"
+        },
+        {
+          "name": "John Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 7128,
+      "title": "Avengers (1963) #258",
+      "number": "258",
+      "url": "https://www.marvel.com/comics/issue/7128/avengers_1963_258",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1985-08-01T00:00:00+0000",
+      "mu": "1985-08-01T00:00:00+0000",
+      "digitalId": 35058,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/9/d0/55d4b296a7ce7",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Christie Scheele",
+          "role": "colorist"
+        },
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Novak",
+          "role": "letterer"
+        },
+        {
+          "name": "John Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 7129,
+      "title": "Avengers (1963) #259",
+      "number": "259",
+      "url": "https://www.marvel.com/comics/issue/7129/avengers_1963_259",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1985-09-01T00:00:00+0000",
+      "mu": "1985-09-01T00:00:00+0000",
+      "digitalId": 35059,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/8/70/55d4b3042db2a",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Christie Scheele",
+          "role": "colorist"
+        },
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Novak",
+          "role": "letterer"
+        },
+        {
+          "name": "John Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 7131,
+      "title": "Avengers (1963) #260",
+      "number": "260",
+      "url": "https://www.marvel.com/comics/issue/7131/avengers_1963_260",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1985-10-01T00:00:00+0000",
+      "mu": "1985-10-01T00:00:00+0000",
+      "digitalId": 12887,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/4/00/5888d43df2290",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Christie Scheele",
+          "role": "colorist"
+        },
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Novak",
+          "role": "letterer"
+        },
+        {
+          "name": "John Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 6928,
+      "title": "Avengers Annual (1967) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/6928/avengers_annual_1967_14",
+      "seriesId": 1988,
+      "seriesName": "Avengers Annual (1967 - 1994)",
+      "onSale": "1985-07-30T00:00:00+0000",
+      "mu": "1985-07-30T00:00:00+0000",
+      "digitalId": 5243,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/f0/5a294b89d476a",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Christie Scheele",
+          "role": "colorist"
+        },
+        {
+          "name": "Kyle Baker",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Workman",
+          "role": "letterer"
+        },
+        {
+          "name": "John Byrne",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 17790,
+      "title": "West Coast Avengers (1985) #48",
+      "number": "48",
+      "url": "https://www.marvel.com/comics/issue/17790/west_coast_avengers_1985_48",
+      "seriesId": 3630,
+      "seriesName": "West Coast Avengers (1985 - 1994)",
+      "onSale": "1989-09-01T00:00:00+0000",
+      "mu": "2009-11-10T00:00:00+0000",
+      "digitalId": 5265,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/f/80/4bb6e93bd6e3d",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 7188,
+      "title": "Avengers (1963) #311",
+      "number": "311",
+      "url": "https://www.marvel.com/comics/issue/7188/avengers_1963_311",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1989-12-01T00:00:00+0000",
+      "mu": "2012-07-19T00:00:00+0000",
+      "digitalId": 21869,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/3/b0/588b583ed0523",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Nel Yomtov",
+          "role": "colorist"
+        },
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bill Oakley",
+          "role": "letterer"
+        },
+        {
+          "name": "Paul Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "John Byrne",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 7189,
+      "title": "Avengers (1963) #312",
+      "number": "312",
+      "url": "https://www.marvel.com/comics/issue/7189/avengers_1963_312",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1989-12-15T00:00:00+0000",
+      "mu": "2012-07-19T00:00:00+0000",
+      "digitalId": 21873,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/5/b0/588b632100dab",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Christie Scheele",
+          "role": "colorist"
+        },
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bill Oakley",
+          "role": "letterer"
+        },
+        {
+          "name": "Paul Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "John Byrne",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 7190,
+      "title": "Avengers (1963) #313",
+      "number": "313",
+      "url": "https://www.marvel.com/comics/issue/7190/avengers_1963_313",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1990-01-01T00:00:00+0000",
+      "mu": "2012-07-19T00:00:00+0000",
+      "digitalId": 21874,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/4/60/4e9496d04f378",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Rockwitz",
+          "role": "colorist"
+        },
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bill Oakley",
+          "role": "letterer"
+        },
+        {
+          "name": "Paul Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "John Byrne",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 7191,
+      "title": "Avengers (1963) #314",
+      "number": "314",
+      "url": "https://www.marvel.com/comics/issue/7191/avengers_1963_314",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1990-02-01T00:00:00+0000",
+      "mu": "1990-02-01T00:00:00+0000",
+      "digitalId": 29812,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/1/20/588b7271f1747",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Christie Scheele",
+          "role": "colorist"
+        },
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bill Oakley",
+          "role": "letterer"
+        },
+        {
+          "name": "Paul Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "John Byrne",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 7192,
+      "title": "Avengers (1963) #315",
+      "number": "315",
+      "url": "https://www.marvel.com/comics/issue/7192/avengers_1963_315",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1990-03-01T00:00:00+0000",
+      "mu": "1990-03-01T00:00:00+0000",
+      "digitalId": 34472,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/a/a0/588b797ddae58",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Christie Scheele",
+          "role": "colorist"
+        },
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bill Oakley",
+          "role": "letterer"
+        },
+        {
+          "name": "Paul Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "John Byrne",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 7193,
+      "title": "Avengers (1963) #316",
+      "number": "316",
+      "url": "https://www.marvel.com/comics/issue/7193/avengers_1963_316",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1990-04-01T00:00:00+0000",
+      "mu": "1990-04-01T00:00:00+0000",
+      "digitalId": 29624,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/e/03/588b8142d6823",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Christie Scheele",
+          "role": "colorist"
+        },
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bill Oakley",
+          "role": "letterer"
+        },
+        {
+          "name": "Paul Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "John Byrne",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 7194,
+      "title": "Avengers (1963) #317",
+      "number": "317",
+      "url": "https://www.marvel.com/comics/issue/7194/avengers_1963_317",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1990-05-01T00:00:00+0000",
+      "mu": "1990-05-01T00:00:00+0000",
+      "digitalId": 29625,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/2/20/588b89986a386",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Christie Scheele",
+          "role": "colorist"
+        },
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jack Morelli",
+          "role": "letterer"
+        },
+        {
+          "name": "Paul Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "John Byrne",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 7195,
+      "title": "Avengers (1963) #318",
+      "number": "318",
+      "url": "https://www.marvel.com/comics/issue/7195/avengers_1963_318",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1990-06-01T00:00:00+0000",
+      "mu": "1990-06-01T00:00:00+0000",
+      "digitalId": 29627,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/d/90/588b9c92ebff7",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Christie Scheele",
+          "role": "colorist"
+        },
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jack Morelli",
+          "role": "letterer"
+        },
+        {
+          "name": "Paul Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15173,
+      "title": "Silver Surfer (1987) #38",
+      "number": "38",
+      "url": "https://www.marvel.com/comics/issue/15173/silver_surfer_1987_38",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1990-06-01T00:00:00+0000",
+      "mu": "1990-06-01T00:00:00+0000",
+      "digitalId": 6872,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/60/5c92a53d96b40",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Vincent",
+          "role": "colorist"
+        },
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ken Bruzenak",
+          "role": "letterer"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15181,
+      "title": "Silver Surfer (1987) #45",
+      "number": "45",
+      "url": "https://www.marvel.com/comics/issue/15181/silver_surfer_1987_45",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1991-01-01T00:00:00+0000",
+      "mu": "1991-01-01T00:00:00+0000",
+      "digitalId": 48725,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/a0/5b2d5e8f55037",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Vincent",
+          "role": "colorist"
+        },
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ken Bruzenak",
+          "role": "letterer"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9286,
+      "title": "Infinity Gauntlet (1991) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/9286/infinity_gauntlet_1991_1",
+      "seriesId": 2023,
+      "seriesName": "Infinity Gauntlet (1991)",
+      "onSale": "1991-07-01T00:00:00+0000",
+      "mu": "1991-07-01T00:00:00+0000",
+      "digitalId": 2017,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/9/20/51f6911ce3cc3",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Christie Scheele",
+          "role": "colorist"
+        },
+        {
+          "name": "Ian Laughlin",
+          "role": "colorist"
+        },
+        {
+          "name": "Joe Rubinstein",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jack Morelli",
+          "role": "letterer"
+        },
+        {
+          "name": "George Perez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9287,
+      "title": "Infinity Gauntlet (1991) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/9287/infinity_gauntlet_1991_2",
+      "seriesId": 2023,
+      "seriesName": "Infinity Gauntlet (1991)",
+      "onSale": "1991-08-01T00:00:00+0000",
+      "mu": "1991-08-01T00:00:00+0000",
+      "digitalId": 3361,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/f/e0/51f691126c221",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Christie Scheele",
+          "role": "colorist"
+        },
+        {
+          "name": "Joe Rubinstein",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jack Morelli",
+          "role": "letterer"
+        },
+        {
+          "name": "George Perez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9288,
+      "title": "Infinity Gauntlet (1991) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/9288/infinity_gauntlet_1991_3",
+      "seriesId": 2023,
+      "seriesName": "Infinity Gauntlet (1991)",
+      "onSale": "1991-09-01T00:00:00+0000",
+      "mu": "1991-09-01T00:00:00+0000",
+      "digitalId": 3362,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/7/00/51f691085d7fe",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Christie Scheele",
+          "role": "colorist"
+        },
+        {
+          "name": "Ian Laughlin",
+          "role": "colorist"
+        },
+        {
+          "name": "Joe Rubinstein",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jack Morelli",
+          "role": "letterer"
+        },
+        {
+          "name": "George Perez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9289,
+      "title": "Infinity Gauntlet (1991) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/9289/infinity_gauntlet_1991_4",
+      "seriesId": 2023,
+      "seriesName": "Infinity Gauntlet (1991)",
+      "onSale": "1991-10-01T00:00:00+0000",
+      "mu": "1991-10-01T00:00:00+0000",
+      "digitalId": 3363,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/c/70/51f690fbd05fd",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Christie Scheele",
+          "role": "colorist"
+        },
+        {
+          "name": "Ian Laughlin",
+          "role": "colorist"
+        },
+        {
+          "name": "Bruce Solotoff",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Rubinstein",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jack Morelli",
+          "role": "letterer"
+        },
+        {
+          "name": "George Perez",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9290,
+      "title": "Infinity Gauntlet (1991) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/9290/infinity_gauntlet_1991_5",
+      "seriesId": 2023,
+      "seriesName": "Infinity Gauntlet (1991)",
+      "onSale": "1991-11-01T00:00:00+0000",
+      "mu": "1991-11-01T00:00:00+0000",
+      "digitalId": 3364,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/e0/51f690f0e7b77",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Christie Scheele",
+          "role": "colorist"
+        },
+        {
+          "name": "Ian Laughlin",
+          "role": "colorist"
+        },
+        {
+          "name": "Joe Rubinstein",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jack Morelli",
+          "role": "letterer"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 9291,
+      "title": "Infinity Gauntlet (1991) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/9291/infinity_gauntlet_1991_6",
+      "seriesId": 2023,
+      "seriesName": "Infinity Gauntlet (1991)",
+      "onSale": "1991-12-01T00:00:00+0000",
+      "mu": "1991-12-01T00:00:00+0000",
+      "digitalId": 3365,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/4/00/51f690e28c864",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Christie Scheele",
+          "role": "colorist"
+        },
+        {
+          "name": "Evelyn Stein",
+          "role": "colorist"
+        },
+        {
+          "name": "Joe Rubinstein",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jack Morelli",
+          "role": "letterer"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": -746170030,
+      "title": "Silver Surfer Annual (1988) #5",
+      "number": "5",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Defenders: Return Of The Defenders"
+    },
+    {
+      "issueId": 15205,
+      "title": "Silver Surfer (1987) #67",
+      "number": "67",
+      "url": "https://www.marvel.com/comics/issue/15205/silver_surfer_1987_67",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1992-07-01T00:00:00+0000",
+      "mu": "1992-07-01T00:00:00+0000",
+      "digitalId": 49319,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/a/30/5b58b2e7d697d",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Vincent",
+          "role": "colorist"
+        },
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ken Bruzenak",
+          "role": "letterer"
+        },
+        {
+          "name": "Kevin West",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15207,
+      "title": "Silver Surfer (1987) #69",
+      "number": "69",
+      "url": "https://www.marvel.com/comics/issue/15207/silver_surfer_1987_69",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1992-08-01T00:00:00+0000",
+      "mu": "1992-08-01T00:00:00+0000",
+      "digitalId": 57859,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/a0/673266a94c4bd",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Vincent",
+          "role": "colorist"
+        },
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ken Bruzenak",
+          "role": "letterer"
+        },
+        {
+          "name": "Kevin West",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15209,
+      "title": "Silver Surfer (1987) #70",
+      "number": "70",
+      "url": "https://www.marvel.com/comics/issue/15209/silver_surfer_1987_70",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1992-08-01T00:00:00+0000",
+      "mu": "1992-08-01T00:00:00+0000",
+      "digitalId": 71220,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/d/03/673266a9433d6",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Vincent",
+          "role": "colorist"
+        },
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ken Bruzenak",
+          "role": "letterer"
+        },
+        {
+          "name": "M.C. Wyman",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15210,
+      "title": "Silver Surfer (1987) #71",
+      "number": "71",
+      "url": "https://www.marvel.com/comics/issue/15210/silver_surfer_1987_71",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1992-09-01T00:00:00+0000",
+      "mu": "1992-09-01T00:00:00+0000",
+      "digitalId": 71221,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/f/03/673266a9433c9",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Vincent",
+          "role": "colorist"
+        },
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ken Bruzenak",
+          "role": "letterer"
+        },
+        {
+          "name": "M.C. Wyman",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15211,
+      "title": "Silver Surfer (1987) #72",
+      "number": "72",
+      "url": "https://www.marvel.com/comics/issue/15211/silver_surfer_1987_72",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1992-09-01T00:00:00+0000",
+      "mu": "1992-09-01T00:00:00+0000",
+      "digitalId": 54816,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/1/20/673266a94b694",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Vincent",
+          "role": "colorist"
+        },
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ken Bruzenak",
+          "role": "letterer"
+        },
+        {
+          "name": "M.C. Wyman",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15212,
+      "title": "Silver Surfer (1987) #73",
+      "number": "73",
+      "url": "https://www.marvel.com/comics/issue/15212/silver_surfer_1987_73",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1992-10-01T00:00:00+0000",
+      "mu": "1992-10-01T00:00:00+0000",
+      "digitalId": 71222,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/3/50/673266bb3842a",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Vincent",
+          "role": "colorist"
+        },
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ken Bruzenak",
+          "role": "letterer"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15213,
+      "title": "Silver Surfer (1987) #74",
+      "number": "74",
+      "url": "https://www.marvel.com/comics/issue/15213/silver_surfer_1987_74",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1992-11-01T00:00:00+0000",
+      "mu": "1992-11-01T00:00:00+0000",
+      "digitalId": 71223,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/9/00/673266bbcba25",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Vincent",
+          "role": "colorist"
+        },
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ken Bruzenak",
+          "role": "letterer"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15215,
+      "title": "Silver Surfer (1987) #76",
+      "number": "76",
+      "url": "https://www.marvel.com/comics/issue/15215/silver_surfer_1987_76",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1993-01-01T00:00:00+0000",
+      "mu": "1993-01-01T00:00:00+0000",
+      "digitalId": 54817,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/2/00/5e9870f833799",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Vincent",
+          "role": "colorist"
+        },
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ken Bruzenak",
+          "role": "letterer"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15216,
+      "title": "Silver Surfer (1987) #77",
+      "number": "77",
+      "url": "https://www.marvel.com/comics/issue/15216/silver_surfer_1987_77",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1993-02-01T00:00:00+0000",
+      "mu": "1993-02-01T00:00:00+0000",
+      "digitalId": 54818,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/3/80/5e987112ea155",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Vincent",
+          "role": "colorist"
+        },
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ken Bruzenak",
+          "role": "letterer"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15217,
+      "title": "Silver Surfer (1987) #78",
+      "number": "78",
+      "url": "https://www.marvel.com/comics/issue/15217/silver_surfer_1987_78",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1993-03-01T00:00:00+0000",
+      "mu": "1993-03-01T00:00:00+0000",
+      "digitalId": 54825,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/f/03/5e987109c2553",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Vincent",
+          "role": "colorist"
+        },
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ken Bruzenak",
+          "role": "letterer"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 62313,
+      "title": "Secret Defenders (1993) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/62313/secret_defenders_1993_9",
+      "seriesId": 20374,
+      "seriesName": "Secret Defenders (1993 - 1995)",
+      "onSale": "1993-11-01T00:00:00+0000",
+      "mu": "1993-11-01T00:00:00+0000",
+      "digitalId": 43087,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/1/e0/5bc0fce4ac3d6",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Kalisz",
+          "role": "colorist"
+        },
+        {
+          "name": "Donald Hudson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Grindberg",
+          "role": "letterer"
+        },
+        {
+          "name": "John Costanza",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 62314,
+      "title": "Secret Defenders (1993) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/62314/secret_defenders_1993_10",
+      "seriesId": 20374,
+      "seriesName": "Secret Defenders (1993 - 1995)",
+      "onSale": "1993-12-01T00:00:00+0000",
+      "mu": "1993-12-01T00:00:00+0000",
+      "digitalId": 43088,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/2/90/5bc0fceed5d59",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Kalisz",
+          "role": "colorist"
+        },
+        {
+          "name": "Donald Hudson",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Costanza",
+          "role": "letterer"
+        },
+        {
+          "name": "Tom Grindberg",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 4109,
+      "title": "Annihilation: Ronan (2006) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/4109/annihilation_ronan_2006_1",
+      "seriesId": 1079,
+      "seriesName": "Annihilation: Ronan (2006)",
+      "onSale": "2006-04-26T00:00:00+0000",
+      "mu": "2006-04-26T00:00:00+0000",
+      "digitalId": 1433,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/d0/57864ff113f2e",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dave Mccaig",
+          "role": "colorist"
+        },
+        {
+          "name": "Jorge Lucas",
+          "role": "cover artist"
+        },
+        {
+          "name": "Vc Joe Caramagna",
+          "role": "letterer"
+        },
+        {
+          "name": "Simon Furman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 4219,
+      "title": "Annihilation: Ronan (2006) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/4219/annihilation_ronan_2006_2",
+      "seriesId": 1079,
+      "seriesName": "Annihilation: Ronan (2006)",
+      "onSale": "2006-05-24T00:00:00+0000",
+      "mu": "2006-05-24T00:00:00+0000",
+      "digitalId": 5081,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/e/d0/578660897592d",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dave Mccaig",
+          "role": "colorist"
+        },
+        {
+          "name": "Jorge Lucas",
+          "role": "cover artist"
+        },
+        {
+          "name": "Vc Joe Caramagna",
+          "role": "letterer"
+        },
+        {
+          "name": "Simon Furman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 4471,
+      "title": "Annihilation: Ronan (2006) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/4471/annihilation_ronan_2006_4",
+      "seriesId": 1079,
+      "seriesName": "Annihilation: Ronan (2006)",
+      "onSale": "2006-07-26T00:00:00+0000",
+      "mu": "2006-07-26T00:00:00+0000",
+      "digitalId": 5083,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/c0/57866a57dd22b",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dave Mccaig",
+          "role": "colorist"
+        },
+        {
+          "name": "Jorge Lucas",
+          "role": "cover artist"
+        },
+        {
+          "name": "Vc Cory Petit",
+          "role": "letterer"
+        },
+        {
+          "name": "Simon Furman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 50944,
+      "title": "Guardians of the Galaxy Infinite (2014) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/50944/guardians_of_the_galaxy_infinite_2014_1",
+      "seriesId": 19072,
+      "seriesName": "Guardians of the Galaxy Infinite (2014)",
+      "onSale": "2014-07-29T00:00:00+0000",
+      "mu": "2016-02-01T00:00:00+0000",
+      "digitalId": 34807,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/a/00/55cb668daf683",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Reilly Brown",
+          "role": "inker"
+        },
+        {
+          "name": "Iban Coello",
+          "role": "penciler"
+        },
+        {
+          "name": "Tim Seeley",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 51919,
+      "title": "Guardians Team-Up (2015) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/51919/guardians_team-up_2015_1",
+      "seriesId": 19453,
+      "seriesName": "Guardians Team-Up (2015)",
+      "onSale": "2015-03-04T00:00:00+0000",
+      "mu": "2015-08-10T00:00:00+0000",
+      "digitalId": 36681,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/c/70/54f0a89faa90d",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Arthur Adams",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 51924,
+      "title": "Guardians Team-Up (2015) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/51924/guardians_team-up_2015_2",
+      "seriesId": 19453,
+      "seriesName": "Guardians Team-Up (2015)",
+      "onSale": "2015-03-11T00:00:00+0000",
+      "mu": "2015-08-31T00:00:00+0000",
+      "digitalId": 36744,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/9/70/54fa044d9cd64",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 51841,
+      "title": "Gamora (2016) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/51841/gamora_2016_1",
+      "seriesId": 19427,
+      "seriesName": "Gamora (2016 - 2017)",
+      "onSale": "2016-12-21T00:00:00+0000",
+      "mu": "2017-06-26T00:00:00+0000",
+      "digitalId": 43420,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/f/50/584b0e8aecf3b",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Katie Kubert",
+          "role": "editor"
+        },
+        {
+          "name": "Esad Ribic",
+          "role": "penciler"
+        },
+        {
+          "name": "Marco Checchetto",
+          "role": "penciler"
+        },
+        {
+          "name": "Nicole Perlman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 51847,
+      "title": "Gamora (2016) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/51847/gamora_2016_5",
+      "seriesId": 19427,
+      "seriesName": "Gamora (2016 - 2017)",
+      "onSale": "2017-05-31T00:00:00+0000",
+      "mu": "2017-12-04T00:00:00+0000",
+      "digitalId": 44551,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/3/80/5925b4656c40d",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andres Mossa",
+          "role": "colorist"
+        },
+        {
+          "name": "Marco Checchetto",
+          "role": "cover artist"
+        },
+        {
+          "name": "Christina Harrington",
+          "role": "editor"
+        },
+        {
+          "name": "Vc Travis Lanham",
+          "role": "letterer"
+        },
+        {
+          "name": "Esad Ribic",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Nicole Perlman",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61698,
+      "title": "Thanos (2016) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/61698/thanos_2016_2",
+      "seriesId": 22653,
+      "seriesName": "Thanos (2016 - 2018)",
+      "onSale": "2016-12-21T00:00:00+0000",
+      "mu": "2017-06-26T00:00:00+0000",
+      "digitalId": 43452,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/1/03/584b1408a6621",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jordan D. White",
+          "role": "editor"
+        },
+        {
+          "name": "Mike Deodato",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Lemire",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61700,
+      "title": "Thanos (2016) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/61700/thanos_2016_4",
+      "seriesId": 22653,
+      "seriesName": "Thanos (2016 - 2018)",
+      "onSale": "2017-02-22T00:00:00+0000",
+      "mu": "2017-08-28T00:00:00+0000",
+      "digitalId": 44127,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/a/10/58a4884fedb45",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jordan D. White",
+          "role": "editor"
+        },
+        {
+          "name": "Mike Deodato",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Lemire",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61701,
+      "title": "Thanos (2016) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/61701/thanos_2016_5",
+      "seriesId": 22653,
+      "seriesName": "Thanos (2016 - 2018)",
+      "onSale": "2017-03-29T00:00:00+0000",
+      "mu": "2017-10-02T00:00:00+0000",
+      "digitalId": 44323,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/03/58d1821d68231",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Frank Martin",
+          "role": "colorist"
+        },
+        {
+          "name": "Jordan D. White",
+          "role": "editor"
+        },
+        {
+          "name": "Vc Clayton Cowles",
+          "role": "letterer"
+        },
+        {
+          "name": "Mike Deodato",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Lemire",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61702,
+      "title": "Thanos (2016) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/61702/thanos_2016_6",
+      "seriesId": 22653,
+      "seriesName": "Thanos (2016 - 2018)",
+      "onSale": "2017-04-26T00:00:00+0000",
+      "mu": "2017-10-30T00:00:00+0000",
+      "digitalId": 44565,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/7/10/58f7a425c9e81",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Frank Martin",
+          "role": "colorist"
+        },
+        {
+          "name": "Jordan D. White",
+          "role": "editor"
+        },
+        {
+          "name": "Vc Clayton Cowles",
+          "role": "letterer"
+        },
+        {
+          "name": "Mike Deodato",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Lemire",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61703,
+      "title": "Thanos (2016) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/61703/thanos_2016_7",
+      "seriesId": 22653,
+      "seriesName": "Thanos (2016 - 2018)",
+      "onSale": "2017-05-31T00:00:00+0000",
+      "mu": "2017-12-04T00:00:00+0000",
+      "digitalId": 44777,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/1/40/5925b5c296982",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Frank Martin",
+          "role": "colorist"
+        },
+        {
+          "name": "Rachelle Rosenberg",
+          "role": "colorist"
+        },
+        {
+          "name": "German Peralta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jordan D. White",
+          "role": "editor"
+        },
+        {
+          "name": "Vc Clayton Cowles",
+          "role": "letterer"
+        },
+        {
+          "name": "Mike Deodato Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Lemire",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61704,
+      "title": "Thanos (2016) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/61704/thanos_2016_8",
+      "seriesId": 22653,
+      "seriesName": "Thanos (2016 - 2018)",
+      "onSale": "2017-06-14T00:00:00+0000",
+      "mu": "2017-12-18T00:00:00+0000",
+      "digitalId": 45003,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/4/50/593993f7f063b",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rachelle Rosenberg",
+          "role": "colorist"
+        },
+        {
+          "name": "Rain Beredo",
+          "role": "colorist"
+        },
+        {
+          "name": "German Peralta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jordan D. White",
+          "role": "editor"
+        },
+        {
+          "name": "Vc Clayton Cowles",
+          "role": "letterer"
+        },
+        {
+          "name": "Mike Deodato",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Lemire",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61705,
+      "title": "Thanos (2016) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/61705/thanos_2016_9",
+      "seriesId": 22653,
+      "seriesName": "Thanos (2016 - 2018)",
+      "onSale": "2017-07-26T00:00:00+0000",
+      "mu": "2018-01-29T00:00:00+0000",
+      "digitalId": 45232,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/c/c0/596d182fcffc0",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Frank Martin",
+          "role": "colorist"
+        },
+        {
+          "name": "Rachelle Rosenberg",
+          "role": "colorist"
+        },
+        {
+          "name": "German Peralta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jordan D. White",
+          "role": "editor"
+        },
+        {
+          "name": "Vc Clayton Cowles",
+          "role": "letterer"
+        },
+        {
+          "name": "Mike Deodato",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Lemire",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61706,
+      "title": "Thanos (2016) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/61706/thanos_2016_10",
+      "seriesId": 22653,
+      "seriesName": "Thanos (2016 - 2018)",
+      "onSale": "2017-08-30T00:00:00+0000",
+      "mu": "2018-03-05T00:00:00+0000",
+      "digitalId": 45436,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/3/a0/5993503c1d3d8",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rachelle Rosenberg",
+          "role": "colorist"
+        },
+        {
+          "name": "Rain Beredo",
+          "role": "colorist"
+        },
+        {
+          "name": "German Peralta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jordan D. White",
+          "role": "editor"
+        },
+        {
+          "name": "Vc Clayton Cowles",
+          "role": "letterer"
+        },
+        {
+          "name": "Mike Deodato",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Lemire",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61707,
+      "title": "Thanos (2016) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/61707/thanos_2016_11",
+      "seriesId": 22653,
+      "seriesName": "Thanos (2016 - 2018)",
+      "onSale": "2017-09-27T00:00:00+0000",
+      "mu": "2018-04-02T00:00:00+0000",
+      "digitalId": 45712,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/4/d0/59c289f776f44",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Frank Martin",
+          "role": "colorist"
+        },
+        {
+          "name": "Rachelle Rosenberg",
+          "role": "colorist"
+        },
+        {
+          "name": "German Peralta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jordan D. White",
+          "role": "editor"
+        },
+        {
+          "name": "Vc Clayton Cowles",
+          "role": "letterer"
+        },
+        {
+          "name": "Mike Deodato",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Lemire",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 61708,
+      "title": "Thanos (2016) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/61708/thanos_2016_12",
+      "seriesId": 22653,
+      "seriesName": "Thanos (2016 - 2018)",
+      "onSale": "2017-10-25T00:00:00+0000",
+      "mu": "2018-04-30T00:00:00+0000",
+      "digitalId": 45967,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/a/40/59e7af28bb749",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Frank Martin",
+          "role": "colorist"
+        },
+        {
+          "name": "Rachelle Rosenberg",
+          "role": "colorist"
+        },
+        {
+          "name": "German Peralta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Allison Stock",
+          "role": "editor"
+        },
+        {
+          "name": "Vc Clayton Cowles",
+          "role": "letterer"
+        },
+        {
+          "name": "Mike Deodato",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Lemire",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 71308,
+      "title": "Asgardians of the Galaxy (2018) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/71308/asgardians_of_the_galaxy_2018_1",
+      "seriesId": 25996,
+      "seriesName": "Asgardians of the Galaxy (2018 - 2019)",
+      "onSale": "2018-09-05T00:00:00+0000",
+      "mu": "2019-03-11T00:00:00+0000",
+      "digitalId": 49104,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/f/80/5b882a7cc8afa",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Federico Blee",
+          "role": "colorist"
+        },
+        {
+          "name": "Jason Keith",
+          "role": "colorist"
+        },
+        {
+          "name": "Matteo Lolli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sarah Brunstad",
+          "role": "editor"
+        },
+        {
+          "name": "Vc Cory Petit",
+          "role": "letterer"
+        },
+        {
+          "name": "Dale Keown",
+          "role": "penciler"
+        },
+        {
+          "name": "Cullen Bunn",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 71310,
+      "title": "Asgardians of the Galaxy (2018) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/71310/asgardians_of_the_galaxy_2018_2",
+      "seriesId": 25996,
+      "seriesName": "Asgardians of the Galaxy (2018 - 2019)",
+      "onSale": "2018-10-03T00:00:00+0000",
+      "mu": "2019-04-08T00:00:00+0000",
+      "digitalId": 49455,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/c/10/5b9bb3ac39e22",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Federico Blee",
+          "role": "colorist"
+        },
+        {
+          "name": "Jason Keith",
+          "role": "colorist"
+        },
+        {
+          "name": "Matteo Lolli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sarah Brunstad",
+          "role": "editor"
+        },
+        {
+          "name": "Vc Cory Petit",
+          "role": "letterer"
+        },
+        {
+          "name": "Dale Keown",
+          "role": "penciler"
+        },
+        {
+          "name": "Cullen Bunn",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 71311,
+      "title": "Asgardians of the Galaxy (2018) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/71311/asgardians_of_the_galaxy_2018_3",
+      "seriesId": 25996,
+      "seriesName": "Asgardians of the Galaxy (2018 - 2019)",
+      "onSale": "2018-11-07T00:00:00+0000",
+      "mu": "2019-05-13T00:00:00+0000",
+      "digitalId": 49716,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/c/a0/5bdb65bd99a26",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Erick Arciniega",
+          "role": "colorist"
+        },
+        {
+          "name": "Federico Blee",
+          "role": "colorist"
+        },
+        {
+          "name": "Jason Keith",
+          "role": "colorist"
+        },
+        {
+          "name": "Andre Lima Araujo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Matteo Lolli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sarah Brunstad",
+          "role": "editor"
+        },
+        {
+          "name": "Vc Cory Petit",
+          "role": "letterer"
+        },
+        {
+          "name": "Dale Keown",
+          "role": "penciler"
+        },
+        {
+          "name": "Jill Thompson",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Mike Del Mundo",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Cullen Bunn",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 71312,
+      "title": "Asgardians of the Galaxy (2018) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/71312/asgardians_of_the_galaxy_2018_4",
+      "seriesId": 25996,
+      "seriesName": "Asgardians of the Galaxy (2018 - 2019)",
+      "onSale": "2018-12-12T00:00:00+0000",
+      "mu": "2019-06-17T00:00:00+0000",
+      "digitalId": 50029,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/50/5c083c9d950b1",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Federico Blee",
+          "role": "colorist"
+        },
+        {
+          "name": "Jason Keith",
+          "role": "colorist"
+        },
+        {
+          "name": "Luca Maresca",
+          "role": "cover artist"
+        },
+        {
+          "name": "Matteo Lolli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Natacha Bustos",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sarah Brunstad",
+          "role": "editor"
+        },
+        {
+          "name": "Vc Cory Petit",
+          "role": "letterer"
+        },
+        {
+          "name": "Dale Keown",
+          "role": "penciler"
+        },
+        {
+          "name": "Cullen Bunn",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 71313,
+      "title": "Asgardians of the Galaxy (2018) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/71313/asgardians_of_the_galaxy_2018_5",
+      "seriesId": 25996,
+      "seriesName": "Asgardians of the Galaxy (2018 - 2019)",
+      "onSale": "2019-01-16T00:00:00+0000",
+      "mu": "2019-07-22T00:00:00+0000",
+      "digitalId": 50396,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/f/03/5c37950a92459",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Federico Blee",
+          "role": "colorist"
+        },
+        {
+          "name": "Jason Keith",
+          "role": "colorist"
+        },
+        {
+          "name": "Matteo Lolli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stephanie Hans",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sarah Brunstad",
+          "role": "editor"
+        },
+        {
+          "name": "Vc Cory Petit",
+          "role": "letterer"
+        },
+        {
+          "name": "Dale Keown",
+          "role": "penciler"
+        },
+        {
+          "name": "Luca Maresca",
+          "role": "penciler"
+        },
+        {
+          "name": "Cullen Bunn",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 73421,
+      "title": "Guardians of the Galaxy (2019) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/73421/guardians_of_the_galaxy_2019_2",
+      "seriesId": 26480,
+      "seriesName": "Guardians of the Galaxy (2019)",
+      "onSale": "2019-02-20T00:00:00+0000",
+      "mu": "2019-08-26T00:00:00+0000",
+      "digitalId": 50576,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/e0/5c6492add5288",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dean White",
+          "role": "colorist"
+        },
+        {
+          "name": "Marte Gracia",
+          "role": "colorist"
+        },
+        {
+          "name": "Geoff Shaw",
+          "role": "cover artist"
+        },
+        {
+          "name": "Darren Shan",
+          "role": "editor"
+        },
+        {
+          "name": "Vc Cory Petit",
+          "role": "letterer"
+        },
+        {
+          "name": "David Marquez",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 73422,
+      "title": "Guardians of the Galaxy (2019) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/73422/guardians_of_the_galaxy_2019_3",
+      "seriesId": 26480,
+      "seriesName": "Guardians of the Galaxy (2019)",
+      "onSale": "2019-03-20T00:00:00+0000",
+      "mu": "2019-09-23T00:00:00+0000",
+      "digitalId": 50874,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/a/10/5c8816e4ed8c4",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dean White",
+          "role": "colorist"
+        },
+        {
+          "name": "Marte Gracia",
+          "role": "colorist"
+        },
+        {
+          "name": "Geoff Shaw",
+          "role": "cover artist"
+        },
+        {
+          "name": "Darren Shan",
+          "role": "editor"
+        },
+        {
+          "name": "Vc Cory Petit",
+          "role": "letterer"
+        },
+        {
+          "name": "David Marquez",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 73423,
+      "title": "Guardians of the Galaxy (2019) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/73423/guardians_of_the_galaxy_2019_4",
+      "seriesId": 26480,
+      "seriesName": "Guardians of the Galaxy (2019)",
+      "onSale": "2019-04-17T00:00:00+0000",
+      "mu": "2019-10-21T00:00:00+0000",
+      "digitalId": 51084,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/c/50/5cacf6e71392a",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Curiel",
+          "role": "colorist"
+        },
+        {
+          "name": "Dean White",
+          "role": "colorist"
+        },
+        {
+          "name": "Geoff Shaw",
+          "role": "cover artist"
+        },
+        {
+          "name": "Darren Shan",
+          "role": "editor"
+        },
+        {
+          "name": "Vc Cory Petit",
+          "role": "letterer"
+        },
+        {
+          "name": "David Marquez",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 73424,
+      "title": "Guardians of the Galaxy (2019) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/73424/guardians_of_the_galaxy_2019_5",
+      "seriesId": 26480,
+      "seriesName": "Guardians of the Galaxy (2019)",
+      "onSale": "2019-05-15T00:00:00+0000",
+      "mu": "2019-11-18T00:00:00+0000",
+      "digitalId": 51358,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/3/80/5cd447994c012",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Curiel",
+          "role": "colorist"
+        },
+        {
+          "name": "Dean White",
+          "role": "colorist"
+        },
+        {
+          "name": "Geoff Shaw",
+          "role": "cover artist"
+        },
+        {
+          "name": "Darren Shan",
+          "role": "editor"
+        },
+        {
+          "name": "Vc Cory Petit",
+          "role": "letterer"
+        },
+        {
+          "name": "David Marquez",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 73425,
+      "title": "Guardians of the Galaxy (2019) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/73425/guardians_of_the_galaxy_2019_6",
+      "seriesId": 26480,
+      "seriesName": "Guardians of the Galaxy (2019)",
+      "onSale": "2019-06-19T00:00:00+0000",
+      "mu": "2019-12-23T00:00:00+0000",
+      "digitalId": 51674,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/5/03/5d1275007565e",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Curiel",
+          "role": "colorist"
+        },
+        {
+          "name": "Dean White",
+          "role": "colorist"
+        },
+        {
+          "name": "Geoff Shaw",
+          "role": "cover artist"
+        },
+        {
+          "name": "Darren Shan",
+          "role": "editor"
+        },
+        {
+          "name": "Vc Cory Petit",
+          "role": "letterer"
+        },
+        {
+          "name": "David Marquez",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 78699,
+      "title": "Nebula (2020) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/78699/nebula_2020_1",
+      "seriesId": 28047,
+      "seriesName": "Nebula (2020)",
+      "onSale": "2020-02-12T00:00:00+0000",
+      "mu": "2020-08-17T00:00:00+0000",
+      "digitalId": 53995,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/3/c0/5e3b35b378871",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Michael Spicer",
+          "role": "colorist"
+        },
+        {
+          "name": "Claire Roe",
+          "role": "cover artist"
+        },
+        {
+          "name": "Darren Shan",
+          "role": "editor"
+        },
+        {
+          "name": "Vc Travis Lanham",
+          "role": "letterer"
+        },
+        {
+          "name": "Jen Bartel",
+          "role": "penciler"
+        },
+        {
+          "name": "Vita Ayala",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 78700,
+      "title": "Nebula (2020) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/78700/nebula_2020_2",
+      "seriesId": 28047,
+      "seriesName": "Nebula (2020)",
+      "onSale": "2020-03-11T00:00:00+0000",
+      "mu": "2020-09-14T00:00:00+0000",
+      "digitalId": 54304,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/3/d0/5e583574b5c26",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Michael Spicer",
+          "role": "colorist"
+        },
+        {
+          "name": "Claire Roe",
+          "role": "cover artist"
+        },
+        {
+          "name": "Darren Shan",
+          "role": "editor"
+        },
+        {
+          "name": "Vc Travis Lanham",
+          "role": "letterer"
+        },
+        {
+          "name": "Jen Bartel",
+          "role": "penciler"
+        },
+        {
+          "name": "Vita Ayala",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 73994,
+      "title": "Asgardians of the Galaxy (2018) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/73994/asgardians_of_the_galaxy_2018_6",
+      "seriesId": 25996,
+      "seriesName": "Asgardians of the Galaxy (2018 - 2019)",
+      "onSale": "2019-02-06T00:00:00+0000",
+      "mu": "2019-02-06T00:00:00+0000",
+      "digitalId": 50567,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/5/03/5c523c1673581",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Federico Blee",
+          "role": "colorist"
+        },
+        {
+          "name": "Matteo Buffagni",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sarah Brunstad",
+          "role": "editor"
+        },
+        {
+          "name": "Vc Cory Petit",
+          "role": "letterer"
+        },
+        {
+          "name": "Jamal Campbell",
+          "role": "penciler"
+        },
+        {
+          "name": "Cullen Bunn",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 73995,
+      "title": "Asgardians of the Galaxy (2018) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/73995/asgardians_of_the_galaxy_2018_7",
+      "seriesId": 25996,
+      "seriesName": "Asgardians of the Galaxy (2018 - 2019)",
+      "onSale": "2019-03-13T00:00:00+0000",
+      "mu": "2019-09-16T00:00:00+0000",
+      "digitalId": 50916,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/5/e0/5c802d4d1317c",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Federico Blee",
+          "role": "colorist"
+        },
+        {
+          "name": "Matteo Buffagni",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stefano Landini",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sarah Brunstad",
+          "role": "editor"
+        },
+        {
+          "name": "Vc Cory Petit",
+          "role": "letterer"
+        },
+        {
+          "name": "Jamal Campbell",
+          "role": "penciler"
+        },
+        {
+          "name": "Cullen Bunn",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 73996,
+      "title": "Asgardians of the Galaxy (2018) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/73996/asgardians_of_the_galaxy_2018_8",
+      "seriesId": 25996,
+      "seriesName": "Asgardians of the Galaxy (2018 - 2019)",
+      "onSale": "2019-04-10T00:00:00+0000",
+      "mu": "2019-10-14T00:00:00+0000",
+      "digitalId": 51122,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/c/10/5ca3bc5f952d0",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Antonio Fabela",
+          "role": "colorist"
+        },
+        {
+          "name": "Federico Blee",
+          "role": "colorist"
+        },
+        {
+          "name": "Matteo Lolli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sarah Brunstad",
+          "role": "editor"
+        },
+        {
+          "name": "Vc Cory Petit",
+          "role": "letterer"
+        },
+        {
+          "name": "Gerardo Sandoval",
+          "role": "penciler"
+        },
+        {
+          "name": "Cullen Bunn",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 73997,
+      "title": "Asgardians of the Galaxy (2018) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/73997/asgardians_of_the_galaxy_2018_9",
+      "seriesId": 25996,
+      "seriesName": "Asgardians of the Galaxy (2018 - 2019)",
+      "onSale": "2019-05-22T00:00:00+0000",
+      "mu": "2019-11-25T00:00:00+0000",
+      "digitalId": 51444,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/f/f0/5cd9cb4b936ff",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Antonio Fabela",
+          "role": "colorist"
+        },
+        {
+          "name": "Federico Blee",
+          "role": "colorist"
+        },
+        {
+          "name": "Paolo Villanelli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sarah Brunstad",
+          "role": "editor"
+        },
+        {
+          "name": "Vc Cory Petit",
+          "role": "letterer"
+        },
+        {
+          "name": "Gerardo Sandoval",
+          "role": "penciler"
+        },
+        {
+          "name": "Cullen Bunn",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 73998,
+      "title": "Asgardians of the Galaxy (2018) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/73998/asgardians_of_the_galaxy_2018_10",
+      "seriesId": 25996,
+      "seriesName": "Asgardians of the Galaxy (2018 - 2019)",
+      "onSale": "2019-06-12T00:00:00+0000",
+      "mu": "2019-06-12T00:00:00+0000",
+      "digitalId": 51715,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/f/10/5cf826abc72ba",
+        "extension": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Antonio Fabela",
+          "role": "colorist"
+        },
+        {
+          "name": "Federico Blee",
+          "role": "colorist"
+        },
+        {
+          "name": "Luca Maresca",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sarah Brunstad",
+          "role": "editor"
+        },
+        {
+          "name": "Vc Cory Petit",
+          "role": "letterer"
+        },
+        {
+          "name": "Gerardo Sandoval",
+          "role": "penciler"
+        },
+        {
+          "name": "Cullen Bunn",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

@@ -2190,6 +2190,48 @@
       "updatedAt": "2026-09-17T08:09:16.051Z"
     },
     {
+      "id": "nebula-reading-order",
+      "file": "nebula_reading_order.json",
+      "name": "Nebula",
+      "description": "Follow Nebula from her Avengers appearances through cosmic stories and later Guardians-era comics, in Comic Book Herald's selected issue order.",
+      "type": "character-run",
+      "depth": "partial",
+      "spotlightKind": "other",
+      "count": 70,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 0,
+      "characters": [
+        "Nebula",
+        "Thanos",
+        "Gamora",
+        "Silver Surfer",
+        "Guardians of the Galaxy"
+      ],
+      "keywords": [
+        "Nebula",
+        "Thanos",
+        "Gamora",
+        "Silver Surfer",
+        "Guardians of the Galaxy",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 7127,
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/f0/55d4af7768b16",
+        "extension": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/nebula-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-09-28T18:15:36.981Z"
+    },
+    {
       "id": "doctor-strange-multiverse-of-madness",
       "file": "doctor_strange_multiverse_of_madness.json",
       "name": "Doctor Strange: Multiverse of Madness",

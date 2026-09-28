@@ -2640,13 +2640,15 @@
     "url": "https://www.comicbookherald.com/nebula-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
-    "sourceRetrievedAt": "2026-08-23",
+    "disposition": "new-order",
+    "reason": "Publishes 69 exact Nebula issues and preserves 1 explicit metadata gap while retaining the source order and the title-only pointer as unnumbered evidence.",
+    "sourceRetrievedAt": "2026-09-28",
     "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "catalogIds": [
+      "nebula-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Nebula"
     ],
@@ -2656,7 +2658,7 @@
     "duplicateFlags": [],
     "sourceContentSha256": "ab408b77e3d24acce52bc2a3f1c8c39ff77f75eb106153c4941ca69cefcf8d16",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 82,

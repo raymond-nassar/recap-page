@@ -1791,6 +1791,41 @@
       "coverIssueId": 6704
     },
     {
+      "id": "nebula-reading-order",
+      "name": "Nebula",
+      "description": "Follow Nebula from her Avengers appearances through cosmic stories and later Guardians-era comics, in Comic Book Herald's selected issue order.",
+      "type": "character-run",
+      "depth": "partial",
+      "spotlightKind": "other",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "nebula-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/nebula-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "nebula_reading_order.json",
+      "characters": [
+        "Nebula",
+        "Thanos",
+        "Gamora",
+        "Silver Surfer",
+        "Guardians of the Galaxy"
+      ],
+      "keywords": [
+        "Nebula",
+        "Thanos",
+        "Gamora",
+        "Silver Surfer",
+        "Guardians of the Galaxy",
+        "Comic Book Herald"
+      ],
+      "expect": 70,
+      "timeline": null,
+      "coverIssueId": 7127
+    },
+    {
       "id": "doctor-strange-multiverse-of-madness",
       "name": "Doctor Strange: Multiverse of Madness",
       "description": "Seventeen issue-specific picks connecting Doctor Strange, the Illuminati, and the multiverse, limited to the recommendations this companion guide names by issue.",
