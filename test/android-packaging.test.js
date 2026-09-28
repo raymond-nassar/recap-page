@@ -39,6 +39,22 @@ test('Android betas have a distinct package version and advance beyond Beta 1', 
   assert.ok(build.includes('versionName "${metadata.version}-beta.${betaRevision}"'));
 });
 
+test('Android wrapper bootstrap matches the distribution and runs before the Windows launcher', async () => {
+  const [properties, bootstrap, windows] = await Promise.all([
+    readFile(new URL('../packaging/android/gradle/wrapper/gradle-wrapper.properties', import.meta.url), 'utf8'),
+    readFile(new URL('../packaging/android/bootstrap-wrapper.ps1', import.meta.url), 'utf8'),
+    readFile(new URL('../packaging/android/gradlew.bat', import.meta.url), 'utf8'),
+  ]);
+  const version = properties.match(/gradle-(\d+\.\d+(?:\.\d+)?)-bin\.zip/)[1];
+  const tag = version.split('.').length === 2 ? `${version}.0` : version;
+  assert.ok(bootstrap.includes(`/gradle/v${tag}/gradle/wrapper/gradle-wrapper.jar`),
+    'The pinned bootstrap JAR must follow the distribution version');
+  assert.match(bootstrap, /\$expected = '[0-9a-f]{64}'/);
+  assert.match(windows, /powershell\.exe[^\r\n]*bootstrap-wrapper\.ps1"\r?\nif errorlevel 1 goto exitWithErrorLevel/);
+  assert.ok(windows.indexOf('bootstrap-wrapper.ps1') < windows.indexOf('-jar "%APP_HOME%'),
+    'Verify or restore the wrapper before executing it');
+});
+
 test('Android export permits only bounded text files and basenames', () => {
   assert.doesNotThrow(() => validateExport(file));
   assert.doesNotThrow(() => validateExport({ filename: 'my-list.md', type: 'text/markdown', text: '' }));

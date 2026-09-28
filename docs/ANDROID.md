@@ -72,7 +72,7 @@ From the repository root on Windows:
 ```
 
 The Windows wrapper restores its checksum-verified Gradle launcher locally on first use; it
-downloads build tooling, not app data. On other hosts, use installed Gradle 8.13 or restore the
+downloads build tooling, not app data. On other hosts, use installed Gradle 9.8.0 or restore the
 official wrapper JAR with the checksum recorded in `bootstrap-wrapper.ps1` before using `gradlew`.
 The build prepares assets automatically. To prepare them without an Android SDK:
 

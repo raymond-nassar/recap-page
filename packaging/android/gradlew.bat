@@ -98,8 +98,8 @@ goto exitWithErrorLevel
 
 :execute
 @rem Setup the command line
-
-
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%APP_HOME%\bootstrap-wrapper.ps1"
+if errorlevel 1 goto exitWithErrorLevel
 
 @rem Execute gradlew
 @rem endlocal doesn't take effect until after the line is parsed and variables are expanded
