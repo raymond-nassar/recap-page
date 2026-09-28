@@ -38,6 +38,53 @@ dialog.ask, dialog.preview {
   overflow-y: auto;
 }
 
+/* Shared navigation still focuses its heading for assistive technology, not just keyboards. */
+:root:not(.android-keyboard) :is(.view h1, .catalog-card-title)[tabindex="-1"]:focus {
+  outline: none;
+}
+#android-list-options { display: none; }
+body:has(#android-list-sheet[open]) { overflow: hidden; }
+#android-list-sheet {
+  inset: auto 0 0;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 560px;
+  max-height: calc(100dvh - 16px);
+  margin: 0 auto;
+  padding: var(--space-6);
+  padding-bottom: max(var(--space-6), env(safe-area-inset-bottom));
+  border: 1px solid var(--line-2);
+  border-radius: 20px 20px 0 0;
+  background: var(--card);
+  color: var(--text);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+#android-list-sheet::backdrop { background: rgb(var(--shadow-rgb) / 60%); }
+.android-sheet-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+.android-sheet-header h2 { margin: 0; font-size: var(--t-subtitle); }
+#android-list-sheet .list-tools {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--space-2);
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+#android-list-sheet .list-tools .quiet { width: 100%; text-align: left; color: var(--text); }
+#android-list-sheet .list-tools .quiet-danger { color: var(--red-fg-2); }
+#android-list-sheet .list-tools > .grow { display: none; }
+#android-list-sheet .tool-sep { width: 100%; height: 1px; margin: var(--space-3) 0; }
+#android-list-sheet .field-row { flex-direction: column; align-items: stretch; padding-left: var(--space-5); }
+#android-list-sheet [hidden] { display: none; }
+
 @media (min-width: 881px) {
   .shell.railed { grid-template-columns: 56px minmax(0, 1fr); }
   .railed .rail { padding-inline: var(--space-2); }
@@ -61,6 +108,39 @@ dialog.ask, dialog.preview {
   .ract .mini-label { display: inline; }
   .setting { padding-right: var(--space-6); }
   .setting > .setting-ctl { position: static; transform: none; margin-top: var(--space-5); max-width: 100%; }
+  #home-recommended { flex-direction: column; align-items: stretch; }
+  #home-recommended .grow { flex: 0 1 auto; min-width: 0; }
+  #btn-home-recommended { justify-content: center; }
+  .android-mobile-ui #android-list-options { display: inline-flex; margin-bottom: var(--space-6); }
+  .android-mobile-ui .list-tools { display: none; }
+  .breadcrumb li:not(:nth-last-child(2)) { display: none; }
+  .breadcrumb li + li::before { content: none; }
+  .breadcrumb a { gap: var(--space-4); text-decoration: none; font-weight: 600; }
+  .breadcrumb a::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-left: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg);
+    flex: 0 0 auto;
+    margin-left: var(--space-2);
+  }
+  .filters {
+    min-width: 0;
+    max-width: 100%;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: var(--space-3);
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    padding: var(--space-2);
+    scroll-padding-inline: var(--space-2);
+  }
+  .filters .fp { position: relative; flex: 0 0 auto; max-width: 100%; }
+  .filters .fp > span { border-radius: 8px; font-size: var(--t-caption); }
+  .filters .fp input:checked + span { box-shadow: inset 0 -3px 0 currentColor; }
+  #reading-filters { padding: var(--space-3) var(--space-2); }
 }
 
 @media (max-width: 480px) {
