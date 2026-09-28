@@ -492,7 +492,7 @@ public final class NativeIntegrationTest {
                 "com.android.chrome", browserIntent.getPackage());
         assertTrue("Selected package is a general web browser", onMain(() ->
                 MainActivity.readerBrowsers(activity.getPackageManager()).stream()
-                        .anyMatch(info -> info.handleAllWebDataURI
+                        .anyMatch(info -> info.filter != null && info.filter.countDataAuthorities() == 0
                                 && info.activityInfo.packageName.equals(browserIntent.getPackage()))));
         assertSame("Main native endpoint survives the child lifecycle", nativeEndpoint, nativePort());
         assertFixture();
@@ -525,11 +525,12 @@ public final class NativeIntegrationTest {
         List<ResolveInfo> domainResults = onMain(() -> activity.getPackageManager().queryIntentActivities(
                 new Intent(Intent.ACTION_VIEW, Uri.parse("https://read.marvel.com/#/book/900000099"))
                         .addCategory(Intent.CATEGORY_BROWSABLE),
-                PackageManager.MATCH_DEFAULT_ONLY));
+                PackageManager.MATCH_DEFAULT_ONLY | PackageManager.GET_RESOLVED_FILTER));
         assertTrue("The destination-bound query reproduces browser suppression",
                 domainResults.stream().anyMatch(info -> info.activityInfo.packageName.equals(fixturePackage)
                         && info.activityInfo.name.equals(DomainFixture.class.getName()))
-                        && domainResults.stream().noneMatch(info -> info.handleAllWebDataURI));
+                        && domainResults.stream().noneMatch(info -> info.filter != null
+                                && info.filter.countDataAuthorities() == 0));
         List<ResolveInfo> browsers = onMain(() -> MainActivity.readerBrowsers(activity.getPackageManager()));
         assertTrue("Hostless discovery still returns both browser packages",
                 browsers.stream().anyMatch(info -> info.activityInfo.packageName.equals(fixturePackage))

@@ -406,8 +406,10 @@ public final class MainActivity extends Activity {
         discovery.addCategory(Intent.CATEGORY_BROWSABLE);
         discovery.addCategory(Intent.CATEGORY_DEFAULT);
         LinkedHashMap<String, ResolveInfo> browsers = new LinkedHashMap<>();
-        for (ResolveInfo match : manager.queryIntentActivities(discovery, PackageManager.MATCH_ALL)) {
-            if (match.handleAllWebDataURI && match.activityInfo != null
+        for (ResolveInfo match : manager.queryIntentActivities(discovery,
+                PackageManager.MATCH_ALL | PackageManager.GET_RESOLVED_FILTER)) {
+            if (match.filter != null && match.filter.countDataAuthorities() == 0
+                    && match.filter.hasDataScheme("https") && match.activityInfo != null
                     && match.activityInfo.enabled && match.activityInfo.exported) {
                 browsers.putIfAbsent(match.activityInfo.packageName, match);
             }

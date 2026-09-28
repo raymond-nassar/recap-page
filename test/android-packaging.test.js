@@ -68,9 +68,11 @@ test('Android browser discovery is host-independent and retains all browser choi
   assert.ok(discovery, 'Browser discovery must be separate from destination dispatch');
   assert.match(discovery, /Uri\.parse\("https:"\)/);
   assert.match(discovery, /addCategory\(Intent\.CATEGORY_DEFAULT\)/);
-  assert.match(discovery, /queryIntentActivities\(discovery, PackageManager\.MATCH_ALL\)/);
+  assert.match(discovery, /queryIntentActivities\(discovery,\s*PackageManager\.MATCH_ALL \| PackageManager\.GET_RESOLVED_FILTER\)/);
   assert.doesNotMatch(discovery, /MATCH_DEFAULT_ONLY|marvel\.com|\burl\b/);
-  assert.match(discovery, /handleAllWebDataURI/);
+  assert.match(discovery, /countDataAuthorities\(\) == 0/);
+  assert.match(discovery, /hasDataScheme\("https"\)/);
+  assert.doesNotMatch(activity, /handleAllWebDataURI/);
   assert.ok(activity.includes('ArrayList<ResolveInfo> choices = readerBrowsers(getPackageManager());'));
   assert.ok(activity.includes('new Intent(Intent.ACTION_VIEW, Uri.parse(url))'));
   assert.ok(activity.includes('intent.setPackage(browser.activityInfo.packageName);'));
