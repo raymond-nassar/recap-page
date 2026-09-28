@@ -1,0 +1,203 @@
+{
+  "guide": {
+    "id": "shadow-king-reading-order",
+    "title": "Shadow King",
+    "scopeIssue": 556,
+    "parentIssue": 553,
+    "inventoryPosition": 98
+  },
+  "source": {
+    "canonicalUrl": "https://www.comicbookherald.com/shadow-king-reading-order/",
+    "retrievalDate": "2026-09-28",
+    "pageTextSha256": "8f2ee5a805bf5457c097f01290e5a8e3bb74170f438e122db1c53993fdcf05a5",
+    "orderedSelectionSha256": "c323642c439ff5d77f04d34a40e98d67bed5accab10a840d5bdb3a7158d72aaa",
+    "inventorySourceContentSha256": "a7012448ed2142636b0fadab552f627031bdbbd43ccb6b79493549da9ae66dd8"
+  },
+  "articleSections": [
+    "Getting Revenge on Professor X",
+    "Psylocke and Storm",
+    "Farouk and the Shadow King"
+  ],
+  "orderedSelections": [
+    {
+      "section": "Getting Revenge on Professor X",
+      "collection": "The Uncanny X-Men, Vol. 3",
+      "selectionPolicy": "explicit-cut",
+      "issues": [
+        "Uncanny X-Men #117"
+      ]
+    },
+    {
+      "section": "Getting Revenge on Professor X",
+      "collection": "New Mutants Omnibus Vol. 1",
+      "selectionPolicy": "explicit-cut",
+      "issues": [
+        "New Mutants (1983) #6",
+        "New Mutants (1983) #29-34"
+      ]
+    },
+    {
+      "section": "Getting Revenge on Professor X",
+      "collection": "X-Men by Chris Claremont & Jim Lee Omnibus Vol. 1 (X-Men Omnibus)",
+      "selectionPolicy": "explicit-cut",
+      "issues": [
+        "Uncanny X-Men #253",
+        "Uncanny X-Men #255",
+        "Uncanny X-Men #257",
+        "Uncanny X-Men #259",
+        "Uncanny X-Men #265-267",
+        "Uncanny X-Men #269"
+      ]
+    },
+    {
+      "section": "Getting Revenge on Professor X",
+      "collection": "X-Men By Chris Claremont & Jim Lee Omnibus Vol. 2 HC",
+      "selectionPolicy": "explicit-cut-with-interleave",
+      "issues": [
+        "Uncanny X-Men #273",
+        "Uncanny X-Men #275",
+        "Uncanny X-Men #277-279",
+        "X-Factor #69",
+        "Uncanny X-Men #280"
+      ],
+      "notes": [
+        "Preserve X-Factor #69 before Uncanny X-Men #280."
+      ]
+    },
+    {
+      "section": "Psylocke and Storm",
+      "collection": "X-Men Gold Vol. 0: Homecoming",
+      "selectionPolicy": "explicit-cut",
+      "issues": [
+        "X-Men #77-78"
+      ]
+    },
+    {
+      "section": "Psylocke and Storm",
+      "collection": "X-Men Vs. Apocalypse Vol. 1: The Twelve",
+      "selectionPolicy": "explicit-cut",
+      "issues": [
+        "Wolverine #147"
+      ]
+    },
+    {
+      "section": "Psylocke and Storm",
+      "collection": "New Excalibur, Vol. 1: Defenders of the Realm",
+      "selectionPolicy": "explicit-cut",
+      "issues": [
+        "New Excalibur #1-3",
+        "New Excalibur #6-7"
+      ]
+    },
+    {
+      "section": "Psylocke and Storm",
+      "collection": "New Excalibur, Vol. 2: Last Days of Camelot",
+      "selectionPolicy": "explicit-cut",
+      "issues": [
+        "New Excalibur #8"
+      ]
+    },
+    {
+      "section": "Psylocke and Storm",
+      "collection": "New Excalibur, Vol. 3: Battle For Eternity",
+      "selectionPolicy": "explicit-cut",
+      "issues": [
+        "New Excalibur #19"
+      ]
+    },
+    {
+      "section": "Psylocke and Storm",
+      "collection": "X-Men: Worlds Apart",
+      "selectionPolicy": "explicit-cut",
+      "issues": [
+        "X-Men: Worlds Apart #1-4"
+      ]
+    },
+    {
+      "section": "Psylocke and Storm",
+      "collection": "Uncanny X-Force by Rick Remender: The Complete Collection Volume 1",
+      "selectionPolicy": "explicit-cut",
+      "issues": [
+        "Uncanny X-Force (2010) #8",
+        "Uncanny X-Force (2010) #10"
+      ]
+    },
+    {
+      "section": "Psylocke and Storm",
+      "collection": "Uncanny X-Force by Rick Remender: The Complete Collection Volume 2",
+      "selectionPolicy": "explicit-cut",
+      "issues": [
+        "Uncanny X-Force #26-27",
+        "Uncanny X-Force #30-34"
+      ]
+    },
+    {
+      "section": "Psylocke and Storm",
+      "collection": "Nightcrawler Vol. 2: Reborn",
+      "selectionPolicy": "explicit-cut",
+      "issues": [
+        "Nightcrawler #8-10"
+      ]
+    },
+    {
+      "section": "Psylocke and Storm",
+      "collection": "Astonishing X-Men by Charles Soule Vol. 1: Life of X",
+      "selectionPolicy": "full-collection",
+      "issues": [
+        "Astonishing X-Men (2017) #1-6"
+      ]
+    },
+    {
+      "section": "Psylocke and Storm",
+      "collection": "Astonishing X-Men by Charles Soule Vol. 2: A Man Called X",
+      "selectionPolicy": "explicit-cut",
+      "issues": [
+        "Astonishing X-Men (2017) #11-12"
+      ]
+    },
+    {
+      "section": "Psylocke and Storm",
+      "collection": "Age Of X-Man: Prisoner X",
+      "selectionPolicy": "full-collection",
+      "issues": [
+        "Age Of X-Man: Prisoner X #1-5"
+      ]
+    },
+    {
+      "section": "Farouk and the Shadow King",
+      "collection": "Empyre: X-Men",
+      "selectionPolicy": "explicit-cut",
+      "issues": [
+        "Empyre: X-Men (2020) #2"
+      ]
+    },
+    {
+      "section": "Farouk and the Shadow King",
+      "collection": "New Mutants by Vita Ayala Vol. 1",
+      "selectionPolicy": "full-collection",
+      "issues": [
+        "New Mutants (2019) #14-18"
+      ]
+    },
+    {
+      "section": "Farouk and the Shadow King",
+      "collection": "New Mutants By Vita Ayala Vol. 2",
+      "selectionPolicy": "full-collection",
+      "issues": [
+        "New Mutants (2019) #19-24"
+      ]
+    }
+  ],
+  "counts": {
+    "issueBearingBlocks": 19,
+    "orderedSelections": 21,
+    "canonicalIssueRows": 74
+  },
+  "notes": [
+    "Use explicit Shadow King Cut entries where present.",
+    "When a collection has no cut line, keep the full numbered collection contents.",
+    "Preserve the Muir Island interleave with X-Factor #69 before Uncanny X-Men #280.",
+    "The page ends at New Mutants (2019) #24."
+  ],
+  "status": "approved"
+}

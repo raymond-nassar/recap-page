@@ -1,0 +1,4440 @@
+{
+  "id": "shadow-king-reading-order",
+  "inventoryId": "shadow-king-reading-order",
+  "packetDigest": "f942d1d9112b7ffd00c033f6ae5fda3e8ecab8e242aad4fb2849ca78a5d384c3",
+  "sourceUrl": "https://www.comicbookherald.com/shadow-king-reading-order/",
+  "sourceRetrievedAt": "2026-09-28",
+  "sourceProvider": "comic-book-herald",
+  "sourceContentSha256": "8f2ee5a805bf5457c097f01290e5a8e3bb74170f438e122db1c53993fdcf05a5",
+  "sourceRetrievalStatus": "retrieved",
+  "approvedSourceCount": 74,
+  "excludedSourceReferences": [],
+  "proposedManifest": {
+    "id": "shadow-king-reading-order",
+    "name": "Shadow King",
+    "description": "A complete Shadow King reading guide from Professor X's first clashes with Amahl Farouk through New Mutants (2019) #24, preserving the source article order and the Muir Island interleave.",
+    "type": "character-run",
+    "spotlightKind": "complete-guide",
+    "depth": "complete",
+    "beginner": false,
+    "coverIssueId": 12433,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "shadow-king-reading-order.md",
+    "sourcePage": "https://www.comicbookherald.com/shadow-king-reading-order/",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "shadow_king_reading_order.json",
+    "characters": [
+      "Shadow King",
+      "Amahl Farouk",
+      "Professor X",
+      "Psylocke",
+      "Storm",
+      "X-Men",
+      "New Mutants"
+    ],
+    "keywords": [
+      "Shadow King",
+      "Amahl Farouk",
+      "Professor X",
+      "Psylocke",
+      "Storm",
+      "X-Men",
+      "New Mutants",
+      "Comic Book Herald"
+    ],
+    "expect": 74,
+    "timeline": null
+  },
+  "candidateMetadata": [
+    {
+      "id": 12433,
+      "title": "Uncanny X-Men (1963) #117",
+      "issueNumber": "117",
+      "detailUrl": "https://www.marvel.com/comics/issue/12433/uncanny_x-men_1963_117",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "onSaleDate": "1979-01-01T00:00:00+0000",
+      "unlimitedDate": "2004-01-01T00:00:00+0000",
+      "yearPage": 1979
+    },
+    {
+      "id": 10399,
+      "title": "New Mutants (1983) #6",
+      "issueNumber": "6",
+      "detailUrl": "https://www.marvel.com/comics/issue/10399/new_mutants_1983_6",
+      "seriesId": 2055,
+      "seriesName": "New Mutants (1983 - 1991)",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 1983,
+      "onSaleDate": "1983-08-01T00:00:00+0000",
+      "unlimitedDate": "1983-08-01T00:00:00+0000",
+      "yearPage": 1983
+    },
+    {
+      "id": 10365,
+      "title": "New Mutants (1983) #29",
+      "issueNumber": "29",
+      "detailUrl": "https://www.marvel.com/comics/issue/10365/new_mutants_1983_29",
+      "seriesId": 2055,
+      "seriesName": "New Mutants (1983 - 1991)",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 1983,
+      "onSaleDate": "1985-07-01T00:00:00+0000",
+      "unlimitedDate": "1985-07-01T00:00:00+0000",
+      "yearPage": 1985
+    },
+    {
+      "id": 10367,
+      "title": "New Mutants (1983) #30",
+      "issueNumber": "30",
+      "detailUrl": "https://www.marvel.com/comics/issue/10367/new_mutants_1983_30",
+      "seriesId": 2055,
+      "seriesName": "New Mutants (1983 - 1991)",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 1983,
+      "onSaleDate": "1985-08-01T00:00:00+0000",
+      "unlimitedDate": "1985-08-01T00:00:00+0000",
+      "yearPage": 1985
+    },
+    {
+      "id": 10368,
+      "title": "New Mutants (1983) #31",
+      "issueNumber": "31",
+      "detailUrl": "https://www.marvel.com/comics/issue/10368/new_mutants_1983_31",
+      "seriesId": 2055,
+      "seriesName": "New Mutants (1983 - 1991)",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 1983,
+      "onSaleDate": "1985-09-01T00:00:00+0000",
+      "unlimitedDate": "1985-09-01T00:00:00+0000",
+      "yearPage": 1985
+    },
+    {
+      "id": 10369,
+      "title": "New Mutants (1983) #32",
+      "issueNumber": "32",
+      "detailUrl": "https://www.marvel.com/comics/issue/10369/new_mutants_1983_32",
+      "seriesId": 2055,
+      "seriesName": "New Mutants (1983 - 1991)",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 1983,
+      "onSaleDate": "1985-10-01T00:00:00+0000",
+      "unlimitedDate": "1985-10-01T00:00:00+0000",
+      "yearPage": 1985
+    },
+    {
+      "id": 10370,
+      "title": "New Mutants (1983) #33",
+      "issueNumber": "33",
+      "detailUrl": "https://www.marvel.com/comics/issue/10370/new_mutants_1983_33",
+      "seriesId": 2055,
+      "seriesName": "New Mutants (1983 - 1991)",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 1983,
+      "onSaleDate": "1985-11-01T00:00:00+0000",
+      "unlimitedDate": "1985-11-01T00:00:00+0000",
+      "yearPage": 1985
+    },
+    {
+      "id": 10371,
+      "title": "New Mutants (1983) #34",
+      "issueNumber": "34",
+      "detailUrl": "https://www.marvel.com/comics/issue/10371/new_mutants_1983_34",
+      "seriesId": 2055,
+      "seriesName": "New Mutants (1983 - 1991)",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 1983,
+      "onSaleDate": "1985-12-01T00:00:00+0000",
+      "unlimitedDate": "1985-12-01T00:00:00+0000",
+      "yearPage": 1985
+    },
+    {
+      "id": 13794,
+      "title": "Uncanny X-Men (1963) #253",
+      "issueNumber": "253",
+      "detailUrl": "https://www.marvel.com/comics/issue/13794/uncanny_x-men_1963_253",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "onSaleDate": "1989-11-15T00:00:00+0000",
+      "unlimitedDate": "2014-08-08T11:03:12+0000",
+      "yearPage": 1989
+    },
+    {
+      "id": 13796,
+      "title": "Uncanny X-Men (1963) #255",
+      "issueNumber": "255",
+      "detailUrl": "https://www.marvel.com/comics/issue/13796/uncanny_x-men_1963_255",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "onSaleDate": "1989-12-06T00:00:00+0000",
+      "unlimitedDate": "2014-08-08T11:04:31+0000",
+      "yearPage": 1989
+    },
+    {
+      "id": 13798,
+      "title": "Uncanny X-Men (1963) #257",
+      "issueNumber": "257",
+      "detailUrl": "https://www.marvel.com/comics/issue/13798/uncanny_x-men_1963_257",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "onSaleDate": "1990-01-01T00:00:00+0000",
+      "unlimitedDate": "2008-09-17T00:00:00+0000",
+      "yearPage": 1990
+    },
+    {
+      "id": 13800,
+      "title": "Uncanny X-Men (1963) #259",
+      "issueNumber": "259",
+      "detailUrl": "https://www.marvel.com/comics/issue/13800/uncanny_x-men_1963_259",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "onSaleDate": "1990-03-01T00:00:00+0000",
+      "unlimitedDate": "2014-08-08T11:07:59+0000",
+      "yearPage": 1990
+    },
+    {
+      "id": 13806,
+      "title": "Uncanny X-Men (1963) #265",
+      "issueNumber": "265",
+      "detailUrl": "https://www.marvel.com/comics/issue/13806/uncanny_x-men_1963_265",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "onSaleDate": "1990-08-01T00:00:00+0000",
+      "unlimitedDate": "2011-06-03T00:00:00+0000",
+      "yearPage": 1990
+    },
+    {
+      "id": 13807,
+      "title": "Uncanny X-Men (1963) #266",
+      "issueNumber": "266",
+      "detailUrl": "https://www.marvel.com/comics/issue/13807/uncanny_x-men_1963_266",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "onSaleDate": "1990-08-08T00:00:00+0000",
+      "unlimitedDate": "2014-08-08T11:10:00+0000",
+      "yearPage": 1990
+    },
+    {
+      "id": 13808,
+      "title": "Uncanny X-Men (1963) #267",
+      "issueNumber": "267",
+      "detailUrl": "https://www.marvel.com/comics/issue/13808/uncanny_x-men_1963_267",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "onSaleDate": "1990-09-01T00:00:00+0000",
+      "unlimitedDate": "2014-08-08T11:11:16+0000",
+      "yearPage": 1990
+    },
+    {
+      "id": 13810,
+      "title": "Uncanny X-Men (1963) #269",
+      "issueNumber": "269",
+      "detailUrl": "https://www.marvel.com/comics/issue/13810/uncanny_x-men_1963_269",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "onSaleDate": "1990-10-01T00:00:00+0000",
+      "unlimitedDate": "2008-09-17T00:00:00+0000",
+      "yearPage": 1990
+    },
+    {
+      "id": 13814,
+      "title": "Uncanny X-Men (1963) #273",
+      "issueNumber": "273",
+      "detailUrl": "https://www.marvel.com/comics/issue/13814/uncanny_x-men_1963_273",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "onSaleDate": "1991-02-01T00:00:00+0000",
+      "unlimitedDate": "2008-09-17T00:00:00+0000",
+      "yearPage": 1991
+    },
+    {
+      "id": 13816,
+      "title": "Uncanny X-Men (1963) #275",
+      "issueNumber": "275",
+      "detailUrl": "https://www.marvel.com/comics/issue/13816/uncanny_x-men_1963_275",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "onSaleDate": "1991-04-01T00:00:00+0000",
+      "unlimitedDate": "2008-09-17T00:00:00+0000",
+      "yearPage": 1991
+    },
+    {
+      "id": 13818,
+      "title": "Uncanny X-Men (1963) #277",
+      "issueNumber": "277",
+      "detailUrl": "https://www.marvel.com/comics/issue/13818/uncanny_x-men_1963_277",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "onSaleDate": "1991-06-01T00:00:00+0000",
+      "unlimitedDate": "2008-09-17T00:00:00+0000",
+      "yearPage": 1991
+    },
+    {
+      "id": 13819,
+      "title": "Uncanny X-Men (1963) #278",
+      "issueNumber": "278",
+      "detailUrl": "https://www.marvel.com/comics/issue/13819/uncanny_x-men_1963_278",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "onSaleDate": "1991-07-01T00:00:00+0000",
+      "unlimitedDate": "2013-08-05T11:57:29+0000",
+      "yearPage": 1991
+    },
+    {
+      "id": 13820,
+      "title": "Uncanny X-Men (1963) #279",
+      "issueNumber": "279",
+      "detailUrl": "https://www.marvel.com/comics/issue/13820/uncanny_x-men_1963_279",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "onSaleDate": "1991-08-01T00:00:00+0000",
+      "unlimitedDate": "2013-08-05T11:58:40+0000",
+      "yearPage": 1991
+    },
+    {
+      "id": 12289,
+      "title": "X-Factor (1986) #69",
+      "issueNumber": "69",
+      "detailUrl": "https://www.marvel.com/comics/issue/12289/x-factor_1986_69",
+      "seriesId": 2098,
+      "seriesName": "X-Factor (1986 - 1998)",
+      "normalizedSeriesTitle": "X-Factor",
+      "seriesYear": 1986,
+      "onSaleDate": "1991-08-01T00:00:00+0000",
+      "unlimitedDate": "1991-08-01T00:00:00+0000",
+      "yearPage": 1991
+    },
+    {
+      "id": 13821,
+      "title": "Uncanny X-Men (1963) #280",
+      "issueNumber": "280",
+      "detailUrl": "https://www.marvel.com/comics/issue/13821/uncanny_x-men_1963_280",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "onSaleDate": "1991-09-01T00:00:00+0000",
+      "unlimitedDate": "2013-08-05T11:59:36+0000",
+      "yearPage": 1991
+    },
+    {
+      "id": 14369,
+      "title": "X-Men (1991) #77",
+      "issueNumber": "77",
+      "detailUrl": "https://www.marvel.com/comics/issue/14369/x-men_1991_77",
+      "seriesId": 2265,
+      "seriesName": "X-Men (1991 - 2001)",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 1991,
+      "onSaleDate": "1998-07-01T00:00:00+0000",
+      "unlimitedDate": "1998-07-01T00:00:00+0000",
+      "yearPage": 1998
+    },
+    {
+      "id": 14370,
+      "title": "X-Men (1991) #78",
+      "issueNumber": "78",
+      "detailUrl": "https://www.marvel.com/comics/issue/14370/x-men_1991_78",
+      "seriesId": 2265,
+      "seriesName": "X-Men (1991 - 2001)",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 1991,
+      "onSaleDate": "1998-08-01T00:00:00+0000",
+      "unlimitedDate": "1998-08-01T00:00:00+0000",
+      "yearPage": 1998
+    },
+    {
+      "id": 14089,
+      "title": "Wolverine (1988) #147",
+      "issueNumber": "147",
+      "detailUrl": "https://www.marvel.com/comics/issue/14089/wolverine_1988_147",
+      "seriesId": 2262,
+      "seriesName": "Wolverine (1988 - 2003)",
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 1988,
+      "onSaleDate": "2000-02-01T00:00:00+0000",
+      "unlimitedDate": "2000-02-01T00:00:00+0000",
+      "yearPage": 2000
+    },
+    {
+      "id": 3056,
+      "title": "New Excalibur (2005) #1",
+      "issueNumber": "1",
+      "detailUrl": "https://www.marvel.com/comics/issue/3056/new_excalibur_2005_1",
+      "seriesId": 935,
+      "seriesName": "New Excalibur (2005 - 2007)",
+      "normalizedSeriesTitle": "New Excalibur",
+      "seriesYear": 2005,
+      "onSaleDate": "2005-11-09T00:00:00+0000",
+      "unlimitedDate": "2005-11-09T00:00:00+0000",
+      "yearPage": 2005
+    },
+    {
+      "id": 3152,
+      "title": "New Excalibur (2005) #2",
+      "issueNumber": "2",
+      "detailUrl": "https://www.marvel.com/comics/issue/3152/new_excalibur_2005_2",
+      "seriesId": 935,
+      "seriesName": "New Excalibur (2005 - 2007)",
+      "normalizedSeriesTitle": "New Excalibur",
+      "seriesYear": 2005,
+      "onSaleDate": "2005-12-07T00:00:00+0000",
+      "unlimitedDate": "2005-12-07T00:00:00+0000",
+      "yearPage": 2005
+    },
+    {
+      "id": 3373,
+      "title": "New Excalibur (2005) #3",
+      "issueNumber": "3",
+      "detailUrl": "https://www.marvel.com/comics/issue/3373/new_excalibur_2005_3",
+      "seriesId": 935,
+      "seriesName": "New Excalibur (2005 - 2007)",
+      "normalizedSeriesTitle": "New Excalibur",
+      "seriesYear": 2005,
+      "onSaleDate": "2005-12-25T00:00:00+0000",
+      "unlimitedDate": "2005-12-25T00:00:00+0000",
+      "yearPage": 2005
+    },
+    {
+      "id": 4030,
+      "title": "New Excalibur (2005) #6",
+      "issueNumber": "6",
+      "detailUrl": "https://www.marvel.com/comics/issue/4030/new_excalibur_2005_6",
+      "seriesId": 935,
+      "seriesName": "New Excalibur (2005 - 2007)",
+      "normalizedSeriesTitle": "New Excalibur",
+      "seriesYear": 2005,
+      "onSaleDate": "2006-04-05T00:00:00+0000",
+      "unlimitedDate": "2006-04-05T00:00:00+0000",
+      "yearPage": 2006
+    },
+    {
+      "id": 4226,
+      "title": "New Excalibur (2005) #7",
+      "issueNumber": "7",
+      "detailUrl": "https://www.marvel.com/comics/issue/4226/new_excalibur_2005_7",
+      "seriesId": 935,
+      "seriesName": "New Excalibur (2005 - 2007)",
+      "normalizedSeriesTitle": "New Excalibur",
+      "seriesYear": 2005,
+      "onSaleDate": "2006-05-24T00:00:00+0000",
+      "unlimitedDate": "2006-05-24T00:00:00+0000",
+      "yearPage": 2006
+    },
+    {
+      "id": 4325,
+      "title": "New Excalibur (2005) #8",
+      "issueNumber": "8",
+      "detailUrl": "https://www.marvel.com/comics/issue/4325/new_excalibur_2005_8",
+      "seriesId": 935,
+      "seriesName": "New Excalibur (2005 - 2007)",
+      "normalizedSeriesTitle": "New Excalibur",
+      "seriesYear": 2005,
+      "onSaleDate": "2006-06-21T00:00:00+0000",
+      "unlimitedDate": "2006-06-21T00:00:00+0000",
+      "yearPage": 2006
+    },
+    {
+      "id": 6264,
+      "title": "New Excalibur (2005) #19",
+      "issueNumber": "19",
+      "detailUrl": "https://www.marvel.com/comics/issue/6264/new_excalibur_2005_19",
+      "seriesId": 935,
+      "seriesName": "New Excalibur (2005 - 2007)",
+      "normalizedSeriesTitle": "New Excalibur",
+      "seriesYear": 2005,
+      "onSaleDate": "2007-04-25T00:00:00+0000",
+      "unlimitedDate": "2007-04-25T00:00:00+0000",
+      "yearPage": 2007
+    },
+    {
+      "id": 22386,
+      "title": "X-Men: Worlds Apart (2008) #1",
+      "issueNumber": "1",
+      "detailUrl": "https://www.marvel.com/comics/issue/22386/x-men_worlds_apart_2008_1",
+      "seriesId": 6003,
+      "seriesName": "X-Men: Worlds Apart (2008 - 2009)",
+      "normalizedSeriesTitle": "X-Men: Worlds Apart",
+      "seriesYear": 2008,
+      "onSaleDate": "2008-10-15T00:00:00+0000",
+      "unlimitedDate": "2008-10-15T00:00:00+0000",
+      "yearPage": 2008
+    },
+    {
+      "id": 22579,
+      "title": "X-Men: Worlds Apart (2008) #2",
+      "issueNumber": "2",
+      "detailUrl": "https://www.marvel.com/comics/issue/22579/x-men_worlds_apart_2008_2",
+      "seriesId": 6003,
+      "seriesName": "X-Men: Worlds Apart (2008 - 2009)",
+      "normalizedSeriesTitle": "X-Men: Worlds Apart",
+      "seriesYear": 2008,
+      "onSaleDate": "2008-11-19T00:00:00+0000",
+      "unlimitedDate": "2008-11-19T00:00:00+0000",
+      "yearPage": 2008
+    },
+    {
+      "id": 22995,
+      "title": "X-Men: Worlds Apart (2008) #3",
+      "issueNumber": "3",
+      "detailUrl": "https://www.marvel.com/comics/issue/22995/x-men_worlds_apart_2008_3",
+      "seriesId": 6003,
+      "seriesName": "X-Men: Worlds Apart (2008 - 2009)",
+      "normalizedSeriesTitle": "X-Men: Worlds Apart",
+      "seriesYear": 2008,
+      "onSaleDate": "2008-12-31T00:00:00+0000",
+      "unlimitedDate": "2008-12-31T00:00:00+0000",
+      "yearPage": 2008
+    },
+    {
+      "id": 23170,
+      "title": "X-Men: Worlds Apart (2008) #4",
+      "issueNumber": "4",
+      "detailUrl": "https://www.marvel.com/comics/issue/23170/x-men_worlds_apart_2008_4",
+      "seriesId": 6003,
+      "seriesName": "X-Men: Worlds Apart (2008 - 2009)",
+      "normalizedSeriesTitle": "X-Men: Worlds Apart",
+      "seriesYear": 2008,
+      "onSaleDate": "2009-01-28T00:00:00+0000",
+      "unlimitedDate": "2009-01-28T00:00:00+0000",
+      "yearPage": 2009
+    },
+    {
+      "id": 32595,
+      "title": "Uncanny X-Force (2010) #8",
+      "issueNumber": "8",
+      "detailUrl": "https://www.marvel.com/comics/issue/32595/uncanny_x-force_2010_8",
+      "seriesId": 9976,
+      "seriesName": "Uncanny X-Force (2010 - 2012)",
+      "normalizedSeriesTitle": "Uncanny X-Force",
+      "seriesYear": 2010,
+      "onSaleDate": "2011-04-20T00:00:00+0000",
+      "unlimitedDate": "2012-03-29T00:00:00+0000",
+      "yearPage": 2011
+    },
+    {
+      "id": 32574,
+      "title": "Uncanny X-Force (2010) #10",
+      "issueNumber": "10",
+      "detailUrl": "https://www.marvel.com/comics/issue/32574/uncanny_x-force_2010_10",
+      "seriesId": 9976,
+      "seriesName": "Uncanny X-Force (2010 - 2012)",
+      "normalizedSeriesTitle": "Uncanny X-Force",
+      "seriesYear": 2010,
+      "onSaleDate": "2011-05-18T00:00:00+0000",
+      "unlimitedDate": "2012-12-05T00:00:00+0000",
+      "yearPage": 2011
+    },
+    {
+      "id": 40443,
+      "title": "Uncanny X-Force (2010) #26",
+      "issueNumber": "26",
+      "detailUrl": "https://www.marvel.com/comics/issue/40443/uncanny_x-force_2010_26",
+      "seriesId": 9976,
+      "seriesName": "Uncanny X-Force (2010 - 2012)",
+      "normalizedSeriesTitle": "Uncanny X-Force",
+      "seriesYear": 2010,
+      "onSaleDate": "2012-06-13T00:00:00+0000",
+      "unlimitedDate": "2013-04-08T00:00:00+0000",
+      "yearPage": 2012
+    },
+    {
+      "id": 40447,
+      "title": "Uncanny X-Force (2010) #27",
+      "issueNumber": "27",
+      "detailUrl": "https://www.marvel.com/comics/issue/40447/uncanny_x-force_2010_27",
+      "seriesId": 9976,
+      "seriesName": "Uncanny X-Force (2010 - 2012)",
+      "normalizedSeriesTitle": "Uncanny X-Force",
+      "seriesYear": 2010,
+      "onSaleDate": "2012-07-11T00:00:00+0000",
+      "unlimitedDate": "2013-04-08T00:00:00+0000",
+      "yearPage": 2012
+    },
+    {
+      "id": 40442,
+      "title": "Uncanny X-Force (2010) #30",
+      "issueNumber": "30",
+      "detailUrl": "https://www.marvel.com/comics/issue/40442/uncanny_x-force_2010_30",
+      "seriesId": 9976,
+      "seriesName": "Uncanny X-Force (2010 - 2012)",
+      "normalizedSeriesTitle": "Uncanny X-Force",
+      "seriesYear": 2010,
+      "onSaleDate": "2012-08-29T00:00:00+0000",
+      "unlimitedDate": "2013-03-08T14:06:27+0000",
+      "yearPage": 2012
+    },
+    {
+      "id": 40449,
+      "title": "Uncanny X-Force (2010) #31",
+      "issueNumber": "31",
+      "detailUrl": "https://www.marvel.com/comics/issue/40449/uncanny_x-force_2010_31",
+      "seriesId": 9976,
+      "seriesName": "Uncanny X-Force (2010 - 2012)",
+      "normalizedSeriesTitle": "Uncanny X-Force",
+      "seriesYear": 2010,
+      "onSaleDate": "2012-09-12T00:00:00+0000",
+      "unlimitedDate": "2013-07-31T09:27:31+0000",
+      "yearPage": 2012
+    },
+    {
+      "id": 40438,
+      "title": "Uncanny X-Force (2010) #32",
+      "issueNumber": "32",
+      "detailUrl": "https://www.marvel.com/comics/issue/40438/uncanny_x-force_2010_32",
+      "seriesId": 9976,
+      "seriesName": "Uncanny X-Force (2010 - 2012)",
+      "normalizedSeriesTitle": "Uncanny X-Force",
+      "seriesYear": 2010,
+      "onSaleDate": "2012-10-03T00:00:00+0000",
+      "unlimitedDate": "2012-10-03T00:00:00+0000",
+      "yearPage": 2012
+    },
+    {
+      "id": 40439,
+      "title": "Uncanny X-Force (2010) #33",
+      "issueNumber": "33",
+      "detailUrl": "https://www.marvel.com/comics/issue/40439/uncanny_x-force_2010_33",
+      "seriesId": 9976,
+      "seriesName": "Uncanny X-Force (2010 - 2012)",
+      "normalizedSeriesTitle": "Uncanny X-Force",
+      "seriesYear": 2010,
+      "onSaleDate": "2012-11-07T00:00:00+0000",
+      "unlimitedDate": "2013-05-06T00:00:00+0000",
+      "yearPage": 2012
+    },
+    {
+      "id": 40446,
+      "title": "Uncanny X-Force (2010) #34",
+      "issueNumber": "34",
+      "detailUrl": "https://www.marvel.com/comics/issue/40446/uncanny_x-force_2010_34",
+      "seriesId": 9976,
+      "seriesName": "Uncanny X-Force (2010 - 2012)",
+      "normalizedSeriesTitle": "Uncanny X-Force",
+      "seriesYear": 2010,
+      "onSaleDate": "2012-11-21T00:00:00+0000",
+      "unlimitedDate": "2013-05-27T00:00:00+0000",
+      "yearPage": 2012
+    },
+    {
+      "id": 2239,
+      "title": "Nightcrawler (2014) #8",
+      "issueNumber": "8",
+      "detailUrl": "https://www.marvel.com/comics/issue/2239/nightcrawler_2014_8",
+      "seriesId": 18875,
+      "seriesName": "Nightcrawler (2014 - 2015)",
+      "normalizedSeriesTitle": "Nightcrawler",
+      "seriesYear": 2014,
+      "onSaleDate": "2014-11-12T00:00:00+0000",
+      "unlimitedDate": "2015-05-11T00:00:00+0000",
+      "yearPage": 2014
+    },
+    {
+      "id": 2350,
+      "title": "Nightcrawler (2014) #9",
+      "issueNumber": "9",
+      "detailUrl": "https://www.marvel.com/comics/issue/2350/nightcrawler_2014_9",
+      "seriesId": 18875,
+      "seriesName": "Nightcrawler (2014 - 2015)",
+      "normalizedSeriesTitle": "Nightcrawler",
+      "seriesYear": 2014,
+      "onSaleDate": "2014-12-10T00:00:00+0000",
+      "unlimitedDate": "2015-06-08T00:00:00+0000",
+      "yearPage": 2014
+    },
+    {
+      "id": 2494,
+      "title": "Nightcrawler (2014) #10",
+      "issueNumber": "10",
+      "detailUrl": "https://www.marvel.com/comics/issue/2494/nightcrawler_2014_10",
+      "seriesId": 18875,
+      "seriesName": "Nightcrawler (2014 - 2015)",
+      "normalizedSeriesTitle": "Nightcrawler",
+      "seriesYear": 2014,
+      "onSaleDate": "2015-01-14T00:00:00+0000",
+      "unlimitedDate": "2015-07-20T00:00:00+0000",
+      "yearPage": 2015
+    },
+    {
+      "id": 63833,
+      "title": "Astonishing X-Men (2017) #1",
+      "issueNumber": "1",
+      "detailUrl": "https://www.marvel.com/comics/issue/63833/astonishing_x-men_2017_1",
+      "seriesId": 23262,
+      "seriesName": "Astonishing X-Men (2017 - 2018)",
+      "normalizedSeriesTitle": "Astonishing X-Men",
+      "seriesYear": 2017,
+      "onSaleDate": "2017-07-19T00:00:00+0000",
+      "unlimitedDate": "2017-07-19T00:00:00+0000",
+      "yearPage": 2017
+    },
+    {
+      "id": 64205,
+      "title": "Astonishing X-Men (2017) #2",
+      "issueNumber": "2",
+      "detailUrl": "https://www.marvel.com/comics/issue/64205/astonishing_x-men_2017_2",
+      "seriesId": 23262,
+      "seriesName": "Astonishing X-Men (2017 - 2018)",
+      "normalizedSeriesTitle": "Astonishing X-Men",
+      "seriesYear": 2017,
+      "onSaleDate": "2017-08-16T00:00:00+0000",
+      "unlimitedDate": "2018-02-19T00:00:00+0000",
+      "yearPage": 2017
+    },
+    {
+      "id": 64609,
+      "title": "Astonishing X-Men (2017) #3",
+      "issueNumber": "3",
+      "detailUrl": "https://www.marvel.com/comics/issue/64609/astonishing_x-men_2017_3",
+      "seriesId": 23262,
+      "seriesName": "Astonishing X-Men (2017 - 2018)",
+      "normalizedSeriesTitle": "Astonishing X-Men",
+      "seriesYear": 2017,
+      "onSaleDate": "2017-09-06T00:00:00+0000",
+      "unlimitedDate": "2018-03-12T00:00:00+0000",
+      "yearPage": 2017
+    },
+    {
+      "id": 64883,
+      "title": "Astonishing X-Men (2017) #4",
+      "issueNumber": "4",
+      "detailUrl": "https://www.marvel.com/comics/issue/64883/astonishing_x-men_2017_4",
+      "seriesId": 23262,
+      "seriesName": "Astonishing X-Men (2017 - 2018)",
+      "normalizedSeriesTitle": "Astonishing X-Men",
+      "seriesYear": 2017,
+      "onSaleDate": "2017-10-04T00:00:00+0000",
+      "unlimitedDate": "2018-04-09T00:00:00+0000",
+      "yearPage": 2017
+    },
+    {
+      "id": 65055,
+      "title": "Astonishing X-Men (2017) #5",
+      "issueNumber": "5",
+      "detailUrl": "https://www.marvel.com/comics/issue/65055/astonishing_x-men_2017_5",
+      "seriesId": 23262,
+      "seriesName": "Astonishing X-Men (2017 - 2018)",
+      "normalizedSeriesTitle": "Astonishing X-Men",
+      "seriesYear": 2017,
+      "onSaleDate": "2017-11-01T00:00:00+0000",
+      "unlimitedDate": "2018-05-07T00:00:00+0000",
+      "yearPage": 2017
+    },
+    {
+      "id": 65263,
+      "title": "Astonishing X-Men (2017) #6",
+      "issueNumber": "6",
+      "detailUrl": "https://www.marvel.com/comics/issue/65263/astonishing_x-men_2017_6",
+      "seriesId": 23262,
+      "seriesName": "Astonishing X-Men (2017 - 2018)",
+      "normalizedSeriesTitle": "Astonishing X-Men",
+      "seriesYear": 2017,
+      "onSaleDate": "2017-12-06T00:00:00+0000",
+      "unlimitedDate": "2018-06-11T00:00:00+0000",
+      "yearPage": 2017
+    },
+    {
+      "id": 67000,
+      "title": "Astonishing X-Men (2017) #11",
+      "issueNumber": "11",
+      "detailUrl": "https://www.marvel.com/comics/issue/67000/astonishing_x-men_2017_11",
+      "seriesId": 23262,
+      "seriesName": "Astonishing X-Men (2017 - 2018)",
+      "normalizedSeriesTitle": "Astonishing X-Men",
+      "seriesYear": 2017,
+      "onSaleDate": "2018-05-02T00:00:00+0000",
+      "unlimitedDate": "2018-11-05T00:00:00+0000",
+      "yearPage": 2018
+    },
+    {
+      "id": 67715,
+      "title": "Astonishing X-Men (2017) #12",
+      "issueNumber": "12",
+      "detailUrl": "https://www.marvel.com/comics/issue/67715/astonishing_x-men_2017_12",
+      "seriesId": 23262,
+      "seriesName": "Astonishing X-Men (2017 - 2018)",
+      "normalizedSeriesTitle": "Astonishing X-Men",
+      "seriesYear": 2017,
+      "onSaleDate": "2018-06-06T00:00:00+0000",
+      "unlimitedDate": "2018-12-10T00:00:00+0000",
+      "yearPage": 2018
+    },
+    {
+      "id": 72954,
+      "title": "Age of X-Man: Prisoner X (2019) #1",
+      "issueNumber": "1",
+      "detailUrl": "https://www.marvel.com/comics/issue/72954/age_of_x-man_prisoner_x_2019_1",
+      "seriesId": 26334,
+      "seriesName": "Age of X-Man: Prisoner X (2019)",
+      "normalizedSeriesTitle": "Age of X-Man: Prisoner X",
+      "seriesYear": 2019,
+      "onSaleDate": "2019-03-06T00:00:00+0000",
+      "unlimitedDate": "2019-09-09T00:00:00+0000",
+      "yearPage": 2019
+    },
+    {
+      "id": 72955,
+      "title": "Age of X-Man: Prisoner X (2019) #2",
+      "issueNumber": "2",
+      "detailUrl": "https://www.marvel.com/comics/issue/72955/age_of_x-man_prisoner_x_2019_2",
+      "seriesId": 26334,
+      "seriesName": "Age of X-Man: Prisoner X (2019)",
+      "normalizedSeriesTitle": "Age of X-Man: Prisoner X",
+      "seriesYear": 2019,
+      "onSaleDate": "2019-04-03T00:00:00+0000",
+      "unlimitedDate": "2019-10-07T00:00:00+0000",
+      "yearPage": 2019
+    },
+    {
+      "id": 72956,
+      "title": "Age of X-Man: Prisoner X (2019) #3",
+      "issueNumber": "3",
+      "detailUrl": "https://www.marvel.com/comics/issue/72956/age_of_x-man_prisoner_x_2019_3",
+      "seriesId": 26334,
+      "seriesName": "Age of X-Man: Prisoner X (2019)",
+      "normalizedSeriesTitle": "Age of X-Man: Prisoner X",
+      "seriesYear": 2019,
+      "onSaleDate": "2019-05-01T00:00:00+0000",
+      "unlimitedDate": "2019-11-04T00:00:00+0000",
+      "yearPage": 2019
+    },
+    {
+      "id": 72957,
+      "title": "Age of X-Man: Prisoner X (2019) #4",
+      "issueNumber": "4",
+      "detailUrl": "https://www.marvel.com/comics/issue/72957/age_of_x-man_prisoner_x_2019_4",
+      "seriesId": 26334,
+      "seriesName": "Age of X-Man: Prisoner X (2019)",
+      "normalizedSeriesTitle": "Age of X-Man: Prisoner X",
+      "seriesYear": 2019,
+      "onSaleDate": "2019-06-05T00:00:00+0000",
+      "unlimitedDate": "2019-12-09T00:00:00+0000",
+      "yearPage": 2019
+    },
+    {
+      "id": 72958,
+      "title": "Age of X-Man: Prisoner X (2019) #5",
+      "issueNumber": "5",
+      "detailUrl": "https://www.marvel.com/comics/issue/72958/age_of_x-man_prisoner_x_2019_5",
+      "seriesId": 26334,
+      "seriesName": "Age of X-Man: Prisoner X (2019)",
+      "normalizedSeriesTitle": "Age of X-Man: Prisoner X",
+      "seriesYear": 2019,
+      "onSaleDate": "2019-07-03T00:00:00+0000",
+      "unlimitedDate": "2020-01-06T00:00:00+0000",
+      "yearPage": 2019
+    },
+    {
+      "id": 88647,
+      "title": "Empyre: X-Men (2020) #2",
+      "issueNumber": "2",
+      "detailUrl": "https://www.marvel.com/comics/issue/88647/empyre_x-men_2020_2",
+      "seriesId": 30527,
+      "seriesName": "Empyre: X-Men (2020)",
+      "normalizedSeriesTitle": "Empyre: X-Men",
+      "seriesYear": 2020,
+      "onSaleDate": "2020-08-05T00:00:00+0000",
+      "unlimitedDate": "2020-11-09T00:00:00+0000",
+      "yearPage": 2020
+    },
+    {
+      "id": 91337,
+      "title": "New Mutants (2019) #14",
+      "issueNumber": "14",
+      "detailUrl": "https://www.marvel.com/comics/issue/91337/new_mutants_2019_14",
+      "seriesId": 27557,
+      "seriesName": "New Mutants (2019 - 2022)",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 2019,
+      "onSaleDate": "2020-12-16T00:00:00+0000",
+      "unlimitedDate": "2021-03-22T00:00:00+0000",
+      "yearPage": 2020
+    },
+    {
+      "id": 91338,
+      "title": "New Mutants (2019) #15",
+      "issueNumber": "15",
+      "detailUrl": "https://www.marvel.com/comics/issue/91338/new_mutants_2019_15",
+      "seriesId": 27557,
+      "seriesName": "New Mutants (2019 - 2022)",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 2019,
+      "onSaleDate": "2021-01-27T00:00:00+0000",
+      "unlimitedDate": "2021-05-03T00:00:00+0000",
+      "yearPage": 2021
+    },
+    {
+      "id": 91339,
+      "title": "New Mutants (2019) #16",
+      "issueNumber": "16",
+      "detailUrl": "https://www.marvel.com/comics/issue/91339/new_mutants_2019_16",
+      "seriesId": 27557,
+      "seriesName": "New Mutants (2019 - 2022)",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 2019,
+      "onSaleDate": "2021-02-24T00:00:00+0000",
+      "unlimitedDate": "2021-05-31T00:00:00+0000",
+      "yearPage": 2021
+    },
+    {
+      "id": 91340,
+      "title": "New Mutants (2019) #17",
+      "issueNumber": "17",
+      "detailUrl": "https://www.marvel.com/comics/issue/91340/new_mutants_2019_17",
+      "seriesId": 27557,
+      "seriesName": "New Mutants (2019 - 2022)",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 2019,
+      "onSaleDate": "2021-04-28T00:00:00+0000",
+      "unlimitedDate": "2021-08-02T00:00:00+0000",
+      "yearPage": 2021
+    },
+    {
+      "id": 91341,
+      "title": "New Mutants (2019) #18",
+      "issueNumber": "18",
+      "detailUrl": "https://www.marvel.com/comics/issue/91341/new_mutants_2019_18",
+      "seriesId": 27557,
+      "seriesName": "New Mutants (2019 - 2022)",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 2019,
+      "onSaleDate": "2021-05-26T00:00:00+0000",
+      "unlimitedDate": "2021-08-30T00:00:00+0000",
+      "yearPage": 2021
+    },
+    {
+      "id": 94084,
+      "title": "New Mutants (2019) #19",
+      "issueNumber": "19",
+      "detailUrl": "https://www.marvel.com/comics/issue/94084/new_mutants_2019_19",
+      "seriesId": 27557,
+      "seriesName": "New Mutants (2019 - 2022)",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 2019,
+      "onSaleDate": "2021-06-16T00:00:00+0000",
+      "unlimitedDate": "2021-09-20T00:00:00+0000",
+      "yearPage": 2021
+    },
+    {
+      "id": 94085,
+      "title": "New Mutants (2019) #20",
+      "issueNumber": "20",
+      "detailUrl": "https://www.marvel.com/comics/issue/94085/new_mutants_2019_20",
+      "seriesId": 27557,
+      "seriesName": "New Mutants (2019 - 2022)",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 2019,
+      "onSaleDate": "2021-07-21T00:00:00+0000",
+      "unlimitedDate": "2021-10-25T00:00:00+0000",
+      "yearPage": 2021
+    },
+    {
+      "id": 94086,
+      "title": "New Mutants (2019) #21",
+      "issueNumber": "21",
+      "detailUrl": "https://www.marvel.com/comics/issue/94086/new_mutants_2019_21",
+      "seriesId": 27557,
+      "seriesName": "New Mutants (2019 - 2022)",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 2019,
+      "onSaleDate": "2021-09-01T00:00:00+0000",
+      "unlimitedDate": "2021-12-06T00:00:00+0000",
+      "yearPage": 2021
+    },
+    {
+      "id": 94087,
+      "title": "New Mutants (2019) #22",
+      "issueNumber": "22",
+      "detailUrl": "https://www.marvel.com/comics/issue/94087/new_mutants_2019_22",
+      "seriesId": 27557,
+      "seriesName": "New Mutants (2019 - 2022)",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 2019,
+      "onSaleDate": "2021-10-06T00:00:00+0000",
+      "unlimitedDate": "2022-01-10T00:00:00+0000",
+      "yearPage": 2021
+    },
+    {
+      "id": 94088,
+      "title": "New Mutants (2019) #23",
+      "issueNumber": "23",
+      "detailUrl": "https://www.marvel.com/comics/issue/94088/new_mutants_2019_23",
+      "seriesId": 27557,
+      "seriesName": "New Mutants (2019 - 2022)",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 2019,
+      "onSaleDate": "2021-12-01T00:00:00+0000",
+      "unlimitedDate": "2022-03-07T00:00:00+0000",
+      "yearPage": 2021
+    },
+    {
+      "id": 94089,
+      "title": "New Mutants (2019) #24",
+      "issueNumber": "24",
+      "detailUrl": "https://www.marvel.com/comics/issue/94089/new_mutants_2019_24",
+      "seriesId": 27557,
+      "seriesName": "New Mutants (2019 - 2022)",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 2019,
+      "onSaleDate": "2022-02-09T00:00:00+0000",
+      "unlimitedDate": "2022-05-16T00:00:00+0000",
+      "yearPage": 2022
+    }
+  ],
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "Uncanny X-Men #117",
+      "sourceRangeReference": "The Uncanny X-Men, Vol. 3",
+      "sourceGroup": "Getting Revenge on Professor X",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "117",
+      "seriesId": 2258,
+      "candidateIssueId": 12433,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        12433
+      ],
+      "selectedIssueId": 12433,
+      "selectedIssueIds": [
+        12433
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12433/uncanny_x-men_1963_117",
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #117",
+      "metadataIssueNumber": "117",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "New Mutants (1983) #6",
+      "sourceRangeReference": "New Mutants Omnibus Vol. 1",
+      "sourceGroup": "Getting Revenge on Professor X",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 1983,
+      "issueNumber": "6",
+      "seriesId": 2055,
+      "candidateIssueId": 10399,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        10399
+      ],
+      "selectedIssueId": 10399,
+      "selectedIssueIds": [
+        10399
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10399/new_mutants_1983_6",
+      "resolvedIssueTitle": "New Mutants (1983) #6",
+      "metadataIssueNumber": "6",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "New Mutants (1983) #29",
+      "sourceRangeReference": "New Mutants Omnibus Vol. 1",
+      "sourceGroup": "Getting Revenge on Professor X",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 1983,
+      "issueNumber": "29",
+      "seriesId": 2055,
+      "candidateIssueId": 10365,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        10365
+      ],
+      "selectedIssueId": 10365,
+      "selectedIssueIds": [
+        10365
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10365/new_mutants_1983_29",
+      "resolvedIssueTitle": "New Mutants (1983) #29",
+      "metadataIssueNumber": "29",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "New Mutants (1983) #30",
+      "sourceRangeReference": "New Mutants Omnibus Vol. 1",
+      "sourceGroup": "Getting Revenge on Professor X",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 1983,
+      "issueNumber": "30",
+      "seriesId": 2055,
+      "candidateIssueId": 10367,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        10367
+      ],
+      "selectedIssueId": 10367,
+      "selectedIssueIds": [
+        10367
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10367/new_mutants_1983_30",
+      "resolvedIssueTitle": "New Mutants (1983) #30",
+      "metadataIssueNumber": "30",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "New Mutants (1983) #31",
+      "sourceRangeReference": "New Mutants Omnibus Vol. 1",
+      "sourceGroup": "Getting Revenge on Professor X",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 1983,
+      "issueNumber": "31",
+      "seriesId": 2055,
+      "candidateIssueId": 10368,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        10368
+      ],
+      "selectedIssueId": 10368,
+      "selectedIssueIds": [
+        10368
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10368/new_mutants_1983_31",
+      "resolvedIssueTitle": "New Mutants (1983) #31",
+      "metadataIssueNumber": "31",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "New Mutants (1983) #32",
+      "sourceRangeReference": "New Mutants Omnibus Vol. 1",
+      "sourceGroup": "Getting Revenge on Professor X",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 1983,
+      "issueNumber": "32",
+      "seriesId": 2055,
+      "candidateIssueId": 10369,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        10369
+      ],
+      "selectedIssueId": 10369,
+      "selectedIssueIds": [
+        10369
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10369/new_mutants_1983_32",
+      "resolvedIssueTitle": "New Mutants (1983) #32",
+      "metadataIssueNumber": "32",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "New Mutants (1983) #33",
+      "sourceRangeReference": "New Mutants Omnibus Vol. 1",
+      "sourceGroup": "Getting Revenge on Professor X",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 1983,
+      "issueNumber": "33",
+      "seriesId": 2055,
+      "candidateIssueId": 10370,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        10370
+      ],
+      "selectedIssueId": 10370,
+      "selectedIssueIds": [
+        10370
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10370/new_mutants_1983_33",
+      "resolvedIssueTitle": "New Mutants (1983) #33",
+      "metadataIssueNumber": "33",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "New Mutants (1983) #34",
+      "sourceRangeReference": "New Mutants Omnibus Vol. 1",
+      "sourceGroup": "Getting Revenge on Professor X",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 1983,
+      "issueNumber": "34",
+      "seriesId": 2055,
+      "candidateIssueId": 10371,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        10371
+      ],
+      "selectedIssueId": 10371,
+      "selectedIssueIds": [
+        10371
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10371/new_mutants_1983_34",
+      "resolvedIssueTitle": "New Mutants (1983) #34",
+      "metadataIssueNumber": "34",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 9,
+      "sourceIssueReference": "Uncanny X-Men #253",
+      "sourceRangeReference": "X-Men by Chris Claremont & Jim Lee Omnibus Vol. 1 (X-Men Omnibus)",
+      "sourceGroup": "Getting Revenge on Professor X",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "253",
+      "seriesId": 2258,
+      "candidateIssueId": 13794,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        13794
+      ],
+      "selectedIssueId": 13794,
+      "selectedIssueIds": [
+        13794
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13794/uncanny_x-men_1963_253",
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #253",
+      "metadataIssueNumber": "253",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 10,
+      "sourceIssueReference": "Uncanny X-Men #255",
+      "sourceRangeReference": "X-Men by Chris Claremont & Jim Lee Omnibus Vol. 1 (X-Men Omnibus)",
+      "sourceGroup": "Getting Revenge on Professor X",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "255",
+      "seriesId": 2258,
+      "candidateIssueId": 13796,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        13796
+      ],
+      "selectedIssueId": 13796,
+      "selectedIssueIds": [
+        13796
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13796/uncanny_x-men_1963_255",
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #255",
+      "metadataIssueNumber": "255",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 11,
+      "sourceIssueReference": "Uncanny X-Men #257",
+      "sourceRangeReference": "X-Men by Chris Claremont & Jim Lee Omnibus Vol. 1 (X-Men Omnibus)",
+      "sourceGroup": "Getting Revenge on Professor X",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "257",
+      "seriesId": 2258,
+      "candidateIssueId": 13798,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        13798
+      ],
+      "selectedIssueId": 13798,
+      "selectedIssueIds": [
+        13798
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13798/uncanny_x-men_1963_257",
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #257",
+      "metadataIssueNumber": "257",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 12,
+      "sourceIssueReference": "Uncanny X-Men #259",
+      "sourceRangeReference": "X-Men by Chris Claremont & Jim Lee Omnibus Vol. 1 (X-Men Omnibus)",
+      "sourceGroup": "Getting Revenge on Professor X",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "259",
+      "seriesId": 2258,
+      "candidateIssueId": 13800,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        13800
+      ],
+      "selectedIssueId": 13800,
+      "selectedIssueIds": [
+        13800
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13800/uncanny_x-men_1963_259",
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #259",
+      "metadataIssueNumber": "259",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 13,
+      "sourceIssueReference": "Uncanny X-Men #265",
+      "sourceRangeReference": "X-Men by Chris Claremont & Jim Lee Omnibus Vol. 1 (X-Men Omnibus)",
+      "sourceGroup": "Getting Revenge on Professor X",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "265",
+      "seriesId": 2258,
+      "candidateIssueId": 13806,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        13806
+      ],
+      "selectedIssueId": 13806,
+      "selectedIssueIds": [
+        13806
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13806/uncanny_x-men_1963_265",
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #265",
+      "metadataIssueNumber": "265",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 14,
+      "sourceIssueReference": "Uncanny X-Men #266",
+      "sourceRangeReference": "X-Men by Chris Claremont & Jim Lee Omnibus Vol. 1 (X-Men Omnibus)",
+      "sourceGroup": "Getting Revenge on Professor X",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "266",
+      "seriesId": 2258,
+      "candidateIssueId": 13807,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        13807
+      ],
+      "selectedIssueId": 13807,
+      "selectedIssueIds": [
+        13807
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13807/uncanny_x-men_1963_266",
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #266",
+      "metadataIssueNumber": "266",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 15,
+      "sourceIssueReference": "Uncanny X-Men #267",
+      "sourceRangeReference": "X-Men by Chris Claremont & Jim Lee Omnibus Vol. 1 (X-Men Omnibus)",
+      "sourceGroup": "Getting Revenge on Professor X",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "267",
+      "seriesId": 2258,
+      "candidateIssueId": 13808,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        13808
+      ],
+      "selectedIssueId": 13808,
+      "selectedIssueIds": [
+        13808
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13808/uncanny_x-men_1963_267",
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #267",
+      "metadataIssueNumber": "267",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 16,
+      "sourceIssueReference": "Uncanny X-Men #269",
+      "sourceRangeReference": "X-Men by Chris Claremont & Jim Lee Omnibus Vol. 1 (X-Men Omnibus)",
+      "sourceGroup": "Getting Revenge on Professor X",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "269",
+      "seriesId": 2258,
+      "candidateIssueId": 13810,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        13810
+      ],
+      "selectedIssueId": 13810,
+      "selectedIssueIds": [
+        13810
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13810/uncanny_x-men_1963_269",
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #269",
+      "metadataIssueNumber": "269",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 17,
+      "sourceIssueReference": "Uncanny X-Men #273",
+      "sourceRangeReference": "X-Men By Chris Claremont & Jim Lee Omnibus Vol. 2 HC",
+      "sourceGroup": "Getting Revenge on Professor X",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "273",
+      "seriesId": 2258,
+      "candidateIssueId": 13814,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        13814
+      ],
+      "selectedIssueId": 13814,
+      "selectedIssueIds": [
+        13814
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13814/uncanny_x-men_1963_273",
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #273",
+      "metadataIssueNumber": "273",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 18,
+      "sourceIssueReference": "Uncanny X-Men #275",
+      "sourceRangeReference": "X-Men By Chris Claremont & Jim Lee Omnibus Vol. 2 HC",
+      "sourceGroup": "Getting Revenge on Professor X",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "275",
+      "seriesId": 2258,
+      "candidateIssueId": 13816,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        13816
+      ],
+      "selectedIssueId": 13816,
+      "selectedIssueIds": [
+        13816
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13816/uncanny_x-men_1963_275",
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #275",
+      "metadataIssueNumber": "275",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 19,
+      "sourceIssueReference": "Uncanny X-Men #277",
+      "sourceRangeReference": "X-Men By Chris Claremont & Jim Lee Omnibus Vol. 2 HC",
+      "sourceGroup": "Getting Revenge on Professor X",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "277",
+      "seriesId": 2258,
+      "candidateIssueId": 13818,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        13818
+      ],
+      "selectedIssueId": 13818,
+      "selectedIssueIds": [
+        13818
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13818/uncanny_x-men_1963_277",
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #277",
+      "metadataIssueNumber": "277",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 20,
+      "sourceIssueReference": "Uncanny X-Men #278",
+      "sourceRangeReference": "X-Men By Chris Claremont & Jim Lee Omnibus Vol. 2 HC",
+      "sourceGroup": "Getting Revenge on Professor X",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "278",
+      "seriesId": 2258,
+      "candidateIssueId": 13819,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        13819
+      ],
+      "selectedIssueId": 13819,
+      "selectedIssueIds": [
+        13819
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13819/uncanny_x-men_1963_278",
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #278",
+      "metadataIssueNumber": "278",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 21,
+      "sourceIssueReference": "Uncanny X-Men #279",
+      "sourceRangeReference": "X-Men By Chris Claremont & Jim Lee Omnibus Vol. 2 HC",
+      "sourceGroup": "Getting Revenge on Professor X",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "279",
+      "seriesId": 2258,
+      "candidateIssueId": 13820,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        13820
+      ],
+      "selectedIssueId": 13820,
+      "selectedIssueIds": [
+        13820
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13820/uncanny_x-men_1963_279",
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #279",
+      "metadataIssueNumber": "279",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 22,
+      "sourceIssueReference": "X-Factor #69",
+      "sourceRangeReference": "X-Men By Chris Claremont & Jim Lee Omnibus Vol. 2 HC",
+      "sourceGroup": "Getting Revenge on Professor X",
+      "normalizedSeriesTitle": "X-Factor",
+      "seriesYear": 1986,
+      "issueNumber": "69",
+      "seriesId": 2098,
+      "candidateIssueId": 12289,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        12289
+      ],
+      "selectedIssueId": 12289,
+      "selectedIssueIds": [
+        12289
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12289/x-factor_1986_69",
+      "resolvedIssueTitle": "X-Factor (1986) #69",
+      "metadataIssueNumber": "69",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 23,
+      "sourceIssueReference": "Uncanny X-Men #280",
+      "sourceRangeReference": "X-Men By Chris Claremont & Jim Lee Omnibus Vol. 2 HC",
+      "sourceGroup": "Getting Revenge on Professor X",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "280",
+      "seriesId": 2258,
+      "candidateIssueId": 13821,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        13821
+      ],
+      "selectedIssueId": 13821,
+      "selectedIssueIds": [
+        13821
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13821/uncanny_x-men_1963_280",
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #280",
+      "metadataIssueNumber": "280",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 24,
+      "sourceIssueReference": "X-Men #77",
+      "sourceRangeReference": "X-Men Gold Vol. 0: Homecoming",
+      "sourceGroup": "Psylocke and Storm",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 1991,
+      "issueNumber": "77",
+      "seriesId": 2265,
+      "candidateIssueId": 14369,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        14369
+      ],
+      "selectedIssueId": 14369,
+      "selectedIssueIds": [
+        14369
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14369/x-men_1991_77",
+      "resolvedIssueTitle": "X-Men (1991) #77",
+      "metadataIssueNumber": "77",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 25,
+      "sourceIssueReference": "X-Men #78",
+      "sourceRangeReference": "X-Men Gold Vol. 0: Homecoming",
+      "sourceGroup": "Psylocke and Storm",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 1991,
+      "issueNumber": "78",
+      "seriesId": 2265,
+      "candidateIssueId": 14370,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        14370
+      ],
+      "selectedIssueId": 14370,
+      "selectedIssueIds": [
+        14370
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14370/x-men_1991_78",
+      "resolvedIssueTitle": "X-Men (1991) #78",
+      "metadataIssueNumber": "78",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 26,
+      "sourceIssueReference": "Wolverine #147",
+      "sourceRangeReference": "X-Men Vs. Apocalypse Vol. 1: The Twelve",
+      "sourceGroup": "Psylocke and Storm",
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 1988,
+      "issueNumber": "147",
+      "seriesId": 2262,
+      "candidateIssueId": 14089,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        14089
+      ],
+      "selectedIssueId": 14089,
+      "selectedIssueIds": [
+        14089
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14089/wolverine_1988_147",
+      "resolvedIssueTitle": "Wolverine (1988) #147",
+      "metadataIssueNumber": "147",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 27,
+      "sourceIssueReference": "New Excalibur #1",
+      "sourceRangeReference": "New Excalibur, Vol. 1: Defenders of the Realm",
+      "sourceGroup": "Psylocke and Storm",
+      "normalizedSeriesTitle": "New Excalibur",
+      "seriesYear": 2005,
+      "issueNumber": "1",
+      "seriesId": 935,
+      "candidateIssueId": 3056,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        3056
+      ],
+      "selectedIssueId": 3056,
+      "selectedIssueIds": [
+        3056
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/3056/new_excalibur_2005_1",
+      "resolvedIssueTitle": "New Excalibur (2005) #1",
+      "metadataIssueNumber": "1",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 28,
+      "sourceIssueReference": "New Excalibur #2",
+      "sourceRangeReference": "New Excalibur, Vol. 1: Defenders of the Realm",
+      "sourceGroup": "Psylocke and Storm",
+      "normalizedSeriesTitle": "New Excalibur",
+      "seriesYear": 2005,
+      "issueNumber": "2",
+      "seriesId": 935,
+      "candidateIssueId": 3152,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        3152
+      ],
+      "selectedIssueId": 3152,
+      "selectedIssueIds": [
+        3152
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/3152/new_excalibur_2005_2",
+      "resolvedIssueTitle": "New Excalibur (2005) #2",
+      "metadataIssueNumber": "2",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 29,
+      "sourceIssueReference": "New Excalibur #3",
+      "sourceRangeReference": "New Excalibur, Vol. 1: Defenders of the Realm",
+      "sourceGroup": "Psylocke and Storm",
+      "normalizedSeriesTitle": "New Excalibur",
+      "seriesYear": 2005,
+      "issueNumber": "3",
+      "seriesId": 935,
+      "candidateIssueId": 3373,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        3373
+      ],
+      "selectedIssueId": 3373,
+      "selectedIssueIds": [
+        3373
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/3373/new_excalibur_2005_3",
+      "resolvedIssueTitle": "New Excalibur (2005) #3",
+      "metadataIssueNumber": "3",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 30,
+      "sourceIssueReference": "New Excalibur #6",
+      "sourceRangeReference": "New Excalibur, Vol. 1: Defenders of the Realm",
+      "sourceGroup": "Psylocke and Storm",
+      "normalizedSeriesTitle": "New Excalibur",
+      "seriesYear": 2005,
+      "issueNumber": "6",
+      "seriesId": 935,
+      "candidateIssueId": 4030,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        4030
+      ],
+      "selectedIssueId": 4030,
+      "selectedIssueIds": [
+        4030
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/4030/new_excalibur_2005_6",
+      "resolvedIssueTitle": "New Excalibur (2005) #6",
+      "metadataIssueNumber": "6",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 31,
+      "sourceIssueReference": "New Excalibur #7",
+      "sourceRangeReference": "New Excalibur, Vol. 1: Defenders of the Realm",
+      "sourceGroup": "Psylocke and Storm",
+      "normalizedSeriesTitle": "New Excalibur",
+      "seriesYear": 2005,
+      "issueNumber": "7",
+      "seriesId": 935,
+      "candidateIssueId": 4226,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        4226
+      ],
+      "selectedIssueId": 4226,
+      "selectedIssueIds": [
+        4226
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/4226/new_excalibur_2005_7",
+      "resolvedIssueTitle": "New Excalibur (2005) #7",
+      "metadataIssueNumber": "7",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 32,
+      "sourceIssueReference": "New Excalibur #8",
+      "sourceRangeReference": "New Excalibur, Vol. 2: Last Days of Camelot",
+      "sourceGroup": "Psylocke and Storm",
+      "normalizedSeriesTitle": "New Excalibur",
+      "seriesYear": 2005,
+      "issueNumber": "8",
+      "seriesId": 935,
+      "candidateIssueId": 4325,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        4325
+      ],
+      "selectedIssueId": 4325,
+      "selectedIssueIds": [
+        4325
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/4325/new_excalibur_2005_8",
+      "resolvedIssueTitle": "New Excalibur (2005) #8",
+      "metadataIssueNumber": "8",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 33,
+      "sourceIssueReference": "New Excalibur #19",
+      "sourceRangeReference": "New Excalibur, Vol. 3: Battle For Eternity",
+      "sourceGroup": "Psylocke and Storm",
+      "normalizedSeriesTitle": "New Excalibur",
+      "seriesYear": 2005,
+      "issueNumber": "19",
+      "seriesId": 935,
+      "candidateIssueId": 6264,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        6264
+      ],
+      "selectedIssueId": 6264,
+      "selectedIssueIds": [
+        6264
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6264/new_excalibur_2005_19",
+      "resolvedIssueTitle": "New Excalibur (2005) #19",
+      "metadataIssueNumber": "19",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 34,
+      "sourceIssueReference": "X-Men: Worlds Apart #1",
+      "sourceRangeReference": "X-Men: Worlds Apart",
+      "sourceGroup": "Psylocke and Storm",
+      "normalizedSeriesTitle": "X-Men: Worlds Apart",
+      "seriesYear": 2008,
+      "issueNumber": "1",
+      "seriesId": 6003,
+      "candidateIssueId": 22386,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        22386
+      ],
+      "selectedIssueId": 22386,
+      "selectedIssueIds": [
+        22386
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/22386/x-men_worlds_apart_2008_1",
+      "resolvedIssueTitle": "X-Men: Worlds Apart (2008) #1",
+      "metadataIssueNumber": "1",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 35,
+      "sourceIssueReference": "X-Men: Worlds Apart #2",
+      "sourceRangeReference": "X-Men: Worlds Apart",
+      "sourceGroup": "Psylocke and Storm",
+      "normalizedSeriesTitle": "X-Men: Worlds Apart",
+      "seriesYear": 2008,
+      "issueNumber": "2",
+      "seriesId": 6003,
+      "candidateIssueId": 22579,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        22579
+      ],
+      "selectedIssueId": 22579,
+      "selectedIssueIds": [
+        22579
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/22579/x-men_worlds_apart_2008_2",
+      "resolvedIssueTitle": "X-Men: Worlds Apart (2008) #2",
+      "metadataIssueNumber": "2",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 36,
+      "sourceIssueReference": "X-Men: Worlds Apart #3",
+      "sourceRangeReference": "X-Men: Worlds Apart",
+      "sourceGroup": "Psylocke and Storm",
+      "normalizedSeriesTitle": "X-Men: Worlds Apart",
+      "seriesYear": 2008,
+      "issueNumber": "3",
+      "seriesId": 6003,
+      "candidateIssueId": 22995,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        22995
+      ],
+      "selectedIssueId": 22995,
+      "selectedIssueIds": [
+        22995
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/22995/x-men_worlds_apart_2008_3",
+      "resolvedIssueTitle": "X-Men: Worlds Apart (2008) #3",
+      "metadataIssueNumber": "3",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 37,
+      "sourceIssueReference": "X-Men: Worlds Apart #4",
+      "sourceRangeReference": "X-Men: Worlds Apart",
+      "sourceGroup": "Psylocke and Storm",
+      "normalizedSeriesTitle": "X-Men: Worlds Apart",
+      "seriesYear": 2008,
+      "issueNumber": "4",
+      "seriesId": 6003,
+      "candidateIssueId": 23170,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        23170
+      ],
+      "selectedIssueId": 23170,
+      "selectedIssueIds": [
+        23170
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/23170/x-men_worlds_apart_2008_4",
+      "resolvedIssueTitle": "X-Men: Worlds Apart (2008) #4",
+      "metadataIssueNumber": "4",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 38,
+      "sourceIssueReference": "Uncanny X-Force (2010) #8",
+      "sourceRangeReference": "Uncanny X-Force by Rick Remender: The Complete Collection Volume 1",
+      "sourceGroup": "Psylocke and Storm",
+      "normalizedSeriesTitle": "Uncanny X-Force",
+      "seriesYear": 2010,
+      "issueNumber": "8",
+      "seriesId": 9976,
+      "candidateIssueId": 32595,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        32595
+      ],
+      "selectedIssueId": 32595,
+      "selectedIssueIds": [
+        32595
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/32595/uncanny_x-force_2010_8",
+      "resolvedIssueTitle": "Uncanny X-Force (2010) #8",
+      "metadataIssueNumber": "8",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 39,
+      "sourceIssueReference": "Uncanny X-Force (2010) #10",
+      "sourceRangeReference": "Uncanny X-Force by Rick Remender: The Complete Collection Volume 1",
+      "sourceGroup": "Psylocke and Storm",
+      "normalizedSeriesTitle": "Uncanny X-Force",
+      "seriesYear": 2010,
+      "issueNumber": "10",
+      "seriesId": 9976,
+      "candidateIssueId": 32574,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        32574
+      ],
+      "selectedIssueId": 32574,
+      "selectedIssueIds": [
+        32574
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/32574/uncanny_x-force_2010_10",
+      "resolvedIssueTitle": "Uncanny X-Force (2010) #10",
+      "metadataIssueNumber": "10",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 40,
+      "sourceIssueReference": "Uncanny X-Force #26",
+      "sourceRangeReference": "Uncanny X-Force by Rick Remender: The Complete Collection Volume 2",
+      "sourceGroup": "Psylocke and Storm",
+      "normalizedSeriesTitle": "Uncanny X-Force",
+      "seriesYear": 2010,
+      "issueNumber": "26",
+      "seriesId": 9976,
+      "candidateIssueId": 40443,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        40443
+      ],
+      "selectedIssueId": 40443,
+      "selectedIssueIds": [
+        40443
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/40443/uncanny_x-force_2010_26",
+      "resolvedIssueTitle": "Uncanny X-Force (2010) #26",
+      "metadataIssueNumber": "26",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 41,
+      "sourceIssueReference": "Uncanny X-Force #27",
+      "sourceRangeReference": "Uncanny X-Force by Rick Remender: The Complete Collection Volume 2",
+      "sourceGroup": "Psylocke and Storm",
+      "normalizedSeriesTitle": "Uncanny X-Force",
+      "seriesYear": 2010,
+      "issueNumber": "27",
+      "seriesId": 9976,
+      "candidateIssueId": 40447,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        40447
+      ],
+      "selectedIssueId": 40447,
+      "selectedIssueIds": [
+        40447
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/40447/uncanny_x-force_2010_27",
+      "resolvedIssueTitle": "Uncanny X-Force (2010) #27",
+      "metadataIssueNumber": "27",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 42,
+      "sourceIssueReference": "Uncanny X-Force #30",
+      "sourceRangeReference": "Uncanny X-Force by Rick Remender: The Complete Collection Volume 2",
+      "sourceGroup": "Psylocke and Storm",
+      "normalizedSeriesTitle": "Uncanny X-Force",
+      "seriesYear": 2010,
+      "issueNumber": "30",
+      "seriesId": 9976,
+      "candidateIssueId": 40442,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        40442
+      ],
+      "selectedIssueId": 40442,
+      "selectedIssueIds": [
+        40442
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/40442/uncanny_x-force_2010_30",
+      "resolvedIssueTitle": "Uncanny X-Force (2010) #30",
+      "metadataIssueNumber": "30",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 43,
+      "sourceIssueReference": "Uncanny X-Force #31",
+      "sourceRangeReference": "Uncanny X-Force by Rick Remender: The Complete Collection Volume 2",
+      "sourceGroup": "Psylocke and Storm",
+      "normalizedSeriesTitle": "Uncanny X-Force",
+      "seriesYear": 2010,
+      "issueNumber": "31",
+      "seriesId": 9976,
+      "candidateIssueId": 40449,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        40449
+      ],
+      "selectedIssueId": 40449,
+      "selectedIssueIds": [
+        40449
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/40449/uncanny_x-force_2010_31",
+      "resolvedIssueTitle": "Uncanny X-Force (2010) #31",
+      "metadataIssueNumber": "31",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 44,
+      "sourceIssueReference": "Uncanny X-Force #32",
+      "sourceRangeReference": "Uncanny X-Force by Rick Remender: The Complete Collection Volume 2",
+      "sourceGroup": "Psylocke and Storm",
+      "normalizedSeriesTitle": "Uncanny X-Force",
+      "seriesYear": 2010,
+      "issueNumber": "32",
+      "seriesId": 9976,
+      "candidateIssueId": 40438,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        40438
+      ],
+      "selectedIssueId": 40438,
+      "selectedIssueIds": [
+        40438
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/40438/uncanny_x-force_2010_32",
+      "resolvedIssueTitle": "Uncanny X-Force (2010) #32",
+      "metadataIssueNumber": "32",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 45,
+      "sourceIssueReference": "Uncanny X-Force #33",
+      "sourceRangeReference": "Uncanny X-Force by Rick Remender: The Complete Collection Volume 2",
+      "sourceGroup": "Psylocke and Storm",
+      "normalizedSeriesTitle": "Uncanny X-Force",
+      "seriesYear": 2010,
+      "issueNumber": "33",
+      "seriesId": 9976,
+      "candidateIssueId": 40439,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        40439
+      ],
+      "selectedIssueId": 40439,
+      "selectedIssueIds": [
+        40439
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/40439/uncanny_x-force_2010_33",
+      "resolvedIssueTitle": "Uncanny X-Force (2010) #33",
+      "metadataIssueNumber": "33",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 46,
+      "sourceIssueReference": "Uncanny X-Force #34",
+      "sourceRangeReference": "Uncanny X-Force by Rick Remender: The Complete Collection Volume 2",
+      "sourceGroup": "Psylocke and Storm",
+      "normalizedSeriesTitle": "Uncanny X-Force",
+      "seriesYear": 2010,
+      "issueNumber": "34",
+      "seriesId": 9976,
+      "candidateIssueId": 40446,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        40446
+      ],
+      "selectedIssueId": 40446,
+      "selectedIssueIds": [
+        40446
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/40446/uncanny_x-force_2010_34",
+      "resolvedIssueTitle": "Uncanny X-Force (2010) #34",
+      "metadataIssueNumber": "34",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 47,
+      "sourceIssueReference": "Nightcrawler #8",
+      "sourceRangeReference": "Nightcrawler Vol. 2: Reborn",
+      "sourceGroup": "Psylocke and Storm",
+      "normalizedSeriesTitle": "Nightcrawler",
+      "seriesYear": 2014,
+      "issueNumber": "8",
+      "seriesId": 18875,
+      "candidateIssueId": 50504,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        50504
+      ],
+      "selectedIssueId": 50504,
+      "selectedIssueIds": [
+        50504
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/50504/nightcrawler_2014_8",
+      "resolvedIssueTitle": "Nightcrawler (2014) #8",
+      "metadataIssueNumber": "8",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 48,
+      "sourceIssueReference": "Nightcrawler #9",
+      "sourceRangeReference": "Nightcrawler Vol. 2: Reborn",
+      "sourceGroup": "Psylocke and Storm",
+      "normalizedSeriesTitle": "Nightcrawler",
+      "seriesYear": 2014,
+      "issueNumber": "9",
+      "seriesId": 18875,
+      "candidateIssueId": 50505,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        50505
+      ],
+      "selectedIssueId": 50505,
+      "selectedIssueIds": [
+        50505
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/50505/nightcrawler_2014_9",
+      "resolvedIssueTitle": "Nightcrawler (2014) #9",
+      "metadataIssueNumber": "9",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 49,
+      "sourceIssueReference": "Nightcrawler #10",
+      "sourceRangeReference": "Nightcrawler Vol. 2: Reborn",
+      "sourceGroup": "Psylocke and Storm",
+      "normalizedSeriesTitle": "Nightcrawler",
+      "seriesYear": 2014,
+      "issueNumber": "10",
+      "seriesId": 18875,
+      "candidateIssueId": 50506,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        50506
+      ],
+      "selectedIssueId": 50506,
+      "selectedIssueIds": [
+        50506
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/50506/nightcrawler_2014_10",
+      "resolvedIssueTitle": "Nightcrawler (2014) #10",
+      "metadataIssueNumber": "10",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 50,
+      "sourceIssueReference": "Astonishing X-Men (2017) #1",
+      "sourceRangeReference": "Astonishing X-Men by Charles Soule Vol. 1: Life of X",
+      "sourceGroup": "Farouk and the Shadow King",
+      "normalizedSeriesTitle": "Astonishing X-Men",
+      "seriesYear": 2017,
+      "issueNumber": "1",
+      "seriesId": 23262,
+      "candidateIssueId": 63833,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        63833
+      ],
+      "selectedIssueId": 63833,
+      "selectedIssueIds": [
+        63833
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/63833/astonishing_x-men_2017_1",
+      "resolvedIssueTitle": "Astonishing X-Men (2017) #1",
+      "metadataIssueNumber": "1",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 51,
+      "sourceIssueReference": "Astonishing X-Men (2017) #2",
+      "sourceRangeReference": "Astonishing X-Men by Charles Soule Vol. 1: Life of X",
+      "sourceGroup": "Farouk and the Shadow King",
+      "normalizedSeriesTitle": "Astonishing X-Men",
+      "seriesYear": 2017,
+      "issueNumber": "2",
+      "seriesId": 23262,
+      "candidateIssueId": 64205,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        64205
+      ],
+      "selectedIssueId": 64205,
+      "selectedIssueIds": [
+        64205
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/64205/astonishing_x-men_2017_2",
+      "resolvedIssueTitle": "Astonishing X-Men (2017) #2",
+      "metadataIssueNumber": "2",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 52,
+      "sourceIssueReference": "Astonishing X-Men (2017) #3",
+      "sourceRangeReference": "Astonishing X-Men by Charles Soule Vol. 1: Life of X",
+      "sourceGroup": "Farouk and the Shadow King",
+      "normalizedSeriesTitle": "Astonishing X-Men",
+      "seriesYear": 2017,
+      "issueNumber": "3",
+      "seriesId": 23262,
+      "candidateIssueId": 64609,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        64609
+      ],
+      "selectedIssueId": 64609,
+      "selectedIssueIds": [
+        64609
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/64609/astonishing_x-men_2017_3",
+      "resolvedIssueTitle": "Astonishing X-Men (2017) #3",
+      "metadataIssueNumber": "3",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 53,
+      "sourceIssueReference": "Astonishing X-Men (2017) #4",
+      "sourceRangeReference": "Astonishing X-Men by Charles Soule Vol. 1: Life of X",
+      "sourceGroup": "Farouk and the Shadow King",
+      "normalizedSeriesTitle": "Astonishing X-Men",
+      "seriesYear": 2017,
+      "issueNumber": "4",
+      "seriesId": 23262,
+      "candidateIssueId": 64883,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        64883
+      ],
+      "selectedIssueId": 64883,
+      "selectedIssueIds": [
+        64883
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/64883/astonishing_x-men_2017_4",
+      "resolvedIssueTitle": "Astonishing X-Men (2017) #4",
+      "metadataIssueNumber": "4",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 54,
+      "sourceIssueReference": "Astonishing X-Men (2017) #5",
+      "sourceRangeReference": "Astonishing X-Men by Charles Soule Vol. 1: Life of X",
+      "sourceGroup": "Farouk and the Shadow King",
+      "normalizedSeriesTitle": "Astonishing X-Men",
+      "seriesYear": 2017,
+      "issueNumber": "5",
+      "seriesId": 23262,
+      "candidateIssueId": 65055,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        65055
+      ],
+      "selectedIssueId": 65055,
+      "selectedIssueIds": [
+        65055
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/65055/astonishing_x-men_2017_5",
+      "resolvedIssueTitle": "Astonishing X-Men (2017) #5",
+      "metadataIssueNumber": "5",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 55,
+      "sourceIssueReference": "Astonishing X-Men (2017) #6",
+      "sourceRangeReference": "Astonishing X-Men by Charles Soule Vol. 1: Life of X",
+      "sourceGroup": "Farouk and the Shadow King",
+      "normalizedSeriesTitle": "Astonishing X-Men",
+      "seriesYear": 2017,
+      "issueNumber": "6",
+      "seriesId": 23262,
+      "candidateIssueId": 65263,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        65263
+      ],
+      "selectedIssueId": 65263,
+      "selectedIssueIds": [
+        65263
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/65263/astonishing_x-men_2017_6",
+      "resolvedIssueTitle": "Astonishing X-Men (2017) #6",
+      "metadataIssueNumber": "6",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 56,
+      "sourceIssueReference": "Astonishing X-Men (2017) #11",
+      "sourceRangeReference": "Astonishing X-Men by Charles Soule Vol. 2: A Man Called X",
+      "sourceGroup": "Farouk and the Shadow King",
+      "normalizedSeriesTitle": "Astonishing X-Men",
+      "seriesYear": 2017,
+      "issueNumber": "11",
+      "seriesId": 23262,
+      "candidateIssueId": 67000,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        67000
+      ],
+      "selectedIssueId": 67000,
+      "selectedIssueIds": [
+        67000
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/67000/astonishing_x-men_2017_11",
+      "resolvedIssueTitle": "Astonishing X-Men (2017) #11",
+      "metadataIssueNumber": "11",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 57,
+      "sourceIssueReference": "Astonishing X-Men (2017) #12",
+      "sourceRangeReference": "Astonishing X-Men by Charles Soule Vol. 2: A Man Called X",
+      "sourceGroup": "Farouk and the Shadow King",
+      "normalizedSeriesTitle": "Astonishing X-Men",
+      "seriesYear": 2017,
+      "issueNumber": "12",
+      "seriesId": 23262,
+      "candidateIssueId": 67715,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        67715
+      ],
+      "selectedIssueId": 67715,
+      "selectedIssueIds": [
+        67715
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/67715/astonishing_x-men_2017_12",
+      "resolvedIssueTitle": "Astonishing X-Men (2017) #12",
+      "metadataIssueNumber": "12",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 58,
+      "sourceIssueReference": "Age Of X-Man: Prisoner X #1",
+      "sourceRangeReference": "Age Of X-Man: Prisoner X",
+      "sourceGroup": "Farouk and the Shadow King",
+      "normalizedSeriesTitle": "Age of X-Man: Prisoner X",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 26334,
+      "candidateIssueId": 72954,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        72954
+      ],
+      "selectedIssueId": 72954,
+      "selectedIssueIds": [
+        72954
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/72954/age_of_x-man_prisoner_x_2019_1",
+      "resolvedIssueTitle": "Age of X-Man: Prisoner X (2019) #1",
+      "metadataIssueNumber": "1",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 59,
+      "sourceIssueReference": "Age Of X-Man: Prisoner X #2",
+      "sourceRangeReference": "Age Of X-Man: Prisoner X",
+      "sourceGroup": "Farouk and the Shadow King",
+      "normalizedSeriesTitle": "Age of X-Man: Prisoner X",
+      "seriesYear": 2019,
+      "issueNumber": "2",
+      "seriesId": 26334,
+      "candidateIssueId": 72955,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        72955
+      ],
+      "selectedIssueId": 72955,
+      "selectedIssueIds": [
+        72955
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/72955/age_of_x-man_prisoner_x_2019_2",
+      "resolvedIssueTitle": "Age of X-Man: Prisoner X (2019) #2",
+      "metadataIssueNumber": "2",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 60,
+      "sourceIssueReference": "Age Of X-Man: Prisoner X #3",
+      "sourceRangeReference": "Age Of X-Man: Prisoner X",
+      "sourceGroup": "Farouk and the Shadow King",
+      "normalizedSeriesTitle": "Age of X-Man: Prisoner X",
+      "seriesYear": 2019,
+      "issueNumber": "3",
+      "seriesId": 26334,
+      "candidateIssueId": 72956,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        72956
+      ],
+      "selectedIssueId": 72956,
+      "selectedIssueIds": [
+        72956
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/72956/age_of_x-man_prisoner_x_2019_3",
+      "resolvedIssueTitle": "Age of X-Man: Prisoner X (2019) #3",
+      "metadataIssueNumber": "3",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 61,
+      "sourceIssueReference": "Age Of X-Man: Prisoner X #4",
+      "sourceRangeReference": "Age Of X-Man: Prisoner X",
+      "sourceGroup": "Farouk and the Shadow King",
+      "normalizedSeriesTitle": "Age of X-Man: Prisoner X",
+      "seriesYear": 2019,
+      "issueNumber": "4",
+      "seriesId": 26334,
+      "candidateIssueId": 72957,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        72957
+      ],
+      "selectedIssueId": 72957,
+      "selectedIssueIds": [
+        72957
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/72957/age_of_x-man_prisoner_x_2019_4",
+      "resolvedIssueTitle": "Age of X-Man: Prisoner X (2019) #4",
+      "metadataIssueNumber": "4",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 62,
+      "sourceIssueReference": "Age Of X-Man: Prisoner X #5",
+      "sourceRangeReference": "Age Of X-Man: Prisoner X",
+      "sourceGroup": "Farouk and the Shadow King",
+      "normalizedSeriesTitle": "Age of X-Man: Prisoner X",
+      "seriesYear": 2019,
+      "issueNumber": "5",
+      "seriesId": 26334,
+      "candidateIssueId": 72958,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        72958
+      ],
+      "selectedIssueId": 72958,
+      "selectedIssueIds": [
+        72958
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/72958/age_of_x-man_prisoner_x_2019_5",
+      "resolvedIssueTitle": "Age of X-Man: Prisoner X (2019) #5",
+      "metadataIssueNumber": "5",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 63,
+      "sourceIssueReference": "Empyre: X-Men (2020) #2",
+      "sourceRangeReference": "Empyre: X-Men",
+      "sourceGroup": "Farouk and the Shadow King",
+      "normalizedSeriesTitle": "Empyre: X-Men",
+      "seriesYear": 2020,
+      "issueNumber": "2",
+      "seriesId": 30527,
+      "candidateIssueId": 88647,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        88647
+      ],
+      "selectedIssueId": 88647,
+      "selectedIssueIds": [
+        88647
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/88647/empyre_x-men_2020_2",
+      "resolvedIssueTitle": "Empyre: X-Men (2020) #2",
+      "metadataIssueNumber": "2",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 64,
+      "sourceIssueReference": "New Mutants (2019) #14",
+      "sourceRangeReference": "New Mutants by Vita Ayala Vol. 1",
+      "sourceGroup": "Farouk and the Shadow King",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 2019,
+      "issueNumber": "14",
+      "seriesId": 27557,
+      "candidateIssueId": 91337,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        91337
+      ],
+      "selectedIssueId": 91337,
+      "selectedIssueIds": [
+        91337
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/91337/new_mutants_2019_14",
+      "resolvedIssueTitle": "New Mutants (2019) #14",
+      "metadataIssueNumber": "14",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 65,
+      "sourceIssueReference": "New Mutants (2019) #15",
+      "sourceRangeReference": "New Mutants by Vita Ayala Vol. 1",
+      "sourceGroup": "Farouk and the Shadow King",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 2019,
+      "issueNumber": "15",
+      "seriesId": 27557,
+      "candidateIssueId": 91338,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        91338
+      ],
+      "selectedIssueId": 91338,
+      "selectedIssueIds": [
+        91338
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/91338/new_mutants_2019_15",
+      "resolvedIssueTitle": "New Mutants (2019) #15",
+      "metadataIssueNumber": "15",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 66,
+      "sourceIssueReference": "New Mutants (2019) #16",
+      "sourceRangeReference": "New Mutants by Vita Ayala Vol. 1",
+      "sourceGroup": "Farouk and the Shadow King",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 2019,
+      "issueNumber": "16",
+      "seriesId": 27557,
+      "candidateIssueId": 91339,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        91339
+      ],
+      "selectedIssueId": 91339,
+      "selectedIssueIds": [
+        91339
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/91339/new_mutants_2019_16",
+      "resolvedIssueTitle": "New Mutants (2019) #16",
+      "metadataIssueNumber": "16",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 67,
+      "sourceIssueReference": "New Mutants (2019) #17",
+      "sourceRangeReference": "New Mutants by Vita Ayala Vol. 1",
+      "sourceGroup": "Farouk and the Shadow King",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 2019,
+      "issueNumber": "17",
+      "seriesId": 27557,
+      "candidateIssueId": 91340,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        91340
+      ],
+      "selectedIssueId": 91340,
+      "selectedIssueIds": [
+        91340
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/91340/new_mutants_2019_17",
+      "resolvedIssueTitle": "New Mutants (2019) #17",
+      "metadataIssueNumber": "17",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 68,
+      "sourceIssueReference": "New Mutants (2019) #18",
+      "sourceRangeReference": "New Mutants by Vita Ayala Vol. 1",
+      "sourceGroup": "Farouk and the Shadow King",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 2019,
+      "issueNumber": "18",
+      "seriesId": 27557,
+      "candidateIssueId": 91341,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        91341
+      ],
+      "selectedIssueId": 91341,
+      "selectedIssueIds": [
+        91341
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/91341/new_mutants_2019_18",
+      "resolvedIssueTitle": "New Mutants (2019) #18",
+      "metadataIssueNumber": "18",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 69,
+      "sourceIssueReference": "New Mutants (2019) #19",
+      "sourceRangeReference": "New Mutants By Vita Ayala Vol. 2",
+      "sourceGroup": "Farouk and the Shadow King",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 2019,
+      "issueNumber": "19",
+      "seriesId": 27557,
+      "candidateIssueId": 94084,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        94084
+      ],
+      "selectedIssueId": 94084,
+      "selectedIssueIds": [
+        94084
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/94084/new_mutants_2019_19",
+      "resolvedIssueTitle": "New Mutants (2019) #19",
+      "metadataIssueNumber": "19",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 70,
+      "sourceIssueReference": "New Mutants (2019) #20",
+      "sourceRangeReference": "New Mutants By Vita Ayala Vol. 2",
+      "sourceGroup": "Farouk and the Shadow King",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 2019,
+      "issueNumber": "20",
+      "seriesId": 27557,
+      "candidateIssueId": 94085,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        94085
+      ],
+      "selectedIssueId": 94085,
+      "selectedIssueIds": [
+        94085
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/94085/new_mutants_2019_20",
+      "resolvedIssueTitle": "New Mutants (2019) #20",
+      "metadataIssueNumber": "20",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 71,
+      "sourceIssueReference": "New Mutants (2019) #21",
+      "sourceRangeReference": "New Mutants By Vita Ayala Vol. 2",
+      "sourceGroup": "Farouk and the Shadow King",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 2019,
+      "issueNumber": "21",
+      "seriesId": 27557,
+      "candidateIssueId": 94086,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        94086
+      ],
+      "selectedIssueId": 94086,
+      "selectedIssueIds": [
+        94086
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/94086/new_mutants_2019_21",
+      "resolvedIssueTitle": "New Mutants (2019) #21",
+      "metadataIssueNumber": "21",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 72,
+      "sourceIssueReference": "New Mutants (2019) #22",
+      "sourceRangeReference": "New Mutants By Vita Ayala Vol. 2",
+      "sourceGroup": "Farouk and the Shadow King",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 2019,
+      "issueNumber": "22",
+      "seriesId": 27557,
+      "candidateIssueId": 94087,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        94087
+      ],
+      "selectedIssueId": 94087,
+      "selectedIssueIds": [
+        94087
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/94087/new_mutants_2019_22",
+      "resolvedIssueTitle": "New Mutants (2019) #22",
+      "metadataIssueNumber": "22",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 73,
+      "sourceIssueReference": "New Mutants (2019) #23",
+      "sourceRangeReference": "New Mutants By Vita Ayala Vol. 2",
+      "sourceGroup": "Farouk and the Shadow King",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 2019,
+      "issueNumber": "23",
+      "seriesId": 27557,
+      "candidateIssueId": 94088,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        94088
+      ],
+      "selectedIssueId": 94088,
+      "selectedIssueIds": [
+        94088
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/94088/new_mutants_2019_23",
+      "resolvedIssueTitle": "New Mutants (2019) #23",
+      "metadataIssueNumber": "23",
+      "resolutionStatus": "exact"
+    },
+    {
+      "sourcePosition": 74,
+      "sourceIssueReference": "New Mutants (2019) #24",
+      "sourceRangeReference": "New Mutants By Vita Ayala Vol. 2",
+      "sourceGroup": "Farouk and the Shadow King",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 2019,
+      "issueNumber": "24",
+      "seriesId": 27557,
+      "candidateIssueId": 94089,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        94089
+      ],
+      "selectedIssueId": 94089,
+      "selectedIssueIds": [
+        94089
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/94089/new_mutants_2019_24",
+      "resolvedIssueTitle": "New Mutants (2019) #24",
+      "metadataIssueNumber": "24",
+      "resolutionStatus": "exact"
+    }
+  ],
+  "mappingDigest": "88181a17e02e24196b2061a53b4707eae39e25adb35a47438189428696e462b1",
+  "reviewStatus": "approved",
+  "packetReview": "GPT-6 Astra coordinator reviewed the 74-position Shadow King source vector, including original Nightcrawler (2014) #8-10 and the Muir Island interleave, and all185 current source-library relationships. Eleven partial overlaps are explicitly approved without removing shared comics. Approval is bound to the recorded packet, mapping, report and library digests.",
+  "approvedManifest": {
+    "id": "shadow-king-reading-order",
+    "name": "Shadow King",
+    "description": "A complete Shadow King reading guide from Professor X's first clashes with Amahl Farouk through New Mutants (2019) #24, preserving the source article order and the Muir Island interleave.",
+    "type": "character-run",
+    "spotlightKind": "complete-guide",
+    "depth": "complete",
+    "beginner": false,
+    "coverIssueId": 12433,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "shadow-king-reading-order.md",
+    "sourcePage": "https://www.comicbookherald.com/shadow-king-reading-order/",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "shadow_king_reading_order.json",
+    "characters": [
+      "Shadow King",
+      "Amahl Farouk",
+      "Professor X",
+      "Psylocke",
+      "Storm",
+      "X-Men",
+      "New Mutants"
+    ],
+    "keywords": [
+      "Shadow King",
+      "Amahl Farouk",
+      "Professor X",
+      "Psylocke",
+      "Storm",
+      "X-Men",
+      "New Mutants",
+      "Comic Book Herald"
+    ],
+    "expect": 74,
+    "timeline": null
+  },
+  "relationshipReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+    "rationale": "The coordinator independently reviewed the 74 source-selected Shadow King originals, corrected the mistaken Nightcrawler volume to 2014, and examined all eleven shared-ID sets in the complete 185-order source-library report. The shared comics are required by the Shadow King cuts and remain in their source positions. Other guides cover distinct events, characters or broader X-Men routes; none is an exact or subset duplicate. The remaining comparisons have verified empty shared-ID sets.",
+    "reviewedAt": "2026-09-28T19:33:21.645Z",
+    "packetDigest": "f942d1d9112b7ffd00c033f6ae5fda3e8ecab8e242aad4fb2849ca78a5d384c3",
+    "mappingDigest": "88181a17e02e24196b2061a53b4707eae39e25adb35a47438189428696e462b1",
+    "reportDigest": "a00a07767a49651be1307919c915a1d6376bc8a43490099b0386e9c4e0810c40",
+    "libraryDigest": "ebd19b52c243b9a5e883fcfdb8e8f1469ea31fbcb23f3f5aab0b877107eaddd7",
+    "peerDigests": {},
+    "dispositions": [
+      {
+        "orderId": "abomination-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "absolute-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "adam-warlock-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "agatha-harkness-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "age-of-x-man",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "The source explicitly selects all five Age of X-Man: Prisoner X issues. Retain them in Shadow King's character route despite their inclusion in the broader event guide.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "agents-of-atlas-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "all-new-all-different-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "annihilation-conquest",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "ant-man-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "apocalypse-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "atlantis-attacks",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "avengers-defenders-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "avengers-disassembled",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "avengers-enemy-within",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "axis",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "best-ultron-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "black-panther-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "X-Men: Worlds Apart #1-4 is the source's explicit Shadow King cut. Its Wakanda-related overlap with Black Panther's guide does not replace this separate character sequence.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "black-widow-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "bloodties",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "captain-america-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "captain-america-reading-order-modern-marvel-era",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "captain-marvel-ms-marvel-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "chaos-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "childs-play",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "civil-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "civil-war-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "civil-war-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "clone-conspiracy",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "contest-of-champions",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "damnation",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "daredevil-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "dark-phoenix-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "dark-reign-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "dark-web",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "days-of-future-past",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "days-of-future-present",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "dead-mans-hand",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "deadpool-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "death-of-doctor-strange",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "devils-reign",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "doctor-doom-primer",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "doctor-octopus-otto-octavius-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "doctor-strange-multiverse-of-madness",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "doctor-strange-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "donny-cates-marvel-universe-reading-order-2017",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "doomwar",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "eighth-day",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "emma-frost-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "New Mutants (2019) #19 begins the source-selected second Vita Ayala collection. Keep that original in the full #19-24 sequence despite its single overlap with Emma Frost.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "essential-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "evolutionary-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "falcon-sam-wilson-captain-america-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "fall-house-x-rise-powers-x",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "fall-of-the-mutants",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "fantastic-four-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "fatal-attractions",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "generations",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "groot-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "guardians-of-the-galaxy-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "heroes-reborn-2021",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "heroic-age-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "hickman-full",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "hickman-minimal",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "hickman-x-men",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "house-of-m",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "house-of-m-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "hunt-for-wolverine",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "hunt-for-xavier",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "inferno",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "infinite-destinies",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "infinity-countdown-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "inhumans-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "inhumans-vs-x-men",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "iron-man-2020",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "iron-man-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "judgment-day",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "king-in-black",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "kravens-last-hunt",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "kree-skrull-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "last-annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "loki-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "magneto-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "The shared Uncanny X-Men, New Mutants, X-Factor #69 and Uncanny X-Force #8/#10 originals are explicit Shadow King selections. His first encounter, Karma material and Muir Island sequence remain intact within a guide distinct from Magneto's.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "magneto-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "marvel-2099",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "marvel-fresh-start-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "marvel-multiverse",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "marvel-super-heroes-secret-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "marvel-what-if",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "marvels-best-phoenix-comics",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "maximum-security",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "mephisto-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "messiah-complex",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "messiah-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "midnight-massacre",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "miles-morales-spider-man-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "minimum-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "modern-x-men-fast-track",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "All nine shared Uncanny X-Force (2010) issues are explicitly selected in the source's two Remender cuts. Preserve those selections rather than substituting the broader modern-X-Men route.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "monsters-unleashed",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "moon-knight-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "muir-island-saga",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Uncanny X-Men #278-280 and X-Factor #69 belong to the source's Muir Island cut. Preserve the source interleave, especially X-Factor #69 before Uncanny X-Men #280, within the wider Shadow King guide.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "mutant-massacre",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "mys-tech-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "necrosha",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "new-ultimate-universe",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "new-ultimate-universe-trades",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "nick-fury-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "operation-galactic-storm",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "operation-zero-tolerance",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "original-clone-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "phalanx-covenant",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "phalanx-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "phoenix-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "planet-hulk",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "punisher-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "question-of-the-week-do-you-have-a-hulk-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "reckoning-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "reed-richards-and-sue-storms-wedding",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "revolutionary-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "rise-of-the-midnight-sons",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "rocket-raccoon-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "runaways-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "scarlet-witch-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "second-coming",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "secret-invasion",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "secret-invasion-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "secret-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "secret-wars-ii",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "New Mutants #30 is part of the source's explicit #29-34 Shadow King cut. One overlapping event tie-in is not a duplicate route and must not be removed.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "setup-to-modern-timeline",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "shadowland",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "silent-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "silver-surfer-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "sins-of-sinister",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "spider-geddon",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "spider-gwen-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "spider-island",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "spider-man-2099-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "spider-man-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "spider-man-far-from-home",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "spider-man-identity-crisis",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "spider-man-no-way-home",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "spider-man-the-other",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "spider-verse",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "star-lord-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "thanos-imperative",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "thanos-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "thanos-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "the-defenders-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "the-night-gwen-stacy-died",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "the-vision-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "thor-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "time-and-time-again",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "ultimate-marvel-intro",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "venom-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "venomverse",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "wandavision",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "war-of-kings",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "war-of-the-realms",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "white-tiger-ava-ayala",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "winter-soldier-bucky-barnes-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "wolverine-goes-to-hell",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "wolverine-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "New Mutants #29-32 and Uncanny X-Force #8/#10 are source-required Shadow King originals. They remain in both distinct character guides.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "world-war-hulk-aftersmash",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "wraith-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "x-cutioners-song",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "x-force-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "The nine shared Remender-era Uncanny X-Force issues comprise explicit Shadow King selections, not an inferred whole run. Keep them within his wider source route as well as the team guide.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "x-men-age-of-x",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "x-men-battle-of-the-atom",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "x-men-curse-of-the-mutants",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "x-men-divided-we-stand",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "x-men-extermination",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "x-men-inferno",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "x-men-manifest-destiny",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "x-men-nation-x",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "x-men-regenesis",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "x-men-schism",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "x-men-trial-of-jean-grey",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "x-men-utopia",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "x-of-swords",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "x-termination",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "x-tinction-agenda",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "xmen-claremont",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Uncanny X-Men #117 and the seven selected early New Mutants issues establish the source's first Shadow King arcs. Their overlap with the Claremont route does not replace his later character-specific material.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "xmen-claremont-complete",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "The source requires Uncanny X-Men #117 and New Mutants #6/#29-34. Preserve these shared originals in Shadow King's distinct multi-era guide rather than treating the broader Claremont variant as interchangeable.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      },
+      {
+        "orderId": "young-avengers-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-28T19:33:21.645Z"
+      }
+    ],
+    "approvalDigest": "f16749a61513042387521a8d6e346ceec4386476865b1f68adf4262a0a6a2b7e"
+  }
+}
