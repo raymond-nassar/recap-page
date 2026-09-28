@@ -1894,15 +1894,30 @@
     "fp": "ff9ba71742d8b8c0",
     "head": "\"chapterCount\": 78,"
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:9963-10088|0": {
-    "anchor": "src/data/catalog.json:9963-10088",
-    "fp": "a679899453ea002c",
-    "head": "\"paths\": ["
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:1124-1168|0": {
+    "anchor": "src/data/catalog.json:1124-1168",
+    "fp": "a5996aca7e3915fe",
+    "head": "\"sourceSection\": \"The Last Annihilation Comics Checklist\","
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/curated-lists.json:6082-6120|0": {
-    "anchor": "src/data/curated-lists.json:6082-6120",
-    "fp": "e2b83d7abbcf68b9",
-    "head": "\"paths\": ["
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:358-372|0": {
+    "anchor": "src/data/catalog.json:358-372",
+    "fp": "f7c2d32f10705e78",
+    "head": "\"id\": \"x-men-battle-of-the-atom\","
+  },
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:5808-6175|0": {
+    "anchor": "src/data/catalog.json:5808-6175",
+    "fp": "0cecdd72ba8854f0",
+    "head": "\"id\": \"marvel-knights-to-planet-x-01\","
+  },
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/curated-lists.json:294-320|0": {
+    "anchor": "src/data/curated-lists.json:294-320",
+    "fp": "8b73faa613410416",
+    "head": "\"id\": \"x-men-battle-of-the-atom\","
+  },
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/curated-lists.json:926-954|0": {
+    "anchor": "src/data/curated-lists.json:926-954",
+    "fp": "ee8610594fcd01ea",
+    "head": "\"id\": \"death-of-doctor-strange\","
   },
   "docs/DATA_PROVENANCE.md|the-size-of-the-question-measured-and-what-was-d|src/js/views/issue.js:95|0": {
     "anchor": "src/js/views/issue.js:95",
@@ -6019,8 +6034,8 @@
     "fp": "2a5f696a4a2adc8e",
     "head": "be a heuristic about significance, and a heuristic about which anchors are worth counting is exactly"
   },
-  "scripts/check-counts.mjs|preamble|scripts/check-publication.mjs:184-188|0": {
-    "anchor": "scripts/check-publication.mjs:184-188",
+  "scripts/check-counts.mjs|preamble|scripts/check-publication.mjs:186-190|0": {
+    "anchor": "scripts/check-publication.mjs:186-190",
     "fp": "36abce5861d613b7",
     "head": "// A file git could not read is not a file that read clean. Read from the index enumerated by"
   },

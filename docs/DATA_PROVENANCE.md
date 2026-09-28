@@ -876,12 +876,13 @@ the book id out of an address the reader pastes.
 
 ## Reading-path provenance
 
-The generated catalog currently publishes three independent Reading Paths with 100 stops: two
-authored paths with 10 and 12 stops from the curated manifest at
-`src/data/curated-lists.json:6082-6120`, plus the 78-stop Marvel Knights to Planet X path generated
-from its owner chapter ledger at
-`scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all three at
-`src/data/catalog.json:9963-10088`.
+The generated catalog currently publishes three independent Reading Paths with 100 stops:
+X-Men: Battle of the Atom (10 stops) at `src/data/curated-lists.json:294-320`,
+The Death of Doctor Strange (12 stops) at `src/data/curated-lists.json:926-954`, and the
+78-stop Marvel Knights to Planet X path generated from its owner chapter ledger at
+`scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps the same
+three at `src/data/catalog.json:358-372`, `src/data/catalog.json:1124-1168`, and
+`src/data/catalog.json:5808-6175`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
