@@ -72,7 +72,7 @@ export async function prepareAndroid(output = ANDROID_ASSET_DIR) {
     filesIn(WEB),
     readFile(join(ROOT, 'package.json'), 'utf8'),
   ]);
-  for (const required of ['app.js', 'bridge.js', 'mobile.css', 'launch.css']) {
+  for (const required of ['app.js', 'bridge.js', 'mobile.css', 'launch.css', 'launcher.js', 'reader.js']) {
     if (!webPaths.includes(required)) throw new Error(`Missing Android entry asset: ${required}`);
   }
   const { version } = JSON.parse(packageText);
@@ -98,13 +98,21 @@ export async function prepareAndroid(output = ANDROID_ASSET_DIR) {
   }
   index = index.replace(stylesheet, `${stylesheet}\n    <link rel="stylesheet" href="./android/mobile.css" />`)
     .replace(entry, '<script type="module" src="./android/app.js"></script>');
+  const privacyHeading = '<h3>Your data</h3>';
+  if (index.split(privacyHeading).length !== 2) {
+    throw new Error('Shared privacy heading changed; Android disclosure needs review');
+  }
+  index = index.replace(privacyHeading, `${privacyHeading}
+              <p>In this Android prototype, Read also sends the digital issue ID to Marvel's Bifrost service to resolve an app link. Marvel sees the request and network address, not your saved lists, notes or read markers. The lookup is not stored by Recap Page. Open in browser remains available if the service or app cannot open the comic.</p>`);
   let launcher = await readFile(join(SOURCE, 'open.html'), 'utf8');
   const launchStylesheet = '<link rel="stylesheet" href="./open.css" />';
-  if (launcher.split(launchStylesheet).length !== 2) {
-    throw new Error('Shared launcher stylesheet changed; Android injection needs review');
+  const launchEntry = '<script type="module" src="./open.js"></script>';
+  if (launcher.split(launchStylesheet).length !== 2 || launcher.split(launchEntry).length !== 2) {
+    throw new Error('Shared launcher entry changed; Android injection needs review');
   }
   launcher = launcher.replace(launchStylesheet,
-    `${launchStylesheet}\n    <link rel="stylesheet" href="./android/launch.css" />`);
+    `${launchStylesheet}\n    <link rel="stylesheet" href="./android/launch.css" />`)
+    .replace(launchEntry, '<script type="module" src="./android/launcher.js"></script>');
   await cleanOwnedOutput(directory);
   const entries = [];
   for (const path of sharedPaths) {

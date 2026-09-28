@@ -41,6 +41,19 @@ public final class NavigationPolicyTest {
         check(!policy.isOfficialReader("https://read.marvel.com.evil/#/book/1"), "Reader lookalike");
         check(!policy.isOfficialReader("https://user@read.marvel.com/"), "Reader credentials");
         check(!policy.isOfficialReader("http://read.marvel.com/"), "No plain HTTP handoff");
+        String marvelIssue = "marvelunlimited://issue/drn:src:marvel:unison::prod:"
+                + "03baf094-d1bf-4eb6-8533-0840ebc0d0b9";
+        check(policy.isMarvelIssue(marvelIssue), "Exact Marvel DRN handoff");
+        for (String rejected : new String[] {
+                null, "", "marvelunlimited://reader/38811", marvelIssue.toUpperCase(),
+                marvelIssue + "/", marvelIssue + "?x=1", marvelIssue + "#fragment",
+                marvelIssue.replace("prod:", "stage:"), marvelIssue.replace("issue/", "user@issue/"),
+                marvelIssue.replace("issue/", "issue:443/"), marvelIssue.replace("drn:", "%64rn:"),
+                marvelIssue.replace("marvelunlimited:", "intent:"), "https://evil.example/" + marvelIssue
+        }) check(!policy.isMarvelIssue(rejected), "Reject app-link bypass: " + rejected);
+        check(policy.isPopupAsset("android/launcher.js"), "Android launcher entry permitted");
+        check(policy.isPopupAsset("android/reader.js"), "Android reader controller permitted");
+        check(!policy.isPopupAsset("android/app.js"), "Popup still has no app entry");
         check(policy.isNetworkSubresource("https://api.example/v1/issues/1"), "Configurable metadata");
         check(policy.isNetworkSubresource("https://i.annihil.us/cover.jpg"), "Cover network");
         check(policy.isNetworkSubresource("http://127.0.0.1:9999/v1/health"), "Existing loopback metadata mirror");

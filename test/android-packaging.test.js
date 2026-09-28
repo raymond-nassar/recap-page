@@ -62,6 +62,22 @@ test('Android generated assets and icons carry their producer tasks through the 
   assert.doesNotMatch(build, /sourceSets\.main\.(?:assets|res)\.srcDir/);
 });
 
+test('Android browser discovery is host-independent and retains all browser choices', async () => {
+  const activity = await readFile(new URL('../packaging/android/app/src/main/java/io/github/raymondnassar/recappage/prototype/MainActivity.java', import.meta.url), 'utf8');
+  const discovery = activity.match(/static ArrayList<ResolveInfo> readerBrowsers\(PackageManager manager\) \{([\s\S]*?)\n {4}\}/)?.[1];
+  assert.ok(discovery, 'Browser discovery must be separate from destination dispatch');
+  assert.match(discovery, /Uri\.parse\("https:"\)/);
+  assert.match(discovery, /addCategory\(Intent\.CATEGORY_DEFAULT\)/);
+  assert.match(discovery, /queryIntentActivities\(discovery,\s*PackageManager\.MATCH_ALL \| PackageManager\.GET_RESOLVED_FILTER\)/);
+  assert.doesNotMatch(discovery, /MATCH_DEFAULT_ONLY|marvel\.com|\burl\b/);
+  assert.match(discovery, /countDataAuthorities\(\) == 0/);
+  assert.match(discovery, /hasDataScheme\("https"\)/);
+  assert.doesNotMatch(activity, /handleAllWebDataURI/);
+  assert.ok(activity.includes('ArrayList<ResolveInfo> choices = readerBrowsers(getPackageManager());'));
+  assert.ok(activity.includes('new Intent(Intent.ACTION_VIEW, Uri.parse(url))'));
+  assert.ok(activity.includes('intent.setPackage(browser.activityInfo.packageName);'));
+});
+
 test('Android export permits only bounded text files and basenames', () => {
   assert.doesNotThrow(() => validateExport(file));
   assert.doesNotThrow(() => validateExport({ filename: 'my-list.md', type: 'text/markdown', text: '' }));
@@ -197,6 +213,14 @@ test('Android assets preserve every catalog payload and the shared feature modul
     assert.ok(generated.indexOf('styles.css') < generated.indexOf('android/mobile.css'));
     assert.doesNotMatch(generated, /src="\.\/js\/app\.js"/);
     assert.doesNotMatch(await readFile(join('src', 'index.html'), 'utf8'), /android\/(?:mobile\.css|app\.js)/);
+    assert.match(generated, /digital issue ID to Marvel's Bifrost service/);
+    const launcher = await readFile(join(output, 'open.html'), 'utf8');
+    assert.match(launcher, /src="\.\/android\/launcher\.js"/);
+    assert.doesNotMatch(launcher, /src="\.\/open\.js"/);
+    assert.match(await readFile(join('src', 'open.html'), 'utf8'), /src="\.\/open\.js"/);
+    for (const name of ['launcher.js', 'reader.js']) {
+      assert.deepEqual(await readFile(join(output, 'android', name)), await readFile(join('packaging', 'android', 'web', name)));
+    }
     await assert.rejects(readFile(join(output, 'dev-faults.html')), { code: 'ENOENT' });
   } finally {
     await rm(scratch, { recursive: true, force: true });

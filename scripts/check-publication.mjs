@@ -131,6 +131,16 @@ export const ALLOWED = new Map([
     `${file}|a session or workspace identifier|${STORE_PUBLISHER}`,
     'the exact public Microsoft Store package Publisher supplied by Partner Center',
   ]),
+  ...[
+    'test/android-marvel-launcher.test.js',
+    'packaging/android/app/src/test/java/io/github/raymondnassar/recappage/prototype/NavigationPolicyTest.java',
+  ].map((file) => [
+    `${file}|a session or workspace identifier|03baf094-d1bf-4eb6-8533-` + '0840ebc0d0b9',
+    'the public Marvel issue DRN from its share link, used to verify exact identifier handling',
+  ]),
+  ['packaging/android/app/src/androidTest/java/io/github/raymondnassar/recappage/prototype/NativeIntegrationTest.java'
+    + '|a session or workspace identifier|00000000-0000-4000-8000-' + '000000000099',
+  'the fabricated native reader fixture DRN, not a session, user or workspace identity'],
 ]);
 
 export function findings(label, text, sink) {

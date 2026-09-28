@@ -1,6 +1,6 @@
 # Recap Page privacy policy
 
-Last updated: 2026-09-02
+Last updated: 2026-09-28
 
 Recap Page is a local reading companion. There is no account, advertising, analytics, behavioral
 tracking, or telemetry. Reading progress, lists, notes, settings, availability overrides, and
@@ -27,6 +27,10 @@ Recap Page makes these direct requests when the related feature is used:
 - On startup, it asks the configured comics metadata service whether it is reachable.
 - Issue, series, and creator searches send the search terms or selected identity to that service.
 - Issue detail and reader-link lookups send the issue identity to that service.
+- In the Android prototype, opening an issue also sends its digital ID to
+  `bifrost.marvel.com` to resolve a Marvel Unlimited app link. This request omits credentials
+  and referrers, bypasses the HTTP cache, and is not saved in reading state. Marvel can see the
+  digital ID and network address. The launcher retains an **Open in browser** alternative.
 - Cover images load from Marvel's image host when cover art is enabled.
 - **Read** opens Marvel Unlimited when a direct reader link is known, or opens the issue page on
   marvel.com when no reader link can be resolved.

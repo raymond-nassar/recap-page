@@ -119,7 +119,10 @@ Recorded so a report can start from what is true rather than from what a scanner
   and falls back to the issue's page on marvel.com. Adding an issue by hand sends the words in the
   title box to the Marvel Fandom wiki, a community site Marvel does not run, and only when you press
   the lookup button; that wiki sees the title you searched for and is sent no cookie, no referrer
-  and nothing about your library. Your reading progress and your notes are never sent to any of them.
+  and nothing about your library. The Android prototype additionally sends the digital issue ID to
+  Marvel's Bifrost service when opening an issue. That anonymous, uncached lookup resolves the app
+  identifier; it sends no credentials or referrer and does not persist the response. Marvel can see
+  the digital ID and network address. Your reading progress and your notes are never sent to any of them.
   The app does not check or download software updates; Microsoft Store owns update delivery for the
   Store package.
 - Covers are requested from Marvel's image server and from no other host. The address is reported

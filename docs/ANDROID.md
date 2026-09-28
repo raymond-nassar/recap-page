@@ -46,10 +46,41 @@ unchanged. Touch navigation keeps screen-reader heading focus without drawing a 
 keyboard navigation retains visible focus. Wider Android windows retain inline list actions and
 the full breadcrumb trail. These changes do not alter the desktop app or saved data.
 
-**Read** keeps the existing local launch page and official Marvel URLs. The Android shell sends
-the resulting external URL to a browser or an installed handler chosen by Android. It does not
-sign in to Marvel, embed comic pages, or promise that Marvel's Android app will open a particular
-issue. The existing manual **Done, next** action still records progress.
+### Marvel Unlimited app links
+
+**Read** opens the isolated local launcher immediately. If the digital issue ID is missing, that
+launcher first asks the configured metadata service for it. It then asks Marvel's anonymous
+Bifrost legacy resolver for the app's issue identifier and opens only a validated issue link in
+the `com.marvel.unlimited` package. The combined lookup has an eight-second timeout; empty,
+ambiguous or invalid results and failed requests leave an explanation rather than a guessed link.
+
+The launcher stays open after the app handoff. Return to Recap Page to use **Open in browser**
+if Marvel Unlimited shows a loading error or the wrong screen. **Try Marvel Unlimited again**
+reuses the validated link without another lookup. Browser escape selects an installed browser,
+with a choice when several are available; it does not send the fallback back to an arbitrary
+app-link handler. Cancellation, a missing browser or a failed launch leaves the launcher usable.
+Choosing the browser while a lookup is pending cancels it and prevents a delayed app launch.
+
+Browser discovery uses a hostless HTTPS query and requests all browser choices. It does not use
+the comic's domain, so an approved app-link handler or a default browser cannot hide the other
+browser choices. The actual comic URL is attached only to the selected browser's launch.
+
+This does not sign in to Marvel, embed comic pages, or verify what Marvel's app rendered.
+Opening the app is not proof that the comic loaded. The existing manual **Done, next** action
+still records progress. Desktop launching is unchanged.
+
+The additional request sends the digital ID and exposes the network address to
+`bifrost.marvel.com`; it omits credentials and referrers and uses no-store. Recap Page does not
+save the returned identifier or send lists, notes or reading progress. The endpoint is
+undocumented: support, coverage and usage limits are not guaranteed. Browser escape remains
+available when the service, app or comic cannot be opened. See [the privacy policy](../PRIVACY.md).
+
+The resolver mechanism was discovered through
+[Naouak/reading-lists](https://github.com/Naouak/reading-lists/blob/158a6366269966c79fe3a4daeed89cace5edc9fa/backend/library/views/redirects.py),
+inspected on 2026-09-28. This implementation is independently authored; no upstream source was
+copied or translated. No source-reuse license was found for that repository, and this reference
+is discovery credit, not a claim of permission or affiliation. It does not establish terms for
+Marvel's service.
 
 ## Build and install
 
@@ -68,7 +99,7 @@ licenses using Android Studio or the SDK manager.
 From the repository root on Windows:
 
 ```powershell
-.\packaging\android\gradlew.bat -p packaging\android assembleDebug lintDebug policyTest
+.\packaging\android\gradlew.bat -p packaging\android assembleDebug assembleDebugAndroidTest lintDebug policyTest
 ```
 
 The Windows wrapper restores its checksum-verified Gradle launcher locally on first use; it
@@ -134,6 +165,10 @@ npm run anchors
 reading, restart persistence, export completion/cancellation, themes and dialog Back behavior.
 Its native-message transport is a test double, not an Android runtime.
 
+`npm run android:browser -- --only=launcher --viewport=412x915` checks the generated launcher's
+empty-result, invalid-identifier and offline explanations, browser escape, safe title rendering
+and unchanged reading state. It uses fabricated responses and never opens a real Marvel app.
+
 `npm run android:browser -- --only=mobile-ui` covers the reported phone layout defects with the
 bundled recommendation, full catalog and Hickman minimal guide. It adds a 1280x900 wide window
 and a 360x800 case with text tokens enlarged to 130%, alongside the three viewport sizes above.
@@ -169,7 +204,15 @@ The emulator uses real WebView and DocumentsUI for app and picker interactions. 
 traffic is blocked; fabricated reading state and an in-device loopback fixture supply test data.
 A test-only provider exercises exact-byte restore and write refusal. Reader destinations are
 asserted through intercepted Android intents, not by signing into Marvel or rendering comics.
-Those deliberate test doubles do not replace the production WebView clients or native message port.
+Those deliberate test doubles retain the production navigation policy and native message port.
+The reader test forwards through the real popup client while substituting only its fixed
+synthetic Bifrost response.
+
+The reader scenario also registers test-only browser and domain-handler activities. On the
+isolated emulator it temporarily selects Chrome as the browser default and approves the synthetic
+handler for the reader domain, then checks that browser escape still offers both browsers and
+opens the selected package. Browser-role and domain settings are restored in teardown, including
+after a failing assertion. These fixture activities are absent from the app APK.
 
 The job preserves test results, synthetic screenshots and emulator/WebView versions as a seven-day
 Actions artifact. It includes an installable APK only after all positive checks pass, never the
@@ -181,6 +224,10 @@ AndroidX dependencies are confined to the separate test APK. They are not shippe
 Emulator results do not complete the physical-device checklist below.
 
 ### Observed emulator result
+
+The historical result below predates the DRN app-link integration. It does not establish the
+new package-scoped handoff or browser-selection behavior; those require a fresh native run and
+physical-device acceptance.
 
 The [2026-09-26 post-review native CI run](https://github.com/raymond-nassar/recap-page/actions/runs/36278075103)
 passed on source revision `1ac382df149a52172fd53558ebf113492323a407`.
@@ -224,10 +271,14 @@ somebody performs them on a physical device:
 - [ ] Add a list, mark and defer issues, edit notes, search/add comics, change availability
   overrides, and confirm all existing actions remain reachable.
 - [ ] Open a known reader link and one needing metadata lookup. Confirm separate launches,
-  no opener access to the tracker, visible browser-handoff failures, and no remote document
-  rendered inside the app's WebViews.
+  no opener access to the tracker, one on-demand app-identifier lookup, visible lookup/launch
+  failures, and no remote document rendered inside the app's WebViews.
 - [ ] With a real subscription, confirm the correct comic opens and returning to Recap Page
-  keeps the current reading place. Record browser and Marvel-app handling separately.
+  keeps the current reading place. Check **Open in browser** from the retained launcher, including
+  after an app loading error; confirm a browser, not Marvel Unlimited, receives that action.
+  Record browser and Marvel-app handling separately.
+- [ ] With Marvel Unlimited absent or disabled, confirm a visible failure and working browser
+  escape. Do not uninstall an app holding important data merely for this check.
 - [ ] Save JSON, personal Markdown, order-only Markdown and an unreadable-data copy; inspect
   the files. Cancel a picker and exercise a failed write. Neither may be reported as saved.
 - [ ] Restore valid JSON, refuse oversized/invalid JSON, and use Undo last restore. Check that

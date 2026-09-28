@@ -4,6 +4,29 @@
         <package android:name="io.github.raymondnassar.recappage.prototype" />
     </queries>
     <application android:allowBackup="false">
+        <activity
+            android:name="io.github.raymondnassar.recappage.prototype.NativeIntegrationTest$BrowserFixture"
+            android:label="Recap browser fixture"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="io.github.raymondnassar.recappage.prototype.NativeIntegrationTest$DomainFixture"
+            android:label="Recap domain fixture"
+            android:exported="true">
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="https" android:host="read.marvel.com" />
+            </intent-filter>
+        </activity>
         <!-- Exported only in the test APK; the provider checks the caller's UID itself. -->
         <provider
             android:name="io.github.raymondnassar.recappage.prototype.FixtureDocumentProvider"
