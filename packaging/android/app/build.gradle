@@ -6,10 +6,7 @@ plugins {
 
 def repositoryRoot = rootProject.projectDir.toPath().resolve('../..').normalize().toFile()
 def metadata = new JsonSlurper().parse(new File(repositoryRoot, 'package.json'))
-def versionParts = metadata.version.tokenize('.').collect { it as int }
-if (versionParts.size() != 3 || versionParts.any { it < 0 || it > 999 } || versionParts[0] > 2000) {
-    throw new GradleException('Package version cannot be represented safely as an Android versionCode')
-}
+def betaRevision = 2
 
 android {
     namespace 'io.github.raymondnassar.recappage.prototype'
@@ -19,8 +16,9 @@ android {
         applicationId 'io.github.raymondnassar.recappage.prototype'
         minSdk 26
         targetSdk 36
-        versionCode versionParts[0] * 1000000 + versionParts[1] * 1000 + versionParts[2]
-        versionName metadata.version
+        // Beta 1 shipped as 3000001. Keep Android updates monotonic independently of desktop versions.
+        versionCode 3000000 + betaRevision
+        versionName "${metadata.version}-beta.${betaRevision}"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
     compileOptions {

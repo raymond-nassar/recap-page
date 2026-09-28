@@ -19,6 +19,7 @@ await prepareAndroid();
 const root = resolve(ANDROID_ASSET_DIR);
 const mime = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.svg': 'image/svg+xml', '.png': 'image/png', '.webmanifest': 'application/manifest+json' };
 const noStyle = process.argv.includes('--without-mobile-style');
+const mobileUi = process.argv.includes('--only=mobile-ui');
 const server = createServer(async (req, res) => {
   const path = new URL(req.url, 'http://127.0.0.1').pathname;
   if (path === LOCAL_SERVER_HEALTH_PATH) {
@@ -59,6 +60,21 @@ async function route(page, name) {
   await page.evaluate((view) => { location.hash = `#/${view}`; }, name);
   await page.waitForSelector(`#view-${name}:not([hidden])`);
 }
+async function backDialog(page) {
+  await page.evaluate(() => new Promise((resolve, reject) => {
+    const timeout = setTimeout(() => reject(new Error('Android Back did not close the dialog')), 5000);
+    document.querySelector('dialog[open]').addEventListener('close', () => {
+      clearTimeout(timeout);
+      resolve();
+    }, { once: true });
+    window.__androidTest.back();
+  }));
+}
+async function screenshot(page, label, surface) {
+  if (!process.env.MRT_ANDROID_SCREENSHOTS) return;
+  await mkdir(process.env.MRT_ANDROID_SCREENSHOTS, { recursive: true });
+  await page.screenshot({ path: join(process.env.MRT_ANDROID_SCREENSHOTS, `${label}-${surface}.png`) });
+}
 async function measure(page, label) {
   const result = await page.evaluate(() => {
     const visible = (node) => {
@@ -82,19 +98,206 @@ async function measure(page, label) {
   check(result.small.length === 0, `${label}: undersized targets ${JSON.stringify(result.small)}`);
 }
 
+async function mobileLayout(page, label, narrow) {
+  await page.waitForSelector('#home-recommended:not([hidden])');
+  if (narrow) {
+    const home = await page.evaluate(() => {
+      const card = document.querySelector('#home-recommended').getBoundingClientRect();
+      const copy = document.querySelector('#home-recommended .grow').getBoundingClientRect();
+      const button = document.querySelector('#btn-home-recommended').getBoundingClientRect();
+      return { fullWidth: copy.width >= card.width * .8, stacked: button.top >= copy.bottom };
+    });
+    check(home.fullWidth && home.stacked, `${label}: recommendation copy uses card width, action below copy`);
+  }
+  await measure(page, `${label} recommended Home`);
+  await screenshot(page, label, 'home');
+  await click(page, '#btn-rail-toggle');
+  await page.tap('#sidebar-panel [data-view="browse"]');
+  await page.waitForSelector('#view-browse:not([hidden])');
+  const focus = await page.$eval('#browse-h', (heading) => ({
+    focused: document.activeElement === heading,
+    outline: getComputedStyle(heading).outlineStyle,
+  }));
+  check(focus.focused && focus.outline === 'none', `${label}: touch navigation focuses heading without a rectangle`);
+  await page.keyboard.press('Tab');
+  await route(page, 'catalog');
+  check(await page.$eval('#catalog-h', (heading) => (
+    document.activeElement === heading && getComputedStyle(heading).outlineStyle !== 'none'
+  )), `${label}: keyboard navigation retains visible heading focus`);
+  await page.waitForSelector('#catalog-filters:not([hidden]) .fp');
+  const navigation = await page.evaluate(() => ({
+    parents: [...document.querySelectorAll('.breadcrumb a')].filter((link) => link.getClientRects().length).map((link) => link.hash),
+    current: !!document.querySelector('.breadcrumb [aria-current]')?.getClientRects().length,
+  }));
+  check(narrow
+    ? navigation.parents.length === 1 && navigation.parents[0] === '#/browse' && !navigation.current
+    : navigation.parents.length === 2 && navigation.current,
+  `${label}: ${narrow ? 'one parent destination without duplicated title' : 'wide breadcrumb hierarchy retained'}`);
+  if (narrow) {
+    const filters = await page.$eval('#catalog-filters', (group) => {
+      const boxes = [...group.querySelectorAll('.fp')].map((node) => node.getBoundingClientRect());
+      return { count: boxes.length, oneRow: boxes.every((box) => Math.abs(box.top - boxes[0].top) < 1) };
+    });
+    check(filters.count > 2 && filters.oneRow, `${label}: catalog facets occupy one scrollable row`);
+    await page.focus('#catalog-filters .fp:last-child input');
+    check(await page.$eval('#catalog-filters .fp:last-child', (node) => {
+      const box = node.getBoundingClientRect();
+      const group = node.closest('.filters').getBoundingClientRect();
+      return box.left >= group.left - 1 && box.right <= group.right + 1;
+    }), `${label}: keyboard focus reveals the last offscreen filter`);
+  }
+  await measure(page, `${label} catalog filters`);
+  await screenshot(page, label, 'catalog');
+  const allCards = await page.$$eval('#catalog-results .catalog-card', (cards) => cards.length);
+  await click(page, '#catalog-filters input[value="beginner"]');
+  await page.waitForFunction((total) => {
+    const count = document.querySelectorAll('#catalog-results .catalog-card').length;
+    return count > 0 && count < total;
+  }, {}, allCards);
+  check(await page.$eval('#catalog-filters input[value="beginner"]', (node) => node.checked),
+    `${label}: existing catalog filter still affects results`);
+  await click(page, '#catalog-filters input[value="all"]');
+  await page.type('#catalog-q', 'Secret Wars');
+  await page.tap('.breadcrumb li:nth-last-child(2) a');
+  await page.waitForSelector('#view-browse:not([hidden])');
+  check(await page.$eval('#browse-h', (heading) => getComputedStyle(heading).outlineStyle === 'none'),
+    `${label}: touch after typing also removes the heading rectangle`);
+  await route(page, 'catalog');
+  await click(page, '#catalog-clear');
+  await route(page, 'lines');
+  await click(page, 'button[data-act="import"][data-key="hickman-minimal"]');
+  await page.waitForFunction(() => JSON.parse(localStorage.getItem('mrt.state.v2'))?.listOrder.length === 1, { timeout: 5000 })
+    .catch(async (error) => {
+      console.error(await page.evaluate(() => ({
+        reports: [...document.querySelectorAll('.report')].map((node) => node.textContent).filter(Boolean),
+        state: localStorage.getItem('mrt.state.v2'),
+        route: location.hash,
+      })));
+      throw error;
+    });
+  await route(page, 'read');
+  await page.waitForSelector('#reading-body:not([hidden])');
+  await measure(page, `${label} Hickman Reading`);
+  await screenshot(page, label, 'reading');
+  const trigger = await page.$('#android-list-options');
+  check(!!trigger, `${label}: list management has a compact entry point`);
+  if (!trigger) return;
+  if (!narrow) {
+    check(!await trigger.isVisible() && await page.$eval('#btn-rename-list', (node) => !!node.getClientRects().length),
+      `${label}: wide list actions remain inline`);
+    return;
+  }
+  check(!await page.$eval('#btn-rename-list', (node) => !!node.getClientRects().length),
+    `${label}: management actions are hidden until requested`);
+  await click(page, '#android-list-options');
+  await page.waitForSelector('#android-list-sheet[open]');
+  await measure(page, `${label} list options sheet`);
+  await screenshot(page, label, 'options');
+  const sheet = await page.$eval('#android-list-sheet', (node) => {
+    const box = node.getBoundingClientRect();
+    return {
+      bottom: Math.abs(box.bottom - innerHeight) <= 1,
+      fits: box.top >= 0 && box.height <= innerHeight,
+      labelled: !!document.getElementById(node.getAttribute('aria-labelledby'))?.textContent,
+      vertical: getComputedStyle(node.querySelector('.list-tools')).flexDirection === 'column',
+    };
+  });
+  check(sheet.bottom && sheet.fits && sheet.labelled && sheet.vertical, `${label}: named bottom sheet fits viewport and stacks actions`);
+  await page.keyboard.down('Shift');
+  await page.keyboard.press('Tab');
+  await page.keyboard.up('Shift');
+  check(await page.$eval('#android-list-sheet', (node) => node.contains(document.activeElement)),
+    `${label}: sheet retains keyboard focus`);
+  await backDialog(page);
+  await page.waitForFunction(() => !document.querySelector('#android-list-sheet').open);
+  check(await page.$eval('#android-list-options', (node) => document.activeElement === node),
+    `${label}: Android Back closes sheet and restores trigger focus`);
+  for (const action of ['#btn-rename-list', '#btn-list-note', '#btn-delete-list']) {
+    await click(page, '#android-list-options');
+    await click(page, action);
+    await page.waitForSelector('#ask[open]', { timeout: 5000 }).catch(async (error) => {
+      console.error(action, await page.evaluate(() => ({
+        dialogs: [...document.querySelectorAll('dialog[open]')].map((node) => node.id),
+        focus: document.activeElement.id,
+        tools: document.querySelector('.list-tools').parentElement.id,
+      })));
+      throw error;
+    });
+    const oneDialog = await page.$$eval('dialog[open]', (dialogs) => dialogs.length === 1);
+    check(oneDialog, `${label}: ${action} closes sheet before its existing dialog`);
+    if (!oneDialog) return;
+    await backDialog(page);
+    await page.waitForFunction(() => !document.querySelector('#ask').open);
+    check(await page.$eval('#android-list-options', (node) => document.activeElement === node),
+      `${label}: ${action} cancellation returns to visible list options`);
+  }
+  check(await page.evaluate(() => {
+    const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+    return state.listOrder.length === 1 && state.lists[state.listOrder[0]].name === 'Hickman to Secret Wars: minimal';
+  }), `${label}: cancelling management leaves the list intact`);
+  await click(page, '#android-list-options');
+  await click(page, '#list-export > summary');
+  await click(page, '#btn-export-order');
+  await page.waitForSelector('#ask[open]');
+  check(await page.$$eval('dialog[open]', (dialogs) => dialogs.length === 1),
+    `${label}: nested export opens only the existing confirmation`);
+  await backDialog(page);
+  await page.waitForFunction(() => !document.querySelector('#ask').open);
+  await click(page, '#android-list-options');
+  await click(page, '#list-export > summary');
+  await click(page, '#btn-export-md');
+  await page.waitForSelector('#markdown-export[open]');
+  check(await page.$$eval('dialog[open]', (dialogs) => dialogs.length === 1),
+    `${label}: personal checklist dialog does not stack over list options`);
+  await backDialog(page);
+  await click(page, '#android-list-options');
+  const backdrop = await page.$eval('#android-list-sheet', (node) => node.getBoundingClientRect().top);
+  await page.touchscreen.tap(2, Math.max(1, backdrop / 2));
+  await page.waitForFunction(() => !document.querySelector('#android-list-sheet').open);
+  check(await page.$eval('#android-list-options', (node) => document.activeElement === node),
+    `${label}: tapping the backdrop closes the sheet without changing the list`);
+  await click(page, '#android-list-options');
+  await page.keyboard.press('Escape');
+  await page.waitForFunction(() => !document.querySelector('#android-list-sheet').open);
+  await click(page, '#view-read details.full > summary');
+  await page.waitForSelector('#rows .row');
+  await click(page, '#btn-hero-done');
+  await click(page, '#reading-filters input[value="read"]');
+  check(await page.$$eval('#rows .row', (rows) => rows.length === 1), `${label}: original reading filter selects the one read issue`);
+  check(await page.evaluate(() => location.hash.includes('filter=read')), `${label}: reading filter remains addressable`);
+  await page.goBack();
+  await page.waitForFunction(() => document.querySelector('#reading-filters input[value="all"]').checked);
+  check(await page.$$eval('#rows .row', (rows) => rows.length > 1), `${label}: Back restores the reading filter and rows`);
+  await click(page, '#android-list-options');
+  await route(page, 'browse');
+  check(await page.$eval('#android-list-sheet', (node) => !node.open),
+    `${label}: navigating away dismisses list options`);
+  await route(page, 'read');
+  await click(page, '#android-list-options');
+  await page.setViewport({ width: 1280, height: 900, isMobile: true, hasTouch: true });
+  await page.waitForFunction(() => !document.querySelector('#android-list-sheet').open);
+  check(await page.$eval('#reading-body > .list-tools', (node) => !!node.getClientRects().length),
+    `${label}: widening restores original actions outside the sheet`);
+}
+
 try {
   browser = await puppeteer.launch({ executablePath: edge, headless: !process.env.MRT_HEADED, args: ['--no-first-run', '--no-default-browser-check'] });
-  for (const viewport of [{ width: 360, height: 800 }, { width: 412, height: 915 }, { width: 800, height: 360 }]) {
+  let viewports = [{ width: 360, height: 800 }, { width: 412, height: 915 }, { width: 800, height: 360 }];
+  if (mobileUi) viewports.push({ width: 360, height: 800, textScale: 1.3 }, { width: 1280, height: 900 });
+  const onlyViewport = process.argv.find((arg) => arg.startsWith('--viewport='))?.slice('--viewport='.length);
+  if (onlyViewport) viewports = viewports.filter((viewport) => `${viewport.width}x${viewport.height}` === onlyViewport && !viewport.textScale);
+  assert.ok(viewports.length, `Unknown viewport: ${onlyViewport}`);
+  for (const viewport of viewports) {
     const context = await browser.createBrowserContext();
     const page = await context.newPage();
     const errors = [];
-    page.on('pageerror', (error) => errors.push(error.message));
+    page.on('pageerror', (error) => { errors.push(error.message); console.error(error.message); });
     await page.setViewport({ ...viewport, isMobile: true, hasTouch: true, deviceScaleFactor: 1 });
     await page.setRequestInterception(true);
     page.on('request', (request) => {
       if (request.url().startsWith(origin)) {
         if (request.url().endsWith('/data/catalog.json')) {
-          return request.respond({ status: 200, contentType: 'application/json', body: JSON.stringify({ ...catalog, lists: [orderEntry] }) });
+          return request.respond({ status: 200, contentType: 'application/json', body: JSON.stringify(mobileUi ? catalog : { ...catalog, lists: [orderEntry] }) });
         }
         return request.continue();
       }
@@ -127,7 +330,22 @@ try {
       });
     });
     await page.goto(origin, { waitUntil: 'networkidle0' });
-    const label = `${viewport.width}x${viewport.height}`;
+    if (viewport.textScale) {
+      await page.evaluate((scale) => {
+        for (const name of ['--t-caption', '--t-body', '--t-body-lg', '--t-subtitle', '--t-title', '--t-title-lg']) {
+          const value = parseFloat(getComputedStyle(document.documentElement).getPropertyValue(name));
+          document.documentElement.style.setProperty(name, `${value * scale}px`);
+        }
+      }, viewport.textScale);
+    }
+    const label = `${viewport.width}x${viewport.height}${viewport.textScale ? ' 130% text' : ''}`;
+    if (mobileUi) {
+      await mobileLayout(page, label, viewport.width <= 880);
+      check(errors.length === 0, `${label}: page errors ${errors.join('; ')}`);
+      console.log(`CHECKED ${label}: reported mobile layouts and interaction contracts`);
+      await context.close();
+      continue;
+    }
     await measure(page, `${label} Home`);
     if (noStyle) {
       assert.equal(failures.length, 0, failures.join('\n'));

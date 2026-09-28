@@ -13,6 +13,15 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Make the Android phone interface easier to use
+
+The recommended-start card now gives its text the full width and puts its button underneath.
+Reading List management moves into a **List options** bottom sheet, breadcrumbs become a single
+parent link on narrow screens, and filters use one horizontally scrollable row. Touch navigation
+no longer leaves focus rectangles around page titles; keyboard focus remains visible.
+These changes are confined to the Android prototype. Desktop behavior and saved reading data
+are unchanged.
+
 ### Added an optional Android prototype
 
 An isolated Android project bundles the shared app with larger text and touch targets, native

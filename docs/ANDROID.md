@@ -27,6 +27,25 @@ Lists, notes, availability overrides and reading progress keep their existing be
 Bundled reading lists work offline. Metadata lookups and opening Marvel's reader still require
 an internet connection. The app does not download comics or add offline comic reading.
 
+### Phone navigation and controls
+
+On narrow Android screens, the recommended-start card puts its button below the full-width copy.
+The link above a page title goes to its immediate parent, such as **Browse** or **Library**,
+instead of repeating the whole breadcrumb trail and current title. Android Back still follows
+your navigation history; the parent link goes to the named destination.
+
+On a Reading List, **List options** opens a bottom sheet for renaming, notes, duplication,
+exports, metadata and deletion. Export choices expand inside the sheet. Choosing an action
+closes the sheet before opening any existing editor or confirmation. **Close**, Android Back,
+Escape and tapping outside dismiss the sheet without performing an action.
+
+Filters use a single horizontally scrollable row of compact chips. Swipe the row to reach more
+choices; keyboard focus also scrolls its choice into view. The selected chip has an underline
+as well as its existing color treatment. Filter meanings, counts and reading-filter history are
+unchanged. Touch navigation keeps screen-reader heading focus without drawing a focus rectangle;
+keyboard navigation retains visible focus. Wider Android windows retain inline list actions and
+the full breadcrumb trail. These changes do not alter the desktop app or saved data.
+
 **Read** keeps the existing local launch page and official Marvel URLs. The Android shell sends
 the resulting external URL to a browser or an installed handler chosen by Android. It does not
 sign in to Marvel, embed comic pages, or promise that Marvel's Android app will open a particular
@@ -69,7 +88,13 @@ with the generated APK path and an explicitly selected test device.
 This is a debug build, not a production-signed release. Keep the same signing key and application
 ID when updating an existing test installation. A different signature cannot update it in place;
 **export a backup before uninstalling**. Build outputs, SDK paths and signing keys must stay out
-of Git. No store upload or public release is part of this prototype.
+of Git. Prototype downloads are published as Android-only GitHub prereleases, not store uploads.
+
+Android beta packages have their own release revision in the app's Gradle configuration. Beta 2
+uses version name `3.0.1-beta.2` and version code `3000002`; each later Android beta must increment
+that revision, even if the shared desktop version changes. The in-app About page continues to
+identify the shared app version, `3.0.1`. Quote the APK filename or Android package version as
+well when reporting a beta problem.
 
 Dependabot watches the Android Gradle toolchain separately. When updating Gradle, review both the
 distribution checksum and the wrapper checksum/bootstrap version together, then rerun the APK
@@ -108,6 +133,14 @@ npm run anchors
 360x800, 412x915 and 800x360. It checks type size, touch targets, page overflow, navigation,
 reading, restart persistence, export completion/cancellation, themes and dialog Back behavior.
 Its native-message transport is a test double, not an Android runtime.
+
+`npm run android:browser -- --only=mobile-ui` covers the reported phone layout defects with the
+bundled recommendation, full catalog and Hickman minimal guide. It adds a 1280x900 wide window
+and a 360x800 case with text tokens enlarged to 130%, alongside the three viewport sizes above.
+It checks recommendation geometry, touch versus keyboard focus, parent links, filter scrolling,
+list-sheet dismissal and editor handoff. The text-token case is a browser layout stress check,
+not a simulation of Android's native font scaling. Use `--viewport=360x800` to isolate that
+normal-text case while iterating.
 
 Like the existing browser suite, it uses `puppeteer-core` installed **outside** the repository.
 Set `MRT_PUPPETEER` to its absolute entry file and `MRT_EDGE` to the installed browser executable
@@ -204,6 +237,9 @@ somebody performs them on a physical device:
 - [ ] Back cancels a dialog, closes navigation, follows reading history, then leaves the app.
 - [ ] Check portrait and landscape, light and dark themes, larger system fonts, display cutouts,
   gesture and three-button navigation, and fields near the bottom with the keyboard open.
+- [ ] Recheck the Galaxy S26 reports: full-width Home recommendation, compact parent links,
+  no heading rectangle after touch navigation, scrollable filters, and List options with working
+  editors, exports, cancellation and Back.
 - [ ] Confirm the installed package's backup/transfer exclusions and document-provider behavior.
 
 Do not mark this checklist complete using resized-browser screenshots or a successful build alone.

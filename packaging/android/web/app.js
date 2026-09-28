@@ -1,6 +1,7 @@
 import { boot } from '../js/main.js';
 import { setDownloadHandler } from '../js/lib/download.js';
 import { createAndroidBridge } from './bridge.js';
+import { wireMobileUi } from './mobile-ui.js';
 
 const report = document.createElement('p');
 report.id = 'android-report';
@@ -35,3 +36,4 @@ const bridge = createAndroidBridge({
 setDownloadHandler(bridge.save);
 // The APK already contains the offline shell. A service worker could retain files from an older APK.
 boot();
+wireMobileUi();
