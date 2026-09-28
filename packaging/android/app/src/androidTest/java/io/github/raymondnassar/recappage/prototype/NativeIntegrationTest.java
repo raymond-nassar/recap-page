@@ -6,6 +6,7 @@ import static androidx.test.espresso.intent.matcher.IntentMatchers.hasAction;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasCategories;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasData;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasExtra;
+import static androidx.test.espresso.intent.matcher.IntentMatchers.hasPackage;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasType;
 import static org.hamcrest.Matchers.allOf;
 import static org.junit.Assert.assertArrayEquals;
@@ -21,6 +22,8 @@ import android.app.Activity;
 import android.app.Instrumentation;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.content.res.Configuration;
 import android.graphics.Insets;
 import android.net.Uri;
@@ -36,6 +39,9 @@ import android.view.ViewGroup;
 import android.view.WindowInsets;
 import android.view.inspector.WindowInspector;
 import android.webkit.WebView;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebResourceResponse;
+import android.webkit.WebViewClient;
 
 import androidx.test.core.app.ActivityScenario;
 import androidx.test.espresso.intent.Intents;
@@ -59,6 +65,7 @@ import org.junit.runner.Description;
 import org.junit.runner.RunWith;
 
 import java.io.File;
+import java.io.ByteArrayInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.lang.reflect.Field;
@@ -73,6 +80,7 @@ import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Pattern;
 
 @RunWith(AndroidJUnit4.class)
@@ -99,6 +107,10 @@ public final class NativeIntegrationTest {
     private boolean restartProbe;
     private WebView lastTapTarget;
     private JSONObject lastTapRecord;
+    private List<String> originalBrowserRole;
+
+    public static final class BrowserFixture extends Activity {}
+    public static final class DomainFixture extends Activity {}
 
     @Rule
     public final TestWatcher outcome = new TestWatcher() {
@@ -190,15 +202,19 @@ public final class NativeIntegrationTest {
                     if (intentsInitialized) Intents.release();
                 } finally {
                     if (device != null) {
-                        device.unfreezeRotation();
-                        for (Map.Entry<String, String> setting : originalSettings.entrySet()) {
-                            String value = setting.getValue();
-                            if ("null".equals(value)) {
-                                device.executeShellCommand("settings delete system " + setting.getKey());
-                            } else {
-                                assertTrue("Only numeric emulator settings are restored",
-                                        value.matches("-?[0-9]+(?:\\.[0-9]+)?"));
-                                device.executeShellCommand("settings put system " + setting.getKey() + " " + value);
+                        try {
+                            restoreBrowserPreferences();
+                        } finally {
+                            device.unfreezeRotation();
+                            for (Map.Entry<String, String> setting : originalSettings.entrySet()) {
+                                String value = setting.getValue();
+                                if ("null".equals(value)) {
+                                    device.executeShellCommand("settings delete system " + setting.getKey());
+                                } else {
+                                    assertTrue("Only numeric emulator settings are restored",
+                                            value.matches("-?[0-9]+(?:\\.[0-9]+)?"));
+                                    device.executeShellCommand("settings put system " + setting.getKey() + " " + value);
+                                }
                             }
                         }
                     }
@@ -363,6 +379,7 @@ public final class NativeIntegrationTest {
 
     @Test
     public void readerPopupAndExternalIntent() throws Exception {
+        configureBrowserPreferences();
         server = new FixtureMetadataServer();
         seed(true);
         route("read");
@@ -380,27 +397,185 @@ public final class NativeIntegrationTest {
         assertEquals("Exactly one synthetic lookup", 1, server.issueRequests.get());
         assertEquals("No outgoing intent precedes the completed lookup", 0, countIntents(Intent.ACTION_VIEW));
         assertSame("Creating the child must not replace the main native endpoint", nativeEndpoint, nativePort());
-        assertTrue("Launcher never loads the Android entry or bridge module",
-                truth(popup, "[...document.scripts].every(s => !s.src.includes('/android/'))"
+        assertTrue("Launcher loads only its isolated Android entry, not the app or native bridge",
+                truth(popup, "[...document.scripts].some(s => s.src.endsWith('/android/launcher.js'))"
+                        + " && [...document.scripts].every(s => !/\\/android\\/(app|bridge)\\.js$/.test(s.src))"
                         + " && !document.querySelector('#android-report')"));
         assertTrue("Popup cannot fetch the native bridge from the local asset boundary",
                 (Boolean) asyncJs(popup, "const r=await fetch('/android/bridge.js');return r.status===403;"));
         screenshot("isolated-popup");
+        String appUrl = "marvelunlimited://issue/drn:src:marvel:unison::prod:"
+                + "00000000-0000-4000-8000-000000000099";
+        AtomicInteger appLookups = new AtomicInteger();
+        onMain(() -> {
+            WebViewClient delegate = popup.getWebViewClient();
+            assertTrue(web.getWebViewClient().shouldOverrideUrlLoading(web, readerRequest(appUrl, true)));
+            assertTrue(delegate.shouldOverrideUrlLoading(popup, readerRequest(appUrl, false)));
+            assertTrue(delegate.shouldOverrideUrlLoading(web, readerRequest(appUrl, true)));
+            popup.setWebViewClient(new WebViewClient() {
+                @Override
+                public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
+                    if (!request.isForMainFrame() && request.getMethod().equals("GET")
+                            && request.getUrl().toString().equals(
+                                    "https://bifrost.marvel.com/unison/legacy?digitalId=900000099")) {
+                        appLookups.incrementAndGet();
+                        String body = "{\"data\":{\"dynamicQueryOrError\":{\"entity\":{\"contents\":["
+                                + "{\"content\":{\"id\":\"" + appUrl.substring("marvelunlimited://issue/".length())
+                                + "\"}}]}}}}";
+                        return new WebResourceResponse("application/json", "UTF-8", 200, "OK",
+                                Map.of("Access-Control-Allow-Origin", ORIGIN, "Cache-Control", "no-store"),
+                                new ByteArrayInputStream(body.getBytes(StandardCharsets.UTF_8)));
+                    }
+                    return delegate.shouldInterceptRequest(view, request);
+                }
+
+                @Override
+                public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                    return delegate.shouldOverrideUrlLoading(view, request);
+                }
+
+                @Override
+                public void onPageStarted(WebView view, String url, android.graphics.Bitmap icon) {
+                    delegate.onPageStarted(view, url, icon);
+                }
+
+                @Override
+                public void onPageFinished(WebView view, String url) {
+                    delegate.onPageFinished(view, url);
+                }
+            });
+            return null;
+        });
+        assertEquals("Valid URI is rejected from every disallowed caller context", 0, countIntents(Intent.ACTION_VIEW));
         server.releaseLookup.countDown();
-        waitFor("Official reader navigation becomes an intercepted ACTION_VIEW", WAIT_MS,
+        waitFor("Validated app link becomes an intercepted package-scoped ACTION_VIEW", WAIT_MS,
                 () -> countIntents(Intent.ACTION_VIEW) == 1);
         intended(allOf(hasAction(Intent.ACTION_VIEW), hasCategories(Collections.singleton(Intent.CATEGORY_BROWSABLE)),
-                hasData("https://read.marvel.com/#/book/900000099")));
-        waitFor("A successful handoff closes the native popup", WAIT_MS, () -> popupViews().isEmpty());
+                hasPackage("com.marvel.unlimited"), hasData(appUrl)));
+        waitFor("Native dispatch result reaches the retained launcher", WAIT_MS,
+                () -> truth(popup, "document.querySelector('#p').textContent.includes('was opened')"));
+        assertEquals("App handoff retains the fallback popup", 1, popupViews().size());
+        assertEquals("One on-demand Bifrost lookup", 1, appLookups.get());
+
+        assertTrue("Synthetic image must not install Marvel Unlimited for the missing-handler case",
+                device.executeShellCommand("pm path com.marvel.unlimited").trim().isEmpty());
+        Intents.release();
+        Intents.init();
+        intending(allOf(hasAction(Intent.ACTION_VIEW), hasData("https://read.marvel.com/#/book/900000099")))
+                .respondWith(new Instrumentation.ActivityResult(Activity.RESULT_OK, null));
+        tap(popup, "a[href^='marvelunlimited:']");
+        waitFor("Missing app produces a visible failure rather than a successful handoff", WAIT_MS,
+                () -> truth(popup, "document.querySelector('#p').textContent.includes('could not be opened')"));
+        assertEquals("Missing app retains popup", 1, popupViews().size());
+        assertEquals("Retry reuses the validated identifier", 1, appLookups.get());
+        tap(popup, "#fallback");
+        UiObject2 choices = device.wait(Until.findObject(By.clazz("android.widget.ListView")), 5000);
+        assertNotNull("Multiple browsers remain selectable despite the default and domain approval", choices);
+        assertNotNull("The second browser is present", choices.findObject(By.text("Recap browser fixture")));
+        String chromeLabel = onMain(() -> {
+            for (ResolveInfo match : MainActivity.readerBrowsers(activity.getPackageManager())) {
+                if (match.activityInfo.packageName.equals("com.android.chrome")) {
+                    return match.loadLabel(activity.getPackageManager()).toString();
+                }
+            }
+            throw new AssertionError("The pinned emulator image must include Chrome");
+        });
+        UiObject2 chrome = choices.findObject(By.text(chromeLabel));
+        assertNotNull("Default browser remains an explicit choice", chrome);
+        chrome.click();
+        waitFor("Selected browser handoff closes popup", WAIT_MS, () -> popupViews().isEmpty());
+        Intent browserIntent = Intents.getIntents().stream()
+                .filter(intent -> "https://read.marvel.com/#/book/900000099".equals(intent.getDataString()))
+                .findFirst().orElseThrow();
+        assertNotNull("Fallback explicitly targets a browser package", browserIntent.getPackage());
+        assertEquals("The actual comic goes to the selected browser, not its domain handler",
+                "com.android.chrome", browserIntent.getPackage());
+        assertTrue("Selected package is a general web browser", onMain(() ->
+                MainActivity.readerBrowsers(activity.getPackageManager()).stream()
+                        .anyMatch(info -> info.handleAllWebDataURI
+                                && info.activityInfo.packageName.equals(browserIntent.getPackage()))));
         assertSame("Main native endpoint survives the child lifecycle", nativeEndpoint, nativePort());
         assertFixture();
         assertNotNull("Main WebView remains attached", onMain(() -> web.getParent()));
         assertTrue("Loopback fixture server completed cleanly", server.failure == null);
         measurements.put("popupCount", 1).put("syntheticMetadataLookups", server.issueRequests.get())
-                .put("outgoingViewIntents", 1).put("externalBrowserRendered", false)
-                .put("destination", "https://read.marvel.com/#/book/900000099")
+                .put("syntheticAppLookups", appLookups.get()).put("appDispatchAttempts", 2)
+                .put("browserFallbackAttempts", 1).put("externalBrowserRendered", false)
+                .put("destination", appUrl).put("browserPackage", browserIntent.getPackage())
                 .put("popupOpenerNull", true).put("nativeEndpointUnchanged", true)
                 .put("popupBridgeAssetStatus", 403);
+    }
+
+    @SuppressWarnings("deprecation")
+    private void configureBrowserPreferences() throws Exception {
+        String fixturePackage = instrumentation.getContext().getPackageName();
+        originalBrowserRole = browserRoleHolders();
+        device.executeShellCommand("cmd role add-role-holder --user 0 android.app.role.BROWSER com.android.chrome");
+        assertEquals("Chrome is the synthetic default browser",
+                Collections.singletonList("com.android.chrome"), browserRoleHolders());
+        assertTrue("Discovery retains the test browser alongside the default browser", onMain(() -> {
+            List<ResolveInfo> browsers = MainActivity.readerBrowsers(activity.getPackageManager());
+            return browsers.stream().anyMatch(info -> info.activityInfo.packageName.equals(fixturePackage))
+                    && browsers.stream().anyMatch(info -> info.activityInfo.packageName.equals("com.android.chrome"));
+        }));
+        device.executeShellCommand("pm set-app-links --package " + fixturePackage + " 2 read.marvel.com");
+        assertTrue("Domain approval was set locally without contacting Marvel",
+                device.executeShellCommand("pm get-app-links " + fixturePackage)
+                        .contains("read.marvel.com: approved"));
+        List<ResolveInfo> domainResults = onMain(() -> activity.getPackageManager().queryIntentActivities(
+                new Intent(Intent.ACTION_VIEW, Uri.parse("https://read.marvel.com/#/book/900000099"))
+                        .addCategory(Intent.CATEGORY_BROWSABLE),
+                PackageManager.MATCH_DEFAULT_ONLY));
+        assertTrue("The destination-bound query reproduces browser suppression",
+                domainResults.stream().anyMatch(info -> info.activityInfo.packageName.equals(fixturePackage)
+                        && info.activityInfo.name.equals(DomainFixture.class.getName()))
+                        && domainResults.stream().noneMatch(info -> info.handleAllWebDataURI));
+        List<ResolveInfo> browsers = onMain(() -> MainActivity.readerBrowsers(activity.getPackageManager()));
+        assertTrue("Hostless discovery still returns both browser packages",
+                browsers.stream().anyMatch(info -> info.activityInfo.packageName.equals(fixturePackage))
+                        && browsers.stream().anyMatch(info -> info.activityInfo.packageName.equals("com.android.chrome")));
+        assertTrue("Domain-only activity is never a browser choice",
+                browsers.stream().noneMatch(info -> info.activityInfo.name.equals(DomainFixture.class.getName())));
+        measurements.put("browserDefault", "com.android.chrome").put("approvedDomainFixture", true)
+                .put("browserChoicesDespitePreferences", browsers.size());
+    }
+
+    private List<String> browserRoleHolders() throws Exception {
+        List<String> result = new ArrayList<>();
+        for (String line : device.executeShellCommand(
+                "cmd role get-role-holders --user 0 android.app.role.BROWSER").split("\\R")) {
+            if (line.isBlank()) continue;
+            assertTrue("Only package names enter browser-role commands", line.matches("[A-Za-z0-9_.]+"));
+            result.add(line);
+        }
+        return result;
+    }
+
+    private void restoreBrowserPreferences() throws Exception {
+        if (originalBrowserRole == null) return;
+        String fixturePackage = instrumentation.getContext().getPackageName();
+        try {
+            device.executeShellCommand("pm set-app-links --package " + fixturePackage + " 0 all");
+        } finally {
+            device.executeShellCommand("cmd role clear-role-holders --user 0 android.app.role.BROWSER");
+            for (String holder : originalBrowserRole) {
+                device.executeShellCommand("cmd role add-role-holder --user 0 android.app.role.BROWSER " + holder);
+            }
+            assertEquals("Browser role is restored after the regression scenario",
+                    originalBrowserRole, browserRoleHolders());
+            originalBrowserRole = null;
+        }
+    }
+
+    private static WebResourceRequest readerRequest(String url, boolean mainFrame) {
+        return new WebResourceRequest() {
+            @Override public Uri getUrl() { return Uri.parse(url); }
+            @Override public boolean isForMainFrame() { return mainFrame; }
+            @Override public boolean isRedirect() { return false; }
+            @Override public boolean hasGesture() { return true; }
+            @Override public String getMethod() { return "GET"; }
+            @Override public Map<String, String> getRequestHeaders() { return Collections.emptyMap(); }
+        };
     }
 
     @Test

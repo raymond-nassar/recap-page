@@ -13,6 +13,18 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Open Android reader links in Marvel Unlimited
+
+The Android prototype resolves an issue's app identifier when **Read** is pressed and attempts
+to open it in Marvel Unlimited. The launcher remains available with a browser-specific escape,
+including when the app opens but cannot load the comic. Missing identifiers, lookup failures
+and missing apps are reported explicitly. No manual issue mapping or new saved-data field is
+needed; desktop launching and reading progress are unchanged.
+
+This adds an anonymous direct request to Marvel's undocumented Bifrost service. The independently
+authored integration credits its discovery source in [the Android guide](docs/ANDROID.md).
+Service availability and correct rendering inside Marvel's app are not guaranteed.
+
 ### Make the Android phone interface easier to use
 
 The recommended-start card now gives its text the full width and puts its button underneath.

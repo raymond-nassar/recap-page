@@ -20,6 +20,7 @@ const root = resolve(ANDROID_ASSET_DIR);
 const mime = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.svg': 'image/svg+xml', '.png': 'image/png', '.webmanifest': 'application/manifest+json' };
 const noStyle = process.argv.includes('--without-mobile-style');
 const mobileUi = process.argv.includes('--only=mobile-ui');
+const launcherOnly = process.argv.includes('--only=launcher');
 const server = createServer(async (req, res) => {
   const path = new URL(req.url, 'http://127.0.0.1').pathname;
   if (path === LOCAL_SERVER_HEALTH_PATH) {
@@ -291,10 +292,23 @@ try {
     const context = await browser.createBrowserContext();
     const page = await context.newPage();
     const errors = [];
+    let lookupMode = 'empty';
+    let appLookups = 0;
     page.on('pageerror', (error) => { errors.push(error.message); console.error(error.message); });
     await page.setViewport({ ...viewport, isMobile: true, hasTouch: true, deviceScaleFactor: 1 });
     await page.setRequestInterception(true);
     page.on('request', (request) => {
+      if (request.url().startsWith('https://bifrost.marvel.com/')) {
+        appLookups++;
+        if (lookupMode === 'offline') return request.abort('failed');
+        return request.respond({
+          status: 200, contentType: 'application/json',
+          headers: { 'access-control-allow-origin': '*' },
+          body: JSON.stringify({ data: { dynamicQueryOrError: { entity: {
+            contents: lookupMode === 'empty' ? [] : [{ content: { id: 'https://untrusted.example/' } }],
+          } } } }),
+        });
+      }
       if (request.url().startsWith(origin)) {
         if (request.url().endsWith('/data/catalog.json')) {
           return request.respond({ status: 200, contentType: 'application/json', body: JSON.stringify(mobileUi ? catalog : { ...catalog, lists: [orderEntry] }) });
@@ -339,6 +353,32 @@ try {
       }, viewport.textScale);
     }
     const label = `${viewport.width}x${viewport.height}${viewport.textScale ? ' 130% text' : ''}`;
+    if (launcherOnly) {
+      const before = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      for (const mode of ['empty', 'malformed', 'offline']) {
+        lookupMode = mode;
+        await page.goto(`${origin}/open.html?d=38811&i=52986&t=${encodeURIComponent('<img> fixture')}`,
+          { waitUntil: 'networkidle0' });
+        await page.waitForFunction(() => document.querySelector('#p').textContent.includes('Could not resolve'));
+        check(new URL(page.url()).pathname === '/open.html', `${label} ${mode}: failure retains launcher`);
+        check(await page.$eval('#fallback', (node) => node.href === 'https://read.marvel.com/#/book/38811'
+          && node.textContent === 'Open in browser' && node.getBoundingClientRect().height >= 48),
+        `${label} ${mode}: readable browser escape preserves digital identity`);
+        check(await page.$$eval('a:not(#fallback)', (links) => links.every((node) => !node.getClientRects().length)),
+          `${label} ${mode}: no app action without a validated identifier`);
+        check(await page.$eval('#h', (node) => node.textContent.includes('<img>') && !node.querySelector('img')),
+          `${label} ${mode}: title remains text, not markup`);
+        check(await page.evaluate(() => window.opener === null && !document.querySelector('#android-report')),
+          `${label} ${mode}: isolated launcher disowns opener and has no main app bridge`);
+        check(await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === before,
+          `${label} ${mode}: no progress or schema write`);
+      }
+      check(appLookups === 3, `${label}: one on-demand request per attempted issue, no retries`);
+      check(errors.length === 0, `${label}: no uncaught launcher errors`);
+      console.log(`CHECKED ${label}: launcher error/fallback/identity/privacy DOM`);
+      await context.close();
+      continue;
+    }
     if (mobileUi) {
       await mobileLayout(page, label, viewport.width <= 880);
       check(errors.length === 0, `${label}: page errors ${errors.join('; ')}`);
