@@ -25,6 +25,12 @@ This adds an anonymous direct request to Marvel's undocumented Bifrost service. 
 authored integration credits its discovery source in [the Android guide](docs/ANDROID.md).
 Service availability and correct rendering inside Marvel's app are not guaranteed.
 
+### Add the Shadow King reading guide
+
+A complete Shadow King reading guide now appears in the catalog with the approved source order,
+the Muir Island interleave, and the restored Nightcrawler selection. Saved reading progress is
+unchanged.
+
 ### Make the Android phone interface easier to use
 
 The recommended-start card now gives its text the full width and puts its button underneath.

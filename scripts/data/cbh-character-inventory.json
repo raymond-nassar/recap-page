@@ -3118,13 +3118,27 @@
     "url": "https://www.comicbookherald.com/shadow-king-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
-    "sourceRetrievedAt": "2026-08-23",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "disposition": "new-order",
+    "reason": "The exact source boundary resolves to 74 canonical issue occurrences with no repeats or gaps, preserving the Muir Island interleave and the page boundary through New Mutants (2019) #24.",
+    "sourceRetrievedAt": "2026-09-28",
+    "overlapIds": [
+      "age-of-x-man",
+      "black-panther-reading-order",
+      "emma-frost-reading-order",
+      "magneto-reading-order",
+      "modern-x-men-fast-track",
+      "muir-island-saga",
+      "secret-wars-ii",
+      "wolverine-reading-order",
+      "x-force-reading-order",
+      "xmen-claremont",
+      "xmen-claremont-complete"
+    ],
+    "catalogIds": [
+      "shadow-king-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Shadow King"
     ],
@@ -3132,9 +3146,9 @@
       99
     ],
     "duplicateFlags": [],
-    "sourceContentSha256": "a7012448ed2142636b0fadab552f627031bdbbd43ccb6b79493549da9ae66dd8",
+    "sourceContentSha256": "8f2ee5a805bf5457c097f01290e5a8e3bb74170f438e122db1c53993fdcf05a5",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 99,

@@ -140,10 +140,12 @@ test('Emma relationship approval regenerates against its reviewed source-manifes
   const report = await readJson(`scripts/data/cbh-overlaps/${id}.json`);
   const manifest = await readJson('src/data/curated-lists.json');
   const current = await buildReportForMapping(`scripts/data/cbh-mappings/${id}.json`, [], {
-    excludedOrderIds: ['doctor-octopus-otto-octavius-reading-order'],
+    excludedOrderIds: ['doctor-octopus-otto-octavius-reading-order', 'shadow-king-reading-order'],
   });
   const expectedOrderIds = manifest.lists
-    .filter((row) => row.id !== id && row.id !== 'doctor-octopus-otto-octavius-reading-order').map((row) => row.id);
+    .filter((row) => row.id !== id
+      && row.id !== 'doctor-octopus-otto-octavius-reading-order'
+      && row.id !== 'shadow-king-reading-order').map((row) => row.id);
   assert.deepEqual(current, report);
   assert.equal(report.comparisonCount, 183);
   assert.deepEqual(new Set(report.comparisons.map((row) => row.orderId)), new Set(expectedOrderIds));
