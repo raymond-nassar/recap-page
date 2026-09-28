@@ -111,6 +111,7 @@ test('popularity sorting keeps the ranked stories first and the rest in their cu
     'Ant-Man',
     'Bucky Barnes / Winter Soldier',
     'Hulk (and She-Hulk, Red Hulk)',
+    'Shadow King',
     'Captain Marvel / Ms. Marvel',
     'Captain America: Modern Marvel Era',
     'There is Only Doom',

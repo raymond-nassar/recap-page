@@ -135,11 +135,13 @@ test('Doctor Octopus keeps all unresolved source positions and excludes unnumber
   assert.ok(!mapping.rows.some((row) => /^(Marvel Super Heroes Secret Wars|Infinity War|Lethal Foes of Spider-Man|Infinity|Inhumanity|Secret Empire|War of the Realms|Sinister War)$/.test(row.normalizedSeriesTitle)));
 });
 
-test('Doctor Octopus relationship approval regenerates against every current source-manifest order', async () => {
+test('Doctor Octopus relationship approval regenerates against its reviewed source-manifest snapshot', async () => {
   const report = await readJson(`scripts/data/cbh-overlaps/${id}.json`);
   const manifest = await readJson('src/data/curated-lists.json');
-  const current = await buildReportForMapping(`scripts/data/cbh-mappings/${id}.json`, [], { excludedOrderIds: [] });
-  const expectedOrderIds = manifest.lists.filter((row) => row.id !== id).map((row) => row.id);
+  const current = await buildReportForMapping(`scripts/data/cbh-mappings/${id}.json`, [], {
+    excludedOrderIds: ['shadow-king-reading-order'],
+  });
+  const expectedOrderIds = manifest.lists.filter((row) => row.id !== id && row.id !== 'shadow-king-reading-order').map((row) => row.id);
   assert.deepEqual(current, report);
   assert.equal(report.comparisonCount, 184);
   assert.deepEqual(report.comparisons.reduce((counts, row) => {

@@ -1,0 +1,2302 @@
+{
+  "id": "shadow-king-reading-order",
+  "name": "Shadow King",
+  "description": "A complete Shadow King reading guide from Professor X's first clashes with Amahl Farouk through New Mutants (2019) #24, preserving the source article order and the Muir Island interleave.",
+  "source": "https://www.comicbookherald.com/shadow-king-reading-order/",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-09-28T19:49:10.857Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 74,
+  "collections": 19,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 12433,
+      "title": "Uncanny X-Men (1963) #117",
+      "number": "117",
+      "url": "https://www.marvel.com/comics/issue/12433/uncanny_x-men_1963_117",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1979-01-01T00:00:00+0000",
+      "mu": "2004-01-01T00:00:00+0000",
+      "digitalId": 4482,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/00/5372ae70d2317",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Terry Austin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        },
+        {
+          "name": "John Byrne",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The Uncanny X-Men, Vol. 3"
+    },
+    {
+      "issueId": 10399,
+      "title": "New Mutants (1983) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/10399/new_mutants_1983_6",
+      "seriesId": 2055,
+      "seriesName": "New Mutants (1983 - 1991)",
+      "onSale": "1983-08-01T00:00:00+0000",
+      "mu": "1983-08-01T00:00:00+0000",
+      "digitalId": 6554,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/00/4c360fb4e1be6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Armando Gil",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Tartaglione",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "New Mutants Omnibus Vol. 1"
+    },
+    {
+      "issueId": 10365,
+      "title": "New Mutants (1983) #29",
+      "number": "29",
+      "url": "https://www.marvel.com/comics/issue/10365/new_mutants_1983_29",
+      "seriesId": 2055,
+      "seriesName": "New Mutants (1983 - 1991)",
+      "onSale": "1985-07-01T00:00:00+0000",
+      "mu": "1985-07-01T00:00:00+0000",
+      "digitalId": 13266,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/00/50b417a1e110c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bill Sienkiewicz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "New Mutants Omnibus Vol. 1"
+    },
+    {
+      "issueId": 10367,
+      "title": "New Mutants (1983) #30",
+      "number": "30",
+      "url": "https://www.marvel.com/comics/issue/10367/new_mutants_1983_30",
+      "seriesId": 2055,
+      "seriesName": "New Mutants (1983 - 1991)",
+      "onSale": "1985-08-01T00:00:00+0000",
+      "mu": "1985-08-01T00:00:00+0000",
+      "digitalId": 13267,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/50ad6784cf51f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bill Sienkiewicz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "New Mutants Omnibus Vol. 1"
+    },
+    {
+      "issueId": 10368,
+      "title": "New Mutants (1983) #31",
+      "number": "31",
+      "url": "https://www.marvel.com/comics/issue/10368/new_mutants_1983_31",
+      "seriesId": 2055,
+      "seriesName": "New Mutants (1983 - 1991)",
+      "onSale": "1985-09-01T00:00:00+0000",
+      "mu": "1985-09-01T00:00:00+0000",
+      "digitalId": 13268,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/c0/50ad66beb42c3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bill Sienkiewicz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "New Mutants Omnibus Vol. 1"
+    },
+    {
+      "issueId": 10369,
+      "title": "New Mutants (1983) #32",
+      "number": "32",
+      "url": "https://www.marvel.com/comics/issue/10369/new_mutants_1983_32",
+      "seriesId": 2055,
+      "seriesName": "New Mutants (1983 - 1991)",
+      "onSale": "1985-10-01T00:00:00+0000",
+      "mu": "1985-10-01T00:00:00+0000",
+      "digitalId": 13270,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/52616cc5ec742",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Steve Leialoha",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "New Mutants Omnibus Vol. 1"
+    },
+    {
+      "issueId": 10370,
+      "title": "New Mutants (1983) #33",
+      "number": "33",
+      "url": "https://www.marvel.com/comics/issue/10370/new_mutants_1983_33",
+      "seriesId": 2055,
+      "seriesName": "New Mutants (1983 - 1991)",
+      "onSale": "1985-11-01T00:00:00+0000",
+      "mu": "1985-11-01T00:00:00+0000",
+      "digitalId": 13271,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/e0/50ad63c365d50",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Steve Leialoha",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "New Mutants Omnibus Vol. 1"
+    },
+    {
+      "issueId": 10371,
+      "title": "New Mutants (1983) #34",
+      "number": "34",
+      "url": "https://www.marvel.com/comics/issue/10371/new_mutants_1983_34",
+      "seriesId": 2055,
+      "seriesName": "New Mutants (1983 - 1991)",
+      "onSale": "1985-12-01T00:00:00+0000",
+      "mu": "1985-12-01T00:00:00+0000",
+      "digitalId": 13274,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/10/50ad62f642eeb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Steve Leialoha",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "New Mutants Omnibus Vol. 1"
+    },
+    {
+      "issueId": 13794,
+      "title": "Uncanny X-Men (1963) #253",
+      "number": "253",
+      "url": "https://www.marvel.com/comics/issue/13794/uncanny_x-men_1963_253",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1989-11-15T00:00:00+0000",
+      "mu": "2014-08-08T11:03:12+0000",
+      "digitalId": 25972,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/60/50b402c428ba4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Steve Leialoha",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marc Silvestri",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "X-Men by Chris Claremont & Jim Lee Omnibus Vol. 1 (X-Men Omnibus)"
+    },
+    {
+      "issueId": 13796,
+      "title": "Uncanny X-Men (1963) #255",
+      "number": "255",
+      "url": "https://www.marvel.com/comics/issue/13796/uncanny_x-men_1963_255",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1989-12-06T00:00:00+0000",
+      "mu": "2014-08-08T11:04:31+0000",
+      "digitalId": 25985,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/50ad2558639cd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marc Silvestri",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "X-Men by Chris Claremont & Jim Lee Omnibus Vol. 1 (X-Men Omnibus)"
+    },
+    {
+      "issueId": 13798,
+      "title": "Uncanny X-Men (1963) #257",
+      "number": "257",
+      "url": "https://www.marvel.com/comics/issue/13798/uncanny_x-men_1963_257",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1990-01-01T00:00:00+0000",
+      "mu": "2008-09-17T00:00:00+0000",
+      "digitalId": 7394,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/03/590b6704d5141",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Rubinstein",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Lee",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "X-Men by Chris Claremont & Jim Lee Omnibus Vol. 1 (X-Men Omnibus)"
+    },
+    {
+      "issueId": 13800,
+      "title": "Uncanny X-Men (1963) #259",
+      "number": "259",
+      "url": "https://www.marvel.com/comics/issue/13800/uncanny_x-men_1963_259",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1990-03-01T00:00:00+0000",
+      "mu": "2014-08-08T11:07:59+0000",
+      "digitalId": 25989,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/80/50ad22815620c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marc Silvestri",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "X-Men by Chris Claremont & Jim Lee Omnibus Vol. 1 (X-Men Omnibus)"
+    },
+    {
+      "issueId": 13806,
+      "title": "Uncanny X-Men (1963) #265",
+      "number": "265",
+      "url": "https://www.marvel.com/comics/issue/13806/uncanny_x-men_1963_265",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1990-08-01T00:00:00+0000",
+      "mu": "2011-06-03T00:00:00+0000",
+      "digitalId": 19636,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/e0/50ad0865ca6bd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Rubinstein",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kieron Dwyer",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "X-Men by Chris Claremont & Jim Lee Omnibus Vol. 1 (X-Men Omnibus)"
+    },
+    {
+      "issueId": 13807,
+      "title": "Uncanny X-Men (1963) #266",
+      "number": "266",
+      "url": "https://www.marvel.com/comics/issue/13807/uncanny_x-men_1963_266",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1990-08-08T00:00:00+0000",
+      "mu": "2014-08-08T11:10:00+0000",
+      "digitalId": 19637,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/f0/590cad0a92714",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Rubinstein",
+          "role": "cover artist"
+        },
+        {
+          "name": "Michael Collins",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "X-Men by Chris Claremont & Jim Lee Omnibus Vol. 1 (X-Men Omnibus)"
+    },
+    {
+      "issueId": 13808,
+      "title": "Uncanny X-Men (1963) #267",
+      "number": "267",
+      "url": "https://www.marvel.com/comics/issue/13808/uncanny_x-men_1963_267",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1990-09-01T00:00:00+0000",
+      "mu": "2014-08-08T11:11:16+0000",
+      "digitalId": 19638,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/00/50ad0762b3fe6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Williams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Whilce Portacio",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Lee",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "X-Men by Chris Claremont & Jim Lee Omnibus Vol. 1 (X-Men Omnibus)"
+    },
+    {
+      "issueId": 13810,
+      "title": "Uncanny X-Men (1963) #269",
+      "number": "269",
+      "url": "https://www.marvel.com/comics/issue/13810/uncanny_x-men_1963_269",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1990-10-01T00:00:00+0000",
+      "mu": "2008-09-17T00:00:00+0000",
+      "digitalId": 7397,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/04/589dd9e9d9bba",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Lee",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "X-Men by Chris Claremont & Jim Lee Omnibus Vol. 1 (X-Men Omnibus)"
+    },
+    {
+      "issueId": 13814,
+      "title": "Uncanny X-Men (1963) #273",
+      "number": "273",
+      "url": "https://www.marvel.com/comics/issue/13814/uncanny_x-men_1963_273",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1991-02-01T00:00:00+0000",
+      "mu": "2008-09-17T00:00:00+0000",
+      "digitalId": 7398,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/30/4c362eac1302a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Williams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Lee",
+          "role": "penciler"
+        },
+        {
+          "name": "John Byrne",
+          "role": "penciler"
+        },
+        {
+          "name": "Klaus Janson",
+          "role": "penciler"
+        },
+        {
+          "name": "Larry Stroman",
+          "role": "penciler"
+        },
+        {
+          "name": "Marc Silvestri",
+          "role": "penciler"
+        },
+        {
+          "name": "Michael Golden",
+          "role": "penciler"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Whilce Portacio",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "X-Men By Chris Claremont & Jim Lee Omnibus Vol. 2 HC"
+    },
+    {
+      "issueId": 13816,
+      "title": "Uncanny X-Men (1963) #275",
+      "number": "275",
+      "url": "https://www.marvel.com/comics/issue/13816/uncanny_x-men_1963_275",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1991-04-01T00:00:00+0000",
+      "mu": "2008-09-17T00:00:00+0000",
+      "digitalId": 7400,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/70/590cddbb47d6d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Williams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Lee",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "X-Men By Chris Claremont & Jim Lee Omnibus Vol. 2 HC"
+    },
+    {
+      "issueId": 13818,
+      "title": "Uncanny X-Men (1963) #277",
+      "number": "277",
+      "url": "https://www.marvel.com/comics/issue/13818/uncanny_x-men_1963_277",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1991-06-01T00:00:00+0000",
+      "mu": "2008-09-17T00:00:00+0000",
+      "digitalId": 7402,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/5910850b29fdc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Williams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Lee",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "X-Men By Chris Claremont & Jim Lee Omnibus Vol. 2 HC"
+    },
+    {
+      "issueId": 13819,
+      "title": "Uncanny X-Men (1963) #278",
+      "number": "278",
+      "url": "https://www.marvel.com/comics/issue/13819/uncanny_x-men_1963_278",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1991-07-01T00:00:00+0000",
+      "mu": "2013-08-05T11:57:29+0000",
+      "digitalId": 30363,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/d0/51141fcd94042",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Hilary Barta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "X-Men By Chris Claremont & Jim Lee Omnibus Vol. 2 HC"
+    },
+    {
+      "issueId": 13820,
+      "title": "Uncanny X-Men (1963) #279",
+      "number": "279",
+      "url": "https://www.marvel.com/comics/issue/13820/uncanny_x-men_1963_279",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1991-08-01T00:00:00+0000",
+      "mu": "2013-08-05T11:58:40+0000",
+      "digitalId": 30364,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/90/5114203bc591d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Williams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andy Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        },
+        {
+          "name": "Jim Lee",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "X-Men By Chris Claremont & Jim Lee Omnibus Vol. 2 HC"
+    },
+    {
+      "issueId": 12289,
+      "title": "X-Factor (1986) #69",
+      "number": "69",
+      "url": "https://www.marvel.com/comics/issue/12289/x-factor_1986_69",
+      "seriesId": 2098,
+      "seriesName": "X-Factor (1986 - 1998)",
+      "onSale": "1991-08-01T00:00:00+0000",
+      "mu": "1991-08-01T00:00:00+0000",
+      "digitalId": 32884,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/30/5864312833869",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Whilce Portacio",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "X-Men By Chris Claremont & Jim Lee Omnibus Vol. 2 HC"
+    },
+    {
+      "issueId": 13821,
+      "title": "Uncanny X-Men (1963) #280",
+      "number": "280",
+      "url": "https://www.marvel.com/comics/issue/13821/uncanny_x-men_1963_280",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1991-09-01T00:00:00+0000",
+      "mu": "2013-08-05T11:59:36+0000",
+      "digitalId": 30365,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/60/511420b27bc44",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Rubinstein",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Bair",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Williams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andy Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Butler",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "X-Men By Chris Claremont & Jim Lee Omnibus Vol. 2 HC"
+    },
+    {
+      "issueId": 14369,
+      "title": "X-Men (1991) #77",
+      "number": "77",
+      "url": "https://www.marvel.com/comics/issue/14369/x-men_1991_77",
+      "seriesId": 2265,
+      "seriesName": "X-Men (1991 - 2001)",
+      "onSale": "1998-07-01T00:00:00+0000",
+      "mu": "1998-07-01T00:00:00+0000",
+      "digitalId": 48052,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/5ac6613a96336",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "German Garcia",
+          "role": "penciler"
+        },
+        {
+          "name": "Joe Kelly",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "X-Men Gold Vol. 0: Homecoming"
+    },
+    {
+      "issueId": 14370,
+      "title": "X-Men (1991) #78",
+      "number": "78",
+      "url": "https://www.marvel.com/comics/issue/14370/x-men_1991_78",
+      "seriesId": 2265,
+      "seriesName": "X-Men (1991 - 2001)",
+      "onSale": "1998-08-01T00:00:00+0000",
+      "mu": "1998-08-01T00:00:00+0000",
+      "digitalId": 44874,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/70/5ac6629897b84",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "German Garcia",
+          "role": "penciler"
+        },
+        {
+          "name": "Joe Kelly",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "X-Men Gold Vol. 0: Homecoming"
+    },
+    {
+      "issueId": 14089,
+      "title": "Wolverine (1988) #147",
+      "number": "147",
+      "url": "https://www.marvel.com/comics/issue/14089/wolverine_1988_147",
+      "seriesId": 2262,
+      "seriesName": "Wolverine (1988 - 2003)",
+      "onSale": "2000-02-01T00:00:00+0000",
+      "mu": "2000-02-01T00:00:00+0000",
+      "digitalId": 11773,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/20/5846d86fa3815",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andy Owens",
+          "role": "cover artist"
+        },
+        {
+          "name": "Derek Fridolfs",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roger Cruz",
+          "role": "penciler"
+        },
+        {
+          "name": "Erik Larsen",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "X-Men Vs. Apocalypse Vol. 1: The Twelve"
+    },
+    {
+      "issueId": 3056,
+      "title": "New Excalibur (2005) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/3056/new_excalibur_2005_1",
+      "seriesId": 935,
+      "seriesName": "New Excalibur (2005 - 2007)",
+      "onSale": "2005-11-09T00:00:00+0000",
+      "mu": "2005-11-09T00:00:00+0000",
+      "digitalId": 1038,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/5c48d0ba094a8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "New Excalibur, Vol. 1: Defenders of the Realm"
+    },
+    {
+      "issueId": 3152,
+      "title": "New Excalibur (2005) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/3152/new_excalibur_2005_2",
+      "seriesId": 935,
+      "seriesName": "New Excalibur (2005 - 2007)",
+      "onSale": "2005-12-07T00:00:00+0000",
+      "mu": "2005-12-07T00:00:00+0000",
+      "digitalId": 3425,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/5c48d901ae380",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "New Excalibur, Vol. 1: Defenders of the Realm"
+    },
+    {
+      "issueId": 3373,
+      "title": "New Excalibur (2005) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/3373/new_excalibur_2005_3",
+      "seriesId": 935,
+      "seriesName": "New Excalibur (2005 - 2007)",
+      "onSale": "2005-12-25T00:00:00+0000",
+      "mu": "2005-12-25T00:00:00+0000",
+      "digitalId": 3426,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/30/5c48e2f521eac",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "New Excalibur, Vol. 1: Defenders of the Realm"
+    },
+    {
+      "issueId": 4030,
+      "title": "New Excalibur (2005) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/4030/new_excalibur_2005_6",
+      "seriesId": 935,
+      "seriesName": "New Excalibur (2005 - 2007)",
+      "onSale": "2006-04-05T00:00:00+0000",
+      "mu": "2006-04-05T00:00:00+0000",
+      "digitalId": 3429,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/90/5c49d675cde89",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "New Excalibur, Vol. 1: Defenders of the Realm"
+    },
+    {
+      "issueId": 4226,
+      "title": "New Excalibur (2005) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/4226/new_excalibur_2005_7",
+      "seriesId": 935,
+      "seriesName": "New Excalibur (2005 - 2007)",
+      "onSale": "2006-05-24T00:00:00+0000",
+      "mu": "2006-05-24T00:00:00+0000",
+      "digitalId": 3430,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/80/5c49f2f68f9cd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "New Excalibur, Vol. 1: Defenders of the Realm"
+    },
+    {
+      "issueId": 4325,
+      "title": "New Excalibur (2005) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/4325/new_excalibur_2005_8",
+      "seriesId": 935,
+      "seriesName": "New Excalibur (2005 - 2007)",
+      "onSale": "2006-06-21T00:00:00+0000",
+      "mu": "2006-06-21T00:00:00+0000",
+      "digitalId": 2263,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/5c489039e1bc6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "New Excalibur, Vol. 2: Last Days of Camelot"
+    },
+    {
+      "issueId": 6264,
+      "title": "New Excalibur (2005) #19",
+      "number": "19",
+      "url": "https://www.marvel.com/comics/issue/6264/new_excalibur_2005_19",
+      "seriesId": 935,
+      "seriesName": "New Excalibur (2005 - 2007)",
+      "onSale": "2007-04-25T00:00:00+0000",
+      "mu": "2007-04-25T00:00:00+0000",
+      "digitalId": 8476,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/00/5c4b39507fab0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dave Meikis",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Dell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scot Eaton",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "New Excalibur, Vol. 3: Battle For Eternity"
+    },
+    {
+      "issueId": 22386,
+      "title": "X-Men: Worlds Apart (2008) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/22386/x-men_worlds_apart_2008_1",
+      "seriesId": 6003,
+      "seriesName": "X-Men: Worlds Apart (2008 - 2009)",
+      "onSale": "2008-10-15T00:00:00+0000",
+      "mu": "2008-10-15T00:00:00+0000",
+      "digitalId": 11891,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/03/596648b6c2612",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ed Tadeo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dio Neves",
+          "role": "penciler"
+        },
+        {
+          "name": "J. Scott Campbell",
+          "role": "penciler"
+        },
+        {
+          "name": "Christopher Yost",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "X-Men: Worlds Apart"
+    },
+    {
+      "issueId": 22579,
+      "title": "X-Men: Worlds Apart (2008) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/22579/x-men_worlds_apart_2008_2",
+      "seriesId": 6003,
+      "seriesName": "X-Men: Worlds Apart (2008 - 2009)",
+      "onSale": "2008-11-19T00:00:00+0000",
+      "mu": "2008-11-19T00:00:00+0000",
+      "digitalId": 11892,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/30/5966625e168a6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Yardin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Tadeo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dio Neves",
+          "role": "penciler"
+        },
+        {
+          "name": "Christopher Yost",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "X-Men: Worlds Apart"
+    },
+    {
+      "issueId": 22995,
+      "title": "X-Men: Worlds Apart (2008) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/22995/x-men_worlds_apart_2008_3",
+      "seriesId": 6003,
+      "seriesName": "X-Men: Worlds Apart (2008 - 2009)",
+      "onSale": "2008-12-31T00:00:00+0000",
+      "mu": "2008-12-31T00:00:00+0000",
+      "digitalId": 11893,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/03/59666a50a9432",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ed Tadeo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Deodato Jr.",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dio Neves",
+          "role": "penciler"
+        },
+        {
+          "name": "Christopher Yost",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "X-Men: Worlds Apart"
+    },
+    {
+      "issueId": 23170,
+      "title": "X-Men: Worlds Apart (2008) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/23170/x-men_worlds_apart_2008_4",
+      "seriesId": 6003,
+      "seriesName": "X-Men: Worlds Apart (2008 - 2009)",
+      "onSale": "2009-01-28T00:00:00+0000",
+      "mu": "2009-01-28T00:00:00+0000",
+      "digitalId": 13185,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/80/596671da5ef97",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ed Tadeo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dio Neves",
+          "role": "penciler"
+        },
+        {
+          "name": "Stephane Roux",
+          "role": "penciler"
+        },
+        {
+          "name": "Christopher Yost",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "X-Men: Worlds Apart"
+    },
+    {
+      "issueId": 32595,
+      "title": "Uncanny X-Force (2010) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/32595/uncanny_x-force_2010_8",
+      "seriesId": 9976,
+      "seriesName": "Uncanny X-Force (2010 - 2012)",
+      "onSale": "2011-04-20T00:00:00+0000",
+      "mu": "2012-03-29T00:00:00+0000",
+      "digitalId": 20567,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/10/58bdf9d817c43",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Billy Tan",
+          "role": "penciler"
+        },
+        {
+          "name": "Esad Ribic",
+          "role": "penciler"
+        },
+        {
+          "name": "Rick Remender",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Uncanny X-Force by Rick Remender: The Complete Collection Volume 1"
+    },
+    {
+      "issueId": 32574,
+      "title": "Uncanny X-Force (2010) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/32574/uncanny_x-force_2010_10",
+      "seriesId": 9976,
+      "seriesName": "Uncanny X-Force (2010 - 2012)",
+      "onSale": "2011-05-18T00:00:00+0000",
+      "mu": "2012-12-05T00:00:00+0000",
+      "digitalId": 21141,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/80/58bdf8be2b560",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Billy Tan",
+          "role": "penciler"
+        },
+        {
+          "name": "Esad Ribic",
+          "role": "penciler"
+        },
+        {
+          "name": "Rick Remender",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Uncanny X-Force by Rick Remender: The Complete Collection Volume 1"
+    },
+    {
+      "issueId": 40443,
+      "title": "Uncanny X-Force (2010) #26",
+      "number": "26",
+      "url": "https://www.marvel.com/comics/issue/40443/uncanny_x-force_2010_26",
+      "seriesId": 9976,
+      "seriesName": "Uncanny X-Force (2010 - 2012)",
+      "onSale": "2012-06-13T00:00:00+0000",
+      "mu": "2013-04-08T00:00:00+0000",
+      "digitalId": 26286,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/10/594286dacaf9f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jerome Opena",
+          "role": "penciler"
+        },
+        {
+          "name": "Rick Remender",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Uncanny X-Force by Rick Remender: The Complete Collection Volume 2"
+    },
+    {
+      "issueId": 40447,
+      "title": "Uncanny X-Force (2010) #27",
+      "number": "27",
+      "url": "https://www.marvel.com/comics/issue/40447/uncanny_x-force_2010_27",
+      "seriesId": 9976,
+      "seriesName": "Uncanny X-Force (2010 - 2012)",
+      "onSale": "2012-07-11T00:00:00+0000",
+      "mu": "2013-04-08T00:00:00+0000",
+      "digitalId": 27163,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/30/59428906a6682",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jerome Opena",
+          "role": "penciler"
+        },
+        {
+          "name": "Rick Remender",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Uncanny X-Force by Rick Remender: The Complete Collection Volume 2"
+    },
+    {
+      "issueId": 40442,
+      "title": "Uncanny X-Force (2010) #30",
+      "number": "30",
+      "url": "https://www.marvel.com/comics/issue/40442/uncanny_x-force_2010_30",
+      "seriesId": 9976,
+      "seriesName": "Uncanny X-Force (2010 - 2012)",
+      "onSale": "2012-08-29T00:00:00+0000",
+      "mu": "2013-03-08T14:06:27+0000",
+      "digitalId": 27568,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/10/59429120f0db4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jerome Opena",
+          "role": "penciler"
+        },
+        {
+          "name": "Rick Remender",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Uncanny X-Force by Rick Remender: The Complete Collection Volume 2"
+    },
+    {
+      "issueId": 40449,
+      "title": "Uncanny X-Force (2010) #31",
+      "number": "31",
+      "url": "https://www.marvel.com/comics/issue/40449/uncanny_x-force_2010_31",
+      "seriesId": 9976,
+      "seriesName": "Uncanny X-Force (2010 - 2012)",
+      "onSale": "2012-09-12T00:00:00+0000",
+      "mu": "2013-07-31T09:27:31+0000",
+      "digitalId": 27652,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/03/5931681e53b70",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jerome Opena",
+          "role": "penciler"
+        },
+        {
+          "name": "Rick Remender",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Uncanny X-Force by Rick Remender: The Complete Collection Volume 2"
+    },
+    {
+      "issueId": 40438,
+      "title": "Uncanny X-Force (2010) #32",
+      "number": "32",
+      "url": "https://www.marvel.com/comics/issue/40438/uncanny_x-force_2010_32",
+      "seriesId": 9976,
+      "seriesName": "Uncanny X-Force (2010 - 2012)",
+      "onSale": "2012-10-03T00:00:00+0000",
+      "mu": "2012-10-03T00:00:00+0000",
+      "digitalId": 27754,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/593175fecea83",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Phil Noto",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jerome Opena",
+          "role": "penciler"
+        },
+        {
+          "name": "Rick Remender",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Uncanny X-Force by Rick Remender: The Complete Collection Volume 2"
+    },
+    {
+      "issueId": 40439,
+      "title": "Uncanny X-Force (2010) #33",
+      "number": "33",
+      "url": "https://www.marvel.com/comics/issue/40439/uncanny_x-force_2010_33",
+      "seriesId": 9976,
+      "seriesName": "Uncanny X-Force (2010 - 2012)",
+      "onSale": "2012-11-07T00:00:00+0000",
+      "mu": "2013-05-06T00:00:00+0000",
+      "digitalId": 27973,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/40/5931847808761",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Rick Remender",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Uncanny X-Force by Rick Remender: The Complete Collection Volume 2"
+    },
+    {
+      "issueId": 40446,
+      "title": "Uncanny X-Force (2010) #34",
+      "number": "34",
+      "url": "https://www.marvel.com/comics/issue/40446/uncanny_x-force_2010_34",
+      "seriesId": 9976,
+      "seriesName": "Uncanny X-Force (2010 - 2012)",
+      "onSale": "2012-11-21T00:00:00+0000",
+      "mu": "2013-05-27T00:00:00+0000",
+      "digitalId": 28014,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/03/59318c50024b8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Philip J. Noto",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Remender",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Uncanny X-Force by Rick Remender: The Complete Collection Volume 2"
+    },
+    {
+      "issueId": 50504,
+      "title": "Nightcrawler (2014) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/50504/nightcrawler_2014_8",
+      "seriesId": 18875,
+      "seriesName": "Nightcrawler (2014 - 2015)",
+      "onSale": "2014-11-12T00:00:00+0000",
+      "mu": "2015-05-11T00:00:00+0000",
+      "digitalId": 35339,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/54592fdca482e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Todd Nauck",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Nightcrawler Vol. 2: Reborn"
+    },
+    {
+      "issueId": 50505,
+      "title": "Nightcrawler (2014) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/50505/nightcrawler_2014_9",
+      "seriesId": 18875,
+      "seriesName": "Nightcrawler (2014 - 2015)",
+      "onSale": "2014-12-10T00:00:00+0000",
+      "mu": "2015-06-08T00:00:00+0000",
+      "digitalId": 35773,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/5485fd280c84b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Todd Nauck",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Nightcrawler Vol. 2: Reborn"
+    },
+    {
+      "issueId": 50506,
+      "title": "Nightcrawler (2014) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/50506/nightcrawler_2014_10",
+      "seriesId": 18875,
+      "seriesName": "Nightcrawler (2014 - 2015)",
+      "onSale": "2015-01-14T00:00:00+0000",
+      "mu": "2015-07-20T00:00:00+0000",
+      "digitalId": 35769,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/00/54ac556fd6ed9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Todd Nauck",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Nightcrawler Vol. 2: Reborn"
+    },
+    {
+      "issueId": 63833,
+      "title": "Astonishing X-Men (2017) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/63833/astonishing_x-men_2017_1",
+      "seriesId": 23262,
+      "seriesName": "Astonishing X-Men (2017 - 2018)",
+      "onSale": "2017-07-19T00:00:00+0000",
+      "mu": "2017-07-19T00:00:00+0000",
+      "digitalId": 45310,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/50/5967e7b0e9d5d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Guillermo Ortego",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Walden Wong",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Cheung",
+          "role": "penciler"
+        },
+        {
+          "name": "Charles Soule",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Astonishing X-Men by Charles Soule Vol. 1: Life of X"
+    },
+    {
+      "issueId": 64205,
+      "title": "Astonishing X-Men (2017) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/64205/astonishing_x-men_2017_2",
+      "seriesId": 23262,
+      "seriesName": "Astonishing X-Men (2017 - 2018)",
+      "onSale": "2017-08-16T00:00:00+0000",
+      "mu": "2018-02-19T00:00:00+0000",
+      "digitalId": 45468,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/d0/597bbacfb6a00",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Deodato Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Garney",
+          "role": "penciler"
+        },
+        {
+          "name": "Charles Soule",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Astonishing X-Men by Charles Soule Vol. 1: Life of X"
+    },
+    {
+      "issueId": 64609,
+      "title": "Astonishing X-Men (2017) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/64609/astonishing_x-men_2017_3",
+      "seriesId": 23262,
+      "seriesName": "Astonishing X-Men (2017 - 2018)",
+      "onSale": "2017-09-06T00:00:00+0000",
+      "mu": "2018-03-12T00:00:00+0000",
+      "digitalId": 45820,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/10/599afc8f55c31",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Mcguinness",
+          "role": "penciler"
+        },
+        {
+          "name": "Charles Soule",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Astonishing X-Men by Charles Soule Vol. 1: Life of X"
+    },
+    {
+      "issueId": 64883,
+      "title": "Astonishing X-Men (2017) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/64883/astonishing_x-men_2017_4",
+      "seriesId": 23262,
+      "seriesName": "Astonishing X-Men (2017 - 2018)",
+      "onSale": "2017-10-04T00:00:00+0000",
+      "mu": "2018-04-09T00:00:00+0000",
+      "digitalId": 46042,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/59cc032178c90",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rafael Fonteriz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlos Pacheco",
+          "role": "penciler"
+        },
+        {
+          "name": "Charles Soule",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Astonishing X-Men by Charles Soule Vol. 1: Life of X"
+    },
+    {
+      "issueId": 65055,
+      "title": "Astonishing X-Men (2017) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/65055/astonishing_x-men_2017_5",
+      "seriesId": 23262,
+      "seriesName": "Astonishing X-Men (2017 - 2018)",
+      "onSale": "2017-11-01T00:00:00+0000",
+      "mu": "2018-05-07T00:00:00+0000",
+      "digitalId": 46351,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/59f103ab80c6e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ramon Rosanas",
+          "role": "penciler"
+        },
+        {
+          "name": "Charles Soule",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Astonishing X-Men by Charles Soule Vol. 1: Life of X"
+    },
+    {
+      "issueId": 65263,
+      "title": "Astonishing X-Men (2017) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/65263/astonishing_x-men_2017_6",
+      "seriesId": 23262,
+      "seriesName": "Astonishing X-Men (2017 - 2018)",
+      "onSale": "2017-12-06T00:00:00+0000",
+      "mu": "2018-06-11T00:00:00+0000",
+      "digitalId": 46750,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/b0/5a1f341a72b7b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Del Mundo",
+          "role": "penciler"
+        },
+        {
+          "name": "Charles Soule",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Astonishing X-Men by Charles Soule Vol. 1: Life of X"
+    },
+    {
+      "issueId": 67000,
+      "title": "Astonishing X-Men (2017) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/67000/astonishing_x-men_2017_11",
+      "seriesId": 23262,
+      "seriesName": "Astonishing X-Men (2017 - 2018)",
+      "onSale": "2018-05-02T00:00:00+0000",
+      "mu": "2018-11-05T00:00:00+0000",
+      "digitalId": 47925,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/00/5ae0ce3456ebc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ron Garney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Charles Soule",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Astonishing X-Men by Charles Soule Vol. 2: A Man Called X"
+    },
+    {
+      "issueId": 67715,
+      "title": "Astonishing X-Men (2017) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/67715/astonishing_x-men_2017_12",
+      "seriesId": 23262,
+      "seriesName": "Astonishing X-Men (2017 - 2018)",
+      "onSale": "2018-06-06T00:00:00+0000",
+      "mu": "2018-12-10T00:00:00+0000",
+      "digitalId": 48236,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/10/5b0f1666d99a9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gerardo Sandoval",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Charles Soule",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Astonishing X-Men by Charles Soule Vol. 2: A Man Called X"
+    },
+    {
+      "issueId": 72954,
+      "title": "Age of X-Man: Prisoner X (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/72954/age_of_x-man_prisoner_x_2019_1",
+      "seriesId": 26334,
+      "seriesName": "Age of X-Man: Prisoner X (2019)",
+      "onSale": "2019-03-06T00:00:00+0000",
+      "mu": "2019-09-09T00:00:00+0000",
+      "digitalId": 50866,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/90/5c76f833ee9e7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "German Peralta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Patch Zircher",
+          "role": "penciler"
+        },
+        {
+          "name": "Vita Ayala",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Age Of X-Man: Prisoner X"
+    },
+    {
+      "issueId": 72955,
+      "title": "Age of X-Man: Prisoner X (2019) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/72955/age_of_x-man_prisoner_x_2019_2",
+      "seriesId": 26334,
+      "seriesName": "Age of X-Man: Prisoner X (2019)",
+      "onSale": "2019-04-03T00:00:00+0000",
+      "mu": "2019-10-07T00:00:00+0000",
+      "digitalId": 51071,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/5c9bfa359539a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "German Peralta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Patch Zircher",
+          "role": "penciler"
+        },
+        {
+          "name": "Vita Ayala",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Age Of X-Man: Prisoner X"
+    },
+    {
+      "issueId": 72956,
+      "title": "Age of X-Man: Prisoner X (2019) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/72956/age_of_x-man_prisoner_x_2019_3",
+      "seriesId": 26334,
+      "seriesName": "Age of X-Man: Prisoner X (2019)",
+      "onSale": "2019-05-01T00:00:00+0000",
+      "mu": "2019-11-04T00:00:00+0000",
+      "digitalId": 51351,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/a0/5cc0cb8cea413",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "German Peralta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Patch Zircher",
+          "role": "penciler"
+        },
+        {
+          "name": "Vita Ayala",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Age Of X-Man: Prisoner X"
+    },
+    {
+      "issueId": 72957,
+      "title": "Age of X-Man: Prisoner X (2019) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/72957/age_of_x-man_prisoner_x_2019_4",
+      "seriesId": 26334,
+      "seriesName": "Age of X-Man: Prisoner X (2019)",
+      "onSale": "2019-06-05T00:00:00+0000",
+      "mu": "2019-12-09T00:00:00+0000",
+      "digitalId": 51664,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/a0/5ced5c9c7090d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "German Peralta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Patch Zircher",
+          "role": "penciler"
+        },
+        {
+          "name": "Vita Ayala",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Age Of X-Man: Prisoner X"
+    },
+    {
+      "issueId": 72958,
+      "title": "Age of X-Man: Prisoner X (2019) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/72958/age_of_x-man_prisoner_x_2019_5",
+      "seriesId": 26334,
+      "seriesName": "Age of X-Man: Prisoner X (2019)",
+      "onSale": "2019-07-03T00:00:00+0000",
+      "mu": "2020-01-06T00:00:00+0000",
+      "digitalId": 51881,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/5d126d76652c3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "German Peralta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Matt Horak",
+          "role": "penciler"
+        },
+        {
+          "name": "Patch Zircher",
+          "role": "penciler"
+        },
+        {
+          "name": "Vita Ayala",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Age Of X-Man: Prisoner X"
+    },
+    {
+      "issueId": 88647,
+      "title": "Empyre: X-Men (2020) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/88647/empyre_x-men_2020_2",
+      "seriesId": 30527,
+      "seriesName": "Empyre: X-Men (2020)",
+      "onSale": "2020-08-05T00:00:00+0000",
+      "mu": "2020-11-09T00:00:00+0000",
+      "digitalId": 54884,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/03/5f282d0524780",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Lucas Werneck",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stephen Segovia",
+          "role": "penciler"
+        },
+        {
+          "name": "Benjamin Percy",
+          "role": "writer"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        },
+        {
+          "name": "Leah Williams",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Empyre: X-Men"
+    },
+    {
+      "issueId": 91337,
+      "title": "New Mutants (2019) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/91337/new_mutants_2019_14",
+      "seriesId": 27557,
+      "seriesName": "New Mutants (2019 - 2022)",
+      "onSale": "2020-12-16T00:00:00+0000",
+      "mu": "2021-03-22T00:00:00+0000",
+      "digitalId": 55821,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/a0/5fcfb889b8673",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rod Reis",
+          "role": "penciler"
+        },
+        {
+          "name": "Vita Ayala",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "New Mutants by Vita Ayala Vol. 1"
+    },
+    {
+      "issueId": 91338,
+      "title": "New Mutants (2019) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/91338/new_mutants_2019_15",
+      "seriesId": 27557,
+      "seriesName": "New Mutants (2019 - 2022)",
+      "onSale": "2021-01-27T00:00:00+0000",
+      "mu": "2021-05-03T00:00:00+0000",
+      "digitalId": 56036,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/6009ea19f09f6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rod Reis",
+          "role": "penciler"
+        },
+        {
+          "name": "Vita Ayala",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "New Mutants by Vita Ayala Vol. 1"
+    },
+    {
+      "issueId": 91339,
+      "title": "New Mutants (2019) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/91339/new_mutants_2019_16",
+      "seriesId": 27557,
+      "seriesName": "New Mutants (2019 - 2022)",
+      "onSale": "2021-02-24T00:00:00+0000",
+      "mu": "2021-05-31T00:00:00+0000",
+      "digitalId": 56169,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/0/03/6030362506c9d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Christian Ward",
+          "role": "penciler"
+        },
+        {
+          "name": "Vita Ayala",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "New Mutants by Vita Ayala Vol. 1"
+    },
+    {
+      "issueId": 91340,
+      "title": "New Mutants (2019) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/91340/new_mutants_2019_17",
+      "seriesId": 27557,
+      "seriesName": "New Mutants (2019 - 2022)",
+      "onSale": "2021-04-28T00:00:00+0000",
+      "mu": "2021-08-02T00:00:00+0000",
+      "digitalId": 56509,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/00/60771787cfc7a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Christian Ward",
+          "role": "penciler"
+        },
+        {
+          "name": "Vita Ayala",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "New Mutants by Vita Ayala Vol. 1"
+    },
+    {
+      "issueId": 91341,
+      "title": "New Mutants (2019) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/91341/new_mutants_2019_18",
+      "seriesId": 27557,
+      "seriesName": "New Mutants (2019 - 2022)",
+      "onSale": "2021-05-26T00:00:00+0000",
+      "mu": "2021-08-30T00:00:00+0000",
+      "digitalId": 56812,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/60/60afe2dabf20b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Christian Ward",
+          "role": "penciler"
+        },
+        {
+          "name": "Vita Ayala",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "New Mutants by Vita Ayala Vol. 1"
+    },
+    {
+      "issueId": 94084,
+      "title": "New Mutants (2019) #19",
+      "number": "19",
+      "url": "https://www.marvel.com/comics/issue/94084/new_mutants_2019_19",
+      "seriesId": 27557,
+      "seriesName": "New Mutants (2019 - 2022)",
+      "onSale": "2021-06-16T00:00:00+0000",
+      "mu": "2021-09-20T00:00:00+0000",
+      "digitalId": 56903,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/e0/60cd0f67f3aab",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alex Lins",
+          "role": "cover artist"
+        },
+        {
+          "name": "Martin Simmonds",
+          "role": "penciler"
+        },
+        {
+          "name": "Vita Ayala",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "New Mutants By Vita Ayala Vol. 2"
+    },
+    {
+      "issueId": 94085,
+      "title": "New Mutants (2019) #20",
+      "number": "20",
+      "url": "https://www.marvel.com/comics/issue/94085/new_mutants_2019_20",
+      "seriesId": 27557,
+      "seriesName": "New Mutants (2019 - 2022)",
+      "onSale": "2021-07-21T00:00:00+0000",
+      "mu": "2021-10-25T00:00:00+0000",
+      "digitalId": 57057,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/a0/60fad37bac789",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alex Lins",
+          "role": "cover artist"
+        },
+        {
+          "name": "Martin Simmonds",
+          "role": "penciler"
+        },
+        {
+          "name": "Vita Ayala",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "New Mutants By Vita Ayala Vol. 2"
+    },
+    {
+      "issueId": 94086,
+      "title": "New Mutants (2019) #21",
+      "number": "21",
+      "url": "https://www.marvel.com/comics/issue/94086/new_mutants_2019_21",
+      "seriesId": 27557,
+      "seriesName": "New Mutants (2019 - 2022)",
+      "onSale": "2021-09-01T00:00:00+0000",
+      "mu": "2021-12-06T00:00:00+0000",
+      "digitalId": 57676,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/00/612e8ddbd5006",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Martin Simmonds",
+          "role": "penciler"
+        },
+        {
+          "name": "Vita Ayala",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "New Mutants By Vita Ayala Vol. 2"
+    },
+    {
+      "issueId": 94087,
+      "title": "New Mutants (2019) #22",
+      "number": "22",
+      "url": "https://www.marvel.com/comics/issue/94087/new_mutants_2019_22",
+      "seriesId": 27557,
+      "seriesName": "New Mutants (2019 - 2022)",
+      "onSale": "2021-10-06T00:00:00+0000",
+      "mu": "2022-01-10T00:00:00+0000",
+      "digitalId": 57798,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/e0/614b3fbab7f3b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Martin Simmonds",
+          "role": "penciler"
+        },
+        {
+          "name": "Vita Ayala",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "New Mutants By Vita Ayala Vol. 2"
+    },
+    {
+      "issueId": 94088,
+      "title": "New Mutants (2019) #23",
+      "number": "23",
+      "url": "https://www.marvel.com/comics/issue/94088/new_mutants_2019_23",
+      "seriesId": 27557,
+      "seriesName": "New Mutants (2019 - 2022)",
+      "onSale": "2021-12-01T00:00:00+0000",
+      "mu": "2022-03-07T00:00:00+0000",
+      "digitalId": 57918,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/d0/619e6367579e7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Martin Simmonds",
+          "role": "penciler"
+        },
+        {
+          "name": "Vita Ayala",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "New Mutants By Vita Ayala Vol. 2"
+    },
+    {
+      "issueId": 94089,
+      "title": "New Mutants (2019) #24",
+      "number": "24",
+      "url": "https://www.marvel.com/comics/issue/94089/new_mutants_2019_24",
+      "seriesId": 27557,
+      "seriesName": "New Mutants (2019 - 2022)",
+      "onSale": "2022-02-09T00:00:00+0000",
+      "mu": "2022-05-16T00:00:00+0000",
+      "digitalId": 58189,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/b0/620155876881a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Danilo S. Beyruth",
+          "role": "cover artist"
+        },
+        {
+          "name": "Martin Simmonds",
+          "role": "penciler"
+        },
+        {
+          "name": "Vita Ayala",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "New Mutants By Vita Ayala Vol. 2"
+    }
+  ]
+}

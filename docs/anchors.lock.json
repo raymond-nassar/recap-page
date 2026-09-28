@@ -1894,14 +1894,14 @@
     "fp": "ff9ba71742d8b8c0",
     "head": "\"chapterCount\": 78,"
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:9963-10088|0": {
-    "anchor": "src/data/catalog.json:9963-10088",
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:10009-10134|0": {
+    "anchor": "src/data/catalog.json:10009-10134",
     "fp": "a679899453ea002c",
     "head": "\"paths\": ["
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/curated-lists.json:6082-6120|0": {
-    "anchor": "src/data/curated-lists.json:6082-6120",
-    "fp": "e2b83d7abbcf68b9",
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/curated-lists.json:6121-6160|0": {
+    "anchor": "src/data/curated-lists.json:6121-6160",
+    "fp": "1b133fe2f7d008e4",
     "head": "\"paths\": ["
   },
   "docs/DATA_PROVENANCE.md|the-size-of-the-question-measured-and-what-was-d|src/js/views/issue.js:95|0": {
@@ -1984,14 +1984,14 @@
     "fp": "e9a1e74dee2c791e",
     "head": "// The publication gate answered a question that only gets asked once, and it was asked on"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:4196-4207|0": {
-    "anchor": "CHANGELOG.md:4196-4207",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:4202-4213|0": {
+    "anchor": "CHANGELOG.md:4202-4213",
     "fp": "7ebb6ef43a1f1241",
     "head": "- **The project now watches its own development tooling for known security problems, and says how"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:4209-4219|0": {
-    "anchor": "CHANGELOG.md:4209-4219",
-    "fp": "c37eedd88ad1c81c",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:4215-4224|0": {
+    "anchor": "CHANGELOG.md:4215-4224",
+    "fp": "b6fe821451a79a7b",
     "head": "- **The project now has a published security policy, which names a private route for reporting a"
   },
   "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|PRODUCT_BACKLOG.md:30-42|0": {
@@ -6019,8 +6019,8 @@
     "fp": "2a5f696a4a2adc8e",
     "head": "be a heuristic about significance, and a heuristic about which anchors are worth counting is exactly"
   },
-  "scripts/check-counts.mjs|preamble|scripts/check-publication.mjs:184-188|0": {
-    "anchor": "scripts/check-publication.mjs:184-188",
+  "scripts/check-counts.mjs|preamble|scripts/check-publication.mjs:193-197|0": {
+    "anchor": "scripts/check-publication.mjs:193-197",
     "fp": "36abce5861d613b7",
     "head": "// A file git could not read is not a file that read clean. Read from the index enumerated by"
   },

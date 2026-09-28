@@ -3278,6 +3278,45 @@
       "timeline": null
     },
     {
+      "id": "shadow-king-reading-order",
+      "name": "Shadow King",
+      "description": "A complete Shadow King reading guide from Professor X's first clashes with Amahl Farouk through New Mutants (2019) #24, preserving the source article order and the Muir Island interleave.",
+      "type": "character-run",
+      "spotlightKind": "complete-guide",
+      "depth": "complete",
+      "beginner": false,
+      "coverIssueId": 12433,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "shadow-king-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/shadow-king-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "shadow_king_reading_order.json",
+      "characters": [
+        "Shadow King",
+        "Amahl Farouk",
+        "Professor X",
+        "Psylocke",
+        "Storm",
+        "X-Men",
+        "New Mutants"
+      ],
+      "keywords": [
+        "Shadow King",
+        "Amahl Farouk",
+        "Professor X",
+        "Psylocke",
+        "Storm",
+        "X-Men",
+        "New Mutants",
+        "Comic Book Herald"
+      ],
+      "expect": 74,
+      "timeline": null
+    },
+    {
       "id": "captain-marvel-ms-marvel-reading-order",
       "name": "Captain Marvel / Ms. Marvel",
       "description": "A source-defined Captain Marvel / Ms. Marvel guide with exact issue links from Mar-Vell through Carol Danvers, Monica Rambeau, and the modern Captain Marvel runs.",

@@ -101,6 +101,11 @@ export const PATTERNS = [
 // like every other.
 const FIXTURES_FILE = 'test/publication-gate.test.js';
 const STORE_PUBLISHER = 'F6D9045B-46F0-4EAC-' + '9524-4BFC8A75A472';
+const SHADOW_REVIEW_SESSION = '34c17dd0-fd0e-4422-' + 'a238-6505fd798c8e';
+const SHADOW_REVIEW_FILES = [
+  'scripts/data/cbh-mappings/shadow-king-reading-order.json',
+  'scripts/data/cbh-packets/shadow-king-reading-order.json',
+];
 const STORE_PUBLISHER_FILES = [
   'docs/MICROSOFT_STORE.md',
   'docs/MICROSOFT_STORE_SUBMISSION.md',
@@ -118,6 +123,10 @@ export const ALLOWED = new Map([
     'the positive fixture for the identifier pattern, which is this session\'s own id'],
   [`${FIXTURES_FILE}|a private key block|-----BEGIN RSA ` + 'PRIVATE KEY-----',
     'the positive fixture for the private key pattern, a header with no key under it'],
+  ...SHADOW_REVIEW_FILES.map((file) => [
+    `${file}|a session or workspace identifier|${SHADOW_REVIEW_SESSION}`,
+    'the exact coordinator identity bound into the approved Shadow King review receipt',
+  ]),
   ...STORE_PUBLISHER_FILES.map((file) => [
     `${file}|a session or workspace identifier|${STORE_PUBLISHER}`,
     'the exact public Microsoft Store package Publisher supplied by Partner Center',

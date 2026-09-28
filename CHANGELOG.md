@@ -13,6 +13,12 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Add the Shadow King reading guide
+
+A complete Shadow King reading guide now appears in the catalog with the approved source order,
+the Muir Island interleave, and the restored Nightcrawler selection. Saved reading progress is
+unchanged.
+
 ### Make the Android phone interface easier to use
 
 The recommended-start card now gives its text the full width and puts its button underneath.
