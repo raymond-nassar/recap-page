@@ -55,6 +55,13 @@ test('Android wrapper bootstrap matches the distribution and runs before the Win
     'Verify or restore the wrapper before executing it');
 });
 
+test('Android generated assets and icons carry their producer tasks through the variant API', async () => {
+  const build = await readFile(new URL('../packaging/android/app/build.gradle', import.meta.url), 'utf8');
+  assert.match(build, /variant\.sources\.assets\.addGeneratedSourceDirectory\(prepareAssets\)/);
+  assert.match(build, /variant\.sources\.res\.addGeneratedSourceDirectory\(prepareIcon\)/);
+  assert.doesNotMatch(build, /sourceSets\.main\.(?:assets|res)\.srcDir/);
+});
+
 test('Android export permits only bounded text files and basenames', () => {
   assert.doesNotThrow(() => validateExport(file));
   assert.doesNotThrow(() => validateExport({ filename: 'my-list.md', type: 'text/markdown', text: '' }));

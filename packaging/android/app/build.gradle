@@ -4,6 +4,16 @@ plugins {
     id 'com.android.application'
 }
 
+abstract class PrepareAndroidAssets extends Exec {
+    @OutputDirectory
+    abstract DirectoryProperty getOutputDirectory()
+}
+
+abstract class PrepareAndroidIcon extends Copy {
+    @OutputDirectory
+    abstract DirectoryProperty getOutputDirectory()
+}
+
 def repositoryRoot = rootProject.projectDir.toPath().resolve('../..').normalize().toFile()
 def metadata = new JsonSlurper().parse(new File(repositoryRoot, 'package.json'))
 def betaRevision = 2
@@ -30,8 +40,6 @@ android {
             debuggable true
         }
     }
-    sourceSets.main.assets.srcDir layout.buildDirectory.dir('generated/assets')
-    sourceSets.main.res.srcDir layout.buildDirectory.dir('generated/recap-res')
     lint {
         abortOnError true
         warningsAsErrors true
@@ -48,24 +56,26 @@ dependencies {
     androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.4.0'
 }
 
-def prepareAssets = tasks.register('prepareAndroidAssets', Exec) {
+def prepareAssets = tasks.register('prepareAndroidAssets', PrepareAndroidAssets) {
+    outputDirectory.set(layout.buildDirectory.dir('generated/assets'))
     workingDir repositoryRoot
     commandLine 'node', new File(repositoryRoot, 'scripts/prepare-android.mjs').absolutePath
     inputs.dir new File(repositoryRoot, 'src')
     inputs.dir new File(rootProject.projectDir, 'web')
     inputs.files new File(repositoryRoot, 'scripts/prepare-android.mjs'),
         new File(repositoryRoot, 'server.mjs'), new File(repositoryRoot, 'package.json')
-    outputs.dir layout.buildDirectory.dir('generated/assets/recap')
 }
 
-def prepareIcon = tasks.register('prepareAndroidIcon', Copy) {
+def prepareIcon = tasks.register('prepareAndroidIcon', PrepareAndroidIcon) {
+    outputDirectory.set(layout.buildDirectory.dir('generated/recap-res'))
     from new File(repositoryRoot, 'src/icons/icon-192.png')
-    into layout.buildDirectory.dir('generated/recap-res/drawable-nodpi')
+    into outputDirectory.dir('drawable-nodpi')
     rename { 'recap_icon.png' }
 }
 
-tasks.configureEach {
-    if (name == 'preBuild') dependsOn prepareAssets, prepareIcon
+androidComponents.onVariants(androidComponents.selector().all()) { variant ->
+    variant.sources.assets.addGeneratedSourceDirectory(prepareAssets) { it.outputDirectory }
+    variant.sources.res.addGeneratedSourceDirectory(prepareIcon) { it.outputDirectory }
 }
 
 // No JUnit dependency is needed for the platform-independent navigation boundary.
