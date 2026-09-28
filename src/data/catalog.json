@@ -2198,7 +2198,7 @@
       "depth": "partial",
       "spotlightKind": "other",
       "count": 70,
-      "placeholderCount": 0,
+      "placeholderCount": 1,
       "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
@@ -2223,8 +2223,8 @@
       "timeline": null,
       "coverIssueId": 7127,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/f0/55d4af7768b16",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/55d4af7768b16",
+        "ext": "jpg"
       },
       "source": "https://www.comicbookherald.com/nebula-reading-order/",
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",

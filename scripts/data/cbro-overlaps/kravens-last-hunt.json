@@ -2,13 +2,13 @@
   "candidateId": "kravens-last-hunt",
   "packetDigest": "4a660f057356e023180b9433f8e5d8bb0f863ec551d6437aa35599cd0da2f41a",
   "mappingDigest": "ff29f1e4bf1a60165a37ff4a51a723f6d0865627ef5fbdba397b3bfac8909d32",
-  "libraryDigest": "48a3cea10fff35b8230aa5f56b05f2502df215a756dcba56840e230cdb2e6594",
+  "libraryDigest": "b1e887433a1828c8e1a2abfffdab33dfb20c5484fc0c500d55210d1d94b9ed84",
   "peerDigests": {
     "fall-of-the-mutants": "223a4b92f028824ec68498b83b35018ec29898d29fa166b27b72e89b475ef804",
     "marvel-super-heroes-secret-wars": "32c4495ceec288e5984c5430e194472f81acc67993676267ede980a6e82e6a05"
   },
   "candidateCount": 7,
-  "comparisonCount": 136,
+  "comparisonCount": 137,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -449,6 +449,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "nebula-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "necrosha",
       "sharedCount": 0,
       "sharedIds": [],
@@ -834,5 +840,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "02326fe8e01030932b393b2a429618f333a0cc4fb04e6e1b12c12f44fec3fbe3"
+  "reportDigest": "77a5ab65210c7a9b0127c6614fa175e538d9c04ee6380ca52f69d23c111e3c1c"
 }

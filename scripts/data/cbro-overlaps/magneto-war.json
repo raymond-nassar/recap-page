@@ -2,12 +2,12 @@
   "candidateId": "magneto-war",
   "packetDigest": "3e51200302d796ec6f32fd0376d8d9a06d0f68abe246540840f614f811572827",
   "mappingDigest": "bd9242a3e97a6414f7b7f980b446a7d9f4a31f4a9e17e635d4bbc54c52df43d1",
-  "libraryDigest": "081ada05ae7fd8139ea0a1c688d8c0891e8ea7d8728a1a63c76c71e89430b577",
+  "libraryDigest": "5abc34fd88f96bfb4e3d788e77be8b4916ffe27da93bc5f4e9a65919dd346018",
   "peerDigests": {
     "hunt-for-xavier": "5f7c52e7d15015ac77c7ba6a9062399c8fe3df3f15fa0f1a4f63af9fde4f101c"
   },
   "candidateCount": 8,
-  "comparisonCount": 136,
+  "comparisonCount": 137,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -448,6 +448,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "nebula-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "necrosha",
       "sharedCount": 0,
       "sharedIds": [],
@@ -826,5 +832,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "ae167e32cd26630d0566a2b3ada1980b369844871d97871745c776537060dede"
+  "reportDigest": "5f03c8b740a0d2f5f488404bc7bbc1e8e69439e8fef35104d5aafc3e47e57644"
 }

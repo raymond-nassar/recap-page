@@ -32,8 +32,8 @@
       "mu": "1985-07-01T00:00:00+0000",
       "digitalId": 35064,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/f0/55d4af7768b16",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/55d4af7768b16",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 0,

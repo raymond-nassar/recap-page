@@ -243,6 +243,7 @@ test('batch two has no aggregate identity, source, sequence, or pre-publication 
     'x-men-utopia',
     'iron-man-reading-order',
     'amazing-spider-man-reading-order-modern-marvel-era',
+    'nebula-reading-order',
     'doctor-strange-multiverse-of-madness',
     'spider-man-no-way-home',
     'marvel-multiverse',

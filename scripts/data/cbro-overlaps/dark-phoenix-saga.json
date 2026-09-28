@@ -2,7 +2,7 @@
   "candidateId": "dark-phoenix-saga",
   "packetDigest": "7144b1d5e2cb36f3ff00631ee2aab7dc3053345ce7f7dee4327ea2a4cebfd752",
   "mappingDigest": "0ca931db6ce100c837f5d73c14e0754f0d32e4c9b69ea826b8b76103fc210a7a",
-  "libraryDigest": "229daebd4291a2210ad3fa2fd26aa4c723ef895ed13d926f98fab31c64f76613",
+  "libraryDigest": "1017d14eef132f3285db50b2c302a5f1b6a93fbf06b371e2783181f5dc6a24c1",
   "peerDigests": {
     "contest-of-champions": "e8b9450e41124d32562e53da1dcd35a0d25d7696ec46b00d874883faa293dbc9",
     "days-of-future-past": "e253d3fc6b88618ee4faa4a3d4aaf328dc7fffb16ea7bce3e685ca5bc50aa1e0",
@@ -10,7 +10,7 @@
     "phoenix-saga": "17b35225f38832a0f51dfb692bcbf20512338433132681a9d2c8c85087edd9fa"
   },
   "candidateCount": 9,
-  "comparisonCount": 136,
+  "comparisonCount": 137,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -451,6 +451,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "nebula-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "necrosha",
       "sharedCount": 0,
       "sharedIds": [],
@@ -849,5 +855,5 @@
       "relationship": "candidate-subset"
     }
   ],
-  "reportDigest": "de58eba681ac3c6148469f9a275fb6c224ff2a86e3698a466fa70061d0840aa2"
+  "reportDigest": "59be91ed2054092bcd7c6d72d0f90163edb540eb92a25863fc50fd8687be5ccc"
 }

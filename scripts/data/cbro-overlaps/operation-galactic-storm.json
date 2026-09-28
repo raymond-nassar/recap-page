@@ -2,14 +2,14 @@
   "candidateId": "operation-galactic-storm",
   "packetDigest": "c6dea6816313c62c9cd1432e7961093198844de8d1a82ac47b32ae9ef3577ef9",
   "mappingDigest": "810d07e7733c8047fe6e856a51e537da632894968c7d4b2786ffc99ff32588c6",
-  "libraryDigest": "c094dea168b4ede5c0e3d47f81ae47f33a0d25132fa2d6b997e511730e6704e9",
+  "libraryDigest": "069a5e6364c08d7ee47eb9734ea3ab9ae9e2024e4308373c6043a544085a3dc0",
   "peerDigests": {
     "dead-mans-hand": "b1829dab006fd9ed1a8be0b3235d3580795d163eaae87ab7ce8b0eedb5249711",
     "rise-of-the-midnight-sons": "fe7b094aa67dc91e75c1a4d5f2beff933e8f3205893476de9afdb255ea17753e",
     "x-tinction-agenda": "98a32935b2d090520e5b2f0fc8d6d47acfb64d6448efbf0ac45956409fd4f9d4"
   },
   "candidateCount": 22,
-  "comparisonCount": 136,
+  "comparisonCount": 137,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -474,6 +474,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "nebula-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "necrosha",
       "sharedCount": 0,
       "sharedIds": [],
@@ -846,5 +852,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "3f4d06a53d2c9b8380787b51956a4f2af8b58a842cff5cd49ddb44ce8ea0490c"
+  "reportDigest": "b47b0f8f98d49d50c262ba11a5826298b6a2a125c0545029c09257d349034077"
 }

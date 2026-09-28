@@ -34,6 +34,7 @@ const laterReviewedIds = new Set([
   'star-lord-reading-order',
   'thanos-reading-order',
   'amazing-spider-man-reading-order-modern-marvel-era',
+  'nebula-reading-order',
   'loki-reading-order',
   'modern-x-men-fast-track',
   'silver-surfer-reading-order',
