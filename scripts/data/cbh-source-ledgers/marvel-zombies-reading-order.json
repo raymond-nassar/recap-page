@@ -1,0 +1,1982 @@
+{
+  "schemaVersion": 1,
+  "status": "frozen-approved-source",
+  "id": "marvel-zombies-reading-order",
+  "scopeIssue": "https://github.com/raymond-nassar/recap-page/issues/590",
+  "sourceUrl": "https://www.comicbookherald.com/marvel-zombies-reading-order/",
+  "sourceRetrievedAt": "2026-09-28",
+  "retrievalUtc": "2026-09-29T06:19:46Z to 2026-09-29T06:22:23Z",
+  "sourceContent": {
+    "url": "https://www.comicbookherald.com/wp-json/wp/v2/posts?slug=marvel-zombies-reading-order&_fields=id%2Clink%2Cmodified%2Ccontent",
+    "postId": 11988,
+    "postModified": "2025-09-12T11:16:40",
+    "nodeCount": 66,
+    "normalizedUtf8Bytes": 4692,
+    "normalization": "Parse fresh post.content.rendered with DOMParser('text/html'); select document.body.querySelectorAll('h1,h2,h3,p') in document order. For each of 66 nodes emit uppercase tag name, one U+0009 tab, textContent with all JavaScript /\\s+/gu runs replaced by a single ASCII space, trim, NFC; join lines with LF and add a final LF; UTF-8 SHA-256. Issue-bearing projection applies the same operation to only the 52 zero-based indexes listed below, retaining their original order. Full-content digest includes prose text as a hash only, not copied prose.",
+    "sha256": "3b6ac6f02de709d26a0e2efe2a2fc057a37f786a621eaa93b9e07a77ef2648bc",
+    "issueBearingNodeIndexes": [
+      5,
+      6,
+      7,
+      8,
+      9,
+      11,
+      12,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      41,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      54,
+      55,
+      56,
+      57,
+      58,
+      60,
+      61,
+      62,
+      64,
+      65
+    ],
+    "issueBearingNormalizedUtf8Bytes": 2347,
+    "issueBearingSha256": "4c7fb73b1a9f5e57b461d8b88ace20b7f5ca009701534d807463e8532b9a52e8",
+    "repeatMeasurement": "Two fresh HTTP 200 fetches at 2026-09-29T06:22:23Z returned identical normalized full-content SHA-256 and 66 nodes; two independent issue-bearing calculations matched. Raw rendered HTML digests differed on repeated fresh responses due to variable injected advertising and must not substitute for these hashes.",
+    "priorIntakeSha256": "92723cf8148cb5845ebba3412327757f5035d811cb8a2a940591365206fc8a4f",
+    "priorIntakeStatus": "This was already recorded for 2026-08-23; its normalization is not established and it is not a fresh retrieval measurement."
+  },
+  "selectionRule": "Explicit issue-by-issue selections take priority over collection contents. Retain numbered optional selections, do not expand unnumbered collection or linked-guide pointers, and preserve original source order.",
+  "counts": {
+    "rawBlockCount": 17,
+    "sourceOccurrenceCount": 95,
+    "canonicalIdentityCount": 94,
+    "exactOriginalCount": 91,
+    "openMetadataGapCount": 3,
+    "backwardRepeatCount": 1
+  },
+  "sections": [
+    {
+      "label": "Marvel Zombies Comic Book Reading Order",
+      "occurrenceCount": 63
+    },
+    {
+      "label": "Deadpool Vs. Zombies",
+      "occurrenceCount": 9
+    },
+    {
+      "label": "Zombies In Marvel's Secret Wars (2015)",
+      "occurrenceCount": 8
+    },
+    {
+      "label": "Marvel Zombies Resurrection Era",
+      "occurrenceCount": 6
+    },
+    {
+      "label": "Out of Continuity Additions:",
+      "occurrenceCount": 9
+    }
+  ],
+  "blocks": [
+    {
+      "id": "complete-collection-1",
+      "section": "Marvel Zombies Comic Book Reading Order",
+      "sourceNodeIndexes": [
+        6,
+        7,
+        8,
+        9,
+        11,
+        12,
+        14,
+        15
+      ],
+      "rawCollects": "Ultimate Fantastic Four 21-23, 30-32; Marvel Zombies 1-5; Marvel Zombies: Dead Days 1; Black Panther (2005) 28-30",
+      "selectionPriority": "issue-by-issue order",
+      "runs": [
+        {
+          "positions": [
+            1,
+            3
+          ],
+          "sourceNodeIndex": 9,
+          "raw": "Ultimate Fantastic Four #21 to #23",
+          "sourceSeries": "Ultimate Fantastic Four",
+          "sourceYear": null,
+          "issueNumbers": [
+            "21",
+            "22",
+            "23"
+          ],
+          "originalSeriesId": 702,
+          "originalSeriesYear": 2003
+        },
+        {
+          "positions": [
+            4,
+            8
+          ],
+          "sourceNodeIndex": 11,
+          "raw": "Marvel Zombies (2005 to 2006) #1 to #5",
+          "sourceSeries": "Marvel Zombies",
+          "sourceYear": null,
+          "issueNumbers": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "originalSeriesId": 998,
+          "originalSeriesYear": 2005,
+          "sourceYearHint": "2005 to 2006; compare 2006 re-mention"
+        },
+        {
+          "positions": [
+            9,
+            9
+          ],
+          "sourceNodeIndex": 12,
+          "raw": "Marvel Zombies: Dead Days #1 (May 2007)",
+          "sourceSeries": "Marvel Zombies: Dead Days",
+          "sourceYear": 2007,
+          "issueNumbers": [
+            "1"
+          ],
+          "originalSeriesId": 2189,
+          "originalSeriesYear": 2007
+        },
+        {
+          "positions": [
+            10,
+            12
+          ],
+          "sourceNodeIndex": 14,
+          "raw": "Ultimate Fantastic Four #30 to #32",
+          "sourceSeries": "Ultimate Fantastic Four",
+          "sourceYear": null,
+          "issueNumbers": [
+            "30",
+            "31",
+            "32"
+          ],
+          "originalSeriesId": 702,
+          "originalSeriesYear": 2003
+        },
+        {
+          "positions": [
+            13,
+            15
+          ],
+          "sourceNodeIndex": 15,
+          "raw": "Black Panther #28 to #30",
+          "sourceSeries": "Black Panther",
+          "sourceYear": 2005,
+          "issueNumbers": [
+            "28",
+            "29",
+            "30"
+          ],
+          "originalSeriesId": 784,
+          "originalSeriesYear": 2005,
+          "sourceYearHint": "2005 supplied by Collects line"
+        }
+      ]
+    },
+    {
+      "id": "complete-collection-2",
+      "section": "Marvel Zombies Comic Book Reading Order",
+      "sourceNodeIndexes": [
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22
+      ],
+      "rawCollects": "Marvel Zombies 2 1-5, Marvel Zombies 3 1-4, Marvel Zombies 4 1-4, Marvel Zombies Return 1-5",
+      "selectionPriority": "issue-by-issue order, Return before Zombies 3",
+      "runs": [
+        {
+          "positions": [
+            16,
+            20
+          ],
+          "sourceNodeIndex": 19,
+          "raw": "Marvel Zombies 2 (2007-2008) #1 to #5",
+          "sourceSeries": "Marvel Zombies 2",
+          "sourceYear": null,
+          "issueNumbers": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "originalSeriesId": 2844,
+          "originalSeriesYear": 2007,
+          "sourceYearHint": "2007-2008"
+        },
+        {
+          "positions": [
+            21,
+            25
+          ],
+          "sourceNodeIndex": 20,
+          "raw": "Marvel Zombies Return #1 to #5",
+          "sourceSeries": "Marvel Zombies Return",
+          "sourceYear": null,
+          "issueNumbers": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "originalSeriesId": 9049,
+          "originalSeriesYear": 2009
+        },
+        {
+          "positions": [
+            26,
+            29
+          ],
+          "sourceNodeIndex": 21,
+          "raw": "Marvel Zombies 3 (2008-2009) #1 to #4",
+          "sourceSeries": "Marvel Zombies 3",
+          "sourceYear": null,
+          "issueNumbers": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "originalSeriesId": 5993,
+          "originalSeriesYear": 2008,
+          "sourceYearHint": "2008-2009"
+        },
+        {
+          "positions": [
+            30,
+            33
+          ],
+          "sourceNodeIndex": 22,
+          "raw": "Marvel Zombies 4 (2009) #1 to #4",
+          "sourceSeries": "Marvel Zombies 4",
+          "sourceYear": 2009,
+          "issueNumbers": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "originalSeriesId": 7218,
+          "originalSeriesYear": 2009
+        }
+      ]
+    },
+    {
+      "id": "deadpool-classic-11",
+      "section": "Marvel Zombies Comic Book Reading Order",
+      "sourceNodeIndexes": [
+        23,
+        24
+      ],
+      "rawCollects": "Deadpool: Merc with a Mouth #1 to #13",
+      "selectionQualification": "The source calls this optional for big Deadpool fans but supplies the entire numbered range.",
+      "runs": [
+        {
+          "positions": [
+            34,
+            46
+          ],
+          "sourceNodeIndex": 24,
+          "raw": "Deadpool: Merc with a Mouth #1 to #13",
+          "sourceSeries": "Deadpool: Merc with a Mouth",
+          "sourceYear": null,
+          "issueNumbers": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13"
+          ],
+          "originalSeriesId": 8865,
+          "originalSeriesYear": 2009
+        }
+      ]
+    },
+    {
+      "id": "complete-collection-3",
+      "section": "Marvel Zombies Comic Book Reading Order",
+      "sourceNodeIndexes": [
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33
+      ],
+      "rawCollects": "Marvel Apes: Prime Eight 1, Marvel Zombies: Evil Evolution 1, Marvel Zombies 5 1-5, Marvel Zombies Supreme 1-5, Marvel Zombies Destroy 1-5, Marvel Zombies Halloween 1",
+      "selectionPriority": "issue-by-issue order; Prime Eight #1 appears only in collection contents and is an approved collection-only nonselection",
+      "runs": [
+        {
+          "positions": [
+            47,
+            47
+          ],
+          "sourceNodeIndex": 29,
+          "raw": "Marvel Zombies: Evil Evolution #1",
+          "sourceSeries": "Marvel Zombies: Evil Evolution",
+          "sourceYear": null,
+          "issueNumbers": [
+            "1"
+          ],
+          "originalSeriesId": 8929,
+          "originalSeriesYear": 2009
+        },
+        {
+          "positions": [
+            48,
+            52
+          ],
+          "sourceNodeIndex": 30,
+          "raw": "Marvel Zombies 5 (2010) #1 to #5",
+          "sourceSeries": "Marvel Zombies 5",
+          "sourceYear": 2010,
+          "issueNumbers": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "originalSeriesId": 9719,
+          "originalSeriesYear": 2010
+        },
+        {
+          "positions": [
+            53,
+            57
+          ],
+          "sourceNodeIndex": 31,
+          "raw": "Marvel Zombies Supreme (2011) #1 to #5",
+          "sourceSeries": "Marvel Zombies Supreme",
+          "sourceYear": 2011,
+          "issueNumbers": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "originalSeriesId": 12309,
+          "originalSeriesYear": 2011
+        },
+        {
+          "positions": [
+            58,
+            62
+          ],
+          "sourceNodeIndex": 32,
+          "raw": "Marvel Zombies Destroy! (2012) #1 to #5",
+          "sourceSeries": "Marvel Zombies Destroy!",
+          "sourceYear": 2012,
+          "issueNumbers": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "originalSeriesId": 15454,
+          "originalSeriesYear": 2011
+        },
+        {
+          "positions": [
+            63,
+            63
+          ],
+          "sourceNodeIndex": 33,
+          "raw": "Marvel Zombies Halloween (2012) #1",
+          "sourceSeries": "Marvel Zombies Halloween",
+          "sourceYear": 2012,
+          "issueNumbers": [
+            "1"
+          ],
+          "originalSeriesId": 17229,
+          "originalSeriesYear": 2012
+        }
+      ]
+    },
+    {
+      "id": "night-living-deadpool",
+      "section": "Deadpool Vs. Zombies",
+      "sourceNodeIndexes": [
+        35,
+        36
+      ],
+      "rawCollects": "Night Of The Living Deadpool 1-4",
+      "runs": [
+        {
+          "positions": [
+            64,
+            67
+          ],
+          "sourceNodeIndex": 36,
+          "raw": "Night Of The Living Deadpool 1-4",
+          "sourceSeries": "Night of the Living Deadpool",
+          "sourceYear": null,
+          "issueNumbers": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "originalSeriesId": 18469,
+          "originalSeriesYear": 2014
+        }
+      ]
+    },
+    {
+      "id": "return-living-deadpool",
+      "section": "Deadpool Vs. Zombies",
+      "sourceNodeIndexes": [
+        37,
+        38
+      ],
+      "rawCollects": "Return Of The Living Deadpool 1-4, Prelude To Deadpool Corps 4",
+      "runs": [
+        {
+          "positions": [
+            68,
+            71
+          ],
+          "sourceNodeIndex": 38,
+          "raw": "Return Of The Living Deadpool 1-4",
+          "sourceSeries": "Return of the Living Deadpool",
+          "sourceYear": null,
+          "issueNumbers": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "originalSeriesId": 19633,
+          "originalSeriesYear": 2015
+        },
+        {
+          "positions": [
+            72,
+            72
+          ],
+          "sourceNodeIndex": 38,
+          "raw": "Prelude To Deadpool Corps 4",
+          "sourceSeries": "Prelude to Deadpool Corps",
+          "sourceYear": null,
+          "issueNumbers": [
+            "4"
+          ],
+          "originalSeriesId": 9309,
+          "originalSeriesYear": 2010
+        }
+      ]
+    },
+    {
+      "id": "marvel-zombies-battleworld",
+      "section": "Zombies In Marvel's Secret Wars (2015)",
+      "sourceNodeIndexes": [
+        43,
+        44
+      ],
+      "rawCollects": "Marvel Zombies (2015), Marvel Zombies (2006) 1",
+      "runs": [
+        {
+          "positions": [
+            73,
+            73
+          ],
+          "sourceNodeIndex": 44,
+          "raw": "Marvel Zombies (2006) 1",
+          "sourceSeries": "Marvel Zombies",
+          "sourceYear": null,
+          "issueNumbers": [
+            "1"
+          ],
+          "originalSeriesId": 998,
+          "originalSeriesYear": 2005,
+          "canonicalSourcePosition": 4
+        }
+      ]
+    },
+    {
+      "id": "age-ultron-vs-zombies",
+      "section": "Zombies In Marvel's Secret Wars (2015)",
+      "sourceNodeIndexes": [
+        45,
+        46
+      ],
+      "rawCollects": "Age Of Ultron Vs. Zombies, Age Of Ultron 1",
+      "runs": [
+        {
+          "positions": [
+            74,
+            74
+          ],
+          "sourceNodeIndex": 46,
+          "raw": "Age Of Ultron 1",
+          "sourceSeries": "Age of Ultron",
+          "sourceYear": null,
+          "issueNumbers": [
+            "1"
+          ],
+          "originalSeriesId": 17318,
+          "originalSeriesYear": 2013
+        }
+      ]
+    },
+    {
+      "id": "red-skull",
+      "section": "Zombies In Marvel's Secret Wars (2015)",
+      "sourceNodeIndexes": [
+        47,
+        48
+      ],
+      "rawCollects": "Red Skull & More!",
+      "runs": []
+    },
+    {
+      "id": "siege-battleworld",
+      "section": "Zombies In Marvel's Secret Wars (2015)",
+      "sourceNodeIndexes": [
+        49,
+        50
+      ],
+      "rawCollects": "Siege 1-4, Uncanny X-Men (2011) 9-10",
+      "runs": [
+        {
+          "positions": [
+            75,
+            78
+          ],
+          "sourceNodeIndex": 50,
+          "raw": "Siege 1-4",
+          "sourceSeries": "Siege",
+          "sourceYear": null,
+          "issueNumbers": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "originalSeriesId": 19608,
+          "originalSeriesYear": 2015
+        },
+        {
+          "positions": [
+            79,
+            80
+          ],
+          "sourceNodeIndex": 50,
+          "raw": "Uncanny X-Men (2011) 9-10",
+          "sourceSeries": "Uncanny X-Men",
+          "sourceYear": 2011,
+          "issueNumbers": [
+            "9",
+            "10"
+          ],
+          "originalSeriesId": 14914,
+          "originalSeriesYear": 2011
+        }
+      ]
+    },
+    {
+      "id": "marvel-zombie-2018",
+      "section": "Marvel Zombies Resurrection Era",
+      "sourceNodeIndexes": [
+        52
+      ],
+      "runs": [
+        {
+          "positions": [
+            81,
+            81
+          ],
+          "sourceNodeIndex": 52,
+          "raw": "Marvel Zombie (2018) #1",
+          "sourceSeries": "Marvel Zombie",
+          "sourceYear": 2018,
+          "issueNumbers": [
+            "1"
+          ],
+          "originalSeriesId": 26447,
+          "originalSeriesYear": 2018
+        }
+      ]
+    },
+    {
+      "id": "marvel-zombies-resurrection",
+      "section": "Marvel Zombies Resurrection Era",
+      "sourceNodeIndexes": [
+        54,
+        55
+      ],
+      "rawCollects": "Marvel Zombies: Resurrection (2019) #1, Marvel Zombies: Resurrection (2020) #1 to #4",
+      "runs": [
+        {
+          "positions": [
+            82,
+            82
+          ],
+          "sourceNodeIndex": 55,
+          "raw": "Marvel Zombies: Resurrection (2019) #1",
+          "sourceSeries": "Marvel Zombies: Resurrection",
+          "sourceYear": 2019,
+          "issueNumbers": [
+            "1"
+          ],
+          "originalSeriesId": 28311,
+          "originalSeriesYear": 2019
+        },
+        {
+          "positions": [
+            83,
+            86
+          ],
+          "sourceNodeIndex": 55,
+          "raw": "Marvel Zombies: Resurrection (2020) #1 to #4",
+          "sourceSeries": "Marvel Zombies: Resurrection",
+          "sourceYear": 2020,
+          "issueNumbers": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "originalSeriesId": 29377,
+          "originalSeriesYear": 2020
+        }
+      ]
+    },
+    {
+      "id": "marvel-zombies-black-white-blood",
+      "section": "Marvel Zombies Resurrection Era",
+      "sourceNodeIndexes": [
+        56
+      ],
+      "rawPointer": "Marvel Zombies: Black, White & Blood",
+      "runs": []
+    },
+    {
+      "id": "marvel-zombies-army-darkness",
+      "section": "Out of Continuity Additions:",
+      "sourceNodeIndexes": [
+        58
+      ],
+      "rawPointer": "Marvel Zombies vs Army of Darkness",
+      "runs": []
+    },
+    {
+      "id": "zombies-christmas-carol",
+      "section": "Out of Continuity Additions:",
+      "sourceNodeIndexes": [
+        60
+      ],
+      "rawPointer": "Zombies Christmas Carol",
+      "runs": []
+    },
+    {
+      "id": "marvel-zombies-dawn-decay",
+      "section": "Out of Continuity Additions:",
+      "sourceNodeIndexes": [
+        61,
+        62
+      ],
+      "rawCollects": "Marvel Zombies: Dawn of Decay #1 to #4",
+      "runs": [
+        {
+          "positions": [
+            87,
+            90
+          ],
+          "sourceNodeIndex": 62,
+          "raw": "Marvel Zombies: Dawn of Decay #1 to #4",
+          "sourceSeries": "Marvel Zombies: Dawn of Decay",
+          "sourceYear": null,
+          "issueNumbers": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "originalSeriesId": 39609,
+          "originalSeriesYear": 2024
+        }
+      ]
+    },
+    {
+      "id": "marvel-zombies-red-band",
+      "section": "Out of Continuity Additions:",
+      "sourceNodeIndexes": [
+        64,
+        65
+      ],
+      "rawCollects": "Marvel Zombies (2025) #1 to #5",
+      "runs": [
+        {
+          "positions": [
+            91,
+            95
+          ],
+          "sourceNodeIndex": 65,
+          "raw": "Marvel Zombies (2025) #1 to #5",
+          "sourceSeries": "Marvel Zombies",
+          "sourceYear": 2025,
+          "issueNumbers": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "originalSeriesId": 44562,
+          "originalSeriesYear": 2025
+        }
+      ]
+    }
+  ],
+  "excludedReferences": [
+    {
+      "sourceNodeIndex": 27,
+      "rawReference": "Marvel Apes: Prime Eight 1",
+      "disposition": "collection-only nonselection",
+      "reason": "The explicit Volume 3 issue-by-issue route omits Prime Eight #1. Preserve its collection reference without adding an issue position."
+    },
+    {
+      "sourceNodeIndex": 44,
+      "rawReference": "Marvel Zombies (2015)",
+      "disposition": "unnumbered-collection-pointer",
+      "reason": "No inferred #1-4 or other miniseries range; the same line independently selects original Marvel Zombies (2006) #1."
+    },
+    {
+      "sourceNodeIndex": 46,
+      "rawReference": "Age Of Ultron Vs. Zombies",
+      "disposition": "unnumbered-collection-pointer",
+      "reason": "No inferred miniseries range; the same line independently selects original Age Of Ultron #1."
+    },
+    {
+      "sourceNodeIndex": 48,
+      "rawReference": "Red Skull & More!",
+      "disposition": "unnumbered-collection-pointer",
+      "reason": "No guessed Red Skull title, volume or issue range."
+    },
+    {
+      "sourceNodeIndex": 56,
+      "rawReference": "Marvel Zombies: Black, White & Blood",
+      "disposition": "unnumbered-collection-pointer",
+      "reason": "No guessed miniseries range."
+    },
+    {
+      "sourceNodeIndex": 58,
+      "rawReference": "Marvel Zombies vs Army of Darkness",
+      "disposition": "unnumbered-collection-pointer",
+      "reason": "Source labels it Out of Continuity; its timeline comment is not an issue range."
+    },
+    {
+      "sourceNodeIndex": 60,
+      "rawReference": "Zombies Christmas Carol",
+      "disposition": "unnumbered-collection-pointer",
+      "reason": "No guessed volume or issue range."
+    },
+    {
+      "sourceNodeIndex": 42,
+      "rawReference": "Secret Wars linked event guide",
+      "disposition": "linked-guide-pointer",
+      "reason": "Only the numbered issue selections on this page are selected, not the entire linked guide."
+    },
+    {
+      "sourceNodeIndex": 10,
+      "rawReference": "Ultimate Universe linked guide",
+      "disposition": "linked-guide-pointer",
+      "reason": "No inferred Ultimate Universe checklist."
+    }
+  ],
+  "originalVolumeDecisions": [
+    {
+      "sourcePositions": [
+        4,
+        73
+      ],
+      "originalSeriesId": 998,
+      "originalIssueId": 3220,
+      "fact": "The 2006-labeled Battleworld pointer repeats the original first issue released in December 2005 with a February 2006 cover date.",
+      "evidenceUrl": "https://marvel.fandom.com/wiki/Marvel_Zombies_Vol_1_1?action=raw"
+    },
+    {
+      "sourcePositions": [
+        9
+      ],
+      "originalSeriesId": 2189,
+      "fact": "Dead Days is its named 2007 original one-shot, not an issue of the initial miniseries."
+    },
+    {
+      "sourcePositions": [
+        58,
+        62
+      ],
+      "originalSeriesId": 15454,
+      "fact": "Destroy! starts in provider year 2011 although the source labels its range 2012."
+    },
+    {
+      "sourcePositions": [
+        72
+      ],
+      "originalSeriesId": 9309,
+      "fact": "Prelude to Deadpool Corps #4 is independently selected with Return of the Living Deadpool."
+    },
+    {
+      "sourcePositions": [
+        74
+      ],
+      "originalSeriesId": 17318,
+      "fact": "Battleworld selects the original Age of Ultron #1, not an inferred Age of Ultron vs. Zombies run."
+    },
+    {
+      "sourcePositions": [
+        75,
+        78
+      ],
+      "originalSeriesId": 19608,
+      "fact": "Siege #1-4 belongs to the 2015 Battleworld series, not the earlier namesake event."
+    },
+    {
+      "sourcePositions": [
+        81
+      ],
+      "originalSeriesId": 26447,
+      "fact": "Singular Marvel Zombie (2018) #1 is distinct from other Marvel Zombies volumes."
+    },
+    {
+      "sourcePositions": [
+        82
+      ],
+      "originalSeriesId": 28311,
+      "fact": "Resurrection (2019) #1 is the standalone first original."
+    },
+    {
+      "sourcePositions": [
+        83,
+        86
+      ],
+      "originalSeriesId": 29377,
+      "fact": "Resurrection (2020) #1-4 belongs to its separate original volume."
+    },
+    {
+      "sourcePositions": [
+        87,
+        90
+      ],
+      "originalSeriesId": 39609,
+      "fact": "Dawn of Decay #1-4 remains selected past the older metadata horizon."
+    },
+    {
+      "sourcePositions": [
+        91,
+        95
+      ],
+      "originalSeriesId": 44562,
+      "fact": "The 2025 Red Band original supplies #1-2; #3-5 remain explicit unresolved source positions, not invented issue IDs."
+    }
+  ],
+  "occurrences": [
+    {
+      "sourcePosition": 1,
+      "blockId": "complete-collection-1",
+      "sourceNodeIndex": 9,
+      "sourceIssueReference": "Ultimate Fantastic Four #21",
+      "sourceIssueNumber": "21",
+      "originalSeriesId": 702,
+      "originalSeriesYear": 2003,
+      "disposition": "canonical-original",
+      "selectedIssueId": 2183
+    },
+    {
+      "sourcePosition": 2,
+      "blockId": "complete-collection-1",
+      "sourceNodeIndex": 9,
+      "sourceIssueReference": "Ultimate Fantastic Four #22",
+      "sourceIssueNumber": "22",
+      "originalSeriesId": 702,
+      "originalSeriesYear": 2003,
+      "disposition": "canonical-original",
+      "selectedIssueId": 2303
+    },
+    {
+      "sourcePosition": 3,
+      "blockId": "complete-collection-1",
+      "sourceNodeIndex": 9,
+      "sourceIssueReference": "Ultimate Fantastic Four #23",
+      "sourceIssueNumber": "23",
+      "originalSeriesId": 702,
+      "originalSeriesYear": 2003,
+      "disposition": "canonical-original",
+      "selectedIssueId": 2412
+    },
+    {
+      "sourcePosition": 4,
+      "blockId": "complete-collection-1",
+      "sourceNodeIndex": 11,
+      "sourceIssueReference": "Marvel Zombies (2005 to 2006) #1",
+      "sourceIssueNumber": "1",
+      "originalSeriesId": 998,
+      "originalSeriesYear": 2005,
+      "disposition": "canonical-original",
+      "selectedIssueId": 3220
+    },
+    {
+      "sourcePosition": 5,
+      "blockId": "complete-collection-1",
+      "sourceNodeIndex": 11,
+      "sourceIssueReference": "Marvel Zombies (2005 to 2006) #2",
+      "sourceIssueNumber": "2",
+      "originalSeriesId": 998,
+      "originalSeriesYear": 2005,
+      "disposition": "canonical-original",
+      "selectedIssueId": 3430
+    },
+    {
+      "sourcePosition": 6,
+      "blockId": "complete-collection-1",
+      "sourceNodeIndex": 11,
+      "sourceIssueReference": "Marvel Zombies (2005 to 2006) #3",
+      "sourceIssueNumber": "3",
+      "originalSeriesId": 998,
+      "originalSeriesYear": 2005,
+      "disposition": "canonical-original",
+      "selectedIssueId": 3549
+    },
+    {
+      "sourcePosition": 7,
+      "blockId": "complete-collection-1",
+      "sourceNodeIndex": 11,
+      "sourceIssueReference": "Marvel Zombies (2005 to 2006) #4",
+      "sourceIssueNumber": "4",
+      "originalSeriesId": 998,
+      "originalSeriesYear": 2005,
+      "disposition": "canonical-original",
+      "selectedIssueId": 3956
+    },
+    {
+      "sourcePosition": 8,
+      "blockId": "complete-collection-1",
+      "sourceNodeIndex": 11,
+      "sourceIssueReference": "Marvel Zombies (2005 to 2006) #5",
+      "sourceIssueNumber": "5",
+      "originalSeriesId": 998,
+      "originalSeriesYear": 2005,
+      "disposition": "canonical-original",
+      "selectedIssueId": 4082
+    },
+    {
+      "sourcePosition": 9,
+      "blockId": "complete-collection-1",
+      "sourceNodeIndex": 12,
+      "sourceIssueReference": "Marvel Zombies: Dead Days #1",
+      "sourceIssueNumber": "1",
+      "originalSeriesId": 2189,
+      "originalSeriesYear": 2007,
+      "disposition": "canonical-original",
+      "selectedIssueId": 13479
+    },
+    {
+      "sourcePosition": 10,
+      "blockId": "complete-collection-1",
+      "sourceNodeIndex": 14,
+      "sourceIssueReference": "Ultimate Fantastic Four #30",
+      "sourceIssueNumber": "30",
+      "originalSeriesId": 702,
+      "originalSeriesYear": 2003,
+      "disposition": "canonical-original",
+      "selectedIssueId": 4145
+    },
+    {
+      "sourcePosition": 11,
+      "blockId": "complete-collection-1",
+      "sourceNodeIndex": 14,
+      "sourceIssueReference": "Ultimate Fantastic Four #31",
+      "sourceIssueNumber": "31",
+      "originalSeriesId": 702,
+      "originalSeriesYear": 2003,
+      "disposition": "canonical-original",
+      "selectedIssueId": 4290
+    },
+    {
+      "sourcePosition": 12,
+      "blockId": "complete-collection-1",
+      "sourceNodeIndex": 14,
+      "sourceIssueReference": "Ultimate Fantastic Four #32",
+      "sourceIssueNumber": "32",
+      "originalSeriesId": 702,
+      "originalSeriesYear": 2003,
+      "disposition": "canonical-original",
+      "selectedIssueId": 4445
+    },
+    {
+      "sourcePosition": 13,
+      "blockId": "complete-collection-1",
+      "sourceNodeIndex": 15,
+      "sourceIssueReference": "Black Panther #28",
+      "sourceIssueNumber": "28",
+      "originalSeriesId": 784,
+      "originalSeriesYear": 2005,
+      "disposition": "canonical-original",
+      "selectedIssueId": 13438
+    },
+    {
+      "sourcePosition": 14,
+      "blockId": "complete-collection-1",
+      "sourceNodeIndex": 15,
+      "sourceIssueReference": "Black Panther #29",
+      "sourceIssueNumber": "29",
+      "originalSeriesId": 784,
+      "originalSeriesYear": 2005,
+      "disposition": "canonical-original",
+      "selectedIssueId": 15939
+    },
+    {
+      "sourcePosition": 15,
+      "blockId": "complete-collection-1",
+      "sourceNodeIndex": 15,
+      "sourceIssueReference": "Black Panther #30",
+      "sourceIssueNumber": "30",
+      "originalSeriesId": 784,
+      "originalSeriesYear": 2005,
+      "disposition": "canonical-original",
+      "selectedIssueId": 16122
+    },
+    {
+      "sourcePosition": 16,
+      "blockId": "complete-collection-2",
+      "sourceNodeIndex": 19,
+      "sourceIssueReference": "Marvel Zombies 2 (2007-2008) #1",
+      "sourceIssueNumber": "1",
+      "originalSeriesId": 2844,
+      "originalSeriesYear": 2007,
+      "disposition": "canonical-original",
+      "selectedIssueId": 16547
+    },
+    {
+      "sourcePosition": 17,
+      "blockId": "complete-collection-2",
+      "sourceNodeIndex": 19,
+      "sourceIssueReference": "Marvel Zombies 2 (2007-2008) #2",
+      "sourceIssueNumber": "2",
+      "originalSeriesId": 2844,
+      "originalSeriesYear": 2007,
+      "disposition": "canonical-original",
+      "selectedIssueId": 17262
+    },
+    {
+      "sourcePosition": 18,
+      "blockId": "complete-collection-2",
+      "sourceNodeIndex": 19,
+      "sourceIssueReference": "Marvel Zombies 2 (2007-2008) #3",
+      "sourceIssueNumber": "3",
+      "originalSeriesId": 2844,
+      "originalSeriesYear": 2007,
+      "disposition": "canonical-original",
+      "selectedIssueId": 17399
+    },
+    {
+      "sourcePosition": 19,
+      "blockId": "complete-collection-2",
+      "sourceNodeIndex": 19,
+      "sourceIssueReference": "Marvel Zombies 2 (2007-2008) #4",
+      "sourceIssueNumber": "4",
+      "originalSeriesId": 2844,
+      "originalSeriesYear": 2007,
+      "disposition": "canonical-original",
+      "selectedIssueId": 17640
+    },
+    {
+      "sourcePosition": 20,
+      "blockId": "complete-collection-2",
+      "sourceNodeIndex": 19,
+      "sourceIssueReference": "Marvel Zombies 2 (2007-2008) #5",
+      "sourceIssueNumber": "5",
+      "originalSeriesId": 2844,
+      "originalSeriesYear": 2007,
+      "disposition": "canonical-original",
+      "selectedIssueId": 20680
+    },
+    {
+      "sourcePosition": 21,
+      "blockId": "complete-collection-2",
+      "sourceNodeIndex": 20,
+      "sourceIssueReference": "Marvel Zombies Return #1",
+      "sourceIssueNumber": "1",
+      "originalSeriesId": 9049,
+      "originalSeriesYear": 2009,
+      "disposition": "canonical-original",
+      "selectedIssueId": 27909
+    },
+    {
+      "sourcePosition": 22,
+      "blockId": "complete-collection-2",
+      "sourceNodeIndex": 20,
+      "sourceIssueReference": "Marvel Zombies Return #2",
+      "sourceIssueNumber": "2",
+      "originalSeriesId": 9049,
+      "originalSeriesYear": 2009,
+      "disposition": "canonical-original",
+      "selectedIssueId": 28811
+    },
+    {
+      "sourcePosition": 23,
+      "blockId": "complete-collection-2",
+      "sourceNodeIndex": 20,
+      "sourceIssueReference": "Marvel Zombies Return #3",
+      "sourceIssueNumber": "3",
+      "originalSeriesId": 9049,
+      "originalSeriesYear": 2009,
+      "disposition": "canonical-original",
+      "selectedIssueId": 28812
+    },
+    {
+      "sourcePosition": 24,
+      "blockId": "complete-collection-2",
+      "sourceNodeIndex": 20,
+      "sourceIssueReference": "Marvel Zombies Return #4",
+      "sourceIssueNumber": "4",
+      "originalSeriesId": 9049,
+      "originalSeriesYear": 2009,
+      "disposition": "canonical-original",
+      "selectedIssueId": 28813
+    },
+    {
+      "sourcePosition": 25,
+      "blockId": "complete-collection-2",
+      "sourceNodeIndex": 20,
+      "sourceIssueReference": "Marvel Zombies Return #5",
+      "sourceIssueNumber": "5",
+      "originalSeriesId": 9049,
+      "originalSeriesYear": 2009,
+      "disposition": "canonical-original",
+      "selectedIssueId": 28814
+    },
+    {
+      "sourcePosition": 26,
+      "blockId": "complete-collection-2",
+      "sourceNodeIndex": 21,
+      "sourceIssueReference": "Marvel Zombies 3 (2008-2009) #1",
+      "sourceIssueNumber": "1",
+      "originalSeriesId": 5993,
+      "originalSeriesYear": 2008,
+      "disposition": "canonical-original",
+      "selectedIssueId": 22376
+    },
+    {
+      "sourcePosition": 27,
+      "blockId": "complete-collection-2",
+      "sourceNodeIndex": 21,
+      "sourceIssueReference": "Marvel Zombies 3 (2008-2009) #2",
+      "sourceIssueNumber": "2",
+      "originalSeriesId": 5993,
+      "originalSeriesYear": 2008,
+      "disposition": "canonical-original",
+      "selectedIssueId": 22566
+    },
+    {
+      "sourcePosition": 28,
+      "blockId": "complete-collection-2",
+      "sourceNodeIndex": 21,
+      "sourceIssueReference": "Marvel Zombies 3 (2008-2009) #3",
+      "sourceIssueNumber": "3",
+      "originalSeriesId": 5993,
+      "originalSeriesYear": 2008,
+      "disposition": "canonical-original",
+      "selectedIssueId": 22985
+    },
+    {
+      "sourcePosition": 29,
+      "blockId": "complete-collection-2",
+      "sourceNodeIndex": 21,
+      "sourceIssueReference": "Marvel Zombies 3 (2008-2009) #4",
+      "sourceIssueNumber": "4",
+      "originalSeriesId": 5993,
+      "originalSeriesYear": 2008,
+      "disposition": "canonical-original",
+      "selectedIssueId": 23161
+    },
+    {
+      "sourcePosition": 30,
+      "blockId": "complete-collection-2",
+      "sourceNodeIndex": 22,
+      "sourceIssueReference": "Marvel Zombies 4 (2009) #1",
+      "sourceIssueNumber": "1",
+      "originalSeriesId": 7218,
+      "originalSeriesYear": 2009,
+      "disposition": "canonical-original",
+      "selectedIssueId": 24040
+    },
+    {
+      "sourcePosition": 31,
+      "blockId": "complete-collection-2",
+      "sourceNodeIndex": 22,
+      "sourceIssueReference": "Marvel Zombies 4 (2009) #2",
+      "sourceIssueNumber": "2",
+      "originalSeriesId": 7218,
+      "originalSeriesYear": 2009,
+      "disposition": "canonical-original",
+      "selectedIssueId": 24241
+    },
+    {
+      "sourcePosition": 32,
+      "blockId": "complete-collection-2",
+      "sourceNodeIndex": 22,
+      "sourceIssueReference": "Marvel Zombies 4 (2009) #3",
+      "sourceIssueNumber": "3",
+      "originalSeriesId": 7218,
+      "originalSeriesYear": 2009,
+      "disposition": "canonical-original",
+      "selectedIssueId": 25938
+    },
+    {
+      "sourcePosition": 33,
+      "blockId": "complete-collection-2",
+      "sourceNodeIndex": 22,
+      "sourceIssueReference": "Marvel Zombies 4 (2009) #4",
+      "sourceIssueNumber": "4",
+      "originalSeriesId": 7218,
+      "originalSeriesYear": 2009,
+      "disposition": "canonical-original",
+      "selectedIssueId": 25939
+    },
+    {
+      "sourcePosition": 34,
+      "blockId": "deadpool-classic-11",
+      "sourceNodeIndex": 24,
+      "sourceIssueReference": "Deadpool: Merc with a Mouth #1",
+      "sourceIssueNumber": "1",
+      "originalSeriesId": 8865,
+      "originalSeriesYear": 2009,
+      "disposition": "canonical-original",
+      "selectedIssueId": 27873
+    },
+    {
+      "sourcePosition": 35,
+      "blockId": "deadpool-classic-11",
+      "sourceNodeIndex": 24,
+      "sourceIssueReference": "Deadpool: Merc with a Mouth #2",
+      "sourceIssueNumber": "2",
+      "originalSeriesId": 8865,
+      "originalSeriesYear": 2009,
+      "disposition": "canonical-original",
+      "selectedIssueId": 27798
+    },
+    {
+      "sourcePosition": 36,
+      "blockId": "deadpool-classic-11",
+      "sourceNodeIndex": 24,
+      "sourceIssueReference": "Deadpool: Merc with a Mouth #3",
+      "sourceIssueNumber": "3",
+      "originalSeriesId": 8865,
+      "originalSeriesYear": 2009,
+      "disposition": "canonical-original",
+      "selectedIssueId": 27799
+    },
+    {
+      "sourcePosition": 37,
+      "blockId": "deadpool-classic-11",
+      "sourceNodeIndex": 24,
+      "sourceIssueReference": "Deadpool: Merc with a Mouth #4",
+      "sourceIssueNumber": "4",
+      "originalSeriesId": 8865,
+      "originalSeriesYear": 2009,
+      "disposition": "canonical-original",
+      "selectedIssueId": 27800
+    },
+    {
+      "sourcePosition": 38,
+      "blockId": "deadpool-classic-11",
+      "sourceNodeIndex": 24,
+      "sourceIssueReference": "Deadpool: Merc with a Mouth #5",
+      "sourceIssueNumber": "5",
+      "originalSeriesId": 8865,
+      "originalSeriesYear": 2009,
+      "disposition": "canonical-original",
+      "selectedIssueId": 27801
+    },
+    {
+      "sourcePosition": 39,
+      "blockId": "deadpool-classic-11",
+      "sourceNodeIndex": 24,
+      "sourceIssueReference": "Deadpool: Merc with a Mouth #6",
+      "sourceIssueNumber": "6",
+      "originalSeriesId": 8865,
+      "originalSeriesYear": 2009,
+      "disposition": "canonical-original",
+      "selectedIssueId": 27802
+    },
+    {
+      "sourcePosition": 40,
+      "blockId": "deadpool-classic-11",
+      "sourceNodeIndex": 24,
+      "sourceIssueReference": "Deadpool: Merc with a Mouth #7",
+      "sourceIssueNumber": "7",
+      "originalSeriesId": 8865,
+      "originalSeriesYear": 2009,
+      "disposition": "canonical-original",
+      "selectedIssueId": 27803
+    },
+    {
+      "sourcePosition": 41,
+      "blockId": "deadpool-classic-11",
+      "sourceNodeIndex": 24,
+      "sourceIssueReference": "Deadpool: Merc with a Mouth #8",
+      "sourceIssueNumber": "8",
+      "originalSeriesId": 8865,
+      "originalSeriesYear": 2009,
+      "disposition": "canonical-original",
+      "selectedIssueId": 27804
+    },
+    {
+      "sourcePosition": 42,
+      "blockId": "deadpool-classic-11",
+      "sourceNodeIndex": 24,
+      "sourceIssueReference": "Deadpool: Merc with a Mouth #9",
+      "sourceIssueNumber": "9",
+      "originalSeriesId": 8865,
+      "originalSeriesYear": 2009,
+      "disposition": "canonical-original",
+      "selectedIssueId": 30395
+    },
+    {
+      "sourcePosition": 43,
+      "blockId": "deadpool-classic-11",
+      "sourceNodeIndex": 24,
+      "sourceIssueReference": "Deadpool: Merc with a Mouth #10",
+      "sourceIssueNumber": "10",
+      "originalSeriesId": 8865,
+      "originalSeriesYear": 2009,
+      "disposition": "canonical-original",
+      "selectedIssueId": 32546
+    },
+    {
+      "sourcePosition": 44,
+      "blockId": "deadpool-classic-11",
+      "sourceNodeIndex": 24,
+      "sourceIssueReference": "Deadpool: Merc with a Mouth #11",
+      "sourceIssueNumber": "11",
+      "originalSeriesId": 8865,
+      "originalSeriesYear": 2009,
+      "disposition": "canonical-original",
+      "selectedIssueId": 30391
+    },
+    {
+      "sourcePosition": 45,
+      "blockId": "deadpool-classic-11",
+      "sourceNodeIndex": 24,
+      "sourceIssueReference": "Deadpool: Merc with a Mouth #12",
+      "sourceIssueNumber": "12",
+      "originalSeriesId": 8865,
+      "originalSeriesYear": 2009,
+      "disposition": "canonical-original",
+      "selectedIssueId": 30392
+    },
+    {
+      "sourcePosition": 46,
+      "blockId": "deadpool-classic-11",
+      "sourceNodeIndex": 24,
+      "sourceIssueReference": "Deadpool: Merc with a Mouth #13",
+      "sourceIssueNumber": "13",
+      "originalSeriesId": 8865,
+      "originalSeriesYear": 2009,
+      "disposition": "canonical-original",
+      "selectedIssueId": 32950
+    },
+    {
+      "sourcePosition": 47,
+      "blockId": "complete-collection-3",
+      "sourceNodeIndex": 29,
+      "sourceIssueReference": "Marvel Zombies: Evil Evolution #1",
+      "sourceIssueNumber": "1",
+      "originalSeriesId": 8929,
+      "originalSeriesYear": 2009,
+      "disposition": "canonical-original",
+      "selectedIssueId": 27908
+    },
+    {
+      "sourcePosition": 48,
+      "blockId": "complete-collection-3",
+      "sourceNodeIndex": 30,
+      "sourceIssueReference": "Marvel Zombies 5 (2010) #1",
+      "sourceIssueNumber": "1",
+      "originalSeriesId": 9719,
+      "originalSeriesYear": 2010,
+      "disposition": "canonical-original",
+      "selectedIssueId": 30146
+    },
+    {
+      "sourcePosition": 49,
+      "blockId": "complete-collection-3",
+      "sourceNodeIndex": 30,
+      "sourceIssueReference": "Marvel Zombies 5 (2010) #2",
+      "sourceIssueNumber": "2",
+      "originalSeriesId": 9719,
+      "originalSeriesYear": 2010,
+      "disposition": "canonical-original",
+      "selectedIssueId": 30147
+    },
+    {
+      "sourcePosition": 50,
+      "blockId": "complete-collection-3",
+      "sourceNodeIndex": 30,
+      "sourceIssueReference": "Marvel Zombies 5 (2010) #3",
+      "sourceIssueNumber": "3",
+      "originalSeriesId": 9719,
+      "originalSeriesYear": 2010,
+      "disposition": "canonical-original",
+      "selectedIssueId": 30148
+    },
+    {
+      "sourcePosition": 51,
+      "blockId": "complete-collection-3",
+      "sourceNodeIndex": 30,
+      "sourceIssueReference": "Marvel Zombies 5 (2010) #4",
+      "sourceIssueNumber": "4",
+      "originalSeriesId": 9719,
+      "originalSeriesYear": 2010,
+      "disposition": "canonical-original",
+      "selectedIssueId": 30149
+    },
+    {
+      "sourcePosition": 52,
+      "blockId": "complete-collection-3",
+      "sourceNodeIndex": 30,
+      "sourceIssueReference": "Marvel Zombies 5 (2010) #5",
+      "sourceIssueNumber": "5",
+      "originalSeriesId": 9719,
+      "originalSeriesYear": 2010,
+      "disposition": "canonical-original",
+      "selectedIssueId": 30150
+    },
+    {
+      "sourcePosition": 53,
+      "blockId": "complete-collection-3",
+      "sourceNodeIndex": 31,
+      "sourceIssueReference": "Marvel Zombies Supreme (2011) #1",
+      "sourceIssueNumber": "1",
+      "originalSeriesId": 12309,
+      "originalSeriesYear": 2011,
+      "disposition": "canonical-original",
+      "selectedIssueId": 35010
+    },
+    {
+      "sourcePosition": 54,
+      "blockId": "complete-collection-3",
+      "sourceNodeIndex": 31,
+      "sourceIssueReference": "Marvel Zombies Supreme (2011) #2",
+      "sourceIssueNumber": "2",
+      "originalSeriesId": 12309,
+      "originalSeriesYear": 2011,
+      "disposition": "canonical-original",
+      "selectedIssueId": 36182
+    },
+    {
+      "sourcePosition": 55,
+      "blockId": "complete-collection-3",
+      "sourceNodeIndex": 31,
+      "sourceIssueReference": "Marvel Zombies Supreme (2011) #3",
+      "sourceIssueNumber": "3",
+      "originalSeriesId": 12309,
+      "originalSeriesYear": 2011,
+      "disposition": "canonical-original",
+      "selectedIssueId": 39020
+    },
+    {
+      "sourcePosition": 56,
+      "blockId": "complete-collection-3",
+      "sourceNodeIndex": 31,
+      "sourceIssueReference": "Marvel Zombies Supreme (2011) #4",
+      "sourceIssueNumber": "4",
+      "originalSeriesId": 12309,
+      "originalSeriesYear": 2011,
+      "disposition": "canonical-original",
+      "selectedIssueId": 36184
+    },
+    {
+      "sourcePosition": 57,
+      "blockId": "complete-collection-3",
+      "sourceNodeIndex": 31,
+      "sourceIssueReference": "Marvel Zombies Supreme (2011) #5",
+      "sourceIssueNumber": "5",
+      "originalSeriesId": 12309,
+      "originalSeriesYear": 2011,
+      "disposition": "canonical-original",
+      "selectedIssueId": 36374
+    },
+    {
+      "sourcePosition": 58,
+      "blockId": "complete-collection-3",
+      "sourceNodeIndex": 32,
+      "sourceIssueReference": "Marvel Zombies Destroy! (2012) #1",
+      "sourceIssueNumber": "1",
+      "originalSeriesId": 15454,
+      "originalSeriesYear": 2011,
+      "disposition": "canonical-original",
+      "selectedIssueId": 41472
+    },
+    {
+      "sourcePosition": 59,
+      "blockId": "complete-collection-3",
+      "sourceNodeIndex": 32,
+      "sourceIssueReference": "Marvel Zombies Destroy! (2012) #2",
+      "sourceIssueNumber": "2",
+      "originalSeriesId": 15454,
+      "originalSeriesYear": 2011,
+      "disposition": "canonical-original",
+      "selectedIssueId": 41470
+    },
+    {
+      "sourcePosition": 60,
+      "blockId": "complete-collection-3",
+      "sourceNodeIndex": 32,
+      "sourceIssueReference": "Marvel Zombies Destroy! (2012) #3",
+      "sourceIssueNumber": "3",
+      "originalSeriesId": 15454,
+      "originalSeriesYear": 2011,
+      "disposition": "canonical-original",
+      "selectedIssueId": 41474
+    },
+    {
+      "sourcePosition": 61,
+      "blockId": "complete-collection-3",
+      "sourceNodeIndex": 32,
+      "sourceIssueReference": "Marvel Zombies Destroy! (2012) #4",
+      "sourceIssueNumber": "4",
+      "originalSeriesId": 15454,
+      "originalSeriesYear": 2011,
+      "disposition": "canonical-original",
+      "selectedIssueId": 41471
+    },
+    {
+      "sourcePosition": 62,
+      "blockId": "complete-collection-3",
+      "sourceNodeIndex": 32,
+      "sourceIssueReference": "Marvel Zombies Destroy! (2012) #5",
+      "sourceIssueNumber": "5",
+      "originalSeriesId": 15454,
+      "originalSeriesYear": 2011,
+      "disposition": "canonical-original",
+      "selectedIssueId": 41473
+    },
+    {
+      "sourcePosition": 63,
+      "blockId": "complete-collection-3",
+      "sourceNodeIndex": 33,
+      "sourceIssueReference": "Marvel Zombies Halloween (2012) #1",
+      "sourceIssueNumber": "1",
+      "originalSeriesId": 17229,
+      "originalSeriesYear": 2012,
+      "disposition": "canonical-original",
+      "selectedIssueId": 45716
+    },
+    {
+      "sourcePosition": 64,
+      "blockId": "night-living-deadpool",
+      "sourceNodeIndex": 36,
+      "sourceIssueReference": "Night Of The Living Deadpool #1",
+      "sourceIssueNumber": "1",
+      "originalSeriesId": 18469,
+      "originalSeriesYear": 2014,
+      "disposition": "canonical-original",
+      "selectedIssueId": 49101
+    },
+    {
+      "sourcePosition": 65,
+      "blockId": "night-living-deadpool",
+      "sourceNodeIndex": 36,
+      "sourceIssueReference": "Night Of The Living Deadpool #2",
+      "sourceIssueNumber": "2",
+      "originalSeriesId": 18469,
+      "originalSeriesYear": 2014,
+      "disposition": "canonical-original",
+      "selectedIssueId": 49102
+    },
+    {
+      "sourcePosition": 66,
+      "blockId": "night-living-deadpool",
+      "sourceNodeIndex": 36,
+      "sourceIssueReference": "Night Of The Living Deadpool #3",
+      "sourceIssueNumber": "3",
+      "originalSeriesId": 18469,
+      "originalSeriesYear": 2014,
+      "disposition": "canonical-original",
+      "selectedIssueId": 49103
+    },
+    {
+      "sourcePosition": 67,
+      "blockId": "night-living-deadpool",
+      "sourceNodeIndex": 36,
+      "sourceIssueReference": "Night Of The Living Deadpool #4",
+      "sourceIssueNumber": "4",
+      "originalSeriesId": 18469,
+      "originalSeriesYear": 2014,
+      "disposition": "canonical-original",
+      "selectedIssueId": 49104
+    },
+    {
+      "sourcePosition": 68,
+      "blockId": "return-living-deadpool",
+      "sourceNodeIndex": 38,
+      "sourceIssueReference": "Return Of The Living Deadpool #1",
+      "sourceIssueNumber": "1",
+      "originalSeriesId": 19633,
+      "originalSeriesYear": 2015,
+      "disposition": "canonical-original",
+      "selectedIssueId": 52381
+    },
+    {
+      "sourcePosition": 69,
+      "blockId": "return-living-deadpool",
+      "sourceNodeIndex": 38,
+      "sourceIssueReference": "Return Of The Living Deadpool #2",
+      "sourceIssueNumber": "2",
+      "originalSeriesId": 19633,
+      "originalSeriesYear": 2015,
+      "disposition": "canonical-original",
+      "selectedIssueId": 52384
+    },
+    {
+      "sourcePosition": 70,
+      "blockId": "return-living-deadpool",
+      "sourceNodeIndex": 38,
+      "sourceIssueReference": "Return Of The Living Deadpool #3",
+      "sourceIssueNumber": "3",
+      "originalSeriesId": 19633,
+      "originalSeriesYear": 2015,
+      "disposition": "canonical-original",
+      "selectedIssueId": 52385
+    },
+    {
+      "sourcePosition": 71,
+      "blockId": "return-living-deadpool",
+      "sourceNodeIndex": 38,
+      "sourceIssueReference": "Return Of The Living Deadpool #4",
+      "sourceIssueNumber": "4",
+      "originalSeriesId": 19633,
+      "originalSeriesYear": 2015,
+      "disposition": "canonical-original",
+      "selectedIssueId": 52386
+    },
+    {
+      "sourcePosition": 72,
+      "blockId": "return-living-deadpool",
+      "sourceNodeIndex": 38,
+      "sourceIssueReference": "Prelude To Deadpool Corps #4",
+      "sourceIssueNumber": "4",
+      "originalSeriesId": 9309,
+      "originalSeriesYear": 2010,
+      "disposition": "canonical-original",
+      "selectedIssueId": 30161
+    },
+    {
+      "sourcePosition": 73,
+      "blockId": "marvel-zombies-battleworld",
+      "sourceNodeIndex": 44,
+      "sourceIssueReference": "Marvel Zombies (2006) #1",
+      "sourceIssueNumber": "1",
+      "originalSeriesId": 998,
+      "originalSeriesYear": 2005,
+      "disposition": "backward-repeat",
+      "canonicalSourcePosition": 4,
+      "selectedIssueId": 3220
+    },
+    {
+      "sourcePosition": 74,
+      "blockId": "age-ultron-vs-zombies",
+      "sourceNodeIndex": 46,
+      "sourceIssueReference": "Age Of Ultron #1",
+      "sourceIssueNumber": "1",
+      "originalSeriesId": 17318,
+      "originalSeriesYear": 2013,
+      "disposition": "canonical-original",
+      "selectedIssueId": 47001
+    },
+    {
+      "sourcePosition": 75,
+      "blockId": "siege-battleworld",
+      "sourceNodeIndex": 50,
+      "sourceIssueReference": "Siege #1",
+      "sourceIssueNumber": "1",
+      "originalSeriesId": 19608,
+      "originalSeriesYear": 2015,
+      "disposition": "canonical-original",
+      "selectedIssueId": 52281
+    },
+    {
+      "sourcePosition": 76,
+      "blockId": "siege-battleworld",
+      "sourceNodeIndex": 50,
+      "sourceIssueReference": "Siege #2",
+      "sourceIssueNumber": "2",
+      "originalSeriesId": 19608,
+      "originalSeriesYear": 2015,
+      "disposition": "canonical-original",
+      "selectedIssueId": 52282
+    },
+    {
+      "sourcePosition": 77,
+      "blockId": "siege-battleworld",
+      "sourceNodeIndex": 50,
+      "sourceIssueReference": "Siege #3",
+      "sourceIssueNumber": "3",
+      "originalSeriesId": 19608,
+      "originalSeriesYear": 2015,
+      "disposition": "canonical-original",
+      "selectedIssueId": 52283
+    },
+    {
+      "sourcePosition": 78,
+      "blockId": "siege-battleworld",
+      "sourceNodeIndex": 50,
+      "sourceIssueReference": "Siege #4",
+      "sourceIssueNumber": "4",
+      "originalSeriesId": 19608,
+      "originalSeriesYear": 2015,
+      "disposition": "canonical-original",
+      "selectedIssueId": 52284
+    },
+    {
+      "sourcePosition": 79,
+      "blockId": "siege-battleworld",
+      "sourceNodeIndex": 50,
+      "sourceIssueReference": "Uncanny X-Men (2011) #9",
+      "sourceIssueNumber": "9",
+      "originalSeriesId": 14914,
+      "originalSeriesYear": 2011,
+      "disposition": "canonical-original",
+      "selectedIssueId": 40156
+    },
+    {
+      "sourcePosition": 80,
+      "blockId": "siege-battleworld",
+      "sourceNodeIndex": 50,
+      "sourceIssueReference": "Uncanny X-Men (2011) #10",
+      "sourceIssueNumber": "10",
+      "originalSeriesId": 14914,
+      "originalSeriesYear": 2011,
+      "disposition": "canonical-original",
+      "selectedIssueId": 40163
+    },
+    {
+      "sourcePosition": 81,
+      "blockId": "marvel-zombie-2018",
+      "sourceNodeIndex": 52,
+      "sourceIssueReference": "Marvel Zombie (2018) #1",
+      "sourceIssueNumber": "1",
+      "originalSeriesId": 26447,
+      "originalSeriesYear": 2018,
+      "disposition": "canonical-original",
+      "selectedIssueId": 73360
+    },
+    {
+      "sourcePosition": 82,
+      "blockId": "marvel-zombies-resurrection",
+      "sourceNodeIndex": 55,
+      "sourceIssueReference": "Marvel Zombies: Resurrection (2019) #1",
+      "sourceIssueNumber": "1",
+      "originalSeriesId": 28311,
+      "originalSeriesYear": 2019,
+      "disposition": "canonical-original",
+      "selectedIssueId": 80101
+    },
+    {
+      "sourcePosition": 83,
+      "blockId": "marvel-zombies-resurrection",
+      "sourceNodeIndex": 55,
+      "sourceIssueReference": "Marvel Zombies: Resurrection (2020) #1",
+      "sourceIssueNumber": "1",
+      "originalSeriesId": 29377,
+      "originalSeriesYear": 2020,
+      "disposition": "canonical-original",
+      "selectedIssueId": 82636
+    },
+    {
+      "sourcePosition": 84,
+      "blockId": "marvel-zombies-resurrection",
+      "sourceNodeIndex": 55,
+      "sourceIssueReference": "Marvel Zombies: Resurrection (2020) #2",
+      "sourceIssueNumber": "2",
+      "originalSeriesId": 29377,
+      "originalSeriesYear": 2020,
+      "disposition": "canonical-original",
+      "selectedIssueId": 82638
+    },
+    {
+      "sourcePosition": 85,
+      "blockId": "marvel-zombies-resurrection",
+      "sourceNodeIndex": 55,
+      "sourceIssueReference": "Marvel Zombies: Resurrection (2020) #3",
+      "sourceIssueNumber": "3",
+      "originalSeriesId": 29377,
+      "originalSeriesYear": 2020,
+      "disposition": "canonical-original",
+      "selectedIssueId": 82639
+    },
+    {
+      "sourcePosition": 86,
+      "blockId": "marvel-zombies-resurrection",
+      "sourceNodeIndex": 55,
+      "sourceIssueReference": "Marvel Zombies: Resurrection (2020) #4",
+      "sourceIssueNumber": "4",
+      "originalSeriesId": 29377,
+      "originalSeriesYear": 2020,
+      "disposition": "canonical-original",
+      "selectedIssueId": 82640
+    },
+    {
+      "sourcePosition": 87,
+      "blockId": "marvel-zombies-dawn-decay",
+      "sourceNodeIndex": 62,
+      "sourceIssueReference": "Marvel Zombies: Dawn of Decay #1",
+      "sourceIssueNumber": "1",
+      "originalSeriesId": 39609,
+      "originalSeriesYear": 2024,
+      "disposition": "canonical-original",
+      "selectedIssueId": 116154
+    },
+    {
+      "sourcePosition": 88,
+      "blockId": "marvel-zombies-dawn-decay",
+      "sourceNodeIndex": 62,
+      "sourceIssueReference": "Marvel Zombies: Dawn of Decay #2",
+      "sourceIssueNumber": "2",
+      "originalSeriesId": 39609,
+      "originalSeriesYear": 2024,
+      "disposition": "canonical-original",
+      "selectedIssueId": 116155
+    },
+    {
+      "sourcePosition": 89,
+      "blockId": "marvel-zombies-dawn-decay",
+      "sourceNodeIndex": 62,
+      "sourceIssueReference": "Marvel Zombies: Dawn of Decay #3",
+      "sourceIssueNumber": "3",
+      "originalSeriesId": 39609,
+      "originalSeriesYear": 2024,
+      "disposition": "canonical-original",
+      "selectedIssueId": 116156
+    },
+    {
+      "sourcePosition": 90,
+      "blockId": "marvel-zombies-dawn-decay",
+      "sourceNodeIndex": 62,
+      "sourceIssueReference": "Marvel Zombies: Dawn of Decay #4",
+      "sourceIssueNumber": "4",
+      "originalSeriesId": 39609,
+      "originalSeriesYear": 2024,
+      "disposition": "canonical-original",
+      "selectedIssueId": 116157
+    },
+    {
+      "sourcePosition": 91,
+      "blockId": "marvel-zombies-red-band",
+      "sourceNodeIndex": 65,
+      "sourceIssueReference": "Marvel Zombies (2025) #1",
+      "sourceIssueNumber": "1",
+      "originalSeriesId": 44562,
+      "originalSeriesYear": 2025,
+      "disposition": "canonical-original",
+      "selectedIssueId": 130493
+    },
+    {
+      "sourcePosition": 92,
+      "blockId": "marvel-zombies-red-band",
+      "sourceNodeIndex": 65,
+      "sourceIssueReference": "Marvel Zombies (2025) #2",
+      "sourceIssueNumber": "2",
+      "originalSeriesId": 44562,
+      "originalSeriesYear": 2025,
+      "disposition": "canonical-original",
+      "selectedIssueId": 130494
+    },
+    {
+      "sourcePosition": 93,
+      "blockId": "marvel-zombies-red-band",
+      "sourceNodeIndex": 65,
+      "sourceIssueReference": "Marvel Zombies (2025) #3",
+      "sourceIssueNumber": "3",
+      "originalSeriesId": 44562,
+      "originalSeriesYear": 2025,
+      "disposition": "open-metadata-gap",
+      "selectedIssueId": null
+    },
+    {
+      "sourcePosition": 94,
+      "blockId": "marvel-zombies-red-band",
+      "sourceNodeIndex": 65,
+      "sourceIssueReference": "Marvel Zombies (2025) #4",
+      "sourceIssueNumber": "4",
+      "originalSeriesId": 44562,
+      "originalSeriesYear": 2025,
+      "disposition": "open-metadata-gap",
+      "selectedIssueId": null
+    },
+    {
+      "sourcePosition": 95,
+      "blockId": "marvel-zombies-red-band",
+      "sourceNodeIndex": 65,
+      "sourceIssueReference": "Marvel Zombies (2025) #5",
+      "sourceIssueNumber": "5",
+      "originalSeriesId": 44562,
+      "originalSeriesYear": 2025,
+      "disposition": "open-metadata-gap",
+      "selectedIssueId": null
+    }
+  ],
+  "factualProjectionDefinition": "Recursively key-sorted compact JSON of {sections,blocks,occurrences,excludedReferences}, preserving arrays and source order; UTF-8 SHA-256. This is a factual ledger projection distinct from the observed issue-bearing DOM digest.",
+  "factualProjectionSha256": "90f209fa3f37a11602d73081e1d326012a8db8c1c8aae9a49e6c4b7c4bfd75ed",
+  "sourceVectorDefinition": "Recursively key-sorted compact JSON of occurrences, preserving source-position order; UTF-8 SHA-256.",
+  "sourceVectorSha256": "7fea637b4dc11983a1bcaed70e09bbb72084cef0d846252d02e66e47b04e3d06"
+}

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-29T02:47:20.211Z",
+  "generatedAt": "2026-09-29T07:16:26.488Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -1559,6 +1559,47 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-22T09:26:45.416Z"
+    },
+    {
+      "id": "marvel-zombies-reading-order",
+      "file": "marvel_zombies_reading_order.json",
+      "name": "Marvel Zombies",
+      "description": "Read Comic Book Herald's numbered Marvel Zombies selections across the original stories, Deadpool's separate zombie universe, Battleworld, Resurrection and alternate additions.",
+      "type": "era",
+      "depth": "partial",
+      "count": 94,
+      "placeholderCount": 3,
+      "emptyRecordCount": 0,
+      "collections": 26,
+      "characters": [
+        "Marvel Zombies",
+        "Deadpool",
+        "Fantastic Four",
+        "Black Panther"
+      ],
+      "keywords": [
+        "Marvel Zombies",
+        "Zombieverse",
+        "Marvel Zombies Battleworld",
+        "Deadpool Vs. Zombies",
+        "Marvel Zombies Resurrection",
+        "Marvel Zombies Red Band",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 3220,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/00/5ae32391b6e0e",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/marvel-zombies-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-09-29T07:16:26.488Z"
     },
     {
       "id": "house-of-m",

@@ -198,6 +198,7 @@ test('Agatha relationship approval covers every source order present at review',
       'hope-summers-reading-order',
 
       'x-23-reading-order',
+      'marvel-zombies-reading-order',
     ],
   });
   const expectedOrderIds = manifest.lists
@@ -208,6 +209,7 @@ test('Agatha relationship approval covers every source order present at review',
         'hope-summers-reading-order',
 
         'x-23-reading-order',
+        'marvel-zombies-reading-order',
       ].includes(entry.id))
     .map((entry) => entry.id);
 

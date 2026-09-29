@@ -75,6 +75,7 @@ test('Shadow King keeps the frozen packet, mapping and full report aligned', asy
       'hope-summers-reading-order',
 
       'x-23-reading-order',
+      'marvel-zombies-reading-order',
     ],
   });
   const manifest = await readJson('src/data/curated-lists.json');
@@ -86,6 +87,7 @@ test('Shadow King keeps the frozen packet, mapping and full report aligned', asy
         'hope-summers-reading-order',
 
         'x-23-reading-order',
+        'marvel-zombies-reading-order',
       ].includes(row.id))
     .map((row) => row.id);
 

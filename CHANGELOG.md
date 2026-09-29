@@ -13,6 +13,15 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Follow Marvel Zombies across five separate story sections
+
+A credited Marvel Zombies Reading List now follows 94 distinct original comics in
+Comic Book Herald's selected order, including Deadpool's separate universe, Battleworld,
+Resurrection and out-of-continuity additions. Three late issues remain visible as
+metadata gaps rather than being silently omitted or assigned guessed links. Unnumbered
+collection pointers are not expanded into unsupported issue runs. Existing reading
+progress is unchanged.
+
 ### Clarify Android privacy and backup boundaries
 
 Android's About screen now explains private app storage, data loss on uninstall and the contents
