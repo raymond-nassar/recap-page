@@ -22,6 +22,14 @@ from promotion. Windows Store submission now requires an explicit protected Wind
 publishing an Android or GitHub release does not start it. No release, signing identity, reader
 behavior or saved data changes as part of this groundwork.
 
+### Follow Silk from her origin through solo adventures and team-ups
+
+Adds a Silk / Cindy Moon Reading List credited and linked to Comic Book Herald. It keeps
+the guide's 74 selected positions in source order, including the two distinct 2015 Silk runs,
+the Spider-Women team-up and the Spider-Man story in the 2020 free comic. Seven original
+digital Spider(fly) Effect chapters remain visible as gaps rather than being replaced with
+print editions. Existing Reading Lists and saved progress are unchanged.
+
 ### Follow the Thunderbolts through their changing teams
 
 Adds a Thunderbolts Reading List credited and linked to Comic Book Herald. It preserves the

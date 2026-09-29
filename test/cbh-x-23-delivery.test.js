@@ -179,9 +179,12 @@ test('X-23 publishes a credited and discoverable complete guide with approved li
     comparison.relationship !== 'none').map((comparison) => comparison.orderId).sort());
 });
 
-test('X-23 current full-library review includes every peer and the actual coordinator receipt', async () => {
-  const current = await buildReportForMapping(mappingPath, [], { excludedOrderIds: [] });
-  const expectedOrderIds = manifest.lists.filter((entry) => entry.id !== id).map((entry) => entry.id);
+test('X-23 publication-time full-library review retains every approved peer', async () => {
+  const current = await buildReportForMapping(mappingPath, [], {
+    excludedOrderIds: ['silk-cindy-moon-reading-order'],
+  });
+  const expectedOrderIds = manifest.lists.filter((entry) =>
+    entry.id !== id && entry.id !== 'silk-cindy-moon-reading-order').map((entry) => entry.id);
   assert.deepEqual(current, report);
   assert.equal(report.candidateCount, 291);
   assert.equal(report.comparisonCount, 189);

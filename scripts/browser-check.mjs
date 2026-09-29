@@ -3232,8 +3232,8 @@ const SCENARIOS = [
         bestOf: await readSubset('best-of'),
       };
       t.check('desktop All, Complete, and Best of counts classify Adam exactly once',
-        desktop.all.readings === 61 && desktop.all.stories === 60
-        && desktop.all.cards === 60 && desktop.all.adamCards === 1
+        desktop.all.readings === 62 && desktop.all.stories === 61
+        && desktop.all.cards === 61 && desktop.all.adamCards === 1
         && desktop.complete.readings === 38 && desktop.complete.stories === 38
         && desktop.complete.cards === 38 && desktop.complete.adamCards === 1
         && desktop.bestOf.readings === 7 && desktop.bestOf.stories === 7
@@ -3248,8 +3248,8 @@ const SCENARIOS = [
         overflow: await page.evaluate(() => document.documentElement.scrollWidth > innerWidth),
       };
       t.check('narrow All, Complete, and Best of counts preserve Adam without horizontal overflow',
-        narrow.all.readings === 61 && narrow.all.stories === 60
-        && narrow.all.cards === 60 && narrow.all.adamCards === 1
+        narrow.all.readings === 62 && narrow.all.stories === 61
+        && narrow.all.cards === 61 && narrow.all.adamCards === 1
         && narrow.complete.readings === 38 && narrow.complete.stories === 38
         && narrow.complete.cards === 38 && narrow.complete.adamCards === 1
         && narrow.bestOf.readings === 7 && narrow.bestOf.stories === 7
@@ -3571,6 +3571,159 @@ const SCENARIOS = [
           /X-Force Annual \(2010\)|All-New Wolverine Saga|Wolverine: The Road To Hell/.test(title)),
         JSON.stringify(reloaded.rows.filter((_, index) => [13, 111, 112, 113, 138, 141, 288, 290].includes(index))));
       t.check('X-23 browse, preview, import and reload made no external request or browser error',
+        externalRequests.length === 0 && errors.length === 0,
+        JSON.stringify({ externalRequests: externalRequests.slice(0, 3), errors: errors.slice(0, 3) }));
+    },
+  },
+  {
+    id: 'silk-actual-data',
+    title: 'the actual Silk guide retains all 74 source positions and seven original digital gaps through reload',
+    async run(page, t) {
+      const id = 'silk-cindy-moon-reading-order';
+      const items = JSON.parse(readFileSync(
+        new URL('../src/data/silk_cindy_moon_reading_order.json', import.meta.url), 'utf8',
+      )).items;
+      const expected = items.map((item, index) => ({
+        position: index + 1, issueId: item.issueId, title: item.title,
+      }));
+      const gapPositions = items.flatMap((item, index) => item.placeholder ? [index + 1] : []);
+      t.check('the shipped Silk fixture retains all 74 original positions and seven unlinked digital gaps',
+        items.length === 74 && gapPositions.join(',') === '44,45,46,47,48,49,50'
+        && items.slice(43, 50).every((item) => item.issueId < 0 && item.url === null),
+        JSON.stringify({ count: items.length, gapPositions }));
+      t.check('both 2015 Silk volumes and the second 2015 Gwen volume stay distinct',
+        items[6]?.seriesId === 19661 && items[13]?.seriesId === 20499
+        && items[37]?.seriesId === 20505,
+        JSON.stringify([items[6]?.seriesId, items[13]?.seriesId, items[37]?.seriesId]));
+      t.check('the FCBD position names only the Spider-Man story in the source interleave',
+        [77116, 90780, 77117, 85661].every((issueId, index) =>
+          items[64 + index]?.issueId === issueId)
+        && items[67]?.collectedIn?.includes('Spider-Man story only'),
+        JSON.stringify(items.slice(64, 68).map((item) => [item.issueId, item.collectedIn])));
+      const checkRows = (label, rows) => {
+        const mismatches = rows.flatMap((row, index) =>
+          JSON.stringify(row) === JSON.stringify(expected[index])
+            ? [] : [{ expected: expected[index], actual: row }]);
+        t.check(label, rows.length === 74 && mismatches.length === 0,
+          JSON.stringify({ count: rows.length, mismatches: mismatches.slice(0, 3) }));
+      };
+      const importedRows = () => page.evaluate((catalogId) => {
+        const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+        const matches = Object.values(state.lists).filter((list) => list.catalogId === catalogId);
+        return {
+          matches: matches.length,
+          rows: (matches[0]?.itemIds ?? []).map((issueId, index) => ({
+            position: index + 1, issueId, title: state.issues[issueId]?.title,
+          })),
+        };
+      }, id);
+      const renderedRows = () => page.$$eval('#rows .row', (nodes) => nodes.map((node, index) => ({
+        position: index + 1,
+        issueId: Number(node.querySelector('.rt')?.dataset.issueId),
+        title: node.querySelector('.rt')?.textContent.trim(),
+      })));
+      const errors = [];
+      const externalRequests = [];
+      page.on('console', (message) => { if (message.type() === 'error') errors.push(message.text()); });
+      page.on('pageerror', (error) => errors.push(error.message));
+      page.on('request', (request) => {
+        const url = new URL(request.url());
+        if (url.protocol.startsWith('http') && url.origin !== page.__origin) externalRequests.push(request.url());
+      });
+      await page.evaluateOnNewDocument(() => {
+        localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
+        window.__mrtBlockExternal = true;
+      });
+
+      await open(page, '/?catalog=actual#/home');
+      await openBrowseCategory(page, 'character-spotlights');
+      await page.$eval('#spotlights-q', (input) => {
+        input.value = 'Silk / Cindy Moon';
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+      });
+      const cardSelector = '#spotlights-results [data-story="list:silk-cindy-moon-reading-order"]';
+      await page.waitForSelector(cardSelector, { timeout: 15000 });
+      const card = await page.$eval(cardSelector, (node) => ({
+        name: node.querySelector('.catalog-card-title')?.textContent.trim(),
+        text: node.textContent,
+        sourceName: node.querySelector('a[href*="comicbookherald.com"]')?.getAttribute('aria-label'),
+        sourceHref: node.querySelector('a[href*="comicbookherald.com"]')?.href,
+        addName: node.querySelector('[data-act="import"]')?.getAttribute('aria-label'),
+      }));
+      t.check('Silk is discoverable with 74 positions, seven gaps and Comic Book Herald credit',
+        card.name === 'Silk / Cindy Moon' && card.text.includes('74 issues')
+        && card.text.includes('7 issues have no Marvel Unlimited links yet and cannot be opened')
+        && card.sourceName === 'Source of Silk / Cindy Moon: Comic Book Herald'
+        && card.sourceHref === 'https://www.comicbookherald.com/silk-cindy-moon-reading-order/'
+        && card.addName === 'Add to library: Silk / Cindy Moon', JSON.stringify(card));
+
+      await click(page, `${cardSelector} [data-act="preview"]`);
+      await page.waitForFunction(() =>
+        document.querySelectorAll('#preview[open] .preview-issue-link').length === 74);
+      const preview = await page.$$eval('#preview-body .preview-issue-link', (nodes) => nodes.map((node) => ({
+        position: Number(node.closest('li')?.querySelector('.pn')?.textContent),
+        issueId: Number(node.dataset.issueId),
+        title: node.textContent.trim(),
+      })));
+      checkRows('Preview displays all 74 selected originals and gap positions', preview);
+      const previewQualified = await page.$eval('#preview-body', (node) =>
+        [...node.querySelectorAll('.preview-group h4')]
+          .some((heading) => heading.textContent.includes('Spider-Man story only')));
+      t.check('Preview identifies the FCBD position as the Spider-Man story only', previewQualified);
+      const previewGaps = await page.$$eval('#preview-body .preview-issue-link', (nodes) =>
+        nodes.filter((node) => Number(node.dataset.issueId) < 0)
+          .map((node) => ({
+            position: Number(node.closest('li')?.querySelector('.pn')?.textContent),
+            external: /^https?:/.test(node.getAttribute('href') ?? ''),
+          })));
+      t.check('all seven original digital gaps appear in Preview without external issue links',
+        previewGaps.map((row) => row.position).join(',') === '44,45,46,47,48,49,50'
+        && previewGaps.every((row) => !row.external), JSON.stringify(previewGaps));
+
+      await click(page, '#preview-add [data-act="main"]');
+      await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')
+        ?.textContent.includes('In library'));
+      const imported = await importedRows();
+      t.check('import creates one Silk Reading List', imported.matches === 1, JSON.stringify(imported.matches));
+      checkRows('import retains the complete 74-position original and gap vector', imported.rows);
+
+      await click(page, '#preview-add [data-act="main"]');
+      await page.waitForFunction(() =>
+        !document.querySelector('#view-read')?.hidden
+        && document.querySelector('#order-name')?.textContent.trim() === 'Silk / Cindy Moon');
+      await openFullOrder(page);
+      await page.waitForFunction(() => document.querySelectorAll('#rows .row').length === 74);
+      checkRows('rendered Reading List retains every position and identity', await renderedRows());
+      const renderedQualified = await page.$eval('#rows', (node) =>
+        [...node.querySelectorAll('.row-group .rg-name')]
+          .some((heading) => heading.textContent.includes('Spider-Man story only')));
+      t.check('the rendered Reading List retains the FCBD story qualification', renderedQualified);
+      const gapActions = await page.$$eval('#rows .row', (nodes) => nodes
+        .filter((node) => Number(node.querySelector('.rt')?.dataset.issueId) < 0)
+        .map((node) => ({
+          position: nodes.indexOf(node) + 1,
+          readHidden: node.querySelector('.ract button[data-act="open"]')?.hidden,
+          hasInfo: Boolean(node.querySelector('.ract a[data-act="info"]')),
+        })));
+      t.check('the seven unresolved digital originals offer neither Read nor Info actions',
+        gapActions.map((row) => row.position).join(',') === '44,45,46,47,48,49,50'
+        && gapActions.every((row) => row.readHidden && !row.hasInfo), JSON.stringify(gapActions));
+
+      await page.reload({ waitUntil: 'load' });
+      await page.waitForFunction(() =>
+        document.querySelector('#order-name')?.textContent.trim() === 'Silk / Cindy Moon');
+      await openFullOrder(page);
+      await page.waitForFunction(() => document.querySelectorAll('#rows .row').length === 74);
+      checkRows('reloaded Reading List still renders all 74 positions', await renderedRows());
+      const reloadedQualified = await page.$eval('#rows', (node) =>
+        [...node.querySelectorAll('.row-group .rg-name')]
+          .some((heading) => heading.textContent.includes('Spider-Man story only')));
+      t.check('reload retains the FCBD story qualification', reloadedQualified);
+      const reloaded = await importedRows();
+      t.check('reload preserves exactly one Silk Reading List', reloaded.matches === 1,
+        JSON.stringify(reloaded.matches));
+      checkRows('reloaded storage retains all 74 original and gap identities', reloaded.rows);
+      t.check('Silk preview, import, rendering and reload make no external request or browser error',
         externalRequests.length === 0 && errors.length === 0,
         JSON.stringify({ externalRequests: externalRequests.slice(0, 3), errors: errors.slice(0, 3) }));
     },

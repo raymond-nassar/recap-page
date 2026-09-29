@@ -210,7 +210,7 @@ test('Hope Summers publishes 255 exact originals and six explicit gap placeholde
   assert.ok(payload.items.every((row) => row.description == null));
 });
 
-test('Hope Summers keeps the approved complete-current-library relationships', async () => {
+test('Hope Summers keeps the approved publication-time library relationships', async () => {
   const [report, manifest, inventory] = await Promise.all([
     readJson(`scripts/data/cbh-overlaps/${id}.json`),
     readJson('src/data/curated-lists.json'),
@@ -219,10 +219,11 @@ test('Hope Summers keeps the approved complete-current-library relationships', a
   const regenerated = await buildReportForMapping(
     `scripts/data/cbh-mappings/${id}.json`,
     [],
-    { excludedOrderIds: ['x-23-reading-order'] },
+    { excludedOrderIds: ['x-23-reading-order', 'silk-cindy-moon-reading-order'] },
   );
   const expectedOrderIds = manifest.lists
-    .filter((row) => row.id !== id && row.id !== 'x-23-reading-order')
+    .filter((row) => row.id !== id && row.id !== 'x-23-reading-order'
+      && row.id !== 'silk-cindy-moon-reading-order')
     .map((row) => row.id);
   const expectedNonNone = new Map([
     ['emma-frost-reading-order', ['partial', 103]],

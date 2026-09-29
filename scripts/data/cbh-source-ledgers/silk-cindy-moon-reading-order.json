@@ -1,0 +1,977 @@
+{
+  "schemaVersion": 1,
+  "id": "silk-cindy-moon-reading-order",
+  "sourcePageTitle": "Silk (Cindy Moon) Reading Order!",
+  "sourceUrl": "https://www.comicbookherald.com/silk-cindy-moon-reading-order/",
+  "sourceRetrievedAt": "2026-09-29",
+  "sourceContentSha256": "2ecec5d22636d8df48cd602c74ba9ffff83a69b267d9a40c564ce64ccee97e5a",
+  "sourceContentNormalization": "NFC normalize DOMParser(text/html) body.innerText of WordPress post 54805 content.rendered; replace each Unicode whitespace run with one ASCII space; trim both ends; SHA-256 of UTF-8 resulting text",
+  "sourceIssueBearingBlocksSha256": "84b2cc98f43b7245134dcd5516b89b6c47c0c995103cc6dfaea244894010761f",
+  "sourceIssueBearingBlocksNormalization": "UTF-8 SHA-256 of JSON.stringify({sourceUrl,title,selection}); selection is heading h2/h3/h4 and p starting Collects, Currently Ongoing, See also, Additional note, in DOM order, with NFC and whitespace normalization",
+  "scopeIssue": "https://github.com/raymond-nassar/recap-page/issues/567",
+  "metadataGapIssue": "https://github.com/raymond-nassar/recap-page/issues/568",
+  "sourceBoundary": "Amazing Spider-Man(2014)#1-6 through Amazing Spider-Man(2018)#50-55, preserving the page's origin, solo and team-up sections and every explicitly selected issue. Do not expand unnumbered event pointers, alternate-edition recaps, contextual citations or later runs.",
+  "sections": [
+    {
+      "heading": "A New Spider Begins Weaving",
+      "occurrenceCount": 6
+    },
+    {
+      "heading": "Silk’s Solo Adventures Begin",
+      "occurrenceCount": 28
+    },
+    {
+      "heading": "Silk’s Team Up Adventures",
+      "occurrenceCount": 40
+    }
+  ],
+  "blocks": [
+    {
+      "block": 1,
+      "section": "A New Spider Begins Weaving",
+      "heading": "The Amazing Spider-Man Vol. 1 (2014)",
+      "sourceRangeReference": "Collects: issues #1-6",
+      "occurrenceCount": 6
+    },
+    {
+      "block": 2,
+      "section": "Silk’s Solo Adventures Begin",
+      "heading": "Silk Volume 0: The Life and Times of Cindy Moon",
+      "sourceRangeReference": "Collects: (#1-7)",
+      "occurrenceCount": 7
+    },
+    {
+      "block": 3,
+      "section": "Silk’s Solo Adventures Begin",
+      "heading": "Silk Volume 1: Sinister",
+      "sourceRangeReference": "Collects: (#1-6, Amazing Spider-Man 2015 #1)",
+      "occurrenceCount": 7
+    },
+    {
+      "block": 4,
+      "section": "Silk’s Solo Adventures Begin",
+      "heading": "Silk Volume 2: The Negative",
+      "sourceRangeReference": "Collects: (#9-13)",
+      "occurrenceCount": 5
+    },
+    {
+      "block": 5,
+      "section": "Silk’s Solo Adventures Begin",
+      "heading": "Silk Volume 3: The Clone Conspiracy",
+      "sourceRangeReference": "Collects: (#14-19)",
+      "occurrenceCount": 6
+    },
+    {
+      "block": 6,
+      "section": "Silk’s Solo Adventures Begin",
+      "heading": "Silk (2021)",
+      "sourceRangeReference": "Currently Ongoing: #1-3 available as of this writing",
+      "occurrenceCount": 3
+    },
+    {
+      "block": 7,
+      "section": "Silk’s Team Up Adventures",
+      "heading": "Spider-Women",
+      "sourceRangeReference": "Collects: (Spider-Women Alpha #1, Silk (2015B) #7-8, Spider-Gwen (2015B) #7-8, Spider-Woman (2015) #6-7, Spider-Women Omega #1)",
+      "occurrenceCount": 8
+    },
+    {
+      "block": 8,
+      "section": "Silk’s Team Up Adventures",
+      "heading": "Amazing Spider-Man and Silk: The Spider(fly) Effect",
+      "sourceRangeReference": "Collects: #1-8",
+      "occurrenceCount": 8
+    },
+    {
+      "block": 9,
+      "section": "Silk’s Team Up Adventures",
+      "heading": "The Totally Awesome Hulk Vol. 3",
+      "sourceRangeReference": "Collects: #13-18",
+      "occurrenceCount": 6
+    },
+    {
+      "block": 10,
+      "section": "Silk’s Team Up Adventures",
+      "heading": "War of The Realms: New Agents of Atlas",
+      "sourceRangeReference": "Collects: (#1-4)",
+      "occurrenceCount": 4
+    },
+    {
+      "block": 11,
+      "section": "Silk’s Team Up Adventures",
+      "heading": "Agents of Atlas: Pandemonium",
+      "sourceRangeReference": "Collects: (#1-4)",
+      "occurrenceCount": 4
+    },
+    {
+      "block": 12,
+      "section": "Silk’s Team Up Adventures",
+      "heading": "Amazing Spider-Man Vol 10: Green Goblin Returns",
+      "sourceRangeReference": "Collects: (Amazing Spider-Man (2018) #48, Spider-Man: The Sins of Norman Osborn (2020) #1, Amazing Spider-Man (2018) #49, Free Comic Book Day 2020 (Spider-Man/Venom) 1 (Spider-Man story))",
+      "occurrenceCount": 4
+    },
+    {
+      "block": 13,
+      "section": "Silk’s Team Up Adventures",
+      "heading": "Amazing Spider-Man Vol. 11: Last Remains",
+      "sourceRangeReference": "Collects: (#50-55)",
+      "occurrenceCount": 6
+    }
+  ],
+  "sourceNonselections": [
+    {
+      "reference": "Spider-Verse collected-edition heading and See also link",
+      "reason": "No issue-numbered selection in this article; do not import the linked event checklist."
+    },
+    {
+      "reference": "Silk: Out of The Spider-Verse alternative edition, including Amazing Spider-Man (2014) #4-6",
+      "reason": "Collected-edition alternative; its three debut issues are already contained within selected block 1, not additional source occurrences or a narrowing of #1-6."
+    },
+    {
+      "reference": "Silk #3 in the Spider(fly) Effect explanatory paragraph",
+      "reason": "Contextual time placement, not an additional reading row or authority to move this team-up into the earlier solo section."
+    },
+    {
+      "reference": "Amazing Spider-Man (2018) #44 in the Green Goblin Returns explanatory paragraph",
+      "reason": "Contextual linked story citation; the adjacent Collects block selects #48, Sins #1, #49, FCBD #1, followed by #50-55."
+    },
+    {
+      "reference": "Silk (2021) #4-5, Agents of Atlas (2019) #5 and later Silk runs",
+      "reason": "Beyond explicitly selected cuts and current article boundary; do not extrapolate a complete mini or later publication."
+    },
+    {
+      "reference": "Artwork, creator/synopsis prose, linked external guides and linked collected editions",
+      "reason": "No added source-defined original issue positions; preserve only factual selections and source credit."
+    }
+  ],
+  "originalIdentityNotes": [
+    "Silk (2015) #1-7 is the first series, pinned prior guide series 19661; second-series #1-19 and crossover #7-8 belong to prior guide series 20499. Distinct volume keys are required despite identical titles, year and issue numbers.",
+    "Spider-Gwen (2015B) #7-8 is the second series, pinned prior guide series 20505, not first-series 19670. Do not apply another guide's alternating crossover reading order to this article's grouped Collects order.",
+    "Spider-Women Alpha #1, Spider-Women Omega #1 and Sins of Norman Osborn #1 are one-shot original identities. FCBD 2020 Spider-Man/Venom #1 selects its Spider-Man story; verify the original anthology metadata in mapping.",
+    "Spider(fly) Effect #1-8 requires original digital/Infinite-format identities; #1 resolves to original issue 57973 in series 21127, while #2-8 remain seven explicit original-identity gaps. No print issue substitutes for a digital chapter.",
+    "The source's 2015 Amazing Spider-Man relaunch #1 is distinct from Amazing Spider-Man (2014) #1. Pandemonium identifies Agents of Atlas original 2019 #1-4, not the collection or issue #5.",
+    "The 2021 line's 'available as of this writing' is the historical source's scope qualifier, not a current Marvel Unlimited availability claim.",
+    "The first original cover target is Amazing Spider-Man (2014) #1, verified as issue 45798 in series 17285."
+  ],
+  "sourceSelectedOccurrenceCount": 74,
+  "orderedSeriesSegmentCount": 21,
+  "exactCandidateCount": 67,
+  "metadataGapCount": 7,
+  "repeatedSourceReferenceCount": 0,
+  "positions": [
+    {
+      "sourcePosition": 1,
+      "sourceBlock": 1,
+      "sourceIssueReference": "Amazing Spider-Man (2014) #1",
+      "sourceRangeReference": "Collects: issues #1-6",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2014,
+      "issueNumber": "1",
+      "seriesId": 17285,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 2,
+      "sourceBlock": 1,
+      "sourceIssueReference": "Amazing Spider-Man (2014) #2",
+      "sourceRangeReference": "Collects: issues #1-6",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2014,
+      "issueNumber": "2",
+      "seriesId": 17285,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 3,
+      "sourceBlock": 1,
+      "sourceIssueReference": "Amazing Spider-Man (2014) #3",
+      "sourceRangeReference": "Collects: issues #1-6",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2014,
+      "issueNumber": "3",
+      "seriesId": 17285,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 4,
+      "sourceBlock": 1,
+      "sourceIssueReference": "Amazing Spider-Man (2014) #4",
+      "sourceRangeReference": "Collects: issues #1-6",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2014,
+      "issueNumber": "4",
+      "seriesId": 17285,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 5,
+      "sourceBlock": 1,
+      "sourceIssueReference": "Amazing Spider-Man (2014) #5",
+      "sourceRangeReference": "Collects: issues #1-6",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2014,
+      "issueNumber": "5",
+      "seriesId": 17285,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 6,
+      "sourceBlock": 1,
+      "sourceIssueReference": "Amazing Spider-Man (2014) #6",
+      "sourceRangeReference": "Collects: issues #1-6",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2014,
+      "issueNumber": "6",
+      "seriesId": 17285,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 7,
+      "sourceBlock": 2,
+      "sourceIssueReference": "Silk (2015) #1",
+      "sourceRangeReference": "Collects: (#1-7)",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "1",
+      "seriesId": 19661,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 8,
+      "sourceBlock": 2,
+      "sourceIssueReference": "Silk (2015) #2",
+      "sourceRangeReference": "Collects: (#1-7)",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "2",
+      "seriesId": 19661,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 9,
+      "sourceBlock": 2,
+      "sourceIssueReference": "Silk (2015) #3",
+      "sourceRangeReference": "Collects: (#1-7)",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "3",
+      "seriesId": 19661,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 10,
+      "sourceBlock": 2,
+      "sourceIssueReference": "Silk (2015) #4",
+      "sourceRangeReference": "Collects: (#1-7)",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "4",
+      "seriesId": 19661,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 11,
+      "sourceBlock": 2,
+      "sourceIssueReference": "Silk (2015) #5",
+      "sourceRangeReference": "Collects: (#1-7)",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "5",
+      "seriesId": 19661,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 12,
+      "sourceBlock": 2,
+      "sourceIssueReference": "Silk (2015) #6",
+      "sourceRangeReference": "Collects: (#1-7)",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "6",
+      "seriesId": 19661,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 13,
+      "sourceBlock": 2,
+      "sourceIssueReference": "Silk (2015) #7",
+      "sourceRangeReference": "Collects: (#1-7)",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "7",
+      "seriesId": 19661,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 14,
+      "sourceBlock": 3,
+      "sourceIssueReference": "Silk (2015) #1",
+      "sourceRangeReference": "Collects: (#1-6, Amazing Spider-Man 2015 #1)",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "1",
+      "seriesId": 20499,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 15,
+      "sourceBlock": 3,
+      "sourceIssueReference": "Silk (2015) #2",
+      "sourceRangeReference": "Collects: (#1-6, Amazing Spider-Man 2015 #1)",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "2",
+      "seriesId": 20499,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 16,
+      "sourceBlock": 3,
+      "sourceIssueReference": "Silk (2015) #3",
+      "sourceRangeReference": "Collects: (#1-6, Amazing Spider-Man 2015 #1)",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "3",
+      "seriesId": 20499,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 17,
+      "sourceBlock": 3,
+      "sourceIssueReference": "Silk (2015) #4",
+      "sourceRangeReference": "Collects: (#1-6, Amazing Spider-Man 2015 #1)",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "4",
+      "seriesId": 20499,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 18,
+      "sourceBlock": 3,
+      "sourceIssueReference": "Silk (2015) #5",
+      "sourceRangeReference": "Collects: (#1-6, Amazing Spider-Man 2015 #1)",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "5",
+      "seriesId": 20499,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 19,
+      "sourceBlock": 3,
+      "sourceIssueReference": "Silk (2015) #6",
+      "sourceRangeReference": "Collects: (#1-6, Amazing Spider-Man 2015 #1)",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "6",
+      "seriesId": 20499,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 20,
+      "sourceBlock": 3,
+      "sourceIssueReference": "Amazing Spider-Man (2015) #1",
+      "sourceRangeReference": "Collects: (#1-6, Amazing Spider-Man 2015 #1)",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2017,
+      "issueNumber": "1",
+      "seriesId": 20432,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 21,
+      "sourceBlock": 4,
+      "sourceIssueReference": "Silk (2015) #9",
+      "sourceRangeReference": "Collects: (#9-13)",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "9",
+      "seriesId": 20499,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 22,
+      "sourceBlock": 4,
+      "sourceIssueReference": "Silk (2015) #10",
+      "sourceRangeReference": "Collects: (#9-13)",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "10",
+      "seriesId": 20499,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 23,
+      "sourceBlock": 4,
+      "sourceIssueReference": "Silk (2015) #11",
+      "sourceRangeReference": "Collects: (#9-13)",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "11",
+      "seriesId": 20499,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 24,
+      "sourceBlock": 4,
+      "sourceIssueReference": "Silk (2015) #12",
+      "sourceRangeReference": "Collects: (#9-13)",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "12",
+      "seriesId": 20499,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 25,
+      "sourceBlock": 4,
+      "sourceIssueReference": "Silk (2015) #13",
+      "sourceRangeReference": "Collects: (#9-13)",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "13",
+      "seriesId": 20499,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 26,
+      "sourceBlock": 5,
+      "sourceIssueReference": "Silk (2015) #14",
+      "sourceRangeReference": "Collects: (#14-19)",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "14",
+      "seriesId": 20499,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 27,
+      "sourceBlock": 5,
+      "sourceIssueReference": "Silk (2015) #15",
+      "sourceRangeReference": "Collects: (#14-19)",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "15",
+      "seriesId": 20499,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 28,
+      "sourceBlock": 5,
+      "sourceIssueReference": "Silk (2015) #16",
+      "sourceRangeReference": "Collects: (#14-19)",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "16",
+      "seriesId": 20499,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 29,
+      "sourceBlock": 5,
+      "sourceIssueReference": "Silk (2015) #17",
+      "sourceRangeReference": "Collects: (#14-19)",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "17",
+      "seriesId": 20499,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 30,
+      "sourceBlock": 5,
+      "sourceIssueReference": "Silk (2015) #18",
+      "sourceRangeReference": "Collects: (#14-19)",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "18",
+      "seriesId": 20499,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 31,
+      "sourceBlock": 5,
+      "sourceIssueReference": "Silk (2015) #19",
+      "sourceRangeReference": "Collects: (#14-19)",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "19",
+      "seriesId": 20499,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 32,
+      "sourceBlock": 6,
+      "sourceIssueReference": "Silk (2021) #1",
+      "sourceRangeReference": "Currently Ongoing: #1-3 available as of this writing",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 29389,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 33,
+      "sourceBlock": 6,
+      "sourceIssueReference": "Silk (2021) #2",
+      "sourceRangeReference": "Currently Ongoing: #1-3 available as of this writing",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2021,
+      "issueNumber": "2",
+      "seriesId": 29389,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 34,
+      "sourceBlock": 6,
+      "sourceIssueReference": "Silk (2021) #3",
+      "sourceRangeReference": "Currently Ongoing: #1-3 available as of this writing",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2021,
+      "issueNumber": "3",
+      "seriesId": 29389,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 35,
+      "sourceBlock": 7,
+      "sourceIssueReference": "Spider-Women Alpha (2016) #1",
+      "sourceRangeReference": "Collects: (Spider-Women Alpha #1, Silk (2015B) #7-8, Spider-Gwen (2015B) #7-8, Spider-Woman (2015) #6-7, Spider-Women Omega #1)",
+      "normalizedSeriesTitle": "Spider-Women Alpha",
+      "seriesYear": 2016,
+      "issueNumber": "1",
+      "seriesId": 21280,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 36,
+      "sourceBlock": 7,
+      "sourceIssueReference": "Silk (2015) #7",
+      "sourceRangeReference": "Collects: (Spider-Women Alpha #1, Silk (2015B) #7-8, Spider-Gwen (2015B) #7-8, Spider-Woman (2015) #6-7, Spider-Women Omega #1)",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "7",
+      "seriesId": 20499,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 37,
+      "sourceBlock": 7,
+      "sourceIssueReference": "Silk (2015) #8",
+      "sourceRangeReference": "Collects: (Spider-Women Alpha #1, Silk (2015B) #7-8, Spider-Gwen (2015B) #7-8, Spider-Woman (2015) #6-7, Spider-Women Omega #1)",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "8",
+      "seriesId": 20499,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 38,
+      "sourceBlock": 7,
+      "sourceIssueReference": "Spider-Gwen (2015) #7",
+      "sourceRangeReference": "Collects: (Spider-Women Alpha #1, Silk (2015B) #7-8, Spider-Gwen (2015B) #7-8, Spider-Woman (2015) #6-7, Spider-Women Omega #1)",
+      "normalizedSeriesTitle": "Spider-Gwen",
+      "seriesYear": 2015,
+      "issueNumber": "7",
+      "seriesId": 20505,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 39,
+      "sourceBlock": 7,
+      "sourceIssueReference": "Spider-Gwen (2015) #8",
+      "sourceRangeReference": "Collects: (Spider-Women Alpha #1, Silk (2015B) #7-8, Spider-Gwen (2015B) #7-8, Spider-Woman (2015) #6-7, Spider-Women Omega #1)",
+      "normalizedSeriesTitle": "Spider-Gwen",
+      "seriesYear": 2015,
+      "issueNumber": "8",
+      "seriesId": 20505,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 40,
+      "sourceBlock": 7,
+      "sourceIssueReference": "Spider-Woman (2015) #6",
+      "sourceRangeReference": "Collects: (Spider-Women Alpha #1, Silk (2015B) #7-8, Spider-Gwen (2015B) #7-8, Spider-Woman (2015) #6-7, Spider-Women Omega #1)",
+      "normalizedSeriesTitle": "Spider-Woman",
+      "seriesYear": 2015,
+      "issueNumber": "6",
+      "seriesId": 20618,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 41,
+      "sourceBlock": 7,
+      "sourceIssueReference": "Spider-Woman (2015) #7",
+      "sourceRangeReference": "Collects: (Spider-Women Alpha #1, Silk (2015B) #7-8, Spider-Gwen (2015B) #7-8, Spider-Woman (2015) #6-7, Spider-Women Omega #1)",
+      "normalizedSeriesTitle": "Spider-Woman",
+      "seriesYear": 2015,
+      "issueNumber": "7",
+      "seriesId": 20618,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 42,
+      "sourceBlock": 7,
+      "sourceIssueReference": "Spider-Women Omega (2016) #1",
+      "sourceRangeReference": "Collects: (Spider-Women Alpha #1, Silk (2015B) #7-8, Spider-Gwen (2015B) #7-8, Spider-Woman (2015) #6-7, Spider-Women Omega #1)",
+      "normalizedSeriesTitle": "Spider-Women Omega",
+      "seriesYear": 2016,
+      "issueNumber": "1",
+      "seriesId": 21442,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 43,
+      "sourceBlock": 8,
+      "sourceIssueReference": "Amazing Spider-Man and Silk: The Spider(fly) Effect #1",
+      "sourceRangeReference": "Collects: #1-8",
+      "normalizedSeriesTitle": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic",
+      "seriesYear": 2016,
+      "issueNumber": "1",
+      "seriesId": 21127,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 44,
+      "sourceBlock": 8,
+      "sourceIssueReference": "Amazing Spider-Man and Silk: The Spider(fly) Effect #2",
+      "sourceRangeReference": "Collects: #1-8",
+      "normalizedSeriesTitle": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic",
+      "seriesYear": 2016,
+      "issueNumber": "2",
+      "status": "published-metadata-gap",
+      "trackingIssue": "https://github.com/raymond-nassar/recap-page/issues/568"
+    },
+    {
+      "sourcePosition": 45,
+      "sourceBlock": 8,
+      "sourceIssueReference": "Amazing Spider-Man and Silk: The Spider(fly) Effect #3",
+      "sourceRangeReference": "Collects: #1-8",
+      "normalizedSeriesTitle": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic",
+      "seriesYear": 2016,
+      "issueNumber": "3",
+      "status": "published-metadata-gap",
+      "trackingIssue": "https://github.com/raymond-nassar/recap-page/issues/568"
+    },
+    {
+      "sourcePosition": 46,
+      "sourceBlock": 8,
+      "sourceIssueReference": "Amazing Spider-Man and Silk: The Spider(fly) Effect #4",
+      "sourceRangeReference": "Collects: #1-8",
+      "normalizedSeriesTitle": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic",
+      "seriesYear": 2016,
+      "issueNumber": "4",
+      "status": "published-metadata-gap",
+      "trackingIssue": "https://github.com/raymond-nassar/recap-page/issues/568"
+    },
+    {
+      "sourcePosition": 47,
+      "sourceBlock": 8,
+      "sourceIssueReference": "Amazing Spider-Man and Silk: The Spider(fly) Effect #5",
+      "sourceRangeReference": "Collects: #1-8",
+      "normalizedSeriesTitle": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic",
+      "seriesYear": 2016,
+      "issueNumber": "5",
+      "status": "published-metadata-gap",
+      "trackingIssue": "https://github.com/raymond-nassar/recap-page/issues/568"
+    },
+    {
+      "sourcePosition": 48,
+      "sourceBlock": 8,
+      "sourceIssueReference": "Amazing Spider-Man and Silk: The Spider(fly) Effect #6",
+      "sourceRangeReference": "Collects: #1-8",
+      "normalizedSeriesTitle": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic",
+      "seriesYear": 2016,
+      "issueNumber": "6",
+      "status": "published-metadata-gap",
+      "trackingIssue": "https://github.com/raymond-nassar/recap-page/issues/568"
+    },
+    {
+      "sourcePosition": 49,
+      "sourceBlock": 8,
+      "sourceIssueReference": "Amazing Spider-Man and Silk: The Spider(fly) Effect #7",
+      "sourceRangeReference": "Collects: #1-8",
+      "normalizedSeriesTitle": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic",
+      "seriesYear": 2016,
+      "issueNumber": "7",
+      "status": "published-metadata-gap",
+      "trackingIssue": "https://github.com/raymond-nassar/recap-page/issues/568"
+    },
+    {
+      "sourcePosition": 50,
+      "sourceBlock": 8,
+      "sourceIssueReference": "Amazing Spider-Man and Silk: The Spider(fly) Effect #8",
+      "sourceRangeReference": "Collects: #1-8",
+      "normalizedSeriesTitle": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic",
+      "seriesYear": 2016,
+      "issueNumber": "8",
+      "status": "published-metadata-gap",
+      "trackingIssue": "https://github.com/raymond-nassar/recap-page/issues/568"
+    },
+    {
+      "sourcePosition": 51,
+      "sourceBlock": 9,
+      "sourceIssueReference": "The Totally Awesome Hulk (2015) #13",
+      "sourceRangeReference": "Collects: #13-18",
+      "normalizedSeriesTitle": "The Totally Awesome Hulk",
+      "seriesYear": 2015,
+      "issueNumber": "13",
+      "seriesId": 20614,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 52,
+      "sourceBlock": 9,
+      "sourceIssueReference": "The Totally Awesome Hulk (2015) #14",
+      "sourceRangeReference": "Collects: #13-18",
+      "normalizedSeriesTitle": "The Totally Awesome Hulk",
+      "seriesYear": 2015,
+      "issueNumber": "14",
+      "seriesId": 20614,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 53,
+      "sourceBlock": 9,
+      "sourceIssueReference": "The Totally Awesome Hulk (2015) #15",
+      "sourceRangeReference": "Collects: #13-18",
+      "normalizedSeriesTitle": "The Totally Awesome Hulk",
+      "seriesYear": 2015,
+      "issueNumber": "15",
+      "seriesId": 20614,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 54,
+      "sourceBlock": 9,
+      "sourceIssueReference": "The Totally Awesome Hulk (2015) #16",
+      "sourceRangeReference": "Collects: #13-18",
+      "normalizedSeriesTitle": "The Totally Awesome Hulk",
+      "seriesYear": 2015,
+      "issueNumber": "16",
+      "seriesId": 20614,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 55,
+      "sourceBlock": 9,
+      "sourceIssueReference": "The Totally Awesome Hulk (2015) #17",
+      "sourceRangeReference": "Collects: #13-18",
+      "normalizedSeriesTitle": "The Totally Awesome Hulk",
+      "seriesYear": 2015,
+      "issueNumber": "17",
+      "seriesId": 20614,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 56,
+      "sourceBlock": 9,
+      "sourceIssueReference": "The Totally Awesome Hulk (2015) #18",
+      "sourceRangeReference": "Collects: #13-18",
+      "normalizedSeriesTitle": "The Totally Awesome Hulk",
+      "seriesYear": 2015,
+      "issueNumber": "18",
+      "seriesId": 20614,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 57,
+      "sourceBlock": 10,
+      "sourceIssueReference": "War of the Realms: New Agents of Atlas (2019) #1",
+      "sourceRangeReference": "Collects: (#1-4)",
+      "normalizedSeriesTitle": "War of the Realms: New Agents of Atlas",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 27505,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 58,
+      "sourceBlock": 10,
+      "sourceIssueReference": "War of the Realms: New Agents of Atlas (2019) #2",
+      "sourceRangeReference": "Collects: (#1-4)",
+      "normalizedSeriesTitle": "War of the Realms: New Agents of Atlas",
+      "seriesYear": 2019,
+      "issueNumber": "2",
+      "seriesId": 27505,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 59,
+      "sourceBlock": 10,
+      "sourceIssueReference": "War of the Realms: New Agents of Atlas (2019) #3",
+      "sourceRangeReference": "Collects: (#1-4)",
+      "normalizedSeriesTitle": "War of the Realms: New Agents of Atlas",
+      "seriesYear": 2019,
+      "issueNumber": "3",
+      "seriesId": 27505,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 60,
+      "sourceBlock": 10,
+      "sourceIssueReference": "War of the Realms: New Agents of Atlas (2019) #4",
+      "sourceRangeReference": "Collects: (#1-4)",
+      "normalizedSeriesTitle": "War of the Realms: New Agents of Atlas",
+      "seriesYear": 2019,
+      "issueNumber": "4",
+      "seriesId": 27505,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 61,
+      "sourceBlock": 11,
+      "sourceIssueReference": "Agents of Atlas (2019) #1",
+      "sourceRangeReference": "Collects: (#1-4)",
+      "normalizedSeriesTitle": "Agents of Atlas",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 27624,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 62,
+      "sourceBlock": 11,
+      "sourceIssueReference": "Agents of Atlas (2019) #2",
+      "sourceRangeReference": "Collects: (#1-4)",
+      "normalizedSeriesTitle": "Agents of Atlas",
+      "seriesYear": 2019,
+      "issueNumber": "2",
+      "seriesId": 27624,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 63,
+      "sourceBlock": 11,
+      "sourceIssueReference": "Agents of Atlas (2019) #3",
+      "sourceRangeReference": "Collects: (#1-4)",
+      "normalizedSeriesTitle": "Agents of Atlas",
+      "seriesYear": 2019,
+      "issueNumber": "3",
+      "seriesId": 27624,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 64,
+      "sourceBlock": 11,
+      "sourceIssueReference": "Agents of Atlas (2019) #4",
+      "sourceRangeReference": "Collects: (#1-4)",
+      "normalizedSeriesTitle": "Agents of Atlas",
+      "seriesYear": 2019,
+      "issueNumber": "4",
+      "seriesId": 27624,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 65,
+      "sourceBlock": 12,
+      "sourceIssueReference": "Amazing Spider-Man (2018) #48",
+      "sourceRangeReference": "Collects: (Amazing Spider-Man (2018) #48, Spider-Man: The Sins of Norman Osborn (2020) #1, Amazing Spider-Man (2018) #49, Free Comic Book Day 2020 (Spider-Man/Venom) 1 (Spider-Man story))",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "48",
+      "seriesId": 24396,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 66,
+      "sourceBlock": 12,
+      "sourceIssueReference": "Spider-Man: The Sins of Norman Osborn (2020) #1",
+      "sourceRangeReference": "Collects: (Amazing Spider-Man (2018) #48, Spider-Man: The Sins of Norman Osborn (2020) #1, Amazing Spider-Man (2018) #49, Free Comic Book Day 2020 (Spider-Man/Venom) 1 (Spider-Man story))",
+      "normalizedSeriesTitle": "Amazing Spider-Man: The Sins of Norman Osborn",
+      "seriesYear": 2020,
+      "issueNumber": "1",
+      "seriesId": 31209,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 67,
+      "sourceBlock": 12,
+      "sourceIssueReference": "Amazing Spider-Man (2018) #49",
+      "sourceRangeReference": "Collects: (Amazing Spider-Man (2018) #48, Spider-Man: The Sins of Norman Osborn (2020) #1, Amazing Spider-Man (2018) #49, Free Comic Book Day 2020 (Spider-Man/Venom) 1 (Spider-Man story))",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "49",
+      "seriesId": 24396,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 68,
+      "sourceBlock": 12,
+      "sourceIssueReference": "Free Comic Book Day 2020 (Spider-Man/Venom) #1 (Spider-Man story)",
+      "sourceRangeReference": "Collects: (Amazing Spider-Man (2018) #48, Spider-Man: The Sins of Norman Osborn (2020) #1, Amazing Spider-Man (2018) #49, Free Comic Book Day 2020 (Spider-Man/Venom) 1 (Spider-Man story))",
+      "normalizedSeriesTitle": "Free Comic Book Day: Spider-Man/Venom",
+      "seriesYear": 2020,
+      "issueNumber": "1",
+      "seriesId": 30154,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 69,
+      "sourceBlock": 13,
+      "sourceIssueReference": "Amazing Spider-Man (2018) #50",
+      "sourceRangeReference": "Collects: (#50-55)",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "50",
+      "seriesId": 24396,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 70,
+      "sourceBlock": 13,
+      "sourceIssueReference": "Amazing Spider-Man (2018) #51",
+      "sourceRangeReference": "Collects: (#50-55)",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "51",
+      "seriesId": 24396,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 71,
+      "sourceBlock": 13,
+      "sourceIssueReference": "Amazing Spider-Man (2018) #52",
+      "sourceRangeReference": "Collects: (#50-55)",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "52",
+      "seriesId": 24396,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 72,
+      "sourceBlock": 13,
+      "sourceIssueReference": "Amazing Spider-Man (2018) #53",
+      "sourceRangeReference": "Collects: (#50-55)",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "53",
+      "seriesId": 24396,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 73,
+      "sourceBlock": 13,
+      "sourceIssueReference": "Amazing Spider-Man (2018) #54",
+      "sourceRangeReference": "Collects: (#50-55)",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "54",
+      "seriesId": 24396,
+      "status": "exact-resolution-candidate"
+    },
+    {
+      "sourcePosition": 74,
+      "sourceBlock": 13,
+      "sourceIssueReference": "Amazing Spider-Man (2018) #55",
+      "sourceRangeReference": "Collects: (#50-55)",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "55",
+      "seriesId": 24396,
+      "status": "exact-resolution-candidate"
+    }
+  ]
+}
