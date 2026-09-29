@@ -7,6 +7,7 @@ import {
   assertMappingMatchesPacketOccurrences, digestCanonicalJson, validateFrozenPacket, validateMappingDigest,
 } from '../scripts/lib/cbh-inventory.mjs';
 import { buildReportForMapping } from '../scripts/report-order-overlap.mjs';
+import { historicalAgathaLibrarySnapshot } from './helpers/agatha-historical-library.mjs';
 import { parseCatalog, searchCatalog } from '../src/js/lib/catalog.js';
 import { parseChecklist } from '../src/js/lib/markdown.js';
 
@@ -140,6 +141,7 @@ test('Emma relationship approval regenerates against its reviewed source-manifes
   const report = await readJson(`scripts/data/cbh-overlaps/${id}.json`);
   const manifest = await readJson('src/data/curated-lists.json');
   const current = await buildReportForMapping(`scripts/data/cbh-mappings/${id}.json`, [], {
+    ...await historicalAgathaLibrarySnapshot(),
     excludedOrderIds: ['doctor-octopus-otto-octavius-reading-order', 'shadow-king-reading-order'],
   });
   const expectedOrderIds = manifest.lists

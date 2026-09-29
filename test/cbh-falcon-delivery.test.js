@@ -12,6 +12,7 @@ import {
   validateReportDigest,
 } from '../scripts/lib/cbh-inventory.mjs';
 import { buildReportForMapping } from '../scripts/report-order-overlap.mjs';
+import { historicalAgathaLibrarySnapshot } from './helpers/agatha-historical-library.mjs';
 import { parseChecklist } from '../src/js/lib/markdown.js';
 import { parseCatalog, searchCatalog } from '../src/js/lib/catalog.js';
 
@@ -117,7 +118,7 @@ test('Falcon approval preserves every source-manifest order in its reviewed libr
   const report = await readJson(`scripts/data/cbh-overlaps/${id}.json`);
   const manifest = await readJson('src/data/curated-lists.json');
   const current = await buildReportForMapping(
-    `scripts/data/cbh-mappings/${id}.json`, [], { excludedOrderIds: ['donny-cates-marvel-universe-reading-order-2017', 'the-vision-reading-order', 'emma-frost-reading-order', 'doctor-octopus-otto-octavius-reading-order', 'shadow-king-reading-order'] },
+    `scripts/data/cbh-mappings/${id}.json`, [], { ...await historicalAgathaLibrarySnapshot(), excludedOrderIds: ['donny-cates-marvel-universe-reading-order-2017', 'the-vision-reading-order', 'emma-frost-reading-order', 'doctor-octopus-otto-octavius-reading-order', 'shadow-king-reading-order'] },
   );
   assert.doesNotThrow(() => validateFrozenPacket(packet));
   assert.doesNotThrow(() => validateMappingDigest(mapping));

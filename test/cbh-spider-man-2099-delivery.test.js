@@ -11,6 +11,7 @@ import {
 } from '../scripts/lib/cbh-inventory.mjs';
 import { buildMarkdown } from '../scripts/author-cbh-packet.mjs';
 import { buildReportForMapping } from '../scripts/report-order-overlap.mjs';
+import { historicalAgathaLibrarySnapshot } from './helpers/agatha-historical-library.mjs';
 import { parseChecklist } from '../src/js/lib/markdown.js';
 
 const id = 'spider-man-2099-reading-order';
@@ -119,7 +120,7 @@ test('Spider-Man 2099 preserves original World of Tomorrow positions as open met
 test('Spider-Man 2099 regenerates its full reviewed library relationship report', async () => {
   const report = await readJson(`scripts/data/cbh-overlaps/${id}.json`);
   const manifest = await readJson('src/data/curated-lists.json');
-  const current = await buildReportForMapping(`scripts/data/cbh-mappings/${id}.json`, [], { excludedOrderIds: ['winter-soldier-bucky-barnes-reading-order', 'donny-cates-marvel-universe-reading-order-2017', 'falcon-sam-wilson-captain-america-reading-order', 'the-vision-reading-order', 'emma-frost-reading-order', 'doctor-octopus-otto-octavius-reading-order', 'shadow-king-reading-order'] });
+  const current = await buildReportForMapping(`scripts/data/cbh-mappings/${id}.json`, [], { ...await historicalAgathaLibrarySnapshot(), excludedOrderIds: ['winter-soldier-bucky-barnes-reading-order', 'donny-cates-marvel-universe-reading-order-2017', 'falcon-sam-wilson-captain-america-reading-order', 'the-vision-reading-order', 'emma-frost-reading-order', 'doctor-octopus-otto-octavius-reading-order', 'shadow-king-reading-order'] });
   assert.doesNotThrow(() => validateFrozenPacket(packet));
   assert.doesNotThrow(() => validateMappingDigest(mapping));
   assert.doesNotThrow(() => assertMappingMatchesPacketOccurrences(packet, mapping));

@@ -31,6 +31,15 @@ A complete Shadow King reading guide now appears in the catalog with the approve
 the Muir Island interleave, and the restored Nightcrawler selection. Saved reading progress is
 unchanged.
 
+### Correct the Agatha Harkness Reading List
+
+The existing Agatha Harkness guide now includes the source's two earliest Fantastic Four issues,
+the original Scarlet Witch miniseries, its optional numbered Nova recommendation, and the latest
+Midnight Suns and Scarlet Witch Annual additions. The later Scarlet Witch series remains in its
+proper place, and the guide keeps its existing identity and catalog position. Previously saved
+issue progress stays attached to the same issue IDs; saved copies of the older list are not
+silently rewritten.
+
 ### Make the Android phone interface easier to use
 
 The recommended-start card now gives its text the full width and puts its button underneath.
