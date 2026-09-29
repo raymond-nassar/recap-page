@@ -220,7 +220,8 @@ test('batch two has no aggregate identity, source, sequence, or pre-publication 
   const laterReviewedIds = new Set([
     'doctor-octopus-otto-octavius-reading-order',
     'thunderbolts-reading-order',
-    'x-23-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order',
+    'x-23-reading-order', 'hawkeye-reading-order',
+    'marvels-infinity-saga-gauntlet-wars-crusade-reading-order',
     'mephisto-reading-order',
     'best-ultron-reading-order', 'winter-soldier-bucky-barnes-reading-order',
     'donny-cates-marvel-universe-reading-order-2017',

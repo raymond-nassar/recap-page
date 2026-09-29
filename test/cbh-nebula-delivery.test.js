@@ -139,7 +139,8 @@ test('Nebula approved relationship report preserves all 187 reviewed orders', as
   const manifest = await readJson('src/data/curated-lists.json');
   const expectedOrderIds = manifest.lists
     .filter((row) => row.id !== id && row.id !== 'hope-summers-reading-order'
-      && row.id !== 'x-23-reading-order' && row.id !== 'hawkeye-reading-order', 'silk-cindy-moon-reading-order'
+      && row.id !== 'x-23-reading-order' && row.id !== 'hawkeye-reading-order'
+      && row.id !== 'silk-cindy-moon-reading-order'
       && row.id !== 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order')
     .map((row) => row.id);
   const regenerated = await buildReportForMapping(`scripts/data/cbh-mappings/${id}.json`, [], {

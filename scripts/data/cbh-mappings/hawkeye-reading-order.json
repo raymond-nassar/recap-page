@@ -26440,7 +26440,7 @@
     }
   ],
   "mappingDigest": "3152eae7277bc29633d1cdd35efde2690ad8681ad6de82c2a157adc991587cff",
-  "packetReview": "GPT-6 Astra coordinator approves 662 exact originals and one explicit published-original metadata gap, with eight provenance-only repeats across 671 source occurrences and 663 canonical entries. All 190 current peers are compared: 57 partial, five existing-subset and 128 none. The new X-23 partial contains the eight selected Avengers Academy originals and six selected Kate Hawkeye originals; all earlier shared sets are unchanged. Genuine optional-detail refusals are not fabricated successes or new source gaps. Public scope #569 and exact digests bind approval.",
+  "packetReview": "GPT-6 Astra coordinator approves662 exact originals and one explicit published-original gap, with eight provenance repeats across671 source positions and663 canonical entries. Complete192-peer review contains58 partial, five existing-subset and129 none; new Infinity shares exact IDs17838/17839, while Silk is none. All earlier shared sets remain intact. Six known-ID optional-detail refusals remain genuine, not source gaps or fabricated successful responses. Public scope#569 and exact current input digests bind approval.",
   "approvedManifest": {
     "id": "hawkeye-reading-order",
     "name": "Hawkeye (Clint Barton and Kate Bishop)",
@@ -26483,12 +26483,12 @@
   "relationshipReview": {
     "authorityType": "stronger-model",
     "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
-    "rationale": "The coordinator independently reread all nine source sections, corrected the nonissue Saga and early annual-fragment interpretation, reviewed the original 61 non-none shared-title/number sets and then independently approved X-23's fourteen shared originals. The current report therefore has 62 non-none relationships: 57 partial and five intentional existing subsets. Six initially unresolved originals were recovered from exact evidence, without substitutions or invented successful detail responses. The source preserves 671 positions, 663 canonical identities and eight repeats. No exact duplicate or removal of required shared comics is approved.",
-    "reviewedAt": "2026-09-29T07:14:08.786Z",
+    "rationale": "The coordinator independently reread the nine source sections, corrected the nonissue Saga and early annual fragment, and reviewed all source-required shared originals. The current192-peer report has63 non-none relationships:58 partial and five intentional existing subsets. Newly published Infinity shares the explicitly selected West Coast Avengers#96-97; Silk is none. Earlier X-23 and all prior shared sets are unchanged. The source preserves671 positions,663 canonical identities and eight repeats without substituted originals or invented metadata successes.",
+    "reviewedAt": "2026-09-29T15:04:28.571Z",
     "packetDigest": "164d49ea4964eb7da5835a68c3a04266256a40929a9c1281cd551d8dba5df1cf",
     "mappingDigest": "3152eae7277bc29633d1cdd35efde2690ad8681ad6de82c2a157adc991587cff",
-    "reportDigest": "dbe00f5315814f91bf1b4aa4faac1229d94dfcea50c1ca32e69b51ed547e4a2b",
-    "libraryDigest": "fc0295031275315c85394705a15299bf8dd5e9cfc931affca9e3e5ac8e987fa5",
+    "reportDigest": "5f80dbecc9b91cab07ec0dedb73407d35974c250e9d37a6a5f2c3b6c5f07d52e",
+    "libraryDigest": "90b0ea5aa781f368b6ffaaa527993239f0f33d0f67df2a375db893d81be6bccc",
     "peerDigests": {},
     "sourceCounts": {
       "sourceOccurrenceCount": 671,
@@ -26505,7 +26505,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "absolute-carnage",
@@ -26514,7 +26514,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "adam-warlock-reading-order",
@@ -26523,7 +26523,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "agatha-harkness-reading-order",
@@ -26532,7 +26532,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "The selected Celestial Madonna, Giant-Size Avengers, West Coast and Disassembled originals are explicit Hawkeye collections. Preserve them in Clint and Kate's much broader source route.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "age-of-x-man",
@@ -26541,7 +26541,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "agents-of-atlas-reading-order",
@@ -26550,7 +26550,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Enter the Heroic Age is explicitly selected with the later Hawkeye and Mockingbird collection. Keep this original at its source position.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "all-new-all-different-avengers",
@@ -26559,7 +26559,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "New Avengers 2015 #1-6 and Occupy Avengers #1-9 are explicit source collections. The broader era route is not a replacement for the Hawkeyes' guide.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
@@ -26568,7 +26568,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "The selected Illuminati original #1 is required within the source's New Avengers collection. One shared original does not duplicate the Spider-Man guide.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "annihilation",
@@ -26577,7 +26577,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "annihilation-conquest",
@@ -26586,7 +26586,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "ant-man-reading-order",
@@ -26595,7 +26595,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "The source directly selects the shared Avengers, Young Avengers, Academy, Secret Avengers and Children's Crusade originals. Preserve complete selected ranges rather than pruning them to avoid Ant-Man overlap.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "apocalypse-wars",
@@ -26604,7 +26604,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "atlantis-attacks",
@@ -26613,7 +26613,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "West Coast Avengers #56 belongs to the explicitly selected Byrne collection. Its presence in an event guide does not change the source selection.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "avengers-defenders-war",
@@ -26622,7 +26622,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "The complete eight-issue event route is intentionally contained in the source's Defenders and Avengers selections. Hawkeye's multi-decade route is much broader and not an exact duplicate.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "avengers-disassembled",
@@ -26631,7 +26631,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "The source explicitly selects Avengers #500-503 and Finale. Preserve the complete contained event as pivotal context within the broader Hawkeye route.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "avengers-enemy-within",
@@ -26640,7 +26640,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "axis",
@@ -26649,7 +26649,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "best-ultron-reading-order",
@@ -26658,7 +26658,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "The shared classic Avengers originals occur in explicitly selected full collections. The Ultron recommendation route does not replace this source-defined chronology.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "black-panther-reading-order",
@@ -26667,7 +26667,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Avengers #52 and #92 are explicitly selected within the source's classic collections. Retain both in their current order.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "black-widow-reading-order",
@@ -26676,7 +26676,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "The source-required Tales, Avengers, West Coast, Thunderbolts and later originals remain selected. The recovered annual 56327 adds one exact shared identity while preserving its genuine metadata refusal.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "bloodties",
@@ -26685,7 +26685,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "captain-america-best-of",
@@ -26694,7 +26694,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "captain-america-reading-order-modern-marvel-era",
@@ -26703,7 +26703,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "captain-marvel-ms-marvel-reading-order",
@@ -26712,7 +26712,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "The selected classic Avengers, Captain Marvel #33 and New Avengers originals are required by the Hawkeye collections. Keep their source-defined ordering across the separate character routes.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "chaos-war",
@@ -26721,7 +26721,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "childs-play",
@@ -26730,7 +26730,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "civil-war",
@@ -26739,7 +26739,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Young Avengers and Runaways #1-4 plus The Initiative are explicit source selections. Keep them without inferring the rest of the event.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "civil-war-avengers",
@@ -26748,7 +26748,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "The source selects the Young Avengers/Runaways, New Avengers and Illuminati ranges directly. Preserve those complete chosen blocks in this broader character guide.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "civil-war-essential",
@@ -26757,7 +26757,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "clone-conspiracy",
@@ -26766,7 +26766,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "contest-of-champions",
@@ -26775,7 +26775,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "damnation",
@@ -26784,7 +26784,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "daredevil-reading-order",
@@ -26793,7 +26793,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Daredevil #99 and Avengers #111 form the explicitly directed cross-title boundary. Preserve that interleave rather than sorting by series.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "dark-phoenix-saga",
@@ -26802,7 +26802,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "dark-reign-avengers",
@@ -26811,7 +26811,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "New Avengers #55-64 and Children's Crusade #1-9 are source-selected collections. Their era-guide overlap does not make Hawkeye's broader route redundant.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "dark-web",
@@ -26820,7 +26820,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "days-of-future-past",
@@ -26829,7 +26829,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "days-of-future-present",
@@ -26838,7 +26838,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "dead-mans-hand",
@@ -26847,7 +26847,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "deadpool-best-of",
@@ -26856,7 +26856,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "death-of-doctor-strange",
@@ -26865,7 +26865,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "devils-reign",
@@ -26874,7 +26874,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "doctor-doom-primer",
@@ -26883,7 +26883,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "doctor-octopus-otto-octavius-reading-order",
@@ -26892,7 +26892,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "doctor-strange-multiverse-of-madness",
@@ -26901,7 +26901,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "The five selected Illuminati originals are required within the source's New Avengers collection, independent of their use in the screen-companion selection.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "doctor-strange-reading-order",
@@ -26910,7 +26910,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "The selected Defenders, Avengers, Giant-Size, Captain Marvel and New Avengers originals are explicit source context. Preserve them without substituting the Doctor Strange guide.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "donny-cates-marvel-universe-reading-order-2017",
@@ -26919,7 +26919,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "doomwar",
@@ -26928,7 +26928,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "eighth-day",
@@ -26937,7 +26937,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "emma-frost-reading-order",
@@ -26946,7 +26946,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "House of M, Secret Invasion, the numbered AVX Versus issue and Children's Crusade are explicit Hawkeye selections. Keep all selected shared originals.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "essential-avengers",
@@ -26955,7 +26955,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "The source's classic Avengers collections intentionally include these shared originals. The selected sequence must not be reduced to a different essential route.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "evolutionary-war",
@@ -26964,7 +26964,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "falcon-sam-wilson-captain-america-reading-order",
@@ -26973,7 +26973,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "The source-required Avengers, House of M and Dark Reign originals remain selected. The recovered New Avengers Annual #3 original 26024 adds one proven shared issue, not a substitute.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "fall-house-x-rise-powers-x",
@@ -26982,7 +26982,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "fall-of-the-mutants",
@@ -26991,7 +26991,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "fantastic-four-reading-order",
@@ -27000,7 +27000,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "New Avengers 2015 #8-10 are explicitly selected within the source's A.I.M. run. Retain those originals in the complete chosen ranges.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "fatal-attractions",
@@ -27009,7 +27009,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "generations",
@@ -27018,7 +27018,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Generations: Hawkeye and Hawkeye is explicitly selected with Kate's Family Reunion volume. Preserve the original one-shot.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "groot-reading-order",
@@ -27027,7 +27027,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "guardians-of-the-galaxy-reading-order",
@@ -27036,7 +27036,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "The selected Korvac-era Avengers originals are explicit source content. Keep them as Hawkeye context rather than dropping the shared event arc.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "heroes-reborn-2021",
@@ -27045,7 +27045,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Siege Society is the source's explicit named standalone original. Preserve it without expanding the rest of Heroes Reborn.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "heroic-age-avengers",
@@ -27054,7 +27054,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "The selected Fear Itself Avengers/New Avengers and Remender Secret Avengers originals remain source-required. Preserve the decimal issue and original volume.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "hickman-full",
@@ -27063,7 +27063,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "hickman-minimal",
@@ -27072,7 +27072,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "hickman-x-men",
@@ -27081,7 +27081,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "hope-summers-reading-order",
@@ -27090,7 +27090,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "house-of-m",
@@ -27099,7 +27099,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "The source explicitly selects House of M #1-8, not this broader event guide's additional tie-ins. Keep that exact mini-series boundary.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "house-of-m-essential",
@@ -27108,7 +27108,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "The complete essential eight-issue mini-series is intentionally contained in Hawkeye's larger source route. Preserve all eight; the character guide is not an exact duplicate.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "hunt-for-wolverine",
@@ -27117,7 +27117,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "hunt-for-xavier",
@@ -27126,7 +27126,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "inferno",
@@ -27135,7 +27135,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "infinite-destinies",
@@ -27144,7 +27144,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "infinity-countdown-wars",
@@ -27153,7 +27153,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "inhumans-reading-order",
@@ -27162,7 +27162,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "The source's five Illuminati originals are explicit selections. Their Inhumans overlap is not grounds to remove them.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "inhumans-vs-x-men",
@@ -27171,7 +27171,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "iron-man-2020",
@@ -27180,7 +27180,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "iron-man-reading-order",
@@ -27189,7 +27189,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "The opening Tales of Suspense range, West Coast mini-series and Generations original are explicitly selected. Do not narrow the opening collection to highlighted cameos.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "judgment-day",
@@ -27198,7 +27198,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "king-in-black",
@@ -27207,7 +27207,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "kravens-last-hunt",
@@ -27216,7 +27216,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "kree-skrull-war",
@@ -27225,7 +27225,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Avengers #89-97 is explicitly selected as the complete Kree/Skrull event. Intentional containment in the multi-decade character route is approved.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "last-annihilation",
@@ -27234,7 +27234,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "loki-reading-order",
@@ -27243,7 +27243,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "The selected Avengers/Defenders event originals and Young Avengers 2013 run are required source content. Keep each whole selected block.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "magneto-reading-order",
@@ -27252,7 +27252,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "The source's classic Avengers, annuals, X-Men, Defenders, West Coast and House of M originals are independently selected. Preserve their order across the different character scopes.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "magneto-war",
@@ -27261,7 +27261,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "marvel-2099",
@@ -27270,7 +27270,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "marvel-fresh-start-avengers",
@@ -27279,7 +27279,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "The selected Presents, 2018 West Coast, Gwenpool and No Road Home originals are explicit late source content. Keep canonical first placement for the repeated Presents issue.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x",
@@ -27288,7 +27288,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "marvel-multiverse",
@@ -27297,7 +27297,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "marvel-super-heroes-secret-wars",
@@ -27306,7 +27306,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "marvel-what-if",
@@ -27315,7 +27315,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "marvels-best-phoenix-comics",
@@ -27324,7 +27324,16 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
+      },
+      {
+        "orderId": "marvels-infinity-saga-gauntlet-wars-crusade-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
+        "rationale": "Both sources explicitly select original West Coast Avengers#96-97, exact IDs17838/17839. Preserve these comics within the distinct Hawkeye and Infinity routes without merging their ordering or deleting overlap.",
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "maximum-security",
@@ -27333,7 +27342,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Thunderbolts #45-47 are within the source's explicit Hawkeye-led Thunderbolts collection. Preserve the complete chosen range.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "mephisto-reading-order",
@@ -27342,7 +27351,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "The West Coast, Vision/Scarlet Witch, Spider-Woman and Thunderbolts originals are directly selected. Preserve the source's unusual West Coast collection order and later full #100.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "messiah-complex",
@@ -27351,7 +27360,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "messiah-war",
@@ -27360,7 +27369,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "midnight-massacre",
@@ -27369,7 +27378,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "miles-morales-spider-man-reading-order",
@@ -27378,7 +27387,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Civil War II #0-7 is explicitly selected. Keep that exact source boundary and do not infer #8 from another guide.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "minimum-carnage",
@@ -27387,7 +27396,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "modern-x-men-fast-track",
@@ -27396,7 +27405,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "monsters-unleashed",
@@ -27405,7 +27414,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "moon-knight-reading-order",
@@ -27414,7 +27423,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "The source-required West Coast run, annuals and Solo Avengers original remain selected. The recovered exact annual 56327 adds one shared original while retaining refused optional metadata.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "muir-island-saga",
@@ -27423,7 +27432,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "mutant-massacre",
@@ -27432,7 +27441,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "mys-tech-wars",
@@ -27441,7 +27450,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "nebula-reading-order",
@@ -27450,7 +27459,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "West Coast Avengers #48 is explicitly selected in the Vision Quest range. One common original does not replace either character route.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "necrosha",
@@ -27459,7 +27468,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "new-ultimate-universe",
@@ -27468,7 +27477,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "new-ultimate-universe-trades",
@@ -27477,7 +27486,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "nick-fury-reading-order",
@@ -27486,7 +27495,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "operation-galactic-storm",
@@ -27495,7 +27504,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "operation-zero-tolerance",
@@ -27504,7 +27513,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "original-clone-saga",
@@ -27513,7 +27522,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "phalanx-covenant",
@@ -27522,7 +27531,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "phalanx-reading-order",
@@ -27531,7 +27540,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "phoenix-saga",
@@ -27540,7 +27549,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "planet-hulk",
@@ -27549,7 +27558,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "punisher-reading-order",
@@ -27558,7 +27567,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "The two original Original Sin: Secret Avengers Infinite comics are explicitly selected. Preserve their digital originals without print substitution.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "question-of-the-week-do-you-have-a-hulk-reading-order",
@@ -27567,7 +27576,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Defenders #7-11 is part of the source's larger selected #7-16 range. Keep all selected originals rather than truncating to the Hulk overlap.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "reckoning-war",
@@ -27576,7 +27585,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "reed-richards-and-sue-storms-wedding",
@@ -27585,7 +27594,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "revolutionary-war",
@@ -27594,7 +27603,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "rise-of-the-midnight-sons",
@@ -27603,7 +27612,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "rocket-raccoon-reading-order",
@@ -27612,7 +27621,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "The source explicitly selects all ten No Road Home issues. Preserve this entire chosen story in the broader Hawkeye route.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "runaways-reading-order",
@@ -27621,7 +27630,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Civil War: Young Avengers and Runaways #1-4 is an explicit Kate-era source selection. Keep all four without expanding linked event guides.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "scarlet-witch-best-of",
@@ -27630,7 +27639,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "The source directly selects Vision/Scarlet Witch #1-2, Children's Crusade and No Road Home. Preserve their full selected ranges despite the separate recommendation list.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "second-coming",
@@ -27639,7 +27648,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "secret-invasion",
@@ -27648,7 +27657,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "The source selects Secret Invasion #1-8 only. Preserve that mini-series without inferring every tie-in in the broader event route.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "secret-invasion-essential",
@@ -27657,7 +27666,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "The entire essential Secret Invasion mini-series is intentionally contained in the Hawkeye source selection. Its context remains necessary and the full character route is not a duplicate.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "secret-war",
@@ -27666,7 +27675,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "secret-wars-ii",
@@ -27675,7 +27684,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "setup-to-modern-timeline",
@@ -27684,7 +27693,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "shadow-king-reading-order",
@@ -27693,7 +27702,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "shadowland",
@@ -27702,7 +27711,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "silent-war",
@@ -27711,7 +27720,16 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
+      },
+      {
+        "orderId": "silk-cindy-moon-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "silver-surfer-reading-order",
@@ -27720,7 +27738,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "The selected Defenders and Avengers/Defenders originals are required source collections. Keep the shared issues in their printed source sequence.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "sins-of-sinister",
@@ -27729,7 +27747,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "spider-geddon",
@@ -27738,7 +27756,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "spider-gwen-reading-order",
@@ -27747,7 +27765,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "spider-island",
@@ -27756,7 +27774,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "spider-man-2099-reading-order",
@@ -27765,7 +27783,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "spider-man-best-of",
@@ -27774,7 +27792,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "spider-man-far-from-home",
@@ -27783,7 +27801,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "spider-man-identity-crisis",
@@ -27792,7 +27810,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "spider-man-no-way-home",
@@ -27801,7 +27819,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "spider-man-the-other",
@@ -27810,7 +27828,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "spider-verse",
@@ -27819,7 +27837,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "star-lord-reading-order",
@@ -27828,7 +27846,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "thanos-imperative",
@@ -27837,7 +27855,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "thanos-reading-order",
@@ -27846,7 +27864,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Avengers #125 and Captain Marvel #33 are explicitly selected within Celestial Madonna-era collection contents. Retain these exact originals.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "thanos-war",
@@ -27855,7 +27873,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "The two selected Avengers/Captain Marvel originals are explicit source context. Do not replace the wider character guide with this separate event route.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "the-defenders-reading-order",
@@ -27864,7 +27882,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "The source explicitly chooses Defenders, Giant-Size and linked Avengers/Captain Marvel originals. Preserve the complete selected ranges within Hawkeye's broader route.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "the-night-gwen-stacy-died",
@@ -27873,7 +27891,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "the-vision-reading-order",
@@ -27882,7 +27900,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "The substantial overlap comes from explicitly selected Avengers and West Coast collections plus later team stories. Preserve every selected original and source collection order; the two character routes have materially different boundaries.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "thor-best-of",
@@ -27891,7 +27909,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "thunderbolts-reading-order",
@@ -27900,7 +27918,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "The source directly selects Hawkeye-led Thunderbolts #23-50, its named annuals, Avengers #31-34 and The Initiative. Keep that defined period without importing other Thunderbolts teams.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "time-and-time-again",
@@ -27909,7 +27927,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "ultimate-marvel-intro",
@@ -27918,7 +27936,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "venom-reading-order",
@@ -27927,7 +27945,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Secret Avengers #21.1 and #22-37 are explicit Remender source collections. Preserve the decimal identity and complete ranges.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "venomverse",
@@ -27936,7 +27954,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "wandavision",
@@ -27945,7 +27963,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "The selected Celestial Madonna, Vision Quest and No Road Home originals remain necessary source content despite overlap with the screen-companion guide.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "war-of-kings",
@@ -27954,7 +27972,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "war-of-the-realms",
@@ -27963,7 +27981,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "white-tiger-ava-ayala",
@@ -27972,7 +27990,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "The source's Academy, Young Avengers, All-New Hawkeye and A.I.M. selections contain these shared originals. Preserve original-volume distinctions and complete chosen ranges.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "winter-soldier-bucky-barnes-reading-order",
@@ -27981,7 +27999,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "The source-required Tales, House of M, Secret Invasion, New Avengers and final2023 Thunderbolts originals remain selected. The recovered annual 26024 adds one exact shared identity; no other shared set is pruned.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "wolverine-goes-to-hell",
@@ -27990,7 +28008,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "wolverine-reading-order",
@@ -27999,7 +28017,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "House of M, selected New Avengers/Secret Avengers issues and Generations are explicit Hawkeye source content. Preserve them in the broader character guide.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "world-war-hulk-aftersmash",
@@ -28008,7 +28026,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "wraith-war",
@@ -28017,7 +28035,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "x-23-reading-order",
@@ -28026,7 +28044,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Both sources explicitly select Avengers Academy2010 #21-28 and Kate's Hawkeye2016 #7-12. Preserve all fourteen originals in each source's own route; do not remove Kate's shared stories or merge the distinct guides.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "x-cutioners-song",
@@ -28035,7 +28053,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "x-force-reading-order",
@@ -28044,7 +28062,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "x-men-age-of-x",
@@ -28053,7 +28071,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "x-men-battle-of-the-atom",
@@ -28062,7 +28080,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "x-men-curse-of-the-mutants",
@@ -28071,7 +28089,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "x-men-divided-we-stand",
@@ -28080,7 +28098,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "x-men-extermination",
@@ -28089,7 +28107,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "x-men-inferno",
@@ -28098,7 +28116,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "x-men-manifest-destiny",
@@ -28107,7 +28125,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "x-men-nation-x",
@@ -28116,7 +28134,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "x-men-regenesis",
@@ -28125,7 +28143,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Avengers Academy #22 is explicitly selected within #21-28. Keep the whole selected Academy block.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "x-men-schism",
@@ -28134,7 +28152,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "x-men-trial-of-jean-grey",
@@ -28143,7 +28161,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "x-men-utopia",
@@ -28152,7 +28170,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "x-of-swords",
@@ -28161,7 +28179,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "x-termination",
@@ -28170,7 +28188,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "x-tinction-agenda",
@@ -28179,7 +28197,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "xmen-claremont",
@@ -28188,7 +28206,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Avengers #53 and original X-Men #45 are selected within the source's Masters of Evil collection. Preserve both originals.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "xmen-claremont-complete",
@@ -28197,7 +28215,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "The selected Avengers, original X-Men and Defenders originals overlap the broader Claremont route but retain independent source placement in Hawkeye.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       },
       {
         "orderId": "young-avengers-reading-order",
@@ -28206,9 +28224,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #569",
         "rationale": "Kate's explicitly selected Young Avengers, crossovers, Hawkeye solo and West Coast stories create the overlap. Preserve both Clint and Kate rather than stripping her half of the guide, and retain later repeated references only in provenance.",
-        "reviewedAt": "2026-09-29T07:14:08.786Z"
+        "reviewedAt": "2026-09-29T15:04:28.571Z"
       }
     ],
-    "approvalDigest": "717dbb2e60b843a3502be913e13ef5c652b6440a06e75ced5d4ca83fe2fc4ad4"
+    "approvalDigest": "fabada8e6b33368d1947316aff88037de173fd55ffc472014ef2d25468102068"
   }
 }

@@ -265,11 +265,11 @@ test('Hawkeye has a complete approved current-library relationship and shipped i
     comparisons: report.comparisons,
   });
   assert.equal(libraryDigest, report.libraryDigest);
-  assert.equal(report.comparisonCount, 190);
+  assert.equal(report.comparisonCount, 192);
   assert.deepEqual(report.comparisons.reduce((counts, row) => {
     counts[row.relationship] = (counts[row.relationship] ?? 0) + 1;
     return counts;
-  }, {}), { none: 128, partial: 57, 'existing-subset': 5 });
+  }, {}), { none: 129, partial: 58, 'existing-subset': 5 });
   const expectedOrderIds = existing.map((entry) => entry.id);
   assert.deepEqual(report.comparisons.map((row) => row.orderId).sort(),
     expectedOrderIds.sort());
@@ -277,7 +277,21 @@ test('Hawkeye has a complete approved current-library relationship and shipped i
     packet, mapping, report, currentLibraryDigest: libraryDigest, expectedOrderIds,
   }));
   assert.equal(mapping.relationshipReview.approvalDigest,
-    '717dbb2e60b843a3502be913e13ef5c652b6440a06e75ced5d4ca83fe2fc4ad4');
+    'fabada8e6b33368d1947316aff88037de173fd55ffc472014ef2d25468102068');
+  assert.deepEqual(report.comparisons.find((row) =>
+    row.orderId === 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order'), {
+    orderId: 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order',
+    sharedCount: 2,
+    sharedIds: ['17838', '17839'],
+    relationship: 'partial',
+  });
+  assert.deepEqual(report.comparisons.find((row) =>
+    row.orderId === 'silk-cindy-moon-reading-order'), {
+    orderId: 'silk-cindy-moon-reading-order',
+    sharedCount: 0,
+    sharedIds: [],
+    relationship: 'none',
+  });
   const x23 = report.comparisons.find((row) => row.orderId === 'x-23-reading-order');
   assert.equal(x23.relationship, 'partial');
   assert.equal(x23.sharedCount, 14);

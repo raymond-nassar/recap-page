@@ -957,10 +957,10 @@ cannot be bound to an exact provider issue ID. Its failed lookups are recorded i
 invented identifier is used. Six other exact originals have genuinely observed 404 responses
 for optional details, including West Coast Avengers Annual (1986) #1; they retain their exact
 issue IDs and explicit refusal status, not placeholders or invented API success. The current
-report compares all 190 other published source orders: 57 partial relationships, five
-existing subsets and 128 without shared comics. X-23 contributes one new 14-issue partial
-relationship while the 189 earlier comparisons remain identical. A renewed relationship
-receipt approves this published-main report and its 62 non-none relationships.
+report compares all 192 other published source orders: 58 partial relationships, five
+existing subsets and 129 without shared comics. Silk adds no shared issues; Infinity shares
+West Coast Avengers #96-97, while all 190 earlier comparisons remain unchanged. The renewed
+receipt approves this published-main report and its 63 non-none relationships.
 
 ## X-23 source boundary
 

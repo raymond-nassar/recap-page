@@ -126,7 +126,7 @@ test('Spider-Man 2099 regenerates its full reviewed library relationship report'
   assert.doesNotThrow(() => assertMappingMatchesPacketOccurrences(packet, mapping));
   assert.doesNotThrow(() => validateReportDigest(report));
   assert.doesNotThrow(() => validateApprovalDigest(mapping.relationshipReview, id));
-  assert.equal(report.comparisonCount, manifest.lists.length - 14);
+  assert.equal(report.comparisonCount, manifest.lists.length - 15);
   assert.deepEqual(current.comparisons, report.comparisons);
   assert.equal(current.libraryDigest, report.libraryDigest);
   assert.equal(report.comparisons.filter((row) => row.relationship === 'exact').length, 0);

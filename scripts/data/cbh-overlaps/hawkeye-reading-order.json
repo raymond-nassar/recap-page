@@ -2,7 +2,7 @@
   "candidateId": "hawkeye-reading-order",
   "packetDigest": "164d49ea4964eb7da5835a68c3a04266256a40929a9c1281cd551d8dba5df1cf",
   "mappingDigest": "3152eae7277bc29633d1cdd35efde2690ad8681ad6de82c2a157adc991587cff",
-  "libraryDigest": "fc0295031275315c85394705a15299bf8dd5e9cfc931affca9e3e5ac8e987fa5",
+  "libraryDigest": "90b0ea5aa781f368b6ffaaa527993239f0f33d0f67df2a375db893d81be6bccc",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 671,
@@ -12,7 +12,7 @@
     "repeatedSourceReferenceCount": 8
   },
   "candidateCount": 662,
-  "comparisonCount": 190,
+  "comparisonCount": 192,
   "comparisons": [
     {
       "orderId": "abomination-reading-order",
@@ -1150,6 +1150,15 @@
       "relationship": "none"
     },
     {
+      "orderId": "marvels-infinity-saga-gauntlet-wars-crusade-reading-order",
+      "sharedCount": 2,
+      "sharedIds": [
+        "17838",
+        "17839"
+      ],
+      "relationship": "partial"
+    },
+    {
       "orderId": "maximum-security",
       "sharedCount": 3,
       "sharedIds": [
@@ -1576,6 +1585,12 @@
     },
     {
       "orderId": "silent-war",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "silk-cindy-moon-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -2391,5 +2406,5 @@
       "relationship": "partial"
     }
   ],
-  "reportDigest": "dbe00f5315814f91bf1b4aa4faac1229d94dfcea50c1ca32e69b51ed547e4a2b"
+  "reportDigest": "5f80dbecc9b91cab07ec0dedb73407d35974c250e9d37a6a5f2c3b6c5f07d52e"
 }

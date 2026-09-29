@@ -112,7 +112,7 @@ test('Donny Cates approval covers the full reviewed source manifest before the V
   assert.equal(current.libraryDigest, report.libraryDigest);
   assert.deepEqual(new Set(report.comparisons.map((row) => row.orderId)),
     new Set(manifest.lists.filter((row) => row.id !== id && row.id !== 'the-vision-reading-order' && row.id !== 'emma-frost-reading-order' && row.id !== 'doctor-octopus-otto-octavius-reading-order' && row.id !== 'shadow-king-reading-order' && !['thunderbolts-reading-order', 'nebula-reading-order', 'hope-summers-reading-order', 'x-23-reading-order', 'hawkeye-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order'].includes(row.id)).map((row) => row.id)));
-  assert.equal(report.comparisonCount, manifest.lists.length - 11);
+  assert.equal(report.comparisonCount, manifest.lists.length - 12);
   assert.ok(report.comparisons.every((row) => row.relationship !== 'exact'));
   assert.equal(mapping.relationshipReview.dispositions.length, report.comparisonCount);
 });

@@ -101,7 +101,7 @@ test('Ultron approval preserves the full reviewed source library without droppin
   assert.doesNotThrow(() => assertMappingMatchesPacketOccurrences(packet, mapping));
   assert.doesNotThrow(() => validateReportDigest(report));
   assert.doesNotThrow(() => validateApprovalDigest(mapping.relationshipReview, id));
-  assert.equal(report.comparisonCount, manifest.lists.length - 15);
+  assert.equal(report.comparisonCount, manifest.lists.length - 16);
   assert.deepEqual(current, report);
   assert.equal(report.comparisons.filter((row) => row.relationship === 'exact').length, 0);
   assert.equal(mapping.relationshipReview.dispositions.length, report.comparisonCount);

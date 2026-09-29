@@ -223,7 +223,7 @@ test('Hope Summers keeps the approved publication-time library relationships', a
   );
   const expectedOrderIds = manifest.lists
     .filter((row) => row.id !== id && row.id !== 'x-23-reading-order'
-      && row.id !== 'hawkeye-reading-order', 'silk-cindy-moon-reading-order'
+      && row.id !== 'hawkeye-reading-order' && row.id !== 'silk-cindy-moon-reading-order'
       && row.id !== 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order')
     .map((row) => row.id);
   const expectedNonNone = new Map([

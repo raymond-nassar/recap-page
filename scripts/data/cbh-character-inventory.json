@@ -1551,7 +1551,7 @@
     "guideType": "character-run",
     "window": null,
     "disposition": "new-order",
-    "reason": "The published guide preserves 671 source positions, 663 originals (662 exact and one explicit gap), and eight repeats. The renewed complete-current-library review approves 57 partial and five existing-subset relationships across 190 peers, including the new 14-issue X-23 partial overlap.",
+    "reason": "The published guide preserves 671 source positions, 663 originals (662 exact and one explicit gap), and eight repeats. The renewed complete-current-library review approves 58 partial and five existing-subset relationships across 192 peers, including X-23's 14 shared originals and Infinity's West Coast Avengers #96-97.",
     "sourceRetrievedAt": "2026-09-29",
     "overlapIds": [
       "agatha-harkness-reading-order",
@@ -1588,6 +1588,7 @@
       "loki-reading-order",
       "magneto-reading-order",
       "marvel-fresh-start-avengers",
+      "marvels-infinity-saga-gauntlet-wars-crusade-reading-order",
       "maximum-security",
       "mephisto-reading-order",
       "miles-morales-spider-man-reading-order",

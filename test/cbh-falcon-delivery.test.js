@@ -130,7 +130,7 @@ test('Falcon approval preserves every source-manifest order in its reviewed libr
   assert.deepEqual(new Set(report.comparisons.map((row) => row.orderId)),
     new Set(manifest.lists.filter((row) => row.id !== id
       && row.id !== 'donny-cates-marvel-universe-reading-order-2017' && row.id !== 'the-vision-reading-order' && row.id !== 'emma-frost-reading-order' && row.id !== 'doctor-octopus-otto-octavius-reading-order' && row.id !== 'shadow-king-reading-order' && !['thunderbolts-reading-order', 'nebula-reading-order', 'hope-summers-reading-order', 'x-23-reading-order', 'hawkeye-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order'].includes(row.id)).map((row) => row.id)));
-  assert.equal(report.comparisonCount, manifest.lists.length - 12);
+  assert.equal(report.comparisonCount, manifest.lists.length - 13);
   assert.ok(report.comparisons.every((row) => row.relationship !== 'exact'));
   assert.equal(mapping.relationshipReview.dispositions.length, report.comparisonCount);
   assert.ok(mapping.relationshipReview.dispositions.every((row) => row.decision === 'approved'));

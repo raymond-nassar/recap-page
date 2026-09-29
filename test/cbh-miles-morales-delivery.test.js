@@ -157,7 +157,7 @@ test('Miles approvals preserve the reviewed library and frozen evidence', async 
   assert.doesNotThrow(() => validateApprovalDigest(mapping.relationshipReview, id));
   assert.deepEqual(current.comparisons, report.comparisons);
   assert.equal(current.libraryDigest, report.libraryDigest);
-  assert.equal(report.comparisonCount, manifest.lists.length - 11);
+  assert.equal(report.comparisonCount, manifest.lists.length - 12);
   assert.doesNotThrow(() => assertApprovedRelationshipReview({
     packet, mapping, report, currentLibraryDigest: current.libraryDigest,
     expectedOrderIds: manifest.lists.filter((row) => row.id !== id && row.id !== 'the-vision-reading-order' && row.id !== 'emma-frost-reading-order' && row.id !== 'doctor-octopus-otto-octavius-reading-order' && row.id !== 'shadow-king-reading-order' && !['thunderbolts-reading-order', 'nebula-reading-order', 'hope-summers-reading-order', 'x-23-reading-order', 'hawkeye-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order'].includes(row.id)).map((row) => row.id),
