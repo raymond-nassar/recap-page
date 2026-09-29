@@ -10,7 +10,7 @@ export const FIXTURE_API = `${ORIGIN}/__play_preview_api__`;
 export const VIEWPORT = Object.freeze({ width: 360, height: 640, deviceScaleFactor: 3, isMobile: true, hasTouch: true });
 export const SCREENS = Object.freeze([
   { file: '01-library-preview.png', route: '#/library', view: 'view-library', text: ['Library', 'Fictional: Lantern Harbor', 'Fictional: Paper Moons'] },
-  { file: '02-reading-preview.png', route: '#/read/play-lantern', view: 'view-read', scroll: '#hero', heading: '#hero-title', text: ['Fictional: Lantern Harbor', '3 of 8 read', 'Cover art off'] },
+  { file: '02-reading-preview.png', route: '#/read/play-lantern', view: 'view-read', scroll: '#hero', heading: '#hero-title', text: ['Fictional: Lantern Harbor', '3 of 8 read'] },
 ]);
 export const ASSETS = Object.freeze([
   { file: 'icon-preview.png', width: 512, height: 512, channels: 4, alt: 'Original purple page mark on a square background.' },

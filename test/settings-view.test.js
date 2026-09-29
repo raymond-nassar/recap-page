@@ -261,6 +261,15 @@ test('every settings binding id still appears exactly once in the shipped markup
   }
 });
 
+test('cover art is changed only in Settings, not in the Home or reading headers', () => {
+  const coverInput = openingTags(VIEW, 'input')
+    .find((entry) => getAttribute(entry.open, 'id') === 'opt-covers');
+  assert.ok(coverInput, 'expected the Settings cover art control');
+  assert.match(coverInput.open, /type="checkbox"/);
+  assert.equal([...HTML.matchAll(/id="opt-covers"/g)].length, 1);
+  assert.doesNotMatch(HTML, /data-covers-toggle|id="btn-covers"|id="covers-label"/);
+});
+
 test('each notice kind keeps its own glyph in the stylesheet', () => {
   const actual = Object.fromEntries(
     Object.keys(NOTICE_GLYPHS).map((kind) => [kind, noticeGlyph(kind)]),

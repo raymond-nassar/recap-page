@@ -22,6 +22,12 @@ universe. It keeps 352 selected positions, including optional numbered tie-ins a
 original 2002 special remains visible as a metadata gap rather than being replaced with a
 different comic. Existing Reading Lists and saved progress are unchanged.
 
+### Move cover art controls into Settings
+
+The cover art choice now lives only under Personalization in Backup & settings, rather than
+also appearing in the Home and reading headers. The existing preference and saved progress
+are unchanged.
+
 ### Follow both Novas through their reading guide
 
 Adds a credited Nova Reading List for Richard Rider and Sam Alexander. It preserves 369

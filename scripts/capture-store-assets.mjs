@@ -45,7 +45,7 @@ const SCREENSHOTS = [
     route: '#/read/store-demo',
     view: 'view-read',
     wait: '#view-read:not([hidden]) #reading-body:not([hidden])',
-    text: ['House of M', '5 of 20 read', 'Cover art off'],
+    text: ['House of M', '5 of 20 read'],
     state: 'demo',
   },
   {

@@ -68,7 +68,7 @@ Recap Page makes a small number of direct requests so it can show live informati
 - Searching for an issue sends the words you typed to the comics database and downloads matching
   metadata.
 - Adding a series or creator asks the comics database for every issue in that run.
-- Cover images load from Marvel's own image servers unless cover art is switched off.
+- Cover images load from Marvel's own image servers unless cover art is switched off in **Backup & settings**.
 - Pressing **Read** opens Marvel Unlimited directly when the reader link is known. Otherwise the new
   tab asks the comics database for that link and falls back to the issue page on marvel.com.
 - Those requests reveal which issues you are looking at to the service receiving them.

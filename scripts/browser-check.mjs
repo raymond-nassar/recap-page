@@ -1689,6 +1689,50 @@ const MUTATIONS = [
 // state behind is not evidence either.
 const SCENARIOS = [
   {
+    id: 'cover-art-settings',
+    title: 'Settings alone controls cover art across Home and reading',
+    async run(page, t) {
+      await seedFixtureState(page);
+      const headers = await page.evaluate(() => ({
+        home: document.querySelector('#view-home .head').textContent,
+        reading: document.querySelector('#view-read .head').textContent,
+        controls: document.querySelectorAll('[data-covers-toggle]').length,
+      }));
+      t.check('Home and reading headers have no cover art toggle',
+        headers.controls === 0 && !headers.home.includes('Cover art')
+        && !headers.reading.includes('Cover art'), JSON.stringify(headers));
+
+      await click(page, '[data-view="data"]');
+      const initial = await page.$eval('#opt-covers', (input) => input.checked);
+      t.check('Settings reflects the enabled preference', initial === true, String(initial));
+      await click(page, '#opt-covers');
+      const disabled = await page.evaluate(() => ({
+        checked: document.querySelector('#opt-covers').checked,
+        stored: JSON.parse(localStorage.getItem('mrt.settings')).covers,
+        hidden: document.body.classList.contains('nocovers'),
+      }));
+      t.check('Settings disables covers and saves the preference',
+        disabled.checked === false && disabled.stored === false && disabled.hidden,
+        JSON.stringify(disabled));
+
+      await page.reload({ waitUntil: 'load' });
+      const restored = await page.evaluate(() => ({
+        checked: document.querySelector('#opt-covers').checked,
+        hidden: document.body.classList.contains('nocovers'),
+      }));
+      t.check('the cover choice survives reload', !restored.checked && restored.hidden,
+        JSON.stringify(restored));
+      await click(page, '#opt-covers');
+      const enabled = await page.evaluate(() => ({
+        checked: document.querySelector('#opt-covers').checked,
+        stored: JSON.parse(localStorage.getItem('mrt.settings')).covers,
+        hidden: document.body.classList.contains('nocovers'),
+      }));
+      t.check('Settings can turn covers back on',
+        enabled.checked && enabled.stored === true && !enabled.hidden, JSON.stringify(enabled));
+    },
+  },
+  {
     id: 'temporary-reader-link',
     title: '453 temporary same-comic links and deliberate manual reporting never change saved facts',
     async run(page, t) {
@@ -7828,7 +7872,7 @@ const SCENARIOS = [
       //
       // checkVisibility() with no argument answers a narrower question than it looks like it does:
       // it defaults every option off and so returns true for both `visibility: hidden` and
-      // `opacity: 0`. The second is not hypothetical here. `src/styles.css:1049` hides the row
+      // `opacity: 0`. The second is not hypothetical here. `src/styles.css:1035` hides the row
       // actions with exactly `opacity: 0`, so it is this stylesheet's established way of putting a
       // control out of reach, and the defaults are blind to it. Measured in the same Edge this
       // drives: with the two buttons faded that way both rows passed while nothing sat under the
