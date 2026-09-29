@@ -1,4 +1,5 @@
 import { isAllowedApiBase } from '../js/lib/apiBase.js';
+import { issuePageUrl } from '../js/lib/issuePageUrl.js';
 import { createAndroidReader } from './reader.js';
 
 window.opener = null;
@@ -9,7 +10,7 @@ paragraph.append(appLink);
 const fallback = document.getElementById('fallback');
 fallback.parentElement.before(paragraph);
 const disclosure = document.createElement('p');
-disclosure.textContent = 'Opening an issue asks Marvel for its app link using the digital issue ID. Lists, notes and reading progress are not sent.';
+disclosure.textContent = 'Known digital issue IDs ask Marvel for an app link. Without one, a recorded issue page whose metadata lookup was already refused opens in your browser. Other issues still request metadata. Lists, notes and reading progress are not sent.';
 document.querySelector('.box').append(disclosure);
 
 function readApiBase() {
@@ -32,4 +33,5 @@ createAndroidReader({
     appLink,
   },
   readApiBase,
+  validateIssuePageUrl: issuePageUrl,
 }).start();

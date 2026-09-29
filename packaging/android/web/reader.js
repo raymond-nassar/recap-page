@@ -30,11 +30,14 @@ export async function resolveMarvelIssue(digitalId, fetchImpl, signal) {
   return `marvelunlimited://issue/${drn}`;
 }
 
-export function createAndroidReader({ host, location, elements, readApiBase, fetchImpl = fetch }) {
+export function createAndroidReader({ host, location, elements, readApiBase, validateIssuePageUrl, fetchImpl = fetch }) {
+  if (typeof validateIssuePageUrl !== 'function') throw new TypeError('An issue-page validator is required');
   const { heading, status, fallback, appLink } = elements;
   const query = new URLSearchParams(location.search);
   const issueId = digitalReference(query.get('i'));
   let digitalId = digitalReference(query.get('d'));
+  const pageUrl = issueId && query.getAll('u').length === 1 ? validateIssuePageUrl(query.get('u'), issueId) : null;
+  const knownPage = pageUrl && query.getAll('p').length === 1 && query.get('p') === '1';
   let cancelled = false;
   let attempted = false;
   let timedOut = false;
@@ -45,7 +48,7 @@ export function createAndroidReader({ host, location, elements, readApiBase, fet
   const detailUrl = (id) => `https://www.marvel.com/comics/issue/${id}/`;
   fallback.textContent = 'Open in browser';
   fallback.href = digitalId ? readerUrl(digitalId)
-    : issueId ? detailUrl(issueId) : 'https://www.marvel.com/unlimited';
+    : pageUrl || (issueId ? detailUrl(issueId) : 'https://www.marvel.com/unlimited');
   appLink.hidden = true;
   if (title) heading.textContent = `Opening ${title}…`;
 
@@ -77,6 +80,11 @@ export function createAndroidReader({ host, location, elements, readApiBase, fet
     if (!digitalId && !issueId) {
       heading.textContent = 'Nothing to open';
       status.textContent = 'This link was missing a valid issue reference.';
+      return;
+    }
+    if (!digitalId && knownPage) {
+      status.textContent = 'Opening the Marvel issue page in your browser. Reading progress has not changed.';
+      location.assign(pageUrl);
       return;
     }
     status.textContent = 'Looking up the Marvel Unlimited app link…';
