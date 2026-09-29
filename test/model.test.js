@@ -1096,8 +1096,9 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // Vision adds four distinct unresolved source originals without changing the refused identities.
   // Thunderbolts adds one distinct unresolved original.
   // Hope Summers adds six distinct unresolved source originals.
-  assert.equal(claimed, 1041, 'the payload placeholder total moved; re-derive the figures in the record');
-  assert.equal(placeholders, 1041, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
+  // Silk adds seven original digital chapters as distinct, unlinked placeholders.
+  assert.equal(claimed, 1048, 'the payload placeholder total moved; re-derive the figures in the record');
+  assert.equal(placeholders, 1048, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
   assert.equal(empty, 200);
   assert.equal(affected, 18);
 });
@@ -1331,7 +1332,8 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // Vision contributes four more distinct source-position placeholders.
   // Thunderbolts contributes one provider-ID-free source-position placeholder.
   // Hope Summers contributes six provider-ID-free source-position placeholders.
-  assert.equal(refused.length, 1260);
+  // Silk contributes seven more distinct original digital source-position placeholders.
+  assert.equal(refused.length, 1267);
   assert.equal(pendingIssueIds(s).length, 0, 'the app is still offering to fetch details that do not exist');
 });
 

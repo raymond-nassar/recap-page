@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-29T02:47:20.211Z",
+  "generatedAt": "2026-09-29T02:52:47.158Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -3192,6 +3192,49 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-23T22:42:20.583Z"
+    },
+    {
+      "id": "silk-cindy-moon-reading-order",
+      "file": "silk_cindy_moon_reading_order.json",
+      "name": "Silk / Cindy Moon",
+      "description": "Follow Cindy Moon's origins, solo stories and team-ups in Comic Book Herald's selected Silk reading order.",
+      "type": "character-run",
+      "depth": "partial",
+      "spotlightKind": "other",
+      "count": 74,
+      "placeholderCount": 7,
+      "emptyRecordCount": 0,
+      "collections": 13,
+      "characters": [
+        "Silk",
+        "Cindy Moon",
+        "Spider-Man",
+        "Spider-Women",
+        "Agents of Atlas"
+      ],
+      "keywords": [
+        "Silk",
+        "Cindy Moon",
+        "Spider-Man",
+        "Spider-Women",
+        "Spider(fly) Effect",
+        "Agents of Atlas",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 45798,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/f0/5cfaa9ca8a2bd",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/silk-cindy-moon-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-09-29T02:52:47.158Z"
     },
     {
       "id": "spider-gwen-reading-order",

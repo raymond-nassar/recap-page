@@ -1,0 +1,2392 @@
+{
+  "id": "silk-cindy-moon-reading-order",
+  "name": "Silk / Cindy Moon",
+  "description": "Follow Cindy Moon's origins, solo stories and team-ups in Comic Book Herald's selected Silk reading order.",
+  "source": "https://www.comicbookherald.com/silk-cindy-moon-reading-order/",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-09-29T02:52:47.158Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 74,
+  "collections": 13,
+  "placeholders": 7,
+  "unresolved": [
+    {
+      "title": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic (2016) #2",
+      "url": null,
+      "read": false,
+      "index": 43,
+      "section": "Team-ups | Amazing Spider-Man and Silk: The Spider(fly) Effect | Original Infinite Comic #1-8",
+      "sourceKey": "44"
+    },
+    {
+      "title": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic (2016) #3",
+      "url": null,
+      "read": false,
+      "index": 44,
+      "section": "Team-ups | Amazing Spider-Man and Silk: The Spider(fly) Effect | Original Infinite Comic #1-8",
+      "sourceKey": "45"
+    },
+    {
+      "title": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic (2016) #4",
+      "url": null,
+      "read": false,
+      "index": 45,
+      "section": "Team-ups | Amazing Spider-Man and Silk: The Spider(fly) Effect | Original Infinite Comic #1-8",
+      "sourceKey": "46"
+    },
+    {
+      "title": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic (2016) #5",
+      "url": null,
+      "read": false,
+      "index": 46,
+      "section": "Team-ups | Amazing Spider-Man and Silk: The Spider(fly) Effect | Original Infinite Comic #1-8",
+      "sourceKey": "47"
+    },
+    {
+      "title": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic (2016) #6",
+      "url": null,
+      "read": false,
+      "index": 47,
+      "section": "Team-ups | Amazing Spider-Man and Silk: The Spider(fly) Effect | Original Infinite Comic #1-8",
+      "sourceKey": "48"
+    },
+    {
+      "title": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic (2016) #7",
+      "url": null,
+      "read": false,
+      "index": 48,
+      "section": "Team-ups | Amazing Spider-Man and Silk: The Spider(fly) Effect | Original Infinite Comic #1-8",
+      "sourceKey": "49"
+    },
+    {
+      "title": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic (2016) #8",
+      "url": null,
+      "read": false,
+      "index": 49,
+      "section": "Team-ups | Amazing Spider-Man and Silk: The Spider(fly) Effect | Original Infinite Comic #1-8",
+      "sourceKey": "50"
+    }
+  ],
+  "items": [
+    {
+      "issueId": 45798,
+      "title": "The Amazing Spider-Man (2014) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/45798/the_amazing_spider-man_2014_1",
+      "seriesId": 17285,
+      "seriesName": "The Amazing Spider-Man (2014 - 2015)",
+      "onSale": "2014-04-30T00:00:00+0000",
+      "mu": "2014-10-27T00:00:00+0000",
+      "digitalId": 33592,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/f0/5cfaa9ca8a2bd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 64,
+      "creators": [
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Origins | The Amazing Spider-Man Vol. 1 (2014) | Issues #1-6"
+    },
+    {
+      "issueId": 45800,
+      "title": "The Amazing Spider-Man (2014) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/45800/the_amazing_spider-man_2014_2",
+      "seriesId": 17285,
+      "seriesName": "The Amazing Spider-Man (2014 - 2015)",
+      "onSale": "2014-05-21T00:00:00+0000",
+      "mu": "2014-11-17T00:00:00+0000",
+      "digitalId": 33976,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/537270c2cf77f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Origins | The Amazing Spider-Man Vol. 1 (2014) | Issues #1-6"
+    },
+    {
+      "issueId": 45802,
+      "title": "The Amazing Spider-Man (2014) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/45802/the_amazing_spider-man_2014_3",
+      "seriesId": 17285,
+      "seriesName": "The Amazing Spider-Man (2014 - 2015)",
+      "onSale": "2014-06-25T00:00:00+0000",
+      "mu": "2014-12-22T00:00:00+0000",
+      "digitalId": 33865,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/60/539765882db8b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Origins | The Amazing Spider-Man Vol. 1 (2014) | Issues #1-6"
+    },
+    {
+      "issueId": 45803,
+      "title": "The Amazing Spider-Man (2014) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/45803/the_amazing_spider-man_2014_4",
+      "seriesId": 17285,
+      "seriesName": "The Amazing Spider-Man (2014 - 2015)",
+      "onSale": "2014-07-23T00:00:00+0000",
+      "mu": "2015-01-19T00:00:00+0000",
+      "digitalId": 34261,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/03/53c424e569105",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Origins | The Amazing Spider-Man Vol. 1 (2014) | Issues #1-6"
+    },
+    {
+      "issueId": 45804,
+      "title": "The Amazing Spider-Man (2014) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/45804/the_amazing_spider-man_2014_5",
+      "seriesId": 17285,
+      "seriesName": "The Amazing Spider-Man (2014 - 2015)",
+      "onSale": "2014-08-13T00:00:00+0000",
+      "mu": "2015-02-02T00:00:00+0000",
+      "digitalId": 34603,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/53dbe3834297d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Origins | The Amazing Spider-Man Vol. 1 (2014) | Issues #1-6"
+    },
+    {
+      "issueId": 45805,
+      "title": "The Amazing Spider-Man (2014) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/45805/the_amazing_spider-man_2014_6",
+      "seriesId": 17285,
+      "seriesName": "The Amazing Spider-Man (2014 - 2015)",
+      "onSale": "2014-09-10T00:00:00+0000",
+      "mu": "2015-03-09T00:00:00+0000",
+      "digitalId": 34760,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/80/540776d646868",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Origins | The Amazing Spider-Man Vol. 1 (2014) | Issues #1-6"
+    },
+    {
+      "issueId": 52492,
+      "title": "Silk (2015) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/52492/silk_2015_1",
+      "seriesId": 19661,
+      "seriesName": "Silk (2015)",
+      "onSale": "2015-02-18T00:00:00+0000",
+      "mu": "2015-08-24T00:00:00+0000",
+      "digitalId": 36731,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/20/54d91fdb82929",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dave Johnson",
+          "role": "penciler"
+        },
+        {
+          "name": "Robbie Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Solo | Silk Volume 0: The Life and Times of Cindy Moon | First 2015 series #1-7"
+    },
+    {
+      "issueId": 52496,
+      "title": "Silk (2015) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/52496/silk_2015_2",
+      "seriesId": 19661,
+      "seriesName": "Silk (2015)",
+      "onSale": "2015-03-18T00:00:00+0000",
+      "mu": "2015-09-21T00:00:00+0000",
+      "digitalId": 36961,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/5501b32868dc4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dave Johnson",
+          "role": "penciler"
+        },
+        {
+          "name": "Robbie Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Solo | Silk Volume 0: The Life and Times of Cindy Moon | First 2015 series #1-7"
+    },
+    {
+      "issueId": 52498,
+      "title": "Silk (2015) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/52498/silk_2015_3",
+      "seriesId": 19661,
+      "seriesName": "Silk (2015)",
+      "onSale": "2015-04-29T00:00:00+0000",
+      "mu": "2015-10-26T00:00:00+0000",
+      "digitalId": 37765,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/90/553e5b8988ffb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Johnson",
+          "role": "penciler"
+        },
+        {
+          "name": "Robbie Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Solo | Silk Volume 0: The Life and Times of Cindy Moon | First 2015 series #1-7"
+    },
+    {
+      "issueId": 52499,
+      "title": "Silk (2015) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/52499/silk_2015_4",
+      "seriesId": 19661,
+      "seriesName": "Silk (2015)",
+      "onSale": "2015-05-13T00:00:00+0000",
+      "mu": "2015-11-16T00:00:00+0000",
+      "digitalId": 38264,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/554cca09cf417",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dave Johnson",
+          "role": "penciler"
+        },
+        {
+          "name": "Robbie Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Solo | Silk Volume 0: The Life and Times of Cindy Moon | First 2015 series #1-7"
+    },
+    {
+      "issueId": 52500,
+      "title": "Silk (2015) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/52500/silk_2015_5",
+      "seriesId": 19661,
+      "seriesName": "Silk (2015)",
+      "onSale": "2015-06-10T00:00:00+0000",
+      "mu": "2015-12-14T00:00:00+0000",
+      "digitalId": 38891,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/50/566f240fcdbbf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dave Johnson",
+          "role": "penciler"
+        },
+        {
+          "name": "Robbie Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Solo | Silk Volume 0: The Life and Times of Cindy Moon | First 2015 series #1-7"
+    },
+    {
+      "issueId": 52501,
+      "title": "Silk (2015) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/52501/silk_2015_6",
+      "seriesId": 19661,
+      "seriesName": "Silk (2015)",
+      "onSale": "2015-08-19T00:00:00+0000",
+      "mu": "2016-02-22T00:00:00+0000",
+      "digitalId": 39740,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/03/55ce561681711",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Stacey Lee",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dave Johnson",
+          "role": "penciler"
+        },
+        {
+          "name": "Robbie Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Solo | Silk Volume 0: The Life and Times of Cindy Moon | First 2015 series #1-7"
+    },
+    {
+      "issueId": 52502,
+      "title": "Silk (2015) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/52502/silk_2015_7",
+      "seriesId": 19661,
+      "seriesName": "Silk (2015)",
+      "onSale": "2015-09-02T00:00:00+0000",
+      "mu": "2016-03-07T00:00:00+0000",
+      "digitalId": 39849,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/10/55df78a527c74",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dave Johnson",
+          "role": "penciler"
+        },
+        {
+          "name": "Robbie Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Solo | Silk Volume 0: The Life and Times of Cindy Moon | First 2015 series #1-7"
+    },
+    {
+      "issueId": 55637,
+      "title": "Silk (2015) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/55637/silk_2015_1",
+      "seriesId": 20499,
+      "seriesName": "Silk (2015 - 2017)",
+      "onSale": "2015-11-25T00:00:00+0000",
+      "mu": "2016-05-30T00:00:00+0000",
+      "digitalId": 40517,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/b0/564e12f5cfe7c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Helen Chen",
+          "role": "penciler"
+        },
+        {
+          "name": "Robbie Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Solo | Silk Volume 1: Sinister | Second 2015 series #1-6, Amazing Spider-Man 2015 #1"
+    },
+    {
+      "issueId": 55639,
+      "title": "Silk (2015) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/55639/silk_2015_2",
+      "seriesId": 20499,
+      "seriesName": "Silk (2015 - 2017)",
+      "onSale": "2015-12-16T00:00:00+0000",
+      "mu": "2016-06-20T00:00:00+0000",
+      "digitalId": 40689,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/00/566ee075088e3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Helen Chen",
+          "role": "penciler"
+        },
+        {
+          "name": "Robbie Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Solo | Silk Volume 1: Sinister | Second 2015 series #1-6, Amazing Spider-Man 2015 #1"
+    },
+    {
+      "issueId": 55641,
+      "title": "Silk (2015) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/55641/silk_2015_3",
+      "seriesId": 20499,
+      "seriesName": "Silk (2015 - 2017)",
+      "onSale": "2016-01-13T00:00:00+0000",
+      "mu": "2016-01-13T00:00:00+0000",
+      "digitalId": 40860,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/e0/567abde1b1290",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Tana Ford",
+          "role": "cover artist"
+        },
+        {
+          "name": "Helen Chen",
+          "role": "penciler"
+        },
+        {
+          "name": "Robbie Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Solo | Silk Volume 1: Sinister | Second 2015 series #1-6, Amazing Spider-Man 2015 #1"
+    },
+    {
+      "issueId": 55643,
+      "title": "Silk (2015) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/55643/silk_2015_4",
+      "seriesId": 20499,
+      "seriesName": "Silk (2015 - 2017)",
+      "onSale": "2016-02-10T00:00:00+0000",
+      "mu": "2016-02-10T00:00:00+0000",
+      "digitalId": 39848,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/50/56b4e6f2bddc3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Veronica Fish",
+          "role": "cover artist"
+        },
+        {
+          "name": "Helen Chen",
+          "role": "penciler"
+        },
+        {
+          "name": "Robbie Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Solo | Silk Volume 1: Sinister | Second 2015 series #1-6, Amazing Spider-Man 2015 #1"
+    },
+    {
+      "issueId": 55644,
+      "title": "Silk (2015) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/55644/silk_2015_5",
+      "seriesId": 20499,
+      "seriesName": "Silk (2015 - 2017)",
+      "onSale": "2016-02-24T00:00:00+0000",
+      "mu": "2016-02-24T00:00:00+0000",
+      "digitalId": 41228,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/56c7488670bb0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Veronica Fish",
+          "role": "cover artist"
+        },
+        {
+          "name": "Helen Chen",
+          "role": "penciler"
+        },
+        {
+          "name": "Robbie Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Solo | Silk Volume 1: Sinister | Second 2015 series #1-6, Amazing Spider-Man 2015 #1"
+    },
+    {
+      "issueId": 55645,
+      "title": "Silk (2015) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/55645/silk_2015_6",
+      "seriesId": 20499,
+      "seriesName": "Silk (2015 - 2017)",
+      "onSale": "2016-03-16T00:00:00+0000",
+      "mu": "2016-03-16T00:00:00+0000",
+      "digitalId": 41419,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/56e334e2165af",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Tana Ford",
+          "role": "cover artist"
+        },
+        {
+          "name": "Helen Chen",
+          "role": "penciler"
+        },
+        {
+          "name": "Robbie Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Solo | Silk Volume 1: Sinister | Second 2015 series #1-6, Amazing Spider-Man 2015 #1"
+    },
+    {
+      "issueId": 55298,
+      "title": "The Amazing Spider-Man (2017) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/55298/the_amazing_spider-man_2017_1",
+      "seriesId": 20432,
+      "seriesName": "The Amazing Spider-Man (2017 - 2018)",
+      "onSale": "2015-10-07T00:00:00+0000",
+      "mu": "2016-04-04T00:00:00+0000",
+      "digitalId": 40144,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/d0/56018e2b604d1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 72,
+      "creators": [
+        {
+          "name": "Alvaro Lopez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paco Diaz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stacey Lee",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Baldeon",
+          "role": "penciler"
+        },
+        {
+          "name": "Giuseppe Camuncoli",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        },
+        {
+          "name": "Dennis \"Hopeless\" Hallum",
+          "role": "writer"
+        },
+        {
+          "name": "Mike Costa",
+          "role": "writer"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Solo | Silk Volume 1: Sinister | Second 2015 series #1-6, Amazing Spider-Man 2015 #1"
+    },
+    {
+      "issueId": 55648,
+      "title": "Silk (2015) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/55648/silk_2015_9",
+      "seriesId": 20499,
+      "seriesName": "Silk (2015 - 2017)",
+      "onSale": "2016-06-29T00:00:00+0000",
+      "mu": "2017-01-02T00:00:00+0000",
+      "digitalId": 41811,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/576bed8a02b58",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Helen Chen",
+          "role": "penciler"
+        },
+        {
+          "name": "Stacey Lee",
+          "role": "penciler"
+        },
+        {
+          "name": "Robbie Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Solo | Silk Volume 2: The Negative | Second 2015 series #9-13"
+    },
+    {
+      "issueId": 55649,
+      "title": "Silk (2015) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/55649/silk_2015_10",
+      "seriesId": 20499,
+      "seriesName": "Silk (2015 - 2017)",
+      "onSale": "2016-07-13T00:00:00+0000",
+      "mu": "2017-01-16T00:00:00+0000",
+      "digitalId": 42054,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/577fc12dc2d60",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Helen Chen",
+          "role": "penciler"
+        },
+        {
+          "name": "Tana Ford",
+          "role": "penciler"
+        },
+        {
+          "name": "Robbie Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Solo | Silk Volume 2: The Negative | Second 2015 series #9-13"
+    },
+    {
+      "issueId": 55650,
+      "title": "Silk (2015) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/55650/silk_2015_11",
+      "seriesId": 20499,
+      "seriesName": "Silk (2015 - 2017)",
+      "onSale": "2016-08-03T00:00:00+0000",
+      "mu": "2017-02-06T00:00:00+0000",
+      "digitalId": 42272,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/a0/57967a7551866",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Helen Chen",
+          "role": "penciler"
+        },
+        {
+          "name": "Tana Ford",
+          "role": "penciler"
+        },
+        {
+          "name": "Robbie Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Solo | Silk Volume 2: The Negative | Second 2015 series #9-13"
+    },
+    {
+      "issueId": 55651,
+      "title": "Silk (2015) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/55651/silk_2015_12",
+      "seriesId": 20499,
+      "seriesName": "Silk (2015 - 2017)",
+      "onSale": "2016-09-07T00:00:00+0000",
+      "mu": "2017-03-13T00:00:00+0000",
+      "digitalId": 42600,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/50/57c597c891a55",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Helen Chen",
+          "role": "penciler"
+        },
+        {
+          "name": "Tana Ford",
+          "role": "penciler"
+        },
+        {
+          "name": "Robbie Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Solo | Silk Volume 2: The Negative | Second 2015 series #9-13"
+    },
+    {
+      "issueId": 55652,
+      "title": "Silk (2015) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/55652/silk_2015_13",
+      "seriesId": 20499,
+      "seriesName": "Silk (2015 - 2017)",
+      "onSale": "2016-10-19T00:00:00+0000",
+      "mu": "2017-04-24T00:00:00+0000",
+      "digitalId": 42826,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/57fe5081532b5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Tana Ford",
+          "role": "penciler"
+        },
+        {
+          "name": "Yasmine Putri",
+          "role": "penciler"
+        },
+        {
+          "name": "Robbie Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Solo | Silk Volume 2: The Negative | Second 2015 series #9-13"
+    },
+    {
+      "issueId": 55653,
+      "title": "Silk (2015) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/55653/silk_2015_14",
+      "seriesId": 20499,
+      "seriesName": "Silk (2015 - 2017)",
+      "onSale": "2016-11-16T00:00:00+0000",
+      "mu": "2017-05-22T00:00:00+0000",
+      "digitalId": 43225,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/30/58237a7521207",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Irene Strychalski",
+          "role": "penciler"
+        },
+        {
+          "name": "Yasmine Putri",
+          "role": "penciler"
+        },
+        {
+          "name": "Robbie Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Solo | Silk Volume 3: The Clone Conspiracy | Second 2015 series #14-19"
+    },
+    {
+      "issueId": 55654,
+      "title": "Silk (2015) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/55654/silk_2015_15",
+      "seriesId": 20499,
+      "seriesName": "Silk (2015 - 2017)",
+      "onSale": "2016-12-14T00:00:00+0000",
+      "mu": "2017-06-19T00:00:00+0000",
+      "digitalId": 43447,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/d0/583da43d4a1cc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Helen Chen",
+          "role": "penciler"
+        },
+        {
+          "name": "Irene Strychalski",
+          "role": "penciler"
+        },
+        {
+          "name": "Robbie Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Solo | Silk Volume 3: The Clone Conspiracy | Second 2015 series #14-19"
+    },
+    {
+      "issueId": 55655,
+      "title": "Silk (2015) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/55655/silk_2015_16",
+      "seriesId": 20499,
+      "seriesName": "Silk (2015 - 2017)",
+      "onSale": "2017-01-11T00:00:00+0000",
+      "mu": "2017-07-17T00:00:00+0000",
+      "digitalId": 43836,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/d0/586ebd666a2e4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Helen Chen",
+          "role": "penciler"
+        },
+        {
+          "name": "Irene Strychalski",
+          "role": "penciler"
+        },
+        {
+          "name": "Robbie Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Solo | Silk Volume 3: The Clone Conspiracy | Second 2015 series #14-19"
+    },
+    {
+      "issueId": 61050,
+      "title": "Silk (2015) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/61050/silk_2015_17",
+      "seriesId": 20499,
+      "seriesName": "Silk (2015 - 2017)",
+      "onSale": "2017-02-15T00:00:00+0000",
+      "mu": "2017-08-21T00:00:00+0000",
+      "digitalId": 44092,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/70/589dec3ad3add",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Helen Chen",
+          "role": "penciler"
+        },
+        {
+          "name": "Irene Strychalski",
+          "role": "penciler"
+        },
+        {
+          "name": "Robbie Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Solo | Silk Volume 3: The Clone Conspiracy | Second 2015 series #14-19"
+    },
+    {
+      "issueId": 61051,
+      "title": "Silk (2015) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/61051/silk_2015_18",
+      "seriesId": 20499,
+      "seriesName": "Silk (2015 - 2017)",
+      "onSale": "2017-03-01T00:00:00+0000",
+      "mu": "2017-09-04T00:00:00+0000",
+      "digitalId": 44313,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/70/58b088ec99bd7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Tana Ford",
+          "role": "cover artist"
+        },
+        {
+          "name": "Helen Chen",
+          "role": "penciler"
+        },
+        {
+          "name": "Robbie Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Solo | Silk Volume 3: The Clone Conspiracy | Second 2015 series #14-19"
+    },
+    {
+      "issueId": 61052,
+      "title": "Silk (2015) #19",
+      "number": "19",
+      "url": "https://www.marvel.com/comics/issue/61052/silk_2015_19",
+      "seriesId": 20499,
+      "seriesName": "Silk (2015 - 2017)",
+      "onSale": "2017-04-19T00:00:00+0000",
+      "mu": "2017-10-23T00:00:00+0000",
+      "digitalId": 44531,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/e0/58ee789c9c8cd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Tana Ford",
+          "role": "cover artist"
+        },
+        {
+          "name": "Helen Chen",
+          "role": "penciler"
+        },
+        {
+          "name": "Robbie Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Solo | Silk Volume 3: The Clone Conspiracy | Second 2015 series #14-19"
+    },
+    {
+      "issueId": 82672,
+      "title": "Silk (2021) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/82672/silk_2021_1",
+      "seriesId": 29389,
+      "seriesName": "Silk (2021)",
+      "onSale": "2021-03-31T00:00:00+0000",
+      "mu": "2021-07-05T00:00:00+0000",
+      "digitalId": 56465,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/90/605cee3ff29ae",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Takeshi Miyazawa",
+          "role": "cover artist"
+        },
+        {
+          "name": "S Stonehouse",
+          "role": "penciler"
+        },
+        {
+          "name": "Maurene Goo",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Solo | Silk (2021) | Issues #1-3"
+    },
+    {
+      "issueId": 82674,
+      "title": "Silk (2021) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/82674/silk_2021_2",
+      "seriesId": 29389,
+      "seriesName": "Silk (2021)",
+      "onSale": "2021-04-28T00:00:00+0000",
+      "mu": "2021-08-02T00:00:00+0000",
+      "digitalId": 56514,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/90/6077179e94557",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Takeshi Miyazawa",
+          "role": "cover artist"
+        },
+        {
+          "name": "In-Hyuk Lee",
+          "role": "penciler"
+        },
+        {
+          "name": "Junghee Kim",
+          "role": "penciler"
+        },
+        {
+          "name": "Maurene Goo",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Solo | Silk (2021) | Issues #1-3"
+    },
+    {
+      "issueId": 82675,
+      "title": "Silk (2021) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/82675/silk_2021_3",
+      "seriesId": 29389,
+      "seriesName": "Silk (2021)",
+      "onSale": "2021-05-12T00:00:00+0000",
+      "mu": "2021-08-16T00:00:00+0000",
+      "digitalId": 56817,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/90/6087319ba636d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Takeshi Miyazawa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Woo Chul Lee",
+          "role": "penciler"
+        },
+        {
+          "name": "Maurene Goo",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Solo | Silk (2021) | Issues #1-3"
+    },
+    {
+      "issueId": 58381,
+      "title": "Spider-Women Alpha (2016) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/58381/spider-women_alpha_2016_1",
+      "seriesId": 21280,
+      "seriesName": "Spider-Women Alpha (2016)",
+      "onSale": "2016-04-06T00:00:00+0000",
+      "mu": "2016-10-03T00:00:00+0000",
+      "digitalId": 41663,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/80/56feca389dbab",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Yasmine Putri",
+          "role": "penciler"
+        },
+        {
+          "name": "Dennis \"Hopeless\" Hallum",
+          "role": "writer"
+        },
+        {
+          "name": "Jason Latour",
+          "role": "writer"
+        },
+        {
+          "name": "Robbie Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Team-ups | Spider-Women | Alpha, second Silk (2015) #7-8, second Spider-Gwen (2015) #7-8, Spider-Woman #6-7, Omega"
+    },
+    {
+      "issueId": 55646,
+      "title": "Silk (2015) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/55646/silk_2015_7",
+      "seriesId": 20499,
+      "seriesName": "Silk (2015 - 2017)",
+      "onSale": "2016-04-20T00:00:00+0000",
+      "mu": "2016-10-24T00:00:00+0000",
+      "digitalId": 41902,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/03/570e8f1755264",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Tana Ford",
+          "role": "penciler"
+        },
+        {
+          "name": "Yasmine Putri",
+          "role": "penciler"
+        },
+        {
+          "name": "Robbie Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Team-ups | Spider-Women | Alpha, second Silk (2015) #7-8, second Spider-Gwen (2015) #7-8, Spider-Woman #6-7, Omega"
+    },
+    {
+      "issueId": 55647,
+      "title": "Silk (2015) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/55647/silk_2015_8",
+      "seriesId": 20499,
+      "seriesName": "Silk (2015 - 2017)",
+      "onSale": "2016-05-11T00:00:00+0000",
+      "mu": "2016-11-14T00:00:00+0000",
+      "digitalId": 41556,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/20/5727ac9bc78f5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Tana Ford",
+          "role": "penciler"
+        },
+        {
+          "name": "Yasmine Putri",
+          "role": "penciler"
+        },
+        {
+          "name": "Robbie Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Team-ups | Spider-Women | Alpha, second Silk (2015) #7-8, second Spider-Gwen (2015) #7-8, Spider-Woman #6-7, Omega"
+    },
+    {
+      "issueId": 55683,
+      "title": "Spider-Gwen (2015) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/55683/spider-gwen_2015_7",
+      "seriesId": 20505,
+      "seriesName": "Spider-Gwen (2015 - 2018)",
+      "onSale": "2016-04-13T00:00:00+0000",
+      "mu": "2016-10-10T00:00:00+0000",
+      "digitalId": 41688,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/a0/56faecb27f725",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Bengal",
+          "role": "penciler"
+        },
+        {
+          "name": "Yasmine Putri",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Latour",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Team-ups | Spider-Women | Alpha, second Silk (2015) #7-8, second Spider-Gwen (2015) #7-8, Spider-Woman #6-7, Omega"
+    },
+    {
+      "issueId": 55684,
+      "title": "Spider-Gwen (2015) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/55684/spider-gwen_2015_8",
+      "seriesId": 20505,
+      "seriesName": "Spider-Gwen (2015 - 2018)",
+      "onSale": "2016-05-04T00:00:00+0000",
+      "mu": "2016-11-07T00:00:00+0000",
+      "digitalId": 41530,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/a0/571e81438fb34",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Bengal",
+          "role": "penciler"
+        },
+        {
+          "name": "Yasmine Putri",
+          "role": "penciler"
+        },
+        {
+          "name": "Jason Latour",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Team-ups | Spider-Women | Alpha, second Silk (2015) #7-8, second Spider-Gwen (2015) #7-8, Spider-Woman #6-7, Omega"
+    },
+    {
+      "issueId": 56169,
+      "title": "Spider-Woman (2015) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/56169/spider-woman_2015_6",
+      "seriesId": 20618,
+      "seriesName": "Spider-Woman (2015 - 2017)",
+      "onSale": "2016-04-27T00:00:00+0000",
+      "mu": "2016-10-31T00:00:00+0000",
+      "digitalId": 41956,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/571a733cdf442",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Joelle Jones",
+          "role": "penciler"
+        },
+        {
+          "name": "Yasmine Putri",
+          "role": "penciler"
+        },
+        {
+          "name": "Dennis \"Hopeless\" Hallum",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Team-ups | Spider-Women | Alpha, second Silk (2015) #7-8, second Spider-Gwen (2015) #7-8, Spider-Woman #6-7, Omega"
+    },
+    {
+      "issueId": 56170,
+      "title": "Spider-Woman (2015) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/56170/spider-woman_2015_7",
+      "seriesId": 20618,
+      "seriesName": "Spider-Woman (2015 - 2017)",
+      "onSale": "2016-05-18T00:00:00+0000",
+      "mu": "2016-11-21T00:00:00+0000",
+      "digitalId": 41582,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/572ba2c82609c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Joelle Jones",
+          "role": "penciler"
+        },
+        {
+          "name": "Yasmine Putri",
+          "role": "penciler"
+        },
+        {
+          "name": "Dennis \"Hopeless\" Hallum",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Team-ups | Spider-Women | Alpha, second Silk (2015) #7-8, second Spider-Gwen (2015) #7-8, Spider-Woman #6-7, Omega"
+    },
+    {
+      "issueId": 58832,
+      "title": "Spider-Women Omega (2016) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/58832/spider-women_omega_2016_1",
+      "seriesId": 21442,
+      "seriesName": "Spider-Women Omega (2016)",
+      "onSale": "2016-06-01T00:00:00+0000",
+      "mu": "2016-12-05T00:00:00+0000",
+      "digitalId": 41615,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/b0/5d9ce26c6db4e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Nico Leon",
+          "role": "penciler"
+        },
+        {
+          "name": "Yasmine Putri",
+          "role": "penciler"
+        },
+        {
+          "name": "Dennis \"Hopeless\" Hallum",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Team-ups | Spider-Women | Alpha, second Silk (2015) #7-8, second Spider-Gwen (2015) #7-8, Spider-Woman #6-7, Omega"
+    },
+    {
+      "issueId": 57973,
+      "title": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic (2016) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/57973/amazing_spider-man_silk_the_spiderfly_effect_infinite_comic_2016_1",
+      "seriesId": 21127,
+      "seriesName": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic (2016)",
+      "onSale": "2016-01-20T00:00:00+0000",
+      "mu": "2016-07-18T00:00:00+0000",
+      "digitalId": 40926,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/90/56c39735388f6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 15,
+      "creators": [
+        {
+          "name": "Todd Nauck",
+          "role": "cover artist"
+        },
+        {
+          "name": "G Geoffo",
+          "role": "penciler"
+        },
+        {
+          "name": "M Mast",
+          "role": "penciler"
+        },
+        {
+          "name": "Robbie Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Team-ups | Amazing Spider-Man and Silk: The Spider(fly) Effect | Original Infinite Comic #1-8"
+    },
+    {
+      "issueId": -612630175,
+      "title": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic (2016) #2",
+      "number": "2",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Team-ups | Amazing Spider-Man and Silk: The Spider(fly) Effect | Original Infinite Comic #1-8"
+    },
+    {
+      "issueId": -629407794,
+      "title": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic (2016) #3",
+      "number": "3",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Team-ups | Amazing Spider-Man and Silk: The Spider(fly) Effect | Original Infinite Comic #1-8"
+    },
+    {
+      "issueId": -646185413,
+      "title": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic (2016) #4",
+      "number": "4",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Team-ups | Amazing Spider-Man and Silk: The Spider(fly) Effect | Original Infinite Comic #1-8"
+    },
+    {
+      "issueId": -662963032,
+      "title": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic (2016) #5",
+      "number": "5",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Team-ups | Amazing Spider-Man and Silk: The Spider(fly) Effect | Original Infinite Comic #1-8"
+    },
+    {
+      "issueId": -679740651,
+      "title": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic (2016) #6",
+      "number": "6",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Team-ups | Amazing Spider-Man and Silk: The Spider(fly) Effect | Original Infinite Comic #1-8"
+    },
+    {
+      "issueId": -696518270,
+      "title": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic (2016) #7",
+      "number": "7",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Team-ups | Amazing Spider-Man and Silk: The Spider(fly) Effect | Original Infinite Comic #1-8"
+    },
+    {
+      "issueId": -646332508,
+      "title": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic (2016) #8",
+      "number": "8",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Team-ups | Amazing Spider-Man and Silk: The Spider(fly) Effect | Original Infinite Comic #1-8"
+    },
+    {
+      "issueId": 56095,
+      "title": "The Totally Awesome Hulk (2015) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/56095/the_totally_awesome_hulk_2015_13",
+      "seriesId": 20614,
+      "seriesName": "The Totally Awesome Hulk (2015 - 2017)",
+      "onSale": "2016-12-14T00:00:00+0000",
+      "mu": "2017-06-19T00:00:00+0000",
+      "digitalId": 43455,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/5834ce7f2765a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Bernard Chang",
+          "role": "penciler"
+        },
+        {
+          "name": "Luke Ross",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Team-ups | The Totally Awesome Hulk Vol. 3 | Issues #13-18"
+    },
+    {
+      "issueId": 56096,
+      "title": "The Totally Awesome Hulk (2015) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/56096/the_totally_awesome_hulk_2015_14",
+      "seriesId": 20614,
+      "seriesName": "The Totally Awesome Hulk (2015 - 2017)",
+      "onSale": "2017-01-11T00:00:00+0000",
+      "mu": "2017-07-17T00:00:00+0000",
+      "digitalId": 43851,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/d0/586fe9f0a57aa",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Bernard Chang",
+          "role": "penciler"
+        },
+        {
+          "name": "Luke Ross",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Team-ups | The Totally Awesome Hulk Vol. 3 | Issues #13-18"
+    },
+    {
+      "issueId": 56097,
+      "title": "The Totally Awesome Hulk (2015) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/56097/the_totally_awesome_hulk_2015_15",
+      "seriesId": 20614,
+      "seriesName": "The Totally Awesome Hulk (2015 - 2017)",
+      "onSale": "2017-01-25T00:00:00+0000",
+      "mu": "2017-07-31T00:00:00+0000",
+      "digitalId": 43852,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/50/58790dc765815",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jeon Woo Seok",
+          "role": "penciler"
+        },
+        {
+          "name": "Mahmud Asrar",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Team-ups | The Totally Awesome Hulk Vol. 3 | Issues #13-18"
+    },
+    {
+      "issueId": 56098,
+      "title": "The Totally Awesome Hulk (2015) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/56098/the_totally_awesome_hulk_2015_16",
+      "seriesId": 20614,
+      "seriesName": "The Totally Awesome Hulk (2015 - 2017)",
+      "onSale": "2017-02-08T00:00:00+0000",
+      "mu": "2017-08-14T00:00:00+0000",
+      "digitalId": 44387,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/e0/588fb9b812613",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mahmud Asrar",
+          "role": "penciler"
+        },
+        {
+          "name": "Stonehouse",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Team-ups | The Totally Awesome Hulk Vol. 3 | Issues #13-18"
+    },
+    {
+      "issueId": 60847,
+      "title": "The Totally Awesome Hulk (2015) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/60847/the_totally_awesome_hulk_2015_17",
+      "seriesId": 20614,
+      "seriesName": "The Totally Awesome Hulk (2015 - 2017)",
+      "onSale": "2017-03-15T00:00:00+0000",
+      "mu": "2017-03-15T00:00:00+0000",
+      "digitalId": 44068,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/58c1810d4a36e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mahmud Asrar",
+          "role": "cover artist"
+        },
+        {
+          "name": "S Stonehouse",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Team-ups | The Totally Awesome Hulk Vol. 3 | Issues #13-18"
+    },
+    {
+      "issueId": 60848,
+      "title": "The Totally Awesome Hulk (2015) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/60848/the_totally_awesome_hulk_2015_18",
+      "seriesId": 20614,
+      "seriesName": "The Totally Awesome Hulk (2015 - 2017)",
+      "onSale": "2017-04-19T00:00:00+0000",
+      "mu": "2017-04-19T00:00:00+0000",
+      "digitalId": 44536,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/58ee7c329d254",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mahmud Asrar",
+          "role": "cover artist"
+        },
+        {
+          "name": "S Stonehouse",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Team-ups | The Totally Awesome Hulk Vol. 3 | Issues #13-18"
+    },
+    {
+      "issueId": 76615,
+      "title": "War of the Realms: New Agents of Atlas (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/76615/war_of_the_realms_new_agents_of_atlas_2019_1",
+      "seriesId": 27505,
+      "seriesName": "War of the Realms: New Agents of Atlas (2019)",
+      "onSale": "2019-05-08T00:00:00+0000",
+      "mu": "2019-05-08T00:00:00+0000",
+      "digitalId": 51487,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/60/5ccb3f294f4bd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Billy Tan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gang Hyuk Lim",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Team-ups | War of the Realms: New Agents of Atlas | Issues #1-4"
+    },
+    {
+      "issueId": 76616,
+      "title": "War of the Realms: New Agents of Atlas (2019) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/76616/war_of_the_realms_new_agents_of_atlas_2019_2",
+      "seriesId": 27505,
+      "seriesName": "War of the Realms: New Agents of Atlas (2019)",
+      "onSale": "2019-05-22T00:00:00+0000",
+      "mu": "2019-11-25T00:00:00+0000",
+      "digitalId": 51488,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/70/5d08f3bfedab8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gang Hyuk Lim",
+          "role": "cover artist"
+        },
+        {
+          "name": "Walden Wong",
+          "role": "cover artist"
+        },
+        {
+          "name": "Woo Dae Shim",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Team-ups | War of the Realms: New Agents of Atlas | Issues #1-4"
+    },
+    {
+      "issueId": 77259,
+      "title": "War of the Realms: New Agents of Atlas (2019) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/77259/war_of_the_realms_new_agents_of_atlas_2019_3",
+      "seriesId": 27505,
+      "seriesName": "War of the Realms: New Agents of Atlas (2019)",
+      "onSale": "2019-06-05T00:00:00+0000",
+      "mu": "2019-12-09T00:00:00+0000",
+      "digitalId": 51862,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/e0/5cf18cbd2f0ad",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gang Hyuk Lim",
+          "role": "cover artist"
+        },
+        {
+          "name": "Woo Dae Shim",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Team-ups | War of the Realms: New Agents of Atlas | Issues #1-4"
+    },
+    {
+      "issueId": 77260,
+      "title": "War of the Realms: New Agents of Atlas (2019) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/77260/war_of_the_realms_new_agents_of_atlas_2019_4",
+      "seriesId": 27505,
+      "seriesName": "War of the Realms: New Agents of Atlas (2019)",
+      "onSale": "2019-06-26T00:00:00+0000",
+      "mu": "2019-12-30T00:00:00+0000",
+      "digitalId": 51863,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/5d08f3c831b31",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gang Hyuk Lim",
+          "role": "cover artist"
+        },
+        {
+          "name": "Moy Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Pop Mhan",
+          "role": "penciler"
+        },
+        {
+          "name": "Woo Dae Shim",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Team-ups | War of the Realms: New Agents of Atlas | Issues #1-4"
+    },
+    {
+      "issueId": 77001,
+      "title": "Agents of Atlas (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/77001/agents_of_atlas_2019_1",
+      "seriesId": 27624,
+      "seriesName": "Agents of Atlas (2019)",
+      "onSale": "2019-08-07T00:00:00+0000",
+      "mu": "2020-02-10T00:00:00+0000",
+      "digitalId": 52306,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/5d404ebed84b5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Jason Paz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlo Pagulayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Jung-Geun Yoon",
+          "role": "penciler"
+        },
+        {
+          "name": "Nico Leon",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Team-ups | Agents of Atlas: Pandemonium | Original ongoing #1-4"
+    },
+    {
+      "issueId": 77002,
+      "title": "Agents of Atlas (2019) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/77002/agents_of_atlas_2019_2",
+      "seriesId": 27624,
+      "seriesName": "Agents of Atlas (2019)",
+      "onSale": "2019-09-04T00:00:00+0000",
+      "mu": "2020-03-09T00:00:00+0000",
+      "digitalId": 52477,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/d0/5d63e45be9e6a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Pop Mhan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jung-Geun Yoon",
+          "role": "penciler"
+        },
+        {
+          "name": "Nico Leon",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Team-ups | Agents of Atlas: Pandemonium | Original ongoing #1-4"
+    },
+    {
+      "issueId": 77003,
+      "title": "Agents of Atlas (2019) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/77003/agents_of_atlas_2019_3",
+      "seriesId": 27624,
+      "seriesName": "Agents of Atlas (2019)",
+      "onSale": "2019-10-23T00:00:00+0000",
+      "mu": "2020-04-27T00:00:00+0000",
+      "digitalId": 51835,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/5da783de279d0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jung-Geun Yoon",
+          "role": "penciler"
+        },
+        {
+          "name": "Nico Leon",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Team-ups | Agents of Atlas: Pandemonium | Original ongoing #1-4"
+    },
+    {
+      "issueId": 77004,
+      "title": "Agents of Atlas (2019) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/77004/agents_of_atlas_2019_4",
+      "seriesId": 27624,
+      "seriesName": "Agents of Atlas (2019)",
+      "onSale": "2019-11-13T00:00:00+0000",
+      "mu": "2020-05-18T00:00:00+0000",
+      "digitalId": 51836,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/5dc0929b7db34",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Pop Mhan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jung-Geun Yoon",
+          "role": "penciler"
+        },
+        {
+          "name": "Nico Leon",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Team-ups | Agents of Atlas: Pandemonium | Original ongoing #1-4"
+    },
+    {
+      "issueId": 77116,
+      "title": "The Amazing Spider-Man (2018) #48",
+      "number": "48",
+      "url": "https://www.marvel.com/comics/issue/77116/the_amazing_spider-man_2018_48",
+      "seriesId": 24396,
+      "seriesName": "The Amazing Spider-Man (2018 - 2022)",
+      "onSale": "2020-09-09T00:00:00+0000",
+      "mu": "2020-12-14T00:00:00+0000",
+      "digitalId": 55053,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/5f08995c22b04",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "John Dell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Team-ups | Amazing Spider-Man Vol. 10: Green Goblin Returns | FCBD 2020 #1 Spider-Man story only"
+    },
+    {
+      "issueId": 90780,
+      "title": "Amazing Spider-Man: The Sins of Norman Osborn (2020) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/90780/amazing_spider-man_the_sins_of_norman_osborn_2020_1",
+      "seriesId": 31209,
+      "seriesName": "Amazing Spider-Man: The Sins of Norman Osborn (2020)",
+      "onSale": "2020-09-16T00:00:00+0000",
+      "mu": "2020-12-21T00:00:00+0000",
+      "digitalId": 55404,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/d0/5f594327ac3ff",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Federico Vicentini",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ryan Ottley",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Team-ups | Amazing Spider-Man Vol. 10: Green Goblin Returns | FCBD 2020 #1 Spider-Man story only"
+    },
+    {
+      "issueId": 77117,
+      "title": "The Amazing Spider-Man (2018) #49",
+      "number": "49",
+      "url": "https://www.marvel.com/comics/issue/77117/the_amazing_spider-man_2018_49",
+      "seriesId": 24396,
+      "seriesName": "The Amazing Spider-Man (2018 - 2022)",
+      "onSale": "2020-10-07T00:00:00+0000",
+      "mu": "2021-01-11T00:00:00+0000",
+      "digitalId": 55434,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/5f11ee848c407",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 96,
+      "creators": [
+        {
+          "name": "Aaron Kuder",
+          "role": "cover artist"
+        },
+        {
+          "name": "Cliff Rathburn",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Dell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tim Townsend",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tradd Moore",
+          "role": "cover artist"
+        },
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan Ottley",
+          "role": "penciler"
+        },
+        {
+          "name": "Kurt Busiek",
+          "role": "writer"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Team-ups | Amazing Spider-Man Vol. 10: Green Goblin Returns | FCBD 2020 #1 Spider-Man story only"
+    },
+    {
+      "issueId": 85661,
+      "title": "Free Comic Book Day: Spider-Man/Venom (2020) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/85661/free_comic_book_day_spider-manvenom_2020_1",
+      "seriesId": 30154,
+      "seriesName": "Free Comic Book Day: Spider-Man/Venom (2020)",
+      "onSale": "2020-07-22T00:00:00+0000",
+      "mu": "2020-08-05T00:00:00+0000",
+      "digitalId": 54260,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/5f282a661283a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jp Mayer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Patrick Gleason",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan Stegman",
+          "role": "penciler"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        },
+        {
+          "name": "Jed Mackay",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Team-ups | Amazing Spider-Man Vol. 10: Green Goblin Returns | FCBD 2020 #1 Spider-Man story only"
+    },
+    {
+      "issueId": 77118,
+      "title": "The Amazing Spider-Man (2018) #50",
+      "number": "50",
+      "url": "https://www.marvel.com/comics/issue/77118/the_amazing_spider-man_2018_50",
+      "seriesId": 24396,
+      "seriesName": "The Amazing Spider-Man (2018 - 2022)",
+      "onSale": "2020-10-14T00:00:00+0000",
+      "mu": "2020-10-14T00:00:00+0000",
+      "digitalId": 55541,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/20/5f2d7d954e9d1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 56,
+      "creators": [
+        {
+          "name": "Patrick Gleason",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Team-ups | Amazing Spider-Man Vol. 10: Green Goblin Returns | Issues #50-55"
+    },
+    {
+      "issueId": 77119,
+      "title": "The Amazing Spider-Man (2018) #51",
+      "number": "51",
+      "url": "https://www.marvel.com/comics/issue/77119/the_amazing_spider-man_2018_51",
+      "seriesId": 24396,
+      "seriesName": "The Amazing Spider-Man (2018 - 2022)",
+      "onSale": "2020-10-28T00:00:00+0000",
+      "mu": "2020-10-28T00:00:00+0000",
+      "digitalId": 55542,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/03/60196809e154c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Patrick Gleason",
+          "role": "cover artist"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Team-ups | Amazing Spider-Man Vol. 10: Green Goblin Returns | Issues #50-55"
+    },
+    {
+      "issueId": 77120,
+      "title": "The Amazing Spider-Man (2018) #52",
+      "number": "52",
+      "url": "https://www.marvel.com/comics/issue/77120/the_amazing_spider-man_2018_52",
+      "seriesId": 24396,
+      "seriesName": "The Amazing Spider-Man (2018 - 2022)",
+      "onSale": "2020-11-11T00:00:00+0000",
+      "mu": "2021-02-15T00:00:00+0000",
+      "digitalId": 55674,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/601af7a6c3696",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Patrick Gleason",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Team-ups | Amazing Spider-Man Vol. 10: Green Goblin Returns | Issues #50-55"
+    },
+    {
+      "issueId": 77121,
+      "title": "The Amazing Spider-Man (2018) #53",
+      "number": "53",
+      "url": "https://www.marvel.com/comics/issue/77121/the_amazing_spider-man_2018_53",
+      "seriesId": 24396,
+      "seriesName": "The Amazing Spider-Man (2018 - 2022)",
+      "onSale": "2020-11-18T00:00:00+0000",
+      "mu": "2021-02-22T00:00:00+0000",
+      "digitalId": 55675,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/601af724e27f2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "John Dell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Patrick Gleason",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Team-ups | Amazing Spider-Man Vol. 10: Green Goblin Returns | Issues #50-55"
+    },
+    {
+      "issueId": 77122,
+      "title": "The Amazing Spider-Man (2018) #54",
+      "number": "54",
+      "url": "https://www.marvel.com/comics/issue/77122/the_amazing_spider-man_2018_54",
+      "seriesId": 24396,
+      "seriesName": "The Amazing Spider-Man (2018 - 2022)",
+      "onSale": "2020-12-09T00:00:00+0000",
+      "mu": "2021-03-15T00:00:00+0000",
+      "digitalId": 55781,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/60/601afd0b1c2d7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrew Hennessy",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Dell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Patrick Gleason",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Team-ups | Amazing Spider-Man Vol. 10: Green Goblin Returns | Issues #50-55"
+    },
+    {
+      "issueId": 89510,
+      "title": "The Amazing Spider-Man (2018) #55",
+      "number": "55",
+      "url": "https://www.marvel.com/comics/issue/89510/the_amazing_spider-man_2018_55",
+      "seriesId": 24396,
+      "seriesName": "The Amazing Spider-Man (2018 - 2022)",
+      "onSale": "2020-12-30T00:00:00+0000",
+      "mu": "2021-04-05T00:00:00+0000",
+      "digitalId": 55782,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/d0/5fda7db7509e5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Patrick Gleason",
+          "role": "cover artist"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Team-ups | Amazing Spider-Man Vol. 10: Green Goblin Returns | Issues #50-55"
+    }
+  ]
+}
