@@ -13,6 +13,14 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Prepare separate official and prototype Android identities
+
+Android source configuration now gives the future official app a separate identity and label
+while preserving the prototype's debug identity and label. Signing enrollment and deliberate
+backup/restore migration remain pending. No new Android version, release-code reservation,
+APK/AAB, signing key or distribution is created by this preparation. Existing installations,
+runtime behavior and saved data are unchanged.
+
 ### Preserve exact issue-page links when a reader ID is missing
 
 The New Ultimate Universe: Collected Editions now opens the matching, already recorded Marvel

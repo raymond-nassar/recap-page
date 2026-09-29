@@ -18,6 +18,13 @@ not a Google Play release. You do not need a Marvel subscription to test most of
 - Only sign in to your account in the official Marvel app or website. Never send us passwords,
   account details, subscription receipts or your backup file.
 
+The future official app is planned as a separate installation; it is not an update for this
+debug beta, and no new package is authorized by that preparation. When an official build is
+approved, keep the prototype and a checked local JSON backup until you have deliberately restored
+and verified the progress in the new app. Restore replaces destination reading data, not merges
+it; device-specific settings must be reapplied. Do not uninstall or clear either app if the
+transfer is uncertain. See [the future transfer guidance](ANDROID.md#future-prototype-to-official-transfer).
+
 ## Main checks
 
 Try the checks that fit your phone and available time. Passing everything is not required to

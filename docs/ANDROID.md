@@ -91,6 +91,12 @@ Marvel's service.
 
 ## Build and install
 
+**Current release hold:** the owner has approved identity preparation, not a new Android version.
+Until the current feature set is finalized, do not bump the version, reserve a release code,
+create an APK/AAB, distribute a build or upload/promote a Play candidate. The commands below
+describe the existing development workflow, not permission to run it during this hold.
+See [the owner decision](https://github.com/raymond-nassar/recap-page/issues/570#issuecomment-5894851669).
+
 Prerequisites:
 
 - Node.js 20 or newer, as for the source project.
@@ -132,11 +138,61 @@ The published Beta 2 used version name `3.0.1-beta.2` and code `3000002`. New bu
 [coordinated release policy](RELEASING.md): local and hosted debug builds are explicitly development
 builds, while a distribution candidate needs a source-bound code reservation. About identifies
 the product version, platform build and source revision. Quote those values and the APK filename
-when reporting a problem. This policy does not choose a permanent application ID or signing key.
+when reporting a problem. That policy identifies source and platform builds, not a qualified
+signer. The approved identity and signing model are recorded below; enrollment is still pending.
 
 Dependabot watches the Android Gradle toolchain separately. When updating Gradle, review both the
 distribution checksum and the wrapper checksum/bootstrap version together, then rerun the APK
 build, Android lint and policy checks.
+
+## Official identity and signing preparation
+
+[The owner approved separate identities](https://github.com/raymond-nassar/recap-page/issues/576#issuecomment-5895064801)
+so a future official installation can coexist with the prototype rather than requiring its
+removal before transferring progress.
+
+| Source configuration | Application ID | App label |
+|---|---|---|
+| Official/default release | `io.github.raymondnassar.recappage` | Recap Page |
+| Debug prototype | `io.github.raymondnassar.recappage.prototype` | Recap Page prototype |
+
+The default application ID is the official one; debug adds `.prototype`. The Java namespace
+remains `io.github.raymondnassar.recappage.prototype`, as do the existing native tests and their
+fixture identities. The unchanged `.MainActivity` declaration resolves against that namespace,
+not the installed application ID. The standard debug resource override retains the prototype
+label. These are [Android's documented identity rules](https://developer.android.com/build/configure-app-module),
+[Activity naming rules](https://developer.android.com/guide/topics/manifest/activity-element#nm)
+and [source-set rules](https://developer.android.com/build/build-variants#sourcesets),
+retrieved 2026-09-29.
+
+**Release signing is intentionally not configured.** Release retains the Android Gradle plugin's
+unsigned, non-debuggable defaults; it does not inherit the debug signer. Ordinary debug signing
+is still disposable and does not make differently signed old betas update-compatible. An
+official application ID or source-bound candidate record is not signing or publication approval.
+
+The selected model is **Google-managed Play App Signing with a separate upload key**.
+Google's app-signing key signs installations delivered through Play. The upload key authenticates
+uploads; an APK signed only with it is not an interchangeable update for a Play-signed installation.
+For occasional distribution outside Play, Google's guidance permits downloading a Play-signed
+universal APK from Play Console or the Play Developer API. Independently building and signing
+production updates without Google's output would require a different custody decision and is
+not the selected model. See [Play App Signing](https://developer.android.com/studio/publish/app-signing)
+and [Google's signing and distribution guidance](https://support.google.com/googleplay/android-developer/answer/9842756?hl=en-CA),
+retrieved 2026-09-29.
+
+No key has been created or enrolled by this preparation. Actual enrollment, public certificate
+fingerprints, upload-key ownership and backup/recovery, and least-privilege CI access remain
+owner-approved work in [the signing issue](https://github.com/raymond-nassar/recap-page/issues/576).
+Never put private keys, passwords, identity documents or private Console identifiers in source,
+issues, logs or artifacts. The owner's new Personal Play account is awaiting Google identity
+verification; account creation does not establish production access or permission to publish.
+
+The identity checks inspect source declarations and resource values only. No SDK-generated
+merged manifests/resources, signed package, native launch, side-by-side installation, migration
+or physical-device result is claimed. Those checks, production-key update continuity, rejection
+of incompatible signatures and invalid version transitions, and release-wide copy review remain
+open before relying on an official package. The existing prototype runtime is unchanged,
+including its prototype-specific failure wording. The release hold remains in force.
 
 ## Keep and transfer your progress
 
@@ -156,6 +212,23 @@ upload the file through that provider. Recap Page itself has no upload service.
 The app reports completion only after Android confirms a successful write. Cancelling or failing
 the picker does not count as downloading a recovery copy. If the app is closed while a picker is
 open, repeat the export after reopening and check the resulting file before relying on it.
+
+### Future prototype-to-official transfer
+
+This is a planned migration path, not an instruction to build or install an official app now.
+A different application ID has separate private storage even at the same WebView address.
+Nothing is copied automatically, and the native cross-package transfer has not yet been verified.
+
+1. Keep the prototype installed. Export JSON to a local folder, check that the file exists and
+   is readable, and retain that untouched backup.
+2. Only after the release hold is cleared and an official package is approved, install it
+   alongside the prototype. If the destination already holds progress, export and check its
+   own backup before restoring: restore replaces reading data rather than merging it.
+3. Restore deliberately into the official app and compare lists, notes, read markers,
+   availability overrides and deferrals. Reapply device-specific settings separately.
+4. Keep the old installation and backup until the restored data has been verified. If export,
+   restore or verification fails or is uncertain, stop; do not uninstall either app or clear its
+   data. The only copy of progress must never depend on an unverified transfer.
 
 ## Desktop and Android verification
 

@@ -25,7 +25,7 @@ android {
     compileSdk 36
 
     defaultConfig {
-        applicationId 'io.github.raymondnassar.recappage.prototype'
+        applicationId 'io.github.raymondnassar.recappage'
         minSdk 26
         targetSdk 36
         versionCode buildMetadata.versionCode
@@ -38,8 +38,10 @@ android {
     }
     buildTypes {
         debug {
+            applicationIdSuffix '.prototype'
             debuggable true
         }
+        // Official signing awaits owner-approved enrollment; release stays unsigned and non-debuggable.
     }
     lint {
         abortOnError true
