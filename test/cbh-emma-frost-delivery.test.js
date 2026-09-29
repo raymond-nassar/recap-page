@@ -142,13 +142,13 @@ test('Emma relationship approval regenerates against its reviewed source-manifes
   const manifest = await readJson('src/data/curated-lists.json');
   const current = await buildReportForMapping(`scripts/data/cbh-mappings/${id}.json`, [], {
     ...await historicalAgathaLibrarySnapshot(),
-    excludedOrderIds: ['doctor-octopus-otto-octavius-reading-order', 'shadow-king-reading-order', 'thunderbolts-reading-order', 'nebula-reading-order', 'hope-summers-reading-order', 'x-23-reading-order', 'marvel-zombies-reading-order'],
+    excludedOrderIds: ['doctor-octopus-otto-octavius-reading-order', 'shadow-king-reading-order', 'thunderbolts-reading-order', 'nebula-reading-order', 'hope-summers-reading-order', 'x-23-reading-order', 'marvel-zombies-reading-order', 'hawkeye-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order'],
   });
   const expectedOrderIds = manifest.lists
     .filter((row) => row.id !== id
       && row.id !== 'doctor-octopus-otto-octavius-reading-order'
       && row.id !== 'shadow-king-reading-order'
-      && !['thunderbolts-reading-order', 'nebula-reading-order', 'hope-summers-reading-order', 'x-23-reading-order', 'marvel-zombies-reading-order'].includes(row.id)).map((row) => row.id);
+      && !['thunderbolts-reading-order', 'nebula-reading-order', 'hope-summers-reading-order', 'x-23-reading-order', 'marvel-zombies-reading-order', 'hawkeye-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order'].includes(row.id)).map((row) => row.id);
   assert.deepEqual(current, report);
   assert.equal(report.comparisonCount, 183);
   assert.deepEqual(new Set(report.comparisons.map((row) => row.orderId)), new Set(expectedOrderIds));

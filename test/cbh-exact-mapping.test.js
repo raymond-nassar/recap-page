@@ -84,6 +84,6 @@ test('Marvel Zombies report covers the full current library with unchanged exact
   assert.deepEqual(report, current);
   assert.equal(report.sourceCounts.sourceOccurrenceCount, 95);
   assert.equal(report.sourceCounts.includedIssueCount, 91);
-  assert.equal(report.comparisonCount, 190);
+  assert.equal(report.comparisonCount, 193);
   assert.equal(report.comparisons.filter((item) => item.relationship !== 'none').length, 8);
 });

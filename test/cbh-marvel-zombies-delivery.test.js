@@ -222,7 +222,7 @@ test('Marvel Zombies publishes every approved original and open gap in its exact
   assert.ok(payload.items.every((item) => item.description === null));
 });
 
-test('Marvel Zombies approved relationship receipt covers every current library peer', async () => {
+test('Marvel Zombies renewed relationship receipt covers every current library peer', async () => {
   const [packet, mapping, report, manifest] = await Promise.all([
     readJson(`scripts/data/cbh-packets/${id}.json`),
     readJson(`scripts/data/cbh-mappings/${id}.json`),
@@ -235,16 +235,25 @@ test('Marvel Zombies approved relationship receipt covers every current library 
   const expectedOrderIds = manifest.lists.filter((entry) => entry.id !== id)
     .map((entry) => entry.id);
   assert.deepEqual(current, report);
-  assert.equal(report.comparisonCount, 190);
+  assert.equal(report.comparisonCount, 193);
   assert.deepEqual(new Set(report.comparisons.map((entry) => entry.orderId)),
     new Set(expectedOrderIds));
   assert.equal(mapping.reviewStatus, 'approved');
   assert.deepEqual(mapping.approvedManifest, manifest.lists.find((entry) => entry.id === id));
   assert.equal(mapping.relationshipReview.approvalDigest,
-    '1760c43c88ce545df6abb80f5aedd105bf3017d08d41e502f12cf50cb72b21af');
+    '1d41cde7518c02234a7a00c91c7cae17f3dd038685a74f7eb9d293692034f02f');
   assert.doesNotThrow(() => assertApprovedRelationshipReview({
     packet, mapping, report, currentLibraryDigest: current.libraryDigest, expectedOrderIds,
   }));
+  for (const peer of [
+    'hawkeye-reading-order',
+    'silk-cindy-moon-reading-order',
+    'marvels-infinity-saga-gauntlet-wars-crusade-reading-order',
+  ]) {
+    assert.deepEqual(report.comparisons.find((entry) => entry.orderId === peer), {
+      orderId: peer, sharedCount: 0, sharedIds: [], relationship: 'none',
+    });
+  }
 });
 
 test('Marvel Zombies appears once on the across-eras Storylines shelf with its approved cover', async () => {

@@ -3631,7 +3631,7 @@
     }
   ],
   "mappingDigest": "5404131a286f15c2818fd3c82fae2148c685f4db140c77efcf77e18babdef7d7",
-  "packetReview": "GPT-6 Astra coordinator approves 91 exact original identities and three explicit source gaps across 94 canonical entries, with one later repeat in 95 source positions. The complete 190-peer report has eight approved partial relationships and182 none. Preserve repeat73->4, exact original3220, separate volumes/universes, directed collection order and explicit unnumbered/PrimeEight nonselections. Public scope #590 and exact recorded inputs bind this era/partial approval.",
+  "packetReview": "GPT-6 Astra coordinator approves91 exact original identities and three explicit gaps across94 canonical entries, with one later repeat in95 source positions. Complete193-peer review contains eight partial and185 none; new Silk,Infinity and Hawkeye comparisons are all none with unchanged earlier shared sets. Preserve repeat73->4, original3220, separate universes, directed order and explicit unnumbered/PrimeEight nonselections. Public scope#590 and exact current input digests bind this era/partial approval.",
   "approvedManifest": {
     "id": "marvel-zombies-reading-order",
     "name": "Marvel Zombies",
@@ -3670,11 +3670,11 @@
     "authorityType": "stronger-model",
     "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
     "rationale": "The coordinator independently read the complete source, resolved explicit-route precedence and the2005/2006 original-repeat identity, and examined all eight shared-title/number sets. The original, Deadpool, Battleworld, Resurrection and alternate sections remain distinct. Three late2025 originals are explicit researched gaps, not substituted editions. All relationships are partial; no exact/subset duplicate or deletion of shared source-required comics is approved.",
-    "reviewedAt": "2026-09-29T07:09:46.382Z",
+    "reviewedAt": "2026-09-29T15:41:58.730Z",
     "packetDigest": "64d50cd3a6f8ecf8478d50f6b16303c77b300dbd41b476d1b4c8196b78ffd576",
     "mappingDigest": "5404131a286f15c2818fd3c82fae2148c685f4db140c77efcf77e18babdef7d7",
-    "reportDigest": "46ae5c639d12d6fde046dccd6baf88377ad4c432183a44966eaf1768c269773c",
-    "libraryDigest": "fc0295031275315c85394705a15299bf8dd5e9cfc931affca9e3e5ac8e987fa5",
+    "reportDigest": "1fc43a2229818584a4d4194caa6b4d569b98f8641632ef9bd1472ad897b532a5",
+    "libraryDigest": "ea7b3909befd6fcf4758bd6897c825c7757b624b61b91749d48b7bc8de7e63d5",
     "peerDigests": {},
     "sourceCounts": {
       "sourceOccurrenceCount": 95,
@@ -3691,7 +3691,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "absolute-carnage",
@@ -3700,7 +3700,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "adam-warlock-reading-order",
@@ -3709,7 +3709,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "agatha-harkness-reading-order",
@@ -3718,7 +3718,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "age-of-x-man",
@@ -3727,7 +3727,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "agents-of-atlas-reading-order",
@@ -3736,7 +3736,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "all-new-all-different-avengers",
@@ -3745,7 +3745,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
@@ -3754,7 +3754,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "annihilation",
@@ -3763,7 +3763,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "annihilation-conquest",
@@ -3772,7 +3772,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "ant-man-reading-order",
@@ -3781,7 +3781,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "The source explicitly names original Age of Ultron #1 alongside an unnumbered collection pointer. Keep that original without inferring the separate unnumbered mini-series.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "apocalypse-wars",
@@ -3790,7 +3790,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "atlantis-attacks",
@@ -3799,7 +3799,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "avengers-defenders-war",
@@ -3808,7 +3808,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "avengers-disassembled",
@@ -3817,7 +3817,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "avengers-enemy-within",
@@ -3826,7 +3826,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "axis",
@@ -3835,7 +3835,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "best-ultron-reading-order",
@@ -3844,7 +3844,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "black-panther-reading-order",
@@ -3853,7 +3853,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Black Panther2005 #28-30 is explicitly selected after the source's Ultimate Fantastic Four return block. Preserve all three originals in that order.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "black-widow-reading-order",
@@ -3862,7 +3862,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "bloodties",
@@ -3871,7 +3871,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "captain-america-best-of",
@@ -3880,7 +3880,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "captain-america-reading-order-modern-marvel-era",
@@ -3889,7 +3889,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "captain-marvel-ms-marvel-reading-order",
@@ -3898,7 +3898,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "chaos-war",
@@ -3907,7 +3907,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "childs-play",
@@ -3916,7 +3916,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "civil-war",
@@ -3925,7 +3925,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "civil-war-avengers",
@@ -3934,7 +3934,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "civil-war-essential",
@@ -3943,7 +3943,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "clone-conspiracy",
@@ -3952,7 +3952,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "contest-of-champions",
@@ -3961,7 +3961,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "damnation",
@@ -3970,7 +3970,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "daredevil-reading-order",
@@ -3979,7 +3979,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "dark-phoenix-saga",
@@ -3988,7 +3988,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "dark-reign-avengers",
@@ -3997,7 +3997,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "dark-web",
@@ -4006,7 +4006,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "days-of-future-past",
@@ -4015,7 +4015,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "days-of-future-present",
@@ -4024,7 +4024,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "dead-mans-hand",
@@ -4033,7 +4033,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "deadpool-best-of",
@@ -4042,7 +4042,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "The source selects the complete Merc with a Mouth1-13 and Night of the Living Deadpool1-4 despite optional prose. Preserve the shared seven originals and all additional source-selected issues in their separate Deadpool section.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "death-of-doctor-strange",
@@ -4051,7 +4051,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "devils-reign",
@@ -4060,7 +4060,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "doctor-doom-primer",
@@ -4069,7 +4069,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "doctor-octopus-otto-octavius-reading-order",
@@ -4078,7 +4078,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "doctor-strange-multiverse-of-madness",
@@ -4087,7 +4087,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "doctor-strange-reading-order",
@@ -4096,7 +4096,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "donny-cates-marvel-universe-reading-order-2017",
@@ -4105,7 +4105,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "doomwar",
@@ -4114,7 +4114,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "eighth-day",
@@ -4123,7 +4123,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "emma-frost-reading-order",
@@ -4132,7 +4132,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Uncanny X-Men2011 #9-10 is explicitly selected with Siege: Battleworld. Preserve these exact originals without importing other event-guide ranges.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "essential-avengers",
@@ -4141,7 +4141,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "evolutionary-war",
@@ -4150,7 +4150,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "falcon-sam-wilson-captain-america-reading-order",
@@ -4159,7 +4159,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "fall-house-x-rise-powers-x",
@@ -4168,7 +4168,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "fall-of-the-mutants",
@@ -4177,7 +4177,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "fantastic-four-reading-order",
@@ -4186,7 +4186,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "fatal-attractions",
@@ -4195,7 +4195,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "generations",
@@ -4204,7 +4204,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "groot-reading-order",
@@ -4213,7 +4213,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "guardians-of-the-galaxy-reading-order",
@@ -4222,7 +4222,16 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
+      },
+      {
+        "orderId": "hawkeye-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "heroes-reborn-2021",
@@ -4231,7 +4240,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "heroic-age-avengers",
@@ -4240,7 +4249,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "hickman-full",
@@ -4249,7 +4258,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "hickman-minimal",
@@ -4258,7 +4267,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "hickman-x-men",
@@ -4267,7 +4276,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "hope-summers-reading-order",
@@ -4276,7 +4285,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "The same source-selected Uncanny X-Men2011 #9-10 legitimately appears in Hope's separate route. Keep both in the Zombies source's Battleworld block.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "house-of-m",
@@ -4285,7 +4294,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "house-of-m-essential",
@@ -4294,7 +4303,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "hunt-for-wolverine",
@@ -4303,7 +4312,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "hunt-for-xavier",
@@ -4312,7 +4321,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "inferno",
@@ -4321,7 +4330,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "infinite-destinies",
@@ -4330,7 +4339,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "infinity-countdown-wars",
@@ -4339,7 +4348,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "inhumans-reading-order",
@@ -4348,7 +4357,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "inhumans-vs-x-men",
@@ -4357,7 +4366,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "iron-man-2020",
@@ -4366,7 +4375,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "iron-man-reading-order",
@@ -4375,7 +4384,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "judgment-day",
@@ -4384,7 +4393,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "king-in-black",
@@ -4393,7 +4402,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "kravens-last-hunt",
@@ -4402,7 +4411,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "kree-skrull-war",
@@ -4411,7 +4420,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "last-annihilation",
@@ -4420,7 +4429,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "loki-reading-order",
@@ -4429,7 +4438,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "magneto-reading-order",
@@ -4438,7 +4447,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "The source's opening Ultimate Fantastic Four, original Zombies, Dead Days, Black Panther and later Uncanny originals create this partial overlap. Preserve the explicit issue-level order and publish repeated original3220 only once.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "magneto-war",
@@ -4447,7 +4456,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "marvel-2099",
@@ -4456,7 +4465,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "marvel-fresh-start-avengers",
@@ -4465,7 +4474,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "marvel-knights-to-planet-x",
@@ -4474,7 +4483,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "marvel-multiverse",
@@ -4483,7 +4492,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "marvel-super-heroes-secret-wars",
@@ -4492,7 +4501,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "marvel-what-if",
@@ -4501,7 +4510,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "marvels-best-phoenix-comics",
@@ -4510,7 +4519,16 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
+      },
+      {
+        "orderId": "marvels-infinity-saga-gauntlet-wars-crusade-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "maximum-security",
@@ -4519,7 +4537,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "mephisto-reading-order",
@@ -4528,7 +4546,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "messiah-complex",
@@ -4537,7 +4555,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "messiah-war",
@@ -4546,7 +4564,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "midnight-massacre",
@@ -4555,7 +4573,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "miles-morales-spider-man-reading-order",
@@ -4564,7 +4582,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "minimum-carnage",
@@ -4573,7 +4591,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "modern-x-men-fast-track",
@@ -4582,7 +4600,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "monsters-unleashed",
@@ -4591,7 +4609,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "moon-knight-reading-order",
@@ -4600,7 +4618,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "muir-island-saga",
@@ -4609,7 +4627,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "mutant-massacre",
@@ -4618,7 +4636,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "mys-tech-wars",
@@ -4627,7 +4645,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "nebula-reading-order",
@@ -4636,7 +4654,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "necrosha",
@@ -4645,7 +4663,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "new-ultimate-universe",
@@ -4654,7 +4672,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "new-ultimate-universe-trades",
@@ -4663,7 +4681,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "nick-fury-reading-order",
@@ -4672,7 +4690,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "operation-galactic-storm",
@@ -4681,7 +4699,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "operation-zero-tolerance",
@@ -4690,7 +4708,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "original-clone-saga",
@@ -4699,7 +4717,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "phalanx-covenant",
@@ -4708,7 +4726,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "phalanx-reading-order",
@@ -4717,7 +4735,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "phoenix-saga",
@@ -4726,7 +4744,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "planet-hulk",
@@ -4735,7 +4753,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "punisher-reading-order",
@@ -4744,7 +4762,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "question-of-the-week-do-you-have-a-hulk-reading-order",
@@ -4753,7 +4771,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "reckoning-war",
@@ -4762,7 +4780,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "reed-richards-and-sue-storms-wedding",
@@ -4771,7 +4789,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "revolutionary-war",
@@ -4780,7 +4798,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "rise-of-the-midnight-sons",
@@ -4789,7 +4807,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "rocket-raccoon-reading-order",
@@ -4798,7 +4816,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "runaways-reading-order",
@@ -4807,7 +4825,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "scarlet-witch-best-of",
@@ -4816,7 +4834,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "second-coming",
@@ -4825,7 +4843,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "secret-invasion",
@@ -4834,7 +4852,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "secret-invasion-essential",
@@ -4843,7 +4861,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "secret-war",
@@ -4852,7 +4870,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "secret-wars-ii",
@@ -4861,7 +4879,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "setup-to-modern-timeline",
@@ -4870,7 +4888,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "shadow-king-reading-order",
@@ -4879,7 +4897,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "shadowland",
@@ -4888,7 +4906,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "silent-war",
@@ -4897,7 +4915,16 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
+      },
+      {
+        "orderId": "silk-cindy-moon-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "silver-surfer-reading-order",
@@ -4906,7 +4933,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "sins-of-sinister",
@@ -4915,7 +4942,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "spider-geddon",
@@ -4924,7 +4951,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "spider-gwen-reading-order",
@@ -4933,7 +4960,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "spider-island",
@@ -4942,7 +4969,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "spider-man-2099-reading-order",
@@ -4951,7 +4978,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "spider-man-best-of",
@@ -4960,7 +4987,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "spider-man-far-from-home",
@@ -4969,7 +4996,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "spider-man-identity-crisis",
@@ -4978,7 +5005,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "spider-man-no-way-home",
@@ -4987,7 +5014,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "spider-man-the-other",
@@ -4996,7 +5023,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "spider-verse",
@@ -5005,7 +5032,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "star-lord-reading-order",
@@ -5014,7 +5041,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "thanos-imperative",
@@ -5023,7 +5050,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "thanos-reading-order",
@@ -5032,7 +5059,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "thanos-war",
@@ -5041,7 +5068,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "the-defenders-reading-order",
@@ -5050,7 +5077,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "the-night-gwen-stacy-died",
@@ -5059,7 +5086,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "the-vision-reading-order",
@@ -5068,7 +5095,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Original Age of Ultron #1 is a direct numbered selection. One common original does not duplicate the separate Vision guide.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "thor-best-of",
@@ -5077,7 +5104,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "thunderbolts-reading-order",
@@ -5086,7 +5113,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "time-and-time-again",
@@ -5095,7 +5122,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "ultimate-marvel-intro",
@@ -5104,7 +5131,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "venom-reading-order",
@@ -5113,7 +5140,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "venomverse",
@@ -5122,7 +5149,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "wandavision",
@@ -5131,7 +5158,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "war-of-kings",
@@ -5140,7 +5167,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "war-of-the-realms",
@@ -5149,7 +5176,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "white-tiger-ava-ayala",
@@ -5158,7 +5185,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "winter-soldier-bucky-barnes-reading-order",
@@ -5167,7 +5194,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "wolverine-goes-to-hell",
@@ -5176,7 +5203,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "wolverine-reading-order",
@@ -5185,7 +5212,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Preserve the explicitly selected Age of Ultron #1 without expanding unnumbered collections or substituting another similarly named volume.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "world-war-hulk-aftersmash",
@@ -5194,7 +5221,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "wraith-war",
@@ -5203,7 +5230,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "x-23-reading-order",
@@ -5212,7 +5239,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "x-cutioners-song",
@@ -5221,7 +5248,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "x-force-reading-order",
@@ -5230,7 +5257,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "x-men-age-of-x",
@@ -5239,7 +5266,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "x-men-battle-of-the-atom",
@@ -5248,7 +5275,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "x-men-curse-of-the-mutants",
@@ -5257,7 +5284,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "x-men-divided-we-stand",
@@ -5266,7 +5293,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "x-men-extermination",
@@ -5275,7 +5302,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "x-men-inferno",
@@ -5284,7 +5311,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "x-men-manifest-destiny",
@@ -5293,7 +5320,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "x-men-nation-x",
@@ -5302,7 +5329,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "x-men-regenesis",
@@ -5311,7 +5338,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "x-men-schism",
@@ -5320,7 +5347,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "x-men-trial-of-jean-grey",
@@ -5329,7 +5356,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "x-men-utopia",
@@ -5338,7 +5365,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "x-of-swords",
@@ -5347,7 +5374,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "x-termination",
@@ -5356,7 +5383,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "x-tinction-agenda",
@@ -5365,7 +5392,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "xmen-claremont",
@@ -5374,7 +5401,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "xmen-claremont-complete",
@@ -5383,7 +5410,7 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       },
       {
         "orderId": "young-avengers-reading-order",
@@ -5392,9 +5419,9 @@
         "authorityType": "policy",
         "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #590",
         "rationale": "Verified no shared issue IDs in the complete source-library report.",
-        "reviewedAt": "2026-09-29T07:09:46.382Z"
+        "reviewedAt": "2026-09-29T15:41:58.730Z"
       }
     ],
-    "approvalDigest": "1760c43c88ce545df6abb80f5aedd105bf3017d08d41e502f12cf50cb72b21af"
+    "approvalDigest": "1d41cde7518c02234a7a00c91c7cae17f3dd038685a74f7eb9d293692034f02f"
   }
 }
