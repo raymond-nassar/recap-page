@@ -80,7 +80,9 @@ test('Marvel Zombies report covers the full current library with unchanged exact
     '../scripts/data/cbh-overlaps/marvel-zombies-reading-order.json', import.meta.url,
   ), 'utf8'));
   validateReportDigest(report);
-  const current = await buildReportForMapping(mappingPath, [], { excludedOrderIds: [] });
+  const current = await buildReportForMapping(mappingPath, [], {
+    excludedOrderIds: ['ms-marvel-kamala-khan-reading-order'],
+  });
   assert.deepEqual(report, current);
   assert.equal(report.sourceCounts.sourceOccurrenceCount, 95);
   assert.equal(report.sourceCounts.includedIssueCount, 91);

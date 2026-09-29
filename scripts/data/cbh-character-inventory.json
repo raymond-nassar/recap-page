@@ -2673,13 +2673,32 @@
     "url": "https://www.comicbookherald.com/ms-marvel-kamala-khan-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
-    "sourceRetrievedAt": "2026-08-23",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "disposition": "new-order",
+    "reason": "The approved full source selects 196 occurrences with 192 original identities and four backward repeats. The guide publishes 187 exact issues and retains five unresolved original-edition positions under Issue 598. The current-library review covers 194 peers: sixteen approved partial overlaps and 178 with no shared issue IDs.",
+    "sourceRetrievedAt": "2026-09-29",
+    "overlapIds": [
+      "all-new-all-different-avengers",
+      "amazing-spider-man-reading-order-modern-marvel-era",
+      "black-panther-reading-order",
+      "captain-marvel-ms-marvel-reading-order",
+      "dark-web",
+      "falcon-sam-wilson-captain-america-reading-order",
+      "fantastic-four-reading-order",
+      "inhumans-reading-order",
+      "mephisto-reading-order",
+      "miles-morales-spider-man-reading-order",
+      "moon-knight-reading-order",
+      "the-vision-reading-order",
+      "venom-reading-order",
+      "war-of-the-realms",
+      "winter-soldier-bucky-barnes-reading-order",
+      "young-avengers-reading-order"
+    ],
+    "catalogIds": [
+      "ms-marvel-kamala-khan-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Ms. Marvel (Kamala Khan)"
     ],
@@ -2687,9 +2706,9 @@
       78
     ],
     "duplicateFlags": [],
-    "sourceContentSha256": "8b0cbe9620fc14079b1429fafc291d523b74a026932d935ee0efae42db4fbfb8",
+    "sourceContentSha256": "926cceba8a902833fddf9146ec613cc3916819abda871c8c3fe4ac14829a4613",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 78,

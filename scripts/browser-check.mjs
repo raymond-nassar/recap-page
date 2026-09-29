@@ -3232,8 +3232,8 @@ const SCENARIOS = [
         bestOf: await readSubset('best-of'),
       };
       t.check('desktop All, Complete, and Best of counts classify Adam exactly once',
-        desktop.all.readings === 63 && desktop.all.stories === 62
-        && desktop.all.cards === 62 && desktop.all.adamCards === 1
+        desktop.all.readings === 64 && desktop.all.stories === 63
+        && desktop.all.cards === 63 && desktop.all.adamCards === 1
         && desktop.complete.readings === 38 && desktop.complete.stories === 38
         && desktop.complete.cards === 38 && desktop.complete.adamCards === 1
         && desktop.bestOf.readings === 7 && desktop.bestOf.stories === 7
@@ -3248,8 +3248,8 @@ const SCENARIOS = [
         overflow: await page.evaluate(() => document.documentElement.scrollWidth > innerWidth),
       };
       t.check('narrow All, Complete, and Best of counts preserve Adam without horizontal overflow',
-        narrow.all.readings === 63 && narrow.all.stories === 62
-        && narrow.all.cards === 62 && narrow.all.adamCards === 1
+        narrow.all.readings === 64 && narrow.all.stories === 63
+        && narrow.all.cards === 63 && narrow.all.adamCards === 1
         && narrow.complete.readings === 38 && narrow.complete.stories === 38
         && narrow.complete.cards === 38 && narrow.complete.adamCards === 1
         && narrow.bestOf.readings === 7 && narrow.bestOf.stories === 7
@@ -3592,6 +3592,161 @@ const SCENARIOS = [
       t.check('the Hawkeye actual-data journey made no external request or browser error',
         externalRequests.length === 0 && browserErrors.length === 0,
         JSON.stringify({ externalRequests, browserErrors }));
+    },
+  },
+  {
+    id: 'ms-marvel-kamala-actual-data',
+    title: 'the actual Kamala guide keeps all 192 originals and gaps through preview, import and reload',
+    async run(page, t) {
+      await page.setViewport({ width: 1280, height: 900 });
+      const id = 'ms-marvel-kamala-khan-reading-order';
+      const gaps = [
+        [192, -2019288189], [193, -2036065808], [194, -1985732951],
+        [195, -2002510570], [196, -1952177713],
+      ];
+      const gapIds = new Map(gaps);
+      const mapping = JSON.parse(readFileSync(
+        new URL('../scripts/data/cbh-mappings/ms-marvel-kamala-khan-reading-order.json', import.meta.url), 'utf8',
+      ));
+      const originals = [...mapping.rows, ...mapping.sourceGaps]
+        .sort((left, right) => left.sourcePosition - right.sourcePosition);
+      const expected = JSON.parse(readFileSync(
+        new URL('../src/data/ms_marvel_kamala_khan_reading_order.json', import.meta.url), 'utf8',
+      )).items.map((item, index) => ({
+        position: index + 1, issueId: item.issueId, title: item.title,
+      }));
+      t.check('published vector binds all 192 positions to approved originals and five stable gap IDs',
+        expected.length === 192 && originals.length === 192 && mapping.sourceGaps.length === gaps.length
+        && originals.every((row, index) => (
+          row.sourcePosition === index + 1 + mapping.repeatedSourceReferences
+            .filter((repeat) => repeat.sourcePosition < row.sourcePosition).length
+          && expected[index]?.issueId === (row.selectedIssueId ?? gapIds.get(row.sourcePosition))
+          && (row.selectedIssueId || expected[index]?.title === row.sourceIssueReference)
+        )),
+        JSON.stringify({ count: expected.length, gaps: expected.slice(187) }));
+      const checkRows = (label, rows) => {
+        const mismatches = expected.flatMap((source, index) => (
+          rows[index]?.position === source.position
+          && rows[index]?.issueId === source.issueId
+          && rows[index]?.title === source.title
+            ? [] : [{ expected: source, actual: rows[index] }]
+        ));
+        t.check(label, rows.length === expected.length && mismatches.length === 0,
+          JSON.stringify({ count: rows.length, mismatches: mismatches.slice(0, 3) }));
+      };
+      const importedRows = () => page.evaluate((catalogId) => {
+        const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+        const matches = Object.values(state.lists).filter((list) => list.catalogId === catalogId);
+        return {
+          matches: matches.length,
+          rows: (matches[0]?.itemIds ?? []).map((issueId, index) => ({
+            position: index + 1, issueId, title: state.issues[issueId]?.title,
+          })),
+          anthology: state.issues[56448] && {
+            number: state.issues[56448].number,
+            seriesId: state.issues[56448].seriesId,
+          },
+        };
+      }, id);
+      const renderedRows = () => page.$$eval('#rows .row', (nodes) => nodes.map((node, index) => ({
+        position: index + 1,
+        issueId: Number(node.querySelector('.rt')?.dataset.issueId),
+        title: node.querySelector('.rt')?.textContent.trim(),
+      })));
+      const errors = [];
+      const externalRequests = [];
+      page.on('console', (message) => { if (message.type() === 'error') errors.push(message.text()); });
+      page.on('pageerror', (error) => errors.push(error.message));
+      page.on('request', (request) => {
+        const url = new URL(request.url());
+        if (url.protocol.startsWith('http') && url.origin !== page.__origin) externalRequests.push(request.url());
+      });
+      await page.evaluateOnNewDocument(() => {
+        localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
+        window.__mrtBlockExternal = true;
+      });
+
+      await open(page, '/?catalog=actual#/home');
+      await openBrowseCategory(page, 'character-spotlights');
+      await page.$eval('#spotlights-q', (input) => {
+        input.value = 'Kamala Khan';
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+      });
+      const cardSelector = '#spotlights-results [data-story="list:ms-marvel-kamala-khan-reading-order"]';
+      await page.waitForSelector(cardSelector, { timeout: 15000 });
+      const card = await page.$eval(cardSelector, (node) => ({
+        name: node.querySelector('.catalog-card-title')?.textContent.trim(),
+        text: node.textContent,
+        sourceName: node.querySelector('a[href*="comicbookherald.com"]')?.getAttribute('aria-label'),
+        sourceHref: node.querySelector('a[href*="comicbookherald.com"]')?.href,
+        addName: node.querySelector('[data-act="import"]')?.getAttribute('aria-label'),
+      }));
+      t.check('Kamala is discoverable with the exact count, five-gap disclosure and source credit',
+        card.name === 'Ms. Marvel (Kamala Khan)' && card.text.includes('192 issues')
+        && card.text.includes('5 issues have no Marvel Unlimited links yet and cannot be opened')
+        && card.sourceName === 'Source of Ms. Marvel (Kamala Khan): Comic Book Herald'
+        && card.sourceHref === 'https://www.comicbookherald.com/ms-marvel-kamala-khan-reading-order/'
+        && card.addName === 'Add to library: Ms. Marvel (Kamala Khan)', JSON.stringify(card));
+
+      await click(page, `${cardSelector} [data-act="preview"]`);
+      await page.waitForFunction(() =>
+        document.querySelectorAll('#preview[open] .preview-issue-link').length === 192);
+      const preview = await page.$$eval('#preview-body .preview-issue-link', (nodes) => nodes.map((node) => ({
+        position: Number(node.closest('li')?.querySelector('.pn')?.textContent),
+        issueId: Number(node.dataset.issueId),
+        title: node.textContent.trim(),
+      })));
+      checkRows('preview displays all 192 exact source positions, including five gaps', preview);
+
+      await click(page, '#preview-add [data-act="main"]');
+      await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')
+        ?.textContent.includes('In library'));
+      const imported = await importedRows();
+      t.check('import creates one 192-position list with the original #0 anthology identity',
+        imported.matches === 1 && imported.anthology?.number === '0'
+        && imported.anthology?.seriesId === 20443,
+        JSON.stringify({ matches: imported.matches, anthology: imported.anthology }));
+      checkRows('import retains every original ID and title in source order', imported.rows);
+
+      await click(page, '#preview-add [data-act="main"]');
+      await page.waitForFunction(() =>
+        !document.querySelector('#view-read')?.hidden
+        && document.querySelector('#order-name')?.textContent.trim() === 'Ms. Marvel (Kamala Khan)');
+      await openFullOrder(page);
+      await page.waitForFunction(() => document.querySelectorAll('#rows .row').length === 192);
+      checkRows('the Reading List renders all 192 positions', await renderedRows());
+
+      await page.reload({ waitUntil: 'load' });
+      await page.waitForFunction(() =>
+        document.querySelector('#order-name')?.textContent.trim() === 'Ms. Marvel (Kamala Khan)');
+      await openFullOrder(page);
+      await page.waitForFunction(() => document.querySelectorAll('#rows .row').length === 192);
+      checkRows('reload renders the same 192-position Reading List', await renderedRows());
+      const reloaded = await importedRows();
+      checkRows('saved progress retains all 192 positions after reload', reloaded.rows);
+      t.check('all five print-original gaps keep their exact source positions and negative IDs',
+        reloaded.rows.filter((row) => row.issueId < 0).length === 5
+        && gaps.every(([sourcePosition, issueId]) =>
+          reloaded.rows[originals.findIndex((row) => row.sourcePosition === sourcePosition)]?.issueId === issueId),
+        JSON.stringify(reloaded.rows.slice(187)));
+      t.check('all four repeated Champions references remain one runtime identity each',
+        [61447, 66757, 67014, 67981].every((issueId) =>
+          reloaded.rows.filter((row) => row.issueId === issueId).length === 1),
+        JSON.stringify(reloaded.rows.filter((row) => [61447, 66757, 67014, 67981].includes(row.issueId))));
+      t.check('Worlds Collide, Exiles, Rising, Fists, Voices, Dark Web and print finale keep original IDs',
+        [
+          [20, 56448], [88, 64681], [89, 61454], [90, 65056], [91, 61455],
+          [92, 65264], [93, 61456], [111, 66769],
+          [164, 66916], [165, 69010], [166, 69030], [167, 69019], [168, 69021],
+          [169, 103514], [170, 103512], [171, 103513], [172, 101168], [173, 102365],
+          [174, 103236], [186, 104546], [187, 102194],
+        ].every(([position, issueId]) => reloaded.rows[position - 1]?.issueId === issueId)
+        && !reloaded.rows.some(({ title }) =>
+          /Free Comic Book Day|FCBD|Attilan Rising|Marvel Now! Point One/.test(title)),
+        JSON.stringify(reloaded.rows.slice(163, 173)));
+      t.check('Kamala browse, preview, import and reload made no external request or browser error',
+        externalRequests.length === 0 && errors.length === 0,
+        JSON.stringify({ externalRequests: externalRequests.slice(0, 3), errors: errors.slice(0, 3) }));
     },
   },
   {
