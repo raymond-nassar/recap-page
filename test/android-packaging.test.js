@@ -204,7 +204,8 @@ test('Android assets preserve every catalog payload and the shared feature modul
       }
     }
     await compareData();
-    for (const name of ['js/main.js', 'js/storage.js', 'js/reader.js', 'js/lib/model.js', 'js/lib/download.js', 'js/views/recovery.js', 'open.js', 'styles.css']) {
+    for (const name of ['js/main.js', 'js/storage.js', 'js/reader.js', 'js/lib/issuePageUrl.js',
+      'js/lib/model.js', 'js/lib/download.js', 'js/views/recovery.js', 'open.js', 'styles.css']) {
       assert.deepEqual(await readFile(join(output, name)), await readFile(join('src', name)), name);
     }
     const generated = await readFile(join(output, 'index.html'), 'utf8');
@@ -225,6 +226,12 @@ test('Android assets preserve every catalog payload and the shared feature modul
     for (const name of ['launcher.js', 'reader.js']) {
       assert.deepEqual(await readFile(join(output, 'android', name)), await readFile(join('packaging', 'android', 'web', name)));
     }
+    const launcherModule = await readFile(join(output, 'android', 'launcher.js'), 'utf8');
+    for (const match of launcherModule.matchAll(/^import .* from '(\.\.\/[^']+)';$/gm)) {
+      await assert.doesNotReject(readFile(join(output, 'android', match[1])),
+        `generated launcher import must resolve: ${match[1]}`);
+    }
+    assert.match(launcherModule, /import \{ issuePageUrl \} from '\.\.\/js\/lib\/issuePageUrl\.js'/);
     await assert.rejects(readFile(join(output, 'dev-faults.html')), { code: 'ENOENT' });
   } finally {
     await rm(scratch, { recursive: true, force: true });
