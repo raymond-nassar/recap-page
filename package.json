@@ -35,6 +35,7 @@
     "msix:inspect": "node scripts/inspect-msix.mjs",
     "msix:prove": "node scripts/msix-proof.mjs",
     "store:assets": "node scripts/capture-store-assets.mjs",
+    "play:assets": "node scripts/capture-play-assets.mjs",
     "store:check": "node scripts/check-store-submission.mjs",
     "browser": "node scripts/browser-check.mjs",
     "android:prepare": "node scripts/prepare-android.mjs",

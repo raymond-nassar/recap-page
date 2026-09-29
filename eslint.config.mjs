@@ -122,6 +122,7 @@ export default [
       'scripts/browser-markdown-export.mjs',
       'scripts/browser-order-export.mjs',
       'scripts/capture-store-assets.mjs',
+      'scripts/capture-play-assets.mjs',
       'scripts/upgrade-check.mjs',
     ],
     languageOptions: { globals: { ...globals.node, ...globals.browser } },

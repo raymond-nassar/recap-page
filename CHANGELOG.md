@@ -13,6 +13,14 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Generate original Play asset previews without reader data
+
+Maintainer tooling now draws the original icon and feature artwork and captures two cover-free
+Android layouts with wholly fictional lists and progress. Output includes source and image hashes
+and explicitly identifies desktop Edge rendering, not native Android or approved Store screenshots.
+No account, signing, upload or publication decision is made, and app behavior and saved data are
+unchanged. See [the preview guide](docs/GOOGLE_PLAY_ASSETS.md).
+
 ### Identify builds without coupling platform releases
 
 Packaged About screens now identify the platform build and source revision separately from the

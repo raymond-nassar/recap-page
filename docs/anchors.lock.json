@@ -1984,13 +1984,13 @@
     "fp": "e9a1e74dee2c791e",
     "head": "// The publication gate answered a question that only gets asked once, and it was asked on"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:4252-4263|0": {
-    "anchor": "CHANGELOG.md:4252-4263",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:4260-4271|0": {
+    "anchor": "CHANGELOG.md:4260-4271",
     "fp": "7ebb6ef43a1f1241",
     "head": "- **The project now watches its own development tooling for known security problems, and says how"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:4265-4275|0": {
-    "anchor": "CHANGELOG.md:4265-4275",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:4273-4283|0": {
+    "anchor": "CHANGELOG.md:4273-4283",
     "fp": "c37eedd88ad1c81c",
     "head": "- **The project now has a published security policy, which names a private route for reporting a"
   },
@@ -6119,8 +6119,8 @@
     "fp": "0c786a4a0e0b5b8d",
     "head": "//   MAJOR  marks a substantial new product generation. It is also required when stored data"
   },
-  "SECURITY.md|what-this-project-is-because-it-decides-what-a-v|package.json:51-55|0": {
-    "anchor": "package.json:51-55",
+  "SECURITY.md|what-this-project-is-because-it-decides-what-a-v|package.json:52-56|0": {
+    "anchor": "package.json:52-56",
     "fp": "c9119e95ddb6adfa",
     "head": "\"devDependencies\": {"
   },
