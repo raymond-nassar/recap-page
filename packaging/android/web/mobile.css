@@ -145,6 +145,27 @@ body:has(#android-list-sheet[open]) { overflow: hidden; }
   #reading-filters { padding: var(--space-3) var(--space-2); }
 }
 
+@media (max-width: 700px) {
+  .catalog-card-main { flex-wrap: wrap; gap: 0 var(--space-5); }
+  .catalog-card-text { display: contents; }
+  .catalog-card .ocard-art { margin-bottom: var(--space-4); }
+  .catalog-card-title {
+    flex: 1 1 0; min-width: min-content; max-width: 100%; margin-bottom: var(--space-4);
+  }
+  .catalog-card-text > :not(.catalog-card-title) { flex: 0 0 100%; min-width: 0; }
+  .catalog-card-text > .timeline-position-current { order: -1; }
+
+  .timeline-era .timeline-year-row { padding-left: 0; }
+  .timeline-year-marker::before {
+    left: calc(var(--timeline-axis) - var(--space-9) + 1px);
+    width: calc(var(--space-9) - var(--timeline-axis) - var(--space-3));
+  }
+  .timeline-year-marker::after, .timeline-year-marker.is-empty::after {
+    left: calc(var(--timeline-axis) - var(--space-9) + 1px);
+    transform: translateX(-50%);
+  }
+}
+
 @media (max-width: 480px) {
   .hero .cta > .btn, .chero .cta > .btn { width: 100%; justify-content: center; }
   .facts { gap: var(--space-6); }

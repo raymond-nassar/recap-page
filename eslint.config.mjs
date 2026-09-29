@@ -116,6 +116,7 @@ export default [
     files: [
       'scripts/browser-check.mjs',
       'scripts/browser-android.mjs',
+      'scripts/browser-android-catalog-cards.mjs',
       'scripts/browser-defer.mjs',
       'scripts/browser-preview-scroll-452.mjs',
       'scripts/browser-source-credits.mjs',

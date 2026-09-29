@@ -13,6 +13,13 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Give mobile catalog descriptions room to read
+
+On compact Android screens, catalog descriptions, issue counts and source credits now use
+the card's full inner width below its artwork and title. Timeline cards lose a redundant
+indent while keeping the year markers and chronological structure. Text size, complete
+descriptions in Preview, actions, desktop layout and saved reading progress are unchanged.
+
 ### Match the mobile Marvel Ages action to other touch targets
 
 The Android action to browse all Modern Age Reading Lists now has the same 48px minimum
