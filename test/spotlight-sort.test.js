@@ -93,6 +93,7 @@ test('popularity sorting keeps the ranked stories first and the rest in their cu
     'Doctor Octopus / Otto Octavius',
     'Thunderbolts',
     'Nebula',
+    'Hawkeye (Clint Barton and Kate Bishop)',
     'Agents of Atlas',
     'White Tiger: Ava Ayala',
     'Phalanx',

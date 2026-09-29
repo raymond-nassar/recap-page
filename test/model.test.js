@@ -1098,10 +1098,11 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // Hope Summers adds six distinct unresolved source originals.
   // Silk adds seven original digital chapters as distinct, unlinked placeholders.
   // Infinity adds seventeen placeholders and eleven known-ID records with refused optional details.
-  assert.equal(claimed, 1065, 'the payload placeholder total moved; re-derive the figures in the record');
-  assert.equal(placeholders, 1065, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
-  assert.equal(empty, 211);
-  assert.equal(affected, 19);
+  // Hawkeye adds one unresolved original and six known-ID optional-detail refusals.
+  assert.equal(claimed, 1066, 'the payload placeholder total moved; re-derive the figures in the record');
+  assert.equal(placeholders, 1066, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
+  assert.equal(empty, 217);
+  assert.equal(affected, 20);
 });
 
 // Every check above passes with the import path reverted, because they all call the counter
@@ -1336,7 +1337,7 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // Silk contributes seven more distinct original digital source-position placeholders.
   // Infinity adds seventeen distinct placeholders; its eleven positive-ID detail refusals
   // are imported under the existing merge behavior, even where another guide has metadata.
-  assert.equal(refused.length, 1295);
+  assert.equal(refused.length, 1296);
   const infinity = JSON.parse(readFileSync(join(dataDir,
     'marvels_infinity_saga_gauntlet_wars_crusade_reading_order.json'), 'utf8'));
   assert.equal(infinity.items.filter((item) => item.detailsRefused && item.issueId > 0).length, 11);

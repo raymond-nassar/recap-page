@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-29T02:52:47.158Z",
+  "generatedAt": "2026-09-29T06:20:20.617Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -2277,6 +2277,51 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-09-29T00:59:21.271Z"
+    },
+    {
+      "id": "hawkeye-reading-order",
+      "file": "hawkeye_reading_order.json",
+      "name": "Hawkeye (Clint Barton and Kate Bishop)",
+      "description": "Follow Clint Barton and Kate Bishop through their solo and team stories in Comic Book Herald's selected Hawkeye reading order.",
+      "type": "character-run",
+      "depth": "partial",
+      "spotlightKind": "other",
+      "count": 663,
+      "placeholderCount": 1,
+      "emptyRecordCount": 6,
+      "collections": 76,
+      "characters": [
+        "Hawkeye",
+        "Clint Barton",
+        "Kate Bishop",
+        "Mockingbird",
+        "Avengers",
+        "Young Avengers"
+      ],
+      "keywords": [
+        "Hawkeye",
+        "Clint Barton",
+        "Kate Bishop",
+        "Hawkguy",
+        "Mockingbird",
+        "Avengers",
+        "Young Avengers",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 42768,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/51a515296fe75",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/hawkeye-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-09-29T06:20:20.617Z"
     },
     {
       "id": "doctor-strange-multiverse-of-madness",

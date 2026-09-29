@@ -139,12 +139,13 @@ test('Nebula approved relationship report preserves all 187 reviewed orders', as
   const manifest = await readJson('src/data/curated-lists.json');
   const expectedOrderIds = manifest.lists
     .filter((row) => row.id !== id && row.id !== 'hope-summers-reading-order'
-      && row.id !== 'x-23-reading-order' && row.id !== 'silk-cindy-moon-reading-order'
+      && row.id !== 'x-23-reading-order' && row.id !== 'hawkeye-reading-order'
+      && row.id !== 'silk-cindy-moon-reading-order'
       && row.id !== 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order')
     .map((row) => row.id);
   const regenerated = await buildReportForMapping(`scripts/data/cbh-mappings/${id}.json`, [], {
     excludedOrderIds: ['hope-summers-reading-order', 'x-23-reading-order',
-      'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order'],
+      'hawkeye-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order'],
   });
   assert.deepEqual(regenerated, report);
   assert.doesNotThrow(() => validateReportDigest(report));
@@ -191,9 +192,11 @@ test('Nebula ships the full vector without placeholders and credits the exact so
   assert.deepEqual(payload.items.filter((row) => [78699, 78700].includes(row.issueId))
     .map((row) => row.collectedIn), ['Nebula (2020) #1-2', 'Nebula (2020) #1-2']);
   assert.equal(manifest.lists[manifestIndex - 1].id, 'thunderbolts-reading-order');
-  assert.equal(manifest.lists[manifestIndex + 1].id, packet.insertionAnchor.beforeId);
+  assert.equal(manifest.lists[manifestIndex + 1].id, 'hawkeye-reading-order');
+  assert.equal(manifest.lists[manifestIndex + 2].id, packet.insertionAnchor.beforeId);
   assert.equal(catalog.lists[catalogIndex - 1].id, 'thunderbolts-reading-order');
-  assert.equal(catalog.lists[catalogIndex + 1].id, packet.insertionAnchor.beforeId);
+  assert.equal(catalog.lists[catalogIndex + 1].id, 'hawkeye-reading-order');
+  assert.equal(catalog.lists[catalogIndex + 2].id, packet.insertionAnchor.beforeId);
   assert.deepEqual(parsed.entries.map((row) => row.issueId), approvedIssueIds);
   assert.equal(parsed.unresolved.length, 0);
   assert.deepEqual(payload.items.map((row) => row.issueId), approvedIssueIds);

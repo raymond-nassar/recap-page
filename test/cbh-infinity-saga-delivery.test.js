@@ -197,13 +197,16 @@ test('Infinity Saga admission and relationship review stay current under Across 
   assert.equal(report.comparisons.find((row) => row.orderId === 'silk-cindy-moon-reading-order')
     .relationship, 'none');
   assert.equal(report.comparisonCount, 191);
-  const current = await buildReportForMapping(mappingPath, [], { excludedOrderIds: [] });
+  const current = await buildReportForMapping(mappingPath, [], {
+    excludedOrderIds: ['hawkeye-reading-order'],
+  });
   assert.deepEqual(current, report);
   assert.equal(mapping.relationshipReview?.approvalDigest,
     'd7b650a9cef9cc080cc3eb27e86a51a4b82696090a095223c750ff269d3e11ab');
   assert.doesNotThrow(() => assertApprovedRelationshipReview({
     packet, mapping, report, currentLibraryDigest: current.libraryDigest,
-    expectedOrderIds: manifest.lists.filter((row) => row.id !== id).map((row) => row.id),
+    expectedOrderIds: manifest.lists.filter((row) =>
+      row.id !== id && row.id !== 'hawkeye-reading-order').map((row) => row.id),
   }));
 });
 
@@ -212,7 +215,8 @@ test('Infinity Saga authoring rejects a pending in-memory mapping', () => {
   assert.throws(() => buildMarkdown(pending), /not approved/);
   assert.throws(() => assertApprovedRelationshipReview({
     packet, mapping: pending, report, currentLibraryDigest: report.libraryDigest,
-    expectedOrderIds: manifest.lists.filter((row) => row.id !== id).map((row) => row.id),
+    expectedOrderIds: manifest.lists.filter((row) =>
+      row.id !== id && row.id !== 'hawkeye-reading-order').map((row) => row.id),
   }), /not approved/);
 });
 
@@ -247,7 +251,7 @@ test('Infinity Saga pinned payload and catalog preserve Storylines discovery and
   assert.equal(entry.source, ledger.sourceUrl);
   assert.equal(catalog.lists.filter((row) => row.type === 'event').length, 188);
   assert.equal(catalog.lists.filter((row) => row.type === 'era').length, 9);
-  assert.equal(catalog.lists.filter((row) => row.type === 'character-run').length, 62);
+  assert.equal(catalog.lists.filter((row) => row.type === 'character-run').length, 63);
   const normalized = parseCatalog(catalog);
   const storylines = shelfStories(groupCatalog(normalized.lists), 'lines');
   const acrossEras = decadeSections(storylines).find((section) => section.key === 'across-eras');

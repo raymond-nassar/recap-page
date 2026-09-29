@@ -48,6 +48,11 @@ from promotion. Windows Store submission now requires an explicit protected Wind
 publishing an Android or GitHub release does not start it. No release, signing identity, reader
 behavior or saved data changes as part of this groundwork.
 
+### Add the Clint Barton and Kate Bishop Hawkeye reading guide
+
+A credited Hawkeye guide follows both characters through 663 entries in the source's selected
+order. One original comic remains an explicit metadata gap, while six exact issues with unavailable
+optional details remain in the list rather than disappearing. Existing saved progress is unchanged.
 ### Follow Silk from her origin through solo adventures and team-ups
 
 Adds a Silk / Cindy Moon Reading List credited and linked to Comic Book Herald. It keeps

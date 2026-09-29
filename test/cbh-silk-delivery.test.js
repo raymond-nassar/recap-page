@@ -91,10 +91,12 @@ test('Silk retains original volumes, section order, narrower cuts and qualified 
 test('Silk retains the approved relationships against every current library peer', async () => {
   const library = await loadLibrarySnapshot();
   const current = await buildReportForMapping(`scripts/data/cbh-mappings/${id}.json`, [], {
-    excludedOrderIds: ['marvels-infinity-saga-gauntlet-wars-crusade-reading-order'],
+    excludedOrderIds: ['marvels-infinity-saga-gauntlet-wars-crusade-reading-order',
+      'hawkeye-reading-order'],
   });
   const expectedOrderIds = library.lists.filter((entry) => entry.id !== id
-    && entry.id !== 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order')
+    && entry.id !== 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order'
+    && entry.id !== 'hawkeye-reading-order')
     .map((entry) => entry.id);
   assert.deepEqual(current, report);
   assert.doesNotThrow(() => validateReportDigest(report));
