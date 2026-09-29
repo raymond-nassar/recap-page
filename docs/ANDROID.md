@@ -8,6 +8,10 @@ The supported desktop installation and Windows release process are unchanged.
 For volunteer testers, share [the short Android beta checklist](ANDROID_BETA.md). It needs no
 development tools and separates ordinary reading checks from optional throwaway-data restore tests.
 
+For maintainers, [Google Play asset previews](GOOGLE_PLAY_ASSETS.md) documents original artwork and
+fictional, cover-free phone layouts. Desktop-rendered previews are not native device acceptance
+or an approved Play listing.
+
 **Android viability is not yet confirmed on a physical device.** Building an APK and checking
 its web screens in a desktop browser do not prove Android file pickers, background recovery,
 or Marvel Unlimited reader compatibility. Complete the device checks below before distributing it.
@@ -48,8 +52,10 @@ the full breadcrumb trail. These changes do not alter the desktop app or saved d
 
 ### Marvel Unlimited app links
 
-**Read** opens the isolated local launcher immediately. If the digital issue ID is missing, that
-launcher first asks the configured metadata service for it. It then asks Marvel's anonymous
+**Read** opens the isolated local launcher immediately. With no recorded digital issue ID and
+a matching exact Marvel issue page whose metadata lookup was already refused, it opens that
+page in a browser without another lookup. Otherwise, if the digital issue ID is missing, the
+launcher asks the configured metadata service for it. It then asks Marvel's anonymous
 Bifrost legacy resolver for the app's issue identifier and opens only a validated issue link in
 the `com.marvel.unlimited` package. The combined lookup has an eight-second timeout; empty,
 ambiguous or invalid results and failed requests leave an explanation rather than a guessed link.
@@ -66,8 +72,9 @@ the comic's domain, so an approved app-link handler or a default browser cannot 
 browser choices. The actual comic URL is attached only to the selected browser's launch.
 
 This does not sign in to Marvel, embed comic pages, or verify what Marvel's app rendered.
-Opening the app is not proof that the comic loaded. The existing manual **Done, next** action
-still records progress. Desktop launching is unchanged.
+Opening the app or issue page is not proof that the comic loaded. The existing manual
+**Done, next** action still records progress. Desktop uses the same validated issue-page
+fallback without a redundant metadata lookup.
 
 The additional request sends the digital ID and exposes the network address to
 `bifrost.marvel.com`; it omits credentials and referrers and uses no-store. Recap Page does not

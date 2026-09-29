@@ -1,0 +1,2564 @@
+{
+  "schemaVersion": 1,
+  "id": "ms-marvel-kamala-khan-reading-order",
+  "sourceUrl": "https://www.comicbookherald.com/ms-marvel-kamala-khan-reading-order/",
+  "sourceEndpoint": "https://www.comicbookherald.com/wp-json/wp/v2/posts?slug=ms-marvel-kamala-khan-reading-order",
+  "sourcePostId": 42940,
+  "sourceRetrievedAt": "2026-09-29",
+  "sourceLastModified": "2024-02-05T12:51:27",
+  "scopeIssue": "https://github.com/raymond-nassar/recap-page/issues/595",
+  "sourceBoundary": "The complete four-section article from Ms. Marvel (2014) #1-5 and the separately identified Point One material through Ms. Marvel: The New Mutant #1-4 in Latest Additions. No linked external guide, unnumbered collection pointer, collected fragment or narrative synopsis expands the whole-issue selection.",
+  "sourceContentSha256": "926cceba8a902833fddf9146ec613cc3916819abda871c8c3fe4ac14829a4613",
+  "observedSnapshot": {
+    "retrievedAt": "2026-09-29T07:55:01.986Z",
+    "httpStatus": 200,
+    "rawResponseBytes": 53987,
+    "rawResponseSha256": "7b91fb3060531f4b8220750d43d6794dce47a4ffa60103c61254435bbbf6144f",
+    "renderedContentBytes": 34277,
+    "renderedContentSha256": "926cceba8a902833fddf9146ec613cc3916819abda871c8c3fe4ac14829a4613",
+    "factualProjectionSha256": "d0f5b78b524d4caba6472fc8eb3fe193487d35e9ecd4d84ec13ab3cadd957c41",
+    "factualProjectionNodeCount": 44
+  },
+  "hashDefinitions": {
+    "rawResponseSha256": "SHA-256 of the complete HTTP response body bytes for one public WordPress posts?slug= request, not the browser document.innerText and not a previous intake's hash.",
+    "renderedContentSha256": "SHA-256 of UTF-8 TextEncoder bytes of the same response's content.rendered string, not the JSON source bytes.",
+    "factualProjectionSha256": "SHA-256 of UTF-8 JSON.stringify of ordered {tag,text} nodes from DOMParser(content.rendered).body.children; text is textContent with all whitespace collapsed to one space and trimmed. Include H2/H3/H4 and paragraphs whose trimmed text starts with Collects, Issues, Reading order for this crossover, Fallen Friend, Marvel's Voices, Amazing Spider-Man #26, or Inhumans: Attilan Rising (case insensitive; Marvel's permits typographic apostrophe). Node order is retained. Re-fetched projection matched on two successive no-store requests; affiliate markup caused raw/content hashes to vary.",
+    "sourceReferenceProjectionSha256": "SHA-256 of UTF-8 JSON.stringify of the 37 ordered article P textContent values after whitespace collapse and trim, selected by /^(Collects\\s*:|Issues\\s*:|Marvel.s Voices:|Fallen Friend:|Amazing Spider-Man #26$)/i, then stripping /^(Collects|Issues)\\s*:\\s*/i. This fresh public WordPress projection matches the 37 ordered ledger reference strings byte-for-byte after canonical JSON serialization.",
+    "issueBearingBlocksSha256": "SHA-256 of UTF-8 canonical JSON with recursively sorted object keys and preserved array order over blocks projected to {section,kind,reference,runs}; computed from these factual references, not a digest of source article narrative.",
+    "expandedOccurrenceVectorSha256": "SHA-256 of UTF-8 canonical JSON over ordered expanded {series,workingOriginalYear,number} selected issue occurrences, including later repeats. This is a ledger-derived proposed vector, not a provider identity or vendor payload hash."
+  },
+  "sourceIssueBearingBlocksSha256": "8801f8a85fbff39de52e55efcc2dea7383a89d7b4d071f6f8bea0a7ebde7fad9",
+  "sourceReferenceProjectionSha256": "5a6559d9a50b7cd2b5a2a9d9fc68ca9a8740bfaaf40f8029bb990963f561e5f4",
+  "expandedOccurrenceVectorSha256": "55f8f1f8173160c7f55a0663b190b24c34aaeee808b5a11c634b7a5d225b0b1c",
+  "yearSemantics": "The second field of each run is a working original-publication year for disambiguation, not necessarily a year printed in the source or the configured provider's actual seriesYear. Explicit source title/year is preserved in each block's raw reference; the provider's actual volume year is separately resolved in the packet and mapping. A null working year is unresolved, never a fabricated provider volume.",
+  "sectionOccurrenceCounts": {
+    "Ms. Marvel Reading Order": 19,
+    "Kamala the Avenger!": 95,
+    "A New Era for Kamala (2019 - Present)": 53,
+    "Latest Additions:": 29
+  },
+  "sourceBlockCount": 37,
+  "sourceOccurrenceCount": 196,
+  "canonicalIssueCount": 192,
+  "repeatedOccurrenceCount": 4,
+  "fragmentsAndExcludedReferences": [
+    {
+      "sourceSection": "Ms. Marvel Reading Order",
+      "rawReference": "Material from Marvel Now! Point One",
+      "disposition": "fragment-only, zero whole-issue rows",
+      "verifiedOriginal": "Material from All-New Marvel NOW! Point One (2014) #1, distinct from the earlier similarly named Marvel NOW! Point One.",
+      "evidence": "https://leagueofcomicgeeks.com/comic/3583274/ms-marvel-vol-1-hc"
+    },
+    {
+      "sourceSection": "Ms. Marvel Reading Order",
+      "rawReference": "Material from Amazing Spider-Man (2014) 7-8",
+      "disposition": "fragment-only, no inferred whole Amazing Spider-Man rows"
+    },
+    {
+      "sourceSection": "Ms. Marvel Reading Order",
+      "rawReference": "Inhumans: Attilan Rising",
+      "disposition": "unnumbered Battleworld collection pointer, no invented #1-5"
+    },
+    {
+      "sourceSection": "All",
+      "rawReference": "Related Carol Danvers, Inhumans and Miles Morales guides; Infinity, Secret Wars, Civil War II, Secret Empire, War of the Realms, Outlawed and Dark Web reading-order links",
+      "disposition": "navigation/context only; no external issue sequences imported"
+    },
+    {
+      "sourceSection": "A New Era for Kamala (2019 - Present)",
+      "rawReference": "Champions by Jim Zub is described as including War of the Realms tie-ins",
+      "disposition": "description is not an additional numbered selection beyond Champions (2019) #1-6"
+    },
+    {
+      "sourceSection": "Latest Additions:",
+      "rawReference": "Marvel Rising collection and Ms. Marvel: Fists of Justice collection",
+      "disposition": "collection titles are grouping labels, not separate comic issues; their individually named originals are selected"
+    }
+  ],
+  "blocks": [
+    {
+      "section": "Ms. Marvel Reading Order",
+      "kind": "Collects",
+      "reference": "Ms. Marvel (2014) #1 to #5, Material from Marvel Now! Point One",
+      "runs": [
+        [
+          "Ms. Marvel",
+          2014,
+          "1-5"
+        ]
+      ],
+      "sourceBlock": 1,
+      "sourceCollectionTitle": "Ms. Marvel Volume 1: No Normal",
+      "selectedRange": "Ms. Marvel (2014) #1-5",
+      "displayReference": "Ms. Marvel Reading Order | Ms. Marvel Volume 1: No Normal: Ms. Marvel (2014) #1-5",
+      "firstSourcePosition": 1,
+      "selectedOccurrenceCount": 5
+    },
+    {
+      "section": "Ms. Marvel Reading Order",
+      "kind": "Collects",
+      "reference": "Ms. Marvel (2014) 6-11",
+      "runs": [
+        [
+          "Ms. Marvel",
+          2014,
+          "6-11"
+        ]
+      ],
+      "sourceBlock": 2,
+      "sourceCollectionTitle": "Ms. Marvel Volume 2: Generation Why",
+      "selectedRange": "Ms. Marvel (2014) #6-11",
+      "displayReference": "Ms. Marvel Reading Order | Ms. Marvel Volume 2: Generation Why: Ms. Marvel (2014) #6-11",
+      "firstSourcePosition": 6,
+      "selectedOccurrenceCount": 6
+    },
+    {
+      "section": "Ms. Marvel Reading Order",
+      "kind": "Collects",
+      "reference": "Ms. Marvel (2014) 12-15",
+      "runs": [
+        [
+          "Ms. Marvel",
+          2014,
+          "12-15"
+        ]
+      ],
+      "sourceBlock": 3,
+      "sourceCollectionTitle": "Ms. Marvel Volume 3: Crushed",
+      "selectedRange": "Ms. Marvel (2014) #12-15",
+      "displayReference": "Ms. Marvel Reading Order | Ms. Marvel Volume 3: Crushed: Ms. Marvel (2014) #12-15",
+      "firstSourcePosition": 12,
+      "selectedOccurrenceCount": 4
+    },
+    {
+      "section": "Ms. Marvel Reading Order",
+      "kind": "Collects",
+      "reference": "Ms. Marvel (2014) 16-19, Material from Amazing Spider-Man (2014) 7-8",
+      "runs": [
+        [
+          "Ms. Marvel",
+          2014,
+          "16-19"
+        ]
+      ],
+      "sourceBlock": 4,
+      "sourceCollectionTitle": "Ms. Marvel Volume 4: Last Days",
+      "selectedRange": "Ms. Marvel (2014) #16-19",
+      "displayReference": "Ms. Marvel Reading Order | Ms. Marvel Volume 4: Last Days: Ms. Marvel (2014) #16-19",
+      "firstSourcePosition": 16,
+      "selectedOccurrenceCount": 4
+    },
+    {
+      "section": "Kamala the Avenger!",
+      "kind": "Issues",
+      "reference": "Avengers #0 to #6",
+      "runs": [
+        [
+          "Avengers (2015 standalone anthology)",
+          2015,
+          "0"
+        ],
+        [
+          "All-New, All-Different Avengers",
+          2015,
+          "1-6"
+        ]
+      ],
+      "sourceBlock": 5,
+      "sourceCollectionTitle": "All-New All-Different Avengers Vol. 1: The Magnificent Seven",
+      "selectedRange": "Avengers (2015) #0; All-New, All-Different Avengers (2015) #1-6",
+      "displayReference": "Kamala the Avenger! | All-New All-Different Avengers Vol. 1: The Magnificent Seven: Avengers (2015) #0; All-New, All-Different Avengers (2015) #1-6",
+      "firstSourcePosition": 20,
+      "selectedOccurrenceCount": 7
+    },
+    {
+      "section": "Kamala the Avenger!",
+      "kind": "Collects",
+      "reference": "Ms. Marvel 1-6",
+      "runs": [
+        [
+          "Ms. Marvel",
+          2015,
+          "1-6"
+        ]
+      ],
+      "sourceBlock": 6,
+      "sourceCollectionTitle": "Ms. Marvel Vol. 5: Super Famous",
+      "selectedRange": "Ms. Marvel (2015) #1-6",
+      "displayReference": "Kamala the Avenger! | Ms. Marvel Vol. 5: Super Famous: Ms. Marvel (2015) #1-6",
+      "firstSourcePosition": 27,
+      "selectedOccurrenceCount": 6
+    },
+    {
+      "section": "Kamala the Avenger!",
+      "kind": "Collects",
+      "reference": "All-New, All-Different Avengers 7-12",
+      "runs": [
+        [
+          "All-New, All-Different Avengers",
+          2015,
+          "7-12"
+        ]
+      ],
+      "sourceBlock": 7,
+      "sourceCollectionTitle": "All-New, All-Different Avengers Vol. 2: Family Business",
+      "selectedRange": "All-New, All-Different Avengers (2015) #7-12",
+      "displayReference": "Kamala the Avenger! | All-New, All-Different Avengers Vol. 2: Family Business: All-New, All-Different Avengers (2015) #7-12",
+      "firstSourcePosition": 33,
+      "selectedOccurrenceCount": 6
+    },
+    {
+      "section": "Kamala the Avenger!",
+      "kind": "Collects",
+      "reference": "Ms. Marvel 7-12",
+      "runs": [
+        [
+          "Ms. Marvel",
+          2015,
+          "7-12"
+        ]
+      ],
+      "sourceBlock": 8,
+      "sourceCollectionTitle": "Ms. Marvel Vol. 6: Civil War II",
+      "selectedRange": "Ms. Marvel (2015) #7-12",
+      "displayReference": "Kamala the Avenger! | Ms. Marvel Vol. 6: Civil War II: Ms. Marvel (2015) #7-12",
+      "firstSourcePosition": 39,
+      "selectedOccurrenceCount": 6
+    },
+    {
+      "section": "Kamala the Avenger!",
+      "kind": "Collects",
+      "reference": "All-New, All-Different Avengers 13-15, Annual",
+      "runs": [
+        [
+          "All-New, All-Different Avengers",
+          2015,
+          "13-15"
+        ],
+        [
+          "All-New, All-Different Avengers Annual",
+          2016,
+          "1"
+        ]
+      ],
+      "sourceBlock": 9,
+      "sourceCollectionTitle": "All-New, All-Different Avengers Vol. 3: Civil War II",
+      "selectedRange": "All-New, All-Different Avengers (2015) #13-15; All-New, All-Different Avengers Annual (2016) #1",
+      "displayReference": "Kamala the Avenger! | All-New, All-Different Avengers Vol. 3: Civil War II: All-New, All-Different Avengers (2015) #13-15; All-New, All-Different Avengers Annual (2016) #1",
+      "firstSourcePosition": 45,
+      "selectedOccurrenceCount": 4
+    },
+    {
+      "section": "Kamala the Avenger!",
+      "kind": "Collects",
+      "reference": "Champions 1-6",
+      "runs": [
+        [
+          "Champions",
+          2016,
+          "1-6"
+        ]
+      ],
+      "sourceBlock": 10,
+      "sourceCollectionTitle": "Champions Vol. 1: Change the World",
+      "selectedRange": "Champions (2016) #1-6",
+      "displayReference": "Kamala the Avenger! | Champions Vol. 1: Change the World: Champions (2016) #1-6",
+      "firstSourcePosition": 49,
+      "selectedOccurrenceCount": 6
+    },
+    {
+      "section": "Kamala the Avenger!",
+      "kind": "Collects",
+      "reference": "Ms. Marvel 13-18",
+      "runs": [
+        [
+          "Ms. Marvel",
+          2015,
+          "13-18"
+        ]
+      ],
+      "sourceBlock": 11,
+      "sourceCollectionTitle": "Ms. Marvel Vol. 7",
+      "selectedRange": "Ms. Marvel (2015) #13-18",
+      "displayReference": "Kamala the Avenger! | Ms. Marvel Vol. 7: Ms. Marvel (2015) #13-18",
+      "firstSourcePosition": 55,
+      "selectedOccurrenceCount": 6
+    },
+    {
+      "section": "Kamala the Avenger!",
+      "kind": "Collects",
+      "reference": "Secret Warriors #1 to #5",
+      "runs": [
+        [
+          "Secret Warriors",
+          2017,
+          "1-5"
+        ]
+      ],
+      "sourceBlock": 12,
+      "sourceCollectionTitle": "Secret Warriors Vol. 1: Secret Empire",
+      "selectedRange": "Secret Warriors (2017) #1-5",
+      "displayReference": "Kamala the Avenger! | Secret Warriors Vol. 1: Secret Empire: Secret Warriors (2017) #1-5",
+      "firstSourcePosition": 61,
+      "selectedOccurrenceCount": 5
+    },
+    {
+      "section": "Kamala the Avenger!",
+      "kind": "Collects",
+      "reference": "Secret Warriors #6 to #10",
+      "runs": [
+        [
+          "Secret Warriors",
+          2017,
+          "6-10"
+        ]
+      ],
+      "sourceBlock": 13,
+      "sourceCollectionTitle": "Secret Warriors Vol. 2: If Trouble Must Come",
+      "selectedRange": "Secret Warriors (2017) #6-10",
+      "displayReference": "Kamala the Avenger! | Secret Warriors Vol. 2: If Trouble Must Come: Secret Warriors (2017) #6-10",
+      "firstSourcePosition": 66,
+      "selectedOccurrenceCount": 5
+    },
+    {
+      "section": "Kamala the Avenger!",
+      "kind": "Collects",
+      "reference": "Champions 6-11",
+      "runs": [
+        [
+          "Champions",
+          2016,
+          "6-11"
+        ]
+      ],
+      "sourceBlock": 14,
+      "sourceCollectionTitle": "Champions Vol. 2: The Freelancer Lifestyle",
+      "selectedRange": "Champions (2016) #6-11",
+      "displayReference": "Kamala the Avenger! | Champions Vol. 2: The Freelancer Lifestyle: Champions (2016) #6-11",
+      "firstSourcePosition": 71,
+      "selectedOccurrenceCount": 6
+    },
+    {
+      "section": "Kamala the Avenger!",
+      "kind": "Collects",
+      "reference": "Ms. Marvel 19-24",
+      "runs": [
+        [
+          "Ms. Marvel",
+          2015,
+          "19-24"
+        ]
+      ],
+      "sourceBlock": 15,
+      "sourceCollectionTitle": "Ms. Marvel Vol. 8: Mecca",
+      "selectedRange": "Ms. Marvel (2015) #19-24",
+      "displayReference": "Kamala the Avenger! | Ms. Marvel Vol. 8: Mecca: Ms. Marvel (2015) #19-24",
+      "firstSourcePosition": 77,
+      "selectedOccurrenceCount": 6
+    },
+    {
+      "section": "Kamala the Avenger!",
+      "kind": "Collects",
+      "reference": "Ms. Marvel 25-30",
+      "runs": [
+        [
+          "Ms. Marvel",
+          2015,
+          "25-30"
+        ]
+      ],
+      "sourceBlock": 16,
+      "sourceCollectionTitle": "Ms. Marvel Vol. 9: Teenage Wasteland",
+      "selectedRange": "Ms. Marvel (2015) #25-30",
+      "displayReference": "Kamala the Avenger! | Ms. Marvel Vol. 9: Teenage Wasteland: Ms. Marvel (2015) #25-30",
+      "firstSourcePosition": 83,
+      "selectedOccurrenceCount": 6
+    },
+    {
+      "section": "Kamala the Avenger!",
+      "kind": "Directed interleave overriding Collects",
+      "reference": "Avengers 672-674, Champions 13-15",
+      "sourceDirection": "Begin with Avengers #672 and alternate Champions and Avengers until Champions #15.",
+      "runs": [
+        [
+          "Avengers (legacy numbering)",
+          null,
+          "672"
+        ],
+        [
+          "Champions",
+          2016,
+          "13"
+        ],
+        [
+          "Avengers (legacy numbering)",
+          null,
+          "673"
+        ],
+        [
+          "Champions",
+          2016,
+          "14"
+        ],
+        [
+          "Avengers (legacy numbering)",
+          null,
+          "674"
+        ],
+        [
+          "Champions",
+          2016,
+          "15"
+        ]
+      ],
+      "sourceBlock": 17,
+      "sourceCollectionTitle": "Avengers & Champions: Worlds Collide",
+      "selectedRange": "Avengers (2016) #672; Champions (2016) #13; Avengers (2016) #673; Champions (2016) #14; Avengers (2016) #674; Champions (2016) #15",
+      "displayReference": "Kamala the Avenger! | Avengers & Champions: Worlds Collide: Avengers (2016) #672; Champions (2016) #13; Avengers (2016) #673; Champions (2016) #14; Avengers (2016) #674; Champions (2016) #15",
+      "firstSourcePosition": 89,
+      "selectedOccurrenceCount": 6
+    },
+    {
+      "section": "Kamala the Avenger!",
+      "kind": "Collects",
+      "reference": "Champions 16-21",
+      "runs": [
+        [
+          "Champions",
+          2016,
+          "16-21"
+        ]
+      ],
+      "sourceBlock": 18,
+      "sourceCollectionTitle": "Champions Vol. 3: Champion for a Day",
+      "selectedRange": "Champions (2016) #16-21",
+      "displayReference": "Kamala the Avenger! | Champions Vol. 3: Champion for a Day: Champions (2016) #16-21",
+      "firstSourcePosition": 95,
+      "selectedOccurrenceCount": 6
+    },
+    {
+      "section": "Kamala the Avenger!",
+      "kind": "Collects",
+      "reference": "Ms. Marvel 31-38",
+      "runs": [
+        [
+          "Ms. Marvel",
+          2015,
+          "31-38"
+        ]
+      ],
+      "sourceBlock": 19,
+      "sourceCollectionTitle": "Ms. Marvel Vol. 10",
+      "selectedRange": "Ms. Marvel (2015) #31-38",
+      "displayReference": "Kamala the Avenger! | Ms. Marvel Vol. 10: Ms. Marvel (2015) #31-38",
+      "firstSourcePosition": 101,
+      "selectedOccurrenceCount": 8
+    },
+    {
+      "section": "Kamala the Avenger!",
+      "kind": "Collects",
+      "reference": "Champions 19-24",
+      "runs": [
+        [
+          "Champions",
+          2016,
+          "19-24"
+        ]
+      ],
+      "sourceBlock": 20,
+      "sourceCollectionTitle": "Champions Vol. 4: Northern Lights",
+      "selectedRange": "Champions (2016) #19-24",
+      "displayReference": "Kamala the Avenger! | Champions Vol. 4: Northern Lights: Champions (2016) #19-24",
+      "firstSourcePosition": 109,
+      "selectedOccurrenceCount": 6
+    },
+    {
+      "section": "A New Era for Kamala (2019 - Present)",
+      "kind": "Collects",
+      "reference": "Exiles #1 to #6",
+      "runs": [
+        [
+          "Exiles",
+          2018,
+          "1-6"
+        ]
+      ],
+      "sourceBlock": 21,
+      "sourceCollectionTitle": "Exiles Vol. 1: Test Of Time",
+      "selectedRange": "Exiles (2018) #1-6",
+      "displayReference": "A New Era for Kamala (2019 - Present) | Exiles Vol. 1: Test Of Time: Exiles (2018) #1-6",
+      "firstSourcePosition": 115,
+      "selectedOccurrenceCount": 6
+    },
+    {
+      "section": "A New Era for Kamala (2019 - Present)",
+      "kind": "Collects",
+      "reference": "Exiles #7 to #12",
+      "runs": [
+        [
+          "Exiles",
+          2018,
+          "7-12"
+        ]
+      ],
+      "sourceBlock": 22,
+      "sourceCollectionTitle": "Exiles Vol. 2: The Trial Of The Exiles",
+      "selectedRange": "Exiles (2018) #7-12",
+      "displayReference": "A New Era for Kamala (2019 - Present) | Exiles Vol. 2: The Trial Of The Exiles: Exiles (2018) #7-12",
+      "firstSourcePosition": 121,
+      "selectedOccurrenceCount": 6
+    },
+    {
+      "section": "A New Era for Kamala (2019 - Present)",
+      "kind": "Collects",
+      "reference": "Champions (2019) #1-6",
+      "runs": [
+        [
+          "Champions",
+          2019,
+          "1-6"
+        ]
+      ],
+      "sourceBlock": 23,
+      "sourceCollectionTitle": "Champions by Jim Zub: Beat The Devil",
+      "selectedRange": "Champions (2019) #1-6",
+      "displayReference": "A New Era for Kamala (2019 - Present) | Champions by Jim Zub: Beat The Devil: Champions (2019) #1-6",
+      "firstSourcePosition": 127,
+      "selectedOccurrenceCount": 6
+    },
+    {
+      "section": "A New Era for Kamala (2019 - Present)",
+      "kind": "Collects",
+      "reference": "Magnificent Ms. Marvel (2019) #1-6",
+      "runs": [
+        [
+          "Magnificent Ms. Marvel",
+          2019,
+          "1-6"
+        ]
+      ],
+      "sourceBlock": 24,
+      "sourceCollectionTitle": "Ms. Marvel by Saladin Ahmed Vol. 1: Destined",
+      "selectedRange": "Magnificent Ms. Marvel (2019) #1-6",
+      "displayReference": "A New Era for Kamala (2019 - Present) | Ms. Marvel by Saladin Ahmed Vol. 1: Destined: Magnificent Ms. Marvel (2019) #1-6",
+      "firstSourcePosition": 133,
+      "selectedOccurrenceCount": 6
+    },
+    {
+      "section": "A New Era for Kamala (2019 - Present)",
+      "kind": "Collects",
+      "reference": "Marvel Team-Up (2019) #1-6",
+      "runs": [
+        [
+          "Marvel Team-Up",
+          2019,
+          "1-6"
+        ]
+      ],
+      "sourceBlock": 25,
+      "sourceCollectionTitle": "Ms. Marvel Team-Up",
+      "selectedRange": "Marvel Team-Up (2019) #1-6",
+      "displayReference": "A New Era for Kamala (2019 - Present) | Ms. Marvel Team-Up: Marvel Team-Up (2019) #1-6",
+      "firstSourcePosition": 139,
+      "selectedOccurrenceCount": 6
+    },
+    {
+      "section": "A New Era for Kamala (2019 - Present)",
+      "kind": "Collects",
+      "reference": "Magnificent Ms. Marvel (2019) 7-12",
+      "runs": [
+        [
+          "Magnificent Ms. Marvel",
+          2019,
+          "7-12"
+        ]
+      ],
+      "sourceBlock": 26,
+      "sourceCollectionTitle": "Ms. Marvel by Saladin Ahmed Vol. 2: Stormranger",
+      "selectedRange": "Magnificent Ms. Marvel (2019) #7-12",
+      "displayReference": "A New Era for Kamala (2019 - Present) | Ms. Marvel by Saladin Ahmed Vol. 2: Stormranger: Magnificent Ms. Marvel (2019) #7-12",
+      "firstSourcePosition": 145,
+      "selectedOccurrenceCount": 6
+    },
+    {
+      "section": "A New Era for Kamala (2019 - Present)",
+      "kind": "Collects",
+      "reference": "Magnificent Ms. Marvel (2019) 13-18",
+      "runs": [
+        [
+          "Magnificent Ms. Marvel",
+          2019,
+          "13-18"
+        ]
+      ],
+      "sourceBlock": 27,
+      "sourceCollectionTitle": "Ms. Marvel by Saladin Ahmed Vol. 3: Outlawed",
+      "selectedRange": "Magnificent Ms. Marvel (2019) #13-18",
+      "displayReference": "A New Era for Kamala (2019 - Present) | Ms. Marvel by Saladin Ahmed Vol. 3: Outlawed: Magnificent Ms. Marvel (2019) #13-18",
+      "firstSourcePosition": 151,
+      "selectedOccurrenceCount": 6
+    },
+    {
+      "section": "A New Era for Kamala (2019 - Present)",
+      "kind": "Collects",
+      "reference": "Outlawed (2020) 1, Champions (2020) 1-5",
+      "runs": [
+        [
+          "Outlawed",
+          2020,
+          "1"
+        ],
+        [
+          "Champions",
+          2020,
+          "1-5"
+        ]
+      ],
+      "sourceBlock": 28,
+      "sourceCollectionTitle": "Champions by Eve Ewing Vol. 1: Outlawed",
+      "selectedRange": "Outlawed (2020) #1; Champions (2020) #1-5",
+      "displayReference": "A New Era for Kamala (2019 - Present) | Champions by Eve Ewing Vol. 1: Outlawed: Outlawed (2020) #1; Champions (2020) #1-5",
+      "firstSourcePosition": 157,
+      "selectedOccurrenceCount": 6
+    },
+    {
+      "section": "A New Era for Kamala (2019 - Present)",
+      "kind": "Collects",
+      "collectionLabel": "Ms. Marvel: Beyond the Limit",
+      "reference": "#1 to #5",
+      "runs": [
+        [
+          "Ms. Marvel: Beyond the Limit",
+          null,
+          "1-5"
+        ]
+      ],
+      "sourceBlock": 29,
+      "sourceCollectionTitle": "Ms. Marvel: Beyond the Limit",
+      "selectedRange": "Ms. Marvel: Beyond the Limit #1-5",
+      "displayReference": "A New Era for Kamala (2019 - Present) | Ms. Marvel: Beyond the Limit: Ms. Marvel: Beyond the Limit #1-5",
+      "firstSourcePosition": 163,
+      "selectedOccurrenceCount": 5
+    },
+    {
+      "section": "Latest Additions:",
+      "kind": "Collects",
+      "reference": "Marvel Rising #0, Marvel Rising: Alpha, Marvel Rising: Squirrel Girl/Ms. Marvel, Marvel Rising: Ms. Marvel/Squirrel Girl, Marvel Rising: Omega",
+      "runs": [
+        [
+          "Marvel Rising",
+          2018,
+          "0"
+        ],
+        [
+          "Marvel Rising: Alpha",
+          2018,
+          "1"
+        ],
+        [
+          "Marvel Rising: Squirrel Girl/Ms. Marvel",
+          2018,
+          "1"
+        ],
+        [
+          "Marvel Rising: Ms. Marvel/Squirrel Girl",
+          2018,
+          "1"
+        ],
+        [
+          "Marvel Rising: Omega",
+          2018,
+          "1"
+        ]
+      ],
+      "sourceBlock": 30,
+      "sourceCollectionTitle": "Marvel Rising",
+      "selectedRange": "Marvel Rising (2018) #0; Marvel Rising: Alpha (2018) #1; Marvel Rising: Squirrel Girl/Ms. Marvel (2018) #1; Marvel Rising: Ms. Marvel/Squirrel Girl (2018) #1; Marvel Rising: Omega (2018) #1",
+      "displayReference": "Latest Additions | Marvel Rising: Marvel Rising (2018) #0; Marvel Rising: Alpha (2018) #1; Marvel Rising: Squirrel Girl/Ms. Marvel (2018) #1; Marvel Rising: Ms. Marvel/Squirrel Girl (2018) #1; Marvel Rising: Omega (2018) #1",
+      "firstSourcePosition": 168,
+      "selectedOccurrenceCount": 5
+    },
+    {
+      "section": "Latest Additions:",
+      "kind": "Collects",
+      "reference": "Ms. Marvel & Wolverine #1, Ms. Marvel & Moon Knight #1, Ms. Marvel & Venom #1",
+      "runs": [
+        [
+          "Ms. Marvel & Wolverine",
+          null,
+          "1"
+        ],
+        [
+          "Ms. Marvel & Moon Knight",
+          null,
+          "1"
+        ],
+        [
+          "Ms. Marvel & Venom",
+          null,
+          "1"
+        ]
+      ],
+      "sourceBlock": 31,
+      "sourceCollectionTitle": "Ms. Marvel: Fists of Justice",
+      "selectedRange": "Ms. Marvel & Wolverine #1; Ms. Marvel & Moon Knight #1; Ms. Marvel & Venom #1",
+      "displayReference": "Latest Additions | Ms. Marvel: Fists of Justice: Ms. Marvel & Wolverine #1; Ms. Marvel & Moon Knight #1; Ms. Marvel & Venom #1",
+      "firstSourcePosition": 173,
+      "selectedOccurrenceCount": 3
+    },
+    {
+      "section": "Latest Additions:",
+      "kind": "Named standalone original (number corroboration required)",
+      "reference": "Marvel’s Voices: Pride (2022)",
+      "runs": [
+        [
+          "Marvel's Voices: Pride",
+          2022,
+          "1"
+        ]
+      ],
+      "sourceBlock": 32,
+      "sourceCollectionTitle": "Marvel's Voices: Pride (2022)",
+      "selectedRange": "Marvel's Voices: Pride (2022) #1",
+      "displayReference": "Latest Additions | Marvel's Voices: Pride (2022): Marvel's Voices: Pride (2022) #1",
+      "firstSourcePosition": 176,
+      "selectedOccurrenceCount": 1
+    },
+    {
+      "section": "Latest Additions:",
+      "kind": "Named standalone original (number corroboration required)",
+      "reference": "Marvel’s Voices: Identity (2022)",
+      "runs": [
+        [
+          "Marvel's Voices: Identity",
+          2022,
+          "1"
+        ]
+      ],
+      "sourceBlock": 33,
+      "sourceCollectionTitle": "Marvel's Voices: Identity (2022)",
+      "selectedRange": "Marvel's Voices: Identity (2022) #1",
+      "displayReference": "Latest Additions | Marvel's Voices: Identity (2022): Marvel's Voices: Identity (2022) #1",
+      "firstSourcePosition": 177,
+      "selectedOccurrenceCount": 1
+    },
+    {
+      "section": "Latest Additions:",
+      "kind": "Collects",
+      "reference": "Dark Web #1, Amazing Spider-Man (2022) #15 to #18, Venom (2021) #14 to #15, Dark Web: X-Men #1 to #3, Dark Web: Ms. Marvel #1 to #2, Dark Web Finale #1",
+      "runs": [
+        [
+          "Dark Web",
+          null,
+          "1"
+        ],
+        [
+          "Amazing Spider-Man",
+          2022,
+          "15-18"
+        ],
+        [
+          "Venom",
+          2021,
+          "14-15"
+        ],
+        [
+          "Dark Web: X-Men",
+          null,
+          "1-3"
+        ],
+        [
+          "Dark Web: Ms. Marvel",
+          null,
+          "1-2"
+        ],
+        [
+          "Dark Web Finale",
+          null,
+          "1"
+        ]
+      ],
+      "sourceBlock": 34,
+      "sourceCollectionTitle": "Dark Web: Ms. Marvel",
+      "selectedRange": "Dark Web #1; Amazing Spider-Man (2022) #15-18; Venom (2021) #14-15; Dark Web: X-Men #1-3; Dark Web: Ms. Marvel #1-2; Dark Web Finale #1",
+      "displayReference": "Latest Additions | Dark Web: Ms. Marvel: Dark Web #1; Amazing Spider-Man (2022) #15-18; Venom (2021) #14-15; Dark Web: X-Men #1-3; Dark Web: Ms. Marvel #1-2; Dark Web Finale #1",
+      "firstSourcePosition": 178,
+      "selectedOccurrenceCount": 13
+    },
+    {
+      "section": "Latest Additions:",
+      "kind": "Standalone",
+      "reference": "Amazing Spider-Man #26",
+      "runs": [
+        [
+          "Amazing Spider-Man",
+          2022,
+          "26"
+        ]
+      ],
+      "sourceBlock": 35,
+      "sourceCollectionTitle": "Amazing Spider-Man (2022) #26",
+      "selectedRange": "Amazing Spider-Man (2022) #26",
+      "displayReference": "Latest Additions | Amazing Spider-Man (2022) #26: Amazing Spider-Man (2022) #26",
+      "firstSourcePosition": 191,
+      "selectedOccurrenceCount": 1
+    },
+    {
+      "section": "Latest Additions:",
+      "kind": "Named standalone original (number corroboration required)",
+      "reference": "Fallen Friend: The Death of Ms. Marvel",
+      "runs": [
+        [
+          "Fallen Friend: The Death of Ms. Marvel",
+          2023,
+          "1"
+        ]
+      ],
+      "sourceBlock": 36,
+      "sourceCollectionTitle": "Fallen Friend: The Death of Ms. Marvel",
+      "selectedRange": "Fallen Friend: The Death of Ms. Marvel (2023) #1",
+      "displayReference": "Latest Additions | Fallen Friend: The Death of Ms. Marvel: Fallen Friend: The Death of Ms. Marvel (2023) #1",
+      "firstSourcePosition": 192,
+      "selectedOccurrenceCount": 1
+    },
+    {
+      "section": "Latest Additions:",
+      "kind": "Collects",
+      "reference": "Ms. Marvel: The New Mutant #1 to #4",
+      "runs": [
+        [
+          "Ms. Marvel: The New Mutant",
+          null,
+          "1-4"
+        ]
+      ],
+      "sourceBlock": 37,
+      "sourceCollectionTitle": "Ms. Marvel: The New Mutant",
+      "selectedRange": "Ms. Marvel: The New Mutant #1-4",
+      "displayReference": "Latest Additions | Ms. Marvel: The New Mutant: Ms. Marvel: The New Mutant #1-4",
+      "firstSourcePosition": 193,
+      "selectedOccurrenceCount": 4
+    }
+  ],
+  "occurrences": [
+    {
+      "sourcePosition": 1,
+      "sourceBlock": 1,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2014,
+      "issueNumber": "1",
+      "canonicalRow": 1
+    },
+    {
+      "sourcePosition": 2,
+      "sourceBlock": 1,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2014,
+      "issueNumber": "2",
+      "canonicalRow": 2
+    },
+    {
+      "sourcePosition": 3,
+      "sourceBlock": 1,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2014,
+      "issueNumber": "3",
+      "canonicalRow": 3
+    },
+    {
+      "sourcePosition": 4,
+      "sourceBlock": 1,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2014,
+      "issueNumber": "4",
+      "canonicalRow": 4
+    },
+    {
+      "sourcePosition": 5,
+      "sourceBlock": 1,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2014,
+      "issueNumber": "5",
+      "canonicalRow": 5
+    },
+    {
+      "sourcePosition": 6,
+      "sourceBlock": 2,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2014,
+      "issueNumber": "6",
+      "canonicalRow": 6
+    },
+    {
+      "sourcePosition": 7,
+      "sourceBlock": 2,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2014,
+      "issueNumber": "7",
+      "canonicalRow": 7
+    },
+    {
+      "sourcePosition": 8,
+      "sourceBlock": 2,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2014,
+      "issueNumber": "8",
+      "canonicalRow": 8
+    },
+    {
+      "sourcePosition": 9,
+      "sourceBlock": 2,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2014,
+      "issueNumber": "9",
+      "canonicalRow": 9
+    },
+    {
+      "sourcePosition": 10,
+      "sourceBlock": 2,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2014,
+      "issueNumber": "10",
+      "canonicalRow": 10
+    },
+    {
+      "sourcePosition": 11,
+      "sourceBlock": 2,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2014,
+      "issueNumber": "11",
+      "canonicalRow": 11
+    },
+    {
+      "sourcePosition": 12,
+      "sourceBlock": 3,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2014,
+      "issueNumber": "12",
+      "canonicalRow": 12
+    },
+    {
+      "sourcePosition": 13,
+      "sourceBlock": 3,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2014,
+      "issueNumber": "13",
+      "canonicalRow": 13
+    },
+    {
+      "sourcePosition": 14,
+      "sourceBlock": 3,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2014,
+      "issueNumber": "14",
+      "canonicalRow": 14
+    },
+    {
+      "sourcePosition": 15,
+      "sourceBlock": 3,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2014,
+      "issueNumber": "15",
+      "canonicalRow": 15
+    },
+    {
+      "sourcePosition": 16,
+      "sourceBlock": 4,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2014,
+      "issueNumber": "16",
+      "canonicalRow": 16
+    },
+    {
+      "sourcePosition": 17,
+      "sourceBlock": 4,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2014,
+      "issueNumber": "17",
+      "canonicalRow": 17
+    },
+    {
+      "sourcePosition": 18,
+      "sourceBlock": 4,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2014,
+      "issueNumber": "18",
+      "canonicalRow": 18
+    },
+    {
+      "sourcePosition": 19,
+      "sourceBlock": 4,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2014,
+      "issueNumber": "19",
+      "canonicalRow": 19
+    },
+    {
+      "sourcePosition": 20,
+      "sourceBlock": 5,
+      "originalTitle": "Avengers (2015 standalone anthology)",
+      "workingOriginalYear": 2015,
+      "issueNumber": "0",
+      "canonicalRow": 20
+    },
+    {
+      "sourcePosition": 21,
+      "sourceBlock": 5,
+      "originalTitle": "All-New, All-Different Avengers",
+      "workingOriginalYear": 2015,
+      "issueNumber": "1",
+      "canonicalRow": 21
+    },
+    {
+      "sourcePosition": 22,
+      "sourceBlock": 5,
+      "originalTitle": "All-New, All-Different Avengers",
+      "workingOriginalYear": 2015,
+      "issueNumber": "2",
+      "canonicalRow": 22
+    },
+    {
+      "sourcePosition": 23,
+      "sourceBlock": 5,
+      "originalTitle": "All-New, All-Different Avengers",
+      "workingOriginalYear": 2015,
+      "issueNumber": "3",
+      "canonicalRow": 23
+    },
+    {
+      "sourcePosition": 24,
+      "sourceBlock": 5,
+      "originalTitle": "All-New, All-Different Avengers",
+      "workingOriginalYear": 2015,
+      "issueNumber": "4",
+      "canonicalRow": 24
+    },
+    {
+      "sourcePosition": 25,
+      "sourceBlock": 5,
+      "originalTitle": "All-New, All-Different Avengers",
+      "workingOriginalYear": 2015,
+      "issueNumber": "5",
+      "canonicalRow": 25
+    },
+    {
+      "sourcePosition": 26,
+      "sourceBlock": 5,
+      "originalTitle": "All-New, All-Different Avengers",
+      "workingOriginalYear": 2015,
+      "issueNumber": "6",
+      "canonicalRow": 26
+    },
+    {
+      "sourcePosition": 27,
+      "sourceBlock": 6,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2015,
+      "issueNumber": "1",
+      "canonicalRow": 27
+    },
+    {
+      "sourcePosition": 28,
+      "sourceBlock": 6,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2015,
+      "issueNumber": "2",
+      "canonicalRow": 28
+    },
+    {
+      "sourcePosition": 29,
+      "sourceBlock": 6,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2015,
+      "issueNumber": "3",
+      "canonicalRow": 29
+    },
+    {
+      "sourcePosition": 30,
+      "sourceBlock": 6,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2015,
+      "issueNumber": "4",
+      "canonicalRow": 30
+    },
+    {
+      "sourcePosition": 31,
+      "sourceBlock": 6,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2015,
+      "issueNumber": "5",
+      "canonicalRow": 31
+    },
+    {
+      "sourcePosition": 32,
+      "sourceBlock": 6,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2015,
+      "issueNumber": "6",
+      "canonicalRow": 32
+    },
+    {
+      "sourcePosition": 33,
+      "sourceBlock": 7,
+      "originalTitle": "All-New, All-Different Avengers",
+      "workingOriginalYear": 2015,
+      "issueNumber": "7",
+      "canonicalRow": 33
+    },
+    {
+      "sourcePosition": 34,
+      "sourceBlock": 7,
+      "originalTitle": "All-New, All-Different Avengers",
+      "workingOriginalYear": 2015,
+      "issueNumber": "8",
+      "canonicalRow": 34
+    },
+    {
+      "sourcePosition": 35,
+      "sourceBlock": 7,
+      "originalTitle": "All-New, All-Different Avengers",
+      "workingOriginalYear": 2015,
+      "issueNumber": "9",
+      "canonicalRow": 35
+    },
+    {
+      "sourcePosition": 36,
+      "sourceBlock": 7,
+      "originalTitle": "All-New, All-Different Avengers",
+      "workingOriginalYear": 2015,
+      "issueNumber": "10",
+      "canonicalRow": 36
+    },
+    {
+      "sourcePosition": 37,
+      "sourceBlock": 7,
+      "originalTitle": "All-New, All-Different Avengers",
+      "workingOriginalYear": 2015,
+      "issueNumber": "11",
+      "canonicalRow": 37
+    },
+    {
+      "sourcePosition": 38,
+      "sourceBlock": 7,
+      "originalTitle": "All-New, All-Different Avengers",
+      "workingOriginalYear": 2015,
+      "issueNumber": "12",
+      "canonicalRow": 38
+    },
+    {
+      "sourcePosition": 39,
+      "sourceBlock": 8,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2015,
+      "issueNumber": "7",
+      "canonicalRow": 39
+    },
+    {
+      "sourcePosition": 40,
+      "sourceBlock": 8,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2015,
+      "issueNumber": "8",
+      "canonicalRow": 40
+    },
+    {
+      "sourcePosition": 41,
+      "sourceBlock": 8,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2015,
+      "issueNumber": "9",
+      "canonicalRow": 41
+    },
+    {
+      "sourcePosition": 42,
+      "sourceBlock": 8,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2015,
+      "issueNumber": "10",
+      "canonicalRow": 42
+    },
+    {
+      "sourcePosition": 43,
+      "sourceBlock": 8,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2015,
+      "issueNumber": "11",
+      "canonicalRow": 43
+    },
+    {
+      "sourcePosition": 44,
+      "sourceBlock": 8,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2015,
+      "issueNumber": "12",
+      "canonicalRow": 44
+    },
+    {
+      "sourcePosition": 45,
+      "sourceBlock": 9,
+      "originalTitle": "All-New, All-Different Avengers",
+      "workingOriginalYear": 2015,
+      "issueNumber": "13",
+      "canonicalRow": 45
+    },
+    {
+      "sourcePosition": 46,
+      "sourceBlock": 9,
+      "originalTitle": "All-New, All-Different Avengers",
+      "workingOriginalYear": 2015,
+      "issueNumber": "14",
+      "canonicalRow": 46
+    },
+    {
+      "sourcePosition": 47,
+      "sourceBlock": 9,
+      "originalTitle": "All-New, All-Different Avengers",
+      "workingOriginalYear": 2015,
+      "issueNumber": "15",
+      "canonicalRow": 47
+    },
+    {
+      "sourcePosition": 48,
+      "sourceBlock": 9,
+      "originalTitle": "All-New, All-Different Avengers Annual",
+      "workingOriginalYear": 2016,
+      "issueNumber": "1",
+      "canonicalRow": 48
+    },
+    {
+      "sourcePosition": 49,
+      "sourceBlock": 10,
+      "originalTitle": "Champions",
+      "workingOriginalYear": 2016,
+      "issueNumber": "1",
+      "canonicalRow": 49
+    },
+    {
+      "sourcePosition": 50,
+      "sourceBlock": 10,
+      "originalTitle": "Champions",
+      "workingOriginalYear": 2016,
+      "issueNumber": "2",
+      "canonicalRow": 50
+    },
+    {
+      "sourcePosition": 51,
+      "sourceBlock": 10,
+      "originalTitle": "Champions",
+      "workingOriginalYear": 2016,
+      "issueNumber": "3",
+      "canonicalRow": 51
+    },
+    {
+      "sourcePosition": 52,
+      "sourceBlock": 10,
+      "originalTitle": "Champions",
+      "workingOriginalYear": 2016,
+      "issueNumber": "4",
+      "canonicalRow": 52
+    },
+    {
+      "sourcePosition": 53,
+      "sourceBlock": 10,
+      "originalTitle": "Champions",
+      "workingOriginalYear": 2016,
+      "issueNumber": "5",
+      "canonicalRow": 53
+    },
+    {
+      "sourcePosition": 54,
+      "sourceBlock": 10,
+      "originalTitle": "Champions",
+      "workingOriginalYear": 2016,
+      "issueNumber": "6",
+      "canonicalRow": 54
+    },
+    {
+      "sourcePosition": 55,
+      "sourceBlock": 11,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2015,
+      "issueNumber": "13",
+      "canonicalRow": 55
+    },
+    {
+      "sourcePosition": 56,
+      "sourceBlock": 11,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2015,
+      "issueNumber": "14",
+      "canonicalRow": 56
+    },
+    {
+      "sourcePosition": 57,
+      "sourceBlock": 11,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2015,
+      "issueNumber": "15",
+      "canonicalRow": 57
+    },
+    {
+      "sourcePosition": 58,
+      "sourceBlock": 11,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2015,
+      "issueNumber": "16",
+      "canonicalRow": 58
+    },
+    {
+      "sourcePosition": 59,
+      "sourceBlock": 11,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2015,
+      "issueNumber": "17",
+      "canonicalRow": 59
+    },
+    {
+      "sourcePosition": 60,
+      "sourceBlock": 11,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2015,
+      "issueNumber": "18",
+      "canonicalRow": 60
+    },
+    {
+      "sourcePosition": 61,
+      "sourceBlock": 12,
+      "originalTitle": "Secret Warriors",
+      "workingOriginalYear": 2017,
+      "issueNumber": "1",
+      "canonicalRow": 61
+    },
+    {
+      "sourcePosition": 62,
+      "sourceBlock": 12,
+      "originalTitle": "Secret Warriors",
+      "workingOriginalYear": 2017,
+      "issueNumber": "2",
+      "canonicalRow": 62
+    },
+    {
+      "sourcePosition": 63,
+      "sourceBlock": 12,
+      "originalTitle": "Secret Warriors",
+      "workingOriginalYear": 2017,
+      "issueNumber": "3",
+      "canonicalRow": 63
+    },
+    {
+      "sourcePosition": 64,
+      "sourceBlock": 12,
+      "originalTitle": "Secret Warriors",
+      "workingOriginalYear": 2017,
+      "issueNumber": "4",
+      "canonicalRow": 64
+    },
+    {
+      "sourcePosition": 65,
+      "sourceBlock": 12,
+      "originalTitle": "Secret Warriors",
+      "workingOriginalYear": 2017,
+      "issueNumber": "5",
+      "canonicalRow": 65
+    },
+    {
+      "sourcePosition": 66,
+      "sourceBlock": 13,
+      "originalTitle": "Secret Warriors",
+      "workingOriginalYear": 2017,
+      "issueNumber": "6",
+      "canonicalRow": 66
+    },
+    {
+      "sourcePosition": 67,
+      "sourceBlock": 13,
+      "originalTitle": "Secret Warriors",
+      "workingOriginalYear": 2017,
+      "issueNumber": "7",
+      "canonicalRow": 67
+    },
+    {
+      "sourcePosition": 68,
+      "sourceBlock": 13,
+      "originalTitle": "Secret Warriors",
+      "workingOriginalYear": 2017,
+      "issueNumber": "8",
+      "canonicalRow": 68
+    },
+    {
+      "sourcePosition": 69,
+      "sourceBlock": 13,
+      "originalTitle": "Secret Warriors",
+      "workingOriginalYear": 2017,
+      "issueNumber": "9",
+      "canonicalRow": 69
+    },
+    {
+      "sourcePosition": 70,
+      "sourceBlock": 13,
+      "originalTitle": "Secret Warriors",
+      "workingOriginalYear": 2017,
+      "issueNumber": "10",
+      "canonicalRow": 70
+    },
+    {
+      "sourcePosition": 71,
+      "sourceBlock": 14,
+      "originalTitle": "Champions",
+      "workingOriginalYear": 2016,
+      "issueNumber": "6",
+      "canonicalRow": 54,
+      "canonicalSourcePosition": 54
+    },
+    {
+      "sourcePosition": 72,
+      "sourceBlock": 14,
+      "originalTitle": "Champions",
+      "workingOriginalYear": 2016,
+      "issueNumber": "7",
+      "canonicalRow": 71
+    },
+    {
+      "sourcePosition": 73,
+      "sourceBlock": 14,
+      "originalTitle": "Champions",
+      "workingOriginalYear": 2016,
+      "issueNumber": "8",
+      "canonicalRow": 72
+    },
+    {
+      "sourcePosition": 74,
+      "sourceBlock": 14,
+      "originalTitle": "Champions",
+      "workingOriginalYear": 2016,
+      "issueNumber": "9",
+      "canonicalRow": 73
+    },
+    {
+      "sourcePosition": 75,
+      "sourceBlock": 14,
+      "originalTitle": "Champions",
+      "workingOriginalYear": 2016,
+      "issueNumber": "10",
+      "canonicalRow": 74
+    },
+    {
+      "sourcePosition": 76,
+      "sourceBlock": 14,
+      "originalTitle": "Champions",
+      "workingOriginalYear": 2016,
+      "issueNumber": "11",
+      "canonicalRow": 75
+    },
+    {
+      "sourcePosition": 77,
+      "sourceBlock": 15,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2015,
+      "issueNumber": "19",
+      "canonicalRow": 76
+    },
+    {
+      "sourcePosition": 78,
+      "sourceBlock": 15,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2015,
+      "issueNumber": "20",
+      "canonicalRow": 77
+    },
+    {
+      "sourcePosition": 79,
+      "sourceBlock": 15,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2015,
+      "issueNumber": "21",
+      "canonicalRow": 78
+    },
+    {
+      "sourcePosition": 80,
+      "sourceBlock": 15,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2015,
+      "issueNumber": "22",
+      "canonicalRow": 79
+    },
+    {
+      "sourcePosition": 81,
+      "sourceBlock": 15,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2015,
+      "issueNumber": "23",
+      "canonicalRow": 80
+    },
+    {
+      "sourcePosition": 82,
+      "sourceBlock": 15,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2015,
+      "issueNumber": "24",
+      "canonicalRow": 81
+    },
+    {
+      "sourcePosition": 83,
+      "sourceBlock": 16,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2015,
+      "issueNumber": "25",
+      "canonicalRow": 82
+    },
+    {
+      "sourcePosition": 84,
+      "sourceBlock": 16,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2015,
+      "issueNumber": "26",
+      "canonicalRow": 83
+    },
+    {
+      "sourcePosition": 85,
+      "sourceBlock": 16,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2015,
+      "issueNumber": "27",
+      "canonicalRow": 84
+    },
+    {
+      "sourcePosition": 86,
+      "sourceBlock": 16,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2015,
+      "issueNumber": "28",
+      "canonicalRow": 85
+    },
+    {
+      "sourcePosition": 87,
+      "sourceBlock": 16,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2015,
+      "issueNumber": "29",
+      "canonicalRow": 86
+    },
+    {
+      "sourcePosition": 88,
+      "sourceBlock": 16,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2015,
+      "issueNumber": "30",
+      "canonicalRow": 87
+    },
+    {
+      "sourcePosition": 89,
+      "sourceBlock": 17,
+      "originalTitle": "Avengers (legacy numbering)",
+      "workingOriginalYear": null,
+      "issueNumber": "672",
+      "canonicalRow": 88
+    },
+    {
+      "sourcePosition": 90,
+      "sourceBlock": 17,
+      "originalTitle": "Champions",
+      "workingOriginalYear": 2016,
+      "issueNumber": "13",
+      "canonicalRow": 89
+    },
+    {
+      "sourcePosition": 91,
+      "sourceBlock": 17,
+      "originalTitle": "Avengers (legacy numbering)",
+      "workingOriginalYear": null,
+      "issueNumber": "673",
+      "canonicalRow": 90
+    },
+    {
+      "sourcePosition": 92,
+      "sourceBlock": 17,
+      "originalTitle": "Champions",
+      "workingOriginalYear": 2016,
+      "issueNumber": "14",
+      "canonicalRow": 91
+    },
+    {
+      "sourcePosition": 93,
+      "sourceBlock": 17,
+      "originalTitle": "Avengers (legacy numbering)",
+      "workingOriginalYear": null,
+      "issueNumber": "674",
+      "canonicalRow": 92
+    },
+    {
+      "sourcePosition": 94,
+      "sourceBlock": 17,
+      "originalTitle": "Champions",
+      "workingOriginalYear": 2016,
+      "issueNumber": "15",
+      "canonicalRow": 93
+    },
+    {
+      "sourcePosition": 95,
+      "sourceBlock": 18,
+      "originalTitle": "Champions",
+      "workingOriginalYear": 2016,
+      "issueNumber": "16",
+      "canonicalRow": 94
+    },
+    {
+      "sourcePosition": 96,
+      "sourceBlock": 18,
+      "originalTitle": "Champions",
+      "workingOriginalYear": 2016,
+      "issueNumber": "17",
+      "canonicalRow": 95
+    },
+    {
+      "sourcePosition": 97,
+      "sourceBlock": 18,
+      "originalTitle": "Champions",
+      "workingOriginalYear": 2016,
+      "issueNumber": "18",
+      "canonicalRow": 96
+    },
+    {
+      "sourcePosition": 98,
+      "sourceBlock": 18,
+      "originalTitle": "Champions",
+      "workingOriginalYear": 2016,
+      "issueNumber": "19",
+      "canonicalRow": 97
+    },
+    {
+      "sourcePosition": 99,
+      "sourceBlock": 18,
+      "originalTitle": "Champions",
+      "workingOriginalYear": 2016,
+      "issueNumber": "20",
+      "canonicalRow": 98
+    },
+    {
+      "sourcePosition": 100,
+      "sourceBlock": 18,
+      "originalTitle": "Champions",
+      "workingOriginalYear": 2016,
+      "issueNumber": "21",
+      "canonicalRow": 99
+    },
+    {
+      "sourcePosition": 101,
+      "sourceBlock": 19,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2015,
+      "issueNumber": "31",
+      "canonicalRow": 100
+    },
+    {
+      "sourcePosition": 102,
+      "sourceBlock": 19,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2015,
+      "issueNumber": "32",
+      "canonicalRow": 101
+    },
+    {
+      "sourcePosition": 103,
+      "sourceBlock": 19,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2015,
+      "issueNumber": "33",
+      "canonicalRow": 102
+    },
+    {
+      "sourcePosition": 104,
+      "sourceBlock": 19,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2015,
+      "issueNumber": "34",
+      "canonicalRow": 103
+    },
+    {
+      "sourcePosition": 105,
+      "sourceBlock": 19,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2015,
+      "issueNumber": "35",
+      "canonicalRow": 104
+    },
+    {
+      "sourcePosition": 106,
+      "sourceBlock": 19,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2015,
+      "issueNumber": "36",
+      "canonicalRow": 105
+    },
+    {
+      "sourcePosition": 107,
+      "sourceBlock": 19,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2015,
+      "issueNumber": "37",
+      "canonicalRow": 106
+    },
+    {
+      "sourcePosition": 108,
+      "sourceBlock": 19,
+      "originalTitle": "Ms. Marvel",
+      "workingOriginalYear": 2015,
+      "issueNumber": "38",
+      "canonicalRow": 107
+    },
+    {
+      "sourcePosition": 109,
+      "sourceBlock": 20,
+      "originalTitle": "Champions",
+      "workingOriginalYear": 2016,
+      "issueNumber": "19",
+      "canonicalRow": 97,
+      "canonicalSourcePosition": 98
+    },
+    {
+      "sourcePosition": 110,
+      "sourceBlock": 20,
+      "originalTitle": "Champions",
+      "workingOriginalYear": 2016,
+      "issueNumber": "20",
+      "canonicalRow": 98,
+      "canonicalSourcePosition": 99
+    },
+    {
+      "sourcePosition": 111,
+      "sourceBlock": 20,
+      "originalTitle": "Champions",
+      "workingOriginalYear": 2016,
+      "issueNumber": "21",
+      "canonicalRow": 99,
+      "canonicalSourcePosition": 100
+    },
+    {
+      "sourcePosition": 112,
+      "sourceBlock": 20,
+      "originalTitle": "Champions",
+      "workingOriginalYear": 2016,
+      "issueNumber": "22",
+      "canonicalRow": 108
+    },
+    {
+      "sourcePosition": 113,
+      "sourceBlock": 20,
+      "originalTitle": "Champions",
+      "workingOriginalYear": 2016,
+      "issueNumber": "23",
+      "canonicalRow": 109
+    },
+    {
+      "sourcePosition": 114,
+      "sourceBlock": 20,
+      "originalTitle": "Champions",
+      "workingOriginalYear": 2016,
+      "issueNumber": "24",
+      "canonicalRow": 110
+    },
+    {
+      "sourcePosition": 115,
+      "sourceBlock": 21,
+      "originalTitle": "Exiles",
+      "workingOriginalYear": 2018,
+      "issueNumber": "1",
+      "canonicalRow": 111
+    },
+    {
+      "sourcePosition": 116,
+      "sourceBlock": 21,
+      "originalTitle": "Exiles",
+      "workingOriginalYear": 2018,
+      "issueNumber": "2",
+      "canonicalRow": 112
+    },
+    {
+      "sourcePosition": 117,
+      "sourceBlock": 21,
+      "originalTitle": "Exiles",
+      "workingOriginalYear": 2018,
+      "issueNumber": "3",
+      "canonicalRow": 113
+    },
+    {
+      "sourcePosition": 118,
+      "sourceBlock": 21,
+      "originalTitle": "Exiles",
+      "workingOriginalYear": 2018,
+      "issueNumber": "4",
+      "canonicalRow": 114
+    },
+    {
+      "sourcePosition": 119,
+      "sourceBlock": 21,
+      "originalTitle": "Exiles",
+      "workingOriginalYear": 2018,
+      "issueNumber": "5",
+      "canonicalRow": 115
+    },
+    {
+      "sourcePosition": 120,
+      "sourceBlock": 21,
+      "originalTitle": "Exiles",
+      "workingOriginalYear": 2018,
+      "issueNumber": "6",
+      "canonicalRow": 116
+    },
+    {
+      "sourcePosition": 121,
+      "sourceBlock": 22,
+      "originalTitle": "Exiles",
+      "workingOriginalYear": 2018,
+      "issueNumber": "7",
+      "canonicalRow": 117
+    },
+    {
+      "sourcePosition": 122,
+      "sourceBlock": 22,
+      "originalTitle": "Exiles",
+      "workingOriginalYear": 2018,
+      "issueNumber": "8",
+      "canonicalRow": 118
+    },
+    {
+      "sourcePosition": 123,
+      "sourceBlock": 22,
+      "originalTitle": "Exiles",
+      "workingOriginalYear": 2018,
+      "issueNumber": "9",
+      "canonicalRow": 119
+    },
+    {
+      "sourcePosition": 124,
+      "sourceBlock": 22,
+      "originalTitle": "Exiles",
+      "workingOriginalYear": 2018,
+      "issueNumber": "10",
+      "canonicalRow": 120
+    },
+    {
+      "sourcePosition": 125,
+      "sourceBlock": 22,
+      "originalTitle": "Exiles",
+      "workingOriginalYear": 2018,
+      "issueNumber": "11",
+      "canonicalRow": 121
+    },
+    {
+      "sourcePosition": 126,
+      "sourceBlock": 22,
+      "originalTitle": "Exiles",
+      "workingOriginalYear": 2018,
+      "issueNumber": "12",
+      "canonicalRow": 122
+    },
+    {
+      "sourcePosition": 127,
+      "sourceBlock": 23,
+      "originalTitle": "Champions",
+      "workingOriginalYear": 2019,
+      "issueNumber": "1",
+      "canonicalRow": 123
+    },
+    {
+      "sourcePosition": 128,
+      "sourceBlock": 23,
+      "originalTitle": "Champions",
+      "workingOriginalYear": 2019,
+      "issueNumber": "2",
+      "canonicalRow": 124
+    },
+    {
+      "sourcePosition": 129,
+      "sourceBlock": 23,
+      "originalTitle": "Champions",
+      "workingOriginalYear": 2019,
+      "issueNumber": "3",
+      "canonicalRow": 125
+    },
+    {
+      "sourcePosition": 130,
+      "sourceBlock": 23,
+      "originalTitle": "Champions",
+      "workingOriginalYear": 2019,
+      "issueNumber": "4",
+      "canonicalRow": 126
+    },
+    {
+      "sourcePosition": 131,
+      "sourceBlock": 23,
+      "originalTitle": "Champions",
+      "workingOriginalYear": 2019,
+      "issueNumber": "5",
+      "canonicalRow": 127
+    },
+    {
+      "sourcePosition": 132,
+      "sourceBlock": 23,
+      "originalTitle": "Champions",
+      "workingOriginalYear": 2019,
+      "issueNumber": "6",
+      "canonicalRow": 128
+    },
+    {
+      "sourcePosition": 133,
+      "sourceBlock": 24,
+      "originalTitle": "Magnificent Ms. Marvel",
+      "workingOriginalYear": 2019,
+      "issueNumber": "1",
+      "canonicalRow": 129
+    },
+    {
+      "sourcePosition": 134,
+      "sourceBlock": 24,
+      "originalTitle": "Magnificent Ms. Marvel",
+      "workingOriginalYear": 2019,
+      "issueNumber": "2",
+      "canonicalRow": 130
+    },
+    {
+      "sourcePosition": 135,
+      "sourceBlock": 24,
+      "originalTitle": "Magnificent Ms. Marvel",
+      "workingOriginalYear": 2019,
+      "issueNumber": "3",
+      "canonicalRow": 131
+    },
+    {
+      "sourcePosition": 136,
+      "sourceBlock": 24,
+      "originalTitle": "Magnificent Ms. Marvel",
+      "workingOriginalYear": 2019,
+      "issueNumber": "4",
+      "canonicalRow": 132
+    },
+    {
+      "sourcePosition": 137,
+      "sourceBlock": 24,
+      "originalTitle": "Magnificent Ms. Marvel",
+      "workingOriginalYear": 2019,
+      "issueNumber": "5",
+      "canonicalRow": 133
+    },
+    {
+      "sourcePosition": 138,
+      "sourceBlock": 24,
+      "originalTitle": "Magnificent Ms. Marvel",
+      "workingOriginalYear": 2019,
+      "issueNumber": "6",
+      "canonicalRow": 134
+    },
+    {
+      "sourcePosition": 139,
+      "sourceBlock": 25,
+      "originalTitle": "Marvel Team-Up",
+      "workingOriginalYear": 2019,
+      "issueNumber": "1",
+      "canonicalRow": 135
+    },
+    {
+      "sourcePosition": 140,
+      "sourceBlock": 25,
+      "originalTitle": "Marvel Team-Up",
+      "workingOriginalYear": 2019,
+      "issueNumber": "2",
+      "canonicalRow": 136
+    },
+    {
+      "sourcePosition": 141,
+      "sourceBlock": 25,
+      "originalTitle": "Marvel Team-Up",
+      "workingOriginalYear": 2019,
+      "issueNumber": "3",
+      "canonicalRow": 137
+    },
+    {
+      "sourcePosition": 142,
+      "sourceBlock": 25,
+      "originalTitle": "Marvel Team-Up",
+      "workingOriginalYear": 2019,
+      "issueNumber": "4",
+      "canonicalRow": 138
+    },
+    {
+      "sourcePosition": 143,
+      "sourceBlock": 25,
+      "originalTitle": "Marvel Team-Up",
+      "workingOriginalYear": 2019,
+      "issueNumber": "5",
+      "canonicalRow": 139
+    },
+    {
+      "sourcePosition": 144,
+      "sourceBlock": 25,
+      "originalTitle": "Marvel Team-Up",
+      "workingOriginalYear": 2019,
+      "issueNumber": "6",
+      "canonicalRow": 140
+    },
+    {
+      "sourcePosition": 145,
+      "sourceBlock": 26,
+      "originalTitle": "Magnificent Ms. Marvel",
+      "workingOriginalYear": 2019,
+      "issueNumber": "7",
+      "canonicalRow": 141
+    },
+    {
+      "sourcePosition": 146,
+      "sourceBlock": 26,
+      "originalTitle": "Magnificent Ms. Marvel",
+      "workingOriginalYear": 2019,
+      "issueNumber": "8",
+      "canonicalRow": 142
+    },
+    {
+      "sourcePosition": 147,
+      "sourceBlock": 26,
+      "originalTitle": "Magnificent Ms. Marvel",
+      "workingOriginalYear": 2019,
+      "issueNumber": "9",
+      "canonicalRow": 143
+    },
+    {
+      "sourcePosition": 148,
+      "sourceBlock": 26,
+      "originalTitle": "Magnificent Ms. Marvel",
+      "workingOriginalYear": 2019,
+      "issueNumber": "10",
+      "canonicalRow": 144
+    },
+    {
+      "sourcePosition": 149,
+      "sourceBlock": 26,
+      "originalTitle": "Magnificent Ms. Marvel",
+      "workingOriginalYear": 2019,
+      "issueNumber": "11",
+      "canonicalRow": 145
+    },
+    {
+      "sourcePosition": 150,
+      "sourceBlock": 26,
+      "originalTitle": "Magnificent Ms. Marvel",
+      "workingOriginalYear": 2019,
+      "issueNumber": "12",
+      "canonicalRow": 146
+    },
+    {
+      "sourcePosition": 151,
+      "sourceBlock": 27,
+      "originalTitle": "Magnificent Ms. Marvel",
+      "workingOriginalYear": 2019,
+      "issueNumber": "13",
+      "canonicalRow": 147
+    },
+    {
+      "sourcePosition": 152,
+      "sourceBlock": 27,
+      "originalTitle": "Magnificent Ms. Marvel",
+      "workingOriginalYear": 2019,
+      "issueNumber": "14",
+      "canonicalRow": 148
+    },
+    {
+      "sourcePosition": 153,
+      "sourceBlock": 27,
+      "originalTitle": "Magnificent Ms. Marvel",
+      "workingOriginalYear": 2019,
+      "issueNumber": "15",
+      "canonicalRow": 149
+    },
+    {
+      "sourcePosition": 154,
+      "sourceBlock": 27,
+      "originalTitle": "Magnificent Ms. Marvel",
+      "workingOriginalYear": 2019,
+      "issueNumber": "16",
+      "canonicalRow": 150
+    },
+    {
+      "sourcePosition": 155,
+      "sourceBlock": 27,
+      "originalTitle": "Magnificent Ms. Marvel",
+      "workingOriginalYear": 2019,
+      "issueNumber": "17",
+      "canonicalRow": 151
+    },
+    {
+      "sourcePosition": 156,
+      "sourceBlock": 27,
+      "originalTitle": "Magnificent Ms. Marvel",
+      "workingOriginalYear": 2019,
+      "issueNumber": "18",
+      "canonicalRow": 152
+    },
+    {
+      "sourcePosition": 157,
+      "sourceBlock": 28,
+      "originalTitle": "Outlawed",
+      "workingOriginalYear": 2020,
+      "issueNumber": "1",
+      "canonicalRow": 153
+    },
+    {
+      "sourcePosition": 158,
+      "sourceBlock": 28,
+      "originalTitle": "Champions",
+      "workingOriginalYear": 2020,
+      "issueNumber": "1",
+      "canonicalRow": 154
+    },
+    {
+      "sourcePosition": 159,
+      "sourceBlock": 28,
+      "originalTitle": "Champions",
+      "workingOriginalYear": 2020,
+      "issueNumber": "2",
+      "canonicalRow": 155
+    },
+    {
+      "sourcePosition": 160,
+      "sourceBlock": 28,
+      "originalTitle": "Champions",
+      "workingOriginalYear": 2020,
+      "issueNumber": "3",
+      "canonicalRow": 156
+    },
+    {
+      "sourcePosition": 161,
+      "sourceBlock": 28,
+      "originalTitle": "Champions",
+      "workingOriginalYear": 2020,
+      "issueNumber": "4",
+      "canonicalRow": 157
+    },
+    {
+      "sourcePosition": 162,
+      "sourceBlock": 28,
+      "originalTitle": "Champions",
+      "workingOriginalYear": 2020,
+      "issueNumber": "5",
+      "canonicalRow": 158
+    },
+    {
+      "sourcePosition": 163,
+      "sourceBlock": 29,
+      "originalTitle": "Ms. Marvel: Beyond the Limit",
+      "workingOriginalYear": null,
+      "issueNumber": "1",
+      "canonicalRow": 159
+    },
+    {
+      "sourcePosition": 164,
+      "sourceBlock": 29,
+      "originalTitle": "Ms. Marvel: Beyond the Limit",
+      "workingOriginalYear": null,
+      "issueNumber": "2",
+      "canonicalRow": 160
+    },
+    {
+      "sourcePosition": 165,
+      "sourceBlock": 29,
+      "originalTitle": "Ms. Marvel: Beyond the Limit",
+      "workingOriginalYear": null,
+      "issueNumber": "3",
+      "canonicalRow": 161
+    },
+    {
+      "sourcePosition": 166,
+      "sourceBlock": 29,
+      "originalTitle": "Ms. Marvel: Beyond the Limit",
+      "workingOriginalYear": null,
+      "issueNumber": "4",
+      "canonicalRow": 162
+    },
+    {
+      "sourcePosition": 167,
+      "sourceBlock": 29,
+      "originalTitle": "Ms. Marvel: Beyond the Limit",
+      "workingOriginalYear": null,
+      "issueNumber": "5",
+      "canonicalRow": 163
+    },
+    {
+      "sourcePosition": 168,
+      "sourceBlock": 30,
+      "originalTitle": "Marvel Rising",
+      "workingOriginalYear": 2018,
+      "issueNumber": "0",
+      "canonicalRow": 164
+    },
+    {
+      "sourcePosition": 169,
+      "sourceBlock": 30,
+      "originalTitle": "Marvel Rising: Alpha",
+      "workingOriginalYear": 2018,
+      "issueNumber": "1",
+      "canonicalRow": 165
+    },
+    {
+      "sourcePosition": 170,
+      "sourceBlock": 30,
+      "originalTitle": "Marvel Rising: Squirrel Girl/Ms. Marvel",
+      "workingOriginalYear": 2018,
+      "issueNumber": "1",
+      "canonicalRow": 166
+    },
+    {
+      "sourcePosition": 171,
+      "sourceBlock": 30,
+      "originalTitle": "Marvel Rising: Ms. Marvel/Squirrel Girl",
+      "workingOriginalYear": 2018,
+      "issueNumber": "1",
+      "canonicalRow": 167
+    },
+    {
+      "sourcePosition": 172,
+      "sourceBlock": 30,
+      "originalTitle": "Marvel Rising: Omega",
+      "workingOriginalYear": 2018,
+      "issueNumber": "1",
+      "canonicalRow": 168
+    },
+    {
+      "sourcePosition": 173,
+      "sourceBlock": 31,
+      "originalTitle": "Ms. Marvel & Wolverine",
+      "workingOriginalYear": null,
+      "issueNumber": "1",
+      "canonicalRow": 169
+    },
+    {
+      "sourcePosition": 174,
+      "sourceBlock": 31,
+      "originalTitle": "Ms. Marvel & Moon Knight",
+      "workingOriginalYear": null,
+      "issueNumber": "1",
+      "canonicalRow": 170
+    },
+    {
+      "sourcePosition": 175,
+      "sourceBlock": 31,
+      "originalTitle": "Ms. Marvel & Venom",
+      "workingOriginalYear": null,
+      "issueNumber": "1",
+      "canonicalRow": 171
+    },
+    {
+      "sourcePosition": 176,
+      "sourceBlock": 32,
+      "originalTitle": "Marvel's Voices: Pride",
+      "workingOriginalYear": 2022,
+      "issueNumber": "1",
+      "canonicalRow": 172
+    },
+    {
+      "sourcePosition": 177,
+      "sourceBlock": 33,
+      "originalTitle": "Marvel's Voices: Identity",
+      "workingOriginalYear": 2022,
+      "issueNumber": "1",
+      "canonicalRow": 173
+    },
+    {
+      "sourcePosition": 178,
+      "sourceBlock": 34,
+      "originalTitle": "Dark Web",
+      "workingOriginalYear": null,
+      "issueNumber": "1",
+      "canonicalRow": 174
+    },
+    {
+      "sourcePosition": 179,
+      "sourceBlock": 34,
+      "originalTitle": "Amazing Spider-Man",
+      "workingOriginalYear": 2022,
+      "issueNumber": "15",
+      "canonicalRow": 175
+    },
+    {
+      "sourcePosition": 180,
+      "sourceBlock": 34,
+      "originalTitle": "Amazing Spider-Man",
+      "workingOriginalYear": 2022,
+      "issueNumber": "16",
+      "canonicalRow": 176
+    },
+    {
+      "sourcePosition": 181,
+      "sourceBlock": 34,
+      "originalTitle": "Amazing Spider-Man",
+      "workingOriginalYear": 2022,
+      "issueNumber": "17",
+      "canonicalRow": 177
+    },
+    {
+      "sourcePosition": 182,
+      "sourceBlock": 34,
+      "originalTitle": "Amazing Spider-Man",
+      "workingOriginalYear": 2022,
+      "issueNumber": "18",
+      "canonicalRow": 178
+    },
+    {
+      "sourcePosition": 183,
+      "sourceBlock": 34,
+      "originalTitle": "Venom",
+      "workingOriginalYear": 2021,
+      "issueNumber": "14",
+      "canonicalRow": 179
+    },
+    {
+      "sourcePosition": 184,
+      "sourceBlock": 34,
+      "originalTitle": "Venom",
+      "workingOriginalYear": 2021,
+      "issueNumber": "15",
+      "canonicalRow": 180
+    },
+    {
+      "sourcePosition": 185,
+      "sourceBlock": 34,
+      "originalTitle": "Dark Web: X-Men",
+      "workingOriginalYear": null,
+      "issueNumber": "1",
+      "canonicalRow": 181
+    },
+    {
+      "sourcePosition": 186,
+      "sourceBlock": 34,
+      "originalTitle": "Dark Web: X-Men",
+      "workingOriginalYear": null,
+      "issueNumber": "2",
+      "canonicalRow": 182
+    },
+    {
+      "sourcePosition": 187,
+      "sourceBlock": 34,
+      "originalTitle": "Dark Web: X-Men",
+      "workingOriginalYear": null,
+      "issueNumber": "3",
+      "canonicalRow": 183
+    },
+    {
+      "sourcePosition": 188,
+      "sourceBlock": 34,
+      "originalTitle": "Dark Web: Ms. Marvel",
+      "workingOriginalYear": null,
+      "issueNumber": "1",
+      "canonicalRow": 184
+    },
+    {
+      "sourcePosition": 189,
+      "sourceBlock": 34,
+      "originalTitle": "Dark Web: Ms. Marvel",
+      "workingOriginalYear": null,
+      "issueNumber": "2",
+      "canonicalRow": 185
+    },
+    {
+      "sourcePosition": 190,
+      "sourceBlock": 34,
+      "originalTitle": "Dark Web Finale",
+      "workingOriginalYear": null,
+      "issueNumber": "1",
+      "canonicalRow": 186
+    },
+    {
+      "sourcePosition": 191,
+      "sourceBlock": 35,
+      "originalTitle": "Amazing Spider-Man",
+      "workingOriginalYear": 2022,
+      "issueNumber": "26",
+      "canonicalRow": 187
+    },
+    {
+      "sourcePosition": 192,
+      "sourceBlock": 36,
+      "originalTitle": "Fallen Friend: The Death of Ms. Marvel",
+      "workingOriginalYear": 2023,
+      "issueNumber": "1",
+      "canonicalRow": 188
+    },
+    {
+      "sourcePosition": 193,
+      "sourceBlock": 37,
+      "originalTitle": "Ms. Marvel: The New Mutant",
+      "workingOriginalYear": null,
+      "issueNumber": "1",
+      "canonicalRow": 189
+    },
+    {
+      "sourcePosition": 194,
+      "sourceBlock": 37,
+      "originalTitle": "Ms. Marvel: The New Mutant",
+      "workingOriginalYear": null,
+      "issueNumber": "2",
+      "canonicalRow": 190
+    },
+    {
+      "sourcePosition": 195,
+      "sourceBlock": 37,
+      "originalTitle": "Ms. Marvel: The New Mutant",
+      "workingOriginalYear": null,
+      "issueNumber": "3",
+      "canonicalRow": 191
+    },
+    {
+      "sourcePosition": 196,
+      "sourceBlock": 37,
+      "originalTitle": "Ms. Marvel: The New Mutant",
+      "workingOriginalYear": null,
+      "issueNumber": "4",
+      "canonicalRow": 192
+    }
+  ],
+  "repeatedSourceReferences": [
+    {
+      "sourcePosition": 71,
+      "sourceBlock": 14,
+      "sourceIssueReference": "Champions #6",
+      "sourceRangeReference": "Champions 6-11",
+      "normalizedSeriesTitle": "Champions",
+      "workingOriginalYear": 2016,
+      "issueNumber": "6",
+      "canonicalSourcePosition": 54,
+      "canonicalRow": 54
+    },
+    {
+      "sourcePosition": 109,
+      "sourceBlock": 20,
+      "sourceIssueReference": "Champions #19",
+      "sourceRangeReference": "Champions 19-24",
+      "normalizedSeriesTitle": "Champions",
+      "workingOriginalYear": 2016,
+      "issueNumber": "19",
+      "canonicalSourcePosition": 98,
+      "canonicalRow": 97
+    },
+    {
+      "sourcePosition": 110,
+      "sourceBlock": 20,
+      "sourceIssueReference": "Champions #20",
+      "sourceRangeReference": "Champions 19-24",
+      "normalizedSeriesTitle": "Champions",
+      "workingOriginalYear": 2016,
+      "issueNumber": "20",
+      "canonicalSourcePosition": 99,
+      "canonicalRow": 98
+    },
+    {
+      "sourcePosition": 111,
+      "sourceBlock": 20,
+      "sourceIssueReference": "Champions #21",
+      "sourceRangeReference": "Champions 19-24",
+      "normalizedSeriesTitle": "Champions",
+      "workingOriginalYear": 2016,
+      "issueNumber": "21",
+      "canonicalSourcePosition": 100,
+      "canonicalRow": 99
+    }
+  ],
+  "independentOriginalEvidence": [
+    {
+      "selectedPositions": [
+        20
+      ],
+      "originals": [
+        "Avengers (2015) #0"
+      ],
+      "url": "https://aiptcomics.com/2015/10/06/avengers-0-review/",
+      "retrievedAt": "2026-09-29",
+      "limit": "Proves a distinct Avengers #0 original, not that the linked collection reproduces its entire contents."
+    },
+    {
+      "selectedPositions": [
+        48
+      ],
+      "originals": [
+        "All-New, All-Different Avengers Annual (2016) #1"
+      ],
+      "url": "https://aiptcomics.com/2016/08/10/all-new-all-different-avengers-annual-1-review/",
+      "retrievedAt": "2026-09-29"
+    },
+    {
+      "selectedPositions": [
+        168,
+        169,
+        170,
+        171,
+        172
+      ],
+      "originals": [
+        "Marvel Rising #0",
+        "Marvel Rising: Alpha #1",
+        "Marvel Rising: Squirrel Girl/Ms. Marvel #1",
+        "Marvel Rising: Ms. Marvel/Squirrel Girl #1",
+        "Marvel Rising: Omega #1"
+      ],
+      "url": "https://leagueofcomicgeeks.com/comic/4456747/marvel-rising-tp",
+      "retrievedAt": "2026-09-29",
+      "limit": "Collection corroborates five separate named originals; the numbered #1 presentation for individual specials is corroborated by linked issue records at leagueofcomicgeeks.com/comic/2453243/marvel-rising-alpha-1 and leagueofcomicgeeks.com/comic/7570774/marvel-rising-ms-marvel-squirrel-girl-1, including the latter's link to the opposite-order one-shot."
+    },
+    {
+      "selectedPositions": [
+        173,
+        174,
+        175
+      ],
+      "originals": [
+        "Ms. Marvel & Wolverine #1",
+        "Ms. Marvel & Moon Knight #1",
+        "Ms. Marvel & Venom #1"
+      ],
+      "url": "https://leagueofcomicgeeks.com/comic/3502439/ms-marvel-fists-of-justice-tp",
+      "retrievedAt": "2026-09-29",
+      "limit": "Bibliography lists three separate #1 originals; individual Moon Knight issue links back to Wolverine and forward to Venom."
+    },
+    {
+      "selectedPositions": [
+        176
+      ],
+      "originals": [
+        "Marvel's Voices: Pride (2022) #1"
+      ],
+      "url": "https://aiptcomics.com/2022/06/17/marvel-preview-marvels-voices-pride-1-2022/",
+      "retrievedAt": "2026-09-29"
+    },
+    {
+      "selectedPositions": [
+        177
+      ],
+      "originals": [
+        "Marvel's Voices: Identity (2022) #1"
+      ],
+      "url": "https://aiptcomics.com/2022/04/08/marvel-voices-identity-1-2022/",
+      "retrievedAt": "2026-09-29"
+    },
+    {
+      "selectedPositions": [
+        192
+      ],
+      "originals": [
+        "Fallen Friend: The Death of Ms. Marvel (2023) #1, original print"
+      ],
+      "url": "https://aiptcomics.com/2023/07/07/marvel-first-look-fallen-friend-the-death-of-ms-marvel-1/",
+      "retrievedAt": "2026-09-29",
+      "limit": "The separate vertical Infinity Comic edition is not selected."
+    }
+  ],
+  "sourceBoundaryDecision": {
+    "scopeIssue": 595,
+    "approvedForExactMapping": true,
+    "wholeAvengersZeroSourcePosition": 20,
+    "sourceDecision": "The guide explicitly selects whole standalone Avengers (2015) #0; its linked collected edition contains only material from that original. No All-New, All-Different Avengers ongoing #0 or unselected FCBD content is added."
+  },
+  "identityQuestions": [
+    "The source's Point One shorthand is a fragment of All-New Marvel NOW! Point One #1. Verify it in provenance without selecting the whole original or a similarly titled earlier Point One.",
+    "Verify original-year/provider-volume correspondence for all series labeled with inferred or null source years, particularly Exiles (2018), Ms. Marvel (2015), Champions (2016), legacy Avengers #672-674, Beyond the Limit and The New Mutant. Do not use these working labels as preapproved provider years.",
+    "Verify each named standalone original and issue number, particularly Pride (2022), Identity (2022) and Fallen Friend print #1 rather than their 2021 editions, collected reprints or Fallen Friend Infinity Comic.",
+    "The source is silent about an apparent Champions #12 between #11 and #13; do not infer it or any other absent issue.",
+    "No current Marvel Unlimited availability is established by this source or by missing provider metadata. Treat availability as unknown until directly verified."
+  ]
+}

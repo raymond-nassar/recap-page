@@ -3232,8 +3232,8 @@ const SCENARIOS = [
         bestOf: await readSubset('best-of'),
       };
       t.check('desktop All, Complete, and Best of counts classify Adam exactly once',
-        desktop.all.readings === 61 && desktop.all.stories === 60
-        && desktop.all.cards === 60 && desktop.all.adamCards === 1
+        desktop.all.readings === 64 && desktop.all.stories === 63
+        && desktop.all.cards === 63 && desktop.all.adamCards === 1
         && desktop.complete.readings === 38 && desktop.complete.stories === 38
         && desktop.complete.cards === 38 && desktop.complete.adamCards === 1
         && desktop.bestOf.readings === 7 && desktop.bestOf.stories === 7
@@ -3248,8 +3248,8 @@ const SCENARIOS = [
         overflow: await page.evaluate(() => document.documentElement.scrollWidth > innerWidth),
       };
       t.check('narrow All, Complete, and Best of counts preserve Adam without horizontal overflow',
-        narrow.all.readings === 61 && narrow.all.stories === 60
-        && narrow.all.cards === 60 && narrow.all.adamCards === 1
+        narrow.all.readings === 64 && narrow.all.stories === 63
+        && narrow.all.cards === 63 && narrow.all.adamCards === 1
         && narrow.complete.readings === 38 && narrow.complete.stories === 38
         && narrow.complete.cards === 38 && narrow.complete.adamCards === 1
         && narrow.bestOf.readings === 7 && narrow.bestOf.stories === 7
@@ -3461,6 +3461,295 @@ const SCENARIOS = [
     },
   },
   {
+    id: 'hawkeye-actual-data',
+    title: 'the actual Clint and Kate Hawkeye guide keeps every issue and refusal through preview, import and reload',
+    async run(page, t) {
+      await page.setViewport({ width: 1280, height: 900 });
+      const id = 'hawkeye-reading-order';
+      const payload = JSON.parse(readFileSync(
+        new URL('../src/data/hawkeye_reading_order.json', import.meta.url), 'utf8',
+      ));
+      const expected = payload.items.map((item) => ({ issueId: item.issueId, title: item.title }));
+      const repeatIds = [11300, 30011, 30012, 30013, 30014, 29882, 29883, 21401];
+      const refusedIds = [56327, 55231, 55232, 55233, 55234, 55236];
+      const checkRows = (label, rows) => {
+        const mismatches = rows.flatMap((row, index) => (
+          JSON.stringify(row) === JSON.stringify(expected[index])
+            ? [] : [{ expected: expected[index], actual: row }]
+        ));
+        t.check(label, rows.length === 663 && mismatches.length === 0,
+          JSON.stringify({ count: rows.length, mismatches: mismatches.slice(0, 3) }));
+      };
+      const importedRows = () => page.evaluate((catalogId, refusals) => {
+        const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+        const lists = Object.values(state.lists).filter((list) => list.catalogId === catalogId);
+        const itemIds = lists[0]?.itemIds ?? [];
+        return {
+          matches: lists.length,
+          rows: itemIds.map((issueId) => ({ issueId, title: state.issues[issueId]?.title })),
+          refused: refusals.map((issueId) => ({
+            issueId,
+            detailsRefused: state.issues[issueId]?.detailsRefused,
+            placeholder: state.issues[issueId]?.placeholder,
+            digitalId: state.issues[issueId]?.digitalId,
+          })),
+        };
+      }, id, refusedIds);
+      const renderedRows = () => page.$$eval('#rows .row', (nodes) => nodes.map((node) => ({
+        issueId: Number(node.querySelector('.rt')?.dataset.issueId),
+        title: node.querySelector('.rt')?.textContent.trim(),
+      })));
+      const browserErrors = [];
+      const externalRequests = [];
+      page.on('console', (message) => { if (message.type() === 'error') browserErrors.push(message.text()); });
+      page.on('pageerror', (error) => browserErrors.push(error.message));
+      page.on('request', (request) => {
+        const url = new URL(request.url());
+        if (url.protocol.startsWith('http') && url.origin !== page.__origin) externalRequests.push(request.url());
+      });
+      await page.evaluateOnNewDocument(() => {
+        localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
+        window.__mrtBlockExternal = true;
+      });
+
+      const cardSelector = '#spotlights-results [data-story="list:hawkeye-reading-order"]';
+      await open(page, '/?catalog=actual#/home');
+      await openBrowseCategory(page, 'character-spotlights');
+      await page.$eval('#spotlights-q', (input) => {
+        input.value = 'Clint Barton';
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+      });
+      await page.waitForSelector(cardSelector, { timeout: 15000 });
+      const card = await page.$eval(cardSelector, (node) => ({
+        name: node.querySelector('.catalog-card-title')?.textContent.trim(),
+        text: node.textContent,
+        sourceHref: node.querySelector('a[href*="comicbookherald.com"]')?.href,
+        addName: node.querySelector('[data-act="import"]')?.getAttribute('aria-label'),
+      }));
+      t.check('both Hawkeyes are discoverable with a 663-issue source credit and one visible gap',
+        card.name === 'Hawkeye (Clint Barton and Kate Bishop)'
+        && card.text.includes('663 issues')
+        && card.text.includes('1 issue has no Marvel Unlimited link yet and cannot be opened')
+        && card.sourceHref === 'https://www.comicbookherald.com/hawkeye-reading-order/'
+        && card.addName === 'Add to library: Hawkeye (Clint Barton and Kate Bishop)',
+        JSON.stringify(card));
+
+      await click(page, `${cardSelector} [data-act="preview"]`);
+      await page.waitForFunction(() =>
+        document.querySelectorAll('#preview[open] .preview-issue-link').length === 663);
+      const preview = await page.$$eval('#preview-body .preview-issue-link', (nodes) => nodes.map((node) => ({
+        issueId: Number(node.dataset.issueId), title: node.textContent.trim(),
+      })));
+      checkRows('preview keeps all 663 source-selected issue IDs and titles', preview);
+      t.check('the source position 159 gap occupies canonical runtime row 158 after a prior repeat',
+        preview[157]?.issueId === -1610535525
+        && preview[157]?.title === 'Marvel Super Action #1'
+        && preview.filter((row) => row.issueId < 0).length === 1,
+        JSON.stringify({ gap: preview[157], negatives: preview.filter((row) => row.issueId < 0) }));
+
+      await click(page, '#preview-add [data-act="main"]');
+      await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')
+        ?.textContent.includes('In library'));
+      const imported = await importedRows();
+      checkRows('import retains all 663 issue IDs and titles in source order', imported.rows);
+      t.check('import preserves one negative gap, eight single canonical repeats and the endpoint',
+        imported.matches === 1
+        && imported.rows[0]?.issueId === 11280
+        && imported.rows[157]?.issueId === -1610535525
+        && imported.rows.at(-1)?.issueId === 110390
+        && repeatIds.every((issueId) => imported.rows.filter((row) => row.issueId === issueId).length === 1),
+        JSON.stringify({ matches: imported.matches, count: imported.rows.length,
+          gap: imported.rows[157], last: imported.rows.at(-1) }));
+      t.check('six exact positive IDs keep genuine detail refusals, not invented digital IDs',
+        imported.refused.length === 6
+        && imported.refused.every((row) => row.issueId > 0
+          && row.detailsRefused === true && row.placeholder !== true && row.digitalId == null),
+        JSON.stringify(imported.refused));
+
+      await click(page, '#preview-add [data-act="main"]');
+      await page.waitForFunction(() =>
+        !document.querySelector('#view-read')?.hidden
+        && document.querySelector('#order-name')?.textContent.trim()
+          === 'Hawkeye (Clint Barton and Kate Bishop)');
+      await openFullOrder(page);
+      await page.waitForFunction(() => document.querySelectorAll('#rows .row').length === 663);
+      checkRows('Reading List renders all 663 issue IDs and titles', await renderedRows());
+
+      await page.reload({ waitUntil: 'load' });
+      await page.waitForFunction(() =>
+        document.querySelector('#order-name')?.textContent.trim()
+          === 'Hawkeye (Clint Barton and Kate Bishop)');
+      await openFullOrder(page);
+      await page.waitForFunction(() => document.querySelectorAll('#rows .row').length === 663);
+      checkRows('reload renders all 663 issue IDs and titles', await renderedRows());
+      const reloaded = await importedRows();
+      checkRows('reload retains the exact saved 663-row vector', reloaded.rows);
+      t.check('reload keeps six exact refusals and one source-position gap',
+        reloaded.matches === 1 && reloaded.rows[157]?.issueId === -1610535525
+        && reloaded.refused.every((row) => row.issueId > 0
+          && row.detailsRefused === true && row.placeholder !== true && row.digitalId == null),
+        JSON.stringify({ gap: reloaded.rows[157], refused: reloaded.refused }));
+      t.check('the Hawkeye actual-data journey made no external request or browser error',
+        externalRequests.length === 0 && browserErrors.length === 0,
+        JSON.stringify({ externalRequests, browserErrors }));
+    },
+  },
+  {
+    id: 'ms-marvel-kamala-actual-data',
+    title: 'the actual Kamala guide keeps all 192 originals and gaps through preview, import and reload',
+    async run(page, t) {
+      await page.setViewport({ width: 1280, height: 900 });
+      const id = 'ms-marvel-kamala-khan-reading-order';
+      const gaps = [
+        [192, -2019288189], [193, -2036065808], [194, -1985732951],
+        [195, -2002510570], [196, -1952177713],
+      ];
+      const gapIds = new Map(gaps);
+      const mapping = JSON.parse(readFileSync(
+        new URL('../scripts/data/cbh-mappings/ms-marvel-kamala-khan-reading-order.json', import.meta.url), 'utf8',
+      ));
+      const originals = [...mapping.rows, ...mapping.sourceGaps]
+        .sort((left, right) => left.sourcePosition - right.sourcePosition);
+      const expected = JSON.parse(readFileSync(
+        new URL('../src/data/ms_marvel_kamala_khan_reading_order.json', import.meta.url), 'utf8',
+      )).items.map((item, index) => ({
+        position: index + 1, issueId: item.issueId, title: item.title,
+      }));
+      t.check('published vector binds all 192 positions to approved originals and five stable gap IDs',
+        expected.length === 192 && originals.length === 192 && mapping.sourceGaps.length === gaps.length
+        && originals.every((row, index) => (
+          row.sourcePosition === index + 1 + mapping.repeatedSourceReferences
+            .filter((repeat) => repeat.sourcePosition < row.sourcePosition).length
+          && expected[index]?.issueId === (row.selectedIssueId ?? gapIds.get(row.sourcePosition))
+          && (row.selectedIssueId || expected[index]?.title === row.sourceIssueReference)
+        )),
+        JSON.stringify({ count: expected.length, gaps: expected.slice(187) }));
+      const checkRows = (label, rows) => {
+        const mismatches = expected.flatMap((source, index) => (
+          rows[index]?.position === source.position
+          && rows[index]?.issueId === source.issueId
+          && rows[index]?.title === source.title
+            ? [] : [{ expected: source, actual: rows[index] }]
+        ));
+        t.check(label, rows.length === expected.length && mismatches.length === 0,
+          JSON.stringify({ count: rows.length, mismatches: mismatches.slice(0, 3) }));
+      };
+      const importedRows = () => page.evaluate((catalogId) => {
+        const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+        const matches = Object.values(state.lists).filter((list) => list.catalogId === catalogId);
+        return {
+          matches: matches.length,
+          rows: (matches[0]?.itemIds ?? []).map((issueId, index) => ({
+            position: index + 1, issueId, title: state.issues[issueId]?.title,
+          })),
+          anthology: state.issues[56448] && {
+            number: state.issues[56448].number,
+            seriesId: state.issues[56448].seriesId,
+          },
+        };
+      }, id);
+      const renderedRows = () => page.$$eval('#rows .row', (nodes) => nodes.map((node, index) => ({
+        position: index + 1,
+        issueId: Number(node.querySelector('.rt')?.dataset.issueId),
+        title: node.querySelector('.rt')?.textContent.trim(),
+      })));
+      const errors = [];
+      const externalRequests = [];
+      page.on('console', (message) => { if (message.type() === 'error') errors.push(message.text()); });
+      page.on('pageerror', (error) => errors.push(error.message));
+      page.on('request', (request) => {
+        const url = new URL(request.url());
+        if (url.protocol.startsWith('http') && url.origin !== page.__origin) externalRequests.push(request.url());
+      });
+      await page.evaluateOnNewDocument(() => {
+        localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
+        window.__mrtBlockExternal = true;
+      });
+
+      await open(page, '/?catalog=actual#/home');
+      await openBrowseCategory(page, 'character-spotlights');
+      await page.$eval('#spotlights-q', (input) => {
+        input.value = 'Kamala Khan';
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+      });
+      const cardSelector = '#spotlights-results [data-story="list:ms-marvel-kamala-khan-reading-order"]';
+      await page.waitForSelector(cardSelector, { timeout: 15000 });
+      const card = await page.$eval(cardSelector, (node) => ({
+        name: node.querySelector('.catalog-card-title')?.textContent.trim(),
+        text: node.textContent,
+        sourceName: node.querySelector('a[href*="comicbookherald.com"]')?.getAttribute('aria-label'),
+        sourceHref: node.querySelector('a[href*="comicbookherald.com"]')?.href,
+        addName: node.querySelector('[data-act="import"]')?.getAttribute('aria-label'),
+      }));
+      t.check('Kamala is discoverable with the exact count, five-gap disclosure and source credit',
+        card.name === 'Ms. Marvel (Kamala Khan)' && card.text.includes('192 issues')
+        && card.text.includes('5 issues have no Marvel Unlimited links yet and cannot be opened')
+        && card.sourceName === 'Source of Ms. Marvel (Kamala Khan): Comic Book Herald'
+        && card.sourceHref === 'https://www.comicbookherald.com/ms-marvel-kamala-khan-reading-order/'
+        && card.addName === 'Add to library: Ms. Marvel (Kamala Khan)', JSON.stringify(card));
+
+      await click(page, `${cardSelector} [data-act="preview"]`);
+      await page.waitForFunction(() =>
+        document.querySelectorAll('#preview[open] .preview-issue-link').length === 192);
+      const preview = await page.$$eval('#preview-body .preview-issue-link', (nodes) => nodes.map((node) => ({
+        position: Number(node.closest('li')?.querySelector('.pn')?.textContent),
+        issueId: Number(node.dataset.issueId),
+        title: node.textContent.trim(),
+      })));
+      checkRows('preview displays all 192 exact source positions, including five gaps', preview);
+
+      await click(page, '#preview-add [data-act="main"]');
+      await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')
+        ?.textContent.includes('In library'));
+      const imported = await importedRows();
+      t.check('import creates one 192-position list with the original #0 anthology identity',
+        imported.matches === 1 && imported.anthology?.number === '0'
+        && imported.anthology?.seriesId === 20443,
+        JSON.stringify({ matches: imported.matches, anthology: imported.anthology }));
+      checkRows('import retains every original ID and title in source order', imported.rows);
+
+      await click(page, '#preview-add [data-act="main"]');
+      await page.waitForFunction(() =>
+        !document.querySelector('#view-read')?.hidden
+        && document.querySelector('#order-name')?.textContent.trim() === 'Ms. Marvel (Kamala Khan)');
+      await openFullOrder(page);
+      await page.waitForFunction(() => document.querySelectorAll('#rows .row').length === 192);
+      checkRows('the Reading List renders all 192 positions', await renderedRows());
+
+      await page.reload({ waitUntil: 'load' });
+      await page.waitForFunction(() =>
+        document.querySelector('#order-name')?.textContent.trim() === 'Ms. Marvel (Kamala Khan)');
+      await openFullOrder(page);
+      await page.waitForFunction(() => document.querySelectorAll('#rows .row').length === 192);
+      checkRows('reload renders the same 192-position Reading List', await renderedRows());
+      const reloaded = await importedRows();
+      checkRows('saved progress retains all 192 positions after reload', reloaded.rows);
+      t.check('all five print-original gaps keep their exact source positions and negative IDs',
+        reloaded.rows.filter((row) => row.issueId < 0).length === 5
+        && gaps.every(([sourcePosition, issueId]) =>
+          reloaded.rows[originals.findIndex((row) => row.sourcePosition === sourcePosition)]?.issueId === issueId),
+        JSON.stringify(reloaded.rows.slice(187)));
+      t.check('all four repeated Champions references remain one runtime identity each',
+        [61447, 66757, 67014, 67981].every((issueId) =>
+          reloaded.rows.filter((row) => row.issueId === issueId).length === 1),
+        JSON.stringify(reloaded.rows.filter((row) => [61447, 66757, 67014, 67981].includes(row.issueId))));
+      t.check('Worlds Collide, Exiles, Rising, Fists, Voices, Dark Web and print finale keep original IDs',
+        [
+          [20, 56448], [88, 64681], [89, 61454], [90, 65056], [91, 61455],
+          [92, 65264], [93, 61456], [111, 66769],
+          [164, 66916], [165, 69010], [166, 69030], [167, 69019], [168, 69021],
+          [169, 103514], [170, 103512], [171, 103513], [172, 101168], [173, 102365],
+          [174, 103236], [186, 104546], [187, 102194],
+        ].every(([position, issueId]) => reloaded.rows[position - 1]?.issueId === issueId)
+        && !reloaded.rows.some(({ title }) =>
+          /Free Comic Book Day|FCBD|Attilan Rising|Marvel Now! Point One/.test(title)),
+        JSON.stringify(reloaded.rows.slice(163, 173)));
+      t.check('Kamala browse, preview, import and reload made no external request or browser error',
+        externalRequests.length === 0 && errors.length === 0,
+        JSON.stringify({ externalRequests: externalRequests.slice(0, 3), errors: errors.slice(0, 3) }));
+    },
+  },
+  {
     id: 'x-23-actual-data',
     title: 'the actual X-23 guide preserves every source-selected comic through preview, import and reload',
     async run(page, t) {
@@ -3571,6 +3860,339 @@ const SCENARIOS = [
           /X-Force Annual \(2010\)|All-New Wolverine Saga|Wolverine: The Road To Hell/.test(title)),
         JSON.stringify(reloaded.rows.filter((_, index) => [13, 111, 112, 113, 138, 141, 288, 290].includes(index))));
       t.check('X-23 browse, preview, import and reload made no external request or browser error',
+        externalRequests.length === 0 && errors.length === 0,
+        JSON.stringify({ externalRequests: externalRequests.slice(0, 3), errors: errors.slice(0, 3) }));
+    },
+  },
+  {
+    id: 'marvel-zombies-actual-data',
+    title: 'the Marvel Zombies guide preserves five source sections, originals and visible gaps through reload',
+    async run(page, t) {
+      const id = 'marvel-zombies-reading-order';
+      const mapping = JSON.parse(readFileSync(
+        new URL('../scripts/data/cbh-mappings/marvel-zombies-reading-order.json', import.meta.url), 'utf8',
+      ));
+      const packet = JSON.parse(readFileSync(
+        new URL('../scripts/data/cbh-packets/marvel-zombies-reading-order.json', import.meta.url), 'utf8',
+      ));
+      const payload = JSON.parse(readFileSync(
+        new URL('../src/data/marvel_zombies_reading_order.json', import.meta.url), 'utf8',
+      ));
+      const gapIds = new Map([[93, -213508517], [94, -129620422], [95, -112842803]]);
+      const expected = [
+        ...mapping.rows.map((row) => ({
+          sourcePosition: row.sourcePosition, issueId: row.selectedIssueId, title: row.resolvedIssueTitle,
+        })),
+        ...packet.sourceGaps.map((gap) => ({
+          sourcePosition: gap.sourcePosition,
+          issueId: gapIds.get(gap.sourcePosition),
+          title: gap.sourceIssueReference,
+        })),
+      ].sort((a, b) => a.sourcePosition - b.sourcePosition);
+      t.check('Pinned payload retains each original and all three stable negative gap identities',
+        expected.length === 94 && expected.every((row, index) =>
+          payload.items[index]?.issueId === row.issueId
+            && payload.items[index]?.title === row.title),
+        JSON.stringify(payload.items.slice(-3).map((item) => [item.issueId, item.title])));
+      const sections = [
+        'Marvel Zombies Comic Book Reading List',
+        'Deadpool Vs. Zombies',
+        "Zombies In Marvel's Secret Wars (2015)",
+        'Marvel Zombies Resurrection Era',
+        'Out of Continuity Additions:',
+      ];
+      const checkRows = (label, rows) => {
+        const mismatches = rows.flatMap((row, index) => {
+          const wanted = expected[index];
+          return wanted && row.position === index + 1 && row.title === wanted.title
+            && row.issueId === wanted.issueId
+            ? [] : [{ position: index + 1, wanted, actual: row }];
+        });
+        t.check(label, rows.length === 94 && mismatches.length === 0,
+          JSON.stringify({ count: rows.length, mismatches: mismatches.slice(0, 3) }));
+      };
+      const importedRows = () => page.evaluate((catalogId) => {
+        const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+        const matches = Object.values(state.lists).filter((list) => list.catalogId === catalogId);
+        return {
+          matches: matches.length,
+          rows: (matches[0]?.itemIds ?? []).map((issueId, index) => ({
+            position: index + 1, issueId, title: state.issues[issueId]?.title,
+          })),
+        };
+      }, id);
+      const rendered = () => page.evaluate(() => ({
+        rows: [...document.querySelectorAll('#rows .row')].map((node, index) => ({
+          position: index + 1,
+          issueId: Number(node.querySelector('.rt')?.dataset.issueId),
+          title: node.querySelector('.rt')?.textContent.trim(),
+        })),
+        headings: [...document.querySelectorAll('#rows .row-group .rg-name')]
+          .map((node) => node.textContent.trim()),
+      }));
+      const browserErrors = [];
+      const externalRequests = [];
+      page.on('console', (message) => {
+        if (message.type() === 'error') browserErrors.push(message.text());
+      });
+      page.on('pageerror', (error) => browserErrors.push(error.message));
+      page.on('request', (request) => {
+        const url = new URL(request.url());
+        if (url.protocol.startsWith('http') && url.origin !== page.__origin) externalRequests.push(request.url());
+      });
+      await page.evaluateOnNewDocument(() => {
+        localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
+        window.__mrtBlockExternal = true;
+      });
+
+      await open(page, '/?catalog=actual#/home');
+      await openBrowseCategory(page, 'storylines');
+      await page.$eval('#lines-q', (input) => {
+        input.value = 'Marvel Zombies';
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+      });
+      const cardSelector = '#lines-results [data-story="list:marvel-zombies-reading-order"]';
+      await page.waitForSelector(cardSelector, { timeout: 15000 });
+      const card = await page.$eval(cardSelector, (node) => ({
+        name: node.querySelector('.catalog-card-title')?.textContent.trim(),
+        meta: node.querySelector('.catalog-card-meta')?.textContent.trim(),
+        addName: node.querySelector('[data-act="import"]')?.getAttribute('aria-label'),
+        sourceName: node.querySelector('a[href*="comicbookherald.com"]')?.getAttribute('aria-label'),
+        sourceHref: node.querySelector('a[href*="comicbookherald.com"]')?.href,
+        era: node.closest('.catalog-grid')?.previousElementSibling
+          ?.querySelector('.shelf-section-title')?.textContent.trim(),
+      }));
+      t.check('Storylines Across eras discovers one credited partial guide with three disclosed gaps',
+        card.name === 'Marvel Zombies' && card.era === 'Across eras'
+        && card.meta === '94 issues · 3 issues have no Marvel Unlimited links yet and cannot be opened'
+        && card.addName === 'Add to library: Marvel Zombies'
+        && card.sourceName === 'Source of Marvel Zombies: Comic Book Herald'
+        && card.sourceHref === 'https://www.comicbookherald.com/marvel-zombies-reading-order/',
+        JSON.stringify(card));
+
+      await click(page, `${cardSelector} [data-act="preview"]`);
+      await page.waitForFunction(() =>
+        document.querySelectorAll('#preview[open] .preview-issue-link').length === 94);
+      const preview = await page.evaluate(() => ({
+        rows: [...document.querySelectorAll('#preview-body .preview-issue-link')].map((node) => ({
+          position: Number(node.closest('li')?.querySelector('.pn')?.textContent),
+          issueId: Number(node.dataset.issueId),
+          title: node.textContent.trim(),
+        })),
+        headings: [...document.querySelectorAll('#preview-body .preview-group h4')]
+          .map((node) => node.textContent.trim()),
+        source: document.querySelector('#preview-source')?.textContent.trim(),
+        meta: document.querySelector('#preview-meta')?.textContent.trim(),
+      }));
+      checkRows('Preview renders all 94 canonical source positions, original IDs and titles', preview.rows);
+      t.check('Preview keeps five visible universe labels and the source and gap disclosure',
+        sections.every((section) => preview.headings.some((heading) => heading.startsWith(section)))
+        && preview.source.includes('Comic Book Herald')
+        && preview.meta.includes('3 issues have no Marvel Unlimited links yet'),
+        JSON.stringify({ headings: preview.headings, source: preview.source, meta: preview.meta }));
+
+      await click(page, '#preview-add [data-act="main"]');
+      await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')
+        ?.textContent.includes('In library'));
+      const imported = await importedRows();
+      checkRows('Import retains all 94 source positions, original IDs and titles', imported.rows);
+      t.check('Import keeps three negative gap identities and just one original Marvel Zombies #1',
+        imported.matches === 1
+        && imported.rows.slice(-3).every((row, index) =>
+          row.issueId === gapIds.get(index + 93)
+            && row.title === `Marvel Zombies (2025) #${index + 3}`)
+        && imported.rows.filter((row) => row.issueId === 3220).length === 1
+        && imported.rows[3]?.issueId === 3220,
+        JSON.stringify({
+          matches: imported.matches, gaps: imported.rows.slice(-3),
+          original: imported.rows[3],
+        }));
+      t.check('Import does not infer issues from unnumbered collections or Prime Eight',
+        imported.rows.every(({ title }) => !(
+          /Marvel Apes: Prime Eight|Marvel Zombies: Black, White & Blood|Zombies Christmas Carol|Marvel Zombies vs Army of Darkness|Age of Ultron vs\. Zombies|Red Skull & More!/i.test(title)
+          || title === 'Marvel Zombies (2015) #1'
+        )), JSON.stringify(imported.rows.filter(({ title }) => /Prime Eight|Black, White & Blood|Christmas Carol|Army of Darkness|vs\. Zombies|Red Skull/.test(title))));
+
+      await click(page, '#preview-add [data-act="main"]');
+      await page.waitForFunction(() =>
+        !document.querySelector('#view-read')?.hidden
+        && document.querySelector('#order-name')?.textContent.trim() === 'Marvel Zombies');
+      await openFullOrder(page);
+      await page.waitForFunction(() => document.querySelectorAll('#rows .row').length === 94);
+      const reading = await rendered();
+      checkRows('Reading List renders all 94 positions, IDs and titles', reading.rows);
+      t.check('Reading List shows all five distinct universe labels',
+        sections.every((section) => reading.headings.some((heading) => heading.startsWith(section))),
+        JSON.stringify(reading.headings));
+
+      await page.reload({ waitUntil: 'load' });
+      await page.waitForFunction(() =>
+        document.querySelector('#order-name')?.textContent.trim() === 'Marvel Zombies');
+      await openFullOrder(page);
+      await page.waitForFunction(() => document.querySelectorAll('#rows .row').length === 94);
+      const reloaded = await rendered();
+      checkRows('Reloaded Reading List preserves the complete 94-position original vector', reloaded.rows);
+      checkRows('Reloaded saved state retains the same originals and three gaps',
+        (await importedRows()).rows);
+      t.check('Reload keeps the five source-universe labels and makes no external request or browser error',
+        sections.every((section) => reloaded.headings.some((heading) => heading.startsWith(section)))
+        && externalRequests.length === 0 && browserErrors.length === 0,
+        JSON.stringify({
+          headings: reloaded.headings,
+          externalRequests: externalRequests.slice(0, 3),
+          browserErrors: browserErrors.slice(0, 3),
+        }));
+    },
+  },
+  {
+    id: 'silk-actual-data',
+    title: 'the actual Silk guide retains all 74 source positions and seven original digital gaps through reload',
+    async run(page, t) {
+      const id = 'silk-cindy-moon-reading-order';
+      const items = JSON.parse(readFileSync(
+        new URL('../src/data/silk_cindy_moon_reading_order.json', import.meta.url), 'utf8',
+      )).items;
+      const expected = items.map((item, index) => ({
+        position: index + 1, issueId: item.issueId, title: item.title,
+      }));
+      const gapPositions = items.flatMap((item, index) => item.placeholder ? [index + 1] : []);
+      t.check('the shipped Silk fixture retains all 74 original positions and seven unlinked digital gaps',
+        items.length === 74 && gapPositions.join(',') === '44,45,46,47,48,49,50'
+        && items.slice(43, 50).every((item) => item.issueId < 0 && item.url === null),
+        JSON.stringify({ count: items.length, gapPositions }));
+      t.check('both 2015 Silk volumes and the second 2015 Gwen volume stay distinct',
+        items[6]?.seriesId === 19661 && items[13]?.seriesId === 20499
+        && items[37]?.seriesId === 20505,
+        JSON.stringify([items[6]?.seriesId, items[13]?.seriesId, items[37]?.seriesId]));
+      t.check('the FCBD position names only the Spider-Man story in the source interleave',
+        [77116, 90780, 77117, 85661].every((issueId, index) =>
+          items[64 + index]?.issueId === issueId)
+        && items[67]?.collectedIn?.includes('Spider-Man story only'),
+        JSON.stringify(items.slice(64, 68).map((item) => [item.issueId, item.collectedIn])));
+      const checkRows = (label, rows) => {
+        const mismatches = rows.flatMap((row, index) =>
+          JSON.stringify(row) === JSON.stringify(expected[index])
+            ? [] : [{ expected: expected[index], actual: row }]);
+        t.check(label, rows.length === 74 && mismatches.length === 0,
+          JSON.stringify({ count: rows.length, mismatches: mismatches.slice(0, 3) }));
+      };
+      const importedRows = () => page.evaluate((catalogId) => {
+        const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+        const matches = Object.values(state.lists).filter((list) => list.catalogId === catalogId);
+        return {
+          matches: matches.length,
+          rows: (matches[0]?.itemIds ?? []).map((issueId, index) => ({
+            position: index + 1, issueId, title: state.issues[issueId]?.title,
+          })),
+        };
+      }, id);
+      const renderedRows = () => page.$$eval('#rows .row', (nodes) => nodes.map((node, index) => ({
+        position: index + 1,
+        issueId: Number(node.querySelector('.rt')?.dataset.issueId),
+        title: node.querySelector('.rt')?.textContent.trim(),
+      })));
+      const errors = [];
+      const externalRequests = [];
+      page.on('console', (message) => { if (message.type() === 'error') errors.push(message.text()); });
+      page.on('pageerror', (error) => errors.push(error.message));
+      page.on('request', (request) => {
+        const url = new URL(request.url());
+        if (url.protocol.startsWith('http') && url.origin !== page.__origin) externalRequests.push(request.url());
+      });
+      await page.evaluateOnNewDocument(() => {
+        localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
+        window.__mrtBlockExternal = true;
+      });
+
+      await open(page, '/?catalog=actual#/home');
+      await openBrowseCategory(page, 'character-spotlights');
+      await page.$eval('#spotlights-q', (input) => {
+        input.value = 'Silk / Cindy Moon';
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+      });
+      const cardSelector = '#spotlights-results [data-story="list:silk-cindy-moon-reading-order"]';
+      await page.waitForSelector(cardSelector, { timeout: 15000 });
+      const card = await page.$eval(cardSelector, (node) => ({
+        name: node.querySelector('.catalog-card-title')?.textContent.trim(),
+        text: node.textContent,
+        sourceName: node.querySelector('a[href*="comicbookherald.com"]')?.getAttribute('aria-label'),
+        sourceHref: node.querySelector('a[href*="comicbookherald.com"]')?.href,
+        addName: node.querySelector('[data-act="import"]')?.getAttribute('aria-label'),
+      }));
+      t.check('Silk is discoverable with 74 positions, seven gaps and Comic Book Herald credit',
+        card.name === 'Silk / Cindy Moon' && card.text.includes('74 issues')
+        && card.text.includes('7 issues have no Marvel Unlimited links yet and cannot be opened')
+        && card.sourceName === 'Source of Silk / Cindy Moon: Comic Book Herald'
+        && card.sourceHref === 'https://www.comicbookherald.com/silk-cindy-moon-reading-order/'
+        && card.addName === 'Add to library: Silk / Cindy Moon', JSON.stringify(card));
+
+      await click(page, `${cardSelector} [data-act="preview"]`);
+      await page.waitForFunction(() =>
+        document.querySelectorAll('#preview[open] .preview-issue-link').length === 74);
+      const preview = await page.$$eval('#preview-body .preview-issue-link', (nodes) => nodes.map((node) => ({
+        position: Number(node.closest('li')?.querySelector('.pn')?.textContent),
+        issueId: Number(node.dataset.issueId),
+        title: node.textContent.trim(),
+      })));
+      checkRows('Preview displays all 74 selected originals and gap positions', preview);
+      const previewQualified = await page.$eval('#preview-body', (node) =>
+        [...node.querySelectorAll('.preview-group h4')]
+          .some((heading) => heading.textContent.includes('Spider-Man story only')));
+      t.check('Preview identifies the FCBD position as the Spider-Man story only', previewQualified);
+      const previewGaps = await page.$$eval('#preview-body .preview-issue-link', (nodes) =>
+        nodes.filter((node) => Number(node.dataset.issueId) < 0)
+          .map((node) => ({
+            position: Number(node.closest('li')?.querySelector('.pn')?.textContent),
+            external: /^https?:/.test(node.getAttribute('href') ?? ''),
+          })));
+      t.check('all seven original digital gaps appear in Preview without external issue links',
+        previewGaps.map((row) => row.position).join(',') === '44,45,46,47,48,49,50'
+        && previewGaps.every((row) => !row.external), JSON.stringify(previewGaps));
+
+      await click(page, '#preview-add [data-act="main"]');
+      await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')
+        ?.textContent.includes('In library'));
+      const imported = await importedRows();
+      t.check('import creates one Silk Reading List', imported.matches === 1, JSON.stringify(imported.matches));
+      checkRows('import retains the complete 74-position original and gap vector', imported.rows);
+
+      await click(page, '#preview-add [data-act="main"]');
+      await page.waitForFunction(() =>
+        !document.querySelector('#view-read')?.hidden
+        && document.querySelector('#order-name')?.textContent.trim() === 'Silk / Cindy Moon');
+      await openFullOrder(page);
+      await page.waitForFunction(() => document.querySelectorAll('#rows .row').length === 74);
+      checkRows('rendered Reading List retains every position and identity', await renderedRows());
+      const renderedQualified = await page.$eval('#rows', (node) =>
+        [...node.querySelectorAll('.row-group .rg-name')]
+          .some((heading) => heading.textContent.includes('Spider-Man story only')));
+      t.check('the rendered Reading List retains the FCBD story qualification', renderedQualified);
+      const gapActions = await page.$$eval('#rows .row', (nodes) => nodes
+        .filter((node) => Number(node.querySelector('.rt')?.dataset.issueId) < 0)
+        .map((node) => ({
+          position: nodes.indexOf(node) + 1,
+          readHidden: node.querySelector('.ract button[data-act="open"]')?.hidden,
+          hasInfo: Boolean(node.querySelector('.ract a[data-act="info"]')),
+        })));
+      t.check('the seven unresolved digital originals offer neither Read nor Info actions',
+        gapActions.map((row) => row.position).join(',') === '44,45,46,47,48,49,50'
+        && gapActions.every((row) => row.readHidden && !row.hasInfo), JSON.stringify(gapActions));
+
+      await page.reload({ waitUntil: 'load' });
+      await page.waitForFunction(() =>
+        document.querySelector('#order-name')?.textContent.trim() === 'Silk / Cindy Moon');
+      await openFullOrder(page);
+      await page.waitForFunction(() => document.querySelectorAll('#rows .row').length === 74);
+      checkRows('reloaded Reading List still renders all 74 positions', await renderedRows());
+      const reloadedQualified = await page.$eval('#rows', (node) =>
+        [...node.querySelectorAll('.row-group .rg-name')]
+          .some((heading) => heading.textContent.includes('Spider-Man story only')));
+      t.check('reload retains the FCBD story qualification', reloadedQualified);
+      const reloaded = await importedRows();
+      t.check('reload preserves exactly one Silk Reading List', reloaded.matches === 1,
+        JSON.stringify(reloaded.matches));
+      checkRows('reloaded storage retains all 74 original and gap identities', reloaded.rows);
+      t.check('Silk preview, import, rendering and reload make no external request or browser error',
         externalRequests.length === 0 && errors.length === 0,
         JSON.stringify({ externalRequests: externalRequests.slice(0, 3), errors: errors.slice(0, 3) }));
     },
@@ -3787,7 +4409,7 @@ const SCENARIOS = [
         '#view-browse [data-primary-paths] [data-category="timeline"] .home-path-count',
         (node) => node.textContent.trim(),
       );
-      t.check('Home recommends the setup guide and both gateways count 148 normal Reading Lists',
+      t.check('Home recommends the setup guide and both gateways count 148 Reading Lists',
         home.recommendation === 'Recommended start: Setup to Modern Timeline'
         && home.context.startsWith('New to Marvel?')
         && home.context.includes('historical context on the characters and events ahead')
@@ -13632,6 +14254,166 @@ SCENARIOS.push((await import('./browser-markdown-export.mjs')).readableMarkdownE
 const deferral = await import('./browser-defer.mjs');
 SCENARIOS.push(deferral.deferNext, deferral.deferLifecycle, deferral.deferPersistence);
 SCENARIOS.push((await import('./browser-order-export.mjs')).orderOnlyExport);
+SCENARIOS.push({
+  id: 'infinity-saga-actual-data',
+  title: 'the actual Infinity storyline previews, imports, renders, and reloads every source position',
+  async run(page, t) {
+    const order = JSON.parse(readFileSync(new URL(
+      '../src/data/marvels_infinity_saga_gauntlet_wars_crusade_reading_order.json', import.meta.url,
+    ), 'utf8'));
+    const id = 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order';
+    const packet = JSON.parse(readFileSync(new URL(
+      `../scripts/data/cbh-packets/${id}.json`, import.meta.url,
+    ), 'utf8'));
+    const mapping = JSON.parse(readFileSync(new URL(
+      `../scripts/data/cbh-mappings/${id}.json`, import.meta.url,
+    ), 'utf8'));
+    const canonical = [...mapping.rows, ...mapping.sourceGaps]
+      .sort((a, b) => a.sourcePosition - b.sourcePosition);
+    const expected = order.items.map(({ issueId, title }, index) => ({
+      position: index + 1, issueId, title,
+    }));
+    const knownRefusedIds = order.items
+      .filter(({ issueId, detailsRefused }) => issueId > 0 && detailsRefused)
+      .map(({ issueId }) => issueId);
+    const cardSelector = `#lines-results [data-story="list:${id}"]`;
+    const errors = [];
+    const externalRequests = [];
+    page.on('console', (message) => { if (message.type() === 'error') errors.push(message.text()); });
+    page.on('pageerror', (error) => errors.push(error.message));
+    page.on('request', (request) => {
+      const url = new URL(request.url());
+      if (url.protocol.startsWith('http') && url.origin !== page.__origin) {
+        externalRequests.push(request.url());
+      }
+    });
+    await page.evaluateOnNewDocument(() => {
+      localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
+      window.__mrtBlockExternal = true;
+    });
+    const checkRows = (label, rows) => t.check(label,
+      JSON.stringify(rows) === JSON.stringify(expected),
+      JSON.stringify({ count: rows.length, first: rows[0], last: rows.at(-1) }));
+    const imported = () => page.evaluate((catalogId, refusedIds) => {
+      const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+      const matches = Object.values(state.lists).filter((list) => list.catalogId === catalogId);
+      const itemIds = matches[0]?.itemIds ?? [];
+      return {
+        matches: matches.length,
+        rows: itemIds.map((issueId, index) => ({
+          position: index + 1, issueId, title: state.issues[issueId]?.title,
+        })),
+        positiveRefusedIds: itemIds.filter((issueId) =>
+          issueId > 0 && state.issues[issueId]?.detailsRefused),
+        refusedRecords: refusedIds.map((issueId) => ({
+          issueId,
+          detailsRefused: state.issues[issueId]?.detailsRefused ?? null,
+          seriesId: state.issues[issueId]?.seriesId ?? null,
+          digitalId: state.issues[issueId]?.digitalId ?? null,
+          hydrated: state.issues[issueId]?.hydrated ?? null,
+        })),
+      };
+    }, id, knownRefusedIds);
+    const checkStoredRefusals = (label, snapshot) => t.check(label,
+      knownRefusedIds.length === 11
+      && JSON.stringify(snapshot.positiveRefusedIds) === JSON.stringify(knownRefusedIds)
+      && snapshot.refusedRecords.length === 11
+      && snapshot.refusedRecords.every((record, index) =>
+        record.issueId === knownRefusedIds[index]
+        && record.detailsRefused === true
+        && record.seriesId === null
+        && record.digitalId === null
+        && record.hydrated === false),
+      JSON.stringify(snapshot.refusedRecords));
+    const rendered = () => page.$$eval('#rows .row', (nodes) => nodes.map((node, index) => ({
+      position: index + 1,
+      issueId: Number(node.querySelector('.rt')?.dataset.issueId),
+      title: node.querySelector('.rt')?.textContent.trim(),
+    })));
+    await open(page, '/?catalog=actual#/catalog');
+    await openBrowseCategory(page, 'storylines');
+    await page.waitForSelector(cardSelector, { timeout: 15000 });
+    const card = await page.$eval(cardSelector, (node) => ({
+      name: node.querySelector('.catalog-card-title')?.textContent.trim(),
+      source: node.querySelector('a[href*="comicbookherald.com"]')?.href,
+      section: node.parentElement?.previousElementSibling?.textContent,
+    }));
+    t.check('undated storyline is discoverable in Across eras with the exact credited guide',
+      card.name === 'Infinity Trilogy (Gauntlet, War, Crusade)'
+      && card.source === order.source
+      && (card.section ?? '').includes('Across eras'),
+      JSON.stringify(card));
+    await click(page, `${cardSelector} [data-act="preview"]`);
+    await page.waitForFunction(() =>
+      document.querySelectorAll('#preview[open] .preview-issue-link').length === 191);
+    const preview = await page.$$eval('#preview-body .preview-issue-link', (nodes) => nodes.map((node) => ({
+      position: Number(node.closest('li')?.querySelector('.pn')?.textContent),
+      issueId: Number(node.dataset.issueId),
+      title: node.textContent.trim(),
+    })));
+    checkRows('preview retains all 191 first positions, IDs and titles', preview);
+    await click(page, '#preview-add [data-act="main"]');
+    await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')
+      ?.textContent.includes('In library'));
+    const saved = await imported();
+    t.check('import saves exactly one catalog-bound guide', saved.matches === 1, JSON.stringify(saved));
+    checkRows('import retains all 191 positions, IDs and titles', saved.rows);
+    checkStoredRefusals('import stores all 11 actual positive-ID detail refusals without digital metadata',
+      saved);
+    await click(page, '#preview-add [data-act="main"]');
+    await page.waitForFunction(() => !document.querySelector('#view-read')?.hidden
+      && document.querySelector('#order-name')?.textContent.trim()
+        === 'Infinity Trilogy (Gauntlet, War, Crusade)');
+    await openFullOrder(page);
+    await page.waitForFunction(() => document.querySelectorAll('#rows .row').length === 191);
+    checkRows('Reading List renders all 191 positions, IDs and titles', await rendered());
+    await page.reload({ waitUntil: 'load' });
+    await page.waitForFunction(() => document.querySelector('#order-name')?.textContent.trim()
+      === 'Infinity Trilogy (Gauntlet, War, Crusade)');
+    await openFullOrder(page);
+    await page.waitForFunction(() => document.querySelectorAll('#rows .row').length === 191);
+    checkRows('reloaded Reading List renders all 191 positions, IDs and titles', await rendered());
+    const reloaded = await imported();
+    checkRows('reloaded state preserves all 191 imported identities', reloaded.rows);
+    checkStoredRefusals('reload preserves all 11 actual positive-ID refusal flags and absent digital metadata',
+      reloaded);
+    t.check('17 source gaps and 11 known-ID refusals remain separate without repeats',
+      expected.filter(({ issueId }) => issueId < 0).length === 17
+      && order.items.filter((item) => item.detailsRefused && item.issueId > 0).length === 11
+      && new Set(expected.map(({ issueId }) => issueId)).size === 191,
+      JSON.stringify({ gaps: expected.filter(({ issueId }) => issueId < 0).length }));
+    const directed = [
+      [1, 15169], [8, 15176], [16, 15174], [31, 63311], [35, 15188], [36, 9286],
+      [61, 15198], [62, 20197], [73, 15199], [94, 9292], [99, 7789],
+      [112, 10020], [115, 10024], [163, 23307], [209, 50530],
+      [217, 51976], [221, 51981],
+    ];
+    t.check('prologue placements, directed interleaves and 1991/2015 originals survive import',
+      directed.every(([sourcePosition, issueId]) =>
+        expected[canonical.findIndex((row) => row.sourcePosition === sourcePosition)]?.issueId === issueId),
+      JSON.stringify(directed));
+    t.check('all 30 repeated source references render only at their first placement',
+      packet.repeatedSourceReferences.length === 30
+      && packet.repeatedSourceReferences.every((row) => {
+        const original = packet.rows[row.canonicalRow - 1];
+        return canonical.some((entry) => entry.sourcePosition === original.sourcePosition)
+          && !canonical.some((entry) => entry.sourcePosition === row.sourcePosition);
+      }),
+      JSON.stringify({ repeated: packet.repeatedSourceReferences.length }));
+    const excluded = [
+      'Marvel Comics Presents (1988) #50', 'Marvel Comics Presents (1988) #112',
+      'Silver Surfer Annual #5', 'Marvel Holiday Special #2', 'Marvel Swimsuit Special #2',
+      'What The-?! #24', 'Alpha Flight (1983) #125', 'Alpha Flight (1983) #126',
+      'Alpha Flight (1983) #127', 'Deathlok (1991) #28',
+    ];
+    t.check('fragment-only and undirected collection-only comics remain outside the rendered guide',
+      excluded.every((title) => !expected.some((row) => row.title === title)),
+      JSON.stringify(excluded.filter((title) => expected.some((row) => row.title === title))));
+    t.check('browse, preview, import, and reload make no external request or browser error',
+      externalRequests.length === 0 && errors.length === 0,
+      JSON.stringify({ externalRequests: externalRequests.slice(0, 3), errors: errors.slice(0, 3) }));
+  },
+});
 
 // Without this an unexpected throw leaves an unhandled rejection, which Node reports as a bare
 // stack and exits 1 on. Exit 1 is this check's word for "an assertion failed", so an internal

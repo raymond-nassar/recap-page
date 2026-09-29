@@ -1,0 +1,4590 @@
+{
+  "id": "silk-cindy-moon-reading-order",
+  "inventoryId": "silk-cindy-moon-reading-order",
+  "packetDigest": "ac6d12d27eb7588f7ca67f8322c223ba96d42d71fb1f910ca399922be7ff8ccd",
+  "sourceUrl": "https://www.comicbookherald.com/silk-cindy-moon-reading-order/",
+  "sourceRetrievedAt": "2026-09-29",
+  "sourceContentSha256": "2ecec5d22636d8df48cd602c74ba9ffff83a69b267d9a40c564ce64ccee97e5a",
+  "sourceRetrievalStatus": "retrieved",
+  "approvedSourceCount": 74,
+  "excludedSourceReferences": [
+    "Spider-Verse collected-edition heading and See also link: No issue-numbered selection in this article; do not import the linked event checklist.",
+    "Silk: Out of The Spider-Verse alternative edition, including Amazing Spider-Man (2014) #4-6: Collected-edition alternative; its three debut issues are already contained within selected block 1, not additional source occurrences or a narrowing of #1-6.",
+    "Silk #3 in the Spider(fly) Effect explanatory paragraph: Contextual time placement, not an additional reading row or authority to move this team-up into the earlier solo section.",
+    "Amazing Spider-Man (2018) #44 in the Green Goblin Returns explanatory paragraph: Contextual linked story citation; the adjacent Collects block selects #48, Sins #1, #49, FCBD #1, followed by #50-55.",
+    "Silk (2021) #4-5, Agents of Atlas (2019) #5 and later Silk runs: Beyond explicitly selected cuts and current article boundary; do not extrapolate a complete mini or later publication.",
+    "Artwork, creator/synopsis prose, linked external guides and linked collected editions: No added source-defined original issue positions; preserve only factual selections and source credit."
+  ],
+  "sourceOccurrenceCount": 74,
+  "sourceGaps": [
+    {
+      "sourcePosition": 44,
+      "sourceIssueReference": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic (2016) #2",
+      "sourceRangeReference": "Team-ups | Amazing Spider-Man and Silk: The Spider(fly) Effect | Original Infinite Comic #1-8",
+      "normalizedSeriesTitle": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic",
+      "seriesYear": 2016,
+      "issueNumber": "2",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-09-29",
+      "auditBasis": "The guide selects original digital chapter #2, and an independent publication listing identifies the eight-chapter Infinite Comic. Configured series 21127 returned only original #1; speculative adjacent candidate https://marvel.emreparker.com/v1/issues/57974 returned HTTP 404. That number is not established as chapter #2's identity. The full-title provider search returned 500 and is not absence evidence. No print issue was substituted.",
+      "evidenceSources": [
+        {
+          "kind": "comic-reference",
+          "url": "https://marvel.fandom.com/wiki/Amazing_Spider-Man_%26_Silk:_The_Spider(fly)_Effect_Infinite_Comic_Vol_1",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/silk-cindy-moon-reading-order/",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/issues/57974",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/series/21127/issues?limit=200&offset=0",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/568",
+          "retrievedAt": "2026-09-29"
+        }
+      ],
+      "evidenceDigest": "7d97ed283c4bc3dc3fc47a04a19b42f1f98cd7234229c816f86a1ce83be0d592"
+    },
+    {
+      "sourcePosition": 45,
+      "sourceIssueReference": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic (2016) #3",
+      "sourceRangeReference": "Team-ups | Amazing Spider-Man and Silk: The Spider(fly) Effect | Original Infinite Comic #1-8",
+      "normalizedSeriesTitle": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic",
+      "seriesYear": 2016,
+      "issueNumber": "3",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-09-29",
+      "auditBasis": "The guide selects original digital chapter #3, and an independent publication listing identifies the eight-chapter Infinite Comic. Configured series 21127 returned only original #1; speculative adjacent candidate https://marvel.emreparker.com/v1/issues/57975 returned HTTP 404. That number is not established as chapter #3's identity. The full-title provider search returned 500 and is not absence evidence. No print issue was substituted.",
+      "evidenceSources": [
+        {
+          "kind": "comic-reference",
+          "url": "https://marvel.fandom.com/wiki/Amazing_Spider-Man_%26_Silk:_The_Spider(fly)_Effect_Infinite_Comic_Vol_1",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/silk-cindy-moon-reading-order/",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/issues/57975",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/series/21127/issues?limit=200&offset=0",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/568",
+          "retrievedAt": "2026-09-29"
+        }
+      ],
+      "evidenceDigest": "178102963f829cb431049f4540f24a63b97ff8260db91bef106abbf9510b6106"
+    },
+    {
+      "sourcePosition": 46,
+      "sourceIssueReference": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic (2016) #4",
+      "sourceRangeReference": "Team-ups | Amazing Spider-Man and Silk: The Spider(fly) Effect | Original Infinite Comic #1-8",
+      "normalizedSeriesTitle": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic",
+      "seriesYear": 2016,
+      "issueNumber": "4",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-09-29",
+      "auditBasis": "The guide selects original digital chapter #4, and an independent publication listing identifies the eight-chapter Infinite Comic. Configured series 21127 returned only original #1; speculative adjacent candidate https://marvel.emreparker.com/v1/issues/57976 returned HTTP 404. That number is not established as chapter #4's identity. The full-title provider search returned 500 and is not absence evidence. No print issue was substituted.",
+      "evidenceSources": [
+        {
+          "kind": "comic-reference",
+          "url": "https://marvel.fandom.com/wiki/Amazing_Spider-Man_%26_Silk:_The_Spider(fly)_Effect_Infinite_Comic_Vol_1",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/silk-cindy-moon-reading-order/",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/issues/57976",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/series/21127/issues?limit=200&offset=0",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/568",
+          "retrievedAt": "2026-09-29"
+        }
+      ],
+      "evidenceDigest": "cd6505c0291c687aac95d57b9bdb6d59d75028c7d8c30252b3ff0701d3a32864"
+    },
+    {
+      "sourcePosition": 47,
+      "sourceIssueReference": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic (2016) #5",
+      "sourceRangeReference": "Team-ups | Amazing Spider-Man and Silk: The Spider(fly) Effect | Original Infinite Comic #1-8",
+      "normalizedSeriesTitle": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic",
+      "seriesYear": 2016,
+      "issueNumber": "5",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-09-29",
+      "auditBasis": "The guide selects original digital chapter #5, and an independent publication listing identifies the eight-chapter Infinite Comic. Configured series 21127 returned only original #1; speculative adjacent candidate https://marvel.emreparker.com/v1/issues/57977 returned HTTP 404. That number is not established as chapter #5's identity. The full-title provider search returned 500 and is not absence evidence. No print issue was substituted.",
+      "evidenceSources": [
+        {
+          "kind": "comic-reference",
+          "url": "https://marvel.fandom.com/wiki/Amazing_Spider-Man_%26_Silk:_The_Spider(fly)_Effect_Infinite_Comic_Vol_1",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/silk-cindy-moon-reading-order/",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/issues/57977",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/series/21127/issues?limit=200&offset=0",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/568",
+          "retrievedAt": "2026-09-29"
+        }
+      ],
+      "evidenceDigest": "a1cb259315c7e3d4772778808af71c6d1162a65d1dcda263fb98f65e01db9cf1"
+    },
+    {
+      "sourcePosition": 48,
+      "sourceIssueReference": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic (2016) #6",
+      "sourceRangeReference": "Team-ups | Amazing Spider-Man and Silk: The Spider(fly) Effect | Original Infinite Comic #1-8",
+      "normalizedSeriesTitle": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic",
+      "seriesYear": 2016,
+      "issueNumber": "6",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-09-29",
+      "auditBasis": "The guide selects original digital chapter #6, and an independent publication listing identifies the eight-chapter Infinite Comic. Configured series 21127 returned only original #1; speculative adjacent candidate https://marvel.emreparker.com/v1/issues/57978 returned HTTP 404. That number is not established as chapter #6's identity. The full-title provider search returned 500 and is not absence evidence. No print issue was substituted.",
+      "evidenceSources": [
+        {
+          "kind": "comic-reference",
+          "url": "https://marvel.fandom.com/wiki/Amazing_Spider-Man_%26_Silk:_The_Spider(fly)_Effect_Infinite_Comic_Vol_1",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/silk-cindy-moon-reading-order/",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/issues/57978",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/series/21127/issues?limit=200&offset=0",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/568",
+          "retrievedAt": "2026-09-29"
+        }
+      ],
+      "evidenceDigest": "b57fda8ab1a32505f57f805e8dc44e6ad617245913d43d130da7d8040a07c165"
+    },
+    {
+      "sourcePosition": 49,
+      "sourceIssueReference": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic (2016) #7",
+      "sourceRangeReference": "Team-ups | Amazing Spider-Man and Silk: The Spider(fly) Effect | Original Infinite Comic #1-8",
+      "normalizedSeriesTitle": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic",
+      "seriesYear": 2016,
+      "issueNumber": "7",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-09-29",
+      "auditBasis": "The guide selects original digital chapter #7, and an independent publication listing identifies the eight-chapter Infinite Comic. Configured series 21127 returned only original #1; speculative adjacent candidate https://marvel.emreparker.com/v1/issues/57979 returned HTTP 404. That number is not established as chapter #7's identity. The full-title provider search returned 500 and is not absence evidence. No print issue was substituted.",
+      "evidenceSources": [
+        {
+          "kind": "comic-reference",
+          "url": "https://marvel.fandom.com/wiki/Amazing_Spider-Man_%26_Silk:_The_Spider(fly)_Effect_Infinite_Comic_Vol_1",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/silk-cindy-moon-reading-order/",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/issues/57979",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/series/21127/issues?limit=200&offset=0",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/568",
+          "retrievedAt": "2026-09-29"
+        }
+      ],
+      "evidenceDigest": "417e9c7d370b14677580bacb4c0d5f241bd5708617189a69be40246c9ca16430"
+    },
+    {
+      "sourcePosition": 50,
+      "sourceIssueReference": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic (2016) #8",
+      "sourceRangeReference": "Team-ups | Amazing Spider-Man and Silk: The Spider(fly) Effect | Original Infinite Comic #1-8",
+      "normalizedSeriesTitle": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic",
+      "seriesYear": 2016,
+      "issueNumber": "8",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-09-29",
+      "auditBasis": "The guide selects original digital chapter #8, and an independent publication listing identifies the eight-chapter Infinite Comic. Configured series 21127 returned only original #1; speculative adjacent candidate https://marvel.emreparker.com/v1/issues/57980 returned HTTP 404. That number is not established as chapter #8's identity. The full-title provider search returned 500 and is not absence evidence. No print issue was substituted.",
+      "evidenceSources": [
+        {
+          "kind": "comic-reference",
+          "url": "https://marvel.fandom.com/wiki/Amazing_Spider-Man_%26_Silk:_The_Spider(fly)_Effect_Infinite_Comic_Vol_1",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/silk-cindy-moon-reading-order/",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/issues/57980",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/series/21127/issues?limit=200&offset=0",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/568",
+          "retrievedAt": "2026-09-29"
+        }
+      ],
+      "evidenceDigest": "802e3da3127a13eb690bee4cfa11af5f9a49c0cde4e0d8a44e763a90c64d7a84"
+    }
+  ],
+  "reviewStatus": "approved",
+  "proposedManifest": {
+    "id": "silk-cindy-moon-reading-order",
+    "name": "Silk / Cindy Moon",
+    "description": "Follow Cindy Moon's origins, solo stories and team-ups in Comic Book Herald's selected Silk reading order.",
+    "type": "character-run",
+    "spotlightKind": "other",
+    "depth": "partial",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "silk-cindy-moon-reading-order.md",
+    "sourcePage": "https://www.comicbookherald.com/silk-cindy-moon-reading-order/",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "silk_cindy_moon_reading_order.json",
+    "characters": [
+      "Silk",
+      "Cindy Moon",
+      "Spider-Man",
+      "Spider-Women",
+      "Agents of Atlas"
+    ],
+    "keywords": [
+      "Silk",
+      "Cindy Moon",
+      "Spider-Man",
+      "Spider-Women",
+      "Spider(fly) Effect",
+      "Agents of Atlas",
+      "Comic Book Herald"
+    ],
+    "expect": 74,
+    "timeline": null,
+    "coverIssueId": 45798
+  },
+  "candidateMetadata": [
+    {
+      "id": 45798,
+      "title": "The Amazing Spider-Man",
+      "issueTitle": "The Amazing Spider-Man (2014) #1",
+      "seriesTitle": "The Amazing Spider-Man",
+      "apiSeriesName": "The Amazing Spider-Man (2014 - 2015)",
+      "seriesId": 17285,
+      "issueNumber": "1",
+      "seriesYear": 2014,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/45798/the_amazing_spider-man_2014_1",
+      "onSaleDate": "2014-04-30T00:00:00+0000"
+    },
+    {
+      "id": 45800,
+      "title": "The Amazing Spider-Man",
+      "issueTitle": "The Amazing Spider-Man (2014) #2",
+      "seriesTitle": "The Amazing Spider-Man",
+      "apiSeriesName": "The Amazing Spider-Man (2014 - 2015)",
+      "seriesId": 17285,
+      "issueNumber": "2",
+      "seriesYear": 2014,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/45800/the_amazing_spider-man_2014_2",
+      "onSaleDate": "2014-05-21T00:00:00+0000"
+    },
+    {
+      "id": 45802,
+      "title": "The Amazing Spider-Man",
+      "issueTitle": "The Amazing Spider-Man (2014) #3",
+      "seriesTitle": "The Amazing Spider-Man",
+      "apiSeriesName": "The Amazing Spider-Man (2014 - 2015)",
+      "seriesId": 17285,
+      "issueNumber": "3",
+      "seriesYear": 2014,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/45802/the_amazing_spider-man_2014_3",
+      "onSaleDate": "2014-06-25T00:00:00+0000"
+    },
+    {
+      "id": 45803,
+      "title": "The Amazing Spider-Man",
+      "issueTitle": "The Amazing Spider-Man (2014) #4",
+      "seriesTitle": "The Amazing Spider-Man",
+      "apiSeriesName": "The Amazing Spider-Man (2014 - 2015)",
+      "seriesId": 17285,
+      "issueNumber": "4",
+      "seriesYear": 2014,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/45803/the_amazing_spider-man_2014_4",
+      "onSaleDate": "2014-07-23T00:00:00+0000"
+    },
+    {
+      "id": 45804,
+      "title": "The Amazing Spider-Man",
+      "issueTitle": "The Amazing Spider-Man (2014) #5",
+      "seriesTitle": "The Amazing Spider-Man",
+      "apiSeriesName": "The Amazing Spider-Man (2014 - 2015)",
+      "seriesId": 17285,
+      "issueNumber": "5",
+      "seriesYear": 2014,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/45804/the_amazing_spider-man_2014_5",
+      "onSaleDate": "2014-08-13T00:00:00+0000"
+    },
+    {
+      "id": 45805,
+      "title": "The Amazing Spider-Man",
+      "issueTitle": "The Amazing Spider-Man (2014) #6",
+      "seriesTitle": "The Amazing Spider-Man",
+      "apiSeriesName": "The Amazing Spider-Man (2014 - 2015)",
+      "seriesId": 17285,
+      "issueNumber": "6",
+      "seriesYear": 2014,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/45805/the_amazing_spider-man_2014_6",
+      "onSaleDate": "2014-09-10T00:00:00+0000"
+    },
+    {
+      "id": 52492,
+      "title": "Silk",
+      "issueTitle": "Silk (2015) #1",
+      "seriesTitle": "Silk",
+      "apiSeriesName": "Silk (2015)",
+      "seriesId": 19661,
+      "issueNumber": "1",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/52492/silk_2015_1",
+      "onSaleDate": "2015-02-18T00:00:00+0000"
+    },
+    {
+      "id": 52496,
+      "title": "Silk",
+      "issueTitle": "Silk (2015) #2",
+      "seriesTitle": "Silk",
+      "apiSeriesName": "Silk (2015)",
+      "seriesId": 19661,
+      "issueNumber": "2",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/52496/silk_2015_2",
+      "onSaleDate": "2015-03-18T00:00:00+0000"
+    },
+    {
+      "id": 52498,
+      "title": "Silk",
+      "issueTitle": "Silk (2015) #3",
+      "seriesTitle": "Silk",
+      "apiSeriesName": "Silk (2015)",
+      "seriesId": 19661,
+      "issueNumber": "3",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/52498/silk_2015_3",
+      "onSaleDate": "2015-04-29T00:00:00+0000"
+    },
+    {
+      "id": 52499,
+      "title": "Silk",
+      "issueTitle": "Silk (2015) #4",
+      "seriesTitle": "Silk",
+      "apiSeriesName": "Silk (2015)",
+      "seriesId": 19661,
+      "issueNumber": "4",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/52499/silk_2015_4",
+      "onSaleDate": "2015-05-13T00:00:00+0000"
+    },
+    {
+      "id": 52500,
+      "title": "Silk",
+      "issueTitle": "Silk (2015) #5",
+      "seriesTitle": "Silk",
+      "apiSeriesName": "Silk (2015)",
+      "seriesId": 19661,
+      "issueNumber": "5",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/52500/silk_2015_5",
+      "onSaleDate": "2015-06-10T00:00:00+0000"
+    },
+    {
+      "id": 52501,
+      "title": "Silk",
+      "issueTitle": "Silk (2015) #6",
+      "seriesTitle": "Silk",
+      "apiSeriesName": "Silk (2015)",
+      "seriesId": 19661,
+      "issueNumber": "6",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/52501/silk_2015_6",
+      "onSaleDate": "2015-08-19T00:00:00+0000"
+    },
+    {
+      "id": 52502,
+      "title": "Silk",
+      "issueTitle": "Silk (2015) #7",
+      "seriesTitle": "Silk",
+      "apiSeriesName": "Silk (2015)",
+      "seriesId": 19661,
+      "issueNumber": "7",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/52502/silk_2015_7",
+      "onSaleDate": "2015-09-02T00:00:00+0000"
+    },
+    {
+      "id": 55637,
+      "title": "Silk",
+      "issueTitle": "Silk (2015) #1",
+      "seriesTitle": "Silk",
+      "apiSeriesName": "Silk (2015 - 2017)",
+      "seriesId": 20499,
+      "issueNumber": "1",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/55637/silk_2015_1",
+      "onSaleDate": "2015-11-25T00:00:00+0000"
+    },
+    {
+      "id": 55639,
+      "title": "Silk",
+      "issueTitle": "Silk (2015) #2",
+      "seriesTitle": "Silk",
+      "apiSeriesName": "Silk (2015 - 2017)",
+      "seriesId": 20499,
+      "issueNumber": "2",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/55639/silk_2015_2",
+      "onSaleDate": "2015-12-16T00:00:00+0000"
+    },
+    {
+      "id": 55641,
+      "title": "Silk",
+      "issueTitle": "Silk (2015) #3",
+      "seriesTitle": "Silk",
+      "apiSeriesName": "Silk (2015 - 2017)",
+      "seriesId": 20499,
+      "issueNumber": "3",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/55641/silk_2015_3",
+      "onSaleDate": "2016-01-13T00:00:00+0000"
+    },
+    {
+      "id": 55643,
+      "title": "Silk",
+      "issueTitle": "Silk (2015) #4",
+      "seriesTitle": "Silk",
+      "apiSeriesName": "Silk (2015 - 2017)",
+      "seriesId": 20499,
+      "issueNumber": "4",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/55643/silk_2015_4",
+      "onSaleDate": "2016-02-10T00:00:00+0000"
+    },
+    {
+      "id": 55644,
+      "title": "Silk",
+      "issueTitle": "Silk (2015) #5",
+      "seriesTitle": "Silk",
+      "apiSeriesName": "Silk (2015 - 2017)",
+      "seriesId": 20499,
+      "issueNumber": "5",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/55644/silk_2015_5",
+      "onSaleDate": "2016-02-24T00:00:00+0000"
+    },
+    {
+      "id": 55645,
+      "title": "Silk",
+      "issueTitle": "Silk (2015) #6",
+      "seriesTitle": "Silk",
+      "apiSeriesName": "Silk (2015 - 2017)",
+      "seriesId": 20499,
+      "issueNumber": "6",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/55645/silk_2015_6",
+      "onSaleDate": "2016-03-16T00:00:00+0000"
+    },
+    {
+      "id": 55298,
+      "title": "The Amazing Spider-Man",
+      "issueTitle": "The Amazing Spider-Man (2017) #1",
+      "seriesTitle": "The Amazing Spider-Man",
+      "apiSeriesName": "The Amazing Spider-Man (2017 - 2018)",
+      "seriesId": 20432,
+      "issueNumber": "1",
+      "seriesYear": 2017,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/55298/the_amazing_spider-man_2017_1",
+      "onSaleDate": "2015-10-07T00:00:00+0000"
+    },
+    {
+      "id": 55648,
+      "title": "Silk",
+      "issueTitle": "Silk (2015) #9",
+      "seriesTitle": "Silk",
+      "apiSeriesName": "Silk (2015 - 2017)",
+      "seriesId": 20499,
+      "issueNumber": "9",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/55648/silk_2015_9",
+      "onSaleDate": "2016-06-29T00:00:00+0000"
+    },
+    {
+      "id": 55649,
+      "title": "Silk",
+      "issueTitle": "Silk (2015) #10",
+      "seriesTitle": "Silk",
+      "apiSeriesName": "Silk (2015 - 2017)",
+      "seriesId": 20499,
+      "issueNumber": "10",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/55649/silk_2015_10",
+      "onSaleDate": "2016-07-13T00:00:00+0000"
+    },
+    {
+      "id": 55650,
+      "title": "Silk",
+      "issueTitle": "Silk (2015) #11",
+      "seriesTitle": "Silk",
+      "apiSeriesName": "Silk (2015 - 2017)",
+      "seriesId": 20499,
+      "issueNumber": "11",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/55650/silk_2015_11",
+      "onSaleDate": "2016-08-03T00:00:00+0000"
+    },
+    {
+      "id": 55651,
+      "title": "Silk",
+      "issueTitle": "Silk (2015) #12",
+      "seriesTitle": "Silk",
+      "apiSeriesName": "Silk (2015 - 2017)",
+      "seriesId": 20499,
+      "issueNumber": "12",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/55651/silk_2015_12",
+      "onSaleDate": "2016-09-07T00:00:00+0000"
+    },
+    {
+      "id": 55652,
+      "title": "Silk",
+      "issueTitle": "Silk (2015) #13",
+      "seriesTitle": "Silk",
+      "apiSeriesName": "Silk (2015 - 2017)",
+      "seriesId": 20499,
+      "issueNumber": "13",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/55652/silk_2015_13",
+      "onSaleDate": "2016-10-19T00:00:00+0000"
+    },
+    {
+      "id": 55653,
+      "title": "Silk",
+      "issueTitle": "Silk (2015) #14",
+      "seriesTitle": "Silk",
+      "apiSeriesName": "Silk (2015 - 2017)",
+      "seriesId": 20499,
+      "issueNumber": "14",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/55653/silk_2015_14",
+      "onSaleDate": "2016-11-16T00:00:00+0000"
+    },
+    {
+      "id": 55654,
+      "title": "Silk",
+      "issueTitle": "Silk (2015) #15",
+      "seriesTitle": "Silk",
+      "apiSeriesName": "Silk (2015 - 2017)",
+      "seriesId": 20499,
+      "issueNumber": "15",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/55654/silk_2015_15",
+      "onSaleDate": "2016-12-14T00:00:00+0000"
+    },
+    {
+      "id": 55655,
+      "title": "Silk",
+      "issueTitle": "Silk (2015) #16",
+      "seriesTitle": "Silk",
+      "apiSeriesName": "Silk (2015 - 2017)",
+      "seriesId": 20499,
+      "issueNumber": "16",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/55655/silk_2015_16",
+      "onSaleDate": "2017-01-11T00:00:00+0000"
+    },
+    {
+      "id": 61050,
+      "title": "Silk",
+      "issueTitle": "Silk (2015) #17",
+      "seriesTitle": "Silk",
+      "apiSeriesName": "Silk (2015 - 2017)",
+      "seriesId": 20499,
+      "issueNumber": "17",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/61050/silk_2015_17",
+      "onSaleDate": "2017-02-15T00:00:00+0000"
+    },
+    {
+      "id": 61051,
+      "title": "Silk",
+      "issueTitle": "Silk (2015) #18",
+      "seriesTitle": "Silk",
+      "apiSeriesName": "Silk (2015 - 2017)",
+      "seriesId": 20499,
+      "issueNumber": "18",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/61051/silk_2015_18",
+      "onSaleDate": "2017-03-01T00:00:00+0000"
+    },
+    {
+      "id": 61052,
+      "title": "Silk",
+      "issueTitle": "Silk (2015) #19",
+      "seriesTitle": "Silk",
+      "apiSeriesName": "Silk (2015 - 2017)",
+      "seriesId": 20499,
+      "issueNumber": "19",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/61052/silk_2015_19",
+      "onSaleDate": "2017-04-19T00:00:00+0000"
+    },
+    {
+      "id": 82672,
+      "title": "Silk",
+      "issueTitle": "Silk (2021) #1",
+      "seriesTitle": "Silk",
+      "apiSeriesName": "Silk (2021)",
+      "seriesId": 29389,
+      "issueNumber": "1",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/82672/silk_2021_1",
+      "onSaleDate": "2021-03-31T00:00:00+0000"
+    },
+    {
+      "id": 82674,
+      "title": "Silk",
+      "issueTitle": "Silk (2021) #2",
+      "seriesTitle": "Silk",
+      "apiSeriesName": "Silk (2021)",
+      "seriesId": 29389,
+      "issueNumber": "2",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/82674/silk_2021_2",
+      "onSaleDate": "2021-04-28T00:00:00+0000"
+    },
+    {
+      "id": 82675,
+      "title": "Silk",
+      "issueTitle": "Silk (2021) #3",
+      "seriesTitle": "Silk",
+      "apiSeriesName": "Silk (2021)",
+      "seriesId": 29389,
+      "issueNumber": "3",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/82675/silk_2021_3",
+      "onSaleDate": "2021-05-12T00:00:00+0000"
+    },
+    {
+      "id": 58381,
+      "title": "Spider-Women Alpha",
+      "issueTitle": "Spider-Women Alpha (2016) #1",
+      "seriesTitle": "Spider-Women Alpha",
+      "apiSeriesName": "Spider-Women Alpha (2016)",
+      "seriesId": 21280,
+      "issueNumber": "1",
+      "seriesYear": 2016,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/58381/spider-women_alpha_2016_1",
+      "onSaleDate": "2016-04-06T00:00:00+0000"
+    },
+    {
+      "id": 55646,
+      "title": "Silk",
+      "issueTitle": "Silk (2015) #7",
+      "seriesTitle": "Silk",
+      "apiSeriesName": "Silk (2015 - 2017)",
+      "seriesId": 20499,
+      "issueNumber": "7",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/55646/silk_2015_7",
+      "onSaleDate": "2016-04-20T00:00:00+0000"
+    },
+    {
+      "id": 55647,
+      "title": "Silk",
+      "issueTitle": "Silk (2015) #8",
+      "seriesTitle": "Silk",
+      "apiSeriesName": "Silk (2015 - 2017)",
+      "seriesId": 20499,
+      "issueNumber": "8",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/55647/silk_2015_8",
+      "onSaleDate": "2016-05-11T00:00:00+0000"
+    },
+    {
+      "id": 55683,
+      "title": "Spider-Gwen",
+      "issueTitle": "Spider-Gwen (2015) #7",
+      "seriesTitle": "Spider-Gwen",
+      "apiSeriesName": "Spider-Gwen (2015 - 2018)",
+      "seriesId": 20505,
+      "issueNumber": "7",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/55683/spider-gwen_2015_7",
+      "onSaleDate": "2016-04-13T00:00:00+0000"
+    },
+    {
+      "id": 55684,
+      "title": "Spider-Gwen",
+      "issueTitle": "Spider-Gwen (2015) #8",
+      "seriesTitle": "Spider-Gwen",
+      "apiSeriesName": "Spider-Gwen (2015 - 2018)",
+      "seriesId": 20505,
+      "issueNumber": "8",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/55684/spider-gwen_2015_8",
+      "onSaleDate": "2016-05-04T00:00:00+0000"
+    },
+    {
+      "id": 56169,
+      "title": "Spider-Woman",
+      "issueTitle": "Spider-Woman (2015) #6",
+      "seriesTitle": "Spider-Woman",
+      "apiSeriesName": "Spider-Woman (2015 - 2017)",
+      "seriesId": 20618,
+      "issueNumber": "6",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/56169/spider-woman_2015_6",
+      "onSaleDate": "2016-04-27T00:00:00+0000"
+    },
+    {
+      "id": 56170,
+      "title": "Spider-Woman",
+      "issueTitle": "Spider-Woman (2015) #7",
+      "seriesTitle": "Spider-Woman",
+      "apiSeriesName": "Spider-Woman (2015 - 2017)",
+      "seriesId": 20618,
+      "issueNumber": "7",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/56170/spider-woman_2015_7",
+      "onSaleDate": "2016-05-18T00:00:00+0000"
+    },
+    {
+      "id": 58832,
+      "title": "Spider-Women Omega",
+      "issueTitle": "Spider-Women Omega (2016) #1",
+      "seriesTitle": "Spider-Women Omega",
+      "apiSeriesName": "Spider-Women Omega (2016)",
+      "seriesId": 21442,
+      "issueNumber": "1",
+      "seriesYear": 2016,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/58832/spider-women_omega_2016_1",
+      "onSaleDate": "2016-06-01T00:00:00+0000"
+    },
+    {
+      "id": 57973,
+      "title": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic",
+      "issueTitle": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic (2016) #1",
+      "seriesTitle": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic",
+      "apiSeriesName": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic (2016)",
+      "seriesId": 21127,
+      "issueNumber": "1",
+      "seriesYear": 2016,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/57973/amazing_spider-man_silk_the_spiderfly_effect_infinite_comic_2016_1",
+      "onSaleDate": "2016-01-20T00:00:00+0000"
+    },
+    {
+      "id": 56095,
+      "title": "The Totally Awesome Hulk",
+      "issueTitle": "The Totally Awesome Hulk (2015) #13",
+      "seriesTitle": "The Totally Awesome Hulk",
+      "apiSeriesName": "The Totally Awesome Hulk (2015 - 2017)",
+      "seriesId": 20614,
+      "issueNumber": "13",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/56095/the_totally_awesome_hulk_2015_13",
+      "onSaleDate": "2016-12-14T00:00:00+0000"
+    },
+    {
+      "id": 56096,
+      "title": "The Totally Awesome Hulk",
+      "issueTitle": "The Totally Awesome Hulk (2015) #14",
+      "seriesTitle": "The Totally Awesome Hulk",
+      "apiSeriesName": "The Totally Awesome Hulk (2015 - 2017)",
+      "seriesId": 20614,
+      "issueNumber": "14",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/56096/the_totally_awesome_hulk_2015_14",
+      "onSaleDate": "2017-01-11T00:00:00+0000"
+    },
+    {
+      "id": 56097,
+      "title": "The Totally Awesome Hulk",
+      "issueTitle": "The Totally Awesome Hulk (2015) #15",
+      "seriesTitle": "The Totally Awesome Hulk",
+      "apiSeriesName": "The Totally Awesome Hulk (2015 - 2017)",
+      "seriesId": 20614,
+      "issueNumber": "15",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/56097/the_totally_awesome_hulk_2015_15",
+      "onSaleDate": "2017-01-25T00:00:00+0000"
+    },
+    {
+      "id": 56098,
+      "title": "The Totally Awesome Hulk",
+      "issueTitle": "The Totally Awesome Hulk (2015) #16",
+      "seriesTitle": "The Totally Awesome Hulk",
+      "apiSeriesName": "The Totally Awesome Hulk (2015 - 2017)",
+      "seriesId": 20614,
+      "issueNumber": "16",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/56098/the_totally_awesome_hulk_2015_16",
+      "onSaleDate": "2017-02-08T00:00:00+0000"
+    },
+    {
+      "id": 60847,
+      "title": "The Totally Awesome Hulk",
+      "issueTitle": "The Totally Awesome Hulk (2015) #17",
+      "seriesTitle": "The Totally Awesome Hulk",
+      "apiSeriesName": "The Totally Awesome Hulk (2015 - 2017)",
+      "seriesId": 20614,
+      "issueNumber": "17",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/60847/the_totally_awesome_hulk_2015_17",
+      "onSaleDate": "2017-03-15T00:00:00+0000"
+    },
+    {
+      "id": 60848,
+      "title": "The Totally Awesome Hulk",
+      "issueTitle": "The Totally Awesome Hulk (2015) #18",
+      "seriesTitle": "The Totally Awesome Hulk",
+      "apiSeriesName": "The Totally Awesome Hulk (2015 - 2017)",
+      "seriesId": 20614,
+      "issueNumber": "18",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/60848/the_totally_awesome_hulk_2015_18",
+      "onSaleDate": "2017-04-19T00:00:00+0000"
+    },
+    {
+      "id": 76615,
+      "title": "War of the Realms: New Agents of Atlas",
+      "issueTitle": "War of the Realms: New Agents of Atlas (2019) #1",
+      "seriesTitle": "War of the Realms: New Agents of Atlas",
+      "apiSeriesName": "War of the Realms: New Agents of Atlas (2019)",
+      "seriesId": 27505,
+      "issueNumber": "1",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/76615/war_of_the_realms_new_agents_of_atlas_2019_1",
+      "onSaleDate": "2019-05-08T00:00:00+0000"
+    },
+    {
+      "id": 76616,
+      "title": "War of the Realms: New Agents of Atlas",
+      "issueTitle": "War of the Realms: New Agents of Atlas (2019) #2",
+      "seriesTitle": "War of the Realms: New Agents of Atlas",
+      "apiSeriesName": "War of the Realms: New Agents of Atlas (2019)",
+      "seriesId": 27505,
+      "issueNumber": "2",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/76616/war_of_the_realms_new_agents_of_atlas_2019_2",
+      "onSaleDate": "2019-05-22T00:00:00+0000"
+    },
+    {
+      "id": 77259,
+      "title": "War of the Realms: New Agents of Atlas",
+      "issueTitle": "War of the Realms: New Agents of Atlas (2019) #3",
+      "seriesTitle": "War of the Realms: New Agents of Atlas",
+      "apiSeriesName": "War of the Realms: New Agents of Atlas (2019)",
+      "seriesId": 27505,
+      "issueNumber": "3",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77259/war_of_the_realms_new_agents_of_atlas_2019_3",
+      "onSaleDate": "2019-06-05T00:00:00+0000"
+    },
+    {
+      "id": 77260,
+      "title": "War of the Realms: New Agents of Atlas",
+      "issueTitle": "War of the Realms: New Agents of Atlas (2019) #4",
+      "seriesTitle": "War of the Realms: New Agents of Atlas",
+      "apiSeriesName": "War of the Realms: New Agents of Atlas (2019)",
+      "seriesId": 27505,
+      "issueNumber": "4",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77260/war_of_the_realms_new_agents_of_atlas_2019_4",
+      "onSaleDate": "2019-06-26T00:00:00+0000"
+    },
+    {
+      "id": 77001,
+      "title": "Agents of Atlas",
+      "issueTitle": "Agents of Atlas (2019) #1",
+      "seriesTitle": "Agents of Atlas",
+      "apiSeriesName": "Agents of Atlas (2019)",
+      "seriesId": 27624,
+      "issueNumber": "1",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77001/agents_of_atlas_2019_1",
+      "onSaleDate": "2019-08-07T00:00:00+0000"
+    },
+    {
+      "id": 77002,
+      "title": "Agents of Atlas",
+      "issueTitle": "Agents of Atlas (2019) #2",
+      "seriesTitle": "Agents of Atlas",
+      "apiSeriesName": "Agents of Atlas (2019)",
+      "seriesId": 27624,
+      "issueNumber": "2",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77002/agents_of_atlas_2019_2",
+      "onSaleDate": "2019-09-04T00:00:00+0000"
+    },
+    {
+      "id": 77003,
+      "title": "Agents of Atlas",
+      "issueTitle": "Agents of Atlas (2019) #3",
+      "seriesTitle": "Agents of Atlas",
+      "apiSeriesName": "Agents of Atlas (2019)",
+      "seriesId": 27624,
+      "issueNumber": "3",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77003/agents_of_atlas_2019_3",
+      "onSaleDate": "2019-10-23T00:00:00+0000"
+    },
+    {
+      "id": 77004,
+      "title": "Agents of Atlas",
+      "issueTitle": "Agents of Atlas (2019) #4",
+      "seriesTitle": "Agents of Atlas",
+      "apiSeriesName": "Agents of Atlas (2019)",
+      "seriesId": 27624,
+      "issueNumber": "4",
+      "seriesYear": 2019,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77004/agents_of_atlas_2019_4",
+      "onSaleDate": "2019-11-13T00:00:00+0000"
+    },
+    {
+      "id": 77116,
+      "title": "The Amazing Spider-Man",
+      "issueTitle": "The Amazing Spider-Man (2018) #48",
+      "seriesTitle": "The Amazing Spider-Man",
+      "apiSeriesName": "The Amazing Spider-Man (2018 - 2022)",
+      "seriesId": 24396,
+      "issueNumber": "48",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77116/the_amazing_spider-man_2018_48",
+      "onSaleDate": "2020-09-09T00:00:00+0000"
+    },
+    {
+      "id": 90780,
+      "title": "Amazing Spider-Man: The Sins of Norman Osborn",
+      "issueTitle": "Amazing Spider-Man: The Sins of Norman Osborn (2020) #1",
+      "seriesTitle": "Amazing Spider-Man: The Sins of Norman Osborn",
+      "apiSeriesName": "Amazing Spider-Man: The Sins of Norman Osborn (2020)",
+      "seriesId": 31209,
+      "issueNumber": "1",
+      "seriesYear": 2020,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/90780/amazing_spider-man_the_sins_of_norman_osborn_2020_1",
+      "onSaleDate": "2020-09-16T00:00:00+0000"
+    },
+    {
+      "id": 77117,
+      "title": "The Amazing Spider-Man",
+      "issueTitle": "The Amazing Spider-Man (2018) #49",
+      "seriesTitle": "The Amazing Spider-Man",
+      "apiSeriesName": "The Amazing Spider-Man (2018 - 2022)",
+      "seriesId": 24396,
+      "issueNumber": "49",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77117/the_amazing_spider-man_2018_49",
+      "onSaleDate": "2020-10-07T00:00:00+0000"
+    },
+    {
+      "id": 85661,
+      "title": "Free Comic Book Day: Spider-Man/Venom",
+      "issueTitle": "Free Comic Book Day: Spider-Man/Venom (2020) #1",
+      "seriesTitle": "Free Comic Book Day: Spider-Man/Venom",
+      "apiSeriesName": "Free Comic Book Day: Spider-Man/Venom (2020)",
+      "seriesId": 30154,
+      "issueNumber": "1",
+      "seriesYear": 2020,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/85661/free_comic_book_day_spider-manvenom_2020_1",
+      "onSaleDate": "2020-07-22T00:00:00+0000"
+    },
+    {
+      "id": 77118,
+      "title": "The Amazing Spider-Man",
+      "issueTitle": "The Amazing Spider-Man (2018) #50",
+      "seriesTitle": "The Amazing Spider-Man",
+      "apiSeriesName": "The Amazing Spider-Man (2018 - 2022)",
+      "seriesId": 24396,
+      "issueNumber": "50",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77118/the_amazing_spider-man_2018_50",
+      "onSaleDate": "2020-10-14T00:00:00+0000"
+    },
+    {
+      "id": 77119,
+      "title": "The Amazing Spider-Man",
+      "issueTitle": "The Amazing Spider-Man (2018) #51",
+      "seriesTitle": "The Amazing Spider-Man",
+      "apiSeriesName": "The Amazing Spider-Man (2018 - 2022)",
+      "seriesId": 24396,
+      "issueNumber": "51",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77119/the_amazing_spider-man_2018_51",
+      "onSaleDate": "2020-10-28T00:00:00+0000"
+    },
+    {
+      "id": 77120,
+      "title": "The Amazing Spider-Man",
+      "issueTitle": "The Amazing Spider-Man (2018) #52",
+      "seriesTitle": "The Amazing Spider-Man",
+      "apiSeriesName": "The Amazing Spider-Man (2018 - 2022)",
+      "seriesId": 24396,
+      "issueNumber": "52",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77120/the_amazing_spider-man_2018_52",
+      "onSaleDate": "2020-11-11T00:00:00+0000"
+    },
+    {
+      "id": 77121,
+      "title": "The Amazing Spider-Man",
+      "issueTitle": "The Amazing Spider-Man (2018) #53",
+      "seriesTitle": "The Amazing Spider-Man",
+      "apiSeriesName": "The Amazing Spider-Man (2018 - 2022)",
+      "seriesId": 24396,
+      "issueNumber": "53",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77121/the_amazing_spider-man_2018_53",
+      "onSaleDate": "2020-11-18T00:00:00+0000"
+    },
+    {
+      "id": 77122,
+      "title": "The Amazing Spider-Man",
+      "issueTitle": "The Amazing Spider-Man (2018) #54",
+      "seriesTitle": "The Amazing Spider-Man",
+      "apiSeriesName": "The Amazing Spider-Man (2018 - 2022)",
+      "seriesId": 24396,
+      "issueNumber": "54",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/77122/the_amazing_spider-man_2018_54",
+      "onSaleDate": "2020-12-09T00:00:00+0000"
+    },
+    {
+      "id": 89510,
+      "title": "The Amazing Spider-Man",
+      "issueTitle": "The Amazing Spider-Man (2018) #55",
+      "seriesTitle": "The Amazing Spider-Man",
+      "apiSeriesName": "The Amazing Spider-Man (2018 - 2022)",
+      "seriesId": 24396,
+      "issueNumber": "55",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/89510/the_amazing_spider-man_2018_55",
+      "onSaleDate": "2020-12-30T00:00:00+0000"
+    }
+  ],
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "Amazing Spider-Man (2014) #1",
+      "sourceRangeReference": "Origins | The Amazing Spider-Man Vol. 1 (2014) | Issues #1-6",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2014,
+      "issueNumber": "1",
+      "seriesId": 17285,
+      "candidateIssueId": 45798,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "45798"
+      ],
+      "selectedIssueId": 45798,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/45798/the_amazing_spider-man_2014_1",
+      "resolvedIssueTitle": "The Amazing Spider-Man (2014) #1",
+      "note": "Marvel series 17285 (The Amazing Spider-Man (2014 - 2015)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        45798
+      ]
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "Amazing Spider-Man (2014) #2",
+      "sourceRangeReference": "Origins | The Amazing Spider-Man Vol. 1 (2014) | Issues #1-6",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2014,
+      "issueNumber": "2",
+      "seriesId": 17285,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "45800"
+      ],
+      "selectedIssueId": 45800,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/45800/the_amazing_spider-man_2014_2",
+      "resolvedIssueTitle": "The Amazing Spider-Man (2014) #2",
+      "note": "Marvel series 17285 (The Amazing Spider-Man (2014 - 2015)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        45800
+      ]
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "Amazing Spider-Man (2014) #3",
+      "sourceRangeReference": "Origins | The Amazing Spider-Man Vol. 1 (2014) | Issues #1-6",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2014,
+      "issueNumber": "3",
+      "seriesId": 17285,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "45802"
+      ],
+      "selectedIssueId": 45802,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/45802/the_amazing_spider-man_2014_3",
+      "resolvedIssueTitle": "The Amazing Spider-Man (2014) #3",
+      "note": "Marvel series 17285 (The Amazing Spider-Man (2014 - 2015)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        45802
+      ]
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "Amazing Spider-Man (2014) #4",
+      "sourceRangeReference": "Origins | The Amazing Spider-Man Vol. 1 (2014) | Issues #1-6",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2014,
+      "issueNumber": "4",
+      "seriesId": 17285,
+      "candidateIssueId": 45803,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "45803"
+      ],
+      "selectedIssueId": 45803,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/45803/the_amazing_spider-man_2014_4",
+      "resolvedIssueTitle": "The Amazing Spider-Man (2014) #4",
+      "note": "Marvel series 17285 (The Amazing Spider-Man (2014 - 2015)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        45803
+      ]
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "Amazing Spider-Man (2014) #5",
+      "sourceRangeReference": "Origins | The Amazing Spider-Man Vol. 1 (2014) | Issues #1-6",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2014,
+      "issueNumber": "5",
+      "seriesId": 17285,
+      "candidateIssueId": 45804,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "45804"
+      ],
+      "selectedIssueId": 45804,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/45804/the_amazing_spider-man_2014_5",
+      "resolvedIssueTitle": "The Amazing Spider-Man (2014) #5",
+      "note": "Marvel series 17285 (The Amazing Spider-Man (2014 - 2015)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        45804
+      ]
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "Amazing Spider-Man (2014) #6",
+      "sourceRangeReference": "Origins | The Amazing Spider-Man Vol. 1 (2014) | Issues #1-6",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2014,
+      "issueNumber": "6",
+      "seriesId": 17285,
+      "candidateIssueId": 45805,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "45805"
+      ],
+      "selectedIssueId": 45805,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/45805/the_amazing_spider-man_2014_6",
+      "resolvedIssueTitle": "The Amazing Spider-Man (2014) #6",
+      "note": "Marvel series 17285 (The Amazing Spider-Man (2014 - 2015)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        45805
+      ]
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "Silk (2015) #1",
+      "sourceRangeReference": "Solo | Silk Volume 0: The Life and Times of Cindy Moon | First 2015 series #1-7",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "1",
+      "seriesId": 19661,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "52492"
+      ],
+      "selectedIssueId": 52492,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/52492/silk_2015_1",
+      "resolvedIssueTitle": "Silk (2015) #1",
+      "note": "Marvel series 19661 (Silk (2015)) is the reviewed metadata series for this source reference. First 2015 Silk volume, series 19661, not the post-Secret-Wars relaunch.",
+      "status": "exact",
+      "selectedIssueIds": [
+        52492
+      ]
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "Silk (2015) #2",
+      "sourceRangeReference": "Solo | Silk Volume 0: The Life and Times of Cindy Moon | First 2015 series #1-7",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "2",
+      "seriesId": 19661,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "52496"
+      ],
+      "selectedIssueId": 52496,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/52496/silk_2015_2",
+      "resolvedIssueTitle": "Silk (2015) #2",
+      "note": "Marvel series 19661 (Silk (2015)) is the reviewed metadata series for this source reference. First 2015 Silk volume, series 19661, not the post-Secret-Wars relaunch.",
+      "status": "exact",
+      "selectedIssueIds": [
+        52496
+      ]
+    },
+    {
+      "sourcePosition": 9,
+      "sourceIssueReference": "Silk (2015) #3",
+      "sourceRangeReference": "Solo | Silk Volume 0: The Life and Times of Cindy Moon | First 2015 series #1-7",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "3",
+      "seriesId": 19661,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "52498"
+      ],
+      "selectedIssueId": 52498,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/52498/silk_2015_3",
+      "resolvedIssueTitle": "Silk (2015) #3",
+      "note": "Marvel series 19661 (Silk (2015)) is the reviewed metadata series for this source reference. First 2015 Silk volume, series 19661, not the post-Secret-Wars relaunch.",
+      "status": "exact",
+      "selectedIssueIds": [
+        52498
+      ]
+    },
+    {
+      "sourcePosition": 10,
+      "sourceIssueReference": "Silk (2015) #4",
+      "sourceRangeReference": "Solo | Silk Volume 0: The Life and Times of Cindy Moon | First 2015 series #1-7",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "4",
+      "seriesId": 19661,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "52499"
+      ],
+      "selectedIssueId": 52499,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/52499/silk_2015_4",
+      "resolvedIssueTitle": "Silk (2015) #4",
+      "note": "Marvel series 19661 (Silk (2015)) is the reviewed metadata series for this source reference. First 2015 Silk volume, series 19661, not the post-Secret-Wars relaunch.",
+      "status": "exact",
+      "selectedIssueIds": [
+        52499
+      ]
+    },
+    {
+      "sourcePosition": 11,
+      "sourceIssueReference": "Silk (2015) #5",
+      "sourceRangeReference": "Solo | Silk Volume 0: The Life and Times of Cindy Moon | First 2015 series #1-7",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "5",
+      "seriesId": 19661,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "52500"
+      ],
+      "selectedIssueId": 52500,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/52500/silk_2015_5",
+      "resolvedIssueTitle": "Silk (2015) #5",
+      "note": "Marvel series 19661 (Silk (2015)) is the reviewed metadata series for this source reference. First 2015 Silk volume, series 19661, not the post-Secret-Wars relaunch.",
+      "status": "exact",
+      "selectedIssueIds": [
+        52500
+      ]
+    },
+    {
+      "sourcePosition": 12,
+      "sourceIssueReference": "Silk (2015) #6",
+      "sourceRangeReference": "Solo | Silk Volume 0: The Life and Times of Cindy Moon | First 2015 series #1-7",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "6",
+      "seriesId": 19661,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "52501"
+      ],
+      "selectedIssueId": 52501,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/52501/silk_2015_6",
+      "resolvedIssueTitle": "Silk (2015) #6",
+      "note": "Marvel series 19661 (Silk (2015)) is the reviewed metadata series for this source reference. First 2015 Silk volume, series 19661, not the post-Secret-Wars relaunch.",
+      "status": "exact",
+      "selectedIssueIds": [
+        52501
+      ]
+    },
+    {
+      "sourcePosition": 13,
+      "sourceIssueReference": "Silk (2015) #7",
+      "sourceRangeReference": "Solo | Silk Volume 0: The Life and Times of Cindy Moon | First 2015 series #1-7",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "7",
+      "seriesId": 19661,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "52502"
+      ],
+      "selectedIssueId": 52502,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/52502/silk_2015_7",
+      "resolvedIssueTitle": "Silk (2015) #7",
+      "note": "Marvel series 19661 (Silk (2015)) is the reviewed metadata series for this source reference. First 2015 Silk volume, series 19661, not the post-Secret-Wars relaunch.",
+      "status": "exact",
+      "selectedIssueIds": [
+        52502
+      ]
+    },
+    {
+      "sourcePosition": 14,
+      "sourceIssueReference": "Silk (2015) #1",
+      "sourceRangeReference": "Solo | Silk Volume 1: Sinister | Second 2015 series #1-6, Amazing Spider-Man 2015 #1",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "1",
+      "seriesId": 20499,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "55637"
+      ],
+      "selectedIssueId": 55637,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55637/silk_2015_1",
+      "resolvedIssueTitle": "Silk (2015) #1",
+      "note": "Marvel series 20499 (Silk (2015 - 2017)) is the reviewed metadata series for this source reference. Second 2015 Silk volume, series 20499.",
+      "status": "exact",
+      "selectedIssueIds": [
+        55637
+      ]
+    },
+    {
+      "sourcePosition": 15,
+      "sourceIssueReference": "Silk (2015) #2",
+      "sourceRangeReference": "Solo | Silk Volume 1: Sinister | Second 2015 series #1-6, Amazing Spider-Man 2015 #1",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "2",
+      "seriesId": 20499,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "55639"
+      ],
+      "selectedIssueId": 55639,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55639/silk_2015_2",
+      "resolvedIssueTitle": "Silk (2015) #2",
+      "note": "Marvel series 20499 (Silk (2015 - 2017)) is the reviewed metadata series for this source reference. Second 2015 Silk volume, series 20499.",
+      "status": "exact",
+      "selectedIssueIds": [
+        55639
+      ]
+    },
+    {
+      "sourcePosition": 16,
+      "sourceIssueReference": "Silk (2015) #3",
+      "sourceRangeReference": "Solo | Silk Volume 1: Sinister | Second 2015 series #1-6, Amazing Spider-Man 2015 #1",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "3",
+      "seriesId": 20499,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "55641"
+      ],
+      "selectedIssueId": 55641,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55641/silk_2015_3",
+      "resolvedIssueTitle": "Silk (2015) #3",
+      "note": "Marvel series 20499 (Silk (2015 - 2017)) is the reviewed metadata series for this source reference. Second 2015 Silk volume, series 20499.",
+      "status": "exact",
+      "selectedIssueIds": [
+        55641
+      ]
+    },
+    {
+      "sourcePosition": 17,
+      "sourceIssueReference": "Silk (2015) #4",
+      "sourceRangeReference": "Solo | Silk Volume 1: Sinister | Second 2015 series #1-6, Amazing Spider-Man 2015 #1",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "4",
+      "seriesId": 20499,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "55643"
+      ],
+      "selectedIssueId": 55643,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55643/silk_2015_4",
+      "resolvedIssueTitle": "Silk (2015) #4",
+      "note": "Marvel series 20499 (Silk (2015 - 2017)) is the reviewed metadata series for this source reference. Second 2015 Silk volume, series 20499.",
+      "status": "exact",
+      "selectedIssueIds": [
+        55643
+      ]
+    },
+    {
+      "sourcePosition": 18,
+      "sourceIssueReference": "Silk (2015) #5",
+      "sourceRangeReference": "Solo | Silk Volume 1: Sinister | Second 2015 series #1-6, Amazing Spider-Man 2015 #1",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "5",
+      "seriesId": 20499,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "55644"
+      ],
+      "selectedIssueId": 55644,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55644/silk_2015_5",
+      "resolvedIssueTitle": "Silk (2015) #5",
+      "note": "Marvel series 20499 (Silk (2015 - 2017)) is the reviewed metadata series for this source reference. Second 2015 Silk volume, series 20499.",
+      "status": "exact",
+      "selectedIssueIds": [
+        55644
+      ]
+    },
+    {
+      "sourcePosition": 19,
+      "sourceIssueReference": "Silk (2015) #6",
+      "sourceRangeReference": "Solo | Silk Volume 1: Sinister | Second 2015 series #1-6, Amazing Spider-Man 2015 #1",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "6",
+      "seriesId": 20499,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "55645"
+      ],
+      "selectedIssueId": 55645,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55645/silk_2015_6",
+      "resolvedIssueTitle": "Silk (2015) #6",
+      "note": "Marvel series 20499 (Silk (2015 - 2017)) is the reviewed metadata series for this source reference. Second 2015 Silk volume, series 20499.",
+      "status": "exact",
+      "selectedIssueIds": [
+        55645
+      ]
+    },
+    {
+      "sourcePosition": 20,
+      "sourceIssueReference": "Amazing Spider-Man (2015) #1",
+      "sourceRangeReference": "Solo | Silk Volume 1: Sinister | Second 2015 series #1-6, Amazing Spider-Man 2015 #1",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2017,
+      "issueNumber": "1",
+      "seriesId": 20432,
+      "candidateIssueId": 55298,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "55298"
+      ],
+      "selectedIssueId": 55298,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55298/the_amazing_spider-man_2017_1",
+      "resolvedIssueTitle": "The Amazing Spider-Man (2017) #1",
+      "note": "Marvel series 20432 (The Amazing Spider-Man (2017 - 2018)) is the reviewed metadata series for this source reference. Source calls this the 2015 Worldwide relaunch; provider original series 20432 labels itself 2017, with #1 published in 2015.",
+      "status": "exact",
+      "selectedIssueIds": [
+        55298
+      ]
+    },
+    {
+      "sourcePosition": 21,
+      "sourceIssueReference": "Silk (2015) #9",
+      "sourceRangeReference": "Solo | Silk Volume 2: The Negative | Second 2015 series #9-13",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "9",
+      "seriesId": 20499,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "55648"
+      ],
+      "selectedIssueId": 55648,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55648/silk_2015_9",
+      "resolvedIssueTitle": "Silk (2015) #9",
+      "note": "Marvel series 20499 (Silk (2015 - 2017)) is the reviewed metadata series for this source reference. Second 2015 Silk volume, series 20499.",
+      "status": "exact",
+      "selectedIssueIds": [
+        55648
+      ]
+    },
+    {
+      "sourcePosition": 22,
+      "sourceIssueReference": "Silk (2015) #10",
+      "sourceRangeReference": "Solo | Silk Volume 2: The Negative | Second 2015 series #9-13",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "10",
+      "seriesId": 20499,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "55649"
+      ],
+      "selectedIssueId": 55649,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55649/silk_2015_10",
+      "resolvedIssueTitle": "Silk (2015) #10",
+      "note": "Marvel series 20499 (Silk (2015 - 2017)) is the reviewed metadata series for this source reference. Second 2015 Silk volume, series 20499.",
+      "status": "exact",
+      "selectedIssueIds": [
+        55649
+      ]
+    },
+    {
+      "sourcePosition": 23,
+      "sourceIssueReference": "Silk (2015) #11",
+      "sourceRangeReference": "Solo | Silk Volume 2: The Negative | Second 2015 series #9-13",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "11",
+      "seriesId": 20499,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "55650"
+      ],
+      "selectedIssueId": 55650,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55650/silk_2015_11",
+      "resolvedIssueTitle": "Silk (2015) #11",
+      "note": "Marvel series 20499 (Silk (2015 - 2017)) is the reviewed metadata series for this source reference. Second 2015 Silk volume, series 20499.",
+      "status": "exact",
+      "selectedIssueIds": [
+        55650
+      ]
+    },
+    {
+      "sourcePosition": 24,
+      "sourceIssueReference": "Silk (2015) #12",
+      "sourceRangeReference": "Solo | Silk Volume 2: The Negative | Second 2015 series #9-13",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "12",
+      "seriesId": 20499,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "55651"
+      ],
+      "selectedIssueId": 55651,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55651/silk_2015_12",
+      "resolvedIssueTitle": "Silk (2015) #12",
+      "note": "Marvel series 20499 (Silk (2015 - 2017)) is the reviewed metadata series for this source reference. Second 2015 Silk volume, series 20499.",
+      "status": "exact",
+      "selectedIssueIds": [
+        55651
+      ]
+    },
+    {
+      "sourcePosition": 25,
+      "sourceIssueReference": "Silk (2015) #13",
+      "sourceRangeReference": "Solo | Silk Volume 2: The Negative | Second 2015 series #9-13",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "13",
+      "seriesId": 20499,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "55652"
+      ],
+      "selectedIssueId": 55652,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55652/silk_2015_13",
+      "resolvedIssueTitle": "Silk (2015) #13",
+      "note": "Marvel series 20499 (Silk (2015 - 2017)) is the reviewed metadata series for this source reference. Second 2015 Silk volume, series 20499.",
+      "status": "exact",
+      "selectedIssueIds": [
+        55652
+      ]
+    },
+    {
+      "sourcePosition": 26,
+      "sourceIssueReference": "Silk (2015) #14",
+      "sourceRangeReference": "Solo | Silk Volume 3: The Clone Conspiracy | Second 2015 series #14-19",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "14",
+      "seriesId": 20499,
+      "candidateIssueId": 55653,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "55653"
+      ],
+      "selectedIssueId": 55653,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55653/silk_2015_14",
+      "resolvedIssueTitle": "Silk (2015) #14",
+      "note": "Marvel series 20499 (Silk (2015 - 2017)) is the reviewed metadata series for this source reference. Second 2015 Silk volume, series 20499.",
+      "status": "exact",
+      "selectedIssueIds": [
+        55653
+      ]
+    },
+    {
+      "sourcePosition": 27,
+      "sourceIssueReference": "Silk (2015) #15",
+      "sourceRangeReference": "Solo | Silk Volume 3: The Clone Conspiracy | Second 2015 series #14-19",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "15",
+      "seriesId": 20499,
+      "candidateIssueId": 55654,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "55654"
+      ],
+      "selectedIssueId": 55654,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55654/silk_2015_15",
+      "resolvedIssueTitle": "Silk (2015) #15",
+      "note": "Marvel series 20499 (Silk (2015 - 2017)) is the reviewed metadata series for this source reference. Second 2015 Silk volume, series 20499.",
+      "status": "exact",
+      "selectedIssueIds": [
+        55654
+      ]
+    },
+    {
+      "sourcePosition": 28,
+      "sourceIssueReference": "Silk (2015) #16",
+      "sourceRangeReference": "Solo | Silk Volume 3: The Clone Conspiracy | Second 2015 series #14-19",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "16",
+      "seriesId": 20499,
+      "candidateIssueId": 55655,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "55655"
+      ],
+      "selectedIssueId": 55655,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55655/silk_2015_16",
+      "resolvedIssueTitle": "Silk (2015) #16",
+      "note": "Marvel series 20499 (Silk (2015 - 2017)) is the reviewed metadata series for this source reference. Second 2015 Silk volume, series 20499.",
+      "status": "exact",
+      "selectedIssueIds": [
+        55655
+      ]
+    },
+    {
+      "sourcePosition": 29,
+      "sourceIssueReference": "Silk (2015) #17",
+      "sourceRangeReference": "Solo | Silk Volume 3: The Clone Conspiracy | Second 2015 series #14-19",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "17",
+      "seriesId": 20499,
+      "candidateIssueId": 61050,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "61050"
+      ],
+      "selectedIssueId": 61050,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61050/silk_2015_17",
+      "resolvedIssueTitle": "Silk (2015) #17",
+      "note": "Marvel series 20499 (Silk (2015 - 2017)) is the reviewed metadata series for this source reference. Second 2015 Silk volume, series 20499.",
+      "status": "exact",
+      "selectedIssueIds": [
+        61050
+      ]
+    },
+    {
+      "sourcePosition": 30,
+      "sourceIssueReference": "Silk (2015) #18",
+      "sourceRangeReference": "Solo | Silk Volume 3: The Clone Conspiracy | Second 2015 series #14-19",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "18",
+      "seriesId": 20499,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "61051"
+      ],
+      "selectedIssueId": 61051,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61051/silk_2015_18",
+      "resolvedIssueTitle": "Silk (2015) #18",
+      "note": "Marvel series 20499 (Silk (2015 - 2017)) is the reviewed metadata series for this source reference. Second 2015 Silk volume, series 20499.",
+      "status": "exact",
+      "selectedIssueIds": [
+        61051
+      ]
+    },
+    {
+      "sourcePosition": 31,
+      "sourceIssueReference": "Silk (2015) #19",
+      "sourceRangeReference": "Solo | Silk Volume 3: The Clone Conspiracy | Second 2015 series #14-19",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "19",
+      "seriesId": 20499,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "61052"
+      ],
+      "selectedIssueId": 61052,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61052/silk_2015_19",
+      "resolvedIssueTitle": "Silk (2015) #19",
+      "note": "Marvel series 20499 (Silk (2015 - 2017)) is the reviewed metadata series for this source reference. Second 2015 Silk volume, series 20499.",
+      "status": "exact",
+      "selectedIssueIds": [
+        61052
+      ]
+    },
+    {
+      "sourcePosition": 32,
+      "sourceIssueReference": "Silk (2021) #1",
+      "sourceRangeReference": "Solo | Silk (2021) | Issues #1-3",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 29389,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "82672"
+      ],
+      "selectedIssueId": 82672,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/82672/silk_2021_1",
+      "resolvedIssueTitle": "Silk (2021) #1",
+      "note": "Marvel series 29389 (Silk (2021)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        82672
+      ]
+    },
+    {
+      "sourcePosition": 33,
+      "sourceIssueReference": "Silk (2021) #2",
+      "sourceRangeReference": "Solo | Silk (2021) | Issues #1-3",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2021,
+      "issueNumber": "2",
+      "seriesId": 29389,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "82674"
+      ],
+      "selectedIssueId": 82674,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/82674/silk_2021_2",
+      "resolvedIssueTitle": "Silk (2021) #2",
+      "note": "Marvel series 29389 (Silk (2021)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        82674
+      ]
+    },
+    {
+      "sourcePosition": 34,
+      "sourceIssueReference": "Silk (2021) #3",
+      "sourceRangeReference": "Solo | Silk (2021) | Issues #1-3",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2021,
+      "issueNumber": "3",
+      "seriesId": 29389,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "82675"
+      ],
+      "selectedIssueId": 82675,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/82675/silk_2021_3",
+      "resolvedIssueTitle": "Silk (2021) #3",
+      "note": "Marvel series 29389 (Silk (2021)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        82675
+      ]
+    },
+    {
+      "sourcePosition": 35,
+      "sourceIssueReference": "Spider-Women Alpha (2016) #1",
+      "sourceRangeReference": "Team-ups | Spider-Women | Alpha, second Silk (2015) #7-8, second Spider-Gwen (2015) #7-8, Spider-Woman #6-7, Omega",
+      "normalizedSeriesTitle": "Spider-Women Alpha",
+      "seriesYear": 2016,
+      "issueNumber": "1",
+      "seriesId": 21280,
+      "candidateIssueId": 58381,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "58381"
+      ],
+      "selectedIssueId": 58381,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/58381/spider-women_alpha_2016_1",
+      "resolvedIssueTitle": "Spider-Women Alpha (2016) #1",
+      "note": "Marvel series 21280 (Spider-Women Alpha (2016)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        58381
+      ]
+    },
+    {
+      "sourcePosition": 36,
+      "sourceIssueReference": "Silk (2015) #7",
+      "sourceRangeReference": "Team-ups | Spider-Women | Alpha, second Silk (2015) #7-8, second Spider-Gwen (2015) #7-8, Spider-Woman #6-7, Omega",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "7",
+      "seriesId": 20499,
+      "candidateIssueId": 55646,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "55646"
+      ],
+      "selectedIssueId": 55646,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55646/silk_2015_7",
+      "resolvedIssueTitle": "Silk (2015) #7",
+      "note": "Marvel series 20499 (Silk (2015 - 2017)) is the reviewed metadata series for this source reference. Second 2015 Silk volume, series 20499.",
+      "status": "exact",
+      "selectedIssueIds": [
+        55646
+      ]
+    },
+    {
+      "sourcePosition": 37,
+      "sourceIssueReference": "Silk (2015) #8",
+      "sourceRangeReference": "Team-ups | Spider-Women | Alpha, second Silk (2015) #7-8, second Spider-Gwen (2015) #7-8, Spider-Woman #6-7, Omega",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "8",
+      "seriesId": 20499,
+      "candidateIssueId": 55647,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "55647"
+      ],
+      "selectedIssueId": 55647,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55647/silk_2015_8",
+      "resolvedIssueTitle": "Silk (2015) #8",
+      "note": "Marvel series 20499 (Silk (2015 - 2017)) is the reviewed metadata series for this source reference. Second 2015 Silk volume, series 20499.",
+      "status": "exact",
+      "selectedIssueIds": [
+        55647
+      ]
+    },
+    {
+      "sourcePosition": 38,
+      "sourceIssueReference": "Spider-Gwen (2015) #7",
+      "sourceRangeReference": "Team-ups | Spider-Women | Alpha, second Silk (2015) #7-8, second Spider-Gwen (2015) #7-8, Spider-Woman #6-7, Omega",
+      "normalizedSeriesTitle": "Spider-Gwen",
+      "seriesYear": 2015,
+      "issueNumber": "7",
+      "seriesId": 20505,
+      "candidateIssueId": 55683,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "55683"
+      ],
+      "selectedIssueId": 55683,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55683/spider-gwen_2015_7",
+      "resolvedIssueTitle": "Spider-Gwen (2015) #7",
+      "note": "Marvel series 20505 (Spider-Gwen (2015 - 2018)) is the reviewed metadata series for this source reference. Second 2015 Spider-Gwen volume, series 20505.",
+      "status": "exact",
+      "selectedIssueIds": [
+        55683
+      ]
+    },
+    {
+      "sourcePosition": 39,
+      "sourceIssueReference": "Spider-Gwen (2015) #8",
+      "sourceRangeReference": "Team-ups | Spider-Women | Alpha, second Silk (2015) #7-8, second Spider-Gwen (2015) #7-8, Spider-Woman #6-7, Omega",
+      "normalizedSeriesTitle": "Spider-Gwen",
+      "seriesYear": 2015,
+      "issueNumber": "8",
+      "seriesId": 20505,
+      "candidateIssueId": 55684,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "55684"
+      ],
+      "selectedIssueId": 55684,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55684/spider-gwen_2015_8",
+      "resolvedIssueTitle": "Spider-Gwen (2015) #8",
+      "note": "Marvel series 20505 (Spider-Gwen (2015 - 2018)) is the reviewed metadata series for this source reference. Second 2015 Spider-Gwen volume, series 20505.",
+      "status": "exact",
+      "selectedIssueIds": [
+        55684
+      ]
+    },
+    {
+      "sourcePosition": 40,
+      "sourceIssueReference": "Spider-Woman (2015) #6",
+      "sourceRangeReference": "Team-ups | Spider-Women | Alpha, second Silk (2015) #7-8, second Spider-Gwen (2015) #7-8, Spider-Woman #6-7, Omega",
+      "normalizedSeriesTitle": "Spider-Woman",
+      "seriesYear": 2015,
+      "issueNumber": "6",
+      "seriesId": 20618,
+      "candidateIssueId": 56169,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "56169"
+      ],
+      "selectedIssueId": 56169,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/56169/spider-woman_2015_6",
+      "resolvedIssueTitle": "Spider-Woman (2015) #6",
+      "note": "Marvel series 20618 (Spider-Woman (2015 - 2017)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        56169
+      ]
+    },
+    {
+      "sourcePosition": 41,
+      "sourceIssueReference": "Spider-Woman (2015) #7",
+      "sourceRangeReference": "Team-ups | Spider-Women | Alpha, second Silk (2015) #7-8, second Spider-Gwen (2015) #7-8, Spider-Woman #6-7, Omega",
+      "normalizedSeriesTitle": "Spider-Woman",
+      "seriesYear": 2015,
+      "issueNumber": "7",
+      "seriesId": 20618,
+      "candidateIssueId": 56170,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "56170"
+      ],
+      "selectedIssueId": 56170,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/56170/spider-woman_2015_7",
+      "resolvedIssueTitle": "Spider-Woman (2015) #7",
+      "note": "Marvel series 20618 (Spider-Woman (2015 - 2017)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        56170
+      ]
+    },
+    {
+      "sourcePosition": 42,
+      "sourceIssueReference": "Spider-Women Omega (2016) #1",
+      "sourceRangeReference": "Team-ups | Spider-Women | Alpha, second Silk (2015) #7-8, second Spider-Gwen (2015) #7-8, Spider-Woman #6-7, Omega",
+      "normalizedSeriesTitle": "Spider-Women Omega",
+      "seriesYear": 2016,
+      "issueNumber": "1",
+      "seriesId": 21442,
+      "candidateIssueId": 58832,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "58832"
+      ],
+      "selectedIssueId": 58832,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/58832/spider-women_omega_2016_1",
+      "resolvedIssueTitle": "Spider-Women Omega (2016) #1",
+      "note": "Marvel series 21442 (Spider-Women Omega (2016)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        58832
+      ]
+    },
+    {
+      "sourcePosition": 43,
+      "sourceIssueReference": "Amazing Spider-Man and Silk: The Spider(fly) Effect #1",
+      "sourceRangeReference": "Team-ups | Amazing Spider-Man and Silk: The Spider(fly) Effect | Original Infinite Comic #1-8",
+      "normalizedSeriesTitle": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic",
+      "seriesYear": 2016,
+      "issueNumber": "1",
+      "seriesId": 21127,
+      "candidateIssueId": 57973,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "57973"
+      ],
+      "selectedIssueId": 57973,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/57973/amazing_spider-man_silk_the_spiderfly_effect_infinite_comic_2016_1",
+      "resolvedIssueTitle": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic (2016) #1",
+      "note": "Marvel series 21127 (Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic (2016)) is the reviewed metadata series for this source reference. Original digital Infinite Comic, not print-format issues 58648-58651.",
+      "status": "exact",
+      "selectedIssueIds": [
+        57973
+      ]
+    },
+    {
+      "sourcePosition": 51,
+      "sourceIssueReference": "The Totally Awesome Hulk (2015) #13",
+      "sourceRangeReference": "Team-ups | The Totally Awesome Hulk Vol. 3 | Issues #13-18",
+      "normalizedSeriesTitle": "The Totally Awesome Hulk",
+      "seriesYear": 2015,
+      "issueNumber": "13",
+      "seriesId": 20614,
+      "candidateIssueId": 56095,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "56095"
+      ],
+      "selectedIssueId": 56095,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/56095/the_totally_awesome_hulk_2015_13",
+      "resolvedIssueTitle": "The Totally Awesome Hulk (2015) #13",
+      "note": "Marvel series 20614 (The Totally Awesome Hulk (2015 - 2017)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        56095
+      ]
+    },
+    {
+      "sourcePosition": 52,
+      "sourceIssueReference": "The Totally Awesome Hulk (2015) #14",
+      "sourceRangeReference": "Team-ups | The Totally Awesome Hulk Vol. 3 | Issues #13-18",
+      "normalizedSeriesTitle": "The Totally Awesome Hulk",
+      "seriesYear": 2015,
+      "issueNumber": "14",
+      "seriesId": 20614,
+      "candidateIssueId": 56096,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "56096"
+      ],
+      "selectedIssueId": 56096,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/56096/the_totally_awesome_hulk_2015_14",
+      "resolvedIssueTitle": "The Totally Awesome Hulk (2015) #14",
+      "note": "Marvel series 20614 (The Totally Awesome Hulk (2015 - 2017)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        56096
+      ]
+    },
+    {
+      "sourcePosition": 53,
+      "sourceIssueReference": "The Totally Awesome Hulk (2015) #15",
+      "sourceRangeReference": "Team-ups | The Totally Awesome Hulk Vol. 3 | Issues #13-18",
+      "normalizedSeriesTitle": "The Totally Awesome Hulk",
+      "seriesYear": 2015,
+      "issueNumber": "15",
+      "seriesId": 20614,
+      "candidateIssueId": 56097,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "56097"
+      ],
+      "selectedIssueId": 56097,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/56097/the_totally_awesome_hulk_2015_15",
+      "resolvedIssueTitle": "The Totally Awesome Hulk (2015) #15",
+      "note": "Marvel series 20614 (The Totally Awesome Hulk (2015 - 2017)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        56097
+      ]
+    },
+    {
+      "sourcePosition": 54,
+      "sourceIssueReference": "The Totally Awesome Hulk (2015) #16",
+      "sourceRangeReference": "Team-ups | The Totally Awesome Hulk Vol. 3 | Issues #13-18",
+      "normalizedSeriesTitle": "The Totally Awesome Hulk",
+      "seriesYear": 2015,
+      "issueNumber": "16",
+      "seriesId": 20614,
+      "candidateIssueId": 56098,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "56098"
+      ],
+      "selectedIssueId": 56098,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/56098/the_totally_awesome_hulk_2015_16",
+      "resolvedIssueTitle": "The Totally Awesome Hulk (2015) #16",
+      "note": "Marvel series 20614 (The Totally Awesome Hulk (2015 - 2017)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        56098
+      ]
+    },
+    {
+      "sourcePosition": 55,
+      "sourceIssueReference": "The Totally Awesome Hulk (2015) #17",
+      "sourceRangeReference": "Team-ups | The Totally Awesome Hulk Vol. 3 | Issues #13-18",
+      "normalizedSeriesTitle": "The Totally Awesome Hulk",
+      "seriesYear": 2015,
+      "issueNumber": "17",
+      "seriesId": 20614,
+      "candidateIssueId": 60847,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "60847"
+      ],
+      "selectedIssueId": 60847,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/60847/the_totally_awesome_hulk_2015_17",
+      "resolvedIssueTitle": "The Totally Awesome Hulk (2015) #17",
+      "note": "Marvel series 20614 (The Totally Awesome Hulk (2015 - 2017)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        60847
+      ]
+    },
+    {
+      "sourcePosition": 56,
+      "sourceIssueReference": "The Totally Awesome Hulk (2015) #18",
+      "sourceRangeReference": "Team-ups | The Totally Awesome Hulk Vol. 3 | Issues #13-18",
+      "normalizedSeriesTitle": "The Totally Awesome Hulk",
+      "seriesYear": 2015,
+      "issueNumber": "18",
+      "seriesId": 20614,
+      "candidateIssueId": 60848,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "60848"
+      ],
+      "selectedIssueId": 60848,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/60848/the_totally_awesome_hulk_2015_18",
+      "resolvedIssueTitle": "The Totally Awesome Hulk (2015) #18",
+      "note": "Marvel series 20614 (The Totally Awesome Hulk (2015 - 2017)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        60848
+      ]
+    },
+    {
+      "sourcePosition": 57,
+      "sourceIssueReference": "War of the Realms: New Agents of Atlas (2019) #1",
+      "sourceRangeReference": "Team-ups | War of the Realms: New Agents of Atlas | Issues #1-4",
+      "normalizedSeriesTitle": "War of the Realms: New Agents of Atlas",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 27505,
+      "candidateIssueId": 76615,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "76615"
+      ],
+      "selectedIssueId": 76615,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/76615/war_of_the_realms_new_agents_of_atlas_2019_1",
+      "resolvedIssueTitle": "War of the Realms: New Agents of Atlas (2019) #1",
+      "note": "Marvel series 27505 (War of the Realms: New Agents of Atlas (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        76615
+      ]
+    },
+    {
+      "sourcePosition": 58,
+      "sourceIssueReference": "War of the Realms: New Agents of Atlas (2019) #2",
+      "sourceRangeReference": "Team-ups | War of the Realms: New Agents of Atlas | Issues #1-4",
+      "normalizedSeriesTitle": "War of the Realms: New Agents of Atlas",
+      "seriesYear": 2019,
+      "issueNumber": "2",
+      "seriesId": 27505,
+      "candidateIssueId": 76616,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "76616"
+      ],
+      "selectedIssueId": 76616,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/76616/war_of_the_realms_new_agents_of_atlas_2019_2",
+      "resolvedIssueTitle": "War of the Realms: New Agents of Atlas (2019) #2",
+      "note": "Marvel series 27505 (War of the Realms: New Agents of Atlas (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        76616
+      ]
+    },
+    {
+      "sourcePosition": 59,
+      "sourceIssueReference": "War of the Realms: New Agents of Atlas (2019) #3",
+      "sourceRangeReference": "Team-ups | War of the Realms: New Agents of Atlas | Issues #1-4",
+      "normalizedSeriesTitle": "War of the Realms: New Agents of Atlas",
+      "seriesYear": 2019,
+      "issueNumber": "3",
+      "seriesId": 27505,
+      "candidateIssueId": 77259,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77259"
+      ],
+      "selectedIssueId": 77259,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77259/war_of_the_realms_new_agents_of_atlas_2019_3",
+      "resolvedIssueTitle": "War of the Realms: New Agents of Atlas (2019) #3",
+      "note": "Marvel series 27505 (War of the Realms: New Agents of Atlas (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        77259
+      ]
+    },
+    {
+      "sourcePosition": 60,
+      "sourceIssueReference": "War of the Realms: New Agents of Atlas (2019) #4",
+      "sourceRangeReference": "Team-ups | War of the Realms: New Agents of Atlas | Issues #1-4",
+      "normalizedSeriesTitle": "War of the Realms: New Agents of Atlas",
+      "seriesYear": 2019,
+      "issueNumber": "4",
+      "seriesId": 27505,
+      "candidateIssueId": 77260,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77260"
+      ],
+      "selectedIssueId": 77260,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77260/war_of_the_realms_new_agents_of_atlas_2019_4",
+      "resolvedIssueTitle": "War of the Realms: New Agents of Atlas (2019) #4",
+      "note": "Marvel series 27505 (War of the Realms: New Agents of Atlas (2019)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        77260
+      ]
+    },
+    {
+      "sourcePosition": 61,
+      "sourceIssueReference": "Agents of Atlas (2019) #1",
+      "sourceRangeReference": "Team-ups | Agents of Atlas: Pandemonium | Original ongoing #1-4",
+      "normalizedSeriesTitle": "Agents of Atlas",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 27624,
+      "candidateIssueId": 77001,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77001"
+      ],
+      "selectedIssueId": 77001,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77001/agents_of_atlas_2019_1",
+      "resolvedIssueTitle": "Agents of Atlas (2019) #1",
+      "note": "Marvel series 27624 (Agents of Atlas (2019)) is the reviewed metadata series for this source reference. Pandemonium is Agents of Atlas (2019) #1-4, not a collected-edition issue.",
+      "status": "exact",
+      "selectedIssueIds": [
+        77001
+      ]
+    },
+    {
+      "sourcePosition": 62,
+      "sourceIssueReference": "Agents of Atlas (2019) #2",
+      "sourceRangeReference": "Team-ups | Agents of Atlas: Pandemonium | Original ongoing #1-4",
+      "normalizedSeriesTitle": "Agents of Atlas",
+      "seriesYear": 2019,
+      "issueNumber": "2",
+      "seriesId": 27624,
+      "candidateIssueId": 77002,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77002"
+      ],
+      "selectedIssueId": 77002,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77002/agents_of_atlas_2019_2",
+      "resolvedIssueTitle": "Agents of Atlas (2019) #2",
+      "note": "Marvel series 27624 (Agents of Atlas (2019)) is the reviewed metadata series for this source reference. Pandemonium is Agents of Atlas (2019) #1-4, not a collected-edition issue.",
+      "status": "exact",
+      "selectedIssueIds": [
+        77002
+      ]
+    },
+    {
+      "sourcePosition": 63,
+      "sourceIssueReference": "Agents of Atlas (2019) #3",
+      "sourceRangeReference": "Team-ups | Agents of Atlas: Pandemonium | Original ongoing #1-4",
+      "normalizedSeriesTitle": "Agents of Atlas",
+      "seriesYear": 2019,
+      "issueNumber": "3",
+      "seriesId": 27624,
+      "candidateIssueId": 77003,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77003"
+      ],
+      "selectedIssueId": 77003,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77003/agents_of_atlas_2019_3",
+      "resolvedIssueTitle": "Agents of Atlas (2019) #3",
+      "note": "Marvel series 27624 (Agents of Atlas (2019)) is the reviewed metadata series for this source reference. Pandemonium is Agents of Atlas (2019) #1-4, not a collected-edition issue.",
+      "status": "exact",
+      "selectedIssueIds": [
+        77003
+      ]
+    },
+    {
+      "sourcePosition": 64,
+      "sourceIssueReference": "Agents of Atlas (2019) #4",
+      "sourceRangeReference": "Team-ups | Agents of Atlas: Pandemonium | Original ongoing #1-4",
+      "normalizedSeriesTitle": "Agents of Atlas",
+      "seriesYear": 2019,
+      "issueNumber": "4",
+      "seriesId": 27624,
+      "candidateIssueId": 77004,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77004"
+      ],
+      "selectedIssueId": 77004,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77004/agents_of_atlas_2019_4",
+      "resolvedIssueTitle": "Agents of Atlas (2019) #4",
+      "note": "Marvel series 27624 (Agents of Atlas (2019)) is the reviewed metadata series for this source reference. Pandemonium is Agents of Atlas (2019) #1-4, not a collected-edition issue.",
+      "status": "exact",
+      "selectedIssueIds": [
+        77004
+      ]
+    },
+    {
+      "sourcePosition": 65,
+      "sourceIssueReference": "Amazing Spider-Man (2018) #48",
+      "sourceRangeReference": "Team-ups | Amazing Spider-Man Vol. 10: Green Goblin Returns | FCBD 2020 #1 Spider-Man story only",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "48",
+      "seriesId": 24396,
+      "candidateIssueId": 77116,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77116"
+      ],
+      "selectedIssueId": 77116,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77116/the_amazing_spider-man_2018_48",
+      "resolvedIssueTitle": "The Amazing Spider-Man (2018) #48",
+      "note": "Marvel series 24396 (The Amazing Spider-Man (2018 - 2022)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        77116
+      ]
+    },
+    {
+      "sourcePosition": 66,
+      "sourceIssueReference": "Spider-Man: The Sins of Norman Osborn (2020) #1",
+      "sourceRangeReference": "Team-ups | Amazing Spider-Man Vol. 10: Green Goblin Returns | FCBD 2020 #1 Spider-Man story only",
+      "normalizedSeriesTitle": "Amazing Spider-Man: The Sins of Norman Osborn",
+      "seriesYear": 2020,
+      "issueNumber": "1",
+      "seriesId": 31209,
+      "candidateIssueId": 90780,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "90780"
+      ],
+      "selectedIssueId": 90780,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/90780/amazing_spider-man_the_sins_of_norman_osborn_2020_1",
+      "resolvedIssueTitle": "Amazing Spider-Man: The Sins of Norman Osborn (2020) #1",
+      "note": "Marvel series 31209 (Amazing Spider-Man: The Sins of Norman Osborn (2020)) is the reviewed metadata series for this source reference. The source shortens this standalone title; the provider names Amazing Spider-Man: The Sins of Norman Osborn.",
+      "status": "exact",
+      "selectedIssueIds": [
+        90780
+      ]
+    },
+    {
+      "sourcePosition": 67,
+      "sourceIssueReference": "Amazing Spider-Man (2018) #49",
+      "sourceRangeReference": "Team-ups | Amazing Spider-Man Vol. 10: Green Goblin Returns | FCBD 2020 #1 Spider-Man story only",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "49",
+      "seriesId": 24396,
+      "candidateIssueId": 77117,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77117"
+      ],
+      "selectedIssueId": 77117,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77117/the_amazing_spider-man_2018_49",
+      "resolvedIssueTitle": "The Amazing Spider-Man (2018) #49",
+      "note": "Marvel series 24396 (The Amazing Spider-Man (2018 - 2022)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        77117
+      ]
+    },
+    {
+      "sourcePosition": 68,
+      "sourceIssueReference": "Free Comic Book Day 2020 (Spider-Man/Venom) #1 (Spider-Man story)",
+      "sourceRangeReference": "Team-ups | Amazing Spider-Man Vol. 10: Green Goblin Returns | FCBD 2020 #1 Spider-Man story only",
+      "normalizedSeriesTitle": "Free Comic Book Day: Spider-Man/Venom",
+      "seriesYear": 2020,
+      "issueNumber": "1",
+      "seriesId": 30154,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "85661"
+      ],
+      "selectedIssueId": 85661,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/85661/free_comic_book_day_spider-manvenom_2020_1",
+      "resolvedIssueTitle": "Free Comic Book Day: Spider-Man/Venom (2020) #1",
+      "note": "Marvel series 30154 (Free Comic Book Day: Spider-Man/Venom (2020)) is the reviewed metadata series for this source reference. Only the Spider-Man story is source-selected within this original FCBD 2020 anthology issue.",
+      "status": "exact",
+      "selectedIssueIds": [
+        85661
+      ]
+    },
+    {
+      "sourcePosition": 69,
+      "sourceIssueReference": "Amazing Spider-Man (2018) #50",
+      "sourceRangeReference": "Team-ups | Amazing Spider-Man Vol. 10: Green Goblin Returns | Issues #50-55",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "50",
+      "seriesId": 24396,
+      "candidateIssueId": 77118,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77118"
+      ],
+      "selectedIssueId": 77118,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77118/the_amazing_spider-man_2018_50",
+      "resolvedIssueTitle": "The Amazing Spider-Man (2018) #50",
+      "note": "Marvel series 24396 (The Amazing Spider-Man (2018 - 2022)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        77118
+      ]
+    },
+    {
+      "sourcePosition": 70,
+      "sourceIssueReference": "Amazing Spider-Man (2018) #51",
+      "sourceRangeReference": "Team-ups | Amazing Spider-Man Vol. 10: Green Goblin Returns | Issues #50-55",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "51",
+      "seriesId": 24396,
+      "candidateIssueId": 77119,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77119"
+      ],
+      "selectedIssueId": 77119,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77119/the_amazing_spider-man_2018_51",
+      "resolvedIssueTitle": "The Amazing Spider-Man (2018) #51",
+      "note": "Marvel series 24396 (The Amazing Spider-Man (2018 - 2022)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        77119
+      ]
+    },
+    {
+      "sourcePosition": 71,
+      "sourceIssueReference": "Amazing Spider-Man (2018) #52",
+      "sourceRangeReference": "Team-ups | Amazing Spider-Man Vol. 10: Green Goblin Returns | Issues #50-55",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "52",
+      "seriesId": 24396,
+      "candidateIssueId": 77120,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77120"
+      ],
+      "selectedIssueId": 77120,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77120/the_amazing_spider-man_2018_52",
+      "resolvedIssueTitle": "The Amazing Spider-Man (2018) #52",
+      "note": "Marvel series 24396 (The Amazing Spider-Man (2018 - 2022)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        77120
+      ]
+    },
+    {
+      "sourcePosition": 72,
+      "sourceIssueReference": "Amazing Spider-Man (2018) #53",
+      "sourceRangeReference": "Team-ups | Amazing Spider-Man Vol. 10: Green Goblin Returns | Issues #50-55",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "53",
+      "seriesId": 24396,
+      "candidateIssueId": 77121,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77121"
+      ],
+      "selectedIssueId": 77121,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77121/the_amazing_spider-man_2018_53",
+      "resolvedIssueTitle": "The Amazing Spider-Man (2018) #53",
+      "note": "Marvel series 24396 (The Amazing Spider-Man (2018 - 2022)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        77121
+      ]
+    },
+    {
+      "sourcePosition": 73,
+      "sourceIssueReference": "Amazing Spider-Man (2018) #54",
+      "sourceRangeReference": "Team-ups | Amazing Spider-Man Vol. 10: Green Goblin Returns | Issues #50-55",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "54",
+      "seriesId": 24396,
+      "candidateIssueId": 77122,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "77122"
+      ],
+      "selectedIssueId": 77122,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77122/the_amazing_spider-man_2018_54",
+      "resolvedIssueTitle": "The Amazing Spider-Man (2018) #54",
+      "note": "Marvel series 24396 (The Amazing Spider-Man (2018 - 2022)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        77122
+      ]
+    },
+    {
+      "sourcePosition": 74,
+      "sourceIssueReference": "Amazing Spider-Man (2018) #55",
+      "sourceRangeReference": "Team-ups | Amazing Spider-Man Vol. 10: Green Goblin Returns | Issues #50-55",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "55",
+      "seriesId": 24396,
+      "candidateIssueId": 89510,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "89510"
+      ],
+      "selectedIssueId": 89510,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/89510/the_amazing_spider-man_2018_55",
+      "resolvedIssueTitle": "The Amazing Spider-Man (2018) #55",
+      "note": "Marvel series 24396 (The Amazing Spider-Man (2018 - 2022)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        89510
+      ]
+    }
+  ],
+  "mappingDigest": "9fc6dfede2d1e68d9c2429f44165720cd0ae70fedc34d04b33082a63c30a2d36",
+  "packetReview": "GPT-6 Astra coordinator approves 67 exact originals and seven explicit original-digital metadata gaps across 74 source positions, with no repeated selections and 13 source blocks. The complete 190-order report contains 11 approved partial relationships and 179 none; added Nebula, Hope and X-23 comparisons are each none, with every earlier shared-ID set unchanged. The manifest is partial/other, cover45798, and original format/grouping/qualifications remain intact. Exact inputs and public scope #567 bind approval.",
+  "approvedManifest": {
+    "id": "silk-cindy-moon-reading-order",
+    "name": "Silk / Cindy Moon",
+    "description": "Follow Cindy Moon's origins, solo stories and team-ups in Comic Book Herald's selected Silk reading order.",
+    "type": "character-run",
+    "spotlightKind": "other",
+    "depth": "partial",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "silk-cindy-moon-reading-order.md",
+    "sourcePage": "https://www.comicbookherald.com/silk-cindy-moon-reading-order/",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "silk_cindy_moon_reading_order.json",
+    "characters": [
+      "Silk",
+      "Cindy Moon",
+      "Spider-Man",
+      "Spider-Women",
+      "Agents of Atlas"
+    ],
+    "keywords": [
+      "Silk",
+      "Cindy Moon",
+      "Spider-Man",
+      "Spider-Women",
+      "Spider(fly) Effect",
+      "Agents of Atlas",
+      "Comic Book Herald"
+    ],
+    "expect": 74,
+    "timeline": null,
+    "coverIssueId": 45798
+  },
+  "relationshipReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+    "rationale": "The coordinator independently reread the complete three-section source, counted74 selected originals, examined the normalized original-volume sequence and all11 non-none shared-title/number sets. Both2015 Silk series and the second2015 Gwen run remain distinct; the source2015 ASM relaunch uses the retained original with2015 publication date despite its provider2017 label. Seven digital Spider(fly) originals remain explicit gaps, never replaced by print counterparts. Every shared comic remains in source order, with no exact/subset duplicate approved.",
+    "reviewedAt": "2026-09-29T07:11:11.016Z",
+    "packetDigest": "ac6d12d27eb7588f7ca67f8322c223ba96d42d71fb1f910ca399922be7ff8ccd",
+    "mappingDigest": "9fc6dfede2d1e68d9c2429f44165720cd0ae70fedc34d04b33082a63c30a2d36",
+    "reportDigest": "de9179cea054b15627a9cb11313cda63f15edee06c65b3a22947cc18705c71da",
+    "libraryDigest": "fc0295031275315c85394705a15299bf8dd5e9cfc931affca9e3e5ac8e987fa5",
+    "peerDigests": {},
+    "sourceCounts": {
+      "sourceOccurrenceCount": 74,
+      "sourceIdentityCount": 74,
+      "includedIssueCount": 67,
+      "sourceGapCount": 7,
+      "repeatedSourceReferenceCount": 0
+    },
+    "dispositions": [
+      {
+        "orderId": "abomination-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "absolute-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "adam-warlock-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "agatha-harkness-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "age-of-x-man",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "agents-of-atlas-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "The source explicitly selects New Agents of Atlas #1-4 and the original2019 Agents of Atlas #1-4. Preserve those eight originals without inferring#5 or replacing Cindy's wider route with the team guide.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "all-new-all-different-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "The source explicitly includes the Worldwide relaunch original#1, ASM2018#48-55 and Sins of Norman Osborn. Keep these shared originals in the source's specified blocks and late interleave.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "annihilation-conquest",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "ant-man-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "apocalypse-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "atlantis-attacks",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "avengers-defenders-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "avengers-disassembled",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "avengers-enemy-within",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "axis",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "best-ultron-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "black-panther-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "black-widow-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "bloodties",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "captain-america-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "captain-america-reading-order-modern-marvel-era",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "captain-marvel-ms-marvel-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "chaos-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "childs-play",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "civil-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "civil-war-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "civil-war-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "clone-conspiracy",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Second-series Silk #14-17 is part of the source's full#14-19 selection. Retain the complete selected range, including the unshared last two issues.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "contest-of-champions",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "damnation",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "daredevil-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "dark-phoenix-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "dark-reign-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "dark-web",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "days-of-future-past",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "days-of-future-present",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "dead-mans-hand",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "deadpool-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "death-of-doctor-strange",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "devils-reign",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "doctor-doom-primer",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "doctor-octopus-otto-octavius-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "The Worldwide ASM original#1 and second-series Silk #14-17 are direct source selections. Their shared appearance in Doc Ock's route does not change Cindy's selected scope.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "doctor-strange-multiverse-of-madness",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "doctor-strange-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "donny-cates-marvel-universe-reading-order-2017",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "doomwar",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "eighth-day",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "emma-frost-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "essential-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "evolutionary-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "falcon-sam-wilson-captain-america-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "fall-house-x-rise-powers-x",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "fall-of-the-mutants",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "fantastic-four-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "fatal-attractions",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "generations",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "groot-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "guardians-of-the-galaxy-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "heroes-reborn-2021",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "heroic-age-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "hickman-full",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "hickman-minimal",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "hickman-x-men",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "hope-summers-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "house-of-m",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "house-of-m-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "hunt-for-wolverine",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "hunt-for-xavier",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "inferno",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "infinite-destinies",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "infinity-countdown-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "inhumans-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "inhumans-vs-x-men",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "iron-man-2020",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "iron-man-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "The exact2020 Spider-Man/Venom FCBD containing original is explicitly selected with its Spider-Man-story qualification. Keep that identity rather than substituting another year or removing it because of the Iron Man overlap.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "judgment-day",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "king-in-black",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "kravens-last-hunt",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "kree-skrull-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "last-annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "loki-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "magneto-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "magneto-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "marvel-2099",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "marvel-fresh-start-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "marvel-multiverse",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "marvel-super-heroes-secret-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "marvel-what-if",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "marvels-best-phoenix-comics",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "maximum-security",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "mephisto-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "messiah-complex",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "messiah-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "midnight-massacre",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "miles-morales-spider-man-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "The selected Worldwide/2018 ASM originals, Sins one-shot and2020 FCBD are all explicit Cindy references. Preserve the late block's exact order in her distinct character guide.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "minimum-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "modern-x-men-fast-track",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "monsters-unleashed",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "moon-knight-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "muir-island-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "mutant-massacre",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "mys-tech-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "nebula-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "necrosha",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "new-ultimate-universe",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "new-ultimate-universe-trades",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "nick-fury-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "operation-galactic-storm",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "operation-zero-tolerance",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "original-clone-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "phalanx-covenant",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "phalanx-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "phoenix-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "planet-hulk",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "punisher-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "question-of-the-week-do-you-have-a-hulk-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Totally Awesome Hulk #13-18 is an explicitly selected complete team-up collection. Retain all six originals in the source's team-up section.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "reckoning-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "reed-richards-and-sue-storms-wedding",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "revolutionary-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "rise-of-the-midnight-sons",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "rocket-raccoon-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "runaways-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "scarlet-witch-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "second-coming",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "secret-invasion",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "secret-invasion-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "secret-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "secret-wars-ii",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "setup-to-modern-timeline",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "shadow-king-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "shadowland",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "silent-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "silver-surfer-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "sins-of-sinister",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "spider-geddon",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "spider-gwen-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "The complete selected Spider-Women set is intentionally shared. Preserve THIS page's Alpha, Silk, Gwen, Spider-Woman, Omega grouping rather than importing another guide's different alternation.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "spider-island",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "spider-man-2099-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Amazing Spider-Man2014#1 is the first explicitly selected original in Cindy's opening#1-6 block. Keep it despite one shared issue with the different2099 route.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "spider-man-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "spider-man-far-from-home",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "spider-man-identity-crisis",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "spider-man-no-way-home",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "spider-man-the-other",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "spider-verse",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "ASM2014#4-6 are already part of the source's first#1-6 selection. Retain them once; the later alternate-edition recap and unnumbered event pointer create neither duplicate rows nor a full event expansion.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "star-lord-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "thanos-imperative",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "thanos-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "thanos-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "the-defenders-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "the-night-gwen-stacy-died",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "the-vision-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "thor-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "thunderbolts-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "time-and-time-again",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "ultimate-marvel-intro",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "venom-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "venomverse",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "wandavision",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "war-of-kings",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "war-of-the-realms",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "New Agents of Atlas #1-4 is explicitly selected. Keep those four originals in Cindy's route without importing the rest of the event guide.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "white-tiger-ava-ayala",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "winter-soldier-bucky-barnes-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "wolverine-goes-to-hell",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "wolverine-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "world-war-hulk-aftersmash",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "wraith-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "x-23-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "x-cutioners-song",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "x-force-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "x-men-age-of-x",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "x-men-battle-of-the-atom",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "x-men-curse-of-the-mutants",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "x-men-divided-we-stand",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "x-men-extermination",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "x-men-inferno",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "x-men-manifest-destiny",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "x-men-nation-x",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "x-men-regenesis",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "x-men-schism",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "x-men-trial-of-jean-grey",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "x-men-utopia",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "x-of-swords",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "x-termination",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "x-tinction-agenda",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "xmen-claremont",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "xmen-claremont-complete",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      },
+      {
+        "orderId": "young-avengers-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T07:11:11.016Z"
+      }
+    ],
+    "approvalDigest": "b20f6c2685a007d0abb5e8b9ec4a215f955df31b07c3d605b925f0d73259d90a"
+  }
+}

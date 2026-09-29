@@ -1524,8 +1524,8 @@
     "fp": "c727e9b5638b206f",
     "head": "assert.doesNotMatch(code, /MRT_PORT/, `${name} sets a port, which moves the stored progress`);"
   },
-  "docs/ARCHITECTURE.md|how-reading-content-reaches-the-browser|scripts/vendor-orders.mjs:587-635|0": {
-    "anchor": "scripts/vendor-orders.mjs:587-635",
+  "docs/ARCHITECTURE.md|how-reading-content-reaches-the-browser|scripts/vendor-orders.mjs:599-647|0": {
+    "anchor": "scripts/vendor-orders.mjs:599-647",
     "fp": "98a893895e13e14e",
     "head": "// Lists we did not rebuild still have to appear in the catalog, so their entries are derived"
   },
@@ -1534,20 +1534,20 @@
     "fp": "552b51210b97e50b",
     "head": "async get(path, { signal, cache = true, attempt = 0 } = {}) {"
   },
-  "docs/ARCHITECTURE.md|how-reading-content-reaches-the-browser|src/js/main.js:1806-1817|0": {
-    "anchor": "src/js/main.js:1806-1817",
+  "docs/ARCHITECTURE.md|how-reading-content-reaches-the-browser|src/js/main.js:1808-1819|0": {
+    "anchor": "src/js/main.js:1808-1819",
     "fp": "208b4ffd9a71268a",
     "head": "function loadCatalog() {"
   },
-  "docs/ARCHITECTURE.md|how-reading-content-reaches-the-browser|src/js/reader.js:57-90|0": {
-    "anchor": "src/js/reader.js:57-90",
-    "fp": "ea1b61fd08c125eb",
-    "head": "// Builds the same-origin launch URL. Passing digitalId when we already have it (true for every"
+  "docs/ARCHITECTURE.md|how-reading-content-reaches-the-browser|src/js/reader.js:82-105|0": {
+    "anchor": "src/js/reader.js:82-105",
+    "fp": "843170c03f30cc68",
+    "head": "// Must be called synchronously from a user gesture, or the browser will block the tab."
   },
-  "docs/ARCHITECTURE.md|how-reading-content-reaches-the-browser|src/open.js:72-100|0": {
-    "anchor": "src/open.js:72-100",
-    "fp": "944d67fdd5ae5fca",
-    "head": "async function resolveAndGo(id) {"
+  "docs/ARCHITECTURE.md|how-reading-content-reaches-the-browser|src/open.js:76-114|0": {
+    "anchor": "src/open.js:76-114",
+    "fp": "938356fe88cc93ab",
+    "head": "async function resolveAndGo(id, page = detailUrl(id)) {"
   },
   "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/api.js:193-230|0": {
     "anchor": "src/js/api.js:193-230",
@@ -1564,8 +1564,8 @@
     "fp": "d3c89ab1f16d81ee",
     "head": "export function toggleRead(state, issueId) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:2514-2536|0": {
-    "anchor": "src/js/main.js:2514-2536",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:2516-2538|0": {
+    "anchor": "src/js/main.js:2516-2538",
     "fp": "211be8f2af0b1be0",
     "head": "function renderAll() {"
   },
@@ -1629,13 +1629,13 @@
     "fp": "962c8048b2876981",
     "head": "onclick: () => {"
   },
-  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:2514-2536|0": {
-    "anchor": "src/js/main.js:2514-2536",
+  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:2516-2538|0": {
+    "anchor": "src/js/main.js:2516-2538",
     "fp": "211be8f2af0b1be0",
     "head": "function renderAll() {"
   },
-  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:3044-3076|0": {
-    "anchor": "src/js/main.js:3044-3076",
+  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:3046-3078|0": {
+    "anchor": "src/js/main.js:3046-3078",
     "fp": "68405df558b78554",
     "head": "const catalogView = createCatalogView({"
   },
@@ -1689,13 +1689,13 @@
     "fp": "18ed5c8096987666",
     "head": "if (event.key === STATE_KEY) {"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3027-3131|0": {
-    "anchor": "src/js/main.js:3027-3131",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3029-3133|0": {
+    "anchor": "src/js/main.js:3029-3133",
     "fp": "7740ace9c9892372",
     "head": "const catalogPresentation = createCatalogPresentation({"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3133-3184|0": {
-    "anchor": "src/js/main.js:3133-3184",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3135-3186|0": {
+    "anchor": "src/js/main.js:3135-3186",
     "fp": "b946d5bb90431e4d",
     "head": "const readingPathsView = createReadingPathsView({"
   },
@@ -1749,8 +1749,8 @@
     "fp": "ba2f2ef80f02d08a",
     "head": "export class RateLimiter {"
   },
-  "docs/ARCHITECTURE.md|the-module-graph-drawn-as-ownership|src/js/main.js:2082-2097|0": {
-    "anchor": "src/js/main.js:2082-2097",
+  "docs/ARCHITECTURE.md|the-module-graph-drawn-as-ownership|src/js/main.js:2084-2099|0": {
+    "anchor": "src/js/main.js:2084-2099",
     "fp": "a233f0b54817b074",
     "head": "cache = new ResponseCache({ baseUrl: value });"
   },
@@ -1769,8 +1769,8 @@
     "fp": "0c6537943c08c527",
     "head": "<script type=\"module\" src=\"./dev-faults.js\"></script>"
   },
-  "docs/ARCHITECTURE.md|the-three-entry-points|src/index.html:1142|0": {
-    "anchor": "src/index.html:1142",
+  "docs/ARCHITECTURE.md|the-three-entry-points|src/index.html:1144|0": {
+    "anchor": "src/index.html:1144",
     "fp": "9f74c3a9fa356fa2",
     "head": "<script type=\"module\" src=\"./js/app.js\"></script>"
   },
@@ -1869,10 +1869,10 @@
     "fp": "a217fd173d10b27a",
     "head": "salvageCopies() {"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|src/open.js:63|0": {
-    "anchor": "src/open.js:63",
-    "fp": "9f4e8a74882b0cdb",
-    "head": "const raw = JSON.parse(localStorage.getItem('mrt.settings') || '{}');"
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|src/open.js:65-74|0": {
+    "anchor": "src/open.js:65-74",
+    "fp": "fa8ba3a31fd21773",
+    "head": "function apiBase() {"
   },
   "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|src/sw.js:44-55|0": {
     "anchor": "src/sw.js:44-55",
@@ -1894,13 +1894,13 @@
     "fp": "ff9ba71742d8b8c0",
     "head": "\"chapterCount\": 78,"
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:10188-10313|0": {
-    "anchor": "src/data/catalog.json:10188-10313",
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:10402-10527|0": {
+    "anchor": "src/data/catalog.json:10402-10527",
     "fp": "a679899453ea002c",
     "head": "\"paths\": ["
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/curated-lists.json:6274-6313|0": {
-    "anchor": "src/data/curated-lists.json:6274-6313",
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/curated-lists.json:6455-6494|0": {
+    "anchor": "src/data/curated-lists.json:6455-6494",
     "fp": "1b133fe2f7d008e4",
     "head": "\"paths\": ["
   },
@@ -1919,8 +1919,8 @@
     "fp": "b79dcc7a949b3231",
     "head": "export function synopsisFallback(issue, sessionEntry = null, noSynopsisMarker = undefined) {"
   },
-  "docs/DATA_PROVENANCE.md|what-the-first-hand-s-own-terms-said|src/index.html:1064|0": {
-    "anchor": "src/index.html:1064",
+  "docs/DATA_PROVENANCE.md|what-the-first-hand-s-own-terms-said|src/index.html:1066|0": {
+    "anchor": "src/index.html:1066",
     "fp": "cd4793f475d06ae8",
     "head": "<span>Marvel metadata via marvel.emreparker.com. <span data-marvel-copyright>© MARVEL</span></span>"
   },
@@ -1984,13 +1984,13 @@
     "fp": "e9a1e74dee2c791e",
     "head": "// The publication gate answered a question that only gets asked once, and it was asked on"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:4266-4277|0": {
-    "anchor": "CHANGELOG.md:4266-4277",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:4322-4333|0": {
+    "anchor": "CHANGELOG.md:4322-4333",
     "fp": "7ebb6ef43a1f1241",
     "head": "- **The project now watches its own development tooling for known security problems, and says how"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:4279-4289|0": {
-    "anchor": "CHANGELOG.md:4279-4289",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:4335-4345|0": {
+    "anchor": "CHANGELOG.md:4335-4345",
     "fp": "c37eedd88ad1c81c",
     "head": "- **The project now has a published security policy, which names a private route for reporting a"
   },
@@ -2374,8 +2374,8 @@
     "fp": "2b7209286c1d66d5",
     "head": "function wireShortcuts() {"
   },
-  "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:2514-2536|0": {
-    "anchor": "src/js/main.js:2514-2536",
+  "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:2516-2538|0": {
+    "anchor": "src/js/main.js:2516-2538",
     "fp": "211be8f2af0b1be0",
     "head": "function renderAll() {"
   },
@@ -2389,8 +2389,8 @@
     "fp": "db818e7343a867ed",
     "head": "function open({ title, body, confirmLabel, prefill = null, inputLabel = '', multiline = false }) {"
   },
-  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/main.js:1862|0": {
-    "anchor": "src/js/main.js:1862",
+  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/main.js:1864|0": {
+    "anchor": "src/js/main.js:1864",
     "fp": "8ab27e651ace604e",
     "head": "notify(report, `${order.name} could not be saved, so nothing was imported.`, 'error', importKey);"
   },
@@ -6119,8 +6119,8 @@
     "fp": "0c786a4a0e0b5b8d",
     "head": "//   MAJOR  marks a substantial new product generation. It is also required when stored data"
   },
-  "SECURITY.md|what-this-project-is-because-it-decides-what-a-v|package.json:51-55|0": {
-    "anchor": "package.json:51-55",
+  "SECURITY.md|what-this-project-is-because-it-decides-what-a-v|package.json:52-56|0": {
+    "anchor": "package.json:52-56",
     "fp": "c9119e95ddb6adfa",
     "head": "\"devDependencies\": {"
   },

@@ -135,7 +135,8 @@ test('the three verified P00 digital ids still map to their reader URLs', () => 
 });
 
 test('a missing digitalId yields no reader URL rather than a broken one', () => {
-  for (const bad of [null, undefined, 0, -1, 'abc', '', NaN, 1.5]) {
+  for (const bad of [null, undefined, 0, -1, 'abc', '', NaN, 1.5, true, [1], { valueOf: () => 1 },
+    '1e3', ' 1', '1 ', '01', '0', 1000000000000]) {
     assert.equal(readerUrl(bad), null, `${String(bad)} must not produce a link`);
   }
 });
@@ -204,6 +205,22 @@ test('a non-numeric issueId is not passed through to the launcher', () => {
   const u = new URL(launchUrl({ issueId: '../../etc/passwd', digitalId: 5 }, 'http://127.0.0.1:8787'));
   assert.equal(u.searchParams.get('i'), null);
   assert.equal(u.searchParams.get('d'), '5');
+});
+
+test('launch references reject coercible, noncanonical and oversized values', () => {
+  for (const bad of [true, false, [1], { valueOf: () => 1 }, '1e3', ' 1', '1 ', '01', 0,
+    '0', -1, 1000000000000]) {
+    const digital = new URL(launchUrl({ issueId: 52447, digitalId: bad }, 'http://127.0.0.1:8787'));
+    assert.equal(digital.searchParams.has('d'), false, String(bad));
+    assert.equal(digital.searchParams.get('i'), '52447');
+    const issue = { issueId: bad, digitalId: null };
+    assert.equal(isLaunchable(issue), false, String(bad));
+    const launch = new URL(launchUrl(issue, 'http://127.0.0.1:8787'));
+    assert.equal(launch.searchParams.has('i'), false, String(bad));
+    assert.equal(launch.searchParams.has('u'), false, String(bad));
+  }
+  assert.equal(new URL(launchUrl({ issueId: '52447', digitalId: '38164' }, 'http://127.0.0.1:8787'))
+    .searchParams.get('d'), '38164');
 });
 
 test('an issue with neither id is not launchable', () => {

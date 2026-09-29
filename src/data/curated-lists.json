@@ -1274,6 +1274,40 @@
       "coverIssueId": 111661
     },
     {
+      "id": "marvel-zombies-reading-order",
+      "name": "Marvel Zombies",
+      "description": "Read Comic Book Herald's numbered Marvel Zombies selections across the original stories, Deadpool's separate zombie universe, Battleworld, Resurrection and alternate additions.",
+      "type": "era",
+      "depth": "partial",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "marvel-zombies-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/marvel-zombies-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "marvel_zombies_reading_order.json",
+      "characters": [
+        "Marvel Zombies",
+        "Deadpool",
+        "Fantastic Four",
+        "Black Panther"
+      ],
+      "keywords": [
+        "Marvel Zombies",
+        "Zombieverse",
+        "Marvel Zombies Battleworld",
+        "Deadpool Vs. Zombies",
+        "Marvel Zombies Resurrection",
+        "Marvel Zombies Red Band",
+        "Comic Book Herald"
+      ],
+      "timeline": null,
+      "coverIssueId": 3220,
+      "expect": 94
+    },
+    {
       "id": "house-of-m",
       "name": "House of M",
       "description": "Wanda Maximoff rewrites the world in Marvel's 2005 event, in publication order: the eight-issue main series, its branded tie-in mini-series, and the Decimation epilogue. Assembled from Marvel series metadata, so it covers the series Marvel branded with the event name and not the House of M chapters published in unbranded ongoing titles such as Wolverine #33-35.",
@@ -1865,6 +1899,45 @@
       ],
       "expect": 69,
       "coverIssueId": 7127
+    },
+    {
+      "id": "hawkeye-reading-order",
+      "name": "Hawkeye (Clint Barton and Kate Bishop)",
+      "description": "Follow Clint Barton and Kate Bishop through their solo and team stories in Comic Book Herald's selected Hawkeye reading order.",
+      "type": "character-run",
+      "depth": "partial",
+      "spotlightKind": "other",
+      "beginner": false,
+      "timeline": null,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceSection": null,
+      "sourceFile": "hawkeye-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/hawkeye-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "hawkeye_reading_order.json",
+      "characters": [
+        "Hawkeye",
+        "Clint Barton",
+        "Kate Bishop",
+        "Mockingbird",
+        "Avengers",
+        "Young Avengers"
+      ],
+      "keywords": [
+        "Hawkeye",
+        "Clint Barton",
+        "Kate Bishop",
+        "Hawkguy",
+        "Mockingbird",
+        "Avengers",
+        "Young Avengers",
+        "Comic Book Herald"
+      ],
+      "expect": 663,
+      "coverIssueId": 42768
     },
     {
       "id": "doctor-strange-multiverse-of-madness",
@@ -2619,6 +2692,42 @@
       "expect": 76,
       "timeline": null,
       "coverIssueId": 11353
+    },
+    {
+      "id": "silk-cindy-moon-reading-order",
+      "name": "Silk / Cindy Moon",
+      "description": "Follow Cindy Moon's origins, solo stories and team-ups in Comic Book Herald's selected Silk reading order.",
+      "type": "character-run",
+      "spotlightKind": "other",
+      "depth": "partial",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "silk-cindy-moon-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/silk-cindy-moon-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "silk_cindy_moon_reading_order.json",
+      "characters": [
+        "Silk",
+        "Cindy Moon",
+        "Spider-Man",
+        "Spider-Women",
+        "Agents of Atlas"
+      ],
+      "keywords": [
+        "Silk",
+        "Cindy Moon",
+        "Spider-Man",
+        "Spider-Women",
+        "Spider(fly) Effect",
+        "Agents of Atlas",
+        "Comic Book Herald"
+      ],
+      "expect": 74,
+      "timeline": null,
+      "coverIssueId": 45798
     },
     {
       "id": "spider-gwen-reading-order",
@@ -3465,6 +3574,42 @@
       "timeline": null,
       "coverIssueId": 15423,
       "spotlightKind": "complete-guide"
+    },
+    {
+      "id": "ms-marvel-kamala-khan-reading-order",
+      "name": "Ms. Marvel (Kamala Khan)",
+      "description": "Follow Kamala Khan through her solo stories, Avengers and Champions teams, and later adventures in Comic Book Herald's selected reading order.",
+      "type": "character-run",
+      "depth": "partial",
+      "spotlightKind": "other",
+      "beginner": false,
+      "coverIssueId": 49089,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "ms-marvel-kamala-khan-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/ms-marvel-kamala-khan-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "ms_marvel_kamala_khan_reading_order.json",
+      "characters": [
+        "Ms. Marvel",
+        "Kamala Khan",
+        "Champions",
+        "Avengers",
+        "Inhumans"
+      ],
+      "keywords": [
+        "Ms. Marvel",
+        "Kamala Khan",
+        "Champions",
+        "Avengers",
+        "Inhumans",
+        "The New Mutant",
+        "Comic Book Herald"
+      ],
+      "expect": 192,
+      "timeline": null
     },
     {
       "id": "captain-america-best-of",
@@ -4646,6 +4791,42 @@
       "expect": 9,
       "timeline": 1990,
       "coverIssueId": 13811
+    },
+    {
+      "id": "marvels-infinity-saga-gauntlet-wars-crusade-reading-order",
+      "name": "Infinity Trilogy (Gauntlet, War, Crusade)",
+      "description": "Read the original Infinity trilogy with Comic Book Herald's issue order, selected preludes, aftermath and alternate continuations.",
+      "type": "era",
+      "depth": "partial",
+      "beginner": false,
+      "timeline": null,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceSection": null,
+      "sourceFile": "marvels-infinity-saga-gauntlet-wars-crusade-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/marvels-infinity-saga-gauntlet-wars-crusade-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "marvels_infinity_saga_gauntlet_wars_crusade_reading_order.json",
+      "characters": [
+        "Thanos",
+        "Adam Warlock",
+        "Silver Surfer"
+      ],
+      "keywords": [
+        "Infinity Saga",
+        "Infinity Trilogy",
+        "Infinity Gauntlet",
+        "Infinity War",
+        "Infinity Crusade",
+        "Thanos",
+        "Adam Warlock",
+        "Silver Surfer",
+        "Comic Book Herald"
+      ],
+      "expect": 191,
+      "coverIssueId": 9286
     },
     {
       "id": "operation-galactic-storm",

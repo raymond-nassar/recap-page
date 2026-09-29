@@ -53,8 +53,9 @@ test('each bundled Reading List resolves through its grouped story to one canoni
 
 test('Character Spotlight taxonomy accounts for every reading and preserves grouped stories', () => {
   const spotlights = shelfLists(catalog.lists, 'spotlights');
-  assert.equal(spotlights.length, 61);
-  assert.equal(groupCatalog(spotlights).length, 60);
+  assert.equal(spotlights.length, 64);
+  assert.equal(groupCatalog(spotlights).length, 63);
+
 
   const bestOf = filterBySpotlightKind(spotlights, 'best-of');
   const completeGuide = filterBySpotlightKind(spotlights, 'complete-guide');
@@ -62,7 +63,8 @@ test('Character Spotlight taxonomy accounts for every reading and preserves grou
   const expected = [
     ['best-of', 7, 7],
     ['complete-guide', 38, 38],
-    ['other', 16, 15],
+    ['other', 19, 18],
+
   ];
   for (const [kind, readingCount, storyCount] of expected) {
     const filtered = filterBySpotlightKind(spotlights, kind);
@@ -122,6 +124,21 @@ test('Character Spotlight taxonomy accounts for every reading and preserves grou
   assert.ok(x23, 'X-23 is missing from Character Spotlight All');
   assert.ok(completeGuide.includes(x23));
   assert.equal(bestOf.includes(x23), false);
+
+  const hawkeye = spotlights.find((list) => list.id === 'hawkeye-reading-order');
+  assert.ok(hawkeye, 'Hawkeye is missing from Character Spotlight All');
+  assert.ok(other.includes(hawkeye));
+  assert.equal(completeGuide.includes(hawkeye), false);
+
+  const silk = spotlights.find((list) => list.id === 'silk-cindy-moon-reading-order');
+  assert.ok(silk, 'Silk is missing from Character Spotlight All');
+  assert.ok(other.includes(silk));
+  assert.equal(completeGuide.includes(silk), false);
+  const kamala = spotlights.find((list) => list.id === 'ms-marvel-kamala-khan-reading-order');
+  assert.ok(kamala, 'Kamala is missing from Character Spotlight All');
+  assert.ok(other.includes(kamala));
+  assert.equal(completeGuide.includes(kamala), false);
+
 });
 
 test('a path arrival clears the subset that would hide Essential Avengers', () => {

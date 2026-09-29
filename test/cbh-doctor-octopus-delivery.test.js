@@ -147,7 +147,9 @@ test('Doctor Octopus relationship approval regenerates against its reviewed sour
       'nebula-reading-order',
       'hope-summers-reading-order',
 
-      'x-23-reading-order',
+      'x-23-reading-order', 'ms-marvel-kamala-khan-reading-order',
+      'hawkeye-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order', 'marvel-zombies-reading-order',
+
     ],
   });
   const expectedOrderIds = manifest.lists.filter((row) => (
@@ -158,7 +160,9 @@ test('Doctor Octopus relationship approval regenerates against its reviewed sour
         'nebula-reading-order',
         'hope-summers-reading-order',
 
-        'x-23-reading-order',
+        'x-23-reading-order', 'ms-marvel-kamala-khan-reading-order',
+        'hawkeye-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order', 'marvel-zombies-reading-order',
+
       ].includes(row.id)
   )).map((row) => row.id);
 

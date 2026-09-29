@@ -1550,13 +1550,79 @@
     "url": "https://www.comicbookherald.com/hawkeye-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
-    "sourceRetrievedAt": "2026-08-23",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "disposition": "new-order",
+    "reason": "The published guide preserves 671 source positions, 663 originals (662 exact and one explicit gap), and eight repeats. The renewed complete-current-library review approves 58 partial and five existing-subset relationships across 192 peers, including X-23's 14 shared originals and Infinity's West Coast Avengers #96-97.",
+    "sourceRetrievedAt": "2026-09-29",
+    "overlapIds": [
+      "agatha-harkness-reading-order",
+      "agents-of-atlas-reading-order",
+      "all-new-all-different-avengers",
+      "amazing-spider-man-reading-order-modern-marvel-era",
+      "ant-man-reading-order",
+      "atlantis-attacks",
+      "avengers-defenders-war",
+      "avengers-disassembled",
+      "best-ultron-reading-order",
+      "black-panther-reading-order",
+      "black-widow-reading-order",
+      "captain-marvel-ms-marvel-reading-order",
+      "civil-war",
+      "civil-war-avengers",
+      "daredevil-reading-order",
+      "dark-reign-avengers",
+      "doctor-strange-multiverse-of-madness",
+      "doctor-strange-reading-order",
+      "emma-frost-reading-order",
+      "essential-avengers",
+      "falcon-sam-wilson-captain-america-reading-order",
+      "fantastic-four-reading-order",
+      "generations",
+      "guardians-of-the-galaxy-reading-order",
+      "heroes-reborn-2021",
+      "heroic-age-avengers",
+      "house-of-m",
+      "house-of-m-essential",
+      "inhumans-reading-order",
+      "iron-man-reading-order",
+      "kree-skrull-war",
+      "loki-reading-order",
+      "magneto-reading-order",
+      "marvel-fresh-start-avengers",
+      "marvels-infinity-saga-gauntlet-wars-crusade-reading-order",
+      "maximum-security",
+      "mephisto-reading-order",
+      "miles-morales-spider-man-reading-order",
+      "moon-knight-reading-order",
+      "nebula-reading-order",
+      "punisher-reading-order",
+      "question-of-the-week-do-you-have-a-hulk-reading-order",
+      "rocket-raccoon-reading-order",
+      "runaways-reading-order",
+      "scarlet-witch-best-of",
+      "secret-invasion",
+      "secret-invasion-essential",
+      "silver-surfer-reading-order",
+      "thanos-reading-order",
+      "thanos-war",
+      "the-defenders-reading-order",
+      "the-vision-reading-order",
+      "thunderbolts-reading-order",
+      "venom-reading-order",
+      "wandavision",
+      "white-tiger-ava-ayala",
+      "winter-soldier-bucky-barnes-reading-order",
+      "wolverine-reading-order",
+      "x-23-reading-order",
+      "x-men-regenesis",
+      "xmen-claremont",
+      "xmen-claremont-complete",
+      "young-avengers-reading-order"
+    ],
+    "catalogIds": [
+      "hawkeye-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Hawkeye (Clint Barton, Kate Bishop)"
     ],
@@ -1564,9 +1630,9 @@
       44
     ],
     "duplicateFlags": [],
-    "sourceContentSha256": "f0def7b65ac67791aecd506c122f0b38f6bfce08869c6167419a3ac22c1291ad",
+    "sourceContentSha256": "cebf20154d2f134774bf465e4944cb971ff35c7be430db60475782e5d1a9ddc8",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 45,
@@ -1774,15 +1840,36 @@
     "id": "marvels-infinity-saga-gauntlet-wars-crusade-reading-order",
     "title": "Infinity Trilogy (Gauntlet, War, Crusade)",
     "url": "https://www.comicbookherald.com/marvels-infinity-saga-gauntlet-wars-crusade-reading-order/",
-    "guideType": "character-run",
+    "guideType": "era",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
-    "sourceRetrievedAt": "2026-08-23",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "disposition": "new-order",
+    "reason": "Publishes 191 original issues from 221 selected source occurrences, retaining 30 backward repeats as provenance. All 174 exact originals remain in their first positions; 17 assigned source metadata gaps stay visible. Eleven known exact IDs have genuine provider detail refusals and remain identified, not substituted. Renewed current-library relationship approval is pending after the Across eras classification amendment.",
+    "sourceRetrievedAt": "2026-09-28",
+    "overlapIds": [
+      "abomination-reading-order",
+      "adam-warlock-reading-order",
+      "agatha-harkness-reading-order",
+      "amazing-spider-man-reading-order-modern-marvel-era",
+      "black-widow-reading-order",
+      "daredevil-reading-order",
+      "doctor-doom-primer",
+      "doctor-octopus-otto-octavius-reading-order",
+      "doctor-strange-reading-order",
+      "falcon-sam-wilson-captain-america-reading-order",
+      "guardians-of-the-galaxy-reading-order",
+      "mephisto-reading-order",
+      "moon-knight-reading-order",
+      "nebula-reading-order",
+      "question-of-the-week-do-you-have-a-hulk-reading-order",
+      "silver-surfer-reading-order",
+      "thanos-reading-order",
+      "the-vision-reading-order"
+    ],
+    "catalogIds": [
+      "marvels-infinity-saga-gauntlet-wars-crusade-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Infinity Trilogy (Gauntlet, War, Crusade)"
     ],
@@ -1790,9 +1877,9 @@
       51
     ],
     "duplicateFlags": [],
-    "sourceContentSha256": "e0a76436da4bc5c596869025c03644ff72532b787c5845168a92a5c333af308e",
+    "sourceContentSha256": "1a2067e56a7c2c1833f225380acce3f6ec2ba0acedfb1679ea068e1153050e49",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 52,
@@ -2339,15 +2426,26 @@
     "id": "marvel-zombies-reading-order",
     "title": "Marvel Zombies",
     "url": "https://www.comicbookherald.com/marvel-zombies-reading-order/",
-    "guideType": "character-run",
+    "guideType": "era",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
-    "sourceRetrievedAt": "2026-08-23",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "disposition": "new-order",
+    "reason": "Publishes 94 distinct originals in source order across five labeled sections: 91 exact issues and three explicit metadata gaps. A later repeat keeps its first canonical position. All 193 peers were independently reviewed: eight partial overlaps and 185 with no shared issue; the open gaps are tracked in Issue 592.",
+    "sourceRetrievedAt": "2026-09-28",
+    "overlapIds": [
+      "ant-man-reading-order",
+      "black-panther-reading-order",
+      "deadpool-best-of",
+      "emma-frost-reading-order",
+      "hope-summers-reading-order",
+      "magneto-reading-order",
+      "the-vision-reading-order",
+      "wolverine-reading-order"
+    ],
+    "catalogIds": [
+      "marvel-zombies-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Marvel Zombies"
     ],
@@ -2355,9 +2453,9 @@
       70
     ],
     "duplicateFlags": [],
-    "sourceContentSha256": "92723cf8148cb5845ebba3412327757f5035d811cb8a2a940591365206fc8a4f",
+    "sourceContentSha256": "3b6ac6f02de709d26a0e2efe2a2fc057a37f786a621eaa93b9e07a77ef2648bc",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 71,
@@ -2575,13 +2673,32 @@
     "url": "https://www.comicbookherald.com/ms-marvel-kamala-khan-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
-    "sourceRetrievedAt": "2026-08-23",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "disposition": "new-order",
+    "reason": "The approved full source selects 196 occurrences with 192 original identities and four backward repeats. The guide publishes 187 exact issues and retains five unresolved original-edition positions under Issue 598. The current-library review covers 194 peers: sixteen approved partial overlaps and 178 with no shared issue IDs.",
+    "sourceRetrievedAt": "2026-09-29",
+    "overlapIds": [
+      "all-new-all-different-avengers",
+      "amazing-spider-man-reading-order-modern-marvel-era",
+      "black-panther-reading-order",
+      "captain-marvel-ms-marvel-reading-order",
+      "dark-web",
+      "falcon-sam-wilson-captain-america-reading-order",
+      "fantastic-four-reading-order",
+      "inhumans-reading-order",
+      "mephisto-reading-order",
+      "miles-morales-spider-man-reading-order",
+      "moon-knight-reading-order",
+      "the-vision-reading-order",
+      "venom-reading-order",
+      "war-of-the-realms",
+      "winter-soldier-bucky-barnes-reading-order",
+      "young-avengers-reading-order"
+    ],
+    "catalogIds": [
+      "ms-marvel-kamala-khan-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Ms. Marvel (Kamala Khan)"
     ],
@@ -2589,9 +2706,9 @@
       78
     ],
     "duplicateFlags": [],
-    "sourceContentSha256": "8b0cbe9620fc14079b1429fafc291d523b74a026932d935ee0efae42db4fbfb8",
+    "sourceContentSha256": "926cceba8a902833fddf9146ec613cc3916819abda871c8c3fe4ac14829a4613",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 78,
@@ -4405,6 +4522,45 @@
     ],
     "duplicateFlags": [],
     "sourceContentSha256": "b44268dad3c189fada76245069c0a9bce6f951b93980af1f7c7bdc61bd33caa5",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "approved"
+  },
+  {
+    "position": 133,
+    "id": "silk-cindy-moon-reading-order",
+    "title": "Silk / Cindy Moon",
+    "url": "https://www.comicbookherald.com/silk-cindy-moon-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "new-order",
+    "reason": "The credited checklist publishes all 74 source positions: 67 exact originals and seven explicit digital metadata gaps tracked in issue #568. The reviewed 187-guide library has 11 approved partial relationships and 176 with no shared issues; no print edition replaces a digital original.",
+    "sourceRetrievedAt": "2026-09-29",
+    "overlapIds": [
+      "agents-of-atlas-reading-order",
+      "amazing-spider-man-reading-order-modern-marvel-era",
+      "clone-conspiracy",
+      "doctor-octopus-otto-octavius-reading-order",
+      "iron-man-reading-order",
+      "miles-morales-spider-man-reading-order",
+      "question-of-the-week-do-you-have-a-hulk-reading-order",
+      "spider-gwen-reading-order",
+      "spider-man-2099-reading-order",
+      "spider-verse",
+      "war-of-the-realms"
+    ],
+    "catalogIds": [
+      "silk-cindy-moon-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
+    "labels": [
+      "Silk / Cindy Moon"
+    ],
+    "sourcePositions": [
+      133
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "2ecec5d22636d8df48cd602c74ba9ffff83a69b267d9a40c564ce64ccee97e5a",
     "sourceBoundaryStatus": "exact-page-snapshot",
     "metadataHorizonStatus": "approved"
   }

@@ -13,6 +13,31 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Preserve exact issue-page links when a reader ID is missing
+
+The New Ultimate Universe: Collected Editions now opens the matching, already recorded Marvel
+issue page for its 29 owner-confirmed comics without repeating a metadata lookup known to fail.
+The Android launcher uses the same safe page route. Known reader links still open directly, and
+unknown comics still get a lookup. No issue identity, list, saved progress, availability choice
+or direct reader ID was changed.
+
+### Generate original Play asset previews without reader data
+
+Maintainer tooling now draws the original icon and feature artwork and captures two cover-free
+Android layouts with wholly fictional lists and progress. Output includes source and image hashes
+and explicitly identifies desktop Edge rendering, not native Android or approved Store screenshots.
+No account, signing, upload or publication decision is made, and app behavior and saved data are
+unchanged. See [the preview guide](docs/GOOGLE_PLAY_ASSETS.md).
+
+### Follow Marvel Zombies across five separate story sections
+
+A credited Marvel Zombies Reading List now follows 94 distinct original comics in
+Comic Book Herald's selected order, including Deadpool's separate universe, Battleworld,
+Resurrection and out-of-continuity additions. Three late issues remain visible as
+metadata gaps rather than being silently omitted or assigned guessed links. Unnumbered
+collection pointers are not expanded into unsupported issue runs. Existing reading
+progress is unchanged.
+
 ### Clarify Android privacy and backup boundaries
 
 Android's About screen now explains private app storage, data loss on uninstall and the contents
@@ -20,6 +45,24 @@ given to a selected export provider, with a link to the public privacy policy. T
 distinguishes desktop storage, local name searches and retained recovery copies from Android
 behavior without promising deletion by external services or document providers. Saved data,
 import/export behavior and desktop launching are unchanged.
+
+### Add the original Infinity trilogy reading guide
+
+A credited Infinity Gauntlet, Infinity War, and Infinity Crusade guide now follows 191 distinct
+comics from the Silver Surfer and Thanos Quest preludes through selected aftermath and alternate
+continuations. It keeps the guide's issue-by-issue event interleaving, does not ask readers to
+repeat 30 overlapping references, and shows 17 unavailable metadata matches as explicit gaps
+instead of substituting other editions. Eleven identified comics keep their exact issue links
+while their provider details and covers are unavailable. The multi-era storyline remains discoverable
+across eras without being assigned a false start year. Existing saved reading progress is unchanged.
+
+### Follow Kamala Khan through Ms. Marvel and the Champions
+
+A credited Ms. Marvel (Kamala Khan) Reading List follows 192 original comics across her solo
+series, Avengers and Champions stories, crossovers, and later additions. Its 187 resolved
+comics appear in the source's reading sequence; five print-original identities remain
+visible as metadata gaps instead of being assigned to uncertain editions. Existing saved
+reading progress is unchanged.
 
 ### Identify builds without coupling platform releases
 
@@ -29,6 +72,19 @@ A source-bound, append-only Android code ledger and exact-artifact records disti
 from promotion. Windows Store submission now requires an explicit protected Windows dispatch;
 publishing an Android or GitHub release does not start it. No release, signing identity, reader
 behavior or saved data changes as part of this groundwork.
+
+### Add the Clint Barton and Kate Bishop Hawkeye reading guide
+
+A credited Hawkeye guide follows both characters through 663 entries in the source's selected
+order. One original comic remains an explicit metadata gap, while six exact issues with unavailable
+optional details remain in the list rather than disappearing. Existing saved progress is unchanged.
+### Follow Silk from her origin through solo adventures and team-ups
+
+Adds a Silk / Cindy Moon Reading List credited and linked to Comic Book Herald. It keeps
+the guide's 74 selected positions in source order, including the two distinct 2015 Silk runs,
+the Spider-Women team-up and the Spider-Man story in the 2020 free comic. Seven original
+digital Spider(fly) Effect chapters remain visible as gaps rather than being replaced with
+print editions. Existing Reading Lists and saved progress are unchanged.
 
 ### Follow the Thunderbolts through their changing teams
 

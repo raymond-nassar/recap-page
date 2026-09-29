@@ -76,6 +76,19 @@ function writeMetadataCache(rootPath, records) {
   return cache;
 }
 
+function writeRefusedCacheRecord(cache, id, overrides = {}) {
+  const url = `https://marvel.emreparker.com/v1/issues/${id}`;
+  const urlSha256 = createHash('sha256').update(url, 'utf8').digest('hex');
+  writeFileSync(path.join(cache, `${urlSha256}.json`), JSON.stringify({
+    url,
+    urlSha256,
+    status: 404,
+    fetchedAt: '2026-09-29T04:45:23.306Z',
+    error: `404 ${url}`,
+    ...overrides,
+  }));
+}
+
 function writeCatalogGapFixture(rootPath) {
   writeFixture(rootPath);
   setFixtureCoverIssue(rootPath, 1);
@@ -424,6 +437,69 @@ test('invalid cache-only metadata leaves final vendor outputs unchanged', (t) =>
   assert.match(output.stderr, /does not identify that exact issue/);
   assert.equal(readFileSync(path.join(fixture, 'src', 'data', 'atomic_order.json'), 'utf8'), '{"sentinel":"existing payload"}\n');
   assert.equal(readFileSync(path.join(fixture, 'src', 'data', 'catalog.json'), 'utf8'), '{"sentinel":"existing catalog"}\n');
+});
+
+test('cache-only vendoring preserves the observed 56327 refusal without fake metadata', (t) => {
+  const fixture = mkdtempSync(path.join(os.tmpdir(), 'mrt-vendor-cache-refused-'));
+  t.after(() => rmSync(fixture, { recursive: true, force: true }));
+  writeFixture(fixture);
+  setFixtureCoverIssue(fixture, 1);
+  const data = path.join(fixture, 'src', 'data');
+  const manifestPath = path.join(data, 'curated-lists.json');
+  const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'));
+  manifest.lists[0].expect = 2;
+  writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`);
+  writeFileSync(path.join(data, 'orders', 'atomic-order.md'),
+    '- [ ] [Atomic Order #1](https://www.marvel.com/comics/issue/1/atomic_order_1)\n'
+    + '- [ ] [West Coast Avengers Annual (1986) #1](https://www.marvel.com/comics/issue/56327/west_coast_avengers_annual_1986_1)\n');
+  const cache = writeMetadataCache(fixture, { 1: cachedAtomicIssue() });
+  writeRefusedCacheRecord(cache, 56327);
+  const hook = path.join(fixture, 'zero-fetch-hook.mjs');
+  writeFileSync(hook, "globalThis.fetch = () => { throw new Error('cache-only mode must not fetch'); };\n");
+
+  const output = spawnSync(process.execPath,
+    ['--import', pathToFileURL(hook).href, 'scripts/vendor-orders.mjs', '--only=atomic-order', `--metadata-cache=${cache}`],
+    { cwd: fixture, encoding: 'utf8' });
+  assert.equal(output.status, 0, output.stderr);
+  assert.match(output.stderr, /issue 56327: upstream holds no record of it \(404\)/);
+  const payload = JSON.parse(readFileSync(path.join(data, 'atomic_order.json'), 'utf8'));
+  assert.equal(payload.items.length, 2);
+  assert.deepEqual(payload.items.map((item) => item.issueId), [1, 56327]);
+  assert.equal(payload.items[1].detailsRefused, true);
+  assert.equal(payload.items[1].placeholder, undefined);
+  assert.equal(payload.items[1].title, 'West Coast Avengers Annual (1986) #1');
+  assert.equal(payload.items[1].seriesId, null);
+  assert.equal(payload.items[1].digitalId, null);
+  assert.equal(payload.items[1].url,
+    'https://www.marvel.com/comics/issue/56327/west_coast_avengers_annual_1986_1');
+  assert.equal(payload.items[0].detailsRefused, undefined);
+});
+
+test('cache-only rejects transient, corrupt, unbound and missing refusals before writing output', (t) => {
+  for (const [label, overrides, expected] of [
+    ['transient', { status: 503, error: '503 service unavailable' }, /not a successful JSON response or settled 404/],
+    ['corrupt', { body: { id: 1 } }, /404 must have no metadata body/],
+    ['transport', { error: 'socket timeout' }, /not a recorded 404 for its request URL/],
+    ['unbound', { urlSha256: '0'.repeat(64) }, /does not match its request URL/],
+    ['missing', {}, /could not be read/],
+  ]) {
+    const fixture = mkdtempSync(path.join(os.tmpdir(), `mrt-vendor-cache-${label}-`));
+    t.after(() => rmSync(fixture, { recursive: true, force: true }));
+    writeFixture(fixture);
+    setFixtureCoverIssue(fixture, 1);
+    const cache = path.join(fixture, 'metadata-cache');
+    mkdirSync(cache);
+    if (label !== 'missing') writeRefusedCacheRecord(cache, 1, overrides);
+    const output = spawnSync(process.execPath,
+      ['scripts/vendor-orders.mjs', '--only=atomic-order', `--metadata-cache=${cache}`],
+      { cwd: fixture, encoding: 'utf8' });
+    assert.notEqual(output.status, 0, `${label} cache unexpectedly succeeded`);
+    assert.match(output.stderr, expected);
+    assert.equal(readFileSync(path.join(fixture, 'src', 'data', 'atomic_order.json'), 'utf8'),
+      '{"sentinel":"existing payload"}\n');
+    assert.equal(readFileSync(path.join(fixture, 'src', 'data', 'catalog.json'), 'utf8'),
+      '{"sentinel":"existing catalog"}\n');
+  }
 });
 
 test('a later vendor commit rename restores every final output', async (t) => {

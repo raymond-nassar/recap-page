@@ -1,0 +1,6350 @@
+{
+  "id": "ms-marvel-kamala-khan-reading-order",
+  "name": "Ms. Marvel (Kamala Khan)",
+  "description": "Follow Kamala Khan through her solo stories, Avengers and Champions teams, and later adventures in Comic Book Herald's selected reading order.",
+  "source": "https://www.comicbookherald.com/ms-marvel-kamala-khan-reading-order/",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-09-29T13:46:22.180Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 192,
+  "collections": 37,
+  "placeholders": 5,
+  "unresolved": [
+    {
+      "title": "Fallen Friend: The Death of Ms. Marvel (2023) #1",
+      "url": null,
+      "read": false,
+      "index": 187,
+      "section": "Latest Additions | Fallen Friend: The Death of Ms. Marvel: Fallen Friend: The Death of Ms. Marvel (2023) #1",
+      "sourceKey": "192"
+    },
+    {
+      "title": "Ms. Marvel: The New Mutant (2023) #1",
+      "url": null,
+      "read": false,
+      "index": 188,
+      "section": "Latest Additions | Ms. Marvel: The New Mutant: Ms. Marvel: The New Mutant #1-4",
+      "sourceKey": "193"
+    },
+    {
+      "title": "Ms. Marvel: The New Mutant (2023) #2",
+      "url": null,
+      "read": false,
+      "index": 189,
+      "section": "Latest Additions | Ms. Marvel: The New Mutant: Ms. Marvel: The New Mutant #1-4",
+      "sourceKey": "194"
+    },
+    {
+      "title": "Ms. Marvel: The New Mutant (2023) #3",
+      "url": null,
+      "read": false,
+      "index": 190,
+      "section": "Latest Additions | Ms. Marvel: The New Mutant: Ms. Marvel: The New Mutant #1-4",
+      "sourceKey": "195"
+    },
+    {
+      "title": "Ms. Marvel: The New Mutant (2023) #4",
+      "url": null,
+      "read": false,
+      "index": 191,
+      "section": "Latest Additions | Ms. Marvel: The New Mutant: Ms. Marvel: The New Mutant #1-4",
+      "sourceKey": "196"
+    }
+  ],
+  "items": [
+    {
+      "issueId": 49089,
+      "title": "Ms. Marvel (2014) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/49089/ms_marvel_2014_1",
+      "seriesId": 18468,
+      "seriesName": "Ms. Marvel (2014 - 2015)",
+      "onSale": "2014-02-05T00:00:00+0000",
+      "mu": "2014-08-04T00:00:00+0000",
+      "digitalId": 32979,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/d0/52e6c3c8df654",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sara Pichelli",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Ms. Marvel Reading List | Ms. Marvel Volume 1: No Normal: Ms. Marvel (2014) #1-5"
+    },
+    {
+      "issueId": 49090,
+      "title": "Ms. Marvel (2014) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/49090/ms_marvel_2014_2",
+      "seriesId": 18468,
+      "seriesName": "Ms. Marvel (2014 - 2015)",
+      "onSale": "2014-03-19T00:00:00+0000",
+      "mu": "2014-09-15T00:00:00+0000",
+      "digitalId": 33445,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/60/531dd500151e3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jamie Mckelvie",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Ms. Marvel Reading List | Ms. Marvel Volume 1: No Normal: Ms. Marvel (2014) #1-5"
+    },
+    {
+      "issueId": 49091,
+      "title": "Ms. Marvel (2014) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/49091/ms_marvel_2014_3",
+      "seriesId": 18468,
+      "seriesName": "Ms. Marvel (2014 - 2015)",
+      "onSale": "2014-04-16T00:00:00+0000",
+      "mu": "2014-10-13T00:00:00+0000",
+      "digitalId": 33565,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/5346ffc523078",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jamie Mckelvie",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Ms. Marvel Reading List | Ms. Marvel Volume 1: No Normal: Ms. Marvel (2014) #1-5"
+    },
+    {
+      "issueId": 49092,
+      "title": "Ms. Marvel (2014) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/49092/ms_marvel_2014_4",
+      "seriesId": 18468,
+      "seriesName": "Ms. Marvel (2014 - 2015)",
+      "onSale": "2014-05-28T00:00:00+0000",
+      "mu": "2014-11-24T00:00:00+0000",
+      "digitalId": 33985,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/53766b56a5fd4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jamie Mckelvie",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Ms. Marvel Reading List | Ms. Marvel Volume 1: No Normal: Ms. Marvel (2014) #1-5"
+    },
+    {
+      "issueId": 49093,
+      "title": "Ms. Marvel (2014) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/49093/ms_marvel_2014_5",
+      "seriesId": 18468,
+      "seriesName": "Ms. Marvel (2014 - 2015)",
+      "onSale": "2014-06-25T00:00:00+0000",
+      "mu": "2014-12-29T00:00:00+0000",
+      "digitalId": 34038,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/20/5399dcfabf8ed",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Adrian Alphona",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Ms. Marvel Reading List | Ms. Marvel Volume 1: No Normal: Ms. Marvel (2014) #1-5"
+    },
+    {
+      "issueId": 49094,
+      "title": "Ms. Marvel (2014) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/49094/ms_marvel_2014_6",
+      "seriesId": 18468,
+      "seriesName": "Ms. Marvel (2014 - 2015)",
+      "onSale": "2014-07-16T00:00:00+0000",
+      "mu": "2015-01-19T00:00:00+0000",
+      "digitalId": 34370,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/f0/53bb010835b69",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jamie Mckelvie",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Ms. Marvel Reading List | Ms. Marvel Volume 2: Generation Why: Ms. Marvel (2014) #6-11"
+    },
+    {
+      "issueId": 49095,
+      "title": "Ms. Marvel (2014) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/49095/ms_marvel_2014_7",
+      "seriesId": 18468,
+      "seriesName": "Ms. Marvel (2014 - 2015)",
+      "onSale": "2014-08-20T00:00:00+0000",
+      "mu": "2015-02-16T00:00:00+0000",
+      "digitalId": 34618,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/00/53f35c8bf1c02",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jamie Mckelvie",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Ms. Marvel Reading List | Ms. Marvel Volume 2: Generation Why: Ms. Marvel (2014) #6-11"
+    },
+    {
+      "issueId": 49096,
+      "title": "Ms. Marvel (2014) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/49096/ms_marvel_2014_8",
+      "seriesId": 18468,
+      "seriesName": "Ms. Marvel (2014 - 2015)",
+      "onSale": "2014-09-10T00:00:00+0000",
+      "mu": "2015-03-16T00:00:00+0000",
+      "digitalId": 34936,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/00/5409f05b98627",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jamie Mckelvie",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Ms. Marvel Reading List | Ms. Marvel Volume 2: Generation Why: Ms. Marvel (2014) #6-11"
+    },
+    {
+      "issueId": 49097,
+      "title": "Ms. Marvel (2014) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/49097/ms_marvel_2014_9",
+      "seriesId": 18468,
+      "seriesName": "Ms. Marvel (2014 - 2015)",
+      "onSale": "2014-10-15T00:00:00+0000",
+      "mu": "2015-04-13T00:00:00+0000",
+      "digitalId": 35054,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/00/543430e6bf2be",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jamie Mckelvie",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Ms. Marvel Reading List | Ms. Marvel Volume 2: Generation Why: Ms. Marvel (2014) #6-11"
+    },
+    {
+      "issueId": 49098,
+      "title": "Ms. Marvel (2014) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/49098/ms_marvel_2014_10",
+      "seriesId": 18468,
+      "seriesName": "Ms. Marvel (2014 - 2015)",
+      "onSale": "2014-12-17T00:00:00+0000",
+      "mu": "2015-06-22T00:00:00+0000",
+      "digitalId": 35940,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/5491a3c6c08cf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Adrian Alphona",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kris Anka",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Ms. Marvel Reading List | Ms. Marvel Volume 2: Generation Why: Ms. Marvel (2014) #6-11"
+    },
+    {
+      "issueId": 49099,
+      "title": "Ms. Marvel (2014) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/49099/ms_marvel_2014_11",
+      "seriesId": 18468,
+      "seriesName": "Ms. Marvel (2014 - 2015)",
+      "onSale": "2015-02-04T00:00:00+0000",
+      "mu": "2015-07-20T00:00:00+0000",
+      "digitalId": 36324,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/03/54c67f1138915",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kris Anka",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Ms. Marvel Reading List | Ms. Marvel Volume 2: Generation Why: Ms. Marvel (2014) #6-11"
+    },
+    {
+      "issueId": 49100,
+      "title": "Ms. Marvel (2014) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/49100/ms_marvel_2014_12",
+      "seriesId": 18468,
+      "seriesName": "Ms. Marvel (2014 - 2015)",
+      "onSale": "2015-02-18T00:00:00+0000",
+      "mu": "2015-08-10T00:00:00+0000",
+      "digitalId": 36772,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/10/54d90dbd58021",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kris Anka",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Ms. Marvel Reading List | Ms. Marvel Volume 3: Crushed: Ms. Marvel (2014) #12-15"
+    },
+    {
+      "issueId": 52247,
+      "title": "Ms. Marvel (2014) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/52247/ms_marvel_2014_13",
+      "seriesId": 18468,
+      "seriesName": "Ms. Marvel (2014 - 2015)",
+      "onSale": "2015-03-11T00:00:00+0000",
+      "mu": "2015-09-14T00:00:00+0000",
+      "digitalId": 36915,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/54fdac70ee813",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Marguerite Sauvage",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Ms. Marvel Reading List | Ms. Marvel Volume 3: Crushed: Ms. Marvel (2014) #12-15"
+    },
+    {
+      "issueId": 52248,
+      "title": "Ms. Marvel (2014) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/52248/ms_marvel_2014_14",
+      "seriesId": 18468,
+      "seriesName": "Ms. Marvel (2014 - 2015)",
+      "onSale": "2015-04-15T00:00:00+0000",
+      "mu": "2015-10-12T00:00:00+0000",
+      "digitalId": 37667,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/552bcfc913f14",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jake Wyatt",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Ms. Marvel Reading List | Ms. Marvel Volume 3: Crushed: Ms. Marvel (2014) #12-15"
+    },
+    {
+      "issueId": 52249,
+      "title": "Ms. Marvel (2014) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/52249/ms_marvel_2014_15",
+      "seriesId": 18468,
+      "seriesName": "Ms. Marvel (2014 - 2015)",
+      "onSale": "2015-05-13T00:00:00+0000",
+      "mu": "2015-11-16T00:00:00+0000",
+      "digitalId": 38262,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/564a18ce5b827",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kris Anka",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Ms. Marvel Reading List | Ms. Marvel Volume 3: Crushed: Ms. Marvel (2014) #12-15"
+    },
+    {
+      "issueId": 52250,
+      "title": "Ms. Marvel (2014) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/52250/ms_marvel_2014_16",
+      "seriesId": 18468,
+      "seriesName": "Ms. Marvel (2014 - 2015)",
+      "onSale": "2015-06-17T00:00:00+0000",
+      "mu": "2015-12-21T00:00:00+0000",
+      "digitalId": 39001,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/556f474cee127",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kris Anka",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Ms. Marvel Reading List | Ms. Marvel Volume 4: Last Days: Ms. Marvel (2014) #16-19"
+    },
+    {
+      "issueId": 52251,
+      "title": "Ms. Marvel (2014) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/52251/ms_marvel_2014_17",
+      "seriesId": 18468,
+      "seriesName": "Ms. Marvel (2014 - 2015)",
+      "onSale": "2015-08-05T00:00:00+0000",
+      "mu": "2016-02-01T00:00:00+0000",
+      "digitalId": 39637,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/40/55b794f6ec3ff",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kris Anka",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Ms. Marvel Reading List | Ms. Marvel Volume 4: Last Days: Ms. Marvel (2014) #16-19"
+    },
+    {
+      "issueId": 52252,
+      "title": "Ms. Marvel (2014) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/52252/ms_marvel_2014_18",
+      "seriesId": 18468,
+      "seriesName": "Ms. Marvel (2014 - 2015)",
+      "onSale": "2015-09-09T00:00:00+0000",
+      "mu": "2016-03-14T00:00:00+0000",
+      "digitalId": 39900,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/55e5c3a3c083e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kris Anka",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Ms. Marvel Reading List | Ms. Marvel Volume 4: Last Days: Ms. Marvel (2014) #16-19"
+    },
+    {
+      "issueId": 52253,
+      "title": "Ms. Marvel (2014) #19",
+      "number": "19",
+      "url": "https://www.marvel.com/comics/issue/52253/ms_marvel_2014_19",
+      "seriesId": 18468,
+      "seriesName": "Ms. Marvel (2014 - 2015)",
+      "onSale": "2015-10-14T00:00:00+0000",
+      "mu": "2016-04-11T00:00:00+0000",
+      "digitalId": 40245,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/c0/561bd4221fa7b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kris Anka",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Ms. Marvel Reading List | Ms. Marvel Volume 4: Last Days: Ms. Marvel (2014) #16-19"
+    },
+    {
+      "issueId": 56448,
+      "title": "All-New, All-Different Avengers (2015)",
+      "number": "0",
+      "url": "https://www.marvel.com/comics/issue/56448/all-new_all-different_avengers_2015",
+      "seriesId": 20443,
+      "seriesName": "All-New, All-Different Avengers (2015 - 2016)",
+      "onSale": "2015-10-07T00:00:00+0000",
+      "mu": "2016-04-04T00:00:00+0000",
+      "digitalId": 40145,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/f0/56019395d3746",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 56,
+      "creators": [
+        {
+          "name": "Kenneth Rocafort",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        },
+        {
+          "name": "James Robinson",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | All-New All-Different Avengers Vol. 1: The Magnificent Seven: Avengers (2015) #0; All-New, All-Different Avengers (2015) #1-6"
+    },
+    {
+      "issueId": 55351,
+      "title": "All-New, All-Different Avengers (2015) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/55351/all-new_all-different_avengers_2015_1",
+      "seriesId": 20443,
+      "seriesName": "All-New, All-Different Avengers (2015 - 2016)",
+      "onSale": "2015-11-11T00:00:00+0000",
+      "mu": "2016-05-09T00:00:00+0000",
+      "digitalId": 40460,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/563baf0495d56",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Alex Ross",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | All-New All-Different Avengers Vol. 1: The Magnificent Seven: Avengers (2015) #0; All-New, All-Different Avengers (2015) #1-6"
+    },
+    {
+      "issueId": 55354,
+      "title": "All-New, All-Different Avengers (2015) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/55354/all-new_all-different_avengers_2015_2",
+      "seriesId": 20443,
+      "seriesName": "All-New, All-Different Avengers (2015 - 2016)",
+      "onSale": "2015-12-02T00:00:00+0000",
+      "mu": "2016-06-06T00:00:00+0000",
+      "digitalId": 40627,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/10/5654ace9d9f5b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alex Ross",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | All-New All-Different Avengers Vol. 1: The Magnificent Seven: Avengers (2015) #0; All-New, All-Different Avengers (2015) #1-6"
+    },
+    {
+      "issueId": 55356,
+      "title": "All-New, All-Different Avengers (2015) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/55356/all-new_all-different_avengers_2015_3",
+      "seriesId": 20443,
+      "seriesName": "All-New, All-Different Avengers (2015 - 2016)",
+      "onSale": "2016-01-13T00:00:00+0000",
+      "mu": "2016-07-11T00:00:00+0000",
+      "digitalId": 40789,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/03/569026c36549a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Adam Kubert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | All-New All-Different Avengers Vol. 1: The Magnificent Seven: Avengers (2015) #0; All-New, All-Different Avengers (2015) #1-6"
+    },
+    {
+      "issueId": 55357,
+      "title": "All-New, All-Different Avengers (2015) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/55357/all-new_all-different_avengers_2015_4",
+      "seriesId": 20443,
+      "seriesName": "All-New, All-Different Avengers (2015 - 2016)",
+      "onSale": "2016-01-27T00:00:00+0000",
+      "mu": "2016-07-25T00:00:00+0000",
+      "digitalId": 40992,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/40/569994995aa88",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mahmud Asrar",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | All-New All-Different Avengers Vol. 1: The Magnificent Seven: Avengers (2015) #0; All-New, All-Different Avengers (2015) #1-6"
+    },
+    {
+      "issueId": 55358,
+      "title": "All-New, All-Different Avengers (2015) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/55358/all-new_all-different_avengers_2015_5",
+      "seriesId": 20443,
+      "seriesName": "All-New, All-Different Avengers (2015 - 2016)",
+      "onSale": "2016-02-10T00:00:00+0000",
+      "mu": "2016-08-15T00:00:00+0000",
+      "digitalId": 41115,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/a0/56b50dd787889",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alex Ross",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | All-New All-Different Avengers Vol. 1: The Magnificent Seven: Avengers (2015) #0; All-New, All-Different Avengers (2015) #1-6"
+    },
+    {
+      "issueId": 55359,
+      "title": "All-New, All-Different Avengers (2015) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/55359/all-new_all-different_avengers_2015_6",
+      "seriesId": 20443,
+      "seriesName": "All-New, All-Different Avengers (2015 - 2016)",
+      "onSale": "2016-02-24T00:00:00+0000",
+      "mu": "2016-08-29T00:00:00+0000",
+      "digitalId": 41213,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/56c74804180ce",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mahmud Asrar",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | All-New All-Different Avengers Vol. 1: The Magnificent Seven: Avengers (2015) #0; All-New, All-Different Avengers (2015) #1-6"
+    },
+    {
+      "issueId": 56116,
+      "title": "Ms. Marvel (2015) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/56116/ms_marvel_2015_1",
+      "seriesId": 20615,
+      "seriesName": "Ms. Marvel (2015 - 2019)",
+      "onSale": "2015-11-18T00:00:00+0000",
+      "mu": "2016-05-23T00:00:00+0000",
+      "digitalId": 40514,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/10/5644e13dbfdc1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Cliff Chiang",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Ms. Marvel Vol. 5: Super Famous: Ms. Marvel (2015) #1-6"
+    },
+    {
+      "issueId": 56117,
+      "title": "Ms. Marvel (2015) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/56117/ms_marvel_2015_2",
+      "seriesId": 20615,
+      "seriesName": "Ms. Marvel (2015 - 2019)",
+      "onSale": "2015-12-16T00:00:00+0000",
+      "mu": "2016-06-20T00:00:00+0000",
+      "digitalId": 40688,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/566ee1a912ce0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Cliff Chiang",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Ms. Marvel Vol. 5: Super Famous: Ms. Marvel (2015) #1-6"
+    },
+    {
+      "issueId": 56118,
+      "title": "Ms. Marvel (2015) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/56118/ms_marvel_2015_3",
+      "seriesId": 20615,
+      "seriesName": "Ms. Marvel (2015 - 2019)",
+      "onSale": "2016-01-20T00:00:00+0000",
+      "mu": "2016-07-18T00:00:00+0000",
+      "digitalId": 40922,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/10/5682dec12cbbe",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Takeshi Miyazawa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Cliff Chiang",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Ms. Marvel Vol. 5: Super Famous: Ms. Marvel (2015) #1-6"
+    },
+    {
+      "issueId": 56119,
+      "title": "Ms. Marvel (2015) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/56119/ms_marvel_2015_4",
+      "seriesId": 20615,
+      "seriesName": "Ms. Marvel (2015 - 2019)",
+      "onSale": "2016-02-10T00:00:00+0000",
+      "mu": "2016-08-08T00:00:00+0000",
+      "digitalId": 41123,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/d0/56ab88c03400d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Lopez",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Ms. Marvel Vol. 5: Super Famous: Ms. Marvel (2015) #1-6"
+    },
+    {
+      "issueId": 56120,
+      "title": "Ms. Marvel (2015) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/56120/ms_marvel_2015_5",
+      "seriesId": 20615,
+      "seriesName": "Ms. Marvel (2015 - 2019)",
+      "onSale": "2016-03-09T00:00:00+0000",
+      "mu": "2016-09-12T00:00:00+0000",
+      "digitalId": 41365,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/56d9b70c66e35",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Lopez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Nico Leon",
+          "role": "cover artist"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Ms. Marvel Vol. 5: Super Famous: Ms. Marvel (2015) #1-6"
+    },
+    {
+      "issueId": 56121,
+      "title": "Ms. Marvel (2015) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/56121/ms_marvel_2015_6",
+      "seriesId": 20615,
+      "seriesName": "Ms. Marvel (2015 - 2019)",
+      "onSale": "2016-04-27T00:00:00+0000",
+      "mu": "2016-10-31T00:00:00+0000",
+      "digitalId": 41953,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/571155250608a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Lopez",
+          "role": "penciler"
+        },
+        {
+          "name": "Nico Leon",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Ms. Marvel Vol. 5: Super Famous: Ms. Marvel (2015) #1-6"
+    },
+    {
+      "issueId": 55360,
+      "title": "All-New, All-Different Avengers (2015) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/55360/all-new_all-different_avengers_2015_7",
+      "seriesId": 20443,
+      "seriesName": "All-New, All-Different Avengers (2015 - 2016)",
+      "onSale": "2016-03-23T00:00:00+0000",
+      "mu": "2016-09-19T00:00:00+0000",
+      "digitalId": 41412,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/56e7074c31b84",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | All-New, All-Different Avengers Vol. 2: Family Business: All-New, All-Different Avengers (2015) #7-12"
+    },
+    {
+      "issueId": 55361,
+      "title": "All-New, All-Different Avengers (2015) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/55361/all-new_all-different_avengers_2015_8",
+      "seriesId": 20443,
+      "seriesName": "All-New, All-Different Avengers (2015 - 2016)",
+      "onSale": "2016-04-13T00:00:00+0000",
+      "mu": "2016-10-10T00:00:00+0000",
+      "digitalId": 41674,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/f0/56faef1477c92",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | All-New, All-Different Avengers Vol. 2: Family Business: All-New, All-Different Avengers (2015) #7-12"
+    },
+    {
+      "issueId": 55362,
+      "title": "All-New, All-Different Avengers (2015) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/55362/all-new_all-different_avengers_2015_9",
+      "seriesId": 20443,
+      "seriesName": "All-New, All-Different Avengers (2015 - 2016)",
+      "onSale": "2016-05-11T00:00:00+0000",
+      "mu": "2016-11-14T00:00:00+0000",
+      "digitalId": 41509,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/00/57278659b7212",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alex Ross",
+          "role": "penciler"
+        },
+        {
+          "name": "Mahmud Asrar",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | All-New, All-Different Avengers Vol. 2: Family Business: All-New, All-Different Avengers (2015) #7-12"
+    },
+    {
+      "issueId": 55363,
+      "title": "All-New, All-Different Avengers (2015) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/55363/all-new_all-different_avengers_2015_10",
+      "seriesId": 20443,
+      "seriesName": "All-New, All-Different Avengers (2015 - 2016)",
+      "onSale": "2016-06-01T00:00:00+0000",
+      "mu": "2016-12-05T00:00:00+0000",
+      "digitalId": 41735,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/10/5743705117996",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alex Ross",
+          "role": "penciler"
+        },
+        {
+          "name": "Mahmud Asrar",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | All-New, All-Different Avengers Vol. 2: Family Business: All-New, All-Different Avengers (2015) #7-12"
+    },
+    {
+      "issueId": 55364,
+      "title": "All-New, All-Different Avengers (2015) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/55364/all-new_all-different_avengers_2015_11",
+      "seriesId": 20443,
+      "seriesName": "All-New, All-Different Avengers (2015 - 2016)",
+      "onSale": "2016-06-29T00:00:00+0000",
+      "mu": "2017-01-02T00:00:00+0000",
+      "digitalId": 41736,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/90/576d4bccd73b6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alex Ross",
+          "role": "penciler"
+        },
+        {
+          "name": "Mahmud Asrar",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | All-New, All-Different Avengers Vol. 2: Family Business: All-New, All-Different Avengers (2015) #7-12"
+    },
+    {
+      "issueId": 55365,
+      "title": "All-New, All-Different Avengers (2015) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/55365/all-new_all-different_avengers_2015_12",
+      "seriesId": 20443,
+      "seriesName": "All-New, All-Different Avengers (2015 - 2016)",
+      "onSale": "2016-07-27T00:00:00+0000",
+      "mu": "2017-01-30T00:00:00+0000",
+      "digitalId": 42091,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/03/57911f1745d10",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alex Ross",
+          "role": "penciler"
+        },
+        {
+          "name": "Mahmud Asrar",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | All-New, All-Different Avengers Vol. 2: Family Business: All-New, All-Different Avengers (2015) #7-12"
+    },
+    {
+      "issueId": 56122,
+      "title": "Ms. Marvel (2015) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/56122/ms_marvel_2015_7",
+      "seriesId": 20615,
+      "seriesName": "Ms. Marvel (2015 - 2019)",
+      "onSale": "2016-05-25T00:00:00+0000",
+      "mu": "2016-11-28T00:00:00+0000",
+      "digitalId": 41555,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/03/573635794c43c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Adrian Alphona",
+          "role": "penciler"
+        },
+        {
+          "name": "David Lopez",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Ms. Marvel Vol. 6: Civil War II: Ms. Marvel (2015) #7-12"
+    },
+    {
+      "issueId": 56123,
+      "title": "Ms. Marvel (2015) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/56123/ms_marvel_2015_8",
+      "seriesId": 20615,
+      "seriesName": "Ms. Marvel (2015 - 2019)",
+      "onSale": "2016-06-22T00:00:00+0000",
+      "mu": "2016-12-26T00:00:00+0000",
+      "digitalId": 41777,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/f0/575734ba21036",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Adrian Alphona",
+          "role": "penciler"
+        },
+        {
+          "name": "Cameron Stewart",
+          "role": "penciler"
+        },
+        {
+          "name": "Takeshi Miyazawa",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Ms. Marvel Vol. 6: Civil War II: Ms. Marvel (2015) #7-12"
+    },
+    {
+      "issueId": 56124,
+      "title": "Ms. Marvel (2015) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/56124/ms_marvel_2015_9",
+      "seriesId": 20615,
+      "seriesName": "Ms. Marvel (2015 - 2019)",
+      "onSale": "2016-07-27T00:00:00+0000",
+      "mu": "2017-01-30T00:00:00+0000",
+      "digitalId": 42078,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/00/57927a698d8f7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Adrian Alphona",
+          "role": "penciler"
+        },
+        {
+          "name": "Cameron Stewart",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Ms. Marvel Vol. 6: Civil War II: Ms. Marvel (2015) #7-12"
+    },
+    {
+      "issueId": 56125,
+      "title": "Ms. Marvel (2015) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/56125/ms_marvel_2015_10",
+      "seriesId": 20615,
+      "seriesName": "Ms. Marvel (2015 - 2019)",
+      "onSale": "2016-08-31T00:00:00+0000",
+      "mu": "2017-03-06T00:00:00+0000",
+      "digitalId": 42285,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/a0/57bb6a56d5d6d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Adrian Alphona",
+          "role": "penciler"
+        },
+        {
+          "name": "Cameron Stewart",
+          "role": "penciler"
+        },
+        {
+          "name": "Takeshi Miyazawa",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Ms. Marvel Vol. 6: Civil War II: Ms. Marvel (2015) #7-12"
+    },
+    {
+      "issueId": 56126,
+      "title": "Ms. Marvel (2015) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/56126/ms_marvel_2015_11",
+      "seriesId": 20615,
+      "seriesName": "Ms. Marvel (2015 - 2019)",
+      "onSale": "2016-09-28T00:00:00+0000",
+      "mu": "2017-04-03T00:00:00+0000",
+      "digitalId": 42643,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/70/57e57df73f74d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Adrian Alphona",
+          "role": "penciler"
+        },
+        {
+          "name": "Cameron Stewart",
+          "role": "penciler"
+        },
+        {
+          "name": "Takeshi Miyazawa",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Ms. Marvel Vol. 6: Civil War II: Ms. Marvel (2015) #7-12"
+    },
+    {
+      "issueId": 56127,
+      "title": "Ms. Marvel (2015) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/56127/ms_marvel_2015_12",
+      "seriesId": 20615,
+      "seriesName": "Ms. Marvel (2015 - 2019)",
+      "onSale": "2016-10-26T00:00:00+0000",
+      "mu": "2017-05-01T00:00:00+0000",
+      "digitalId": 42810,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/580a328d42d7a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Cameron Stewart",
+          "role": "penciler"
+        },
+        {
+          "name": "Takeshi Miyazawa",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Ms. Marvel Vol. 6: Civil War II: Ms. Marvel (2015) #7-12"
+    },
+    {
+      "issueId": 55366,
+      "title": "All-New, All-Different Avengers (2015) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/55366/all-new_all-different_avengers_2015_13",
+      "seriesId": 20443,
+      "seriesName": "All-New, All-Different Avengers (2015 - 2016)",
+      "onSale": "2016-08-10T00:00:00+0000",
+      "mu": "2017-02-13T00:00:00+0000",
+      "digitalId": 42257,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/57a35b78e468a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | All-New, All-Different Avengers Vol. 3: Civil War II: All-New, All-Different Avengers (2015) #13-15; All-New, All-Different Avengers Annual (2016) #1"
+    },
+    {
+      "issueId": 55367,
+      "title": "All-New, All-Different Avengers (2015) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/55367/all-new_all-different_avengers_2015_14",
+      "seriesId": 20443,
+      "seriesName": "All-New, All-Different Avengers (2015 - 2016)",
+      "onSale": "2016-09-07T00:00:00+0000",
+      "mu": "2017-03-13T00:00:00+0000",
+      "digitalId": 42591,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/00/57c0ae1725a4f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeremy Whitley",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | All-New, All-Different Avengers Vol. 3: Civil War II: All-New, All-Different Avengers (2015) #13-15; All-New, All-Different Avengers Annual (2016) #1"
+    },
+    {
+      "issueId": 55368,
+      "title": "All-New, All-Different Avengers (2015) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/55368/all-new_all-different_avengers_2015_15",
+      "seriesId": 20443,
+      "seriesName": "All-New, All-Different Avengers (2015 - 2016)",
+      "onSale": "2016-10-26T00:00:00+0000",
+      "mu": "2017-05-01T00:00:00+0000",
+      "digitalId": 42909,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/c0/57fe47eed97b9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | All-New, All-Different Avengers Vol. 3: Civil War II: All-New, All-Different Avengers (2015) #13-15; All-New, All-Different Avengers Annual (2016) #1"
+    },
+    {
+      "issueId": 60276,
+      "title": "All-New, All-Different Avengers Annual (2016) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/60276/all-new_all-different_avengers_annual_2016_1",
+      "seriesId": 22190,
+      "seriesName": "All-New, All-Different Avengers Annual (2016)",
+      "onSale": "2016-08-10T00:00:00+0000",
+      "mu": "2017-02-13T00:00:00+0000",
+      "digitalId": 42280,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/30/57a4ec1674511",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Alex Ross",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "penciler"
+        },
+        {
+          "name": "Faith Erin Hicks",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | All-New, All-Different Avengers Vol. 3: Civil War II: All-New, All-Different Avengers (2015) #13-15; All-New, All-Different Avengers Annual (2016) #1"
+    },
+    {
+      "issueId": 61442,
+      "title": "Champions (2016) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/61442/champions_2016_1",
+      "seriesId": 22552,
+      "seriesName": "Champions (2016 - 2019)",
+      "onSale": "2016-10-05T00:00:00+0000",
+      "mu": "2017-04-10T00:00:00+0000",
+      "digitalId": 42893,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/57e5844f2b80c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Champions Vol. 1: Change the World: Champions (2016) #1-6"
+    },
+    {
+      "issueId": 61443,
+      "title": "Champions (2016) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/61443/champions_2016_2",
+      "seriesId": 22552,
+      "seriesName": "Champions (2016 - 2019)",
+      "onSale": "2016-11-02T00:00:00+0000",
+      "mu": "2017-05-08T00:00:00+0000",
+      "digitalId": 43164,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/50/58064833c7311",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Champions Vol. 1: Change the World: Champions (2016) #1-6"
+    },
+    {
+      "issueId": 61444,
+      "title": "Champions (2016) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/61444/champions_2016_3",
+      "seriesId": 22552,
+      "seriesName": "Champions (2016 - 2019)",
+      "onSale": "2016-12-07T00:00:00+0000",
+      "mu": "2017-06-12T00:00:00+0000",
+      "digitalId": 43410,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/c0/583d9e787ef2f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Champions Vol. 1: Change the World: Champions (2016) #1-6"
+    },
+    {
+      "issueId": 61445,
+      "title": "Champions (2016) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/61445/champions_2016_4",
+      "seriesId": 22552,
+      "seriesName": "Champions (2016 - 2019)",
+      "onSale": "2017-01-04T00:00:00+0000",
+      "mu": "2017-07-10T00:00:00+0000",
+      "digitalId": 43790,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/90/585c07903fc61",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Champions Vol. 1: Change the World: Champions (2016) #1-6"
+    },
+    {
+      "issueId": 61446,
+      "title": "Champions (2016) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/61446/champions_2016_5",
+      "seriesId": 22552,
+      "seriesName": "Champions (2016 - 2019)",
+      "onSale": "2017-02-01T00:00:00+0000",
+      "mu": "2017-08-07T00:00:00+0000",
+      "digitalId": 44037,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/588b703a2af4e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Champions Vol. 1: Change the World: Champions (2016) #1-6"
+    },
+    {
+      "issueId": 61447,
+      "title": "Champions (2016) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/61447/champions_2016_6",
+      "seriesId": 22552,
+      "seriesName": "Champions (2016 - 2019)",
+      "onSale": "2017-03-01T00:00:00+0000",
+      "mu": "2017-09-04T00:00:00+0000",
+      "digitalId": 44275,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/f0/58af14cd7f494",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Champions Vol. 1: Change the World: Champions (2016) #1-6"
+    },
+    {
+      "issueId": 56128,
+      "title": "Ms. Marvel (2015) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/56128/ms_marvel_2015_13",
+      "seriesId": 20615,
+      "seriesName": "Ms. Marvel (2015 - 2019)",
+      "onSale": "2016-11-30T00:00:00+0000",
+      "mu": "2017-06-05T00:00:00+0000",
+      "digitalId": 43199,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/50/582cbdc8afb26",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Joelle Jones",
+          "role": "penciler"
+        },
+        {
+          "name": "Mirka Andolfo",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Ms. Marvel Vol. 7: Ms. Marvel (2015) #13-18"
+    },
+    {
+      "issueId": 56129,
+      "title": "Ms. Marvel (2015) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/56129/ms_marvel_2015_14",
+      "seriesId": 20615,
+      "seriesName": "Ms. Marvel (2015 - 2019)",
+      "onSale": "2017-01-11T00:00:00+0000",
+      "mu": "2017-07-17T00:00:00+0000",
+      "digitalId": 43826,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/90/586ebbdce5cfb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Nelson Blake II",
+          "role": "penciler"
+        },
+        {
+          "name": "Takeshi Miyazawa",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Ms. Marvel Vol. 7: Ms. Marvel (2015) #13-18"
+    },
+    {
+      "issueId": 56130,
+      "title": "Ms. Marvel (2015) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/56130/ms_marvel_2015_15",
+      "seriesId": 20615,
+      "seriesName": "Ms. Marvel (2015 - 2019)",
+      "onSale": "2017-02-08T00:00:00+0000",
+      "mu": "2017-08-14T00:00:00+0000",
+      "digitalId": 44066,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/60/588fb8c8248c4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Nelson Blake II",
+          "role": "penciler"
+        },
+        {
+          "name": "Takeshi Miyazawa",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Ms. Marvel Vol. 7: Ms. Marvel (2015) #13-18"
+    },
+    {
+      "issueId": 56131,
+      "title": "Ms. Marvel (2015) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/56131/ms_marvel_2015_16",
+      "seriesId": 20615,
+      "seriesName": "Ms. Marvel (2015 - 2019)",
+      "onSale": "2017-03-15T00:00:00+0000",
+      "mu": "2017-09-18T00:00:00+0000",
+      "digitalId": 44301,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/c0/58c178e28cebb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Takeshi Miyazawa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Nelson Blake II",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Ms. Marvel Vol. 7: Ms. Marvel (2015) #13-18"
+    },
+    {
+      "issueId": 61025,
+      "title": "Ms. Marvel (2015) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/61025/ms_marvel_2015_17",
+      "seriesId": 20615,
+      "seriesName": "Ms. Marvel (2015 - 2019)",
+      "onSale": "2017-04-19T00:00:00+0000",
+      "mu": "2017-10-23T00:00:00+0000",
+      "digitalId": 44528,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/90/58ee70ecb5fa4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Takeshi Miyazawa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Nelson Blake II",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Ms. Marvel Vol. 7: Ms. Marvel (2015) #13-18"
+    },
+    {
+      "issueId": 61026,
+      "title": "Ms. Marvel (2015) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/61026/ms_marvel_2015_18",
+      "seriesId": 20615,
+      "seriesName": "Ms. Marvel (2015 - 2019)",
+      "onSale": "2017-05-10T00:00:00+0000",
+      "mu": "2017-11-13T00:00:00+0000",
+      "digitalId": 44764,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/5908c1381f08a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Gaston",
+          "role": "cover artist"
+        },
+        {
+          "name": "Nelson Blake II",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Ms. Marvel Vol. 7: Ms. Marvel (2015) #13-18"
+    },
+    {
+      "issueId": 62838,
+      "title": "Secret Warriors (2017) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/62838/secret_warriors_2017_1",
+      "seriesId": 23047,
+      "seriesName": "Secret Warriors (2017 - 2018)",
+      "onSale": "2017-05-10T00:00:00+0000",
+      "mu": "2017-11-13T00:00:00+0000",
+      "digitalId": 44827,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/5908c8beeb4b9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Javier Garron",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tradd Moore",
+          "role": "penciler"
+        },
+        {
+          "name": "Matthew Rosenberg",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Secret Warriors Vol. 1: Secret Empire: Secret Warriors (2017) #1-5"
+    },
+    {
+      "issueId": 62839,
+      "title": "Secret Warriors (2017) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/62839/secret_warriors_2017_2",
+      "seriesId": 23047,
+      "seriesName": "Secret Warriors (2017 - 2018)",
+      "onSale": "2017-05-24T00:00:00+0000",
+      "mu": "2017-11-27T00:00:00+0000",
+      "digitalId": 44828,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/70/591c9cd592659",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Javier Garron",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tradd Moore",
+          "role": "penciler"
+        },
+        {
+          "name": "Matthew Rosenberg",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Secret Warriors Vol. 1: Secret Empire: Secret Warriors (2017) #1-5"
+    },
+    {
+      "issueId": 63200,
+      "title": "Secret Warriors (2017) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/63200/secret_warriors_2017_3",
+      "seriesId": 23047,
+      "seriesName": "Secret Warriors (2017 - 2018)",
+      "onSale": "2017-06-14T00:00:00+0000",
+      "mu": "2017-12-18T00:00:00+0000",
+      "digitalId": 45618,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/80/5939941267826",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Javier Garron",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tradd Moore",
+          "role": "penciler"
+        },
+        {
+          "name": "Matthew Rosenberg",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Secret Warriors Vol. 1: Secret Empire: Secret Warriors (2017) #1-5"
+    },
+    {
+      "issueId": 63759,
+      "title": "Secret Warriors (2017) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/63759/secret_warriors_2017_4",
+      "seriesId": 23047,
+      "seriesName": "Secret Warriors (2017 - 2018)",
+      "onSale": "2017-07-12T00:00:00+0000",
+      "mu": "2018-01-15T00:00:00+0000",
+      "digitalId": 45258,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/e0/595ea865c2fae",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Javier Garron",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tradd Moore",
+          "role": "penciler"
+        },
+        {
+          "name": "Matthew Rosenberg",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Secret Warriors Vol. 1: Secret Empire: Secret Warriors (2017) #1-5"
+    },
+    {
+      "issueId": 64286,
+      "title": "Secret Warriors (2017) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/64286/secret_warriors_2017_5",
+      "seriesId": 23047,
+      "seriesName": "Secret Warriors (2017 - 2018)",
+      "onSale": "2017-08-09T00:00:00+0000",
+      "mu": "2018-02-12T00:00:00+0000",
+      "digitalId": 45555,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/20/5977959d169d6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Javier Garron",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tradd Moore",
+          "role": "penciler"
+        },
+        {
+          "name": "Matthew Rosenberg",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Secret Warriors Vol. 1: Secret Empire: Secret Warriors (2017) #1-5"
+    },
+    {
+      "issueId": 64577,
+      "title": "Secret Warriors (2017) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/64577/secret_warriors_2017_6",
+      "seriesId": 23047,
+      "seriesName": "Secret Warriors (2017 - 2018)",
+      "onSale": "2017-09-13T00:00:00+0000",
+      "mu": "2018-03-19T00:00:00+0000",
+      "digitalId": 45798,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/00/59b04d92969a3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juanan Ramirez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tradd Moore",
+          "role": "penciler"
+        },
+        {
+          "name": "Matthew Rosenberg",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Secret Warriors Vol. 2: If Trouble Must Come: Secret Warriors (2017) #6-10"
+    },
+    {
+      "issueId": 64943,
+      "title": "Secret Warriors (2017) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/64943/secret_warriors_2017_7",
+      "seriesId": 23047,
+      "seriesName": "Secret Warriors (2017 - 2018)",
+      "onSale": "2017-10-18T00:00:00+0000",
+      "mu": "2018-04-23T00:00:00+0000",
+      "digitalId": 46073,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/b0/59dfde05e533d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juanan Ramirez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tradd Moore",
+          "role": "penciler"
+        },
+        {
+          "name": "Matthew Rosenberg",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Secret Warriors Vol. 2: If Trouble Must Come: Secret Warriors (2017) #6-10"
+    },
+    {
+      "issueId": 65096,
+      "title": "Secret Warriors (2017) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/65096/secret_warriors_2017_8",
+      "seriesId": 23047,
+      "seriesName": "Secret Warriors (2017 - 2018)",
+      "onSale": "2017-11-15T00:00:00+0000",
+      "mu": "2018-05-21T00:00:00+0000",
+      "digitalId": 46400,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/30/5a034ab1123e6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Will Robson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Javier Garron",
+          "role": "penciler"
+        },
+        {
+          "name": "Dave Johnson",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Matthew Rosenberg",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Secret Warriors Vol. 2: If Trouble Must Come: Secret Warriors (2017) #6-10"
+    },
+    {
+      "issueId": 65097,
+      "title": "Secret Warriors (2017) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/65097/secret_warriors_2017_9",
+      "seriesId": 23047,
+      "seriesName": "Secret Warriors (2017 - 2018)",
+      "onSale": "2017-11-29T00:00:00+0000",
+      "mu": "2018-06-04T00:00:00+0000",
+      "digitalId": 46401,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/e0/5a14ac695ab6a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Will Robson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Javier Garron",
+          "role": "penciler"
+        },
+        {
+          "name": "Matthew Rosenberg",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Secret Warriors Vol. 2: If Trouble Must Come: Secret Warriors (2017) #6-10"
+    },
+    {
+      "issueId": 65299,
+      "title": "Secret Warriors (2017) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/65299/secret_warriors_2017_10",
+      "seriesId": 23047,
+      "seriesName": "Secret Warriors (2017 - 2018)",
+      "onSale": "2017-12-13T00:00:00+0000",
+      "mu": "2018-06-18T00:00:00+0000",
+      "digitalId": 46789,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/5a2843dd1f650",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Will Robson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Javier Garron",
+          "role": "penciler"
+        },
+        {
+          "name": "Matthew Rosenberg",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Secret Warriors Vol. 2: If Trouble Must Come: Secret Warriors (2017) #6-10"
+    },
+    {
+      "issueId": 61448,
+      "title": "Champions (2016) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/61448/champions_2016_7",
+      "seriesId": 22552,
+      "seriesName": "Champions (2016 - 2019)",
+      "onSale": "2017-04-05T00:00:00+0000",
+      "mu": "2017-10-09T00:00:00+0000",
+      "digitalId": 44470,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/70/58d5863644c68",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Champions Vol. 2: The Freelancer Lifestyle: Champions (2016) #6-11"
+    },
+    {
+      "issueId": 61449,
+      "title": "Champions (2016) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/61449/champions_2016_8",
+      "seriesId": 22552,
+      "seriesName": "Champions (2016 - 2019)",
+      "onSale": "2017-05-03T00:00:00+0000",
+      "mu": "2017-11-06T00:00:00+0000",
+      "digitalId": 44741,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/80/5900a8d97cbfa",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Champions Vol. 2: The Freelancer Lifestyle: Champions (2016) #6-11"
+    },
+    {
+      "issueId": 61450,
+      "title": "Champions (2016) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/61450/champions_2016_9",
+      "seriesId": 22552,
+      "seriesName": "Champions (2016 - 2019)",
+      "onSale": "2017-06-07T00:00:00+0000",
+      "mu": "2017-12-11T00:00:00+0000",
+      "digitalId": 44967,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/00/593063467d7fc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Champions Vol. 2: The Freelancer Lifestyle: Champions (2016) #6-11"
+    },
+    {
+      "issueId": 61451,
+      "title": "Champions (2016) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/61451/champions_2016_10",
+      "seriesId": 22552,
+      "seriesName": "Champions (2016 - 2019)",
+      "onSale": "2017-07-05T00:00:00+0000",
+      "mu": "2018-01-08T00:00:00+0000",
+      "digitalId": 45213,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/a0/59553824be41d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Champions Vol. 2: The Freelancer Lifestyle: Champions (2016) #6-11"
+    },
+    {
+      "issueId": 61452,
+      "title": "Champions (2016) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/61452/champions_2016_11",
+      "seriesId": 22552,
+      "seriesName": "Champions (2016 - 2019)",
+      "onSale": "2017-08-02T00:00:00+0000",
+      "mu": "2018-02-05T00:00:00+0000",
+      "digitalId": 45425,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/596d116d325a6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Champions Vol. 2: The Freelancer Lifestyle: Champions (2016) #6-11"
+    },
+    {
+      "issueId": 61027,
+      "title": "Ms. Marvel (2015) #19",
+      "number": "19",
+      "url": "https://www.marvel.com/comics/issue/61027/ms_marvel_2015_19",
+      "seriesId": 20615,
+      "seriesName": "Ms. Marvel (2015 - 2019)",
+      "onSale": "2017-06-14T00:00:00+0000",
+      "mu": "2017-12-18T00:00:00+0000",
+      "digitalId": 44985,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/40/593993437a617",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Marco Failla",
+          "role": "cover artist"
+        },
+        {
+          "name": "Nelson Blake II",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Ms. Marvel Vol. 8: Mecca: Ms. Marvel (2015) #19-24"
+    },
+    {
+      "issueId": 61028,
+      "title": "Ms. Marvel (2015) #20",
+      "number": "20",
+      "url": "https://www.marvel.com/comics/issue/61028/ms_marvel_2015_20",
+      "seriesId": 20615,
+      "seriesName": "Ms. Marvel (2015 - 2019)",
+      "onSale": "2017-07-19T00:00:00+0000",
+      "mu": "2018-01-22T00:00:00+0000",
+      "digitalId": 45254,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/5967f4a261cdc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Marco Failla",
+          "role": "cover artist"
+        },
+        {
+          "name": "Valerio Schiti",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Ms. Marvel Vol. 8: Mecca: Ms. Marvel (2015) #19-24"
+    },
+    {
+      "issueId": 61029,
+      "title": "Ms. Marvel (2015) #21",
+      "number": "21",
+      "url": "https://www.marvel.com/comics/issue/61029/ms_marvel_2015_21",
+      "seriesId": 20615,
+      "seriesName": "Ms. Marvel (2015 - 2019)",
+      "onSale": "2017-08-09T00:00:00+0000",
+      "mu": "2018-02-12T00:00:00+0000",
+      "digitalId": 45456,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/60/597794ec9be1c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Marco Failla",
+          "role": "cover artist"
+        },
+        {
+          "name": "Valerio Schiti",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Ms. Marvel Vol. 8: Mecca: Ms. Marvel (2015) #19-24"
+    },
+    {
+      "issueId": 61030,
+      "title": "Ms. Marvel (2015) #22",
+      "number": "22",
+      "url": "https://www.marvel.com/comics/issue/61030/ms_marvel_2015_22",
+      "seriesId": 20615,
+      "seriesName": "Ms. Marvel (2015 - 2019)",
+      "onSale": "2017-09-13T00:00:00+0000",
+      "mu": "2018-03-19T00:00:00+0000",
+      "digitalId": 45734,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/00/59b04c70f0056",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Marco Failla",
+          "role": "cover artist"
+        },
+        {
+          "name": "Valerio Schiti",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Ms. Marvel Vol. 8: Mecca: Ms. Marvel (2015) #19-24"
+    },
+    {
+      "issueId": 61031,
+      "title": "Ms. Marvel (2015) #23",
+      "number": "23",
+      "url": "https://www.marvel.com/comics/issue/61031/ms_marvel_2015_23",
+      "seriesId": 20615,
+      "seriesName": "Ms. Marvel (2015 - 2019)",
+      "onSale": "2017-10-11T00:00:00+0000",
+      "mu": "2018-04-16T00:00:00+0000",
+      "digitalId": 45991,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/40/59d53e4449fed",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Diego Olortegui",
+          "role": "cover artist"
+        },
+        {
+          "name": "Valerio Schiti",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Ms. Marvel Vol. 8: Mecca: Ms. Marvel (2015) #19-24"
+    },
+    {
+      "issueId": 61032,
+      "title": "Ms. Marvel (2015) #24",
+      "number": "24",
+      "url": "https://www.marvel.com/comics/issue/61032/ms_marvel_2015_24",
+      "seriesId": 20615,
+      "seriesName": "Ms. Marvel (2015 - 2019)",
+      "onSale": "2017-11-08T00:00:00+0000",
+      "mu": "2018-05-14T00:00:00+0000",
+      "digitalId": 46321,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/d0/59fa11ccaa4b7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Diego Olortegui",
+          "role": "cover artist"
+        },
+        {
+          "name": "Valerio Schiti",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Ms. Marvel Vol. 8: Mecca: Ms. Marvel (2015) #19-24"
+    },
+    {
+      "issueId": 61033,
+      "title": "Ms. Marvel (2015) #25",
+      "number": "25",
+      "url": "https://www.marvel.com/comics/issue/61033/ms_marvel_2015_25",
+      "seriesId": 20615,
+      "seriesName": "Ms. Marvel (2015 - 2019)",
+      "onSale": "2017-12-20T00:00:00+0000",
+      "mu": "2018-06-25T00:00:00+0000",
+      "digitalId": 46665,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/5a31718abf851",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Diego Olortegui",
+          "role": "cover artist"
+        },
+        {
+          "name": "Nico Leon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Valerio Schiti",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        },
+        {
+          "name": "Robbie Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Ms. Marvel Vol. 9: Teenage Wasteland: Ms. Marvel (2015) #25-30"
+    },
+    {
+      "issueId": 61034,
+      "title": "Ms. Marvel (2015) #26",
+      "number": "26",
+      "url": "https://www.marvel.com/comics/issue/61034/ms_marvel_2015_26",
+      "seriesId": 20615,
+      "seriesName": "Ms. Marvel (2015 - 2019)",
+      "onSale": "2018-01-10T00:00:00+0000",
+      "mu": "2018-07-16T00:00:00+0000",
+      "digitalId": 47046,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/10/5a4fbd8e79364",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Nico Leon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Valerio Schiti",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Ms. Marvel Vol. 9: Teenage Wasteland: Ms. Marvel (2015) #25-30"
+    },
+    {
+      "issueId": 66211,
+      "title": "Ms. Marvel (2015) #27",
+      "number": "27",
+      "url": "https://www.marvel.com/comics/issue/66211/ms_marvel_2015_27",
+      "seriesId": 20615,
+      "seriesName": "Ms. Marvel (2015 - 2019)",
+      "onSale": "2018-02-14T00:00:00+0000",
+      "mu": "2018-08-20T00:00:00+0000",
+      "digitalId": 47245,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/5a7b3e2f68e65",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Nico Leon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Valerio Schiti",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Ms. Marvel Vol. 9: Teenage Wasteland: Ms. Marvel (2015) #25-30"
+    },
+    {
+      "issueId": 66549,
+      "title": "Ms. Marvel (2015) #28",
+      "number": "28",
+      "url": "https://www.marvel.com/comics/issue/66549/ms_marvel_2015_28",
+      "seriesId": 20615,
+      "seriesName": "Ms. Marvel (2015 - 2019)",
+      "onSale": "2018-03-21T00:00:00+0000",
+      "mu": "2018-09-24T00:00:00+0000",
+      "digitalId": 47589,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/c0/5aa95ffdc84f1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Nico Leon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Valerio Schiti",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Ms. Marvel Vol. 9: Teenage Wasteland: Ms. Marvel (2015) #25-30"
+    },
+    {
+      "issueId": 66855,
+      "title": "Ms. Marvel (2015) #29",
+      "number": "29",
+      "url": "https://www.marvel.com/comics/issue/66855/ms_marvel_2015_29",
+      "seriesId": 20615,
+      "seriesName": "Ms. Marvel (2015 - 2019)",
+      "onSale": "2018-04-18T00:00:00+0000",
+      "mu": "2018-10-22T00:00:00+0000",
+      "digitalId": 47754,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/5ace6950bd662",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Nico Leon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Valerio Schiti",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Ms. Marvel Vol. 9: Teenage Wasteland: Ms. Marvel (2015) #25-30"
+    },
+    {
+      "issueId": 67532,
+      "title": "Ms. Marvel (2015) #30",
+      "number": "30",
+      "url": "https://www.marvel.com/comics/issue/67532/ms_marvel_2015_30",
+      "seriesId": 20615,
+      "seriesName": "Ms. Marvel (2015 - 2019)",
+      "onSale": "2018-05-30T00:00:00+0000",
+      "mu": "2018-12-03T00:00:00+0000",
+      "digitalId": 48008,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/e0/5b05c2432d56d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Nico Leon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Valerio Schiti",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Ms. Marvel Vol. 9: Teenage Wasteland: Ms. Marvel (2015) #25-30"
+    },
+    {
+      "issueId": 64681,
+      "title": "Avengers (2016) #672",
+      "number": "672",
+      "url": "https://www.marvel.com/comics/issue/64681/avengers_2016_672",
+      "seriesId": 22547,
+      "seriesName": "Avengers (2016 - 2018)",
+      "onSale": "2017-10-04T00:00:00+0000",
+      "mu": "2018-04-09T00:00:00+0000",
+      "digitalId": 45953,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/e0/59cc03a23fb80",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jesus Saiz",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Avengers & Champions: Worlds Collide: Avengers (2016) #672; Champions (2016) #13; Avengers (2016) #673; Champions (2016) #14; Avengers (2016) #674; Champions (2016) #15"
+    },
+    {
+      "issueId": 61454,
+      "title": "Champions (2016) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/61454/champions_2016_13",
+      "seriesId": 22552,
+      "seriesName": "Champions (2016 - 2019)",
+      "onSale": "2017-10-18T00:00:00+0000",
+      "mu": "2017-10-18T00:00:00+0000",
+      "digitalId": 45954,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/90/59dfdaa16ed7c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alberto Alburquerque",
+          "role": "cover artist"
+        },
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        },
+        {
+          "name": "Robbie Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Avengers & Champions: Worlds Collide: Avengers (2016) #672; Champions (2016) #13; Avengers (2016) #673; Champions (2016) #14; Avengers (2016) #674; Champions (2016) #15"
+    },
+    {
+      "issueId": 65056,
+      "title": "Avengers (2016) #673",
+      "number": "673",
+      "url": "https://www.marvel.com/comics/issue/65056/avengers_2016_673",
+      "seriesId": 22547,
+      "seriesName": "Avengers (2016 - 2018)",
+      "onSale": "2017-11-01T00:00:00+0000",
+      "mu": "2018-05-07T00:00:00+0000",
+      "digitalId": 46352,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/50/59f106920d2c5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Paco Diaz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Javier Pina",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Avengers & Champions: Worlds Collide: Avengers (2016) #672; Champions (2016) #13; Avengers (2016) #673; Champions (2016) #14; Avengers (2016) #674; Champions (2016) #15"
+    },
+    {
+      "issueId": 61455,
+      "title": "Champions (2016) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/61455/champions_2016_14",
+      "seriesId": 22552,
+      "seriesName": "Champions (2016 - 2019)",
+      "onSale": "2017-11-15T00:00:00+0000",
+      "mu": "2018-05-21T00:00:00+0000",
+      "digitalId": 46312,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/20/5a0349c28d253",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Avengers & Champions: Worlds Collide: Avengers (2016) #672; Champions (2016) #13; Avengers (2016) #673; Champions (2016) #14; Avengers (2016) #674; Champions (2016) #15"
+    },
+    {
+      "issueId": 65264,
+      "title": "Avengers (2016) #674",
+      "number": "674",
+      "url": "https://www.marvel.com/comics/issue/65264/avengers_2016_674",
+      "seriesId": 22547,
+      "seriesName": "Avengers (2016 - 2018)",
+      "onSale": "2017-12-06T00:00:00+0000",
+      "mu": "2018-06-11T00:00:00+0000",
+      "digitalId": 46751,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/a0/5a1f342a90cf0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jesus Saiz",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Avengers & Champions: Worlds Collide: Avengers (2016) #672; Champions (2016) #13; Avengers (2016) #673; Champions (2016) #14; Avengers (2016) #674; Champions (2016) #15"
+    },
+    {
+      "issueId": 61456,
+      "title": "Champions (2016) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/61456/champions_2016_15",
+      "seriesId": 22552,
+      "seriesName": "Champions (2016 - 2019)",
+      "onSale": "2017-12-20T00:00:00+0000",
+      "mu": "2018-06-25T00:00:00+0000",
+      "digitalId": 46660,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/90/5a3171476ce49",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Avengers & Champions: Worlds Collide: Avengers (2016) #672; Champions (2016) #13; Avengers (2016) #673; Champions (2016) #14; Avengers (2016) #674; Champions (2016) #15"
+    },
+    {
+      "issueId": 61457,
+      "title": "Champions (2016) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/61457/champions_2016_16",
+      "seriesId": 22552,
+      "seriesName": "Champions (2016 - 2019)",
+      "onSale": "2018-01-17T00:00:00+0000",
+      "mu": "2018-07-23T00:00:00+0000",
+      "digitalId": 47014,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/60/5a56673466965",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Champions Vol. 3: Champion for a Day: Champions (2016) #16-21"
+    },
+    {
+      "issueId": 66272,
+      "title": "Champions (2016) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/66272/champions_2016_17",
+      "seriesId": 22552,
+      "seriesName": "Champions (2016 - 2019)",
+      "onSale": "2018-02-28T00:00:00+0000",
+      "mu": "2018-09-03T00:00:00+0000",
+      "digitalId": 47324,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/b0/5a8de6b25ff2f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Champions Vol. 3: Champion for a Day: Champions (2016) #16-21"
+    },
+    {
+      "issueId": 66536,
+      "title": "Champions (2016) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/66536/champions_2016_18",
+      "seriesId": 22552,
+      "seriesName": "Champions (2016 - 2019)",
+      "onSale": "2018-03-28T00:00:00+0000",
+      "mu": "2018-10-01T00:00:00+0000",
+      "digitalId": 47577,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/d0/5ab2abcd6b28f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Champions Vol. 3: Champion for a Day: Champions (2016) #16-21"
+    },
+    {
+      "issueId": 66757,
+      "title": "Champions (2016) #19",
+      "number": "19",
+      "url": "https://www.marvel.com/comics/issue/66757/champions_2016_19",
+      "seriesId": 22552,
+      "seriesName": "Champions (2016 - 2019)",
+      "onSale": "2018-04-11T00:00:00+0000",
+      "mu": "2018-10-15T00:00:00+0000",
+      "digitalId": 47724,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/00/5ac5239792d49",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sean Izaakse",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stefano Caselli",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Champions Vol. 3: Champion for a Day: Champions (2016) #16-21"
+    },
+    {
+      "issueId": 67014,
+      "title": "Champions (2016) #20",
+      "number": "20",
+      "url": "https://www.marvel.com/comics/issue/67014/champions_2016_20",
+      "seriesId": 22552,
+      "seriesName": "Champions (2016 - 2019)",
+      "onSale": "2018-05-23T00:00:00+0000",
+      "mu": "2018-11-26T00:00:00+0000",
+      "digitalId": 47928,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/b0/5afc7f7a427cf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sean Izaakse",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stefano Caselli",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Champions Vol. 3: Champion for a Day: Champions (2016) #16-21"
+    },
+    {
+      "issueId": 67981,
+      "title": "Champions (2016) #21",
+      "number": "21",
+      "url": "https://www.marvel.com/comics/issue/67981/champions_2016_21",
+      "seriesId": 22552,
+      "seriesName": "Champions (2016 - 2019)",
+      "onSale": "2018-06-20T00:00:00+0000",
+      "mu": "2018-12-24T00:00:00+0000",
+      "digitalId": 48266,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/5b21869ce11c6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sean Izaakse",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stefano Caselli",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Champions Vol. 3: Champion for a Day: Champions (2016) #16-21"
+    },
+    {
+      "issueId": 69113,
+      "title": "Ms. Marvel (2015) #31",
+      "number": "31",
+      "url": "https://www.marvel.com/comics/issue/69113/ms_marvel_2015_31",
+      "seriesId": 20615,
+      "seriesName": "Ms. Marvel (2015 - 2019)",
+      "onSale": "2018-06-27T00:00:00+0000",
+      "mu": "2018-12-31T00:00:00+0000",
+      "digitalId": 48323,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/5b2c13ba99719",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Elmo Bondoc",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gustavo Duarte",
+          "role": "cover artist"
+        },
+        {
+          "name": "Nico Leon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Robert Quinn",
+          "role": "cover artist"
+        },
+        {
+          "name": "Valerio Schiti",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        },
+        {
+          "name": "Hasan Minhaj",
+          "role": "writer"
+        },
+        {
+          "name": "Rainbow Rowell",
+          "role": "writer"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Ms. Marvel Vol. 10: Ms. Marvel (2015) #31-38"
+    },
+    {
+      "issueId": 69114,
+      "title": "Ms. Marvel (2015) #32",
+      "number": "32",
+      "url": "https://www.marvel.com/comics/issue/69114/ms_marvel_2015_32",
+      "seriesId": 20615,
+      "seriesName": "Ms. Marvel (2015 - 2019)",
+      "onSale": "2018-07-11T00:00:00+0000",
+      "mu": "2019-01-14T00:00:00+0000",
+      "digitalId": 48567,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/30/5b3fea8e0a8ea",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Nico Leon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Valerio Schiti",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Ms. Marvel Vol. 10: Ms. Marvel (2015) #31-38"
+    },
+    {
+      "issueId": 69115,
+      "title": "Ms. Marvel (2015) #33",
+      "number": "33",
+      "url": "https://www.marvel.com/comics/issue/69115/ms_marvel_2015_33",
+      "seriesId": 20615,
+      "seriesName": "Ms. Marvel (2015 - 2019)",
+      "onSale": "2018-08-29T00:00:00+0000",
+      "mu": "2019-03-04T00:00:00+0000",
+      "digitalId": 48920,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/5b7ed51c06c97",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Nico Leon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Valerio Schiti",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Ms. Marvel Vol. 10: Ms. Marvel (2015) #31-38"
+    },
+    {
+      "issueId": 69116,
+      "title": "Ms. Marvel (2015) #34",
+      "number": "34",
+      "url": "https://www.marvel.com/comics/issue/69116/ms_marvel_2015_34",
+      "seriesId": 20615,
+      "seriesName": "Ms. Marvel (2015 - 2019)",
+      "onSale": "2018-09-12T00:00:00+0000",
+      "mu": "2019-03-18T00:00:00+0000",
+      "digitalId": 49146,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/5b9014a0a9939",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Nico Leon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Valerio Schiti",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Ms. Marvel Vol. 10: Ms. Marvel (2015) #31-38"
+    },
+    {
+      "issueId": 70776,
+      "title": "Ms. Marvel (2015) #35",
+      "number": "35",
+      "url": "https://www.marvel.com/comics/issue/70776/ms_marvel_2015_35",
+      "seriesId": 20615,
+      "seriesName": "Ms. Marvel (2015 - 2019)",
+      "onSale": "2018-10-10T00:00:00+0000",
+      "mu": "2019-04-15T00:00:00+0000",
+      "digitalId": 49488,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/d0/5bb530ffd1bd4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Nico Leon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Valerio Schiti",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Ms. Marvel Vol. 10: Ms. Marvel (2015) #31-38"
+    },
+    {
+      "issueId": 70777,
+      "title": "Ms. Marvel (2015) #36",
+      "number": "36",
+      "url": "https://www.marvel.com/comics/issue/70777/ms_marvel_2015_36",
+      "seriesId": 20615,
+      "seriesName": "Ms. Marvel (2015 - 2019)",
+      "onSale": "2018-11-14T00:00:00+0000",
+      "mu": "2019-05-20T00:00:00+0000",
+      "digitalId": 49759,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/b0/5be371a0f2dae",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Nico Leon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Valerio Schiti",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Ms. Marvel Vol. 10: Ms. Marvel (2015) #31-38"
+    },
+    {
+      "issueId": 70778,
+      "title": "Ms. Marvel (2015) #37",
+      "number": "37",
+      "url": "https://www.marvel.com/comics/issue/70778/ms_marvel_2015_37",
+      "seriesId": 20615,
+      "seriesName": "Ms. Marvel (2015 - 2019)",
+      "onSale": "2019-01-30T00:00:00+0000",
+      "mu": "2019-08-05T00:00:00+0000",
+      "digitalId": 50046,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/5c48f7dc04871",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Nico Leon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Valerio Schiti",
+          "role": "penciler"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Ms. Marvel Vol. 10: Ms. Marvel (2015) #31-38"
+    },
+    {
+      "issueId": 70779,
+      "title": "Ms. Marvel (2015) #38",
+      "number": "38",
+      "url": "https://www.marvel.com/comics/issue/70779/ms_marvel_2015_38",
+      "seriesId": 20615,
+      "seriesName": "Ms. Marvel (2015 - 2019)",
+      "onSale": "2019-02-13T00:00:00+0000",
+      "mu": "2019-08-19T00:00:00+0000",
+      "digitalId": 50378,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/30/5c5c54d80de3a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Joey Vazquez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Juan Vlasco",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kevin Libranda",
+          "role": "cover artist"
+        },
+        {
+          "name": "Nico Leon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Takeshi Miyazawa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Minkyu Jung",
+          "role": "penciler"
+        },
+        {
+          "name": "Sara Pichelli",
+          "role": "penciler"
+        },
+        {
+          "name": "Devin Grayson",
+          "role": "writer"
+        },
+        {
+          "name": "Eve Ewing",
+          "role": "writer"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Ms. Marvel Vol. 10: Ms. Marvel (2015) #31-38"
+    },
+    {
+      "issueId": 67982,
+      "title": "Champions (2016) #22",
+      "number": "22",
+      "url": "https://www.marvel.com/comics/issue/67982/champions_2016_22",
+      "seriesId": 22552,
+      "seriesName": "Champions (2016 - 2019)",
+      "onSale": "2018-07-11T00:00:00+0000",
+      "mu": "2019-01-14T00:00:00+0000",
+      "digitalId": 48558,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/c0/5b3fe78ae0d58",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kevin Libranda",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stefano Caselli",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Champions Vol. 4: Northern Lights: Champions (2016) #19-24"
+    },
+    {
+      "issueId": 67983,
+      "title": "Champions (2016) #23",
+      "number": "23",
+      "url": "https://www.marvel.com/comics/issue/67983/champions_2016_23",
+      "seriesId": 22552,
+      "seriesName": "Champions (2016 - 2019)",
+      "onSale": "2018-08-08T00:00:00+0000",
+      "mu": "2019-02-11T00:00:00+0000",
+      "digitalId": 48835,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/d0/5b620aea7c54c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Manna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kevin Libranda",
+          "role": "cover artist"
+        },
+        {
+          "name": "R.B. Silva",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Champions Vol. 4: Northern Lights: Champions (2016) #19-24"
+    },
+    {
+      "issueId": 67984,
+      "title": "Champions (2016) #24",
+      "number": "24",
+      "url": "https://www.marvel.com/comics/issue/67984/champions_2016_24",
+      "seriesId": 22552,
+      "seriesName": "Champions (2016 - 2019)",
+      "onSale": "2018-09-12T00:00:00+0000",
+      "mu": "2019-03-18T00:00:00+0000",
+      "digitalId": 49134,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/d0/5b90169f3d9db",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sean Izaakse",
+          "role": "cover artist"
+        },
+        {
+          "name": "R.B. Silva",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Kamala the Avenger! | Champions Vol. 4: Northern Lights: Champions (2016) #19-24"
+    },
+    {
+      "issueId": 66769,
+      "title": "Exiles (2018) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/66769/exiles_2018_1",
+      "seriesId": 24155,
+      "seriesName": "Exiles (2018 - 2019)",
+      "onSale": "2018-04-11T00:00:00+0000",
+      "mu": "2018-10-15T00:00:00+0000",
+      "digitalId": 47729,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/20/5ac52335b4961",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alvaro Lopez",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Marquez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Exiles Vol. 1: Test Of Time: Exiles (2018) #1-6"
+    },
+    {
+      "issueId": 66911,
+      "title": "Exiles (2018) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/66911/exiles_2018_2",
+      "seriesId": 24155,
+      "seriesName": "Exiles (2018 - 2019)",
+      "onSale": "2018-04-25T00:00:00+0000",
+      "mu": "2018-10-29T00:00:00+0000",
+      "digitalId": 47805,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/60/5ad7af63b42c9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alvaro Lopez",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Marquez",
+          "role": "penciler"
+        },
+        {
+          "name": "Javier Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Exiles Vol. 1: Test Of Time: Exiles (2018) #1-6"
+    },
+    {
+      "issueId": 67337,
+      "title": "Exiles (2018) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/67337/exiles_2018_3",
+      "seriesId": 24155,
+      "seriesName": "Exiles (2018 - 2019)",
+      "onSale": "2018-05-09T00:00:00+0000",
+      "mu": "2018-11-12T00:00:00+0000",
+      "digitalId": 47951,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/5aea2f826ee06",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alvaro Lopez",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Marquez",
+          "role": "penciler"
+        },
+        {
+          "name": "Javier Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Exiles Vol. 1: Test Of Time: Exiles (2018) #1-6"
+    },
+    {
+      "issueId": 68356,
+      "title": "Exiles (2018) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/68356/exiles_2018_4",
+      "seriesId": 24155,
+      "seriesName": "Exiles (2018 - 2019)",
+      "onSale": "2018-06-13T00:00:00+0000",
+      "mu": "2018-12-17T00:00:00+0000",
+      "digitalId": 48272,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/5b1704e8e9ad1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alvaro Lopez",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Marquez",
+          "role": "penciler"
+        },
+        {
+          "name": "Javier Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Exiles Vol. 1: Test Of Time: Exiles (2018) #1-6"
+    },
+    {
+      "issueId": 68358,
+      "title": "Exiles (2018) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/68358/exiles_2018_5",
+      "seriesId": 24155,
+      "seriesName": "Exiles (2018 - 2019)",
+      "onSale": "2018-07-11T00:00:00+0000",
+      "mu": "2019-01-14T00:00:00+0000",
+      "digitalId": 48564,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/5b3fe7792251f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alvaro Lopez",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Marquez",
+          "role": "penciler"
+        },
+        {
+          "name": "Javier Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Exiles Vol. 1: Test Of Time: Exiles (2018) #1-6"
+    },
+    {
+      "issueId": 68360,
+      "title": "Exiles (2018) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/68360/exiles_2018_6",
+      "seriesId": 24155,
+      "seriesName": "Exiles (2018 - 2019)",
+      "onSale": "2018-08-08T00:00:00+0000",
+      "mu": "2019-02-11T00:00:00+0000",
+      "digitalId": 48839,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/03/5b6211b941881",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rod Reis",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Mckone",
+          "role": "penciler"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Exiles Vol. 1: Test Of Time: Exiles (2018) #1-6"
+    },
+    {
+      "issueId": 68361,
+      "title": "Exiles (2018) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/68361/exiles_2018_7",
+      "seriesId": 24155,
+      "seriesName": "Exiles (2018 - 2019)",
+      "onSale": "2018-08-29T00:00:00+0000",
+      "mu": "2018-08-29T00:00:00+0000",
+      "digitalId": 48840,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/5b7ed70b8509c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Lee Ferguson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rod Reis",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Mckone",
+          "role": "penciler"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Exiles Vol. 2: The Trial Of The Exiles: Exiles (2018) #7-12"
+    },
+    {
+      "issueId": 68362,
+      "title": "Exiles (2018) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/68362/exiles_2018_8",
+      "seriesId": 24155,
+      "seriesName": "Exiles (2018 - 2019)",
+      "onSale": "2018-09-12T00:00:00+0000",
+      "mu": "2019-03-18T00:00:00+0000",
+      "digitalId": 49140,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/5b9016f5c16f4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Joe Quinones",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Mckone",
+          "role": "penciler"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Exiles Vol. 2: The Trial Of The Exiles: Exiles (2018) #7-12"
+    },
+    {
+      "issueId": 68363,
+      "title": "Exiles (2018) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/68363/exiles_2018_9",
+      "seriesId": 24155,
+      "seriesName": "Exiles (2018 - 2019)",
+      "onSale": "2018-10-10T00:00:00+0000",
+      "mu": "2018-10-10T00:00:00+0000",
+      "digitalId": 49483,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/b0/5bb531446bccb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alvaro Lopez",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Nakayama",
+          "role": "penciler"
+        },
+        {
+          "name": "Javier Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Exiles Vol. 2: The Trial Of The Exiles: Exiles (2018) #7-12"
+    },
+    {
+      "issueId": 68364,
+      "title": "Exiles (2018) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/68364/exiles_2018_10",
+      "seriesId": 24155,
+      "seriesName": "Exiles (2018 - 2019)",
+      "onSale": "2018-11-14T00:00:00+0000",
+      "mu": "2019-05-20T00:00:00+0000",
+      "digitalId": 49755,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/5be37153ec2e8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alvaro Lopez",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Nakayama",
+          "role": "penciler"
+        },
+        {
+          "name": "Javier Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Exiles Vol. 2: The Trial Of The Exiles: Exiles (2018) #7-12"
+    },
+    {
+      "issueId": 68365,
+      "title": "Exiles (2018) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/68365/exiles_2018_11",
+      "seriesId": 24155,
+      "seriesName": "Exiles (2018 - 2019)",
+      "onSale": "2018-12-19T00:00:00+0000",
+      "mu": "2019-06-24T00:00:00+0000",
+      "digitalId": 50081,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/10/5c12b439f3181",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alvaro Lopez",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Nakayama",
+          "role": "penciler"
+        },
+        {
+          "name": "Javier Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Exiles Vol. 2: The Trial Of The Exiles: Exiles (2018) #7-12"
+    },
+    {
+      "issueId": 68366,
+      "title": "Exiles (2018) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/68366/exiles_2018_12",
+      "seriesId": 24155,
+      "seriesName": "Exiles (2018 - 2019)",
+      "onSale": "2019-01-30T00:00:00+0000",
+      "mu": "2019-08-05T00:00:00+0000",
+      "digitalId": 50437,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/30/5c48fa717937e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alvaro Lopez",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Nakayama",
+          "role": "penciler"
+        },
+        {
+          "name": "Javier Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Exiles Vol. 2: The Trial Of The Exiles: Exiles (2018) #7-12"
+    },
+    {
+      "issueId": 73804,
+      "title": "Champions (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/73804/champions_2019_1",
+      "seriesId": 26592,
+      "seriesName": "Champions (2019)",
+      "onSale": "2019-01-02T00:00:00+0000",
+      "mu": "2019-07-08T00:00:00+0000",
+      "digitalId": 50326,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/f0/5c23ee2b19423",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kim Jacinto",
+          "role": "penciler"
+        },
+        {
+          "name": "Steven Cummings",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Champions by Jim Zub: Beat The Devil: Champions (2019) #1-6"
+    },
+    {
+      "issueId": 73805,
+      "title": "Champions (2019) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/73805/champions_2019_2",
+      "seriesId": 26592,
+      "seriesName": "Champions (2019)",
+      "onSale": "2019-02-06T00:00:00+0000",
+      "mu": "2019-08-12T00:00:00+0000",
+      "digitalId": 50571,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/80/5c523c25da0ea",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Steven Cummings",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kim Jacinto",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Champions by Jim Zub: Beat The Devil: Champions (2019) #1-6"
+    },
+    {
+      "issueId": 73806,
+      "title": "Champions (2019) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/73806/champions_2019_3",
+      "seriesId": 26592,
+      "seriesName": "Champions (2019)",
+      "onSale": "2019-03-06T00:00:00+0000",
+      "mu": "2019-09-09T00:00:00+0000",
+      "digitalId": 50869,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/04/5c76f84e3ffad",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Steven Cummings",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kim Jacinto",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Champions by Jim Zub: Beat The Devil: Champions (2019) #1-6"
+    },
+    {
+      "issueId": 73807,
+      "title": "Champions (2019) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/73807/champions_2019_4",
+      "seriesId": 26592,
+      "seriesName": "Champions (2019)",
+      "onSale": "2019-04-03T00:00:00+0000",
+      "mu": "2019-10-07T00:00:00+0000",
+      "digitalId": 51075,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/5c9bfc406199b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Steven Cummings",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kim Jacinto",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Champions by Jim Zub: Beat The Devil: Champions (2019) #1-6"
+    },
+    {
+      "issueId": 73808,
+      "title": "Champions (2019) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/73808/champions_2019_5",
+      "seriesId": 26592,
+      "seriesName": "Champions (2019)",
+      "onSale": "2019-05-01T00:00:00+0000",
+      "mu": "2019-11-04T00:00:00+0000",
+      "digitalId": 51352,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/60/5cc0cc3c57b79",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juanan Ramirez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kim Jacinto",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Champions by Jim Zub: Beat The Devil: Champions (2019) #1-6"
+    },
+    {
+      "issueId": 73809,
+      "title": "Champions (2019) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/73809/champions_2019_6",
+      "seriesId": 26592,
+      "seriesName": "Champions (2019)",
+      "onSale": "2019-06-12T00:00:00+0000",
+      "mu": "2019-12-16T00:00:00+0000",
+      "digitalId": 51716,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/c0/5cf826bbd866a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juanan Ramirez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kim Jacinto",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Champions by Jim Zub: Beat The Devil: Champions (2019) #1-6"
+    },
+    {
+      "issueId": 75470,
+      "title": "Magnificent Ms. Marvel (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/75470/magnificent_ms_marvel_2019_1",
+      "seriesId": 27133,
+      "seriesName": "Magnificent Ms. Marvel (2019)",
+      "onSale": "2019-03-13T00:00:00+0000",
+      "mu": "2019-09-16T00:00:00+0000",
+      "digitalId": 50879,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/10/5c802c145f371",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juan Vlasco",
+          "role": "cover artist"
+        },
+        {
+          "name": "Eduard Petrovich",
+          "role": "penciler"
+        },
+        {
+          "name": "Minkyu Jung",
+          "role": "penciler"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Ms. Marvel by Saladin Ahmed Vol. 1: Destined: Magnificent Ms. Marvel (2019) #1-6"
+    },
+    {
+      "issueId": 75472,
+      "title": "Magnificent Ms. Marvel (2019) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/75472/magnificent_ms_marvel_2019_2",
+      "seriesId": 27133,
+      "seriesName": "Magnificent Ms. Marvel (2019)",
+      "onSale": "2019-04-17T00:00:00+0000",
+      "mu": "2019-04-17T00:00:00+0000",
+      "digitalId": 51151,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/c0/5cacf580ba144",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juan Vlasco",
+          "role": "cover artist"
+        },
+        {
+          "name": "Eduard Petrovich",
+          "role": "penciler"
+        },
+        {
+          "name": "Minkyu Jung",
+          "role": "penciler"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Ms. Marvel by Saladin Ahmed Vol. 1: Destined: Magnificent Ms. Marvel (2019) #1-6"
+    },
+    {
+      "issueId": 75474,
+      "title": "Magnificent Ms. Marvel (2019) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/75474/magnificent_ms_marvel_2019_3",
+      "seriesId": 27133,
+      "seriesName": "Magnificent Ms. Marvel (2019)",
+      "onSale": "2019-05-29T00:00:00+0000",
+      "mu": "2019-12-02T00:00:00+0000",
+      "digitalId": 51465,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/10/5ce4007d23915",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juan Vlasco",
+          "role": "cover artist"
+        },
+        {
+          "name": "Eduard Petrovich",
+          "role": "penciler"
+        },
+        {
+          "name": "Minkyu Jung",
+          "role": "penciler"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Ms. Marvel by Saladin Ahmed Vol. 1: Destined: Magnificent Ms. Marvel (2019) #1-6"
+    },
+    {
+      "issueId": 75475,
+      "title": "Magnificent Ms. Marvel (2019) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/75475/magnificent_ms_marvel_2019_4",
+      "seriesId": 27133,
+      "seriesName": "Magnificent Ms. Marvel (2019)",
+      "onSale": "2019-06-26T00:00:00+0000",
+      "mu": "2019-12-30T00:00:00+0000",
+      "digitalId": 51769,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/20/5d08f2ec15d0f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juan Vlasco",
+          "role": "cover artist"
+        },
+        {
+          "name": "Eduard Petrovich",
+          "role": "penciler"
+        },
+        {
+          "name": "Minkyu Jung",
+          "role": "penciler"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Ms. Marvel by Saladin Ahmed Vol. 1: Destined: Magnificent Ms. Marvel (2019) #1-6"
+    },
+    {
+      "issueId": 75476,
+      "title": "Magnificent Ms. Marvel (2019) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/75476/magnificent_ms_marvel_2019_5",
+      "seriesId": 27133,
+      "seriesName": "Magnificent Ms. Marvel (2019)",
+      "onSale": "2019-07-24T00:00:00+0000",
+      "mu": "2020-01-27T00:00:00+0000",
+      "digitalId": 51976,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/a0/5d2c92009a2a3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juan Vlasco",
+          "role": "cover artist"
+        },
+        {
+          "name": "Eduard Petrovich",
+          "role": "penciler"
+        },
+        {
+          "name": "Minkyu Jung",
+          "role": "penciler"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Ms. Marvel by Saladin Ahmed Vol. 1: Destined: Magnificent Ms. Marvel (2019) #1-6"
+    },
+    {
+      "issueId": 75477,
+      "title": "Magnificent Ms. Marvel (2019) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/75477/magnificent_ms_marvel_2019_6",
+      "seriesId": 27133,
+      "seriesName": "Magnificent Ms. Marvel (2019)",
+      "onSale": "2019-08-21T00:00:00+0000",
+      "mu": "2020-02-24T00:00:00+0000",
+      "digitalId": 52378,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/30/5d5422518bb37",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juan Vlasco",
+          "role": "cover artist"
+        },
+        {
+          "name": "Eduard Petrovich",
+          "role": "penciler"
+        },
+        {
+          "name": "Minkyu Jung",
+          "role": "penciler"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Ms. Marvel by Saladin Ahmed Vol. 1: Destined: Magnificent Ms. Marvel (2019) #1-6"
+    },
+    {
+      "issueId": 75593,
+      "title": "Marvel Team-Up (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/75593/marvel_team-up_2019_1",
+      "seriesId": 27184,
+      "seriesName": "Marvel Team-Up (2019 - Present)",
+      "onSale": "2019-04-03T00:00:00+0000",
+      "mu": "2019-10-07T00:00:00+0000",
+      "digitalId": 51088,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/5c9bfb56165b7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Joey Vazquez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stefano Caselli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Eve Ewing",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Ms. Marvel Team-Up: Marvel Team-Up (2019) #1-6"
+    },
+    {
+      "issueId": 75597,
+      "title": "Marvel Team-Up (2019) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/75597/marvel_team-up_2019_2",
+      "seriesId": 27184,
+      "seriesName": "Marvel Team-Up (2019 - Present)",
+      "onSale": "2019-05-01T00:00:00+0000",
+      "mu": "2019-11-04T00:00:00+0000",
+      "digitalId": 51363,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/00/5cc1df58d2bd0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Joey Vazquez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stefano Caselli",
+          "role": "penciler"
+        },
+        {
+          "name": "Eve Ewing",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Ms. Marvel Team-Up: Marvel Team-Up (2019) #1-6"
+    },
+    {
+      "issueId": 75599,
+      "title": "Marvel Team-Up (2019) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/75599/marvel_team-up_2019_3",
+      "seriesId": 27184,
+      "seriesName": "Marvel Team-Up (2019 - Present)",
+      "onSale": "2019-06-05T00:00:00+0000",
+      "mu": "2019-12-09T00:00:00+0000",
+      "digitalId": 51678,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/60/5ced98d8e16c8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Joey Vazquez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Moy Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Stefano Caselli",
+          "role": "penciler"
+        },
+        {
+          "name": "Eve Ewing",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Ms. Marvel Team-Up: Marvel Team-Up (2019) #1-6"
+    },
+    {
+      "issueId": 75600,
+      "title": "Marvel Team-Up (2019) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/75600/marvel_team-up_2019_4",
+      "seriesId": 27184,
+      "seriesName": "Marvel Team-Up (2019 - Present)",
+      "onSale": "2019-07-31T00:00:00+0000",
+      "mu": "2020-02-03T00:00:00+0000",
+      "digitalId": 51889,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/00/5d3880de2a05b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ig Guara",
+          "role": "cover artist"
+        },
+        {
+          "name": "Anna Rud",
+          "role": "penciler"
+        },
+        {
+          "name": "The McElroys",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Ms. Marvel Team-Up: Marvel Team-Up (2019) #1-6"
+    },
+    {
+      "issueId": 75601,
+      "title": "Marvel Team-Up (2019) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/75601/marvel_team-up_2019_5",
+      "seriesId": 27184,
+      "seriesName": "Marvel Team-Up (2019 - Present)",
+      "onSale": "2019-08-28T00:00:00+0000",
+      "mu": "2020-03-02T00:00:00+0000",
+      "digitalId": 52404,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/90/5d5d4c847a8ba",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ig Guara",
+          "role": "cover artist"
+        },
+        {
+          "name": "Anna Rud",
+          "role": "penciler"
+        },
+        {
+          "name": "The McElroys",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Ms. Marvel Team-Up: Marvel Team-Up (2019) #1-6"
+    },
+    {
+      "issueId": 75602,
+      "title": "Marvel Team-Up (2019) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/75602/marvel_team-up_2019_6",
+      "seriesId": 27184,
+      "seriesName": "Marvel Team-Up (2019 - Present)",
+      "onSale": "2019-09-25T00:00:00+0000",
+      "mu": "2020-03-30T00:00:00+0000",
+      "digitalId": 52536,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/b0/5d7f932962948",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ig Guara",
+          "role": "cover artist"
+        },
+        {
+          "name": "Anna Rud",
+          "role": "penciler"
+        },
+        {
+          "name": "The McElroys",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Ms. Marvel Team-Up: Marvel Team-Up (2019) #1-6"
+    },
+    {
+      "issueId": 75478,
+      "title": "Magnificent Ms. Marvel (2019) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/75478/magnificent_ms_marvel_2019_7",
+      "seriesId": 27133,
+      "seriesName": "Magnificent Ms. Marvel (2019)",
+      "onSale": "2019-09-18T00:00:00+0000",
+      "mu": "2020-03-23T00:00:00+0000",
+      "digitalId": 52532,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/d0/5d7671869d685",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Joey Vazquez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Eduard Petrovich",
+          "role": "penciler"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Ms. Marvel by Saladin Ahmed Vol. 2: Stormranger: Magnificent Ms. Marvel (2019) #7-12"
+    },
+    {
+      "issueId": 75481,
+      "title": "Magnificent Ms. Marvel (2019) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/75481/magnificent_ms_marvel_2019_8",
+      "seriesId": 27133,
+      "seriesName": "Magnificent Ms. Marvel (2019)",
+      "onSale": "2019-10-09T00:00:00+0000",
+      "mu": "2020-04-13T00:00:00+0000",
+      "digitalId": 52696,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/5d924cb8a541f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Joey Vazquez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Arizmendi",
+          "role": "penciler"
+        },
+        {
+          "name": "Eduard Petrovich",
+          "role": "penciler"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Ms. Marvel by Saladin Ahmed Vol. 2: Stormranger: Magnificent Ms. Marvel (2019) #7-12"
+    },
+    {
+      "issueId": 75851,
+      "title": "Magnificent Ms. Marvel (2019) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/75851/magnificent_ms_marvel_2019_9",
+      "seriesId": 27133,
+      "seriesName": "Magnificent Ms. Marvel (2019)",
+      "onSale": "2019-11-06T00:00:00+0000",
+      "mu": "2020-05-11T00:00:00+0000",
+      "digitalId": 53005,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/5db841ddc7192",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juan Vlasco",
+          "role": "cover artist"
+        },
+        {
+          "name": "Eduard Petrovich",
+          "role": "penciler"
+        },
+        {
+          "name": "Minkyu Jung",
+          "role": "penciler"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Ms. Marvel by Saladin Ahmed Vol. 2: Stormranger: Magnificent Ms. Marvel (2019) #7-12"
+    },
+    {
+      "issueId": 75852,
+      "title": "Magnificent Ms. Marvel (2019) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/75852/magnificent_ms_marvel_2019_10",
+      "seriesId": 27133,
+      "seriesName": "Magnificent Ms. Marvel (2019)",
+      "onSale": "2019-12-04T00:00:00+0000",
+      "mu": "2020-06-08T00:00:00+0000",
+      "digitalId": 53266,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/c0/5ddc12f55baad",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juan Vlasco",
+          "role": "cover artist"
+        },
+        {
+          "name": "Eduard Petrovich",
+          "role": "penciler"
+        },
+        {
+          "name": "Minkyu Jung",
+          "role": "penciler"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Ms. Marvel by Saladin Ahmed Vol. 2: Stormranger: Magnificent Ms. Marvel (2019) #7-12"
+    },
+    {
+      "issueId": 75853,
+      "title": "Magnificent Ms. Marvel (2019) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/75853/magnificent_ms_marvel_2019_11",
+      "seriesId": 27133,
+      "seriesName": "Magnificent Ms. Marvel (2019)",
+      "onSale": "2020-01-08T00:00:00+0000",
+      "mu": "2020-07-13T00:00:00+0000",
+      "digitalId": 53565,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/5e0a661d95d72",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juan Vlasco",
+          "role": "cover artist"
+        },
+        {
+          "name": "Eduard Petrovich",
+          "role": "penciler"
+        },
+        {
+          "name": "Minkyu Jung",
+          "role": "penciler"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Ms. Marvel by Saladin Ahmed Vol. 2: Stormranger: Magnificent Ms. Marvel (2019) #7-12"
+    },
+    {
+      "issueId": 75854,
+      "title": "Magnificent Ms. Marvel (2019) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/75854/magnificent_ms_marvel_2019_12",
+      "seriesId": 27133,
+      "seriesName": "Magnificent Ms. Marvel (2019)",
+      "onSale": "2020-02-05T00:00:00+0000",
+      "mu": "2020-08-10T00:00:00+0000",
+      "digitalId": 53984,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/d0/5e2f0dbff2da1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juan Vlasco",
+          "role": "cover artist"
+        },
+        {
+          "name": "Eduard Petrovich",
+          "role": "penciler"
+        },
+        {
+          "name": "Minkyu Jung",
+          "role": "penciler"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Ms. Marvel by Saladin Ahmed Vol. 2: Stormranger: Magnificent Ms. Marvel (2019) #7-12"
+    },
+    {
+      "issueId": 84547,
+      "title": "Magnificent Ms. Marvel (2019) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/84547/magnificent_ms_marvel_2019_13",
+      "seriesId": 27133,
+      "seriesName": "Magnificent Ms. Marvel (2019)",
+      "onSale": "2020-03-04T00:00:00+0000",
+      "mu": "2020-09-07T00:00:00+0000",
+      "digitalId": 54276,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/50/5e53eb1ff2d3e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juan Vlasco",
+          "role": "cover artist"
+        },
+        {
+          "name": "Eduard Petrovich",
+          "role": "penciler"
+        },
+        {
+          "name": "Joey Vazquez",
+          "role": "penciler"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Ms. Marvel by Saladin Ahmed Vol. 3: Outlawed: Magnificent Ms. Marvel (2019) #13-18"
+    },
+    {
+      "issueId": 84548,
+      "title": "Magnificent Ms. Marvel (2019) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/84548/magnificent_ms_marvel_2019_14",
+      "seriesId": 27133,
+      "seriesName": "Magnificent Ms. Marvel (2019)",
+      "onSale": "2020-09-09T00:00:00+0000",
+      "mu": "2020-12-14T00:00:00+0000",
+      "digitalId": 54626,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/10/5f5943451a687",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juan Vlasco",
+          "role": "cover artist"
+        },
+        {
+          "name": "Eduard Petrovich",
+          "role": "penciler"
+        },
+        {
+          "name": "Minkyu Jung",
+          "role": "penciler"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Ms. Marvel by Saladin Ahmed Vol. 3: Outlawed: Magnificent Ms. Marvel (2019) #13-18"
+    },
+    {
+      "issueId": 84549,
+      "title": "Magnificent Ms. Marvel (2019) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/84549/magnificent_ms_marvel_2019_15",
+      "seriesId": 27133,
+      "seriesName": "Magnificent Ms. Marvel (2019)",
+      "onSale": "2020-10-07T00:00:00+0000",
+      "mu": "2021-01-11T00:00:00+0000",
+      "digitalId": 54903,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/10/5f735c404531b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juan Vlasco",
+          "role": "cover artist"
+        },
+        {
+          "name": "Eduard Petrovich",
+          "role": "penciler"
+        },
+        {
+          "name": "Minkyu Jung",
+          "role": "penciler"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Ms. Marvel by Saladin Ahmed Vol. 3: Outlawed: Magnificent Ms. Marvel (2019) #13-18"
+    },
+    {
+      "issueId": 84550,
+      "title": "Magnificent Ms. Marvel (2019) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/84550/magnificent_ms_marvel_2019_16",
+      "seriesId": 27133,
+      "seriesName": "Magnificent Ms. Marvel (2019)",
+      "onSale": "2020-11-11T00:00:00+0000",
+      "mu": "2021-02-15T00:00:00+0000",
+      "digitalId": 55099,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/601af74058f82",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Eduard Petrovich",
+          "role": "penciler"
+        },
+        {
+          "name": "Minkyu Jung",
+          "role": "penciler"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Ms. Marvel by Saladin Ahmed Vol. 3: Outlawed: Magnificent Ms. Marvel (2019) #13-18"
+    },
+    {
+      "issueId": 84551,
+      "title": "Magnificent Ms. Marvel (2019) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/84551/magnificent_ms_marvel_2019_17",
+      "seriesId": 27133,
+      "seriesName": "Magnificent Ms. Marvel (2019)",
+      "onSale": "2020-12-16T00:00:00+0000",
+      "mu": "2021-03-22T00:00:00+0000",
+      "digitalId": 55818,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/80/5fcfb88838de5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Minkyu Jung",
+          "role": "penciler"
+        },
+        {
+          "name": "Mirka Andolfo",
+          "role": "penciler"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Ms. Marvel by Saladin Ahmed Vol. 3: Outlawed: Magnificent Ms. Marvel (2019) #13-18"
+    },
+    {
+      "issueId": 89683,
+      "title": "Magnificent Ms. Marvel (2019) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/89683/magnificent_ms_marvel_2019_18",
+      "seriesId": 27133,
+      "seriesName": "Magnificent Ms. Marvel (2019)",
+      "onSale": "2021-02-24T00:00:00+0000",
+      "mu": "2021-05-31T00:00:00+0000",
+      "digitalId": 56033,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/03/603036260e79d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Minkyu Jung",
+          "role": "penciler"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Ms. Marvel by Saladin Ahmed Vol. 3: Outlawed: Magnificent Ms. Marvel (2019) #13-18"
+    },
+    {
+      "issueId": 81222,
+      "title": "Outlawed (2020) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/81222/outlawed_2020_1",
+      "seriesId": 29045,
+      "seriesName": "Outlawed (2020)",
+      "onSale": "2020-03-18T00:00:00+0000",
+      "mu": "2020-09-21T00:00:00+0000",
+      "digitalId": 54307,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/5e67bec259a51",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Pepe Larraz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kim Jacinto",
+          "role": "penciler"
+        },
+        {
+          "name": "Eve Ewing",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Champions by Eve Ewing Vol. 1: Outlawed: Outlawed (2020) #1; Champions (2020) #1-5"
+    },
+    {
+      "issueId": 81189,
+      "title": "Champions (2020) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/81189/champions_2020_1",
+      "seriesId": 29034,
+      "seriesName": "Champions (2020)",
+      "onSale": "2020-10-07T00:00:00+0000",
+      "mu": "2021-01-11T00:00:00+0000",
+      "digitalId": 54592,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/5f2da4d088927",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Simone DI Meo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Antonio Infante",
+          "role": "penciler"
+        },
+        {
+          "name": "Eve Ewing",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Champions by Eve Ewing Vol. 1: Outlawed: Outlawed (2020) #1; Champions (2020) #1-5"
+    },
+    {
+      "issueId": 81190,
+      "title": "Champions (2020) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/81190/champions_2020_2",
+      "seriesId": 29034,
+      "seriesName": "Champions (2020)",
+      "onSale": "2020-11-11T00:00:00+0000",
+      "mu": "2021-02-15T00:00:00+0000",
+      "digitalId": 54864,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/601af7478fee3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Simone DI Meo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Antonio Infante",
+          "role": "penciler"
+        },
+        {
+          "name": "Robert Quinn",
+          "role": "penciler"
+        },
+        {
+          "name": "Eve Ewing",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Champions by Eve Ewing Vol. 1: Outlawed: Outlawed (2020) #1; Champions (2020) #1-5"
+    },
+    {
+      "issueId": 81191,
+      "title": "Champions (2020) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/81191/champions_2020_3",
+      "seriesId": 29034,
+      "seriesName": "Champions (2020)",
+      "onSale": "2020-12-02T00:00:00+0000",
+      "mu": "2021-03-08T00:00:00+0000",
+      "digitalId": 55064,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/80/601afd24129c0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Robert Quinn",
+          "role": "cover artist"
+        },
+        {
+          "name": "Antonio Infante",
+          "role": "penciler"
+        },
+        {
+          "name": "Jon Lam",
+          "role": "penciler"
+        },
+        {
+          "name": "Eve Ewing",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Champions by Eve Ewing Vol. 1: Outlawed: Outlawed (2020) #1; Champions (2020) #1-5"
+    },
+    {
+      "issueId": 81192,
+      "title": "Champions (2020) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/81192/champions_2020_4",
+      "seriesId": 29034,
+      "seriesName": "Champions (2020)",
+      "onSale": "2021-02-17T00:00:00+0000",
+      "mu": "2021-05-24T00:00:00+0000",
+      "digitalId": 56011,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/03/6026d1a455386",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Robert Quinn",
+          "role": "cover artist"
+        },
+        {
+          "name": "Antonio Infante",
+          "role": "penciler"
+        },
+        {
+          "name": "Eve Ewing",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Champions by Eve Ewing Vol. 1: Outlawed: Outlawed (2020) #1; Champions (2020) #1-5"
+    },
+    {
+      "issueId": 81193,
+      "title": "Champions (2020) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/81193/champions_2020_5",
+      "seriesId": 29034,
+      "seriesName": "Champions (2020)",
+      "onSale": "2021-03-17T00:00:00+0000",
+      "mu": "2021-06-21T00:00:00+0000",
+      "digitalId": 56394,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/60464e3561fa4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Luciano Vecchio",
+          "role": "cover artist"
+        },
+        {
+          "name": "Robert Quinn",
+          "role": "cover artist"
+        },
+        {
+          "name": "Antonio Infante",
+          "role": "penciler"
+        },
+        {
+          "name": "Danny Lore",
+          "role": "writer"
+        },
+        {
+          "name": "Eve Ewing",
+          "role": "writer"
+        },
+        {
+          "name": "Vita Ayala",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Champions by Eve Ewing Vol. 1: Outlawed: Outlawed (2020) #1; Champions (2020) #1-5"
+    },
+    {
+      "issueId": 94149,
+      "title": "Ms. Marvel: Beyond the Limit (2021) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/94149/ms_marvel_beyond_the_limit_2021_1",
+      "seriesId": 32125,
+      "seriesName": "Ms. Marvel: Beyond the Limit (2021 - 2022)",
+      "onSale": "2021-12-22T00:00:00+0000",
+      "mu": "2022-03-28T00:00:00+0000",
+      "digitalId": 57675,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/10/61ae1ef873c1a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andres Genolet",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mashal Ahmed",
+          "role": "penciler"
+        },
+        {
+          "name": "Samira Ahmed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Ms. Marvel: Beyond the Limit: Ms. Marvel: Beyond the Limit #1-5"
+    },
+    {
+      "issueId": 94150,
+      "title": "Ms. Marvel: Beyond the Limit (2021) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/94150/ms_marvel_beyond_the_limit_2021_2",
+      "seriesId": 32125,
+      "seriesName": "Ms. Marvel: Beyond the Limit (2021 - 2022)",
+      "onSale": "2022-01-12T00:00:00+0000",
+      "mu": "2022-04-18T00:00:00+0000",
+      "digitalId": 57796,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/61cf40729af90",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andres Genolet",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mashal Ahmed",
+          "role": "penciler"
+        },
+        {
+          "name": "Samira Ahmed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Ms. Marvel: Beyond the Limit: Ms. Marvel: Beyond the Limit #1-5"
+    },
+    {
+      "issueId": 94151,
+      "title": "Ms. Marvel: Beyond the Limit (2021) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/94151/ms_marvel_beyond_the_limit_2021_3",
+      "seriesId": 32125,
+      "seriesName": "Ms. Marvel: Beyond the Limit (2021 - 2022)",
+      "onSale": "2022-02-23T00:00:00+0000",
+      "mu": "2022-05-30T00:00:00+0000",
+      "digitalId": 58639,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/20/6201552f5c72e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andres Genolet",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mashal Ahmed",
+          "role": "penciler"
+        },
+        {
+          "name": "Samira Ahmed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Ms. Marvel: Beyond the Limit: Ms. Marvel: Beyond the Limit #1-5"
+    },
+    {
+      "issueId": 94152,
+      "title": "Ms. Marvel: Beyond the Limit (2021) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/94152/ms_marvel_beyond_the_limit_2021_4",
+      "seriesId": 32125,
+      "seriesName": "Ms. Marvel: Beyond the Limit (2021 - 2022)",
+      "onSale": "2022-03-23T00:00:00+0000",
+      "mu": "2022-06-27T00:00:00+0000",
+      "digitalId": 58822,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/20/61f019e764956",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andres Genolet",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mashal Ahmed",
+          "role": "penciler"
+        },
+        {
+          "name": "Samira Ahmed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Ms. Marvel: Beyond the Limit: Ms. Marvel: Beyond the Limit #1-5"
+    },
+    {
+      "issueId": 94153,
+      "title": "Ms. Marvel: Beyond the Limit (2021) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/94153/ms_marvel_beyond_the_limit_2021_5",
+      "seriesId": 32125,
+      "seriesName": "Ms. Marvel: Beyond the Limit (2021 - 2022)",
+      "onSale": "2022-04-27T00:00:00+0000",
+      "mu": "2022-08-01T00:00:00+0000",
+      "digitalId": 59154,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/50/6262ff57f3982",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andres Genolet",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mashal Ahmed",
+          "role": "penciler"
+        },
+        {
+          "name": "Ze Carlos",
+          "role": "penciler"
+        },
+        {
+          "name": "Samira Ahmed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "A New Era for Kamala (2019 - Present) | Ms. Marvel: Beyond the Limit: Ms. Marvel: Beyond the Limit #1-5"
+    },
+    {
+      "issueId": 66916,
+      "title": "Marvel Rising (2018)",
+      "number": "0",
+      "url": "https://www.marvel.com/comics/issue/66916/marvel_rising_2018",
+      "seriesId": 25804,
+      "seriesName": "Marvel Rising (2018)",
+      "onSale": "2018-04-25T00:00:00+0000",
+      "mu": "2018-04-25T00:00:00+0000",
+      "digitalId": 47810,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/70/5ad7ae49a158c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Helen Chen",
+          "role": "penciler"
+        },
+        {
+          "name": "Marco Failla",
+          "role": "penciler"
+        },
+        {
+          "name": "Devin Grayson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions | Marvel Rising: Marvel Rising (2018) #0; Marvel Rising: Alpha (2018) #1; Marvel Rising: Squirrel Girl/Ms. Marvel (2018) #1; Marvel Rising: Ms. Marvel/Squirrel Girl (2018) #1; Marvel Rising: Omega (2018) #1"
+    },
+    {
+      "issueId": 69010,
+      "title": "Marvel Rising: Alpha (2018) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/69010/marvel_rising_alpha_2018_1",
+      "seriesId": 25133,
+      "seriesName": "Marvel Rising: Alpha (2018)",
+      "onSale": "2018-06-13T00:00:00+0000",
+      "mu": "2018-12-17T00:00:00+0000",
+      "digitalId": 48277,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/90/5b1704c31cf41",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Georges Duarte",
+          "role": "cover artist"
+        },
+        {
+          "name": "G Gurihiru",
+          "role": "penciler"
+        },
+        {
+          "name": "Devin Grayson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions | Marvel Rising: Marvel Rising (2018) #0; Marvel Rising: Alpha (2018) #1; Marvel Rising: Squirrel Girl/Ms. Marvel (2018) #1; Marvel Rising: Ms. Marvel/Squirrel Girl (2018) #1; Marvel Rising: Omega (2018) #1"
+    },
+    {
+      "issueId": 69030,
+      "title": "Marvel Rising: Squirrel Girl/Ms. Marvel (2018) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/69030/marvel_rising_squirrel_girlms_marvel_2018_1",
+      "seriesId": 25147,
+      "seriesName": "Marvel Rising: Squirrel Girl/Ms. Marvel (2018)",
+      "onSale": "2018-07-04T00:00:00+0000",
+      "mu": "2019-01-07T00:00:00+0000",
+      "digitalId": 48547,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/03/5b340768c0336",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 56,
+      "creators": [
+        {
+          "name": "Ramón F. Bachs",
+          "role": "cover artist"
+        },
+        {
+          "name": "G Gurihiru",
+          "role": "penciler"
+        },
+        {
+          "name": "Irene Strychalski",
+          "role": "penciler"
+        },
+        {
+          "name": "Devin Grayson",
+          "role": "writer"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions | Marvel Rising: Marvel Rising (2018) #0; Marvel Rising: Alpha (2018) #1; Marvel Rising: Squirrel Girl/Ms. Marvel (2018) #1; Marvel Rising: Ms. Marvel/Squirrel Girl (2018) #1; Marvel Rising: Omega (2018) #1"
+    },
+    {
+      "issueId": 69019,
+      "title": "Marvel Rising: Ms. Marvel/Squirrel Girl (2018) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/69019/marvel_rising_ms_marvelsquirrel_girl_2018_1",
+      "seriesId": 25139,
+      "seriesName": "Marvel Rising: Ms. Marvel/Squirrel Girl (2018)",
+      "onSale": "2018-08-01T00:00:00+0000",
+      "mu": "2019-02-04T00:00:00+0000",
+      "digitalId": 48941,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/10/5b58cf48ab0ac",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 52,
+      "creators": [
+        {
+          "name": "Ramón F. Bachs",
+          "role": "cover artist"
+        },
+        {
+          "name": "G Gurihiru",
+          "role": "penciler"
+        },
+        {
+          "name": "Irene Strychalski",
+          "role": "penciler"
+        },
+        {
+          "name": "Devin Grayson",
+          "role": "writer"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions | Marvel Rising: Marvel Rising (2018) #0; Marvel Rising: Alpha (2018) #1; Marvel Rising: Squirrel Girl/Ms. Marvel (2018) #1; Marvel Rising: Ms. Marvel/Squirrel Girl (2018) #1; Marvel Rising: Omega (2018) #1"
+    },
+    {
+      "issueId": 69021,
+      "title": "Marvel Rising: Omega (2018) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/69021/marvel_rising_omega_2018_1",
+      "seriesId": 25141,
+      "seriesName": "Marvel Rising: Omega (2018)",
+      "onSale": "2018-09-12T00:00:00+0000",
+      "mu": "2019-03-18T00:00:00+0000",
+      "digitalId": 49145,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/5b90146fb8b3f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Georges Duarte",
+          "role": "cover artist"
+        },
+        {
+          "name": "G Gurihiru",
+          "role": "penciler"
+        },
+        {
+          "name": "Devin Grayson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions | Marvel Rising: Marvel Rising (2018) #0; Marvel Rising: Alpha (2018) #1; Marvel Rising: Squirrel Girl/Ms. Marvel (2018) #1; Marvel Rising: Ms. Marvel/Squirrel Girl (2018) #1; Marvel Rising: Omega (2018) #1"
+    },
+    {
+      "issueId": 103514,
+      "title": "Ms. Marvel & Wolverine (2022) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/103514/ms_marvel_wolverine_2022_1",
+      "seriesId": 35628,
+      "seriesName": "Ms. Marvel & Wolverine (2022)",
+      "onSale": "2022-08-10T00:00:00+0000",
+      "mu": "2022-11-14T00:00:00+0000",
+      "digitalId": 60009,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/62dab25d45725",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Ze Carlos",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sara Pichelli",
+          "role": "penciler"
+        },
+        {
+          "name": "Jody Houser",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions | Ms. Marvel: Fists of Justice: Ms. Marvel & Wolverine #1; Ms. Marvel & Moon Knight #1; Ms. Marvel & Venom #1"
+    },
+    {
+      "issueId": 103512,
+      "title": "Ms. Marvel & Moon Knight (2022) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/103512/ms_marvel_moon_knight_2022_1",
+      "seriesId": 35626,
+      "seriesName": "Ms. Marvel & Moon Knight (2022)",
+      "onSale": "2022-08-17T00:00:00+0000",
+      "mu": "2022-11-21T00:00:00+0000",
+      "digitalId": 60200,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/10/62f3c67d80f9d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Ibraim Roberson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sara Pichelli",
+          "role": "penciler"
+        },
+        {
+          "name": "Jody Houser",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions | Ms. Marvel: Fists of Justice: Ms. Marvel & Wolverine #1; Ms. Marvel & Moon Knight #1; Ms. Marvel & Venom #1"
+    },
+    {
+      "issueId": 103513,
+      "title": "Ms. Marvel & Venom (2022) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/103513/ms_marvel_venom_2022_1",
+      "seriesId": 35627,
+      "seriesName": "Ms. Marvel & Venom (2022)",
+      "onSale": "2022-09-14T00:00:00+0000",
+      "mu": "2022-12-19T00:00:00+0000",
+      "digitalId": 60349,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/631b3a2c7f967",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Dave Wachter",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sara Pichelli",
+          "role": "penciler"
+        },
+        {
+          "name": "Jody Houser",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions | Ms. Marvel: Fists of Justice: Ms. Marvel & Wolverine #1; Ms. Marvel & Moon Knight #1; Ms. Marvel & Venom #1"
+    },
+    {
+      "issueId": 101168,
+      "title": "Marvel's Voices: Pride (2022) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/101168/marvels_voices_pride_2022_1",
+      "seriesId": 34644,
+      "seriesName": "Marvel's Voices: Pride (2022)",
+      "onSale": "2022-06-22T00:00:00+0000",
+      "mu": "2022-09-26T00:00:00+0000",
+      "digitalId": 59616,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/62b9e0e45d35e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 88,
+      "creators": [
+        {
+          "name": "Lee Townsend",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ro Stein",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stephen Byrne",
+          "role": "cover artist"
+        },
+        {
+          "name": "Lorenzo Susi",
+          "role": "penciler"
+        },
+        {
+          "name": "Lucas Werneck",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Robles",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ted Brandt",
+          "role": "penciler"
+        },
+        {
+          "name": "Andrew Wheeler",
+          "role": "writer"
+        },
+        {
+          "name": "Charlie Jane Anders",
+          "role": "writer"
+        },
+        {
+          "name": "Christopher Cantwell",
+          "role": "writer"
+        },
+        {
+          "name": "Danny Lore",
+          "role": "writer"
+        },
+        {
+          "name": "Ira Madison",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions | Marvel's Voices: Pride (2022): Marvel's Voices: Pride (2022) #1"
+    },
+    {
+      "issueId": 102365,
+      "title": "Marvel's Voices: Identity (2022) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/102365/marvels_voices_identity_2022_1",
+      "seriesId": 35364,
+      "seriesName": "Marvel's Voices: Identity (2022)",
+      "onSale": "2022-05-18T00:00:00+0000",
+      "mu": "2022-08-22T00:00:00+0000",
+      "digitalId": 59357,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/03/62685179bd390",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 56,
+      "creators": [
+        {
+          "name": "Creees Lee",
+          "role": "cover artist"
+        },
+        {
+          "name": "Eric Koda",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kei Zama",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rickie Yagawa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Emily Kim",
+          "role": "writer"
+        },
+        {
+          "name": "Jeremy Holt",
+          "role": "writer"
+        },
+        {
+          "name": "Pornsak Pichetshote",
+          "role": "writer"
+        },
+        {
+          "name": "Rina Ayuyang",
+          "role": "writer"
+        },
+        {
+          "name": "Sabir Pirzada",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions | Marvel's Voices: Identity (2022): Marvel's Voices: Identity (2022) #1"
+    },
+    {
+      "issueId": 103236,
+      "title": "Dark Web (2022) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/103236/dark_web_2022_1",
+      "seriesId": 35566,
+      "seriesName": "Dark Web (2022)",
+      "onSale": "2022-12-07T00:00:00+0000",
+      "mu": "2023-03-13T00:00:00+0000",
+      "digitalId": 61041,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/63863d3a41bf0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Federico Vicentini",
+          "role": "penciler"
+        },
+        {
+          "name": "Zeb Wells",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions | Dark Web: Ms. Marvel: Dark Web #1; Amazing Spider-Man (2022) #15-18; Venom (2021) #14-15; Dark Web: X-Men #1-3; Dark Web: Ms. Marvel #1-2; Dark Web Finale #1"
+    },
+    {
+      "issueId": 102183,
+      "title": "The Amazing Spider-Man (2022) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/102183/the_amazing_spider-man_2022_15",
+      "seriesId": 32866,
+      "seriesName": "The Amazing Spider-Man (2022 - Present)",
+      "onSale": "2022-12-14T00:00:00+0000",
+      "mu": "2023-03-13T00:00:00+0000",
+      "digitalId": 61030,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/639a7b0d2fa78",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Cliff Rathburn",
+          "role": "cover artist"
+        },
+        {
+          "name": "Patrick Gleason",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Mcguinness",
+          "role": "penciler"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Zeb Wells",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions | Dark Web: Ms. Marvel: Dark Web #1; Amazing Spider-Man (2022) #15-18; Venom (2021) #14-15; Dark Web: X-Men #1-3; Dark Web: Ms. Marvel #1-2; Dark Web Finale #1"
+    },
+    {
+      "issueId": 102184,
+      "title": "The Amazing Spider-Man (2022) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/102184/the_amazing_spider-man_2022_16",
+      "seriesId": 32866,
+      "seriesName": "The Amazing Spider-Man (2022 - Present)",
+      "onSale": "2022-12-28T00:00:00+0000",
+      "mu": "2022-12-28T00:00:00+0000",
+      "digitalId": 61031,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/639a7a8bc2b09",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Cliff Rathburn",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Mcguinness",
+          "role": "penciler"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Zeb Wells",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions | Dark Web: Ms. Marvel: Dark Web #1; Amazing Spider-Man (2022) #15-18; Venom (2021) #14-15; Dark Web: X-Men #1-3; Dark Web: Ms. Marvel #1-2; Dark Web Finale #1"
+    },
+    {
+      "issueId": 102185,
+      "title": "The Amazing Spider-Man (2022) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/102185/the_amazing_spider-man_2022_17",
+      "seriesId": 32866,
+      "seriesName": "The Amazing Spider-Man (2022 - Present)",
+      "onSale": "2023-01-11T00:00:00+0000",
+      "mu": "2023-01-11T00:00:00+0000",
+      "digitalId": 61295,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/c0/63b4771f098c3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Cliff Rathburn",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Mcguinness",
+          "role": "penciler"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Zeb Wells",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions | Dark Web: Ms. Marvel: Dark Web #1; Amazing Spider-Man (2022) #15-18; Venom (2021) #14-15; Dark Web: X-Men #1-3; Dark Web: Ms. Marvel #1-2; Dark Web Finale #1"
+    },
+    {
+      "issueId": 102186,
+      "title": "The Amazing Spider-Man (2022) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/102186/the_amazing_spider-man_2022_18",
+      "seriesId": 32866,
+      "seriesName": "The Amazing Spider-Man (2022 - Present)",
+      "onSale": "2023-01-25T00:00:00+0000",
+      "mu": "2023-01-25T00:00:00+0000",
+      "digitalId": 61296,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/80/63c7fa7795f47",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Cliff Rathburn",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Mcguinness",
+          "role": "penciler"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Zeb Wells",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions | Dark Web: Ms. Marvel: Dark Web #1; Amazing Spider-Man (2022) #15-18; Venom (2021) #14-15; Dark Web: X-Men #1-3; Dark Web: Ms. Marvel #1-2; Dark Web Finale #1"
+    },
+    {
+      "issueId": 103643,
+      "title": "Venom (2021) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/103643/venom_2021_14",
+      "seriesId": 32870,
+      "seriesName": "Venom (2021 - Present)",
+      "onSale": "2022-12-28T00:00:00+0000",
+      "mu": "2022-12-28T00:00:00+0000",
+      "digitalId": 61090,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/00/639a79ea0a975",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrew Currie",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions | Dark Web: Ms. Marvel: Dark Web #1; Amazing Spider-Man (2022) #15-18; Venom (2021) #14-15; Dark Web: X-Men #1-3; Dark Web: Ms. Marvel #1-2; Dark Web Finale #1"
+    },
+    {
+      "issueId": 103644,
+      "title": "Venom (2021) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/103644/venom_2021_15",
+      "seriesId": 32870,
+      "seriesName": "Venom (2021 - Present)",
+      "onSale": "2023-01-18T00:00:00+0000",
+      "mu": "2023-01-18T00:00:00+0000",
+      "digitalId": 61260,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/a0/63c7fa82a29fc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrew Currie",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "Ram. V.",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions | Dark Web: Ms. Marvel: Dark Web #1; Amazing Spider-Man (2022) #15-18; Venom (2021) #14-15; Dark Web: X-Men #1-3; Dark Web: Ms. Marvel #1-2; Dark Web Finale #1"
+    },
+    {
+      "issueId": 104563,
+      "title": "Dark Web: X-Men (2022) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/104563/dark_web_x-men_2022_1",
+      "seriesId": 36208,
+      "seriesName": "Dark Web: X-Men (2022 - 2023)",
+      "onSale": "2022-12-14T00:00:00+0000",
+      "mu": "2023-03-13T00:00:00+0000",
+      "digitalId": 61043,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/e0/639a7b06768a5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Phil Noto",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions | Dark Web: Ms. Marvel: Dark Web #1; Amazing Spider-Man (2022) #15-18; Venom (2021) #14-15; Dark Web: X-Men #1-3; Dark Web: Ms. Marvel #1-2; Dark Web Finale #1"
+    },
+    {
+      "issueId": 104564,
+      "title": "Dark Web: X-Men (2022) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/104564/dark_web_x-men_2022_2",
+      "seriesId": 36208,
+      "seriesName": "Dark Web: X-Men (2022 - 2023)",
+      "onSale": "2022-12-28T00:00:00+0000",
+      "mu": "2022-12-28T00:00:00+0000",
+      "digitalId": 61044,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/639a7a6710f07",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Phil Noto",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions | Dark Web: Ms. Marvel: Dark Web #1; Amazing Spider-Man (2022) #15-18; Venom (2021) #14-15; Dark Web: X-Men #1-3; Dark Web: Ms. Marvel #1-2; Dark Web Finale #1"
+    },
+    {
+      "issueId": 104565,
+      "title": "Dark Web: X-Men (2022) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/104565/dark_web_x-men_2022_3",
+      "seriesId": 36208,
+      "seriesName": "Dark Web: X-Men (2022 - 2023)",
+      "onSale": "2023-01-18T00:00:00+0000",
+      "mu": "2023-01-18T00:00:00+0000",
+      "digitalId": 61209,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/63b4767e5bb82",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Phil Noto",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions | Dark Web: Ms. Marvel: Dark Web #1; Amazing Spider-Man (2022) #15-18; Venom (2021) #14-15; Dark Web: X-Men #1-3; Dark Web: Ms. Marvel #1-2; Dark Web Finale #1"
+    },
+    {
+      "issueId": 104561,
+      "title": "Dark Web: Ms. Marvel (2022) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/104561/dark_web_ms_marvel_2022_1",
+      "seriesId": 36207,
+      "seriesName": "Dark Web: Ms. Marvel (2022 - 2023)",
+      "onSale": "2022-12-21T00:00:00+0000",
+      "mu": "2022-12-21T00:00:00+0000",
+      "digitalId": 61042,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/b0/639a7ab7b9ce3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Mortarino",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marco Checchetto",
+          "role": "penciler"
+        },
+        {
+          "name": "Sabir Pirzada",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions | Dark Web: Ms. Marvel: Dark Web #1; Amazing Spider-Man (2022) #15-18; Venom (2021) #14-15; Dark Web: X-Men #1-3; Dark Web: Ms. Marvel #1-2; Dark Web Finale #1"
+    },
+    {
+      "issueId": 104562,
+      "title": "Dark Web: Ms. Marvel (2022) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/104562/dark_web_ms_marvel_2022_2",
+      "seriesId": 36207,
+      "seriesName": "Dark Web: Ms. Marvel (2022 - 2023)",
+      "onSale": "2023-01-11T00:00:00+0000",
+      "mu": "2023-01-11T00:00:00+0000",
+      "digitalId": 61307,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/70/63b476f63e9d9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Mortarino",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marco Checchetto",
+          "role": "penciler"
+        },
+        {
+          "name": "Sabir Pirzada",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions | Dark Web: Ms. Marvel: Dark Web #1; Amazing Spider-Man (2022) #15-18; Venom (2021) #14-15; Dark Web: X-Men #1-3; Dark Web: Ms. Marvel #1-2; Dark Web Finale #1"
+    },
+    {
+      "issueId": 104546,
+      "title": "Dark Web Finale (2023) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/104546/dark_web_finale_2023_1",
+      "seriesId": 36206,
+      "seriesName": "Dark Web Finale (2023)",
+      "onSale": "2023-02-01T00:00:00+0000",
+      "mu": "2023-01-19T00:00:00+0000",
+      "digitalId": 61839,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/63d28f615d43b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Zeb Wells",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions | Dark Web: Ms. Marvel: Dark Web #1; Amazing Spider-Man (2022) #15-18; Venom (2021) #14-15; Dark Web: X-Men #1-3; Dark Web: Ms. Marvel #1-2; Dark Web Finale #1"
+    },
+    {
+      "issueId": 102194,
+      "title": "The Amazing Spider-Man (2022) #26",
+      "number": "26",
+      "url": "https://www.marvel.com/comics/issue/102194/the_amazing_spider-man_2022_26",
+      "seriesId": 32866,
+      "seriesName": "The Amazing Spider-Man (2022 - Present)",
+      "onSale": "2023-05-31T00:00:00+0000",
+      "mu": "2023-05-09T18:43:00+0000",
+      "digitalId": 62479,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/60/646e77937c74a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Zeb Wells",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions | Amazing Spider-Man (2022) #26: Amazing Spider-Man (2022) #26"
+    },
+    {
+      "issueId": -2019288189,
+      "title": "Fallen Friend: The Death of Ms. Marvel (2023) #1",
+      "number": "1",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Latest Additions | Fallen Friend: The Death of Ms. Marvel: Fallen Friend: The Death of Ms. Marvel (2023) #1"
+    },
+    {
+      "issueId": -2036065808,
+      "title": "Ms. Marvel: The New Mutant (2023) #1",
+      "number": "1",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Latest Additions | Ms. Marvel: The New Mutant: Ms. Marvel: The New Mutant #1-4"
+    },
+    {
+      "issueId": -1985732951,
+      "title": "Ms. Marvel: The New Mutant (2023) #2",
+      "number": "2",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Latest Additions | Ms. Marvel: The New Mutant: Ms. Marvel: The New Mutant #1-4"
+    },
+    {
+      "issueId": -2002510570,
+      "title": "Ms. Marvel: The New Mutant (2023) #3",
+      "number": "3",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Latest Additions | Ms. Marvel: The New Mutant: Ms. Marvel: The New Mutant #1-4"
+    },
+    {
+      "issueId": -1952177713,
+      "title": "Ms. Marvel: The New Mutant (2023) #4",
+      "number": "4",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Latest Additions | Ms. Marvel: The New Mutant: Ms. Marvel: The New Mutant #1-4"
+    }
+  ]
+}
