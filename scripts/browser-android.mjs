@@ -8,6 +8,7 @@ import { pathToFileURL } from 'node:url';
 import { CSP } from '../server.mjs';
 import { prepareAndroid, ANDROID_ASSET_DIR } from './prepare-android.mjs';
 import { LOCAL_SERVER_HEALTH_PATH, LOCAL_SERVER_HEADER_NAME, LOCAL_SERVER_HEADER_VALUE } from '../src/js/lib/localServer.js';
+import { createEmptyState, createList, addIssuesToList, setIssueNote } from '../src/js/lib/model.js';
 
 const driver = process.env.MRT_PUPPETEER || join(homedir(), '.mrt-scratch', 'node_modules', 'puppeteer-core', 'lib', 'puppeteer', 'puppeteer-core.js');
 const edge = process.env.MRT_EDGE || 'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe';
@@ -22,6 +23,7 @@ const noStyle = process.argv.includes('--without-mobile-style');
 const mobileUi = process.argv.includes('--only=mobile-ui');
 const launcherOnly = process.argv.includes('--only=launcher');
 const seriesReadability = process.argv.includes('--only=series-readability');
+const noteReadability = process.argv.includes('--only=note-readability');
 const server = createServer(async (req, res) => {
   const path = new URL(req.url, 'http://127.0.0.1').pathname;
   if (path === LOCAL_SERVER_HEALTH_PATH) {
@@ -253,6 +255,128 @@ async function seriesResultReadability(page, label, desktop) {
   console.log(`CHECKED ${label}: ${rendered.rows.length} series results, ${words.measured} rendered words, Add behavior; hit rectangles ${JSON.stringify(rendered.rows.map((row) => row.button))}`);
 }
 
+const NOTE_REFERENCE = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+const NOTE_CASES = [
+  ['prose', 'Synthetic note with ordinary words that should wrap at spaces and stay fully readable.'],
+  ['reference', `Synthetic note with ordinary words and an unbroken reference: ${NOTE_REFERENCE}`],
+  ['url', `Synthetic note with a long URL: https://example.invalid/${NOTE_REFERENCE}`],
+];
+let noteState = createList(createEmptyState(), { id: 'note-fixture', name: 'Note readability' });
+noteState = addIssuesToList(noteState, 'note-fixture', NOTE_CASES.map(([name], index) => ({
+  issueId: -900100 - index, title: `Note fixture #${index + 1}`, issueNumber: String(index + 1),
+  seriesName: `${name} note fixture`,
+}))).state;
+for (const [index, [, note]] of NOTE_CASES.entries()) {
+  noteState = setIssueNote(noteState, -900100 - index, note);
+}
+
+async function noteFixtures(page) {
+  await page.evaluateOnNewDocument((state) => {
+    if (!localStorage.getItem('mrt.state.v2')) localStorage.setItem('mrt.state.v2', JSON.stringify(state));
+    const originalFetch = window.fetch.bind(window);
+    window.fetch = async (input, options) => {
+      const url = new URL(input instanceof Request ? input.url : String(input), location.href);
+      const json = (value) => new Response(JSON.stringify(value), {
+        headers: { 'content-type': 'application/json' },
+      });
+      if (url.pathname === '/data/catalog.json') return json({ lists: [] });
+      if (url.origin !== location.origin) {
+        if (url.pathname === '/v1/health') return json({ status: 'ok' });
+        throw new Error(`Unexpected note fixture request: ${url.href}`);
+      }
+      return originalFetch(input, options);
+    };
+    const originalBlobUrl = URL.createObjectURL.bind(URL);
+    window.__noteExports = [];
+    URL.createObjectURL = (blob) => {
+      window.__noteExports.push(blob.text());
+      return originalBlobUrl(blob);
+    };
+    document.addEventListener('click', (event) => {
+      if (event.target.closest('a[download]')) event.preventDefault();
+    }, true);
+  }, noteState);
+}
+
+async function issueNoteReadability(page, label, desktop) {
+  const saved = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+  for (const [index, [name, note]] of NOTE_CASES.entries()) {
+    await page.evaluate((id) => { location.hash = `#/issue/${id}?list=note-fixture`; }, -900100 - index);
+    await page.waitForFunction((text) => {
+      const node = document.querySelector('#issue-focus-note');
+      return !document.querySelector('#view-issue').hidden && !node.hidden && node.textContent === text;
+    }, {}, note);
+    const result = await page.evaluate(() => {
+      const node = document.querySelector('#issue-focus-note');
+      const bounds = (element) => {
+        const { left, right, top, bottom, width } = element.getBoundingClientRect();
+        return { left, right, top, bottom, width };
+      };
+      let clip = node.parentElement;
+      while (clip && !/(hidden|clip|auto|scroll)/.test(
+        `${getComputedStyle(clip).overflowX} ${getComputedStyle(clip).overflowY}`,
+      )) clip = clip.parentElement;
+      const noteBox = bounds(node), clipBox = clip && bounds(clip);
+      const inside = (rect, box) => box && rect.left >= box.left - 1 && rect.right <= box.right + 1
+        && rect.top >= box.top - 1 && rect.bottom <= box.bottom + 1;
+      const textRects = [], brokenWords = [], tokenLines = [];
+      const walker = document.createTreeWalker(node, NodeFilter.SHOW_TEXT);
+      let words = 0;
+      while (walker.nextNode()) {
+        const text = walker.currentNode;
+        const range = document.createRange();
+        range.selectNodeContents(text);
+        textRects.push(...[...range.getClientRects()].filter((rect) => rect.width && rect.height));
+        for (const match of text.textContent.matchAll(/\S+/g)) {
+          range.setStart(text, match.index);
+          range.setEnd(text, match.index + match[0].length);
+          const lines = [...range.getClientRects()].filter((rect) => rect.width && rect.height).length;
+          if (match[0].length < 36) {
+            words++;
+            if (lines !== 1) brokenWords.push(match[0]);
+          } else tokenLines.push(lines);
+        }
+      }
+      return {
+        text: node.textContent, noteBox, clipBox, clipId: clip?.id,
+        textRight: Math.max(...textRects.map((rect) => rect.right)),
+        lines: textRects.length, words, brokenWords, tokenLines,
+        outsideNote: textRects.filter((rect) => !inside(rect, noteBox)).length,
+        outsideClip: textRects.filter((rect) => !inside(rect, clipBox)).length,
+        body: parseFloat(getComputedStyle(document.body).fontSize),
+        wrap: getComputedStyle(node).overflowWrap,
+        androidStyle: !!document.querySelector('link[href="./android/mobile.css"]'),
+        overflow: document.documentElement.scrollWidth > innerWidth + 1,
+      };
+    });
+    const prefix = `${label} ${name}`;
+    check(result.text === note, `${prefix}: exact complete note string retained`);
+    check(result.androidStyle === !desktop && result.body === (desktop ? 14 : label.includes('150%') ? 24 : 16),
+      `${prefix}: incumbent entry and body size retained (${result.body}px)`);
+    check(result.lines > 0 && result.words > 5 && result.brokenWords.length === 0,
+      `${prefix}: ordinary words retain natural wrapping ${JSON.stringify(result.brokenWords)}`);
+    check(result.clipId === 'issue-focus-card', `${prefix}: measured nearest clipping hero, not just page width`);
+    check((desktop || result.outsideNote === 0) && result.outsideClip === 0,
+      `${prefix}: all descendant text rectangles fit ${desktop ? 'clipping hero' : 'note and clipping hero'} ${JSON.stringify(result)}`);
+    check(!result.overflow, `${prefix}: no horizontal document overflow`);
+    check(desktop ? result.wrap === 'normal' : name === 'prose' || result.tokenLines.some((lines) => lines > 1),
+      `${prefix}: ${desktop ? 'desktop wrapping unchanged' : 'long reference or URL emergency wraps'}`);
+    await page.$eval('#issue-focus-note', (node) => node.scrollIntoView({ block: 'center' }));
+    await screenshot(page, label, `note-${name}`);
+    console.log(`CHECKED ${prefix}: ${JSON.stringify(result)}`);
+  }
+  await route(page, 'data');
+  await click(page, '#btn-export-json');
+  await page.waitForFunction((isDesktop) => isDesktop
+    ? window.__noteExports.length === 1 : window.__androidTest.requests.length === 1, {}, desktop);
+  const exported = await page.evaluate(async (isDesktop) => JSON.parse(isDesktop
+    ? await window.__noteExports[0] : window.__androidTest.requests[0].text), desktop);
+  check(JSON.stringify(exported.notes) === JSON.stringify(noteState.notes),
+    `${label}: actual backup payload preserves every complete note`);
+  check(await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === saved,
+    `${label}: viewing and exporting leave saved state byte-for-byte unchanged`);
+}
+
 async function mobileLayout(page, label, narrow) {
   await page.waitForSelector('#home-recommended:not([hidden])');
   if (narrow) {
@@ -446,6 +570,13 @@ try {
     { width: 360, height: 800, textScale: 1.5 },
     { width: 1280, height: 900, desktop: true },
   ];
+  if (noteReadability) viewports = [
+    { width: 320, height: 740 }, { width: 360, height: 800 }, { width: 412, height: 915 },
+    { width: 320, height: 740, textScale: 1.5 },
+    { width: 360, height: 800, textScale: 1.5 },
+    { width: 412, height: 915, textScale: 1.5 },
+    { width: 1280, height: 900, desktop: true },
+  ];
   const onlyViewport = process.argv.find((arg) => arg.startsWith('--viewport='))?.slice('--viewport='.length);
   if (onlyViewport) viewports = viewports.filter((viewport) => (
     `${viewport.width}x${viewport.height}${viewport.textScale ? `@${viewport.textScale}` : ''}` === onlyViewport
@@ -461,9 +592,10 @@ try {
     page.on('pageerror', (error) => { errors.push(error.message); console.error(error.message); });
     await page.setViewport({ ...viewport, isMobile: !viewport.desktop, hasTouch: !viewport.desktop, deviceScaleFactor: 1 });
     if (seriesReadability) await seriesFixtures(page);
+    if (noteReadability) await noteFixtures(page);
     await page.setRequestInterception(true);
     page.on('request', (request) => {
-      if (seriesReadability && new URL(request.url()).origin !== origin) {
+      if ((seriesReadability || noteReadability) && new URL(request.url()).origin !== origin) {
         failures.push(`Unexpected external request: ${request.url()}`);
         return request.abort();
       }
@@ -522,6 +654,12 @@ try {
       }, viewport.textScale);
     }
     const label = `${viewport.width}x${viewport.height}${viewport.textScale ? ` ${viewport.textScale * 100}% text` : ''}`;
+    if (noteReadability) {
+      await issueNoteReadability(page, label, !!viewport.desktop);
+      check(errors.length === 0, `${label}: page errors ${errors.join('; ')}`);
+      await context.close();
+      continue;
+    }
     if (seriesReadability) {
       await seriesResultReadability(page, label, !!viewport.desktop);
       check(errors.length === 0, `${label}: page errors ${errors.join('; ')}`);
