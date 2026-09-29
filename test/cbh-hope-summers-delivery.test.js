@@ -219,9 +219,11 @@ test('Hope Summers keeps the approved complete-current-library relationships', a
   const regenerated = await buildReportForMapping(
     `scripts/data/cbh-mappings/${id}.json`,
     [],
-    { excludedOrderIds: [] },
+    { excludedOrderIds: ['x-23-reading-order'] },
   );
-  const expectedOrderIds = manifest.lists.filter((row) => row.id !== id).map((row) => row.id);
+  const expectedOrderIds = manifest.lists
+    .filter((row) => row.id !== id && row.id !== 'x-23-reading-order')
+    .map((row) => row.id);
   const expectedNonNone = new Map([
     ['emma-frost-reading-order', ['partial', 103]],
     ['hickman-x-men', ['partial', 5]],

@@ -49,6 +49,12 @@ A Hope Summers reading guide now appears in the catalog with 261 entries in the 
 including six clearly marked metadata gaps that remain tracked for later resolution. Saved reading
 progress is unchanged.
 
+### Add the X-23 reading guide
+
+A complete X-23 and Laura Kinney reading guide now follows the selected
+original comics from her early stories through the latest X-Force additions.
+The guide keeps one-shot stories, the ongoing series, and decimal-numbered
+issues distinct. Existing saved reading progress is unchanged.
 
 ### Open Android reader links in Marvel Unlimited
 

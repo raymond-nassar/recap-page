@@ -3800,6 +3800,42 @@
       "timeline": 1991
     },
     {
+      "id": "x-23-reading-order",
+      "name": "X-23 (Laura Kinney)",
+      "description": "Follow Laura Kinney from her X-23 origins through All-New Wolverine and later team stories, in Comic Book Herald's selected reading order.",
+      "type": "character-run",
+      "spotlightKind": "complete-guide",
+      "depth": "complete",
+      "beginner": false,
+      "coverIssueId": 1534,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "x-23-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/x-23-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "x_23_reading_order.json",
+      "characters": [
+        "X-23",
+        "Laura Kinney",
+        "Wolverine",
+        "X-Men",
+        "X-Force"
+      ],
+      "keywords": [
+        "X-23",
+        "Laura Kinney",
+        "Wolverine",
+        "All-New Wolverine",
+        "X-Men",
+        "X-Force",
+        "Comic Book Herald"
+      ],
+      "expect": 291,
+      "timeline": null
+    },
+    {
       "id": "muir-island-saga",
       "name": "Muir Island Saga",
       "description": "Five chapters closing the Muir Island conflict across Uncanny X-Men and X-Factor.",
