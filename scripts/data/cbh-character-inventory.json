@@ -3128,15 +3128,28 @@
     "id": "planet-hulk-reading-order-and-greg-pak-hulk-comics-guide",
     "title": "Planet Hulk (Greg Pak Hulk)",
     "url": "https://www.comicbookherald.com/planet-hulk-reading-order-and-greg-pak-hulk-comics-guide/",
-    "guideType": "character-run",
+    "guideType": "creator-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
-    "sourceRetrievedAt": "2026-08-23",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "disposition": "new-order",
+    "reason": "Issue #613 and the coordinator approved the separate 112-position Greg Pak source boundary, 107 exact originals and all 197 current-library relationships. The existing 15-issue Planet Hulk event retains its own identity and payload.",
+    "sourceRetrievedAt": "2026-09-29",
+    "overlapIds": [
+      "chaos-war",
+      "civil-war-avengers",
+      "doctor-strange-multiverse-of-madness",
+      "fantastic-four-reading-order",
+      "inhumans-reading-order",
+      "planet-hulk",
+      "question-of-the-week-do-you-have-a-hulk-reading-order",
+      "silk-cindy-moon-reading-order",
+      "silver-surfer-reading-order",
+      "world-war-hulk-aftersmash"
+    ],
+    "catalogIds": [
+      "planet-hulk-reading-order-and-greg-pak-hulk-comics-guide"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Planet Hulk (Greg Pak Hulk)"
     ],
@@ -3144,9 +3157,9 @@
       92
     ],
     "duplicateFlags": [],
-    "sourceContentSha256": "678fa16aab92a1d2e22762fe7bb18c5401f023a3f18b5b11a7214e1906dbf094",
+    "sourceContentSha256": "dc18ad8bb3300611dca6d8c16e1ef0409a3d3324680c370156ec33df0bc71a7b",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 92,

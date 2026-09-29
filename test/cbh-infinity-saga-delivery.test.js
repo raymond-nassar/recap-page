@@ -199,7 +199,7 @@ test('Infinity Saga admission and relationship review stay current under Across 
   assert.equal(report.comparisonCount, 191);
   const current = await buildReportForMapping(mappingPath, [], {
     excludedOrderIds: ['hawkeye-reading-order', 'marvel-zombies-reading-order',
-      'ms-marvel-kamala-khan-reading-order', 'nova-reading-order', 'ultimate-spider-man-reading-order'],
+      'ms-marvel-kamala-khan-reading-order', 'nova-reading-order', 'ultimate-spider-man-reading-order', 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide'],
   });
   assert.deepEqual(current, report);
   assert.equal(mapping.relationshipReview?.approvalDigest,
@@ -210,7 +210,7 @@ test('Infinity Saga admission and relationship review stay current under Across 
       row.id !== id && row.id !== 'hawkeye-reading-order'
       && row.id !== 'marvel-zombies-reading-order'
       && row.id !== 'ms-marvel-kamala-khan-reading-order'
-      && row.id !== 'nova-reading-order' && row.id !== 'ultimate-spider-man-reading-order').map((row) => row.id),
+      && row.id !== 'nova-reading-order' && row.id !== 'ultimate-spider-man-reading-order' && row.id !== 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide').map((row) => row.id),
   }));
 });
 
@@ -223,7 +223,7 @@ test('Infinity Saga authoring rejects a pending in-memory mapping', () => {
       row.id !== id && row.id !== 'hawkeye-reading-order'
       && row.id !== 'marvel-zombies-reading-order'
       && row.id !== 'ms-marvel-kamala-khan-reading-order'
-      && row.id !== 'nova-reading-order' && row.id !== 'ultimate-spider-man-reading-order').map((row) => row.id),
+      && row.id !== 'nova-reading-order' && row.id !== 'ultimate-spider-man-reading-order' && row.id !== 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide').map((row) => row.id),
   }), /not approved/);
 });
 

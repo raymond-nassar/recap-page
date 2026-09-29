@@ -74,12 +74,12 @@ test('Shadow King keeps the frozen packet, mapping and full report aligned', asy
       'nebula-reading-order',
       'hope-summers-reading-order',
 
-      'x-23-reading-order', 'ms-marvel-kamala-khan-reading-order', 'marvel-zombies-reading-order', 'hawkeye-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order', 'nova-reading-order', 'ultimate-spider-man-reading-order',
+      'x-23-reading-order', 'ms-marvel-kamala-khan-reading-order', 'marvel-zombies-reading-order', 'hawkeye-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order', 'nova-reading-order', 'ultimate-spider-man-reading-order', 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide',
     ],
   });
   const manifest = await readJson('src/data/curated-lists.json');
   const expectedOrderIds = manifest.lists
-    .filter((row) => row.id !== id && row.id !== 'nova-reading-order' && row.id !== 'ultimate-spider-man-reading-order'
+    .filter((row) => row.id !== id && row.id !== 'nova-reading-order' && row.id !== 'ultimate-spider-man-reading-order' && row.id !== 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide'
       && ![
         'thunderbolts-reading-order',
         'nebula-reading-order',
