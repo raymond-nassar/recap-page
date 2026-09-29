@@ -124,7 +124,7 @@ const CRC_TABLE = (() => {
   return table;
 })();
 
-function crc32(buf) {
+export function crc32(buf) {
   let c = -1;
   for (const byte of buf) c = CRC_TABLE[(c ^ byte) & 0xff] ^ (c >>> 8);
   return (c ^ -1) >>> 0;
@@ -142,21 +142,26 @@ function chunk(type, data) {
 // Filter type 0 on every row. The adaptive filters exist to help the compressor on photographs;
 // this image is flat colour and the difference measured under 2 KB, which is not worth the
 // decoder in the test having to reverse four more filter types.
-export function encodePng(size, pixels) {
-  const stride = size * 4;
-  const raw = Buffer.alloc((stride + 1) * size);
-  for (let y = 0; y < size; y++) {
+export function encodePng(width, pixels, { height = width, alpha = true, srgb = false } = {}) {
+  const stride = width * (alpha ? 4 : 3);
+  if (!Number.isInteger(width) || !Number.isInteger(height) || width < 1 || height < 1
+    || width > 3840 || height > 3840 || !Buffer.isBuffer(pixels) || pixels.length !== stride * height) {
+    throw new Error('PNG dimensions and pixel buffer do not agree');
+  }
+  const raw = Buffer.alloc((stride + 1) * height);
+  for (let y = 0; y < height; y++) {
     raw[y * (stride + 1)] = 0;
     pixels.copy(raw, y * (stride + 1) + 1, y * stride, (y + 1) * stride);
   }
   const ihdr = Buffer.alloc(13);
-  ihdr.writeUInt32BE(size, 0);
-  ihdr.writeUInt32BE(size, 4);
+  ihdr.writeUInt32BE(width, 0);
+  ihdr.writeUInt32BE(height, 4);
   ihdr[8] = 8;
-  ihdr[9] = 6;
+  ihdr[9] = alpha ? 6 : 2;
   return Buffer.concat([
     Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]),
     chunk('IHDR', ihdr),
+    ...(srgb ? [chunk('sRGB', Buffer.from([0]))] : []),
     chunk('IDAT', deflateSync(raw, { level: 9 })),
     chunk('IEND', Buffer.alloc(0)),
   ]);
