@@ -1,14 +1,15 @@
 # Recap Page privacy policy
 
-Last updated: 2026-09-28
+Last updated: 2026-09-29
 
 Recap Page is a local reading companion. There is no account, advertising, analytics, behavioral
 tracking, or telemetry. Reading progress, lists, notes, settings, availability overrides, and
-custom entries stay in the browser profile where they were created.
+custom entries are stored on your device. There is no automatic upload or cross-device sync of
+that saved state. An explicit export gives the chosen file destination the data in that export.
 
 ## Data stored on the device
 
-Recap Page stores durable reader data in browser storage for the exact origin
+On desktop, Recap Page stores durable reader data in browser storage for the exact origin
 `http://127.0.0.1:8787`. It also uses browser-managed IndexedDB and cache storage for disposable
 metadata and the offline app shell.
 
@@ -17,21 +18,46 @@ or reinstalling the package does not remove browser-owned state. Another hostnam
 browser profile has separate storage. Clearing site data for the exact origin removes that profile's
 copy.
 
-You can export a JSON backup from **Backup & settings**. The file is created by your browser and is
-not uploaded by Recap Page.
+On Android, reader data lives in the app's private WebView storage, separate from your desktop
+browser even though the displayed origin is also `http://127.0.0.1:8787`. This is an intercepted
+address for bundled app assets, not a listening server. Android does not use the desktop
+service-worker shell; the offline app files are in the APK. Disposable metadata uses IndexedDB.
+Clearing Android app data or uninstalling removes the app's private state. Platform backup and
+device transfer of app data are disabled by the package configuration. Export and independently
+keep a backup before clearing data, uninstalling, or changing to a package that cannot update
+the installed app.
+
+Saved reading state has no automatic expiry. Cached metadata can include issue-search text in
+request keys; expiry limits reuse, not guaranteed deletion at that instant.
+
+## Export and import
+
+You can export a JSON backup from **Backup & settings**, or export a list in the formats offered
+by the app. Exports can contain reading progress and notes. On desktop the browser creates the
+download. On Android, native import and export use a document picker: a selected provider supplies
+the import file or receives the export's filename and contents. Both pickers request a local-only
+provider; this is not a guarantee against that provider's own sync or retention.
+
+Choose a destination you trust and keep backups outside the app. Recap Page does not automatically
+upload backups, but an explicit save transfers the chosen content to that destination. Previously
+exported files, and any partial documents a failed save leaves with a provider, must be managed
+there separately.
 
 ## Direct network requests
 
 Recap Page makes these direct requests when the related feature is used:
 
 - On startup, it asks the configured comics metadata service whether it is reachable.
-- Issue, series, and creator searches send the search terms or selected identity to that service.
+- Issue searches and imported-title matching send search text to that service.
+- Series and creator name searches use bundled indexes locally. Fetching the issues for a
+  selected series or creator sends their IDs to the metadata service.
 - Issue detail and reader-link lookups send the issue identity to that service.
 - In the Android prototype, opening an issue also sends its digital ID to
   `bifrost.marvel.com` to resolve a Marvel Unlimited app link. This request omits credentials
   and referrers, bypasses the HTTP cache, and is not saved in reading state. Marvel can see the
   digital ID and network address. The launcher retains an **Open in browser** alternative.
-- Cover images load from Marvel's image host when cover art is enabled.
+- Cover images load from Marvel's image host when cover art is enabled. It is on by default and
+  can be switched off.
 - **Read** opens Marvel Unlimited when a direct reader link is known, or opens the issue page on
   marvel.com when no reader link can be resolved.
 - The optional hand-entry lookup sends the title you entered to the Marvel Fandom wiki only after
@@ -40,6 +66,9 @@ Recap Page makes these direct requests when the related feature is used:
 The receiving service can observe the request, network address, and issue or search information
 needed to answer it. Recap Page does not send your saved lists, notes, read markers, settings, or
 backup files to those services.
+
+Recipient retention is not established by this policy. A `no-store` request controls HTTP caching;
+it is not a promise of deletion from a recipient's logs or systems.
 
 ## Comic images and content
 
@@ -63,9 +92,23 @@ delivered only through Microsoft Store.
 
 ## Control and deletion
 
-You can export a backup, erase active Recap Page data from **Backup & settings**, remove individual
-recovery copies, clear site data in the browser, or uninstall the Windows package. Browser controls
-govern browser storage and caches. Package removal governs package files. They are separate actions.
+In **Backup & settings**, **Erase all local data** clears active reading data, including lists,
+progress, notes, availability overrides and custom entries, when the save succeeds. Settings and
+sidebar preferences remain. Removal of pre-restore and staging copies is attempted after a
+successful erase, but storage failures can leave copies behind. The app reports a retained
+pre-restore copy behind **Undo last restore**.
+
+Salvage copies kept after a failed read are not removed by that erase. They have their own removal
+controls under **Copies kept after a failed read**; removal is refused while a copy still protects
+active unreadable data. Cache cleanup is also requested during erase, but that does not confirm
+every cache was cleared. **Clear cached metadata** is a separate control that reports cleanup
+failures.
+
+Browser controls can clear the desktop origin's storage and caches. Uninstalling the Windows
+package leaves that browser-owned data in place. Android clear-app-data or uninstall removes
+private app storage instead. None of these actions recalls previously exported files, deletes
+copies retained by a selected document provider, or removes a remote recipient's logs. Export a
+backup first if you want to keep your reading data.
 
 ## Public project information and questions
 
@@ -83,6 +126,10 @@ Recap Page sends nothing to the form automatically. The form asks which maintain
 checked and tells you not to include reading progress, lists, notes, backups, personal information,
 attachments or vulnerability details. Removing the form can stop new questions through that route,
 but cannot recall an Issue, reply, notification or copy that already exists.
+
+The Android About screen's **Privacy policy** link opens the public policy on GitHub in your
+browser only when selected. GitHub receives that page request, not your saved reading data, and
+its privacy statement applies to the request.
 
 ## Contact and security
 
