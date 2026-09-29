@@ -12,6 +12,7 @@ body :is(button, .btn, select, summary, .checkbox, .fp > span, .path > span) {
   min-width: 48px;
 }
 body .row-actions-toggle, body .row-actions .mini { min-height: 48px; }
+#marvel-ages-modern-all { min-height: 48px; }
 body :is(button, .btn, select, input, textarea) { font-size: var(--t-body); }
 body :is(button, .btn, summary) { overflow-wrap: anywhere; white-space: normal; }
 body :is(input[type="text"], input[type="search"], input[type="url"], input[type="file"]) {

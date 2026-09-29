@@ -21,6 +21,12 @@ The five later references back to World War Hulk do not duplicate chapters in th
 The opening Amazing Fantasy issue is included for its Amadeus Cho story. The existing 15-issue
 Planet Hulk event and saved reading progress remain unchanged.
 
+### Match the mobile Marvel Ages action to other touch targets
+
+The Android action to browse all Modern Age Reading Lists now has the same 48px minimum
+height as other main touch controls. Its label, destination, text size and padding are
+unchanged, as are the desktop layout and saved reading progress.
+
 ### Keep enlarged mobile category labels whole
 
 On narrow Android screens, Home and Browse category cards give their text the full card width

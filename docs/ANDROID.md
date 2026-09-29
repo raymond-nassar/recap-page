@@ -279,6 +279,14 @@ backup payloads with isolated synthetic data and no external requests. Use
 `--viewport=360x800` for the focused pre-fix reproduction. This remains an Edge layout check,
 not native fontScale, TalkBack, IME or physical-device evidence.
 
+`npm run android:browser -- --only=marvel-ages-target` measures the Modern Age browse-all
+action at 320, 360 and 412 CSS px with normal and 150% text tokens, plus the actual shared
+desktop entry at 1280x900. It requires a 48x48px Android hit area, whole unclipped label words,
+unchanged text size and padding, keyboard and touch navigation, and destination focus.
+Desktop keeps its 44px height and horizontal heading layout. Use `--viewport=360x800`
+for the focused pre-fix reproduction. The bundled catalog and isolated state run without
+live API or cover requests; text-token stress is not native Android fontScale or device proof.
+
 ## Native emulator checks without a local emulator
 
 The **CI** workflow has an optional **android_emulator** input, off by default. It runs the APK
