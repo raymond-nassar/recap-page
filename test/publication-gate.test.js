@@ -265,6 +265,26 @@ test('an unplanned second occurrence of an allowed shape is still reported', () 
   assert.deepEqual([...second.keys()], [pattern], 'a different hit of the same shape in the same file is a finding');
 });
 
+test('Android reader identifier allowances are exact public or synthetic fixtures, not file exemptions', () => {
+  const publicDrn = '03baf094-d1bf-4eb6-8533-' + '0840ebc0d0b9';
+  const fixtureDrn = '00000000-0000-4000-8000-' + '000000000099';
+  const arbitrary = '00000000-0000-4000-8000-' + '000000000098';
+  for (const [file, id] of [
+    ['test/android-marvel-launcher.test.js', publicDrn],
+    ['packaging/android/app/src/test/java/io/github/raymondnassar/recappage/prototype/NavigationPolicyTest.java', publicDrn],
+    ['packaging/android/app/src/androidTest/java/io/github/raymondnassar/recappage/prototype/NativeIntegrationTest.java', fixtureDrn],
+  ]) {
+    const allowed = new Map();
+    findings(file, id, allowed);
+    assert.equal(allowed.size, 0, `${file}: intentional fixture`);
+    for (const [otherFile, otherId] of [[file, arbitrary], ['some/other/file.js', id]]) {
+      const denied = new Map();
+      findings(otherFile, otherId, denied);
+      assert.equal(denied.size, 1, 'neither unrelated identifiers nor other files are exempt');
+    }
+  }
+});
+
 const STORE_PUBLISHER_FILES = [
   'docs/MICROSOFT_STORE.md',
   'docs/MICROSOFT_STORE_SUBMISSION.md',

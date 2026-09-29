@@ -1934,8 +1934,8 @@
     "fp": "a6ceb97902e6f2c0",
     "head": "Two limits worth stating rather than discovering later. Every `required: true` in these forms is"
   },
-  "docs/PUBLICATION_RUNBOOK.md|settings-that-only-become-available-on-the-day|SECURITY.md:140-146|0": {
-    "anchor": "SECURITY.md:140-146",
+  "docs/PUBLICATION_RUNBOOK.md|settings-that-only-become-available-on-the-day|SECURITY.md:143-149|0": {
+    "anchor": "SECURITY.md:143-149",
     "fp": "8d555b25204faa9d",
     "head": "Secret scanning is on, and so is push protection, both enabled on 2026-08-16 once publication"
   },
@@ -1969,8 +1969,8 @@
     "fp": "61fe35744ce7a858",
     "head": "// The publication gate. This repository was published on 2026-08-16, and several of the things that"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true#security-md-140-146|SECURITY.md:140-146|0": {
-    "anchor": "SECURITY.md:140-146",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true#security-md-143-149|SECURITY.md:143-149|0": {
+    "anchor": "SECURITY.md:143-149",
     "fp": "8d555b25204faa9d",
     "head": "Secret scanning is on, and so is push protection, both enabled on 2026-08-16 once publication"
   },
@@ -1984,13 +1984,13 @@
     "fp": "e9a1e74dee2c791e",
     "head": "// The publication gate answered a question that only gets asked once, and it was asked on"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:4211-4222|0": {
-    "anchor": "CHANGELOG.md:4211-4222",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:4223-4234|0": {
+    "anchor": "CHANGELOG.md:4223-4234",
     "fp": "7ebb6ef43a1f1241",
     "head": "- **The project now watches its own development tooling for known security problems, and says how"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:4224-4234|0": {
-    "anchor": "CHANGELOG.md:4224-4234",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:4236-4246|0": {
+    "anchor": "CHANGELOG.md:4236-4246",
     "fp": "c37eedd88ad1c81c",
     "head": "- **The project now has a published security policy, which names a private route for reporting a"
   },
@@ -6019,8 +6019,8 @@
     "fp": "2a5f696a4a2adc8e",
     "head": "be a heuristic about significance, and a heuristic about which anchors are worth counting is exactly"
   },
-  "scripts/check-counts.mjs|preamble|scripts/check-publication.mjs:193-197|0": {
-    "anchor": "scripts/check-publication.mjs:193-197",
+  "scripts/check-counts.mjs|preamble|scripts/check-publication.mjs:203-207|0": {
+    "anchor": "scripts/check-publication.mjs:203-207",
     "fp": "36abce5861d613b7",
     "head": "// A file git could not read is not a file that read clean. Read from the index enumerated by"
   },

@@ -72,6 +72,9 @@ Recap Page makes a small number of direct requests so it can show live informati
 - Pressing **Read** opens Marvel Unlimited directly when the reader link is known. Otherwise the new
   tab asks the comics database for that link and falls back to the issue page on marvel.com.
 - Those requests reveal which issues you are looking at to the service receiving them.
+- The Android prototype also sends the digital issue ID to Marvel's Bifrost service when opening
+  an issue, to resolve its app link. It sends no credentials, lists, notes or read markers, stores
+  no returned app identifier, and keeps **Open in browser** available.
 - The hand-entry title lookup sends the title you typed to the Marvel Fandom wiki only when you press
   **Look up on Marvel Fandom**. It does not fetch a cover.
 

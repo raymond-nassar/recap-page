@@ -2,9 +2,12 @@ package io.github.raymondnassar.recappage.prototype;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.content.res.Configuration;
 import android.graphics.Insets;
 import android.net.Uri;
@@ -43,6 +46,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -214,10 +218,19 @@ public final class MainActivity extends Activity {
             String url = request.getUrl().toString();
             if (!request.isForMainFrame()) return true;
             if (popup ? local.policy.isPopupPage(url) : local.policy.isAppPage(url)) return false;
-            boolean allowedExternal = popup ? local.policy.isOfficialReader(url)
-                    : request.hasGesture() && local.policy.isHttps(url);
+            if (popup && local.policy.isPopupPage(view.getUrl()) && local.policy.isMarvelIssue(url)) {
+                boolean opened = openExternal(url);
+                view.evaluateJavascript("window.dispatchEvent(new CustomEvent('recap:reader-result', {detail:"
+                        + opened + "}));", null);
+                return true;
+            }
+            if (popup && local.policy.isPopupPage(view.getUrl()) && local.policy.isOfficialReader(url)) {
+                openReaderBrowser(url, view);
+                return true;
+            }
+            boolean allowedExternal = !popup && request.hasGesture() && local.policy.isHttps(url);
             if (allowedExternal) {
-                if (openExternal(url) && popup) closePopup(view);
+                openExternal(url);
             } else {
                 notice("This address is not supported in Recap Page.");
             }
@@ -372,14 +385,70 @@ public final class MainActivity extends Activity {
     }
 
     private boolean openExternal(String url) {
+        boolean marvel = local.policy.isMarvelIssue(url);
         try {
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
             intent.addCategory(Intent.CATEGORY_BROWSABLE);
+            if (marvel) intent.setPackage("com.marvel.unlimited");
             startActivity(intent);
             return true;
         } catch (ActivityNotFoundException | SecurityException error) {
-            notice("No browser could open this link. Install or enable a browser and try again.");
+            notice(marvel ? "Marvel Unlimited could not be opened. Use Open in browser."
+                    : "No browser could open this link. Install or enable a browser and try again.");
             return false;
+        }
+    }
+
+    @SuppressWarnings("deprecation")
+    static ArrayList<ResolveInfo> readerBrowsers(PackageManager manager) {
+        // No host means no domain preference; MATCH_ALL also prevents default-browser narrowing.
+        Intent discovery = new Intent(Intent.ACTION_VIEW, Uri.parse("https:"));
+        discovery.addCategory(Intent.CATEGORY_BROWSABLE);
+        discovery.addCategory(Intent.CATEGORY_DEFAULT);
+        LinkedHashMap<String, ResolveInfo> browsers = new LinkedHashMap<>();
+        for (ResolveInfo match : manager.queryIntentActivities(discovery,
+                PackageManager.MATCH_ALL | PackageManager.GET_RESOLVED_FILTER)) {
+            if (match.filter != null && match.filter.countDataAuthorities() == 0
+                    && match.filter.hasDataScheme("https") && match.activityInfo != null
+                    && match.activityInfo.enabled && match.activityInfo.exported) {
+                browsers.putIfAbsent(match.activityInfo.packageName, match);
+            }
+        }
+        return new ArrayList<>(browsers.values());
+    }
+
+    private void openReaderBrowser(String url, WebView popup) {
+        ArrayList<ResolveInfo> choices = readerBrowsers(getPackageManager());
+        if (choices.isEmpty()) {
+            notice("No browser is available. Install or enable a browser and try again.");
+            return;
+        }
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        intent.addCategory(Intent.CATEGORY_BROWSABLE);
+        if (choices.size() == 1) {
+            openReaderBrowser(intent, choices.get(0), popup);
+            return;
+        }
+        CharSequence[] labels = new CharSequence[choices.size()];
+        for (int index = 0; index < choices.size(); index++) {
+            labels[index] = choices.get(index).loadLabel(getPackageManager());
+        }
+        Dialog chooser = new AlertDialog.Builder(this).setTitle("Open in browser")
+                .setItems(labels, (dialog, selected) -> openReaderBrowser(intent, choices.get(selected), popup))
+                .setNegativeButton(android.R.string.cancel, null).create();
+        chooser.setOnDismissListener(ignored -> popups.remove(chooser));
+        popups.add(chooser);
+        chooser.show();
+    }
+
+    private void openReaderBrowser(Intent intent, ResolveInfo browser, WebView popup) {
+        if (!popupViews.contains(popup) || !local.policy.isPopupPage(popup.getUrl())) return;
+        try {
+            intent.setPackage(browser.activityInfo.packageName);
+            startActivity(intent);
+            closePopup(popup);
+        } catch (ActivityNotFoundException | SecurityException error) {
+            notice("The selected browser could not open this link. Try another browser.");
         }
     }
 
