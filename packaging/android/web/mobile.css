@@ -31,6 +31,7 @@ body :is(input[type="text"], input[type="search"], input[type="url"], input[type
 .setting-ctl, .headright, .hero-body, .chero-body { min-width: 0; }
 .setting-ctl.checkbox { max-width: 100%; white-space: normal; }
 .notice { overflow-wrap: anywhere; }
+.issue-focus-note { overflow-wrap: anywhere; }
 #android-report[hidden] { display: none; }
 dialog.ask, dialog.preview {
   max-width: calc(100vw - 24px);

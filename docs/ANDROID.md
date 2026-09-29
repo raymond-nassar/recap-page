@@ -270,6 +270,15 @@ and Add behavior without live API or cover requests. Use `--viewport=320x740` or
 `--viewport=360x800@1.5` for an aimed-at pre-fix check. This is desktop Edge CSS text stress,
 not native fontScale, physical-phone, TalkBack, keyboard or safe-area certification.
 
+`npm run android:browser -- --only=note-readability` checks ordinary issue-note prose, a
+36-character reference and a long URL at 320, 360 and 412 CSS px, both at normal and 150%
+text-token sizes, plus the actual desktop entry at 1280x900. On Android it requires every text
+rectangle to fit both the note and its nearest clipping ancestor, not just the page width.
+It also checks natural word wrapping, exact note strings, unchanged saved state and real
+backup payloads with isolated synthetic data and no external requests. Use
+`--viewport=360x800` for the focused pre-fix reproduction. This remains an Edge layout check,
+not native fontScale, TalkBack, IME or physical-device evidence.
+
 ## Native emulator checks without a local emulator
 
 The **CI** workflow has an optional **android_emulator** input, off by default. It runs the APK

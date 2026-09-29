@@ -13,6 +13,12 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Keep long mobile issue notes fully readable
+
+Android issue notes now wrap long references and URLs within their card instead of clipping
+the text. Ordinary words still wrap at spaces, without shrinking the type or shortening notes.
+Desktop styling, saved notes, reading progress and backup contents are unchanged.
+
 ### Keep mobile series actions readable
 
 On narrow Android screens, series search actions now sit below the title rather than squeezing
