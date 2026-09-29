@@ -20,6 +20,7 @@ const mappingsDir = path.join(root, 'scripts', 'data', 'cbh-mappings');
 const overlapsDir = path.join(root, 'scripts', 'data', 'cbh-overlaps');
 const laterReviewedIds = new Set([
   'doctor-octopus-otto-octavius-reading-order',
+  'thunderbolts-reading-order',
   'emma-frost-reading-order',
   'mephisto-reading-order',
   'best-ultron-reading-order', 'winter-soldier-bucky-barnes-reading-order',
@@ -123,7 +124,7 @@ test('batch four preserves source order and independently verified shelf chronol
     manifest.lists.length - FOURTH_PACKET_IDS.length,
   );
   assert.ok(manifest.lists.length >= 66);
-  assert.equal(catalog.lists.length, 263);
+  assert.equal(catalog.lists.length, 264);
 
   const sorted = sortCatalog(parseCatalog(catalog).lists);
   assert.deepEqual(
