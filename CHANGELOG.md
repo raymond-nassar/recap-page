@@ -13,6 +13,13 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Follow the Thunderbolts through their changing teams
+
+Adds a Thunderbolts Reading List credited and linked to Comic Book Herald. It preserves the
+guide's 258 selected positions from the original team through King in Black, including annuals,
+specials, title changes and the original #0. The unresolved original #-1 remains visible as a gap
+rather than being replaced by a reprint. Existing Reading Lists and saved progress are unchanged.
+
 ### Open Android reader links in Marvel Unlimited
 
 The Android prototype resolves an issue's app identifier when **Read** is pressed and attempts

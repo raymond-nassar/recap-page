@@ -69,10 +69,12 @@ test('Shadow King keeps the frozen packet, mapping and full report aligned', asy
   const report = await readJson(`scripts/data/cbh-overlaps/${id}.json`);
   const regenerated = await buildReportForMapping(`scripts/data/cbh-mappings/${id}.json`, [], {
     ...await historicalAgathaLibrarySnapshot(),
-    excludedOrderIds: [],
+    excludedOrderIds: ['thunderbolts-reading-order'],
   });
   const manifest = await readJson('src/data/curated-lists.json');
-  const expectedOrderIds = manifest.lists.filter((row) => row.id !== id).map((row) => row.id);
+  const expectedOrderIds = manifest.lists
+    .filter((row) => row.id !== id && row.id !== 'thunderbolts-reading-order')
+    .map((row) => row.id);
 
   assert.deepEqual(regenerated, report);
   assert.doesNotThrow(() => validateFrozenPacket(packet, { expectedId: id }));
