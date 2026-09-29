@@ -10,6 +10,7 @@ import {
 import { buildMarkdown } from '../scripts/author-cbh-packet.mjs';
 import { selectPreparationGuides } from '../scripts/prepare-cbh-batch.mjs';
 import { buildReportForMapping } from '../scripts/report-order-overlap.mjs';
+import { historicalAgathaLibrarySnapshot } from './helpers/agatha-historical-library.mjs';
 import { parseCatalog, searchCatalog, shelfKey } from '../src/js/lib/catalog.js';
 import { parseManifest } from '../src/js/lib/curated.js';
 import { parseChecklist } from '../src/js/lib/markdown.js';
@@ -100,7 +101,7 @@ test('Donny Cates approval covers the full reviewed source manifest before the V
   const report = await readJson(`scripts/data/cbh-overlaps/${id}.json`);
   const manifest = await readJson('src/data/curated-lists.json');
   const current = await buildReportForMapping(
-    `scripts/data/cbh-mappings/${id}.json`, [], { excludedOrderIds: ['the-vision-reading-order', 'emma-frost-reading-order', 'doctor-octopus-otto-octavius-reading-order', 'shadow-king-reading-order'] },
+    `scripts/data/cbh-mappings/${id}.json`, [], { ...await historicalAgathaLibrarySnapshot(), excludedOrderIds: ['the-vision-reading-order', 'emma-frost-reading-order', 'doctor-octopus-otto-octavius-reading-order', 'shadow-king-reading-order'] },
   );
   assert.doesNotThrow(() => validateFrozenPacket(packet));
   assert.doesNotThrow(() => validateMappingDigest(mapping));

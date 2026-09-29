@@ -5,13 +5,75 @@
   "source": "https://www.comicbookherald.com/agatha-harkness-reading-order/",
   "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
   "sourceLicense": null,
-  "generatedAt": "2026-08-26T07:16:55.688Z",
+  "generatedAt": "2026-09-28T23:22:56.822Z",
   "apiBase": "https://marvel.emreparker.com/v1",
-  "count": 104,
+  "count": 114,
   "collections": 0,
   "placeholders": 0,
   "unresolved": [],
   "items": [
+    {
+      "issueId": 13304,
+      "title": "Fantastic Four (1961) #94",
+      "number": "94",
+      "url": "https://www.marvel.com/comics/issue/13304/fantastic_four_1961_94",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1970-01-01T00:00:00+0000",
+      "mu": "1970-01-01T00:00:00+0000",
+      "digitalId": 4681,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/5ab52066707e9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jack Kirby",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 12899,
+      "title": "Fantastic Four (1961) #103",
+      "number": "103",
+      "url": "https://www.marvel.com/comics/issue/12899/fantastic_four_1961_103",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1970-10-01T00:00:00+0000",
+      "mu": "1970-10-01T00:00:00+0000",
+      "digitalId": 4622,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/b0/5372b79aece7b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Verpoorten",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Sr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
     {
       "issueId": 12903,
       "title": "Fantastic Four (1961) #107",
@@ -2187,28 +2249,131 @@
       ]
     },
     {
-      "issueId": 57094,
-      "title": "Scarlet Witch (2015) #1",
+      "issueId": 54974,
+      "title": "Scarlet Witch (1994) #1",
       "number": "1",
-      "url": "https://www.marvel.com/comics/issue/57094/scarlet_witch_2015_1",
-      "seriesId": 20854,
-      "seriesName": "Scarlet Witch (2015 - 2017)",
-      "onSale": "2015-12-09T00:00:00+0000",
-      "mu": "2016-06-13T00:00:00+0000",
-      "digitalId": 40660,
+      "url": "https://www.marvel.com/comics/issue/54974/scarlet_witch_1994_1",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "detailsRefused": true
+    },
+    {
+      "issueId": 54977,
+      "title": "Scarlet Witch (1994) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/54977/scarlet_witch_1994_3",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "detailsRefused": true
+    },
+    {
+      "issueId": 54978,
+      "title": "Scarlet Witch (1994) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/54978/scarlet_witch_1994_4",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "detailsRefused": true
+    },
+    {
+      "issueId": 83685,
+      "title": "Nova (1994) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/83685/nova_1994_6",
+      "seriesId": 29549,
+      "seriesName": "Nova (1994 - 1995)",
+      "onSale": "1994-06-01T00:00:00+0000",
+      "mu": "1994-06-01T00:00:00+0000",
+      "digitalId": 58781,
       "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/10/565f5a69631d7",
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/10/625448a02def1",
         "ext": "jpg"
       },
       "description": null,
-      "pageCount": 32,
+      "pageCount": 0,
       "creators": [
         {
-          "name": "David Aja",
+          "name": "Larry Mahlstedt",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Stegbauer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Marrinan",
           "role": "penciler"
         },
         {
-          "name": "James Robinson",
+          "name": "David Boller",
+          "role": "penciler"
+        },
+        {
+          "name": "Robert Walker",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 83686,
+      "title": "Nova (1994) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/83686/nova_1994_7",
+      "seriesId": 29549,
+      "seriesName": "Nova (1994 - 1995)",
+      "onSale": "1994-07-01T00:00:00+0000",
+      "mu": "1994-07-01T00:00:00+0000",
+      "digitalId": 58782,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/e0/625448a0b117d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Stegbauer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Marrinan",
+          "role": "penciler"
+        },
+        {
+          "name": "David Boller",
+          "role": "penciler"
+        },
+        {
+          "name": "Robert Walker",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
           "role": "writer"
         }
       ]
@@ -2587,6 +2752,33 @@
         },
         {
           "name": "Tom King",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 57094,
+      "title": "Scarlet Witch (2015) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/57094/scarlet_witch_2015_1",
+      "seriesId": 20854,
+      "seriesName": "Scarlet Witch (2015 - 2017)",
+      "onSale": "2015-12-09T00:00:00+0000",
+      "mu": "2016-06-13T00:00:00+0000",
+      "digitalId": 40660,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/10/565f5a69631d7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Aja",
+          "role": "penciler"
+        },
+        {
+          "name": "James Robinson",
           "role": "writer"
         }
       ]
@@ -3114,6 +3306,103 @@
         },
         {
           "name": "Ta-Nehisi Coates",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 101172,
+      "title": "Midnight Suns (2022) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/101172/midnight_suns_2022_4",
+      "seriesId": 34645,
+      "seriesName": "Midnight Suns (2022 - 2023)",
+      "onSale": "2022-12-28T00:00:00+0000",
+      "mu": "2022-12-28T00:00:00+0000",
+      "digitalId": 61055,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/03/639a7a6515363",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Luigi Zagaria",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Nakayama",
+          "role": "penciler"
+        },
+        {
+          "name": "Ethan Sacks",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 101173,
+      "title": "Midnight Suns (2022) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/101173/midnight_suns_2022_5",
+      "seriesId": 34645,
+      "seriesName": "Midnight Suns (2022 - 2023)",
+      "onSale": "2023-01-25T00:00:00+0000",
+      "mu": "2023-01-25T00:00:00+0000",
+      "digitalId": 61225,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/d0/63c7fa4bedb0a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alberto Foche Duarte",
+          "role": "cover artist"
+        },
+        {
+          "name": "Luigi Zagaria",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Nakayama",
+          "role": "penciler"
+        },
+        {
+          "name": "Ethan Sacks",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 109670,
+      "title": "Scarlet Witch Annual (2023) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/109670/scarlet_witch_annual_2023_1",
+      "seriesId": 37548,
+      "seriesName": "Scarlet Witch Annual (2023)",
+      "onSale": "2023-06-21T00:00:00+0000",
+      "mu": "2023-06-02T15:56:00+0000",
+      "digitalId": 62781,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/64873590edbd1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Carlos Nieto",
+          "role": "cover artist"
+        },
+        {
+          "name": "Russell Dauterman",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Orlando",
           "role": "writer"
         }
       ]

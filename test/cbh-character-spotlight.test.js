@@ -22,6 +22,7 @@ import { placeholderId } from '../scripts/lib/placeholder-id.mjs';
 import { assertApprovedRelationshipReview, buildMarkdown } from '../scripts/author-cbh-packet.mjs';
 import { buildReportForMapping as buildCurrentReportForMapping } from '../scripts/report-order-overlap.mjs';
 import { CBH_LATER_ORDER_IDS } from '../scripts/lib/cbro-evidence.mjs';
+import { historicalAgathaLibrarySnapshot } from './helpers/agatha-historical-library.mjs';
 import { moonKnightSourceLedger } from '../scripts/data/cbh-source-ledgers/moon-knight-reading-order.mjs';
 import { parseChecklist } from '../src/js/lib/markdown.js';
 import {
@@ -623,24 +624,27 @@ function exclusionsForReviewedReport(manifest, report, candidateId, peerIds = []
   return manifest.lists.map(({ id }) => id).filter((id) => !included.has(id));
 }
 
-async function libraryDigestForScope(manifest, excludedIds) {
+async function libraryDigestForScope(manifest, excludedIds, librarySnapshot = null) {
+  const sourceManifest = librarySnapshot?.manifest ?? manifest;
   const excluded = new Set([...excludedIds, guardiansCandidateId, 'adam-warlock-reading-order', 'mephisto-reading-order', 'miles-morales-spider-man-reading-order', 'spider-gwen-reading-order', 'best-ultron-reading-order', 'winter-soldier-bucky-barnes-reading-order', 'spider-man-2099-reading-order', 'donny-cates-marvel-universe-reading-order-2017', 'falcon-sam-wilson-captain-america-reading-order', 'the-vision-reading-order', 'emma-frost-reading-order', 'doctor-octopus-otto-octavius-reading-order', 'shadow-king-reading-order']);
-  const lists = manifest.lists.filter((entry) => !excluded.has(entry.id));
-  const paths = (manifest.paths ?? []).filter((entry) => (
+  const lists = sourceManifest.lists.filter((entry) => !excluded.has(entry.id));
+  const paths = (sourceManifest.paths ?? []).filter((entry) => (
     !excluded.has(entry.id)
     && !entry.steps?.some((step) => excluded.has(step))
   ));
   const orderIssueIds = await Promise.all(lists.map(async (entry) => {
-    const payload = await readJson(path.join('src', 'data', entry.out || `${entry.id}.json`));
+    const payload = librarySnapshot
+      ? JSON.parse(await readFile(path.join(librarySnapshot.payloadDir, entry.out || `${entry.id}.json`), 'utf8'))
+      : await readJson(path.join('src', 'data', entry.out || `${entry.id}.json`));
     return {
       id: entry.id,
       issueIds: issueIdsFromValue(payload),
     };
   }));
-  return libraryDigestFor({ ...manifest, lists, paths }, orderIssueIds);
+  return libraryDigestFor({ ...sourceManifest, lists, paths }, orderIssueIds);
 }
 
-async function historicalReportLibraryDigest(manifest, excludedIds) {
+async function historicalReportLibraryDigest(manifest, excludedIds, librarySnapshot) {
   return libraryDigestForScope(manifest, [
     ...excludedIds,
     'marvel-2099',
@@ -658,8 +662,62 @@ async function historicalReportLibraryDigest(manifest, excludedIds) {
     runawaysCandidateId,
     'adam-warlock-reading-order',
     'shadow-king-reading-order',
-  ]);
+  ], librarySnapshot);
 }
+
+test('Agatha historical replay helper reproduces the saved Punisher report digest against the live current library', async () => {
+  const report = await readJson('scripts/data/cbh-overlaps/punisher-reading-order.json');
+  const manifest = await readJson('src/data/curated-lists.json');
+  const historicalLibrary = await historicalAgathaLibrarySnapshot();
+  const live = await buildReportForMapping(
+    path.join(root, 'scripts', 'data', 'cbh-mappings', 'punisher-reading-order.json'),
+    [],
+    {
+      excludedOrderIds: [
+        magnetoCandidateId,
+        'loki-reading-order',
+        'silver-surfer-reading-order',
+        moonKnightCandidateId,
+        'the-defenders-reading-order',
+        xForceCandidateId,
+        'nick-fury-reading-order',
+        inhumansCandidateId,
+        'marvel-2099',
+        runawaysCandidateId,
+        'adam-warlock-reading-order',
+        'shadow-king-reading-order',
+      ],
+    },
+  );
+  const replay = await buildReportForMapping(
+    path.join(root, 'scripts', 'data', 'cbh-mappings', 'punisher-reading-order.json'),
+    [],
+    {
+      ...historicalLibrary,
+      excludedOrderIds: [
+        magnetoCandidateId,
+        'loki-reading-order',
+        'silver-surfer-reading-order',
+        moonKnightCandidateId,
+        'the-defenders-reading-order',
+        xForceCandidateId,
+        'nick-fury-reading-order',
+        inhumansCandidateId,
+        'marvel-2099',
+        runawaysCandidateId,
+        'adam-warlock-reading-order',
+        'shadow-king-reading-order',
+      ],
+    },
+  );
+
+  assert.notEqual(live.libraryDigest, report.libraryDigest);
+  assert.equal(replay.libraryDigest, report.libraryDigest);
+  assert.equal(replay.reportDigest, report.reportDigest);
+  assert.deepEqual(replay.comparisons, report.comparisons);
+  assert.equal(historicalLibrary.fixture.sourceCommit, 'b174688c53b9f129aafc40d5763b939430a279e3');
+  assert.equal(manifest.lists.find((entry) => entry.id === 'agatha-harkness-reading-order').expect, 114);
+});
 
 test('spotlight taxonomy does not rewrite frozen issue-library evidence', () => {
   const manifest = {
@@ -1778,10 +1836,12 @@ test('the Punisher guide preserves its full source ledger through publication', 
   const markdown = await readFile(path.join(root, 'src/data/orders/punisher-reading-order.md'), 'utf8');
   const inventoryRecord = inventory.find((record) => record.id === 'punisher-reading-order');
   const parsed = parseChecklist(markdown);
+  const historicalLibrary = await historicalAgathaLibrarySnapshot();
   const regeneratedReport = await buildReportForMapping(
     path.join(root, 'scripts', 'data', 'cbh-mappings', 'punisher-reading-order.json'),
     [],
     {
+      ...historicalLibrary,
       excludedOrderIds: [
         magnetoCandidateId,
         'loki-reading-order',
@@ -1801,6 +1861,7 @@ test('the Punisher guide preserves its full source ledger through publication', 
   const reviewedLibraryDigest = await historicalReportLibraryDigest(
     manifest,
     ['punisher-reading-order', magnetoCandidateId],
+    historicalLibrary,
   );
 
   assert.doesNotThrow(() => validateFrozenPacket(packet, {
@@ -2531,6 +2592,7 @@ test('Silver Surfer settles all four issue #304 gaps without losing source posit
      && id !== 'spider-man-2099-reading-order'
      && id !== 'adam-warlock-reading-order')
     .sort();
+  const historicalLibrary = await historicalAgathaLibrarySnapshot();
   const reviewedLibraryDigest = await libraryDigestForScope(
     manifest,
     [
@@ -2547,11 +2609,13 @@ test('Silver Surfer settles all four issue #304 gaps without losing source posit
       runawaysCandidateId,
       'adam-warlock-reading-order',
     ],
+    historicalLibrary,
   );
   const regeneratedReport = await buildReportForMapping(
     path.join(root, 'scripts/data/cbh-mappings/silver-surfer-reading-order.json'),
     [],
     {
+      ...historicalLibrary,
       excludedOrderIds: [
         moonKnightCandidateId,
         'the-defenders-reading-order',
@@ -2662,6 +2726,7 @@ test('the Captain Marvel packet preserves its legacy run boundary, exclusion, an
   const reviewedLibraryDigest = await historicalReportLibraryDigest(
     manifest,
     [captainMarvelCandidateId, 'punisher-reading-order', magnetoCandidateId, runawaysCandidateId],
+    await historicalAgathaLibrarySnapshot(),
   );
 
   assert.equal(record.centralDisposition, 'pilot-approved');
@@ -3417,8 +3482,13 @@ test('the frozen White Tiger evidence stays exact through every generated surfac
   const parsed = parseChecklist(markdown);
   const inventoryRecord = inventory.find((record) => record.id === candidateId);
   const reviewedLibraryDigest = report.libraryDigest;
+  const historicalLibrary = await historicalAgathaLibrarySnapshot();
   const regeneratedReport = await buildReportForMapping(
     path.join(root, 'scripts', 'data', 'cbh-mappings', `${candidateId}.json`),
+    [],
+    {
+      ...historicalLibrary,
+    },
   );
 
   assert.equal(reviewedLibraryDigest, '3d8145c388e40dad1baf02330116f9578ea53d5c223ccf0ce4c46b38749d1aa1');
@@ -3603,7 +3673,7 @@ test('Moon Knight settles issue 310 with exact identities and availability exclu
     runawaysCandidateId,
     'adam-warlock-reading-order',
     guardiansCandidateId,
-  ]);
+  ], await historicalAgathaLibrarySnapshot());
 
   assert.equal(record.deliveryStatus, 'shipped');
   assert.equal(record.centralDisposition, 'pilot-approved');

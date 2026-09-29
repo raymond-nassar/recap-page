@@ -87,18 +87,31 @@
     "guideType": "character-run",
     "window": null,
     "disposition": "new-order",
-    "reason": "The modern Marvel-era guide ships with explicit unresolved provenance, a representative cover issue, and the same exact source boundary, so the catalog entry can be published without inventing missing rows.",
-    "sourceRetrievedAt": "2026-08-27",
+    "reason": "The corrected exact source snapshot preserves 114 occurrences as 114 distinct exact rows with no repeats, and the guide remains distinct across 19 current partial overlaps.",
+    "sourceRetrievedAt": "2026-09-28",
     "overlapIds": [
-      "captain-america-best-of",
+      "adam-warlock-reading-order",
+      "ant-man-reading-order",
+      "atlantis-attacks",
+      "avengers-disassembled",
+      "black-widow-reading-order",
       "doctor-doom-primer",
-      "essential-avengers",
-      "heroic-age-avengers",
-      "iron-man-reading-order",
-      "marvel-super-heroes-secret-wars"
+      "doctor-strange-reading-order",
+      "falcon-sam-wilson-captain-america-reading-order",
+      "fantastic-four-reading-order",
+      "magneto-reading-order",
+      "mephisto-reading-order",
+      "moon-knight-reading-order",
+      "scarlet-witch-best-of",
+      "silver-surfer-reading-order",
+      "thanos-reading-order",
+      "the-defenders-reading-order",
+      "the-vision-reading-order",
+      "time-and-time-again",
+      "wandavision"
     ],
     "catalogIds": [
-      "captain-america-reading-order-modern-marvel-era"
+      "agatha-harkness-reading-order"
     ],
     "deliveryStatus": "shipped",
     "centralDisposition": "pilot-approved",
@@ -109,7 +122,7 @@
       3
     ],
     "duplicateFlags": [],
-    "sourceContentSha256": "4affd62d844d51a08ab529047a0334cc45d1f8e05008aad19b7ee4f3018ba4bb",
+    "sourceContentSha256": "538775b53c4b467cc726e79d87823bd2c27b2d9088969bd5769c272e9dc06342",
     "sourceBoundaryStatus": "exact-page-snapshot",
     "metadataHorizonStatus": "approved"
   },

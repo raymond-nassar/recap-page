@@ -1,0 +1,1363 @@
+{
+  "schemaVersion": 1,
+  "id": "agatha-harkness-reading-order",
+  "inventoryId": "agatha-harkness-reading-order",
+  "sourceProvider": "comic-book-herald",
+  "sourcePageTitle": "Agatha Harkness Reading Order",
+  "sourceUrl": "https://www.comicbookherald.com/agatha-harkness-reading-order/",
+  "sourceRetrievedAt": "2026-09-28",
+  "sourceContentNormalization": "NFC UTF-8 normalization of the live page text after removing site chrome and collapsing whitespace to one space before hashing.",
+  "sourceContentSha256": "538775b53c4b467cc726e79d87823bd2c27b2d9088969bd5769c272e9dc06342",
+  "sourceIssueBearingBlocksSha256": "7a8e8814e2b26a6f932e15194c830f6cdb8e2736ec26588b9bfe96a216ed8128",
+  "sourceBoundary": "Preserves all 114 whole-issue source occurrences in source order and places each of the 114 distinct issues once at its first occurrence.",
+  "sourceOccurrenceCount": 114,
+  "selectedReferences": [
+    {
+      "sourcePosition": 1,
+      "selectedIssueId": 13304,
+      "sourceIssueReference": "Fantastic Four (1961) #94",
+      "sourceRangeReference": null,
+      "title": "Fantastic Four (1961) #94",
+      "number": "94",
+      "url": "https://www.marvel.com/comics/issue/13304/fantastic_four_1961_94",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)"
+    },
+    {
+      "sourcePosition": 2,
+      "selectedIssueId": 12899,
+      "sourceIssueReference": "Fantastic Four (1961) #103",
+      "sourceRangeReference": null,
+      "title": "Fantastic Four (1961) #103",
+      "number": "103",
+      "url": "https://www.marvel.com/comics/issue/12899/fantastic_four_1961_103",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)"
+    },
+    {
+      "sourcePosition": 3,
+      "selectedIssueId": 12903,
+      "sourceIssueReference": "Fantastic Four (1961) #107",
+      "sourceRangeReference": null,
+      "title": "Fantastic Four (1961) #107",
+      "number": "107",
+      "url": "https://www.marvel.com/comics/issue/12903/fantastic_four_1961_107",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)"
+    },
+    {
+      "sourcePosition": 4,
+      "selectedIssueId": 12905,
+      "sourceIssueReference": "Fantastic Four (1961) #109",
+      "sourceRangeReference": null,
+      "title": "Fantastic Four (1961) #109",
+      "number": "109",
+      "url": "https://www.marvel.com/comics/issue/12905/fantastic_four_1961_109",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)"
+    },
+    {
+      "sourcePosition": 5,
+      "selectedIssueId": 12907,
+      "sourceIssueReference": "Fantastic Four (1961) #110",
+      "sourceRangeReference": null,
+      "title": "Fantastic Four (1961) #110",
+      "number": "110",
+      "url": "https://www.marvel.com/comics/issue/12907/fantastic_four_1961_110",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)"
+    },
+    {
+      "sourcePosition": 6,
+      "selectedIssueId": 12908,
+      "sourceIssueReference": "Fantastic Four (1961) #111",
+      "sourceRangeReference": null,
+      "title": "Fantastic Four (1961) #111",
+      "number": "111",
+      "url": "https://www.marvel.com/comics/issue/12908/fantastic_four_1961_111",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)"
+    },
+    {
+      "sourcePosition": 7,
+      "selectedIssueId": 12909,
+      "sourceIssueReference": "Fantastic Four (1961) #112",
+      "sourceRangeReference": null,
+      "title": "Fantastic Four (1961) #112",
+      "number": "112",
+      "url": "https://www.marvel.com/comics/issue/12909/fantastic_four_1961_112",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)"
+    },
+    {
+      "sourcePosition": 8,
+      "selectedIssueId": 12910,
+      "sourceIssueReference": "Fantastic Four (1961) #113",
+      "sourceRangeReference": null,
+      "title": "Fantastic Four (1961) #113",
+      "number": "113",
+      "url": "https://www.marvel.com/comics/issue/12910/fantastic_four_1961_113",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)"
+    },
+    {
+      "sourcePosition": 9,
+      "selectedIssueId": 12911,
+      "sourceIssueReference": "Fantastic Four (1961) #114",
+      "sourceRangeReference": null,
+      "title": "Fantastic Four (1961) #114",
+      "number": "114",
+      "url": "https://www.marvel.com/comics/issue/12911/fantastic_four_1961_114",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)"
+    },
+    {
+      "sourcePosition": 10,
+      "selectedIssueId": 12913,
+      "sourceIssueReference": "Fantastic Four (1961) #116",
+      "sourceRangeReference": null,
+      "title": "Fantastic Four (1961) #116",
+      "number": "116",
+      "url": "https://www.marvel.com/comics/issue/12913/fantastic_four_1961_116",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)"
+    },
+    {
+      "sourcePosition": 11,
+      "selectedIssueId": 12914,
+      "sourceIssueReference": "Fantastic Four (1961) #117",
+      "sourceRangeReference": null,
+      "title": "Fantastic Four (1961) #117",
+      "number": "117",
+      "url": "https://www.marvel.com/comics/issue/12914/fantastic_four_1961_117",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)"
+    },
+    {
+      "sourcePosition": 12,
+      "selectedIssueId": 12918,
+      "sourceIssueReference": "Fantastic Four (1961) #120",
+      "sourceRangeReference": null,
+      "title": "Fantastic Four (1961) #120",
+      "number": "120",
+      "url": "https://www.marvel.com/comics/issue/12918/fantastic_four_1961_120",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)"
+    },
+    {
+      "sourcePosition": 13,
+      "selectedIssueId": 12921,
+      "sourceIssueReference": "Fantastic Four (1961) #123",
+      "sourceRangeReference": null,
+      "title": "Fantastic Four (1961) #123",
+      "number": "123",
+      "url": "https://www.marvel.com/comics/issue/12921/fantastic_four_1961_123",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)"
+    },
+    {
+      "sourcePosition": 14,
+      "selectedIssueId": 12925,
+      "sourceIssueReference": "Fantastic Four (1961) #127",
+      "sourceRangeReference": null,
+      "title": "Fantastic Four (1961) #127",
+      "number": "127",
+      "url": "https://www.marvel.com/comics/issue/12925/fantastic_four_1961_127",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)"
+    },
+    {
+      "sourcePosition": 15,
+      "selectedIssueId": 12927,
+      "sourceIssueReference": "Fantastic Four (1961) #129",
+      "sourceRangeReference": null,
+      "title": "Fantastic Four (1961) #129",
+      "number": "129",
+      "url": "https://www.marvel.com/comics/issue/12927/fantastic_four_1961_129",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)"
+    },
+    {
+      "sourcePosition": 16,
+      "selectedIssueId": 12940,
+      "sourceIssueReference": "Fantastic Four (1961) #140",
+      "sourceRangeReference": null,
+      "title": "Fantastic Four (1961) #140",
+      "number": "140",
+      "url": "https://www.marvel.com/comics/issue/12940/fantastic_four_1961_140",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)"
+    },
+    {
+      "sourcePosition": 17,
+      "selectedIssueId": 12941,
+      "sourceIssueReference": "Fantastic Four (1961) #141",
+      "sourceRangeReference": null,
+      "title": "Fantastic Four (1961) #141",
+      "number": "141",
+      "url": "https://www.marvel.com/comics/issue/12941/fantastic_four_1961_141",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)"
+    },
+    {
+      "sourcePosition": 18,
+      "selectedIssueId": 6983,
+      "sourceIssueReference": "Avengers (1963) #127",
+      "sourceRangeReference": null,
+      "title": "Avengers (1963) #127",
+      "number": "127",
+      "url": "https://www.marvel.com/comics/issue/6983/avengers_1963_127",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)"
+    },
+    {
+      "sourcePosition": 19,
+      "selectedIssueId": 12951,
+      "sourceIssueReference": "Fantastic Four (1961) #150",
+      "sourceRangeReference": null,
+      "title": "Fantastic Four (1961) #150",
+      "number": "150",
+      "url": "https://www.marvel.com/comics/issue/12951/fantastic_four_1961_150",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)"
+    },
+    {
+      "sourcePosition": 20,
+      "selectedIssueId": 6984,
+      "sourceIssueReference": "Avengers (1963) #128",
+      "sourceRangeReference": null,
+      "title": "Avengers (1963) #128",
+      "number": "128",
+      "url": "https://www.marvel.com/comics/issue/6984/avengers_1963_128",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)"
+    },
+    {
+      "sourcePosition": 21,
+      "selectedIssueId": 6985,
+      "sourceIssueReference": "Avengers (1963) #129",
+      "sourceRangeReference": null,
+      "title": "Avengers (1963) #129",
+      "number": "129",
+      "url": "https://www.marvel.com/comics/issue/6985/avengers_1963_129",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)"
+    },
+    {
+      "sourcePosition": 22,
+      "selectedIssueId": 20021,
+      "sourceIssueReference": "Giant-Size Avengers #2",
+      "sourceRangeReference": null,
+      "title": "Giant-Size Avengers (1974) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/20021/giant-size_avengers_1974_2",
+      "seriesId": 3729,
+      "seriesName": "Giant-Size Avengers (1974)"
+    },
+    {
+      "sourcePosition": 23,
+      "selectedIssueId": 6987,
+      "sourceIssueReference": "Avengers (1963) #130",
+      "sourceRangeReference": null,
+      "title": "Avengers (1963) #130",
+      "number": "130",
+      "url": "https://www.marvel.com/comics/issue/6987/avengers_1963_130",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)"
+    },
+    {
+      "sourcePosition": 24,
+      "selectedIssueId": 6990,
+      "sourceIssueReference": "Avengers (1963) #133",
+      "sourceRangeReference": null,
+      "title": "Avengers (1963) #133",
+      "number": "133",
+      "url": "https://www.marvel.com/comics/issue/6990/avengers_1963_133",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)"
+    },
+    {
+      "sourcePosition": 25,
+      "selectedIssueId": 6991,
+      "sourceIssueReference": "Avengers (1963) #134",
+      "sourceRangeReference": null,
+      "title": "Avengers (1963) #134",
+      "number": "134",
+      "url": "https://www.marvel.com/comics/issue/6991/avengers_1963_134",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)"
+    },
+    {
+      "sourcePosition": 26,
+      "selectedIssueId": 20023,
+      "sourceIssueReference": "Giant-Size Avengers #4",
+      "sourceRangeReference": null,
+      "title": "Giant-Size Avengers (1974) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/20023/giant-size_avengers_1974_4",
+      "seriesId": 3729,
+      "seriesName": "Giant-Size Avengers (1974)"
+    },
+    {
+      "sourcePosition": 27,
+      "selectedIssueId": 12985,
+      "sourceIssueReference": "Fantastic Four (1961) #181",
+      "sourceRangeReference": null,
+      "title": "Fantastic Four (1961) #181",
+      "number": "181",
+      "url": "https://www.marvel.com/comics/issue/12985/fantastic_four_1961_181",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)"
+    },
+    {
+      "sourcePosition": 28,
+      "selectedIssueId": 12986,
+      "sourceIssueReference": "Fantastic Four (1961) #182",
+      "sourceRangeReference": null,
+      "title": "Fantastic Four (1961) #182",
+      "number": "182",
+      "url": "https://www.marvel.com/comics/issue/12986/fantastic_four_1961_182",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)"
+    },
+    {
+      "sourcePosition": 29,
+      "selectedIssueId": 12989,
+      "sourceIssueReference": "Fantastic Four (1961) #185",
+      "sourceRangeReference": null,
+      "title": "Fantastic Four (1961) #185",
+      "number": "185",
+      "url": "https://www.marvel.com/comics/issue/12989/fantastic_four_1961_185",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)"
+    },
+    {
+      "sourcePosition": 30,
+      "selectedIssueId": 12990,
+      "sourceIssueReference": "Fantastic Four (1961) #186",
+      "sourceRangeReference": null,
+      "title": "Fantastic Four (1961) #186",
+      "number": "186",
+      "url": "https://www.marvel.com/comics/issue/12990/fantastic_four_1961_186",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)"
+    },
+    {
+      "sourcePosition": 31,
+      "selectedIssueId": 12991,
+      "sourceIssueReference": "Fantastic Four (1961) #187",
+      "sourceRangeReference": null,
+      "title": "Fantastic Four (1961) #187",
+      "number": "187",
+      "url": "https://www.marvel.com/comics/issue/12991/fantastic_four_1961_187",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)"
+    },
+    {
+      "sourcePosition": 32,
+      "selectedIssueId": 12992,
+      "sourceIssueReference": "Fantastic Four (1961) #188",
+      "sourceRangeReference": null,
+      "title": "Fantastic Four (1961) #188",
+      "number": "188",
+      "url": "https://www.marvel.com/comics/issue/12992/fantastic_four_1961_188",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)"
+    },
+    {
+      "sourcePosition": 33,
+      "selectedIssueId": 12996,
+      "sourceIssueReference": "Fantastic Four (1961) #191",
+      "sourceRangeReference": null,
+      "title": "Fantastic Four (1961) #191",
+      "number": "191",
+      "url": "https://www.marvel.com/comics/issue/12996/fantastic_four_1961_191",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)"
+    },
+    {
+      "sourcePosition": 34,
+      "selectedIssueId": 12998,
+      "sourceIssueReference": "Fantastic Four (1961) #193",
+      "sourceRangeReference": null,
+      "title": "Fantastic Four (1961) #193",
+      "number": "193",
+      "url": "https://www.marvel.com/comics/issue/12998/fantastic_four_1961_193",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)"
+    },
+    {
+      "sourcePosition": 35,
+      "selectedIssueId": 12999,
+      "sourceIssueReference": "Fantastic Four (1961) #194",
+      "sourceRangeReference": null,
+      "title": "Fantastic Four (1961) #194",
+      "number": "194",
+      "url": "https://www.marvel.com/comics/issue/12999/fantastic_four_1961_194",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)"
+    },
+    {
+      "sourcePosition": 36,
+      "selectedIssueId": 13001,
+      "sourceIssueReference": "Fantastic Four (1961) #196",
+      "sourceRangeReference": null,
+      "title": "Fantastic Four (1961) #196",
+      "number": "196",
+      "url": "https://www.marvel.com/comics/issue/13001/fantastic_four_1961_196",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)"
+    },
+    {
+      "sourcePosition": 37,
+      "selectedIssueId": 8691,
+      "sourceIssueReference": "Annual (1963) #13",
+      "sourceRangeReference": null,
+      "title": "Fantastic Four Annual (1963) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/8691/fantastic_four_annual_1963_13",
+      "seriesId": 2012,
+      "seriesName": "Fantastic Four Annual (1963 - 1994)"
+    },
+    {
+      "sourcePosition": 38,
+      "selectedIssueId": 13011,
+      "sourceIssueReference": "Fantastic Four (1961) #204",
+      "sourceRangeReference": null,
+      "title": "Fantastic Four (1961) #204",
+      "number": "204",
+      "url": "https://www.marvel.com/comics/issue/13011/fantastic_four_1961_204",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)"
+    },
+    {
+      "sourcePosition": 39,
+      "selectedIssueId": 8692,
+      "sourceIssueReference": "Annual (1963) #14",
+      "sourceRangeReference": null,
+      "title": "Fantastic Four Annual (1963) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/8692/fantastic_four_annual_1963_14",
+      "seriesId": 2012,
+      "seriesName": "Fantastic Four Annual (1963 - 1994)"
+    },
+    {
+      "sourcePosition": 40,
+      "selectedIssueId": 13031,
+      "sourceIssueReference": "Fantastic Four (1961) #222",
+      "sourceRangeReference": null,
+      "title": "Fantastic Four (1961) #222",
+      "number": "222",
+      "url": "https://www.marvel.com/comics/issue/13031/fantastic_four_1961_222",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)"
+    },
+    {
+      "sourcePosition": 41,
+      "selectedIssueId": 13032,
+      "sourceIssueReference": "Fantastic Four (1961) #223",
+      "sourceRangeReference": null,
+      "title": "Fantastic Four (1961) #223",
+      "number": "223",
+      "url": "https://www.marvel.com/comics/issue/13032/fantastic_four_1961_223",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)"
+    },
+    {
+      "sourcePosition": 42,
+      "selectedIssueId": 18460,
+      "sourceIssueReference": "Vision and the Scarlet Witch (1985) #3",
+      "sourceRangeReference": null,
+      "title": "Vision and the Scarlet Witch (1985) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/18460/vision_and_the_scarlet_witch_1985_3",
+      "seriesId": 3655,
+      "seriesName": "Vision and the Scarlet Witch (1985 - 1986)"
+    },
+    {
+      "sourcePosition": 43,
+      "selectedIssueId": 18461,
+      "sourceIssueReference": "Vision and the Scarlet Witch (1985) #4",
+      "sourceRangeReference": null,
+      "title": "Vision and the Scarlet Witch (1985) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/18461/vision_and_the_scarlet_witch_1985_4",
+      "seriesId": 3655,
+      "seriesName": "Vision and the Scarlet Witch (1985 - 1986)"
+    },
+    {
+      "sourcePosition": 44,
+      "selectedIssueId": 18462,
+      "sourceIssueReference": "Vision and the Scarlet Witch (1985) #5",
+      "sourceRangeReference": null,
+      "title": "Vision and the Scarlet Witch (1985) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/18462/vision_and_the_scarlet_witch_1985_5",
+      "seriesId": 3655,
+      "seriesName": "Vision and the Scarlet Witch (1985 - 1986)"
+    },
+    {
+      "sourcePosition": 45,
+      "selectedIssueId": 17792,
+      "sourceIssueReference": "Avengers West Coast (1989) #50",
+      "sourceRangeReference": null,
+      "title": "West Coast Avengers (1985) #50",
+      "number": "50",
+      "url": "https://www.marvel.com/comics/issue/17792/west_coast_avengers_1985_50",
+      "seriesId": 3630,
+      "seriesName": "West Coast Avengers (1985 - 1994)"
+    },
+    {
+      "sourcePosition": 46,
+      "selectedIssueId": 17793,
+      "sourceIssueReference": "Avengers West Coast (1989) #51",
+      "sourceRangeReference": null,
+      "title": "West Coast Avengers (1985) #51",
+      "number": "51",
+      "url": "https://www.marvel.com/comics/issue/17793/west_coast_avengers_1985_51",
+      "seriesId": 3630,
+      "seriesName": "West Coast Avengers (1985 - 1994)"
+    },
+    {
+      "sourcePosition": 47,
+      "selectedIssueId": 17794,
+      "sourceIssueReference": "Avengers West Coast (1989) #52",
+      "sourceRangeReference": null,
+      "title": "West Coast Avengers (1985) #52",
+      "number": "52",
+      "url": "https://www.marvel.com/comics/issue/17794/west_coast_avengers_1985_52",
+      "seriesId": 3630,
+      "seriesName": "West Coast Avengers (1985 - 1994)"
+    },
+    {
+      "sourcePosition": 48,
+      "selectedIssueId": 7190,
+      "sourceIssueReference": "Avengers (1963) #313",
+      "sourceRangeReference": null,
+      "title": "Avengers (1963) #313",
+      "number": "313",
+      "url": "https://www.marvel.com/comics/issue/7190/avengers_1963_313",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)"
+    },
+    {
+      "sourcePosition": 49,
+      "selectedIssueId": 17797,
+      "sourceIssueReference": "Avengers West Coast (1989) #55",
+      "sourceRangeReference": null,
+      "title": "West Coast Avengers (1985) #55",
+      "number": "55",
+      "url": "https://www.marvel.com/comics/issue/17797/west_coast_avengers_1985_55",
+      "seriesId": 3630,
+      "seriesName": "West Coast Avengers (1985 - 1994)"
+    },
+    {
+      "sourcePosition": 50,
+      "selectedIssueId": 17798,
+      "sourceIssueReference": "Avengers West Coast (1989) #56",
+      "sourceRangeReference": null,
+      "title": "West Coast Avengers (1985) #56",
+      "number": "56",
+      "url": "https://www.marvel.com/comics/issue/17798/west_coast_avengers_1985_56",
+      "seriesId": 3630,
+      "seriesName": "West Coast Avengers (1985 - 1994)"
+    },
+    {
+      "sourcePosition": 51,
+      "selectedIssueId": 17799,
+      "sourceIssueReference": "Avengers West Coast (1989) #57",
+      "sourceRangeReference": null,
+      "title": "West Coast Avengers (1985) #57",
+      "number": "57",
+      "url": "https://www.marvel.com/comics/issue/17799/west_coast_avengers_1985_57",
+      "seriesId": 3630,
+      "seriesName": "West Coast Avengers (1985 - 1994)"
+    },
+    {
+      "sourcePosition": 52,
+      "selectedIssueId": 17803,
+      "sourceIssueReference": "Avengers West Coast (1989) #61",
+      "sourceRangeReference": null,
+      "title": "West Coast Avengers (1985) #61",
+      "number": "61",
+      "url": "https://www.marvel.com/comics/issue/17803/west_coast_avengers_1985_61",
+      "seriesId": 3630,
+      "seriesName": "West Coast Avengers (1985 - 1994)"
+    },
+    {
+      "sourcePosition": 53,
+      "selectedIssueId": 17804,
+      "sourceIssueReference": "Avengers West Coast (1989) #62",
+      "sourceRangeReference": null,
+      "title": "West Coast Avengers (1985) #62",
+      "number": "62",
+      "url": "https://www.marvel.com/comics/issue/17804/west_coast_avengers_1985_62",
+      "seriesId": 3630,
+      "seriesName": "West Coast Avengers (1985 - 1994)"
+    },
+    {
+      "sourcePosition": 54,
+      "selectedIssueId": 17805,
+      "sourceIssueReference": "Avengers West Coast (1989) #63",
+      "sourceRangeReference": null,
+      "title": "West Coast Avengers (1985) #63",
+      "number": "63",
+      "url": "https://www.marvel.com/comics/issue/17805/west_coast_avengers_1985_63",
+      "seriesId": 3630,
+      "seriesName": "West Coast Avengers (1985 - 1994)"
+    },
+    {
+      "sourcePosition": 55,
+      "selectedIssueId": 9294,
+      "sourceIssueReference": "Infinity War #3",
+      "sourceRangeReference": null,
+      "title": "Infinity War (1992) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/9294/infinity_war_1992_3",
+      "seriesId": 2024,
+      "seriesName": "Infinity War (1992)"
+    },
+    {
+      "sourcePosition": 56,
+      "selectedIssueId": 18453,
+      "sourceIssueReference": "Warlock and the Infinity Watch #8",
+      "sourceRangeReference": null,
+      "title": "Warlock and the Infinity Watch (1992) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/18453/warlock_and_the_infinity_watch_1992_8",
+      "seriesId": 3654,
+      "seriesName": "Warlock and the Infinity Watch (1992 - 1995)"
+    },
+    {
+      "sourcePosition": 57,
+      "selectedIssueId": 13192,
+      "sourceIssueReference": "Fantastic Four #368",
+      "sourceRangeReference": null,
+      "title": "Fantastic Four (1961) #368",
+      "number": "368",
+      "url": "https://www.marvel.com/comics/issue/13192/fantastic_four_1961_368",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)"
+    },
+    {
+      "sourcePosition": 58,
+      "selectedIssueId": 18261,
+      "sourceIssueReference": "Wonder Man #13",
+      "sourceRangeReference": null,
+      "title": "Wonder Man (1991) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/18261/wonder_man_1991_13",
+      "seriesId": null,
+      "seriesName": null
+    },
+    {
+      "sourcePosition": 59,
+      "selectedIssueId": 18926,
+      "sourceIssueReference": "Quasar #38",
+      "sourceRangeReference": null,
+      "title": "Quasar (1989) #38",
+      "number": "38",
+      "url": "https://www.marvel.com/comics/issue/18926/quasar_1989_38",
+      "seriesId": null,
+      "seriesName": null
+    },
+    {
+      "sourcePosition": 60,
+      "selectedIssueId": 9295,
+      "sourceIssueReference": "Infinity War #4",
+      "sourceRangeReference": null,
+      "title": "Infinity War (1992) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/9295/infinity_war_1992_4",
+      "seriesId": 2024,
+      "seriesName": "Infinity War (1992)"
+    },
+    {
+      "sourcePosition": 61,
+      "selectedIssueId": 12651,
+      "sourceIssueReference": "Alpha Flight #111",
+      "sourceRangeReference": null,
+      "title": "Alpha Flight (1983) #111",
+      "number": "111",
+      "url": "https://www.marvel.com/comics/issue/12651/alpha_flight_1983_111",
+      "seriesId": null,
+      "seriesName": null
+    },
+    {
+      "sourcePosition": 62,
+      "selectedIssueId": 18262,
+      "sourceIssueReference": "Wonder Man #14",
+      "sourceRangeReference": null,
+      "title": "Wonder Man (1991) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/18262/wonder_man_1991_14",
+      "seriesId": null,
+      "seriesName": null
+    },
+    {
+      "sourcePosition": 63,
+      "selectedIssueId": 20208,
+      "sourceIssueReference": "Doctor Strange: Sorcerer Supreme #46",
+      "sourceRangeReference": null,
+      "title": "Doctor Strange, Sorcerer Supreme (1988) #46",
+      "number": "46",
+      "url": "https://www.marvel.com/comics/issue/20208/doctor_strange_sorcerer_supreme_1988_46",
+      "seriesId": 3741,
+      "seriesName": "Doctor Strange, Sorcerer Supreme (1988 - 1996)"
+    },
+    {
+      "sourcePosition": 64,
+      "selectedIssueId": 20209,
+      "sourceIssueReference": "Doctor Strange: Sorcerer Supreme #47",
+      "sourceRangeReference": null,
+      "title": "Doctor Strange, Sorcerer Supreme (1988) #47",
+      "number": "47",
+      "url": "https://www.marvel.com/comics/issue/20209/doctor_strange_sorcerer_supreme_1988_47",
+      "seriesId": 3741,
+      "seriesName": "Doctor Strange, Sorcerer Supreme (1988 - 1996)"
+    },
+    {
+      "sourcePosition": 65,
+      "selectedIssueId": 9297,
+      "sourceIssueReference": "Infinity War #6",
+      "sourceRangeReference": null,
+      "title": "Infinity War (1992) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/9297/infinity_war_1992_6",
+      "seriesId": 2024,
+      "seriesName": "Infinity War (1992)"
+    },
+    {
+      "sourcePosition": 66,
+      "selectedIssueId": 73576,
+      "sourceIssueReference": "Darkhold: Pages From The Book Of Sins #4",
+      "sourceRangeReference": null,
+      "title": "Darkhold: Pages from the Book of Sins (1992) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/73576/darkhold_pages_from_the_book_of_sins_1992_4",
+      "seriesId": 21932,
+      "seriesName": "Darkhold: Pages from the Book of Sins (1992)"
+    },
+    {
+      "sourcePosition": 67,
+      "selectedIssueId": 73577,
+      "sourceIssueReference": "Darkhold: Pages From The Book Of Sins #5",
+      "sourceRangeReference": null,
+      "title": "Darkhold: Pages from the Book of Sins (1992) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/73577/darkhold_pages_from_the_book_of_sins_1992_5",
+      "seriesId": 21932,
+      "seriesName": "Darkhold: Pages from the Book of Sins (1992)"
+    },
+    {
+      "sourcePosition": 68,
+      "selectedIssueId": 73578,
+      "sourceIssueReference": "Darkhold: Pages From The Book Of Sins #6",
+      "sourceRangeReference": null,
+      "title": "Darkhold: Pages from the Book of Sins (1992) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/73578/darkhold_pages_from_the_book_of_sins_1992_6",
+      "seriesId": 21932,
+      "seriesName": "Darkhold: Pages from the Book of Sins (1992)"
+    },
+    {
+      "sourcePosition": 69,
+      "selectedIssueId": 73579,
+      "sourceIssueReference": "Darkhold: Pages From The Book Of Sins #7",
+      "sourceRangeReference": null,
+      "title": "Darkhold: Pages from the Book of Sins (1992) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/73579/darkhold_pages_from_the_book_of_sins_1992_7",
+      "seriesId": 21932,
+      "seriesName": "Darkhold: Pages from the Book of Sins (1992)"
+    },
+    {
+      "sourcePosition": 70,
+      "selectedIssueId": 13196,
+      "sourceIssueReference": "Fantastic Four #371",
+      "sourceRangeReference": null,
+      "title": "Fantastic Four (1961) #371",
+      "number": "371",
+      "url": "https://www.marvel.com/comics/issue/13196/fantastic_four_1961_371",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)"
+    },
+    {
+      "sourcePosition": 71,
+      "selectedIssueId": 13197,
+      "sourceIssueReference": "Fantastic Four #372",
+      "sourceRangeReference": null,
+      "title": "Fantastic Four (1961) #372",
+      "number": "372",
+      "url": "https://www.marvel.com/comics/issue/13197/fantastic_four_1961_372",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)"
+    },
+    {
+      "sourcePosition": 72,
+      "selectedIssueId": 13198,
+      "sourceIssueReference": "Fantastic Four #373",
+      "sourceRangeReference": null,
+      "title": "Fantastic Four (1961) #373",
+      "number": "373",
+      "url": "https://www.marvel.com/comics/issue/13198/fantastic_four_1961_373",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)"
+    },
+    {
+      "sourcePosition": 73,
+      "selectedIssueId": 13199,
+      "sourceIssueReference": "Fantastic Four #374",
+      "sourceRangeReference": null,
+      "title": "Fantastic Four (1961) #374",
+      "number": "374",
+      "url": "https://www.marvel.com/comics/issue/13199/fantastic_four_1961_374",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)"
+    },
+    {
+      "sourcePosition": 74,
+      "selectedIssueId": 13200,
+      "sourceIssueReference": "Fantastic Four #375",
+      "sourceRangeReference": null,
+      "title": "Fantastic Four (1961) #375",
+      "number": "375",
+      "url": "https://www.marvel.com/comics/issue/13200/fantastic_four_1961_375",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)"
+    },
+    {
+      "sourcePosition": 75,
+      "selectedIssueId": 13201,
+      "sourceIssueReference": "Fantastic Four #376",
+      "sourceRangeReference": null,
+      "title": "Fantastic Four (1961) #376",
+      "number": "376",
+      "url": "https://www.marvel.com/comics/issue/13201/fantastic_four_1961_376",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)"
+    },
+    {
+      "sourcePosition": 76,
+      "selectedIssueId": 13202,
+      "sourceIssueReference": "Fantastic Four #377",
+      "sourceRangeReference": null,
+      "title": "Fantastic Four (1961) #377",
+      "number": "377",
+      "url": "https://www.marvel.com/comics/issue/13202/fantastic_four_1961_377",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)"
+    },
+    {
+      "sourcePosition": 77,
+      "selectedIssueId": 54974,
+      "sourceIssueReference": "Scarlet Witch #1",
+      "sourceRangeReference": null,
+      "title": "Scarlet Witch (1994) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/54974/scarlet_witch_1994_1",
+      "seriesId": null,
+      "seriesName": null,
+      "note": "Recovered from unchanged src/data/wandavision.json; exact title, number, URL, and null optional metadata preserved."
+    },
+    {
+      "sourcePosition": 78,
+      "selectedIssueId": 54977,
+      "sourceIssueReference": "Scarlet Witch #3",
+      "sourceRangeReference": null,
+      "title": "Scarlet Witch (1994) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/54977/scarlet_witch_1994_3",
+      "seriesId": null,
+      "seriesName": null,
+      "note": "Recovered from unchanged src/data/wandavision.json; exact title, number, URL, and null optional metadata preserved."
+    },
+    {
+      "sourcePosition": 79,
+      "selectedIssueId": 54978,
+      "sourceIssueReference": "Scarlet Witch #4",
+      "sourceRangeReference": null,
+      "title": "Scarlet Witch (1994) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/54978/scarlet_witch_1994_4",
+      "seriesId": null,
+      "seriesName": null,
+      "note": "Recovered from unchanged src/data/wandavision.json; exact title, number, URL, and null optional metadata preserved."
+    },
+    {
+      "sourcePosition": 80,
+      "selectedIssueId": 83685,
+      "sourceIssueReference": "Nova (1994) #6",
+      "sourceRangeReference": null,
+      "title": "Nova (1994) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/83685/nova_1994_6",
+      "seriesId": 29549,
+      "seriesName": "Nova (1994 - 1995)"
+    },
+    {
+      "sourcePosition": 81,
+      "selectedIssueId": 83686,
+      "sourceIssueReference": "Nova (1994) #7",
+      "sourceRangeReference": null,
+      "title": "Nova (1994) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/83686/nova_1994_7",
+      "seriesId": 29549,
+      "seriesName": "Nova (1994 - 1995)"
+    },
+    {
+      "sourcePosition": 82,
+      "selectedIssueId": 13246,
+      "sourceIssueReference": "Fantastic Four (1961) #416",
+      "sourceRangeReference": null,
+      "title": "Fantastic Four (1961) #416",
+      "number": "416",
+      "url": "https://www.marvel.com/comics/issue/13246/fantastic_four_1961_416",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)"
+    },
+    {
+      "sourcePosition": 83,
+      "selectedIssueId": 13322,
+      "sourceIssueReference": "Fantastic Four (1996) #7",
+      "sourceRangeReference": null,
+      "title": "Fantastic Four (1996) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/13322/fantastic_four_1996_7",
+      "seriesId": 2123,
+      "seriesName": "Fantastic Four (1996 - 1997)"
+    },
+    {
+      "sourcePosition": 84,
+      "selectedIssueId": 15135,
+      "sourceIssueReference": "Silver Surfer (1987) #135",
+      "sourceRangeReference": null,
+      "title": "Silver Surfer (1987) #135",
+      "number": "135",
+      "url": "https://www.marvel.com/comics/issue/15135/silver_surfer_1987_135",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)"
+    },
+    {
+      "sourcePosition": 85,
+      "selectedIssueId": 15136,
+      "sourceIssueReference": "Silver Surfer (1987) #136",
+      "sourceRangeReference": null,
+      "title": "Silver Surfer (1987) #136",
+      "number": "136",
+      "url": "https://www.marvel.com/comics/issue/15136/silver_surfer_1987_136",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)"
+    },
+    {
+      "sourcePosition": 86,
+      "selectedIssueId": 15137,
+      "sourceIssueReference": "Silver Surfer (1987) #137",
+      "sourceRangeReference": null,
+      "title": "Silver Surfer (1987) #137",
+      "number": "137",
+      "url": "https://www.marvel.com/comics/issue/15137/silver_surfer_1987_137",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)"
+    },
+    {
+      "sourcePosition": 87,
+      "selectedIssueId": 17491,
+      "sourceIssueReference": "Avengers (1998) #10",
+      "sourceRangeReference": null,
+      "title": "Avengers (1998) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/17491/avengers_1998_10",
+      "seriesId": 354,
+      "seriesName": "Avengers (1998 - 2004)"
+    },
+    {
+      "sourcePosition": 88,
+      "selectedIssueId": 17492,
+      "sourceIssueReference": "Avengers (1998) #11",
+      "sourceRangeReference": null,
+      "title": "Avengers (1998) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/17492/avengers_1998_11",
+      "seriesId": 354,
+      "seriesName": "Avengers (1998 - 2004)"
+    },
+    {
+      "sourcePosition": 89,
+      "selectedIssueId": 923,
+      "sourceIssueReference": "Avengers (1998) #503",
+      "sourceRangeReference": null,
+      "title": "Avengers (1998) #503",
+      "number": "503",
+      "url": "https://www.marvel.com/comics/issue/923/avengers_1998_503",
+      "seriesId": 354,
+      "seriesName": "Avengers (1998 - 2004)"
+    },
+    {
+      "sourcePosition": 90,
+      "selectedIssueId": 57311,
+      "sourceIssueReference": "Vision #3",
+      "sourceRangeReference": null,
+      "title": "Vision (2015) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/57311/vision_2015_3",
+      "seriesId": 20897,
+      "seriesName": "Vision (2015 - 2016)"
+    },
+    {
+      "sourcePosition": 91,
+      "selectedIssueId": 57314,
+      "sourceIssueReference": "Vision #6",
+      "sourceRangeReference": null,
+      "title": "Vision (2015) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/57314/vision_2015_6",
+      "seriesId": 20897,
+      "seriesName": "Vision (2015 - 2016)"
+    },
+    {
+      "sourcePosition": 92,
+      "selectedIssueId": 57315,
+      "sourceIssueReference": "Vision #7",
+      "sourceRangeReference": null,
+      "title": "Vision (2015) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/57315/vision_2015_7",
+      "seriesId": 20897,
+      "seriesName": "Vision (2015 - 2016)"
+    },
+    {
+      "sourcePosition": 93,
+      "selectedIssueId": 57319,
+      "sourceIssueReference": "Vision #11",
+      "sourceRangeReference": null,
+      "title": "Vision (2015) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/57319/vision_2015_11",
+      "seriesId": 20897,
+      "seriesName": "Vision (2015 - 2016)"
+    },
+    {
+      "sourcePosition": 94,
+      "selectedIssueId": 57094,
+      "sourceIssueReference": "Scarlet Witch (2016) #1",
+      "sourceRangeReference": null,
+      "title": "Scarlet Witch (2015) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/57094/scarlet_witch_2015_1",
+      "seriesId": 20854,
+      "seriesName": "Scarlet Witch (2015 - 2017)",
+      "note": "Later modern Scarlet Witch #1 stays distinct from the 1994 Scarlet Witch corrections."
+    },
+    {
+      "sourcePosition": 95,
+      "selectedIssueId": 57097,
+      "sourceIssueReference": "Scarlet Witch (2016) #2",
+      "sourceRangeReference": null,
+      "title": "Scarlet Witch (2015) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/57097/scarlet_witch_2015_2",
+      "seriesId": 20854,
+      "seriesName": "Scarlet Witch (2015 - 2017)"
+    },
+    {
+      "sourcePosition": 96,
+      "selectedIssueId": 57099,
+      "sourceIssueReference": "Scarlet Witch (2016) #3",
+      "sourceRangeReference": null,
+      "title": "Scarlet Witch (2015) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/57099/scarlet_witch_2015_3",
+      "seriesId": 20854,
+      "seriesName": "Scarlet Witch (2015 - 2017)"
+    },
+    {
+      "sourcePosition": 97,
+      "selectedIssueId": 57100,
+      "sourceIssueReference": "Scarlet Witch (2016) #4",
+      "sourceRangeReference": null,
+      "title": "Scarlet Witch (2015) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/57100/scarlet_witch_2015_4",
+      "seriesId": 20854,
+      "seriesName": "Scarlet Witch (2015 - 2017)"
+    },
+    {
+      "sourcePosition": 98,
+      "selectedIssueId": 57104,
+      "sourceIssueReference": "Scarlet Witch (2016) #8",
+      "sourceRangeReference": null,
+      "title": "Scarlet Witch (2015) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/57104/scarlet_witch_2015_8",
+      "seriesId": 20854,
+      "seriesName": "Scarlet Witch (2015 - 2017)"
+    },
+    {
+      "sourcePosition": 99,
+      "selectedIssueId": 57108,
+      "sourceIssueReference": "Scarlet Witch (2016) #12",
+      "sourceRangeReference": null,
+      "title": "Scarlet Witch (2015) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/57108/scarlet_witch_2015_12",
+      "seriesId": 20854,
+      "seriesName": "Scarlet Witch (2015 - 2017)"
+    },
+    {
+      "sourcePosition": 100,
+      "selectedIssueId": 60028,
+      "sourceIssueReference": "Scarlet Witch (2016) #13",
+      "sourceRangeReference": null,
+      "title": "Scarlet Witch (2015) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/60028/scarlet_witch_2015_13",
+      "seriesId": 20854,
+      "seriesName": "Scarlet Witch (2015 - 2017)"
+    },
+    {
+      "sourcePosition": 101,
+      "selectedIssueId": 60029,
+      "sourceIssueReference": "Scarlet Witch (2016) #14",
+      "sourceRangeReference": null,
+      "title": "Scarlet Witch (2015) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/60029/scarlet_witch_2015_14",
+      "seriesId": 20854,
+      "seriesName": "Scarlet Witch (2015 - 2017)"
+    },
+    {
+      "sourcePosition": 102,
+      "selectedIssueId": 60138,
+      "sourceIssueReference": "Scarlet Witch (2016) #15",
+      "sourceRangeReference": null,
+      "title": "Scarlet Witch (2015) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/60138/scarlet_witch_2015_15",
+      "seriesId": 20854,
+      "seriesName": "Scarlet Witch (2015 - 2017)"
+    },
+    {
+      "sourcePosition": 103,
+      "selectedIssueId": 80065,
+      "sourceIssueReference": "Doctor Strange Annual (2019) #1",
+      "sourceRangeReference": null,
+      "title": "Doctor Strange Annual (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/80065/doctor_strange_annual_2019_1",
+      "seriesId": 28290,
+      "seriesName": "Doctor Strange Annual (2019)"
+    },
+    {
+      "sourcePosition": 104,
+      "selectedIssueId": 77235,
+      "sourceIssueReference": "Captain America (2018) #19",
+      "sourceRangeReference": null,
+      "title": "Captain America (2018) #19",
+      "number": "19",
+      "url": "https://www.marvel.com/comics/issue/77235/captain_america_2018_19",
+      "seriesId": 24503,
+      "seriesName": "Captain America (2018 - 2022)"
+    },
+    {
+      "sourcePosition": 105,
+      "selectedIssueId": 77238,
+      "sourceIssueReference": "Captain America (2018) #22",
+      "sourceRangeReference": null,
+      "title": "Captain America (2018) #22",
+      "number": "22",
+      "url": "https://www.marvel.com/comics/issue/77238/captain_america_2018_22",
+      "seriesId": 24503,
+      "seriesName": "Captain America (2018 - 2022)"
+    },
+    {
+      "sourcePosition": 106,
+      "selectedIssueId": 77239,
+      "sourceIssueReference": "Captain America (2018) #23",
+      "sourceRangeReference": null,
+      "title": "Captain America (2018) #23",
+      "number": "23",
+      "url": "https://www.marvel.com/comics/issue/77239/captain_america_2018_23",
+      "seriesId": 24503,
+      "seriesName": "Captain America (2018 - 2022)"
+    },
+    {
+      "sourcePosition": 107,
+      "selectedIssueId": 76737,
+      "sourceIssueReference": "Fantastic Four: Antithesis (2020) #1",
+      "sourceRangeReference": null,
+      "title": "Fantastic Four: Antithesis (2020) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/76737/fantastic_four_antithesis_2020_1",
+      "seriesId": 27550,
+      "seriesName": "Fantastic Four: Antithesis (2020)"
+    },
+    {
+      "sourcePosition": 108,
+      "selectedIssueId": 76741,
+      "sourceIssueReference": "Fantastic Four: Antithesis (2020) #4",
+      "sourceRangeReference": null,
+      "title": "Fantastic Four: Antithesis (2020) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/76741/fantastic_four_antithesis_2020_4",
+      "seriesId": 27550,
+      "seriesName": "Fantastic Four: Antithesis (2020)"
+    },
+    {
+      "sourcePosition": 109,
+      "selectedIssueId": 79805,
+      "sourceIssueReference": "Strange Academy (2020) #8",
+      "sourceRangeReference": null,
+      "title": "Strange Academy (2020) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/79805/strange_academy_2020_8",
+      "seriesId": 28177,
+      "seriesName": "Strange Academy (2020 - 2022)"
+    },
+    {
+      "sourcePosition": 110,
+      "selectedIssueId": 77243,
+      "sourceIssueReference": "Captain America (2018) #27",
+      "sourceRangeReference": null,
+      "title": "Captain America (2018) #27",
+      "number": "27",
+      "url": "https://www.marvel.com/comics/issue/77243/captain_america_2018_27",
+      "seriesId": 24503,
+      "seriesName": "Captain America (2018 - 2022)"
+    },
+    {
+      "sourcePosition": 111,
+      "selectedIssueId": 89543,
+      "sourceIssueReference": "Captain America (2018) #28",
+      "sourceRangeReference": null,
+      "title": "Captain America (2018) #28",
+      "number": "28",
+      "url": "https://www.marvel.com/comics/issue/89543/captain_america_2018_28",
+      "seriesId": 24503,
+      "seriesName": "Captain America (2018 - 2022)"
+    },
+    {
+      "sourcePosition": 112,
+      "selectedIssueId": 101172,
+      "sourceIssueReference": "Midnight Suns #4",
+      "sourceRangeReference": null,
+      "title": "Midnight Suns (2022) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/101172/midnight_suns_2022_4",
+      "seriesId": 34645,
+      "seriesName": "Midnight Suns (2022 - 2023)"
+    },
+    {
+      "sourcePosition": 113,
+      "selectedIssueId": 101173,
+      "sourceIssueReference": "Midnight Suns #5",
+      "sourceRangeReference": null,
+      "title": "Midnight Suns (2022) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/101173/midnight_suns_2022_5",
+      "seriesId": 34645,
+      "seriesName": "Midnight Suns (2022 - 2023)"
+    },
+    {
+      "sourcePosition": 114,
+      "selectedIssueId": 109670,
+      "sourceIssueReference": "Scarlet Witch Annual (2023) #1",
+      "sourceRangeReference": null,
+      "title": "Scarlet Witch Annual (2023) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/109670/scarlet_witch_annual_2023_1",
+      "seriesId": 37548,
+      "seriesName": "Scarlet Witch Annual (2023)"
+    }
+  ],
+  "corrections": [
+    {
+      "kind": "first-cut",
+      "issueIds": [
+        13304,
+        12899
+      ],
+      "sourcePositions": [
+        1,
+        2
+      ],
+      "note": "The first-cut Fantastic Four corrections restore the two earliest source positions."
+    },
+    {
+      "kind": "original-scarlet",
+      "issueIds": [
+        54974,
+        54977,
+        54978
+      ],
+      "sourcePositions": [
+        77,
+        78,
+        79
+      ],
+      "note": "The original Scarlet Witch 1994 identities stay exact and remain backed by unchanged src/data/wandavision.json; seriesId and other optional metadata remain null there."
+    },
+    {
+      "kind": "nova",
+      "issueIds": [
+        83685,
+        83686
+      ],
+      "sourcePositions": [
+        80,
+        81
+      ],
+      "note": "Nova (1994) #6-7 are kept as the explicit Nova correction pair."
+    },
+    {
+      "kind": "midnight-suns",
+      "issueIds": [
+        101172,
+        101173
+      ],
+      "sourcePositions": [
+        112,
+        113
+      ],
+      "note": "Midnight Suns (2022) #4-5 remain complete with seriesId 34645."
+    },
+    {
+      "kind": "annual",
+      "issueIds": [
+        109670
+      ],
+      "sourcePositions": [
+        114
+      ],
+      "note": "Scarlet Witch Annual (2023) #1 remains complete with seriesId 37548."
+    },
+    {
+      "kind": "later-scarlet",
+      "issueIds": [
+        57094
+      ],
+      "sourcePositions": [
+        94
+      ],
+      "note": "The later modern Scarlet Witch #1 stays distinct from the 1994 Scarlet Witch corrections."
+    }
+  ],
+  "nonselectedBroaderCollections": [
+    "Introductory prose, related-reading links, and other non-issue commentary on the page are excluded from the selected ledger.",
+    "Broader collection spans that are not part of the 114 selected issue-bearing occurrences stay outside this ledger and are not expanded recursively."
+  ],
+  "hydrationProvenance": [
+    {
+      "path": "src/data/wandavision.json",
+      "sha256": "f6eb190f0aa80c51a3a69855e81b461dac7d44054ed8d1245c2950f61649f253",
+      "note": "Unchanged source payload containing the original Scarlet Witch (1994) #1/#3/#4 rows with exact titles, numbers, URLs, and null seriesId/optional metadata."
+    }
+  ],
+  "derivedOutput": {
+    "path": "src/data/agatha_harkness_reading_order.json",
+    "sha256": "a7c020a50854efbb443c1688257e08664359316ad88570ea3c0f89f62b8958a8",
+    "hashNormalization": "SHA-256 over UTF-8 bytes after CRLF and CR line endings are normalized to LF.",
+    "note": "Final generated 114-row payload. This derived output is not an input used to establish its own issue identities."
+  }
+}

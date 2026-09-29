@@ -1049,8 +1049,9 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // optional details were refused. Loki now replaces 18 placeholders with 16 complete records and
   // two exact provider refusals. Venom adds 33 exact official-link-only empty records. Doctor
   // Strange adds 23, Magneto adds two exact provider refusals, and the final Amazing Spider-Man
-  // settlement adds 23 exact provider refusals, bringing the current total to 195 across
-  // seventeen affected orders.
+  // settlement adds 23 exact provider refusals. The corrected Agatha guide adds three original
+  // Scarlet Witch records that the provider refuses, bringing the current total to 200 across
+  // eighteen affected orders.
   // Written down as observations rather than
   // floors: they move whenever an order is added or re-vendored, and moving one should mean editing
   // this line deliberately rather than watching a range quietly widen.
@@ -1093,9 +1094,9 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // Miles omits its owner-excluded source row; two Secret Empire records gain independently pinned details.
   // Winter Soldier adds four distinct unresolved source originals.
   // Vision adds four distinct unresolved source originals without changing the refused identities.
-  assert.equal(claimed, 1035, 'the payload placeholder total moved; re-derive the figures in the record');
-  assert.equal(placeholders, 1035, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
-  assert.equal(empty, 197);
+  assert.equal(claimed, 1034, 'the payload placeholder total moved; re-derive the figures in the record');
+  assert.equal(placeholders, 1034, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
+  assert.equal(empty, 200);
   assert.equal(affected, 18);
 });
 

@@ -7,6 +7,7 @@ import {
   assertMappingMatchesPacketOccurrences, digestCanonicalJson, validateFrozenPacket, validateMappingDigest,
 } from '../scripts/lib/cbh-inventory.mjs';
 import { buildReportForMapping } from '../scripts/report-order-overlap.mjs';
+import { historicalAgathaLibrarySnapshot } from './helpers/agatha-historical-library.mjs';
 import { parseCatalog, searchCatalog } from '../src/js/lib/catalog.js';
 import { parseChecklist } from '../src/js/lib/markdown.js';
 
@@ -139,6 +140,7 @@ test('Doctor Octopus relationship approval regenerates against its reviewed sour
   const report = await readJson(`scripts/data/cbh-overlaps/${id}.json`);
   const manifest = await readJson('src/data/curated-lists.json');
   const current = await buildReportForMapping(`scripts/data/cbh-mappings/${id}.json`, [], {
+    ...await historicalAgathaLibrarySnapshot(),
     excludedOrderIds: ['shadow-king-reading-order'],
   });
   const expectedOrderIds = manifest.lists.filter((row) => row.id !== id && row.id !== 'shadow-king-reading-order').map((row) => row.id);

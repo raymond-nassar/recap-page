@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-28T19:49:10.857Z",
+  "generatedAt": "2026-09-28T23:22:56.822Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -2639,9 +2639,9 @@
       "type": "character-run",
       "depth": "complete",
       "spotlightKind": "complete-guide",
-      "count": 104,
+      "count": 114,
       "placeholderCount": 0,
-      "emptyRecordCount": 4,
+      "emptyRecordCount": 7,
       "collections": 0,
       "characters": [
         "Agatha Harkness",
@@ -2669,7 +2669,7 @@
       "source": "https://www.comicbookherald.com/agatha-harkness-reading-order/",
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
-      "updatedAt": "2026-08-26T07:16:55.688Z"
+      "updatedAt": "2026-09-28T23:22:56.822Z"
     },
     {
       "id": "punisher-reading-order",
