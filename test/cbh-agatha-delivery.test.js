@@ -197,12 +197,11 @@ test('Agatha relationship approval covers every source order present at review',
       'nebula-reading-order',
       'hope-summers-reading-order',
 
-      'x-23-reading-order', 'ms-marvel-kamala-khan-reading-order', 'marvel-zombies-reading-order', 'hawkeye-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order',
-
+      'x-23-reading-order', 'ms-marvel-kamala-khan-reading-order', 'marvel-zombies-reading-order', 'hawkeye-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order', 'nova-reading-order',
     ],
   });
   const expectedOrderIds = manifest.lists
-    .filter((entry) => entry.id !== id
+    .filter((entry) => entry.id !== id && entry.id !== 'nova-reading-order'
       && ![
         'thunderbolts-reading-order',
         'nebula-reading-order',

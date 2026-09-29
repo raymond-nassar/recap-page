@@ -81,7 +81,7 @@ test('batch two preserves the approved queue, exact substitutions, and catalog c
     manifest.lists.length - PACKET_IDS.length,
   );
   assert.ok(manifest.lists.length >= 66);
-  assert.equal(catalog.lists.length, 272);
+  assert.equal(catalog.lists.length, 273);
 
 
   const manifestPacket = manifest.lists.filter((entry) => PACKET_IDS.includes(entry.id));
@@ -219,6 +219,7 @@ test('batch two has no aggregate identity, source, sequence, or pre-publication 
   const manifest = await readJson(path.join(dataDir, 'curated-lists.json'));
   const packetSet = new Set(PACKET_IDS);
   const laterReviewedIds = new Set([
+    'nova-reading-order',
     'doctor-octopus-otto-octavius-reading-order',
     'thunderbolts-reading-order',
     'x-23-reading-order', 'hawkeye-reading-order',

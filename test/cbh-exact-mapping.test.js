@@ -81,7 +81,7 @@ test('Marvel Zombies report covers the full current library with unchanged exact
   ), 'utf8'));
   validateReportDigest(report);
   const current = await buildReportForMapping(mappingPath, [], {
-    excludedOrderIds: ['ms-marvel-kamala-khan-reading-order'],
+    excludedOrderIds: ['ms-marvel-kamala-khan-reading-order', 'nova-reading-order'],
   });
   assert.deepEqual(report, current);
   assert.equal(report.sourceCounts.sourceOccurrenceCount, 95);

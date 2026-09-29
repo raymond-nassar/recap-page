@@ -124,7 +124,7 @@ test('batch three preserves the approved source queue and independently verified
     manifest.lists.length - THIRD_PACKET_IDS.length,
   );
   assert.ok(manifest.lists.length >= 66);
-  assert.equal(catalog.lists.length, 272);
+  assert.equal(catalog.lists.length, 273);
 
 
   const sorted = sortCatalog(parseCatalog(catalog).lists);

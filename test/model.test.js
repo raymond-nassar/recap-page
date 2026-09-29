@@ -1101,8 +1101,9 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // Hawkeye adds one unresolved original and six known-ID optional-detail refusals.
   // Marvel Zombies retains three unresolved 2025 originals as distinct placeholders.
   // Kamala adds five distinct original-edition gaps without guessing provider identities.
-  assert.equal(claimed, 1074, 'the payload placeholder total moved; re-derive the figures in the record');
-  assert.equal(placeholders, 1074, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
+  // Nova adds two distinct published-original source positions.
+  assert.equal(claimed, 1076, 'the payload placeholder total moved; re-derive the figures in the record');
+  assert.equal(placeholders, 1076, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
   assert.equal(empty, 217);
   assert.equal(affected, 20);
 });
@@ -1340,7 +1341,8 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // Infinity adds seventeen distinct placeholders; its eleven positive-ID detail refusals
   // are imported under the existing merge behavior, even where another guide has metadata.
   // Kamala adds five original-edition gaps without linked provider identities.
-  assert.equal(refused.length, 1304);
+  // Nova contributes two more distinct provider-ID-free source-position placeholders.
+  assert.equal(refused.length, 1306);
   const infinity = JSON.parse(readFileSync(join(dataDir,
     'marvels_infinity_saga_gauntlet_wars_crusade_reading_order.json'), 'utf8'));
   assert.equal(infinity.items.filter((item) => item.detailsRefused && item.issueId > 0).length, 11);

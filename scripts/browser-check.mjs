@@ -3232,8 +3232,8 @@ const SCENARIOS = [
         bestOf: await readSubset('best-of'),
       };
       t.check('desktop All, Complete, and Best of counts classify Adam exactly once',
-        desktop.all.readings === 64 && desktop.all.stories === 63
-        && desktop.all.cards === 63 && desktop.all.adamCards === 1
+        desktop.all.readings === 65 && desktop.all.stories === 64
+        && desktop.all.cards === 64 && desktop.all.adamCards === 1
         && desktop.complete.readings === 38 && desktop.complete.stories === 38
         && desktop.complete.cards === 38 && desktop.complete.adamCards === 1
         && desktop.bestOf.readings === 7 && desktop.bestOf.stories === 7
@@ -3248,8 +3248,8 @@ const SCENARIOS = [
         overflow: await page.evaluate(() => document.documentElement.scrollWidth > innerWidth),
       };
       t.check('narrow All, Complete, and Best of counts preserve Adam without horizontal overflow',
-        narrow.all.readings === 64 && narrow.all.stories === 63
-        && narrow.all.cards === 63 && narrow.all.adamCards === 1
+        narrow.all.readings === 65 && narrow.all.stories === 64
+        && narrow.all.cards === 64 && narrow.all.adamCards === 1
         && narrow.complete.readings === 38 && narrow.complete.stories === 38
         && narrow.complete.cards === 38 && narrow.complete.adamCards === 1
         && narrow.bestOf.readings === 7 && narrow.bestOf.stories === 7
@@ -3860,6 +3860,146 @@ const SCENARIOS = [
           /X-Force Annual \(2010\)|All-New Wolverine Saga|Wolverine: The Road To Hell/.test(title)),
         JSON.stringify(reloaded.rows.filter((_, index) => [13, 111, 112, 113, 138, 141, 288, 290].includes(index))));
       t.check('X-23 browse, preview, import and reload made no external request or browser error',
+        externalRequests.length === 0 && errors.length === 0,
+        JSON.stringify({ externalRequests: externalRequests.slice(0, 3), errors: errors.slice(0, 3) }));
+    },
+  },
+  {
+    id: 'nova-actual-data',
+    title: 'the actual Nova guide preserves all 371 source-selected originals and gaps through preview, import and reload',
+    async run(page, t) {
+      const id = 'nova-reading-order';
+      const mapping = JSON.parse(readFileSync(
+        new URL('../scripts/data/cbh-mappings/nova-reading-order.json', import.meta.url), 'utf8',
+      ));
+      const packet = JSON.parse(readFileSync(
+        new URL('../scripts/data/cbh-packets/nova-reading-order.json', import.meta.url), 'utf8',
+      ));
+      const gaps = [
+        { sourcePosition: 141, position: 120, issueId: -1111446084, title: 'Nova (1994) #17' },
+        { sourcePosition: 142, position: 121, issueId: -1061113227, title: 'Nova (1994) #18' },
+      ];
+      const expectedWithSource = [...mapping.rows, ...mapping.sourceGaps]
+        .sort((left, right) => left.sourcePosition - right.sourcePosition)
+        .map((row, index) => ({
+          position: index + 1,
+          sourcePosition: row.sourcePosition,
+          issueId: row.selectedIssueId ?? gaps.find((gap) =>
+            gap.sourcePosition === row.sourcePosition)?.issueId,
+          title: row.resolvedIssueTitle ?? row.sourceIssueReference,
+        }));
+      const expected = expectedWithSource.map(({ sourcePosition: _sourcePosition, ...row }) => row);
+      const repeatedIds = packet.repeatedSourceReferences.map((row) =>
+        mapping.rows[row.canonicalRow - 1]?.selectedIssueId);
+      if (expected.length !== 371 || repeatedIds.length !== 30
+        || new Set(repeatedIds).size !== 30 || repeatedIds.some((issueId) => !issueId)
+        || expectedWithSource.some((row) => [143, 144, 354].includes(row.sourcePosition))) {
+        throw new Error('Nova source fixture no longer has 371 entries, 30 repeats and three closed exclusions');
+      }
+      const checkRows = (label, rows) => {
+        const mismatches = rows.flatMap((row, index) => (
+          JSON.stringify(row) === JSON.stringify(expected[index])
+            ? [] : [{ expected: expected[index], actual: row }]
+        ));
+        t.check(label, rows.length === 371 && mismatches.length === 0,
+          JSON.stringify({ count: rows.length, mismatches: mismatches.slice(0, 3) }));
+      };
+      const checkBoundaries = (label, rows) => {
+        const foundGaps = rows.flatMap((row) => row.issueId < 0 ? [row] : []);
+        const gapRows = gaps.map(({ position, issueId, title }) => ({ position, issueId, title }));
+        t.check(label,
+          JSON.stringify(foundGaps) === JSON.stringify(gapRows)
+          && repeatedIds.every((issueId) => rows.filter((row) => row.issueId === issueId).length === 1)
+          && !rows.some(({ title }) =>
+            ['Nova (1994) #19', 'Nova (1994) #20',
+              'Guardians of the Galaxy (2017) #151'].includes(title)),
+          JSON.stringify({ foundGaps, repeatedCount: repeatedIds.length }));
+      };
+      const importedRows = () => page.evaluate((catalogId) => {
+        const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+        const matches = Object.values(state.lists).filter((list) => list.catalogId === catalogId);
+        return {
+          matches: matches.length,
+          rows: (matches[0]?.itemIds ?? []).map((issueId, index) => ({
+            position: index + 1, issueId, title: state.issues[issueId]?.title,
+          })),
+        };
+      }, id);
+      const renderedRows = () => page.$$eval('#rows .row', (nodes) => nodes.map((node, index) => ({
+        position: index + 1,
+        issueId: Number(node.querySelector('.rt')?.dataset.issueId),
+        title: node.querySelector('.rt')?.textContent.trim(),
+      })));
+      const errors = [];
+      const externalRequests = [];
+      page.on('console', (message) => { if (message.type() === 'error') errors.push(message.text()); });
+      page.on('pageerror', (error) => errors.push(error.message));
+      page.on('request', (request) => {
+        const url = new URL(request.url());
+        if (url.protocol.startsWith('http') && url.origin !== page.__origin) {
+          externalRequests.push(request.url());
+        }
+      });
+      await page.evaluateOnNewDocument(() => {
+        localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
+        window.__mrtBlockExternal = true;
+      });
+
+      await open(page, '/?catalog=actual#/home');
+      await openBrowseCategory(page, 'character-spotlights');
+      await page.$eval('#spotlights-q', (input) => {
+        input.value = 'Nova';
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+      });
+      const cardSelector = '#spotlights-results [data-story="list:nova-reading-order"]';
+      await page.waitForSelector(cardSelector, { timeout: 15000 });
+      const card = await page.$eval(cardSelector, (node) => ({
+        name: node.querySelector('.catalog-card-title')?.textContent.trim(),
+        text: node.textContent,
+        source: node.querySelector('a[href*="comicbookherald.com"]')?.href,
+      }));
+      t.check('Nova card credits the exact source, 371 issues and two visible metadata gaps',
+        card.name === 'Nova' && card.text.includes('371 issues')
+        && card.text.includes('2 issues have no Marvel Unlimited links yet and cannot be opened')
+        && card.source === 'https://www.comicbookherald.com/nova-reading-order/',
+        JSON.stringify(card));
+      await click(page, `${cardSelector} [data-act="preview"]`);
+      await page.waitForFunction(() =>
+        document.querySelectorAll('#preview[open] .preview-issue-link').length === 371);
+      const preview = await page.$$eval('#preview-body .preview-issue-link', (nodes) => nodes.map((node) => ({
+        position: Number(node.closest('li')?.querySelector('.pn')?.textContent),
+        issueId: Number(node.dataset.issueId),
+        title: node.textContent.trim(),
+      })));
+      checkRows('Nova preview retains every ID, title and canonical position', preview);
+      checkBoundaries('Nova preview keeps both gaps, 30 once-only repeats and no closed corrections', preview);
+      await click(page, '#preview-add [data-act="main"]');
+      await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')
+        ?.textContent.includes('In library'));
+      const imported = await importedRows();
+      t.check('Nova import creates exactly one saved Reading List', imported.matches === 1);
+      checkRows('Nova import retains every ID, title and canonical position', imported.rows);
+      checkBoundaries('Nova import conserves open gaps and omits repeats and corrections', imported.rows);
+      await click(page, '#preview-add [data-act="main"]');
+      await page.waitForFunction(() =>
+        !document.querySelector('#view-read')?.hidden
+        && document.querySelector('#order-name')?.textContent.trim() === 'Nova');
+      await openFullOrder(page);
+      await page.waitForFunction(() => document.querySelectorAll('#rows .row').length === 371);
+      const rendered = await renderedRows();
+      checkRows('Nova Reading List renders every ID, title and canonical position', rendered);
+      checkBoundaries('Nova render preserves both gaps and omits repeats and corrections', rendered);
+      await page.reload({ waitUntil: 'load' });
+      await page.waitForFunction(() =>
+        document.querySelector('#order-name')?.textContent.trim() === 'Nova');
+      await openFullOrder(page);
+      await page.waitForFunction(() => document.querySelectorAll('#rows .row').length === 371);
+      const reloaded = await renderedRows();
+      checkRows('Nova reload renders every ID, title and canonical position', reloaded);
+      checkBoundaries('Nova reload keeps gaps and omits repeats and corrections', reloaded);
+      checkRows('Nova saved list persists every ID, title and canonical position',
+        (await importedRows()).rows);
+      t.check('Nova browser journey makes no external request or browser error',
         externalRequests.length === 0 && errors.length === 0,
         JSON.stringify({ externalRequests: externalRequests.slice(0, 3), errors: errors.slice(0, 3) }));
     },
