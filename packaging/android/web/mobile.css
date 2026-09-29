@@ -150,6 +150,8 @@ body:has(#android-list-sheet[open]) { overflow: hidden; }
   .sec-h { flex-wrap: wrap; }
   .sec-note { text-align: left; }
   .catalog-card-actions { grid-template-columns: minmax(0, 1fr); }
+  #series-results .result { flex-direction: column; align-items: stretch; }
+  #series-results .result > .btn { justify-content: center; overflow-wrap: normal; }
   .card, .empty-state { padding-inline: var(--space-5); }
   .preview-head { flex-wrap: wrap; }
 }
