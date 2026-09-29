@@ -3940,7 +3940,7 @@ const SCENARIOS = [
         '#view-browse [data-primary-paths] [data-category="timeline"] .home-path-count',
         (node) => node.textContent.trim(),
       );
-      t.check('Home recommends the setup guide and both gateways count 148 normal Reading Lists',
+      t.check('Home recommends the setup guide and both gateways count 148 Reading Lists',
         home.recommendation === 'Recommended start: Setup to Modern Timeline'
         && home.context.startsWith('New to Marvel?')
         && home.context.includes('historical context on the characters and events ahead')
@@ -13785,6 +13785,166 @@ SCENARIOS.push((await import('./browser-markdown-export.mjs')).readableMarkdownE
 const deferral = await import('./browser-defer.mjs');
 SCENARIOS.push(deferral.deferNext, deferral.deferLifecycle, deferral.deferPersistence);
 SCENARIOS.push((await import('./browser-order-export.mjs')).orderOnlyExport);
+SCENARIOS.push({
+  id: 'infinity-saga-actual-data',
+  title: 'the actual Infinity storyline previews, imports, renders, and reloads every source position',
+  async run(page, t) {
+    const order = JSON.parse(readFileSync(new URL(
+      '../src/data/marvels_infinity_saga_gauntlet_wars_crusade_reading_order.json', import.meta.url,
+    ), 'utf8'));
+    const id = 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order';
+    const packet = JSON.parse(readFileSync(new URL(
+      `../scripts/data/cbh-packets/${id}.json`, import.meta.url,
+    ), 'utf8'));
+    const mapping = JSON.parse(readFileSync(new URL(
+      `../scripts/data/cbh-mappings/${id}.json`, import.meta.url,
+    ), 'utf8'));
+    const canonical = [...mapping.rows, ...mapping.sourceGaps]
+      .sort((a, b) => a.sourcePosition - b.sourcePosition);
+    const expected = order.items.map(({ issueId, title }, index) => ({
+      position: index + 1, issueId, title,
+    }));
+    const knownRefusedIds = order.items
+      .filter(({ issueId, detailsRefused }) => issueId > 0 && detailsRefused)
+      .map(({ issueId }) => issueId);
+    const cardSelector = `#lines-results [data-story="list:${id}"]`;
+    const errors = [];
+    const externalRequests = [];
+    page.on('console', (message) => { if (message.type() === 'error') errors.push(message.text()); });
+    page.on('pageerror', (error) => errors.push(error.message));
+    page.on('request', (request) => {
+      const url = new URL(request.url());
+      if (url.protocol.startsWith('http') && url.origin !== page.__origin) {
+        externalRequests.push(request.url());
+      }
+    });
+    await page.evaluateOnNewDocument(() => {
+      localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
+      window.__mrtBlockExternal = true;
+    });
+    const checkRows = (label, rows) => t.check(label,
+      JSON.stringify(rows) === JSON.stringify(expected),
+      JSON.stringify({ count: rows.length, first: rows[0], last: rows.at(-1) }));
+    const imported = () => page.evaluate((catalogId, refusedIds) => {
+      const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+      const matches = Object.values(state.lists).filter((list) => list.catalogId === catalogId);
+      const itemIds = matches[0]?.itemIds ?? [];
+      return {
+        matches: matches.length,
+        rows: itemIds.map((issueId, index) => ({
+          position: index + 1, issueId, title: state.issues[issueId]?.title,
+        })),
+        positiveRefusedIds: itemIds.filter((issueId) =>
+          issueId > 0 && state.issues[issueId]?.detailsRefused),
+        refusedRecords: refusedIds.map((issueId) => ({
+          issueId,
+          detailsRefused: state.issues[issueId]?.detailsRefused ?? null,
+          seriesId: state.issues[issueId]?.seriesId ?? null,
+          digitalId: state.issues[issueId]?.digitalId ?? null,
+          hydrated: state.issues[issueId]?.hydrated ?? null,
+        })),
+      };
+    }, id, knownRefusedIds);
+    const checkStoredRefusals = (label, snapshot) => t.check(label,
+      knownRefusedIds.length === 11
+      && JSON.stringify(snapshot.positiveRefusedIds) === JSON.stringify(knownRefusedIds)
+      && snapshot.refusedRecords.length === 11
+      && snapshot.refusedRecords.every((record, index) =>
+        record.issueId === knownRefusedIds[index]
+        && record.detailsRefused === true
+        && record.seriesId === null
+        && record.digitalId === null
+        && record.hydrated === false),
+      JSON.stringify(snapshot.refusedRecords));
+    const rendered = () => page.$$eval('#rows .row', (nodes) => nodes.map((node, index) => ({
+      position: index + 1,
+      issueId: Number(node.querySelector('.rt')?.dataset.issueId),
+      title: node.querySelector('.rt')?.textContent.trim(),
+    })));
+    await open(page, '/?catalog=actual#/catalog');
+    await openBrowseCategory(page, 'storylines');
+    await page.waitForSelector(cardSelector, { timeout: 15000 });
+    const card = await page.$eval(cardSelector, (node) => ({
+      name: node.querySelector('.catalog-card-title')?.textContent.trim(),
+      source: node.querySelector('a[href*="comicbookherald.com"]')?.href,
+      section: node.parentElement?.previousElementSibling?.textContent,
+    }));
+    t.check('undated storyline is discoverable in Across eras with the exact credited guide',
+      card.name === 'Infinity Trilogy (Gauntlet, War, Crusade)'
+      && card.source === order.source
+      && (card.section ?? '').includes('Across eras'),
+      JSON.stringify(card));
+    await click(page, `${cardSelector} [data-act="preview"]`);
+    await page.waitForFunction(() =>
+      document.querySelectorAll('#preview[open] .preview-issue-link').length === 191);
+    const preview = await page.$$eval('#preview-body .preview-issue-link', (nodes) => nodes.map((node) => ({
+      position: Number(node.closest('li')?.querySelector('.pn')?.textContent),
+      issueId: Number(node.dataset.issueId),
+      title: node.textContent.trim(),
+    })));
+    checkRows('preview retains all 191 first positions, IDs and titles', preview);
+    await click(page, '#preview-add [data-act="main"]');
+    await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')
+      ?.textContent.includes('In library'));
+    const saved = await imported();
+    t.check('import saves exactly one catalog-bound guide', saved.matches === 1, JSON.stringify(saved));
+    checkRows('import retains all 191 positions, IDs and titles', saved.rows);
+    checkStoredRefusals('import stores all 11 actual positive-ID detail refusals without digital metadata',
+      saved);
+    await click(page, '#preview-add [data-act="main"]');
+    await page.waitForFunction(() => !document.querySelector('#view-read')?.hidden
+      && document.querySelector('#order-name')?.textContent.trim()
+        === 'Infinity Trilogy (Gauntlet, War, Crusade)');
+    await openFullOrder(page);
+    await page.waitForFunction(() => document.querySelectorAll('#rows .row').length === 191);
+    checkRows('Reading List renders all 191 positions, IDs and titles', await rendered());
+    await page.reload({ waitUntil: 'load' });
+    await page.waitForFunction(() => document.querySelector('#order-name')?.textContent.trim()
+      === 'Infinity Trilogy (Gauntlet, War, Crusade)');
+    await openFullOrder(page);
+    await page.waitForFunction(() => document.querySelectorAll('#rows .row').length === 191);
+    checkRows('reloaded Reading List renders all 191 positions, IDs and titles', await rendered());
+    const reloaded = await imported();
+    checkRows('reloaded state preserves all 191 imported identities', reloaded.rows);
+    checkStoredRefusals('reload preserves all 11 actual positive-ID refusal flags and absent digital metadata',
+      reloaded);
+    t.check('17 source gaps and 11 known-ID refusals remain separate without repeats',
+      expected.filter(({ issueId }) => issueId < 0).length === 17
+      && order.items.filter((item) => item.detailsRefused && item.issueId > 0).length === 11
+      && new Set(expected.map(({ issueId }) => issueId)).size === 191,
+      JSON.stringify({ gaps: expected.filter(({ issueId }) => issueId < 0).length }));
+    const directed = [
+      [1, 15169], [8, 15176], [16, 15174], [31, 63311], [35, 15188], [36, 9286],
+      [61, 15198], [62, 20197], [73, 15199], [94, 9292], [99, 7789],
+      [112, 10020], [115, 10024], [163, 23307], [209, 50530],
+      [217, 51976], [221, 51981],
+    ];
+    t.check('prologue placements, directed interleaves and 1991/2015 originals survive import',
+      directed.every(([sourcePosition, issueId]) =>
+        expected[canonical.findIndex((row) => row.sourcePosition === sourcePosition)]?.issueId === issueId),
+      JSON.stringify(directed));
+    t.check('all 30 repeated source references render only at their first placement',
+      packet.repeatedSourceReferences.length === 30
+      && packet.repeatedSourceReferences.every((row) => {
+        const original = packet.rows[row.canonicalRow - 1];
+        return canonical.some((entry) => entry.sourcePosition === original.sourcePosition)
+          && !canonical.some((entry) => entry.sourcePosition === row.sourcePosition);
+      }),
+      JSON.stringify({ repeated: packet.repeatedSourceReferences.length }));
+    const excluded = [
+      'Marvel Comics Presents (1988) #50', 'Marvel Comics Presents (1988) #112',
+      'Silver Surfer Annual #5', 'Marvel Holiday Special #2', 'Marvel Swimsuit Special #2',
+      'What The-?! #24', 'Alpha Flight (1983) #125', 'Alpha Flight (1983) #126',
+      'Alpha Flight (1983) #127', 'Deathlok (1991) #28',
+    ];
+    t.check('fragment-only and undirected collection-only comics remain outside the rendered guide',
+      excluded.every((title) => !expected.some((row) => row.title === title)),
+      JSON.stringify(excluded.filter((title) => expected.some((row) => row.title === title))));
+    t.check('browse, preview, import, and reload make no external request or browser error',
+      externalRequests.length === 0 && errors.length === 0,
+      JSON.stringify({ externalRequests: externalRequests.slice(0, 3), errors: errors.slice(0, 3) }));
+  },
+});
 
 // Without this an unexpected throw leaves an unhandled rejection, which Node reports as a bare
 // stack and exits 1 on. Exit 1 is this check's word for "an assertion failed", so an internal

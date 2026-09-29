@@ -127,9 +127,20 @@ function assertCachedMetadata(record, id, url) {
   if (record.url !== url || record.urlSha256 !== cacheKey(url)) {
     throw new Error(`Cached metadata for issue ${id} does not match its request URL`);
   }
+  if (record.status === 404) {
+    if (Object.hasOwn(record, 'body') || Object.hasOwn(record, 'bodySha256')) {
+      throw new Error(`Cached metadata for issue ${id} 404 must have no metadata body`);
+    }
+    if (record.error !== `404 ${url}`
+      || typeof record.fetchedAt !== 'string'
+      || !Number.isFinite(Date.parse(record.fetchedAt))) {
+      throw new Error(`Cached metadata for issue ${id} is not a recorded 404 for its request URL`);
+    }
+    return null;
+  }
   if (record.status !== 200 || !record.body || typeof record.body !== 'object'
     || Array.isArray(record.body)) {
-    throw new Error(`Cached metadata for issue ${id} is not a successful JSON response`);
+    throw new Error(`Cached metadata for issue ${id} is not a successful JSON response or settled 404`);
   }
   if (!Number.isInteger(record.body.id) || record.body.id !== id) {
     throw new Error(`Cached metadata for issue ${id} does not identify that exact issue`);
@@ -162,11 +173,12 @@ async function loadCachedMetadata(ids, cacheDir) {
     }
     return [id, assertCachedMetadata(record, id, url)];
   }));
-  const meta = new Map(metadata);
-  if (meta.size !== ids.length) {
+  const meta = new Map(metadata.filter(([, body]) => body !== null));
+  const refused = new Set(metadata.filter(([, body]) => body === null).map(([id]) => id));
+  if (meta.size + refused.size !== ids.length) {
     throw new Error('Cache-only metadata did not establish a one-to-one issue set');
   }
-  return meta;
+  return { meta, refused };
 }
 
 async function cleanupArtifacts(paths) {
@@ -405,10 +417,7 @@ async function main() {
   }
 
   const { meta, refused } = metadataCacheDir
-    ? {
-      meta: await loadCachedMetadata(ids, metadataCacheDir),
-      refused: new Set(),
-    }
+    ? await loadCachedMetadata(ids, metadataCacheDir)
     : await lookupIssues(ids, {
       getJson,
       url: (id) => `${API}/issues/${id}`,
@@ -417,6 +426,9 @@ async function main() {
         if (done % 25 === 0) console.log(`  ${done}/${total}`);
       },
     });
+  if (metadataCacheDir) {
+    for (const id of refused) console.warn(`  ! issue ${id}: upstream holds no record of it (404)`);
+  }
 
   const generatedAt = new Date().toISOString();
   const summary = [];

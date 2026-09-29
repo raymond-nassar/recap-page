@@ -4684,6 +4684,42 @@
       "coverIssueId": 13811
     },
     {
+      "id": "marvels-infinity-saga-gauntlet-wars-crusade-reading-order",
+      "name": "Infinity Trilogy (Gauntlet, War, Crusade)",
+      "description": "Read the original Infinity trilogy with Comic Book Herald's issue order, selected preludes, aftermath and alternate continuations.",
+      "type": "era",
+      "depth": "partial",
+      "beginner": false,
+      "timeline": null,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceSection": null,
+      "sourceFile": "marvels-infinity-saga-gauntlet-wars-crusade-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/marvels-infinity-saga-gauntlet-wars-crusade-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "marvels_infinity_saga_gauntlet_wars_crusade_reading_order.json",
+      "characters": [
+        "Thanos",
+        "Adam Warlock",
+        "Silver Surfer"
+      ],
+      "keywords": [
+        "Infinity Saga",
+        "Infinity Trilogy",
+        "Infinity Gauntlet",
+        "Infinity War",
+        "Infinity Crusade",
+        "Thanos",
+        "Adam Warlock",
+        "Silver Surfer",
+        "Comic Book Herald"
+      ],
+      "expect": 191,
+      "coverIssueId": 9286
+    },
+    {
       "id": "operation-galactic-storm",
       "name": "Operation: Galactic Storm",
       "description": "Twenty-two chapters carrying Operation: Galactic Storm across the Avengers and their allies.",

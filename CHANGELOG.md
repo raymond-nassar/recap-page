@@ -29,6 +29,16 @@ distinguishes desktop storage, local name searches and retained recovery copies 
 behavior without promising deletion by external services or document providers. Saved data,
 import/export behavior and desktop launching are unchanged.
 
+### Add the original Infinity trilogy reading guide
+
+A credited Infinity Gauntlet, Infinity War, and Infinity Crusade guide now follows 191 distinct
+comics from the Silver Surfer and Thanos Quest preludes through selected aftermath and alternate
+continuations. It keeps the guide's issue-by-issue event interleaving, does not ask readers to
+repeat 30 overlapping references, and shows 17 unavailable metadata matches as explicit gaps
+instead of substituting other editions. Eleven identified comics keep their exact issue links
+while their provider details and covers are unavailable. The multi-era storyline remains discoverable
+across eras without being assigned a false start year. Existing saved reading progress is unchanged.
+
 ### Identify builds without coupling platform releases
 
 Packaged About screens now identify the platform build and source revision separately from the

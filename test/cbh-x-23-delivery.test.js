@@ -181,10 +181,11 @@ test('X-23 publishes a credited and discoverable complete guide with approved li
 
 test('X-23 publication-time full-library review retains every approved peer', async () => {
   const current = await buildReportForMapping(mappingPath, [], {
-    excludedOrderIds: ['silk-cindy-moon-reading-order'],
+    excludedOrderIds: ['silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order'],
   });
   const expectedOrderIds = manifest.lists.filter((entry) =>
-    entry.id !== id && entry.id !== 'silk-cindy-moon-reading-order').map((entry) => entry.id);
+    entry.id !== id && entry.id !== 'silk-cindy-moon-reading-order'
+    && entry.id !== 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order').map((entry) => entry.id);
   assert.deepEqual(current, report);
   assert.equal(report.candidateCount, 291);
   assert.equal(report.comparisonCount, 189);

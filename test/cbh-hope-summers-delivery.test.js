@@ -219,11 +219,12 @@ test('Hope Summers keeps the approved publication-time library relationships', a
   const regenerated = await buildReportForMapping(
     `scripts/data/cbh-mappings/${id}.json`,
     [],
-    { excludedOrderIds: ['x-23-reading-order', 'silk-cindy-moon-reading-order'] },
+    { excludedOrderIds: ['x-23-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order'] },
   );
   const expectedOrderIds = manifest.lists
     .filter((row) => row.id !== id && row.id !== 'x-23-reading-order'
-      && row.id !== 'silk-cindy-moon-reading-order')
+      && row.id !== 'silk-cindy-moon-reading-order'
+      && row.id !== 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order')
     .map((row) => row.id);
   const expectedNonNone = new Map([
     ['emma-frost-reading-order', ['partial', 103]],

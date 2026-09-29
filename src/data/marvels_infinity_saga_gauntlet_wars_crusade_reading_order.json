@@ -1,0 +1,6217 @@
+{
+  "id": "marvels-infinity-saga-gauntlet-wars-crusade-reading-order",
+  "name": "Infinity Trilogy (Gauntlet, War, Crusade)",
+  "description": "Read the original Infinity trilogy with Comic Book Herald's issue order, selected preludes, aftermath and alternate continuations.",
+  "source": "https://www.comicbookherald.com/marvels-infinity-saga-gauntlet-wars-crusade-reading-order/",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-09-29T06:36:18.233Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 191,
+  "collections": 145,
+  "placeholders": 17,
+  "unresolved": [
+    {
+      "title": "Deathlok #16",
+      "url": null,
+      "read": false,
+      "index": 69,
+      "section": "Deathlok #16",
+      "sourceKey": "100"
+    },
+    {
+      "title": "Silver Sable and the Wild Pack #4",
+      "url": null,
+      "read": false,
+      "index": 89,
+      "section": "Silver Sable and the Wild Pack #4",
+      "sourceKey": "120"
+    },
+    {
+      "title": "Nomad Vol. 2 #7",
+      "url": null,
+      "read": false,
+      "index": 93,
+      "section": "Nomad Vol. 2 #7",
+      "sourceKey": "124"
+    },
+    {
+      "title": "Silver Sable and the Wild Pack #5",
+      "url": null,
+      "read": false,
+      "index": 99,
+      "section": "Silver Sable and the Wild Pack #5",
+      "sourceKey": "130"
+    },
+    {
+      "title": "Sleepwalker #18",
+      "url": null,
+      "read": false,
+      "index": 107,
+      "section": "Sleepwalker #18",
+      "sourceKey": "138"
+    },
+    {
+      "title": "Alpha Flight #122",
+      "url": null,
+      "read": false,
+      "index": 139,
+      "section": "Alpha Flight #122",
+      "sourceKey": "170"
+    },
+    {
+      "title": "Terror Inc. #13",
+      "url": null,
+      "read": false,
+      "index": 140,
+      "section": "Terror Inc. #13",
+      "sourceKey": "171"
+    },
+    {
+      "title": "Marc Spector: Moon Knight #56",
+      "url": null,
+      "read": false,
+      "index": 141,
+      "section": "Marc Spector: Moon Knight #56",
+      "sourceKey": "172"
+    },
+    {
+      "title": "Cage #17",
+      "url": null,
+      "read": false,
+      "index": 150,
+      "section": "Cage #17",
+      "sourceKey": "181"
+    },
+    {
+      "title": "Web of Spider-Man #104",
+      "url": null,
+      "read": false,
+      "index": 151,
+      "section": "Web of Spider-Man #104",
+      "sourceKey": "182"
+    },
+    {
+      "title": "Web of Spider-Man #105",
+      "url": null,
+      "read": false,
+      "index": 152,
+      "section": "Web of Spider-Man #105",
+      "sourceKey": "183"
+    },
+    {
+      "title": "Alpha Flight #123",
+      "url": null,
+      "read": false,
+      "index": 154,
+      "section": "Alpha Flight #123",
+      "sourceKey": "185"
+    },
+    {
+      "title": "Sable & The Wild Pack #16-17",
+      "url": null,
+      "read": false,
+      "index": 162,
+      "section": "Sable & The Wild Pack #16-17",
+      "sourceKey": "193"
+    },
+    {
+      "title": "Sable & The Wild Pack #16-17",
+      "url": null,
+      "read": false,
+      "index": 163,
+      "section": "Sable & The Wild Pack #16-17",
+      "sourceKey": "194"
+    },
+    {
+      "title": "Web Of Spider-Man (1985) #106",
+      "url": null,
+      "read": false,
+      "index": 173,
+      "section": "Web Of Spider-Man (1985) #106",
+      "sourceKey": "204"
+    },
+    {
+      "title": "Deathlok #29",
+      "url": null,
+      "read": false,
+      "index": 176,
+      "section": "Deathlok #29",
+      "sourceKey": "207"
+    },
+    {
+      "title": "What If? (1989) 49, 104",
+      "url": null,
+      "read": false,
+      "index": 180,
+      "section": "What If? (1989) 49, 104",
+      "sourceKey": "211"
+    }
+  ],
+  "items": [
+    {
+      "issueId": 15169,
+      "title": "Silver Surfer (1987) #34",
+      "number": "34",
+      "url": "https://www.marvel.com/comics/issue/15169/silver_surfer_1987_34",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1990-02-01T00:00:00+0000",
+      "mu": "1990-02-01T00:00:00+0000",
+      "digitalId": 3154,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/c0/5c92865415542",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Silver Surfer (1987) 34-38"
+    },
+    {
+      "issueId": 15170,
+      "title": "Silver Surfer (1987) #35",
+      "number": "35",
+      "url": "https://www.marvel.com/comics/issue/15170/silver_surfer_1987_35",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1990-03-01T00:00:00+0000",
+      "mu": "1990-03-01T00:00:00+0000",
+      "digitalId": 6869,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/a0/5c92943c670f0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Silver Surfer (1987) 34-38"
+    },
+    {
+      "issueId": 15171,
+      "title": "Silver Surfer (1987) #36",
+      "number": "36",
+      "url": "https://www.marvel.com/comics/issue/15171/silver_surfer_1987_36",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1990-04-01T00:00:00+0000",
+      "mu": "1990-04-01T00:00:00+0000",
+      "digitalId": 6870,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/f0/5c929b3d89d2b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Silver Surfer (1987) 34-38"
+    },
+    {
+      "issueId": 15172,
+      "title": "Silver Surfer (1987) #37",
+      "number": "37",
+      "url": "https://www.marvel.com/comics/issue/15172/silver_surfer_1987_37",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1990-05-01T00:00:00+0000",
+      "mu": "1990-05-01T00:00:00+0000",
+      "digitalId": 6871,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/f0/5c92a41780006",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Silver Surfer (1987) 34-38"
+    },
+    {
+      "issueId": 15173,
+      "title": "Silver Surfer (1987) #38",
+      "number": "38",
+      "url": "https://www.marvel.com/comics/issue/15173/silver_surfer_1987_38",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1990-06-01T00:00:00+0000",
+      "mu": "1990-06-01T00:00:00+0000",
+      "digitalId": 6872,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/5c92a53d96b40",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Silver Surfer (1987) 34-38"
+    },
+    {
+      "issueId": 11448,
+      "title": "Thanos Quest (1990) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/11448/thanos_quest_1990_1",
+      "seriesId": 2081,
+      "seriesName": "Thanos Quest (1990)",
+      "onSale": "1990-08-01T00:00:00+0000",
+      "mu": "1990-08-01T00:00:00+0000",
+      "digitalId": 1286,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/f0/51f6a1e6d0128",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Beatty",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Thanos Quest #1 To #2"
+    },
+    {
+      "issueId": 11449,
+      "title": "Thanos Quest (1990) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/11449/thanos_quest_1990_2",
+      "seriesId": 2081,
+      "seriesName": "Thanos Quest (1990)",
+      "onSale": "1990-11-01T00:00:00+0000",
+      "mu": "1990-11-01T00:00:00+0000",
+      "digitalId": 7114,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/b0/51f6a1f505402",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Beatty",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Thanos Quest #1 To #2"
+    },
+    {
+      "issueId": 15176,
+      "title": "Silver Surfer (1987) #40",
+      "number": "40",
+      "url": "https://www.marvel.com/comics/issue/15176/silver_surfer_1987_40",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1990-08-01T00:00:00+0000",
+      "mu": "1990-08-01T00:00:00+0000",
+      "digitalId": 48720,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/5b2d5d4506fa6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Silver Surfer #40, #44-50"
+    },
+    {
+      "issueId": 15180,
+      "title": "Silver Surfer (1987) #44",
+      "number": "44",
+      "url": "https://www.marvel.com/comics/issue/15180/silver_surfer_1987_44",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1990-12-01T00:00:00+0000",
+      "mu": "1990-12-01T00:00:00+0000",
+      "digitalId": 48724,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/5b2d5e4e10875",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Silver Surfer #40, #44-50"
+    },
+    {
+      "issueId": 15181,
+      "title": "Silver Surfer (1987) #45",
+      "number": "45",
+      "url": "https://www.marvel.com/comics/issue/15181/silver_surfer_1987_45",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1991-01-01T00:00:00+0000",
+      "mu": "1991-01-01T00:00:00+0000",
+      "digitalId": 48725,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/5b2d5e8f55037",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Silver Surfer #40, #44-50"
+    },
+    {
+      "issueId": 15182,
+      "title": "Silver Surfer (1987) #46",
+      "number": "46",
+      "url": "https://www.marvel.com/comics/issue/15182/silver_surfer_1987_46",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1991-02-01T00:00:00+0000",
+      "mu": "1991-02-01T00:00:00+0000",
+      "digitalId": 48726,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/e0/5b2d5ed587d4f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Silver Surfer #40, #44-50"
+    },
+    {
+      "issueId": 15183,
+      "title": "Silver Surfer (1987) #47",
+      "number": "47",
+      "url": "https://www.marvel.com/comics/issue/15183/silver_surfer_1987_47",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1991-03-01T00:00:00+0000",
+      "mu": "1991-03-01T00:00:00+0000",
+      "digitalId": 48727,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/10/5b2d5f398b8df",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Silver Surfer #40, #44-50"
+    },
+    {
+      "issueId": 15184,
+      "title": "Silver Surfer (1987) #48",
+      "number": "48",
+      "url": "https://www.marvel.com/comics/issue/15184/silver_surfer_1987_48",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1991-04-01T00:00:00+0000",
+      "mu": "1991-04-01T00:00:00+0000",
+      "digitalId": 48728,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/c0/5b2d5f86c4be7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Silver Surfer #40, #44-50"
+    },
+    {
+      "issueId": 15185,
+      "title": "Silver Surfer (1987) #49",
+      "number": "49",
+      "url": "https://www.marvel.com/comics/issue/15185/silver_surfer_1987_49",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1991-05-01T00:00:00+0000",
+      "mu": "1991-05-01T00:00:00+0000",
+      "digitalId": 48729,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/00/5b2d5fcc6cacd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Silver Surfer #40, #44-50"
+    },
+    {
+      "issueId": 15187,
+      "title": "Silver Surfer (1987) #50",
+      "number": "50",
+      "url": "https://www.marvel.com/comics/issue/15187/silver_surfer_1987_50",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1991-06-01T00:00:00+0000",
+      "mu": "1991-06-01T00:00:00+0000",
+      "digitalId": 48730,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/03/5b2d601852913",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Silver Surfer #40, #44-50"
+    },
+    {
+      "issueId": 15174,
+      "title": "Silver Surfer (1987) #39",
+      "number": "39",
+      "url": "https://www.marvel.com/comics/issue/15174/silver_surfer_1987_39",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1990-07-01T00:00:00+0000",
+      "mu": "1990-07-01T00:00:00+0000",
+      "digitalId": 48719,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/c0/5b2d5cff1895c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Alan Grant",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Silver Surfer (1987) 39-50"
+    },
+    {
+      "issueId": 15177,
+      "title": "Silver Surfer (1987) #41",
+      "number": "41",
+      "url": "https://www.marvel.com/comics/issue/15177/silver_surfer_1987_41",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1990-09-01T00:00:00+0000",
+      "mu": "1990-09-01T00:00:00+0000",
+      "digitalId": 48721,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/5b2d5d8d415a6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Silver Surfer (1987) 39-50"
+    },
+    {
+      "issueId": 15178,
+      "title": "Silver Surfer (1987) #42",
+      "number": "42",
+      "url": "https://www.marvel.com/comics/issue/15178/silver_surfer_1987_42",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1990-10-01T00:00:00+0000",
+      "mu": "1990-10-01T00:00:00+0000",
+      "digitalId": 48722,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/50/5b2d5dcc03221",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Chris Ivy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Silver Surfer (1987) 39-50"
+    },
+    {
+      "issueId": 15179,
+      "title": "Silver Surfer (1987) #43",
+      "number": "43",
+      "url": "https://www.marvel.com/comics/issue/15179/silver_surfer_1987_43",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1990-11-01T00:00:00+0000",
+      "mu": "1990-11-01T00:00:00+0000",
+      "digitalId": 48723,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/b0/5b2d5e0a6fba3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Keith Williams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Silver Surfer (1987) 39-50"
+    },
+    {
+      "issueId": 70420,
+      "title": "Silver Surfer Annual (1988) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/70420/silver_surfer_annual_1988_3",
+      "seriesId": 19005,
+      "seriesName": "Silver Surfer Annual (1988 - 1997)",
+      "onSale": "1990-06-01T00:00:00+0000",
+      "mu": "1990-06-01T00:00:00+0000",
+      "digitalId": 48731,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/00/5b2d6697cb7df",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Gordon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keith Williams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Annual 3"
+    },
+    {
+      "issueId": 63311,
+      "title": "The Mutant Misadventures of Cloak and Dagger (1988) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/63311/the_mutant_misadventures_of_cloak_and_dagger_1988_18",
+      "seriesId": 16368,
+      "seriesName": "The Mutant Misadventures of Cloak and Dagger (1988 - 1990)",
+      "onSale": "1991-06-01T00:00:00+0000",
+      "mu": "1991-06-01T00:00:00+0000",
+      "digitalId": 45153,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/d0/591c90899fb78",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sam De La Rosa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dave Ross",
+          "role": "penciler"
+        },
+        {
+          "name": "Terry Kavanagh",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Cloak and Dagger #18"
+    },
+    {
+      "issueId": 10775,
+      "title": "Spider-Man (1990) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/10775/spider-man_1990_17",
+      "seriesId": 2069,
+      "seriesName": "Spider-Man (1990 - 1998)",
+      "onSale": "1991-12-01T00:00:00+0000",
+      "mu": "1991-12-01T00:00:00+0000",
+      "digitalId": 44443,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/f0/5b6c49fc5cb8f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Ann Nocenti",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Spider-Man #17"
+    },
+    {
+      "issueId": 15188,
+      "title": "Silver Surfer (1987) #51",
+      "number": "51",
+      "url": "https://www.marvel.com/comics/issue/15188/silver_surfer_1987_51",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1991-07-01T00:00:00+0000",
+      "mu": "1991-07-01T00:00:00+0000",
+      "digitalId": 44893,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/d0/5b2d605d95c9f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Silver Surfer #49 to #51"
+    },
+    {
+      "issueId": 9286,
+      "title": "Infinity Gauntlet (1991) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/9286/infinity_gauntlet_1991_1",
+      "seriesId": 2023,
+      "seriesName": "Infinity Gauntlet (1991)",
+      "onSale": "1991-07-01T00:00:00+0000",
+      "mu": "1991-07-01T00:00:00+0000",
+      "digitalId": 2017,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/51f6911ce3cc3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Rubinstein",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "George Perez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Infinity Gaunlet #1"
+    },
+    {
+      "issueId": 9194,
+      "title": "Incredible Hulk (1962) #383",
+      "number": "383",
+      "url": "https://www.marvel.com/comics/issue/9194/incredible_hulk_1962_383",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1991-07-01T00:00:00+0000",
+      "mu": "2010-01-26T00:00:00+0000",
+      "digitalId": 13768,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/5b7edfe9ed8f1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Farmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dale Keown",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Incredible Hulk #383"
+    },
+    {
+      "issueId": 20192,
+      "title": "Doctor Strange, Sorcerer Supreme (1988) #31",
+      "number": "31",
+      "url": "https://www.marvel.com/comics/issue/20192/doctor_strange_sorcerer_supreme_1988_31",
+      "seriesId": 3741,
+      "seriesName": "Doctor Strange, Sorcerer Supreme (1988 - 1996)",
+      "onSale": "1991-07-01T00:00:00+0000",
+      "mu": "1991-07-01T00:00:00+0000",
+      "digitalId": 46714,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/f0/59f0fbc3c6fd9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tony Dezuniga",
+          "role": "cover artist"
+        },
+        {
+          "name": "Larry Alexander",
+          "role": "penciler"
+        },
+        {
+          "name": "Jean-Marc Lofficier",
+          "role": "writer"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dr. Strange, Sorcerer Supreme #31"
+    },
+    {
+      "issueId": 18913,
+      "title": "Quasar (1989) #26",
+      "number": "26",
+      "url": "https://www.marvel.com/comics/issue/18913/quasar_1989_26",
+      "seriesId": 3695,
+      "seriesName": "Quasar (1989 - 1994)",
+      "onSale": "1991-09-10T00:00:00+0000",
+      "mu": "2018-07-09T00:00:00+0000",
+      "digitalId": 48810,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/5b3fbcd800983",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Fred Fredericks",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dave Hoover",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Gruenwald",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Quasar #26"
+    },
+    {
+      "issueId": 18914,
+      "title": "Quasar (1989) #27",
+      "number": "27",
+      "url": "https://www.marvel.com/comics/issue/18914/quasar_1989_27",
+      "seriesId": 3695,
+      "seriesName": "Quasar (1989 - 1994)",
+      "onSale": "1991-10-10T00:00:00+0000",
+      "mu": "2018-07-09T00:00:00+0000",
+      "digitalId": 48811,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/b0/5b3bad73d3ca4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Keith Williams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dave Hoover",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Capullo",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Gruenwald",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Quasar #27"
+    },
+    {
+      "issueId": 9287,
+      "title": "Infinity Gauntlet (1991) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/9287/infinity_gauntlet_1991_2",
+      "seriesId": 2023,
+      "seriesName": "Infinity Gauntlet (1991)",
+      "onSale": "1991-08-01T00:00:00+0000",
+      "mu": "1991-08-01T00:00:00+0000",
+      "digitalId": 3361,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/e0/51f691126c221",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Rubinstein",
+          "role": "cover artist"
+        },
+        {
+          "name": "George Perez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Infinity Gauntlet #2"
+    },
+    {
+      "issueId": 20193,
+      "title": "Doctor Strange, Sorcerer Supreme (1988) #32",
+      "number": "32",
+      "url": "https://www.marvel.com/comics/issue/20193/doctor_strange_sorcerer_supreme_1988_32",
+      "seriesId": 3741,
+      "seriesName": "Doctor Strange, Sorcerer Supreme (1988 - 1996)",
+      "onSale": "1991-08-01T00:00:00+0000",
+      "mu": "1991-08-01T00:00:00+0000",
+      "digitalId": 46715,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/59f0fbd21d355",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Mckenna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tim Dzon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Marrinan",
+          "role": "penciler"
+        },
+        {
+          "name": "Larry Alexander",
+          "role": "penciler"
+        },
+        {
+          "name": "Jean-Marc Lofficier",
+          "role": "writer"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dr. Strange, Sorcerer Supreme #32"
+    },
+    {
+      "issueId": 9288,
+      "title": "Infinity Gauntlet (1991) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/9288/infinity_gauntlet_1991_3",
+      "seriesId": 2023,
+      "seriesName": "Infinity Gauntlet (1991)",
+      "onSale": "1991-09-01T00:00:00+0000",
+      "mu": "1991-09-01T00:00:00+0000",
+      "digitalId": 3362,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/00/51f691085d7fe",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Rubinstein",
+          "role": "cover artist"
+        },
+        {
+          "name": "George Perez",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Infinity Gaunlet #3"
+    },
+    {
+      "issueId": 15189,
+      "title": "Silver Surfer (1987) #52",
+      "number": "52",
+      "url": "https://www.marvel.com/comics/issue/15189/silver_surfer_1987_52",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1991-08-01T00:00:00+0000",
+      "mu": "1991-08-01T00:00:00+0000",
+      "digitalId": 45351,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/5b2d60b849b26",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Silver Surfer #52"
+    },
+    {
+      "issueId": 15190,
+      "title": "Silver Surfer (1987) #53",
+      "number": "53",
+      "url": "https://www.marvel.com/comics/issue/15190/silver_surfer_1987_53",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1991-08-01T00:00:00+0000",
+      "mu": "1991-08-01T00:00:00+0000",
+      "digitalId": 45352,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/d0/5b2d610c07446",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Silver Surfer #53"
+    },
+    {
+      "issueId": 15191,
+      "title": "Silver Surfer (1987) #54",
+      "number": "54",
+      "url": "https://www.marvel.com/comics/issue/15191/silver_surfer_1987_54",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1991-09-01T00:00:00+0000",
+      "mu": "1991-09-01T00:00:00+0000",
+      "digitalId": 45353,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/f0/5b2d61552c3d4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Silver Surfer #54"
+    },
+    {
+      "issueId": 9289,
+      "title": "Infinity Gauntlet (1991) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/9289/infinity_gauntlet_1991_4",
+      "seriesId": 2023,
+      "seriesName": "Infinity Gauntlet (1991)",
+      "onSale": "1991-10-01T00:00:00+0000",
+      "mu": "1991-10-01T00:00:00+0000",
+      "digitalId": 3363,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/70/51f690fbd05fd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bruce Solotoff",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Rubinstein",
+          "role": "cover artist"
+        },
+        {
+          "name": "George Perez",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Infinity Gauntlet #4"
+    },
+    {
+      "issueId": 9195,
+      "title": "Incredible Hulk (1962) #384",
+      "number": "384",
+      "url": "https://www.marvel.com/comics/issue/9195/incredible_hulk_1962_384",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1991-08-01T00:00:00+0000",
+      "mu": "2013-08-26T00:00:00+0000",
+      "digitalId": 22809,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/10/5b7ef92c468b5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Farmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dale Keown",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Incredible Hulk #384"
+    },
+    {
+      "issueId": 20194,
+      "title": "Doctor Strange, Sorcerer Supreme (1988) #33",
+      "number": "33",
+      "url": "https://www.marvel.com/comics/issue/20194/doctor_strange_sorcerer_supreme_1988_33",
+      "seriesId": 3741,
+      "seriesName": "Doctor Strange, Sorcerer Supreme (1988 - 1996)",
+      "onSale": "1991-09-01T00:00:00+0000",
+      "mu": "1991-09-01T00:00:00+0000",
+      "digitalId": 46716,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/30/59f0fbea463b1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Mckenna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tim Dzon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Marrinan",
+          "role": "penciler"
+        },
+        {
+          "name": "Larry Alexander",
+          "role": "penciler"
+        },
+        {
+          "name": "Jean-Marc Lofficier",
+          "role": "writer"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dr. Strange, Sorcerer Supreme #33"
+    },
+    {
+      "issueId": 15192,
+      "title": "Silver Surfer (1987) #55",
+      "number": "55",
+      "url": "https://www.marvel.com/comics/issue/15192/silver_surfer_1987_55",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1991-09-01T00:00:00+0000",
+      "mu": "1991-09-01T00:00:00+0000",
+      "digitalId": 45354,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/10/5b2d619bb27b4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Silver Surfer #55"
+    },
+    {
+      "issueId": 15193,
+      "title": "Silver Surfer (1987) #56",
+      "number": "56",
+      "url": "https://www.marvel.com/comics/issue/15193/silver_surfer_1987_56",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1991-10-01T00:00:00+0000",
+      "mu": "1991-10-01T00:00:00+0000",
+      "digitalId": 45355,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/a0/5b2d6218d3aab",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gavin Curtis",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Silver Surfer #56"
+    },
+    {
+      "issueId": 15194,
+      "title": "Silver Surfer (1987) #57",
+      "number": "57",
+      "url": "https://www.marvel.com/comics/issue/15194/silver_surfer_1987_57",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1991-10-01T00:00:00+0000",
+      "mu": "1991-10-01T00:00:00+0000",
+      "digitalId": 45356,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/5b2d626287e4b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "James Brock",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Silver Surfer #57"
+    },
+    {
+      "issueId": 15195,
+      "title": "Silver Surfer (1987) #58",
+      "number": "58",
+      "url": "https://www.marvel.com/comics/issue/15195/silver_surfer_1987_58",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1991-11-01T00:00:00+0000",
+      "mu": "1991-11-01T00:00:00+0000",
+      "digitalId": 45357,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/5b2d6462b92cc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Silver Surfer #58"
+    },
+    {
+      "issueId": 20195,
+      "title": "Doctor Strange, Sorcerer Supreme (1988) #34",
+      "number": "34",
+      "url": "https://www.marvel.com/comics/issue/20195/doctor_strange_sorcerer_supreme_1988_34",
+      "seriesId": 3741,
+      "seriesName": "Doctor Strange, Sorcerer Supreme (1988 - 1996)",
+      "onSale": "1991-10-01T00:00:00+0000",
+      "mu": "1991-10-01T00:00:00+0000",
+      "digitalId": 46717,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/59f0f96192afa",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Chris Ivy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Sanders III",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dan Lawlis",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dr. Strange, Sorcerer Supreme #34"
+    },
+    {
+      "issueId": 20196,
+      "title": "Doctor Strange, Sorcerer Supreme (1988) #35",
+      "number": "35",
+      "url": "https://www.marvel.com/comics/issue/20196/doctor_strange_sorcerer_supreme_1988_35",
+      "seriesId": 3741,
+      "seriesName": "Doctor Strange, Sorcerer Supreme (1988 - 1996)",
+      "onSale": "1991-11-01T00:00:00+0000",
+      "mu": "1991-11-01T00:00:00+0000",
+      "digitalId": 46718,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/10/59f0f969ce02d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Donald Hudson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sam De La Rosa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dan Lawlis",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dr. Strange, Sorcerer Supreme #35"
+    },
+    {
+      "issueId": 9290,
+      "title": "Infinity Gauntlet (1991) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/9290/infinity_gauntlet_1991_5",
+      "seriesId": 2023,
+      "seriesName": "Infinity Gauntlet (1991)",
+      "onSale": "1991-11-01T00:00:00+0000",
+      "mu": "1991-11-01T00:00:00+0000",
+      "digitalId": 3364,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/51f690f0e7b77",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Rubinstein",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Infinity Gaunlet #5"
+    },
+    {
+      "issueId": 15196,
+      "title": "Silver Surfer (1987) #59",
+      "number": "59",
+      "url": "https://www.marvel.com/comics/issue/15196/silver_surfer_1987_59",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1991-11-15T00:00:00+0000",
+      "mu": "1991-11-15T00:00:00+0000",
+      "digitalId": 45358,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/a0/5b2d64fd8aa86",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Witherby",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Silver Surfer #59"
+    },
+    {
+      "issueId": 9291,
+      "title": "Infinity Gauntlet (1991) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/9291/infinity_gauntlet_1991_6",
+      "seriesId": 2023,
+      "seriesName": "Infinity Gauntlet (1991)",
+      "onSale": "1991-12-01T00:00:00+0000",
+      "mu": "1991-12-01T00:00:00+0000",
+      "digitalId": 3365,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/00/51f690e28c864",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Rubinstein",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Infinity Gaunlet #6"
+    },
+    {
+      "issueId": 71945,
+      "title": "Sleepwalker (1991) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/71945/sleepwalker_1991_7",
+      "seriesId": 21939,
+      "seriesName": "Sleepwalker (1991 - 1994)",
+      "onSale": "1991-12-01T00:00:00+0000",
+      "mu": "2023-04-27T00:00:00+0000",
+      "digitalId": 48825,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/644a6951d60fa",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Bair",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bret Blevins",
+          "role": "penciler"
+        },
+        {
+          "name": "Bob Budiansky",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Sleepwalker #7"
+    },
+    {
+      "issueId": 9196,
+      "title": "Incredible Hulk (1962) #385",
+      "number": "385",
+      "url": "https://www.marvel.com/comics/issue/9196/incredible_hulk_1962_385",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1991-09-01T00:00:00+0000",
+      "mu": "2013-08-26T00:00:00+0000",
+      "digitalId": 22813,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/5b7f022fe9990",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Farmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dale Keown",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Incredilbe Hulk #385"
+    },
+    {
+      "issueId": 15198,
+      "title": "Silver Surfer (1987) #60",
+      "number": "60",
+      "url": "https://www.marvel.com/comics/issue/15198/silver_surfer_1987_60",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1991-12-10T00:00:00+0000",
+      "mu": "2017-01-23T00:00:00+0000",
+      "digitalId": 32045,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/10/582379cfd44c6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Jim Sanders",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "SIlver Surfer #60"
+    },
+    {
+      "issueId": 20197,
+      "title": "Doctor Strange, Sorcerer Supreme (1988) #36",
+      "number": "36",
+      "url": "https://www.marvel.com/comics/issue/20197/doctor_strange_sorcerer_supreme_1988_36",
+      "seriesId": 3741,
+      "seriesName": "Doctor Strange, Sorcerer Supreme (1988 - 1996)",
+      "onSale": "1991-12-10T00:00:00+0000",
+      "mu": "2016-12-12T00:00:00+0000",
+      "digitalId": 32191,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/d0/57ea79fa1247e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Andrew Pepoy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dan Lawlis",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dr. Strange, Sorcerer Supreme #36"
+    },
+    {
+      "issueId": 15199,
+      "title": "Silver Surfer (1987) #61",
+      "number": "61",
+      "url": "https://www.marvel.com/comics/issue/15199/silver_surfer_1987_61",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1992-01-10T00:00:00+0000",
+      "mu": "2017-01-23T00:00:00+0000",
+      "digitalId": 32046,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/90/58237aa546d37",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Silver Surfer (1987) 51-66"
+    },
+    {
+      "issueId": 15200,
+      "title": "Silver Surfer (1987) #62",
+      "number": "62",
+      "url": "https://www.marvel.com/comics/issue/15200/silver_surfer_1987_62",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1992-02-10T00:00:00+0000",
+      "mu": "2017-01-23T00:00:00+0000",
+      "digitalId": 32047,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/10/58237b0c2ec26",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Silver Surfer (1987) 51-66"
+    },
+    {
+      "issueId": 15201,
+      "title": "Silver Surfer (1987) #63",
+      "number": "63",
+      "url": "https://www.marvel.com/comics/issue/15201/silver_surfer_1987_63",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1992-03-10T00:00:00+0000",
+      "mu": "2017-01-23T00:00:00+0000",
+      "digitalId": 32048,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/30/58237bc69fefd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Silver Surfer (1987) 51-66"
+    },
+    {
+      "issueId": 15202,
+      "title": "Silver Surfer (1987) #64",
+      "number": "64",
+      "url": "https://www.marvel.com/comics/issue/15202/silver_surfer_1987_64",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1992-04-10T00:00:00+0000",
+      "mu": "2017-01-23T00:00:00+0000",
+      "digitalId": 32049,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/58237c491d4ec",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Silver Surfer (1987) 51-66"
+    },
+    {
+      "issueId": 15203,
+      "title": "Silver Surfer (1987) #65",
+      "number": "65",
+      "url": "https://www.marvel.com/comics/issue/15203/silver_surfer_1987_65",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1992-05-10T00:00:00+0000",
+      "mu": "2017-01-23T00:00:00+0000",
+      "digitalId": 32050,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/58237caed5321",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Silver Surfer (1987) 51-66"
+    },
+    {
+      "issueId": 15204,
+      "title": "Silver Surfer (1987) #66",
+      "number": "66",
+      "url": "https://www.marvel.com/comics/issue/15204/silver_surfer_1987_66",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1992-06-10T00:00:00+0000",
+      "mu": "2017-01-23T00:00:00+0000",
+      "digitalId": 32051,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/10/58237d02c623c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Deryl Skelton",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Carr",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Silver Surfer (1987) 51-66"
+    },
+    {
+      "issueId": 50825,
+      "title": "Silver Surfer Annual (1988) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/50825/silver_surfer_annual_1988_4",
+      "seriesId": 19005,
+      "seriesName": "Silver Surfer Annual (1988 - 1997)",
+      "onSale": "1991-07-01T00:00:00+0000",
+      "mu": "2017-01-23T00:00:00+0000",
+      "digitalId": 33500,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/587fc44d2f082",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Annual 4"
+    },
+    {
+      "issueId": 18413,
+      "title": "Warlock and the Infinity Watch (1992) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/18413/warlock_and_the_infinity_watch_1992_1",
+      "seriesId": 3654,
+      "seriesName": "Warlock and the Infinity Watch (1992 - 1995)",
+      "onSale": "1992-02-10T00:00:00+0000",
+      "mu": "2017-03-13T00:00:00+0000",
+      "digitalId": 32052,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/60/584ac8f6de676",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Terry Kevin Austin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Angel Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Warlock And The Infinity Watch 1-6"
+    },
+    {
+      "issueId": 18424,
+      "title": "Warlock and the Infinity Watch (1992) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/18424/warlock_and_the_infinity_watch_1992_2",
+      "seriesId": 3654,
+      "seriesName": "Warlock and the Infinity Watch (1992 - 1995)",
+      "onSale": "1992-03-10T00:00:00+0000",
+      "mu": "2017-03-13T00:00:00+0000",
+      "digitalId": 32053,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/f0/5bd34bdb6c63b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Terry Kevin Austin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Angel Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Warlock And The Infinity Watch 1-6"
+    },
+    {
+      "issueId": 18435,
+      "title": "Warlock and the Infinity Watch (1992) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/18435/warlock_and_the_infinity_watch_1992_3",
+      "seriesId": 3654,
+      "seriesName": "Warlock and the Infinity Watch (1992 - 1995)",
+      "onSale": "1992-04-10T00:00:00+0000",
+      "mu": "2017-03-13T00:00:00+0000",
+      "digitalId": 32054,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/10/584aca4210469",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Terry Kevin Austin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Warlock And The Infinity Watch 1-6"
+    },
+    {
+      "issueId": 18446,
+      "title": "Warlock and the Infinity Watch (1992) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/18446/warlock_and_the_infinity_watch_1992_4",
+      "seriesId": 3654,
+      "seriesName": "Warlock and the Infinity Watch (1992 - 1995)",
+      "onSale": "1992-05-10T00:00:00+0000",
+      "mu": "2017-03-13T00:00:00+0000",
+      "digitalId": 32055,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/40/584acad8a7e3a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Terry Kevin Austin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Warlock And The Infinity Watch 1-6"
+    },
+    {
+      "issueId": 18450,
+      "title": "Warlock and the Infinity Watch (1992) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/18450/warlock_and_the_infinity_watch_1992_5",
+      "seriesId": 3654,
+      "seriesName": "Warlock and the Infinity Watch (1992 - 1995)",
+      "onSale": "1992-06-10T00:00:00+0000",
+      "mu": "2017-03-13T00:00:00+0000",
+      "digitalId": 32056,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/10/584acb5284024",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Bob Almond",
+          "role": "cover artist"
+        },
+        {
+          "name": "Angel Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Warlock And The Infinity Watch 1-6"
+    },
+    {
+      "issueId": 18451,
+      "title": "Warlock and the Infinity Watch (1992) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/18451/warlock_and_the_infinity_watch_1992_6",
+      "seriesId": 3654,
+      "seriesName": "Warlock and the Infinity Watch (1992 - 1995)",
+      "onSale": "1992-07-10T00:00:00+0000",
+      "mu": "2017-03-13T00:00:00+0000",
+      "digitalId": 32057,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/90/584acbd8e52d5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Bob Almond",
+          "role": "cover artist"
+        },
+        {
+          "name": "Angel Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Warlock And The Infinity Watch 1-6"
+    },
+    {
+      "issueId": 9292,
+      "title": "Infinity War (1992) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/9292/infinity_war_1992_1",
+      "seriesId": 2024,
+      "seriesName": "Infinity War (1992)",
+      "onSale": "1992-06-01T00:00:00+0000",
+      "mu": "1992-06-01T00:00:00+0000",
+      "digitalId": 2018,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/51f696c2a1263",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Infinity War #1"
+    },
+    {
+      "issueId": 12648,
+      "title": "Alpha Flight (1983) #109",
+      "number": "109",
+      "url": "https://www.marvel.com/comics/issue/12648/alpha_flight_1983_109",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "detailsRefused": true,
+      "collectedIn": "Alpha Flight #109"
+    },
+    {
+      "issueId": 18452,
+      "title": "Warlock and the Infinity Watch (1992) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/18452/warlock_and_the_infinity_watch_1992_7",
+      "seriesId": 3654,
+      "seriesName": "Warlock and the Infinity Watch (1992 - 1995)",
+      "onSale": "1992-08-01T00:00:00+0000",
+      "mu": "1992-08-01T00:00:00+0000",
+      "digitalId": 7505,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/e0/4c35fad22ecd3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Terry Austin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Raney",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Warlock and the Infinity Watch #7"
+    },
+    {
+      "issueId": 13190,
+      "title": "Fantastic Four (1961) #366",
+      "number": "366",
+      "url": "https://www.marvel.com/comics/issue/13190/fantastic_four_1961_366",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1992-07-01T00:00:00+0000",
+      "mu": "1992-07-01T00:00:00+0000",
+      "digitalId": 31217,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/40/5294f39871823",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danilo Bulanadi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Fantastic Four #366"
+    },
+    {
+      "issueId": 10783,
+      "title": "Spider-Man (1990) #24",
+      "number": "24",
+      "url": "https://www.marvel.com/comics/issue/10783/spider-man_1990_24",
+      "seriesId": 2069,
+      "seriesName": "Spider-Man (1990 - 1998)",
+      "onSale": "1992-07-01T00:00:00+0000",
+      "mu": "2021-11-18T00:00:00+0000",
+      "digitalId": 30947,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/d0/6195759717df9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andrew Pepoy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Larry Alexander",
+          "role": "penciler"
+        },
+        {
+          "name": "Howard M. Shum",
+          "role": "writer"
+        },
+        {
+          "name": "Howard Mackie",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Spider-Man #24"
+    },
+    {
+      "issueId": 7789,
+      "title": "Captain America (1968) #408",
+      "number": "408",
+      "url": "https://www.marvel.com/comics/issue/7789/captain_america_1968_408",
+      "seriesId": 1996,
+      "seriesName": "Captain America (1968 - 1996)",
+      "onSale": "1992-10-01T00:00:00+0000",
+      "mu": "1992-10-01T00:00:00+0000",
+      "digitalId": 24651,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/20/50ac210125cc7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danilo Bulanadi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Donald Hudson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Larry Alexander",
+          "role": "penciler"
+        },
+        {
+          "name": "Richard Levins",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Gruenwald",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Captain America #408"
+    },
+    {
+      "issueId": -1976175288,
+      "title": "Deathlok #16",
+      "number": "16",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Deathlok #16"
+    },
+    {
+      "issueId": 20204,
+      "title": "Doctor Strange, Sorcerer Supreme (1988) #42",
+      "number": "42",
+      "url": "https://www.marvel.com/comics/issue/20204/doctor_strange_sorcerer_supreme_1988_42",
+      "seriesId": 3741,
+      "seriesName": "Doctor Strange, Sorcerer Supreme (1988 - 1996)",
+      "onSale": "1992-06-01T00:00:00+0000",
+      "mu": "1992-06-01T00:00:00+0000",
+      "digitalId": 49078,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/50/5b8884b15b601",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Geof Isherwood",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Doctor Strange, Sorcerer Supreme #42"
+    },
+    {
+      "issueId": 15205,
+      "title": "Silver Surfer (1987) #67",
+      "number": "67",
+      "url": "https://www.marvel.com/comics/issue/15205/silver_surfer_1987_67",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1992-07-01T00:00:00+0000",
+      "mu": "1992-07-01T00:00:00+0000",
+      "digitalId": 49319,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/30/5b58b2e7d697d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kevin West",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Silver Surfer #67"
+    },
+    {
+      "issueId": 20205,
+      "title": "Doctor Strange, Sorcerer Supreme (1988) #43",
+      "number": "43",
+      "url": "https://www.marvel.com/comics/issue/20205/doctor_strange_sorcerer_supreme_1988_43",
+      "seriesId": 3741,
+      "seriesName": "Doctor Strange, Sorcerer Supreme (1988 - 1996)",
+      "onSale": "1992-07-01T00:00:00+0000",
+      "mu": "1992-07-01T00:00:00+0000",
+      "digitalId": 49079,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/d0/5b8887e8c5cf8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Geof Isherwood",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Doctor Strange, Sorcerer Supreme #43"
+    },
+    {
+      "issueId": 9293,
+      "title": "Infinity War (1992) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/9293/infinity_war_1992_2",
+      "seriesId": 2024,
+      "seriesName": "Infinity War (1992)",
+      "onSale": "1992-07-01T00:00:00+0000",
+      "mu": "1992-07-01T00:00:00+0000",
+      "digitalId": 3366,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/51f696b5ab49e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Infinity War #2"
+    },
+    {
+      "issueId": 13191,
+      "title": "Fantastic Four (1961) #367",
+      "number": "367",
+      "url": "https://www.marvel.com/comics/issue/13191/fantastic_four_1961_367",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1992-08-01T00:00:00+0000",
+      "mu": "1992-08-01T00:00:00+0000",
+      "digitalId": 31218,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/5294f3615edb5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Chris Ivy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ray Kryssing",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Fantastic Four #367"
+    },
+    {
+      "issueId": 15206,
+      "title": "Silver Surfer (1987) #68",
+      "number": "68",
+      "url": "https://www.marvel.com/comics/issue/15206/silver_surfer_1987_68",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1992-07-01T00:00:00+0000",
+      "mu": "1992-07-01T00:00:00+0000",
+      "digitalId": 57858,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/30/673266a943748",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kevin West",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Silver Surfer #68"
+    },
+    {
+      "issueId": 15207,
+      "title": "Silver Surfer (1987) #69",
+      "number": "69",
+      "url": "https://www.marvel.com/comics/issue/15207/silver_surfer_1987_69",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1992-08-01T00:00:00+0000",
+      "mu": "1992-08-01T00:00:00+0000",
+      "digitalId": 57859,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/673266a94c4bd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kevin West",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Silver Surfer #69"
+    },
+    {
+      "issueId": 20206,
+      "title": "Doctor Strange, Sorcerer Supreme (1988) #44",
+      "number": "44",
+      "url": "https://www.marvel.com/comics/issue/20206/doctor_strange_sorcerer_supreme_1988_44",
+      "seriesId": 3741,
+      "seriesName": "Doctor Strange, Sorcerer Supreme (1988 - 1996)",
+      "onSale": "1992-08-01T00:00:00+0000",
+      "mu": "1992-08-01T00:00:00+0000",
+      "digitalId": 49080,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/30/5b88845b2d96c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Geof Isherwood",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Doctor Strange, Sorcerer Supreme #44"
+    },
+    {
+      "issueId": 58025,
+      "title": "Guardians of the Galaxy (1990) #27",
+      "number": "27",
+      "url": "https://www.marvel.com/comics/issue/58025/guardians_of_the_galaxy_1990_27",
+      "seriesId": 19019,
+      "seriesName": "Guardians of the Galaxy (1990 - 1994)",
+      "onSale": "1992-08-01T00:00:00+0000",
+      "mu": "2016-11-21T00:00:00+0000",
+      "digitalId": 40287,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/58052f5276bc4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Valentino",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Bair",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Guardians of the Galaxy #27"
+    },
+    {
+      "issueId": 18925,
+      "title": "Quasar (1989) #37",
+      "number": "37",
+      "url": "https://www.marvel.com/comics/issue/18925/quasar_1989_37",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "detailsRefused": true,
+      "collectedIn": "Quasar #37"
+    },
+    {
+      "issueId": 9294,
+      "title": "Infinity War (1992) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/9294/infinity_war_1992_3",
+      "seriesId": 2024,
+      "seriesName": "Infinity War (1992)",
+      "onSale": "1992-08-01T00:00:00+0000",
+      "mu": "1992-08-01T00:00:00+0000",
+      "digitalId": 3367,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/51f696aa57eb3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Infinity War #3"
+    },
+    {
+      "issueId": 10020,
+      "title": "Marvel Comics Presents (1988) #108",
+      "number": "108",
+      "url": "https://www.marvel.com/comics/issue/10020/marvel_comics_presents_1988_108",
+      "seriesId": 2039,
+      "seriesName": "Marvel Comics Presents (1988 - 1995)",
+      "onSale": "1992-03-18T00:00:00+0000",
+      "mu": "1992-03-18T00:00:00+0000",
+      "digitalId": 26012,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/20/50acf62f25b6e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jimmy Palmiotti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jon Holdredge",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ken Branch",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tim Tuohy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gene Colan",
+          "role": "penciler"
+        },
+        {
+          "name": "John Stanisci",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Kolins",
+          "role": "penciler"
+        },
+        {
+          "name": "Shawn Mcmanus",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Cooper",
+          "role": "writer"
+        },
+        {
+          "name": "Eric Fein",
+          "role": "writer"
+        },
+        {
+          "name": "Gerry Conway",
+          "role": "writer"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Comics Presents #108"
+    },
+    {
+      "issueId": 10021,
+      "title": "Marvel Comics Presents (1988) #109",
+      "number": "109",
+      "url": "https://www.marvel.com/comics/issue/10021/marvel_comics_presents_1988_109",
+      "seriesId": 2039,
+      "seriesName": "Marvel Comics Presents (1988 - 1995)",
+      "onSale": "1992-03-25T00:00:00+0000",
+      "mu": "1992-03-25T00:00:00+0000",
+      "digitalId": 26014,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/70/50b3feee2c5f7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jimmy Palmiotti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jon Holdredge",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ken Branch",
+          "role": "cover artist"
+        },
+        {
+          "name": "Shawn Mcmanus",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Lightle",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Stanisci",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Kolins",
+          "role": "penciler"
+        },
+        {
+          "name": "Ann Nocenti",
+          "role": "writer"
+        },
+        {
+          "name": "Chris Cooper",
+          "role": "writer"
+        },
+        {
+          "name": "Eric Fein",
+          "role": "writer"
+        },
+        {
+          "name": "Gerry Conway",
+          "role": "writer"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Comics Presents #109"
+    },
+    {
+      "issueId": 10023,
+      "title": "Marvel Comics Presents (1988) #110",
+      "number": "110",
+      "url": "https://www.marvel.com/comics/issue/10023/marvel_comics_presents_1988_110",
+      "seriesId": 2039,
+      "seriesName": "Marvel Comics Presents (1988 - 1995)",
+      "onSale": "1992-04-01T00:00:00+0000",
+      "mu": "1992-04-01T00:00:00+0000",
+      "digitalId": 26016,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/50acf5383824b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jimmy Palmiotti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ken Branch",
+          "role": "cover artist"
+        },
+        {
+          "name": "Shawn Mcmanus",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Lightle",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tim Tuohy",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Stanisci",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Runyan",
+          "role": "penciler"
+        },
+        {
+          "name": "Ann Nocenti",
+          "role": "writer"
+        },
+        {
+          "name": "Barry Dutter",
+          "role": "writer"
+        },
+        {
+          "name": "Chris Cooper",
+          "role": "writer"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Comics Presents #110"
+    },
+    {
+      "issueId": 10024,
+      "title": "Marvel Comics Presents (1988) #111",
+      "number": "111",
+      "url": "https://www.marvel.com/comics/issue/10024/marvel_comics_presents_1988_111",
+      "seriesId": 2039,
+      "seriesName": "Marvel Comics Presents (1988 - 1995)",
+      "onSale": "1992-04-08T00:00:00+0000",
+      "mu": "1992-04-08T00:00:00+0000",
+      "digitalId": 26018,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/e0/50acf48f4b89e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jimmy Palmiotti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ken Branch",
+          "role": "cover artist"
+        },
+        {
+          "name": "Shawn Mcmanus",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Lightle",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alexander Morrissey",
+          "role": "penciler"
+        },
+        {
+          "name": "John Stanisci",
+          "role": "penciler"
+        },
+        {
+          "name": "Ann Nocenti",
+          "role": "writer"
+        },
+        {
+          "name": "Chris Cooper",
+          "role": "writer"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        },
+        {
+          "name": "Joey Cavalieri",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Comics Presents #111"
+    },
+    {
+      "issueId": 18453,
+      "title": "Warlock and the Infinity Watch (1992) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/18453/warlock_and_the_infinity_watch_1992_8",
+      "seriesId": 3654,
+      "seriesName": "Warlock and the Infinity Watch (1992 - 1995)",
+      "onSale": "1992-09-01T00:00:00+0000",
+      "mu": "1992-09-01T00:00:00+0000",
+      "digitalId": 7506,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/60/4c36078543316",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Keith Williams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Raney",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Warlock and the Infinity Watch #8"
+    },
+    {
+      "issueId": 13192,
+      "title": "Fantastic Four (1961) #368",
+      "number": "368",
+      "url": "https://www.marvel.com/comics/issue/13192/fantastic_four_1961_368",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1992-09-01T00:00:00+0000",
+      "mu": "1992-09-01T00:00:00+0000",
+      "digitalId": 31219,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/f0/5294ee52376b7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danilo Bulanadi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Fantastic Four #368"
+    },
+    {
+      "issueId": 12650,
+      "title": "Alpha Flight (1983) #110",
+      "number": "110",
+      "url": "https://www.marvel.com/comics/issue/12650/alpha_flight_1983_110",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "detailsRefused": true,
+      "collectedIn": "Alpha Flight #110"
+    },
+    {
+      "issueId": 69159,
+      "title": "New Warriors (1990) #27",
+      "number": "27",
+      "url": "https://www.marvel.com/comics/issue/69159/new_warriors_1990_27",
+      "seriesId": 16341,
+      "seriesName": "New Warriors (1990 - 1996)",
+      "onSale": "1992-09-01T00:00:00+0000",
+      "mu": "1992-09-01T00:00:00+0000",
+      "digitalId": 49602,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/80/5b8074dccd86a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Larry Mahlstedt",
+          "role": "cover artist"
+        },
+        {
+          "name": "Darick Robertson",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "New Warriors #27"
+    },
+    {
+      "issueId": -30368842,
+      "title": "Silver Sable and the Wild Pack #4",
+      "number": "4",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Silver Sable and the Wild Pack #4"
+    },
+    {
+      "issueId": 68914,
+      "title": "Marc Spector: Moon Knight (1989) #41",
+      "number": "41",
+      "url": "https://www.marvel.com/comics/issue/68914/marc_spector_moon_knight_1989_41",
+      "seriesId": 23996,
+      "seriesName": "Marc Spector: Moon Knight (1989 - 1994)",
+      "onSale": "1992-08-01T00:00:00+0000",
+      "mu": "2023-11-23T00:00:00+0000",
+      "digitalId": 61477,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/40/655e1cd68928e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gary Kwapisz",
+          "role": "penciler"
+        },
+        {
+          "name": "Terry Kavanagh",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marc Spector: Moon Knight #41"
+    },
+    {
+      "issueId": 68915,
+      "title": "Marc Spector: Moon Knight (1989) #42",
+      "number": "42",
+      "url": "https://www.marvel.com/comics/issue/68915/marc_spector_moon_knight_1989_42",
+      "seriesId": 23996,
+      "seriesName": "Marc Spector: Moon Knight (1989 - 1994)",
+      "onSale": "1992-09-01T00:00:00+0000",
+      "mu": "2023-11-23T00:00:00+0000",
+      "digitalId": 61478,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/655e1cd680f90",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "James Fry",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Beatty",
+          "role": "cover artist"
+        },
+        {
+          "name": "Karl Kesel",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kelley Jones",
+          "role": "cover artist"
+        },
+        {
+          "name": "Klaus Janson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Norm Breyfogle",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ty Templeton",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gary Kwapisz",
+          "role": "penciler"
+        },
+        {
+          "name": "Terry Kavanagh",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marc Spector: Moon Knight #42"
+    },
+    {
+      "issueId": 18261,
+      "title": "Wonder Man (1991) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/18261/wonder_man_1991_13",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "detailsRefused": true,
+      "collectedIn": "Wonder Man #13"
+    },
+    {
+      "issueId": -2110742012,
+      "title": "Nomad Vol. 2 #7",
+      "number": "7",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nomad Vol. 2 #7"
+    },
+    {
+      "issueId": 18926,
+      "title": "Quasar (1989) #38",
+      "number": "38",
+      "url": "https://www.marvel.com/comics/issue/18926/quasar_1989_38",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "detailsRefused": true,
+      "collectedIn": "Quasar #38"
+    },
+    {
+      "issueId": 8308,
+      "title": "Daredevil (1964) #310",
+      "number": "310",
+      "url": "https://www.marvel.com/comics/issue/8308/daredevil_1964_310",
+      "seriesId": 2002,
+      "seriesName": "Daredevil (1964 - 1998)",
+      "onSale": "1992-11-01T00:00:00+0000",
+      "mu": "2021-12-30T00:00:00+0000",
+      "digitalId": 58147,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/f0/61c33803f1b8b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bud Larosa",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Mcdaniel",
+          "role": "penciler"
+        },
+        {
+          "name": "Glenn Herdling",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Daredevil #310"
+    },
+    {
+      "issueId": 20207,
+      "title": "Doctor Strange, Sorcerer Supreme (1988) #45",
+      "number": "45",
+      "url": "https://www.marvel.com/comics/issue/20207/doctor_strange_sorcerer_supreme_1988_45",
+      "seriesId": 3741,
+      "seriesName": "Doctor Strange, Sorcerer Supreme (1988 - 1996)",
+      "onSale": "1992-09-01T00:00:00+0000",
+      "mu": "1992-09-01T00:00:00+0000",
+      "digitalId": 49081,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/90/5b88872687812",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Geof Isherwood",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Doctor Strange: Sorcerer Supreme #45"
+    },
+    {
+      "issueId": 9295,
+      "title": "Infinity War (1992) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/9295/infinity_war_1992_4",
+      "seriesId": 2024,
+      "seriesName": "Infinity War (1992)",
+      "onSale": "1992-09-01T00:00:00+0000",
+      "mu": "1992-09-01T00:00:00+0000",
+      "digitalId": 3368,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/40/51f6969dce931",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Infinity War #4"
+    },
+    {
+      "issueId": 12651,
+      "title": "Alpha Flight (1983) #111",
+      "number": "111",
+      "url": "https://www.marvel.com/comics/issue/12651/alpha_flight_1983_111",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "detailsRefused": true,
+      "collectedIn": "Alpha Flight #111"
+    },
+    {
+      "issueId": -2076988097,
+      "title": "Silver Sable and the Wild Pack #5",
+      "number": "5",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Silver Sable and the Wild Pack #5"
+    },
+    {
+      "issueId": 58026,
+      "title": "Guardians of the Galaxy (1990) #28",
+      "number": "28",
+      "url": "https://www.marvel.com/comics/issue/58026/guardians_of_the_galaxy_1990_28",
+      "seriesId": 19019,
+      "seriesName": "Guardians of the Galaxy (1990 - 1994)",
+      "onSale": "1992-09-01T00:00:00+0000",
+      "mu": "2016-11-21T00:00:00+0000",
+      "digitalId": 40288,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/20/58053070a7607",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Herb Trimpe",
+          "role": "penciler"
+        },
+        {
+          "name": "J.j. Birch",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Montano",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Valentino",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Guardians of the Galaxy #28"
+    },
+    {
+      "issueId": 58027,
+      "title": "Guardians of the Galaxy (1990) #29",
+      "number": "29",
+      "url": "https://www.marvel.com/comics/issue/58027/guardians_of_the_galaxy_1990_29",
+      "seriesId": 19019,
+      "seriesName": "Guardians of the Galaxy (1990 - 1994)",
+      "onSale": "1992-10-01T00:00:00+0000",
+      "mu": "2016-11-21T00:00:00+0000",
+      "digitalId": 40289,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/50/580531f872f0a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "J.j. Birch",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Montano",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Valentino",
+          "role": "writer"
+        },
+        {
+          "name": "Michael Gallagher",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Guardians of the Galaxy #29"
+    },
+    {
+      "issueId": 18454,
+      "title": "Warlock and the Infinity Watch (1992) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/18454/warlock_and_the_infinity_watch_1992_9",
+      "seriesId": 3654,
+      "seriesName": "Warlock and the Infinity Watch (1992 - 1995)",
+      "onSale": "1992-10-01T00:00:00+0000",
+      "mu": "1992-10-01T00:00:00+0000",
+      "digitalId": 7507,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/a0/4c35fa010ed36",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Almond",
+          "role": "cover artist"
+        },
+        {
+          "name": "Angel Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Warlock and the Infinity Watch #9"
+    },
+    {
+      "issueId": 18262,
+      "title": "Wonder Man (1991) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/18262/wonder_man_1991_14",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "detailsRefused": true,
+      "collectedIn": "Wonder Man #14"
+    },
+    {
+      "issueId": 68916,
+      "title": "Marc Spector: Moon Knight (1989) #43",
+      "number": "43",
+      "url": "https://www.marvel.com/comics/issue/68916/marc_spector_moon_knight_1989_43",
+      "seriesId": 23996,
+      "seriesName": "Marc Spector: Moon Knight (1989 - 1994)",
+      "onSale": "1992-10-01T00:00:00+0000",
+      "mu": "2023-11-23T00:00:00+0000",
+      "digitalId": 61479,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/655e1cf367da3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jimmy Palmiotti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gary Kwapisz",
+          "role": "penciler"
+        },
+        {
+          "name": "Terry Kavanagh",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marc Spector: Moon Knight #43"
+    },
+    {
+      "issueId": 18927,
+      "title": "Quasar (1989) #39",
+      "number": "39",
+      "url": "https://www.marvel.com/comics/issue/18927/quasar_1989_39",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "detailsRefused": true,
+      "collectedIn": "Quasar #39"
+    },
+    {
+      "issueId": 9296,
+      "title": "Infinity War (1992) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/9296/infinity_war_1992_5",
+      "seriesId": 2024,
+      "seriesName": "Infinity War (1992)",
+      "onSale": "1992-10-01T00:00:00+0000",
+      "mu": "1992-10-01T00:00:00+0000",
+      "digitalId": 3369,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/90/51f696959ffbb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Infinity War #5"
+    },
+    {
+      "issueId": -1942767145,
+      "title": "Sleepwalker #18",
+      "number": "18",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Sleepwalker #18"
+    },
+    {
+      "issueId": 20208,
+      "title": "Doctor Strange, Sorcerer Supreme (1988) #46",
+      "number": "46",
+      "url": "https://www.marvel.com/comics/issue/20208/doctor_strange_sorcerer_supreme_1988_46",
+      "seriesId": 3741,
+      "seriesName": "Doctor Strange, Sorcerer Supreme (1988 - 1996)",
+      "onSale": "1992-10-01T00:00:00+0000",
+      "mu": "1992-10-01T00:00:00+0000",
+      "digitalId": 49082,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/03/5b888712313f7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Geof Isherwood",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Doctor Strange: Sorcerer Supreme #46"
+    },
+    {
+      "issueId": 20209,
+      "title": "Doctor Strange, Sorcerer Supreme (1988) #47",
+      "number": "47",
+      "url": "https://www.marvel.com/comics/issue/20209/doctor_strange_sorcerer_supreme_1988_47",
+      "seriesId": 3741,
+      "seriesName": "Doctor Strange, Sorcerer Supreme (1988 - 1996)",
+      "onSale": "1992-11-01T00:00:00+0000",
+      "mu": "1992-11-01T00:00:00+0000",
+      "digitalId": 49083,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/20/5b8887d5cd53c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Petrecca",
+          "role": "cover artist"
+        },
+        {
+          "name": "Geof Isherwood",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Doctor Strange: Sorcerer Supreme #47"
+    },
+    {
+      "issueId": 13193,
+      "title": "Fantastic Four (1961) #369",
+      "number": "369",
+      "url": "https://www.marvel.com/comics/issue/13193/fantastic_four_1961_369",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1992-10-01T00:00:00+0000",
+      "mu": "1992-10-01T00:00:00+0000",
+      "digitalId": 31220,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/20/5266889171a74",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danilo Bulanadi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Fantastic Four #369"
+    },
+    {
+      "issueId": 18414,
+      "title": "Warlock and the Infinity Watch (1992) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/18414/warlock_and_the_infinity_watch_1992_10",
+      "seriesId": 3654,
+      "seriesName": "Warlock and the Infinity Watch (1992 - 1995)",
+      "onSale": "1992-11-01T00:00:00+0000",
+      "mu": "1992-11-01T00:00:00+0000",
+      "digitalId": 7504,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/c0/4c35f9fb7ca4f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Almond",
+          "role": "cover artist"
+        },
+        {
+          "name": "Angel Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Warlock and the Infinity Watch #10"
+    },
+    {
+      "issueId": 18263,
+      "title": "Wonder Man (1991) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/18263/wonder_man_1991_15",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "detailsRefused": true,
+      "collectedIn": "Wonder Man #15"
+    },
+    {
+      "issueId": 9297,
+      "title": "Infinity War (1992) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/9297/infinity_war_1992_6",
+      "seriesId": 2024,
+      "seriesName": "Infinity War (1992)",
+      "onSale": "1992-11-01T00:00:00+0000",
+      "mu": "1992-11-01T00:00:00+0000",
+      "digitalId": 3370,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/30/51f69686e27c2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Infinity War #6"
+    },
+    {
+      "issueId": 13195,
+      "title": "Fantastic Four (1961) #370",
+      "number": "370",
+      "url": "https://www.marvel.com/comics/issue/13195/fantastic_four_1961_370",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1992-11-01T00:00:00+0000",
+      "mu": "1992-11-01T00:00:00+0000",
+      "digitalId": 31221,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/c0/5294edea12aa3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danilo Bulanadi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Fantastic Four #370"
+    },
+    {
+      "issueId": 68917,
+      "title": "Marc Spector: Moon Knight (1989) #44",
+      "number": "44",
+      "url": "https://www.marvel.com/comics/issue/68917/marc_spector_moon_knight_1989_44",
+      "seriesId": 23996,
+      "seriesName": "Marc Spector: Moon Knight (1989 - 1994)",
+      "onSale": "1992-11-01T00:00:00+0000",
+      "mu": "2023-11-23T00:00:00+0000",
+      "digitalId": 61480,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/655e1cf36691d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jimmy Palmiotti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gary Kwapisz",
+          "role": "penciler"
+        },
+        {
+          "name": "Terry Kavanagh",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marc Spector: Moon Knight #44"
+    },
+    {
+      "issueId": 12652,
+      "title": "Alpha Flight (1983) #112",
+      "number": "112",
+      "url": "https://www.marvel.com/comics/issue/12652/alpha_flight_1983_112",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "detailsRefused": true,
+      "collectedIn": "Alpha Flight #112"
+    },
+    {
+      "issueId": 18929,
+      "title": "Quasar (1989) #40",
+      "number": "40",
+      "url": "https://www.marvel.com/comics/issue/18929/quasar_1989_40",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "detailsRefused": true,
+      "collectedIn": "Quasar #40"
+    },
+    {
+      "issueId": 18415,
+      "title": "Warlock and the Infinity Watch (1992) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/18415/warlock_and_the_infinity_watch_1992_11",
+      "seriesId": 3654,
+      "seriesName": "Warlock and the Infinity Watch (1992 - 1995)",
+      "onSale": "1992-12-10T00:00:00+0000",
+      "mu": "2017-03-13T00:00:00+0000",
+      "digitalId": 40202,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/d0/584acd0ed07ba",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Bob Almond",
+          "role": "cover artist"
+        },
+        {
+          "name": "Deryl Skelton",
+          "role": "penciler"
+        },
+        {
+          "name": "Karl Story",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Carr",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Warlock & The Infinity Watch 11-17"
+    },
+    {
+      "issueId": 18416,
+      "title": "Warlock and the Infinity Watch (1992) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/18416/warlock_and_the_infinity_watch_1992_12",
+      "seriesId": 3654,
+      "seriesName": "Warlock and the Infinity Watch (1992 - 1995)",
+      "onSale": "1993-01-10T00:00:00+0000",
+      "mu": "2017-03-13T00:00:00+0000",
+      "digitalId": 40203,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/40/584acdb4cc80f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Keith Williams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Raney",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Warlock & The Infinity Watch 11-17"
+    },
+    {
+      "issueId": 18417,
+      "title": "Warlock and the Infinity Watch (1992) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/18417/warlock_and_the_infinity_watch_1992_13",
+      "seriesId": 3654,
+      "seriesName": "Warlock and the Infinity Watch (1992 - 1995)",
+      "onSale": "1993-02-10T00:00:00+0000",
+      "mu": "2017-03-13T00:00:00+0000",
+      "digitalId": 40204,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/f0/584ad1240c3fe",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Keith Williams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Raney",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Warlock & The Infinity Watch 11-17"
+    },
+    {
+      "issueId": 18418,
+      "title": "Warlock and the Infinity Watch (1992) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/18418/warlock_and_the_infinity_watch_1992_14",
+      "seriesId": 3654,
+      "seriesName": "Warlock and the Infinity Watch (1992 - 1995)",
+      "onSale": "1993-03-10T00:00:00+0000",
+      "mu": "2017-03-13T00:00:00+0000",
+      "digitalId": 40205,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/584ad192d17f5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Bob Almond",
+          "role": "cover artist"
+        },
+        {
+          "name": "Angel Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Warlock & The Infinity Watch 11-17"
+    },
+    {
+      "issueId": 18419,
+      "title": "Warlock and the Infinity Watch (1992) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/18419/warlock_and_the_infinity_watch_1992_15",
+      "seriesId": 3654,
+      "seriesName": "Warlock and the Infinity Watch (1992 - 1995)",
+      "onSale": "1993-04-10T00:00:00+0000",
+      "mu": "2017-03-13T00:00:00+0000",
+      "digitalId": 40206,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/584ad29d02d4f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Bob Almond",
+          "role": "cover artist"
+        },
+        {
+          "name": "Angel Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Warlock & The Infinity Watch 11-17"
+    },
+    {
+      "issueId": 18420,
+      "title": "Warlock and the Infinity Watch (1992) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/18420/warlock_and_the_infinity_watch_1992_16",
+      "seriesId": 3654,
+      "seriesName": "Warlock and the Infinity Watch (1992 - 1995)",
+      "onSale": "1993-05-10T00:00:00+0000",
+      "mu": "2017-03-13T00:00:00+0000",
+      "digitalId": 40207,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/584ad350d2a97",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Keith Williams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Grindberg",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Warlock & The Infinity Watch 11-17"
+    },
+    {
+      "issueId": 18421,
+      "title": "Warlock and the Infinity Watch (1992) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/18421/warlock_and_the_infinity_watch_1992_17",
+      "seriesId": 3654,
+      "seriesName": "Warlock and the Infinity Watch (1992 - 1995)",
+      "onSale": "1993-06-10T00:00:00+0000",
+      "mu": "2017-03-13T00:00:00+0000",
+      "digitalId": 40208,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/584ad56282a9d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Bob Almond",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Grindberg",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Warlock & The Infinity Watch 11-17"
+    },
+    {
+      "issueId": 57827,
+      "title": "Silver Surfer/Warlock: Resurrection (1993) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/57827/silver_surferwarlock_resurrection_1993_1",
+      "seriesId": 21039,
+      "seriesName": "Silver Surfer/Warlock: Resurrection (1993)",
+      "onSale": "1993-03-01T00:00:00+0000",
+      "mu": "2017-01-23T00:00:00+0000",
+      "digitalId": 40198,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/587fc560cb9c4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Silver Surfer/Warlock: Resurrection 1-4"
+    },
+    {
+      "issueId": 57828,
+      "title": "Silver Surfer/Warlock: Resurrection (1993) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/57828/silver_surferwarlock_resurrection_1993_2",
+      "seriesId": 21039,
+      "seriesName": "Silver Surfer/Warlock: Resurrection (1993)",
+      "onSale": "1993-04-01T00:00:00+0000",
+      "mu": "2017-01-23T00:00:00+0000",
+      "digitalId": 40199,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/20/587fc962be732",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jim Starlin",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Silver Surfer/Warlock: Resurrection 1-4"
+    },
+    {
+      "issueId": 57829,
+      "title": "Silver Surfer/Warlock: Resurrection (1993) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/57829/silver_surferwarlock_resurrection_1993_3",
+      "seriesId": 21039,
+      "seriesName": "Silver Surfer/Warlock: Resurrection (1993)",
+      "onSale": "1993-05-01T00:00:00+0000",
+      "mu": "2017-01-23T00:00:00+0000",
+      "digitalId": 40200,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/60/587fc93b9264e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jim Starlin",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Silver Surfer/Warlock: Resurrection 1-4"
+    },
+    {
+      "issueId": 57830,
+      "title": "Silver Surfer/Warlock: Resurrection (1993) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/57830/silver_surferwarlock_resurrection_1993_4",
+      "seriesId": 21039,
+      "seriesName": "Silver Surfer/Warlock: Resurrection (1993)",
+      "onSale": "1993-06-01T00:00:00+0000",
+      "mu": "2017-01-23T00:00:00+0000",
+      "digitalId": 40201,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/587fc9266ba22",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jim Starlin",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Silver Surfer/Warlock: Resurrection 1-4"
+    },
+    {
+      "issueId": 18930,
+      "title": "Quasar (1989) #41",
+      "number": "41",
+      "url": "https://www.marvel.com/comics/issue/18930/quasar_1989_41",
+      "seriesId": 3695,
+      "seriesName": "Quasar (1989 - 1994)",
+      "onSale": "1992-12-10T00:00:00+0000",
+      "mu": "2017-01-16T00:00:00+0000",
+      "digitalId": 40195,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/d0/5820e0035beed",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Ralph Cabrera",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andy Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Gruenwald",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Quasar 41-43"
+    },
+    {
+      "issueId": 18931,
+      "title": "Quasar (1989) #42",
+      "number": "42",
+      "url": "https://www.marvel.com/comics/issue/18931/quasar_1989_42",
+      "seriesId": 3695,
+      "seriesName": "Quasar (1989 - 1994)",
+      "onSale": "1993-01-10T00:00:00+0000",
+      "mu": "2017-01-16T00:00:00+0000",
+      "digitalId": 40196,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/03/5820e1817891d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Ralph Cabrera",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andy Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Gruenwald",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Quasar 41-43"
+    },
+    {
+      "issueId": 18932,
+      "title": "Quasar (1989) #43",
+      "number": "43",
+      "url": "https://www.marvel.com/comics/issue/18932/quasar_1989_43",
+      "seriesId": 3695,
+      "seriesName": "Quasar (1989 - 1994)",
+      "onSale": "1993-02-10T00:00:00+0000",
+      "mu": "2017-01-16T00:00:00+0000",
+      "digitalId": 40197,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/5820e24e7c09a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Ralph Cabrera",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andy Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Gruenwald",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Quasar 41-43"
+    },
+    {
+      "issueId": 23307,
+      "title": "Infinity Crusade (1993) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/23307/infinity_crusade_1993_1",
+      "seriesId": 6673,
+      "seriesName": "Infinity Crusade (1993)",
+      "onSale": "1993-06-01T00:00:00+0000",
+      "mu": "1993-06-01T00:00:00+0000",
+      "digitalId": 11956,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/c0/5ad8b6a1cb7ab",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bob Almond",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keith Williams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Angel Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Grindberg",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Raney",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Infinity Crusade #1"
+    },
+    {
+      "issueId": 18422,
+      "title": "Warlock and the Infinity Watch (1992) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/18422/warlock_and_the_infinity_watch_1992_18",
+      "seriesId": 3654,
+      "seriesName": "Warlock and the Infinity Watch (1992 - 1995)",
+      "onSale": "1993-07-01T00:00:00+0000",
+      "mu": "1993-07-01T00:00:00+0000",
+      "digitalId": 11753,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/4bb5059081a7e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Almond",
+          "role": "cover artist"
+        },
+        {
+          "name": "Angel Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Warlock and the Infinity Watch #18"
+    },
+    {
+      "issueId": 9543,
+      "title": "Iron Man (1968) #294",
+      "number": "294",
+      "url": "https://www.marvel.com/comics/issue/9543/iron_man_1968_294",
+      "seriesId": 2029,
+      "seriesName": "Iron Man (1968 - 1996)",
+      "onSale": "1993-07-01T00:00:00+0000",
+      "mu": "1993-07-01T00:00:00+0000",
+      "digitalId": 17093,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/5a73809d17afa",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Steve Mitchell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kevin Hopgood",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Kaminski",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Iron Man #294"
+    },
+    {
+      "issueId": 9544,
+      "title": "Iron Man (1968) #295",
+      "number": "295",
+      "url": "https://www.marvel.com/comics/issue/9544/iron_man_1968_295",
+      "seriesId": 2029,
+      "seriesName": "Iron Man (1968 - 1996)",
+      "onSale": "1993-08-01T00:00:00+0000",
+      "mu": "1993-08-01T00:00:00+0000",
+      "digitalId": 17095,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/e0/5a748b6736e52",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Steve Mitchell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kevin Hopgood",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Kaminski",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Iron Man #295"
+    },
+    {
+      "issueId": 11791,
+      "title": "Thor (1966) #463",
+      "number": "463",
+      "url": "https://www.marvel.com/comics/issue/11791/thor_1966_463",
+      "seriesId": 2083,
+      "seriesName": "Thor (1966 - 1996)",
+      "onSale": "1993-06-01T00:00:00+0000",
+      "mu": "1993-06-01T00:00:00+0000",
+      "digitalId": 22962,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/90/4f58d71d4f3ca",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Decarlo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bruce Zick",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Thor #463"
+    },
+    {
+      "issueId": 11792,
+      "title": "Thor (1966) #464",
+      "number": "464",
+      "url": "https://www.marvel.com/comics/issue/11792/thor_1966_464",
+      "seriesId": 2083,
+      "seriesName": "Thor (1966 - 1996)",
+      "onSale": "1993-07-01T00:00:00+0000",
+      "mu": "1993-07-01T00:00:00+0000",
+      "digitalId": 23046,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/80/4f58d84e28683",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Decarlo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bruce Zick",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Thor #464"
+    },
+    {
+      "issueId": 17838,
+      "title": "West Coast Avengers (1985) #96",
+      "number": "96",
+      "url": "https://www.marvel.com/comics/issue/17838/west_coast_avengers_1985_96",
+      "seriesId": 3630,
+      "seriesName": "West Coast Avengers (1985 - 1994)",
+      "onSale": "1993-07-01T00:00:00+0000",
+      "mu": "1993-07-01T00:00:00+0000",
+      "digitalId": 40941,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/70/5bdc63744ae4f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Donald Hudson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andrew Currie",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Avengers West Coast #96"
+    },
+    {
+      "issueId": -63085437,
+      "title": "Alpha Flight #122",
+      "number": "122",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Alpha Flight #122"
+    },
+    {
+      "issueId": -79863056,
+      "title": "Terror Inc. #13",
+      "number": "13",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Terror Inc. #13"
+    },
+    {
+      "issueId": -29530199,
+      "title": "Marc Spector: Moon Knight #56",
+      "number": "56",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Marc Spector: Moon Knight #56"
+    },
+    {
+      "issueId": 20217,
+      "title": "Doctor Strange, Sorcerer Supreme (1988) #54",
+      "number": "54",
+      "url": "https://www.marvel.com/comics/issue/20217/doctor_strange_sorcerer_supreme_1988_54",
+      "seriesId": 3741,
+      "seriesName": "Doctor Strange, Sorcerer Supreme (1988 - 1996)",
+      "onSale": "1993-06-01T00:00:00+0000",
+      "mu": "1993-06-01T00:00:00+0000",
+      "digitalId": 49090,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/5b919b42a1e2f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Geof Isherwood",
+          "role": "cover artist"
+        },
+        {
+          "name": "Frank Lopez",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dr. Strange: Sorcerer Supreme #54"
+    },
+    {
+      "issueId": 20218,
+      "title": "Doctor Strange, Sorcerer Supreme (1988) #55",
+      "number": "55",
+      "url": "https://www.marvel.com/comics/issue/20218/doctor_strange_sorcerer_supreme_1988_55",
+      "seriesId": 3741,
+      "seriesName": "Doctor Strange, Sorcerer Supreme (1988 - 1996)",
+      "onSale": "1993-07-01T00:00:00+0000",
+      "mu": "1993-07-01T00:00:00+0000",
+      "digitalId": 49091,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/5b919b26e32be",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Geof Isherwood",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Dr. Strange: Sorcerer Supreme #55"
+    },
+    {
+      "issueId": 23483,
+      "title": "Warlock Chronicles (1993) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/23483/warlock_chronicles_1993_1",
+      "seriesId": 6686,
+      "seriesName": "Warlock Chronicles (1993 - 1994)",
+      "onSale": "1993-07-01T00:00:00+0000",
+      "mu": "1993-07-01T00:00:00+0000",
+      "digitalId": 12005,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/00/5cba233b130bd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bob Almond",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keith Williams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Angel Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Grindberg",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Raney",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The Warlock Chronicles #1"
+    },
+    {
+      "issueId": 23308,
+      "title": "Infinity Crusade (1993) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/23308/infinity_crusade_1993_2",
+      "seriesId": 6673,
+      "seriesName": "Infinity Crusade (1993)",
+      "onSale": "1993-07-01T00:00:00+0000",
+      "mu": "1993-07-01T00:00:00+0000",
+      "digitalId": 11957,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/80/5ad8c91e3cb9b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bob Almond",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keith Williams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Angel Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Grindberg",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Raney",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Infinity Crusade #2"
+    },
+    {
+      "issueId": 23484,
+      "title": "Warlock Chronicles (1993) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/23484/warlock_chronicles_1993_2",
+      "seriesId": 6686,
+      "seriesName": "Warlock Chronicles (1993 - 1994)",
+      "onSale": "1993-08-01T00:00:00+0000",
+      "mu": "1993-08-01T00:00:00+0000",
+      "digitalId": 12006,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/40/5cbde7200e8df",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bob Almond",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keith Williams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Angel Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Grindberg",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Raney",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Warlock Chronicles #2"
+    },
+    {
+      "issueId": 18423,
+      "title": "Warlock and the Infinity Watch (1992) #19",
+      "number": "19",
+      "url": "https://www.marvel.com/comics/issue/18423/warlock_and_the_infinity_watch_1992_19",
+      "seriesId": 3654,
+      "seriesName": "Warlock and the Infinity Watch (1992 - 1995)",
+      "onSale": "1993-08-01T00:00:00+0000",
+      "mu": "1993-08-01T00:00:00+0000",
+      "digitalId": 11754,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/4bb4f74064d80",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Keith Williams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Grindberg",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Warlock and the Infinity Watch #19"
+    },
+    {
+      "issueId": 11793,
+      "title": "Thor (1966) #465",
+      "number": "465",
+      "url": "https://www.marvel.com/comics/issue/11793/thor_1966_465",
+      "seriesId": 2083,
+      "seriesName": "Thor (1966 - 1996)",
+      "onSale": "1993-08-01T00:00:00+0000",
+      "mu": "1993-08-01T00:00:00+0000",
+      "digitalId": 23048,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/4f6345072da9f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Decarlo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bruce Zick",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Thor #465"
+    },
+    {
+      "issueId": 17839,
+      "title": "West Coast Avengers (1985) #97",
+      "number": "97",
+      "url": "https://www.marvel.com/comics/issue/17839/west_coast_avengers_1985_97",
+      "seriesId": 3630,
+      "seriesName": "West Coast Avengers (1985 - 1994)",
+      "onSale": "1993-08-01T00:00:00+0000",
+      "mu": "1993-08-01T00:00:00+0000",
+      "digitalId": 40942,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/70/5bdc63de861dc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Donald Hudson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andrew Currie",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Avengers West Coast #97"
+    },
+    {
+      "issueId": -79075995,
+      "title": "Cage #17",
+      "number": "17",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Cage #17"
+    },
+    {
+      "issueId": -62298376,
+      "title": "Web of Spider-Man #104",
+      "number": "104",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Web of Spider-Man #104"
+    },
+    {
+      "issueId": -45520757,
+      "title": "Web of Spider-Man #105",
+      "number": "105",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Web of Spider-Man #105"
+    },
+    {
+      "issueId": 80650,
+      "title": "Darkhawk (1991) #30",
+      "number": "30",
+      "url": "https://www.marvel.com/comics/issue/80650/darkhawk_1991_30",
+      "seriesId": 18153,
+      "seriesName": "Darkhawk (1991 - 1995)",
+      "onSale": "1993-08-01T00:00:00+0000",
+      "mu": "1993-08-01T00:00:00+0000",
+      "digitalId": 52654,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/5d167867f2afb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Ian Akin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Anthony Williams",
+          "role": "penciler"
+        },
+        {
+          "name": "Tod Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "Danny Fingeroth",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Darkhawk #30"
+    },
+    {
+      "issueId": -11965519,
+      "title": "Alpha Flight #123",
+      "number": "123",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Alpha Flight #123"
+    },
+    {
+      "issueId": 12665,
+      "title": "Alpha Flight (1983) #124",
+      "number": "124",
+      "url": "https://www.marvel.com/comics/issue/12665/alpha_flight_1983_124",
+      "seriesId": 2116,
+      "seriesName": "Alpha Flight (1983 - 1994)",
+      "onSale": "1993-09-01T00:00:00+0000",
+      "mu": "1993-09-01T00:00:00+0000",
+      "digitalId": 55920,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/40/5ff5ed130fecb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bruce Patterson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Derek Yaniger",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Broderick",
+          "role": "penciler"
+        },
+        {
+          "name": "Simon Furman",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Alpha Flight #124"
+    },
+    {
+      "issueId": 68930,
+      "title": "Marc Spector: Moon Knight (1989) #57",
+      "number": "57",
+      "url": "https://www.marvel.com/comics/issue/68930/marc_spector_moon_knight_1989_57",
+      "seriesId": 23996,
+      "seriesName": "Marc Spector: Moon Knight (1989 - 1994)",
+      "onSale": "1993-12-01T00:00:00+0000",
+      "mu": "1993-12-01T00:00:00+0000",
+      "digitalId": 55895,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/10/5ff5ed1321334",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Stephen Platt",
+          "role": "penciler"
+        },
+        {
+          "name": "Terry Kavanagh",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marc Spector: Moon Knight #57"
+    },
+    {
+      "issueId": 23309,
+      "title": "Infinity Crusade (1993) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/23309/infinity_crusade_1993_3",
+      "seriesId": 6673,
+      "seriesName": "Infinity Crusade (1993)",
+      "onSale": "1993-08-01T00:00:00+0000",
+      "mu": "1993-08-01T00:00:00+0000",
+      "digitalId": 11958,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/30/5ad8c96d98d0e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bob Almond",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keith Williams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Angel Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Grindberg",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Raney",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Infinity Crusade #3"
+    },
+    {
+      "issueId": 23485,
+      "title": "Warlock Chronicles (1993) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/23485/warlock_chronicles_1993_3",
+      "seriesId": 6686,
+      "seriesName": "Warlock Chronicles (1993 - 1994)",
+      "onSale": "1993-09-10T00:00:00+0000",
+      "mu": "2017-03-13T00:00:00+0000",
+      "digitalId": 12007,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/b0/5cbdec79614f3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bob Almond",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keith Williams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Angel Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Grindberg",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Raney",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "The Warlock Chronicles #3"
+    },
+    {
+      "issueId": 18425,
+      "title": "Warlock and the Infinity Watch (1992) #20",
+      "number": "20",
+      "url": "https://www.marvel.com/comics/issue/18425/warlock_and_the_infinity_watch_1992_20",
+      "seriesId": 3654,
+      "seriesName": "Warlock and the Infinity Watch (1992 - 1995)",
+      "onSale": "1993-09-01T00:00:00+0000",
+      "mu": "1993-09-01T00:00:00+0000",
+      "digitalId": 19648,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/50ac1d99b57c1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Almond",
+          "role": "cover artist"
+        },
+        {
+          "name": "Angel Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Warlock and the Infinity Watch #20"
+    },
+    {
+      "issueId": 20219,
+      "title": "Doctor Strange, Sorcerer Supreme (1988) #56",
+      "number": "56",
+      "url": "https://www.marvel.com/comics/issue/20219/doctor_strange_sorcerer_supreme_1988_56",
+      "seriesId": 3741,
+      "seriesName": "Doctor Strange, Sorcerer Supreme (1988 - 1996)",
+      "onSale": "1993-08-01T00:00:00+0000",
+      "mu": "1993-08-01T00:00:00+0000",
+      "digitalId": 49092,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/40/5b919c4e866f3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Geof Isherwood",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Doctor Strange, Sorcerer Supreme #56"
+    },
+    {
+      "issueId": 80651,
+      "title": "Darkhawk (1991) #31",
+      "number": "31",
+      "url": "https://www.marvel.com/comics/issue/80651/darkhawk_1991_31",
+      "seriesId": 18153,
+      "seriesName": "Darkhawk (1991 - 1995)",
+      "onSale": "1993-09-01T00:00:00+0000",
+      "mu": "1993-09-01T00:00:00+0000",
+      "digitalId": 52655,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/5d1678943cea6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Ian Akin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Anthony Williams",
+          "role": "penciler"
+        },
+        {
+          "name": "Danny Fingeroth",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Darkhawk #31"
+    },
+    {
+      "issueId": -45322080,
+      "title": "Sable & The Wild Pack #16-17",
+      "number": null,
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Sable & The Wild Pack #16-17"
+    },
+    {
+      "issueId": -2075362393,
+      "title": "Sable & The Wild Pack #16-17",
+      "number": null,
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Sable & The Wild Pack #16-17"
+    },
+    {
+      "issueId": 15223,
+      "title": "Silver Surfer (1987) #83",
+      "number": "83",
+      "url": "https://www.marvel.com/comics/issue/15223/silver_surfer_1987_83",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1993-08-01T00:00:00+0000",
+      "mu": "1993-08-01T00:00:00+0000",
+      "digitalId": 54830,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/03/5e98711b80941",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Cully Hamner",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Silver Surfer #83"
+    },
+    {
+      "issueId": 23310,
+      "title": "Infinity Crusade (1993) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/23310/infinity_crusade_1993_4",
+      "seriesId": 6673,
+      "seriesName": "Infinity Crusade (1993)",
+      "onSale": "1993-09-01T00:00:00+0000",
+      "mu": "1993-09-01T00:00:00+0000",
+      "digitalId": 13019,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/00/5ad8da805a550",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Infinity Crusade #4"
+    },
+    {
+      "issueId": 23486,
+      "title": "Warlock Chronicles (1993) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/23486/warlock_chronicles_1993_4",
+      "seriesId": 6686,
+      "seriesName": "Warlock Chronicles (1993 - 1994)",
+      "onSale": "1993-10-01T00:00:00+0000",
+      "mu": "1993-10-01T00:00:00+0000",
+      "digitalId": 13154,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/20/50b3fd324c8ed",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Keith Williams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Warlock Chronicles #4"
+    },
+    {
+      "issueId": 15224,
+      "title": "Silver Surfer (1987) #84",
+      "number": "84",
+      "url": "https://www.marvel.com/comics/issue/15224/silver_surfer_1987_84",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1993-09-01T00:00:00+0000",
+      "mu": "1993-09-01T00:00:00+0000",
+      "digitalId": 54831,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/30/5e987126a9085",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Grindberg",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Silver Surfer #84 to #85"
+    },
+    {
+      "issueId": 15225,
+      "title": "Silver Surfer (1987) #85",
+      "number": "85",
+      "url": "https://www.marvel.com/comics/issue/15225/silver_surfer_1987_85",
+      "seriesId": 2288,
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "onSale": "1993-10-01T00:00:00+0000",
+      "mu": "1993-10-01T00:00:00+0000",
+      "digitalId": 54832,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/f0/5e9871513ea75",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Howard M. Shum",
+          "role": "cover artist"
+        },
+        {
+          "name": "Maria Beccari",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Koblish",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ernie Stiner",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Silver Surfer #84 to #85"
+    },
+    {
+      "issueId": 23311,
+      "title": "Infinity Crusade (1993) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/23311/infinity_crusade_1993_5",
+      "seriesId": 6673,
+      "seriesName": "Infinity Crusade (1993)",
+      "onSale": "1993-10-01T00:00:00+0000",
+      "mu": "1993-10-01T00:00:00+0000",
+      "digitalId": 13021,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/5ad8dc1556a77",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Infinity Crusade #5"
+    },
+    {
+      "issueId": 23487,
+      "title": "Warlock Chronicles (1993) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/23487/warlock_chronicles_1993_5",
+      "seriesId": 6686,
+      "seriesName": "Warlock Chronicles (1993 - 1994)",
+      "onSale": "1993-11-01T00:00:00+0000",
+      "mu": "1993-11-01T00:00:00+0000",
+      "digitalId": 19652,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/c0/50b3fc3576199",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Keith Williams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kris Renkewitz",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Warlock Chronicles #5"
+    },
+    {
+      "issueId": 18426,
+      "title": "Warlock and the Infinity Watch (1992) #21",
+      "number": "21",
+      "url": "https://www.marvel.com/comics/issue/18426/warlock_and_the_infinity_watch_1992_21",
+      "seriesId": 3654,
+      "seriesName": "Warlock and the Infinity Watch (1992 - 1995)",
+      "onSale": "1993-10-01T00:00:00+0000",
+      "mu": "1993-10-01T00:00:00+0000",
+      "digitalId": 13152,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/50b3fcf27446e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Almond",
+          "role": "cover artist"
+        },
+        {
+          "name": "Angel Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Warlock and the Infinity Watch #21"
+    },
+    {
+      "issueId": 18427,
+      "title": "Warlock and the Infinity Watch (1992) #22",
+      "number": "22",
+      "url": "https://www.marvel.com/comics/issue/18427/warlock_and_the_infinity_watch_1992_22",
+      "seriesId": 3654,
+      "seriesName": "Warlock and the Infinity Watch (1992 - 1995)",
+      "onSale": "1993-11-01T00:00:00+0000",
+      "mu": "1993-11-01T00:00:00+0000",
+      "digitalId": 19649,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/90/50b3fbecd9386",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Almond",
+          "role": "cover artist"
+        },
+        {
+          "name": "Angel Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Warlock and the Infinity Watch #22"
+    },
+    {
+      "issueId": -885457451,
+      "title": "Web Of Spider-Man (1985) #106",
+      "number": "106",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Web Of Spider-Man (1985) #106"
+    },
+    {
+      "issueId": 11794,
+      "title": "Thor (1966) #466",
+      "number": "466",
+      "url": "https://www.marvel.com/comics/issue/11794/thor_1966_466",
+      "seriesId": 2083,
+      "seriesName": "Thor (1966 - 1996)",
+      "onSale": "1993-09-01T00:00:00+0000",
+      "mu": "1993-09-01T00:00:00+0000",
+      "digitalId": 22251,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/90/4f6345543b28d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Decarlo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bruce Zick",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Thor #466"
+    },
+    {
+      "issueId": 23312,
+      "title": "Infinity Crusade (1993) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/23312/infinity_crusade_1993_6",
+      "seriesId": 6673,
+      "seriesName": "Infinity Crusade (1993)",
+      "onSale": "1993-11-01T00:00:00+0000",
+      "mu": "1993-11-01T00:00:00+0000",
+      "digitalId": 13030,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/50/5ad8dc690ecd0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Infinity Crusade #6"
+    },
+    {
+      "issueId": -935790308,
+      "title": "Deathlok #29",
+      "number": "29",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Deathlok #29"
+    },
+    {
+      "issueId": 11795,
+      "title": "Thor (1966) #467",
+      "number": "467",
+      "url": "https://www.marvel.com/comics/issue/11795/thor_1966_467",
+      "seriesId": 2083,
+      "seriesName": "Thor (1966 - 1996)",
+      "onSale": "1993-10-01T00:00:00+0000",
+      "mu": "1993-10-01T00:00:00+0000",
+      "digitalId": 22966,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/00/50b3fca479dba",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Decarlo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bruce Zick",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Thor #467"
+    },
+    {
+      "issueId": 50530,
+      "title": "Thanos Annual (2014) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/50530/thanos_annual_2014_1",
+      "seriesId": 19009,
+      "seriesName": "Thanos Annual (2014)",
+      "onSale": "2014-05-28T00:00:00+0000",
+      "mu": "2014-11-24T00:00:00+0000",
+      "digitalId": 33954,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/537a36d94dda0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Dale Keown",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Thanos Annual 1"
+    },
+    {
+      "issueId": 18352,
+      "title": "What If? (1989) #49",
+      "number": "49",
+      "url": "https://www.marvel.com/comics/issue/18352/what_if_1989_49",
+      "seriesId": 3648,
+      "seriesName": "What If? (1989 - 1998)",
+      "onSale": "1993-05-01T00:00:00+0000",
+      "mu": "1993-05-01T00:00:00+0000",
+      "digitalId": 51662,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/5ca3806d7736b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Pam Eklund",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kevin West",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Clark",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "What If? (1989) 49, 104"
+    },
+    {
+      "issueId": -1036603117,
+      "title": "What If? (1989) 49, 104",
+      "number": null,
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "What If? (1989) 49, 104"
+    },
+    {
+      "issueId": 80443,
+      "title": "What the--?! (1988) #20",
+      "number": "20",
+      "url": "https://www.marvel.com/comics/issue/80443/what_the-_1988_20",
+      "seriesId": 27910,
+      "seriesName": "What the--?! (1988 - 1993)",
+      "onSale": "1992-08-01T00:00:00+0000",
+      "mu": "1992-08-01T00:00:00+0000",
+      "digitalId": 60422,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/e0/6321166034a7e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Aaron Lopresti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Barb Kaalberg",
+          "role": "cover artist"
+        },
+        {
+          "name": "George Wildman",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Decarlo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rurik Tyler",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dennis Jensen",
+          "role": "penciler"
+        },
+        {
+          "name": "Barry Dutter",
+          "role": "writer"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        },
+        {
+          "name": "Sholly Fisch",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "What The-?! 20"
+    },
+    {
+      "issueId": 32477,
+      "title": "Avengers & the Infinity Gauntlet (2010) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/32477/avengers_the_infinity_gauntlet_2010_1",
+      "seriesId": 9859,
+      "seriesName": "Avengers & the Infinity Gauntlet (2010)",
+      "onSale": "2010-08-18T00:00:00+0000",
+      "mu": "2011-07-19T00:00:00+0000",
+      "digitalId": 15723,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/c0/5c1d5550ad50e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Clevinger",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Avengers & The Infinity Gauntlet 1-4"
+    },
+    {
+      "issueId": 32479,
+      "title": "Avengers & the Infinity Gauntlet (2010) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/32479/avengers_the_infinity_gauntlet_2010_2",
+      "seriesId": 9859,
+      "seriesName": "Avengers & the Infinity Gauntlet (2010)",
+      "onSale": "2010-09-15T00:00:00+0000",
+      "mu": "2011-09-22T00:00:00+0000",
+      "digitalId": 16079,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/50/5c2a205f51402",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Terry Pallot",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Churilla",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Clevinger",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Avengers & The Infinity Gauntlet 1-4"
+    },
+    {
+      "issueId": 32481,
+      "title": "Avengers & the Infinity Gauntlet (2010) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/32481/avengers_the_infinity_gauntlet_2010_3",
+      "seriesId": 9859,
+      "seriesName": "Avengers & the Infinity Gauntlet (2010)",
+      "onSale": "2010-10-27T00:00:00+0000",
+      "mu": "2011-10-13T00:00:00+0000",
+      "digitalId": 16977,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/5c2a2ae4e1875",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Terry Pallot",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Churilla",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Clevinger",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Avengers & The Infinity Gauntlet 1-4"
+    },
+    {
+      "issueId": 32483,
+      "title": "Avengers & the Infinity Gauntlet (2010) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/32483/avengers_the_infinity_gauntlet_2010_4",
+      "seriesId": 9859,
+      "seriesName": "Avengers & the Infinity Gauntlet (2010)",
+      "onSale": "2010-11-24T00:00:00+0000",
+      "mu": "2011-11-08T00:00:00+0000",
+      "digitalId": 17905,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/5c1aafa779b36",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sandu Florea",
+          "role": "cover artist"
+        },
+        {
+          "name": "Terry Pallot",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Churilla",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Clevinger",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Avengers & The Infinity Gauntlet 1-4"
+    },
+    {
+      "issueId": 51976,
+      "title": "Infinity Gauntlet (2015) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/51976/infinity_gauntlet_2015_1",
+      "seriesId": 19471,
+      "seriesName": "Infinity Gauntlet (2015)",
+      "onSale": "2015-05-27T00:00:00+0000",
+      "mu": "2015-11-30T00:00:00+0000",
+      "digitalId": 38652,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/10/5564ab80b4bb7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dustin Weaver",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Infinity Gauntlet (2015) 1-5"
+    },
+    {
+      "issueId": 51978,
+      "title": "Infinity Gauntlet (2015) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/51978/infinity_gauntlet_2015_2",
+      "seriesId": 19471,
+      "seriesName": "Infinity Gauntlet (2015)",
+      "onSale": "2015-06-24T00:00:00+0000",
+      "mu": "2015-12-21T00:00:00+0000",
+      "digitalId": 38997,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/03/55805b82148c4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dustin Weaver",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Infinity Gauntlet (2015) 1-5"
+    },
+    {
+      "issueId": 51979,
+      "title": "Infinity Gauntlet (2015) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/51979/infinity_gauntlet_2015_3",
+      "seriesId": 19471,
+      "seriesName": "Infinity Gauntlet (2015)",
+      "onSale": "2015-08-05T00:00:00+0000",
+      "mu": "2016-02-01T00:00:00+0000",
+      "digitalId": 39635,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/55b684660fce6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dustin Weaver",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Infinity Gauntlet (2015) 1-5"
+    },
+    {
+      "issueId": 51980,
+      "title": "Infinity Gauntlet (2015) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/51980/infinity_gauntlet_2015_4",
+      "seriesId": 19471,
+      "seriesName": "Infinity Gauntlet (2015)",
+      "onSale": "2015-09-16T00:00:00+0000",
+      "mu": "2016-03-21T00:00:00+0000",
+      "digitalId": 39896,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/c0/55e8b0c7efca9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dustin Weaver",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Infinity Gauntlet (2015) 1-5"
+    },
+    {
+      "issueId": 51981,
+      "title": "Infinity Gauntlet (2015) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/51981/infinity_gauntlet_2015_5",
+      "seriesId": 19471,
+      "seriesName": "Infinity Gauntlet (2015)",
+      "onSale": "2015-11-11T00:00:00+0000",
+      "mu": "2016-05-09T00:00:00+0000",
+      "digitalId": 40468,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/60/5640d96f984d4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dustin Weaver",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Infinity Gauntlet (2015) 1-5"
+    }
+  ]
+}
