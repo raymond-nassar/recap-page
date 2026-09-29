@@ -1867,6 +1867,45 @@
       "coverIssueId": 7127
     },
     {
+      "id": "hawkeye-reading-order",
+      "name": "Hawkeye (Clint Barton and Kate Bishop)",
+      "description": "Follow Clint Barton and Kate Bishop through their solo and team stories in Comic Book Herald's selected Hawkeye reading order.",
+      "type": "character-run",
+      "depth": "partial",
+      "spotlightKind": "other",
+      "beginner": false,
+      "timeline": null,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceSection": null,
+      "sourceFile": "hawkeye-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/hawkeye-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "hawkeye_reading_order.json",
+      "characters": [
+        "Hawkeye",
+        "Clint Barton",
+        "Kate Bishop",
+        "Mockingbird",
+        "Avengers",
+        "Young Avengers"
+      ],
+      "keywords": [
+        "Hawkeye",
+        "Clint Barton",
+        "Kate Bishop",
+        "Hawkguy",
+        "Mockingbird",
+        "Avengers",
+        "Young Avengers",
+        "Comic Book Herald"
+      ],
+      "expect": 663,
+      "coverIssueId": 42768
+    },
+    {
       "id": "doctor-strange-multiverse-of-madness",
       "name": "Doctor Strange: Multiverse of Madness",
       "description": "Seventeen issue-specific picks connecting Doctor Strange, the Illuminati, and the multiverse, limited to the recommendations this companion guide names by issue.",

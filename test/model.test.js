@@ -1096,10 +1096,11 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // Vision adds four distinct unresolved source originals without changing the refused identities.
   // Thunderbolts adds one distinct unresolved original.
   // Hope Summers adds six distinct unresolved source originals.
-  assert.equal(claimed, 1041, 'the payload placeholder total moved; re-derive the figures in the record');
-  assert.equal(placeholders, 1041, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
-  assert.equal(empty, 200);
-  assert.equal(affected, 18);
+  // Hawkeye adds one unresolved original and six already-known exact optional-detail refusals.
+  assert.equal(claimed, 1042, 'the payload placeholder total moved; re-derive the figures in the record');
+  assert.equal(placeholders, 1042, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
+  assert.equal(empty, 206);
+  assert.equal(affected, 19);
 });
 
 // Every check above passes with the import path reverted, because they all call the counter
@@ -1331,7 +1332,8 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // Vision contributes four more distinct source-position placeholders.
   // Thunderbolts contributes one provider-ID-free source-position placeholder.
   // Hope Summers contributes six provider-ID-free source-position placeholders.
-  assert.equal(refused.length, 1260);
+  // Hawkeye adds one distinct gap; its six refused exact identities already occur in other guides.
+  assert.equal(refused.length, 1261);
   assert.equal(pendingIssueIds(s).length, 0, 'the app is still offering to fetch details that do not exist');
 });
 

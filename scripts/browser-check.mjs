@@ -3232,8 +3232,8 @@ const SCENARIOS = [
         bestOf: await readSubset('best-of'),
       };
       t.check('desktop All, Complete, and Best of counts classify Adam exactly once',
-        desktop.all.readings === 61 && desktop.all.stories === 60
-        && desktop.all.cards === 60 && desktop.all.adamCards === 1
+        desktop.all.readings === 62 && desktop.all.stories === 61
+        && desktop.all.cards === 61 && desktop.all.adamCards === 1
         && desktop.complete.readings === 38 && desktop.complete.stories === 38
         && desktop.complete.cards === 38 && desktop.complete.adamCards === 1
         && desktop.bestOf.readings === 7 && desktop.bestOf.stories === 7
@@ -3248,8 +3248,8 @@ const SCENARIOS = [
         overflow: await page.evaluate(() => document.documentElement.scrollWidth > innerWidth),
       };
       t.check('narrow All, Complete, and Best of counts preserve Adam without horizontal overflow',
-        narrow.all.readings === 61 && narrow.all.stories === 60
-        && narrow.all.cards === 60 && narrow.all.adamCards === 1
+        narrow.all.readings === 62 && narrow.all.stories === 61
+        && narrow.all.cards === 61 && narrow.all.adamCards === 1
         && narrow.complete.readings === 38 && narrow.complete.stories === 38
         && narrow.complete.cards === 38 && narrow.complete.adamCards === 1
         && narrow.bestOf.readings === 7 && narrow.bestOf.stories === 7
@@ -3456,6 +3456,140 @@ const SCENARIOS = [
         ]),
         JSON.stringify(imported));
       t.check('the Hope actual-data journey makes no external request and raises no browser error',
+        externalRequests.length === 0 && browserErrors.length === 0,
+        JSON.stringify({ externalRequests, browserErrors }));
+    },
+  },
+  {
+    id: 'hawkeye-actual-data',
+    title: 'the actual Clint and Kate Hawkeye guide keeps every issue and refusal through preview, import and reload',
+    async run(page, t) {
+      await page.setViewport({ width: 1280, height: 900 });
+      const id = 'hawkeye-reading-order';
+      const payload = JSON.parse(readFileSync(
+        new URL('../src/data/hawkeye_reading_order.json', import.meta.url), 'utf8',
+      ));
+      const expected = payload.items.map((item) => ({ issueId: item.issueId, title: item.title }));
+      const repeatIds = [11300, 30011, 30012, 30013, 30014, 29882, 29883, 21401];
+      const refusedIds = [56327, 55231, 55232, 55233, 55234, 55236];
+      const checkRows = (label, rows) => {
+        const mismatches = rows.flatMap((row, index) => (
+          JSON.stringify(row) === JSON.stringify(expected[index])
+            ? [] : [{ expected: expected[index], actual: row }]
+        ));
+        t.check(label, rows.length === 663 && mismatches.length === 0,
+          JSON.stringify({ count: rows.length, mismatches: mismatches.slice(0, 3) }));
+      };
+      const importedRows = () => page.evaluate((catalogId, refusals) => {
+        const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+        const lists = Object.values(state.lists).filter((list) => list.catalogId === catalogId);
+        const itemIds = lists[0]?.itemIds ?? [];
+        return {
+          matches: lists.length,
+          rows: itemIds.map((issueId) => ({ issueId, title: state.issues[issueId]?.title })),
+          refused: refusals.map((issueId) => ({
+            issueId,
+            detailsRefused: state.issues[issueId]?.detailsRefused,
+            placeholder: state.issues[issueId]?.placeholder,
+            digitalId: state.issues[issueId]?.digitalId,
+          })),
+        };
+      }, id, refusedIds);
+      const renderedRows = () => page.$$eval('#rows .row', (nodes) => nodes.map((node) => ({
+        issueId: Number(node.querySelector('.rt')?.dataset.issueId),
+        title: node.querySelector('.rt')?.textContent.trim(),
+      })));
+      const browserErrors = [];
+      const externalRequests = [];
+      page.on('console', (message) => { if (message.type() === 'error') browserErrors.push(message.text()); });
+      page.on('pageerror', (error) => browserErrors.push(error.message));
+      page.on('request', (request) => {
+        const url = new URL(request.url());
+        if (url.protocol.startsWith('http') && url.origin !== page.__origin) externalRequests.push(request.url());
+      });
+      await page.evaluateOnNewDocument(() => {
+        localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
+        window.__mrtBlockExternal = true;
+      });
+
+      const cardSelector = '#spotlights-results [data-story="list:hawkeye-reading-order"]';
+      await open(page, '/?catalog=actual#/home');
+      await openBrowseCategory(page, 'character-spotlights');
+      await page.$eval('#spotlights-q', (input) => {
+        input.value = 'Clint Barton';
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+      });
+      await page.waitForSelector(cardSelector, { timeout: 15000 });
+      const card = await page.$eval(cardSelector, (node) => ({
+        name: node.querySelector('.catalog-card-title')?.textContent.trim(),
+        text: node.textContent,
+        sourceHref: node.querySelector('a[href*="comicbookherald.com"]')?.href,
+        addName: node.querySelector('[data-act="import"]')?.getAttribute('aria-label'),
+      }));
+      t.check('both Hawkeyes are discoverable with a 663-issue source credit and one visible gap',
+        card.name === 'Hawkeye (Clint Barton and Kate Bishop)'
+        && card.text.includes('663 issues')
+        && card.text.includes('1 issue has no Marvel Unlimited link yet and cannot be opened')
+        && card.sourceHref === 'https://www.comicbookherald.com/hawkeye-reading-order/'
+        && card.addName === 'Add to library: Hawkeye (Clint Barton and Kate Bishop)',
+        JSON.stringify(card));
+
+      await click(page, `${cardSelector} [data-act="preview"]`);
+      await page.waitForFunction(() =>
+        document.querySelectorAll('#preview[open] .preview-issue-link').length === 663);
+      const preview = await page.$$eval('#preview-body .preview-issue-link', (nodes) => nodes.map((node) => ({
+        issueId: Number(node.dataset.issueId), title: node.textContent.trim(),
+      })));
+      checkRows('preview keeps all 663 source-selected issue IDs and titles', preview);
+      t.check('the source position 159 gap occupies canonical runtime row 158 after a prior repeat',
+        preview[157]?.issueId === -1610535525
+        && preview[157]?.title === 'Marvel Super Action #1'
+        && preview.filter((row) => row.issueId < 0).length === 1,
+        JSON.stringify({ gap: preview[157], negatives: preview.filter((row) => row.issueId < 0) }));
+
+      await click(page, '#preview-add [data-act="main"]');
+      await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')
+        ?.textContent.includes('In library'));
+      const imported = await importedRows();
+      checkRows('import retains all 663 issue IDs and titles in source order', imported.rows);
+      t.check('import preserves one negative gap, eight single canonical repeats and the endpoint',
+        imported.matches === 1
+        && imported.rows[0]?.issueId === 11280
+        && imported.rows[157]?.issueId === -1610535525
+        && imported.rows.at(-1)?.issueId === 110390
+        && repeatIds.every((issueId) => imported.rows.filter((row) => row.issueId === issueId).length === 1),
+        JSON.stringify({ matches: imported.matches, count: imported.rows.length,
+          gap: imported.rows[157], last: imported.rows.at(-1) }));
+      t.check('six exact positive IDs keep genuine detail refusals, not invented digital IDs',
+        imported.refused.length === 6
+        && imported.refused.every((row) => row.issueId > 0
+          && row.detailsRefused === true && row.placeholder !== true && row.digitalId == null),
+        JSON.stringify(imported.refused));
+
+      await click(page, '#preview-add [data-act="main"]');
+      await page.waitForFunction(() =>
+        !document.querySelector('#view-read')?.hidden
+        && document.querySelector('#order-name')?.textContent.trim()
+          === 'Hawkeye (Clint Barton and Kate Bishop)');
+      await openFullOrder(page);
+      await page.waitForFunction(() => document.querySelectorAll('#rows .row').length === 663);
+      checkRows('Reading List renders all 663 issue IDs and titles', await renderedRows());
+
+      await page.reload({ waitUntil: 'load' });
+      await page.waitForFunction(() =>
+        document.querySelector('#order-name')?.textContent.trim()
+          === 'Hawkeye (Clint Barton and Kate Bishop)');
+      await openFullOrder(page);
+      await page.waitForFunction(() => document.querySelectorAll('#rows .row').length === 663);
+      checkRows('reload renders all 663 issue IDs and titles', await renderedRows());
+      const reloaded = await importedRows();
+      checkRows('reload retains the exact saved 663-row vector', reloaded.rows);
+      t.check('reload keeps six exact refusals and one source-position gap',
+        reloaded.matches === 1 && reloaded.rows[157]?.issueId === -1610535525
+        && reloaded.refused.every((row) => row.issueId > 0
+          && row.detailsRefused === true && row.placeholder !== true && row.digitalId == null),
+        JSON.stringify({ gap: reloaded.rows[157], refused: reloaded.refused }));
+      t.check('the Hawkeye actual-data journey made no external request or browser error',
         externalRequests.length === 0 && browserErrors.length === 0,
         JSON.stringify({ externalRequests, browserErrors }));
     },

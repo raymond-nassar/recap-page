@@ -1524,8 +1524,8 @@
     "fp": "c727e9b5638b206f",
     "head": "assert.doesNotMatch(code, /MRT_PORT/, `${name} sets a port, which moves the stored progress`);"
   },
-  "docs/ARCHITECTURE.md|how-reading-content-reaches-the-browser|scripts/vendor-orders.mjs:587-635|0": {
-    "anchor": "scripts/vendor-orders.mjs:587-635",
+  "docs/ARCHITECTURE.md|how-reading-content-reaches-the-browser|scripts/vendor-orders.mjs:599-647|0": {
+    "anchor": "scripts/vendor-orders.mjs:599-647",
     "fp": "98a893895e13e14e",
     "head": "// Lists we did not rebuild still have to appear in the catalog, so their entries are derived"
   },
@@ -1894,13 +1894,13 @@
     "fp": "ff9ba71742d8b8c0",
     "head": "\"chapterCount\": 78,"
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:10188-10313|0": {
-    "anchor": "src/data/catalog.json:10188-10313",
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:10233-10358|0": {
+    "anchor": "src/data/catalog.json:10233-10358",
     "fp": "a679899453ea002c",
     "head": "\"paths\": ["
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/curated-lists.json:6274-6313|0": {
-    "anchor": "src/data/curated-lists.json:6274-6313",
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/curated-lists.json:6313-6352|0": {
+    "anchor": "src/data/curated-lists.json:6313-6352",
     "fp": "1b133fe2f7d008e4",
     "head": "\"paths\": ["
   },
@@ -1984,13 +1984,13 @@
     "fp": "e9a1e74dee2c791e",
     "head": "// The publication gate answered a question that only gets asked once, and it was asked on"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:4258-4269|0": {
-    "anchor": "CHANGELOG.md:4258-4269",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:4264-4275|0": {
+    "anchor": "CHANGELOG.md:4264-4275",
     "fp": "7ebb6ef43a1f1241",
     "head": "- **The project now watches its own development tooling for known security problems, and says how"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:4271-4281|0": {
-    "anchor": "CHANGELOG.md:4271-4281",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:4277-4287|0": {
+    "anchor": "CHANGELOG.md:4277-4287",
     "fp": "c37eedd88ad1c81c",
     "head": "- **The project now has a published security policy, which names a private route for reporting a"
   },

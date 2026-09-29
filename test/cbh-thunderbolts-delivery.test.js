@@ -200,10 +200,10 @@ test('Thunderbolts approval covers all 186 source-manifest peers at its review',
   const current = await buildReportForMapping(
     `scripts/data/cbh-mappings/${id}.json`,
     [],
-    { excludedOrderIds: ['nebula-reading-order', 'hope-summers-reading-order', 'x-23-reading-order'] },
+    { excludedOrderIds: ['nebula-reading-order', 'hope-summers-reading-order', 'x-23-reading-order', 'hawkeye-reading-order'] },
   );
   const expectedOrderIds = manifest.lists
-    .filter((row) => ![id, 'nebula-reading-order', 'hope-summers-reading-order', 'x-23-reading-order'].includes(row.id))
+    .filter((row) => ![id, 'nebula-reading-order', 'hope-summers-reading-order', 'x-23-reading-order', 'hawkeye-reading-order'].includes(row.id))
     .map((row) => row.id);
   assert.deepEqual(current, report);
   assert.equal(report.comparisonCount, 186);
@@ -234,8 +234,8 @@ test('Thunderbolts is discoverable with source credit and measured maintained to
   const entry = manifest.lists.find((row) => row.id === id);
   const card = catalog.lists.find((row) => row.id === id);
 
-  assert.equal(manifest.lists.length, 190);
-  assert.equal(catalog.lists.length, 267);
+  assert.equal(manifest.lists.length, 191);
+  assert.equal(catalog.lists.length, 268);
   assert.equal(inventory.length, 132);
   assert.doesNotThrow(() => validateInventoryState(inventory));
   assert.deepEqual(entry, mapping.approvedManifest);
