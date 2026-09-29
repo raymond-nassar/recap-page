@@ -267,6 +267,17 @@ npm run vendor -- --only=<id>
 
 Re-vendoring every order costs hundreds of API requests and restamps files whose content did not
 change. A malformed or unresolved entry fails rather than shipping a quietly shorter order.
+For an approved single order with previously observed issue-detail responses, use
+`--metadata-cache=<directory>` together with `--only=<id>` to read its complete request-bound
+cache without any network calls. Each requested issue must have a file named for the SHA-256 of
+its exact metadata API URL. A successful record contains `url`, `urlSha256`, `status: 200`,
+`body` and `bodySha256`, with the hashes computed from the URL and `JSON.stringify(body)`.
+A provider refusal may instead contain `url`, `urlSha256`, `status: 404`, `fetchedAt` and
+`error: "404 <exact URL>"`, with no `body` or `bodySha256`; it remains an explicit
+`detailsRefused` item using the approved checklist identity. Record only an actual observed
+HTTP 404 this way. Missing records, unbound or corrupt responses, other HTTP errors and
+transport failures abort before any output changes. Retain genuine successful records and
+retry only missing requests under the existing vendoring rate limit.
 
 One local source can be a partition parent. Give it a `partitionFile`, set `catalog` to `false`, and
 keep the checked ledger under `scripts/data`. The vendor validates source-position coverage, the

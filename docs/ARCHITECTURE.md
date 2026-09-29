@@ -212,7 +212,7 @@ flowchart TD
 
 On a targeted run, the vendor reuses pinned payloads for skipped orders before deriving the complete
 catalog. It then atomically writes the output batch assembled by that invocation, including
-`catalog.json` and any generated overlap artifacts, at `scripts/vendor-orders.mjs:587-635`. At
+`catalog.json` and any generated overlap artifacts, at `scripts/vendor-orders.mjs:599-647`. At
 runtime the catalog is fetched once from the same origin and parsed at
 `src/js/main.js:1806-1817`, so browsing does not depend on the metadata service.
 
