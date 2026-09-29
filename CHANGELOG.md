@@ -13,6 +13,14 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Clarify Android privacy and backup boundaries
+
+Android's About screen now explains private app storage, data loss on uninstall and the contents
+given to a selected export provider, with a link to the public privacy policy. The policy
+distinguishes desktop storage, local name searches and retained recovery copies from Android
+behavior without promising deletion by external services or document providers. Saved data,
+import/export behavior and desktop launching are unchanged.
+
 ### Identify builds without coupling platform releases
 
 Packaged About screens now identify the platform build and source revision separately from the
