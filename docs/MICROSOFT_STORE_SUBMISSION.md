@@ -423,8 +423,9 @@ Everything above this heading records the first submission. Its package version,
 manual upload, certification submission, and manual publishing hold remain the factual first-release
 procedure. They do not authorize or describe a later update.
 
-After that first free version is live, a published GitHub release may start the separate Microsoft
-Store release workflow. The entire job waits at the protected `microsoft-store-production`
+After that first free version is live, an explicit default-branch dispatch may start the separate
+Microsoft Store release workflow. Publishing a GitHub or Android release does not start it.
+The entire job waits at the protected `microsoft-store-production`
 environment before it builds or receives Partner Center credentials. The owner must approve that
 environment deployment before any update can be uploaded.
 

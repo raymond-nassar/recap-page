@@ -450,9 +450,9 @@ native startup is specific to the Store package. Every proof job and cleanup mus
 before the retained candidate is accepted. Preparation does not publish either distribution.
 
 After the first free submission is certified and live, the protected Microsoft Store release
-workflow can submit later package updates. A published GitHub release starts the job, but the
+workflow can submit later package updates. Only an explicit default-branch dispatch starts the job; the
 `microsoft-store-production` environment blocks it before build and credentials until the owner
-approves deployment.
+approves deployment. GitHub releases, including Android releases, cannot start this workflow.
 
 The workflow builds from the release tag in one Windows Server 2022 job. It inspects and WACK-tests
 the exact generated bundle, verifies the same SHA-256 before submission, then checks Partner Center

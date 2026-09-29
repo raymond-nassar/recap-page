@@ -596,9 +596,9 @@ Before the Store workflow reaches the default branch:
 1. Create the `microsoft-store-production` environment in repository settings.
 2. Require the owner as a deployment reviewer and prevent self-review when repository settings
    support it.
-3. Select deployment branches and tags, then confirm the default branch is accepted for the
-   read-only rehearsal and approved `v*` tags are accepted for release deployment.
-4. Do not merge the workflow if both paths cannot be expressed and enforced.
+3. Select deployment branches, then confirm only the default branch is accepted for manual
+   Validate and Submit dispatches. Application tags are checked inside the job.
+4. Do not merge the workflow if this protection cannot be expressed and enforced.
 
 The environment can exist before Store certification and does not need credentials yet. Until the
 first version is live, reject any deployment approval request. After it is live, create an Entra
@@ -629,7 +629,8 @@ than accepting a missing value. Do not test the contract by creating a draft.
 ### Operate a Store update
 
 Complete the ordinary release preparation below, including version-bound Store notes. Publishing a
-non-draft, non-prerelease GitHub release tagged `v<version>` starts the Store job. Approval is the
+GitHub release no longer starts the Store job. Explicitly dispatch Submit from the default branch
+with the stable `v<version>` tag and its full source SHA. Protected approval is the
 owner's authorization to build and submit that release. Reject approval if the Store product has
 pending work or if the release was not intended as the next Store update.
 
@@ -726,6 +727,10 @@ Keep #488 open until handoff, draft read-back and disposal finish; publishing is
 
 ## Cutting a release
 
+First select the affected platforms using [the coordinated release policy](RELEASING.md).
+Product version, platform build number and publication approval are separate. Update its delivered
+matrix only from confirmed platform delivery; an Android-only release does not publish Windows.
+
 Release preparation and GitHub publication are separate actions. Prepare and merge the release
 commit first. Create the GitHub release from the exact merged commit on the default branch, never
 from an unmerged branch commit.
@@ -819,9 +824,8 @@ prepared release notes, and attach `dist/marvel-reading-tracker-windows.zip`. Cr
 what creates the tag. Do not create the tag on the feature branch: squash merging would leave it
 pointing to a commit that never reaches the default branch.
 
-After Store update automation is activated, publishing this release also requests a protected Store
-deployment. Approval submits the separately built MSIX bundle; it does not change or replace the
-attached GitHub ZIP.
+Publishing this release does not request a Store deployment. A separate explicit protected Submit
+dispatch submits the MSIX bundle; it does not change or replace the attached GitHub ZIP.
 
 ### 5. Verify the published release
 

@@ -2,6 +2,7 @@ import { createHash } from 'node:crypto';
 import { cp, lstat, mkdir, readFile, readdir, realpath, rm, writeFile } from 'node:fs/promises';
 import { dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { androidBuild, assertSourceUnchanged, stampAbout } from './lib/release-identity.mjs';
 import { CSP, DEFAULT_PORT, HOST } from '../server.mjs';
 import {
   LOCAL_SERVER_HEADER_NAME,
@@ -76,6 +77,7 @@ export async function prepareAndroid(output = ANDROID_ASSET_DIR) {
     if (!webPaths.includes(required)) throw new Error(`Missing Android entry asset: ${required}`);
   }
   const { version } = JSON.parse(packageText);
+  const { identity } = await androidBuild();
   const config = {
     version,
     origin: `http://${HOST}:${DEFAULT_PORT}`,
@@ -91,6 +93,7 @@ export async function prepareAndroid(output = ANDROID_ASSET_DIR) {
     },
   };
   let index = await readFile(join(SOURCE, 'index.html'), 'utf8');
+  index = stampAbout(index, identity);
   const stylesheet = '<link rel="stylesheet" href="./styles.css" />';
   const entry = '<script type="module" src="./js/app.js"></script>';
   if (index.split(stylesheet).length !== 2 || index.split(entry).length !== 2) {
@@ -144,8 +147,11 @@ export async function prepareAndroid(output = ANDROID_ASSET_DIR) {
   }
   await writeFile(join(directory, 'android-config.json'), `${JSON.stringify(config, null, 2)}\n`);
   entries.push({ path: 'android-config.json', sha256: hash(await readFile(join(directory, 'android-config.json'))) });
-  const manifest = { version, files: entries.sort((a, b) => a.path.localeCompare(b.path, 'en')) };
+  await writeFile(join(directory, 'build-info.json'), `${JSON.stringify(identity, null, 2)}\n`);
+  entries.push({ path: 'build-info.json', sha256: hash(await readFile(join(directory, 'build-info.json'))) });
+  const manifest = { version, build: identity, files: entries.sort((a, b) => a.path.localeCompare(b.path, 'en')) };
   await writeFile(join(directory, 'android-assets.json'), `${JSON.stringify(manifest, null, 2)}\n`);
+  assertSourceUnchanged(identity);
   return { directory: await realpath(directory), manifest, config };
 }
 

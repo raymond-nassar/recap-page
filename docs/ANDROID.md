@@ -121,11 +121,11 @@ ID when updating an existing test installation. A different signature cannot upd
 **export a backup before uninstalling**. Build outputs, SDK paths and signing keys must stay out
 of Git. Prototype downloads are published as Android-only GitHub prereleases, not store uploads.
 
-Android beta packages have their own release revision in the app's Gradle configuration. Beta 2
-uses version name `3.0.1-beta.2` and version code `3000002`; each later Android beta must increment
-that revision, even if the shared desktop version changes. The in-app About page continues to
-identify the shared app version, `3.0.1`. Quote the APK filename or Android package version as
-well when reporting a beta problem.
+The published Beta 2 used version name `3.0.1-beta.2` and code `3000002`. New builds follow the
+[coordinated release policy](RELEASING.md): local and hosted debug builds are explicitly development
+builds, while a distribution candidate needs a source-bound code reservation. About identifies
+the product version, platform build and source revision. Quote those values and the APK filename
+when reporting a problem. This policy does not choose a permanent application ID or signing key.
 
 Dependabot watches the Android Gradle toolchain separately. When updating Gradle, review both the
 distribution checksum and the wrapper checksum/bootstrap version together, then rerun the APK

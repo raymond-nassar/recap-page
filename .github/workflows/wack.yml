@@ -891,6 +891,11 @@ jobs:
             const node = await readFile(join(official, 'node.exe'));
             const expected = new Map();
             for (const name of appFiles()) expected.set(name, await readFile(join(root, name)));
+            const { buildIdentity, stampAbout } =
+              await import(pathToFileURL(join(root, 'scripts', 'lib', 'release-identity.mjs')));
+            const identity = await buildIdentity('windows-portable', pkg.version, 'candidate', root);
+            expected.set('src/index.html', Buffer.from(stampAbout(expected.get('src/index.html').toString('utf8'), identity)));
+            expected.set('src/build-info.json', Buffer.from(JSON.stringify(identity, null, 2) + '\n'));
             expected.set('Read this first.txt', Buffer.from(readMe));
             expected.set('runtime/LICENSE-node.txt', await readFile(join(official, 'LICENSE')));
             expected.set('runtime/node.exe', node);

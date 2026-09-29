@@ -68,7 +68,7 @@ Copy this:
 ```text
 Phone model:
 Android version:
-Recap Page version (About this app) and APK filename:
+Recap Page product version, platform build and source (About this app), and APK filename:
 Marvel Unlimited installed: yes / no
 Marvel Unlimited app version:
 Where Read opened: browser / Marvel app / nowhere
