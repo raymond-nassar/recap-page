@@ -75,6 +75,11 @@ journeys, upgrade compatibility, Windows package, and remote publication surface
 depend on a network, installed software, local Git history, or the remote repository, so they do
 not pretend to be ordinary CI coverage.
 
+[Coordinated versions and independent releases](docs/RELEASING.md) defines platform build identity,
+Android code reservations, source-pinned artifact records and the delivered release matrix.
+A shared product version never authorizes either Store: each platform needs its own explicit
+approval and may publish on a different date.
+
 ## Moderation
 
 [The code of conduct](CODE_OF_CONDUCT.md) sets the standard and describes what happens when someone

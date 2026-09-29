@@ -16,7 +16,7 @@ the prose rather than in a binary nobody can diff.
 ## The three entry points
 
 The app is served from one origin and has three pages, each loading exactly one module. The tracker
-itself is loaded at `src/index.html:1141`. The launch page, which is the tab a reader's issue opens
+itself is loaded at `src/index.html:1142`. The launch page, which is the tab a reader's issue opens
 into, is loaded at `src/open.html:19`. A fault-injection harness that exists for development and is
 no part of the running app is loaded at `src/dev-faults.html:135`.
 

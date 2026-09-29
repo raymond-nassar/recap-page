@@ -14,8 +14,6 @@ on:
       source_sha:
         description: Full immutable application commit required for Submit
         type: string
-  release:
-    types: [published]
 
 permissions:
   contents: read
@@ -31,7 +29,7 @@ jobs:
   submit:
     name: Validate and submit the Store bundle
     if: >-
-      github.event_name == 'release' ||
+      github.event_name == 'workflow_dispatch' &&
       github.ref_name == github.event.repository.default_branch
     environment: microsoft-store-production
     runs-on: windows-2022
@@ -43,9 +41,7 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
-          ref: >-
-            ${{ github.event_name == 'release' &&
-                github.event.release.tag_name || inputs.release_tag || github.ref }}
+          ref: ${{ inputs.release_tag || github.ref }}
 
       - name: Check out the reviewed publisher
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -93,7 +89,7 @@ jobs:
         shell: pwsh
         env:
           DISPATCH_MODE: ${{ inputs.mode }}
-          RELEASE_TAG: ${{ github.event.release.tag_name || inputs.release_tag }}
+          RELEASE_TAG: ${{ inputs.release_tag }}
           EXPECTED_SOURCE_SHA: ${{ inputs.source_sha }}
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -105,14 +101,7 @@ jobs:
             "recap-store-$env:GITHUB_RUN_ID-$env:GITHUB_RUN_ATTEMPT"
           New-Item -ItemType Directory -Path $tempRoot -ErrorAction Stop | Out-Null
           $mode = 'Validate'
-          if ($env:GITHUB_EVENT_NAME -eq 'release') {
-            $mode = 'Submit'
-            node ./.store-tooling/scripts/check-store-release.mjs release `
-              $env:GITHUB_EVENT_PATH $appVersion $storeVersion
-            if ($LASTEXITCODE -ne 0) {
-              throw 'The published release does not match the package version.'
-            }
-          } elseif ($env:DISPATCH_MODE -eq 'Submit') {
+          if ($env:DISPATCH_MODE -eq 'Submit') {
             $mode = 'Submit'
             if ($env:RELEASE_TAG -ne "v$appVersion" -or
                 $env:EXPECTED_SOURCE_SHA -cnotmatch '^[0-9a-f]{40}$') {
@@ -153,15 +142,12 @@ jobs:
         shell: pwsh
         env:
           DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
-          RELEASE_TAG: ${{ github.event.release.tag_name || inputs.release_tag }}
+          RELEASE_TAG: ${{ inputs.release_tag }}
           SOURCE_SHA: ${{ steps.release.outputs.source_sha }}
         run: |
           $tagCommit = (git rev-parse "$env:RELEASE_TAG^{commit}").Trim()
           if ($LASTEXITCODE -ne 0 -or $tagCommit -ne $env:SOURCE_SHA) {
             throw 'The checked-out commit does not match the published release tag.'
-          }
-          if ($env:GITHUB_EVENT_NAME -eq 'release' -and $tagCommit -ne $env:GITHUB_SHA) {
-            throw 'The release tag changed after the published event.'
           }
           git fetch --no-tags origin $env:DEFAULT_BRANCH
           if ($LASTEXITCODE -ne 0) {

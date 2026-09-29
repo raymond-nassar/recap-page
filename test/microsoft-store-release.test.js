@@ -372,10 +372,10 @@ test('status validation distinguishes unexpected lifecycle from confirmed termin
   ]) assert.throws(() => validateSubmissionStatus(response));
 });
 
-test('the Store workflow has only approved release and rehearsal entry points', () => {
+test('the Store workflow requires an explicit protected Windows dispatch', () => {
   assert.match(workflow, /^ {2}workflow_dispatch:\s*$/m);
-  assert.match(workflow, /^ {2}release:\r?\n {4}types: \[published\]\s*$/m);
-  assert.doesNotMatch(workflow, /pull_request_target|^ {2}(?:push|pull_request|schedule):/m);
+  assert.doesNotMatch(workflow, /pull_request_target|^ {2}(?:release|push|pull_request|schedule|workflow_run|workflow_call):/m);
+  assert.match(workflow, /github\.event_name == 'workflow_dispatch' &&\s+github\.ref_name == github\.event\.repository\.default_branch/);
   assert.match(workflow, /^ {4}environment: microsoft-store-production\s*$/m);
   assert.match(workflow, /^ {2}contents: read\s*$/m);
   assert.match(workflow, /^ {2}cancel-in-progress: false\s*$/m);
@@ -447,8 +447,7 @@ test('catch-up submission binds immutable application source separately from rev
   assert.match(metadata, /gh api "repos\/\$env:GITHUB_REPOSITORY\/releases\/tags\/\$env:RELEASE_TAG"/);
   assert.match(metadata, /DISPATCH_MODE -ne 'Validate' -or \$env:RELEASE_TAG -or \$env:EXPECTED_SOURCE_SHA/);
   assert.match(step('Prove release commit provenance'), /git merge-base --is-ancestor/);
-  assert.match(step('Prove release commit provenance'),
-    /GITHUB_EVENT_NAME -eq 'release' -and \$tagCommit -ne \$env:GITHUB_SHA/);
+  assert.match(step('Prove release commit provenance'), /\$tagCommit -ne \$env:SOURCE_SHA/);
   assert.match(step('Submit one Store update'), /\.\/\.store-tooling\/scripts\/publish-store-update\.ps1/);
   assert.doesNotMatch(workflow, /gh release create|git tag|git push|cancel-in-progress: true/);
 });

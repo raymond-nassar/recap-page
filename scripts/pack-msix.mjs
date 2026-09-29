@@ -11,6 +11,7 @@ import {
   NODE_ARCH, NODE_VERSION, appFiles, fetchRuntime, runtimeArchiveName,
 } from './pack-windows.mjs';
 import { NATIVE_NAME, VERIFIER_NAME, verifyNativeArtifact } from './lib/native-launcher.mjs';
+import { artifactRecord, assertSourceUnchanged, buildIdentity, writeBuildIdentity } from './lib/release-identity.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const pkg = JSON.parse(await readFile(join(ROOT, 'package.json'), 'utf8'));
@@ -136,6 +137,8 @@ async function prepareLayout(staging, version, target, runtimeDir, native) {
   const layout = layoutPath(staging, version, target.id);
   await mkdir(layout, { recursive: true });
   await copyApp(layout);
+  await writeBuildIdentity(join(layout, 'src'),
+    await buildIdentity('windows-msix', version, version === PROOF_UPDATE_VERSION ? 'proof' : undefined));
   await copyFile(LAUNCHER_SOURCE, join(layout, LAUNCHER_NAME));
   await copyFile(join(native.root, target.id, VERIFIER_NAME), join(layout, VERIFIER_NAME));
   await copyFile(join(native.root, target.id, NATIVE_NAME), join(layout, NATIVE_NAME));
@@ -195,6 +198,7 @@ function packageLayout(layout, output, password) {
 }
 
 async function build() {
+  const identity = await buildIdentity('windows-msix', STORE_PACKAGE_VERSION);
   const native = await verifyNativeArtifact();
   const version = winAppCliVersion(run('winapp', ['--version']));
   if (version !== '0.6.0') {
@@ -275,6 +279,10 @@ async function build() {
     say(`${output}\n  ${size} bytes, sha256 ${await hash(output)}`);
   }
   const bundle = bundlePath();
+  assertSourceUnchanged(identity);
+  await writeFile(join(MSIX_ROOT, 'windows-artifact.json'), `${JSON.stringify(
+    await artifactRecord(bundle, identity), null, 2,
+  )}\n`);
   const { size } = await stat(bundle);
   say(`${bundle}\n  ${size} bytes, sha256 ${await hash(bundle)}`);
   say(`${proofPackagePath(PROOF_UPDATE_VERSION)}\n  proof-only, excluded from Store output and bundle`);
