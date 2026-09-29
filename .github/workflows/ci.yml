@@ -74,6 +74,9 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         timeout-minutes: 2
         with:
+          # The publication allowance test verifies a historical draft ancestor.
+          # A shallow checkout omits it and fails both Node jobs.
+          fetch-depth: 0
           # Nothing in this job pushes, so the token has no work to do after checkout.
           # Left on, it is written into the git config and readable by every later step.
           persist-credentials: false
@@ -116,9 +119,9 @@ jobs:
     # 25 minutes of step deadlines below, so the same ordering holds here.
     timeout-minutes: 26
     steps:
-      # The full history, unlike every other checkout here. The publication gate below
-      # scans commit messages and every blob any commit ever held, and the default
-      # shallow fetch gives it one commit to look at. In that state the gate refuses to
+      # Full history is also needed by the test matrix's historical allowance proof.
+      # The publication gate scans commit messages and every blob ever held.
+      # A shallow fetch gives it one commit to look at; in that state it refuses to
       # answer rather than reporting a clean scan of almost nothing, so dropping this
       # setting turns the step red instead of leaving it green over a single commit.
       # A test pins the pairing, because this was the one decision in this file with

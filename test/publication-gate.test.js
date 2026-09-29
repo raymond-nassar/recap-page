@@ -391,6 +391,18 @@ test('the workflow runs the publication gate in a job that checks out the full h
   assert.match(owner, /fetch-depth:\s*0/, 'and it asks for the whole history, which the gate needs to answer at all');
 });
 
+test('the CI test matrix fetches the ancestry needed to verify historical allowances', () => {
+  const yml = readFileSync(new URL('../.github/workflows/ci.yml', import.meta.url), 'utf8');
+  const jobs = yml.split(/\r?\n(?= {2}[A-Za-z0-9_-]+:\r?\n)/);
+  const testJob = jobs.find((block) => block.startsWith('  test:'));
+  assert.ok(testJob, 'the test matrix is present');
+  const checkout = testJob.slice(
+    testJob.indexOf('      - uses: actions/checkout@'),
+    testJob.indexOf('      - uses: actions/setup-node@'),
+  );
+  assert.match(checkout, /fetch-depth:\s*0/, 'the historical Nebula draft is reachable in both Node jobs');
+});
+
 test('advertised branch policy identifies the default and rejects only unowned heads', async () => {
   const advertisement = [
     'ref: refs/heads/trunk\tHEAD',
