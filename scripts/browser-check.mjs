@@ -3710,6 +3710,186 @@ const SCENARIOS = [
     },
   },
   {
+    id: 'marvel-zombies-actual-data',
+    title: 'the Marvel Zombies guide preserves five source sections, originals and visible gaps through reload',
+    async run(page, t) {
+      const id = 'marvel-zombies-reading-order';
+      const mapping = JSON.parse(readFileSync(
+        new URL('../scripts/data/cbh-mappings/marvel-zombies-reading-order.json', import.meta.url), 'utf8',
+      ));
+      const packet = JSON.parse(readFileSync(
+        new URL('../scripts/data/cbh-packets/marvel-zombies-reading-order.json', import.meta.url), 'utf8',
+      ));
+      const payload = JSON.parse(readFileSync(
+        new URL('../src/data/marvel_zombies_reading_order.json', import.meta.url), 'utf8',
+      ));
+      const gapIds = new Map([[93, -213508517], [94, -129620422], [95, -112842803]]);
+      const expected = [
+        ...mapping.rows.map((row) => ({
+          sourcePosition: row.sourcePosition, issueId: row.selectedIssueId, title: row.resolvedIssueTitle,
+        })),
+        ...packet.sourceGaps.map((gap) => ({
+          sourcePosition: gap.sourcePosition,
+          issueId: gapIds.get(gap.sourcePosition),
+          title: gap.sourceIssueReference,
+        })),
+      ].sort((a, b) => a.sourcePosition - b.sourcePosition);
+      t.check('Pinned payload retains each original and all three stable negative gap identities',
+        expected.length === 94 && expected.every((row, index) =>
+          payload.items[index]?.issueId === row.issueId
+            && payload.items[index]?.title === row.title),
+        JSON.stringify(payload.items.slice(-3).map((item) => [item.issueId, item.title])));
+      const sections = [
+        'Marvel Zombies Comic Book Reading List',
+        'Deadpool Vs. Zombies',
+        "Zombies In Marvel's Secret Wars (2015)",
+        'Marvel Zombies Resurrection Era',
+        'Out of Continuity Additions:',
+      ];
+      const checkRows = (label, rows) => {
+        const mismatches = rows.flatMap((row, index) => {
+          const wanted = expected[index];
+          return wanted && row.position === index + 1 && row.title === wanted.title
+            && row.issueId === wanted.issueId
+            ? [] : [{ position: index + 1, wanted, actual: row }];
+        });
+        t.check(label, rows.length === 94 && mismatches.length === 0,
+          JSON.stringify({ count: rows.length, mismatches: mismatches.slice(0, 3) }));
+      };
+      const importedRows = () => page.evaluate((catalogId) => {
+        const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+        const matches = Object.values(state.lists).filter((list) => list.catalogId === catalogId);
+        return {
+          matches: matches.length,
+          rows: (matches[0]?.itemIds ?? []).map((issueId, index) => ({
+            position: index + 1, issueId, title: state.issues[issueId]?.title,
+          })),
+        };
+      }, id);
+      const rendered = () => page.evaluate(() => ({
+        rows: [...document.querySelectorAll('#rows .row')].map((node, index) => ({
+          position: index + 1,
+          issueId: Number(node.querySelector('.rt')?.dataset.issueId),
+          title: node.querySelector('.rt')?.textContent.trim(),
+        })),
+        headings: [...document.querySelectorAll('#rows .row-group .rg-name')]
+          .map((node) => node.textContent.trim()),
+      }));
+      const browserErrors = [];
+      const externalRequests = [];
+      page.on('console', (message) => {
+        if (message.type() === 'error') browserErrors.push(message.text());
+      });
+      page.on('pageerror', (error) => browserErrors.push(error.message));
+      page.on('request', (request) => {
+        const url = new URL(request.url());
+        if (url.protocol.startsWith('http') && url.origin !== page.__origin) externalRequests.push(request.url());
+      });
+      await page.evaluateOnNewDocument(() => {
+        localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
+        window.__mrtBlockExternal = true;
+      });
+
+      await open(page, '/?catalog=actual#/home');
+      await openBrowseCategory(page, 'storylines');
+      await page.$eval('#lines-q', (input) => {
+        input.value = 'Marvel Zombies';
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+      });
+      const cardSelector = '#lines-results [data-story="list:marvel-zombies-reading-order"]';
+      await page.waitForSelector(cardSelector, { timeout: 15000 });
+      const card = await page.$eval(cardSelector, (node) => ({
+        name: node.querySelector('.catalog-card-title')?.textContent.trim(),
+        meta: node.querySelector('.catalog-card-meta')?.textContent.trim(),
+        addName: node.querySelector('[data-act="import"]')?.getAttribute('aria-label'),
+        sourceName: node.querySelector('a[href*="comicbookherald.com"]')?.getAttribute('aria-label'),
+        sourceHref: node.querySelector('a[href*="comicbookherald.com"]')?.href,
+        era: node.closest('.catalog-grid')?.previousElementSibling
+          ?.querySelector('.shelf-section-title')?.textContent.trim(),
+      }));
+      t.check('Storylines Across eras discovers one credited partial guide with three disclosed gaps',
+        card.name === 'Marvel Zombies' && card.era === 'Across eras'
+        && card.meta === '94 issues · 3 issues have no Marvel Unlimited links yet and cannot be opened'
+        && card.addName === 'Add to library: Marvel Zombies'
+        && card.sourceName === 'Source of Marvel Zombies: Comic Book Herald'
+        && card.sourceHref === 'https://www.comicbookherald.com/marvel-zombies-reading-order/',
+        JSON.stringify(card));
+
+      await click(page, `${cardSelector} [data-act="preview"]`);
+      await page.waitForFunction(() =>
+        document.querySelectorAll('#preview[open] .preview-issue-link').length === 94);
+      const preview = await page.evaluate(() => ({
+        rows: [...document.querySelectorAll('#preview-body .preview-issue-link')].map((node) => ({
+          position: Number(node.closest('li')?.querySelector('.pn')?.textContent),
+          issueId: Number(node.dataset.issueId),
+          title: node.textContent.trim(),
+        })),
+        headings: [...document.querySelectorAll('#preview-body .preview-group h4')]
+          .map((node) => node.textContent.trim()),
+        source: document.querySelector('#preview-source')?.textContent.trim(),
+        meta: document.querySelector('#preview-meta')?.textContent.trim(),
+      }));
+      checkRows('Preview renders all 94 canonical source positions, original IDs and titles', preview.rows);
+      t.check('Preview keeps five visible universe labels and the source and gap disclosure',
+        sections.every((section) => preview.headings.some((heading) => heading.startsWith(section)))
+        && preview.source.includes('Comic Book Herald')
+        && preview.meta.includes('3 issues have no Marvel Unlimited links yet'),
+        JSON.stringify({ headings: preview.headings, source: preview.source, meta: preview.meta }));
+
+      await click(page, '#preview-add [data-act="main"]');
+      await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')
+        ?.textContent.includes('In library'));
+      const imported = await importedRows();
+      checkRows('Import retains all 94 source positions, original IDs and titles', imported.rows);
+      t.check('Import keeps three negative gap identities and just one original Marvel Zombies #1',
+        imported.matches === 1
+        && imported.rows.slice(-3).every((row, index) =>
+          row.issueId === gapIds.get(index + 93)
+            && row.title === `Marvel Zombies (2025) #${index + 3}`)
+        && imported.rows.filter((row) => row.issueId === 3220).length === 1
+        && imported.rows[3]?.issueId === 3220,
+        JSON.stringify({
+          matches: imported.matches, gaps: imported.rows.slice(-3),
+          original: imported.rows[3],
+        }));
+      t.check('Import does not infer issues from unnumbered collections or Prime Eight',
+        imported.rows.every(({ title }) => !(
+          /Marvel Apes: Prime Eight|Marvel Zombies: Black, White & Blood|Zombies Christmas Carol|Marvel Zombies vs Army of Darkness|Age of Ultron vs\. Zombies|Red Skull & More!/i.test(title)
+          || title === 'Marvel Zombies (2015) #1'
+        )), JSON.stringify(imported.rows.filter(({ title }) => /Prime Eight|Black, White & Blood|Christmas Carol|Army of Darkness|vs\. Zombies|Red Skull/.test(title))));
+
+      await click(page, '#preview-add [data-act="main"]');
+      await page.waitForFunction(() =>
+        !document.querySelector('#view-read')?.hidden
+        && document.querySelector('#order-name')?.textContent.trim() === 'Marvel Zombies');
+      await openFullOrder(page);
+      await page.waitForFunction(() => document.querySelectorAll('#rows .row').length === 94);
+      const reading = await rendered();
+      checkRows('Reading List renders all 94 positions, IDs and titles', reading.rows);
+      t.check('Reading List shows all five distinct universe labels',
+        sections.every((section) => reading.headings.some((heading) => heading.startsWith(section))),
+        JSON.stringify(reading.headings));
+
+      await page.reload({ waitUntil: 'load' });
+      await page.waitForFunction(() =>
+        document.querySelector('#order-name')?.textContent.trim() === 'Marvel Zombies');
+      await openFullOrder(page);
+      await page.waitForFunction(() => document.querySelectorAll('#rows .row').length === 94);
+      const reloaded = await rendered();
+      checkRows('Reloaded Reading List preserves the complete 94-position original vector', reloaded.rows);
+      checkRows('Reloaded saved state retains the same originals and three gaps',
+        (await importedRows()).rows);
+      t.check('Reload keeps the five source-universe labels and makes no external request or browser error',
+        sections.every((section) => reloaded.headings.some((heading) => heading.startsWith(section)))
+        && externalRequests.length === 0 && browserErrors.length === 0,
+        JSON.stringify({
+          headings: reloaded.headings,
+          externalRequests: externalRequests.slice(0, 3),
+          browserErrors: browserErrors.slice(0, 3),
+        }));
+    },
+  },
+  {
     id: 'silk-actual-data',
     title: 'the actual Silk guide retains all 74 source positions and seven original digital gaps through reload',
     async run(page, t) {

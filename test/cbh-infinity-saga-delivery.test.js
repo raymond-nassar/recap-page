@@ -198,7 +198,7 @@ test('Infinity Saga admission and relationship review stay current under Across 
     .relationship, 'none');
   assert.equal(report.comparisonCount, 191);
   const current = await buildReportForMapping(mappingPath, [], {
-    excludedOrderIds: ['hawkeye-reading-order'],
+    excludedOrderIds: ['hawkeye-reading-order', 'marvel-zombies-reading-order'],
   });
   assert.deepEqual(current, report);
   assert.equal(mapping.relationshipReview?.approvalDigest,
@@ -206,7 +206,8 @@ test('Infinity Saga admission and relationship review stay current under Across 
   assert.doesNotThrow(() => assertApprovedRelationshipReview({
     packet, mapping, report, currentLibraryDigest: current.libraryDigest,
     expectedOrderIds: manifest.lists.filter((row) =>
-      row.id !== id && row.id !== 'hawkeye-reading-order').map((row) => row.id),
+      row.id !== id && row.id !== 'hawkeye-reading-order'
+      && row.id !== 'marvel-zombies-reading-order').map((row) => row.id),
   }));
 });
 
@@ -216,7 +217,8 @@ test('Infinity Saga authoring rejects a pending in-memory mapping', () => {
   assert.throws(() => assertApprovedRelationshipReview({
     packet, mapping: pending, report, currentLibraryDigest: report.libraryDigest,
     expectedOrderIds: manifest.lists.filter((row) =>
-      row.id !== id && row.id !== 'hawkeye-reading-order').map((row) => row.id),
+      row.id !== id && row.id !== 'hawkeye-reading-order'
+      && row.id !== 'marvel-zombies-reading-order').map((row) => row.id),
   }), /not approved/);
 });
 
@@ -250,7 +252,7 @@ test('Infinity Saga pinned payload and catalog preserve Storylines discovery and
   assert.ok(!Object.hasOwn(entry, 'spotlightKind'));
   assert.equal(entry.source, ledger.sourceUrl);
   assert.equal(catalog.lists.filter((row) => row.type === 'event').length, 188);
-  assert.equal(catalog.lists.filter((row) => row.type === 'era').length, 9);
+  assert.equal(catalog.lists.filter((row) => row.type === 'era').length, 10);
   assert.equal(catalog.lists.filter((row) => row.type === 'character-run').length, 63);
   const normalized = parseCatalog(catalog);
   const storylines = shelfStories(groupCatalog(normalized.lists), 'lines');

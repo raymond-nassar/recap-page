@@ -1274,6 +1274,40 @@
       "coverIssueId": 111661
     },
     {
+      "id": "marvel-zombies-reading-order",
+      "name": "Marvel Zombies",
+      "description": "Read Comic Book Herald's numbered Marvel Zombies selections across the original stories, Deadpool's separate zombie universe, Battleworld, Resurrection and alternate additions.",
+      "type": "era",
+      "depth": "partial",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "marvel-zombies-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/marvel-zombies-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "marvel_zombies_reading_order.json",
+      "characters": [
+        "Marvel Zombies",
+        "Deadpool",
+        "Fantastic Four",
+        "Black Panther"
+      ],
+      "keywords": [
+        "Marvel Zombies",
+        "Zombieverse",
+        "Marvel Zombies Battleworld",
+        "Deadpool Vs. Zombies",
+        "Marvel Zombies Resurrection",
+        "Marvel Zombies Red Band",
+        "Comic Book Herald"
+      ],
+      "timeline": null,
+      "coverIssueId": 3220,
+      "expect": 94
+    },
+    {
       "id": "house-of-m",
       "name": "House of M",
       "description": "Wanda Maximoff rewrites the world in Marvel's 2005 event, in publication order: the eight-issue main series, its branded tie-in mini-series, and the Decimation epilogue. Assembled from Marvel series metadata, so it covers the series Marvel branded with the event name and not the House of M chapters published in unbranded ongoing titles such as Wolverine #33-35.",

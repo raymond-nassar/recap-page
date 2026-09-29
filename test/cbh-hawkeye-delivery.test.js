@@ -243,7 +243,8 @@ test('Hawkeye preserves interleaves, source collection order and original relaun
 });
 
 test('Hawkeye has a complete approved current-library relationship and shipped inventory lifecycle', async () => {
-  const existing = manifest.lists.filter((entry) => entry.id !== id);
+  const existing = manifest.lists.filter((entry) =>
+    entry.id !== id && entry.id !== 'marvel-zombies-reading-order');
   const orders = await Promise.all(existing.map(async (entry) => ({
     orderId: entry.id,
     issueIds: issueIdsFromValue(await readJson(`src/data/${entry.out}`)),

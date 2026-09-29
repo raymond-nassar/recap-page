@@ -2426,15 +2426,26 @@
     "id": "marvel-zombies-reading-order",
     "title": "Marvel Zombies",
     "url": "https://www.comicbookherald.com/marvel-zombies-reading-order/",
-    "guideType": "character-run",
+    "guideType": "era",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
-    "sourceRetrievedAt": "2026-08-23",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "disposition": "new-order",
+    "reason": "Publishes 94 distinct originals in source order across five labeled sections: 91 exact issues and three explicit metadata gaps. A later repeat keeps its first canonical position. All 193 peers were independently reviewed: eight partial overlaps and 185 with no shared issue; the open gaps are tracked in Issue 592.",
+    "sourceRetrievedAt": "2026-09-28",
+    "overlapIds": [
+      "ant-man-reading-order",
+      "black-panther-reading-order",
+      "deadpool-best-of",
+      "emma-frost-reading-order",
+      "hope-summers-reading-order",
+      "magneto-reading-order",
+      "the-vision-reading-order",
+      "wolverine-reading-order"
+    ],
+    "catalogIds": [
+      "marvel-zombies-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Marvel Zombies"
     ],
@@ -2442,9 +2453,9 @@
       70
     ],
     "duplicateFlags": [],
-    "sourceContentSha256": "92723cf8148cb5845ebba3412327757f5035d811cb8a2a940591365206fc8a4f",
+    "sourceContentSha256": "3b6ac6f02de709d26a0e2efe2a2fc057a37f786a621eaa93b9e07a77ef2648bc",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 71,
