@@ -200,10 +200,10 @@ test('Thunderbolts approval covers all 186 source-manifest peers at its review',
   const current = await buildReportForMapping(
     `scripts/data/cbh-mappings/${id}.json`,
     [],
-    { excludedOrderIds: ['nebula-reading-order', 'hope-summers-reading-order', 'x-23-reading-order', 'ms-marvel-kamala-khan-reading-order', 'marvel-zombies-reading-order', 'hawkeye-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order', 'nova-reading-order'] },
+    { excludedOrderIds: ['nebula-reading-order', 'hope-summers-reading-order', 'x-23-reading-order', 'ms-marvel-kamala-khan-reading-order', 'marvel-zombies-reading-order', 'hawkeye-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order', 'nova-reading-order', 'ultimate-spider-man-reading-order'] },
   );
   const expectedOrderIds = manifest.lists
-    .filter((row) => ![id, 'nebula-reading-order', 'hope-summers-reading-order', 'x-23-reading-order', 'ms-marvel-kamala-khan-reading-order', 'marvel-zombies-reading-order', 'hawkeye-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order', 'nova-reading-order'].includes(row.id))
+    .filter((row) => ![id, 'nebula-reading-order', 'hope-summers-reading-order', 'x-23-reading-order', 'ms-marvel-kamala-khan-reading-order', 'marvel-zombies-reading-order', 'hawkeye-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order', 'nova-reading-order', 'ultimate-spider-man-reading-order'].includes(row.id))
 
     .map((row) => row.id);
   assert.deepEqual(current, report);
@@ -235,8 +235,8 @@ test('Thunderbolts is discoverable with source credit and measured maintained to
   const entry = manifest.lists.find((row) => row.id === id);
   const card = catalog.lists.find((row) => row.id === id);
 
-  assert.equal(manifest.lists.length, 196);
-  assert.equal(catalog.lists.length, 273);
+  assert.equal(manifest.lists.length, 197);
+  assert.equal(catalog.lists.length, 274);
   assert.equal(inventory.length, 133);
 
   assert.doesNotThrow(() => validateInventoryState(inventory));

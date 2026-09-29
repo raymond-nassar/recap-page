@@ -1,0 +1,5053 @@
+{
+  "schemaVersion": 1,
+  "status": "centrally approved source boundary and relationships",
+  "sourceUrl": "https://www.comicbookherald.com/ultimate-spider-man-reading-order/",
+  "retrievedAt": "2026-09-29",
+  "wordpressPostId": 2563,
+  "wordpressModifiedGmt": "2026-08-11T16:50:52",
+  "sourceAccess": "Full page read using web_fetch at offsets 0 and 20000, overlap checked at offset 18000; public WordPress endpoint confirmed post ID and modified timestamp. Local command-line and isolated Playwright requests returned HTTP 403. No raw article hash is claimed.",
+  "sourceIssueBearingBlocksSha256": "e79aafcfbba7a97411fcf7983adee3e903243ff341e75ac35a21accb9f91815c",
+  "sourceContentSha256": "e79aafcfbba7a97411fcf7983adee3e903243ff341e75ac35a21accb9f91815c",
+  "sourceDigestBasis": "SHA-256 of UTF-8 JSON.stringify(sourceProjection.blocks), with arrays and object key insertion order unchanged. The projection contains only factual source issue-bearing blocks and accepted directed-order qualifications; it is not a raw HTML or full article-text digest. sourceContentSha256 and sourceIssueBearingBlocksSha256 are intentionally the same measurement.",
+  "sourceProjection": {
+    "blocks": [
+      {
+        "section": 1,
+        "sourceBlock": "Ultimate Spider-Man #1-13",
+        "entries": [
+          [
+            "peter-2000",
+            "1-13"
+          ]
+        ]
+      },
+      {
+        "section": 1,
+        "sourceBlock": "Ultimate Marvel Team-Up #1-8",
+        "entries": [
+          [
+            "team-up",
+            "1-8"
+          ]
+        ]
+      },
+      {
+        "section": 1,
+        "sourceBlock": "Ultimate Spider-Man #14-21",
+        "entries": [
+          [
+            "peter-2000",
+            "14-21"
+          ]
+        ]
+      },
+      {
+        "section": 1,
+        "sourceBlock": "Ultimate Marvel Team-Up #9-16",
+        "entries": [
+          [
+            "team-up",
+            "9-16"
+          ]
+        ]
+      },
+      {
+        "section": 1,
+        "sourceBlock": "Ultimate Spider-Man #22-27",
+        "entries": [
+          [
+            "peter-2000",
+            "22-27"
+          ]
+        ]
+      },
+      {
+        "section": 1,
+        "sourceBlock": "Ultimate Spider-Man Super Special #1",
+        "entries": [
+          [
+            "super-special",
+            "1"
+          ]
+        ]
+      },
+      {
+        "section": 1,
+        "sourceBlock": "Ultimate Spider-Man #28-46",
+        "entries": [
+          [
+            "peter-2000",
+            "28-46"
+          ]
+        ]
+      },
+      {
+        "section": 1,
+        "sourceBlock": "Ultimate Six #1-7",
+        "entries": [
+          [
+            "ultimate-six",
+            "1-7"
+          ]
+        ]
+      },
+      {
+        "section": 1,
+        "sourceBlock": "Ultimate Spider-Man #54-85",
+        "entries": [
+          [
+            "peter-2000",
+            "54-85"
+          ]
+        ]
+      },
+      {
+        "section": 1,
+        "sourceBlock": "Ultimate Spider-Man Annual #1",
+        "entries": [
+          [
+            "peter-annual",
+            "1"
+          ]
+        ]
+      },
+      {
+        "section": 1,
+        "sourceBlock": "Ultimate Spider-Man #86-105",
+        "entries": [
+          [
+            "peter-2000",
+            "86-105"
+          ]
+        ]
+      },
+      {
+        "section": 1,
+        "sourceBlock": "Ultimate Spider-Man Annual #2",
+        "entries": [
+          [
+            "peter-annual",
+            "2"
+          ]
+        ]
+      },
+      {
+        "section": 1,
+        "sourceBlock": "Ultimate Spider-Man #106-120",
+        "entries": [
+          [
+            "peter-2000",
+            "106-120"
+          ]
+        ]
+      },
+      {
+        "section": 1,
+        "sourceBlock": "Ultimate Spider-Man Annual #3",
+        "entries": [
+          [
+            "peter-annual",
+            "3"
+          ]
+        ]
+      },
+      {
+        "section": 1,
+        "sourceBlock": "Ultimate Spider-Man #121-128",
+        "entries": [
+          [
+            "peter-2000",
+            "121-128"
+          ]
+        ]
+      },
+      {
+        "section": 1,
+        "sourceBlock": "Ultimatum issue-by-issue interleave",
+        "qualifier": "Ultimatum is optional but the page gives an exact interleave",
+        "entries": [
+          [
+            "peter-2000",
+            "129"
+          ],
+          [
+            "ultimatum",
+            "1"
+          ],
+          [
+            "peter-2000",
+            "130"
+          ],
+          [
+            "ultimatum",
+            "2"
+          ],
+          [
+            "peter-2000",
+            "131"
+          ],
+          [
+            "ultimatum",
+            "3"
+          ],
+          [
+            "peter-2000",
+            "132"
+          ],
+          [
+            "ultimatum",
+            "4"
+          ],
+          [
+            "peter-2000",
+            "133"
+          ],
+          [
+            "ultimatum",
+            "5"
+          ],
+          [
+            "requiem",
+            "1-2"
+          ]
+        ]
+      },
+      {
+        "section": 1,
+        "sourceBlock": "Ultimate Spider-Man 2009 relaunch #1-14",
+        "entries": [
+          [
+            "peter-2009",
+            "1-14"
+          ]
+        ]
+      },
+      {
+        "section": 1,
+        "sourceBlock": "Ultimate Spider-Man legacy #150-157",
+        "displayedSourceReference": "Ultimate Spider-Man #150-160",
+        "qualifier": "Split source #150-160 to honor optional issue-by-issue placement before #158",
+        "entries": [
+          [
+            "peter-2009",
+            "150-157"
+          ]
+        ]
+      },
+      {
+        "section": 1,
+        "sourceBlock": "Ultimate Comics Avengers vs. New Ultimates #1-4",
+        "qualifier": "Explicit numbered optional recommendation before Peter #158",
+        "entries": [
+          [
+            "avengers-ultimates",
+            "1-4"
+          ]
+        ]
+      },
+      {
+        "section": 1,
+        "sourceBlock": "Ultimate Spider-Man legacy #158-160",
+        "displayedSourceReference": "Ultimate Spider-Man #150-160",
+        "entries": [
+          [
+            "peter-2009",
+            "158-160"
+          ]
+        ]
+      },
+      {
+        "section": 1,
+        "sourceBlock": "Ultimate Comics Avengers vs. New Ultimates #5-6",
+        "qualifier": "Explicit numbered optional recommendation after Peter #160",
+        "entries": [
+          [
+            "avengers-ultimates",
+            "5-6"
+          ]
+        ]
+      },
+      {
+        "section": 1,
+        "sourceBlock": "Ultimate Fallout #1-6",
+        "entries": [
+          [
+            "fallout",
+            "1-6"
+          ]
+        ]
+      },
+      {
+        "section": 2,
+        "sourceBlock": "Miles Ultimate Spider-Man #1-12",
+        "entries": [
+          [
+            "miles-2011",
+            "1-12"
+          ]
+        ]
+      },
+      {
+        "section": 2,
+        "sourceBlock": "Spider-Men #1-5",
+        "entries": [
+          [
+            "spider-men",
+            "1-5"
+          ]
+        ]
+      },
+      {
+        "section": 2,
+        "sourceBlock": "Divided We Fall / United We Stand interleave",
+        "entries": [
+          [
+            "ultimates-divided",
+            "13-14"
+          ],
+          [
+            "miles-2011",
+            "13-14"
+          ],
+          [
+            "ultimates-divided",
+            "15"
+          ],
+          [
+            "miles-2011",
+            "15-16"
+          ],
+          [
+            "ultimates-divided",
+            "16"
+          ],
+          [
+            "miles-2011",
+            "17"
+          ],
+          [
+            "ultimates-divided",
+            "17-18"
+          ],
+          [
+            "miles-2011",
+            "18"
+          ],
+          [
+            "ultimates-divided",
+            "18.1"
+          ]
+        ]
+      },
+      {
+        "section": 2,
+        "sourceBlock": "Miles Ultimate Spider-Man #16.1, #19-28",
+        "qualifier": "Decimal #16.1 follows #18 as the explicit Venom Wars prelude",
+        "entries": [
+          [
+            "miles-2011",
+            "16.1,19-28"
+          ]
+        ]
+      },
+      {
+        "section": 2,
+        "sourceBlock": "Miles Morales: Ultimate Spider-Man #1-5 and Ultimate Spider-Man #200",
+        "entries": [
+          [
+            "miles-2014",
+            "1-5"
+          ],
+          [
+            "peter-legacy-200",
+            "200"
+          ]
+        ]
+      },
+      {
+        "section": 2,
+        "sourceBlock": "All-New X-Men: Ultimate Adventure #31-36",
+        "entries": [
+          [
+            "x-men-adventure",
+            "31-36"
+          ]
+        ]
+      },
+      {
+        "section": 2,
+        "sourceBlock": "Miles Morales: Ultimate Spider-Man #6-12",
+        "entries": [
+          [
+            "miles-2014",
+            "6-12"
+          ]
+        ]
+      },
+      {
+        "section": 2,
+        "sourceBlock": "All-New Ultimates #1-6",
+        "entries": [
+          [
+            "all-new-ultimates",
+            "1-6"
+          ]
+        ]
+      },
+      {
+        "section": 2,
+        "sourceBlock": "All-New Ultimates #7-12",
+        "entries": [
+          [
+            "all-new-ultimates",
+            "7-12"
+          ]
+        ]
+      },
+      {
+        "section": 3,
+        "sourceBlock": "Spider-Man: Miles Morales Vol. 1",
+        "entries": [
+          [
+            "spider-man-2016",
+            "1-5"
+          ]
+        ]
+      },
+      {
+        "section": 3,
+        "sourceBlock": "Spider-Man: Miles Morales Vol. 2",
+        "qualifier": "Numbered #6-10 appears in the prose immediately following the volume link",
+        "entries": [
+          [
+            "spider-man-2016",
+            "6-10"
+          ]
+        ]
+      },
+      {
+        "section": 3,
+        "sourceBlock": "Spider-Man: Miles Morales Vol. 3",
+        "entries": [
+          [
+            "spider-man-2016",
+            "15-21"
+          ]
+        ]
+      },
+      {
+        "section": 3,
+        "sourceBlock": "Spider-Man: Miles Morales Vol. 4",
+        "entries": [
+          [
+            "spider-man-2016",
+            "234-240"
+          ]
+        ]
+      },
+      {
+        "section": 3,
+        "sourceBlock": "Champions Vol. 2: The Freelancer Lifestyle",
+        "entries": [
+          [
+            "champions-2016",
+            "6-12"
+          ]
+        ]
+      },
+      {
+        "section": 3,
+        "sourceBlock": "Champions Vol. 3: Champion For A Day",
+        "entries": [
+          [
+            "champions-2016",
+            "16-18,1.MU"
+          ]
+        ]
+      },
+      {
+        "section": 3,
+        "sourceBlock": "Champions Vol. 4: Northern Lights",
+        "entries": [
+          [
+            "champions-2016",
+            "19-21"
+          ],
+          [
+            "champions-infinity-countdown",
+            "1-2"
+          ]
+        ]
+      },
+      {
+        "section": 3,
+        "sourceBlock": "Champions Vol. 5: Weird War One",
+        "entries": [
+          [
+            "champions-2016",
+            "22-27"
+          ],
+          [
+            "champions-annual",
+            "1"
+          ]
+        ]
+      },
+      {
+        "section": 4,
+        "sourceBlock": "Ultimate Spider-Man Vol. 1: Married with Children",
+        "entries": [
+          [
+            "new-ultimate-2024",
+            "1-6"
+          ]
+        ]
+      },
+      {
+        "section": 4,
+        "sourceBlock": "Ultimate Spider-Man Vol. 2: The Paper",
+        "entries": [
+          [
+            "new-ultimate-2024",
+            "7-12"
+          ]
+        ]
+      },
+      {
+        "section": 4,
+        "sourceBlock": "Ultimate Spider-Man Vol. 3: Family Business",
+        "entries": [
+          [
+            "new-ultimate-2024",
+            "13-18"
+          ]
+        ]
+      },
+      {
+        "section": 4,
+        "sourceBlock": "Ultimate Spider-Man: Incursion",
+        "entries": [
+          [
+            "fcbd-2025",
+            "1"
+          ],
+          [
+            "incursion-2025",
+            "1-5"
+          ]
+        ],
+        "qualifier": "FCBD is the explicitly qualified Ultimate Universe story of the original #1"
+      },
+      {
+        "section": 4,
+        "sourceBlock": "Ultimate Spider-Man Vol. 4: One Last Day",
+        "displayedSourceReference": "Ultimate Spider-Man (2024) #19-24, Ultimate Universe: Finale (2026) #1 (Spider-Man story)",
+        "entries": [
+          [
+            "new-ultimate-2024",
+            "19-24"
+          ]
+        ],
+        "qualifier": "Collection also names Finale #1, explicitly deferred until after Endgame"
+      },
+      {
+        "section": 4,
+        "sourceBlock": "Ultimate Endgame",
+        "entries": [
+          [
+            "endgame",
+            "1-5"
+          ]
+        ]
+      },
+      {
+        "section": 4,
+        "sourceBlock": "Ultimate Universe: Finale (deferred from Vol. 4)",
+        "displayedSourceReference": "Ultimate Spider-Man Vol. 4 collected Ultimate Universe: Finale (2026) #1",
+        "entries": [
+          [
+            "finale-2026",
+            "1"
+          ]
+        ],
+        "qualifier": "Spider-Man story; directed after Endgame #1-5, not raw collection order"
+      }
+    ]
+  },
+  "scopeIssue": "https://github.com/raymond-nassar/recap-page/issues/599",
+  "umbrellaIssue": "https://github.com/raymond-nassar/recap-page/issues/553",
+  "inventory": {
+    "id": "ultimate-spider-man-reading-order",
+    "position": 113,
+    "url": "https://www.comicbookherald.com/ultimate-spider-man-reading-order/",
+    "inventorySourceRetrievedAt": "2026-08-23",
+    "inventorySourceContentSha256": "6e1bb233e2291afa2f561f40af0031e54881d901558ce0154052fcf649b43cf7",
+    "oldDigestIsNotCurrentMeasurement": true
+  },
+  "sourceBoundary": "Entire current article: original Earth-1610 Peter, Earth-1610 Miles, post-Secret-Wars Miles, and its separately headed New Ultimate Spider-Man (2024-2026) section through the explicitly deferred Finale after Endgame.",
+  "sourceOccurrenceCount": 352,
+  "canonicalSourceCount": 352,
+  "repeatCount": 0,
+  "selectedBlockCount": 46,
+  "sections": [
+    {
+      "index": 1,
+      "name": "Peter Parker, original Ultimate universe",
+      "universe": "Earth-1610, original and 2009 relaunch through Ultimate Fallout",
+      "blockCount": 22,
+      "firstSourcePosition": 1,
+      "lastSourcePosition": 197,
+      "occurrenceCount": 197,
+      "canonicalCount": 197,
+      "repeatCount": 0
+    },
+    {
+      "index": 2,
+      "name": "Miles Morales Reading Order",
+      "universe": "Earth-1610 Miles through Secret Wars pointer",
+      "blockCount": 9,
+      "firstSourcePosition": 198,
+      "lastSourcePosition": 269,
+      "occurrenceCount": 72,
+      "canonicalCount": 72,
+      "repeatCount": 0
+    },
+    {
+      "index": 3,
+      "name": "All-New All-Different Miles Morales",
+      "universe": "post-Secret-Wars Miles, 2016 Spider-Man and Champions selections",
+      "blockCount": 8,
+      "firstSourcePosition": 270,
+      "lastSourcePosition": 316,
+      "occurrenceCount": 47,
+      "canonicalCount": 47,
+      "repeatCount": 0
+    },
+    {
+      "index": 4,
+      "name": "The New Ultimate Spider-Man (2024-2026)",
+      "universe": "new Ultimate universe, separate from the earlier Earth-1610 and post-Secret-Wars routes",
+      "blockCount": 7,
+      "firstSourcePosition": 317,
+      "lastSourcePosition": 352,
+      "occurrenceCount": 36,
+      "canonicalCount": 36,
+      "repeatCount": 0
+    }
+  ],
+  "seriesAliases": {
+    "peter-2000": "Ultimate Spider-Man (original Peter series beginning 2000)",
+    "team-up": "Ultimate Marvel Team-Up",
+    "super-special": "Ultimate Spider-Man Super Special",
+    "ultimate-six": "Ultimate Six",
+    "peter-annual": "Ultimate Spider-Man Annual",
+    "ultimatum": "Ultimatum",
+    "requiem": "Ultimate Spider-Man Requiem",
+    "peter-2009": "Ultimate Spider-Man (post-Ultimatum 2009 relaunch, including legacy #150-160)",
+    "avengers-ultimates": "Ultimate Comics Avengers vs. New Ultimates",
+    "fallout": "Ultimate Fallout",
+    "miles-2011": "Ultimate Spider-Man (Miles, 2011 relaunch)",
+    "spider-men": "Spider-Men",
+    "ultimates-divided": "The Ultimates (Divided We Fall / United We Stand block)",
+    "miles-2014": "Miles Morales: Ultimate Spider-Man",
+    "peter-legacy-200": "Ultimate Spider-Man #200 (legacy-numbered original title)",
+    "x-men-adventure": "All-New X-Men: Ultimate Adventure",
+    "all-new-ultimates": "All-New Ultimates",
+    "spider-man-2016": "Spider-Man (post-Secret-Wars Miles, source 2016 volume)",
+    "champions-2016": "Champions (2016)",
+    "champions-infinity-countdown": "Infinity Countdown: Champions",
+    "champions-annual": "Champions Annual",
+    "new-ultimate-2024": "Ultimate Spider-Man (new Ultimate universe, 2024)",
+    "fcbd-2025": "Free Comic Book Day 2025: Amazing Spider-Man/Ultimate Universe",
+    "incursion-2025": "Ultimate Spider-Man: Incursion (2025)",
+    "endgame": "Ultimate Endgame",
+    "finale-2026": "Ultimate Universe: Finale (2026)"
+  },
+  "blocks": [
+    {
+      "block": 1,
+      "section": 1,
+      "sourceBlock": "Ultimate Spider-Man #1-13",
+      "entries": [
+        [
+          "peter-2000",
+          "1-13"
+        ]
+      ],
+      "firstSourcePosition": 1,
+      "lastSourcePosition": 13,
+      "occurrenceCount": 13
+    },
+    {
+      "block": 2,
+      "section": 1,
+      "sourceBlock": "Ultimate Marvel Team-Up #1-8",
+      "entries": [
+        [
+          "team-up",
+          "1-8"
+        ]
+      ],
+      "firstSourcePosition": 14,
+      "lastSourcePosition": 21,
+      "occurrenceCount": 8
+    },
+    {
+      "block": 3,
+      "section": 1,
+      "sourceBlock": "Ultimate Spider-Man #14-21",
+      "entries": [
+        [
+          "peter-2000",
+          "14-21"
+        ]
+      ],
+      "firstSourcePosition": 22,
+      "lastSourcePosition": 29,
+      "occurrenceCount": 8
+    },
+    {
+      "block": 4,
+      "section": 1,
+      "sourceBlock": "Ultimate Marvel Team-Up #9-16",
+      "entries": [
+        [
+          "team-up",
+          "9-16"
+        ]
+      ],
+      "firstSourcePosition": 30,
+      "lastSourcePosition": 37,
+      "occurrenceCount": 8
+    },
+    {
+      "block": 5,
+      "section": 1,
+      "sourceBlock": "Ultimate Spider-Man #22-27",
+      "entries": [
+        [
+          "peter-2000",
+          "22-27"
+        ]
+      ],
+      "firstSourcePosition": 38,
+      "lastSourcePosition": 43,
+      "occurrenceCount": 6
+    },
+    {
+      "block": 6,
+      "section": 1,
+      "sourceBlock": "Ultimate Spider-Man Super Special #1",
+      "entries": [
+        [
+          "super-special",
+          "1"
+        ]
+      ],
+      "firstSourcePosition": 44,
+      "lastSourcePosition": 44,
+      "occurrenceCount": 1
+    },
+    {
+      "block": 7,
+      "section": 1,
+      "sourceBlock": "Ultimate Spider-Man #28-46",
+      "entries": [
+        [
+          "peter-2000",
+          "28-46"
+        ]
+      ],
+      "firstSourcePosition": 45,
+      "lastSourcePosition": 63,
+      "occurrenceCount": 19
+    },
+    {
+      "block": 8,
+      "section": 1,
+      "sourceBlock": "Ultimate Six #1-7",
+      "entries": [
+        [
+          "ultimate-six",
+          "1-7"
+        ]
+      ],
+      "firstSourcePosition": 64,
+      "lastSourcePosition": 70,
+      "occurrenceCount": 7
+    },
+    {
+      "block": 9,
+      "section": 1,
+      "sourceBlock": "Ultimate Spider-Man #54-85",
+      "entries": [
+        [
+          "peter-2000",
+          "54-85"
+        ]
+      ],
+      "firstSourcePosition": 71,
+      "lastSourcePosition": 102,
+      "occurrenceCount": 32
+    },
+    {
+      "block": 10,
+      "section": 1,
+      "sourceBlock": "Ultimate Spider-Man Annual #1",
+      "entries": [
+        [
+          "peter-annual",
+          "1"
+        ]
+      ],
+      "firstSourcePosition": 103,
+      "lastSourcePosition": 103,
+      "occurrenceCount": 1
+    },
+    {
+      "block": 11,
+      "section": 1,
+      "sourceBlock": "Ultimate Spider-Man #86-105",
+      "entries": [
+        [
+          "peter-2000",
+          "86-105"
+        ]
+      ],
+      "firstSourcePosition": 104,
+      "lastSourcePosition": 123,
+      "occurrenceCount": 20
+    },
+    {
+      "block": 12,
+      "section": 1,
+      "sourceBlock": "Ultimate Spider-Man Annual #2",
+      "entries": [
+        [
+          "peter-annual",
+          "2"
+        ]
+      ],
+      "firstSourcePosition": 124,
+      "lastSourcePosition": 124,
+      "occurrenceCount": 1
+    },
+    {
+      "block": 13,
+      "section": 1,
+      "sourceBlock": "Ultimate Spider-Man #106-120",
+      "entries": [
+        [
+          "peter-2000",
+          "106-120"
+        ]
+      ],
+      "firstSourcePosition": 125,
+      "lastSourcePosition": 139,
+      "occurrenceCount": 15
+    },
+    {
+      "block": 14,
+      "section": 1,
+      "sourceBlock": "Ultimate Spider-Man Annual #3",
+      "entries": [
+        [
+          "peter-annual",
+          "3"
+        ]
+      ],
+      "firstSourcePosition": 140,
+      "lastSourcePosition": 140,
+      "occurrenceCount": 1
+    },
+    {
+      "block": 15,
+      "section": 1,
+      "sourceBlock": "Ultimate Spider-Man #121-128",
+      "entries": [
+        [
+          "peter-2000",
+          "121-128"
+        ]
+      ],
+      "firstSourcePosition": 141,
+      "lastSourcePosition": 148,
+      "occurrenceCount": 8
+    },
+    {
+      "block": 16,
+      "section": 1,
+      "sourceBlock": "Ultimatum issue-by-issue interleave",
+      "qualifier": "Ultimatum is optional but the page gives an exact interleave",
+      "entries": [
+        [
+          "peter-2000",
+          "129"
+        ],
+        [
+          "ultimatum",
+          "1"
+        ],
+        [
+          "peter-2000",
+          "130"
+        ],
+        [
+          "ultimatum",
+          "2"
+        ],
+        [
+          "peter-2000",
+          "131"
+        ],
+        [
+          "ultimatum",
+          "3"
+        ],
+        [
+          "peter-2000",
+          "132"
+        ],
+        [
+          "ultimatum",
+          "4"
+        ],
+        [
+          "peter-2000",
+          "133"
+        ],
+        [
+          "ultimatum",
+          "5"
+        ],
+        [
+          "requiem",
+          "1-2"
+        ]
+      ],
+      "firstSourcePosition": 149,
+      "lastSourcePosition": 160,
+      "occurrenceCount": 12
+    },
+    {
+      "block": 17,
+      "section": 1,
+      "sourceBlock": "Ultimate Spider-Man 2009 relaunch #1-14",
+      "entries": [
+        [
+          "peter-2009",
+          "1-14"
+        ]
+      ],
+      "firstSourcePosition": 161,
+      "lastSourcePosition": 174,
+      "occurrenceCount": 14
+    },
+    {
+      "block": 18,
+      "section": 1,
+      "sourceBlock": "Ultimate Spider-Man legacy #150-157",
+      "displayedSourceReference": "Ultimate Spider-Man #150-160",
+      "qualifier": "Split source #150-160 to honor optional issue-by-issue placement before #158",
+      "entries": [
+        [
+          "peter-2009",
+          "150-157"
+        ]
+      ],
+      "firstSourcePosition": 175,
+      "lastSourcePosition": 182,
+      "occurrenceCount": 8
+    },
+    {
+      "block": 19,
+      "section": 1,
+      "sourceBlock": "Ultimate Comics Avengers vs. New Ultimates #1-4",
+      "qualifier": "Explicit numbered optional recommendation before Peter #158",
+      "entries": [
+        [
+          "avengers-ultimates",
+          "1-4"
+        ]
+      ],
+      "firstSourcePosition": 183,
+      "lastSourcePosition": 186,
+      "occurrenceCount": 4
+    },
+    {
+      "block": 20,
+      "section": 1,
+      "sourceBlock": "Ultimate Spider-Man legacy #158-160",
+      "displayedSourceReference": "Ultimate Spider-Man #150-160",
+      "entries": [
+        [
+          "peter-2009",
+          "158-160"
+        ]
+      ],
+      "firstSourcePosition": 187,
+      "lastSourcePosition": 189,
+      "occurrenceCount": 3
+    },
+    {
+      "block": 21,
+      "section": 1,
+      "sourceBlock": "Ultimate Comics Avengers vs. New Ultimates #5-6",
+      "qualifier": "Explicit numbered optional recommendation after Peter #160",
+      "entries": [
+        [
+          "avengers-ultimates",
+          "5-6"
+        ]
+      ],
+      "firstSourcePosition": 190,
+      "lastSourcePosition": 191,
+      "occurrenceCount": 2
+    },
+    {
+      "block": 22,
+      "section": 1,
+      "sourceBlock": "Ultimate Fallout #1-6",
+      "entries": [
+        [
+          "fallout",
+          "1-6"
+        ]
+      ],
+      "firstSourcePosition": 192,
+      "lastSourcePosition": 197,
+      "occurrenceCount": 6
+    },
+    {
+      "block": 23,
+      "section": 2,
+      "sourceBlock": "Miles Ultimate Spider-Man #1-12",
+      "entries": [
+        [
+          "miles-2011",
+          "1-12"
+        ]
+      ],
+      "firstSourcePosition": 198,
+      "lastSourcePosition": 209,
+      "occurrenceCount": 12
+    },
+    {
+      "block": 24,
+      "section": 2,
+      "sourceBlock": "Spider-Men #1-5",
+      "entries": [
+        [
+          "spider-men",
+          "1-5"
+        ]
+      ],
+      "firstSourcePosition": 210,
+      "lastSourcePosition": 214,
+      "occurrenceCount": 5
+    },
+    {
+      "block": 25,
+      "section": 2,
+      "sourceBlock": "Divided We Fall / United We Stand interleave",
+      "entries": [
+        [
+          "ultimates-divided",
+          "13-14"
+        ],
+        [
+          "miles-2011",
+          "13-14"
+        ],
+        [
+          "ultimates-divided",
+          "15"
+        ],
+        [
+          "miles-2011",
+          "15-16"
+        ],
+        [
+          "ultimates-divided",
+          "16"
+        ],
+        [
+          "miles-2011",
+          "17"
+        ],
+        [
+          "ultimates-divided",
+          "17-18"
+        ],
+        [
+          "miles-2011",
+          "18"
+        ],
+        [
+          "ultimates-divided",
+          "18.1"
+        ]
+      ],
+      "firstSourcePosition": 215,
+      "lastSourcePosition": 227,
+      "occurrenceCount": 13
+    },
+    {
+      "block": 26,
+      "section": 2,
+      "sourceBlock": "Miles Ultimate Spider-Man #16.1, #19-28",
+      "qualifier": "Decimal #16.1 follows #18 as the explicit Venom Wars prelude",
+      "entries": [
+        [
+          "miles-2011",
+          "16.1,19-28"
+        ]
+      ],
+      "firstSourcePosition": 228,
+      "lastSourcePosition": 238,
+      "occurrenceCount": 11
+    },
+    {
+      "block": 27,
+      "section": 2,
+      "sourceBlock": "Miles Morales: Ultimate Spider-Man #1-5 and Ultimate Spider-Man #200",
+      "entries": [
+        [
+          "miles-2014",
+          "1-5"
+        ],
+        [
+          "peter-legacy-200",
+          "200"
+        ]
+      ],
+      "firstSourcePosition": 239,
+      "lastSourcePosition": 244,
+      "occurrenceCount": 6
+    },
+    {
+      "block": 28,
+      "section": 2,
+      "sourceBlock": "All-New X-Men: Ultimate Adventure #31-36",
+      "entries": [
+        [
+          "x-men-adventure",
+          "31-36"
+        ]
+      ],
+      "firstSourcePosition": 245,
+      "lastSourcePosition": 250,
+      "occurrenceCount": 6
+    },
+    {
+      "block": 29,
+      "section": 2,
+      "sourceBlock": "Miles Morales: Ultimate Spider-Man #6-12",
+      "entries": [
+        [
+          "miles-2014",
+          "6-12"
+        ]
+      ],
+      "firstSourcePosition": 251,
+      "lastSourcePosition": 257,
+      "occurrenceCount": 7
+    },
+    {
+      "block": 30,
+      "section": 2,
+      "sourceBlock": "All-New Ultimates #1-6",
+      "entries": [
+        [
+          "all-new-ultimates",
+          "1-6"
+        ]
+      ],
+      "firstSourcePosition": 258,
+      "lastSourcePosition": 263,
+      "occurrenceCount": 6
+    },
+    {
+      "block": 31,
+      "section": 2,
+      "sourceBlock": "All-New Ultimates #7-12",
+      "entries": [
+        [
+          "all-new-ultimates",
+          "7-12"
+        ]
+      ],
+      "firstSourcePosition": 264,
+      "lastSourcePosition": 269,
+      "occurrenceCount": 6
+    },
+    {
+      "block": 32,
+      "section": 3,
+      "sourceBlock": "Spider-Man: Miles Morales Vol. 1",
+      "entries": [
+        [
+          "spider-man-2016",
+          "1-5"
+        ]
+      ],
+      "firstSourcePosition": 270,
+      "lastSourcePosition": 274,
+      "occurrenceCount": 5
+    },
+    {
+      "block": 33,
+      "section": 3,
+      "sourceBlock": "Spider-Man: Miles Morales Vol. 2",
+      "qualifier": "Numbered #6-10 appears in the prose immediately following the volume link",
+      "entries": [
+        [
+          "spider-man-2016",
+          "6-10"
+        ]
+      ],
+      "firstSourcePosition": 275,
+      "lastSourcePosition": 279,
+      "occurrenceCount": 5
+    },
+    {
+      "block": 34,
+      "section": 3,
+      "sourceBlock": "Spider-Man: Miles Morales Vol. 3",
+      "entries": [
+        [
+          "spider-man-2016",
+          "15-21"
+        ]
+      ],
+      "firstSourcePosition": 280,
+      "lastSourcePosition": 286,
+      "occurrenceCount": 7
+    },
+    {
+      "block": 35,
+      "section": 3,
+      "sourceBlock": "Spider-Man: Miles Morales Vol. 4",
+      "entries": [
+        [
+          "spider-man-2016",
+          "234-240"
+        ]
+      ],
+      "firstSourcePosition": 287,
+      "lastSourcePosition": 293,
+      "occurrenceCount": 7
+    },
+    {
+      "block": 36,
+      "section": 3,
+      "sourceBlock": "Champions Vol. 2: The Freelancer Lifestyle",
+      "entries": [
+        [
+          "champions-2016",
+          "6-12"
+        ]
+      ],
+      "firstSourcePosition": 294,
+      "lastSourcePosition": 300,
+      "occurrenceCount": 7
+    },
+    {
+      "block": 37,
+      "section": 3,
+      "sourceBlock": "Champions Vol. 3: Champion For A Day",
+      "entries": [
+        [
+          "champions-2016",
+          "16-18,1.MU"
+        ]
+      ],
+      "firstSourcePosition": 301,
+      "lastSourcePosition": 304,
+      "occurrenceCount": 4
+    },
+    {
+      "block": 38,
+      "section": 3,
+      "sourceBlock": "Champions Vol. 4: Northern Lights",
+      "entries": [
+        [
+          "champions-2016",
+          "19-21"
+        ],
+        [
+          "champions-infinity-countdown",
+          "1-2"
+        ]
+      ],
+      "firstSourcePosition": 305,
+      "lastSourcePosition": 309,
+      "occurrenceCount": 5
+    },
+    {
+      "block": 39,
+      "section": 3,
+      "sourceBlock": "Champions Vol. 5: Weird War One",
+      "entries": [
+        [
+          "champions-2016",
+          "22-27"
+        ],
+        [
+          "champions-annual",
+          "1"
+        ]
+      ],
+      "firstSourcePosition": 310,
+      "lastSourcePosition": 316,
+      "occurrenceCount": 7
+    },
+    {
+      "block": 40,
+      "section": 4,
+      "sourceBlock": "Ultimate Spider-Man Vol. 1: Married with Children",
+      "entries": [
+        [
+          "new-ultimate-2024",
+          "1-6"
+        ]
+      ],
+      "firstSourcePosition": 317,
+      "lastSourcePosition": 322,
+      "occurrenceCount": 6
+    },
+    {
+      "block": 41,
+      "section": 4,
+      "sourceBlock": "Ultimate Spider-Man Vol. 2: The Paper",
+      "entries": [
+        [
+          "new-ultimate-2024",
+          "7-12"
+        ]
+      ],
+      "firstSourcePosition": 323,
+      "lastSourcePosition": 328,
+      "occurrenceCount": 6
+    },
+    {
+      "block": 42,
+      "section": 4,
+      "sourceBlock": "Ultimate Spider-Man Vol. 3: Family Business",
+      "entries": [
+        [
+          "new-ultimate-2024",
+          "13-18"
+        ]
+      ],
+      "firstSourcePosition": 329,
+      "lastSourcePosition": 334,
+      "occurrenceCount": 6
+    },
+    {
+      "block": 43,
+      "section": 4,
+      "sourceBlock": "Ultimate Spider-Man: Incursion",
+      "entries": [
+        [
+          "fcbd-2025",
+          "1"
+        ],
+        [
+          "incursion-2025",
+          "1-5"
+        ]
+      ],
+      "qualifier": "FCBD is the explicitly qualified Ultimate Universe story of the original #1",
+      "firstSourcePosition": 335,
+      "lastSourcePosition": 340,
+      "occurrenceCount": 6
+    },
+    {
+      "block": 44,
+      "section": 4,
+      "sourceBlock": "Ultimate Spider-Man Vol. 4: One Last Day",
+      "displayedSourceReference": "Ultimate Spider-Man (2024) #19-24, Ultimate Universe: Finale (2026) #1 (Spider-Man story)",
+      "entries": [
+        [
+          "new-ultimate-2024",
+          "19-24"
+        ]
+      ],
+      "qualifier": "Collection also names Finale #1, explicitly deferred until after Endgame",
+      "firstSourcePosition": 341,
+      "lastSourcePosition": 346,
+      "occurrenceCount": 6
+    },
+    {
+      "block": 45,
+      "section": 4,
+      "sourceBlock": "Ultimate Endgame",
+      "entries": [
+        [
+          "endgame",
+          "1-5"
+        ]
+      ],
+      "firstSourcePosition": 347,
+      "lastSourcePosition": 351,
+      "occurrenceCount": 5
+    },
+    {
+      "block": 46,
+      "section": 4,
+      "sourceBlock": "Ultimate Universe: Finale (deferred from Vol. 4)",
+      "displayedSourceReference": "Ultimate Spider-Man Vol. 4 collected Ultimate Universe: Finale (2026) #1",
+      "entries": [
+        [
+          "finale-2026",
+          "1"
+        ]
+      ],
+      "qualifier": "Spider-Man story; directed after Endgame #1-5, not raw collection order",
+      "firstSourcePosition": 352,
+      "lastSourcePosition": 352,
+      "occurrenceCount": 1
+    }
+  ],
+  "occurrences": [
+    {
+      "sourcePosition": 1,
+      "section": 1,
+      "sourceBlock": 1,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #1-13",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #1",
+      "issueNumber": "1",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 2,
+      "section": 1,
+      "sourceBlock": 1,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #1-13",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #2",
+      "issueNumber": "2",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 3,
+      "section": 1,
+      "sourceBlock": 1,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #1-13",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #3",
+      "issueNumber": "3",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 4,
+      "section": 1,
+      "sourceBlock": 1,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #1-13",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #4",
+      "issueNumber": "4",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 5,
+      "section": 1,
+      "sourceBlock": 1,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #1-13",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #5",
+      "issueNumber": "5",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 6,
+      "section": 1,
+      "sourceBlock": 1,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #1-13",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #6",
+      "issueNumber": "6",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 7,
+      "section": 1,
+      "sourceBlock": 1,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #1-13",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #7",
+      "issueNumber": "7",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 8,
+      "section": 1,
+      "sourceBlock": 1,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #1-13",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #8",
+      "issueNumber": "8",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 9,
+      "section": 1,
+      "sourceBlock": 1,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #1-13",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #9",
+      "issueNumber": "9",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 10,
+      "section": 1,
+      "sourceBlock": 1,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #1-13",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #10",
+      "issueNumber": "10",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 11,
+      "section": 1,
+      "sourceBlock": 1,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #1-13",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #11",
+      "issueNumber": "11",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 12,
+      "section": 1,
+      "sourceBlock": 1,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #1-13",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #12",
+      "issueNumber": "12",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 13,
+      "section": 1,
+      "sourceBlock": 1,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #1-13",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #13",
+      "issueNumber": "13",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 14,
+      "section": 1,
+      "sourceBlock": 2,
+      "seriesAlias": "team-up",
+      "sourceRangeReference": "Ultimate Marvel Team-Up #1-8",
+      "sourceIssueReference": "Ultimate Marvel Team-Up #1",
+      "issueNumber": "1",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 15,
+      "section": 1,
+      "sourceBlock": 2,
+      "seriesAlias": "team-up",
+      "sourceRangeReference": "Ultimate Marvel Team-Up #1-8",
+      "sourceIssueReference": "Ultimate Marvel Team-Up #2",
+      "issueNumber": "2",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 16,
+      "section": 1,
+      "sourceBlock": 2,
+      "seriesAlias": "team-up",
+      "sourceRangeReference": "Ultimate Marvel Team-Up #1-8",
+      "sourceIssueReference": "Ultimate Marvel Team-Up #3",
+      "issueNumber": "3",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 17,
+      "section": 1,
+      "sourceBlock": 2,
+      "seriesAlias": "team-up",
+      "sourceRangeReference": "Ultimate Marvel Team-Up #1-8",
+      "sourceIssueReference": "Ultimate Marvel Team-Up #4",
+      "issueNumber": "4",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 18,
+      "section": 1,
+      "sourceBlock": 2,
+      "seriesAlias": "team-up",
+      "sourceRangeReference": "Ultimate Marvel Team-Up #1-8",
+      "sourceIssueReference": "Ultimate Marvel Team-Up #5",
+      "issueNumber": "5",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 19,
+      "section": 1,
+      "sourceBlock": 2,
+      "seriesAlias": "team-up",
+      "sourceRangeReference": "Ultimate Marvel Team-Up #1-8",
+      "sourceIssueReference": "Ultimate Marvel Team-Up #6",
+      "issueNumber": "6",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 20,
+      "section": 1,
+      "sourceBlock": 2,
+      "seriesAlias": "team-up",
+      "sourceRangeReference": "Ultimate Marvel Team-Up #1-8",
+      "sourceIssueReference": "Ultimate Marvel Team-Up #7",
+      "issueNumber": "7",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 21,
+      "section": 1,
+      "sourceBlock": 2,
+      "seriesAlias": "team-up",
+      "sourceRangeReference": "Ultimate Marvel Team-Up #1-8",
+      "sourceIssueReference": "Ultimate Marvel Team-Up #8",
+      "issueNumber": "8",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 22,
+      "section": 1,
+      "sourceBlock": 3,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #14-21",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #14",
+      "issueNumber": "14",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 23,
+      "section": 1,
+      "sourceBlock": 3,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #14-21",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #15",
+      "issueNumber": "15",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 24,
+      "section": 1,
+      "sourceBlock": 3,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #14-21",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #16",
+      "issueNumber": "16",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 25,
+      "section": 1,
+      "sourceBlock": 3,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #14-21",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #17",
+      "issueNumber": "17",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 26,
+      "section": 1,
+      "sourceBlock": 3,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #14-21",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #18",
+      "issueNumber": "18",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 27,
+      "section": 1,
+      "sourceBlock": 3,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #14-21",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #19",
+      "issueNumber": "19",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 28,
+      "section": 1,
+      "sourceBlock": 3,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #14-21",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #20",
+      "issueNumber": "20",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 29,
+      "section": 1,
+      "sourceBlock": 3,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #14-21",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #21",
+      "issueNumber": "21",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 30,
+      "section": 1,
+      "sourceBlock": 4,
+      "seriesAlias": "team-up",
+      "sourceRangeReference": "Ultimate Marvel Team-Up #9-16",
+      "sourceIssueReference": "Ultimate Marvel Team-Up #9",
+      "issueNumber": "9",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 31,
+      "section": 1,
+      "sourceBlock": 4,
+      "seriesAlias": "team-up",
+      "sourceRangeReference": "Ultimate Marvel Team-Up #9-16",
+      "sourceIssueReference": "Ultimate Marvel Team-Up #10",
+      "issueNumber": "10",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 32,
+      "section": 1,
+      "sourceBlock": 4,
+      "seriesAlias": "team-up",
+      "sourceRangeReference": "Ultimate Marvel Team-Up #9-16",
+      "sourceIssueReference": "Ultimate Marvel Team-Up #11",
+      "issueNumber": "11",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 33,
+      "section": 1,
+      "sourceBlock": 4,
+      "seriesAlias": "team-up",
+      "sourceRangeReference": "Ultimate Marvel Team-Up #9-16",
+      "sourceIssueReference": "Ultimate Marvel Team-Up #12",
+      "issueNumber": "12",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 34,
+      "section": 1,
+      "sourceBlock": 4,
+      "seriesAlias": "team-up",
+      "sourceRangeReference": "Ultimate Marvel Team-Up #9-16",
+      "sourceIssueReference": "Ultimate Marvel Team-Up #13",
+      "issueNumber": "13",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 35,
+      "section": 1,
+      "sourceBlock": 4,
+      "seriesAlias": "team-up",
+      "sourceRangeReference": "Ultimate Marvel Team-Up #9-16",
+      "sourceIssueReference": "Ultimate Marvel Team-Up #14",
+      "issueNumber": "14",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 36,
+      "section": 1,
+      "sourceBlock": 4,
+      "seriesAlias": "team-up",
+      "sourceRangeReference": "Ultimate Marvel Team-Up #9-16",
+      "sourceIssueReference": "Ultimate Marvel Team-Up #15",
+      "issueNumber": "15",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 37,
+      "section": 1,
+      "sourceBlock": 4,
+      "seriesAlias": "team-up",
+      "sourceRangeReference": "Ultimate Marvel Team-Up #9-16",
+      "sourceIssueReference": "Ultimate Marvel Team-Up #16",
+      "issueNumber": "16",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 38,
+      "section": 1,
+      "sourceBlock": 5,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #22-27",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #22",
+      "issueNumber": "22",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 39,
+      "section": 1,
+      "sourceBlock": 5,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #22-27",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #23",
+      "issueNumber": "23",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 40,
+      "section": 1,
+      "sourceBlock": 5,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #22-27",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #24",
+      "issueNumber": "24",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 41,
+      "section": 1,
+      "sourceBlock": 5,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #22-27",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #25",
+      "issueNumber": "25",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 42,
+      "section": 1,
+      "sourceBlock": 5,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #22-27",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #26",
+      "issueNumber": "26",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 43,
+      "section": 1,
+      "sourceBlock": 5,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #22-27",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #27",
+      "issueNumber": "27",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 44,
+      "section": 1,
+      "sourceBlock": 6,
+      "seriesAlias": "super-special",
+      "sourceRangeReference": "Ultimate Spider-Man Super Special #1",
+      "sourceIssueReference": "Ultimate Spider-Man Super Special #1",
+      "issueNumber": "1",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 45,
+      "section": 1,
+      "sourceBlock": 7,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #28-46",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #28",
+      "issueNumber": "28",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 46,
+      "section": 1,
+      "sourceBlock": 7,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #28-46",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #29",
+      "issueNumber": "29",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 47,
+      "section": 1,
+      "sourceBlock": 7,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #28-46",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #30",
+      "issueNumber": "30",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 48,
+      "section": 1,
+      "sourceBlock": 7,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #28-46",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #31",
+      "issueNumber": "31",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 49,
+      "section": 1,
+      "sourceBlock": 7,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #28-46",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #32",
+      "issueNumber": "32",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 50,
+      "section": 1,
+      "sourceBlock": 7,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #28-46",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #33",
+      "issueNumber": "33",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 51,
+      "section": 1,
+      "sourceBlock": 7,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #28-46",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #34",
+      "issueNumber": "34",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 52,
+      "section": 1,
+      "sourceBlock": 7,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #28-46",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #35",
+      "issueNumber": "35",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 53,
+      "section": 1,
+      "sourceBlock": 7,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #28-46",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #36",
+      "issueNumber": "36",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 54,
+      "section": 1,
+      "sourceBlock": 7,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #28-46",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #37",
+      "issueNumber": "37",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 55,
+      "section": 1,
+      "sourceBlock": 7,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #28-46",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #38",
+      "issueNumber": "38",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 56,
+      "section": 1,
+      "sourceBlock": 7,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #28-46",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #39",
+      "issueNumber": "39",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 57,
+      "section": 1,
+      "sourceBlock": 7,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #28-46",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #40",
+      "issueNumber": "40",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 58,
+      "section": 1,
+      "sourceBlock": 7,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #28-46",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #41",
+      "issueNumber": "41",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 59,
+      "section": 1,
+      "sourceBlock": 7,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #28-46",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #42",
+      "issueNumber": "42",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 60,
+      "section": 1,
+      "sourceBlock": 7,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #28-46",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #43",
+      "issueNumber": "43",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 61,
+      "section": 1,
+      "sourceBlock": 7,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #28-46",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #44",
+      "issueNumber": "44",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 62,
+      "section": 1,
+      "sourceBlock": 7,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #28-46",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #45",
+      "issueNumber": "45",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 63,
+      "section": 1,
+      "sourceBlock": 7,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #28-46",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #46",
+      "issueNumber": "46",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 64,
+      "section": 1,
+      "sourceBlock": 8,
+      "seriesAlias": "ultimate-six",
+      "sourceRangeReference": "Ultimate Six #1-7",
+      "sourceIssueReference": "Ultimate Six #1",
+      "issueNumber": "1",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 65,
+      "section": 1,
+      "sourceBlock": 8,
+      "seriesAlias": "ultimate-six",
+      "sourceRangeReference": "Ultimate Six #1-7",
+      "sourceIssueReference": "Ultimate Six #2",
+      "issueNumber": "2",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 66,
+      "section": 1,
+      "sourceBlock": 8,
+      "seriesAlias": "ultimate-six",
+      "sourceRangeReference": "Ultimate Six #1-7",
+      "sourceIssueReference": "Ultimate Six #3",
+      "issueNumber": "3",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 67,
+      "section": 1,
+      "sourceBlock": 8,
+      "seriesAlias": "ultimate-six",
+      "sourceRangeReference": "Ultimate Six #1-7",
+      "sourceIssueReference": "Ultimate Six #4",
+      "issueNumber": "4",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 68,
+      "section": 1,
+      "sourceBlock": 8,
+      "seriesAlias": "ultimate-six",
+      "sourceRangeReference": "Ultimate Six #1-7",
+      "sourceIssueReference": "Ultimate Six #5",
+      "issueNumber": "5",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 69,
+      "section": 1,
+      "sourceBlock": 8,
+      "seriesAlias": "ultimate-six",
+      "sourceRangeReference": "Ultimate Six #1-7",
+      "sourceIssueReference": "Ultimate Six #6",
+      "issueNumber": "6",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 70,
+      "section": 1,
+      "sourceBlock": 8,
+      "seriesAlias": "ultimate-six",
+      "sourceRangeReference": "Ultimate Six #1-7",
+      "sourceIssueReference": "Ultimate Six #7",
+      "issueNumber": "7",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 71,
+      "section": 1,
+      "sourceBlock": 9,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #54-85",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #54",
+      "issueNumber": "54",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 72,
+      "section": 1,
+      "sourceBlock": 9,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #54-85",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #55",
+      "issueNumber": "55",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 73,
+      "section": 1,
+      "sourceBlock": 9,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #54-85",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #56",
+      "issueNumber": "56",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 74,
+      "section": 1,
+      "sourceBlock": 9,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #54-85",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #57",
+      "issueNumber": "57",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 75,
+      "section": 1,
+      "sourceBlock": 9,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #54-85",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #58",
+      "issueNumber": "58",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 76,
+      "section": 1,
+      "sourceBlock": 9,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #54-85",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #59",
+      "issueNumber": "59",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 77,
+      "section": 1,
+      "sourceBlock": 9,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #54-85",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #60",
+      "issueNumber": "60",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 78,
+      "section": 1,
+      "sourceBlock": 9,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #54-85",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #61",
+      "issueNumber": "61",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 79,
+      "section": 1,
+      "sourceBlock": 9,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #54-85",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #62",
+      "issueNumber": "62",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 80,
+      "section": 1,
+      "sourceBlock": 9,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #54-85",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #63",
+      "issueNumber": "63",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 81,
+      "section": 1,
+      "sourceBlock": 9,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #54-85",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #64",
+      "issueNumber": "64",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 82,
+      "section": 1,
+      "sourceBlock": 9,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #54-85",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #65",
+      "issueNumber": "65",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 83,
+      "section": 1,
+      "sourceBlock": 9,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #54-85",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #66",
+      "issueNumber": "66",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 84,
+      "section": 1,
+      "sourceBlock": 9,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #54-85",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #67",
+      "issueNumber": "67",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 85,
+      "section": 1,
+      "sourceBlock": 9,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #54-85",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #68",
+      "issueNumber": "68",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 86,
+      "section": 1,
+      "sourceBlock": 9,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #54-85",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #69",
+      "issueNumber": "69",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 87,
+      "section": 1,
+      "sourceBlock": 9,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #54-85",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #70",
+      "issueNumber": "70",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 88,
+      "section": 1,
+      "sourceBlock": 9,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #54-85",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #71",
+      "issueNumber": "71",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 89,
+      "section": 1,
+      "sourceBlock": 9,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #54-85",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #72",
+      "issueNumber": "72",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 90,
+      "section": 1,
+      "sourceBlock": 9,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #54-85",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #73",
+      "issueNumber": "73",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 91,
+      "section": 1,
+      "sourceBlock": 9,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #54-85",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #74",
+      "issueNumber": "74",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 92,
+      "section": 1,
+      "sourceBlock": 9,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #54-85",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #75",
+      "issueNumber": "75",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 93,
+      "section": 1,
+      "sourceBlock": 9,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #54-85",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #76",
+      "issueNumber": "76",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 94,
+      "section": 1,
+      "sourceBlock": 9,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #54-85",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #77",
+      "issueNumber": "77",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 95,
+      "section": 1,
+      "sourceBlock": 9,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #54-85",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #78",
+      "issueNumber": "78",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 96,
+      "section": 1,
+      "sourceBlock": 9,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #54-85",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #79",
+      "issueNumber": "79",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 97,
+      "section": 1,
+      "sourceBlock": 9,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #54-85",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #80",
+      "issueNumber": "80",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 98,
+      "section": 1,
+      "sourceBlock": 9,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #54-85",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #81",
+      "issueNumber": "81",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 99,
+      "section": 1,
+      "sourceBlock": 9,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #54-85",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #82",
+      "issueNumber": "82",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 100,
+      "section": 1,
+      "sourceBlock": 9,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #54-85",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #83",
+      "issueNumber": "83",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 101,
+      "section": 1,
+      "sourceBlock": 9,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #54-85",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #84",
+      "issueNumber": "84",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 102,
+      "section": 1,
+      "sourceBlock": 9,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #54-85",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #85",
+      "issueNumber": "85",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 103,
+      "section": 1,
+      "sourceBlock": 10,
+      "seriesAlias": "peter-annual",
+      "sourceRangeReference": "Ultimate Spider-Man Annual #1",
+      "sourceIssueReference": "Ultimate Spider-Man Annual #1",
+      "issueNumber": "1",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 104,
+      "section": 1,
+      "sourceBlock": 11,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #86-105",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #86",
+      "issueNumber": "86",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 105,
+      "section": 1,
+      "sourceBlock": 11,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #86-105",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #87",
+      "issueNumber": "87",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 106,
+      "section": 1,
+      "sourceBlock": 11,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #86-105",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #88",
+      "issueNumber": "88",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 107,
+      "section": 1,
+      "sourceBlock": 11,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #86-105",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #89",
+      "issueNumber": "89",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 108,
+      "section": 1,
+      "sourceBlock": 11,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #86-105",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #90",
+      "issueNumber": "90",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 109,
+      "section": 1,
+      "sourceBlock": 11,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #86-105",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #91",
+      "issueNumber": "91",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 110,
+      "section": 1,
+      "sourceBlock": 11,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #86-105",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #92",
+      "issueNumber": "92",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 111,
+      "section": 1,
+      "sourceBlock": 11,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #86-105",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #93",
+      "issueNumber": "93",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 112,
+      "section": 1,
+      "sourceBlock": 11,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #86-105",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #94",
+      "issueNumber": "94",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 113,
+      "section": 1,
+      "sourceBlock": 11,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #86-105",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #95",
+      "issueNumber": "95",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 114,
+      "section": 1,
+      "sourceBlock": 11,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #86-105",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #96",
+      "issueNumber": "96",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 115,
+      "section": 1,
+      "sourceBlock": 11,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #86-105",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #97",
+      "issueNumber": "97",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 116,
+      "section": 1,
+      "sourceBlock": 11,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #86-105",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #98",
+      "issueNumber": "98",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 117,
+      "section": 1,
+      "sourceBlock": 11,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #86-105",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #99",
+      "issueNumber": "99",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 118,
+      "section": 1,
+      "sourceBlock": 11,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #86-105",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #100",
+      "issueNumber": "100",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 119,
+      "section": 1,
+      "sourceBlock": 11,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #86-105",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #101",
+      "issueNumber": "101",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 120,
+      "section": 1,
+      "sourceBlock": 11,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #86-105",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #102",
+      "issueNumber": "102",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 121,
+      "section": 1,
+      "sourceBlock": 11,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #86-105",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #103",
+      "issueNumber": "103",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 122,
+      "section": 1,
+      "sourceBlock": 11,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #86-105",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #104",
+      "issueNumber": "104",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 123,
+      "section": 1,
+      "sourceBlock": 11,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #86-105",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #105",
+      "issueNumber": "105",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 124,
+      "section": 1,
+      "sourceBlock": 12,
+      "seriesAlias": "peter-annual",
+      "sourceRangeReference": "Ultimate Spider-Man Annual #2",
+      "sourceIssueReference": "Ultimate Spider-Man Annual #2",
+      "issueNumber": "2",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 125,
+      "section": 1,
+      "sourceBlock": 13,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #106-120",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #106",
+      "issueNumber": "106",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 126,
+      "section": 1,
+      "sourceBlock": 13,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #106-120",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #107",
+      "issueNumber": "107",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 127,
+      "section": 1,
+      "sourceBlock": 13,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #106-120",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #108",
+      "issueNumber": "108",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 128,
+      "section": 1,
+      "sourceBlock": 13,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #106-120",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #109",
+      "issueNumber": "109",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 129,
+      "section": 1,
+      "sourceBlock": 13,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #106-120",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #110",
+      "issueNumber": "110",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 130,
+      "section": 1,
+      "sourceBlock": 13,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #106-120",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #111",
+      "issueNumber": "111",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 131,
+      "section": 1,
+      "sourceBlock": 13,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #106-120",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #112",
+      "issueNumber": "112",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 132,
+      "section": 1,
+      "sourceBlock": 13,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #106-120",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #113",
+      "issueNumber": "113",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 133,
+      "section": 1,
+      "sourceBlock": 13,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #106-120",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #114",
+      "issueNumber": "114",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 134,
+      "section": 1,
+      "sourceBlock": 13,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #106-120",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #115",
+      "issueNumber": "115",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 135,
+      "section": 1,
+      "sourceBlock": 13,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #106-120",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #116",
+      "issueNumber": "116",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 136,
+      "section": 1,
+      "sourceBlock": 13,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #106-120",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #117",
+      "issueNumber": "117",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 137,
+      "section": 1,
+      "sourceBlock": 13,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #106-120",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #118",
+      "issueNumber": "118",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 138,
+      "section": 1,
+      "sourceBlock": 13,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #106-120",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #119",
+      "issueNumber": "119",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 139,
+      "section": 1,
+      "sourceBlock": 13,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #106-120",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #120",
+      "issueNumber": "120",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 140,
+      "section": 1,
+      "sourceBlock": 14,
+      "seriesAlias": "peter-annual",
+      "sourceRangeReference": "Ultimate Spider-Man Annual #3",
+      "sourceIssueReference": "Ultimate Spider-Man Annual #3",
+      "issueNumber": "3",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 141,
+      "section": 1,
+      "sourceBlock": 15,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #121-128",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #121",
+      "issueNumber": "121",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 142,
+      "section": 1,
+      "sourceBlock": 15,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #121-128",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #122",
+      "issueNumber": "122",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 143,
+      "section": 1,
+      "sourceBlock": 15,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #121-128",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #123",
+      "issueNumber": "123",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 144,
+      "section": 1,
+      "sourceBlock": 15,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #121-128",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #124",
+      "issueNumber": "124",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 145,
+      "section": 1,
+      "sourceBlock": 15,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #121-128",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #125",
+      "issueNumber": "125",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 146,
+      "section": 1,
+      "sourceBlock": 15,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #121-128",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #126",
+      "issueNumber": "126",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 147,
+      "section": 1,
+      "sourceBlock": 15,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #121-128",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #127",
+      "issueNumber": "127",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 148,
+      "section": 1,
+      "sourceBlock": 15,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #121-128",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #128",
+      "issueNumber": "128",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 149,
+      "section": 1,
+      "sourceBlock": 16,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #129",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #129",
+      "issueNumber": "129",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 150,
+      "section": 1,
+      "sourceBlock": 16,
+      "seriesAlias": "ultimatum",
+      "sourceRangeReference": "Ultimatum #1",
+      "sourceIssueReference": "Ultimatum #1",
+      "issueNumber": "1",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 151,
+      "section": 1,
+      "sourceBlock": 16,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #130",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #130",
+      "issueNumber": "130",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 152,
+      "section": 1,
+      "sourceBlock": 16,
+      "seriesAlias": "ultimatum",
+      "sourceRangeReference": "Ultimatum #2",
+      "sourceIssueReference": "Ultimatum #2",
+      "issueNumber": "2",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 153,
+      "section": 1,
+      "sourceBlock": 16,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #131",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #131",
+      "issueNumber": "131",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 154,
+      "section": 1,
+      "sourceBlock": 16,
+      "seriesAlias": "ultimatum",
+      "sourceRangeReference": "Ultimatum #3",
+      "sourceIssueReference": "Ultimatum #3",
+      "issueNumber": "3",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 155,
+      "section": 1,
+      "sourceBlock": 16,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #132",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #132",
+      "issueNumber": "132",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 156,
+      "section": 1,
+      "sourceBlock": 16,
+      "seriesAlias": "ultimatum",
+      "sourceRangeReference": "Ultimatum #4",
+      "sourceIssueReference": "Ultimatum #4",
+      "issueNumber": "4",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 157,
+      "section": 1,
+      "sourceBlock": 16,
+      "seriesAlias": "peter-2000",
+      "sourceRangeReference": "Ultimate Spider-Man (original Peter series beginning 2000) #133",
+      "sourceIssueReference": "Ultimate Spider-Man (original Peter series beginning 2000) #133",
+      "issueNumber": "133",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 158,
+      "section": 1,
+      "sourceBlock": 16,
+      "seriesAlias": "ultimatum",
+      "sourceRangeReference": "Ultimatum #5",
+      "sourceIssueReference": "Ultimatum #5",
+      "issueNumber": "5",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 159,
+      "section": 1,
+      "sourceBlock": 16,
+      "seriesAlias": "requiem",
+      "sourceRangeReference": "Ultimate Spider-Man Requiem #1-2",
+      "sourceIssueReference": "Ultimate Spider-Man Requiem #1",
+      "issueNumber": "1",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 160,
+      "section": 1,
+      "sourceBlock": 16,
+      "seriesAlias": "requiem",
+      "sourceRangeReference": "Ultimate Spider-Man Requiem #1-2",
+      "sourceIssueReference": "Ultimate Spider-Man Requiem #2",
+      "issueNumber": "2",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 161,
+      "section": 1,
+      "sourceBlock": 17,
+      "seriesAlias": "peter-2009",
+      "sourceRangeReference": "Ultimate Spider-Man (post-Ultimatum 2009 relaunch, including legacy #150-160) #1-14",
+      "sourceIssueReference": "Ultimate Spider-Man (post-Ultimatum 2009 relaunch, including legacy #150-160) #1",
+      "issueNumber": "1",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 162,
+      "section": 1,
+      "sourceBlock": 17,
+      "seriesAlias": "peter-2009",
+      "sourceRangeReference": "Ultimate Spider-Man (post-Ultimatum 2009 relaunch, including legacy #150-160) #1-14",
+      "sourceIssueReference": "Ultimate Spider-Man (post-Ultimatum 2009 relaunch, including legacy #150-160) #2",
+      "issueNumber": "2",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 163,
+      "section": 1,
+      "sourceBlock": 17,
+      "seriesAlias": "peter-2009",
+      "sourceRangeReference": "Ultimate Spider-Man (post-Ultimatum 2009 relaunch, including legacy #150-160) #1-14",
+      "sourceIssueReference": "Ultimate Spider-Man (post-Ultimatum 2009 relaunch, including legacy #150-160) #3",
+      "issueNumber": "3",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 164,
+      "section": 1,
+      "sourceBlock": 17,
+      "seriesAlias": "peter-2009",
+      "sourceRangeReference": "Ultimate Spider-Man (post-Ultimatum 2009 relaunch, including legacy #150-160) #1-14",
+      "sourceIssueReference": "Ultimate Spider-Man (post-Ultimatum 2009 relaunch, including legacy #150-160) #4",
+      "issueNumber": "4",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 165,
+      "section": 1,
+      "sourceBlock": 17,
+      "seriesAlias": "peter-2009",
+      "sourceRangeReference": "Ultimate Spider-Man (post-Ultimatum 2009 relaunch, including legacy #150-160) #1-14",
+      "sourceIssueReference": "Ultimate Spider-Man (post-Ultimatum 2009 relaunch, including legacy #150-160) #5",
+      "issueNumber": "5",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 166,
+      "section": 1,
+      "sourceBlock": 17,
+      "seriesAlias": "peter-2009",
+      "sourceRangeReference": "Ultimate Spider-Man (post-Ultimatum 2009 relaunch, including legacy #150-160) #1-14",
+      "sourceIssueReference": "Ultimate Spider-Man (post-Ultimatum 2009 relaunch, including legacy #150-160) #6",
+      "issueNumber": "6",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 167,
+      "section": 1,
+      "sourceBlock": 17,
+      "seriesAlias": "peter-2009",
+      "sourceRangeReference": "Ultimate Spider-Man (post-Ultimatum 2009 relaunch, including legacy #150-160) #1-14",
+      "sourceIssueReference": "Ultimate Spider-Man (post-Ultimatum 2009 relaunch, including legacy #150-160) #7",
+      "issueNumber": "7",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 168,
+      "section": 1,
+      "sourceBlock": 17,
+      "seriesAlias": "peter-2009",
+      "sourceRangeReference": "Ultimate Spider-Man (post-Ultimatum 2009 relaunch, including legacy #150-160) #1-14",
+      "sourceIssueReference": "Ultimate Spider-Man (post-Ultimatum 2009 relaunch, including legacy #150-160) #8",
+      "issueNumber": "8",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 169,
+      "section": 1,
+      "sourceBlock": 17,
+      "seriesAlias": "peter-2009",
+      "sourceRangeReference": "Ultimate Spider-Man (post-Ultimatum 2009 relaunch, including legacy #150-160) #1-14",
+      "sourceIssueReference": "Ultimate Spider-Man (post-Ultimatum 2009 relaunch, including legacy #150-160) #9",
+      "issueNumber": "9",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 170,
+      "section": 1,
+      "sourceBlock": 17,
+      "seriesAlias": "peter-2009",
+      "sourceRangeReference": "Ultimate Spider-Man (post-Ultimatum 2009 relaunch, including legacy #150-160) #1-14",
+      "sourceIssueReference": "Ultimate Spider-Man (post-Ultimatum 2009 relaunch, including legacy #150-160) #10",
+      "issueNumber": "10",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 171,
+      "section": 1,
+      "sourceBlock": 17,
+      "seriesAlias": "peter-2009",
+      "sourceRangeReference": "Ultimate Spider-Man (post-Ultimatum 2009 relaunch, including legacy #150-160) #1-14",
+      "sourceIssueReference": "Ultimate Spider-Man (post-Ultimatum 2009 relaunch, including legacy #150-160) #11",
+      "issueNumber": "11",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 172,
+      "section": 1,
+      "sourceBlock": 17,
+      "seriesAlias": "peter-2009",
+      "sourceRangeReference": "Ultimate Spider-Man (post-Ultimatum 2009 relaunch, including legacy #150-160) #1-14",
+      "sourceIssueReference": "Ultimate Spider-Man (post-Ultimatum 2009 relaunch, including legacy #150-160) #12",
+      "issueNumber": "12",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 173,
+      "section": 1,
+      "sourceBlock": 17,
+      "seriesAlias": "peter-2009",
+      "sourceRangeReference": "Ultimate Spider-Man (post-Ultimatum 2009 relaunch, including legacy #150-160) #1-14",
+      "sourceIssueReference": "Ultimate Spider-Man (post-Ultimatum 2009 relaunch, including legacy #150-160) #13",
+      "issueNumber": "13",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 174,
+      "section": 1,
+      "sourceBlock": 17,
+      "seriesAlias": "peter-2009",
+      "sourceRangeReference": "Ultimate Spider-Man (post-Ultimatum 2009 relaunch, including legacy #150-160) #1-14",
+      "sourceIssueReference": "Ultimate Spider-Man (post-Ultimatum 2009 relaunch, including legacy #150-160) #14",
+      "issueNumber": "14",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 175,
+      "section": 1,
+      "sourceBlock": 18,
+      "seriesAlias": "peter-2009",
+      "sourceRangeReference": "Ultimate Spider-Man (post-Ultimatum 2009 relaunch, including legacy #150-160) #150-157",
+      "sourceIssueReference": "Ultimate Spider-Man (post-Ultimatum 2009 relaunch, including legacy #150-160) #150",
+      "issueNumber": "150",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 176,
+      "section": 1,
+      "sourceBlock": 18,
+      "seriesAlias": "peter-2009",
+      "sourceRangeReference": "Ultimate Spider-Man (post-Ultimatum 2009 relaunch, including legacy #150-160) #150-157",
+      "sourceIssueReference": "Ultimate Spider-Man (post-Ultimatum 2009 relaunch, including legacy #150-160) #151",
+      "issueNumber": "151",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 177,
+      "section": 1,
+      "sourceBlock": 18,
+      "seriesAlias": "peter-2009",
+      "sourceRangeReference": "Ultimate Spider-Man (post-Ultimatum 2009 relaunch, including legacy #150-160) #150-157",
+      "sourceIssueReference": "Ultimate Spider-Man (post-Ultimatum 2009 relaunch, including legacy #150-160) #152",
+      "issueNumber": "152",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 178,
+      "section": 1,
+      "sourceBlock": 18,
+      "seriesAlias": "peter-2009",
+      "sourceRangeReference": "Ultimate Spider-Man (post-Ultimatum 2009 relaunch, including legacy #150-160) #150-157",
+      "sourceIssueReference": "Ultimate Spider-Man (post-Ultimatum 2009 relaunch, including legacy #150-160) #153",
+      "issueNumber": "153",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 179,
+      "section": 1,
+      "sourceBlock": 18,
+      "seriesAlias": "peter-2009",
+      "sourceRangeReference": "Ultimate Spider-Man (post-Ultimatum 2009 relaunch, including legacy #150-160) #150-157",
+      "sourceIssueReference": "Ultimate Spider-Man (post-Ultimatum 2009 relaunch, including legacy #150-160) #154",
+      "issueNumber": "154",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 180,
+      "section": 1,
+      "sourceBlock": 18,
+      "seriesAlias": "peter-2009",
+      "sourceRangeReference": "Ultimate Spider-Man (post-Ultimatum 2009 relaunch, including legacy #150-160) #150-157",
+      "sourceIssueReference": "Ultimate Spider-Man (post-Ultimatum 2009 relaunch, including legacy #150-160) #155",
+      "issueNumber": "155",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 181,
+      "section": 1,
+      "sourceBlock": 18,
+      "seriesAlias": "peter-2009",
+      "sourceRangeReference": "Ultimate Spider-Man (post-Ultimatum 2009 relaunch, including legacy #150-160) #150-157",
+      "sourceIssueReference": "Ultimate Spider-Man (post-Ultimatum 2009 relaunch, including legacy #150-160) #156",
+      "issueNumber": "156",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 182,
+      "section": 1,
+      "sourceBlock": 18,
+      "seriesAlias": "peter-2009",
+      "sourceRangeReference": "Ultimate Spider-Man (post-Ultimatum 2009 relaunch, including legacy #150-160) #150-157",
+      "sourceIssueReference": "Ultimate Spider-Man (post-Ultimatum 2009 relaunch, including legacy #150-160) #157",
+      "issueNumber": "157",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 183,
+      "section": 1,
+      "sourceBlock": 19,
+      "seriesAlias": "avengers-ultimates",
+      "sourceRangeReference": "Ultimate Comics Avengers vs. New Ultimates #1-4",
+      "sourceIssueReference": "Ultimate Comics Avengers vs. New Ultimates #1",
+      "issueNumber": "1",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 184,
+      "section": 1,
+      "sourceBlock": 19,
+      "seriesAlias": "avengers-ultimates",
+      "sourceRangeReference": "Ultimate Comics Avengers vs. New Ultimates #1-4",
+      "sourceIssueReference": "Ultimate Comics Avengers vs. New Ultimates #2",
+      "issueNumber": "2",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 185,
+      "section": 1,
+      "sourceBlock": 19,
+      "seriesAlias": "avengers-ultimates",
+      "sourceRangeReference": "Ultimate Comics Avengers vs. New Ultimates #1-4",
+      "sourceIssueReference": "Ultimate Comics Avengers vs. New Ultimates #3",
+      "issueNumber": "3",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 186,
+      "section": 1,
+      "sourceBlock": 19,
+      "seriesAlias": "avengers-ultimates",
+      "sourceRangeReference": "Ultimate Comics Avengers vs. New Ultimates #1-4",
+      "sourceIssueReference": "Ultimate Comics Avengers vs. New Ultimates #4",
+      "issueNumber": "4",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 187,
+      "section": 1,
+      "sourceBlock": 20,
+      "seriesAlias": "peter-2009",
+      "sourceRangeReference": "Ultimate Spider-Man (post-Ultimatum 2009 relaunch, including legacy #150-160) #158-160",
+      "sourceIssueReference": "Ultimate Spider-Man (post-Ultimatum 2009 relaunch, including legacy #150-160) #158",
+      "issueNumber": "158",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 188,
+      "section": 1,
+      "sourceBlock": 20,
+      "seriesAlias": "peter-2009",
+      "sourceRangeReference": "Ultimate Spider-Man (post-Ultimatum 2009 relaunch, including legacy #150-160) #158-160",
+      "sourceIssueReference": "Ultimate Spider-Man (post-Ultimatum 2009 relaunch, including legacy #150-160) #159",
+      "issueNumber": "159",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 189,
+      "section": 1,
+      "sourceBlock": 20,
+      "seriesAlias": "peter-2009",
+      "sourceRangeReference": "Ultimate Spider-Man (post-Ultimatum 2009 relaunch, including legacy #150-160) #158-160",
+      "sourceIssueReference": "Ultimate Spider-Man (post-Ultimatum 2009 relaunch, including legacy #150-160) #160",
+      "issueNumber": "160",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 190,
+      "section": 1,
+      "sourceBlock": 21,
+      "seriesAlias": "avengers-ultimates",
+      "sourceRangeReference": "Ultimate Comics Avengers vs. New Ultimates #5-6",
+      "sourceIssueReference": "Ultimate Comics Avengers vs. New Ultimates #5",
+      "issueNumber": "5",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 191,
+      "section": 1,
+      "sourceBlock": 21,
+      "seriesAlias": "avengers-ultimates",
+      "sourceRangeReference": "Ultimate Comics Avengers vs. New Ultimates #5-6",
+      "sourceIssueReference": "Ultimate Comics Avengers vs. New Ultimates #6",
+      "issueNumber": "6",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 192,
+      "section": 1,
+      "sourceBlock": 22,
+      "seriesAlias": "fallout",
+      "sourceRangeReference": "Ultimate Fallout #1-6",
+      "sourceIssueReference": "Ultimate Fallout #1",
+      "issueNumber": "1",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 193,
+      "section": 1,
+      "sourceBlock": 22,
+      "seriesAlias": "fallout",
+      "sourceRangeReference": "Ultimate Fallout #1-6",
+      "sourceIssueReference": "Ultimate Fallout #2",
+      "issueNumber": "2",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 194,
+      "section": 1,
+      "sourceBlock": 22,
+      "seriesAlias": "fallout",
+      "sourceRangeReference": "Ultimate Fallout #1-6",
+      "sourceIssueReference": "Ultimate Fallout #3",
+      "issueNumber": "3",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 195,
+      "section": 1,
+      "sourceBlock": 22,
+      "seriesAlias": "fallout",
+      "sourceRangeReference": "Ultimate Fallout #1-6",
+      "sourceIssueReference": "Ultimate Fallout #4",
+      "issueNumber": "4",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 196,
+      "section": 1,
+      "sourceBlock": 22,
+      "seriesAlias": "fallout",
+      "sourceRangeReference": "Ultimate Fallout #1-6",
+      "sourceIssueReference": "Ultimate Fallout #5",
+      "issueNumber": "5",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 197,
+      "section": 1,
+      "sourceBlock": 22,
+      "seriesAlias": "fallout",
+      "sourceRangeReference": "Ultimate Fallout #1-6",
+      "sourceIssueReference": "Ultimate Fallout #6",
+      "issueNumber": "6",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 198,
+      "section": 2,
+      "sourceBlock": 23,
+      "seriesAlias": "miles-2011",
+      "sourceRangeReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #1-12",
+      "sourceIssueReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #1",
+      "issueNumber": "1",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 199,
+      "section": 2,
+      "sourceBlock": 23,
+      "seriesAlias": "miles-2011",
+      "sourceRangeReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #1-12",
+      "sourceIssueReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #2",
+      "issueNumber": "2",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 200,
+      "section": 2,
+      "sourceBlock": 23,
+      "seriesAlias": "miles-2011",
+      "sourceRangeReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #1-12",
+      "sourceIssueReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #3",
+      "issueNumber": "3",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 201,
+      "section": 2,
+      "sourceBlock": 23,
+      "seriesAlias": "miles-2011",
+      "sourceRangeReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #1-12",
+      "sourceIssueReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #4",
+      "issueNumber": "4",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 202,
+      "section": 2,
+      "sourceBlock": 23,
+      "seriesAlias": "miles-2011",
+      "sourceRangeReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #1-12",
+      "sourceIssueReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #5",
+      "issueNumber": "5",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 203,
+      "section": 2,
+      "sourceBlock": 23,
+      "seriesAlias": "miles-2011",
+      "sourceRangeReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #1-12",
+      "sourceIssueReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #6",
+      "issueNumber": "6",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 204,
+      "section": 2,
+      "sourceBlock": 23,
+      "seriesAlias": "miles-2011",
+      "sourceRangeReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #1-12",
+      "sourceIssueReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #7",
+      "issueNumber": "7",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 205,
+      "section": 2,
+      "sourceBlock": 23,
+      "seriesAlias": "miles-2011",
+      "sourceRangeReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #1-12",
+      "sourceIssueReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #8",
+      "issueNumber": "8",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 206,
+      "section": 2,
+      "sourceBlock": 23,
+      "seriesAlias": "miles-2011",
+      "sourceRangeReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #1-12",
+      "sourceIssueReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #9",
+      "issueNumber": "9",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 207,
+      "section": 2,
+      "sourceBlock": 23,
+      "seriesAlias": "miles-2011",
+      "sourceRangeReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #1-12",
+      "sourceIssueReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #10",
+      "issueNumber": "10",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 208,
+      "section": 2,
+      "sourceBlock": 23,
+      "seriesAlias": "miles-2011",
+      "sourceRangeReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #1-12",
+      "sourceIssueReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #11",
+      "issueNumber": "11",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 209,
+      "section": 2,
+      "sourceBlock": 23,
+      "seriesAlias": "miles-2011",
+      "sourceRangeReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #1-12",
+      "sourceIssueReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #12",
+      "issueNumber": "12",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 210,
+      "section": 2,
+      "sourceBlock": 24,
+      "seriesAlias": "spider-men",
+      "sourceRangeReference": "Spider-Men #1-5",
+      "sourceIssueReference": "Spider-Men #1",
+      "issueNumber": "1",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 211,
+      "section": 2,
+      "sourceBlock": 24,
+      "seriesAlias": "spider-men",
+      "sourceRangeReference": "Spider-Men #1-5",
+      "sourceIssueReference": "Spider-Men #2",
+      "issueNumber": "2",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 212,
+      "section": 2,
+      "sourceBlock": 24,
+      "seriesAlias": "spider-men",
+      "sourceRangeReference": "Spider-Men #1-5",
+      "sourceIssueReference": "Spider-Men #3",
+      "issueNumber": "3",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 213,
+      "section": 2,
+      "sourceBlock": 24,
+      "seriesAlias": "spider-men",
+      "sourceRangeReference": "Spider-Men #1-5",
+      "sourceIssueReference": "Spider-Men #4",
+      "issueNumber": "4",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 214,
+      "section": 2,
+      "sourceBlock": 24,
+      "seriesAlias": "spider-men",
+      "sourceRangeReference": "Spider-Men #1-5",
+      "sourceIssueReference": "Spider-Men #5",
+      "issueNumber": "5",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 215,
+      "section": 2,
+      "sourceBlock": 25,
+      "seriesAlias": "ultimates-divided",
+      "sourceRangeReference": "The Ultimates (Divided We Fall / United We Stand block) #13-14",
+      "sourceIssueReference": "The Ultimates (Divided We Fall / United We Stand block) #13",
+      "issueNumber": "13",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 216,
+      "section": 2,
+      "sourceBlock": 25,
+      "seriesAlias": "ultimates-divided",
+      "sourceRangeReference": "The Ultimates (Divided We Fall / United We Stand block) #13-14",
+      "sourceIssueReference": "The Ultimates (Divided We Fall / United We Stand block) #14",
+      "issueNumber": "14",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 217,
+      "section": 2,
+      "sourceBlock": 25,
+      "seriesAlias": "miles-2011",
+      "sourceRangeReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #13-14",
+      "sourceIssueReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #13",
+      "issueNumber": "13",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 218,
+      "section": 2,
+      "sourceBlock": 25,
+      "seriesAlias": "miles-2011",
+      "sourceRangeReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #13-14",
+      "sourceIssueReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #14",
+      "issueNumber": "14",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 219,
+      "section": 2,
+      "sourceBlock": 25,
+      "seriesAlias": "ultimates-divided",
+      "sourceRangeReference": "The Ultimates (Divided We Fall / United We Stand block) #15",
+      "sourceIssueReference": "The Ultimates (Divided We Fall / United We Stand block) #15",
+      "issueNumber": "15",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 220,
+      "section": 2,
+      "sourceBlock": 25,
+      "seriesAlias": "miles-2011",
+      "sourceRangeReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #15-16",
+      "sourceIssueReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #15",
+      "issueNumber": "15",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 221,
+      "section": 2,
+      "sourceBlock": 25,
+      "seriesAlias": "miles-2011",
+      "sourceRangeReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #15-16",
+      "sourceIssueReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #16",
+      "issueNumber": "16",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 222,
+      "section": 2,
+      "sourceBlock": 25,
+      "seriesAlias": "ultimates-divided",
+      "sourceRangeReference": "The Ultimates (Divided We Fall / United We Stand block) #16",
+      "sourceIssueReference": "The Ultimates (Divided We Fall / United We Stand block) #16",
+      "issueNumber": "16",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 223,
+      "section": 2,
+      "sourceBlock": 25,
+      "seriesAlias": "miles-2011",
+      "sourceRangeReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #17",
+      "sourceIssueReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #17",
+      "issueNumber": "17",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 224,
+      "section": 2,
+      "sourceBlock": 25,
+      "seriesAlias": "ultimates-divided",
+      "sourceRangeReference": "The Ultimates (Divided We Fall / United We Stand block) #17-18",
+      "sourceIssueReference": "The Ultimates (Divided We Fall / United We Stand block) #17",
+      "issueNumber": "17",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 225,
+      "section": 2,
+      "sourceBlock": 25,
+      "seriesAlias": "ultimates-divided",
+      "sourceRangeReference": "The Ultimates (Divided We Fall / United We Stand block) #17-18",
+      "sourceIssueReference": "The Ultimates (Divided We Fall / United We Stand block) #18",
+      "issueNumber": "18",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 226,
+      "section": 2,
+      "sourceBlock": 25,
+      "seriesAlias": "miles-2011",
+      "sourceRangeReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #18",
+      "sourceIssueReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #18",
+      "issueNumber": "18",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 227,
+      "section": 2,
+      "sourceBlock": 25,
+      "seriesAlias": "ultimates-divided",
+      "sourceRangeReference": "The Ultimates (Divided We Fall / United We Stand block) #18.1",
+      "sourceIssueReference": "The Ultimates (Divided We Fall / United We Stand block) #18.1",
+      "issueNumber": "18.1",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 228,
+      "section": 2,
+      "sourceBlock": 26,
+      "seriesAlias": "miles-2011",
+      "sourceRangeReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #16.1,19-28",
+      "sourceIssueReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #16.1",
+      "issueNumber": "16.1",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 229,
+      "section": 2,
+      "sourceBlock": 26,
+      "seriesAlias": "miles-2011",
+      "sourceRangeReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #16.1,19-28",
+      "sourceIssueReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #19",
+      "issueNumber": "19",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 230,
+      "section": 2,
+      "sourceBlock": 26,
+      "seriesAlias": "miles-2011",
+      "sourceRangeReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #16.1,19-28",
+      "sourceIssueReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #20",
+      "issueNumber": "20",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 231,
+      "section": 2,
+      "sourceBlock": 26,
+      "seriesAlias": "miles-2011",
+      "sourceRangeReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #16.1,19-28",
+      "sourceIssueReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #21",
+      "issueNumber": "21",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 232,
+      "section": 2,
+      "sourceBlock": 26,
+      "seriesAlias": "miles-2011",
+      "sourceRangeReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #16.1,19-28",
+      "sourceIssueReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #22",
+      "issueNumber": "22",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 233,
+      "section": 2,
+      "sourceBlock": 26,
+      "seriesAlias": "miles-2011",
+      "sourceRangeReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #16.1,19-28",
+      "sourceIssueReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #23",
+      "issueNumber": "23",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 234,
+      "section": 2,
+      "sourceBlock": 26,
+      "seriesAlias": "miles-2011",
+      "sourceRangeReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #16.1,19-28",
+      "sourceIssueReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #24",
+      "issueNumber": "24",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 235,
+      "section": 2,
+      "sourceBlock": 26,
+      "seriesAlias": "miles-2011",
+      "sourceRangeReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #16.1,19-28",
+      "sourceIssueReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #25",
+      "issueNumber": "25",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 236,
+      "section": 2,
+      "sourceBlock": 26,
+      "seriesAlias": "miles-2011",
+      "sourceRangeReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #16.1,19-28",
+      "sourceIssueReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #26",
+      "issueNumber": "26",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 237,
+      "section": 2,
+      "sourceBlock": 26,
+      "seriesAlias": "miles-2011",
+      "sourceRangeReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #16.1,19-28",
+      "sourceIssueReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #27",
+      "issueNumber": "27",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 238,
+      "section": 2,
+      "sourceBlock": 26,
+      "seriesAlias": "miles-2011",
+      "sourceRangeReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #16.1,19-28",
+      "sourceIssueReference": "Ultimate Spider-Man (Miles, 2011 relaunch) #28",
+      "issueNumber": "28",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 239,
+      "section": 2,
+      "sourceBlock": 27,
+      "seriesAlias": "miles-2014",
+      "sourceRangeReference": "Miles Morales: Ultimate Spider-Man #1-5",
+      "sourceIssueReference": "Miles Morales: Ultimate Spider-Man #1",
+      "issueNumber": "1",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 240,
+      "section": 2,
+      "sourceBlock": 27,
+      "seriesAlias": "miles-2014",
+      "sourceRangeReference": "Miles Morales: Ultimate Spider-Man #1-5",
+      "sourceIssueReference": "Miles Morales: Ultimate Spider-Man #2",
+      "issueNumber": "2",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 241,
+      "section": 2,
+      "sourceBlock": 27,
+      "seriesAlias": "miles-2014",
+      "sourceRangeReference": "Miles Morales: Ultimate Spider-Man #1-5",
+      "sourceIssueReference": "Miles Morales: Ultimate Spider-Man #3",
+      "issueNumber": "3",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 242,
+      "section": 2,
+      "sourceBlock": 27,
+      "seriesAlias": "miles-2014",
+      "sourceRangeReference": "Miles Morales: Ultimate Spider-Man #1-5",
+      "sourceIssueReference": "Miles Morales: Ultimate Spider-Man #4",
+      "issueNumber": "4",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 243,
+      "section": 2,
+      "sourceBlock": 27,
+      "seriesAlias": "miles-2014",
+      "sourceRangeReference": "Miles Morales: Ultimate Spider-Man #1-5",
+      "sourceIssueReference": "Miles Morales: Ultimate Spider-Man #5",
+      "issueNumber": "5",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 244,
+      "section": 2,
+      "sourceBlock": 27,
+      "seriesAlias": "peter-legacy-200",
+      "sourceRangeReference": "Ultimate Spider-Man #200 (legacy-numbered original title) #200",
+      "sourceIssueReference": "Ultimate Spider-Man #200 (legacy-numbered original title) #200",
+      "issueNumber": "200",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 245,
+      "section": 2,
+      "sourceBlock": 28,
+      "seriesAlias": "x-men-adventure",
+      "sourceRangeReference": "All-New X-Men: Ultimate Adventure #31-36",
+      "sourceIssueReference": "All-New X-Men: Ultimate Adventure #31",
+      "issueNumber": "31",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 246,
+      "section": 2,
+      "sourceBlock": 28,
+      "seriesAlias": "x-men-adventure",
+      "sourceRangeReference": "All-New X-Men: Ultimate Adventure #31-36",
+      "sourceIssueReference": "All-New X-Men: Ultimate Adventure #32",
+      "issueNumber": "32",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 247,
+      "section": 2,
+      "sourceBlock": 28,
+      "seriesAlias": "x-men-adventure",
+      "sourceRangeReference": "All-New X-Men: Ultimate Adventure #31-36",
+      "sourceIssueReference": "All-New X-Men: Ultimate Adventure #33",
+      "issueNumber": "33",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 248,
+      "section": 2,
+      "sourceBlock": 28,
+      "seriesAlias": "x-men-adventure",
+      "sourceRangeReference": "All-New X-Men: Ultimate Adventure #31-36",
+      "sourceIssueReference": "All-New X-Men: Ultimate Adventure #34",
+      "issueNumber": "34",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 249,
+      "section": 2,
+      "sourceBlock": 28,
+      "seriesAlias": "x-men-adventure",
+      "sourceRangeReference": "All-New X-Men: Ultimate Adventure #31-36",
+      "sourceIssueReference": "All-New X-Men: Ultimate Adventure #35",
+      "issueNumber": "35",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 250,
+      "section": 2,
+      "sourceBlock": 28,
+      "seriesAlias": "x-men-adventure",
+      "sourceRangeReference": "All-New X-Men: Ultimate Adventure #31-36",
+      "sourceIssueReference": "All-New X-Men: Ultimate Adventure #36",
+      "issueNumber": "36",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 251,
+      "section": 2,
+      "sourceBlock": 29,
+      "seriesAlias": "miles-2014",
+      "sourceRangeReference": "Miles Morales: Ultimate Spider-Man #6-12",
+      "sourceIssueReference": "Miles Morales: Ultimate Spider-Man #6",
+      "issueNumber": "6",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 252,
+      "section": 2,
+      "sourceBlock": 29,
+      "seriesAlias": "miles-2014",
+      "sourceRangeReference": "Miles Morales: Ultimate Spider-Man #6-12",
+      "sourceIssueReference": "Miles Morales: Ultimate Spider-Man #7",
+      "issueNumber": "7",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 253,
+      "section": 2,
+      "sourceBlock": 29,
+      "seriesAlias": "miles-2014",
+      "sourceRangeReference": "Miles Morales: Ultimate Spider-Man #6-12",
+      "sourceIssueReference": "Miles Morales: Ultimate Spider-Man #8",
+      "issueNumber": "8",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 254,
+      "section": 2,
+      "sourceBlock": 29,
+      "seriesAlias": "miles-2014",
+      "sourceRangeReference": "Miles Morales: Ultimate Spider-Man #6-12",
+      "sourceIssueReference": "Miles Morales: Ultimate Spider-Man #9",
+      "issueNumber": "9",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 255,
+      "section": 2,
+      "sourceBlock": 29,
+      "seriesAlias": "miles-2014",
+      "sourceRangeReference": "Miles Morales: Ultimate Spider-Man #6-12",
+      "sourceIssueReference": "Miles Morales: Ultimate Spider-Man #10",
+      "issueNumber": "10",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 256,
+      "section": 2,
+      "sourceBlock": 29,
+      "seriesAlias": "miles-2014",
+      "sourceRangeReference": "Miles Morales: Ultimate Spider-Man #6-12",
+      "sourceIssueReference": "Miles Morales: Ultimate Spider-Man #11",
+      "issueNumber": "11",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 257,
+      "section": 2,
+      "sourceBlock": 29,
+      "seriesAlias": "miles-2014",
+      "sourceRangeReference": "Miles Morales: Ultimate Spider-Man #6-12",
+      "sourceIssueReference": "Miles Morales: Ultimate Spider-Man #12",
+      "issueNumber": "12",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 258,
+      "section": 2,
+      "sourceBlock": 30,
+      "seriesAlias": "all-new-ultimates",
+      "sourceRangeReference": "All-New Ultimates #1-6",
+      "sourceIssueReference": "All-New Ultimates #1",
+      "issueNumber": "1",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 259,
+      "section": 2,
+      "sourceBlock": 30,
+      "seriesAlias": "all-new-ultimates",
+      "sourceRangeReference": "All-New Ultimates #1-6",
+      "sourceIssueReference": "All-New Ultimates #2",
+      "issueNumber": "2",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 260,
+      "section": 2,
+      "sourceBlock": 30,
+      "seriesAlias": "all-new-ultimates",
+      "sourceRangeReference": "All-New Ultimates #1-6",
+      "sourceIssueReference": "All-New Ultimates #3",
+      "issueNumber": "3",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 261,
+      "section": 2,
+      "sourceBlock": 30,
+      "seriesAlias": "all-new-ultimates",
+      "sourceRangeReference": "All-New Ultimates #1-6",
+      "sourceIssueReference": "All-New Ultimates #4",
+      "issueNumber": "4",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 262,
+      "section": 2,
+      "sourceBlock": 30,
+      "seriesAlias": "all-new-ultimates",
+      "sourceRangeReference": "All-New Ultimates #1-6",
+      "sourceIssueReference": "All-New Ultimates #5",
+      "issueNumber": "5",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 263,
+      "section": 2,
+      "sourceBlock": 30,
+      "seriesAlias": "all-new-ultimates",
+      "sourceRangeReference": "All-New Ultimates #1-6",
+      "sourceIssueReference": "All-New Ultimates #6",
+      "issueNumber": "6",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 264,
+      "section": 2,
+      "sourceBlock": 31,
+      "seriesAlias": "all-new-ultimates",
+      "sourceRangeReference": "All-New Ultimates #7-12",
+      "sourceIssueReference": "All-New Ultimates #7",
+      "issueNumber": "7",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 265,
+      "section": 2,
+      "sourceBlock": 31,
+      "seriesAlias": "all-new-ultimates",
+      "sourceRangeReference": "All-New Ultimates #7-12",
+      "sourceIssueReference": "All-New Ultimates #8",
+      "issueNumber": "8",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 266,
+      "section": 2,
+      "sourceBlock": 31,
+      "seriesAlias": "all-new-ultimates",
+      "sourceRangeReference": "All-New Ultimates #7-12",
+      "sourceIssueReference": "All-New Ultimates #9",
+      "issueNumber": "9",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 267,
+      "section": 2,
+      "sourceBlock": 31,
+      "seriesAlias": "all-new-ultimates",
+      "sourceRangeReference": "All-New Ultimates #7-12",
+      "sourceIssueReference": "All-New Ultimates #10",
+      "issueNumber": "10",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 268,
+      "section": 2,
+      "sourceBlock": 31,
+      "seriesAlias": "all-new-ultimates",
+      "sourceRangeReference": "All-New Ultimates #7-12",
+      "sourceIssueReference": "All-New Ultimates #11",
+      "issueNumber": "11",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 269,
+      "section": 2,
+      "sourceBlock": 31,
+      "seriesAlias": "all-new-ultimates",
+      "sourceRangeReference": "All-New Ultimates #7-12",
+      "sourceIssueReference": "All-New Ultimates #12",
+      "issueNumber": "12",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 270,
+      "section": 3,
+      "sourceBlock": 32,
+      "seriesAlias": "spider-man-2016",
+      "sourceRangeReference": "Spider-Man (post-Secret-Wars Miles, source 2016 volume) #1-5",
+      "sourceIssueReference": "Spider-Man (post-Secret-Wars Miles, source 2016 volume) #1",
+      "issueNumber": "1",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 271,
+      "section": 3,
+      "sourceBlock": 32,
+      "seriesAlias": "spider-man-2016",
+      "sourceRangeReference": "Spider-Man (post-Secret-Wars Miles, source 2016 volume) #1-5",
+      "sourceIssueReference": "Spider-Man (post-Secret-Wars Miles, source 2016 volume) #2",
+      "issueNumber": "2",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 272,
+      "section": 3,
+      "sourceBlock": 32,
+      "seriesAlias": "spider-man-2016",
+      "sourceRangeReference": "Spider-Man (post-Secret-Wars Miles, source 2016 volume) #1-5",
+      "sourceIssueReference": "Spider-Man (post-Secret-Wars Miles, source 2016 volume) #3",
+      "issueNumber": "3",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 273,
+      "section": 3,
+      "sourceBlock": 32,
+      "seriesAlias": "spider-man-2016",
+      "sourceRangeReference": "Spider-Man (post-Secret-Wars Miles, source 2016 volume) #1-5",
+      "sourceIssueReference": "Spider-Man (post-Secret-Wars Miles, source 2016 volume) #4",
+      "issueNumber": "4",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 274,
+      "section": 3,
+      "sourceBlock": 32,
+      "seriesAlias": "spider-man-2016",
+      "sourceRangeReference": "Spider-Man (post-Secret-Wars Miles, source 2016 volume) #1-5",
+      "sourceIssueReference": "Spider-Man (post-Secret-Wars Miles, source 2016 volume) #5",
+      "issueNumber": "5",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 275,
+      "section": 3,
+      "sourceBlock": 33,
+      "seriesAlias": "spider-man-2016",
+      "sourceRangeReference": "Spider-Man (post-Secret-Wars Miles, source 2016 volume) #6-10",
+      "sourceIssueReference": "Spider-Man (post-Secret-Wars Miles, source 2016 volume) #6",
+      "issueNumber": "6",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 276,
+      "section": 3,
+      "sourceBlock": 33,
+      "seriesAlias": "spider-man-2016",
+      "sourceRangeReference": "Spider-Man (post-Secret-Wars Miles, source 2016 volume) #6-10",
+      "sourceIssueReference": "Spider-Man (post-Secret-Wars Miles, source 2016 volume) #7",
+      "issueNumber": "7",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 277,
+      "section": 3,
+      "sourceBlock": 33,
+      "seriesAlias": "spider-man-2016",
+      "sourceRangeReference": "Spider-Man (post-Secret-Wars Miles, source 2016 volume) #6-10",
+      "sourceIssueReference": "Spider-Man (post-Secret-Wars Miles, source 2016 volume) #8",
+      "issueNumber": "8",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 278,
+      "section": 3,
+      "sourceBlock": 33,
+      "seriesAlias": "spider-man-2016",
+      "sourceRangeReference": "Spider-Man (post-Secret-Wars Miles, source 2016 volume) #6-10",
+      "sourceIssueReference": "Spider-Man (post-Secret-Wars Miles, source 2016 volume) #9",
+      "issueNumber": "9",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 279,
+      "section": 3,
+      "sourceBlock": 33,
+      "seriesAlias": "spider-man-2016",
+      "sourceRangeReference": "Spider-Man (post-Secret-Wars Miles, source 2016 volume) #6-10",
+      "sourceIssueReference": "Spider-Man (post-Secret-Wars Miles, source 2016 volume) #10",
+      "issueNumber": "10",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 280,
+      "section": 3,
+      "sourceBlock": 34,
+      "seriesAlias": "spider-man-2016",
+      "sourceRangeReference": "Spider-Man (post-Secret-Wars Miles, source 2016 volume) #15-21",
+      "sourceIssueReference": "Spider-Man (post-Secret-Wars Miles, source 2016 volume) #15",
+      "issueNumber": "15",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 281,
+      "section": 3,
+      "sourceBlock": 34,
+      "seriesAlias": "spider-man-2016",
+      "sourceRangeReference": "Spider-Man (post-Secret-Wars Miles, source 2016 volume) #15-21",
+      "sourceIssueReference": "Spider-Man (post-Secret-Wars Miles, source 2016 volume) #16",
+      "issueNumber": "16",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 282,
+      "section": 3,
+      "sourceBlock": 34,
+      "seriesAlias": "spider-man-2016",
+      "sourceRangeReference": "Spider-Man (post-Secret-Wars Miles, source 2016 volume) #15-21",
+      "sourceIssueReference": "Spider-Man (post-Secret-Wars Miles, source 2016 volume) #17",
+      "issueNumber": "17",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 283,
+      "section": 3,
+      "sourceBlock": 34,
+      "seriesAlias": "spider-man-2016",
+      "sourceRangeReference": "Spider-Man (post-Secret-Wars Miles, source 2016 volume) #15-21",
+      "sourceIssueReference": "Spider-Man (post-Secret-Wars Miles, source 2016 volume) #18",
+      "issueNumber": "18",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 284,
+      "section": 3,
+      "sourceBlock": 34,
+      "seriesAlias": "spider-man-2016",
+      "sourceRangeReference": "Spider-Man (post-Secret-Wars Miles, source 2016 volume) #15-21",
+      "sourceIssueReference": "Spider-Man (post-Secret-Wars Miles, source 2016 volume) #19",
+      "issueNumber": "19",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 285,
+      "section": 3,
+      "sourceBlock": 34,
+      "seriesAlias": "spider-man-2016",
+      "sourceRangeReference": "Spider-Man (post-Secret-Wars Miles, source 2016 volume) #15-21",
+      "sourceIssueReference": "Spider-Man (post-Secret-Wars Miles, source 2016 volume) #20",
+      "issueNumber": "20",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 286,
+      "section": 3,
+      "sourceBlock": 34,
+      "seriesAlias": "spider-man-2016",
+      "sourceRangeReference": "Spider-Man (post-Secret-Wars Miles, source 2016 volume) #15-21",
+      "sourceIssueReference": "Spider-Man (post-Secret-Wars Miles, source 2016 volume) #21",
+      "issueNumber": "21",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 287,
+      "section": 3,
+      "sourceBlock": 35,
+      "seriesAlias": "spider-man-2016",
+      "sourceRangeReference": "Spider-Man (post-Secret-Wars Miles, source 2016 volume) #234-240",
+      "sourceIssueReference": "Spider-Man (post-Secret-Wars Miles, source 2016 volume) #234",
+      "issueNumber": "234",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 288,
+      "section": 3,
+      "sourceBlock": 35,
+      "seriesAlias": "spider-man-2016",
+      "sourceRangeReference": "Spider-Man (post-Secret-Wars Miles, source 2016 volume) #234-240",
+      "sourceIssueReference": "Spider-Man (post-Secret-Wars Miles, source 2016 volume) #235",
+      "issueNumber": "235",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 289,
+      "section": 3,
+      "sourceBlock": 35,
+      "seriesAlias": "spider-man-2016",
+      "sourceRangeReference": "Spider-Man (post-Secret-Wars Miles, source 2016 volume) #234-240",
+      "sourceIssueReference": "Spider-Man (post-Secret-Wars Miles, source 2016 volume) #236",
+      "issueNumber": "236",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 290,
+      "section": 3,
+      "sourceBlock": 35,
+      "seriesAlias": "spider-man-2016",
+      "sourceRangeReference": "Spider-Man (post-Secret-Wars Miles, source 2016 volume) #234-240",
+      "sourceIssueReference": "Spider-Man (post-Secret-Wars Miles, source 2016 volume) #237",
+      "issueNumber": "237",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 291,
+      "section": 3,
+      "sourceBlock": 35,
+      "seriesAlias": "spider-man-2016",
+      "sourceRangeReference": "Spider-Man (post-Secret-Wars Miles, source 2016 volume) #234-240",
+      "sourceIssueReference": "Spider-Man (post-Secret-Wars Miles, source 2016 volume) #238",
+      "issueNumber": "238",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 292,
+      "section": 3,
+      "sourceBlock": 35,
+      "seriesAlias": "spider-man-2016",
+      "sourceRangeReference": "Spider-Man (post-Secret-Wars Miles, source 2016 volume) #234-240",
+      "sourceIssueReference": "Spider-Man (post-Secret-Wars Miles, source 2016 volume) #239",
+      "issueNumber": "239",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 293,
+      "section": 3,
+      "sourceBlock": 35,
+      "seriesAlias": "spider-man-2016",
+      "sourceRangeReference": "Spider-Man (post-Secret-Wars Miles, source 2016 volume) #234-240",
+      "sourceIssueReference": "Spider-Man (post-Secret-Wars Miles, source 2016 volume) #240",
+      "issueNumber": "240",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 294,
+      "section": 3,
+      "sourceBlock": 36,
+      "seriesAlias": "champions-2016",
+      "sourceRangeReference": "Champions (2016) #6-12",
+      "sourceIssueReference": "Champions (2016) #6",
+      "issueNumber": "6",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 295,
+      "section": 3,
+      "sourceBlock": 36,
+      "seriesAlias": "champions-2016",
+      "sourceRangeReference": "Champions (2016) #6-12",
+      "sourceIssueReference": "Champions (2016) #7",
+      "issueNumber": "7",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 296,
+      "section": 3,
+      "sourceBlock": 36,
+      "seriesAlias": "champions-2016",
+      "sourceRangeReference": "Champions (2016) #6-12",
+      "sourceIssueReference": "Champions (2016) #8",
+      "issueNumber": "8",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 297,
+      "section": 3,
+      "sourceBlock": 36,
+      "seriesAlias": "champions-2016",
+      "sourceRangeReference": "Champions (2016) #6-12",
+      "sourceIssueReference": "Champions (2016) #9",
+      "issueNumber": "9",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 298,
+      "section": 3,
+      "sourceBlock": 36,
+      "seriesAlias": "champions-2016",
+      "sourceRangeReference": "Champions (2016) #6-12",
+      "sourceIssueReference": "Champions (2016) #10",
+      "issueNumber": "10",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 299,
+      "section": 3,
+      "sourceBlock": 36,
+      "seriesAlias": "champions-2016",
+      "sourceRangeReference": "Champions (2016) #6-12",
+      "sourceIssueReference": "Champions (2016) #11",
+      "issueNumber": "11",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 300,
+      "section": 3,
+      "sourceBlock": 36,
+      "seriesAlias": "champions-2016",
+      "sourceRangeReference": "Champions (2016) #6-12",
+      "sourceIssueReference": "Champions (2016) #12",
+      "issueNumber": "12",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 301,
+      "section": 3,
+      "sourceBlock": 37,
+      "seriesAlias": "champions-2016",
+      "sourceRangeReference": "Champions (2016) #16-18,1.MU",
+      "sourceIssueReference": "Champions (2016) #16",
+      "issueNumber": "16",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 302,
+      "section": 3,
+      "sourceBlock": 37,
+      "seriesAlias": "champions-2016",
+      "sourceRangeReference": "Champions (2016) #16-18,1.MU",
+      "sourceIssueReference": "Champions (2016) #17",
+      "issueNumber": "17",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 303,
+      "section": 3,
+      "sourceBlock": 37,
+      "seriesAlias": "champions-2016",
+      "sourceRangeReference": "Champions (2016) #16-18,1.MU",
+      "sourceIssueReference": "Champions (2016) #18",
+      "issueNumber": "18",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 304,
+      "section": 3,
+      "sourceBlock": 37,
+      "seriesAlias": "champions-2016",
+      "sourceRangeReference": "Champions (2016) #16-18,1.MU",
+      "sourceIssueReference": "Champions (2016) #1.MU",
+      "issueNumber": "1.MU",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 305,
+      "section": 3,
+      "sourceBlock": 38,
+      "seriesAlias": "champions-2016",
+      "sourceRangeReference": "Champions (2016) #19-21",
+      "sourceIssueReference": "Champions (2016) #19",
+      "issueNumber": "19",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 306,
+      "section": 3,
+      "sourceBlock": 38,
+      "seriesAlias": "champions-2016",
+      "sourceRangeReference": "Champions (2016) #19-21",
+      "sourceIssueReference": "Champions (2016) #20",
+      "issueNumber": "20",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 307,
+      "section": 3,
+      "sourceBlock": 38,
+      "seriesAlias": "champions-2016",
+      "sourceRangeReference": "Champions (2016) #19-21",
+      "sourceIssueReference": "Champions (2016) #21",
+      "issueNumber": "21",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 308,
+      "section": 3,
+      "sourceBlock": 38,
+      "seriesAlias": "champions-infinity-countdown",
+      "sourceRangeReference": "Infinity Countdown: Champions #1-2",
+      "sourceIssueReference": "Infinity Countdown: Champions #1",
+      "issueNumber": "1",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 309,
+      "section": 3,
+      "sourceBlock": 38,
+      "seriesAlias": "champions-infinity-countdown",
+      "sourceRangeReference": "Infinity Countdown: Champions #1-2",
+      "sourceIssueReference": "Infinity Countdown: Champions #2",
+      "issueNumber": "2",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 310,
+      "section": 3,
+      "sourceBlock": 39,
+      "seriesAlias": "champions-2016",
+      "sourceRangeReference": "Champions (2016) #22-27",
+      "sourceIssueReference": "Champions (2016) #22",
+      "issueNumber": "22",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 311,
+      "section": 3,
+      "sourceBlock": 39,
+      "seriesAlias": "champions-2016",
+      "sourceRangeReference": "Champions (2016) #22-27",
+      "sourceIssueReference": "Champions (2016) #23",
+      "issueNumber": "23",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 312,
+      "section": 3,
+      "sourceBlock": 39,
+      "seriesAlias": "champions-2016",
+      "sourceRangeReference": "Champions (2016) #22-27",
+      "sourceIssueReference": "Champions (2016) #24",
+      "issueNumber": "24",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 313,
+      "section": 3,
+      "sourceBlock": 39,
+      "seriesAlias": "champions-2016",
+      "sourceRangeReference": "Champions (2016) #22-27",
+      "sourceIssueReference": "Champions (2016) #25",
+      "issueNumber": "25",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 314,
+      "section": 3,
+      "sourceBlock": 39,
+      "seriesAlias": "champions-2016",
+      "sourceRangeReference": "Champions (2016) #22-27",
+      "sourceIssueReference": "Champions (2016) #26",
+      "issueNumber": "26",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 315,
+      "section": 3,
+      "sourceBlock": 39,
+      "seriesAlias": "champions-2016",
+      "sourceRangeReference": "Champions (2016) #22-27",
+      "sourceIssueReference": "Champions (2016) #27",
+      "issueNumber": "27",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 316,
+      "section": 3,
+      "sourceBlock": 39,
+      "seriesAlias": "champions-annual",
+      "sourceRangeReference": "Champions Annual #1",
+      "sourceIssueReference": "Champions Annual #1",
+      "issueNumber": "1",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 317,
+      "section": 4,
+      "sourceBlock": 40,
+      "seriesAlias": "new-ultimate-2024",
+      "sourceRangeReference": "Ultimate Spider-Man (new Ultimate universe, 2024) #1-6",
+      "sourceIssueReference": "Ultimate Spider-Man (new Ultimate universe, 2024) #1",
+      "issueNumber": "1",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 318,
+      "section": 4,
+      "sourceBlock": 40,
+      "seriesAlias": "new-ultimate-2024",
+      "sourceRangeReference": "Ultimate Spider-Man (new Ultimate universe, 2024) #1-6",
+      "sourceIssueReference": "Ultimate Spider-Man (new Ultimate universe, 2024) #2",
+      "issueNumber": "2",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 319,
+      "section": 4,
+      "sourceBlock": 40,
+      "seriesAlias": "new-ultimate-2024",
+      "sourceRangeReference": "Ultimate Spider-Man (new Ultimate universe, 2024) #1-6",
+      "sourceIssueReference": "Ultimate Spider-Man (new Ultimate universe, 2024) #3",
+      "issueNumber": "3",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 320,
+      "section": 4,
+      "sourceBlock": 40,
+      "seriesAlias": "new-ultimate-2024",
+      "sourceRangeReference": "Ultimate Spider-Man (new Ultimate universe, 2024) #1-6",
+      "sourceIssueReference": "Ultimate Spider-Man (new Ultimate universe, 2024) #4",
+      "issueNumber": "4",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 321,
+      "section": 4,
+      "sourceBlock": 40,
+      "seriesAlias": "new-ultimate-2024",
+      "sourceRangeReference": "Ultimate Spider-Man (new Ultimate universe, 2024) #1-6",
+      "sourceIssueReference": "Ultimate Spider-Man (new Ultimate universe, 2024) #5",
+      "issueNumber": "5",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 322,
+      "section": 4,
+      "sourceBlock": 40,
+      "seriesAlias": "new-ultimate-2024",
+      "sourceRangeReference": "Ultimate Spider-Man (new Ultimate universe, 2024) #1-6",
+      "sourceIssueReference": "Ultimate Spider-Man (new Ultimate universe, 2024) #6",
+      "issueNumber": "6",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 323,
+      "section": 4,
+      "sourceBlock": 41,
+      "seriesAlias": "new-ultimate-2024",
+      "sourceRangeReference": "Ultimate Spider-Man (new Ultimate universe, 2024) #7-12",
+      "sourceIssueReference": "Ultimate Spider-Man (new Ultimate universe, 2024) #7",
+      "issueNumber": "7",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 324,
+      "section": 4,
+      "sourceBlock": 41,
+      "seriesAlias": "new-ultimate-2024",
+      "sourceRangeReference": "Ultimate Spider-Man (new Ultimate universe, 2024) #7-12",
+      "sourceIssueReference": "Ultimate Spider-Man (new Ultimate universe, 2024) #8",
+      "issueNumber": "8",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 325,
+      "section": 4,
+      "sourceBlock": 41,
+      "seriesAlias": "new-ultimate-2024",
+      "sourceRangeReference": "Ultimate Spider-Man (new Ultimate universe, 2024) #7-12",
+      "sourceIssueReference": "Ultimate Spider-Man (new Ultimate universe, 2024) #9",
+      "issueNumber": "9",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 326,
+      "section": 4,
+      "sourceBlock": 41,
+      "seriesAlias": "new-ultimate-2024",
+      "sourceRangeReference": "Ultimate Spider-Man (new Ultimate universe, 2024) #7-12",
+      "sourceIssueReference": "Ultimate Spider-Man (new Ultimate universe, 2024) #10",
+      "issueNumber": "10",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 327,
+      "section": 4,
+      "sourceBlock": 41,
+      "seriesAlias": "new-ultimate-2024",
+      "sourceRangeReference": "Ultimate Spider-Man (new Ultimate universe, 2024) #7-12",
+      "sourceIssueReference": "Ultimate Spider-Man (new Ultimate universe, 2024) #11",
+      "issueNumber": "11",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 328,
+      "section": 4,
+      "sourceBlock": 41,
+      "seriesAlias": "new-ultimate-2024",
+      "sourceRangeReference": "Ultimate Spider-Man (new Ultimate universe, 2024) #7-12",
+      "sourceIssueReference": "Ultimate Spider-Man (new Ultimate universe, 2024) #12",
+      "issueNumber": "12",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 329,
+      "section": 4,
+      "sourceBlock": 42,
+      "seriesAlias": "new-ultimate-2024",
+      "sourceRangeReference": "Ultimate Spider-Man (new Ultimate universe, 2024) #13-18",
+      "sourceIssueReference": "Ultimate Spider-Man (new Ultimate universe, 2024) #13",
+      "issueNumber": "13",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 330,
+      "section": 4,
+      "sourceBlock": 42,
+      "seriesAlias": "new-ultimate-2024",
+      "sourceRangeReference": "Ultimate Spider-Man (new Ultimate universe, 2024) #13-18",
+      "sourceIssueReference": "Ultimate Spider-Man (new Ultimate universe, 2024) #14",
+      "issueNumber": "14",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 331,
+      "section": 4,
+      "sourceBlock": 42,
+      "seriesAlias": "new-ultimate-2024",
+      "sourceRangeReference": "Ultimate Spider-Man (new Ultimate universe, 2024) #13-18",
+      "sourceIssueReference": "Ultimate Spider-Man (new Ultimate universe, 2024) #15",
+      "issueNumber": "15",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 332,
+      "section": 4,
+      "sourceBlock": 42,
+      "seriesAlias": "new-ultimate-2024",
+      "sourceRangeReference": "Ultimate Spider-Man (new Ultimate universe, 2024) #13-18",
+      "sourceIssueReference": "Ultimate Spider-Man (new Ultimate universe, 2024) #16",
+      "issueNumber": "16",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 333,
+      "section": 4,
+      "sourceBlock": 42,
+      "seriesAlias": "new-ultimate-2024",
+      "sourceRangeReference": "Ultimate Spider-Man (new Ultimate universe, 2024) #13-18",
+      "sourceIssueReference": "Ultimate Spider-Man (new Ultimate universe, 2024) #17",
+      "issueNumber": "17",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 334,
+      "section": 4,
+      "sourceBlock": 42,
+      "seriesAlias": "new-ultimate-2024",
+      "sourceRangeReference": "Ultimate Spider-Man (new Ultimate universe, 2024) #13-18",
+      "sourceIssueReference": "Ultimate Spider-Man (new Ultimate universe, 2024) #18",
+      "issueNumber": "18",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 335,
+      "section": 4,
+      "sourceBlock": 43,
+      "seriesAlias": "fcbd-2025",
+      "sourceRangeReference": "Free Comic Book Day 2025: Amazing Spider-Man/Ultimate Universe #1",
+      "sourceIssueReference": "Free Comic Book Day 2025: Amazing Spider-Man/Ultimate Universe #1",
+      "issueNumber": "1",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 336,
+      "section": 4,
+      "sourceBlock": 43,
+      "seriesAlias": "incursion-2025",
+      "sourceRangeReference": "Ultimate Spider-Man: Incursion (2025) #1-5",
+      "sourceIssueReference": "Ultimate Spider-Man: Incursion (2025) #1",
+      "issueNumber": "1",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 337,
+      "section": 4,
+      "sourceBlock": 43,
+      "seriesAlias": "incursion-2025",
+      "sourceRangeReference": "Ultimate Spider-Man: Incursion (2025) #1-5",
+      "sourceIssueReference": "Ultimate Spider-Man: Incursion (2025) #2",
+      "issueNumber": "2",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 338,
+      "section": 4,
+      "sourceBlock": 43,
+      "seriesAlias": "incursion-2025",
+      "sourceRangeReference": "Ultimate Spider-Man: Incursion (2025) #1-5",
+      "sourceIssueReference": "Ultimate Spider-Man: Incursion (2025) #3",
+      "issueNumber": "3",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 339,
+      "section": 4,
+      "sourceBlock": 43,
+      "seriesAlias": "incursion-2025",
+      "sourceRangeReference": "Ultimate Spider-Man: Incursion (2025) #1-5",
+      "sourceIssueReference": "Ultimate Spider-Man: Incursion (2025) #4",
+      "issueNumber": "4",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 340,
+      "section": 4,
+      "sourceBlock": 43,
+      "seriesAlias": "incursion-2025",
+      "sourceRangeReference": "Ultimate Spider-Man: Incursion (2025) #1-5",
+      "sourceIssueReference": "Ultimate Spider-Man: Incursion (2025) #5",
+      "issueNumber": "5",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 341,
+      "section": 4,
+      "sourceBlock": 44,
+      "seriesAlias": "new-ultimate-2024",
+      "sourceRangeReference": "Ultimate Spider-Man (new Ultimate universe, 2024) #19-24",
+      "sourceIssueReference": "Ultimate Spider-Man (new Ultimate universe, 2024) #19",
+      "issueNumber": "19",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 342,
+      "section": 4,
+      "sourceBlock": 44,
+      "seriesAlias": "new-ultimate-2024",
+      "sourceRangeReference": "Ultimate Spider-Man (new Ultimate universe, 2024) #19-24",
+      "sourceIssueReference": "Ultimate Spider-Man (new Ultimate universe, 2024) #20",
+      "issueNumber": "20",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 343,
+      "section": 4,
+      "sourceBlock": 44,
+      "seriesAlias": "new-ultimate-2024",
+      "sourceRangeReference": "Ultimate Spider-Man (new Ultimate universe, 2024) #19-24",
+      "sourceIssueReference": "Ultimate Spider-Man (new Ultimate universe, 2024) #21",
+      "issueNumber": "21",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 344,
+      "section": 4,
+      "sourceBlock": 44,
+      "seriesAlias": "new-ultimate-2024",
+      "sourceRangeReference": "Ultimate Spider-Man (new Ultimate universe, 2024) #19-24",
+      "sourceIssueReference": "Ultimate Spider-Man (new Ultimate universe, 2024) #22",
+      "issueNumber": "22",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 345,
+      "section": 4,
+      "sourceBlock": 44,
+      "seriesAlias": "new-ultimate-2024",
+      "sourceRangeReference": "Ultimate Spider-Man (new Ultimate universe, 2024) #19-24",
+      "sourceIssueReference": "Ultimate Spider-Man (new Ultimate universe, 2024) #23",
+      "issueNumber": "23",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 346,
+      "section": 4,
+      "sourceBlock": 44,
+      "seriesAlias": "new-ultimate-2024",
+      "sourceRangeReference": "Ultimate Spider-Man (new Ultimate universe, 2024) #19-24",
+      "sourceIssueReference": "Ultimate Spider-Man (new Ultimate universe, 2024) #24",
+      "issueNumber": "24",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 347,
+      "section": 4,
+      "sourceBlock": 45,
+      "seriesAlias": "endgame",
+      "sourceRangeReference": "Ultimate Endgame #1-5",
+      "sourceIssueReference": "Ultimate Endgame #1",
+      "issueNumber": "1",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 348,
+      "section": 4,
+      "sourceBlock": 45,
+      "seriesAlias": "endgame",
+      "sourceRangeReference": "Ultimate Endgame #1-5",
+      "sourceIssueReference": "Ultimate Endgame #2",
+      "issueNumber": "2",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 349,
+      "section": 4,
+      "sourceBlock": 45,
+      "seriesAlias": "endgame",
+      "sourceRangeReference": "Ultimate Endgame #1-5",
+      "sourceIssueReference": "Ultimate Endgame #3",
+      "issueNumber": "3",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 350,
+      "section": 4,
+      "sourceBlock": 45,
+      "seriesAlias": "endgame",
+      "sourceRangeReference": "Ultimate Endgame #1-5",
+      "sourceIssueReference": "Ultimate Endgame #4",
+      "issueNumber": "4",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 351,
+      "section": 4,
+      "sourceBlock": 45,
+      "seriesAlias": "endgame",
+      "sourceRangeReference": "Ultimate Endgame #1-5",
+      "sourceIssueReference": "Ultimate Endgame #5",
+      "issueNumber": "5",
+      "disposition": "canonical"
+    },
+    {
+      "sourcePosition": 352,
+      "section": 4,
+      "sourceBlock": 46,
+      "seriesAlias": "finale-2026",
+      "sourceRangeReference": "Ultimate Universe: Finale (2026) #1",
+      "sourceIssueReference": "Ultimate Universe: Finale (2026) #1",
+      "issueNumber": "1",
+      "disposition": "canonical"
+    }
+  ],
+  "repeatedSourceReferences": [],
+  "nonselectedReferences": [
+    {
+      "reference": "Ultimate War",
+      "afterSelectedBlock": 7,
+      "kind": "unnumbered optional event",
+      "reason": "The page does not enumerate issues for this pointer."
+    },
+    {
+      "reference": "Ultimate Gah Lak Tus trilogy",
+      "afterSelectedBlock": 9,
+      "kind": "unnumbered context",
+      "reason": "The page says it does not affect the main route and gives no issue selection."
+    },
+    {
+      "reference": "Ultimate Spider-Man (2000) #47-53",
+      "afterSelectedBlock": 8,
+      "kind": "source omission",
+      "reason": "The explicit selected sequence jumps from #28-46 through Ultimate Six to #54-85."
+    },
+    {
+      "reference": "Ultimate Spider-Man (2009) #15",
+      "afterSelectedBlock": 17,
+      "kind": "source contradiction",
+      "reason": "Intro says first fifteen relaunch issues, but the numbered list selects #1-14 then #150-160. The coordinator approved the explicit list and excluded #15."
+    },
+    {
+      "reference": "Ultimate X-Men Divided We Fall tie-ins",
+      "afterSelectedBlock": 24,
+      "kind": "unnumbered alternative",
+      "reason": "The source explicitly narrows this page's interleave to Spider-Man and Ultimates."
+    },
+    {
+      "reference": "Cataclysm",
+      "afterSelectedBlock": 26,
+      "kind": "unnumbered event pointer",
+      "reason": "No issue range enumerated on this page."
+    },
+    {
+      "reference": "Secret Wars (2015)",
+      "afterSelectedBlock": 31,
+      "kind": "unnumbered event pointer",
+      "reason": "Linked guide supplies no issue range on this page."
+    },
+    {
+      "reference": "Civil War II reading-order guide",
+      "afterSelectedBlock": 33,
+      "kind": "unnumbered event pointer",
+      "reason": "No issue range selected by this page."
+    },
+    {
+      "reference": "Champions Vol. 1: Change the World",
+      "afterSelectedBlock": 33,
+      "kind": "unnumbered collection pointer",
+      "reason": "No collected issue list or numbered issue selection appears here."
+    },
+    {
+      "reference": "Spider-Man (2016) #11-14; Champions (2016) #13-15; legacy numbering jump after Spider-Man #21 to #234",
+      "afterSelectedBlock": 39,
+      "kind": "source omissions and renumbering",
+      "reason": "Do not fill unselected issues or describe the legacy numbering jump as an actual run of missing comics."
+    },
+    {
+      "reference": "Collection editions, advertisements, page images, non-comic notes",
+      "kind": "non-issue material",
+      "reason": "Only whole explicitly numbered comic issues or qualified named stories become rows."
+    }
+  ],
+  "displayQualifications": [
+    {
+      "sourcePosition": 335,
+      "sourceBlock": 43,
+      "sourceRangeReference": "The New Ultimate Spider-Man (2024-2026): Free Comic Book Day 2025: Amazing Spider-Man/Ultimate Universe #1 (Ultimate Universe story only; before Incursion)",
+      "reason": "Only the Ultimate Universe story is selected from the original shared FCBD comic. The checklist retains the whole original issue identity."
+    },
+    {
+      "sourcePosition": 352,
+      "sourceBlock": 46,
+      "sourceRangeReference": "The New Ultimate Spider-Man (2024-2026): Ultimate Universe: Finale (2026) #1 (Spider-Man story only; after Ultimate Endgame #1-5; deferred from Vol. 4)",
+      "reason": "Only the Spider-Man story is selected from the original finale comic, deferred to after Endgame as the source directs. The checklist retains the whole original issue identity."
+    }
+  ],
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #599",
+    "rationale": "The coordinator independently reread the complete current article, including its own2024-2026 section. Explicit numbered ranges and directed interleaves govern this source-specific guide, including its numbered optional tie-ins, qualified FCBD/Finale originals and the instruction to read Finale after Endgame. Do not fill unlisted ranges from broad introductory summaries, inherit another guide's exclusions or merge distinct Peter/Miles/universe volumes.",
+    "reviewedAt": "2026-09-29"
+  },
+  "sourceDecisions": [
+    {
+      "reference": "Peter original#47-53 and2009 relaunch#15",
+      "decision": "Do not insert them. The explicit source route jumps#28-46 through Ultimate Six to#54-85 and selects the2009 relaunch#1-14. Preserve these source omissions/summary contradiction explicitly, not as newly invented selected positions or published-metadata gaps."
+    },
+    {
+      "reference": "Ultimate Marvel Team-Up#9 and Super Special#1",
+      "decision": "Include both because this exact source explicitly selects them. Another guide's continuity exclusion and old source availability language do not override the current source boundary."
+    },
+    {
+      "reference": "Numbered optional Ultimatum and Avengers versus New Ultimates",
+      "decision": "Include the exact source-specified originals with optional qualification. Preserve alternating USM129-133/Ultimatum1-5 then Requiem1-2; put Avengers versus New Ultimates1-4 beforeUSM158 and5-6 after160."
+    },
+    {
+      "reference": "Miles Divided We Fall and16.1",
+      "decision": "Retain the exact printed Ultimates/Miles interleave including Ultimates18.1. Place Miles16.1 after18 as the source directs, not by numeric sorting. Unnumbered Ultimate X-Men tie-in pointers do not add rows."
+    },
+    {
+      "reference": "Post-Secret-Wars selected ranges",
+      "decision": "Retain the uneven Spider-Man/Champions selections and1.MU/Annual originals exactly. Do not fill the source's unlisted#11-14 or Champions#13-15. Describe#21-to#234 as a legacy-numbering jump, not as proof that a published#22-233 interval is missing."
+    },
+    {
+      "reference": "New Ultimate2024-2026 section",
+      "decision": "Include the page's own2024#1-24, FCBD2025#1 containing the qualified Ultimate Universe story, Incursion1-5, Endgame1-5 and original2026Finale#1 containing the Spider-Man story. Finale is last afterEndgame, not at the earlier raw collection location."
+    },
+    {
+      "reference": "Unnumbered Cataclysm,Secret Wars,Civil WarII,ChampionsVol1 andotherlinkedguides",
+      "decision": "Preserve as explicit nonselections without imported issue ranges. No external collection expansion merely from a link."
+    }
+  ]
+}

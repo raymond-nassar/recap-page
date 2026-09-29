@@ -3188,6 +3188,42 @@
       "coverIssueId": 8073
     },
     {
+      "id": "ultimate-spider-man-reading-order",
+      "name": "Ultimate Spider-Man",
+      "description": "Read Comic Book Herald's selected Peter Parker and Miles Morales stories across the original Ultimate universe, later Miles adventures and the separate new Ultimate universe.",
+      "type": "character-run",
+      "depth": "partial",
+      "spotlightKind": "other",
+      "beginner": false,
+      "timeline": null,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceSection": null,
+      "sourceFile": "ultimate-spider-man-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/ultimate-spider-man-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "ultimate_spider_man_reading_order.json",
+      "characters": [
+        "Spider-Man",
+        "Peter Parker",
+        "Miles Morales",
+        "Ultimate Spider-Man"
+      ],
+      "keywords": [
+        "Ultimate Spider-Man",
+        "Peter Parker",
+        "Miles Morales",
+        "Earth-1610",
+        "Earth-6160",
+        "Ultimate Universe",
+        "Comic Book Herald"
+      ],
+      "expect": 352,
+      "coverIssueId": 4372
+    },
+    {
       "id": "venom-reading-order",
       "name": "Venom",
       "description": "Venom from the symbiote's origin in Secret Wars and Spider-Man's black costume saga through Eddie Brock's Lethal Protector era, Mac Gargan, Flash Thompson's Agent Venom, Dylan Brock, and the modern Donny Cates and Al Ewing epic.",

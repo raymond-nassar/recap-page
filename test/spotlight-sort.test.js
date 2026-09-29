@@ -117,6 +117,7 @@ test('popularity sorting keeps the ranked stories first and the rest in their cu
     'Bucky Barnes / Winter Soldier',
     'Hope Summers',
     'Hulk (and She-Hulk, Red Hulk)',
+    'Ultimate Spider-Man',
     'Shadow King',
     'Captain Marvel / Ms. Marvel',
     'Ms. Marvel (Kamala Khan)',

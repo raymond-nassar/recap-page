@@ -121,6 +121,7 @@ export default [
       'scripts/browser-source-credits.mjs',
       'scripts/browser-markdown-export.mjs',
       'scripts/browser-order-export.mjs',
+      'scripts/browser-ultimate-spider-man.mjs',
       'scripts/capture-store-assets.mjs',
       'scripts/capture-play-assets.mjs',
       'scripts/upgrade-check.mjs',

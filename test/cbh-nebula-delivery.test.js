@@ -138,7 +138,7 @@ test('Nebula keeps the 2014 Guardians original, numbered prose and late source p
 test('Nebula approved relationship report preserves all 187 reviewed orders', async () => {
   const manifest = await readJson('src/data/curated-lists.json');
   const expectedOrderIds = manifest.lists
-    .filter((row) => row.id !== id && row.id !== 'nova-reading-order' && row.id !== 'hope-summers-reading-order'
+    .filter((row) => row.id !== id && row.id !== 'nova-reading-order' && row.id !== 'ultimate-spider-man-reading-order' && row.id !== 'hope-summers-reading-order'
       && row.id !== 'x-23-reading-order' && row.id !== 'ms-marvel-kamala-khan-reading-order' && row.id !== 'marvel-zombies-reading-order'
       && row.id !== 'hawkeye-reading-order'
       && row.id !== 'silk-cindy-moon-reading-order'
@@ -147,7 +147,7 @@ test('Nebula approved relationship report preserves all 187 reviewed orders', as
   const regenerated = await buildReportForMapping(`scripts/data/cbh-mappings/${id}.json`, [], {
     excludedOrderIds: ['hope-summers-reading-order', 'x-23-reading-order', 'marvel-zombies-reading-order',
       'hawkeye-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order',
-      'ms-marvel-kamala-khan-reading-order', 'nova-reading-order'],
+      'ms-marvel-kamala-khan-reading-order', 'nova-reading-order', 'ultimate-spider-man-reading-order'],
 
   });
   assert.deepEqual(regenerated, report);

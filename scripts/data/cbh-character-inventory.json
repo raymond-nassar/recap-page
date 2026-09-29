@@ -3792,13 +3792,30 @@
     "url": "https://www.comicbookherald.com/ultimate-spider-man-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The retained source snapshot explicitly names a 2026 issue, beyond the 2025-10-29 metadata horizon.",
-    "sourceRetrievedAt": "2026-08-23",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "blocked",
-    "centralDisposition": "blocked",
+    "disposition": "new-order",
+    "reason": "The complete current page selects 352 positions across original Ultimate Peter and Miles, post-Secret-Wars Miles and the new Ultimate universe. Publish 351 exact original issue IDs, including eight with genuine optional detail refusals, and preserve the unresolved 2002 special as one visible gap.",
+    "sourceRetrievedAt": "2026-09-29",
+    "overlapIds": [
+      "amazing-spider-man-reading-order-modern-marvel-era",
+      "black-widow-reading-order",
+      "emma-frost-reading-order",
+      "hickman-full",
+      "infinity-countdown-wars",
+      "inhumans-reading-order",
+      "miles-morales-spider-man-reading-order",
+      "monsters-unleashed",
+      "ms-marvel-kamala-khan-reading-order",
+      "new-ultimate-universe",
+      "new-ultimate-universe-trades",
+      "nova-reading-order",
+      "ultimate-marvel-intro",
+      "venom-reading-order"
+    ],
+    "catalogIds": [
+      "ultimate-spider-man-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Ultimate Spider-Man"
     ],
@@ -3806,9 +3823,9 @@
       114
     ],
     "duplicateFlags": [],
-    "sourceContentSha256": "6e1bb233e2291afa2f561f40af0031e54881d901558ce0154052fcf649b43cf7",
+    "sourceContentSha256": "e79aafcfbba7a97411fcf7983adee3e903243ff341e75ac35a21accb9f91815c",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-confirmed-post-horizon"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 114,
