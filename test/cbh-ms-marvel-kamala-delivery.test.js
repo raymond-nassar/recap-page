@@ -269,11 +269,12 @@ test('Kamala publishes the exact generated checklist, 187 issues, five honest ga
 
 test('Kamala relationship receipt covers every member of the current library', async () => {
   const current = await buildReportForMapping(mappingPath, [], {
-    excludedOrderIds: ['nova-reading-order'],
+    excludedOrderIds: ['nova-reading-order', 'ultimate-spider-man-reading-order'],
   });
   const manifest = await readJson('src/data/curated-lists.json');
   const expectedOrderIds = manifest.lists.filter((entry) =>
-    entry.id !== id && entry.id !== 'nova-reading-order').map((entry) => entry.id);
+    entry.id !== id && entry.id !== 'nova-reading-order'
+    && entry.id !== 'ultimate-spider-man-reading-order').map((entry) => entry.id);
   assert.deepEqual(current, report);
   assert.equal(report.comparisonCount, 194);
   assert.equal(report.comparisonCount, expectedOrderIds.length);

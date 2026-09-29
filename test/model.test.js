@@ -1101,11 +1101,12 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // Hawkeye adds one unresolved original and six known-ID optional-detail refusals.
   // Marvel Zombies retains three unresolved 2025 originals as distinct placeholders.
   // Kamala adds five distinct original-edition gaps without guessing provider identities.
-  // Nova adds two distinct published-original source positions.
-  assert.equal(claimed, 1076, 'the payload placeholder total moved; re-derive the figures in the record');
-  assert.equal(placeholders, 1076, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
-  assert.equal(empty, 217);
-  assert.equal(affected, 20);
+  // Nova adds two distinct published-original source positions. Ultimate Spider-Man adds one
+  // unresolved Super Special and eight known-ID detail refusals in a newly affected guide.
+  assert.equal(claimed, 1077, 'the payload placeholder total moved; re-derive the figures in the record');
+  assert.equal(placeholders, 1077, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
+  assert.equal(empty, 225);
+  assert.equal(affected, 21);
 });
 
 // Every check above passes with the import path reverted, because they all call the counter
@@ -1341,8 +1342,10 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // Infinity adds seventeen distinct placeholders; its eleven positive-ID detail refusals
   // are imported under the existing merge behavior, even where another guide has metadata.
   // Kamala adds five original-edition gaps without linked provider identities.
-  // Nova contributes two more distinct provider-ID-free source-position placeholders.
-  assert.equal(refused.length, 1306);
+  // Nova contributes two more distinct provider-ID-free source-position placeholders. Ultimate
+  // Spider-Man adds its distinct Super Special gap, while all eight known-ID refusals share IDs
+  // already counted in other guides.
+  assert.equal(refused.length, 1307);
   const infinity = JSON.parse(readFileSync(join(dataDir,
     'marvels_infinity_saga_gauntlet_wars_crusade_reading_order.json'), 'utf8'));
   assert.equal(infinity.items.filter((item) => item.detailsRefused && item.issueId > 0).length, 11);

@@ -13,6 +13,15 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Follow Ultimate Spider-Man across four distinct eras
+
+Adds a credited, source-ordered Ultimate Spider-Man Reading List covering Peter Parker and Miles
+Morales in the original Ultimate universe, Miles after Secret Wars and the separate new Ultimate
+universe. It keeps 352 selected positions, including optional numbered tie-ins and the qualified
+2025 free-comic and 2026 finale stories. The finale follows Endgame as the guide directs. One
+original 2002 special remains visible as a metadata gap rather than being replaced with a
+different comic. Existing Reading Lists and saved progress are unchanged.
+
 ### Move cover art controls into Settings
 
 The cover art choice now lives only under Personalization in Backup & settings, rather than

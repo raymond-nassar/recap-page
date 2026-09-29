@@ -246,7 +246,7 @@ test('Hawkeye has a complete approved current-library relationship and shipped i
   const existing = manifest.lists.filter((entry) =>
     entry.id !== id && entry.id !== 'marvel-zombies-reading-order'
     && entry.id !== 'ms-marvel-kamala-khan-reading-order'
-    && entry.id !== 'nova-reading-order');
+    && entry.id !== 'nova-reading-order' && entry.id !== 'ultimate-spider-man-reading-order');
   const orders = await Promise.all(existing.map(async (entry) => ({
     orderId: entry.id,
     issueIds: issueIdsFromValue(await readJson(`src/data/${entry.out}`)),

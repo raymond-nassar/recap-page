@@ -3276,8 +3276,8 @@ const SCENARIOS = [
         bestOf: await readSubset('best-of'),
       };
       t.check('desktop All, Complete, and Best of counts classify Adam exactly once',
-        desktop.all.readings === 65 && desktop.all.stories === 64
-        && desktop.all.cards === 64 && desktop.all.adamCards === 1
+        desktop.all.readings === 66 && desktop.all.stories === 65
+        && desktop.all.cards === 65 && desktop.all.adamCards === 1
         && desktop.complete.readings === 38 && desktop.complete.stories === 38
         && desktop.complete.cards === 38 && desktop.complete.adamCards === 1
         && desktop.bestOf.readings === 7 && desktop.bestOf.stories === 7
@@ -3292,8 +3292,8 @@ const SCENARIOS = [
         overflow: await page.evaluate(() => document.documentElement.scrollWidth > innerWidth),
       };
       t.check('narrow All, Complete, and Best of counts preserve Adam without horizontal overflow',
-        narrow.all.readings === 65 && narrow.all.stories === 64
-        && narrow.all.cards === 64 && narrow.all.adamCards === 1
+        narrow.all.readings === 66 && narrow.all.stories === 65
+        && narrow.all.cards === 65 && narrow.all.adamCards === 1
         && narrow.complete.readings === 38 && narrow.complete.stories === 38
         && narrow.complete.cards === 38 && narrow.complete.adamCards === 1
         && narrow.bestOf.readings === 7 && narrow.bestOf.stories === 7
@@ -14598,6 +14598,7 @@ SCENARIOS.push({
       JSON.stringify({ externalRequests: externalRequests.slice(0, 3), errors: errors.slice(0, 3) }));
   },
 });
+SCENARIOS.push((await import('./browser-ultimate-spider-man.mjs')).ultimateSpiderManActualData);
 
 // Without this an unexpected throw leaves an unhandled rejection, which Node reports as a bare
 // stack and exits 1 on. Exit 1 is this check's word for "an assertion failed", so an internal

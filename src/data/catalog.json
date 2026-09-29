@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-29T14:32:41.918Z",
+  "generatedAt": "2026-09-29T14:54:49.898Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -3868,6 +3868,48 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-27T13:18:34.558Z"
+    },
+    {
+      "id": "ultimate-spider-man-reading-order",
+      "file": "ultimate_spider_man_reading_order.json",
+      "name": "Ultimate Spider-Man",
+      "description": "Read Comic Book Herald's selected Peter Parker and Miles Morales stories across the original Ultimate universe, later Miles adventures and the separate new Ultimate universe.",
+      "type": "character-run",
+      "depth": "partial",
+      "spotlightKind": "other",
+      "count": 352,
+      "placeholderCount": 1,
+      "emptyRecordCount": 8,
+      "collections": 47,
+      "characters": [
+        "Spider-Man",
+        "Peter Parker",
+        "Miles Morales",
+        "Ultimate Spider-Man"
+      ],
+      "keywords": [
+        "Ultimate Spider-Man",
+        "Peter Parker",
+        "Miles Morales",
+        "Earth-1610",
+        "Earth-6160",
+        "Ultimate Universe",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 4372,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/519b7e7eb534a",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/ultimate-spider-man-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-09-29T14:54:49.898Z"
     },
     {
       "id": "venom-reading-order",
