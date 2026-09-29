@@ -238,6 +238,20 @@ test('every allowance still covers a hit that is really there, in a file that is
     // already staged allowance testable before its first commit instead of requiring a red commit.
     const text = git(['show', `:${file}`]);
     const hits = new Set((text.match(named.get(pattern)) || []).map((h) => h.trim()));
+    if (file === 'scripts/data/cbh-packets/nebula-reading-order.json'
+      && pattern === 'a session or workspace identifier') {
+      const commit = '44b35dce62ca987c197e6dbb607bc8f65a47710d';
+      assert.ok(git(['rev-list', 'HEAD']).split(/\r?\n/).includes(commit),
+        'the exact Nebula draft commit remains reachable');
+      const historical = git(['show', `${commit}:${file}`]);
+      const historicalHits = (historical.match(named.get(pattern)) || []).map((h) => h.trim());
+      assert.equal(historicalHits.filter((value) => value === hit).length, 1,
+        'the historical packet has exactly one approved identity hit');
+      assert.ok(JSON.parse(historical).sourceReview.authorityIdentity.includes(hit),
+        'the historical hit belongs to the source-review identity');
+      assert.ok(!hits.has(hit), 'the current packet uses a public source-review identity');
+      continue;
+    }
     assert.ok(hits.has(hit), `${file} still contains the allowed hit for ${pattern}`);
   }
 });
@@ -375,6 +389,18 @@ test('the workflow runs the publication gate in a job that checks out the full h
   assert.match(owner, /^ {2}[A-Za-z0-9_-]+:/, 'and that block starts at a job');
   assert.ok(owner.includes('actions/checkout'), 'that job checks the repository out');
   assert.match(owner, /fetch-depth:\s*0/, 'and it asks for the whole history, which the gate needs to answer at all');
+});
+
+test('the CI test matrix fetches the ancestry needed to verify historical allowances', () => {
+  const yml = readFileSync(new URL('../.github/workflows/ci.yml', import.meta.url), 'utf8');
+  const jobs = yml.split(/\r?\n(?= {2}[A-Za-z0-9_-]+:\r?\n)/);
+  const testJob = jobs.find((block) => block.startsWith('  test:'));
+  assert.ok(testJob, 'the test matrix is present');
+  const checkout = testJob.slice(
+    testJob.indexOf('      - uses: actions/checkout@'),
+    testJob.indexOf('      - uses: actions/setup-node@'),
+  );
+  assert.match(checkout, /fetch-depth:\s*0/, 'the historical Nebula draft is reachable in both Node jobs');
 });
 
 test('advertised branch policy identifies the default and rejects only unowned heads', async () => {

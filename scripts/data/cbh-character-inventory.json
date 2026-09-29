@@ -2653,13 +2653,40 @@
     "url": "https://www.comicbookherald.com/nebula-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
-    "sourceRetrievedAt": "2026-08-23",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "disposition": "new-order",
+    "reason": "Publishes 69 exact originals from 70 source positions, retaining the owner's closed Silver Surfer Annual exclusion at position 23 and the final unnumbered series pointer without inventing issues.",
+    "sourceRetrievedAt": "2026-09-29",
+    "overlapIds": [
+      "adam-warlock-reading-order",
+      "agatha-harkness-reading-order",
+      "amazing-spider-man-reading-order-modern-marvel-era",
+      "annihilation",
+      "captain-marvel-ms-marvel-reading-order",
+      "doctor-doom-primer",
+      "doctor-strange-reading-order",
+      "donny-cates-marvel-universe-reading-order-2017",
+      "essential-avengers",
+      "fantastic-four-reading-order",
+      "guardians-of-the-galaxy-reading-order",
+      "infinity-countdown-wars",
+      "loki-reading-order",
+      "marvels-best-phoenix-comics",
+      "mephisto-reading-order",
+      "moon-knight-reading-order",
+      "rocket-raccoon-reading-order",
+      "secret-wars-ii",
+      "silver-surfer-reading-order",
+      "thanos-reading-order",
+      "the-defenders-reading-order",
+      "the-vision-reading-order",
+      "wandavision",
+      "war-of-the-realms"
+    ],
+    "catalogIds": [
+      "nebula-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Nebula"
     ],
@@ -2667,9 +2694,9 @@
       82
     ],
     "duplicateFlags": [],
-    "sourceContentSha256": "ab408b77e3d24acce52bc2a3f1c8c39ff77f75eb106153c4941ca69cefcf8d16",
+    "sourceContentSha256": "f0b7e05f1f184637714a2faa2b02b4482a5123f28a8b9c2a39d0cb92abb9b1e7",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 82,

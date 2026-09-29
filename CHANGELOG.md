@@ -20,6 +20,12 @@ guide's 258 selected positions from the original team through King in Black, inc
 specials, title changes and the original #0. The unresolved original #-1 remains visible as a gap
 rather than being replaced by a reprint. Existing Reading Lists and saved progress are unchanged.
 
+### Add the Nebula reading guide
+
+A credited Nebula guide now follows 69 original comics from her early Avengers appearances
+through later cosmic and Guardians-era stories. An owner-excluded annual remains documented in
+the source record but does not appear as an unreadable comic. Existing reading progress is unchanged.
+
 ### Open Android reader links in Marvel Unlimited
 
 The Android prototype resolves an issue's app identifier when **Read** is pressed and attempts

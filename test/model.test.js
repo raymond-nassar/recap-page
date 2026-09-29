@@ -990,6 +990,21 @@ test('a gap of one is not described in the plural', () => {
   assert.ok(two[0].startsWith('2 of them came with no details at all, so they show'));
 });
 
+test('nebula keeps the 2014 guardians original at source position 39', () => {
+  const mapping = JSON.parse(readFileSync(join(ROOT, 'scripts', 'data', 'cbh-mappings', 'nebula-reading-order.json'), 'utf8'));
+  const row = mapping.rows.find((entry) => entry.sourcePosition === 39);
+  assert.ok(row, 'nebula mapping is missing source position 39');
+  assert.equal(row.candidateIssueId, 50944);
+  assert.deepEqual(row.candidateIssueIds, ['50944']);
+  assert.equal(row.selectedIssueId, 50944);
+  assert.deepEqual(row.selectedIssueIds, [50944]);
+  assert.notEqual(row.selectedIssueId, 47162);
+
+  const order = JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'nebula_reading_order.json'), 'utf8'));
+  assert.ok(order.items.some((item) => item.issueId === 50944), 'nebula order is missing the 2014 Guardians issue');
+  assert.ok(!order.items.some((item) => item.issueId === 47162), 'nebula order still contains the 2013 Guardians issue');
+});
+
 // The unit tests above would all pass against an order shape nobody ships. This one is the claim
 // that matters: the gap the reader is now told about is a gap the bundled data actually has, and
 // it is the one the old count could never report. Derived from the files rather than from a list

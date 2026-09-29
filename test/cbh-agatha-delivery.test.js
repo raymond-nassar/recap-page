@@ -192,10 +192,11 @@ test('Agatha historical replay refuses to guess a missing insertion anchor', () 
 
 test('Agatha relationship approval covers every source order present at review', async () => {
   const current = await buildReportForMapping(mappingPath, [], {
-    excludedOrderIds: ['thunderbolts-reading-order'],
+    excludedOrderIds: ['thunderbolts-reading-order', 'nebula-reading-order'],
   });
   const expectedOrderIds = manifest.lists
-    .filter((entry) => entry.id !== id && entry.id !== 'thunderbolts-reading-order')
+    .filter((entry) => entry.id !== id && entry.id !== 'thunderbolts-reading-order'
+      && entry.id !== 'nebula-reading-order')
     .map((entry) => entry.id);
 
   assert.deepEqual(current, report);

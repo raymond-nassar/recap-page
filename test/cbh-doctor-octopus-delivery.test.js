@@ -141,10 +141,10 @@ test('Doctor Octopus relationship approval regenerates against its reviewed sour
   const manifest = await readJson('src/data/curated-lists.json');
   const current = await buildReportForMapping(`scripts/data/cbh-mappings/${id}.json`, [], {
     ...await historicalAgathaLibrarySnapshot(),
-    excludedOrderIds: ['shadow-king-reading-order', 'thunderbolts-reading-order'],
+    excludedOrderIds: ['shadow-king-reading-order', 'thunderbolts-reading-order', 'nebula-reading-order'],
   });
   const expectedOrderIds = manifest.lists.filter((row) => (
-    row.id !== id && row.id !== 'shadow-king-reading-order' && row.id !== 'thunderbolts-reading-order'
+    row.id !== id && row.id !== 'shadow-king-reading-order' && row.id !== 'thunderbolts-reading-order' && row.id !== 'nebula-reading-order'
   )).map((row) => row.id);
   assert.deepEqual(current, report);
   assert.equal(report.comparisonCount, 184);

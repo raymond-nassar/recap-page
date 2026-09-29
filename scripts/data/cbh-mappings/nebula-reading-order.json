@@ -1,0 +1,4382 @@
+{
+  "id": "nebula-reading-order",
+  "inventoryId": "nebula-reading-order",
+  "packetDigest": "d58f3f5a1450a923b86d4757bf9162e2a9464d98f70ff682e681252528ba6b47",
+  "sourceUrl": "https://www.comicbookherald.com/nebula-reading-order/",
+  "sourceRetrievedAt": "2026-09-29",
+  "sourceContentSha256": "f0b7e05f1f184637714a2faa2b02b4482a5123f28a8b9c2a39d0cb92abb9b1e7",
+  "sourceRetrievalStatus": "retrieved",
+  "approvedSourceCount": 70,
+  "excludedSourceReferences": [
+    "The final title-only Nebula by Ayala link is an unnumbered series pointer, not a new inferred issue range."
+  ],
+  "sourceOccurrenceCount": 70,
+  "sourceGapResolutions": [
+    {
+      "sourcePosition": 23,
+      "previousSourceIssueReference": "Silver Surfer Annual (1988) #5",
+      "previousSourceRangeReference": "Defenders: Return Of The Defenders",
+      "previousNormalizedSeriesTitle": "Silver Surfer Annual",
+      "previousSeriesYear": 1988,
+      "previousIssueNumber": "5",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The owner confirmed Silver Surfer Annual #5 is unavailable on Marvel Unlimited and directed that it remain omitted without future gap tracking.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion",
+      "checkedAt": "2026-09-03",
+      "auditBasis": "The owner confirmed this source issue is unavailable on Marvel Unlimited and directed that it not return as a metadata gap.",
+      "evidenceSources": [
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/400#issuecomment-5528556323",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "62895d8bd505ba2e8f63f928638ab47fa5e5127c1c95a709fcab26ea0f9e0e1a"
+    }
+  ],
+  "reviewStatus": "approved",
+  "proposedManifest": {
+    "id": "nebula-reading-order",
+    "name": "Nebula",
+    "description": "Follow Nebula from her Avengers appearances through cosmic stories and later Guardians-era comics, in Comic Book Herald's selected issue order.",
+    "type": "character-run",
+    "depth": "partial",
+    "spotlightKind": "other",
+    "beginner": false,
+    "timeline": null,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceSection": null,
+    "sourceFile": "nebula-reading-order.md",
+    "sourcePage": "https://www.comicbookherald.com/nebula-reading-order/",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "nebula_reading_order.json",
+    "characters": [
+      "Nebula",
+      "Thanos",
+      "Gamora",
+      "Silver Surfer",
+      "Guardians of the Galaxy"
+    ],
+    "keywords": [
+      "Nebula",
+      "Thanos",
+      "Gamora",
+      "Silver Surfer",
+      "Guardians of the Galaxy",
+      "Comic Book Herald"
+    ],
+    "expect": 69,
+    "coverIssueId": 7127
+  },
+  "candidateMetadata": [
+    {
+      "id": 7127,
+      "title": "Avengers (1963)",
+      "issueTitle": "Avengers (1963) #257",
+      "seriesTitle": "Avengers (1963)",
+      "apiSeriesName": "Avengers (1963 - 1996)",
+      "seriesName": "Avengers (1963 - 1996)",
+      "seriesId": 1991,
+      "issueNumber": "257",
+      "seriesYear": 1963,
+      "detailUrl": "https://www.marvel.com/comics/issue/7127/avengers_1963_257",
+      "onSaleDate": "1985-07-01T00:00:00+0000"
+    },
+    {
+      "id": 7128,
+      "title": "Avengers (1963)",
+      "issueTitle": "Avengers (1963) #258",
+      "seriesTitle": "Avengers (1963)",
+      "apiSeriesName": "Avengers (1963 - 1996)",
+      "seriesName": "Avengers (1963 - 1996)",
+      "seriesId": 1991,
+      "issueNumber": "258",
+      "seriesYear": 1963,
+      "detailUrl": "https://www.marvel.com/comics/issue/7128/avengers_1963_258",
+      "onSaleDate": "1985-08-01T00:00:00+0000"
+    },
+    {
+      "id": 7129,
+      "title": "Avengers (1963)",
+      "issueTitle": "Avengers (1963) #259",
+      "seriesTitle": "Avengers (1963)",
+      "apiSeriesName": "Avengers (1963 - 1996)",
+      "seriesName": "Avengers (1963 - 1996)",
+      "seriesId": 1991,
+      "issueNumber": "259",
+      "seriesYear": 1963,
+      "detailUrl": "https://www.marvel.com/comics/issue/7129/avengers_1963_259",
+      "onSaleDate": "1985-09-01T00:00:00+0000"
+    },
+    {
+      "id": 7131,
+      "title": "Avengers (1963)",
+      "issueTitle": "Avengers (1963) #260",
+      "seriesTitle": "Avengers (1963)",
+      "apiSeriesName": "Avengers (1963 - 1996)",
+      "seriesName": "Avengers (1963 - 1996)",
+      "seriesId": 1991,
+      "issueNumber": "260",
+      "seriesYear": 1963,
+      "detailUrl": "https://www.marvel.com/comics/issue/7131/avengers_1963_260",
+      "onSaleDate": "1985-10-01T00:00:00+0000"
+    },
+    {
+      "id": 6928,
+      "title": "Avengers Annual (1967)",
+      "issueTitle": "Avengers Annual (1967) #14",
+      "seriesTitle": "Avengers Annual (1967)",
+      "apiSeriesName": "Avengers Annual (1967 - 1994)",
+      "seriesName": "Avengers Annual (1967 - 1994)",
+      "seriesId": 1988,
+      "issueNumber": "14",
+      "seriesYear": 1967,
+      "detailUrl": "https://www.marvel.com/comics/issue/6928/avengers_annual_1967_14",
+      "onSaleDate": "1985-07-30T00:00:00+0000"
+    },
+    {
+      "id": 17790,
+      "title": "West Coast Avengers (1985)",
+      "issueTitle": "West Coast Avengers (1985) #48",
+      "seriesTitle": "West Coast Avengers (1985)",
+      "apiSeriesName": "West Coast Avengers (1985 - 1994)",
+      "seriesName": "West Coast Avengers (1985 - 1994)",
+      "seriesId": 3630,
+      "issueNumber": "48",
+      "seriesYear": 1985,
+      "detailUrl": "https://www.marvel.com/comics/issue/17790/west_coast_avengers_1985_48",
+      "onSaleDate": "1989-09-01T00:00:00+0000"
+    },
+    {
+      "id": 7188,
+      "title": "Avengers (1963)",
+      "issueTitle": "Avengers (1963) #311",
+      "seriesTitle": "Avengers (1963)",
+      "apiSeriesName": "Avengers (1963 - 1996)",
+      "seriesName": "Avengers (1963 - 1996)",
+      "seriesId": 1991,
+      "issueNumber": "311",
+      "seriesYear": 1963,
+      "detailUrl": "https://www.marvel.com/comics/issue/7188/avengers_1963_311",
+      "onSaleDate": "1989-12-01T00:00:00+0000"
+    },
+    {
+      "id": 7189,
+      "title": "Avengers (1963)",
+      "issueTitle": "Avengers (1963) #312",
+      "seriesTitle": "Avengers (1963)",
+      "apiSeriesName": "Avengers (1963 - 1996)",
+      "seriesName": "Avengers (1963 - 1996)",
+      "seriesId": 1991,
+      "issueNumber": "312",
+      "seriesYear": 1963,
+      "detailUrl": "https://www.marvel.com/comics/issue/7189/avengers_1963_312",
+      "onSaleDate": "1989-12-15T00:00:00+0000"
+    },
+    {
+      "id": 7190,
+      "title": "Avengers (1963)",
+      "issueTitle": "Avengers (1963) #313",
+      "seriesTitle": "Avengers (1963)",
+      "apiSeriesName": "Avengers (1963 - 1996)",
+      "seriesName": "Avengers (1963 - 1996)",
+      "seriesId": 1991,
+      "issueNumber": "313",
+      "seriesYear": 1963,
+      "detailUrl": "https://www.marvel.com/comics/issue/7190/avengers_1963_313",
+      "onSaleDate": "1990-01-01T00:00:00+0000"
+    },
+    {
+      "id": 7191,
+      "title": "Avengers (1963)",
+      "issueTitle": "Avengers (1963) #314",
+      "seriesTitle": "Avengers (1963)",
+      "apiSeriesName": "Avengers (1963 - 1996)",
+      "seriesName": "Avengers (1963 - 1996)",
+      "seriesId": 1991,
+      "issueNumber": "314",
+      "seriesYear": 1963,
+      "detailUrl": "https://www.marvel.com/comics/issue/7191/avengers_1963_314",
+      "onSaleDate": "1990-02-01T00:00:00+0000"
+    },
+    {
+      "id": 7192,
+      "title": "Avengers (1963)",
+      "issueTitle": "Avengers (1963) #315",
+      "seriesTitle": "Avengers (1963)",
+      "apiSeriesName": "Avengers (1963 - 1996)",
+      "seriesName": "Avengers (1963 - 1996)",
+      "seriesId": 1991,
+      "issueNumber": "315",
+      "seriesYear": 1963,
+      "detailUrl": "https://www.marvel.com/comics/issue/7192/avengers_1963_315",
+      "onSaleDate": "1990-03-01T00:00:00+0000"
+    },
+    {
+      "id": 7193,
+      "title": "Avengers (1963)",
+      "issueTitle": "Avengers (1963) #316",
+      "seriesTitle": "Avengers (1963)",
+      "apiSeriesName": "Avengers (1963 - 1996)",
+      "seriesName": "Avengers (1963 - 1996)",
+      "seriesId": 1991,
+      "issueNumber": "316",
+      "seriesYear": 1963,
+      "detailUrl": "https://www.marvel.com/comics/issue/7193/avengers_1963_316",
+      "onSaleDate": "1990-04-01T00:00:00+0000"
+    },
+    {
+      "id": 7194,
+      "title": "Avengers (1963)",
+      "issueTitle": "Avengers (1963) #317",
+      "seriesTitle": "Avengers (1963)",
+      "apiSeriesName": "Avengers (1963 - 1996)",
+      "seriesName": "Avengers (1963 - 1996)",
+      "seriesId": 1991,
+      "issueNumber": "317",
+      "seriesYear": 1963,
+      "detailUrl": "https://www.marvel.com/comics/issue/7194/avengers_1963_317",
+      "onSaleDate": "1990-05-01T00:00:00+0000"
+    },
+    {
+      "id": 7195,
+      "title": "Avengers (1963)",
+      "issueTitle": "Avengers (1963) #318",
+      "seriesTitle": "Avengers (1963)",
+      "apiSeriesName": "Avengers (1963 - 1996)",
+      "seriesName": "Avengers (1963 - 1996)",
+      "seriesId": 1991,
+      "issueNumber": "318",
+      "seriesYear": 1963,
+      "detailUrl": "https://www.marvel.com/comics/issue/7195/avengers_1963_318",
+      "onSaleDate": "1990-06-01T00:00:00+0000"
+    },
+    {
+      "id": 15173,
+      "title": "Silver Surfer (1987)",
+      "issueTitle": "Silver Surfer (1987) #38",
+      "seriesTitle": "Silver Surfer (1987)",
+      "apiSeriesName": "Silver Surfer (1987 - 1998)",
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "seriesId": 2288,
+      "issueNumber": "38",
+      "seriesYear": 1987,
+      "detailUrl": "https://www.marvel.com/comics/issue/15173/silver_surfer_1987_38",
+      "onSaleDate": "1990-06-01T00:00:00+0000"
+    },
+    {
+      "id": 15181,
+      "title": "Silver Surfer (1987)",
+      "issueTitle": "Silver Surfer (1987) #45",
+      "seriesTitle": "Silver Surfer (1987)",
+      "apiSeriesName": "Silver Surfer (1987 - 1998)",
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "seriesId": 2288,
+      "issueNumber": "45",
+      "seriesYear": 1987,
+      "detailUrl": "https://www.marvel.com/comics/issue/15181/silver_surfer_1987_45",
+      "onSaleDate": "1991-01-01T00:00:00+0000"
+    },
+    {
+      "id": 9286,
+      "title": "Infinity Gauntlet (1991)",
+      "issueTitle": "Infinity Gauntlet (1991) #1",
+      "seriesTitle": "Infinity Gauntlet (1991)",
+      "apiSeriesName": "Infinity Gauntlet (1991)",
+      "seriesName": "Infinity Gauntlet (1991)",
+      "seriesId": 2023,
+      "issueNumber": "1",
+      "seriesYear": 1991,
+      "detailUrl": "https://www.marvel.com/comics/issue/9286/infinity_gauntlet_1991_1",
+      "onSaleDate": "1991-07-01T00:00:00+0000"
+    },
+    {
+      "id": 9287,
+      "title": "Infinity Gauntlet (1991)",
+      "issueTitle": "Infinity Gauntlet (1991) #2",
+      "seriesTitle": "Infinity Gauntlet (1991)",
+      "apiSeriesName": "Infinity Gauntlet (1991)",
+      "seriesName": "Infinity Gauntlet (1991)",
+      "seriesId": 2023,
+      "issueNumber": "2",
+      "seriesYear": 1991,
+      "detailUrl": "https://www.marvel.com/comics/issue/9287/infinity_gauntlet_1991_2",
+      "onSaleDate": "1991-08-01T00:00:00+0000"
+    },
+    {
+      "id": 9288,
+      "title": "Infinity Gauntlet (1991)",
+      "issueTitle": "Infinity Gauntlet (1991) #3",
+      "seriesTitle": "Infinity Gauntlet (1991)",
+      "apiSeriesName": "Infinity Gauntlet (1991)",
+      "seriesName": "Infinity Gauntlet (1991)",
+      "seriesId": 2023,
+      "issueNumber": "3",
+      "seriesYear": 1991,
+      "detailUrl": "https://www.marvel.com/comics/issue/9288/infinity_gauntlet_1991_3",
+      "onSaleDate": "1991-09-01T00:00:00+0000"
+    },
+    {
+      "id": 9289,
+      "title": "Infinity Gauntlet (1991)",
+      "issueTitle": "Infinity Gauntlet (1991) #4",
+      "seriesTitle": "Infinity Gauntlet (1991)",
+      "apiSeriesName": "Infinity Gauntlet (1991)",
+      "seriesName": "Infinity Gauntlet (1991)",
+      "seriesId": 2023,
+      "issueNumber": "4",
+      "seriesYear": 1991,
+      "detailUrl": "https://www.marvel.com/comics/issue/9289/infinity_gauntlet_1991_4",
+      "onSaleDate": "1991-10-01T00:00:00+0000"
+    },
+    {
+      "id": 9290,
+      "title": "Infinity Gauntlet (1991)",
+      "issueTitle": "Infinity Gauntlet (1991) #5",
+      "seriesTitle": "Infinity Gauntlet (1991)",
+      "apiSeriesName": "Infinity Gauntlet (1991)",
+      "seriesName": "Infinity Gauntlet (1991)",
+      "seriesId": 2023,
+      "issueNumber": "5",
+      "seriesYear": 1991,
+      "detailUrl": "https://www.marvel.com/comics/issue/9290/infinity_gauntlet_1991_5",
+      "onSaleDate": "1991-11-01T00:00:00+0000"
+    },
+    {
+      "id": 9291,
+      "title": "Infinity Gauntlet (1991)",
+      "issueTitle": "Infinity Gauntlet (1991) #6",
+      "seriesTitle": "Infinity Gauntlet (1991)",
+      "apiSeriesName": "Infinity Gauntlet (1991)",
+      "seriesName": "Infinity Gauntlet (1991)",
+      "seriesId": 2023,
+      "issueNumber": "6",
+      "seriesYear": 1991,
+      "detailUrl": "https://www.marvel.com/comics/issue/9291/infinity_gauntlet_1991_6",
+      "onSaleDate": "1991-12-01T00:00:00+0000"
+    },
+    {
+      "id": 15205,
+      "title": "Silver Surfer (1987)",
+      "issueTitle": "Silver Surfer (1987) #67",
+      "seriesTitle": "Silver Surfer (1987)",
+      "apiSeriesName": "Silver Surfer (1987 - 1998)",
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "seriesId": 2288,
+      "issueNumber": "67",
+      "seriesYear": 1987,
+      "detailUrl": "https://www.marvel.com/comics/issue/15205/silver_surfer_1987_67",
+      "onSaleDate": "1992-07-01T00:00:00+0000"
+    },
+    {
+      "id": 15207,
+      "title": "Silver Surfer (1987)",
+      "issueTitle": "Silver Surfer (1987) #69",
+      "seriesTitle": "Silver Surfer (1987)",
+      "apiSeriesName": "Silver Surfer (1987 - 1998)",
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "seriesId": 2288,
+      "issueNumber": "69",
+      "seriesYear": 1987,
+      "detailUrl": "https://www.marvel.com/comics/issue/15207/silver_surfer_1987_69",
+      "onSaleDate": "1992-08-01T00:00:00+0000"
+    },
+    {
+      "id": 15209,
+      "title": "Silver Surfer (1987)",
+      "issueTitle": "Silver Surfer (1987) #70",
+      "seriesTitle": "Silver Surfer (1987)",
+      "apiSeriesName": "Silver Surfer (1987 - 1998)",
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "seriesId": 2288,
+      "issueNumber": "70",
+      "seriesYear": 1987,
+      "detailUrl": "https://www.marvel.com/comics/issue/15209/silver_surfer_1987_70",
+      "onSaleDate": "1992-08-01T00:00:00+0000"
+    },
+    {
+      "id": 15210,
+      "title": "Silver Surfer (1987)",
+      "issueTitle": "Silver Surfer (1987) #71",
+      "seriesTitle": "Silver Surfer (1987)",
+      "apiSeriesName": "Silver Surfer (1987 - 1998)",
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "seriesId": 2288,
+      "issueNumber": "71",
+      "seriesYear": 1987,
+      "detailUrl": "https://www.marvel.com/comics/issue/15210/silver_surfer_1987_71",
+      "onSaleDate": "1992-09-01T00:00:00+0000"
+    },
+    {
+      "id": 15211,
+      "title": "Silver Surfer (1987)",
+      "issueTitle": "Silver Surfer (1987) #72",
+      "seriesTitle": "Silver Surfer (1987)",
+      "apiSeriesName": "Silver Surfer (1987 - 1998)",
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "seriesId": 2288,
+      "issueNumber": "72",
+      "seriesYear": 1987,
+      "detailUrl": "https://www.marvel.com/comics/issue/15211/silver_surfer_1987_72",
+      "onSaleDate": "1992-09-01T00:00:00+0000"
+    },
+    {
+      "id": 15212,
+      "title": "Silver Surfer (1987)",
+      "issueTitle": "Silver Surfer (1987) #73",
+      "seriesTitle": "Silver Surfer (1987)",
+      "apiSeriesName": "Silver Surfer (1987 - 1998)",
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "seriesId": 2288,
+      "issueNumber": "73",
+      "seriesYear": 1987,
+      "detailUrl": "https://www.marvel.com/comics/issue/15212/silver_surfer_1987_73",
+      "onSaleDate": "1992-10-01T00:00:00+0000"
+    },
+    {
+      "id": 15213,
+      "title": "Silver Surfer (1987)",
+      "issueTitle": "Silver Surfer (1987) #74",
+      "seriesTitle": "Silver Surfer (1987)",
+      "apiSeriesName": "Silver Surfer (1987 - 1998)",
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "seriesId": 2288,
+      "issueNumber": "74",
+      "seriesYear": 1987,
+      "detailUrl": "https://www.marvel.com/comics/issue/15213/silver_surfer_1987_74",
+      "onSaleDate": "1992-11-01T00:00:00+0000"
+    },
+    {
+      "id": 15215,
+      "title": "Silver Surfer (1987)",
+      "issueTitle": "Silver Surfer (1987) #76",
+      "seriesTitle": "Silver Surfer (1987)",
+      "apiSeriesName": "Silver Surfer (1987 - 1998)",
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "seriesId": 2288,
+      "issueNumber": "76",
+      "seriesYear": 1987,
+      "detailUrl": "https://www.marvel.com/comics/issue/15215/silver_surfer_1987_76",
+      "onSaleDate": "1993-01-01T00:00:00+0000"
+    },
+    {
+      "id": 15216,
+      "title": "Silver Surfer (1987)",
+      "issueTitle": "Silver Surfer (1987) #77",
+      "seriesTitle": "Silver Surfer (1987)",
+      "apiSeriesName": "Silver Surfer (1987 - 1998)",
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "seriesId": 2288,
+      "issueNumber": "77",
+      "seriesYear": 1987,
+      "detailUrl": "https://www.marvel.com/comics/issue/15216/silver_surfer_1987_77",
+      "onSaleDate": "1993-02-01T00:00:00+0000"
+    },
+    {
+      "id": 15217,
+      "title": "Silver Surfer (1987)",
+      "issueTitle": "Silver Surfer (1987) #78",
+      "seriesTitle": "Silver Surfer (1987)",
+      "apiSeriesName": "Silver Surfer (1987 - 1998)",
+      "seriesName": "Silver Surfer (1987 - 1998)",
+      "seriesId": 2288,
+      "issueNumber": "78",
+      "seriesYear": 1987,
+      "detailUrl": "https://www.marvel.com/comics/issue/15217/silver_surfer_1987_78",
+      "onSaleDate": "1993-03-01T00:00:00+0000"
+    },
+    {
+      "id": 62313,
+      "title": "Secret Defenders (1993)",
+      "issueTitle": "Secret Defenders (1993) #9",
+      "seriesTitle": "Secret Defenders (1993)",
+      "apiSeriesName": "Secret Defenders (1993 - 1995)",
+      "seriesName": "Secret Defenders (1993 - 1995)",
+      "seriesId": 20374,
+      "issueNumber": "9",
+      "seriesYear": 1993,
+      "detailUrl": "https://www.marvel.com/comics/issue/62313/secret_defenders_1993_9",
+      "onSaleDate": "1993-11-01T00:00:00+0000"
+    },
+    {
+      "id": 62314,
+      "title": "Secret Defenders (1993)",
+      "issueTitle": "Secret Defenders (1993) #10",
+      "seriesTitle": "Secret Defenders (1993)",
+      "apiSeriesName": "Secret Defenders (1993 - 1995)",
+      "seriesName": "Secret Defenders (1993 - 1995)",
+      "seriesId": 20374,
+      "issueNumber": "10",
+      "seriesYear": 1993,
+      "detailUrl": "https://www.marvel.com/comics/issue/62314/secret_defenders_1993_10",
+      "onSaleDate": "1993-12-01T00:00:00+0000"
+    },
+    {
+      "id": 4109,
+      "title": "Annihilation: Ronan (2006)",
+      "issueTitle": "Annihilation: Ronan (2006) #1",
+      "seriesTitle": "Annihilation: Ronan (2006)",
+      "apiSeriesName": "Annihilation: Ronan (2006)",
+      "seriesName": "Annihilation: Ronan (2006)",
+      "seriesId": 1079,
+      "issueNumber": "1",
+      "seriesYear": 2006,
+      "detailUrl": "https://www.marvel.com/comics/issue/4109/annihilation_ronan_2006_1",
+      "onSaleDate": "2006-04-26T00:00:00+0000"
+    },
+    {
+      "id": 4219,
+      "title": "Annihilation: Ronan (2006)",
+      "issueTitle": "Annihilation: Ronan (2006) #2",
+      "seriesTitle": "Annihilation: Ronan (2006)",
+      "apiSeriesName": "Annihilation: Ronan (2006)",
+      "seriesName": "Annihilation: Ronan (2006)",
+      "seriesId": 1079,
+      "issueNumber": "2",
+      "seriesYear": 2006,
+      "detailUrl": "https://www.marvel.com/comics/issue/4219/annihilation_ronan_2006_2",
+      "onSaleDate": "2006-05-24T00:00:00+0000"
+    },
+    {
+      "id": 4471,
+      "title": "Annihilation: Ronan (2006)",
+      "issueTitle": "Annihilation: Ronan (2006) #4",
+      "seriesTitle": "Annihilation: Ronan (2006)",
+      "apiSeriesName": "Annihilation: Ronan (2006)",
+      "seriesName": "Annihilation: Ronan (2006)",
+      "seriesId": 1079,
+      "issueNumber": "4",
+      "seriesYear": 2006,
+      "detailUrl": "https://www.marvel.com/comics/issue/4471/annihilation_ronan_2006_4",
+      "onSaleDate": "2006-07-26T00:00:00+0000"
+    },
+    {
+      "id": 50944,
+      "title": "Guardians of the Galaxy Infinite (2014)",
+      "issueTitle": "Guardians of the Galaxy Infinite (2014) #1",
+      "seriesTitle": "Guardians of the Galaxy Infinite (2014)",
+      "apiSeriesName": "Guardians of the Galaxy Infinite (2014)",
+      "seriesName": "Guardians of the Galaxy Infinite (2014)",
+      "seriesId": 19072,
+      "issueNumber": "1",
+      "seriesYear": 2014,
+      "detailUrl": "https://www.marvel.com/comics/issue/50944/guardians_of_the_galaxy_infinite_2014_1",
+      "onSaleDate": "2014-07-29T00:00:00-0400"
+    },
+    {
+      "id": 51919,
+      "title": "Guardians Team-Up (2015)",
+      "issueTitle": "Guardians Team-Up (2015) #1",
+      "seriesTitle": "Guardians Team-Up (2015)",
+      "apiSeriesName": "Guardians Team-Up (2015)",
+      "seriesName": "Guardians Team-Up (2015)",
+      "seriesId": 19453,
+      "issueNumber": "1",
+      "seriesYear": 2015,
+      "detailUrl": "https://www.marvel.com/comics/issue/51919/guardians_team-up_2015_1",
+      "onSaleDate": "2015-03-04T00:00:00+0000"
+    },
+    {
+      "id": 51924,
+      "title": "Guardians Team-Up (2015)",
+      "issueTitle": "Guardians Team-Up (2015) #2",
+      "seriesTitle": "Guardians Team-Up (2015)",
+      "apiSeriesName": "Guardians Team-Up (2015)",
+      "seriesName": "Guardians Team-Up (2015)",
+      "seriesId": 19453,
+      "issueNumber": "2",
+      "seriesYear": 2015,
+      "detailUrl": "https://www.marvel.com/comics/issue/51924/guardians_team-up_2015_2",
+      "onSaleDate": "2015-03-11T00:00:00+0000"
+    },
+    {
+      "id": 51841,
+      "title": "Gamora (2016)",
+      "issueTitle": "Gamora (2016) #1",
+      "seriesTitle": "Gamora (2016)",
+      "apiSeriesName": "Gamora (2016 - 2017)",
+      "seriesName": "Gamora (2016 - 2017)",
+      "seriesId": 19427,
+      "issueNumber": "1",
+      "seriesYear": 2016,
+      "detailUrl": "https://www.marvel.com/comics/issue/51841/gamora_2016_1",
+      "onSaleDate": "2016-12-21T00:00:00+0000"
+    },
+    {
+      "id": 51847,
+      "title": "Gamora (2016)",
+      "issueTitle": "Gamora (2016) #5",
+      "seriesTitle": "Gamora (2016)",
+      "apiSeriesName": "Gamora (2016 - 2017)",
+      "seriesName": "Gamora (2016 - 2017)",
+      "seriesId": 19427,
+      "issueNumber": "5",
+      "seriesYear": 2016,
+      "detailUrl": "https://www.marvel.com/comics/issue/51847/gamora_2016_5",
+      "onSaleDate": "2017-05-31T00:00:00+0000"
+    },
+    {
+      "id": 61698,
+      "title": "Thanos (2016)",
+      "issueTitle": "Thanos (2016) #2",
+      "seriesTitle": "Thanos (2016)",
+      "apiSeriesName": "Thanos (2016 - 2018)",
+      "seriesName": "Thanos (2016 - 2018)",
+      "seriesId": 22653,
+      "issueNumber": "2",
+      "seriesYear": 2016,
+      "detailUrl": "https://www.marvel.com/comics/issue/61698/thanos_2016_2",
+      "onSaleDate": "2016-12-21T00:00:00+0000"
+    },
+    {
+      "id": 61700,
+      "title": "Thanos (2016)",
+      "issueTitle": "Thanos (2016) #4",
+      "seriesTitle": "Thanos (2016)",
+      "apiSeriesName": "Thanos (2016 - 2018)",
+      "seriesName": "Thanos (2016 - 2018)",
+      "seriesId": 22653,
+      "issueNumber": "4",
+      "seriesYear": 2016,
+      "detailUrl": "https://www.marvel.com/comics/issue/61700/thanos_2016_4",
+      "onSaleDate": "2017-02-22T00:00:00+0000"
+    },
+    {
+      "id": 61701,
+      "title": "Thanos (2016)",
+      "issueTitle": "Thanos (2016) #5",
+      "seriesTitle": "Thanos (2016)",
+      "apiSeriesName": "Thanos (2016 - 2018)",
+      "seriesName": "Thanos (2016 - 2018)",
+      "seriesId": 22653,
+      "issueNumber": "5",
+      "seriesYear": 2016,
+      "detailUrl": "https://www.marvel.com/comics/issue/61701/thanos_2016_5",
+      "onSaleDate": "2017-03-29T00:00:00+0000"
+    },
+    {
+      "id": 61702,
+      "title": "Thanos (2016)",
+      "issueTitle": "Thanos (2016) #6",
+      "seriesTitle": "Thanos (2016)",
+      "apiSeriesName": "Thanos (2016 - 2018)",
+      "seriesName": "Thanos (2016 - 2018)",
+      "seriesId": 22653,
+      "issueNumber": "6",
+      "seriesYear": 2016,
+      "detailUrl": "https://www.marvel.com/comics/issue/61702/thanos_2016_6",
+      "onSaleDate": "2017-04-26T00:00:00+0000"
+    },
+    {
+      "id": 61703,
+      "title": "Thanos (2016)",
+      "issueTitle": "Thanos (2016) #7",
+      "seriesTitle": "Thanos (2016)",
+      "apiSeriesName": "Thanos (2016 - 2018)",
+      "seriesName": "Thanos (2016 - 2018)",
+      "seriesId": 22653,
+      "issueNumber": "7",
+      "seriesYear": 2016,
+      "detailUrl": "https://www.marvel.com/comics/issue/61703/thanos_2016_7",
+      "onSaleDate": "2017-05-31T00:00:00+0000"
+    },
+    {
+      "id": 61704,
+      "title": "Thanos (2016)",
+      "issueTitle": "Thanos (2016) #8",
+      "seriesTitle": "Thanos (2016)",
+      "apiSeriesName": "Thanos (2016 - 2018)",
+      "seriesName": "Thanos (2016 - 2018)",
+      "seriesId": 22653,
+      "issueNumber": "8",
+      "seriesYear": 2016,
+      "detailUrl": "https://www.marvel.com/comics/issue/61704/thanos_2016_8",
+      "onSaleDate": "2017-06-14T00:00:00+0000"
+    },
+    {
+      "id": 61705,
+      "title": "Thanos (2016)",
+      "issueTitle": "Thanos (2016) #9",
+      "seriesTitle": "Thanos (2016)",
+      "apiSeriesName": "Thanos (2016 - 2018)",
+      "seriesName": "Thanos (2016 - 2018)",
+      "seriesId": 22653,
+      "issueNumber": "9",
+      "seriesYear": 2016,
+      "detailUrl": "https://www.marvel.com/comics/issue/61705/thanos_2016_9",
+      "onSaleDate": "2017-07-26T00:00:00+0000"
+    },
+    {
+      "id": 61706,
+      "title": "Thanos (2016)",
+      "issueTitle": "Thanos (2016) #10",
+      "seriesTitle": "Thanos (2016)",
+      "apiSeriesName": "Thanos (2016 - 2018)",
+      "seriesName": "Thanos (2016 - 2018)",
+      "seriesId": 22653,
+      "issueNumber": "10",
+      "seriesYear": 2016,
+      "detailUrl": "https://www.marvel.com/comics/issue/61706/thanos_2016_10",
+      "onSaleDate": "2017-08-30T00:00:00+0000"
+    },
+    {
+      "id": 61707,
+      "title": "Thanos (2016)",
+      "issueTitle": "Thanos (2016) #11",
+      "seriesTitle": "Thanos (2016)",
+      "apiSeriesName": "Thanos (2016 - 2018)",
+      "seriesName": "Thanos (2016 - 2018)",
+      "seriesId": 22653,
+      "issueNumber": "11",
+      "seriesYear": 2016,
+      "detailUrl": "https://www.marvel.com/comics/issue/61707/thanos_2016_11",
+      "onSaleDate": "2017-09-27T00:00:00+0000"
+    },
+    {
+      "id": 61708,
+      "title": "Thanos (2016)",
+      "issueTitle": "Thanos (2016) #12",
+      "seriesTitle": "Thanos (2016)",
+      "apiSeriesName": "Thanos (2016 - 2018)",
+      "seriesName": "Thanos (2016 - 2018)",
+      "seriesId": 22653,
+      "issueNumber": "12",
+      "seriesYear": 2016,
+      "detailUrl": "https://www.marvel.com/comics/issue/61708/thanos_2016_12",
+      "onSaleDate": "2017-10-25T00:00:00+0000"
+    },
+    {
+      "id": 71308,
+      "title": "Asgardians of the Galaxy (2018)",
+      "issueTitle": "Asgardians of the Galaxy (2018) #1",
+      "seriesTitle": "Asgardians of the Galaxy (2018)",
+      "apiSeriesName": "Asgardians of the Galaxy (2018 - 2019)",
+      "seriesName": "Asgardians of the Galaxy (2018 - 2019)",
+      "seriesId": 25996,
+      "issueNumber": "1",
+      "seriesYear": 2018,
+      "detailUrl": "https://www.marvel.com/comics/issue/71308/asgardians_of_the_galaxy_2018_1",
+      "onSaleDate": "2018-09-05T00:00:00+0000"
+    },
+    {
+      "id": 71310,
+      "title": "Asgardians of the Galaxy (2018)",
+      "issueTitle": "Asgardians of the Galaxy (2018) #2",
+      "seriesTitle": "Asgardians of the Galaxy (2018)",
+      "apiSeriesName": "Asgardians of the Galaxy (2018 - 2019)",
+      "seriesName": "Asgardians of the Galaxy (2018 - 2019)",
+      "seriesId": 25996,
+      "issueNumber": "2",
+      "seriesYear": 2018,
+      "detailUrl": "https://www.marvel.com/comics/issue/71310/asgardians_of_the_galaxy_2018_2",
+      "onSaleDate": "2018-10-03T00:00:00+0000"
+    },
+    {
+      "id": 71311,
+      "title": "Asgardians of the Galaxy (2018)",
+      "issueTitle": "Asgardians of the Galaxy (2018) #3",
+      "seriesTitle": "Asgardians of the Galaxy (2018)",
+      "apiSeriesName": "Asgardians of the Galaxy (2018 - 2019)",
+      "seriesName": "Asgardians of the Galaxy (2018 - 2019)",
+      "seriesId": 25996,
+      "issueNumber": "3",
+      "seriesYear": 2018,
+      "detailUrl": "https://www.marvel.com/comics/issue/71311/asgardians_of_the_galaxy_2018_3",
+      "onSaleDate": "2018-11-07T00:00:00+0000"
+    },
+    {
+      "id": 71312,
+      "title": "Asgardians of the Galaxy (2018)",
+      "issueTitle": "Asgardians of the Galaxy (2018) #4",
+      "seriesTitle": "Asgardians of the Galaxy (2018)",
+      "apiSeriesName": "Asgardians of the Galaxy (2018 - 2019)",
+      "seriesName": "Asgardians of the Galaxy (2018 - 2019)",
+      "seriesId": 25996,
+      "issueNumber": "4",
+      "seriesYear": 2018,
+      "detailUrl": "https://www.marvel.com/comics/issue/71312/asgardians_of_the_galaxy_2018_4",
+      "onSaleDate": "2018-12-12T00:00:00+0000"
+    },
+    {
+      "id": 71313,
+      "title": "Asgardians of the Galaxy (2018)",
+      "issueTitle": "Asgardians of the Galaxy (2018) #5",
+      "seriesTitle": "Asgardians of the Galaxy (2018)",
+      "apiSeriesName": "Asgardians of the Galaxy (2018 - 2019)",
+      "seriesName": "Asgardians of the Galaxy (2018 - 2019)",
+      "seriesId": 25996,
+      "issueNumber": "5",
+      "seriesYear": 2018,
+      "detailUrl": "https://www.marvel.com/comics/issue/71313/asgardians_of_the_galaxy_2018_5",
+      "onSaleDate": "2019-01-16T00:00:00+0000"
+    },
+    {
+      "id": 73421,
+      "title": "Guardians of the Galaxy (2019)",
+      "issueTitle": "Guardians of the Galaxy (2019) #2",
+      "seriesTitle": "Guardians of the Galaxy (2019)",
+      "apiSeriesName": "Guardians of the Galaxy (2019)",
+      "seriesName": "Guardians of the Galaxy (2019)",
+      "seriesId": 26480,
+      "issueNumber": "2",
+      "seriesYear": 2019,
+      "detailUrl": "https://www.marvel.com/comics/issue/73421/guardians_of_the_galaxy_2019_2",
+      "onSaleDate": "2019-02-20T00:00:00+0000"
+    },
+    {
+      "id": 73422,
+      "title": "Guardians of the Galaxy (2019)",
+      "issueTitle": "Guardians of the Galaxy (2019) #3",
+      "seriesTitle": "Guardians of the Galaxy (2019)",
+      "apiSeriesName": "Guardians of the Galaxy (2019)",
+      "seriesName": "Guardians of the Galaxy (2019)",
+      "seriesId": 26480,
+      "issueNumber": "3",
+      "seriesYear": 2019,
+      "detailUrl": "https://www.marvel.com/comics/issue/73422/guardians_of_the_galaxy_2019_3",
+      "onSaleDate": "2019-03-20T00:00:00+0000"
+    },
+    {
+      "id": 73423,
+      "title": "Guardians of the Galaxy (2019)",
+      "issueTitle": "Guardians of the Galaxy (2019) #4",
+      "seriesTitle": "Guardians of the Galaxy (2019)",
+      "apiSeriesName": "Guardians of the Galaxy (2019)",
+      "seriesName": "Guardians of the Galaxy (2019)",
+      "seriesId": 26480,
+      "issueNumber": "4",
+      "seriesYear": 2019,
+      "detailUrl": "https://www.marvel.com/comics/issue/73423/guardians_of_the_galaxy_2019_4",
+      "onSaleDate": "2019-04-17T00:00:00+0000"
+    },
+    {
+      "id": 73424,
+      "title": "Guardians of the Galaxy (2019)",
+      "issueTitle": "Guardians of the Galaxy (2019) #5",
+      "seriesTitle": "Guardians of the Galaxy (2019)",
+      "apiSeriesName": "Guardians of the Galaxy (2019)",
+      "seriesName": "Guardians of the Galaxy (2019)",
+      "seriesId": 26480,
+      "issueNumber": "5",
+      "seriesYear": 2019,
+      "detailUrl": "https://www.marvel.com/comics/issue/73424/guardians_of_the_galaxy_2019_5",
+      "onSaleDate": "2019-05-15T00:00:00+0000"
+    },
+    {
+      "id": 73425,
+      "title": "Guardians of the Galaxy (2019)",
+      "issueTitle": "Guardians of the Galaxy (2019) #6",
+      "seriesTitle": "Guardians of the Galaxy (2019)",
+      "apiSeriesName": "Guardians of the Galaxy (2019)",
+      "seriesName": "Guardians of the Galaxy (2019)",
+      "seriesId": 26480,
+      "issueNumber": "6",
+      "seriesYear": 2019,
+      "detailUrl": "https://www.marvel.com/comics/issue/73425/guardians_of_the_galaxy_2019_6",
+      "onSaleDate": "2019-06-19T00:00:00+0000"
+    },
+    {
+      "id": 78699,
+      "title": "Nebula (2020)",
+      "issueTitle": "Nebula (2020) #1",
+      "seriesTitle": "Nebula (2020)",
+      "apiSeriesName": "Nebula (2020)",
+      "seriesName": "Nebula (2020)",
+      "seriesId": 28047,
+      "issueNumber": "1",
+      "seriesYear": 2020,
+      "detailUrl": "https://www.marvel.com/comics/issue/78699/nebula_2020_1",
+      "onSaleDate": "2020-02-12T00:00:00+0000"
+    },
+    {
+      "id": 78700,
+      "title": "Nebula (2020)",
+      "issueTitle": "Nebula (2020) #2",
+      "seriesTitle": "Nebula (2020)",
+      "apiSeriesName": "Nebula (2020)",
+      "seriesName": "Nebula (2020)",
+      "seriesId": 28047,
+      "issueNumber": "2",
+      "seriesYear": 2020,
+      "detailUrl": "https://www.marvel.com/comics/issue/78700/nebula_2020_2",
+      "onSaleDate": "2020-03-11T00:00:00+0000"
+    },
+    {
+      "id": 73994,
+      "title": "Asgardians of the Galaxy (2018)",
+      "issueTitle": "Asgardians of the Galaxy (2018) #6",
+      "seriesTitle": "Asgardians of the Galaxy (2018)",
+      "apiSeriesName": "Asgardians of the Galaxy (2018 - 2019)",
+      "seriesName": "Asgardians of the Galaxy (2018 - 2019)",
+      "seriesId": 25996,
+      "issueNumber": "6",
+      "seriesYear": 2018,
+      "detailUrl": "https://www.marvel.com/comics/issue/73994/asgardians_of_the_galaxy_2018_6",
+      "onSaleDate": "2019-02-06T00:00:00+0000"
+    },
+    {
+      "id": 73995,
+      "title": "Asgardians of the Galaxy (2018)",
+      "issueTitle": "Asgardians of the Galaxy (2018) #7",
+      "seriesTitle": "Asgardians of the Galaxy (2018)",
+      "apiSeriesName": "Asgardians of the Galaxy (2018 - 2019)",
+      "seriesName": "Asgardians of the Galaxy (2018 - 2019)",
+      "seriesId": 25996,
+      "issueNumber": "7",
+      "seriesYear": 2018,
+      "detailUrl": "https://www.marvel.com/comics/issue/73995/asgardians_of_the_galaxy_2018_7",
+      "onSaleDate": "2019-03-13T00:00:00+0000"
+    },
+    {
+      "id": 73996,
+      "title": "Asgardians of the Galaxy (2018)",
+      "issueTitle": "Asgardians of the Galaxy (2018) #8",
+      "seriesTitle": "Asgardians of the Galaxy (2018)",
+      "apiSeriesName": "Asgardians of the Galaxy (2018 - 2019)",
+      "seriesName": "Asgardians of the Galaxy (2018 - 2019)",
+      "seriesId": 25996,
+      "issueNumber": "8",
+      "seriesYear": 2018,
+      "detailUrl": "https://www.marvel.com/comics/issue/73996/asgardians_of_the_galaxy_2018_8",
+      "onSaleDate": "2019-04-10T00:00:00+0000"
+    },
+    {
+      "id": 73997,
+      "title": "Asgardians of the Galaxy (2018)",
+      "issueTitle": "Asgardians of the Galaxy (2018) #9",
+      "seriesTitle": "Asgardians of the Galaxy (2018)",
+      "apiSeriesName": "Asgardians of the Galaxy (2018 - 2019)",
+      "seriesName": "Asgardians of the Galaxy (2018 - 2019)",
+      "seriesId": 25996,
+      "issueNumber": "9",
+      "seriesYear": 2018,
+      "detailUrl": "https://www.marvel.com/comics/issue/73997/asgardians_of_the_galaxy_2018_9",
+      "onSaleDate": "2019-05-22T00:00:00+0000"
+    },
+    {
+      "id": 73998,
+      "title": "Asgardians of the Galaxy (2018)",
+      "issueTitle": "Asgardians of the Galaxy (2018) #10",
+      "seriesTitle": "Asgardians of the Galaxy (2018)",
+      "apiSeriesName": "Asgardians of the Galaxy (2018 - 2019)",
+      "seriesName": "Asgardians of the Galaxy (2018 - 2019)",
+      "seriesId": 25996,
+      "issueNumber": "10",
+      "seriesYear": 2018,
+      "detailUrl": "https://www.marvel.com/comics/issue/73998/asgardians_of_the_galaxy_2018_10",
+      "onSaleDate": "2019-06-12T00:00:00+0000"
+    }
+  ],
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "Avengers (1963) #257",
+      "sourceRangeReference": "The Nebula Cut (every comic she's in): Avengers (1963) #257-260, Avengers Annual #14.",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "257",
+      "seriesId": 1991,
+      "candidateIssueId": 7127,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 1991, issue #257; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "7127"
+      ],
+      "selectedIssueId": 7127,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/7127/avengers_1963_257",
+      "resolvedIssueTitle": "Avengers (1963) #257",
+      "note": "Exact original series 1991, issue #257; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        7127
+      ]
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "Avengers (1963) #258",
+      "sourceRangeReference": "The Nebula Cut (every comic she's in): Avengers (1963) #257-260, Avengers Annual #14.",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "258",
+      "seriesId": 1991,
+      "candidateIssueId": 7128,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 1991, issue #258; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "7128"
+      ],
+      "selectedIssueId": 7128,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/7128/avengers_1963_258",
+      "resolvedIssueTitle": "Avengers (1963) #258",
+      "note": "Exact original series 1991, issue #258; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        7128
+      ]
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "Avengers (1963) #259",
+      "sourceRangeReference": "The Nebula Cut (every comic she's in): Avengers (1963) #257-260, Avengers Annual #14.",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "259",
+      "seriesId": 1991,
+      "candidateIssueId": 7129,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 1991, issue #259; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "7129"
+      ],
+      "selectedIssueId": 7129,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/7129/avengers_1963_259",
+      "resolvedIssueTitle": "Avengers (1963) #259",
+      "note": "Exact original series 1991, issue #259; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        7129
+      ]
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "Avengers (1963) #260",
+      "sourceRangeReference": "The Nebula Cut (every comic she's in): Avengers (1963) #257-260, Avengers Annual #14.",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "260",
+      "seriesId": 1991,
+      "candidateIssueId": 7131,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 1991, issue #260; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "7131"
+      ],
+      "selectedIssueId": 7131,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/7131/avengers_1963_260",
+      "resolvedIssueTitle": "Avengers (1963) #260",
+      "note": "Exact original series 1991, issue #260; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        7131
+      ]
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "Avengers Annual (1967) #14",
+      "sourceRangeReference": "The Nebula Cut (every comic she's in): Avengers (1963) #257-260, Avengers Annual #14.",
+      "normalizedSeriesTitle": "Avengers Annual",
+      "seriesYear": 1967,
+      "issueNumber": "14",
+      "seriesId": 1988,
+      "candidateIssueId": 6928,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 1988, issue #14; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "6928"
+      ],
+      "selectedIssueId": 6928,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6928/avengers_annual_1967_14",
+      "resolvedIssueTitle": "Avengers Annual (1967) #14",
+      "note": "Exact original series 1988, issue #14; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        6928
+      ]
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "West Coast Avengers (1985) #48",
+      "sourceRangeReference": "The Nebula Cut: Avengers West Coast #48.",
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": 1985,
+      "issueNumber": "48",
+      "seriesId": 3630,
+      "candidateIssueId": 17790,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 3630, issue #48; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "17790"
+      ],
+      "selectedIssueId": 17790,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17790/west_coast_avengers_1985_48",
+      "resolvedIssueTitle": "West Coast Avengers (1985) #48",
+      "note": "Exact original series 3630, issue #48; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        17790
+      ]
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "Avengers (1963) #311",
+      "sourceRangeReference": "The Nebula Cut: Avengers (1963) #311-313.",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "311",
+      "seriesId": 1991,
+      "candidateIssueId": 7188,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 1991, issue #311; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "7188"
+      ],
+      "selectedIssueId": 7188,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/7188/avengers_1963_311",
+      "resolvedIssueTitle": "Avengers (1963) #311",
+      "note": "Exact original series 1991, issue #311; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        7188
+      ]
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "Avengers (1963) #312",
+      "sourceRangeReference": "The Nebula Cut: Avengers (1963) #311-313.",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "312",
+      "seriesId": 1991,
+      "candidateIssueId": 7189,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 1991, issue #312; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "7189"
+      ],
+      "selectedIssueId": 7189,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/7189/avengers_1963_312",
+      "resolvedIssueTitle": "Avengers (1963) #312",
+      "note": "Exact original series 1991, issue #312; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        7189
+      ]
+    },
+    {
+      "sourcePosition": 9,
+      "sourceIssueReference": "Avengers (1963) #313",
+      "sourceRangeReference": "The Nebula Cut: Avengers (1963) #311-313.",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "313",
+      "seriesId": 1991,
+      "candidateIssueId": 7190,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 1991, issue #313; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "7190"
+      ],
+      "selectedIssueId": 7190,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/7190/avengers_1963_313",
+      "resolvedIssueTitle": "Avengers (1963) #313",
+      "note": "Exact original series 1991, issue #313; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        7190
+      ]
+    },
+    {
+      "sourcePosition": 10,
+      "sourceIssueReference": "Avengers (1963) #314",
+      "sourceRangeReference": "The Nebula Cut: Avengers #314-318.",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "314",
+      "seriesId": 1991,
+      "candidateIssueId": 7191,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 1991, issue #314; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "7191"
+      ],
+      "selectedIssueId": 7191,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/7191/avengers_1963_314",
+      "resolvedIssueTitle": "Avengers (1963) #314",
+      "note": "Exact original series 1991, issue #314; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        7191
+      ]
+    },
+    {
+      "sourcePosition": 11,
+      "sourceIssueReference": "Avengers (1963) #315",
+      "sourceRangeReference": "The Nebula Cut: Avengers #314-318.",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "315",
+      "seriesId": 1991,
+      "candidateIssueId": 7192,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 1991, issue #315; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "7192"
+      ],
+      "selectedIssueId": 7192,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/7192/avengers_1963_315",
+      "resolvedIssueTitle": "Avengers (1963) #315",
+      "note": "Exact original series 1991, issue #315; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        7192
+      ]
+    },
+    {
+      "sourcePosition": 12,
+      "sourceIssueReference": "Avengers (1963) #316",
+      "sourceRangeReference": "The Nebula Cut: Avengers #314-318.",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "316",
+      "seriesId": 1991,
+      "candidateIssueId": 7193,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 1991, issue #316; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "7193"
+      ],
+      "selectedIssueId": 7193,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/7193/avengers_1963_316",
+      "resolvedIssueTitle": "Avengers (1963) #316",
+      "note": "Exact original series 1991, issue #316; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        7193
+      ]
+    },
+    {
+      "sourcePosition": 13,
+      "sourceIssueReference": "Avengers (1963) #317",
+      "sourceRangeReference": "The Nebula Cut: Avengers #314-318.",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "317",
+      "seriesId": 1991,
+      "candidateIssueId": 7194,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 1991, issue #317; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "7194"
+      ],
+      "selectedIssueId": 7194,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/7194/avengers_1963_317",
+      "resolvedIssueTitle": "Avengers (1963) #317",
+      "note": "Exact original series 1991, issue #317; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        7194
+      ]
+    },
+    {
+      "sourcePosition": 14,
+      "sourceIssueReference": "Avengers (1963) #318",
+      "sourceRangeReference": "The Nebula Cut: Avengers #314-318.",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "318",
+      "seriesId": 1991,
+      "candidateIssueId": 7195,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 1991, issue #318; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "7195"
+      ],
+      "selectedIssueId": 7195,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/7195/avengers_1963_318",
+      "resolvedIssueTitle": "Avengers (1963) #318",
+      "note": "Exact original series 1991, issue #318; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        7195
+      ]
+    },
+    {
+      "sourcePosition": 15,
+      "sourceIssueReference": "Silver Surfer (1987) #38",
+      "sourceRangeReference": "The Nebula Cut: Silver Surfer (1987) #38.",
+      "normalizedSeriesTitle": "Silver Surfer",
+      "seriesYear": 1987,
+      "issueNumber": "38",
+      "seriesId": 2288,
+      "candidateIssueId": 15173,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 2288, issue #38; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "15173"
+      ],
+      "selectedIssueId": 15173,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/15173/silver_surfer_1987_38",
+      "resolvedIssueTitle": "Silver Surfer (1987) #38",
+      "note": "Exact original series 2288, issue #38; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        15173
+      ]
+    },
+    {
+      "sourcePosition": 16,
+      "sourceIssueReference": "Silver Surfer (1987) #45",
+      "sourceRangeReference": "The Nebula Cut: Silver Surfer #45.",
+      "normalizedSeriesTitle": "Silver Surfer",
+      "seriesYear": 1987,
+      "issueNumber": "45",
+      "seriesId": 2288,
+      "candidateIssueId": 15181,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 2288, issue #45; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "15181"
+      ],
+      "selectedIssueId": 15181,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/15181/silver_surfer_1987_45",
+      "resolvedIssueTitle": "Silver Surfer (1987) #45",
+      "note": "Exact original series 2288, issue #45; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        15181
+      ]
+    },
+    {
+      "sourcePosition": 17,
+      "sourceIssueReference": "Infinity Gauntlet (1991) #1",
+      "sourceRangeReference": "Infinity Gauntlet",
+      "normalizedSeriesTitle": "Infinity Gauntlet",
+      "seriesYear": 1991,
+      "issueNumber": "1",
+      "seriesId": 2023,
+      "candidateIssueId": 9286,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 2023, issue #1; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "9286"
+      ],
+      "selectedIssueId": 9286,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/9286/infinity_gauntlet_1991_1",
+      "resolvedIssueTitle": "Infinity Gauntlet (1991) #1",
+      "note": "Exact original series 2023, issue #1; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        9286
+      ]
+    },
+    {
+      "sourcePosition": 18,
+      "sourceIssueReference": "Infinity Gauntlet (1991) #2",
+      "sourceRangeReference": "Infinity Gauntlet",
+      "normalizedSeriesTitle": "Infinity Gauntlet",
+      "seriesYear": 1991,
+      "issueNumber": "2",
+      "seriesId": 2023,
+      "candidateIssueId": 9287,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 2023, issue #2; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "9287"
+      ],
+      "selectedIssueId": 9287,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/9287/infinity_gauntlet_1991_2",
+      "resolvedIssueTitle": "Infinity Gauntlet (1991) #2",
+      "note": "Exact original series 2023, issue #2; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        9287
+      ]
+    },
+    {
+      "sourcePosition": 19,
+      "sourceIssueReference": "Infinity Gauntlet (1991) #3",
+      "sourceRangeReference": "Infinity Gauntlet",
+      "normalizedSeriesTitle": "Infinity Gauntlet",
+      "seriesYear": 1991,
+      "issueNumber": "3",
+      "seriesId": 2023,
+      "candidateIssueId": 9288,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 2023, issue #3; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "9288"
+      ],
+      "selectedIssueId": 9288,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/9288/infinity_gauntlet_1991_3",
+      "resolvedIssueTitle": "Infinity Gauntlet (1991) #3",
+      "note": "Exact original series 2023, issue #3; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        9288
+      ]
+    },
+    {
+      "sourcePosition": 20,
+      "sourceIssueReference": "Infinity Gauntlet (1991) #4",
+      "sourceRangeReference": "Infinity Gauntlet",
+      "normalizedSeriesTitle": "Infinity Gauntlet",
+      "seriesYear": 1991,
+      "issueNumber": "4",
+      "seriesId": 2023,
+      "candidateIssueId": 9289,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 2023, issue #4; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "9289"
+      ],
+      "selectedIssueId": 9289,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/9289/infinity_gauntlet_1991_4",
+      "resolvedIssueTitle": "Infinity Gauntlet (1991) #4",
+      "note": "Exact original series 2023, issue #4; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        9289
+      ]
+    },
+    {
+      "sourcePosition": 21,
+      "sourceIssueReference": "Infinity Gauntlet (1991) #5",
+      "sourceRangeReference": "Infinity Gauntlet",
+      "normalizedSeriesTitle": "Infinity Gauntlet",
+      "seriesYear": 1991,
+      "issueNumber": "5",
+      "seriesId": 2023,
+      "candidateIssueId": 9290,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 2023, issue #5; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "9290"
+      ],
+      "selectedIssueId": 9290,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/9290/infinity_gauntlet_1991_5",
+      "resolvedIssueTitle": "Infinity Gauntlet (1991) #5",
+      "note": "Exact original series 2023, issue #5; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        9290
+      ]
+    },
+    {
+      "sourcePosition": 22,
+      "sourceIssueReference": "Infinity Gauntlet (1991) #6",
+      "sourceRangeReference": "Infinity Gauntlet",
+      "normalizedSeriesTitle": "Infinity Gauntlet",
+      "seriesYear": 1991,
+      "issueNumber": "6",
+      "seriesId": 2023,
+      "candidateIssueId": 9291,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 2023, issue #6; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "9291"
+      ],
+      "selectedIssueId": 9291,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/9291/infinity_gauntlet_1991_6",
+      "resolvedIssueTitle": "Infinity Gauntlet (1991) #6",
+      "note": "Exact original series 2023, issue #6; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        9291
+      ]
+    },
+    {
+      "sourcePosition": 24,
+      "sourceIssueReference": "Silver Surfer (1987) #67",
+      "sourceRangeReference": "The Nebula Cut: Silver Surfer #67, #69.",
+      "normalizedSeriesTitle": "Silver Surfer",
+      "seriesYear": 1987,
+      "issueNumber": "67",
+      "seriesId": 2288,
+      "candidateIssueId": 15205,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 2288, issue #67; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "15205"
+      ],
+      "selectedIssueId": 15205,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/15205/silver_surfer_1987_67",
+      "resolvedIssueTitle": "Silver Surfer (1987) #67",
+      "note": "Exact original series 2288, issue #67; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        15205
+      ]
+    },
+    {
+      "sourcePosition": 25,
+      "sourceIssueReference": "Silver Surfer (1987) #69",
+      "sourceRangeReference": "The Nebula Cut: Silver Surfer #67, #69.",
+      "normalizedSeriesTitle": "Silver Surfer",
+      "seriesYear": 1987,
+      "issueNumber": "69",
+      "seriesId": 2288,
+      "candidateIssueId": 15207,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 2288, issue #69; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "15207"
+      ],
+      "selectedIssueId": 15207,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/15207/silver_surfer_1987_69",
+      "resolvedIssueTitle": "Silver Surfer (1987) #69",
+      "note": "Exact original series 2288, issue #69; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        15207
+      ]
+    },
+    {
+      "sourcePosition": 26,
+      "sourceIssueReference": "Silver Surfer (1987) #70",
+      "sourceRangeReference": "The Herald Ordeal (issues #70-74)",
+      "normalizedSeriesTitle": "Silver Surfer",
+      "seriesYear": 1987,
+      "issueNumber": "70",
+      "seriesId": 2288,
+      "candidateIssueId": 15209,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 2288, issue #70; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "15209"
+      ],
+      "selectedIssueId": 15209,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/15209/silver_surfer_1987_70",
+      "resolvedIssueTitle": "Silver Surfer (1987) #70",
+      "note": "Exact original series 2288, issue #70; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        15209
+      ]
+    },
+    {
+      "sourcePosition": 27,
+      "sourceIssueReference": "Silver Surfer (1987) #71",
+      "sourceRangeReference": "The Herald Ordeal (issues #70-74)",
+      "normalizedSeriesTitle": "Silver Surfer",
+      "seriesYear": 1987,
+      "issueNumber": "71",
+      "seriesId": 2288,
+      "candidateIssueId": 15210,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 2288, issue #71; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "15210"
+      ],
+      "selectedIssueId": 15210,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/15210/silver_surfer_1987_71",
+      "resolvedIssueTitle": "Silver Surfer (1987) #71",
+      "note": "Exact original series 2288, issue #71; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        15210
+      ]
+    },
+    {
+      "sourcePosition": 28,
+      "sourceIssueReference": "Silver Surfer (1987) #72",
+      "sourceRangeReference": "The Herald Ordeal (issues #70-74)",
+      "normalizedSeriesTitle": "Silver Surfer",
+      "seriesYear": 1987,
+      "issueNumber": "72",
+      "seriesId": 2288,
+      "candidateIssueId": 15211,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 2288, issue #72; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "15211"
+      ],
+      "selectedIssueId": 15211,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/15211/silver_surfer_1987_72",
+      "resolvedIssueTitle": "Silver Surfer (1987) #72",
+      "note": "Exact original series 2288, issue #72; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        15211
+      ]
+    },
+    {
+      "sourcePosition": 29,
+      "sourceIssueReference": "Silver Surfer (1987) #73",
+      "sourceRangeReference": "The Herald Ordeal (issues #70-74)",
+      "normalizedSeriesTitle": "Silver Surfer",
+      "seriesYear": 1987,
+      "issueNumber": "73",
+      "seriesId": 2288,
+      "candidateIssueId": 15212,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 2288, issue #73; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "15212"
+      ],
+      "selectedIssueId": 15212,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/15212/silver_surfer_1987_73",
+      "resolvedIssueTitle": "Silver Surfer (1987) #73",
+      "note": "Exact original series 2288, issue #73; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        15212
+      ]
+    },
+    {
+      "sourcePosition": 30,
+      "sourceIssueReference": "Silver Surfer (1987) #74",
+      "sourceRangeReference": "The Herald Ordeal (issues #70-74)",
+      "normalizedSeriesTitle": "Silver Surfer",
+      "seriesYear": 1987,
+      "issueNumber": "74",
+      "seriesId": 2288,
+      "candidateIssueId": 15213,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 2288, issue #74; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "15213"
+      ],
+      "selectedIssueId": 15213,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/15213/silver_surfer_1987_74",
+      "resolvedIssueTitle": "Silver Surfer (1987) #74",
+      "note": "Exact original series 2288, issue #74; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        15213
+      ]
+    },
+    {
+      "sourcePosition": 31,
+      "sourceIssueReference": "Silver Surfer (1987) #76",
+      "sourceRangeReference": "The Nebula Cut: Silver Surfer #76-78, Secret Defenders #9-10",
+      "normalizedSeriesTitle": "Silver Surfer",
+      "seriesYear": 1987,
+      "issueNumber": "76",
+      "seriesId": 2288,
+      "candidateIssueId": 15215,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 2288, issue #76; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "15215"
+      ],
+      "selectedIssueId": 15215,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/15215/silver_surfer_1987_76",
+      "resolvedIssueTitle": "Silver Surfer (1987) #76",
+      "note": "Exact original series 2288, issue #76; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        15215
+      ]
+    },
+    {
+      "sourcePosition": 32,
+      "sourceIssueReference": "Silver Surfer (1987) #77",
+      "sourceRangeReference": "The Nebula Cut: Silver Surfer #76-78, Secret Defenders #9-10",
+      "normalizedSeriesTitle": "Silver Surfer",
+      "seriesYear": 1987,
+      "issueNumber": "77",
+      "seriesId": 2288,
+      "candidateIssueId": 15216,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 2288, issue #77; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "15216"
+      ],
+      "selectedIssueId": 15216,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/15216/silver_surfer_1987_77",
+      "resolvedIssueTitle": "Silver Surfer (1987) #77",
+      "note": "Exact original series 2288, issue #77; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        15216
+      ]
+    },
+    {
+      "sourcePosition": 33,
+      "sourceIssueReference": "Silver Surfer (1987) #78",
+      "sourceRangeReference": "The Nebula Cut: Silver Surfer #76-78, Secret Defenders #9-10",
+      "normalizedSeriesTitle": "Silver Surfer",
+      "seriesYear": 1987,
+      "issueNumber": "78",
+      "seriesId": 2288,
+      "candidateIssueId": 15217,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 2288, issue #78; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "15217"
+      ],
+      "selectedIssueId": 15217,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/15217/silver_surfer_1987_78",
+      "resolvedIssueTitle": "Silver Surfer (1987) #78",
+      "note": "Exact original series 2288, issue #78; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        15217
+      ]
+    },
+    {
+      "sourcePosition": 34,
+      "sourceIssueReference": "Secret Defenders (1993) #9",
+      "sourceRangeReference": "The Nebula Cut: Silver Surfer #76-78, Secret Defenders #9-10",
+      "normalizedSeriesTitle": "Secret Defenders",
+      "seriesYear": 1993,
+      "issueNumber": "9",
+      "seriesId": 20374,
+      "candidateIssueId": 62313,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 20374, issue #9; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "62313"
+      ],
+      "selectedIssueId": 62313,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/62313/secret_defenders_1993_9",
+      "resolvedIssueTitle": "Secret Defenders (1993) #9",
+      "note": "Exact original series 20374, issue #9; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        62313
+      ]
+    },
+    {
+      "sourcePosition": 35,
+      "sourceIssueReference": "Secret Defenders (1993) #10",
+      "sourceRangeReference": "The Nebula Cut: Silver Surfer #76-78, Secret Defenders #9-10",
+      "normalizedSeriesTitle": "Secret Defenders",
+      "seriesYear": 1993,
+      "issueNumber": "10",
+      "seriesId": 20374,
+      "candidateIssueId": 62314,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 20374, issue #10; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "62314"
+      ],
+      "selectedIssueId": 62314,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/62314/secret_defenders_1993_10",
+      "resolvedIssueTitle": "Secret Defenders (1993) #10",
+      "note": "Exact original series 20374, issue #10; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        62314
+      ]
+    },
+    {
+      "sourcePosition": 36,
+      "sourceIssueReference": "Annihilation: Ronan (2006) #1",
+      "sourceRangeReference": "The Nebula Cut: Annihilation: Ronan #1-2, #4.",
+      "normalizedSeriesTitle": "Annihilation: Ronan",
+      "seriesYear": 2006,
+      "issueNumber": "1",
+      "seriesId": 1079,
+      "candidateIssueId": 4109,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 1079, issue #1; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "4109"
+      ],
+      "selectedIssueId": 4109,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/4109/annihilation_ronan_2006_1",
+      "resolvedIssueTitle": "Annihilation: Ronan (2006) #1",
+      "note": "Exact original series 1079, issue #1; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        4109
+      ]
+    },
+    {
+      "sourcePosition": 37,
+      "sourceIssueReference": "Annihilation: Ronan (2006) #2",
+      "sourceRangeReference": "The Nebula Cut: Annihilation: Ronan #1-2, #4.",
+      "normalizedSeriesTitle": "Annihilation: Ronan",
+      "seriesYear": 2006,
+      "issueNumber": "2",
+      "seriesId": 1079,
+      "candidateIssueId": 4219,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 1079, issue #2; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "4219"
+      ],
+      "selectedIssueId": 4219,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/4219/annihilation_ronan_2006_2",
+      "resolvedIssueTitle": "Annihilation: Ronan (2006) #2",
+      "note": "Exact original series 1079, issue #2; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        4219
+      ]
+    },
+    {
+      "sourcePosition": 38,
+      "sourceIssueReference": "Annihilation: Ronan (2006) #4",
+      "sourceRangeReference": "The Nebula Cut: Annihilation: Ronan #1-2, #4.",
+      "normalizedSeriesTitle": "Annihilation: Ronan",
+      "seriesYear": 2006,
+      "issueNumber": "4",
+      "seriesId": 1079,
+      "candidateIssueId": 4471,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 1079, issue #4; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "4471"
+      ],
+      "selectedIssueId": 4471,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/4471/annihilation_ronan_2006_4",
+      "resolvedIssueTitle": "Annihilation: Ronan (2006) #4",
+      "note": "Exact original series 1079, issue #4; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        4471
+      ]
+    },
+    {
+      "sourcePosition": 39,
+      "sourceIssueReference": "Guardians of the Galaxy Infinite (2014) #1",
+      "sourceRangeReference": "Guardians of the Galaxy Infinite (2014) #1",
+      "normalizedSeriesTitle": "Guardians of the Galaxy Infinite",
+      "seriesYear": 2014,
+      "issueNumber": "1",
+      "seriesId": 19072,
+      "candidateIssueId": 50944,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 19072, issue #1; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "50944"
+      ],
+      "selectedIssueId": 50944,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/50944/guardians_of_the_galaxy_infinite_2014_1",
+      "resolvedIssueTitle": "Guardians of the Galaxy Infinite (2014) #1",
+      "note": "Exact original series 19072, issue #1; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        50944
+      ]
+    },
+    {
+      "sourcePosition": 40,
+      "sourceIssueReference": "Guardians Team-Up (2015) #1",
+      "sourceRangeReference": "The Nebula Cut: Guardians Team-Up #1-2.",
+      "normalizedSeriesTitle": "Guardians Team-Up",
+      "seriesYear": 2015,
+      "issueNumber": "1",
+      "seriesId": 19453,
+      "candidateIssueId": 51919,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 19453, issue #1; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "51919"
+      ],
+      "selectedIssueId": 51919,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/51919/guardians_team-up_2015_1",
+      "resolvedIssueTitle": "Guardians Team-Up (2015) #1",
+      "note": "Exact original series 19453, issue #1; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        51919
+      ]
+    },
+    {
+      "sourcePosition": 41,
+      "sourceIssueReference": "Guardians Team-Up (2015) #2",
+      "sourceRangeReference": "The Nebula Cut: Guardians Team-Up #1-2.",
+      "normalizedSeriesTitle": "Guardians Team-Up",
+      "seriesYear": 2015,
+      "issueNumber": "2",
+      "seriesId": 19453,
+      "candidateIssueId": 51924,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 19453, issue #2; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "51924"
+      ],
+      "selectedIssueId": 51924,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/51924/guardians_team-up_2015_2",
+      "resolvedIssueTitle": "Guardians Team-Up (2015) #2",
+      "note": "Exact original series 19453, issue #2; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        51924
+      ]
+    },
+    {
+      "sourcePosition": 42,
+      "sourceIssueReference": "Gamora (2016) #1",
+      "sourceRangeReference": "The Nebula Cut: Gamora #1, #5",
+      "normalizedSeriesTitle": "Gamora",
+      "seriesYear": 2016,
+      "issueNumber": "1",
+      "seriesId": 19427,
+      "candidateIssueId": 51841,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 19427, issue #1; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "51841"
+      ],
+      "selectedIssueId": 51841,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/51841/gamora_2016_1",
+      "resolvedIssueTitle": "Gamora (2016) #1",
+      "note": "Exact original series 19427, issue #1; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        51841
+      ]
+    },
+    {
+      "sourcePosition": 43,
+      "sourceIssueReference": "Gamora (2016) #5",
+      "sourceRangeReference": "The Nebula Cut: Gamora #1, #5",
+      "normalizedSeriesTitle": "Gamora",
+      "seriesYear": 2016,
+      "issueNumber": "5",
+      "seriesId": 19427,
+      "candidateIssueId": 51847,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 19427, issue #5; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "51847"
+      ],
+      "selectedIssueId": 51847,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/51847/gamora_2016_5",
+      "resolvedIssueTitle": "Gamora (2016) #5",
+      "note": "Exact original series 19427, issue #5; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        51847
+      ]
+    },
+    {
+      "sourcePosition": 44,
+      "sourceIssueReference": "Thanos (2016) #2",
+      "sourceRangeReference": "The Nebula Cut: Thanos (2016) #2, #4-6.",
+      "normalizedSeriesTitle": "Thanos",
+      "seriesYear": 2016,
+      "issueNumber": "2",
+      "seriesId": 22653,
+      "candidateIssueId": 61698,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 22653, issue #2; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "61698"
+      ],
+      "selectedIssueId": 61698,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61698/thanos_2016_2",
+      "resolvedIssueTitle": "Thanos (2016) #2",
+      "note": "Exact original series 22653, issue #2; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        61698
+      ]
+    },
+    {
+      "sourcePosition": 45,
+      "sourceIssueReference": "Thanos (2016) #4",
+      "sourceRangeReference": "The Nebula Cut: Thanos (2016) #2, #4-6.",
+      "normalizedSeriesTitle": "Thanos",
+      "seriesYear": 2016,
+      "issueNumber": "4",
+      "seriesId": 22653,
+      "candidateIssueId": 61700,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 22653, issue #4; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "61700"
+      ],
+      "selectedIssueId": 61700,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61700/thanos_2016_4",
+      "resolvedIssueTitle": "Thanos (2016) #4",
+      "note": "Exact original series 22653, issue #4; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        61700
+      ]
+    },
+    {
+      "sourcePosition": 46,
+      "sourceIssueReference": "Thanos (2016) #5",
+      "sourceRangeReference": "The Nebula Cut: Thanos (2016) #2, #4-6.",
+      "normalizedSeriesTitle": "Thanos",
+      "seriesYear": 2016,
+      "issueNumber": "5",
+      "seriesId": 22653,
+      "candidateIssueId": 61701,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 22653, issue #5; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "61701"
+      ],
+      "selectedIssueId": 61701,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61701/thanos_2016_5",
+      "resolvedIssueTitle": "Thanos (2016) #5",
+      "note": "Exact original series 22653, issue #5; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        61701
+      ]
+    },
+    {
+      "sourcePosition": 47,
+      "sourceIssueReference": "Thanos (2016) #6",
+      "sourceRangeReference": "The Nebula Cut: Thanos (2016) #2, #4-6.",
+      "normalizedSeriesTitle": "Thanos",
+      "seriesYear": 2016,
+      "issueNumber": "6",
+      "seriesId": 22653,
+      "candidateIssueId": 61702,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 22653, issue #6; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "61702"
+      ],
+      "selectedIssueId": 61702,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61702/thanos_2016_6",
+      "resolvedIssueTitle": "Thanos (2016) #6",
+      "note": "Exact original series 22653, issue #6; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        61702
+      ]
+    },
+    {
+      "sourcePosition": 48,
+      "sourceIssueReference": "Thanos (2016) #7",
+      "sourceRangeReference": "Thanos Vol. 2: The God Quarry",
+      "normalizedSeriesTitle": "Thanos",
+      "seriesYear": 2016,
+      "issueNumber": "7",
+      "seriesId": 22653,
+      "candidateIssueId": 61703,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 22653, issue #7; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "61703"
+      ],
+      "selectedIssueId": 61703,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61703/thanos_2016_7",
+      "resolvedIssueTitle": "Thanos (2016) #7",
+      "note": "Exact original series 22653, issue #7; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        61703
+      ]
+    },
+    {
+      "sourcePosition": 49,
+      "sourceIssueReference": "Thanos (2016) #8",
+      "sourceRangeReference": "Thanos Vol. 2: The God Quarry",
+      "normalizedSeriesTitle": "Thanos",
+      "seriesYear": 2016,
+      "issueNumber": "8",
+      "seriesId": 22653,
+      "candidateIssueId": 61704,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 22653, issue #8; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "61704"
+      ],
+      "selectedIssueId": 61704,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61704/thanos_2016_8",
+      "resolvedIssueTitle": "Thanos (2016) #8",
+      "note": "Exact original series 22653, issue #8; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        61704
+      ]
+    },
+    {
+      "sourcePosition": 50,
+      "sourceIssueReference": "Thanos (2016) #9",
+      "sourceRangeReference": "Thanos Vol. 2: The God Quarry",
+      "normalizedSeriesTitle": "Thanos",
+      "seriesYear": 2016,
+      "issueNumber": "9",
+      "seriesId": 22653,
+      "candidateIssueId": 61705,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 22653, issue #9; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "61705"
+      ],
+      "selectedIssueId": 61705,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61705/thanos_2016_9",
+      "resolvedIssueTitle": "Thanos (2016) #9",
+      "note": "Exact original series 22653, issue #9; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        61705
+      ]
+    },
+    {
+      "sourcePosition": 51,
+      "sourceIssueReference": "Thanos (2016) #10",
+      "sourceRangeReference": "Thanos Vol. 2: The God Quarry",
+      "normalizedSeriesTitle": "Thanos",
+      "seriesYear": 2016,
+      "issueNumber": "10",
+      "seriesId": 22653,
+      "candidateIssueId": 61706,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 22653, issue #10; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "61706"
+      ],
+      "selectedIssueId": 61706,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61706/thanos_2016_10",
+      "resolvedIssueTitle": "Thanos (2016) #10",
+      "note": "Exact original series 22653, issue #10; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        61706
+      ]
+    },
+    {
+      "sourcePosition": 52,
+      "sourceIssueReference": "Thanos (2016) #11",
+      "sourceRangeReference": "Thanos Vol. 2: The God Quarry",
+      "normalizedSeriesTitle": "Thanos",
+      "seriesYear": 2016,
+      "issueNumber": "11",
+      "seriesId": 22653,
+      "candidateIssueId": 61707,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 22653, issue #11; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "61707"
+      ],
+      "selectedIssueId": 61707,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61707/thanos_2016_11",
+      "resolvedIssueTitle": "Thanos (2016) #11",
+      "note": "Exact original series 22653, issue #11; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        61707
+      ]
+    },
+    {
+      "sourcePosition": 53,
+      "sourceIssueReference": "Thanos (2016) #12",
+      "sourceRangeReference": "Thanos Vol. 2: The God Quarry",
+      "normalizedSeriesTitle": "Thanos",
+      "seriesYear": 2016,
+      "issueNumber": "12",
+      "seriesId": 22653,
+      "candidateIssueId": 61708,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 22653, issue #12; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "61708"
+      ],
+      "selectedIssueId": 61708,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/61708/thanos_2016_12",
+      "resolvedIssueTitle": "Thanos (2016) #12",
+      "note": "Exact original series 22653, issue #12; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        61708
+      ]
+    },
+    {
+      "sourcePosition": 54,
+      "sourceIssueReference": "Asgardians of the Galaxy (2018) #1",
+      "sourceRangeReference": "Asgardians of the Galaxy Vol. 1: The Infinity Armada",
+      "normalizedSeriesTitle": "Asgardians of the Galaxy",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "seriesId": 25996,
+      "candidateIssueId": 71308,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 25996, issue #1; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "71308"
+      ],
+      "selectedIssueId": 71308,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/71308/asgardians_of_the_galaxy_2018_1",
+      "resolvedIssueTitle": "Asgardians of the Galaxy (2018) #1",
+      "note": "Exact original series 25996, issue #1; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        71308
+      ]
+    },
+    {
+      "sourcePosition": 55,
+      "sourceIssueReference": "Asgardians of the Galaxy (2018) #2",
+      "sourceRangeReference": "Asgardians of the Galaxy Vol. 1: The Infinity Armada",
+      "normalizedSeriesTitle": "Asgardians of the Galaxy",
+      "seriesYear": 2018,
+      "issueNumber": "2",
+      "seriesId": 25996,
+      "candidateIssueId": 71310,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 25996, issue #2; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "71310"
+      ],
+      "selectedIssueId": 71310,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/71310/asgardians_of_the_galaxy_2018_2",
+      "resolvedIssueTitle": "Asgardians of the Galaxy (2018) #2",
+      "note": "Exact original series 25996, issue #2; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        71310
+      ]
+    },
+    {
+      "sourcePosition": 56,
+      "sourceIssueReference": "Asgardians of the Galaxy (2018) #3",
+      "sourceRangeReference": "Asgardians of the Galaxy Vol. 1: The Infinity Armada",
+      "normalizedSeriesTitle": "Asgardians of the Galaxy",
+      "seriesYear": 2018,
+      "issueNumber": "3",
+      "seriesId": 25996,
+      "candidateIssueId": 71311,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 25996, issue #3; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "71311"
+      ],
+      "selectedIssueId": 71311,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/71311/asgardians_of_the_galaxy_2018_3",
+      "resolvedIssueTitle": "Asgardians of the Galaxy (2018) #3",
+      "note": "Exact original series 25996, issue #3; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        71311
+      ]
+    },
+    {
+      "sourcePosition": 57,
+      "sourceIssueReference": "Asgardians of the Galaxy (2018) #4",
+      "sourceRangeReference": "Asgardians of the Galaxy Vol. 1: The Infinity Armada",
+      "normalizedSeriesTitle": "Asgardians of the Galaxy",
+      "seriesYear": 2018,
+      "issueNumber": "4",
+      "seriesId": 25996,
+      "candidateIssueId": 71312,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 25996, issue #4; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "71312"
+      ],
+      "selectedIssueId": 71312,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/71312/asgardians_of_the_galaxy_2018_4",
+      "resolvedIssueTitle": "Asgardians of the Galaxy (2018) #4",
+      "note": "Exact original series 25996, issue #4; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        71312
+      ]
+    },
+    {
+      "sourcePosition": 58,
+      "sourceIssueReference": "Asgardians of the Galaxy (2018) #5",
+      "sourceRangeReference": "Asgardians of the Galaxy Vol. 1: The Infinity Armada",
+      "normalizedSeriesTitle": "Asgardians of the Galaxy",
+      "seriesYear": 2018,
+      "issueNumber": "5",
+      "seriesId": 25996,
+      "candidateIssueId": 71313,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 25996, issue #5; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "71313"
+      ],
+      "selectedIssueId": 71313,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/71313/asgardians_of_the_galaxy_2018_5",
+      "resolvedIssueTitle": "Asgardians of the Galaxy (2018) #5",
+      "note": "Exact original series 25996, issue #5; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        71313
+      ]
+    },
+    {
+      "sourcePosition": 59,
+      "sourceIssueReference": "Guardians of the Galaxy (2019) #2",
+      "sourceRangeReference": "The Nebula Cut: Guardians of the Galaxy (2019) #2-6.",
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2019,
+      "issueNumber": "2",
+      "seriesId": 26480,
+      "candidateIssueId": 73421,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 26480, issue #2; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "73421"
+      ],
+      "selectedIssueId": 73421,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/73421/guardians_of_the_galaxy_2019_2",
+      "resolvedIssueTitle": "Guardians of the Galaxy (2019) #2",
+      "note": "Exact original series 26480, issue #2; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        73421
+      ]
+    },
+    {
+      "sourcePosition": 60,
+      "sourceIssueReference": "Guardians of the Galaxy (2019) #3",
+      "sourceRangeReference": "The Nebula Cut: Guardians of the Galaxy (2019) #2-6.",
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2019,
+      "issueNumber": "3",
+      "seriesId": 26480,
+      "candidateIssueId": 73422,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 26480, issue #3; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "73422"
+      ],
+      "selectedIssueId": 73422,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/73422/guardians_of_the_galaxy_2019_3",
+      "resolvedIssueTitle": "Guardians of the Galaxy (2019) #3",
+      "note": "Exact original series 26480, issue #3; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        73422
+      ]
+    },
+    {
+      "sourcePosition": 61,
+      "sourceIssueReference": "Guardians of the Galaxy (2019) #4",
+      "sourceRangeReference": "The Nebula Cut: Guardians of the Galaxy (2019) #2-6.",
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2019,
+      "issueNumber": "4",
+      "seriesId": 26480,
+      "candidateIssueId": 73423,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 26480, issue #4; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "73423"
+      ],
+      "selectedIssueId": 73423,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/73423/guardians_of_the_galaxy_2019_4",
+      "resolvedIssueTitle": "Guardians of the Galaxy (2019) #4",
+      "note": "Exact original series 26480, issue #4; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        73423
+      ]
+    },
+    {
+      "sourcePosition": 62,
+      "sourceIssueReference": "Guardians of the Galaxy (2019) #5",
+      "sourceRangeReference": "The Nebula Cut: Guardians of the Galaxy (2019) #2-6.",
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2019,
+      "issueNumber": "5",
+      "seriesId": 26480,
+      "candidateIssueId": 73424,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 26480, issue #5; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "73424"
+      ],
+      "selectedIssueId": 73424,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/73424/guardians_of_the_galaxy_2019_5",
+      "resolvedIssueTitle": "Guardians of the Galaxy (2019) #5",
+      "note": "Exact original series 26480, issue #5; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        73424
+      ]
+    },
+    {
+      "sourcePosition": 63,
+      "sourceIssueReference": "Guardians of the Galaxy (2019) #6",
+      "sourceRangeReference": "The Nebula Cut: Guardians of the Galaxy (2019) #2-6.",
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2019,
+      "issueNumber": "6",
+      "seriesId": 26480,
+      "candidateIssueId": 73425,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 26480, issue #6; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "73425"
+      ],
+      "selectedIssueId": 73425,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/73425/guardians_of_the_galaxy_2019_6",
+      "resolvedIssueTitle": "Guardians of the Galaxy (2019) #6",
+      "note": "Exact original series 26480, issue #6; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        73425
+      ]
+    },
+    {
+      "sourcePosition": 64,
+      "sourceIssueReference": "Nebula (2020) #1",
+      "sourceRangeReference": "Nebula (2020) #1-2",
+      "normalizedSeriesTitle": "Nebula",
+      "seriesYear": 2020,
+      "issueNumber": "1",
+      "seriesId": 28047,
+      "candidateIssueId": 78699,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 28047, issue #1; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "78699"
+      ],
+      "selectedIssueId": 78699,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/78699/nebula_2020_1",
+      "resolvedIssueTitle": "Nebula (2020) #1",
+      "note": "Exact original series 28047, issue #1; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        78699
+      ]
+    },
+    {
+      "sourcePosition": 65,
+      "sourceIssueReference": "Nebula (2020) #2",
+      "sourceRangeReference": "Nebula (2020) #1-2",
+      "normalizedSeriesTitle": "Nebula",
+      "seriesYear": 2020,
+      "issueNumber": "2",
+      "seriesId": 28047,
+      "candidateIssueId": 78700,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 28047, issue #2; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "78700"
+      ],
+      "selectedIssueId": 78700,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/78700/nebula_2020_2",
+      "resolvedIssueTitle": "Nebula (2020) #2",
+      "note": "Exact original series 28047, issue #2; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        78700
+      ]
+    },
+    {
+      "sourcePosition": 66,
+      "sourceIssueReference": "Asgardians of the Galaxy (2018) #6",
+      "sourceRangeReference": "Collects: Asgardians of the Galaxy #6-10",
+      "normalizedSeriesTitle": "Asgardians of the Galaxy",
+      "seriesYear": 2018,
+      "issueNumber": "6",
+      "seriesId": 25996,
+      "candidateIssueId": 73994,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 25996, issue #6; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "73994"
+      ],
+      "selectedIssueId": 73994,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/73994/asgardians_of_the_galaxy_2018_6",
+      "resolvedIssueTitle": "Asgardians of the Galaxy (2018) #6",
+      "note": "Exact original series 25996, issue #6; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        73994
+      ]
+    },
+    {
+      "sourcePosition": 67,
+      "sourceIssueReference": "Asgardians of the Galaxy (2018) #7",
+      "sourceRangeReference": "Collects: Asgardians of the Galaxy #6-10",
+      "normalizedSeriesTitle": "Asgardians of the Galaxy",
+      "seriesYear": 2018,
+      "issueNumber": "7",
+      "seriesId": 25996,
+      "candidateIssueId": 73995,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 25996, issue #7; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "73995"
+      ],
+      "selectedIssueId": 73995,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/73995/asgardians_of_the_galaxy_2018_7",
+      "resolvedIssueTitle": "Asgardians of the Galaxy (2018) #7",
+      "note": "Exact original series 25996, issue #7; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        73995
+      ]
+    },
+    {
+      "sourcePosition": 68,
+      "sourceIssueReference": "Asgardians of the Galaxy (2018) #8",
+      "sourceRangeReference": "Collects: Asgardians of the Galaxy #6-10",
+      "normalizedSeriesTitle": "Asgardians of the Galaxy",
+      "seriesYear": 2018,
+      "issueNumber": "8",
+      "seriesId": 25996,
+      "candidateIssueId": 73996,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 25996, issue #8; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "73996"
+      ],
+      "selectedIssueId": 73996,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/73996/asgardians_of_the_galaxy_2018_8",
+      "resolvedIssueTitle": "Asgardians of the Galaxy (2018) #8",
+      "note": "Exact original series 25996, issue #8; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        73996
+      ]
+    },
+    {
+      "sourcePosition": 69,
+      "sourceIssueReference": "Asgardians of the Galaxy (2018) #9",
+      "sourceRangeReference": "Collects: Asgardians of the Galaxy #6-10",
+      "normalizedSeriesTitle": "Asgardians of the Galaxy",
+      "seriesYear": 2018,
+      "issueNumber": "9",
+      "seriesId": 25996,
+      "candidateIssueId": 73997,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 25996, issue #9; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "73997"
+      ],
+      "selectedIssueId": 73997,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/73997/asgardians_of_the_galaxy_2018_9",
+      "resolvedIssueTitle": "Asgardians of the Galaxy (2018) #9",
+      "note": "Exact original series 25996, issue #9; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        73997
+      ]
+    },
+    {
+      "sourcePosition": 70,
+      "sourceIssueReference": "Asgardians of the Galaxy (2018) #10",
+      "sourceRangeReference": "Collects: Asgardians of the Galaxy #6-10",
+      "normalizedSeriesTitle": "Asgardians of the Galaxy",
+      "seriesYear": 2018,
+      "issueNumber": "10",
+      "seriesId": 25996,
+      "candidateIssueId": 73998,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact original series 25996, issue #10; source sequence retained without expanding the supplied series page.",
+      "candidateIssueIds": [
+        "73998"
+      ],
+      "selectedIssueId": 73998,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/73998/asgardians_of_the_galaxy_2018_10",
+      "resolvedIssueTitle": "Asgardians of the Galaxy (2018) #10",
+      "note": "Exact original series 25996, issue #10; source sequence retained without expanding the supplied series page.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        73998
+      ]
+    }
+  ],
+  "mappingDigest": "f21d0276cad52095b6fcfe432324b2e92064532624cdfaaef64709d8fccfa6a3",
+  "excludedSourceRows": [
+    {
+      "sourcePosition": 23,
+      "sourceIssueReference": "Silver Surfer Annual (1988) #5",
+      "reason": "The owner confirmed Silver Surfer Annual #5 is unavailable on Marvel Unlimited and directed that it remain omitted without future gap tracking.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion"
+    }
+  ],
+  "packetReview": "GPT-6 Astra coordinator reviewed69 exact originals and one owner-authorized closed exclusion across70 positions, including Guardians of the Galaxy Infinite(2014)#1 ID50944 rather than the2013 original. The complete187-order current report retains24 approved partial relationships and163 verified none comparisons. Public scope#554 and the exact recorded inputs bind this approval.",
+  "approvedManifest": {
+    "id": "nebula-reading-order",
+    "name": "Nebula",
+    "description": "Follow Nebula from her Avengers appearances through cosmic stories and later Guardians-era comics, in Comic Book Herald's selected issue order.",
+    "type": "character-run",
+    "depth": "partial",
+    "spotlightKind": "other",
+    "beginner": false,
+    "timeline": null,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceSection": null,
+    "sourceFile": "nebula-reading-order.md",
+    "sourcePage": "https://www.comicbookherald.com/nebula-reading-order/",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "nebula_reading_order.json",
+    "characters": [
+      "Nebula",
+      "Thanos",
+      "Gamora",
+      "Silver Surfer",
+      "Guardians of the Galaxy"
+    ],
+    "keywords": [
+      "Nebula",
+      "Thanos",
+      "Gamora",
+      "Silver Surfer",
+      "Guardians of the Galaxy",
+      "Comic Book Herald"
+    ],
+    "expect": 69,
+    "coverIssueId": 7127
+  },
+  "relationshipReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+    "rationale": "The coordinator independently checked the complete70-position source, all69 normalized original title/year/number tuples and retained metadata identities, the owner's closed exclusion at23, and original Tim Seeley issue50944 at39. Current-main renewal compares187 peers: Thunderbolts adds one verified none and every earlier shared-ID set is unchanged. The factual ledger has a defined reproducible projection and measured current source hash, not the unsupported old intake claim. No exact/subset duplicate or removal of required shared comics is approved.",
+    "reviewedAt": "2026-09-29T02:39:43.011Z",
+    "packetDigest": "d58f3f5a1450a923b86d4757bf9162e2a9464d98f70ff682e681252528ba6b47",
+    "mappingDigest": "f21d0276cad52095b6fcfe432324b2e92064532624cdfaaef64709d8fccfa6a3",
+    "reportDigest": "0bca5c6b34c36249bc0b89c3157a0c4d6b029edfcaa1f332cc22427c7b0b02a4",
+    "libraryDigest": "7294e91208125f481cb25012c6a3f7a952bb5d777c53a9ee47f24e94b624c5c5",
+    "peerDigests": {},
+    "sourceCounts": {
+      "sourceOccurrenceCount": 70,
+      "sourceIdentityCount": 69,
+      "includedIssueCount": 69,
+      "sourceGapCount": 0,
+      "repeatedSourceReferenceCount": 0,
+      "excludedSourceRowCount": 1
+    },
+    "dispositions": [
+      {
+        "orderId": "abomination-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "absolute-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "adam-warlock-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Silver Surfer #38/#45 and all six Infinity Gauntlet originals are explicit Nebula selections. Preserve the cosmic context in her distinct character route rather than substituting Adam Warlock's guide.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "agatha-harkness-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Avengers #313 is explicitly selected in Nebula's Super-Nova cut. One shared original does not replace either character's independently defined route.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "age-of-x-man",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "agents-of-atlas-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "all-new-all-different-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "The source explicitly selects Avengers #314-318, Silver Surfer #38/#45 and Infinity Gauntlet #1-6. Retain these originals despite their presence in the broader modern Spider-Man compilation.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "annihilation",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Annihilation: Ronan #1,#2 and #4 are the source's exact Nebula cut. Keep all three in her route even though the event guide also contains them.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "annihilation-conquest",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "ant-man-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "apocalypse-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "atlantis-attacks",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "avengers-defenders-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "avengers-disassembled",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "avengers-enemy-within",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "axis",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "best-ultron-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "black-panther-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "black-widow-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "bloodties",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "captain-america-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "captain-america-reading-order-modern-marvel-era",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "captain-marvel-ms-marvel-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Avengers #257-260 form Nebula's explicit opening cut. These first selected appearances remain required within her guide despite Captain Marvel's shared arc.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "chaos-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "childs-play",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "civil-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "civil-war-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "civil-war-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "clone-conspiracy",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "contest-of-champions",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "damnation",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "daredevil-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "dark-phoenix-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "dark-reign-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "dark-web",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "days-of-future-past",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "days-of-future-present",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "dead-mans-hand",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "deadpool-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "death-of-doctor-strange",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "devils-reign",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "doctor-doom-primer",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "The source selects the complete original Infinity Gauntlet mini-series. Preserve all six issues in Nebula's cosmic progression instead of treating the Doom primer as a replacement.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "doctor-octopus-otto-octavius-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "doctor-strange-multiverse-of-madness",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "doctor-strange-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Silver Surfer #67 and Secret Defenders #9-10 are explicit source selections. They remain in Nebula's sequence despite overlap with Doctor Strange's separate route.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "donny-cates-marvel-universe-reading-order-2017",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Guardians of the Galaxy (2019) #2-6 is the source's precise Nebula cut. The creator-wide route is distinct from this multi-era character guide.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "doomwar",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "eighth-day",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "emma-frost-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "essential-avengers",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Avengers #257-260 is the source-defined beginning of Nebula's reading sequence. Preserve the complete selected arc even though the general Avengers guide includes it.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "evolutionary-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "falcon-sam-wilson-captain-america-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "fall-house-x-rise-powers-x",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "fall-of-the-mutants",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "fantastic-four-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Avengers Annual #14 is explicitly selected with the opening Avengers arc. Retain that original at its source position despite its single overlap with the Fantastic Four route.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "fatal-attractions",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "generations",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "groot-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "guardians-of-the-galaxy-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Guardians Team-Up #1-2 and Guardians (2019) #2-6 are explicit Nebula selections. Her wider Avengers and cosmic material makes this distinct from the team guide.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "heroes-reborn-2021",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "heroic-age-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "hickman-full",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "hickman-minimal",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "hickman-x-men",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "house-of-m",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "house-of-m-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "hunt-for-wolverine",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "hunt-for-xavier",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "inferno",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "infinite-destinies",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "infinity-countdown-wars",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Asgardians of the Galaxy #1-2 are required within the source's full first collection. Keep them in Nebula's selected run rather than dropping shared event-era originals.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "inhumans-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "inhumans-vs-x-men",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "iron-man-2020",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "iron-man-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "judgment-day",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "king-in-black",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "kravens-last-hunt",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "kree-skrull-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "last-annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "loki-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Both Asgardians of the Galaxy collections are explicitly selected. Retain #1-5 in their earlier block and #6-10 at the source's Latest Additions position instead of regrouping or pruning them.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "magneto-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "magneto-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "marvel-2099",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "marvel-fresh-start-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "marvel-multiverse",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "marvel-super-heroes-secret-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "marvel-what-if",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "marvels-best-phoenix-comics",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Thanos (2016) #6 is part of Nebula's explicit first-volume cut. Its single overlap with the Phoenix recommendation list does not change the selected character boundary.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "maximum-security",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "mephisto-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Silver Surfer #45 and Infinity Gauntlet #1-6 are source-required originals. Their presence in Mephisto's guide is not a reason to remove Nebula's cosmic context.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "messiah-complex",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "messiah-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "midnight-massacre",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "miles-morales-spider-man-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "minimum-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "modern-x-men-fast-track",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "monsters-unleashed",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "moon-knight-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "West Coast Avengers #48 is explicitly selected in Nebula's early appearance cut. Preserve this original independently of Moon Knight's route.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "muir-island-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "mutant-massacre",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "mys-tech-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "necrosha",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "new-ultimate-universe",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "new-ultimate-universe-trades",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "nick-fury-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "operation-galactic-storm",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "operation-zero-tolerance",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "original-clone-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "phalanx-covenant",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "phalanx-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "phoenix-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "planet-hulk",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "punisher-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "question-of-the-week-do-you-have-a-hulk-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "reckoning-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "reed-richards-and-sue-storms-wedding",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "revolutionary-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "rise-of-the-midnight-sons",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "rocket-raccoon-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "The selected Guardians (2019) #2-6 originals are required Nebula appearances, while Rocket's separate character selection is not interchangeable with hers.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "runaways-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "scarlet-witch-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "second-coming",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "secret-invasion",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "secret-invasion-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "secret-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "secret-wars-ii",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Avengers #260 completes the source's opening #257-260 cut. Keep the shared event tie-in rather than creating a hole in the selected arc.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "setup-to-modern-timeline",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "shadow-king-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "shadowland",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "silent-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "silver-surfer-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Silver Surfer #38/#45 and Infinity Gauntlet #1-6 are explicit Nebula selections. Preserve these shared originals within her broader source-defined route.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "sins-of-sinister",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "spider-geddon",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "spider-gwen-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "spider-island",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "spider-man-2099-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "spider-man-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "spider-man-far-from-home",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "spider-man-identity-crisis",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "spider-man-no-way-home",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "spider-man-the-other",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "spider-verse",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "star-lord-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "thanos-imperative",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "thanos-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "The shared Silver Surfer #38/#67/#69, selected Thanos (2016) issues and Guardians (2019) #2-6 are all explicit Nebula selections. The larger Thanos route does not replace her independently curated chronology.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "thanos-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "the-defenders-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Secret Defenders #9-10 is Nebula's explicit cut from The Secret of the Defenders. Keep both originals in the character guide.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "the-night-gwen-stacy-died",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "the-vision-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "West Coast Avengers #48 is explicitly required by Nebula's source. One shared issue is not a duplicate of Vision's character route.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "thor-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "thunderbolts-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "time-and-time-again",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "ultimate-marvel-intro",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "venom-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "venomverse",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "wandavision",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "West Coast Avengers #48 remains an explicit Nebula appearance despite being used by the different screen-companion selection.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "war-of-kings",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "war-of-the-realms",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Asgardians of the Galaxy #8-10 is part of the source's late #6-10 collection. Preserve the entire selected collection at its published source position.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "white-tiger-ava-ayala",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "winter-soldier-bucky-barnes-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "wolverine-goes-to-hell",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "wolverine-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "world-war-hulk-aftersmash",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "wraith-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "x-cutioners-song",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "x-force-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "x-men-age-of-x",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "x-men-battle-of-the-atom",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "x-men-curse-of-the-mutants",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "x-men-divided-we-stand",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "x-men-extermination",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "x-men-inferno",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "x-men-manifest-destiny",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "x-men-nation-x",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "x-men-regenesis",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "x-men-schism",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "x-men-trial-of-jean-grey",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "x-men-utopia",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "x-of-swords",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "x-termination",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "x-tinction-agenda",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "xmen-claremont",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "xmen-claremont-complete",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      },
+      {
+        "orderId": "young-avengers-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-29T02:39:43.011Z"
+      }
+    ],
+    "approvalDigest": "76ddef67c6fa9532db8cd7d0d785f4677dc8c1dff97cafba6401d8ee76a2379e"
+  }
+}

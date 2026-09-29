@@ -1,0 +1,254 @@
+{
+  "schemaVersion": 1,
+  "id": "nebula-reading-order",
+  "sourceUrl": "https://www.comicbookherald.com/nebula-reading-order/",
+  "sourceRetrievedAt": "2026-09-29",
+  "sourceContent": {
+    "retrievedAt": "2026-09-29T00:32:13.258Z",
+    "selector": ".entry-content h2,h3,p",
+    "normalization": "NFC UTF-8 of entry-content h2, h3 and p nodes in document order. Each nonempty node is its lowercase tag, a tab and whitespace-collapsed text; join with LF and no final LF.",
+    "nodeCount": 97,
+    "sha256": "f0b7e05f1f184637714a2faa2b02b4482a5123f28a8b9c2a39d0cb92abb9b1e7"
+  },
+  "priorIntakeSourceContentSha256": "ab408b77e3d24acce52bc2a3f1c8c39ff77f75eb106153c4941ca69cefcf8d16",
+  "priorIntakeHashDefinition": "Prior intake evidence only; its original input bytes and normalization were not recovered and it is not the current page-text or factual-projection hash.",
+  "sourceHashDefinition": "SHA-256 of UTF-8 JSON.stringify(blocks.map(block => [block.section, block.collection, block.collectedContents, block.selectionKind, block.selectedIssueReferences, block.firstSourcePosition, block.originalIssueIds])). Array and issue order are significant; null is the closed source exclusion.",
+  "sourceIssueBearingBlocksSha256": "b9479bf6a1a4023fabe1562bb6d5d164176891c4c3daf2f206eeb3110fe6de35",
+  "articleSections": [
+    "The Origin of Nebula",
+    "Infinity Gauntlet and Annihilation",
+    "After the MCU",
+    "Latest Additions"
+  ],
+  "blocks": [
+    {
+      "section": "The Origin of Nebula",
+      "collection": "Avengers: The Legacy of Thanos",
+      "collectedContents": "Avengers (1963) #255-261; Avengers Annual #14; Fantastic Four Annual #19",
+      "selectionKind": "explicit-cut",
+      "selectedIssueReferences": ["Avengers (1963) #257-260", "Avengers Annual #14"],
+      "firstSourcePosition": 1,
+      "originalIssueIds": [7127, 7128, 7129, 7131, 6928]
+    },
+    {
+      "section": "The Origin of Nebula",
+      "collection": "Avengers West Coast Epic Collection: Vision Quest",
+      "collectedContents": "West Coast Avengers (1985) #38-46; Avengers West Coast (1989) #47-52; West Coast Avengers Annual (1986) #3; Avengers West Coast Annual (1989) #4; material from Avengers Spotlight (1989) #23",
+      "selectionKind": "explicit-cut",
+      "selectedIssueReferences": ["Avengers West Coast #48"],
+      "firstSourcePosition": 6,
+      "originalIssueIds": [17790]
+    },
+    {
+      "section": "The Origin of Nebula",
+      "collection": "Acts of Vengeance: Avengers",
+      "collectedContents": "Avengers Spotlight (1989) #26-28; Avengers (1963) #311-313; Quasar (1989) #5-7; Iron Man (1968) #251-252; Avengers West Coast (1989) #53-55; Mutant Misadventures of Cloak and Dagger (1988) #9; material from Captain America (1968) #365-367, Thor (1966) #411-413, Avengers Annual (1967) #19, Avengers Spotlight (1989) #29",
+      "selectionKind": "explicit-cut",
+      "selectedIssueReferences": ["Avengers (1963) #311-313"],
+      "firstSourcePosition": 7,
+      "originalIssueIds": [7188, 7189, 7190]
+    },
+    {
+      "section": "The Origin of Nebula",
+      "collection": "Spider-Man: Am I An Avenger?",
+      "collectedContents": "Amazing Spider-Man Annual #3; Avengers #236-237; Avengers #314-318, #329; Amazing Spider-Man #348; New Avengers (2005) #3; Avengers (2010) #1",
+      "selectionKind": "explicit-cut",
+      "selectedIssueReferences": ["Avengers #314-318"],
+      "firstSourcePosition": 10,
+      "originalIssueIds": [7191, 7192, 7193, 7194, 7195]
+    },
+    {
+      "section": "Infinity Gauntlet and Annihilation",
+      "collection": "Silver Surfer: Rebirth of Thanos",
+      "collectedContents": "Silver Surfer (1987) #34-38; Thanos Quest #1-2; material from Logan's Run #6",
+      "selectionKind": "explicit-cut",
+      "selectedIssueReferences": ["Silver Surfer (1987) #38"],
+      "firstSourcePosition": 15,
+      "originalIssueIds": [15173]
+    },
+    {
+      "section": "Infinity Gauntlet and Annihilation",
+      "collection": "Silver Surfer Epic Collection: Thanos Quest",
+      "collectedContents": "Silver Surfer (1987) #39-50; Silver Surfer Annual #3; Thanos Quest #1-2; material from Marvel Comics Presents (1988) #50",
+      "selectionKind": "explicit-cut",
+      "selectedIssueReferences": ["Silver Surfer #45"],
+      "firstSourcePosition": 16,
+      "originalIssueIds": [15181]
+    },
+    {
+      "section": "Infinity Gauntlet and Annihilation",
+      "collection": "Infinity Gauntlet",
+      "collectedContents": "Infinity Gauntlet #1-6",
+      "selectionKind": "complete-collection",
+      "selectedIssueReferences": ["Infinity Gauntlet #1-6"],
+      "firstSourcePosition": 17,
+      "originalIssueIds": [9286, 9287, 9288, 9289, 9290, 9291]
+    },
+    {
+      "section": "Infinity Gauntlet and Annihilation",
+      "collection": "Defenders: Return Of The Defenders",
+      "collectedContents": "Incredible Hulk Annual #18; Namor the Sub-Mariner Annual #2; Silver Surfer Annual #5; Doctor Strange, Sorcerer Supreme Annual #2",
+      "selectionKind": "explicit-cut",
+      "selectedIssueReferences": ["Silver Surfer Annual #5"],
+      "firstSourcePosition": 23,
+      "originalIssueIds": [null]
+    },
+    {
+      "section": "Infinity Gauntlet and Annihilation",
+      "collection": "Infinity War Omnibus",
+      "collectedContents": "Infinity War #1-6; Fantastic Four (1961) #366-370; Spider-Man (1990) #24; Deathlok (1991) #16; Daredevil (1964) #310; Warlock and the Infinity Watch #7-10; Doctor Strange, Sorcerer Supreme #42-47; Silver Surfer (1987) #67-69; Wonder Man (1991) #13-15; Alpha Flight (1983) #110-112; Silver Sable and the Wild Pack #4-5; Guardians of the Galaxy (1990) #27-29; Quasar #37-40; New Warriors (1990) #27; Marc Spector: Moon Knight #41-44; Nomad (1992) #7; Sleepwalker #18; material from Captain America (1968) #408, Alpha Flight (1983) #109, Marvel Comics Presents (1988) #108-112",
+      "selectionKind": "explicit-cut",
+      "selectedIssueReferences": ["Silver Surfer #67", "Silver Surfer #69"],
+      "firstSourcePosition": 24,
+      "originalIssueIds": [15205, 15207]
+    },
+    {
+      "section": "Infinity Gauntlet and Annihilation",
+      "collection": null,
+      "collectedContents": null,
+      "selectionKind": "numbered-prose-reference",
+      "selectedIssueReferences": ["Silver Surfer (1987) #70-74"],
+      "firstSourcePosition": 26,
+      "originalIssueIds": [15209, 15210, 15211, 15212, 15213]
+    },
+    {
+      "section": "Infinity Gauntlet and Annihilation",
+      "collection": "Silver Surfer Epic Collection: Resurrection",
+      "collectedContents": "Silver Surfer (1987) #76-85; Silver Surfer Annual (1988) #6; Silver Surfer/Warlock: Resurrection (1993) #1-4; Secret Defenders (1993) #9-10",
+      "selectionKind": "explicit-cut",
+      "selectedIssueReferences": ["Silver Surfer #76-78", "Secret Defenders #9-10"],
+      "firstSourcePosition": 31,
+      "originalIssueIds": [15215, 15216, 15217, 62313, 62314]
+    },
+    {
+      "section": "Infinity Gauntlet and Annihilation",
+      "collection": "Annihilation Omnibus",
+      "collectedContents": "Drax the Destroyer (2005) #1-4; Annihilation Prologue (2006); Annihilation: Nova (2006) #1-4; Annihilation: Silver Surfer (2006) #1-4; Annihilation: Super-Skrull (2006) #1-4; Annihilation: Ronan (2006) #1-4; Annihilation (2006) #1-6; Annihilation: Heralds of Galactus (2007) #1-2; Annihilation: Nova Corps Files (2006)",
+      "selectionKind": "explicit-cut",
+      "selectedIssueReferences": ["Annihilation: Ronan #1-2", "Annihilation: Ronan #4"],
+      "firstSourcePosition": 36,
+      "originalIssueIds": [4109, 4219, 4471]
+    },
+    {
+      "section": "After the MCU",
+      "collection": null,
+      "collectedContents": null,
+      "selectionKind": "standalone-numbered-reference",
+      "selectedIssueReferences": ["Guardians of the Galaxy Infinite (2014) #1"],
+      "firstSourcePosition": 39,
+      "originalIssueIds": [50944]
+    },
+    {
+      "section": "After the MCU",
+      "collection": "Guardians Team-Up Vol. 1: Guardians Assemble",
+      "collectedContents": "Guardians Team-Up #1-5; Tails of the Pet Avengers #1",
+      "selectionKind": "explicit-cut",
+      "selectedIssueReferences": ["Guardians Team-Up #1-2"],
+      "firstSourcePosition": 40,
+      "originalIssueIds": [51919, 51924]
+    },
+    {
+      "section": "After the MCU",
+      "collection": "Gamora: Memento Mori",
+      "collectedContents": "Gamora #1-5",
+      "selectionKind": "explicit-cut",
+      "selectedIssueReferences": ["Gamora #1", "Gamora #5"],
+      "firstSourcePosition": 42,
+      "originalIssueIds": [51841, 51847]
+    },
+    {
+      "section": "After the MCU",
+      "collection": "Thanos Vol. 1: Thanos Returns",
+      "collectedContents": "Thanos (2016) #1-6",
+      "selectionKind": "explicit-cut",
+      "selectedIssueReferences": ["Thanos (2016) #2", "Thanos (2016) #4-6"],
+      "firstSourcePosition": 44,
+      "originalIssueIds": [61698, 61700, 61701, 61702]
+    },
+    {
+      "section": "After the MCU",
+      "collection": "Thanos Vol. 2: The God Quarry",
+      "collectedContents": "Thanos (2016) #7-12",
+      "selectionKind": "complete-collection",
+      "selectedIssueReferences": ["Thanos (2016) #7-12"],
+      "firstSourcePosition": 48,
+      "originalIssueIds": [61703, 61704, 61705, 61706, 61707, 61708]
+    },
+    {
+      "section": "After the MCU",
+      "collection": "Asgardians of the Galaxy Vol. 1: The Infinity Armada",
+      "collectedContents": "Asgardians of the Galaxy #1-5",
+      "selectionKind": "complete-collection",
+      "selectedIssueReferences": ["Asgardians of the Galaxy #1-5"],
+      "firstSourcePosition": 54,
+      "originalIssueIds": [71308, 71310, 71311, 71312, 71313]
+    },
+    {
+      "section": "After the MCU",
+      "collection": "Guardians of the Galaxy by Donny Cates Vol. 1: The Final Gauntlet",
+      "collectedContents": "Guardians of the Galaxy (2019) #1-6",
+      "selectionKind": "explicit-cut",
+      "selectedIssueReferences": ["Guardians of the Galaxy (2019) #2-6"],
+      "firstSourcePosition": 59,
+      "originalIssueIds": [73421, 73422, 73423, 73424, 73425]
+    },
+    {
+      "section": "After the MCU",
+      "collection": null,
+      "collectedContents": null,
+      "selectionKind": "published-series-pointer",
+      "selectedIssueReferences": ["Nebula (2020) #1-2"],
+      "firstSourcePosition": 64,
+      "originalIssueIds": [78699, 78700]
+    },
+    {
+      "section": "Latest Additions",
+      "collection": "Asgardians of the Galaxy Vol. 2: War of the Realms",
+      "collectedContents": "Asgardians of the Galaxy #6-10",
+      "selectionKind": "complete-collection",
+      "selectedIssueReferences": ["Asgardians of the Galaxy #6-10"],
+      "firstSourcePosition": 66,
+      "originalIssueIds": [73994, 73995, 73996, 73997, 73998]
+    }
+  ],
+  "sourceOccurrenceCount": 70,
+  "publishedOriginalCount": 69,
+  "repeatedSourceReferenceCount": 0,
+  "exclusions": [
+    {
+      "kind": "closed-availability-exclusion",
+      "sourcePosition": 23,
+      "original": "Silver Surfer Annual (1988) #5",
+      "ownerDecision": "https://github.com/raymond-nassar/recap-page/issues/400#issuecomment-5528556323"
+    },
+    {
+      "kind": "unnumbered-pointer",
+      "reference": "Nebula by Ayala",
+      "sourceSection": "Latest Additions",
+      "reason": "The linked collection title does not establish any new published issues or a repeat of #1-2."
+    }
+  ],
+  "identityEvidence": [
+    {
+      "sourcePosition": 39,
+      "original": "Guardians of the Galaxy Infinite (2014) #1",
+      "sourceLink": "https://www.amazon.com/Guardians-Galaxy-Infinite-Tim-Seeley-ebook/dp/B07LGFH2WK/",
+      "pinnedSeriesId": 19072,
+      "pinnedIssueId": 50944,
+      "pinnedOnSaleDate": "2014-07-29T00:00:00-0400",
+      "pinnedDetailUrl": "https://www.marvel.com/comics/issue/50944/guardians_of_the_galaxy_infinite_2014_1",
+      "distinctEarlierSeriesIssueId": 47162
+    },
+    {
+      "sourcePositions": [64, 65],
+      "sourceReference": "Two published Nebula (2020) issues",
+      "pinnedSeriesId": 28047,
+      "pinnedIssueIds": [78699, 78700],
+      "pinnedOnSaleDates": ["2020-02-12T00:00:00+0000", "2020-03-11T00:00:00+0000"],
+      "pinnedDetailUrls": [
+        "https://www.marvel.com/comics/issue/78699/nebula_2020_1",
+        "https://www.marvel.com/comics/issue/78700/nebula_2020_2"
+      ]
+    }
+  ]
+}
