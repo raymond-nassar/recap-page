@@ -2575,13 +2575,13 @@
     "url": "https://www.comicbookherald.com/ms-marvel-kamala-khan-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
-    "sourceRetrievedAt": "2026-08-23",
+    "disposition": "new-order",
+    "reason": "The independently reviewed complete source selects 196 occurrences with 192 original identities and four backward repeats. Exact metadata and complete-library relationships are under preparation, not yet approved for publication.",
+    "sourceRetrievedAt": "2026-09-29",
     "overlapIds": [],
     "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "deliveryStatus": "ready",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Ms. Marvel (Kamala Khan)"
     ],
@@ -2589,9 +2589,9 @@
       78
     ],
     "duplicateFlags": [],
-    "sourceContentSha256": "8b0cbe9620fc14079b1429fafc291d523b74a026932d935ee0efae42db4fbfb8",
+    "sourceContentSha256": "926cceba8a902833fddf9146ec613cc3916819abda871c8c3fe4ac14829a4613",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 78,
