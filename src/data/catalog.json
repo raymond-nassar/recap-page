@@ -2232,6 +2232,53 @@
       "updatedAt": "2026-09-28T18:15:36.981Z"
     },
     {
+      "id": "thunderbolts-reading-order",
+      "file": "thunderbolts_reading_order.json",
+      "name": "Thunderbolts",
+      "description": "Follow the Thunderbolts across their changing teams, from the original series through King in Black, in Comic Book Herald's guide order.",
+      "type": "character-run",
+      "depth": "partial",
+      "spotlightKind": "other",
+      "count": 258,
+      "placeholderCount": 1,
+      "emptyRecordCount": 0,
+      "collections": 37,
+      "characters": [
+        "Thunderbolts",
+        "Baron Zemo",
+        "Hawkeye",
+        "Songbird",
+        "Luke Cage",
+        "Winter Soldier",
+        "Red Hulk"
+      ],
+      "keywords": [
+        "Thunderbolts",
+        "Thunderbolts team",
+        "Baron Zemo",
+        "Hawkeye",
+        "Songbird",
+        "Luke Cage",
+        "Winter Soldier",
+        "Red Hulk",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 15311,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/5c1283fd8139e",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/the-thunderbolts-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-09-29T01:11:51.442Z"
+    },
+    {
       "id": "doctor-strange-multiverse-of-madness",
       "file": "doctor_strange_multiverse_of_madness.json",
       "name": "Doctor Strange: Multiverse of Madness",

@@ -4287,5 +4287,51 @@
     "sourceContentSha256": "a30255af7ebf4ff3229430dc10adbd7584782e421198bb4ac66e695a3b21f26f",
     "sourceBoundaryStatus": "exact-page-snapshot",
     "metadataHorizonStatus": "approved"
+  },
+  {
+    "position": 132,
+    "id": "thunderbolts-reading-order",
+    "title": "Thunderbolts",
+    "url": "https://www.comicbookherald.com/the-thunderbolts-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "new-order",
+    "reason": "The full explicit source selection retains 258 occurrences: 257 exact originals and one visible metadata gap, with no repeats. Current-library review approves 18 partial relationships; 168 have no shared issue.",
+    "sourceRetrievedAt": "2026-09-28",
+    "overlapIds": [
+      "agents-of-atlas-reading-order",
+      "amazing-spider-man-reading-order-modern-marvel-era",
+      "ant-man-reading-order",
+      "black-widow-reading-order",
+      "captain-marvel-ms-marvel-reading-order",
+      "civil-war",
+      "civil-war-avengers",
+      "king-in-black",
+      "maximum-security",
+      "mephisto-reading-order",
+      "moon-knight-reading-order",
+      "punisher-reading-order",
+      "question-of-the-week-do-you-have-a-hulk-reading-order",
+      "secret-invasion",
+      "shadowland",
+      "the-vision-reading-order",
+      "venom-reading-order",
+      "winter-soldier-bucky-barnes-reading-order"
+    ],
+    "catalogIds": [
+      "thunderbolts-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
+    "labels": [
+      "Thunderbolts"
+    ],
+    "sourcePositions": [
+      132
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "b44268dad3c189fada76245069c0a9bce6f951b93980af1f7c7bdc61bd33caa5",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "approved"
   }
 ]
