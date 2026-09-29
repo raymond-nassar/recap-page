@@ -1,0 +1,1259 @@
+{
+  "schemaVersion": 1,
+  "id": "silk-cindy-moon-reading-order",
+  "inventoryId": "silk-cindy-moon-reading-order",
+  "sourceUrl": "https://www.comicbookherald.com/silk-cindy-moon-reading-order/",
+  "sourceRetrievedAt": "2026-09-29",
+  "sourceProvider": "comic-book-herald",
+  "sourceContentSha256": "2ecec5d22636d8df48cd602c74ba9ffff83a69b267d9a40c564ce64ccee97e5a",
+  "sourceIssueBearingBlocksSha256": "84b2cc98f43b7245134dcd5516b89b6c47c0c995103cc6dfaea244894010761f",
+  "sourceBoundary": "Amazing Spider-Man(2014)#1-6 through Amazing Spider-Man(2018)#50-55, preserving the page's origin, solo and team-up sections and every explicitly selected issue. Do not expand unnumbered event pointers, alternate-edition recaps, contextual citations or later runs.",
+  "excludedSourceReferences": [
+    "Spider-Verse collected-edition heading and See also link: No issue-numbered selection in this article; do not import the linked event checklist.",
+    "Silk: Out of The Spider-Verse alternative edition, including Amazing Spider-Man (2014) #4-6: Collected-edition alternative; its three debut issues are already contained within selected block 1, not additional source occurrences or a narrowing of #1-6.",
+    "Silk #3 in the Spider(fly) Effect explanatory paragraph: Contextual time placement, not an additional reading row or authority to move this team-up into the earlier solo section.",
+    "Amazing Spider-Man (2018) #44 in the Green Goblin Returns explanatory paragraph: Contextual linked story citation; the adjacent Collects block selects #48, Sins #1, #49, FCBD #1, followed by #50-55.",
+    "Silk (2021) #4-5, Agents of Atlas (2019) #5 and later Silk runs: Beyond explicitly selected cuts and current article boundary; do not extrapolate a complete mini or later publication.",
+    "Artwork, creator/synopsis prose, linked external guides and linked collected editions: No added source-defined original issue positions; preserve only factual selections and source credit."
+  ],
+  "sourceOccurrenceCount": 74,
+  "canonicalSourcePositions": true,
+  "sourceGaps": [
+    {
+      "sourcePosition": 44,
+      "sourceIssueReference": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic (2016) #2",
+      "sourceRangeReference": "Team-ups | Amazing Spider-Man and Silk: The Spider(fly) Effect | Original Infinite Comic #1-8",
+      "normalizedSeriesTitle": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic",
+      "seriesYear": 2016,
+      "issueNumber": "2",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-09-29",
+      "auditBasis": "The guide selects original digital chapter #2, and an independent publication listing identifies the eight-chapter Infinite Comic. Configured series 21127 returned only original #1; speculative adjacent candidate https://marvel.emreparker.com/v1/issues/57974 returned HTTP 404. That number is not established as chapter #2's identity. The full-title provider search returned 500 and is not absence evidence. No print issue was substituted.",
+      "evidenceSources": [
+        {
+          "kind": "comic-reference",
+          "url": "https://marvel.fandom.com/wiki/Amazing_Spider-Man_%26_Silk:_The_Spider(fly)_Effect_Infinite_Comic_Vol_1",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/silk-cindy-moon-reading-order/",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/issues/57974",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/series/21127/issues?limit=200&offset=0",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/568",
+          "retrievedAt": "2026-09-29"
+        }
+      ],
+      "evidenceDigest": "7d97ed283c4bc3dc3fc47a04a19b42f1f98cd7234229c816f86a1ce83be0d592"
+    },
+    {
+      "sourcePosition": 45,
+      "sourceIssueReference": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic (2016) #3",
+      "sourceRangeReference": "Team-ups | Amazing Spider-Man and Silk: The Spider(fly) Effect | Original Infinite Comic #1-8",
+      "normalizedSeriesTitle": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic",
+      "seriesYear": 2016,
+      "issueNumber": "3",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-09-29",
+      "auditBasis": "The guide selects original digital chapter #3, and an independent publication listing identifies the eight-chapter Infinite Comic. Configured series 21127 returned only original #1; speculative adjacent candidate https://marvel.emreparker.com/v1/issues/57975 returned HTTP 404. That number is not established as chapter #3's identity. The full-title provider search returned 500 and is not absence evidence. No print issue was substituted.",
+      "evidenceSources": [
+        {
+          "kind": "comic-reference",
+          "url": "https://marvel.fandom.com/wiki/Amazing_Spider-Man_%26_Silk:_The_Spider(fly)_Effect_Infinite_Comic_Vol_1",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/silk-cindy-moon-reading-order/",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/issues/57975",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/series/21127/issues?limit=200&offset=0",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/568",
+          "retrievedAt": "2026-09-29"
+        }
+      ],
+      "evidenceDigest": "178102963f829cb431049f4540f24a63b97ff8260db91bef106abbf9510b6106"
+    },
+    {
+      "sourcePosition": 46,
+      "sourceIssueReference": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic (2016) #4",
+      "sourceRangeReference": "Team-ups | Amazing Spider-Man and Silk: The Spider(fly) Effect | Original Infinite Comic #1-8",
+      "normalizedSeriesTitle": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic",
+      "seriesYear": 2016,
+      "issueNumber": "4",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-09-29",
+      "auditBasis": "The guide selects original digital chapter #4, and an independent publication listing identifies the eight-chapter Infinite Comic. Configured series 21127 returned only original #1; speculative adjacent candidate https://marvel.emreparker.com/v1/issues/57976 returned HTTP 404. That number is not established as chapter #4's identity. The full-title provider search returned 500 and is not absence evidence. No print issue was substituted.",
+      "evidenceSources": [
+        {
+          "kind": "comic-reference",
+          "url": "https://marvel.fandom.com/wiki/Amazing_Spider-Man_%26_Silk:_The_Spider(fly)_Effect_Infinite_Comic_Vol_1",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/silk-cindy-moon-reading-order/",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/issues/57976",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/series/21127/issues?limit=200&offset=0",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/568",
+          "retrievedAt": "2026-09-29"
+        }
+      ],
+      "evidenceDigest": "cd6505c0291c687aac95d57b9bdb6d59d75028c7d8c30252b3ff0701d3a32864"
+    },
+    {
+      "sourcePosition": 47,
+      "sourceIssueReference": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic (2016) #5",
+      "sourceRangeReference": "Team-ups | Amazing Spider-Man and Silk: The Spider(fly) Effect | Original Infinite Comic #1-8",
+      "normalizedSeriesTitle": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic",
+      "seriesYear": 2016,
+      "issueNumber": "5",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-09-29",
+      "auditBasis": "The guide selects original digital chapter #5, and an independent publication listing identifies the eight-chapter Infinite Comic. Configured series 21127 returned only original #1; speculative adjacent candidate https://marvel.emreparker.com/v1/issues/57977 returned HTTP 404. That number is not established as chapter #5's identity. The full-title provider search returned 500 and is not absence evidence. No print issue was substituted.",
+      "evidenceSources": [
+        {
+          "kind": "comic-reference",
+          "url": "https://marvel.fandom.com/wiki/Amazing_Spider-Man_%26_Silk:_The_Spider(fly)_Effect_Infinite_Comic_Vol_1",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/silk-cindy-moon-reading-order/",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/issues/57977",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/series/21127/issues?limit=200&offset=0",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/568",
+          "retrievedAt": "2026-09-29"
+        }
+      ],
+      "evidenceDigest": "a1cb259315c7e3d4772778808af71c6d1162a65d1dcda263fb98f65e01db9cf1"
+    },
+    {
+      "sourcePosition": 48,
+      "sourceIssueReference": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic (2016) #6",
+      "sourceRangeReference": "Team-ups | Amazing Spider-Man and Silk: The Spider(fly) Effect | Original Infinite Comic #1-8",
+      "normalizedSeriesTitle": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic",
+      "seriesYear": 2016,
+      "issueNumber": "6",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-09-29",
+      "auditBasis": "The guide selects original digital chapter #6, and an independent publication listing identifies the eight-chapter Infinite Comic. Configured series 21127 returned only original #1; speculative adjacent candidate https://marvel.emreparker.com/v1/issues/57978 returned HTTP 404. That number is not established as chapter #6's identity. The full-title provider search returned 500 and is not absence evidence. No print issue was substituted.",
+      "evidenceSources": [
+        {
+          "kind": "comic-reference",
+          "url": "https://marvel.fandom.com/wiki/Amazing_Spider-Man_%26_Silk:_The_Spider(fly)_Effect_Infinite_Comic_Vol_1",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/silk-cindy-moon-reading-order/",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/issues/57978",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/series/21127/issues?limit=200&offset=0",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/568",
+          "retrievedAt": "2026-09-29"
+        }
+      ],
+      "evidenceDigest": "b57fda8ab1a32505f57f805e8dc44e6ad617245913d43d130da7d8040a07c165"
+    },
+    {
+      "sourcePosition": 49,
+      "sourceIssueReference": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic (2016) #7",
+      "sourceRangeReference": "Team-ups | Amazing Spider-Man and Silk: The Spider(fly) Effect | Original Infinite Comic #1-8",
+      "normalizedSeriesTitle": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic",
+      "seriesYear": 2016,
+      "issueNumber": "7",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-09-29",
+      "auditBasis": "The guide selects original digital chapter #7, and an independent publication listing identifies the eight-chapter Infinite Comic. Configured series 21127 returned only original #1; speculative adjacent candidate https://marvel.emreparker.com/v1/issues/57979 returned HTTP 404. That number is not established as chapter #7's identity. The full-title provider search returned 500 and is not absence evidence. No print issue was substituted.",
+      "evidenceSources": [
+        {
+          "kind": "comic-reference",
+          "url": "https://marvel.fandom.com/wiki/Amazing_Spider-Man_%26_Silk:_The_Spider(fly)_Effect_Infinite_Comic_Vol_1",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/silk-cindy-moon-reading-order/",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/issues/57979",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/series/21127/issues?limit=200&offset=0",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/568",
+          "retrievedAt": "2026-09-29"
+        }
+      ],
+      "evidenceDigest": "417e9c7d370b14677580bacb4c0d5f241bd5708617189a69be40246c9ca16430"
+    },
+    {
+      "sourcePosition": 50,
+      "sourceIssueReference": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic (2016) #8",
+      "sourceRangeReference": "Team-ups | Amazing Spider-Man and Silk: The Spider(fly) Effect | Original Infinite Comic #1-8",
+      "normalizedSeriesTitle": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic",
+      "seriesYear": 2016,
+      "issueNumber": "8",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-09-29",
+      "auditBasis": "The guide selects original digital chapter #8, and an independent publication listing identifies the eight-chapter Infinite Comic. Configured series 21127 returned only original #1; speculative adjacent candidate https://marvel.emreparker.com/v1/issues/57980 returned HTTP 404. That number is not established as chapter #8's identity. The full-title provider search returned 500 and is not absence evidence. No print issue was substituted.",
+      "evidenceSources": [
+        {
+          "kind": "comic-reference",
+          "url": "https://marvel.fandom.com/wiki/Amazing_Spider-Man_%26_Silk:_The_Spider(fly)_Effect_Infinite_Comic_Vol_1",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/silk-cindy-moon-reading-order/",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/issues/57980",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/series/21127/issues?limit=200&offset=0",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/568",
+          "retrievedAt": "2026-09-29"
+        }
+      ],
+      "evidenceDigest": "802e3da3127a13eb690bee4cfa11af5f9a49c0cde4e0d8a44e763a90c64d7a84"
+    }
+  ],
+  "expectedCount": 67,
+  "proposedManifest": {
+    "id": "silk-cindy-moon-reading-order",
+    "name": "Silk / Cindy Moon",
+    "description": "Follow Cindy Moon's origins, solo stories and team-ups in Comic Book Herald's selected Silk reading order.",
+    "type": "character-run",
+    "spotlightKind": "other",
+    "depth": "partial",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "silk-cindy-moon-reading-order.md",
+    "sourcePage": "https://www.comicbookherald.com/silk-cindy-moon-reading-order/",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "silk_cindy_moon_reading_order.json",
+    "characters": [
+      "Silk",
+      "Cindy Moon",
+      "Spider-Man",
+      "Spider-Women",
+      "Agents of Atlas"
+    ],
+    "keywords": [
+      "Silk",
+      "Cindy Moon",
+      "Spider-Man",
+      "Spider-Women",
+      "Spider(fly) Effect",
+      "Agents of Atlas",
+      "Comic Book Herald"
+    ],
+    "expect": 74,
+    "timeline": null,
+    "coverIssueId": 45798
+  },
+  "insertionAnchor": {
+    "beforeId": "spider-gwen-reading-order"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #567",
+    "rationale": "The coordinator independently reread the complete three-section article and re-expanded all13 selected blocks. Its74 whole-original references preserve the source's section and collection grouping, rather than a newly invented chronology. The alternate edition and contextual mentions are not additional selections; named digital and anthology originals retain their original format and qualifications. Exact metadata resolution and relationship approval remain separate gates.",
+    "reviewedAt": "2026-09-29T02:15:07.918Z"
+  },
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "sourceBlock": 1,
+      "sourceIssueReference": "Amazing Spider-Man (2014) #1",
+      "sourceRangeReference": "Origins | The Amazing Spider-Man Vol. 1 (2014) | Issues #1-6",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2014,
+      "issueNumber": "1",
+      "collectedIn": "The Amazing Spider-Man Vol. 1 (2014)",
+      "seriesId": 17285,
+      "candidateIssueId": 45798,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 2,
+      "sourceBlock": 1,
+      "sourceIssueReference": "Amazing Spider-Man (2014) #2",
+      "sourceRangeReference": "Origins | The Amazing Spider-Man Vol. 1 (2014) | Issues #1-6",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2014,
+      "issueNumber": "2",
+      "collectedIn": "The Amazing Spider-Man Vol. 1 (2014)",
+      "seriesId": 17285,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 3,
+      "sourceBlock": 1,
+      "sourceIssueReference": "Amazing Spider-Man (2014) #3",
+      "sourceRangeReference": "Origins | The Amazing Spider-Man Vol. 1 (2014) | Issues #1-6",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2014,
+      "issueNumber": "3",
+      "collectedIn": "The Amazing Spider-Man Vol. 1 (2014)",
+      "seriesId": 17285,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 4,
+      "sourceBlock": 1,
+      "sourceIssueReference": "Amazing Spider-Man (2014) #4",
+      "sourceRangeReference": "Origins | The Amazing Spider-Man Vol. 1 (2014) | Issues #1-6",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2014,
+      "issueNumber": "4",
+      "collectedIn": "The Amazing Spider-Man Vol. 1 (2014)",
+      "seriesId": 17285,
+      "candidateIssueId": 45803,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 5,
+      "sourceBlock": 1,
+      "sourceIssueReference": "Amazing Spider-Man (2014) #5",
+      "sourceRangeReference": "Origins | The Amazing Spider-Man Vol. 1 (2014) | Issues #1-6",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2014,
+      "issueNumber": "5",
+      "collectedIn": "The Amazing Spider-Man Vol. 1 (2014)",
+      "seriesId": 17285,
+      "candidateIssueId": 45804,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 6,
+      "sourceBlock": 1,
+      "sourceIssueReference": "Amazing Spider-Man (2014) #6",
+      "sourceRangeReference": "Origins | The Amazing Spider-Man Vol. 1 (2014) | Issues #1-6",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2014,
+      "issueNumber": "6",
+      "collectedIn": "The Amazing Spider-Man Vol. 1 (2014)",
+      "seriesId": 17285,
+      "candidateIssueId": 45805,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 7,
+      "sourceBlock": 2,
+      "sourceIssueReference": "Silk (2015) #1",
+      "sourceRangeReference": "Solo | Silk Volume 0: The Life and Times of Cindy Moon | First 2015 series #1-7",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "1",
+      "collectedIn": "Silk Volume 0: The Life and Times of Cindy Moon",
+      "seriesId": 19661,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "First 2015 Silk volume, series 19661, not the post-Secret-Wars relaunch."
+    },
+    {
+      "sourcePosition": 8,
+      "sourceBlock": 2,
+      "sourceIssueReference": "Silk (2015) #2",
+      "sourceRangeReference": "Solo | Silk Volume 0: The Life and Times of Cindy Moon | First 2015 series #1-7",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "2",
+      "collectedIn": "Silk Volume 0: The Life and Times of Cindy Moon",
+      "seriesId": 19661,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "First 2015 Silk volume, series 19661, not the post-Secret-Wars relaunch."
+    },
+    {
+      "sourcePosition": 9,
+      "sourceBlock": 2,
+      "sourceIssueReference": "Silk (2015) #3",
+      "sourceRangeReference": "Solo | Silk Volume 0: The Life and Times of Cindy Moon | First 2015 series #1-7",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "3",
+      "collectedIn": "Silk Volume 0: The Life and Times of Cindy Moon",
+      "seriesId": 19661,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "First 2015 Silk volume, series 19661, not the post-Secret-Wars relaunch."
+    },
+    {
+      "sourcePosition": 10,
+      "sourceBlock": 2,
+      "sourceIssueReference": "Silk (2015) #4",
+      "sourceRangeReference": "Solo | Silk Volume 0: The Life and Times of Cindy Moon | First 2015 series #1-7",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "4",
+      "collectedIn": "Silk Volume 0: The Life and Times of Cindy Moon",
+      "seriesId": 19661,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "First 2015 Silk volume, series 19661, not the post-Secret-Wars relaunch."
+    },
+    {
+      "sourcePosition": 11,
+      "sourceBlock": 2,
+      "sourceIssueReference": "Silk (2015) #5",
+      "sourceRangeReference": "Solo | Silk Volume 0: The Life and Times of Cindy Moon | First 2015 series #1-7",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "5",
+      "collectedIn": "Silk Volume 0: The Life and Times of Cindy Moon",
+      "seriesId": 19661,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "First 2015 Silk volume, series 19661, not the post-Secret-Wars relaunch."
+    },
+    {
+      "sourcePosition": 12,
+      "sourceBlock": 2,
+      "sourceIssueReference": "Silk (2015) #6",
+      "sourceRangeReference": "Solo | Silk Volume 0: The Life and Times of Cindy Moon | First 2015 series #1-7",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "6",
+      "collectedIn": "Silk Volume 0: The Life and Times of Cindy Moon",
+      "seriesId": 19661,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "First 2015 Silk volume, series 19661, not the post-Secret-Wars relaunch."
+    },
+    {
+      "sourcePosition": 13,
+      "sourceBlock": 2,
+      "sourceIssueReference": "Silk (2015) #7",
+      "sourceRangeReference": "Solo | Silk Volume 0: The Life and Times of Cindy Moon | First 2015 series #1-7",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "7",
+      "collectedIn": "Silk Volume 0: The Life and Times of Cindy Moon",
+      "seriesId": 19661,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "First 2015 Silk volume, series 19661, not the post-Secret-Wars relaunch."
+    },
+    {
+      "sourcePosition": 14,
+      "sourceBlock": 3,
+      "sourceIssueReference": "Silk (2015) #1",
+      "sourceRangeReference": "Solo | Silk Volume 1: Sinister | Second 2015 series #1-6, Amazing Spider-Man 2015 #1",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "1",
+      "collectedIn": "Silk Volume 1: Sinister",
+      "seriesId": 20499,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Second 2015 Silk volume, series 20499."
+    },
+    {
+      "sourcePosition": 15,
+      "sourceBlock": 3,
+      "sourceIssueReference": "Silk (2015) #2",
+      "sourceRangeReference": "Solo | Silk Volume 1: Sinister | Second 2015 series #1-6, Amazing Spider-Man 2015 #1",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "2",
+      "collectedIn": "Silk Volume 1: Sinister",
+      "seriesId": 20499,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Second 2015 Silk volume, series 20499."
+    },
+    {
+      "sourcePosition": 16,
+      "sourceBlock": 3,
+      "sourceIssueReference": "Silk (2015) #3",
+      "sourceRangeReference": "Solo | Silk Volume 1: Sinister | Second 2015 series #1-6, Amazing Spider-Man 2015 #1",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "3",
+      "collectedIn": "Silk Volume 1: Sinister",
+      "seriesId": 20499,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Second 2015 Silk volume, series 20499."
+    },
+    {
+      "sourcePosition": 17,
+      "sourceBlock": 3,
+      "sourceIssueReference": "Silk (2015) #4",
+      "sourceRangeReference": "Solo | Silk Volume 1: Sinister | Second 2015 series #1-6, Amazing Spider-Man 2015 #1",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "4",
+      "collectedIn": "Silk Volume 1: Sinister",
+      "seriesId": 20499,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Second 2015 Silk volume, series 20499."
+    },
+    {
+      "sourcePosition": 18,
+      "sourceBlock": 3,
+      "sourceIssueReference": "Silk (2015) #5",
+      "sourceRangeReference": "Solo | Silk Volume 1: Sinister | Second 2015 series #1-6, Amazing Spider-Man 2015 #1",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "5",
+      "collectedIn": "Silk Volume 1: Sinister",
+      "seriesId": 20499,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Second 2015 Silk volume, series 20499."
+    },
+    {
+      "sourcePosition": 19,
+      "sourceBlock": 3,
+      "sourceIssueReference": "Silk (2015) #6",
+      "sourceRangeReference": "Solo | Silk Volume 1: Sinister | Second 2015 series #1-6, Amazing Spider-Man 2015 #1",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "6",
+      "collectedIn": "Silk Volume 1: Sinister",
+      "seriesId": 20499,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Second 2015 Silk volume, series 20499."
+    },
+    {
+      "sourcePosition": 20,
+      "sourceBlock": 3,
+      "sourceIssueReference": "Amazing Spider-Man (2015) #1",
+      "sourceRangeReference": "Solo | Silk Volume 1: Sinister | Second 2015 series #1-6, Amazing Spider-Man 2015 #1",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2017,
+      "issueNumber": "1",
+      "collectedIn": "Silk Volume 1: Sinister",
+      "seriesId": 20432,
+      "candidateIssueId": 55298,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source calls this the 2015 Worldwide relaunch; provider original series 20432 labels itself 2017, with #1 published in 2015."
+    },
+    {
+      "sourcePosition": 21,
+      "sourceBlock": 4,
+      "sourceIssueReference": "Silk (2015) #9",
+      "sourceRangeReference": "Solo | Silk Volume 2: The Negative | Second 2015 series #9-13",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "9",
+      "collectedIn": "Silk Volume 2: The Negative",
+      "seriesId": 20499,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Second 2015 Silk volume, series 20499."
+    },
+    {
+      "sourcePosition": 22,
+      "sourceBlock": 4,
+      "sourceIssueReference": "Silk (2015) #10",
+      "sourceRangeReference": "Solo | Silk Volume 2: The Negative | Second 2015 series #9-13",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "10",
+      "collectedIn": "Silk Volume 2: The Negative",
+      "seriesId": 20499,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Second 2015 Silk volume, series 20499."
+    },
+    {
+      "sourcePosition": 23,
+      "sourceBlock": 4,
+      "sourceIssueReference": "Silk (2015) #11",
+      "sourceRangeReference": "Solo | Silk Volume 2: The Negative | Second 2015 series #9-13",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "11",
+      "collectedIn": "Silk Volume 2: The Negative",
+      "seriesId": 20499,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Second 2015 Silk volume, series 20499."
+    },
+    {
+      "sourcePosition": 24,
+      "sourceBlock": 4,
+      "sourceIssueReference": "Silk (2015) #12",
+      "sourceRangeReference": "Solo | Silk Volume 2: The Negative | Second 2015 series #9-13",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "12",
+      "collectedIn": "Silk Volume 2: The Negative",
+      "seriesId": 20499,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Second 2015 Silk volume, series 20499."
+    },
+    {
+      "sourcePosition": 25,
+      "sourceBlock": 4,
+      "sourceIssueReference": "Silk (2015) #13",
+      "sourceRangeReference": "Solo | Silk Volume 2: The Negative | Second 2015 series #9-13",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "13",
+      "collectedIn": "Silk Volume 2: The Negative",
+      "seriesId": 20499,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Second 2015 Silk volume, series 20499."
+    },
+    {
+      "sourcePosition": 26,
+      "sourceBlock": 5,
+      "sourceIssueReference": "Silk (2015) #14",
+      "sourceRangeReference": "Solo | Silk Volume 3: The Clone Conspiracy | Second 2015 series #14-19",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "14",
+      "collectedIn": "Silk Volume 3: The Clone Conspiracy",
+      "seriesId": 20499,
+      "candidateIssueId": 55653,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Second 2015 Silk volume, series 20499."
+    },
+    {
+      "sourcePosition": 27,
+      "sourceBlock": 5,
+      "sourceIssueReference": "Silk (2015) #15",
+      "sourceRangeReference": "Solo | Silk Volume 3: The Clone Conspiracy | Second 2015 series #14-19",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "15",
+      "collectedIn": "Silk Volume 3: The Clone Conspiracy",
+      "seriesId": 20499,
+      "candidateIssueId": 55654,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Second 2015 Silk volume, series 20499."
+    },
+    {
+      "sourcePosition": 28,
+      "sourceBlock": 5,
+      "sourceIssueReference": "Silk (2015) #16",
+      "sourceRangeReference": "Solo | Silk Volume 3: The Clone Conspiracy | Second 2015 series #14-19",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "16",
+      "collectedIn": "Silk Volume 3: The Clone Conspiracy",
+      "seriesId": 20499,
+      "candidateIssueId": 55655,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Second 2015 Silk volume, series 20499."
+    },
+    {
+      "sourcePosition": 29,
+      "sourceBlock": 5,
+      "sourceIssueReference": "Silk (2015) #17",
+      "sourceRangeReference": "Solo | Silk Volume 3: The Clone Conspiracy | Second 2015 series #14-19",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "17",
+      "collectedIn": "Silk Volume 3: The Clone Conspiracy",
+      "seriesId": 20499,
+      "candidateIssueId": 61050,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Second 2015 Silk volume, series 20499."
+    },
+    {
+      "sourcePosition": 30,
+      "sourceBlock": 5,
+      "sourceIssueReference": "Silk (2015) #18",
+      "sourceRangeReference": "Solo | Silk Volume 3: The Clone Conspiracy | Second 2015 series #14-19",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "18",
+      "collectedIn": "Silk Volume 3: The Clone Conspiracy",
+      "seriesId": 20499,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Second 2015 Silk volume, series 20499."
+    },
+    {
+      "sourcePosition": 31,
+      "sourceBlock": 5,
+      "sourceIssueReference": "Silk (2015) #19",
+      "sourceRangeReference": "Solo | Silk Volume 3: The Clone Conspiracy | Second 2015 series #14-19",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "19",
+      "collectedIn": "Silk Volume 3: The Clone Conspiracy",
+      "seriesId": 20499,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Second 2015 Silk volume, series 20499."
+    },
+    {
+      "sourcePosition": 32,
+      "sourceBlock": 6,
+      "sourceIssueReference": "Silk (2021) #1",
+      "sourceRangeReference": "Solo | Silk (2021) | Issues #1-3",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "collectedIn": "Silk (2021)",
+      "seriesId": 29389,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 33,
+      "sourceBlock": 6,
+      "sourceIssueReference": "Silk (2021) #2",
+      "sourceRangeReference": "Solo | Silk (2021) | Issues #1-3",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2021,
+      "issueNumber": "2",
+      "collectedIn": "Silk (2021)",
+      "seriesId": 29389,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 34,
+      "sourceBlock": 6,
+      "sourceIssueReference": "Silk (2021) #3",
+      "sourceRangeReference": "Solo | Silk (2021) | Issues #1-3",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2021,
+      "issueNumber": "3",
+      "collectedIn": "Silk (2021)",
+      "seriesId": 29389,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 35,
+      "sourceBlock": 7,
+      "sourceIssueReference": "Spider-Women Alpha (2016) #1",
+      "sourceRangeReference": "Team-ups | Spider-Women | Alpha, second Silk (2015) #7-8, second Spider-Gwen (2015) #7-8, Spider-Woman #6-7, Omega",
+      "normalizedSeriesTitle": "Spider-Women Alpha",
+      "seriesYear": 2016,
+      "issueNumber": "1",
+      "collectedIn": "Spider-Women",
+      "seriesId": 21280,
+      "candidateIssueId": 58381,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 36,
+      "sourceBlock": 7,
+      "sourceIssueReference": "Silk (2015) #7",
+      "sourceRangeReference": "Team-ups | Spider-Women | Alpha, second Silk (2015) #7-8, second Spider-Gwen (2015) #7-8, Spider-Woman #6-7, Omega",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "7",
+      "collectedIn": "Spider-Women",
+      "seriesId": 20499,
+      "candidateIssueId": 55646,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Second 2015 Silk volume, series 20499."
+    },
+    {
+      "sourcePosition": 37,
+      "sourceBlock": 7,
+      "sourceIssueReference": "Silk (2015) #8",
+      "sourceRangeReference": "Team-ups | Spider-Women | Alpha, second Silk (2015) #7-8, second Spider-Gwen (2015) #7-8, Spider-Woman #6-7, Omega",
+      "normalizedSeriesTitle": "Silk",
+      "seriesYear": 2015,
+      "issueNumber": "8",
+      "collectedIn": "Spider-Women",
+      "seriesId": 20499,
+      "candidateIssueId": 55647,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Second 2015 Silk volume, series 20499."
+    },
+    {
+      "sourcePosition": 38,
+      "sourceBlock": 7,
+      "sourceIssueReference": "Spider-Gwen (2015) #7",
+      "sourceRangeReference": "Team-ups | Spider-Women | Alpha, second Silk (2015) #7-8, second Spider-Gwen (2015) #7-8, Spider-Woman #6-7, Omega",
+      "normalizedSeriesTitle": "Spider-Gwen",
+      "seriesYear": 2015,
+      "issueNumber": "7",
+      "collectedIn": "Spider-Women",
+      "seriesId": 20505,
+      "candidateIssueId": 55683,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Second 2015 Spider-Gwen volume, series 20505."
+    },
+    {
+      "sourcePosition": 39,
+      "sourceBlock": 7,
+      "sourceIssueReference": "Spider-Gwen (2015) #8",
+      "sourceRangeReference": "Team-ups | Spider-Women | Alpha, second Silk (2015) #7-8, second Spider-Gwen (2015) #7-8, Spider-Woman #6-7, Omega",
+      "normalizedSeriesTitle": "Spider-Gwen",
+      "seriesYear": 2015,
+      "issueNumber": "8",
+      "collectedIn": "Spider-Women",
+      "seriesId": 20505,
+      "candidateIssueId": 55684,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Second 2015 Spider-Gwen volume, series 20505."
+    },
+    {
+      "sourcePosition": 40,
+      "sourceBlock": 7,
+      "sourceIssueReference": "Spider-Woman (2015) #6",
+      "sourceRangeReference": "Team-ups | Spider-Women | Alpha, second Silk (2015) #7-8, second Spider-Gwen (2015) #7-8, Spider-Woman #6-7, Omega",
+      "normalizedSeriesTitle": "Spider-Woman",
+      "seriesYear": 2015,
+      "issueNumber": "6",
+      "collectedIn": "Spider-Women",
+      "seriesId": 20618,
+      "candidateIssueId": 56169,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 41,
+      "sourceBlock": 7,
+      "sourceIssueReference": "Spider-Woman (2015) #7",
+      "sourceRangeReference": "Team-ups | Spider-Women | Alpha, second Silk (2015) #7-8, second Spider-Gwen (2015) #7-8, Spider-Woman #6-7, Omega",
+      "normalizedSeriesTitle": "Spider-Woman",
+      "seriesYear": 2015,
+      "issueNumber": "7",
+      "collectedIn": "Spider-Women",
+      "seriesId": 20618,
+      "candidateIssueId": 56170,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 42,
+      "sourceBlock": 7,
+      "sourceIssueReference": "Spider-Women Omega (2016) #1",
+      "sourceRangeReference": "Team-ups | Spider-Women | Alpha, second Silk (2015) #7-8, second Spider-Gwen (2015) #7-8, Spider-Woman #6-7, Omega",
+      "normalizedSeriesTitle": "Spider-Women Omega",
+      "seriesYear": 2016,
+      "issueNumber": "1",
+      "collectedIn": "Spider-Women",
+      "seriesId": 21442,
+      "candidateIssueId": 58832,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 43,
+      "sourceBlock": 8,
+      "sourceIssueReference": "Amazing Spider-Man and Silk: The Spider(fly) Effect #1",
+      "sourceRangeReference": "Team-ups | Amazing Spider-Man and Silk: The Spider(fly) Effect | Original Infinite Comic #1-8",
+      "normalizedSeriesTitle": "Amazing Spider-Man & Silk: The Spider(Fly) Effect Infinite Comic",
+      "seriesYear": 2016,
+      "issueNumber": "1",
+      "collectedIn": "Amazing Spider-Man and Silk: The Spider(fly) Effect",
+      "seriesId": 21127,
+      "candidateIssueId": 57973,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Original digital Infinite Comic, not print-format issues 58648-58651."
+    },
+    {
+      "sourcePosition": 51,
+      "sourceBlock": 9,
+      "sourceIssueReference": "The Totally Awesome Hulk (2015) #13",
+      "sourceRangeReference": "Team-ups | The Totally Awesome Hulk Vol. 3 | Issues #13-18",
+      "normalizedSeriesTitle": "The Totally Awesome Hulk",
+      "seriesYear": 2015,
+      "issueNumber": "13",
+      "collectedIn": "The Totally Awesome Hulk Vol. 3",
+      "seriesId": 20614,
+      "candidateIssueId": 56095,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 52,
+      "sourceBlock": 9,
+      "sourceIssueReference": "The Totally Awesome Hulk (2015) #14",
+      "sourceRangeReference": "Team-ups | The Totally Awesome Hulk Vol. 3 | Issues #13-18",
+      "normalizedSeriesTitle": "The Totally Awesome Hulk",
+      "seriesYear": 2015,
+      "issueNumber": "14",
+      "collectedIn": "The Totally Awesome Hulk Vol. 3",
+      "seriesId": 20614,
+      "candidateIssueId": 56096,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 53,
+      "sourceBlock": 9,
+      "sourceIssueReference": "The Totally Awesome Hulk (2015) #15",
+      "sourceRangeReference": "Team-ups | The Totally Awesome Hulk Vol. 3 | Issues #13-18",
+      "normalizedSeriesTitle": "The Totally Awesome Hulk",
+      "seriesYear": 2015,
+      "issueNumber": "15",
+      "collectedIn": "The Totally Awesome Hulk Vol. 3",
+      "seriesId": 20614,
+      "candidateIssueId": 56097,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 54,
+      "sourceBlock": 9,
+      "sourceIssueReference": "The Totally Awesome Hulk (2015) #16",
+      "sourceRangeReference": "Team-ups | The Totally Awesome Hulk Vol. 3 | Issues #13-18",
+      "normalizedSeriesTitle": "The Totally Awesome Hulk",
+      "seriesYear": 2015,
+      "issueNumber": "16",
+      "collectedIn": "The Totally Awesome Hulk Vol. 3",
+      "seriesId": 20614,
+      "candidateIssueId": 56098,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 55,
+      "sourceBlock": 9,
+      "sourceIssueReference": "The Totally Awesome Hulk (2015) #17",
+      "sourceRangeReference": "Team-ups | The Totally Awesome Hulk Vol. 3 | Issues #13-18",
+      "normalizedSeriesTitle": "The Totally Awesome Hulk",
+      "seriesYear": 2015,
+      "issueNumber": "17",
+      "collectedIn": "The Totally Awesome Hulk Vol. 3",
+      "seriesId": 20614,
+      "candidateIssueId": 60847,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 56,
+      "sourceBlock": 9,
+      "sourceIssueReference": "The Totally Awesome Hulk (2015) #18",
+      "sourceRangeReference": "Team-ups | The Totally Awesome Hulk Vol. 3 | Issues #13-18",
+      "normalizedSeriesTitle": "The Totally Awesome Hulk",
+      "seriesYear": 2015,
+      "issueNumber": "18",
+      "collectedIn": "The Totally Awesome Hulk Vol. 3",
+      "seriesId": 20614,
+      "candidateIssueId": 60848,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 57,
+      "sourceBlock": 10,
+      "sourceIssueReference": "War of the Realms: New Agents of Atlas (2019) #1",
+      "sourceRangeReference": "Team-ups | War of the Realms: New Agents of Atlas | Issues #1-4",
+      "normalizedSeriesTitle": "War of the Realms: New Agents of Atlas",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "collectedIn": "War of The Realms: New Agents of Atlas",
+      "seriesId": 27505,
+      "candidateIssueId": 76615,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 58,
+      "sourceBlock": 10,
+      "sourceIssueReference": "War of the Realms: New Agents of Atlas (2019) #2",
+      "sourceRangeReference": "Team-ups | War of the Realms: New Agents of Atlas | Issues #1-4",
+      "normalizedSeriesTitle": "War of the Realms: New Agents of Atlas",
+      "seriesYear": 2019,
+      "issueNumber": "2",
+      "collectedIn": "War of The Realms: New Agents of Atlas",
+      "seriesId": 27505,
+      "candidateIssueId": 76616,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 59,
+      "sourceBlock": 10,
+      "sourceIssueReference": "War of the Realms: New Agents of Atlas (2019) #3",
+      "sourceRangeReference": "Team-ups | War of the Realms: New Agents of Atlas | Issues #1-4",
+      "normalizedSeriesTitle": "War of the Realms: New Agents of Atlas",
+      "seriesYear": 2019,
+      "issueNumber": "3",
+      "collectedIn": "War of The Realms: New Agents of Atlas",
+      "seriesId": 27505,
+      "candidateIssueId": 77259,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 60,
+      "sourceBlock": 10,
+      "sourceIssueReference": "War of the Realms: New Agents of Atlas (2019) #4",
+      "sourceRangeReference": "Team-ups | War of the Realms: New Agents of Atlas | Issues #1-4",
+      "normalizedSeriesTitle": "War of the Realms: New Agents of Atlas",
+      "seriesYear": 2019,
+      "issueNumber": "4",
+      "collectedIn": "War of The Realms: New Agents of Atlas",
+      "seriesId": 27505,
+      "candidateIssueId": 77260,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 61,
+      "sourceBlock": 11,
+      "sourceIssueReference": "Agents of Atlas (2019) #1",
+      "sourceRangeReference": "Team-ups | Agents of Atlas: Pandemonium | Original ongoing #1-4",
+      "normalizedSeriesTitle": "Agents of Atlas",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "collectedIn": "Agents of Atlas: Pandemonium",
+      "seriesId": 27624,
+      "candidateIssueId": 77001,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Pandemonium is Agents of Atlas (2019) #1-4, not a collected-edition issue."
+    },
+    {
+      "sourcePosition": 62,
+      "sourceBlock": 11,
+      "sourceIssueReference": "Agents of Atlas (2019) #2",
+      "sourceRangeReference": "Team-ups | Agents of Atlas: Pandemonium | Original ongoing #1-4",
+      "normalizedSeriesTitle": "Agents of Atlas",
+      "seriesYear": 2019,
+      "issueNumber": "2",
+      "collectedIn": "Agents of Atlas: Pandemonium",
+      "seriesId": 27624,
+      "candidateIssueId": 77002,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Pandemonium is Agents of Atlas (2019) #1-4, not a collected-edition issue."
+    },
+    {
+      "sourcePosition": 63,
+      "sourceBlock": 11,
+      "sourceIssueReference": "Agents of Atlas (2019) #3",
+      "sourceRangeReference": "Team-ups | Agents of Atlas: Pandemonium | Original ongoing #1-4",
+      "normalizedSeriesTitle": "Agents of Atlas",
+      "seriesYear": 2019,
+      "issueNumber": "3",
+      "collectedIn": "Agents of Atlas: Pandemonium",
+      "seriesId": 27624,
+      "candidateIssueId": 77003,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Pandemonium is Agents of Atlas (2019) #1-4, not a collected-edition issue."
+    },
+    {
+      "sourcePosition": 64,
+      "sourceBlock": 11,
+      "sourceIssueReference": "Agents of Atlas (2019) #4",
+      "sourceRangeReference": "Team-ups | Agents of Atlas: Pandemonium | Original ongoing #1-4",
+      "normalizedSeriesTitle": "Agents of Atlas",
+      "seriesYear": 2019,
+      "issueNumber": "4",
+      "collectedIn": "Agents of Atlas: Pandemonium",
+      "seriesId": 27624,
+      "candidateIssueId": 77004,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Pandemonium is Agents of Atlas (2019) #1-4, not a collected-edition issue."
+    },
+    {
+      "sourcePosition": 65,
+      "sourceBlock": 12,
+      "sourceIssueReference": "Amazing Spider-Man (2018) #48",
+      "sourceRangeReference": "Team-ups | Amazing Spider-Man Vol. 10: Green Goblin Returns | FCBD 2020 #1 Spider-Man story only",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "48",
+      "collectedIn": "Amazing Spider-Man Vol 10: Green Goblin Returns",
+      "seriesId": 24396,
+      "candidateIssueId": 77116,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 66,
+      "sourceBlock": 12,
+      "sourceIssueReference": "Spider-Man: The Sins of Norman Osborn (2020) #1",
+      "sourceRangeReference": "Team-ups | Amazing Spider-Man Vol. 10: Green Goblin Returns | FCBD 2020 #1 Spider-Man story only",
+      "normalizedSeriesTitle": "Amazing Spider-Man: The Sins of Norman Osborn",
+      "seriesYear": 2020,
+      "issueNumber": "1",
+      "collectedIn": "Amazing Spider-Man Vol 10: Green Goblin Returns",
+      "seriesId": 31209,
+      "candidateIssueId": 90780,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "The source shortens this standalone title; the provider names Amazing Spider-Man: The Sins of Norman Osborn."
+    },
+    {
+      "sourcePosition": 67,
+      "sourceBlock": 12,
+      "sourceIssueReference": "Amazing Spider-Man (2018) #49",
+      "sourceRangeReference": "Team-ups | Amazing Spider-Man Vol. 10: Green Goblin Returns | FCBD 2020 #1 Spider-Man story only",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "49",
+      "collectedIn": "Amazing Spider-Man Vol 10: Green Goblin Returns",
+      "seriesId": 24396,
+      "candidateIssueId": 77117,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 68,
+      "sourceBlock": 12,
+      "sourceIssueReference": "Free Comic Book Day 2020 (Spider-Man/Venom) #1 (Spider-Man story)",
+      "sourceRangeReference": "Team-ups | Amazing Spider-Man Vol. 10: Green Goblin Returns | FCBD 2020 #1 Spider-Man story only",
+      "normalizedSeriesTitle": "Free Comic Book Day: Spider-Man/Venom",
+      "seriesYear": 2020,
+      "issueNumber": "1",
+      "collectedIn": "Amazing Spider-Man Vol 10: Green Goblin Returns",
+      "seriesId": 30154,
+      "candidateIssueId": null,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Only the Spider-Man story is source-selected within this original FCBD 2020 anthology issue."
+    },
+    {
+      "sourcePosition": 69,
+      "sourceBlock": 13,
+      "sourceIssueReference": "Amazing Spider-Man (2018) #50",
+      "sourceRangeReference": "Team-ups | Amazing Spider-Man Vol. 10: Green Goblin Returns | Issues #50-55",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "50",
+      "collectedIn": "Amazing Spider-Man Vol. 11: Last Remains",
+      "seriesId": 24396,
+      "candidateIssueId": 77118,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 70,
+      "sourceBlock": 13,
+      "sourceIssueReference": "Amazing Spider-Man (2018) #51",
+      "sourceRangeReference": "Team-ups | Amazing Spider-Man Vol. 10: Green Goblin Returns | Issues #50-55",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "51",
+      "collectedIn": "Amazing Spider-Man Vol. 11: Last Remains",
+      "seriesId": 24396,
+      "candidateIssueId": 77119,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 71,
+      "sourceBlock": 13,
+      "sourceIssueReference": "Amazing Spider-Man (2018) #52",
+      "sourceRangeReference": "Team-ups | Amazing Spider-Man Vol. 10: Green Goblin Returns | Issues #50-55",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "52",
+      "collectedIn": "Amazing Spider-Man Vol. 11: Last Remains",
+      "seriesId": 24396,
+      "candidateIssueId": 77120,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 72,
+      "sourceBlock": 13,
+      "sourceIssueReference": "Amazing Spider-Man (2018) #53",
+      "sourceRangeReference": "Team-ups | Amazing Spider-Man Vol. 10: Green Goblin Returns | Issues #50-55",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "53",
+      "collectedIn": "Amazing Spider-Man Vol. 11: Last Remains",
+      "seriesId": 24396,
+      "candidateIssueId": 77121,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 73,
+      "sourceBlock": 13,
+      "sourceIssueReference": "Amazing Spider-Man (2018) #54",
+      "sourceRangeReference": "Team-ups | Amazing Spider-Man Vol. 10: Green Goblin Returns | Issues #50-55",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "54",
+      "collectedIn": "Amazing Spider-Man Vol. 11: Last Remains",
+      "seriesId": 24396,
+      "candidateIssueId": 77122,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "sourcePosition": 74,
+      "sourceBlock": 13,
+      "sourceIssueReference": "Amazing Spider-Man (2018) #55",
+      "sourceRangeReference": "Team-ups | Amazing Spider-Man Vol. 10: Green Goblin Returns | Issues #50-55",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "55",
+      "collectedIn": "Amazing Spider-Man Vol. 11: Last Remains",
+      "seriesId": 24396,
+      "candidateIssueId": 89510,
+      "manualSeriesSelectionApproved": false
+    }
+  ],
+  "packetDigest": "ac6d12d27eb7588f7ca67f8322c223ba96d42d71fb1f910ca399922be7ff8ccd"
+}

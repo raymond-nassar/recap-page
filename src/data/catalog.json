@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-29T02:47:20.211Z",
+  "generatedAt": "2026-09-29T07:16:26.488Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -1561,6 +1561,47 @@
       "updatedAt": "2026-08-22T09:26:45.416Z"
     },
     {
+      "id": "marvel-zombies-reading-order",
+      "file": "marvel_zombies_reading_order.json",
+      "name": "Marvel Zombies",
+      "description": "Read Comic Book Herald's numbered Marvel Zombies selections across the original stories, Deadpool's separate zombie universe, Battleworld, Resurrection and alternate additions.",
+      "type": "era",
+      "depth": "partial",
+      "count": 94,
+      "placeholderCount": 3,
+      "emptyRecordCount": 0,
+      "collections": 26,
+      "characters": [
+        "Marvel Zombies",
+        "Deadpool",
+        "Fantastic Four",
+        "Black Panther"
+      ],
+      "keywords": [
+        "Marvel Zombies",
+        "Zombieverse",
+        "Marvel Zombies Battleworld",
+        "Deadpool Vs. Zombies",
+        "Marvel Zombies Resurrection",
+        "Marvel Zombies Red Band",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 3220,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/00/5ae32391b6e0e",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/marvel-zombies-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-09-29T07:16:26.488Z"
+    },
+    {
       "id": "house-of-m",
       "file": "house_of_m.json",
       "name": "House of M",
@@ -2277,6 +2318,51 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-09-29T00:59:21.271Z"
+    },
+    {
+      "id": "hawkeye-reading-order",
+      "file": "hawkeye_reading_order.json",
+      "name": "Hawkeye (Clint Barton and Kate Bishop)",
+      "description": "Follow Clint Barton and Kate Bishop through their solo and team stories in Comic Book Herald's selected Hawkeye reading order.",
+      "type": "character-run",
+      "depth": "partial",
+      "spotlightKind": "other",
+      "count": 663,
+      "placeholderCount": 1,
+      "emptyRecordCount": 6,
+      "collections": 76,
+      "characters": [
+        "Hawkeye",
+        "Clint Barton",
+        "Kate Bishop",
+        "Mockingbird",
+        "Avengers",
+        "Young Avengers"
+      ],
+      "keywords": [
+        "Hawkeye",
+        "Clint Barton",
+        "Kate Bishop",
+        "Hawkguy",
+        "Mockingbird",
+        "Avengers",
+        "Young Avengers",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 42768,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/51a515296fe75",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/hawkeye-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-09-29T06:20:20.617Z"
     },
     {
       "id": "doctor-strange-multiverse-of-madness",
@@ -3192,6 +3278,49 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-23T22:42:20.583Z"
+    },
+    {
+      "id": "silk-cindy-moon-reading-order",
+      "file": "silk_cindy_moon_reading_order.json",
+      "name": "Silk / Cindy Moon",
+      "description": "Follow Cindy Moon's origins, solo stories and team-ups in Comic Book Herald's selected Silk reading order.",
+      "type": "character-run",
+      "depth": "partial",
+      "spotlightKind": "other",
+      "count": 74,
+      "placeholderCount": 7,
+      "emptyRecordCount": 0,
+      "collections": 13,
+      "characters": [
+        "Silk",
+        "Cindy Moon",
+        "Spider-Man",
+        "Spider-Women",
+        "Agents of Atlas"
+      ],
+      "keywords": [
+        "Silk",
+        "Cindy Moon",
+        "Spider-Man",
+        "Spider-Women",
+        "Spider(fly) Effect",
+        "Agents of Atlas",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 45798,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/f0/5cfaa9ca8a2bd",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/silk-cindy-moon-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-09-29T02:52:47.158Z"
     },
     {
       "id": "spider-gwen-reading-order",
@@ -5651,6 +5780,48 @@
       "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
       "sourceLicense": null,
       "updatedAt": "2026-08-25T07:01:21.146Z"
+    },
+    {
+      "id": "marvels-infinity-saga-gauntlet-wars-crusade-reading-order",
+      "file": "marvels_infinity_saga_gauntlet_wars_crusade_reading_order.json",
+      "name": "Infinity Trilogy (Gauntlet, War, Crusade)",
+      "description": "Read the original Infinity trilogy with Comic Book Herald's issue order, selected preludes, aftermath and alternate continuations.",
+      "type": "era",
+      "depth": "partial",
+      "count": 191,
+      "placeholderCount": 17,
+      "emptyRecordCount": 11,
+      "collections": 145,
+      "characters": [
+        "Thanos",
+        "Adam Warlock",
+        "Silver Surfer"
+      ],
+      "keywords": [
+        "Infinity Saga",
+        "Infinity Trilogy",
+        "Infinity Gauntlet",
+        "Infinity War",
+        "Infinity Crusade",
+        "Thanos",
+        "Adam Warlock",
+        "Silver Surfer",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 9286,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/51f6911ce3cc3",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/marvels-infinity-saga-gauntlet-wars-crusade-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-09-29T06:36:18.233Z"
     },
     {
       "id": "operation-galactic-storm",

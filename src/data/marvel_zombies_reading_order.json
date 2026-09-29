@@ -1,0 +1,2837 @@
+{
+  "id": "marvel-zombies-reading-order",
+  "name": "Marvel Zombies",
+  "description": "Read Comic Book Herald's numbered Marvel Zombies selections across the original stories, Deadpool's separate zombie universe, Battleworld, Resurrection and alternate additions.",
+  "source": "https://www.comicbookherald.com/marvel-zombies-reading-order/",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-09-29T07:16:26.488Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 94,
+  "collections": 26,
+  "placeholders": 3,
+  "unresolved": [
+    {
+      "title": "Marvel Zombies (2025) #3",
+      "url": null,
+      "read": false,
+      "index": 91,
+      "section": "Out of Continuity Additions: | marvel-zombies-red-band: Marvel Zombies (2025) #1 to #5",
+      "sourceKey": "93"
+    },
+    {
+      "title": "Marvel Zombies (2025) #4",
+      "url": null,
+      "read": false,
+      "index": 92,
+      "section": "Out of Continuity Additions: | marvel-zombies-red-band: Marvel Zombies (2025) #1 to #5",
+      "sourceKey": "94"
+    },
+    {
+      "title": "Marvel Zombies (2025) #5",
+      "url": null,
+      "read": false,
+      "index": 93,
+      "section": "Out of Continuity Additions: | marvel-zombies-red-band: Marvel Zombies (2025) #1 to #5",
+      "sourceKey": "95"
+    }
+  ],
+  "items": [
+    {
+      "issueId": 2183,
+      "title": "Ultimate Fantastic Four (2003) #21",
+      "number": "21",
+      "url": "https://www.marvel.com/comics/issue/2183/ultimate_fantastic_four_2003_21",
+      "seriesId": 702,
+      "seriesName": "Ultimate Fantastic Four (2003 - 2009)",
+      "onSale": "2005-07-13T00:00:00+0000",
+      "mu": "2007-11-26T00:00:00+0000",
+      "digitalId": 888,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/50/5a946be953667",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | complete-collection-1: Ultimate Fantastic Four #21 to #23"
+    },
+    {
+      "issueId": 2303,
+      "title": "Ultimate Fantastic Four (2003) #22",
+      "number": "22",
+      "url": "https://www.marvel.com/comics/issue/2303/ultimate_fantastic_four_2003_22",
+      "seriesId": 702,
+      "seriesName": "Ultimate Fantastic Four (2003 - 2009)",
+      "onSale": "2005-08-10T00:00:00+0000",
+      "mu": "2005-08-10T00:00:00+0000",
+      "digitalId": 2661,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/5a947084e170c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | complete-collection-1: Ultimate Fantastic Four #21 to #23"
+    },
+    {
+      "issueId": 2412,
+      "title": "Ultimate Fantastic Four (2003) #23",
+      "number": "23",
+      "url": "https://www.marvel.com/comics/issue/2412/ultimate_fantastic_four_2003_23",
+      "seriesId": 702,
+      "seriesName": "Ultimate Fantastic Four (2003 - 2009)",
+      "onSale": "2005-09-21T00:00:00+0000",
+      "mu": "2005-09-21T00:00:00+0000",
+      "digitalId": 2662,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/5a9476f64d4e0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | complete-collection-1: Ultimate Fantastic Four #21 to #23"
+    },
+    {
+      "issueId": 3220,
+      "title": "Marvel Zombies (2005) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/3220/marvel_zombies_2005_1",
+      "seriesId": 998,
+      "seriesName": "Marvel Zombies (2005 - 2006)",
+      "onSale": "2005-12-07T00:00:00+0000",
+      "mu": "2005-12-07T00:00:00+0000",
+      "digitalId": 1047,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/00/5ae32391b6e0e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sean Phillips",
+          "role": "cover artist"
+        },
+        {
+          "name": "Robert Kirkman",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | complete-collection-1: Marvel Zombies (2005 to 2006) #1 to #5"
+    },
+    {
+      "issueId": 3430,
+      "title": "Marvel Zombies (2005) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/3430/marvel_zombies_2005_2",
+      "seriesId": 998,
+      "seriesName": "Marvel Zombies (2005 - 2006)",
+      "onSale": "2006-01-04T00:00:00+0000",
+      "mu": "2006-01-04T00:00:00+0000",
+      "digitalId": 6452,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/03/5ae3305495958",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sean Phillips",
+          "role": "penciler"
+        },
+        {
+          "name": "Robert Kirkman",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | complete-collection-1: Marvel Zombies (2005 to 2006) #1 to #5"
+    },
+    {
+      "issueId": 3549,
+      "title": "Marvel Zombies (2005) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/3549/marvel_zombies_2005_3",
+      "seriesId": 998,
+      "seriesName": "Marvel Zombies (2005 - 2006)",
+      "onSale": "2006-02-08T00:00:00+0000",
+      "mu": "2006-02-08T00:00:00+0000",
+      "digitalId": 6453,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/60/5ae33acf41bab",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sean Phillips",
+          "role": "penciler"
+        },
+        {
+          "name": "Robert Kirkman",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | complete-collection-1: Marvel Zombies (2005 to 2006) #1 to #5"
+    },
+    {
+      "issueId": 3956,
+      "title": "Marvel Zombies (2005) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/3956/marvel_zombies_2005_4",
+      "seriesId": 998,
+      "seriesName": "Marvel Zombies (2005 - 2006)",
+      "onSale": "2006-03-01T00:00:00+0000",
+      "mu": "2006-03-01T00:00:00+0000",
+      "digitalId": 6454,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/b0/5ae352ac1bb75",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sean Phillips",
+          "role": "penciler"
+        },
+        {
+          "name": "Robert Kirkman",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | complete-collection-1: Marvel Zombies (2005 to 2006) #1 to #5"
+    },
+    {
+      "issueId": 4082,
+      "title": "Marvel Zombies (2005) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/4082/marvel_zombies_2005_5",
+      "seriesId": 998,
+      "seriesName": "Marvel Zombies (2005 - 2006)",
+      "onSale": "2006-04-05T00:00:00+0000",
+      "mu": "2006-04-05T00:00:00+0000",
+      "digitalId": 6455,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/5ae35b921607e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sean Phillips",
+          "role": "penciler"
+        },
+        {
+          "name": "Robert Kirkman",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | complete-collection-1: Marvel Zombies (2005 to 2006) #1 to #5"
+    },
+    {
+      "issueId": 13479,
+      "title": "MARVEL ZOMBIES: DEAD DAYS 1 (2007) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/13479/marvel_zombies_dead_days_1_2007_1",
+      "seriesId": 2189,
+      "seriesName": "MARVEL ZOMBIES: DEAD DAYS 1 (2007)",
+      "onSale": "2007-05-09T00:00:00+0000",
+      "mu": "2007-05-09T00:00:00+0000",
+      "digitalId": 8435,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/5cdc3f0d81652",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Sean Phillips",
+          "role": "cover artist"
+        },
+        {
+          "name": "Arthur Suydam",
+          "role": "penciler"
+        },
+        {
+          "name": "Robert Kirkman",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | complete-collection-1: Marvel Zombies: Dead Days #1 (May 2007)"
+    },
+    {
+      "issueId": 4145,
+      "title": "Ultimate Fantastic Four (2003) #30",
+      "number": "30",
+      "url": "https://www.marvel.com/comics/issue/4145/ultimate_fantastic_four_2003_30",
+      "seriesId": 702,
+      "seriesName": "Ultimate Fantastic Four (2003 - 2009)",
+      "onSale": "2006-05-31T00:00:00+0000",
+      "mu": "2006-05-31T00:00:00+0000",
+      "digitalId": 7308,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/5a96d88b5ce23",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Matt Ryan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Mitch Breitweiser",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | complete-collection-1: Ultimate Fantastic Four #30 to #32"
+    },
+    {
+      "issueId": 4290,
+      "title": "Ultimate Fantastic Four (2003) #31",
+      "number": "31",
+      "url": "https://www.marvel.com/comics/issue/4290/ultimate_fantastic_four_2003_31",
+      "seriesId": 702,
+      "seriesName": "Ultimate Fantastic Four (2003 - 2009)",
+      "onSale": "2006-07-12T00:00:00+0000",
+      "mu": "2006-07-12T00:00:00+0000",
+      "digitalId": 7309,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/80/5a95b8736775f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Matt Ryan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Mitch Breitweiser",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | complete-collection-1: Ultimate Fantastic Four #30 to #32"
+    },
+    {
+      "issueId": 4445,
+      "title": "Ultimate Fantastic Four (2003) #32",
+      "number": "32",
+      "url": "https://www.marvel.com/comics/issue/4445/ultimate_fantastic_four_2003_32",
+      "seriesId": 702,
+      "seriesName": "Ultimate Fantastic Four (2003 - 2009)",
+      "onSale": "2006-08-16T00:00:00+0000",
+      "mu": "2006-08-16T00:00:00+0000",
+      "digitalId": 7310,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/5a95bd6d1b482",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Matt Ryan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Mitch Breitweiser",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | complete-collection-1: Ultimate Fantastic Four #30 to #32"
+    },
+    {
+      "issueId": 13438,
+      "title": "Black Panther (2005) #28",
+      "number": "28",
+      "url": "https://www.marvel.com/comics/issue/13438/black_panther_2005_28",
+      "seriesId": 784,
+      "seriesName": "Black Panther (2005 - 2008)",
+      "onSale": "2007-06-27T00:00:00+0000",
+      "mu": "2007-06-27T00:00:00+0000",
+      "digitalId": 8034,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/a0/56defa6636898",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francis Portela",
+          "role": "cover artist"
+        },
+        {
+          "name": "Arthur Suydam",
+          "role": "penciler"
+        },
+        {
+          "name": "Reginald Hudlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | complete-collection-1: Black Panther #28 to #30"
+    },
+    {
+      "issueId": 15939,
+      "title": "Black Panther (2005) #29",
+      "number": "29",
+      "url": "https://www.marvel.com/comics/issue/15939/black_panther_2005_29",
+      "seriesId": 784,
+      "seriesName": "Black Panther (2005 - 2008)",
+      "onSale": "2007-07-25T00:00:00+0000",
+      "mu": "2007-07-25T00:00:00+0000",
+      "digitalId": 8035,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/80/56defb7921bb4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francis Portela",
+          "role": "cover artist"
+        },
+        {
+          "name": "Arthur Suydam",
+          "role": "penciler"
+        },
+        {
+          "name": "Reginald Hudlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | complete-collection-1: Black Panther #28 to #30"
+    },
+    {
+      "issueId": 16122,
+      "title": "Black Panther (2005) #30",
+      "number": "30",
+      "url": "https://www.marvel.com/comics/issue/16122/black_panther_2005_30",
+      "seriesId": 784,
+      "seriesName": "Black Panther (2005 - 2008)",
+      "onSale": "2007-08-29T00:00:00+0000",
+      "mu": "2007-08-29T00:00:00+0000",
+      "digitalId": 8036,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/00/56defc97b5c44",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francis Portela",
+          "role": "cover artist"
+        },
+        {
+          "name": "Arthur Suydam",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Reginald Hudlin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | complete-collection-1: Black Panther #28 to #30"
+    },
+    {
+      "issueId": 16547,
+      "title": "Marvel Zombies 2 (2007) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/16547/marvel_zombies_2_2007_1",
+      "seriesId": 2844,
+      "seriesName": "Marvel Zombies 2 (2007 - 2008)",
+      "onSale": "2007-10-17T00:00:00+0000",
+      "mu": "2007-10-17T00:00:00+0000",
+      "digitalId": 8393,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/f0/4f6780b6500b0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sean Phillips",
+          "role": "cover artist"
+        },
+        {
+          "name": "Arthur Suydam",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Robert Kirkman",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | complete-collection-2: Marvel Zombies 2 (2007-2008) #1 to #5"
+    },
+    {
+      "issueId": 17262,
+      "title": "Marvel Zombies 2 (2007) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/17262/marvel_zombies_2_2007_2",
+      "seriesId": 2844,
+      "seriesName": "Marvel Zombies 2 (2007 - 2008)",
+      "onSale": "2007-11-29T00:00:00+0000",
+      "mu": "2008-10-23T00:00:00+0000",
+      "digitalId": 8394,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/70/4d24ed302a162",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sean Phillips",
+          "role": "cover artist"
+        },
+        {
+          "name": "Robert Kirkman",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | complete-collection-2: Marvel Zombies 2 (2007-2008) #1 to #5"
+    },
+    {
+      "issueId": 17399,
+      "title": "Marvel Zombies 2 (2007) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/17399/marvel_zombies_2_2007_3",
+      "seriesId": 2844,
+      "seriesName": "Marvel Zombies 2 (2007 - 2008)",
+      "onSale": "2007-12-26T00:00:00+0000",
+      "mu": "2007-12-26T00:00:00+0000",
+      "digitalId": 8395,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/4d25129690cf4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Sean Phillips",
+          "role": "cover artist"
+        },
+        {
+          "name": "Arthur Suydam",
+          "role": "penciler"
+        },
+        {
+          "name": "Robert Kirkman",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | complete-collection-2: Marvel Zombies 2 (2007-2008) #1 to #5"
+    },
+    {
+      "issueId": 17640,
+      "title": "Marvel Zombies 2 (2007) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/17640/marvel_zombies_2_2007_4",
+      "seriesId": 2844,
+      "seriesName": "Marvel Zombies 2 (2007 - 2008)",
+      "onSale": "2008-01-23T00:00:00+0000",
+      "mu": "2008-01-23T00:00:00+0000",
+      "digitalId": 11288,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/e0/4d24e894e0538",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sean Phillips",
+          "role": "cover artist"
+        },
+        {
+          "name": "Arthur Suydam",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Robert Kirkman",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | complete-collection-2: Marvel Zombies 2 (2007-2008) #1 to #5"
+    },
+    {
+      "issueId": 20680,
+      "title": "Marvel Zombies 2 (2007) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/20680/marvel_zombies_2_2007_5",
+      "seriesId": 2844,
+      "seriesName": "Marvel Zombies 2 (2007 - 2008)",
+      "onSale": "2008-02-27T00:00:00+0000",
+      "mu": "2008-02-27T00:00:00+0000",
+      "digitalId": 11289,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/b0/4d24f7240ac4a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sean Phillips",
+          "role": "cover artist"
+        },
+        {
+          "name": "Arthur Suydam",
+          "role": "penciler"
+        },
+        {
+          "name": "Robert Kirkman",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | complete-collection-2: Marvel Zombies 2 (2007-2008) #1 to #5"
+    },
+    {
+      "issueId": 27909,
+      "title": "Marvel Zombies Return (2009) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/27909/marvel_zombies_return_2009_1",
+      "seriesId": 9049,
+      "seriesName": "Marvel Zombies Return (2009)",
+      "onSale": "2009-09-02T00:00:00+0000",
+      "mu": "2011-08-04T00:00:00+0000",
+      "digitalId": 16614,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/585d4a7ccb148",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Nick Dragotta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Arthur Suydam",
+          "role": "penciler"
+        },
+        {
+          "name": "Fred Van Lente",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | complete-collection-2: Marvel Zombies Return #1 to #5"
+    },
+    {
+      "issueId": 28811,
+      "title": "Marvel Zombies Return (2009) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/28811/marvel_zombies_return_2009_2",
+      "seriesId": 9049,
+      "seriesName": "Marvel Zombies Return (2009)",
+      "onSale": "2009-09-10T00:00:00+0000",
+      "mu": "2011-08-11T00:00:00+0000",
+      "digitalId": 16668,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/585d4b6f3b1e1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Arthur Suydam",
+          "role": "penciler"
+        },
+        {
+          "name": "David Wellington",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | complete-collection-2: Marvel Zombies Return #1 to #5"
+    },
+    {
+      "issueId": 28812,
+      "title": "Marvel Zombies Return (2009) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/28812/marvel_zombies_return_2009_3",
+      "seriesId": 9049,
+      "seriesName": "Marvel Zombies Return (2009)",
+      "onSale": "2009-09-16T00:00:00+0000",
+      "mu": "2011-08-18T00:00:00+0000",
+      "digitalId": 16896,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/c0/585d4b5b06477",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jason Shawn Alexander",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jonathan Maberry",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | complete-collection-2: Marvel Zombies Return #1 to #5"
+    },
+    {
+      "issueId": 28813,
+      "title": "Marvel Zombies Return (2009) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/28813/marvel_zombies_return_2009_4",
+      "seriesId": 9049,
+      "seriesName": "Marvel Zombies Return (2009)",
+      "onSale": "2009-09-23T00:00:00+0000",
+      "mu": "2011-08-25T00:00:00+0000",
+      "digitalId": 13463,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/585d4b834ee70",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Richard Elson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Arthur Suydam",
+          "role": "penciler"
+        },
+        {
+          "name": "Seth Grahame-Smith",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | complete-collection-2: Marvel Zombies Return #1 to #5"
+    },
+    {
+      "issueId": 28814,
+      "title": "Marvel Zombies Return (2009) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/28814/marvel_zombies_return_2009_5",
+      "seriesId": 9049,
+      "seriesName": "Marvel Zombies Return (2009)",
+      "onSale": "2009-09-30T00:00:00+0000",
+      "mu": "2011-09-01T00:00:00+0000",
+      "digitalId": 13464,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/585d4b9b7df50",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Wellington Alves",
+          "role": "penciler"
+        },
+        {
+          "name": "Fred Van Lente",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | complete-collection-2: Marvel Zombies Return #1 to #5"
+    },
+    {
+      "issueId": 22376,
+      "title": "Marvel Zombies 3 (2008) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/22376/marvel_zombies_3_2008_1",
+      "seriesId": 5993,
+      "seriesName": "Marvel Zombies 3 (2008 - 2009)",
+      "onSale": "2008-10-08T00:00:00+0000",
+      "mu": "2008-10-08T00:00:00+0000",
+      "digitalId": 11290,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/57ab4b355eb91",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kev Walker",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Fred Van Lente",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | complete-collection-2: Marvel Zombies 3 (2008-2009) #1 to #4"
+    },
+    {
+      "issueId": 22566,
+      "title": "Marvel Zombies 3 (2008) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/22566/marvel_zombies_3_2008_2",
+      "seriesId": 5993,
+      "seriesName": "Marvel Zombies 3 (2008 - 2009)",
+      "onSale": "2008-11-05T00:00:00+0000",
+      "mu": "2008-11-05T00:00:00+0000",
+      "digitalId": 11291,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/30/5af5bfdae46da",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kev Walker",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Fred Van Lente",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | complete-collection-2: Marvel Zombies 3 (2008-2009) #1 to #4"
+    },
+    {
+      "issueId": 22985,
+      "title": "Marvel Zombies 3 (2008) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/22985/marvel_zombies_3_2008_3",
+      "seriesId": 5993,
+      "seriesName": "Marvel Zombies 3 (2008 - 2009)",
+      "onSale": "2008-12-03T00:00:00+0000",
+      "mu": "2008-12-03T00:00:00+0000",
+      "digitalId": 11292,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/00/57ab4c2c6ea4d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Greg Land",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kev Walker",
+          "role": "cover artist"
+        },
+        {
+          "name": "Fred Van Lente",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | complete-collection-2: Marvel Zombies 3 (2008-2009) #1 to #4"
+    },
+    {
+      "issueId": 23161,
+      "title": "Marvel Zombies 3 (2008) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/23161/marvel_zombies_3_2008_4",
+      "seriesId": 5993,
+      "seriesName": "Marvel Zombies 3 (2008 - 2009)",
+      "onSale": "2009-01-07T00:00:00+0000",
+      "mu": "2009-01-07T00:00:00+0000",
+      "digitalId": 13104,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/90/6102dbf39a03c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Greg Land",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kev Walker",
+          "role": "cover artist"
+        },
+        {
+          "name": "Fred Van Lente",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | complete-collection-2: Marvel Zombies 3 (2008-2009) #1 to #4"
+    },
+    {
+      "issueId": 24040,
+      "title": "Marvel Zombies 4 (2009) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/24040/marvel_zombies_4_2009_1",
+      "seriesId": 7218,
+      "seriesName": "Marvel Zombies 4 (2009)",
+      "onSale": "2009-04-08T00:00:00+0000",
+      "mu": "2009-04-08T00:00:00+0000",
+      "digitalId": 13513,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/30/61040a31db6db",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Greg Land",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kev Walker",
+          "role": "cover artist"
+        },
+        {
+          "name": "Fred Van Lente",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | complete-collection-2: Marvel Zombies 4 (2009) #1 to #4"
+    },
+    {
+      "issueId": 24241,
+      "title": "Marvel Zombies 4 (2009) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/24241/marvel_zombies_4_2009_2",
+      "seriesId": 7218,
+      "seriesName": "Marvel Zombies 4 (2009)",
+      "onSale": "2009-05-06T00:00:00+0000",
+      "mu": "2009-05-06T00:00:00+0000",
+      "digitalId": 15050,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/30/61040a31db705",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Greg Land",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kev Walker",
+          "role": "cover artist"
+        },
+        {
+          "name": "Fred Van Lente",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | complete-collection-2: Marvel Zombies 4 (2009) #1 to #4"
+    },
+    {
+      "issueId": 25938,
+      "title": "Marvel Zombies 4 (2009) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/25938/marvel_zombies_4_2009_3",
+      "seriesId": 7218,
+      "seriesName": "Marvel Zombies 4 (2009)",
+      "onSale": "2009-06-17T00:00:00+0000",
+      "mu": "2009-06-17T00:00:00+0000",
+      "digitalId": 12650,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/80/61040a31db76d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Greg Land",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kev Walker",
+          "role": "cover artist"
+        },
+        {
+          "name": "Fred Van Lente",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | complete-collection-2: Marvel Zombies 4 (2009) #1 to #4"
+    },
+    {
+      "issueId": 25939,
+      "title": "Marvel Zombies 4 (2009) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/25939/marvel_zombies_4_2009_4",
+      "seriesId": 7218,
+      "seriesName": "Marvel Zombies 4 (2009)",
+      "onSale": "2009-07-29T00:00:00+0000",
+      "mu": "2009-07-29T00:00:00+0000",
+      "digitalId": 13617,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/f0/61040a57f38cb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Greg Land",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kev Walker",
+          "role": "cover artist"
+        },
+        {
+          "name": "Fred Van Lente",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | complete-collection-2: Marvel Zombies 4 (2009) #1 to #4"
+    },
+    {
+      "issueId": 27873,
+      "title": "Deadpool: Merc with a Mouth (2009) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/27873/deadpool_merc_with_a_mouth_2009_1",
+      "seriesId": 8865,
+      "seriesName": "Deadpool: Merc with a Mouth (2009 - 2010)",
+      "onSale": "2009-07-01T00:00:00+0000",
+      "mu": "2009-07-01T00:00:00+0000",
+      "digitalId": 12781,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/80/5a0db3afe25e0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Joe Pimentel",
+          "role": "cover artist"
+        },
+        {
+          "name": "Arthur Suydam",
+          "role": "penciler"
+        },
+        {
+          "name": "Bong Dazo",
+          "role": "penciler"
+        },
+        {
+          "name": "Victor Gischler",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | deadpool-classic-11: Deadpool: Merc with a Mouth #1 to #13"
+    },
+    {
+      "issueId": 27798,
+      "title": "Deadpool: Merc with a Mouth (2009) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/27798/deadpool_merc_with_a_mouth_2009_2",
+      "seriesId": 8865,
+      "seriesName": "Deadpool: Merc with a Mouth (2009 - 2010)",
+      "onSale": "2009-08-05T00:00:00+0000",
+      "mu": "2009-08-05T00:00:00+0000",
+      "digitalId": 15981,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/90/5a0dbb93c1a4e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Joe Pimentel",
+          "role": "cover artist"
+        },
+        {
+          "name": "Arthur Suydam",
+          "role": "penciler"
+        },
+        {
+          "name": "Bong Dazo",
+          "role": "penciler"
+        },
+        {
+          "name": "Victor Gischler",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | deadpool-classic-11: Deadpool: Merc with a Mouth #1 to #13"
+    },
+    {
+      "issueId": 27799,
+      "title": "Deadpool: Merc with a Mouth (2009) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/27799/deadpool_merc_with_a_mouth_2009_3",
+      "seriesId": 8865,
+      "seriesName": "Deadpool: Merc with a Mouth (2009 - 2010)",
+      "onSale": "2009-09-16T00:00:00+0000",
+      "mu": "2015-05-20T16:07:39+0000",
+      "digitalId": 16776,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/5a0e1974d19f7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | deadpool-classic-11: Deadpool: Merc with a Mouth #1 to #13"
+    },
+    {
+      "issueId": 27800,
+      "title": "Deadpool: Merc with a Mouth (2009) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/27800/deadpool_merc_with_a_mouth_2009_4",
+      "seriesId": 8865,
+      "seriesName": "Deadpool: Merc with a Mouth (2009 - 2010)",
+      "onSale": "2009-10-21T00:00:00+0000",
+      "mu": "2010-11-12T00:00:00+0000",
+      "digitalId": 15279,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/5a0e18783f0b8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Arthur Suydam",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | deadpool-classic-11: Deadpool: Merc with a Mouth #1 to #13"
+    },
+    {
+      "issueId": 27801,
+      "title": "Deadpool: Merc with a Mouth (2009) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/27801/deadpool_merc_with_a_mouth_2009_5",
+      "seriesId": 8865,
+      "seriesName": "Deadpool: Merc with a Mouth (2009 - 2010)",
+      "onSale": "2009-11-18T00:00:00+0000",
+      "mu": "2010-11-16T00:00:00+0000",
+      "digitalId": 15280,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/60/5a0deaaf61cac",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | deadpool-classic-11: Deadpool: Merc with a Mouth #1 to #13"
+    },
+    {
+      "issueId": 27802,
+      "title": "Deadpool: Merc with a Mouth (2009) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/27802/deadpool_merc_with_a_mouth_2009_6",
+      "seriesId": 8865,
+      "seriesName": "Deadpool: Merc with a Mouth (2009 - 2010)",
+      "onSale": "2009-12-16T00:00:00+0000",
+      "mu": "2010-11-19T00:00:00+0000",
+      "digitalId": 15285,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/70/5a0deb2f3b879",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Arthur Suydam",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | deadpool-classic-11: Deadpool: Merc with a Mouth #1 to #13"
+    },
+    {
+      "issueId": 27803,
+      "title": "Deadpool: Merc with a Mouth (2009) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/27803/deadpool_merc_with_a_mouth_2009_7",
+      "seriesId": 8865,
+      "seriesName": "Deadpool: Merc with a Mouth (2009 - 2010)",
+      "onSale": "2010-01-20T00:00:00+0000",
+      "mu": "2010-11-23T00:00:00+0000",
+      "digitalId": 14679,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/60/555ccee8bf688",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Stefano Gaudiano",
+          "role": "cover artist"
+        },
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Arturo Lozzi",
+          "role": "penciler"
+        },
+        {
+          "name": "Khari Evans",
+          "role": "penciler"
+        },
+        {
+          "name": "Michael Lark",
+          "role": "penciler"
+        },
+        {
+          "name": "Mico Suayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Roberto De La Torre",
+          "role": "penciler"
+        },
+        {
+          "name": "Travel Foreman",
+          "role": "penciler"
+        },
+        {
+          "name": "Duane Swierczynski",
+          "role": "writer"
+        },
+        {
+          "name": "Jason Aaron",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | deadpool-classic-11: Deadpool: Merc with a Mouth #1 to #13"
+    },
+    {
+      "issueId": 27804,
+      "title": "Deadpool: Merc with a Mouth (2009) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/27804/deadpool_merc_with_a_mouth_2009_8",
+      "seriesId": 8865,
+      "seriesName": "Deadpool: Merc with a Mouth (2009 - 2010)",
+      "onSale": "2010-02-17T00:00:00+0000",
+      "mu": "2010-11-26T00:00:00+0000",
+      "digitalId": 13889,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/d0/5a0e191e13625",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | deadpool-classic-11: Deadpool: Merc with a Mouth #1 to #13"
+    },
+    {
+      "issueId": 30395,
+      "title": "Deadpool: Merc with a Mouth (2009) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/30395/deadpool_merc_with_a_mouth_2009_9",
+      "seriesId": 8865,
+      "seriesName": "Deadpool: Merc with a Mouth (2009 - 2010)",
+      "onSale": "2010-03-17T00:00:00+0000",
+      "mu": "2010-12-27T00:00:00+0000",
+      "digitalId": 14086,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/5a0e1919671ea",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Arthur Suydam",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | deadpool-classic-11: Deadpool: Merc with a Mouth #1 to #13"
+    },
+    {
+      "issueId": 32546,
+      "title": "Deadpool: Merc with a Mouth (2009) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/32546/deadpool_merc_with_a_mouth_2009_10",
+      "seriesId": 8865,
+      "seriesName": "Deadpool: Merc with a Mouth (2009 - 2010)",
+      "onSale": "2010-04-21T00:00:00+0000",
+      "mu": "2011-01-05T00:00:00+0000",
+      "digitalId": 14369,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/10/5a0e18d269977",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Arthur Suydam",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | deadpool-classic-11: Deadpool: Merc with a Mouth #1 to #13"
+    },
+    {
+      "issueId": 30391,
+      "title": "Deadpool: Merc with a Mouth (2009) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/30391/deadpool_merc_with_a_mouth_2009_11",
+      "seriesId": 8865,
+      "seriesName": "Deadpool: Merc with a Mouth (2009 - 2010)",
+      "onSale": "2010-05-26T00:00:00-0400",
+      "mu": "2011-01-24T00:00:00-0500",
+      "digitalId": 14747,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/70/5a0e1900c3f23",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Arthur Suydam",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | deadpool-classic-11: Deadpool: Merc with a Mouth #1 to #13"
+    },
+    {
+      "issueId": 30392,
+      "title": "Deadpool: Merc with a Mouth (2009) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/30392/deadpool_merc_with_a_mouth_2009_12",
+      "seriesId": 8865,
+      "seriesName": "Deadpool: Merc with a Mouth (2009 - 2010)",
+      "onSale": "2010-06-16T00:00:00+0000",
+      "mu": "2011-05-04T00:00:00+0000",
+      "digitalId": 14940,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/f0/5a0e19ac73ecc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "ARTHUR SUDYAM",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | deadpool-classic-11: Deadpool: Merc with a Mouth #1 to #13"
+    },
+    {
+      "issueId": 32950,
+      "title": "Deadpool: Merc with a Mouth (2009) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/32950/deadpool_merc_with_a_mouth_2009_13",
+      "seriesId": 8865,
+      "seriesName": "Deadpool: Merc with a Mouth (2009 - 2010)",
+      "onSale": "2010-07-21T00:00:00+0000",
+      "mu": "2010-07-21T00:00:00+0000",
+      "digitalId": 15253,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/90/5a0e198b1a0d3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Joe Pimentel",
+          "role": "cover artist"
+        },
+        {
+          "name": "Matteo Scalera",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bong Dazo",
+          "role": "penciler"
+        },
+        {
+          "name": "Kyle Baker",
+          "role": "penciler"
+        },
+        {
+          "name": "Arthur Suydam",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Victor Gischler",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | deadpool-classic-11: Deadpool: Merc with a Mouth #1 to #13"
+    },
+    {
+      "issueId": 27908,
+      "title": "Marvel Zombies: Evil Evolution (2009) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/27908/marvel_zombies_evil_evolution_2009_1",
+      "seriesId": 8929,
+      "seriesName": "Marvel Zombies: Evil Evolution (2009)",
+      "onSale": "2009-11-04T00:00:00+0000",
+      "mu": "2010-10-07T00:00:00+0000",
+      "digitalId": 15342,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/59233c0f5bf51",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 64,
+      "creators": [
+        {
+          "name": "Roberto DI Salvo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Karl Kesel",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | complete-collection-3: Marvel Zombies: Evil Evolution #1"
+    },
+    {
+      "issueId": 30146,
+      "title": "Marvel Zombies 5 (2010) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/30146/marvel_zombies_5_2010_1",
+      "seriesId": 9719,
+      "seriesName": "Marvel Zombies 5 (2010)",
+      "onSale": "2010-04-07T00:00:00+0000",
+      "mu": "2010-12-31T00:00:00+0000",
+      "digitalId": 14258,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/e0/5ae36be3dc04d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kano",
+          "role": "penciler"
+        },
+        {
+          "name": "Rafa Garres",
+          "role": "penciler"
+        },
+        {
+          "name": "Fred Van Lente",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | complete-collection-3: Marvel Zombies 5 (2010) #1 to #5"
+    },
+    {
+      "issueId": 30147,
+      "title": "Marvel Zombies 5 (2010) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/30147/marvel_zombies_5_2010_2",
+      "seriesId": 9719,
+      "seriesName": "Marvel Zombies 5 (2010)",
+      "onSale": "2010-04-28T00:00:00+0000",
+      "mu": "2010-12-31T00:00:00+0000",
+      "digitalId": 14428,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/5ae3842dd3125",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alvaro Lopez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kano",
+          "role": "penciler"
+        },
+        {
+          "name": "Michael Kaluta",
+          "role": "penciler"
+        },
+        {
+          "name": "Fred Van Lente",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | complete-collection-3: Marvel Zombies 5 (2010) #1 to #5"
+    },
+    {
+      "issueId": 30148,
+      "title": "Marvel Zombies 5 (2010) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/30148/marvel_zombies_5_2010_3",
+      "seriesId": 9719,
+      "seriesName": "Marvel Zombies 5 (2010)",
+      "onSale": "2010-05-26T00:00:00+0000",
+      "mu": "2011-01-06T00:00:00+0000",
+      "digitalId": 14758,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/b0/5ae71b2a0e8d1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Felix Ruiz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kano",
+          "role": "penciler"
+        },
+        {
+          "name": "Leonard Kirk",
+          "role": "penciler"
+        },
+        {
+          "name": "Michael Kaluta",
+          "role": "penciler"
+        },
+        {
+          "name": "Fred Van Lente",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | complete-collection-3: Marvel Zombies 5 (2010) #1 to #5"
+    },
+    {
+      "issueId": 30149,
+      "title": "Marvel Zombies 5 (2010) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/30149/marvel_zombies_5_2010_4",
+      "seriesId": 9719,
+      "seriesName": "Marvel Zombies 5 (2010)",
+      "onSale": "2010-06-30T00:00:00+0000",
+      "mu": "2011-01-31T00:00:00+0000",
+      "digitalId": 15068,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/b0/5ae7248161011",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Fernando Blanco",
+          "role": "penciler"
+        },
+        {
+          "name": "Fred Van Lente",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | complete-collection-3: Marvel Zombies 5 (2010) #1 to #5"
+    },
+    {
+      "issueId": 30150,
+      "title": "Marvel Zombies 5 (2010) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/30150/marvel_zombies_5_2010_5",
+      "seriesId": 9719,
+      "seriesName": "Marvel Zombies 5 (2010)",
+      "onSale": "2010-07-21T00:00:00+0000",
+      "mu": "2011-06-24T00:00:00+0000",
+      "digitalId": 15254,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/5ae72e7a6b33e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Fernando Blanco",
+          "role": "penciler"
+        },
+        {
+          "name": "Frank Brunner",
+          "role": "penciler"
+        },
+        {
+          "name": "Fred Van Lente",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | complete-collection-3: Marvel Zombies 5 (2010) #1 to #5"
+    },
+    {
+      "issueId": 35010,
+      "title": "Marvel Zombies Supreme (2011) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/35010/marvel_zombies_supreme_2011_1",
+      "seriesId": 12309,
+      "seriesName": "Marvel Zombies Supreme (2011)",
+      "onSale": "2011-03-02T00:00:00+0000",
+      "mu": "2012-07-12T00:00:00+0000",
+      "digitalId": 19806,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/00/5908d8d1ae9cf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jason Paz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Fernando Blanco",
+          "role": "penciler"
+        },
+        {
+          "name": "Michael Komarck",
+          "role": "penciler"
+        },
+        {
+          "name": "Frank Marraffino",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | complete-collection-3: Marvel Zombies Supreme (2011) #1 to #5"
+    },
+    {
+      "issueId": 36182,
+      "title": "Marvel Zombies Supreme (2011) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/36182/marvel_zombies_supreme_2011_2",
+      "seriesId": 12309,
+      "seriesName": "Marvel Zombies Supreme (2011)",
+      "onSale": "2011-03-16T00:00:00+0000",
+      "mu": "2012-07-12T00:00:00+0000",
+      "digitalId": 20036,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/00/5908dadf8e436",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Fernando Blanco",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jason Paz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Michael Komarck",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Frank Marraffino",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | complete-collection-3: Marvel Zombies Supreme (2011) #1 to #5"
+    },
+    {
+      "issueId": 39020,
+      "title": "Marvel Zombies Supreme (2011) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/39020/marvel_zombies_supreme_2011_3",
+      "seriesId": 12309,
+      "seriesName": "Marvel Zombies Supreme (2011)",
+      "onSale": "2011-04-06T00:00:00+0000",
+      "mu": "2012-07-12T00:00:00+0000",
+      "digitalId": 20395,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/5908db6fae5f5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Fernando Blanco",
+          "role": "penciler"
+        },
+        {
+          "name": "Michael Komarck",
+          "role": "penciler"
+        },
+        {
+          "name": "Frank Marafino",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | complete-collection-3: Marvel Zombies Supreme (2011) #1 to #5"
+    },
+    {
+      "issueId": 36184,
+      "title": "Marvel Zombies Supreme (2011) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/36184/marvel_zombies_supreme_2011_4",
+      "seriesId": 12309,
+      "seriesName": "Marvel Zombies Supreme (2011)",
+      "onSale": "2011-05-04T00:00:00+0000",
+      "mu": "2012-07-12T00:00:00+0000",
+      "digitalId": 20830,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/5908db87a143a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Fernando Blanco",
+          "role": "penciler"
+        },
+        {
+          "name": "Michael Komarck",
+          "role": "penciler"
+        },
+        {
+          "name": "FRANKLIN MARRAFFINO",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | complete-collection-3: Marvel Zombies Supreme (2011) #1 to #5"
+    },
+    {
+      "issueId": 36374,
+      "title": "Marvel Zombies Supreme (2011) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/36374/marvel_zombies_supreme_2011_5",
+      "seriesId": 12309,
+      "seriesName": "Marvel Zombies Supreme (2011)",
+      "onSale": "2011-06-29T00:00:00+0000",
+      "mu": "2012-07-12T00:00:00+0000",
+      "digitalId": 22055,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/5908db66d0c0e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jason Paz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Fernando Blanco",
+          "role": "penciler"
+        },
+        {
+          "name": "FRANKLIN MARRAFFINO",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | complete-collection-3: Marvel Zombies Supreme (2011) #1 to #5"
+    },
+    {
+      "issueId": 41472,
+      "title": "Marvel Zombies Destroy! (2011) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/41472/marvel_zombies_destroy_2011_1",
+      "seriesId": 15454,
+      "seriesName": "Marvel Zombies Destroy! (2011 - 2012)",
+      "onSale": "2012-05-09T00:00:00+0000",
+      "mu": "2012-05-09T00:00:00+0000",
+      "digitalId": 26374,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/5b16918db84a1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mirco Pierfederici",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Del Mundo",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Frank Marraffino",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | complete-collection-3: Marvel Zombies Destroy! (2012) #1 to #5"
+    },
+    {
+      "issueId": 41470,
+      "title": "Marvel Zombies Destroy! (2011) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/41470/marvel_zombies_destroy_2011_2",
+      "seriesId": 15454,
+      "seriesName": "Marvel Zombies Destroy! (2011 - 2012)",
+      "onSale": "2012-05-23T00:00:00+0000",
+      "mu": "2012-05-23T00:00:00+0000",
+      "digitalId": 26511,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/60/5b169b8724698",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mirco Pierfederici",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Del Mundo",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Frank Marraffino",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | complete-collection-3: Marvel Zombies Destroy! (2012) #1 to #5"
+    },
+    {
+      "issueId": 41474,
+      "title": "Marvel Zombies Destroy! (2011) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/41474/marvel_zombies_destroy_2011_3",
+      "seriesId": 15454,
+      "seriesName": "Marvel Zombies Destroy! (2011 - 2012)",
+      "onSale": "2012-06-13T00:00:00+0000",
+      "mu": "2013-04-08T00:00:00+0000",
+      "digitalId": 26670,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/5b16a59e496ae",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rick Magyar",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Del Mundo",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | complete-collection-3: Marvel Zombies Destroy! (2012) #1 to #5"
+    },
+    {
+      "issueId": 41471,
+      "title": "Marvel Zombies Destroy! (2011) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/41471/marvel_zombies_destroy_2011_4",
+      "seriesId": 15454,
+      "seriesName": "Marvel Zombies Destroy! (2011 - 2012)",
+      "onSale": "2012-06-27T00:00:00+0000",
+      "mu": "2012-04-08T00:00:00+0000",
+      "digitalId": 26952,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/a0/5b16af4e7f27e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Del Mundo",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | complete-collection-3: Marvel Zombies Destroy! (2012) #1 to #5"
+    },
+    {
+      "issueId": 41473,
+      "title": "Marvel Zombies Destroy! (2011) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/41473/marvel_zombies_destroy_2011_5",
+      "seriesId": 15454,
+      "seriesName": "Marvel Zombies Destroy! (2011 - 2012)",
+      "onSale": "2012-07-18T00:00:00+0000",
+      "mu": "2013-04-08T00:00:00+0000",
+      "digitalId": 27195,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/e0/5b16b940a7800",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Del Mundo",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | complete-collection-3: Marvel Zombies Destroy! (2012) #1 to #5"
+    },
+    {
+      "issueId": 45716,
+      "title": "Marvel Zombies Halloween (2012) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/45716/marvel_zombies_halloween_2012_1",
+      "seriesId": 17229,
+      "seriesName": "Marvel Zombies Halloween (2012)",
+      "onSale": "2012-10-17T00:00:00+0000",
+      "mu": "2013-04-15T00:00:00+0000",
+      "digitalId": 27839,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/5b155ebe563f4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Francavilla",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Comic Book Reading List | complete-collection-3: Marvel Zombies Halloween (2012) #1"
+    },
+    {
+      "issueId": 49101,
+      "title": "Night of the Living Deadpool (2014) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/49101/night_of_the_living_deadpool_2014_1",
+      "seriesId": 18469,
+      "seriesName": "Night of the Living Deadpool (2014)",
+      "onSale": "2014-01-15T00:00:00+0000",
+      "mu": "2014-07-14T00:00:00+0000",
+      "digitalId": 32825,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/c0/52cebeac05b82",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Cullen Bunn",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Deadpool Vs. Zombies | night-living-deadpool: Night Of The Living Deadpool 1-4"
+    },
+    {
+      "issueId": 49102,
+      "title": "Night of the Living Deadpool (2014) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/49102/night_of_the_living_deadpool_2014_2",
+      "seriesId": 18469,
+      "seriesName": "Night of the Living Deadpool (2014)",
+      "onSale": "2014-01-29T00:00:00+0000",
+      "mu": "2014-07-28T00:00:00+0000",
+      "digitalId": 32826,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/e0/52dece68ae4e8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "Deadpool Vs. Zombies | night-living-deadpool: Night Of The Living Deadpool 1-4"
+    },
+    {
+      "issueId": 49103,
+      "title": "Night of the Living Deadpool (2014) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/49103/night_of_the_living_deadpool_2014_3",
+      "seriesId": 18469,
+      "seriesName": "Night of the Living Deadpool (2014)",
+      "onSale": "2014-02-19T00:00:00+0000",
+      "mu": "2014-02-19T00:00:00+0000",
+      "digitalId": 33026,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/e0/52865eca030cd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "John Shaw",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Cullen Bunn",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Deadpool Vs. Zombies | night-living-deadpool: Night Of The Living Deadpool 1-4"
+    },
+    {
+      "issueId": 49104,
+      "title": "Night of the Living Deadpool (2014) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/49104/night_of_the_living_deadpool_2014_4",
+      "seriesId": 18469,
+      "seriesName": "Night of the Living Deadpool (2014)",
+      "onSale": "2014-03-05T00:00:00+0000",
+      "mu": "2014-09-01T00:00:00+0000",
+      "digitalId": 33334,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/b0/530e5b307aa5e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Cullen Bunn",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Deadpool Vs. Zombies | night-living-deadpool: Night Of The Living Deadpool 1-4"
+    },
+    {
+      "issueId": 52381,
+      "title": "Return of the Living Deadpool (2015) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/52381/return_of_the_living_deadpool_2015_1",
+      "seriesId": 19633,
+      "seriesName": "Return of the Living Deadpool (2015)",
+      "onSale": "2015-02-04T00:00:00+0000",
+      "mu": "2015-08-03T00:00:00+0000",
+      "digitalId": 36601,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/30/54c690a24703f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jay Shaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Cullen Bunn",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Deadpool Vs. Zombies | return-living-deadpool: Return Of The Living Deadpool 1-4"
+    },
+    {
+      "issueId": 52384,
+      "title": "Return of the Living Deadpool (2015) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/52384/return_of_the_living_deadpool_2015_2",
+      "seriesId": 19633,
+      "seriesName": "Return of the Living Deadpool (2015)",
+      "onSale": "2015-03-04T00:00:00+0000",
+      "mu": "2015-09-07T00:00:00+0000",
+      "digitalId": 36856,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/54f5dcac44396",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jay Shaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Cullen Bunn",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Deadpool Vs. Zombies | return-living-deadpool: Return Of The Living Deadpool 1-4"
+    },
+    {
+      "issueId": 52385,
+      "title": "Return of the Living Deadpool (2015) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/52385/return_of_the_living_deadpool_2015_3",
+      "seriesId": 19633,
+      "seriesName": "Return of the Living Deadpool (2015)",
+      "onSale": "2015-04-01T00:00:00+0000",
+      "mu": "2015-10-05T00:00:00+0000",
+      "digitalId": 37144,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/f0/55142a2ab2588",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Cullen Bunn",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Deadpool Vs. Zombies | return-living-deadpool: Return Of The Living Deadpool 1-4"
+    },
+    {
+      "issueId": 52386,
+      "title": "Return of the Living Deadpool (2015) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/52386/return_of_the_living_deadpool_2015_4",
+      "seriesId": 19633,
+      "seriesName": "Return of the Living Deadpool (2015)",
+      "onSale": "2015-05-06T00:00:00+0000",
+      "mu": "2015-11-02T00:00:00+0000",
+      "digitalId": 38162,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/5547c7c7e10b8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jay Shaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Cullen Bunn",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Deadpool Vs. Zombies | return-living-deadpool: Return Of The Living Deadpool 1-4"
+    },
+    {
+      "issueId": 30161,
+      "title": "Prelude to Deadpool Corps (2010) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/30161/prelude_to_deadpool_corps_2010_4",
+      "seriesId": 9309,
+      "seriesName": "Prelude to Deadpool Corps (2010)",
+      "onSale": "2010-03-24T00:00:00+0000",
+      "mu": "2010-09-24T00:00:00+0000",
+      "digitalId": 14159,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/e0/5a2e8b0a23c7f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juan Vlasco",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dave Johnson",
+          "role": "penciler"
+        },
+        {
+          "name": "Paco Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Victor Gischler",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Deadpool Vs. Zombies | return-living-deadpool: Prelude To Deadpool Corps 4"
+    },
+    {
+      "issueId": 47001,
+      "title": "Age of Ultron (2013) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/47001/age_of_ultron_2013_1",
+      "seriesId": 17318,
+      "seriesName": "Age of Ultron (2013)",
+      "onSale": "2013-03-06T00:00:00+0000",
+      "mu": "2013-09-02T00:00:00+0000",
+      "digitalId": 28752,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/d0/51ed8cf71fd82",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Zombies In Marvel's Secret Wars (2015) | age-ultron-vs-zombies: Age Of Ultron 1"
+    },
+    {
+      "issueId": 52281,
+      "title": "Siege (2015) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/52281/siege_2015_1",
+      "seriesId": 19608,
+      "seriesName": "Siege (2015)",
+      "onSale": "2015-07-15T00:00:00+0000",
+      "mu": "2016-01-11T00:00:00+0000",
+      "digitalId": 39352,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/50/559ed3768fbb6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Zombies In Marvel's Secret Wars (2015) | siege-battleworld: Siege 1-4"
+    },
+    {
+      "issueId": 52282,
+      "title": "Siege (2015) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/52282/siege_2015_2",
+      "seriesId": 19608,
+      "seriesName": "Siege (2015)",
+      "onSale": "2015-08-05T00:00:00+0000",
+      "mu": "2016-02-08T00:00:00+0000",
+      "digitalId": 39639,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/10/55b798934404d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Zombies In Marvel's Secret Wars (2015) | siege-battleworld: Siege 1-4"
+    },
+    {
+      "issueId": 52283,
+      "title": "Siege (2015) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/52283/siege_2015_3",
+      "seriesId": 19608,
+      "seriesName": "Siege (2015)",
+      "onSale": "2015-09-09T00:00:00+0000",
+      "mu": "2015-09-09T00:00:00+0000",
+      "digitalId": 39905,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/80/55e4ad3998e85",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Filipe Andrade",
+          "role": "cover artist"
+        },
+        {
+          "name": "Juan Prieto",
+          "role": "cover artist"
+        },
+        {
+          "name": "Michael Kaluta",
+          "role": "cover artist"
+        },
+        {
+          "name": "W. Scott Forbes",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Zombies In Marvel's Secret Wars (2015) | siege-battleworld: Siege 1-4"
+    },
+    {
+      "issueId": 52284,
+      "title": "Siege (2015) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/52284/siege_2015_4",
+      "seriesId": 19608,
+      "seriesName": "Siege (2015)",
+      "onSale": "2015-10-07T00:00:00+0000",
+      "mu": "2016-04-04T00:00:00+0000",
+      "digitalId": 40159,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/90/560c40ce97914",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "W. Scott Forbes",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Zombies In Marvel's Secret Wars (2015) | siege-battleworld: Siege 1-4"
+    },
+    {
+      "issueId": 40156,
+      "title": "Uncanny X-Men (2011) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/40156/uncanny_x-men_2011_9",
+      "seriesId": 14914,
+      "seriesName": "Uncanny X-Men (2011 - 2012)",
+      "onSale": "2012-03-21T00:00:00+0000",
+      "mu": "2013-04-01T00:00:00+0000",
+      "digitalId": 25829,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/10/51895d742cf28",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Cam Smith",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlos Pacheco",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Zombies In Marvel's Secret Wars (2015) | siege-battleworld: Uncanny X-Men (2011) 9-10"
+    },
+    {
+      "issueId": 40163,
+      "title": "Uncanny X-Men (2011) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/40163/uncanny_x-men_2011_10",
+      "seriesId": 14914,
+      "seriesName": "Uncanny X-Men (2011 - 2012)",
+      "onSale": "2012-04-11T00:00:00+0000",
+      "mu": "2013-04-01T00:00:00+0000",
+      "digitalId": 26079,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/51895d6d1a2dc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Cam Smith",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlos Pacheco",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Zombies In Marvel's Secret Wars (2015) | siege-battleworld: Uncanny X-Men (2011) 9-10"
+    },
+    {
+      "issueId": 73360,
+      "title": "Marvel Zombie (2018) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/73360/marvel_zombie_2018_1",
+      "seriesId": 26447,
+      "seriesName": "Marvel Zombie (2018)",
+      "onSale": "2018-10-17T00:00:00+0000",
+      "mu": "2019-04-22T00:00:00+0000",
+      "digitalId": 49522,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/a0/5bbe685d10210",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Stefano Raffaele",
+          "role": "cover artist"
+        },
+        {
+          "name": "William Prince",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Resurrection Era | marvel-zombie-2018: Marvel Zombie (2018) #1"
+    },
+    {
+      "issueId": 80101,
+      "title": "Marvel Zombies: Resurrection (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/80101/marvel_zombies_resurrection_2019_1",
+      "seriesId": 28311,
+      "seriesName": "Marvel Zombies: Resurrection (2019)",
+      "onSale": "2019-10-30T00:00:00+0000",
+      "mu": "2020-05-04T00:00:00+0000",
+      "digitalId": 52861,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/30/5daf69cbd2d3a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Leonard Kirk",
+          "role": "cover artist"
+        },
+        {
+          "name": "In-Hyuk Lee",
+          "role": "penciler"
+        },
+        {
+          "name": "Phillip Kennedy Johnson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Resurrection Era | marvel-zombies-resurrection: Marvel Zombies: Resurrection (2019) #1"
+    },
+    {
+      "issueId": 82636,
+      "title": "Marvel Zombies: Resurrection (2020) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/82636/marvel_zombies_resurrection_2020_1",
+      "seriesId": 29377,
+      "seriesName": "Marvel Zombies: Resurrection (2020)",
+      "onSale": "2020-09-02T00:00:00+0000",
+      "mu": "2020-12-07T00:00:00+0000",
+      "digitalId": 54631,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/80/5f089a0fceef1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 56,
+      "creators": [
+        {
+          "name": "In-Hyuk Lee",
+          "role": "penciler"
+        },
+        {
+          "name": "Leonard Kirk",
+          "role": "penciler"
+        },
+        {
+          "name": "Phillip Kennedy Johnson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Resurrection Era | marvel-zombies-resurrection: Marvel Zombies: Resurrection (2020) #1 to #4"
+    },
+    {
+      "issueId": 82638,
+      "title": "Marvel Zombies: Resurrection (2020) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/82638/marvel_zombies_resurrection_2020_2",
+      "seriesId": 29377,
+      "seriesName": "Marvel Zombies: Resurrection (2020)",
+      "onSale": "2020-09-30T00:00:00+0000",
+      "mu": "2021-01-04T00:00:00+0000",
+      "digitalId": 54908,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/40/5f735c7a1977f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "In-Hyuk Lee",
+          "role": "penciler"
+        },
+        {
+          "name": "Leonard Kirk",
+          "role": "penciler"
+        },
+        {
+          "name": "Phillip Kennedy Johnson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Resurrection Era | marvel-zombies-resurrection: Marvel Zombies: Resurrection (2020) #1 to #4"
+    },
+    {
+      "issueId": 82639,
+      "title": "Marvel Zombies: Resurrection (2020) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/82639/marvel_zombies_resurrection_2020_3",
+      "seriesId": 29377,
+      "seriesName": "Marvel Zombies: Resurrection (2020)",
+      "onSale": "2020-10-14T00:00:00+0000",
+      "mu": "2021-01-18T00:00:00+0000",
+      "digitalId": 54909,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/20/5f3ee0bbf068a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "In-Hyuk Lee",
+          "role": "penciler"
+        },
+        {
+          "name": "Leonard Kirk",
+          "role": "penciler"
+        },
+        {
+          "name": "Phillip Kennedy Johnson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Resurrection Era | marvel-zombies-resurrection: Marvel Zombies: Resurrection (2020) #1 to #4"
+    },
+    {
+      "issueId": 82640,
+      "title": "Marvel Zombies: Resurrection (2020) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/82640/marvel_zombies_resurrection_2020_4",
+      "seriesId": 29377,
+      "seriesName": "Marvel Zombies: Resurrection (2020)",
+      "onSale": "2020-11-11T00:00:00+0000",
+      "mu": "2021-02-15T00:00:00+0000",
+      "digitalId": 54910,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/0/03/601af74195025",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "In-Hyuk Lee",
+          "role": "penciler"
+        },
+        {
+          "name": "Leonard Kirk",
+          "role": "penciler"
+        },
+        {
+          "name": "Phillip Kennedy Johnson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Zombies Resurrection Era | marvel-zombies-resurrection: Marvel Zombies: Resurrection (2020) #1 to #4"
+    },
+    {
+      "issueId": 116154,
+      "title": "Marvel Zombies: Dawn of Decay (2024) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/116154/marvel_zombies_dawn_of_decay_2024_1",
+      "seriesId": 39609,
+      "seriesName": "Marvel Zombies: Dawn of Decay (2024 - Present)",
+      "onSale": "2024-09-04T00:00:00+0000",
+      "mu": "2024-08-29T00:00:00+0000",
+      "digitalId": 68495,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/66d08282e2fe7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jason Muhr",
+          "role": "penciler"
+        },
+        {
+          "name": "Thomas Krajewski",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Out of Continuity Additions: | marvel-zombies-dawn-decay: Marvel Zombies: Dawn of Decay #1 to #4"
+    },
+    {
+      "issueId": 116155,
+      "title": "Marvel Zombies: Dawn of Decay (2024) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/116155/marvel_zombies_dawn_of_decay_2024_2",
+      "seriesId": 39609,
+      "seriesName": "Marvel Zombies: Dawn of Decay (2024 - Present)",
+      "onSale": "2024-10-09T00:00:00+0000",
+      "mu": "2024-09-10T00:00:00+0000",
+      "digitalId": 68918,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/40/66fc089d97ba6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jason Muhr",
+          "role": "penciler"
+        },
+        {
+          "name": "Thomas Krajewski",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Out of Continuity Additions: | marvel-zombies-dawn-decay: Marvel Zombies: Dawn of Decay #1 to #4"
+    },
+    {
+      "issueId": 116156,
+      "title": "Marvel Zombies: Dawn of Decay (2024) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/116156/marvel_zombies_dawn_of_decay_2024_3",
+      "seriesId": 39609,
+      "seriesName": "Marvel Zombies: Dawn of Decay (2024 - Present)",
+      "onSale": "2024-11-20T00:00:00+0000",
+      "mu": "2024-10-16T00:00:00+0000",
+      "digitalId": 69144,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/80/6733708541b09",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jason Muhr",
+          "role": "penciler"
+        },
+        {
+          "name": "Thomas Krajewski",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Out of Continuity Additions: | marvel-zombies-dawn-decay: Marvel Zombies: Dawn of Decay #1 to #4"
+    },
+    {
+      "issueId": 116157,
+      "title": "Marvel Zombies: Dawn of Decay (2024) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/116157/marvel_zombies_dawn_of_decay_2024_4",
+      "seriesId": 39609,
+      "seriesName": "Marvel Zombies: Dawn of Decay (2024 - Present)",
+      "onSale": "2024-12-04T00:00:00+0000",
+      "mu": "2024-11-21T00:00:00+0000",
+      "digitalId": 69145,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/20/6750d4be778ee",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jason Muhr",
+          "role": "penciler"
+        },
+        {
+          "name": "Thomas Krajewski",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Out of Continuity Additions: | marvel-zombies-dawn-decay: Marvel Zombies: Dawn of Decay #1 to #4"
+    },
+    {
+      "issueId": 130493,
+      "title": "Marvel Zombies: Red Band (2025) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/130493/marvel_zombies_red_band_2025_1",
+      "seriesId": 44562,
+      "seriesName": "Marvel Zombies: Red Band (2025 - Present)",
+      "onSale": "2025-09-17T00:00:00+0000",
+      "mu": "2025-09-17T00:00:00+0000",
+      "digitalId": 74329,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/80/68b9f0ded82a0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jan Bazaldua",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Ethan S. Parker",
+          "role": "writer"
+        },
+        {
+          "name": "Griffin Sheridan",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Out of Continuity Additions: | marvel-zombies-red-band: Marvel Zombies (2025) #1 to #5"
+    },
+    {
+      "issueId": 130494,
+      "title": "Marvel Zombies: Red Band (2025) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/130494/marvel_zombies_red_band_2025_2",
+      "seriesId": 44562,
+      "seriesName": "Marvel Zombies: Red Band (2025 - Present)",
+      "onSale": "2025-10-22T00:00:00+0000",
+      "mu": "2025-10-22T00:00:00+0000",
+      "digitalId": 74330,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/30/68e66ff5d0752",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jan Bazaldua",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Ethan S. Parker",
+          "role": "writer"
+        },
+        {
+          "name": "Griffin Sheridan",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Out of Continuity Additions: | marvel-zombies-red-band: Marvel Zombies (2025) #1 to #5"
+    },
+    {
+      "issueId": -213508517,
+      "title": "Marvel Zombies (2025) #3",
+      "number": "3",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Out of Continuity Additions: | marvel-zombies-red-band: Marvel Zombies (2025) #1 to #5"
+    },
+    {
+      "issueId": -129620422,
+      "title": "Marvel Zombies (2025) #4",
+      "number": "4",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Out of Continuity Additions: | marvel-zombies-red-band: Marvel Zombies (2025) #1 to #5"
+    },
+    {
+      "issueId": -112842803,
+      "title": "Marvel Zombies (2025) #5",
+      "number": "5",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Out of Continuity Additions: | marvel-zombies-red-band: Marvel Zombies (2025) #1 to #5"
+    }
+  ]
+}
