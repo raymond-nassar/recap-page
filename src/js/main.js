@@ -959,13 +959,6 @@ function paintCoverUrl(img, fb, url, hue, fallbackName = '') {
 
 function applyCoversSetting() {
   document.body.classList.toggle('nocovers', !settings.covers);
-  // There is a toggle on the reading view and another on the landing page, and they are one
-  // setting, so both are written rather than whichever happens to be on screen.
-  for (const btn of document.querySelectorAll('[data-covers-toggle]')) {
-    btn.setAttribute('aria-pressed', String(settings.covers));
-    const label = btn.querySelector('.covers-label');
-    if (label) label.textContent = settings.covers ? 'Cover art on' : 'Cover art off';
-  }
   const opt = $('#opt-covers');
   if (opt) opt.checked = settings.covers;
 }
@@ -1281,10 +1274,6 @@ function wireNav() {
   }
 
   $('#btn-new-list').addEventListener('click', newEmptyList);
-
-  for (const btn of document.querySelectorAll('[data-covers-toggle]')) {
-    btn.addEventListener('click', () => setCovers(!settings.covers));
-  }
 }
 
 async function newEmptyList() {

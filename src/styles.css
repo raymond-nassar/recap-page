@@ -703,20 +703,6 @@ main { min-width: 0; }
 .ring .ring-arc { stroke: var(--accent-text); }
 #ring-arc { transition: stroke-dashoffset .35s ease; }
 
-.tgl {
-  display: inline-flex; align-items: center; gap: var(--space-4); font-size: var(--t-body);
-  color: var(--muted); border: 1px solid var(--line-2); background: none;
-  border-radius: 999px; padding: var(--space-2) var(--space-5);
-}
-.tgl:hover { color: var(--text); }
-.tgl .sw { width: 26px; height: 15px; border-radius: 999px; background: var(--accent); position: relative; transition: background .15s; }
-.tgl .sw::after {
-  content: ""; position: absolute; top: 2px; left: 13px; width: 11px; height: 11px;
-  border-radius: 50%; background: var(--on-accent); transition: left .15s;
-}
-body.nocovers .tgl .sw { background: var(--track-2); }
-body.nocovers .tgl .sw::after { left: 2px; }
-
 .list-tools { display: flex; align-items: center; gap: var(--space-1); flex-wrap: wrap; margin-bottom: var(--space-8); border: 1px solid var(--line); border-radius: 12px; padding: var(--space-3) var(--space-4); }
 /* The rule that keeps the destructive command apart from the reversible ones. */
 .tool-sep { width: 1px; align-self: stretch; margin: var(--space-1) var(--space-4); background: var(--line); }
@@ -1148,12 +1134,7 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
   .setting > .setting-ctl { position: static; transform: none; margin-top: var(--space-5); max-width: none; }
 }
 
-/* A settings checkbox, drawn as the same switch the view headers already use. The cover art switch
-   was two different controls saying two different things about one setting: a pill switch reading
-   "Cover art on" in the reading and home headers, and a native tick box reading "Show cover art"
-   here. A reader who met both had no way to know they were the same switch. The input stays a
-   checkbox, so the keyboard, the label association and the change event are all unchanged; only
-   the drawing moves. */
+/* Settings checkboxes keep native semantics while using a compact switch appearance. */
 .setting-ctl.checkbox { border: 1px solid var(--line-2); border-radius: 999px; padding: var(--space-2) var(--space-5); gap: var(--space-4); min-height: 24px; }
 .setting-ctl.checkbox:hover { color: var(--text); }
 .setting-ctl.checkbox > input[type="checkbox"] {
@@ -1530,7 +1511,7 @@ progress { accent-color: var(--accent); height: 6px; }
 .linkish:hover { color: var(--text); }
 
 /* ============================================================ home */
-#view-home > .head { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); } #view-home > .headright { grid-column: 3; justify-self: end; }
+#view-home > .head { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); }
 .home-lockup { grid-column: 2; display: grid; justify-items: center; text-align: center; gap: var(--space-5); padding: var(--space-4) 0 var(--space-2); }
 #view-home .home-brand {
   color: var(--logo-fill); font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
