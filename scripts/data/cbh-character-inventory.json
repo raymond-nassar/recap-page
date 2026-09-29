@@ -4067,13 +4067,40 @@
     "url": "https://www.comicbookherald.com/x-23-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
-    "sourceRetrievedAt": "2026-08-23",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "disposition": "new-order",
+    "reason": "The complete source snapshot preserves 291 distinct exact originals across 38 selected blocks with no gaps or whole-issue repeats. The guide remains distinct across 23 approved partial relationships and one approved existing-subset relationship.",
+    "sourceRetrievedAt": "2026-09-28",
+    "overlapIds": [
+      "ant-man-reading-order",
+      "captain-marvel-ms-marvel-reading-order",
+      "emma-frost-reading-order",
+      "hickman-x-men",
+      "hope-summers-reading-order",
+      "iron-man-reading-order",
+      "judgment-day",
+      "magneto-reading-order",
+      "marvels-best-phoenix-comics",
+      "mephisto-reading-order",
+      "messiah-war",
+      "modern-x-men-fast-track",
+      "necrosha",
+      "question-of-the-week-do-you-have-a-hulk-reading-order",
+      "second-coming",
+      "venom-reading-order",
+      "white-tiger-ava-ayala",
+      "wolverine-goes-to-hell",
+      "wolverine-reading-order",
+      "x-force-reading-order",
+      "x-men-divided-we-stand",
+      "x-men-regenesis",
+      "x-of-swords",
+      "young-avengers-reading-order"
+    ],
+    "catalogIds": [
+      "x-23-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "X-23 (Laura Kinney)"
     ],
@@ -4081,9 +4108,9 @@
       124
     ],
     "duplicateFlags": [],
-    "sourceContentSha256": "4012730c2b9cd5cac5775938db734aa47d0ffb63b895c80bc874a52226e5c0d3",
+    "sourceContentSha256": "0043e51971b85739a12305324e93814df93435a56a5d1dea3c24a95b5cdaac7d",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 125,
