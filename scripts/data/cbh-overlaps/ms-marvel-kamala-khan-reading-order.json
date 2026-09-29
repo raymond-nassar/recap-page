@@ -2,7 +2,7 @@
   "candidateId": "ms-marvel-kamala-khan-reading-order",
   "packetDigest": "7fa72b90616ec606985608def838c1ca08966535deae3845d8ac5fec8bcfb1e2",
   "mappingDigest": "cefefb783f729749cd5823b1c6f3c042907e60b43e95272c817ce1040b963def",
-  "libraryDigest": "fc0295031275315c85394705a15299bf8dd5e9cfc931affca9e3e5ac8e987fa5",
+  "libraryDigest": "b5721980aa6ce4ca4647d6c2518228ee267c641d369e4c742bad502f713c9fe7",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 196,
@@ -12,7 +12,7 @@
     "repeatedSourceReferenceCount": 4
   },
   "candidateCount": 187,
-  "comparisonCount": 190,
+  "comparisonCount": 194,
   "comparisons": [
     {
       "orderId": "abomination-reading-order",
@@ -476,6 +476,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "hawkeye-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "heroes-reborn-2021",
       "sharedCount": 0,
       "sharedIds": [],
@@ -673,7 +679,19 @@
       "relationship": "none"
     },
     {
+      "orderId": "marvel-zombies-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "marvels-best-phoenix-comics",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvels-infinity-saga-gauntlet-wars-crusade-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -997,6 +1015,12 @@
     },
     {
       "orderId": "silent-war",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "silk-cindy-moon-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -1376,5 +1400,5 @@
       "relationship": "partial"
     }
   ],
-  "reportDigest": "2b2c4cd699c97b8780cfc68851ad6e92be7768f529c980c897f259eb2b55e978"
+  "reportDigest": "dbe7bbda0303b7fdd1e2a7ca86711517595be21285f0dad9179774ae9298a147"
 }

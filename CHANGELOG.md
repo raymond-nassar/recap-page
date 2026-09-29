@@ -48,6 +48,14 @@ instead of substituting other editions. Eleven identified comics keep their exac
 while their provider details and covers are unavailable. The multi-era storyline remains discoverable
 across eras without being assigned a false start year. Existing saved reading progress is unchanged.
 
+### Follow Kamala Khan through Ms. Marvel and the Champions
+
+A credited Ms. Marvel (Kamala Khan) Reading List follows 192 original comics across her solo
+series, Avengers and Champions stories, crossovers, and later additions. Its 187 resolved
+comics appear in the source's reading sequence; five print-original identities remain
+visible as metadata gaps instead of being assigned to uncertain editions. Existing saved
+reading progress is unchanged.
+
 ### Identify builds without coupling platform releases
 
 Packaged About screens now identify the platform build and source revision separately from the

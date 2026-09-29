@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-29T07:16:26.488Z",
+  "generatedAt": "2026-09-29T13:46:22.180Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -4335,6 +4335,49 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-27T06:29:13.173Z"
+    },
+    {
+      "id": "ms-marvel-kamala-khan-reading-order",
+      "file": "ms_marvel_kamala_khan_reading_order.json",
+      "name": "Ms. Marvel (Kamala Khan)",
+      "description": "Follow Kamala Khan through her solo stories, Avengers and Champions teams, and later adventures in Comic Book Herald's selected reading order.",
+      "type": "character-run",
+      "depth": "partial",
+      "spotlightKind": "other",
+      "count": 192,
+      "placeholderCount": 5,
+      "emptyRecordCount": 0,
+      "collections": 37,
+      "characters": [
+        "Ms. Marvel",
+        "Kamala Khan",
+        "Champions",
+        "Avengers",
+        "Inhumans"
+      ],
+      "keywords": [
+        "Ms. Marvel",
+        "Kamala Khan",
+        "Champions",
+        "Avengers",
+        "Inhumans",
+        "The New Mutant",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 49089,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/d0/52e6c3c8df654",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/ms-marvel-kamala-khan-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-09-29T13:46:22.180Z"
     },
     {
       "id": "captain-america-best-of",

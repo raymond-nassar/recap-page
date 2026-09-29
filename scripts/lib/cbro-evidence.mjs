@@ -127,6 +127,7 @@ export const CBH_LATER_ORDER_IDS = Object.freeze([
   'shadow-king-reading-order',
   'thunderbolts-reading-order', 'nebula-reading-order', 'hope-summers-reading-order',
   'x-23-reading-order', 'marvel-zombies-reading-order', 'hawkeye-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order',
+  'ms-marvel-kamala-khan-reading-order',
 ]);
 export const CBRO_PACKET_REVIEW = 'MRT-003 central CBRO source review';
 export const CBRO_SELECTED_IDS = Object.freeze([

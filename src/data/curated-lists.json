@@ -3576,6 +3576,42 @@
       "spotlightKind": "complete-guide"
     },
     {
+      "id": "ms-marvel-kamala-khan-reading-order",
+      "name": "Ms. Marvel (Kamala Khan)",
+      "description": "Follow Kamala Khan through her solo stories, Avengers and Champions teams, and later adventures in Comic Book Herald's selected reading order.",
+      "type": "character-run",
+      "depth": "partial",
+      "spotlightKind": "other",
+      "beginner": false,
+      "coverIssueId": 49089,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "ms-marvel-kamala-khan-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/ms-marvel-kamala-khan-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "ms_marvel_kamala_khan_reading_order.json",
+      "characters": [
+        "Ms. Marvel",
+        "Kamala Khan",
+        "Champions",
+        "Avengers",
+        "Inhumans"
+      ],
+      "keywords": [
+        "Ms. Marvel",
+        "Kamala Khan",
+        "Champions",
+        "Avengers",
+        "Inhumans",
+        "The New Mutant",
+        "Comic Book Herald"
+      ],
+      "expect": 192,
+      "timeline": null
+    },
+    {
       "id": "captain-america-best-of",
       "name": "The Best of Captain America",
       "description": "A best-of path through Captain America on Marvel Unlimited, compiled by hand from a reader's outline of Comic Book Herald's guide to the same. Ed Brubaker's run comes first and whole, from the Winter Soldier's return through the death of Steve Rogers, Reborn, Rebirth and the restored numbering, followed by Man Out of Time and the Life of Bucky Barnes. It then goes back for the Silver and Bronze Age chapters the guide picks out: the Red Skull and the Cosmic Cube in Tales of Suspense, the Life and Times of the Red Skull, Mark Gruenwald's The Captain, and issue #250 as a bonus. The sections are the guide's and are kept in its order rather than sorted by publication date.",
