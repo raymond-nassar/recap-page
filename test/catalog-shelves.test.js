@@ -123,10 +123,10 @@ test('Character Spotlight taxonomy accounts for every reading and preserves grou
   assert.ok(completeGuide.includes(x23));
   assert.equal(bestOf.includes(x23), false);
 
-  const hawkeye = spotlights.find((list) => list.id === 'hawkeye-reading-order');
-  assert.ok(hawkeye, 'Hawkeye is missing from Character Spotlight All');
-  assert.ok(other.includes(hawkeye));
-  assert.equal(completeGuide.includes(hawkeye), false);
+  const silk = spotlights.find((list) => list.id === 'hawkeye-reading-order', 'silk-cindy-moon-reading-order');
+  assert.ok(silk, 'Silk is missing from Character Spotlight All');
+  assert.ok(other.includes(silk));
+  assert.equal(completeGuide.includes(silk), false);
 });
 
 test('a path arrival clears the subset that would hide Essential Avengers', () => {

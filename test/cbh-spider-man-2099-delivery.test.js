@@ -120,13 +120,13 @@ test('Spider-Man 2099 preserves original World of Tomorrow positions as open met
 test('Spider-Man 2099 regenerates its full reviewed library relationship report', async () => {
   const report = await readJson(`scripts/data/cbh-overlaps/${id}.json`);
   const manifest = await readJson('src/data/curated-lists.json');
-  const current = await buildReportForMapping(`scripts/data/cbh-mappings/${id}.json`, [], { ...await historicalAgathaLibrarySnapshot(), excludedOrderIds: ['winter-soldier-bucky-barnes-reading-order', 'donny-cates-marvel-universe-reading-order-2017', 'falcon-sam-wilson-captain-america-reading-order', 'the-vision-reading-order', 'emma-frost-reading-order', 'doctor-octopus-otto-octavius-reading-order', 'shadow-king-reading-order', 'thunderbolts-reading-order', 'nebula-reading-order', 'hope-summers-reading-order', 'x-23-reading-order', 'hawkeye-reading-order'] });
+  const current = await buildReportForMapping(`scripts/data/cbh-mappings/${id}.json`, [], { ...await historicalAgathaLibrarySnapshot(), excludedOrderIds: ['winter-soldier-bucky-barnes-reading-order', 'donny-cates-marvel-universe-reading-order-2017', 'falcon-sam-wilson-captain-america-reading-order', 'the-vision-reading-order', 'emma-frost-reading-order', 'doctor-octopus-otto-octavius-reading-order', 'shadow-king-reading-order', 'thunderbolts-reading-order', 'nebula-reading-order', 'hope-summers-reading-order', 'x-23-reading-order', 'hawkeye-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order'] });
   assert.doesNotThrow(() => validateFrozenPacket(packet));
   assert.doesNotThrow(() => validateMappingDigest(mapping));
   assert.doesNotThrow(() => assertMappingMatchesPacketOccurrences(packet, mapping));
   assert.doesNotThrow(() => validateReportDigest(report));
   assert.doesNotThrow(() => validateApprovalDigest(mapping.relationshipReview, id));
-  assert.equal(report.comparisonCount, manifest.lists.length - 13);
+  assert.equal(report.comparisonCount, manifest.lists.length - 14);
   assert.deepEqual(current.comparisons, report.comparisons);
   assert.equal(current.libraryDigest, report.libraryDigest);
   assert.equal(report.comparisons.filter((row) => row.relationship === 'exact').length, 0);

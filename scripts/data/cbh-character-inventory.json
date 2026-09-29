@@ -1839,15 +1839,36 @@
     "id": "marvels-infinity-saga-gauntlet-wars-crusade-reading-order",
     "title": "Infinity Trilogy (Gauntlet, War, Crusade)",
     "url": "https://www.comicbookherald.com/marvels-infinity-saga-gauntlet-wars-crusade-reading-order/",
-    "guideType": "character-run",
+    "guideType": "era",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
-    "sourceRetrievedAt": "2026-08-23",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "disposition": "new-order",
+    "reason": "Publishes 191 original issues from 221 selected source occurrences, retaining 30 backward repeats as provenance. All 174 exact originals remain in their first positions; 17 assigned source metadata gaps stay visible. Eleven known exact IDs have genuine provider detail refusals and remain identified, not substituted. Renewed current-library relationship approval is pending after the Across eras classification amendment.",
+    "sourceRetrievedAt": "2026-09-28",
+    "overlapIds": [
+      "abomination-reading-order",
+      "adam-warlock-reading-order",
+      "agatha-harkness-reading-order",
+      "amazing-spider-man-reading-order-modern-marvel-era",
+      "black-widow-reading-order",
+      "daredevil-reading-order",
+      "doctor-doom-primer",
+      "doctor-octopus-otto-octavius-reading-order",
+      "doctor-strange-reading-order",
+      "falcon-sam-wilson-captain-america-reading-order",
+      "guardians-of-the-galaxy-reading-order",
+      "mephisto-reading-order",
+      "moon-knight-reading-order",
+      "nebula-reading-order",
+      "question-of-the-week-do-you-have-a-hulk-reading-order",
+      "silver-surfer-reading-order",
+      "thanos-reading-order",
+      "the-vision-reading-order"
+    ],
+    "catalogIds": [
+      "marvels-infinity-saga-gauntlet-wars-crusade-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Infinity Trilogy (Gauntlet, War, Crusade)"
     ],
@@ -1855,9 +1876,9 @@
       51
     ],
     "duplicateFlags": [],
-    "sourceContentSha256": "e0a76436da4bc5c596869025c03644ff72532b787c5845168a92a5c333af308e",
+    "sourceContentSha256": "1a2067e56a7c2c1833f225380acce3f6ec2ba0acedfb1679ea068e1153050e49",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 52,
@@ -4470,6 +4491,45 @@
     ],
     "duplicateFlags": [],
     "sourceContentSha256": "b44268dad3c189fada76245069c0a9bce6f951b93980af1f7c7bdc61bd33caa5",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "approved"
+  },
+  {
+    "position": 133,
+    "id": "silk-cindy-moon-reading-order",
+    "title": "Silk / Cindy Moon",
+    "url": "https://www.comicbookherald.com/silk-cindy-moon-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "new-order",
+    "reason": "The credited checklist publishes all 74 source positions: 67 exact originals and seven explicit digital metadata gaps tracked in issue #568. The reviewed 187-guide library has 11 approved partial relationships and 176 with no shared issues; no print edition replaces a digital original.",
+    "sourceRetrievedAt": "2026-09-29",
+    "overlapIds": [
+      "agents-of-atlas-reading-order",
+      "amazing-spider-man-reading-order-modern-marvel-era",
+      "clone-conspiracy",
+      "doctor-octopus-otto-octavius-reading-order",
+      "iron-man-reading-order",
+      "miles-morales-spider-man-reading-order",
+      "question-of-the-week-do-you-have-a-hulk-reading-order",
+      "spider-gwen-reading-order",
+      "spider-man-2099-reading-order",
+      "spider-verse",
+      "war-of-the-realms"
+    ],
+    "catalogIds": [
+      "silk-cindy-moon-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
+    "labels": [
+      "Silk / Cindy Moon"
+    ],
+    "sourcePositions": [
+      133
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "2ecec5d22636d8df48cd602c74ba9ffff83a69b267d9a40c564ce64ccee97e5a",
     "sourceBoundaryStatus": "exact-page-snapshot",
     "metadataHorizonStatus": "approved"
   }

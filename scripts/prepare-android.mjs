@@ -102,10 +102,24 @@ export async function prepareAndroid(output = ANDROID_ASSET_DIR) {
   index = index.replace(stylesheet, `${stylesheet}\n    <link rel="stylesheet" href="./android/mobile.css" />`)
     .replace(entry, '<script type="module" src="./android/app.js"></script>');
   const privacyHeading = '<h3>Your data</h3>';
-  if (index.split(privacyHeading).length !== 2) {
-    throw new Error('Shared privacy heading changed; Android disclosure needs review');
+  const privacyIntro = /<h3>Your data<\/h3>\s*<p class="rail-hint">[\s\S]*?<\/p>/g;
+  if (index.split(privacyHeading).length !== 2 || [...index.matchAll(privacyIntro)].length !== 1) {
+    throw new Error('Shared privacy introduction changed; Android disclosure needs review');
   }
-  index = index.replace(privacyHeading, `${privacyHeading}
+  index = index.replace(privacyIntro, `${privacyHeading}
+              <p class="rail-hint">
+                Your lists, progress and notes live in private Android app storage, separate from your desktop browser.
+                There is no account to create and no analytics or tracking. The automatic service requests do not upload your saved lists, progress or notes.
+                Clearing app data or uninstalling removes this private state, so export and keep a backup outside the app first.
+              </p>
+              <p class="rail-hint">
+                An export gives the selected document provider the file's contents, which can include progress and notes.
+                Import and export request a local-only provider, but that is not a guarantee against the provider's own sync or retention.
+                Erasing app data does not recall exported files.
+              </p>
+              <p class="rail-hint">
+                <a href="https://github.com/raymond-nassar/recap-page/blob/main/PRIVACY.md" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">Privacy policy (opens in your browser)</a>
+              </p>
               <p>In this Android prototype, Read also sends the digital issue ID to Marvel's Bifrost service to resolve an app link. Marvel sees the request and network address, not your saved lists, notes or read markers. The lookup is not stored by Recap Page. Open in browser remains available if the service or app cannot open the comic.</p>`);
   let launcher = await readFile(join(SOURCE, 'open.html'), 'utf8');
   const launchStylesheet = '<link rel="stylesheet" href="./open.css" />';
