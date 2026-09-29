@@ -9,6 +9,8 @@ import { CSP } from '../server.mjs';
 import { prepareAndroid, ANDROID_ASSET_DIR } from './prepare-android.mjs';
 import { LOCAL_SERVER_HEALTH_PATH, LOCAL_SERVER_HEADER_NAME, LOCAL_SERVER_HEADER_VALUE } from '../src/js/lib/localServer.js';
 import { createEmptyState, createList, addIssuesToList, setIssueNote } from '../src/js/lib/model.js';
+import { availableHomeCategories, groupCatalog, HOME_CATEGORIES, resolveReadingPaths } from '../src/js/lib/catalog.js';
+import { parseRoute } from '../src/js/lib/route.js';
 
 const driver = process.env.MRT_PUPPETEER || join(homedir(), '.mrt-scratch', 'node_modules', 'puppeteer-core', 'lib', 'puppeteer', 'puppeteer-core.js');
 const edge = process.env.MRT_EDGE || 'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe';
@@ -24,6 +26,7 @@ const mobileUi = process.argv.includes('--only=mobile-ui');
 const launcherOnly = process.argv.includes('--only=launcher');
 const seriesReadability = process.argv.includes('--only=series-readability');
 const noteReadability = process.argv.includes('--only=note-readability');
+const categoryReadability = process.argv.includes('--only=category-readability');
 const server = createServer(async (req, res) => {
   const path = new URL(req.url, 'http://127.0.0.1').pathname;
   if (path === LOCAL_SERVER_HEALTH_PATH) {
@@ -253,6 +256,120 @@ async function seriesResultReadability(page, label, desktop) {
     && saved.lists === 1 && JSON.stringify(saved.ids) === JSON.stringify(SERIES_ISSUES.map((issue) => issue.id))
     && saved.read.length === 0, `${label}: Add imports exactly the selected fixture series without marking it read ${JSON.stringify(saved)}`);
   console.log(`CHECKED ${label}: ${rendered.rows.length} series results, ${words.measured} rendered words, Add behavior; hit rectangles ${JSON.stringify(rendered.rows.map((row) => row.button))}`);
+}
+
+async function categoryFixtures(page) {
+  await page.evaluateOnNewDocument(() => {
+    const original = window.fetch.bind(window);
+    window.fetch = async (input, options) => {
+      const url = new URL(input instanceof Request ? input.url : String(input), location.href);
+      if (url.origin !== location.origin) {
+        if (url.pathname === '/v1/health') return new Response('{"status":"ok"}', {
+          headers: { 'content-type': 'application/json' },
+        });
+        throw new Error(`Unexpected category fixture request: ${url.href}`);
+      }
+      return original(input, options);
+    };
+  });
+}
+
+async function categoryLabelReadability(page, label, viewport) {
+  const categories = availableHomeCategories(groupCatalog(catalog.lists), HOME_CATEGORIES,
+    resolveReadingPaths(catalog.paths, catalog.lists));
+  assert.equal(categories.length, HOME_CATEGORIES.length, 'Bundled fixture must expose every Home category');
+  const scale = viewport.textScale || 1;
+  for (const view of ['home', 'browse']) {
+    await route(page, view);
+    await page.waitForFunction((id, count) => document.querySelectorAll(`#view-${id} .home-path`).length === count,
+      {}, view, categories.length);
+    const result = await page.evaluate((id) => {
+      const bounds = (node) => {
+        const { left, right, top, bottom, width, height } = node.getBoundingClientRect();
+        return { left, right, top, bottom, width, height };
+      };
+      const inside = (rect, box) => rect.left >= box.left - 1 && rect.right <= box.right + 1
+        && rect.top >= box.top - 1 && rect.bottom <= box.bottom + 1;
+      const fitsWidth = (rect, box) => rect.left >= box.left - 1 && rect.right <= box.right + 1;
+      return {
+        androidStyle: !!document.querySelector('link[href="./android/mobile.css"]'),
+        body: parseFloat(getComputedStyle(document.body).fontSize),
+        root: parseFloat(getComputedStyle(document.documentElement).fontSize),
+        overflow: document.documentElement.scrollWidth > innerWidth + 1,
+        cards: [...document.querySelectorAll(`#view-${id} .home-path`)].map((card) => {
+          const copy = card.querySelector('.home-path-copy');
+          const words = [], broken = [], clipped = [];
+          const parts = ['label', 'title', 'count'].map((role) => {
+            const node = card.querySelector(`.home-path-${role}`);
+            const style = getComputedStyle(node);
+            const walker = document.createTreeWalker(node, NodeFilter.SHOW_TEXT);
+            while (walker.nextNode()) {
+              const text = walker.currentNode;
+              for (const match of text.textContent.matchAll(/\S+/g)) {
+                const range = document.createRange();
+                range.setStart(text, match.index);
+                range.setEnd(text, match.index + match[0].length);
+                const rects = [...range.getClientRects()].filter((rect) => rect.width && rect.height);
+                words.push(match[0]);
+                if (rects.length !== 1) broken.push({ word: match[0], lines: rects.length });
+                if (rects.some((rect) => !fitsWidth(rect, bounds(node)) || !fitsWidth(rect, bounds(copy))
+                  || !inside(rect, bounds(card)))) clipped.push(match[0]);
+              }
+            }
+            return {
+              text: node.textContent, font: parseFloat(style.fontSize),
+              family: style.fontFamily, transform: style.textTransform, tracking: parseFloat(style.letterSpacing),
+            };
+          });
+          return {
+            key: card.dataset.category, name: card.getAttribute('aria-label'), parts,
+            box: bounds(card), copy: bounds(copy), icon: bounds(card.querySelector('.home-path-icon')),
+            words, broken, clipped,
+          };
+        }),
+      };
+    }, view);
+    check(result.androidStyle === !viewport.desktop, `${label} ${view}: correct platform stylesheet`);
+    check(result.root === 16 && result.body === (viewport.desktop ? 14 : 16 * scale),
+      `${label} ${view}: text-only scaling leaves root spacing unchanged`);
+    check(!result.overflow, `${label} ${view}: no horizontal page overflow`);
+    for (const [index, card] of result.cards.entries()) {
+      const category = categories[index];
+      const count = `${category.count} ${category.count === 1
+        ? (category.singular ?? 'Reading List') : (category.plural ?? 'Reading Lists')}`;
+      check(card.key === category.key && card.name === `${category.heading}. ${category.label}. ${count}.`
+        && JSON.stringify(card.parts.map((part) => part.text)) === JSON.stringify([category.label, category.heading, count]),
+      `${label} ${view}: ${category.key}: exact wording, order and accessible name`);
+      const caption = (viewport.desktop ? 12 : 14) * scale;
+      const title = category.tier === 'secondary' ? 28 * scale : viewport.desktop ? 28.8 : 20;
+      check(card.parts[0].font === caption && Math.abs(card.parts[1].font - title) < 0.01
+        && card.parts[2].font === caption && card.parts.every((part) => part.family === card.parts[0].family),
+      `${label} ${view}: ${category.key}: existing computed type sizes ${JSON.stringify(card.parts)}`);
+      check(card.box.width >= (viewport.desktop ? 44 : 48) && card.box.height >= (viewport.desktop ? 44 : 48),
+        `${label} ${view}: ${category.key}: category touch target`);
+      check(card.words.length >= 5 && card.broken.length === 0,
+        `${label} ${view}: ${category.key}: whole rendered words ${JSON.stringify(card.broken)}`);
+      check(card.clipped.length === 0,
+        `${label} ${view}: ${category.key}: text stays inside copy and clipping card ${JSON.stringify(card.clipped)}`);
+      if (viewport.desktop) {
+        check(card.copy.left > card.icon.right && card.parts[0].transform === 'uppercase'
+          && Math.abs(card.parts[0].tracking - caption * 0.16) < 0.01,
+        `${label} ${view}: ${category.key}: desktop grid and eyebrow treatment retained`);
+      }
+    }
+    await page.$eval(`#view-${view} [data-category="marvel-ages"]`, (node) => node.scrollIntoView());
+    await screenshot(page, label, `${view}-categories`);
+    console.log(`CHECKED ${label} ${view}: ${result.cards.length} categories, ${result.cards.reduce((n, card) => n + card.words.length, 0)} words; Publication ${JSON.stringify(result.cards.find((card) => card.key === 'marvel-ages'))}`);
+  }
+  if (viewport.width === 360 && scale === 2) {
+    for (const category of categories) {
+      await route(page, 'browse');
+      await click(page, `#view-browse [data-category="${category.key}"]`);
+      await page.waitForSelector(`#view-${category.route}:not([hidden])`);
+      check(parseRoute(new URL(page.url()).hash)?.view === category.route,
+        `${label}: ${category.key}: original destination`);
+    }
+  }
 }
 
 const NOTE_REFERENCE = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -577,6 +694,14 @@ try {
     { width: 412, height: 915, textScale: 1.5 },
     { width: 1280, height: 900, desktop: true },
   ];
+  if (categoryReadability) viewports = [
+    { width: 360, height: 800 },
+    { width: 320, height: 740, textScale: 1.5 },
+    { width: 320, height: 740, textScale: 2 },
+    { width: 360, height: 800, textScale: 2 },
+    { width: 412, height: 915, textScale: 1.5 },
+    { width: 1280, height: 900, desktop: true },
+  ];
   const onlyViewport = process.argv.find((arg) => arg.startsWith('--viewport='))?.slice('--viewport='.length);
   if (onlyViewport) viewports = viewports.filter((viewport) => (
     `${viewport.width}x${viewport.height}${viewport.textScale ? `@${viewport.textScale}` : ''}` === onlyViewport
@@ -593,9 +718,10 @@ try {
     await page.setViewport({ ...viewport, isMobile: !viewport.desktop, hasTouch: !viewport.desktop, deviceScaleFactor: 1 });
     if (seriesReadability) await seriesFixtures(page);
     if (noteReadability) await noteFixtures(page);
+    if (categoryReadability) await categoryFixtures(page);
     await page.setRequestInterception(true);
     page.on('request', (request) => {
-      if ((seriesReadability || noteReadability) && new URL(request.url()).origin !== origin) {
+      if ((seriesReadability || noteReadability || categoryReadability) && new URL(request.url()).origin !== origin) {
         failures.push(`Unexpected external request: ${request.url()}`);
         return request.abort();
       }
@@ -612,7 +738,7 @@ try {
       }
       if (request.url().startsWith(origin)) {
         if (request.url().endsWith('/data/catalog.json')) {
-          return request.respond({ status: 200, contentType: 'application/json', body: JSON.stringify(mobileUi ? catalog : { ...catalog, lists: [orderEntry] }) });
+          return request.respond({ status: 200, contentType: 'application/json', body: JSON.stringify(mobileUi || categoryReadability ? catalog : { ...catalog, lists: [orderEntry] }) });
         }
         return request.continue();
       }
@@ -654,6 +780,12 @@ try {
       }, viewport.textScale);
     }
     const label = `${viewport.width}x${viewport.height}${viewport.textScale ? ` ${viewport.textScale * 100}% text` : ''}`;
+    if (categoryReadability) {
+      await categoryLabelReadability(page, label, viewport);
+      check(errors.length === 0, `${label}: page errors ${errors.join('; ')}`);
+      await context.close();
+      continue;
+    }
     if (noteReadability) {
       await issueNoteReadability(page, label, !!viewport.desktop);
       check(errors.length === 0, `${label}: page errors ${errors.join('; ')}`);
