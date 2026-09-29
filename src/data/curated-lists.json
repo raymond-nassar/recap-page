@@ -1416,6 +1416,43 @@
       "coverIssueId": 3530
     },
     {
+      "id": "planet-hulk-reading-order-and-greg-pak-hulk-comics-guide",
+      "name": "Greg Pak's Hulk: Planet Hulk to Totally Awesome Hulk",
+      "description": "Follow Comic Book Herald's selected Hulk route through Planet Hulk, World War Hulk, Skaar and Amadeus Cho, with the source's directed issue order.",
+      "type": "creator-run",
+      "depth": "selected",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "planet-hulk-reading-order-and-greg-pak-hulk-comics-guide.md",
+      "sourcePage": "https://www.comicbookherald.com/planet-hulk-reading-order-and-greg-pak-hulk-comics-guide/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "planet_hulk_reading_order_and_greg_pak_hulk_comics_guide.json",
+      "characters": [
+        "Hulk",
+        "Bruce Banner",
+        "Amadeus Cho",
+        "Skaar",
+        "Hercules",
+        "Warbound"
+      ],
+      "keywords": [
+        "Greg Pak",
+        "Planet Hulk",
+        "World War Hulk",
+        "Skaar",
+        "Warbound",
+        "Incredible Hulks",
+        "Totally Awesome Hulk",
+        "Comic Book Herald"
+      ],
+      "expect": 107,
+      "timeline": null,
+      "coverIssueId": 3530
+    },
+    {
       "id": "civil-war",
       "name": "Civil War",
       "description": "Marvel's 2006 superhuman registration war in publication order: the seven-issue main series plus every mini-series and one-shot Marvel branded with the Civil War name, from Front Line through The Confession. Assembled from Marvel series metadata, so it does not include the crossover chapters published in unbranded ongoing titles such as Amazing Spider-Man #529-538.",

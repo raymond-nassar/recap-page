@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-29T14:54:49.898Z",
+  "generatedAt": "2026-09-29T20:42:37.101Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -1731,6 +1731,50 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-21T15:16:57.169Z"
+    },
+    {
+      "id": "planet-hulk-reading-order-and-greg-pak-hulk-comics-guide",
+      "file": "planet_hulk_reading_order_and_greg_pak_hulk_comics_guide.json",
+      "name": "Greg Pak's Hulk: Planet Hulk to Totally Awesome Hulk",
+      "description": "Follow Comic Book Herald's selected Hulk route through Planet Hulk, World War Hulk, Skaar and Amadeus Cho, with the source's directed issue order.",
+      "type": "creator-run",
+      "depth": "selected",
+      "count": 107,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 32,
+      "characters": [
+        "Hulk",
+        "Bruce Banner",
+        "Amadeus Cho",
+        "Skaar",
+        "Hercules",
+        "Warbound"
+      ],
+      "keywords": [
+        "Greg Pak",
+        "Planet Hulk",
+        "World War Hulk",
+        "Skaar",
+        "Warbound",
+        "Incredible Hulks",
+        "Totally Awesome Hulk",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 3530,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/b0/4f6a2316f20a4",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/planet-hulk-reading-order-and-greg-pak-hulk-comics-guide/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-09-29T20:42:37.101Z"
     },
     {
       "id": "civil-war",
