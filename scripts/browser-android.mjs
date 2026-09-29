@@ -9,7 +9,7 @@ import { CSP } from '../server.mjs';
 import { prepareAndroid, ANDROID_ASSET_DIR } from './prepare-android.mjs';
 import { LOCAL_SERVER_HEALTH_PATH, LOCAL_SERVER_HEADER_NAME, LOCAL_SERVER_HEADER_VALUE } from '../src/js/lib/localServer.js';
 import { createEmptyState, createList, addIssuesToList, setIssueNote } from '../src/js/lib/model.js';
-import { availableHomeCategories, groupCatalog, HOME_CATEGORIES, resolveReadingPaths } from '../src/js/lib/catalog.js';
+import { availableHomeCategories, groupCatalog, HOME_CATEGORIES, publishingAgeGroups, resolveReadingPaths } from '../src/js/lib/catalog.js';
 import { parseRoute } from '../src/js/lib/route.js';
 
 const driver = process.env.MRT_PUPPETEER || join(homedir(), '.mrt-scratch', 'node_modules', 'puppeteer-core', 'lib', 'puppeteer', 'puppeteer-core.js');
@@ -27,6 +27,7 @@ const launcherOnly = process.argv.includes('--only=launcher');
 const seriesReadability = process.argv.includes('--only=series-readability');
 const noteReadability = process.argv.includes('--only=note-readability');
 const categoryReadability = process.argv.includes('--only=category-readability');
+const marvelAgesTarget = process.argv.includes('--only=marvel-ages-target');
 const server = createServer(async (req, res) => {
   const path = new URL(req.url, 'http://127.0.0.1').pathname;
   if (path === LOCAL_SERVER_HEALTH_PATH) {
@@ -272,6 +273,90 @@ async function categoryFixtures(page) {
       return original(input, options);
     };
   });
+}
+
+async function marvelAgesTouchTarget(page, label, viewport) {
+  await route(page, 'marvel-ages');
+  const selector = '#marvel-ages-modern-all';
+  await page.waitForSelector(selector, { visible: true });
+  const result = await page.$eval(selector, (node) => {
+    const { width, height, left, right, top, bottom } = node.getBoundingClientRect();
+    const style = getComputedStyle(node);
+    const words = [], broken = [], clipped = [];
+    const walker = document.createTreeWalker(node, NodeFilter.SHOW_TEXT);
+    while (walker.nextNode()) {
+      const text = walker.currentNode;
+      for (const match of text.textContent.matchAll(/\S+/g)) {
+        const range = document.createRange();
+        range.setStart(text, match.index);
+        range.setEnd(text, match.index + match[0].length);
+        const rects = [...range.getClientRects()].filter((rect) => rect.width && rect.height);
+        words.push(match[0]);
+        if (rects.length !== 1) broken.push(match[0]);
+        if (rects.some((rect) => rect.left < left || rect.right > right
+          || rect.top < top || rect.bottom > bottom)) clipped.push(match[0]);
+      }
+    }
+    return {
+      width, height, words, broken, clipped,
+      text: node.textContent, name: node.getAttribute('aria-label'),
+      tag: node.tagName, type: node.type, tabIndex: node.tabIndex, disabled: node.disabled,
+      font: parseFloat(style.fontSize), padding: style.padding,
+      minHeight: style.minHeight, direction: getComputedStyle(node.parentElement).flexDirection,
+      androidStyle: !!document.querySelector('link[href="./android/mobile.css"]'),
+      overflow: document.documentElement.scrollWidth > innerWidth + 1,
+    };
+  });
+  const { modern } = publishingAgeGroups(groupCatalog(catalog.lists));
+  assert.ok(modern, 'Bundled catalog must expose the Modern Age navigation action');
+  check(result.text === 'Browse all Modern Age Reading Lists'
+    && result.name === `${result.text}: ${modern.label}, ${modern.count} Reading Lists`,
+  `${label}: exact visible and accessible labels`);
+  check(result.tag === 'BUTTON' && result.type === 'button' && result.tabIndex === 0 && !result.disabled,
+    `${label}: incumbent native navigation button semantics`);
+  check(result.androidStyle === !viewport.desktop, `${label}: actual platform entry stylesheet`);
+  check(result.font === (viewport.desktop ? 14 : 16 * (viewport.textScale || 1)) && result.padding === '4px 12px',
+    `${label}: unchanged text scale and padding ${JSON.stringify(result)}`);
+  check(result.width >= 48 && result.height >= (viewport.desktop ? 44 : 48),
+    `${label}: actual browse-all hit rectangle ${result.width}x${result.height}`);
+  check(result.words.length === 6 && result.broken.length === 0 && result.clipped.length === 0,
+    `${label}: all label words stay whole and inside the control ${JSON.stringify(result)}`);
+  check(!result.overflow, `${label}: no horizontal page overflow`);
+  if (viewport.desktop) {
+    check(result.height === 44 && result.minHeight === '44px' && result.direction === 'row',
+      `${label}: shared desktop keeps its 44px control and horizontal heading layout`);
+  }
+  await page.focus('#marvel-ages-h');
+  for (let step = 0; step < 20; step++) {
+    await page.keyboard.press('Tab');
+    if (await page.$eval(selector, (node) => document.activeElement === node)) break;
+  }
+  assert.ok(await page.$eval(selector, (node) => document.activeElement === node),
+    `${label}: browse-all is reachable in the existing tab order`);
+  check(await page.$eval(selector, (node) => {
+    const style = getComputedStyle(node);
+    return node.matches(':focus-visible') && style.outlineStyle !== 'none' && parseFloat(style.outlineWidth) > 0;
+  }), `${label}: keyboard focus remains visible`);
+  await screenshot(page, label, 'marvel-ages-target');
+  await page.keyboard.press('Enter');
+  await page.waitForSelector('#view-age-modern:not([hidden])');
+  check(await page.evaluate(() => location.hash === '#/age-modern' && document.activeElement.id === 'age-modern-h'),
+    `${label}: keyboard activation preserves route and destination focus`);
+  if (!viewport.desktop) {
+    await route(page, 'marvel-ages');
+    await page.waitForSelector(selector, { visible: true });
+    await page.$eval(selector, (node) => node.scrollIntoView({ block: 'center' }));
+    const point = await page.$eval(selector, (node) => {
+      const box = node.getBoundingClientRect();
+      return { x: box.left + box.width / 2, y: box.top + box.height / 2 };
+    });
+    await page.touchscreen.tap(point.x, point.y);
+    await page.waitForSelector('#view-age-modern:not([hidden])');
+    check(await page.evaluate(() => location.hash === '#/age-modern' && document.activeElement.id === 'age-modern-h'
+      && !document.documentElement.classList.contains('android-keyboard')),
+    `${label}: touch activation preserves route and destination focus without keyboard modality`);
+  }
+  console.log(`CHECKED ${label}: Marvel Ages browse-all ${JSON.stringify(result)}`);
 }
 
 async function categoryLabelReadability(page, label, viewport) {
@@ -702,6 +787,13 @@ try {
     { width: 412, height: 915, textScale: 1.5 },
     { width: 1280, height: 900, desktop: true },
   ];
+  if (marvelAgesTarget) viewports = [
+    { width: 320, height: 740 }, { width: 360, height: 800 }, { width: 412, height: 915 },
+    { width: 320, height: 740, textScale: 1.5 },
+    { width: 360, height: 800, textScale: 1.5 },
+    { width: 412, height: 915, textScale: 1.5 },
+    { width: 1280, height: 900, desktop: true },
+  ];
   const onlyViewport = process.argv.find((arg) => arg.startsWith('--viewport='))?.slice('--viewport='.length);
   if (onlyViewport) viewports = viewports.filter((viewport) => (
     `${viewport.width}x${viewport.height}${viewport.textScale ? `@${viewport.textScale}` : ''}` === onlyViewport
@@ -718,10 +810,10 @@ try {
     await page.setViewport({ ...viewport, isMobile: !viewport.desktop, hasTouch: !viewport.desktop, deviceScaleFactor: 1 });
     if (seriesReadability) await seriesFixtures(page);
     if (noteReadability) await noteFixtures(page);
-    if (categoryReadability) await categoryFixtures(page);
+    if (categoryReadability || marvelAgesTarget) await categoryFixtures(page);
     await page.setRequestInterception(true);
     page.on('request', (request) => {
-      if ((seriesReadability || noteReadability || categoryReadability) && new URL(request.url()).origin !== origin) {
+      if ((seriesReadability || noteReadability || categoryReadability || marvelAgesTarget) && new URL(request.url()).origin !== origin) {
         failures.push(`Unexpected external request: ${request.url()}`);
         return request.abort();
       }
@@ -738,7 +830,7 @@ try {
       }
       if (request.url().startsWith(origin)) {
         if (request.url().endsWith('/data/catalog.json')) {
-          return request.respond({ status: 200, contentType: 'application/json', body: JSON.stringify(mobileUi || categoryReadability ? catalog : { ...catalog, lists: [orderEntry] }) });
+          return request.respond({ status: 200, contentType: 'application/json', body: JSON.stringify(mobileUi || categoryReadability || marvelAgesTarget ? catalog : { ...catalog, lists: [orderEntry] }) });
         }
         return request.continue();
       }
@@ -780,6 +872,12 @@ try {
       }, viewport.textScale);
     }
     const label = `${viewport.width}x${viewport.height}${viewport.textScale ? ` ${viewport.textScale * 100}% text` : ''}`;
+    if (marvelAgesTarget) {
+      await marvelAgesTouchTarget(page, label, viewport);
+      check(errors.length === 0, `${label}: page errors ${errors.join('; ')}`);
+      await context.close();
+      continue;
+    }
     if (categoryReadability) {
       await categoryLabelReadability(page, label, viewport);
       check(errors.length === 0, `${label}: page errors ${errors.join('; ')}`);
