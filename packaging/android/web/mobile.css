@@ -153,6 +153,10 @@ body:has(#android-list-sheet[open]) { overflow: hidden; }
   .catalog-card-actions { grid-template-columns: minmax(0, 1fr); }
   #series-results .result { flex-direction: column; align-items: stretch; }
   #series-results .result > .btn { justify-content: center; overflow-wrap: normal; }
+  .home-path { grid-template-columns: minmax(0, 1fr) auto; }
+  .home-path-copy { grid-column: 1 / -1; grid-row: 2; }
+  .home-path-label { letter-spacing: .02em; text-transform: none; overflow-wrap: normal; }
+  .home-path-title { overflow-wrap: normal; }
   .card, .empty-state { padding-inline: var(--space-5); }
   .preview-head { flex-wrap: wrap; }
 }

@@ -13,6 +13,13 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Keep enlarged mobile category labels whole
+
+On narrow Android screens, Home and Browse category cards give their text the full card width
+below the icons. Labels use mixed case and restrained spacing so enlarged ordinary words stay
+whole, while phrases can wrap at spaces. Wording, destinations, text sizes, desktop styling
+and saved reading progress are unchanged.
+
 ### Keep long mobile issue notes fully readable
 
 Android issue notes now wrap long references and URLs within their card instead of clipping
