@@ -73,6 +73,8 @@ test('Shadow King keeps the frozen packet, mapping and full report aligned', asy
       'thunderbolts-reading-order',
       'nebula-reading-order',
       'hope-summers-reading-order',
+
+      'x-23-reading-order',
     ],
   });
   const manifest = await readJson('src/data/curated-lists.json');
@@ -82,6 +84,8 @@ test('Shadow King keeps the frozen packet, mapping and full report aligned', asy
         'thunderbolts-reading-order',
         'nebula-reading-order',
         'hope-summers-reading-order',
+
+        'x-23-reading-order',
       ].includes(row.id))
     .map((row) => row.id);
 

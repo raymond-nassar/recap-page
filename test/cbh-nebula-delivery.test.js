@@ -138,10 +138,11 @@ test('Nebula keeps the 2014 Guardians original, numbered prose and late source p
 test('Nebula approved relationship report preserves all 187 reviewed orders', async () => {
   const manifest = await readJson('src/data/curated-lists.json');
   const expectedOrderIds = manifest.lists
-    .filter((row) => row.id !== id && row.id !== 'hope-summers-reading-order')
+    .filter((row) => row.id !== id && row.id !== 'hope-summers-reading-order'
+      && row.id !== 'x-23-reading-order')
     .map((row) => row.id);
   const regenerated = await buildReportForMapping(`scripts/data/cbh-mappings/${id}.json`, [], {
-    excludedOrderIds: ['hope-summers-reading-order'],
+    excludedOrderIds: ['hope-summers-reading-order', 'x-23-reading-order'],
   });
   assert.deepEqual(regenerated, report);
   assert.doesNotThrow(() => validateReportDigest(report));

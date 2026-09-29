@@ -3232,10 +3232,10 @@ const SCENARIOS = [
         bestOf: await readSubset('best-of'),
       };
       t.check('desktop All, Complete, and Best of counts classify Adam exactly once',
-        desktop.all.readings === 60 && desktop.all.stories === 59
-        && desktop.all.cards === 59 && desktop.all.adamCards === 1
-        && desktop.complete.readings === 37 && desktop.complete.stories === 37
-        && desktop.complete.cards === 37 && desktop.complete.adamCards === 1
+        desktop.all.readings === 61 && desktop.all.stories === 60
+        && desktop.all.cards === 60 && desktop.all.adamCards === 1
+        && desktop.complete.readings === 38 && desktop.complete.stories === 38
+        && desktop.complete.cards === 38 && desktop.complete.adamCards === 1
         && desktop.bestOf.readings === 7 && desktop.bestOf.stories === 7
         && desktop.bestOf.cards === 7 && desktop.bestOf.adamCards === 0,
         JSON.stringify(desktop));
@@ -3248,10 +3248,10 @@ const SCENARIOS = [
         overflow: await page.evaluate(() => document.documentElement.scrollWidth > innerWidth),
       };
       t.check('narrow All, Complete, and Best of counts preserve Adam without horizontal overflow',
-        narrow.all.readings === 60 && narrow.all.stories === 59
-        && narrow.all.cards === 59 && narrow.all.adamCards === 1
-        && narrow.complete.readings === 37 && narrow.complete.stories === 37
-        && narrow.complete.cards === 37 && narrow.complete.adamCards === 1
+        narrow.all.readings === 61 && narrow.all.stories === 60
+        && narrow.all.cards === 60 && narrow.all.adamCards === 1
+        && narrow.complete.readings === 38 && narrow.complete.stories === 38
+        && narrow.complete.cards === 38 && narrow.complete.adamCards === 1
         && narrow.bestOf.readings === 7 && narrow.bestOf.stories === 7
         && narrow.bestOf.cards === 7 && narrow.bestOf.adamCards === 0
         && !narrow.overflow,
@@ -3458,6 +3458,121 @@ const SCENARIOS = [
       t.check('the Hope actual-data journey makes no external request and raises no browser error',
         externalRequests.length === 0 && browserErrors.length === 0,
         JSON.stringify({ externalRequests, browserErrors }));
+    },
+  },
+  {
+    id: 'x-23-actual-data',
+    title: 'the actual X-23 guide preserves every source-selected comic through preview, import and reload',
+    async run(page, t) {
+      const id = 'x-23-reading-order';
+      const expected = JSON.parse(readFileSync(
+        new URL('../src/data/x_23_reading_order.json', import.meta.url), 'utf8',
+      )).items.map((item, index) => ({
+        position: index + 1, issueId: item.issueId, title: item.title,
+      }));
+      const checkRows = (label, rows) => {
+        const mismatches = rows.flatMap((row, index) => (
+          JSON.stringify(row) === JSON.stringify(expected[index]) ? [] : [{ expected: expected[index], actual: row }]
+        ));
+        t.check(label, rows.length === 291 && mismatches.length === 0,
+          JSON.stringify({ count: rows.length, mismatches: mismatches.slice(0, 3) }));
+      };
+      const importedRows = () => page.evaluate((catalogId) => {
+        const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+        const matches = Object.values(state.lists).filter((list) => list.catalogId === catalogId);
+        return {
+          matches: matches.length,
+          rows: (matches[0]?.itemIds ?? []).map((issueId, index) => ({
+            position: index + 1, issueId, title: state.issues[issueId]?.title,
+          })),
+        };
+      }, id);
+      const renderedRows = () => page.$$eval('#rows .row', (nodes) => nodes.map((node, index) => ({
+        position: index + 1,
+        issueId: Number(node.querySelector('.rt')?.dataset.issueId),
+        title: node.querySelector('.rt')?.textContent.trim(),
+      })));
+      const errors = [];
+      const externalRequests = [];
+      page.on('console', (message) => { if (message.type() === 'error') errors.push(message.text()); });
+      page.on('pageerror', (error) => errors.push(error.message));
+      page.on('request', (request) => {
+        const url = new URL(request.url());
+        if (url.protocol.startsWith('http') && url.origin !== page.__origin) externalRequests.push(request.url());
+      });
+      await page.evaluateOnNewDocument(() => {
+        localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
+        window.__mrtBlockExternal = true;
+      });
+
+      await open(page, '/?catalog=actual#/home');
+      await openBrowseCategory(page, 'character-spotlights');
+      await page.$eval('#spotlights-q', (input) => {
+        input.value = 'Laura Kinney';
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+      });
+      const cardSelector = '#spotlights-results [data-story="list:x-23-reading-order"]';
+      await page.waitForSelector(cardSelector, { timeout: 15000 });
+      const card = await page.$eval(cardSelector, (node) => ({
+        name: node.querySelector('.catalog-card-title')?.textContent.trim(),
+        text: node.textContent,
+        sourceName: node.querySelector('a[href*="comicbookherald.com"]')?.getAttribute('aria-label'),
+        sourceHref: node.querySelector('a[href*="comicbookherald.com"]')?.href,
+        addName: node.querySelector('[data-act="import"]')?.getAttribute('aria-label'),
+      }));
+      t.check('Laura Kinney discovers the credited 291-issue X-23 guide without gap disclosure',
+        card.name === 'X-23 (Laura Kinney)' && card.text.includes('291 issues')
+        && !card.text.includes('issues have no Marvel Unlimited links yet')
+        && card.sourceName === 'Source of X-23 (Laura Kinney): Comic Book Herald'
+        && card.sourceHref === 'https://www.comicbookherald.com/x-23-reading-order/'
+        && card.addName === 'Add to library: X-23 (Laura Kinney)', JSON.stringify(card));
+
+      await click(page, `${cardSelector} [data-act="preview"]`);
+      await page.waitForFunction(() =>
+        document.querySelectorAll('#preview[open] .preview-issue-link').length === 291);
+      const preview = await page.$$eval('#preview-body .preview-issue-link', (nodes) => nodes.map((node) => ({
+        position: Number(node.closest('li')?.querySelector('.pn')?.textContent),
+        issueId: Number(node.dataset.issueId),
+        title: node.textContent.trim(),
+      })));
+      checkRows('preview renders all 291 positions, original IDs and titles', preview);
+
+      await click(page, '#preview-add [data-act="main"]');
+      await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')
+        ?.textContent.includes('In library'));
+      const imported = await importedRows();
+      t.check('import creates exactly one X-23 Reading List without placeholders',
+        imported.matches === 1 && imported.rows.every((row) => row.issueId > 0),
+        JSON.stringify({ matches: imported.matches, count: imported.rows.length }));
+      checkRows('imported list retains all 291 positions, original IDs and titles', imported.rows);
+
+      await click(page, '#preview-add [data-act="main"]');
+      await page.waitForFunction(() =>
+        !document.querySelector('#view-read')?.hidden
+        && document.querySelector('#order-name')?.textContent.trim() === 'X-23 (Laura Kinney)');
+      await openFullOrder(page);
+      await page.waitForFunction(() => document.querySelectorAll('#rows .row').length === 291);
+      checkRows('rendered Reading List shows all 291 positions, IDs and titles', await renderedRows());
+
+      await page.reload({ waitUntil: 'load' });
+      await page.waitForFunction(() =>
+        document.querySelector('#order-name')?.textContent.trim() === 'X-23 (Laura Kinney)');
+      await openFullOrder(page);
+      await page.waitForFunction(() => document.querySelectorAll('#rows .row').length === 291);
+      checkRows('reloaded Reading List still renders every position, ID and title', await renderedRows());
+      const reloaded = await importedRows();
+      checkRows('reloaded saved list retains every position, ID and title', reloaded.rows);
+      t.check('one-shot and ongoing #1, relocated #1-3, decimal Venom and final #43-45 stay distinct',
+        [[14, 30246], [112, 30255], [113, 30259], [114, 30260],
+          [139, 42171], [140, 42170], [141, 42662], [142, 42663],
+          [289, 102304], [290, 102305], [291, 109774]]
+          .every(([position, issueId]) => reloaded.rows[position - 1]?.issueId === issueId)
+        && !reloaded.rows.some(({ title }) =>
+          /X-Force Annual \(2010\)|All-New Wolverine Saga|Wolverine: The Road To Hell/.test(title)),
+        JSON.stringify(reloaded.rows.filter((_, index) => [13, 111, 112, 113, 138, 141, 288, 290].includes(index))));
+      t.check('X-23 browse, preview, import and reload made no external request or browser error',
+        externalRequests.length === 0 && errors.length === 0,
+        JSON.stringify({ externalRequests: externalRequests.slice(0, 3), errors: errors.slice(0, 3) }));
     },
   },
   {
