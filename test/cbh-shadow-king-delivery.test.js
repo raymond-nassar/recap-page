@@ -13,6 +13,7 @@ import {
 import { buildReportForMapping } from '../scripts/report-order-overlap.mjs';
 import { parseCatalog } from '../src/js/lib/catalog.js';
 import { parseChecklist } from '../src/js/lib/markdown.js';
+import { historicalAgathaLibrarySnapshot } from './helpers/agatha-historical-library.mjs';
 
 const id = 'shadow-king-reading-order';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -67,6 +68,7 @@ test('Shadow King keeps Nightcrawler on the 2014 run and the approved candidate 
 test('Shadow King keeps the frozen packet, mapping and full report aligned', async () => {
   const report = await readJson(`scripts/data/cbh-overlaps/${id}.json`);
   const regenerated = await buildReportForMapping(`scripts/data/cbh-mappings/${id}.json`, [], {
+    ...await historicalAgathaLibrarySnapshot(),
     excludedOrderIds: [],
   });
   const manifest = await readJson('src/data/curated-lists.json');

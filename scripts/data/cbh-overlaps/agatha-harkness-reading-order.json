@@ -1,24 +1,34 @@
 {
   "candidateId": "agatha-harkness-reading-order",
-  "packetDigest": "00356c88548e6fd5896da5fb88fbfe67dbfdfe071702f03d85ce962236eb07e4",
-  "mappingDigest": "68b36b41c894d439b4b2fa56b4fc600e035b1fda361cd146b537340b6b29c6df",
-  "libraryDigest": "633484687c871f6620fac20f5c0ddb2717367944297cdb9f44d04a726cdaace4",
+  "packetDigest": "cd8ac9edfd272701be9ffbc9860f6d912bc7723e2fa440eb6b257a16505b5b0c",
+  "mappingDigest": "079880237c8f075bc58a22e02798bc72e67ce2b1bc70067c368a9010436a84e2",
+  "libraryDigest": "4d93b5d7606a41a71805918fb580223014694cef98c26536a7fd95588e7d7105",
   "peerDigests": {},
-  "sourceCounts": {
-    "sourceOccurrenceCount": 105,
-    "sourceIdentityCount": 104,
-    "includedIssueCount": 104,
-    "sourceGapCount": 0,
-    "repeatedSourceReferenceCount": 1
-  },
-  "candidateCount": 104,
-  "comparisonCount": 138,
+  "candidateCount": 114,
+  "comparisonCount": 185,
   "comparisons": [
+    {
+      "orderId": "abomination-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
     {
       "orderId": "absolute-carnage",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
+    },
+    {
+      "orderId": "adam-warlock-reading-order",
+      "sharedCount": 4,
+      "sharedIds": [
+        "9294",
+        "18453",
+        "9295",
+        "9297"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "age-of-x-man",
@@ -27,7 +37,19 @@
       "relationship": "none"
     },
     {
+      "orderId": "agents-of-atlas-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "all-new-all-different-avengers",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -43,6 +65,14 @@
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
+    },
+    {
+      "orderId": "ant-man-reading-order",
+      "sharedCount": 1,
+      "sharedIds": [
+        "923"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "apocalypse-wars",
@@ -85,6 +115,18 @@
       "relationship": "none"
     },
     {
+      "orderId": "best-ultron-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "black-panther-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "black-widow-reading-order",
       "sharedCount": 6,
       "sharedIds": [
@@ -105,6 +147,18 @@
     },
     {
       "orderId": "captain-america-best-of",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "captain-america-reading-order-modern-marvel-era",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "captain-marvel-ms-marvel-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -158,6 +212,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "daredevil-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "dark-phoenix-saga",
       "sharedCount": 0,
       "sharedIds": [],
@@ -194,6 +254,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "deadpool-best-of",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "death-of-doctor-strange",
       "sharedCount": 0,
       "sharedIds": [],
@@ -218,7 +284,33 @@
       "relationship": "partial"
     },
     {
+      "orderId": "doctor-octopus-otto-octavius-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "doctor-strange-multiverse-of-madness",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "doctor-strange-reading-order",
+      "sharedCount": 7,
+      "sharedIds": [
+        "6983",
+        "12951",
+        "6984",
+        "20208",
+        "20209",
+        "80065",
+        "79805"
+      ],
+      "relationship": "partial"
+    },
+    {
+      "orderId": "donny-cates-marvel-universe-reading-order-2017",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -236,6 +328,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "emma-frost-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "essential-avengers",
       "sharedCount": 0,
       "sharedIds": [],
@@ -248,6 +346,15 @@
       "relationship": "none"
     },
     {
+      "orderId": "falcon-sam-wilson-captain-america-reading-order",
+      "sharedCount": 2,
+      "sharedIds": [
+        "77238",
+        "77239"
+      ],
+      "relationship": "partial"
+    },
+    {
       "orderId": "fall-house-x-rise-powers-x",
       "sharedCount": 0,
       "sharedIds": [],
@@ -258,6 +365,49 @@
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
+    },
+    {
+      "orderId": "fantastic-four-reading-order",
+      "sharedCount": 36,
+      "sharedIds": [
+        "13304",
+        "12899",
+        "12903",
+        "12905",
+        "12907",
+        "12908",
+        "12909",
+        "12910",
+        "12911",
+        "12913",
+        "12914",
+        "12918",
+        "12921",
+        "12925",
+        "12927",
+        "12940",
+        "12941",
+        "6983",
+        "12951",
+        "12985",
+        "12986",
+        "12989",
+        "12990",
+        "12991",
+        "12992",
+        "12996",
+        "12998",
+        "12999",
+        "13001",
+        "8691",
+        "13011",
+        "8692",
+        "13031",
+        "13032",
+        "13246",
+        "13322"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "fatal-attractions",
@@ -273,6 +423,12 @@
     },
     {
       "orderId": "groot-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "guardians-of-the-galaxy-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -350,6 +506,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "inhumans-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "inhumans-vs-x-men",
       "sharedCount": 0,
       "sharedIds": [],
@@ -357,6 +519,12 @@
     },
     {
       "orderId": "iron-man-2020",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "iron-man-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -392,13 +560,41 @@
       "relationship": "none"
     },
     {
+      "orderId": "loki-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "magneto-reading-order",
+      "sharedCount": 3,
+      "sharedIds": [
+        "12899",
+        "18460",
+        "18461"
+      ],
+      "relationship": "partial"
+    },
+    {
       "orderId": "magneto-war",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
     },
     {
+      "orderId": "marvel-2099",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "marvel-fresh-start-avengers",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -434,6 +630,23 @@
       "relationship": "none"
     },
     {
+      "orderId": "mephisto-reading-order",
+      "sharedCount": 10,
+      "sharedIds": [
+        "17793",
+        "17794",
+        "17797",
+        "17798",
+        "17799",
+        "17803",
+        "17804",
+        "15135",
+        "15136",
+        "15137"
+      ],
+      "relationship": "partial"
+    },
+    {
       "orderId": "messiah-complex",
       "sharedCount": 0,
       "sharedIds": [],
@@ -452,7 +665,19 @@
       "relationship": "none"
     },
     {
+      "orderId": "miles-morales-spider-man-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "minimum-carnage",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "modern-x-men-fast-track",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -462,6 +687,16 @@
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
+    },
+    {
+      "orderId": "moon-knight-reading-order",
+      "sharedCount": 3,
+      "sharedIds": [
+        "17792",
+        "17793",
+        "17794"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "muir-island-saga",
@@ -495,6 +730,12 @@
     },
     {
       "orderId": "new-ultimate-universe-trades",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "nick-fury-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -542,6 +783,18 @@
       "relationship": "none"
     },
     {
+      "orderId": "punisher-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "question-of-the-week-do-you-have-a-hulk-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "reckoning-war",
       "sharedCount": 0,
       "sharedIds": [],
@@ -572,6 +825,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "runaways-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "scarlet-witch-best-of",
       "sharedCount": 15,
       "sharedIds": [
@@ -579,9 +838,9 @@
         "18460",
         "18461",
         "18462",
-        "57094",
         "17491",
         "17492",
+        "57094",
         "57097",
         "57099",
         "57100",
@@ -624,6 +883,18 @@
       "relationship": "none"
     },
     {
+      "orderId": "setup-to-modern-timeline",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "shadow-king-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "shadowland",
       "sharedCount": 0,
       "sharedIds": [],
@@ -634,6 +905,16 @@
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
+    },
+    {
+      "orderId": "silver-surfer-reading-order",
+      "sharedCount": 3,
+      "sharedIds": [
+        "12921",
+        "76737",
+        "76741"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "sins-of-sinister",
@@ -648,13 +929,31 @@
       "relationship": "none"
     },
     {
+      "orderId": "spider-gwen-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "spider-island",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
     },
     {
+      "orderId": "spider-man-2099-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "spider-man-best-of",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "spider-man-far-from-home",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -696,16 +995,76 @@
       "relationship": "none"
     },
     {
+      "orderId": "thanos-reading-order",
+      "sharedCount": 11,
+      "sharedIds": [
+        "9294",
+        "18453",
+        "13192",
+        "18261",
+        "18926",
+        "9295",
+        "12651",
+        "18262",
+        "20208",
+        "20209",
+        "9297"
+      ],
+      "relationship": "partial"
+    },
+    {
       "orderId": "thanos-war",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
     },
     {
+      "orderId": "the-defenders-reading-order",
+      "sharedCount": 3,
+      "sharedIds": [
+        "6983",
+        "12951",
+        "6984"
+      ],
+      "relationship": "partial"
+    },
+    {
       "orderId": "the-night-gwen-stacy-died",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
+    },
+    {
+      "orderId": "the-vision-reading-order",
+      "sharedCount": 25,
+      "sharedIds": [
+        "6985",
+        "20021",
+        "6987",
+        "6990",
+        "6991",
+        "20023",
+        "18460",
+        "18461",
+        "18462",
+        "17792",
+        "17793",
+        "17794",
+        "17797",
+        "17798",
+        "17799",
+        "17803",
+        "17804",
+        "17805",
+        "17491",
+        "17492",
+        "923",
+        "57311",
+        "57314",
+        "57315",
+        "57319"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "thor-best-of",
@@ -715,12 +1074,21 @@
     },
     {
       "orderId": "time-and-time-again",
+      "sharedCount": 2,
+      "sharedIds": [
+        "83685",
+        "83686"
+      ],
+      "relationship": "partial"
+    },
+    {
+      "orderId": "ultimate-marvel-intro",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
     },
     {
-      "orderId": "ultimate-marvel-intro",
+      "orderId": "venom-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -730,6 +1098,20 @@
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
+    },
+    {
+      "orderId": "wandavision",
+      "sharedCount": 7,
+      "sharedIds": [
+        "6990",
+        "6991",
+        "20023",
+        "17794",
+        "54974",
+        "54977",
+        "54978"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "war-of-kings",
@@ -750,7 +1132,19 @@
       "relationship": "none"
     },
     {
+      "orderId": "winter-soldier-bucky-barnes-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "wolverine-goes-to-hell",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "wolverine-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -769,6 +1163,12 @@
     },
     {
       "orderId": "x-cutioners-song",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "x-force-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -874,7 +1274,13 @@
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
+    },
+    {
+      "orderId": "young-avengers-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
     }
   ],
-  "reportDigest": "8f3b55cb40c92b64d50c6f32478511263dc4308d206ceab079c7ce7262386a4d"
+  "reportDigest": "7c93c8f11d8f585b3957b106b3edf4ef38973bca0eea599e6d5036f16237562f"
 }

@@ -318,13 +318,13 @@ orders: **null means nobody granted anything for this file, not that the file is
 
 Two hundred and sixty-four pinned reading-order payloads sit under
 [`src/data/`](../src/data): 263 visible catalog files and one noncatalog partition parent. They hold
-26,138 issue records covering 17,290 distinct tracked identities. The visible files hold 25,651 of those records;
+26,148 issue records covering 17,293 distinct tracked identities. The visible files hold 25,661 of those records;
 the extra 487 are the retained Marvel Knights to Planet X parent whose ordinary children partition
 the same vector. Records use these fields:
 `issueId`, `title`,
 `number`, `url`, `seriesId`, `seriesName`, `onSale`, `mu`, `digitalId`, `pageCount`, a `cover`
-object of `path` and `ext`, and `creators` of `name` and `role`. Across all 264 payloads, 21,407
-records carry a cover URL and 20,068 carry creator credits.
+object of `path` and `ext`, and `creators` of `name` and `role`. Across all 264 payloads, 21,414
+records carry a cover URL and 20,075 carry creator credits.
 
 `description` was the field to look at hardest and is now empty. The others are facts about a
 publication: which issue, in which series, on what date. A description was Marvel's own prose
@@ -333,9 +333,9 @@ The key is `null` on every record, the vendoring script no longer writes it, and
 A further 41, 7,193 characters, were removed from the design mockups described below, which a
 first pass missed because it looked only at the files the catalog names.
 
-Of the visible records, 1,024 are unopenable placeholders for unresolved source positions and 197
+Of the visible records, 1,034 are unopenable placeholders for unresolved source positions and 200
 non-placeholder records carry neither a series ID nor a digital ID after an upstream refusal. Those
-1,221 gap positions affect 28 catalog entries: thirteen carry placeholders, eighteen carry empty records, and
+1,234 gap positions affect 29 catalog entries: fourteen carry placeholders, eighteen carry empty records, and
 three carry both kinds. One legacy item retains a placeholder flag alongside real identity and launch
 metadata, so it belongs to neither gap category. Placeholder
 IDs are computed here by [`scripts/vendor-orders.mjs`](../scripts/vendor-orders.mjs) from the order
@@ -887,6 +887,34 @@ A path carries its own id, name, description, source statement and ordered Readi
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
 all paths from the parsed catalog rather than reconstructing them from only the authored manifest,
 so the generated partition path and any future overlapping paths retain their own order.
+
+## Agatha Harkness source boundary
+
+The [Agatha Harkness Reading Order](https://www.comicbookherald.com/agatha-harkness-reading-order/)
+was retrieved on 2026-09-28. Its selected issue references define 114 distinct comics with no
+repeated positions or unresolved identities. The existing Reading List keeps its stable identity
+and its original catalog position between Phoenix and Punisher.
+
+The corrected boundary restores Fantastic Four (1961) #94 and #103 at the beginning, Scarlet
+Witch (1994) #1, #3 and #4 in the early collection, and the explicitly numbered optional Nova
+(1994) #6-7 recommendation. It also includes Midnight Suns #4-5 and Scarlet Witch Annual (2023)
+#1 from Latest Additions. Scarlet Witch (2015) #1 remains a separate modern issue at its later
+source position. Broader collection spans and unnumbered related-reading prose are not expanded.
+
+The factual ledger, frozen packet, exact mapping and full-library relationship report are named
+`agatha-harkness-reading-order.json` under the corresponding `scripts/data/cbh-*` directories.
+The source ledger records all 114 positions and the source-page hash without copying article
+commentary or artwork. [Issue #557](https://github.com/raymond-nassar/recap-page/issues/557)
+owns this correction under the broader guide work in
+[Issue #553](https://github.com/raymond-nassar/recap-page/issues/553).
+
+The three original Scarlet Witch records reuse exact title, number and official issue URL facts
+from the unchanged WandaVision payload, whose LF-normalized hash is pinned in the ledger. Their
+optional series and launch metadata remain null. Four other existing records and those three
+original Scarlet Witch records retain explicit provider refusals; missing optional metadata is not
+a publication gap or an availability claim. Midnight Suns #4-5 and Scarlet Witch Annual #1 retain
+their complete series identities in the generated payload. The ledger records the final generated
+payload hash separately from the unchanged input provenance.
 
 ## Mephisto source boundary
 

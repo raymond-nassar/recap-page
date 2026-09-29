@@ -3,11 +3,10 @@
   "id": "agatha-harkness-reading-order",
   "inventoryId": "agatha-harkness-reading-order",
   "sourceUrl": "https://www.comicbookherald.com/agatha-harkness-reading-order/",
-  "sourceRetrievedAt": "2026-08-26",
-  "sourceBoundary": "Preserves all 105 whole-issue source occurrences from the 31 Agatha Harkness cut sections in source order, and places each of the 104 distinct issues once at its first occurrence.",
+  "sourceRetrievedAt": "2026-09-28",
+  "sourceBoundary": "Preserves all 114 whole-issue source occurrences in source order and places each of the 114 distinct issues once at its first occurrence.",
   "excludedSourceReferences": [],
-  "sourceOccurrenceCount": 105,
-  "expectedCount": 104,
+  "expectedCount": 114,
   "proposedManifest": {
     "id": "agatha-harkness-reading-order",
     "name": "Agatha Harkness",
@@ -37,20 +36,42 @@
       "Vision",
       "Comic Book Herald"
     ],
-    "expect": 104,
+    "expect": 114,
     "timeline": null,
     "coverIssueId": 12903
   },
   "insertionAnchor": {
-    "beforeId": "rocket-raccoon-reading-order"
+    "beforeId": "punisher-reading-order"
   },
   "sourceReview": {
     "authorityType": "stronger-model",
-    "authorityIdentity": "GPT-5.4 mini",
-    "rationale": "Parsed the Comic Book Herald guide into 105 source occurrences, resolved each exact Marvel identity or owner-supplied direct-page id, and checked the full source boundary before freezing the packet.",
-    "reviewedAt": "2026-08-26T00:00:00Z"
+    "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #557",
+    "rationale": "Independently read the complete current Comic Book Herald article, including Latest Additions, and expanded every selected reference into a 114-position vector with no repeated source identities. The old guide omitted the first Fantastic Four cut, the explicitly numbered optional Nova recommendation and late additions, and confused the original Abnett/Lanning Scarlet Witch with the modern series. Restore those selections under the existing stable guide ID and preserve the modern Scarlet Witch #1 at its correct later source position. This is a product correction, not inventory-only maintenance.",
+    "reviewedAt": "2026-09-28T18:15:36.981Z"
   },
   "rows": [
+    {
+      "sourceIssueReference": "Fantastic Four (1961) #94",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "94",
+      "seriesId": 2121,
+      "candidateIssueId": 13304,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Fantastic Four (1961) #103",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "103",
+      "seriesId": 2121,
+      "candidateIssueId": 12899,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
     {
       "sourceIssueReference": "Fantastic Four (1961) #107",
       "sourceRangeReference": null,
@@ -869,10 +890,54 @@
       "sourceIssueReference": "Scarlet Witch #1",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Scarlet Witch",
-      "seriesYear": 2015,
+      "seriesYear": 1994,
       "issueNumber": "1",
-      "seriesId": 20854,
-      "candidateIssueId": 57094,
+      "seriesId": null,
+      "candidateIssueId": 54974,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Scarlet Witch #3",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Scarlet Witch",
+      "seriesYear": 1994,
+      "issueNumber": "3",
+      "seriesId": null,
+      "candidateIssueId": 54977,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Scarlet Witch #4",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Scarlet Witch",
+      "seriesYear": 1994,
+      "issueNumber": "4",
+      "seriesId": null,
+      "candidateIssueId": 54978,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Nova (1994) #6",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Nova",
+      "seriesYear": 1994,
+      "issueNumber": "6",
+      "seriesId": 29549,
+      "candidateIssueId": 83685,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Nova (1994) #7",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Nova",
+      "seriesYear": 1994,
+      "issueNumber": "7",
+      "seriesId": 29549,
+      "candidateIssueId": 83686,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null
     },
@@ -1005,6 +1070,17 @@
       "issueNumber": "11",
       "seriesId": 20897,
       "candidateIssueId": 57319,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Scarlet Witch (2016) #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Scarlet Witch",
+      "seriesYear": 2015,
+      "issueNumber": "1",
+      "seriesId": 20854,
+      "candidateIssueId": 57094,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null
     },
@@ -1194,18 +1270,42 @@
       "candidateIssueId": 89543,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Midnight Suns #4",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Midnight Suns",
+      "seriesYear": 2022,
+      "issueNumber": "4",
+      "seriesId": null,
+      "candidateIssueId": 101172,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Midnight Suns #5",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Midnight Suns",
+      "seriesYear": 2022,
+      "issueNumber": "5",
+      "seriesId": null,
+      "candidateIssueId": 101173,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Scarlet Witch Annual (2023) #1",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Scarlet Witch Annual",
+      "seriesYear": 2023,
+      "issueNumber": "1",
+      "seriesId": null,
+      "candidateIssueId": 109670,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
     }
   ],
-  "packetDigest": "00356c88548e6fd5896da5fb88fbfe67dbfdfe071702f03d85ce962236eb07e4",
-  "repeatedSourceReferences": [
-    {
-      "sourcePosition": 88,
-      "canonicalRow": 75,
-      "sourceIssueReference": "Scarlet Witch (2016) #1",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Scarlet Witch",
-      "seriesYear": 2015,
-      "issueNumber": "1"
-    }
-  ]
+  "sourceContentSha256": "538775b53c4b467cc726e79d87823bd2c27b2d9088969bd5769c272e9dc06342",
+  "sourceIssueBearingBlocksSha256": "7a8e8814e2b26a6f932e15194c830f6cdb8e2736ec26588b9bfe96a216ed8128",
+  "packetDigest": "cd8ac9edfd272701be9ffbc9860f6d912bc7723e2fa440eb6b257a16505b5b0c"
 }

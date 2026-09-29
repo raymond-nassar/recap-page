@@ -11,6 +11,7 @@ import {
 } from '../scripts/lib/cbh-inventory.mjs';
 import { buildMarkdown } from '../scripts/author-cbh-packet.mjs';
 import { buildReportForMapping } from '../scripts/report-order-overlap.mjs';
+import { historicalAgathaLibrarySnapshot } from './helpers/agatha-historical-library.mjs';
 import { parseChecklist } from '../src/js/lib/markdown.js';
 
 const id = 'mephisto-reading-order';
@@ -89,6 +90,7 @@ test('Mephisto packet, mapping and relationship approval retain their digest con
   const report = await readJson(`scripts/data/cbh-overlaps/${id}.json`);
   const currentReport = await buildReportForMapping(
     `scripts/data/cbh-mappings/${id}.json`, [], {
+      ...await historicalAgathaLibrarySnapshot(),
       excludedOrderIds: ['miles-morales-spider-man-reading-order', 'spider-gwen-reading-order', 'best-ultron-reading-order', 'winter-soldier-bucky-barnes-reading-order', 'spider-man-2099-reading-order', 'donny-cates-marvel-universe-reading-order-2017', 'falcon-sam-wilson-captain-america-reading-order', 'the-vision-reading-order', 'emma-frost-reading-order', 'doctor-octopus-otto-octavius-reading-order', 'shadow-king-reading-order'],
     },
   );
