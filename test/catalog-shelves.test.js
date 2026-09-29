@@ -53,8 +53,8 @@ test('each bundled Reading List resolves through its grouped story to one canoni
 
 test('Character Spotlight taxonomy accounts for every reading and preserves grouped stories', () => {
   const spotlights = shelfLists(catalog.lists, 'spotlights');
-  assert.equal(spotlights.length, 59);
-  assert.equal(groupCatalog(spotlights).length, 58);
+  assert.equal(spotlights.length, 60);
+  assert.equal(groupCatalog(spotlights).length, 59);
 
   const bestOf = filterBySpotlightKind(spotlights, 'best-of');
   const completeGuide = filterBySpotlightKind(spotlights, 'complete-guide');
@@ -62,7 +62,7 @@ test('Character Spotlight taxonomy accounts for every reading and preserves grou
   const expected = [
     ['best-of', 7, 7],
     ['complete-guide', 37, 37],
-    ['other', 15, 14],
+    ['other', 16, 15],
   ];
   for (const [kind, readingCount, storyCount] of expected) {
     const filtered = filterBySpotlightKind(spotlights, kind);
@@ -112,6 +112,11 @@ test('Character Spotlight taxonomy accounts for every reading and preserves grou
   assert.ok(adamWarlock, 'Adam Warlock is missing from Character Spotlight All');
   assert.ok(completeGuide.includes(adamWarlock));
   assert.equal(bestOf.includes(adamWarlock), false);
+
+  const hopeSummers = spotlights.find((list) => list.id === 'hope-summers-reading-order');
+  assert.ok(hopeSummers, 'Hope Summers is missing from Character Spotlight All');
+  assert.ok(other.includes(hopeSummers));
+  assert.equal(completeGuide.includes(hopeSummers), false);
 });
 
 test('a path arrival clears the subset that would hide Essential Avengers', () => {

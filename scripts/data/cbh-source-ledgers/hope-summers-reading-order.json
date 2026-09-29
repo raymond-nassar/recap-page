@@ -1,0 +1,4937 @@
+{
+  "schemaVersion": 1,
+  "status": "frozen-approved-source",
+  "guide": {
+    "id": "hope-summers-reading-order",
+    "title": "Hope Summers",
+    "scopeIssue": "https://github.com/raymond-nassar/recap-page/issues/562",
+    "parentIssue": "https://github.com/raymond-nassar/recap-page/issues/553",
+    "inventoryPosition": 47
+  },
+  "source": {
+    "canonicalUrl": "https://www.comicbookherald.com/hope-summers-reading-order/",
+    "retrievalDate": "2026-09-28",
+    "retrievalMethod": "Complete page read through two overlapping paginated fetches, then an isolated real-browser read of .entry-content after reloading with image requests blocked.",
+    "renderedArticleTextSha256": "774aa4b8c8f13a20d48718546da359d3d6fabbd17cc9a292fc746fafb3ba4aaa",
+    "renderedArticleTextHashDefinition": "SHA-256 of .entry-content innerText after Unicode NFC normalization, CRLF/CR to LF conversion, trimming trailing whitespace from each line, trimming document edges, and appending one LF.",
+    "renderedArticleTextNormalizedUtf8Bytes": 12588,
+    "blockedImageRequests": 13,
+    "intakeSourceContentSha256": "e0efde4afcfe1d75210fd1895bdd5812035b8ce3499a23fda316f8d83c1724bd",
+    "intakeHashStatus": "Maintained inventory evidence retrieved on 2026-08-23. It is not represented as a newly measured current-page hash.",
+    "sourceIssueBearingBlocksSha256": "5a03bb579dba7690bb487d69ac57aae25bc8da6d128ea3efca60fc3c3e204d43",
+    "hashDefinition": "SHA-256 of JSON.stringify over the ordered factual block projection. Object field order is fixed by this generator and issue array order is preserved.",
+    "directByteFetchStatus": "The origin returned HTTP 403 to direct curl and WordPress API requests. The current complete rendered page was independently read, and its selected issue-bearing projection is hashed here."
+  },
+  "sourceBoundary": {
+    "start": "X-Men: Messiah Complex #1",
+    "end": "Immortal X-Men #13",
+    "rationale": "Use every source-selected whole issue from the first explicit collection through the full Latest Additions continuation. Character cuts replace broader contents where supplied. Source-directed interleaves and placements override raw collection grouping."
+  },
+  "articleSections": [
+    "The Messiah Is Born",
+    "The Messiah Shows Her Powers",
+    "Hope Summers From Marvel NOW! Until Krakoa",
+    "The Savior in Krakoa",
+    "Latest Additions"
+  ],
+  "counts": {
+    "pageRecommendationItems": 55,
+    "selectedRecommendationItems": 53,
+    "orderedSelectionBlocks": 55,
+    "sourceOccurrenceCount": 264,
+    "canonicalIssueRows": 261,
+    "repeatedSourceReferences": 3,
+    "excludedSourceReferenceClasses": 10,
+    "exactResolvedIssueRows": 255,
+    "openPublishedMetadataGaps": 6
+  },
+  "blocks": [
+    {
+      "sourceBlock": 1,
+      "section": "The Messiah Is Born",
+      "collection": "X-Men: Messiah Complex",
+      "selectionPolicy": "explicit-interleave",
+      "rawReference": "X-Men: Messiah Complex #1; Uncanny X-Men #492; X-Factor #25; New X-Men #44; X-Men #205; Uncanny X-Men #493; X-Factor #26; New X-Men #45; X-Men #206; Uncanny X-Men #494; X-Factor #27; New X-Men #46; X-Men #207",
+      "issues": [
+        {
+          "series": "X-Men: Messiah Complex",
+          "year": 2007,
+          "number": "1"
+        },
+        {
+          "series": "Uncanny X-Men",
+          "year": 1963,
+          "number": "492"
+        },
+        {
+          "series": "X-Factor",
+          "year": 2006,
+          "number": "25"
+        },
+        {
+          "series": "New X-Men",
+          "year": 2004,
+          "number": "44"
+        },
+        {
+          "series": "X-Men",
+          "year": 2004,
+          "number": "205"
+        },
+        {
+          "series": "Uncanny X-Men",
+          "year": 1963,
+          "number": "493"
+        },
+        {
+          "series": "X-Factor",
+          "year": 2006,
+          "number": "26"
+        },
+        {
+          "series": "New X-Men",
+          "year": 2004,
+          "number": "45"
+        },
+        {
+          "series": "X-Men",
+          "year": 2004,
+          "number": "206"
+        },
+        {
+          "series": "Uncanny X-Men",
+          "year": 1963,
+          "number": "494"
+        },
+        {
+          "series": "X-Factor",
+          "year": 2006,
+          "number": "27"
+        },
+        {
+          "series": "New X-Men",
+          "year": 2004,
+          "number": "46"
+        },
+        {
+          "series": "X-Men",
+          "year": 2004,
+          "number": "207"
+        }
+      ]
+    },
+    {
+      "sourceBlock": 2,
+      "section": "The Messiah Is Born",
+      "collection": "Cable - Volume 1: Messiah War",
+      "selectionPolicy": "full-collection",
+      "rawReference": "Cable #1-5",
+      "issues": [
+        {
+          "series": "Cable",
+          "year": 2008,
+          "number": "1"
+        },
+        {
+          "series": "Cable",
+          "year": 2008,
+          "number": "2"
+        },
+        {
+          "series": "Cable",
+          "year": 2008,
+          "number": "3"
+        },
+        {
+          "series": "Cable",
+          "year": 2008,
+          "number": "4"
+        },
+        {
+          "series": "Cable",
+          "year": 2008,
+          "number": "5"
+        }
+      ]
+    },
+    {
+      "sourceBlock": 3,
+      "section": "The Messiah Is Born",
+      "collection": "Cable - Volume 2: Waiting for the End of the World",
+      "selectionPolicy": "source-directed-split",
+      "rawReference": "Cable #6",
+      "issues": [
+        {
+          "series": "Cable",
+          "year": 2008,
+          "number": "6"
+        }
+      ],
+      "placementDirection": "The next one-shot is explicitly set between Cable #6 and #7."
+    },
+    {
+      "sourceBlock": 4,
+      "section": "The Messiah Is Born",
+      "collection": "Cable (2008-2010) King-Size Spectacular",
+      "selectionPolicy": "corroborated-one-shot",
+      "rawReference": "Cable (2008-2010) King-Size Spectacular",
+      "issues": [
+        {
+          "series": "Cable King-Size Spectacular",
+          "year": 2008,
+          "number": "1"
+        }
+      ],
+      "placementDirection": "Place after Cable #6 and before Cable #7.",
+      "corroboration": [
+        "scripts/data/cbh-mappings/x-men-divided-we-stand.json",
+        "https://www.comics.org/issue/613084/"
+      ]
+    },
+    {
+      "sourceBlock": 5,
+      "section": "The Messiah Is Born",
+      "collection": "Cable - Volume 2: Waiting for the End of the World",
+      "selectionPolicy": "source-directed-split",
+      "rawReference": "Cable #7-10",
+      "issues": [
+        {
+          "series": "Cable",
+          "year": 2008,
+          "number": "7"
+        },
+        {
+          "series": "Cable",
+          "year": 2008,
+          "number": "8"
+        },
+        {
+          "series": "Cable",
+          "year": 2008,
+          "number": "9"
+        },
+        {
+          "series": "Cable",
+          "year": 2008,
+          "number": "10"
+        }
+      ],
+      "placementDirection": "Resume the source collection after the inserted King-Size Spectacular."
+    },
+    {
+      "sourceBlock": 6,
+      "section": "The Messiah Is Born",
+      "collection": "X-Force/Cable: Messiah War",
+      "selectionPolicy": "explicit-interleave",
+      "rawReference": "The Times and Life of Lucas Bishop #1-3, X-Men Messiah War One-Shot, Cable #13, X-Force #14, Cable #14, X-Force #15, Cable #15, X-Force #16",
+      "issues": [
+        {
+          "series": "The Times and Life of Lucas Bishop",
+          "year": 2009,
+          "number": "1"
+        },
+        {
+          "series": "The Times and Life of Lucas Bishop",
+          "year": 2009,
+          "number": "2"
+        },
+        {
+          "series": "The Times and Life of Lucas Bishop",
+          "year": 2009,
+          "number": "3"
+        },
+        {
+          "series": "X-Force/Cable: Messiah War",
+          "year": 2009,
+          "number": "1"
+        },
+        {
+          "series": "Cable",
+          "year": 2008,
+          "number": "13"
+        },
+        {
+          "series": "X-Force",
+          "year": 2008,
+          "number": "14"
+        },
+        {
+          "series": "Cable",
+          "year": 2008,
+          "number": "14"
+        },
+        {
+          "series": "X-Force",
+          "year": 2008,
+          "number": "15"
+        },
+        {
+          "series": "Cable",
+          "year": 2008,
+          "number": "15"
+        },
+        {
+          "series": "X-Force",
+          "year": 2008,
+          "number": "16"
+        }
+      ],
+      "corroboration": [
+        "scripts/data/cbh-mappings/messiah-war.json"
+      ]
+    },
+    {
+      "sourceBlock": 7,
+      "section": "The Messiah Is Born",
+      "collection": "Cable, Vol. 3: Stranded",
+      "selectionPolicy": "full-collection",
+      "rawReference": "Cable #16-21",
+      "issues": [
+        {
+          "series": "Cable",
+          "year": 2008,
+          "number": "16"
+        },
+        {
+          "series": "Cable",
+          "year": 2008,
+          "number": "17"
+        },
+        {
+          "series": "Cable",
+          "year": 2008,
+          "number": "18"
+        },
+        {
+          "series": "Cable",
+          "year": 2008,
+          "number": "19"
+        },
+        {
+          "series": "Cable",
+          "year": 2008,
+          "number": "20"
+        },
+        {
+          "series": "Cable",
+          "year": 2008,
+          "number": "21"
+        }
+      ]
+    },
+    {
+      "sourceBlock": 8,
+      "section": "The Messiah Is Born",
+      "collection": "Cable Vol. 4: Homecoming",
+      "selectionPolicy": "full-collection-with-repeat",
+      "rawReference": "Cable #21-25, X-Men: Hope",
+      "issues": [
+        {
+          "series": "Cable",
+          "year": 2008,
+          "number": "21"
+        },
+        {
+          "series": "Cable",
+          "year": 2008,
+          "number": "22"
+        },
+        {
+          "series": "Cable",
+          "year": 2008,
+          "number": "23"
+        },
+        {
+          "series": "Cable",
+          "year": 2008,
+          "number": "24"
+        },
+        {
+          "series": "Cable",
+          "year": 2008,
+          "number": "25"
+        },
+        {
+          "series": "X-Men: Hope",
+          "year": 2010,
+          "number": "1"
+        }
+      ],
+      "corroboration": [
+        "scripts/data/cbh-mappings/second-coming.json",
+        "https://www.comics.org/issue/781443/"
+      ]
+    },
+    {
+      "sourceBlock": 9,
+      "section": "The Messiah Shows Her Powers",
+      "collection": "X-Men: Second Coming",
+      "selectionPolicy": "explicit-interleave",
+      "rawReference": "X-Men: Second Coming #1; Uncanny X-Men #523; New Mutants #12; X-Men: Legacy #235; X-Force #26; Uncanny X-Men #524; New Mutants #13; X-Men: Legacy #236; X-Force #27; Uncanny X-Men #525; New Mutants #14; X-Men: Legacy #237; X-Force #28; X-Men: Second Coming #2",
+      "issues": [
+        {
+          "series": "X-Men: Second Coming",
+          "year": 2010,
+          "number": "1"
+        },
+        {
+          "series": "Uncanny X-Men",
+          "year": 1963,
+          "number": "523"
+        },
+        {
+          "series": "New Mutants",
+          "year": 2009,
+          "number": "12"
+        },
+        {
+          "series": "X-Men: Legacy",
+          "year": 2008,
+          "number": "235"
+        },
+        {
+          "series": "X-Force",
+          "year": 2008,
+          "number": "26"
+        },
+        {
+          "series": "Uncanny X-Men",
+          "year": 1963,
+          "number": "524"
+        },
+        {
+          "series": "New Mutants",
+          "year": 2009,
+          "number": "13"
+        },
+        {
+          "series": "X-Men: Legacy",
+          "year": 2008,
+          "number": "236"
+        },
+        {
+          "series": "X-Force",
+          "year": 2008,
+          "number": "27"
+        },
+        {
+          "series": "Uncanny X-Men",
+          "year": 1963,
+          "number": "525"
+        },
+        {
+          "series": "New Mutants",
+          "year": 2009,
+          "number": "14"
+        },
+        {
+          "series": "X-Men: Legacy",
+          "year": 2008,
+          "number": "237"
+        },
+        {
+          "series": "X-Force",
+          "year": 2008,
+          "number": "28"
+        },
+        {
+          "series": "X-Men: Second Coming",
+          "year": 2010,
+          "number": "2"
+        }
+      ]
+    },
+    {
+      "sourceBlock": 10,
+      "section": "The Messiah Shows Her Powers",
+      "collection": "Uncanny X-Men: The Birth of Generation Hope",
+      "selectionPolicy": "full-collection",
+      "rawReference": "Uncanny X-Men #526-529, Uncanny X-Men: The Heroic Age",
+      "issues": [
+        {
+          "series": "Uncanny X-Men",
+          "year": 1963,
+          "number": "526"
+        },
+        {
+          "series": "Uncanny X-Men",
+          "year": 1963,
+          "number": "527"
+        },
+        {
+          "series": "Uncanny X-Men",
+          "year": 1963,
+          "number": "528"
+        },
+        {
+          "series": "Uncanny X-Men",
+          "year": 1963,
+          "number": "529"
+        },
+        {
+          "series": "Uncanny X-Men: The Heroic Age",
+          "year": 2010,
+          "number": "1"
+        }
+      ],
+      "corroboration": [
+        "scripts/data/cbh-mappings/magneto-reading-order.json",
+        "https://www.comics.org/issue/783939/"
+      ]
+    },
+    {
+      "sourceBlock": 11,
+      "section": "The Messiah Shows Her Powers",
+      "collection": "Generation Hope: The Future's a Four-Lettered Word",
+      "selectionPolicy": "full-numbered-collection",
+      "rawReference": "Generation Hope #1-5",
+      "issues": [
+        {
+          "series": "Generation Hope",
+          "year": 2010,
+          "number": "1"
+        },
+        {
+          "series": "Generation Hope",
+          "year": 2010,
+          "number": "2"
+        },
+        {
+          "series": "Generation Hope",
+          "year": 2010,
+          "number": "3"
+        },
+        {
+          "series": "Generation Hope",
+          "year": 2010,
+          "number": "4"
+        },
+        {
+          "series": "Generation Hope",
+          "year": 2010,
+          "number": "5"
+        }
+      ],
+      "excludedMaterial": "Kieron Gillen interview from X-Men: Curse of the Mutants Spotlight"
+    },
+    {
+      "sourceBlock": 12,
+      "section": "The Messiah Shows Her Powers",
+      "collection": "X-Men/Steve Rogers: Escape From the Negative Zone",
+      "selectionPolicy": "full-collection",
+      "rawReference": "Uncanny X-Men Annual (2006) #3, Steve Rogers: Super-Soldier Annual #1, Namor: The First Mutant Annual #1",
+      "issues": [
+        {
+          "series": "Uncanny X-Men Annual",
+          "year": 2006,
+          "number": "3"
+        },
+        {
+          "series": "Steve Rogers: Super-Soldier Annual",
+          "year": 2011,
+          "number": "1"
+        },
+        {
+          "series": "Namor: The First Mutant Annual",
+          "year": 2011,
+          "number": "1"
+        }
+      ]
+    },
+    {
+      "sourceBlock": 13,
+      "section": "The Messiah Shows Her Powers",
+      "collection": "Generation Hope: Schism",
+      "selectionPolicy": "full-collection",
+      "rawReference": "Generation Hope #6-12",
+      "issues": [
+        {
+          "series": "Generation Hope",
+          "year": 2010,
+          "number": "6"
+        },
+        {
+          "series": "Generation Hope",
+          "year": 2010,
+          "number": "7"
+        },
+        {
+          "series": "Generation Hope",
+          "year": 2010,
+          "number": "8"
+        },
+        {
+          "series": "Generation Hope",
+          "year": 2010,
+          "number": "9"
+        },
+        {
+          "series": "Generation Hope",
+          "year": 2010,
+          "number": "10"
+        },
+        {
+          "series": "Generation Hope",
+          "year": 2010,
+          "number": "11"
+        },
+        {
+          "series": "Generation Hope",
+          "year": 2010,
+          "number": "12"
+        }
+      ]
+    },
+    {
+      "sourceBlock": 14,
+      "section": "The Messiah Shows Her Powers",
+      "collection": "X-Men: Schism",
+      "selectionPolicy": "explicit-character-cut",
+      "rawReference": "X-Men: Schism #1, #4-5, X-Men: Regenesis",
+      "issues": [
+        {
+          "series": "X-Men: Schism",
+          "year": 2011,
+          "number": "1"
+        },
+        {
+          "series": "X-Men: Schism",
+          "year": 2011,
+          "number": "4"
+        },
+        {
+          "series": "X-Men: Schism",
+          "year": 2011,
+          "number": "5"
+        },
+        {
+          "series": "X-Men: Regenesis",
+          "year": 2011,
+          "number": "1"
+        }
+      ],
+      "corroboration": [
+        "scripts/data/cbh-mappings/emma-frost-reading-order.json",
+        "https://www.comics.org/issue/898099/"
+      ]
+    },
+    {
+      "sourceBlock": 15,
+      "section": "The Messiah Shows Her Powers",
+      "collection": "Generation Hope: End Of A Generation",
+      "selectionPolicy": "full-collection",
+      "rawReference": "Generation Hope #13-17",
+      "issues": [
+        {
+          "series": "Generation Hope",
+          "year": 2010,
+          "number": "13"
+        },
+        {
+          "series": "Generation Hope",
+          "year": 2010,
+          "number": "14"
+        },
+        {
+          "series": "Generation Hope",
+          "year": 2010,
+          "number": "15"
+        },
+        {
+          "series": "Generation Hope",
+          "year": 2010,
+          "number": "16"
+        },
+        {
+          "series": "Generation Hope",
+          "year": 2010,
+          "number": "17"
+        }
+      ]
+    },
+    {
+      "sourceBlock": 16,
+      "section": "The Messiah Shows Her Powers",
+      "collection": "Uncanny X-Men by Kieron Gillen: The Complete Collection Vol. 1",
+      "selectionPolicy": "explicit-character-cut",
+      "rawReference": "Uncanny X-Men #538-539, #541-544, X-Men: Regenesis, Uncanny X-Men (2011) #1-3",
+      "issues": [
+        {
+          "series": "Uncanny X-Men",
+          "year": 1963,
+          "number": "538"
+        },
+        {
+          "series": "Uncanny X-Men",
+          "year": 1963,
+          "number": "539"
+        },
+        {
+          "series": "Uncanny X-Men",
+          "year": 1963,
+          "number": "541"
+        },
+        {
+          "series": "Uncanny X-Men",
+          "year": 1963,
+          "number": "542"
+        },
+        {
+          "series": "Uncanny X-Men",
+          "year": 1963,
+          "number": "543"
+        },
+        {
+          "series": "Uncanny X-Men",
+          "year": 1963,
+          "number": "544"
+        },
+        {
+          "series": "X-Men: Regenesis",
+          "year": 2011,
+          "number": "1"
+        },
+        {
+          "series": "Uncanny X-Men",
+          "year": 2011,
+          "number": "1"
+        },
+        {
+          "series": "Uncanny X-Men",
+          "year": 2011,
+          "number": "2"
+        },
+        {
+          "series": "Uncanny X-Men",
+          "year": 2011,
+          "number": "3"
+        }
+      ]
+    },
+    {
+      "sourceBlock": 17,
+      "section": "The Messiah Shows Her Powers",
+      "collection": "Uncanny X-Men by Kieron Gillen: The Complete Collection Vol. 2",
+      "selectionPolicy": "explicit-character-cut-with-deferred-subset",
+      "rawReference": "Uncanny X-Men (2011) #4-6, #8-11, #13, #19",
+      "issues": [
+        {
+          "series": "Uncanny X-Men",
+          "year": 2011,
+          "number": "4"
+        },
+        {
+          "series": "Uncanny X-Men",
+          "year": 2011,
+          "number": "5"
+        },
+        {
+          "series": "Uncanny X-Men",
+          "year": 2011,
+          "number": "6"
+        },
+        {
+          "series": "Uncanny X-Men",
+          "year": 2011,
+          "number": "8"
+        },
+        {
+          "series": "Uncanny X-Men",
+          "year": 2011,
+          "number": "9"
+        },
+        {
+          "series": "Uncanny X-Men",
+          "year": 2011,
+          "number": "10"
+        },
+        {
+          "series": "Uncanny X-Men",
+          "year": 2011,
+          "number": "11"
+        },
+        {
+          "series": "Uncanny X-Men",
+          "year": 2011,
+          "number": "13"
+        },
+        {
+          "series": "Uncanny X-Men",
+          "year": 2011,
+          "number": "19"
+        }
+      ],
+      "placementDirection": "Defer selected AVX: Consequences issues until after Avengers vs. X-Men #0-12."
+    },
+    {
+      "sourceBlock": 18,
+      "section": "The Messiah Shows Her Powers",
+      "collection": "Avengers: X-Sanction",
+      "selectionPolicy": "full-collection",
+      "rawReference": "Avengers: X-Sanction #1-4",
+      "issues": [
+        {
+          "series": "Avengers: X-Sanction",
+          "year": 2011,
+          "number": "1"
+        },
+        {
+          "series": "Avengers: X-Sanction",
+          "year": 2011,
+          "number": "2"
+        },
+        {
+          "series": "Avengers: X-Sanction",
+          "year": 2011,
+          "number": "3"
+        },
+        {
+          "series": "Avengers: X-Sanction",
+          "year": 2011,
+          "number": "4"
+        }
+      ]
+    },
+    {
+      "sourceBlock": 19,
+      "section": "The Messiah Shows Her Powers",
+      "collection": "Avengers vs. X-Men",
+      "selectionPolicy": "full-numbered-collection",
+      "rawReference": "Avengers Vs. X-Men #0-12",
+      "issues": [
+        {
+          "series": "Avengers Vs. X-Men",
+          "year": 2012,
+          "number": "0"
+        },
+        {
+          "series": "Avengers Vs. X-Men",
+          "year": 2012,
+          "number": "1"
+        },
+        {
+          "series": "Avengers Vs. X-Men",
+          "year": 2012,
+          "number": "2"
+        },
+        {
+          "series": "Avengers Vs. X-Men",
+          "year": 2012,
+          "number": "3"
+        },
+        {
+          "series": "Avengers Vs. X-Men",
+          "year": 2012,
+          "number": "4"
+        },
+        {
+          "series": "Avengers Vs. X-Men",
+          "year": 2012,
+          "number": "5"
+        },
+        {
+          "series": "Avengers Vs. X-Men",
+          "year": 2012,
+          "number": "6"
+        },
+        {
+          "series": "Avengers Vs. X-Men",
+          "year": 2012,
+          "number": "7"
+        },
+        {
+          "series": "Avengers Vs. X-Men",
+          "year": 2012,
+          "number": "8"
+        },
+        {
+          "series": "Avengers Vs. X-Men",
+          "year": 2012,
+          "number": "9"
+        },
+        {
+          "series": "Avengers Vs. X-Men",
+          "year": 2012,
+          "number": "10"
+        },
+        {
+          "series": "Avengers Vs. X-Men",
+          "year": 2012,
+          "number": "11"
+        },
+        {
+          "series": "Avengers Vs. X-Men",
+          "year": 2012,
+          "number": "12"
+        }
+      ],
+      "excludedMaterial": "Material From Point One #1"
+    },
+    {
+      "sourceBlock": 20,
+      "section": "The Messiah Shows Her Powers",
+      "collection": "Uncanny X-Men by Kieron Gillen: The Complete Collection Vol. 2",
+      "selectionPolicy": "source-directed-deferred-character-cut",
+      "rawReference": "AVX: Consequences #1, #3-5",
+      "issues": [
+        {
+          "series": "AVX: Consequences",
+          "year": 2012,
+          "number": "1"
+        },
+        {
+          "series": "AVX: Consequences",
+          "year": 2012,
+          "number": "3"
+        },
+        {
+          "series": "AVX: Consequences",
+          "year": 2012,
+          "number": "4"
+        },
+        {
+          "series": "AVX: Consequences",
+          "year": 2012,
+          "number": "5"
+        }
+      ],
+      "placementDirection": "Place after Avengers vs. X-Men #0-12, as the source directs."
+    },
+    {
+      "sourceBlock": 21,
+      "section": "Hope Summers From Marvel NOW! Until Krakoa",
+      "collection": "Cable and X-Force, Vol. 1: Wanted",
+      "selectionPolicy": "full-numbered-collection-with-partial-material-exclusion",
+      "rawReference": "Cable And X-Force #1-5",
+      "issues": [
+        {
+          "series": "Cable and X-Force",
+          "year": 2012,
+          "number": "1"
+        },
+        {
+          "series": "Cable and X-Force",
+          "year": 2012,
+          "number": "2"
+        },
+        {
+          "series": "Cable and X-Force",
+          "year": 2012,
+          "number": "3"
+        },
+        {
+          "series": "Cable and X-Force",
+          "year": 2012,
+          "number": "4"
+        },
+        {
+          "series": "Cable and X-Force",
+          "year": 2012,
+          "number": "5"
+        }
+      ],
+      "excludedMaterial": "Marvel Now! Point One (X-Force Story)",
+      "exclusionPrecedent": "scripts/data/cbh-packets/x-force-reading-order.json"
+    },
+    {
+      "sourceBlock": 22,
+      "section": "Hope Summers From Marvel NOW! Until Krakoa",
+      "collection": "Cable and X-Force Vol. 2: Dead Or Alive",
+      "selectionPolicy": "full-collection",
+      "rawReference": "Cable and X-Force #6-9",
+      "issues": [
+        {
+          "series": "Cable and X-Force",
+          "year": 2012,
+          "number": "6"
+        },
+        {
+          "series": "Cable and X-Force",
+          "year": 2012,
+          "number": "7"
+        },
+        {
+          "series": "Cable and X-Force",
+          "year": 2012,
+          "number": "8"
+        },
+        {
+          "series": "Cable and X-Force",
+          "year": 2012,
+          "number": "9"
+        }
+      ]
+    },
+    {
+      "sourceBlock": 23,
+      "section": "Hope Summers From Marvel NOW! Until Krakoa",
+      "collection": "Cable and X-Force Vol. 3: This Won't End Well",
+      "selectionPolicy": "full-collection",
+      "rawReference": "Cable and X-Force #10-14",
+      "issues": [
+        {
+          "series": "Cable and X-Force",
+          "year": 2012,
+          "number": "10"
+        },
+        {
+          "series": "Cable and X-Force",
+          "year": 2012,
+          "number": "11"
+        },
+        {
+          "series": "Cable and X-Force",
+          "year": 2012,
+          "number": "12"
+        },
+        {
+          "series": "Cable and X-Force",
+          "year": 2012,
+          "number": "13"
+        },
+        {
+          "series": "Cable and X-Force",
+          "year": 2012,
+          "number": "14"
+        }
+      ]
+    },
+    {
+      "sourceBlock": 24,
+      "section": "Hope Summers From Marvel NOW! Until Krakoa",
+      "collection": "Cable and X-Force Vol. 4: Vendetta",
+      "selectionPolicy": "explicit-interleave",
+      "rawReference": "Cable and X-Force #15-18, Uncanny X-Force #16, Cable and X-Force #19, Uncanny X-Force #17",
+      "issues": [
+        {
+          "series": "Cable and X-Force",
+          "year": 2012,
+          "number": "15"
+        },
+        {
+          "series": "Cable and X-Force",
+          "year": 2012,
+          "number": "16"
+        },
+        {
+          "series": "Cable and X-Force",
+          "year": 2012,
+          "number": "17"
+        },
+        {
+          "series": "Cable and X-Force",
+          "year": 2012,
+          "number": "18"
+        },
+        {
+          "series": "Uncanny X-Force",
+          "year": 2013,
+          "number": "16"
+        },
+        {
+          "series": "Cable and X-Force",
+          "year": 2012,
+          "number": "19"
+        },
+        {
+          "series": "Uncanny X-Force",
+          "year": 2013,
+          "number": "17"
+        }
+      ]
+    },
+    {
+      "sourceBlock": 25,
+      "section": "Hope Summers From Marvel NOW! Until Krakoa",
+      "collection": "X-Force Volume 1: Dirty/Tricks",
+      "selectionPolicy": "full-collection",
+      "rawReference": "X-Force #1-6",
+      "issues": [
+        {
+          "series": "X-Force",
+          "year": 2014,
+          "number": "1"
+        },
+        {
+          "series": "X-Force",
+          "year": 2014,
+          "number": "2"
+        },
+        {
+          "series": "X-Force",
+          "year": 2014,
+          "number": "3"
+        },
+        {
+          "series": "X-Force",
+          "year": 2014,
+          "number": "4"
+        },
+        {
+          "series": "X-Force",
+          "year": 2014,
+          "number": "5"
+        },
+        {
+          "series": "X-Force",
+          "year": 2014,
+          "number": "6"
+        }
+      ]
+    },
+    {
+      "sourceBlock": 26,
+      "section": "Hope Summers From Marvel NOW! Until Krakoa",
+      "collection": "X-Force Volume 2: Hide/Fear",
+      "selectionPolicy": "explicit-character-cut",
+      "rawReference": "X-Force #7-10",
+      "issues": [
+        {
+          "series": "X-Force",
+          "year": 2014,
+          "number": "7"
+        },
+        {
+          "series": "X-Force",
+          "year": 2014,
+          "number": "8"
+        },
+        {
+          "series": "X-Force",
+          "year": 2014,
+          "number": "9"
+        },
+        {
+          "series": "X-Force",
+          "year": 2014,
+          "number": "10"
+        }
+      ]
+    },
+    {
+      "sourceBlock": 27,
+      "section": "Hope Summers From Marvel NOW! Until Krakoa",
+      "collection": "X-Force Volume 3: Ends/Means",
+      "selectionPolicy": "full-collection",
+      "rawReference": "X-Force #11-15",
+      "issues": [
+        {
+          "series": "X-Force",
+          "year": 2014,
+          "number": "11"
+        },
+        {
+          "series": "X-Force",
+          "year": 2014,
+          "number": "12"
+        },
+        {
+          "series": "X-Force",
+          "year": 2014,
+          "number": "13"
+        },
+        {
+          "series": "X-Force",
+          "year": 2014,
+          "number": "14"
+        },
+        {
+          "series": "X-Force",
+          "year": 2014,
+          "number": "15"
+        }
+      ]
+    },
+    {
+      "sourceBlock": 28,
+      "section": "Hope Summers From Marvel NOW! Until Krakoa",
+      "collection": "Jean Grey Vol. 1: Nightmare Fuel",
+      "selectionPolicy": "full-collection-despite-prose-appearance-note",
+      "rawReference": "Jean Grey #1-6",
+      "issues": [
+        {
+          "series": "Jean Grey",
+          "year": 2017,
+          "number": "1"
+        },
+        {
+          "series": "Jean Grey",
+          "year": 2017,
+          "number": "2"
+        },
+        {
+          "series": "Jean Grey",
+          "year": 2017,
+          "number": "3"
+        },
+        {
+          "series": "Jean Grey",
+          "year": 2017,
+          "number": "4"
+        },
+        {
+          "series": "Jean Grey",
+          "year": 2017,
+          "number": "5"
+        },
+        {
+          "series": "Jean Grey",
+          "year": 2017,
+          "number": "6"
+        }
+      ],
+      "boundaryDecision": "The source recommends the whole collection even though prose notes Hope appears in issue #2."
+    },
+    {
+      "sourceBlock": 29,
+      "section": "Hope Summers From Marvel NOW! Until Krakoa",
+      "collection": "Jean Grey Vol. 2: Final Fight",
+      "selectionPolicy": "explicit-character-cut",
+      "rawReference": "Jean Grey #9-10",
+      "issues": [
+        {
+          "series": "Jean Grey",
+          "year": 2017,
+          "number": "9"
+        },
+        {
+          "series": "Jean Grey",
+          "year": 2017,
+          "number": "10"
+        }
+      ]
+    },
+    {
+      "sourceBlock": 30,
+      "section": "Hope Summers From Marvel NOW! Until Krakoa",
+      "collection": "Cable Vol. 3: Past Fears",
+      "selectionPolicy": "explicit-character-cut",
+      "rawReference": "Cable #155-156, #159",
+      "issues": [
+        {
+          "series": "Cable",
+          "year": 2017,
+          "number": "155"
+        },
+        {
+          "series": "Cable",
+          "year": 2017,
+          "number": "156"
+        },
+        {
+          "series": "Cable",
+          "year": 2017,
+          "number": "159"
+        }
+      ]
+    },
+    {
+      "sourceBlock": 31,
+      "section": "Hope Summers From Marvel NOW! Until Krakoa",
+      "collection": "Merry X-Men Holiday Special",
+      "selectionPolicy": "corroborated-one-shot",
+      "rawReference": "Merry X-Men Holiday Special #1",
+      "issues": [
+        {
+          "series": "Merry X-Men Holiday Special",
+          "year": 2018,
+          "number": "1"
+        }
+      ],
+      "corroboration": [
+        "https://www.comics.org/issue/1878771/"
+      ]
+    },
+    {
+      "sourceBlock": 32,
+      "section": "Hope Summers From Marvel NOW! Until Krakoa",
+      "collection": "War Of The Realms: Uncanny X-Men",
+      "selectionPolicy": "full-collection",
+      "rawReference": "War of the Realms: Uncanny X-Men #1-3",
+      "issues": [
+        {
+          "series": "War of the Realms: Uncanny X-Men",
+          "year": 2019,
+          "number": "1"
+        },
+        {
+          "series": "War of the Realms: Uncanny X-Men",
+          "year": 2019,
+          "number": "2"
+        },
+        {
+          "series": "War of the Realms: Uncanny X-Men",
+          "year": 2019,
+          "number": "3"
+        }
+      ]
+    },
+    {
+      "sourceBlock": 33,
+      "section": "Hope Summers From Marvel NOW! Until Krakoa",
+      "collection": "Uncanny X-Men Vol. 1: Cyclops And Wolverine",
+      "selectionPolicy": "explicit-character-cut",
+      "rawReference": "Uncanny X-Men #15-16",
+      "issues": [
+        {
+          "series": "Uncanny X-Men",
+          "year": 2018,
+          "number": "15"
+        },
+        {
+          "series": "Uncanny X-Men",
+          "year": 2018,
+          "number": "16"
+        }
+      ]
+    },
+    {
+      "sourceBlock": 34,
+      "section": "Hope Summers From Marvel NOW! Until Krakoa",
+      "collection": "Uncanny X-Men: Wolverine And Cyclops Vol. 2",
+      "selectionPolicy": "full-collection",
+      "rawReference": "Uncanny X-Men (2018) #17-22",
+      "issues": [
+        {
+          "series": "Uncanny X-Men",
+          "year": 2018,
+          "number": "17"
+        },
+        {
+          "series": "Uncanny X-Men",
+          "year": 2018,
+          "number": "18"
+        },
+        {
+          "series": "Uncanny X-Men",
+          "year": 2018,
+          "number": "19"
+        },
+        {
+          "series": "Uncanny X-Men",
+          "year": 2018,
+          "number": "20"
+        },
+        {
+          "series": "Uncanny X-Men",
+          "year": 2018,
+          "number": "21"
+        },
+        {
+          "series": "Uncanny X-Men",
+          "year": 2018,
+          "number": "22"
+        }
+      ]
+    },
+    {
+      "sourceBlock": 35,
+      "section": "The Savior in Krakoa",
+      "collection": "House Of X/Powers Of X",
+      "selectionPolicy": "explicit-character-cut",
+      "rawReference": "House Of X #5-6, Powers of X #6",
+      "issues": [
+        {
+          "series": "House of X",
+          "year": 2019,
+          "number": "5"
+        },
+        {
+          "series": "House of X",
+          "year": 2019,
+          "number": "6"
+        },
+        {
+          "series": "Powers of X",
+          "year": 2019,
+          "number": "6"
+        }
+      ]
+    },
+    {
+      "sourceBlock": 36,
+      "section": "The Savior in Krakoa",
+      "collection": "X-Factor by Leah Williams Vol. 1",
+      "selectionPolicy": "full-collection",
+      "rawReference": "X-Factor (2020) #1-3, #5",
+      "issues": [
+        {
+          "series": "X-Factor",
+          "year": 2020,
+          "number": "1"
+        },
+        {
+          "series": "X-Factor",
+          "year": 2020,
+          "number": "2"
+        },
+        {
+          "series": "X-Factor",
+          "year": 2020,
+          "number": "3"
+        },
+        {
+          "series": "X-Factor",
+          "year": 2020,
+          "number": "5"
+        }
+      ]
+    },
+    {
+      "sourceBlock": 37,
+      "section": "The Savior in Krakoa",
+      "collection": "S.W.O.R.D. By Al Ewing Vol. 1",
+      "selectionPolicy": "explicit-character-cut",
+      "rawReference": "S.W.O.R.D. #2, #4-5",
+      "issues": [
+        {
+          "series": "S.W.O.R.D.",
+          "year": 2020,
+          "number": "2"
+        },
+        {
+          "series": "S.W.O.R.D.",
+          "year": 2020,
+          "number": "4"
+        },
+        {
+          "series": "S.W.O.R.D.",
+          "year": 2020,
+          "number": "5"
+        }
+      ]
+    },
+    {
+      "sourceBlock": 38,
+      "section": "The Savior in Krakoa",
+      "collection": "Cable By Gerry Duggan Vol. 2",
+      "selectionPolicy": "explicit-character-cut",
+      "rawReference": "Cable #9, #11-12",
+      "issues": [
+        {
+          "series": "Cable",
+          "year": 2020,
+          "number": "9"
+        },
+        {
+          "series": "Cable",
+          "year": 2020,
+          "number": "11"
+        },
+        {
+          "series": "Cable",
+          "year": 2020,
+          "number": "12"
+        }
+      ]
+    },
+    {
+      "sourceBlock": 39,
+      "section": "The Savior in Krakoa",
+      "collection": "Way of X by Si Spurrier Vol. 1",
+      "selectionPolicy": "explicit-character-cut",
+      "rawReference": "Way of X #1-2, #5, X-Men: The Onslaught Revelation #1",
+      "issues": [
+        {
+          "series": "Way of X",
+          "year": 2021,
+          "number": "1"
+        },
+        {
+          "series": "Way of X",
+          "year": 2021,
+          "number": "2"
+        },
+        {
+          "series": "Way of X",
+          "year": 2021,
+          "number": "5"
+        },
+        {
+          "series": "X-Men: The Onslaught Revelation",
+          "year": 2021,
+          "number": "1"
+        }
+      ],
+      "corroboration": [
+        "https://www.comics.org/issue/2265960/"
+      ]
+    },
+    {
+      "sourceBlock": 40,
+      "section": "The Savior in Krakoa",
+      "collection": "X-Men: Hellfire Gala - The Red Carpet Collection",
+      "selectionPolicy": "explicit-character-cut",
+      "rawReference": "X-Men #21, Planet-Size X-Men #1, X-Factor #10",
+      "issues": [
+        {
+          "series": "X-Men",
+          "year": 2019,
+          "number": "21"
+        },
+        {
+          "series": "Planet-Size X-Men",
+          "year": 2021,
+          "number": "1"
+        },
+        {
+          "series": "X-Factor",
+          "year": 2020,
+          "number": "10"
+        }
+      ],
+      "corroboration": [
+        "https://www.comics.org/issue/2356227/"
+      ]
+    },
+    {
+      "sourceBlock": 41,
+      "section": "The Savior in Krakoa",
+      "collection": "Inferno by Jonathan Hickman",
+      "selectionPolicy": "explicit-character-cut",
+      "rawReference": "Inferno #2",
+      "issues": [
+        {
+          "series": "Inferno",
+          "year": 2021,
+          "number": "2"
+        }
+      ]
+    },
+    {
+      "sourceBlock": 42,
+      "section": "The Savior in Krakoa",
+      "collection": "X-Men: The Trial Of Magneto",
+      "selectionPolicy": "explicit-character-cut",
+      "rawReference": "X-Men: The Trial of Magneto #1-2, #4-5",
+      "issues": [
+        {
+          "series": "X-Men: The Trial of Magneto",
+          "year": 2021,
+          "number": "1"
+        },
+        {
+          "series": "X-Men: The Trial of Magneto",
+          "year": 2021,
+          "number": "2"
+        },
+        {
+          "series": "X-Men: The Trial of Magneto",
+          "year": 2021,
+          "number": "4"
+        },
+        {
+          "series": "X-Men: The Trial of Magneto",
+          "year": 2021,
+          "number": "5"
+        }
+      ]
+    },
+    {
+      "sourceBlock": 43,
+      "section": "Latest Additions",
+      "collection": "X-Men: The Onslaught Revelation",
+      "selectionPolicy": "corroborated-title-only-one-shot-repeat",
+      "rawReference": "X-Men: The Onslaught Revelation",
+      "issues": [
+        {
+          "series": "X-Men: The Onslaught Revelation",
+          "year": 2021,
+          "number": "1"
+        }
+      ],
+      "corroboration": [
+        "https://www.comics.org/issue/2265960/"
+      ]
+    },
+    {
+      "sourceBlock": 44,
+      "section": "Latest Additions",
+      "collection": "X-Terminators (2022)",
+      "selectionPolicy": "full-collection",
+      "rawReference": "X-Terminators #1-5",
+      "issues": [
+        {
+          "series": "X-Terminators",
+          "year": 2022,
+          "number": "1"
+        },
+        {
+          "series": "X-Terminators",
+          "year": 2022,
+          "number": "2"
+        },
+        {
+          "series": "X-Terminators",
+          "year": 2022,
+          "number": "3"
+        },
+        {
+          "series": "X-Terminators",
+          "year": 2022,
+          "number": "4"
+        },
+        {
+          "series": "X-Terminators",
+          "year": 2022,
+          "number": "5"
+        }
+      ]
+    },
+    {
+      "sourceBlock": 45,
+      "section": "Latest Additions",
+      "collection": "Marauders (2020) Vol. 1 by Gerry Duggan",
+      "selectionPolicy": "full-collection-with-source-year-correction",
+      "rawReference": "Marauders #1-5",
+      "issues": [
+        {
+          "series": "Marauders",
+          "year": 2019,
+          "number": "1"
+        },
+        {
+          "series": "Marauders",
+          "year": 2019,
+          "number": "2"
+        },
+        {
+          "series": "Marauders",
+          "year": 2019,
+          "number": "3"
+        },
+        {
+          "series": "Marauders",
+          "year": 2019,
+          "number": "4"
+        },
+        {
+          "series": "Marauders",
+          "year": 2019,
+          "number": "5"
+        }
+      ],
+      "identityNote": "The source collection label says 2020; the original series launched in 2019."
+    },
+    {
+      "sourceBlock": 46,
+      "section": "Latest Additions",
+      "collection": "Marauders (2020) Vol. 2 by Gerry Duggan",
+      "selectionPolicy": "full-collection-with-explicit-gap",
+      "rawReference": "Marauders #7-12",
+      "issues": [
+        {
+          "series": "Marauders",
+          "year": 2019,
+          "number": "7"
+        },
+        {
+          "series": "Marauders",
+          "year": 2019,
+          "number": "8"
+        },
+        {
+          "series": "Marauders",
+          "year": 2019,
+          "number": "9"
+        },
+        {
+          "series": "Marauders",
+          "year": 2019,
+          "number": "10"
+        },
+        {
+          "series": "Marauders",
+          "year": 2019,
+          "number": "11"
+        },
+        {
+          "series": "Marauders",
+          "year": 2019,
+          "number": "12"
+        }
+      ],
+      "boundaryDecision": "Do not add source-absent Marauders #6."
+    },
+    {
+      "sourceBlock": 47,
+      "section": "Latest Additions",
+      "collection": "X-Men Red Vol. 1 by Al Ewing",
+      "selectionPolicy": "full-collection",
+      "rawReference": "X-Men Red (2022) #1-5",
+      "issues": [
+        {
+          "series": "X-Men Red",
+          "year": 2022,
+          "number": "1"
+        },
+        {
+          "series": "X-Men Red",
+          "year": 2022,
+          "number": "2"
+        },
+        {
+          "series": "X-Men Red",
+          "year": 2022,
+          "number": "3"
+        },
+        {
+          "series": "X-Men Red",
+          "year": 2022,
+          "number": "4"
+        },
+        {
+          "series": "X-Men Red",
+          "year": 2022,
+          "number": "5"
+        }
+      ]
+    },
+    {
+      "sourceBlock": 48,
+      "section": "Latest Additions",
+      "collection": "X-Men Red Vol. 2 by Al Ewing",
+      "selectionPolicy": "full-collection",
+      "rawReference": "X-Men Red (2022) #6-10",
+      "issues": [
+        {
+          "series": "X-Men Red",
+          "year": 2022,
+          "number": "6"
+        },
+        {
+          "series": "X-Men Red",
+          "year": 2022,
+          "number": "7"
+        },
+        {
+          "series": "X-Men Red",
+          "year": 2022,
+          "number": "8"
+        },
+        {
+          "series": "X-Men Red",
+          "year": 2022,
+          "number": "9"
+        },
+        {
+          "series": "X-Men Red",
+          "year": 2022,
+          "number": "10"
+        }
+      ]
+    },
+    {
+      "sourceBlock": 49,
+      "section": "Latest Additions",
+      "collection": "X-Men: Hellfire Gala (2023)",
+      "selectionPolicy": "full-numbered-collection",
+      "rawReference": "X-Men: Hellfire Gala 2023 #1, Free Comic Book Day 2023: Avengers/X-Men #1, X-Men Unlimited Infinity Comic (2021) #100-105, Iron Man (2022) #8",
+      "issues": [
+        {
+          "series": "X-Men: Hellfire Gala",
+          "year": 2023,
+          "number": "1"
+        },
+        {
+          "series": "Free Comic Book Day 2023: Avengers/X-Men",
+          "year": 2023,
+          "number": "1"
+        },
+        {
+          "series": "X-Men Unlimited Infinity Comic",
+          "year": 2021,
+          "number": "100"
+        },
+        {
+          "series": "X-Men Unlimited Infinity Comic",
+          "year": 2021,
+          "number": "101"
+        },
+        {
+          "series": "X-Men Unlimited Infinity Comic",
+          "year": 2021,
+          "number": "102"
+        },
+        {
+          "series": "X-Men Unlimited Infinity Comic",
+          "year": 2021,
+          "number": "103"
+        },
+        {
+          "series": "X-Men Unlimited Infinity Comic",
+          "year": 2021,
+          "number": "104"
+        },
+        {
+          "series": "X-Men Unlimited Infinity Comic",
+          "year": 2021,
+          "number": "105"
+        },
+        {
+          "series": "Invincible Iron Man",
+          "year": 2022,
+          "number": "8"
+        }
+      ],
+      "identityNotes": [
+        "The source says Iron Man (2022) #8; the original title is Invincible Iron Man (2022) #8.",
+        "The source limits the FCBD item to its Avengers and X-Men stories; preserve that qualification in provenance."
+      ],
+      "excludedMaterial": "Hellfire Gala Variants",
+      "corroboration": [
+        "scripts/data/cbh-mappings/emma-frost-reading-order.json",
+        "https://www.comics.org/issue/2523359/",
+        "https://www.amazon.com/X-Men-Hellfire-Gala-Fall-X/dp/1302952231/"
+      ]
+    },
+    {
+      "sourceBlock": 50,
+      "section": "Latest Additions",
+      "collection": "X-Men: Before the Fall - Sons of X",
+      "selectionPolicy": "corroborated-title-only-one-shot",
+      "rawReference": "X-Men: Before the Fall - Sons of X",
+      "issues": [
+        {
+          "series": "X-Men: Before the Fall - Sons of X",
+          "year": 2023,
+          "number": "1"
+        }
+      ],
+      "corroboration": [
+        "https://www.midtowncomics.com/product/2198125"
+      ]
+    },
+    {
+      "sourceBlock": 51,
+      "section": "Latest Additions",
+      "collection": "X-Men: Before the Fall - Mutant First Strike",
+      "selectionPolicy": "corroborated-title-only-one-shot",
+      "rawReference": "X-Men: Before the Fall - Mutant First Strike",
+      "issues": [
+        {
+          "series": "X-Men: Before the Fall - Mutant First Strike",
+          "year": 2023,
+          "number": "1"
+        }
+      ],
+      "corroboration": [
+        "https://leagueofcomicgeeks.com/comic/4089928/x-men-before-the-fall-mutant-first-strike-1"
+      ]
+    },
+    {
+      "sourceBlock": 52,
+      "section": "Latest Additions",
+      "collection": "Sins of Sinister: Dominion",
+      "selectionPolicy": "corroborated-title-only-one-shot",
+      "rawReference": "Sins of Sinister: Dominion",
+      "issues": [
+        {
+          "series": "Sins of Sinister: Dominion",
+          "year": 2023,
+          "number": "1"
+        }
+      ],
+      "corroboration": [
+        "scripts/data/cbh-mappings/sins-of-sinister.json",
+        "https://leagueofcomicgeeks.com/comic/7265684/sins-of-sinister-dominion-1"
+      ]
+    },
+    {
+      "sourceBlock": 53,
+      "section": "Latest Additions",
+      "collection": "Immortal X-Men Vol. 1 by Kieron Gillen",
+      "selectionPolicy": "full-collection",
+      "rawReference": "Immortal X-Men #1-5",
+      "issues": [
+        {
+          "series": "Immortal X-Men",
+          "year": 2022,
+          "number": "1"
+        },
+        {
+          "series": "Immortal X-Men",
+          "year": 2022,
+          "number": "2"
+        },
+        {
+          "series": "Immortal X-Men",
+          "year": 2022,
+          "number": "3"
+        },
+        {
+          "series": "Immortal X-Men",
+          "year": 2022,
+          "number": "4"
+        },
+        {
+          "series": "Immortal X-Men",
+          "year": 2022,
+          "number": "5"
+        }
+      ]
+    },
+    {
+      "sourceBlock": 54,
+      "section": "Latest Additions",
+      "collection": "Immortal X-Men Vol. 2 by Kieron Gillen",
+      "selectionPolicy": "full-collection-with-explicit-gap",
+      "rawReference": "Immortal X-Men #7-10",
+      "issues": [
+        {
+          "series": "Immortal X-Men",
+          "year": 2022,
+          "number": "7"
+        },
+        {
+          "series": "Immortal X-Men",
+          "year": 2022,
+          "number": "8"
+        },
+        {
+          "series": "Immortal X-Men",
+          "year": 2022,
+          "number": "9"
+        },
+        {
+          "series": "Immortal X-Men",
+          "year": 2022,
+          "number": "10"
+        }
+      ],
+      "boundaryDecision": "Do not add source-absent Immortal X-Men #6."
+    },
+    {
+      "sourceBlock": 55,
+      "section": "Latest Additions",
+      "collection": "Immortal X-Men Vol. 3 by Kieron Gillen",
+      "selectionPolicy": "full-collection",
+      "rawReference": "Immortal X-Men #11-13",
+      "issues": [
+        {
+          "series": "Immortal X-Men",
+          "year": 2022,
+          "number": "11"
+        },
+        {
+          "series": "Immortal X-Men",
+          "year": 2022,
+          "number": "12"
+        },
+        {
+          "series": "Immortal X-Men",
+          "year": 2022,
+          "number": "13"
+        }
+      ]
+    }
+  ],
+  "repeatedSourceReferences": [
+    {
+      "sourcePosition": 41,
+      "sourceIssueReference": "Cable (2008) #21",
+      "sourceRangeReference": "Cable #21-25, X-Men: Hope",
+      "sourceGroup": "The Messiah Is Born",
+      "normalizedSeriesTitle": "Cable",
+      "seriesYear": 2008,
+      "issueNumber": "21",
+      "canonicalRow": 40,
+      "canonicalSourcePosition": 40
+    },
+    {
+      "sourcePosition": 96,
+      "sourceIssueReference": "X-Men: Regenesis (2011) #1",
+      "sourceRangeReference": "Uncanny X-Men #538-539, #541-544, X-Men: Regenesis, Uncanny X-Men (2011) #1-3",
+      "sourceGroup": "The Messiah Shows Her Powers",
+      "normalizedSeriesTitle": "X-Men: Regenesis",
+      "seriesYear": 2011,
+      "issueNumber": "1",
+      "canonicalRow": 83,
+      "canonicalSourcePosition": 84
+    },
+    {
+      "sourcePosition": 214,
+      "sourceIssueReference": "X-Men: The Onslaught Revelation (2021) #1",
+      "sourceRangeReference": "X-Men: The Onslaught Revelation",
+      "sourceGroup": "Latest Additions",
+      "normalizedSeriesTitle": "X-Men: The Onslaught Revelation",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "canonicalRow": 203,
+      "canonicalSourcePosition": 205
+    }
+  ],
+  "excludedSourceReferences": [
+    "Source commentary, synopsis, images, navigation, affiliate framing, and linked external reading orders.",
+    "Kieron Gillen interview from X-Men: Curse of the Mutants Spotlight.",
+    "Material From Point One #1 in Avengers vs. X-Men.",
+    "Marvel Now! Point One (X-Force Story), following the maintained X-Force packet partial-material exclusion.",
+    "Material from Classic X-Men (1986) #7 and Hellfire Gala Guide because the selected Hope Summers cut replaces the broader collection contents.",
+    "The title-only X-Men: Hellfire Gala (2022) link targets ISBN 9781302952099, X-Men: Hellfire Gala - Immortal, a 200-page trade paperback. With no Collects or issue-number line on this page, it is an unnumbered collection pointer and does not select X-Men: Hellfire Gala #1 or the collection contents.",
+    "A.X.E. Judgement Day under Latest Additions because the title-only event or collection link supplies no issue sequence on this page.",
+    "Hellfire Gala Variants because variant-cover galleries are not additional comic identities.",
+    "Any inferred Marauders #6 or Immortal X-Men #6, which the source does not select.",
+    "Any unnumbered miniseries or event range inferred from a title-only collection link."
+  ],
+  "volumeAndIdentityNotes": [
+    "Cable #1-25 uses the 2008 series. Cable #155-159 uses the 2017 series. Cable #7-12 in Krakoa uses the 2020 series.",
+    "X-Force issue ranges in Messiah War and Second Coming use the 2008 series. Dirty/Tricks through Ends/Means uses the 2014 series.",
+    "Uncanny X-Men without an explicit relaunch year uses the 1963 series until the source names Uncanny X-Men (2011) or Uncanny X-Men (2018).",
+    "Marauders collection labels say 2020, but the selected original issues belong to the 2019 series.",
+    "The source says Iron Man (2022) #8; the proposed original identity is Invincible Iron Man (2022) #8.",
+    "The linked 2022 Hellfire Gala edition is ISBN 9781302952099, X-Men: Hellfire Gala - Immortal, published in 2023 as a 200-page trade paperback. Accessible Open Library and bookseller records establish that it is a collection, so the title-only page link is excluded rather than converted to issue #1.",
+    "X-Men: Hellfire Gala (2023) #1 has a known provider duplicate-ID ambiguity in maintained Emma Frost evidence. The original identity is factual, but exact provider resolution remains a later mapping question.",
+    "Free Comic Book Day 2023: Avengers/X-Men is retained as one whole original issue while preserving the source qualification that its Avengers and X-Men stories are the relevant material."
+  ],
+  "placementDecisions": [
+    "Insert Cable King-Size Spectacular #1 after Cable #6 and before Cable #7.",
+    "Preserve both Messiah Complex and Second Coming cross-title interleaves exactly as printed.",
+    "Move the selected AVX: Consequences #1 and #3-5 after Avengers vs. X-Men #0-12, as the source directs.",
+    "Use the explicit Vendetta order instead of grouping Cable and X-Force separately from Uncanny X-Force.",
+    "Keep the full Jean Grey #1-6 collection because the source recommends the whole volume despite noting Hope appears in #2.",
+    "Keep Latest Additions in page order, including the repeated Onslaught Revelation one-shot, and do not fill absent Marauders #6 or Immortal X-Men #6."
+  ],
+  "linkedEditionEvidence": [
+    {
+      "sourceLabel": "X-Men: Hellfire Gala (2022)",
+      "sourceUrl": "https://www.amazon.com/X-Men-Hellfire-Gala-Immortal-ebook/dp/B0BJ4Z5JBW/",
+      "disposition": "unnumbered-collection-pointer",
+      "bibliographicIdentity": "X-Men: Hellfire Gala - Immortal, ISBN 9781302952099, 200-page trade paperback, published 2023",
+      "evidence": [
+        "https://openlibrary.org/works/OL29214697W/editions.json?limit=20",
+        "https://gemcitybooks.com/products/x-men-hellfire-gala-immortal-tpb-marvel-comics",
+        "https://www.abebooks.com/X-MEN-HELLFIRE-GALA-IMMORTAL-Duggan-Gerry/32462427583/bd"
+      ],
+      "reason": "The page supplies no Collects or issue-number line for this linked collected edition. Its original issues and partial material are not inferred into the Hope order."
+    }
+  ],
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #562",
+    "reviewedAt": "2026-09-28T23:22:15.865Z",
+    "rationale": "The coordinator independently reread the complete credited article including Latest Additions, re-expanded each section and verified the corrected264-position partition. Explicit character cuts replace broader contents; the source's stated Cable, Messiah, AVX and Vendetta reading directions govern placement. The2022 Hellfire Gala link identifies an unnumbered collected edition, not a supplied issue sequence, and is retained as a nonselection rather than expanded. The selected original one-shots remain bounded original identities, including the later Onslaught repeat. Metadata resolution and relationship approval are separate gates."
+  },
+  "mappingEvidence": {
+    "checkedAt": "2026-09-28",
+    "maintainedMappingReuseCount": 189,
+    "liveProviderResolutionCount": 66,
+    "openGapCount": 6,
+    "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/563",
+    "coverIssue": {
+      "sourceIssueReference": "X-Men: Messiah Complex (2007) #1",
+      "seriesId": 2901,
+      "issueId": 16600
+    }
+  },
+  "originalVolumeNotes": [
+    "X-Factor #25-27 normalize to the provider series launched in 2005; the source reference remains preserved separately.",
+    "Cable #1-25 are the 2008 run. The provider partitions #25 into series 9746 while #1-24 use series 4002.",
+    "Cable #155-159 are the 2017 run.",
+    "Cable #7, #9 and #11-12 in the Krakoa section are the 2020 run.",
+    "X-Force issues in Messiah War and Second Coming are the 2008 run.",
+    "X-Force and Uncanny X-Force in Dirty/Tricks through Ends/Means are the 2014 runs.",
+    "Uncanny X-Men defaults to the 1963 run unless the source explicitly identifies the 2011 or 2018 relaunch.",
+    "The source collection labels Marauders as 2020; the originals are the 2019 run.",
+    "The source label Iron Man (2022) #8 normalizes to Invincible Iron Man (2022) #8.",
+    "Uncanny X-Men Annual #3 resolves to the 2011 original, not a 2006 series.",
+    "Steve Rogers: Super-Soldier Annual #1 resolves to the provider-normalized Steve Rogers: Super Soldier Annual (2010) #1.",
+    "The provider includes the issue number in the series titles for Cable King-Size Spectacular, X-Force/Cable: Messiah War, Uncanny X-Men Annual #3 and Sins of Sinister: Dominion."
+  ],
+  "resolvedOccurrences": [
+    {
+      "sourcePosition": 1,
+      "disposition": "canonical",
+      "canonicalRow": 1,
+      "sourceIssueReference": "X-Men: Messiah Complex (2007) #1",
+      "normalizedSeriesTitle": "X-Men: Messiah Complex",
+      "seriesYear": 2007,
+      "issueNumber": "1",
+      "seriesId": 2901,
+      "issueId": 16600
+    },
+    {
+      "sourcePosition": 2,
+      "disposition": "canonical",
+      "canonicalRow": 2,
+      "sourceIssueReference": "Uncanny X-Men (1963) #492",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "492",
+      "seriesId": 2258,
+      "issueId": 17206
+    },
+    {
+      "sourcePosition": 3,
+      "disposition": "canonical",
+      "canonicalRow": 3,
+      "sourceIssueReference": "X-Factor (2006) #25",
+      "normalizedSeriesTitle": "X-Factor",
+      "seriesYear": 2005,
+      "issueNumber": "25",
+      "seriesId": 1035,
+      "issueId": 17241
+    },
+    {
+      "sourcePosition": 4,
+      "disposition": "canonical",
+      "canonicalRow": 4,
+      "sourceIssueReference": "New X-Men (2004) #44",
+      "normalizedSeriesTitle": "New X-Men",
+      "seriesYear": 2004,
+      "issueNumber": "44",
+      "seriesId": 749,
+      "issueId": 17223
+    },
+    {
+      "sourcePosition": 5,
+      "disposition": "canonical",
+      "canonicalRow": 5,
+      "sourceIssueReference": "X-Men (2004) #205",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 2004,
+      "issueNumber": "205",
+      "seriesId": 403,
+      "issueId": 17205
+    },
+    {
+      "sourcePosition": 6,
+      "disposition": "canonical",
+      "canonicalRow": 6,
+      "sourceIssueReference": "Uncanny X-Men (1963) #493",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "493",
+      "seriesId": 2258,
+      "issueId": 17336
+    },
+    {
+      "sourcePosition": 7,
+      "disposition": "canonical",
+      "canonicalRow": 7,
+      "sourceIssueReference": "X-Factor (2006) #26",
+      "normalizedSeriesTitle": "X-Factor",
+      "seriesYear": 2005,
+      "issueNumber": "26",
+      "seriesId": 1035,
+      "issueId": 21915
+    },
+    {
+      "sourcePosition": 8,
+      "disposition": "canonical",
+      "canonicalRow": 8,
+      "sourceIssueReference": "New X-Men (2004) #45",
+      "normalizedSeriesTitle": "New X-Men",
+      "seriesYear": 2004,
+      "issueNumber": "45",
+      "seriesId": 749,
+      "issueId": 17356
+    },
+    {
+      "sourcePosition": 9,
+      "disposition": "canonical",
+      "canonicalRow": 9,
+      "sourceIssueReference": "X-Men (2004) #206",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 2004,
+      "issueNumber": "206",
+      "seriesId": 403,
+      "issueId": 17334
+    },
+    {
+      "sourcePosition": 10,
+      "disposition": "canonical",
+      "canonicalRow": 10,
+      "sourceIssueReference": "Uncanny X-Men (1963) #494",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "494",
+      "seriesId": 2258,
+      "issueId": 17576
+    },
+    {
+      "sourcePosition": 11,
+      "disposition": "canonical",
+      "canonicalRow": 11,
+      "sourceIssueReference": "X-Factor (2006) #27",
+      "normalizedSeriesTitle": "X-Factor",
+      "seriesYear": 2005,
+      "issueNumber": "27",
+      "seriesId": 1035,
+      "issueId": 17615
+    },
+    {
+      "sourcePosition": 12,
+      "disposition": "canonical",
+      "canonicalRow": 12,
+      "sourceIssueReference": "New X-Men (2004) #46",
+      "normalizedSeriesTitle": "New X-Men",
+      "seriesYear": 2004,
+      "issueNumber": "46",
+      "seriesId": 749,
+      "issueId": 17595
+    },
+    {
+      "sourcePosition": 13,
+      "disposition": "canonical",
+      "canonicalRow": 13,
+      "sourceIssueReference": "X-Men (2004) #207",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 2004,
+      "issueNumber": "207",
+      "seriesId": 403,
+      "issueId": 17575
+    },
+    {
+      "sourcePosition": 14,
+      "disposition": "canonical",
+      "canonicalRow": 14,
+      "sourceIssueReference": "Cable (2008) #1",
+      "normalizedSeriesTitle": "Cable",
+      "seriesYear": 2008,
+      "issueNumber": "1",
+      "seriesId": 4002,
+      "issueId": 20897
+    },
+    {
+      "sourcePosition": 15,
+      "disposition": "canonical",
+      "canonicalRow": 15,
+      "sourceIssueReference": "Cable (2008) #2",
+      "normalizedSeriesTitle": "Cable",
+      "seriesYear": 2008,
+      "issueNumber": "2",
+      "seriesId": 4002,
+      "issueId": 21030
+    },
+    {
+      "sourcePosition": 16,
+      "disposition": "canonical",
+      "canonicalRow": 16,
+      "sourceIssueReference": "Cable (2008) #3",
+      "normalizedSeriesTitle": "Cable",
+      "seriesYear": 2008,
+      "issueNumber": "3",
+      "seriesId": 4002,
+      "issueId": 21246
+    },
+    {
+      "sourcePosition": 17,
+      "disposition": "canonical",
+      "canonicalRow": 17,
+      "sourceIssueReference": "Cable (2008) #4",
+      "normalizedSeriesTitle": "Cable",
+      "seriesYear": 2008,
+      "issueNumber": "4",
+      "seriesId": 4002,
+      "issueId": 21388
+    },
+    {
+      "sourcePosition": 18,
+      "disposition": "canonical",
+      "canonicalRow": 18,
+      "sourceIssueReference": "Cable (2008) #5",
+      "normalizedSeriesTitle": "Cable",
+      "seriesYear": 2008,
+      "issueNumber": "5",
+      "seriesId": 4002,
+      "issueId": 21563
+    },
+    {
+      "sourcePosition": 19,
+      "disposition": "canonical",
+      "canonicalRow": 19,
+      "sourceIssueReference": "Cable (2008) #6",
+      "normalizedSeriesTitle": "Cable",
+      "seriesYear": 2008,
+      "issueNumber": "6",
+      "seriesId": 4002,
+      "issueId": 21758
+    },
+    {
+      "sourcePosition": 20,
+      "disposition": "canonical",
+      "canonicalRow": 20,
+      "sourceIssueReference": "Cable King-Size Spectacular (2008) #1",
+      "normalizedSeriesTitle": "CABLE KING-SIZE SPECTACULAR 1",
+      "seriesYear": 2008,
+      "issueNumber": "1",
+      "seriesId": 5749,
+      "issueId": 22047
+    },
+    {
+      "sourcePosition": 21,
+      "disposition": "canonical",
+      "canonicalRow": 21,
+      "sourceIssueReference": "Cable (2008) #7",
+      "normalizedSeriesTitle": "Cable",
+      "seriesYear": 2008,
+      "issueNumber": "7",
+      "seriesId": 4002,
+      "issueId": 22323
+    },
+    {
+      "sourcePosition": 22,
+      "disposition": "canonical",
+      "canonicalRow": 22,
+      "sourceIssueReference": "Cable (2008) #8",
+      "normalizedSeriesTitle": "Cable",
+      "seriesYear": 2008,
+      "issueNumber": "8",
+      "seriesId": 4002,
+      "issueId": 22522
+    },
+    {
+      "sourcePosition": 23,
+      "disposition": "canonical",
+      "canonicalRow": 23,
+      "sourceIssueReference": "Cable (2008) #9",
+      "normalizedSeriesTitle": "Cable",
+      "seriesYear": 2008,
+      "issueNumber": "9",
+      "seriesId": 4002,
+      "issueId": 22930
+    },
+    {
+      "sourcePosition": 24,
+      "disposition": "canonical",
+      "canonicalRow": 24,
+      "sourceIssueReference": "Cable (2008) #10",
+      "normalizedSeriesTitle": "Cable",
+      "seriesYear": 2008,
+      "issueNumber": "10",
+      "seriesId": 4002,
+      "issueId": 23126
+    },
+    {
+      "sourcePosition": 25,
+      "disposition": "canonical",
+      "canonicalRow": 25,
+      "sourceIssueReference": "The Times and Life of Lucas Bishop (2009) #1",
+      "normalizedSeriesTitle": "X-Men: The Times and Life of Lucas Bishop",
+      "seriesYear": 2009,
+      "issueNumber": "1",
+      "seriesId": 43538,
+      "issueId": 23667
+    },
+    {
+      "sourcePosition": 26,
+      "disposition": "canonical",
+      "canonicalRow": 26,
+      "sourceIssueReference": "The Times and Life of Lucas Bishop (2009) #2",
+      "normalizedSeriesTitle": "X-Men: The Times and Life of Lucas Bishop",
+      "seriesYear": 2009,
+      "issueNumber": "2",
+      "seriesId": 43538,
+      "issueId": 23848
+    },
+    {
+      "sourcePosition": 27,
+      "disposition": "canonical",
+      "canonicalRow": 27,
+      "sourceIssueReference": "The Times and Life of Lucas Bishop (2009) #3",
+      "normalizedSeriesTitle": "X-Men: The Times and Life of Lucas Bishop",
+      "seriesYear": 2009,
+      "issueNumber": "3",
+      "seriesId": 43538,
+      "issueId": 24054
+    },
+    {
+      "sourcePosition": 28,
+      "disposition": "canonical",
+      "canonicalRow": 28,
+      "sourceIssueReference": "X-Force/Cable: Messiah War (2009) #1",
+      "normalizedSeriesTitle": "X-FORCE/CABLE: MESSIAH WAR 1",
+      "seriesYear": 2009,
+      "issueNumber": "1",
+      "seriesId": 7002,
+      "issueId": 27620
+    },
+    {
+      "sourcePosition": 29,
+      "disposition": "canonical",
+      "canonicalRow": 29,
+      "sourceIssueReference": "Cable (2008) #13",
+      "normalizedSeriesTitle": "Cable",
+      "seriesYear": 2008,
+      "issueNumber": "13",
+      "seriesId": 4002,
+      "issueId": 23971
+    },
+    {
+      "sourcePosition": 30,
+      "disposition": "canonical",
+      "canonicalRow": 30,
+      "sourceIssueReference": "X-Force (2008) #14",
+      "normalizedSeriesTitle": "X-Force",
+      "seriesYear": 2008,
+      "issueNumber": "14",
+      "seriesId": 3839,
+      "issueId": 23969
+    },
+    {
+      "sourcePosition": 31,
+      "disposition": "canonical",
+      "canonicalRow": 31,
+      "sourceIssueReference": "Cable (2008) #14",
+      "normalizedSeriesTitle": "Cable",
+      "seriesYear": 2008,
+      "issueNumber": "14",
+      "seriesId": 4002,
+      "issueId": 24171
+    },
+    {
+      "sourcePosition": 32,
+      "disposition": "canonical",
+      "canonicalRow": 32,
+      "sourceIssueReference": "X-Force (2008) #15",
+      "normalizedSeriesTitle": "X-Force",
+      "seriesYear": 2008,
+      "issueNumber": "15",
+      "seriesId": 3839,
+      "issueId": 24170
+    },
+    {
+      "sourcePosition": 33,
+      "disposition": "canonical",
+      "canonicalRow": 33,
+      "sourceIssueReference": "Cable (2008) #15",
+      "normalizedSeriesTitle": "Cable",
+      "seriesYear": 2008,
+      "issueNumber": "15",
+      "seriesId": 4002,
+      "issueId": 24631
+    },
+    {
+      "sourcePosition": 34,
+      "disposition": "canonical",
+      "canonicalRow": 34,
+      "sourceIssueReference": "X-Force (2008) #16",
+      "normalizedSeriesTitle": "X-Force",
+      "seriesYear": 2008,
+      "issueNumber": "16",
+      "seriesId": 3839,
+      "issueId": 27253
+    },
+    {
+      "sourcePosition": 35,
+      "disposition": "canonical",
+      "canonicalRow": 35,
+      "sourceIssueReference": "Cable (2008) #16",
+      "normalizedSeriesTitle": "Cable",
+      "seriesYear": 2008,
+      "issueNumber": "16",
+      "seriesId": 4002,
+      "issueId": 24633
+    },
+    {
+      "sourcePosition": 36,
+      "disposition": "canonical",
+      "canonicalRow": 36,
+      "sourceIssueReference": "Cable (2008) #17",
+      "normalizedSeriesTitle": "Cable",
+      "seriesYear": 2008,
+      "issueNumber": "17",
+      "seriesId": 4002,
+      "issueId": 24634
+    },
+    {
+      "sourcePosition": 37,
+      "disposition": "canonical",
+      "canonicalRow": 37,
+      "sourceIssueReference": "Cable (2008) #18",
+      "normalizedSeriesTitle": "Cable",
+      "seriesYear": 2008,
+      "issueNumber": "18",
+      "seriesId": 4002,
+      "issueId": 24635
+    },
+    {
+      "sourcePosition": 38,
+      "disposition": "canonical",
+      "canonicalRow": 38,
+      "sourceIssueReference": "Cable (2008) #19",
+      "normalizedSeriesTitle": "Cable",
+      "seriesYear": 2008,
+      "issueNumber": "19",
+      "seriesId": 4002,
+      "issueId": 24636
+    },
+    {
+      "sourcePosition": 39,
+      "disposition": "canonical",
+      "canonicalRow": 39,
+      "sourceIssueReference": "Cable (2008) #20",
+      "normalizedSeriesTitle": "Cable",
+      "seriesYear": 2008,
+      "issueNumber": "20",
+      "seriesId": 4002,
+      "issueId": 24637
+    },
+    {
+      "sourcePosition": 40,
+      "disposition": "canonical",
+      "canonicalRow": 40,
+      "sourceIssueReference": "Cable (2008) #21",
+      "normalizedSeriesTitle": "Cable",
+      "seriesYear": 2008,
+      "issueNumber": "21",
+      "seriesId": 4002,
+      "issueId": 24638
+    },
+    {
+      "sourcePosition": 41,
+      "disposition": "canonical-repeat",
+      "canonicalRow": 40,
+      "canonicalSourcePosition": 40,
+      "sourceIssueReference": "Cable (2008) #21",
+      "normalizedSeriesTitle": "Cable",
+      "seriesYear": 2008,
+      "issueNumber": "21",
+      "seriesId": 4002,
+      "issueId": 24638
+    },
+    {
+      "sourcePosition": 42,
+      "disposition": "canonical",
+      "canonicalRow": 41,
+      "sourceIssueReference": "Cable (2008) #22",
+      "normalizedSeriesTitle": "Cable",
+      "seriesYear": 2008,
+      "issueNumber": "22",
+      "seriesId": 4002,
+      "issueId": 30344
+    },
+    {
+      "sourcePosition": 43,
+      "disposition": "canonical",
+      "canonicalRow": 42,
+      "sourceIssueReference": "Cable (2008) #23",
+      "normalizedSeriesTitle": "Cable",
+      "seriesYear": 2008,
+      "issueNumber": "23",
+      "seriesId": 4002,
+      "issueId": 24640
+    },
+    {
+      "sourcePosition": 44,
+      "disposition": "canonical",
+      "canonicalRow": 43,
+      "sourceIssueReference": "Cable (2008) #24",
+      "normalizedSeriesTitle": "Cable",
+      "seriesYear": 2008,
+      "issueNumber": "24",
+      "seriesId": 4002,
+      "issueId": 30346
+    },
+    {
+      "sourcePosition": 45,
+      "disposition": "canonical",
+      "canonicalRow": 44,
+      "sourceIssueReference": "Cable (2008) #25",
+      "normalizedSeriesTitle": "Cable",
+      "seriesYear": 2008,
+      "issueNumber": "25",
+      "seriesId": 9746,
+      "issueId": 29932
+    },
+    {
+      "sourcePosition": 46,
+      "disposition": "canonical",
+      "canonicalRow": 45,
+      "sourceIssueReference": "X-Men: Hope (2010) #1",
+      "normalizedSeriesTitle": "X-Men: Hope",
+      "seriesYear": 2010,
+      "issueNumber": "1",
+      "seriesId": 9344,
+      "issueId": 32475
+    },
+    {
+      "sourcePosition": 47,
+      "disposition": "canonical",
+      "canonicalRow": 46,
+      "sourceIssueReference": "X-Men: Second Coming (2010) #1",
+      "normalizedSeriesTitle": "X-Men: Second Coming",
+      "seriesYear": 2010,
+      "issueNumber": "1",
+      "seriesId": 9359,
+      "issueId": 30274
+    },
+    {
+      "sourcePosition": 48,
+      "disposition": "canonical",
+      "canonicalRow": 47,
+      "sourceIssueReference": "Uncanny X-Men (1963) #523",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "523",
+      "seriesId": 2258,
+      "issueId": 32564
+    },
+    {
+      "sourcePosition": 49,
+      "disposition": "canonical",
+      "canonicalRow": 48,
+      "sourceIssueReference": "New Mutants (2009) #12",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 2009,
+      "issueNumber": "12",
+      "seriesId": 7455,
+      "issueId": 32552
+    },
+    {
+      "sourcePosition": 50,
+      "disposition": "canonical",
+      "canonicalRow": 49,
+      "sourceIssueReference": "X-Men: Legacy (2008) #235",
+      "normalizedSeriesTitle": "X-Men: Legacy",
+      "seriesYear": 2008,
+      "issueNumber": "235",
+      "seriesId": 3754,
+      "issueId": 32598
+    },
+    {
+      "sourcePosition": 51,
+      "disposition": "canonical",
+      "canonicalRow": 50,
+      "sourceIssueReference": "X-Force (2008) #26",
+      "normalizedSeriesTitle": "X-Force",
+      "seriesYear": 2008,
+      "issueNumber": "26",
+      "seriesId": 3839,
+      "issueId": 32583
+    },
+    {
+      "sourcePosition": 52,
+      "disposition": "canonical",
+      "canonicalRow": 51,
+      "sourceIssueReference": "Uncanny X-Men (1963) #524",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "524",
+      "seriesId": 2258,
+      "issueId": 30621
+    },
+    {
+      "sourcePosition": 53,
+      "disposition": "canonical",
+      "canonicalRow": 52,
+      "sourceIssueReference": "New Mutants (2009) #13",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 2009,
+      "issueNumber": "13",
+      "seriesId": 7455,
+      "issueId": 30486
+    },
+    {
+      "sourcePosition": 54,
+      "disposition": "canonical",
+      "canonicalRow": 53,
+      "sourceIssueReference": "X-Men: Legacy (2008) #236",
+      "normalizedSeriesTitle": "X-Men: Legacy",
+      "seriesYear": 2008,
+      "issueNumber": "236",
+      "seriesId": 3754,
+      "issueId": 30703
+    },
+    {
+      "sourcePosition": 55,
+      "disposition": "canonical",
+      "canonicalRow": 54,
+      "sourceIssueReference": "X-Force (2008) #27",
+      "normalizedSeriesTitle": "X-Force",
+      "seriesYear": 2008,
+      "issueNumber": "27",
+      "seriesId": 3839,
+      "issueId": 30673
+    },
+    {
+      "sourcePosition": 56,
+      "disposition": "canonical",
+      "canonicalRow": 55,
+      "sourceIssueReference": "Uncanny X-Men (1963) #525",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "525",
+      "seriesId": 2258,
+      "issueId": 30622
+    },
+    {
+      "sourcePosition": 57,
+      "disposition": "canonical",
+      "canonicalRow": 56,
+      "sourceIssueReference": "New Mutants (2009) #14",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 2009,
+      "issueNumber": "14",
+      "seriesId": 7455,
+      "issueId": 30487
+    },
+    {
+      "sourcePosition": 58,
+      "disposition": "canonical",
+      "canonicalRow": 57,
+      "sourceIssueReference": "X-Men: Legacy (2008) #237",
+      "normalizedSeriesTitle": "X-Men: Legacy",
+      "seriesYear": 2008,
+      "issueNumber": "237",
+      "seriesId": 3754,
+      "issueId": 30704
+    },
+    {
+      "sourcePosition": 59,
+      "disposition": "canonical",
+      "canonicalRow": 58,
+      "sourceIssueReference": "X-Force (2008) #28",
+      "normalizedSeriesTitle": "X-Force",
+      "seriesYear": 2008,
+      "issueNumber": "28",
+      "seriesId": 3839,
+      "issueId": 30674
+    },
+    {
+      "sourcePosition": 60,
+      "disposition": "canonical",
+      "canonicalRow": 59,
+      "sourceIssueReference": "X-Men: Second Coming (2010) #2",
+      "normalizedSeriesTitle": "X-Men: Second Coming",
+      "seriesYear": 2010,
+      "issueNumber": "2",
+      "seriesId": 9359,
+      "issueId": 33166
+    },
+    {
+      "sourcePosition": 61,
+      "disposition": "canonical",
+      "canonicalRow": 60,
+      "sourceIssueReference": "Uncanny X-Men (1963) #526",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "526",
+      "seriesId": 2258,
+      "issueId": 30623
+    },
+    {
+      "sourcePosition": 62,
+      "disposition": "canonical",
+      "canonicalRow": 61,
+      "sourceIssueReference": "Uncanny X-Men (1963) #527",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "527",
+      "seriesId": 2258,
+      "issueId": 30624
+    },
+    {
+      "sourcePosition": 63,
+      "disposition": "canonical",
+      "canonicalRow": 62,
+      "sourceIssueReference": "Uncanny X-Men (1963) #528",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "528",
+      "seriesId": 2258,
+      "issueId": 30625
+    },
+    {
+      "sourcePosition": 64,
+      "disposition": "canonical",
+      "canonicalRow": 63,
+      "sourceIssueReference": "Uncanny X-Men (1963) #529",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "529",
+      "seriesId": 2258,
+      "issueId": 30626
+    },
+    {
+      "sourcePosition": 65,
+      "disposition": "canonical",
+      "canonicalRow": 64,
+      "sourceIssueReference": "Uncanny X-Men: The Heroic Age (2010) #1",
+      "normalizedSeriesTitle": "Uncanny X-Men: The Heroic Age",
+      "seriesYear": 2010,
+      "issueNumber": "1",
+      "seriesId": 11653,
+      "issueId": 36305
+    },
+    {
+      "sourcePosition": 66,
+      "disposition": "canonical",
+      "canonicalRow": 65,
+      "sourceIssueReference": "Generation Hope (2010) #1",
+      "normalizedSeriesTitle": "Generation Hope",
+      "seriesYear": 2010,
+      "issueNumber": "1",
+      "seriesId": 9895,
+      "issueId": 30078
+    },
+    {
+      "sourcePosition": 67,
+      "disposition": "canonical",
+      "canonicalRow": 66,
+      "sourceIssueReference": "Generation Hope (2010) #2",
+      "normalizedSeriesTitle": "Generation Hope",
+      "seriesYear": 2010,
+      "issueNumber": "2",
+      "seriesId": 9895,
+      "issueId": 30082
+    },
+    {
+      "sourcePosition": 68,
+      "disposition": "canonical",
+      "canonicalRow": 67,
+      "sourceIssueReference": "Generation Hope (2010) #3",
+      "normalizedSeriesTitle": "Generation Hope",
+      "seriesYear": 2010,
+      "issueNumber": "3",
+      "seriesId": 9895,
+      "issueId": 30083
+    },
+    {
+      "sourcePosition": 69,
+      "disposition": "canonical",
+      "canonicalRow": 68,
+      "sourceIssueReference": "Generation Hope (2010) #4",
+      "normalizedSeriesTitle": "Generation Hope",
+      "seriesYear": 2010,
+      "issueNumber": "4",
+      "seriesId": 9895,
+      "issueId": 30084
+    },
+    {
+      "sourcePosition": 70,
+      "disposition": "canonical",
+      "canonicalRow": 69,
+      "sourceIssueReference": "Generation Hope (2010) #5",
+      "normalizedSeriesTitle": "Generation Hope",
+      "seriesYear": 2010,
+      "issueNumber": "5",
+      "seriesId": 9895,
+      "issueId": 30085
+    },
+    {
+      "sourcePosition": 71,
+      "disposition": "canonical",
+      "canonicalRow": 70,
+      "sourceIssueReference": "Uncanny X-Men Annual (2006) #3",
+      "normalizedSeriesTitle": "UNCANNY X-MEN ANNUAL 3",
+      "seriesYear": 2011,
+      "issueNumber": "3",
+      "seriesId": 13193,
+      "issueId": 36944
+    },
+    {
+      "sourcePosition": 72,
+      "disposition": "canonical",
+      "canonicalRow": 71,
+      "sourceIssueReference": "Steve Rogers: Super-Soldier Annual (2011) #1",
+      "normalizedSeriesTitle": "Steve Rogers: Super Soldier Annual",
+      "seriesYear": 2010,
+      "issueNumber": "1",
+      "seriesId": 13192,
+      "issueId": 36943
+    },
+    {
+      "sourcePosition": 73,
+      "disposition": "canonical",
+      "canonicalRow": 72,
+      "sourceIssueReference": "Namor: The First Mutant Annual (2011) #1",
+      "normalizedSeriesTitle": "Namor: The First Mutant Annual",
+      "seriesYear": 2011,
+      "issueNumber": "1",
+      "seriesId": 13191,
+      "issueId": 36942
+    },
+    {
+      "sourcePosition": 74,
+      "disposition": "canonical",
+      "canonicalRow": 73,
+      "sourceIssueReference": "Generation Hope (2010) #6",
+      "normalizedSeriesTitle": "Generation Hope",
+      "seriesYear": 2010,
+      "issueNumber": "6",
+      "seriesId": 9895,
+      "issueId": 36642
+    },
+    {
+      "sourcePosition": 75,
+      "disposition": "canonical",
+      "canonicalRow": 74,
+      "sourceIssueReference": "Generation Hope (2010) #7",
+      "normalizedSeriesTitle": "Generation Hope",
+      "seriesYear": 2010,
+      "issueNumber": "7",
+      "seriesId": 9895,
+      "issueId": 36643
+    },
+    {
+      "sourcePosition": 76,
+      "disposition": "canonical",
+      "canonicalRow": 75,
+      "sourceIssueReference": "Generation Hope (2010) #8",
+      "normalizedSeriesTitle": "Generation Hope",
+      "seriesYear": 2010,
+      "issueNumber": "8",
+      "seriesId": 9895,
+      "issueId": 36641
+    },
+    {
+      "sourcePosition": 77,
+      "disposition": "canonical",
+      "canonicalRow": 76,
+      "sourceIssueReference": "Generation Hope (2010) #9",
+      "normalizedSeriesTitle": "Generation Hope",
+      "seriesYear": 2010,
+      "issueNumber": "9",
+      "seriesId": 9895,
+      "issueId": 36640
+    },
+    {
+      "sourcePosition": 78,
+      "disposition": "canonical",
+      "canonicalRow": 77,
+      "sourceIssueReference": "Generation Hope (2010) #10",
+      "normalizedSeriesTitle": "Generation Hope",
+      "seriesYear": 2010,
+      "issueNumber": "10",
+      "seriesId": 9895,
+      "issueId": 36639
+    },
+    {
+      "sourcePosition": 79,
+      "disposition": "canonical",
+      "canonicalRow": 78,
+      "sourceIssueReference": "Generation Hope (2010) #11",
+      "normalizedSeriesTitle": "Generation Hope",
+      "seriesYear": 2010,
+      "issueNumber": "11",
+      "seriesId": 9895,
+      "issueId": 36638
+    },
+    {
+      "sourcePosition": 80,
+      "disposition": "canonical",
+      "canonicalRow": 79,
+      "sourceIssueReference": "Generation Hope (2010) #12",
+      "normalizedSeriesTitle": "Generation Hope",
+      "seriesYear": 2010,
+      "issueNumber": "12",
+      "seriesId": 9895,
+      "issueId": 36637
+    },
+    {
+      "sourcePosition": 81,
+      "disposition": "canonical",
+      "canonicalRow": 80,
+      "sourceIssueReference": "X-Men: Schism (2011) #1",
+      "normalizedSeriesTitle": "X-Men: Schism",
+      "seriesYear": 2011,
+      "issueNumber": "1",
+      "seriesId": 13880,
+      "issueId": 38491
+    },
+    {
+      "sourcePosition": 82,
+      "disposition": "canonical",
+      "canonicalRow": 81,
+      "sourceIssueReference": "X-Men: Schism (2011) #4",
+      "normalizedSeriesTitle": "X-Men: Schism",
+      "seriesYear": 2011,
+      "issueNumber": "4",
+      "seriesId": 13880,
+      "issueId": 38489
+    },
+    {
+      "sourcePosition": 83,
+      "disposition": "canonical",
+      "canonicalRow": 82,
+      "sourceIssueReference": "X-Men: Schism (2011) #5",
+      "normalizedSeriesTitle": "X-Men: Schism",
+      "seriesYear": 2011,
+      "issueNumber": "5",
+      "seriesId": 13880,
+      "issueId": 38971
+    },
+    {
+      "sourcePosition": 84,
+      "disposition": "canonical",
+      "canonicalRow": 83,
+      "sourceIssueReference": "X-Men: Regenesis (2011) #1",
+      "normalizedSeriesTitle": "X-Men: Regenesis",
+      "seriesYear": 2011,
+      "issueNumber": "1",
+      "seriesId": 14685,
+      "issueId": 39739
+    },
+    {
+      "sourcePosition": 85,
+      "disposition": "canonical",
+      "canonicalRow": 84,
+      "sourceIssueReference": "Generation Hope (2010) #13",
+      "normalizedSeriesTitle": "Generation Hope",
+      "seriesYear": 2010,
+      "issueNumber": "13",
+      "seriesId": 9895,
+      "issueId": 36623
+    },
+    {
+      "sourcePosition": 86,
+      "disposition": "canonical",
+      "canonicalRow": 85,
+      "sourceIssueReference": "Generation Hope (2010) #14",
+      "normalizedSeriesTitle": "Generation Hope",
+      "seriesYear": 2010,
+      "issueNumber": "14",
+      "seriesId": 9895,
+      "issueId": 36624
+    },
+    {
+      "sourcePosition": 87,
+      "disposition": "canonical",
+      "canonicalRow": 86,
+      "sourceIssueReference": "Generation Hope (2010) #15",
+      "normalizedSeriesTitle": "Generation Hope",
+      "seriesYear": 2010,
+      "issueNumber": "15",
+      "seriesId": 9895,
+      "issueId": 36620
+    },
+    {
+      "sourcePosition": 88,
+      "disposition": "canonical",
+      "canonicalRow": 87,
+      "sourceIssueReference": "Generation Hope (2010) #16",
+      "normalizedSeriesTitle": "Generation Hope",
+      "seriesYear": 2010,
+      "issueNumber": "16",
+      "seriesId": 9895,
+      "issueId": 36621
+    },
+    {
+      "sourcePosition": 89,
+      "disposition": "canonical",
+      "canonicalRow": 88,
+      "sourceIssueReference": "Generation Hope (2010) #17",
+      "normalizedSeriesTitle": "Generation Hope",
+      "seriesYear": 2010,
+      "issueNumber": "17",
+      "seriesId": 9895,
+      "issueId": 36622
+    },
+    {
+      "sourcePosition": 90,
+      "disposition": "canonical",
+      "canonicalRow": 89,
+      "sourceIssueReference": "Uncanny X-Men (1963) #538",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "538",
+      "seriesId": 2258,
+      "issueId": 36326
+    },
+    {
+      "sourcePosition": 91,
+      "disposition": "canonical",
+      "canonicalRow": 90,
+      "sourceIssueReference": "Uncanny X-Men (1963) #539",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "539",
+      "seriesId": 2258,
+      "issueId": 36325
+    },
+    {
+      "sourcePosition": 92,
+      "disposition": "canonical",
+      "canonicalRow": 91,
+      "sourceIssueReference": "Uncanny X-Men (1963) #541",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "541",
+      "seriesId": 2258,
+      "issueId": 36330
+    },
+    {
+      "sourcePosition": 93,
+      "disposition": "canonical",
+      "canonicalRow": 92,
+      "sourceIssueReference": "Uncanny X-Men (1963) #542",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "542",
+      "seriesId": 2258,
+      "issueId": 36322
+    },
+    {
+      "sourcePosition": 94,
+      "disposition": "canonical",
+      "canonicalRow": 93,
+      "sourceIssueReference": "Uncanny X-Men (1963) #543",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "543",
+      "seriesId": 2258,
+      "issueId": 36327
+    },
+    {
+      "sourcePosition": 95,
+      "disposition": "canonical",
+      "canonicalRow": 94,
+      "sourceIssueReference": "Uncanny X-Men (1963) #544",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "544",
+      "seriesId": 2258,
+      "issueId": 37942
+    },
+    {
+      "sourcePosition": 96,
+      "disposition": "canonical-repeat",
+      "canonicalRow": 83,
+      "canonicalSourcePosition": 84,
+      "sourceIssueReference": "X-Men: Regenesis (2011) #1",
+      "normalizedSeriesTitle": "X-Men: Regenesis",
+      "seriesYear": 2011,
+      "issueNumber": "1",
+      "seriesId": 14685,
+      "issueId": 39739
+    },
+    {
+      "sourcePosition": 97,
+      "disposition": "canonical",
+      "canonicalRow": 95,
+      "sourceIssueReference": "Uncanny X-Men (2011) #1",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 2011,
+      "issueNumber": "1",
+      "seriesId": 14914,
+      "issueId": 40166
+    },
+    {
+      "sourcePosition": 98,
+      "disposition": "canonical",
+      "canonicalRow": 96,
+      "sourceIssueReference": "Uncanny X-Men (2011) #2",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 2011,
+      "issueNumber": "2",
+      "seriesId": 14914,
+      "issueId": 40154
+    },
+    {
+      "sourcePosition": 99,
+      "disposition": "canonical",
+      "canonicalRow": 97,
+      "sourceIssueReference": "Uncanny X-Men (2011) #3",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 2011,
+      "issueNumber": "3",
+      "seriesId": 14914,
+      "issueId": 40159
+    },
+    {
+      "sourcePosition": 100,
+      "disposition": "canonical",
+      "canonicalRow": 98,
+      "sourceIssueReference": "Uncanny X-Men (2011) #4",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 2011,
+      "issueNumber": "4",
+      "seriesId": 14914,
+      "issueId": 40164
+    },
+    {
+      "sourcePosition": 101,
+      "disposition": "canonical",
+      "canonicalRow": 99,
+      "sourceIssueReference": "Uncanny X-Men (2011) #5",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 2011,
+      "issueNumber": "5",
+      "seriesId": 14914,
+      "issueId": 40158
+    },
+    {
+      "sourcePosition": 102,
+      "disposition": "canonical",
+      "canonicalRow": 100,
+      "sourceIssueReference": "Uncanny X-Men (2011) #6",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 2011,
+      "issueNumber": "6",
+      "seriesId": 14914,
+      "issueId": 40161
+    },
+    {
+      "sourcePosition": 103,
+      "disposition": "canonical",
+      "canonicalRow": 101,
+      "sourceIssueReference": "Uncanny X-Men (2011) #8",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 2011,
+      "issueNumber": "8",
+      "seriesId": 14914,
+      "issueId": 40162
+    },
+    {
+      "sourcePosition": 104,
+      "disposition": "canonical",
+      "canonicalRow": 102,
+      "sourceIssueReference": "Uncanny X-Men (2011) #9",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 2011,
+      "issueNumber": "9",
+      "seriesId": 14914,
+      "issueId": 40156
+    },
+    {
+      "sourcePosition": 105,
+      "disposition": "canonical",
+      "canonicalRow": 103,
+      "sourceIssueReference": "Uncanny X-Men (2011) #10",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 2011,
+      "issueNumber": "10",
+      "seriesId": 14914,
+      "issueId": 40163
+    },
+    {
+      "sourcePosition": 106,
+      "disposition": "canonical",
+      "canonicalRow": 104,
+      "sourceIssueReference": "Uncanny X-Men (2011) #11",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 2011,
+      "issueNumber": "11",
+      "seriesId": 14914,
+      "issueId": 40160
+    },
+    {
+      "sourcePosition": 107,
+      "disposition": "canonical",
+      "canonicalRow": 105,
+      "sourceIssueReference": "Uncanny X-Men (2011) #13",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 2011,
+      "issueNumber": "13",
+      "seriesId": 14914,
+      "issueId": 40152
+    },
+    {
+      "sourcePosition": 108,
+      "disposition": "canonical",
+      "canonicalRow": 106,
+      "sourceIssueReference": "Uncanny X-Men (2011) #19",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 2011,
+      "issueNumber": "19",
+      "seriesId": 14914,
+      "issueId": 42342
+    },
+    {
+      "sourcePosition": 109,
+      "disposition": "canonical",
+      "canonicalRow": 107,
+      "sourceIssueReference": "Avengers: X-Sanction (2011) #1",
+      "normalizedSeriesTitle": "Avengers: X-Sanction",
+      "seriesYear": 2011,
+      "issueNumber": "1",
+      "seriesId": 14703,
+      "issueId": 39772
+    },
+    {
+      "sourcePosition": 110,
+      "disposition": "canonical",
+      "canonicalRow": 108,
+      "sourceIssueReference": "Avengers: X-Sanction (2011) #2",
+      "normalizedSeriesTitle": "Avengers: X-Sanction",
+      "seriesYear": 2011,
+      "issueNumber": "2",
+      "seriesId": 14703,
+      "issueId": 39771
+    },
+    {
+      "sourcePosition": 111,
+      "disposition": "canonical",
+      "canonicalRow": 109,
+      "sourceIssueReference": "Avengers: X-Sanction (2011) #3",
+      "normalizedSeriesTitle": "Avengers: X-Sanction",
+      "seriesYear": 2011,
+      "issueNumber": "3",
+      "seriesId": 14703,
+      "issueId": 39770
+    },
+    {
+      "sourcePosition": 112,
+      "disposition": "canonical",
+      "canonicalRow": 110,
+      "sourceIssueReference": "Avengers: X-Sanction (2011) #4",
+      "normalizedSeriesTitle": "Avengers: X-Sanction",
+      "seriesYear": 2011,
+      "issueNumber": "4",
+      "seriesId": 14703,
+      "issueId": 39769
+    },
+    {
+      "sourcePosition": 113,
+      "disposition": "canonical",
+      "canonicalRow": 111,
+      "sourceIssueReference": "Avengers Vs. X-Men (2012) #0",
+      "normalizedSeriesTitle": "Avengers Vs. X-Men",
+      "seriesYear": 2012,
+      "issueNumber": "0",
+      "seriesId": 15305,
+      "issueId": 42332
+    },
+    {
+      "sourcePosition": 114,
+      "disposition": "canonical",
+      "canonicalRow": 112,
+      "sourceIssueReference": "Avengers Vs. X-Men (2012) #1",
+      "normalizedSeriesTitle": "Avengers Vs. X-Men",
+      "seriesYear": 2012,
+      "issueNumber": "1",
+      "seriesId": 15305,
+      "issueId": 41188
+    },
+    {
+      "sourcePosition": 115,
+      "disposition": "canonical",
+      "canonicalRow": 113,
+      "sourceIssueReference": "Avengers Vs. X-Men (2012) #2",
+      "normalizedSeriesTitle": "Avengers Vs. X-Men",
+      "seriesYear": 2012,
+      "issueNumber": "2",
+      "seriesId": 15305,
+      "issueId": 41191
+    },
+    {
+      "sourcePosition": 116,
+      "disposition": "canonical",
+      "canonicalRow": 114,
+      "sourceIssueReference": "Avengers Vs. X-Men (2012) #3",
+      "normalizedSeriesTitle": "Avengers Vs. X-Men",
+      "seriesYear": 2012,
+      "issueNumber": "3",
+      "seriesId": 15305,
+      "issueId": 41187
+    },
+    {
+      "sourcePosition": 117,
+      "disposition": "canonical",
+      "canonicalRow": 115,
+      "sourceIssueReference": "Avengers Vs. X-Men (2012) #4",
+      "normalizedSeriesTitle": "Avengers Vs. X-Men",
+      "seriesYear": 2012,
+      "issueNumber": "4",
+      "seriesId": 15305,
+      "issueId": 41193
+    },
+    {
+      "sourcePosition": 118,
+      "disposition": "canonical",
+      "canonicalRow": 116,
+      "sourceIssueReference": "Avengers Vs. X-Men (2012) #5",
+      "normalizedSeriesTitle": "Avengers Vs. X-Men",
+      "seriesYear": 2012,
+      "issueNumber": "5",
+      "seriesId": 15305,
+      "issueId": 41190
+    },
+    {
+      "sourcePosition": 119,
+      "disposition": "canonical",
+      "canonicalRow": 117,
+      "sourceIssueReference": "Avengers Vs. X-Men (2012) #6",
+      "normalizedSeriesTitle": "Avengers Vs. X-Men",
+      "seriesYear": 2012,
+      "issueNumber": "6",
+      "seriesId": 15305,
+      "issueId": 41189
+    },
+    {
+      "sourcePosition": 120,
+      "disposition": "canonical",
+      "canonicalRow": 118,
+      "sourceIssueReference": "Avengers Vs. X-Men (2012) #7",
+      "normalizedSeriesTitle": "Avengers Vs. X-Men",
+      "seriesYear": 2012,
+      "issueNumber": "7",
+      "seriesId": 15305,
+      "issueId": 41192
+    },
+    {
+      "sourcePosition": 121,
+      "disposition": "canonical",
+      "canonicalRow": 119,
+      "sourceIssueReference": "Avengers Vs. X-Men (2012) #8",
+      "normalizedSeriesTitle": "Avengers Vs. X-Men",
+      "seriesYear": 2012,
+      "issueNumber": "8",
+      "seriesId": 15305,
+      "issueId": 41275
+    },
+    {
+      "sourcePosition": 122,
+      "disposition": "canonical",
+      "canonicalRow": 120,
+      "sourceIssueReference": "Avengers Vs. X-Men (2012) #9",
+      "normalizedSeriesTitle": "Avengers Vs. X-Men",
+      "seriesYear": 2012,
+      "issueNumber": "9",
+      "seriesId": 15305,
+      "issueId": 41277
+    },
+    {
+      "sourcePosition": 123,
+      "disposition": "canonical",
+      "canonicalRow": 121,
+      "sourceIssueReference": "Avengers Vs. X-Men (2012) #10",
+      "normalizedSeriesTitle": "Avengers Vs. X-Men",
+      "seriesYear": 2012,
+      "issueNumber": "10",
+      "seriesId": 15305,
+      "issueId": 41276
+    },
+    {
+      "sourcePosition": 124,
+      "disposition": "canonical",
+      "canonicalRow": 122,
+      "sourceIssueReference": "Avengers Vs. X-Men (2012) #11",
+      "normalizedSeriesTitle": "Avengers Vs. X-Men",
+      "seriesYear": 2012,
+      "issueNumber": "11",
+      "seriesId": 15305,
+      "issueId": 41279
+    },
+    {
+      "sourcePosition": 125,
+      "disposition": "canonical",
+      "canonicalRow": 123,
+      "sourceIssueReference": "Avengers Vs. X-Men (2012) #12",
+      "normalizedSeriesTitle": "Avengers Vs. X-Men",
+      "seriesYear": 2012,
+      "issueNumber": "12",
+      "seriesId": 15305,
+      "issueId": 41278
+    },
+    {
+      "sourcePosition": 126,
+      "disposition": "canonical",
+      "canonicalRow": 124,
+      "sourceIssueReference": "AVX: Consequences (2012) #1",
+      "normalizedSeriesTitle": "AVX: Consequences",
+      "seriesYear": 2012,
+      "issueNumber": "1",
+      "seriesId": 16510,
+      "issueId": 44526
+    },
+    {
+      "sourcePosition": 127,
+      "disposition": "canonical",
+      "canonicalRow": 125,
+      "sourceIssueReference": "AVX: Consequences (2012) #3",
+      "normalizedSeriesTitle": "AVX: Consequences",
+      "seriesYear": 2012,
+      "issueNumber": "3",
+      "seriesId": 16510,
+      "issueId": 45724
+    },
+    {
+      "sourcePosition": 128,
+      "disposition": "canonical",
+      "canonicalRow": 126,
+      "sourceIssueReference": "AVX: Consequences (2012) #4",
+      "normalizedSeriesTitle": "AVX: Consequences",
+      "seriesYear": 2012,
+      "issueNumber": "4",
+      "seriesId": 16510,
+      "issueId": 45935
+    },
+    {
+      "sourcePosition": 129,
+      "disposition": "canonical",
+      "canonicalRow": 127,
+      "sourceIssueReference": "AVX: Consequences (2012) #5",
+      "normalizedSeriesTitle": "AVX: Consequences",
+      "seriesYear": 2012,
+      "issueNumber": "5",
+      "seriesId": 16510,
+      "issueId": 43696
+    },
+    {
+      "sourcePosition": 130,
+      "disposition": "canonical",
+      "canonicalRow": 128,
+      "sourceIssueReference": "Cable and X-Force (2012) #1",
+      "normalizedSeriesTitle": "Cable and X-Force",
+      "seriesYear": 2012,
+      "issueNumber": "1",
+      "seriesId": 16907,
+      "issueId": 44761
+    },
+    {
+      "sourcePosition": 131,
+      "disposition": "canonical",
+      "canonicalRow": 129,
+      "sourceIssueReference": "Cable and X-Force (2012) #2",
+      "normalizedSeriesTitle": "Cable and X-Force",
+      "seriesYear": 2012,
+      "issueNumber": "2",
+      "seriesId": 16907,
+      "issueId": 44769
+    },
+    {
+      "sourcePosition": 132,
+      "disposition": "canonical",
+      "canonicalRow": 130,
+      "sourceIssueReference": "Cable and X-Force (2012) #3",
+      "normalizedSeriesTitle": "Cable and X-Force",
+      "seriesYear": 2012,
+      "issueNumber": "3",
+      "seriesId": 16907,
+      "issueId": 45939
+    },
+    {
+      "sourcePosition": 133,
+      "disposition": "canonical",
+      "canonicalRow": 131,
+      "sourceIssueReference": "Cable and X-Force (2012) #4",
+      "normalizedSeriesTitle": "Cable and X-Force",
+      "seriesYear": 2012,
+      "issueNumber": "4",
+      "seriesId": 16907,
+      "issueId": 45942
+    },
+    {
+      "sourcePosition": 134,
+      "disposition": "canonical",
+      "canonicalRow": 132,
+      "sourceIssueReference": "Cable and X-Force (2012) #5",
+      "normalizedSeriesTitle": "Cable and X-Force",
+      "seriesYear": 2012,
+      "issueNumber": "5",
+      "seriesId": 16907,
+      "issueId": 45945
+    },
+    {
+      "sourcePosition": 135,
+      "disposition": "canonical",
+      "canonicalRow": 133,
+      "sourceIssueReference": "Cable and X-Force (2012) #6",
+      "normalizedSeriesTitle": "Cable and X-Force",
+      "seriesYear": 2012,
+      "issueNumber": "6",
+      "seriesId": 16907,
+      "issueId": 45948
+    },
+    {
+      "sourcePosition": 136,
+      "disposition": "canonical",
+      "canonicalRow": 134,
+      "sourceIssueReference": "Cable and X-Force (2012) #7",
+      "normalizedSeriesTitle": "Cable and X-Force",
+      "seriesYear": 2012,
+      "issueNumber": "7",
+      "seriesId": 16907,
+      "issueId": 45949
+    },
+    {
+      "sourcePosition": 137,
+      "disposition": "canonical",
+      "canonicalRow": 135,
+      "sourceIssueReference": "Cable and X-Force (2012) #8",
+      "normalizedSeriesTitle": "Cable and X-Force",
+      "seriesYear": 2012,
+      "issueNumber": "8",
+      "seriesId": 16907,
+      "issueId": 45950
+    },
+    {
+      "sourcePosition": 138,
+      "disposition": "canonical",
+      "canonicalRow": 136,
+      "sourceIssueReference": "Cable and X-Force (2012) #9",
+      "normalizedSeriesTitle": "Cable and X-Force",
+      "seriesYear": 2012,
+      "issueNumber": "9",
+      "seriesId": 16907,
+      "issueId": 45951
+    },
+    {
+      "sourcePosition": 139,
+      "disposition": "canonical",
+      "canonicalRow": 137,
+      "sourceIssueReference": "Cable and X-Force (2012) #10",
+      "normalizedSeriesTitle": "Cable and X-Force",
+      "seriesYear": 2012,
+      "issueNumber": "10",
+      "seriesId": 16907,
+      "issueId": 45952
+    },
+    {
+      "sourcePosition": 140,
+      "disposition": "canonical",
+      "canonicalRow": 138,
+      "sourceIssueReference": "Cable and X-Force (2012) #11",
+      "normalizedSeriesTitle": "Cable and X-Force",
+      "seriesYear": 2012,
+      "issueNumber": "11",
+      "seriesId": 16907,
+      "issueId": 45953
+    },
+    {
+      "sourcePosition": 141,
+      "disposition": "canonical",
+      "canonicalRow": 139,
+      "sourceIssueReference": "Cable and X-Force (2012) #12",
+      "normalizedSeriesTitle": "Cable and X-Force",
+      "seriesYear": 2012,
+      "issueNumber": "12",
+      "seriesId": 16907,
+      "issueId": 45954
+    },
+    {
+      "sourcePosition": 142,
+      "disposition": "canonical",
+      "canonicalRow": 140,
+      "sourceIssueReference": "Cable and X-Force (2012) #13",
+      "normalizedSeriesTitle": "Cable and X-Force",
+      "seriesYear": 2012,
+      "issueNumber": "13",
+      "seriesId": 16907,
+      "issueId": 45955
+    },
+    {
+      "sourcePosition": 143,
+      "disposition": "canonical",
+      "canonicalRow": 141,
+      "sourceIssueReference": "Cable and X-Force (2012) #14",
+      "normalizedSeriesTitle": "Cable and X-Force",
+      "seriesYear": 2012,
+      "issueNumber": "14",
+      "seriesId": 16907,
+      "issueId": 45956
+    },
+    {
+      "sourcePosition": 144,
+      "disposition": "canonical",
+      "canonicalRow": 142,
+      "sourceIssueReference": "Cable and X-Force (2012) #15",
+      "normalizedSeriesTitle": "Cable and X-Force",
+      "seriesYear": 2012,
+      "issueNumber": "15",
+      "seriesId": 16907,
+      "issueId": 45957
+    },
+    {
+      "sourcePosition": 145,
+      "disposition": "canonical",
+      "canonicalRow": 143,
+      "sourceIssueReference": "Cable and X-Force (2012) #16",
+      "normalizedSeriesTitle": "Cable and X-Force",
+      "seriesYear": 2012,
+      "issueNumber": "16",
+      "seriesId": 16907,
+      "issueId": 45958
+    },
+    {
+      "sourcePosition": 146,
+      "disposition": "canonical",
+      "canonicalRow": 144,
+      "sourceIssueReference": "Cable and X-Force (2012) #17",
+      "normalizedSeriesTitle": "Cable and X-Force",
+      "seriesYear": 2012,
+      "issueNumber": "17",
+      "seriesId": 16907,
+      "issueId": 48568
+    },
+    {
+      "sourcePosition": 147,
+      "disposition": "canonical",
+      "canonicalRow": 145,
+      "sourceIssueReference": "Cable and X-Force (2012) #18",
+      "normalizedSeriesTitle": "Cable and X-Force",
+      "seriesYear": 2012,
+      "issueNumber": "18",
+      "seriesId": 16907,
+      "issueId": 48569
+    },
+    {
+      "sourcePosition": 148,
+      "disposition": "canonical",
+      "canonicalRow": 146,
+      "sourceIssueReference": "Uncanny X-Force (2013) #16",
+      "normalizedSeriesTitle": "Uncanny X-Force",
+      "seriesYear": 2013,
+      "issueNumber": "16",
+      "seriesId": 17597,
+      "issueId": 48874
+    },
+    {
+      "sourcePosition": 149,
+      "disposition": "canonical",
+      "canonicalRow": 147,
+      "sourceIssueReference": "Cable and X-Force (2012) #19",
+      "normalizedSeriesTitle": "Cable and X-Force",
+      "seriesYear": 2012,
+      "issueNumber": "19",
+      "seriesId": 16907,
+      "issueId": 48570
+    },
+    {
+      "sourcePosition": 150,
+      "disposition": "canonical",
+      "canonicalRow": 148,
+      "sourceIssueReference": "Uncanny X-Force (2013) #17",
+      "normalizedSeriesTitle": "Uncanny X-Force",
+      "seriesYear": 2013,
+      "issueNumber": "17",
+      "seriesId": 17597,
+      "issueId": 48875
+    },
+    {
+      "sourcePosition": 151,
+      "disposition": "canonical",
+      "canonicalRow": 149,
+      "sourceIssueReference": "X-Force (2014) #1",
+      "normalizedSeriesTitle": "X-Force",
+      "seriesYear": 2014,
+      "issueNumber": "1",
+      "seriesId": 18762,
+      "issueId": 49916
+    },
+    {
+      "sourcePosition": 152,
+      "disposition": "canonical",
+      "canonicalRow": 150,
+      "sourceIssueReference": "X-Force (2014) #2",
+      "normalizedSeriesTitle": "X-Force",
+      "seriesYear": 2014,
+      "issueNumber": "2",
+      "seriesId": 18762,
+      "issueId": 49921
+    },
+    {
+      "sourcePosition": 153,
+      "disposition": "canonical",
+      "canonicalRow": 151,
+      "sourceIssueReference": "X-Force (2014) #3",
+      "normalizedSeriesTitle": "X-Force",
+      "seriesYear": 2014,
+      "issueNumber": "3",
+      "seriesId": 18762,
+      "issueId": 49922
+    },
+    {
+      "sourcePosition": 154,
+      "disposition": "canonical",
+      "canonicalRow": 152,
+      "sourceIssueReference": "X-Force (2014) #4",
+      "normalizedSeriesTitle": "X-Force",
+      "seriesYear": 2014,
+      "issueNumber": "4",
+      "seriesId": 18762,
+      "issueId": 49923
+    },
+    {
+      "sourcePosition": 155,
+      "disposition": "canonical",
+      "canonicalRow": 153,
+      "sourceIssueReference": "X-Force (2014) #5",
+      "normalizedSeriesTitle": "X-Force",
+      "seriesYear": 2014,
+      "issueNumber": "5",
+      "seriesId": 18762,
+      "issueId": 49924
+    },
+    {
+      "sourcePosition": 156,
+      "disposition": "canonical",
+      "canonicalRow": 154,
+      "sourceIssueReference": "X-Force (2014) #6",
+      "normalizedSeriesTitle": "X-Force",
+      "seriesYear": 2014,
+      "issueNumber": "6",
+      "seriesId": 18762,
+      "issueId": 49925
+    },
+    {
+      "sourcePosition": 157,
+      "disposition": "canonical",
+      "canonicalRow": 155,
+      "sourceIssueReference": "X-Force (2014) #7",
+      "normalizedSeriesTitle": "X-Force",
+      "seriesYear": 2014,
+      "issueNumber": "7",
+      "seriesId": 18762,
+      "issueId": 49926
+    },
+    {
+      "sourcePosition": 158,
+      "disposition": "canonical",
+      "canonicalRow": 156,
+      "sourceIssueReference": "X-Force (2014) #8",
+      "normalizedSeriesTitle": "X-Force",
+      "seriesYear": 2014,
+      "issueNumber": "8",
+      "seriesId": 18762,
+      "issueId": 49927
+    },
+    {
+      "sourcePosition": 159,
+      "disposition": "canonical",
+      "canonicalRow": 157,
+      "sourceIssueReference": "X-Force (2014) #9",
+      "normalizedSeriesTitle": "X-Force",
+      "seriesYear": 2014,
+      "issueNumber": "9",
+      "seriesId": 18762,
+      "issueId": 49928
+    },
+    {
+      "sourcePosition": 160,
+      "disposition": "canonical",
+      "canonicalRow": 158,
+      "sourceIssueReference": "X-Force (2014) #10",
+      "normalizedSeriesTitle": "X-Force",
+      "seriesYear": 2014,
+      "issueNumber": "10",
+      "seriesId": 18762,
+      "issueId": 49929
+    },
+    {
+      "sourcePosition": 161,
+      "disposition": "canonical",
+      "canonicalRow": 159,
+      "sourceIssueReference": "X-Force (2014) #11",
+      "normalizedSeriesTitle": "X-Force",
+      "seriesYear": 2014,
+      "issueNumber": "11",
+      "seriesId": 18762,
+      "issueId": 49930
+    },
+    {
+      "sourcePosition": 162,
+      "disposition": "canonical",
+      "canonicalRow": 160,
+      "sourceIssueReference": "X-Force (2014) #12",
+      "normalizedSeriesTitle": "X-Force",
+      "seriesYear": 2014,
+      "issueNumber": "12",
+      "seriesId": 18762,
+      "issueId": 49931
+    },
+    {
+      "sourcePosition": 163,
+      "disposition": "canonical",
+      "canonicalRow": 161,
+      "sourceIssueReference": "X-Force (2014) #13",
+      "normalizedSeriesTitle": "X-Force",
+      "seriesYear": 2014,
+      "issueNumber": "13",
+      "seriesId": 18762,
+      "issueId": 49932
+    },
+    {
+      "sourcePosition": 164,
+      "disposition": "canonical",
+      "canonicalRow": 162,
+      "sourceIssueReference": "X-Force (2014) #14",
+      "normalizedSeriesTitle": "X-Force",
+      "seriesYear": 2014,
+      "issueNumber": "14",
+      "seriesId": 18762,
+      "issueId": 49933
+    },
+    {
+      "sourcePosition": 165,
+      "disposition": "canonical",
+      "canonicalRow": 163,
+      "sourceIssueReference": "X-Force (2014) #15",
+      "normalizedSeriesTitle": "X-Force",
+      "seriesYear": 2014,
+      "issueNumber": "15",
+      "seriesId": 18762,
+      "issueId": 52936
+    },
+    {
+      "sourcePosition": 166,
+      "disposition": "canonical",
+      "canonicalRow": 164,
+      "sourceIssueReference": "Jean Grey (2017) #1",
+      "normalizedSeriesTitle": "Jean Grey",
+      "seriesYear": 2017,
+      "issueNumber": "1",
+      "seriesId": 23044,
+      "issueId": 62830
+    },
+    {
+      "sourcePosition": 167,
+      "disposition": "canonical",
+      "canonicalRow": 165,
+      "sourceIssueReference": "Jean Grey (2017) #2",
+      "normalizedSeriesTitle": "Jean Grey",
+      "seriesYear": 2017,
+      "issueNumber": "2",
+      "seriesId": 23044,
+      "issueId": 62831
+    },
+    {
+      "sourcePosition": 168,
+      "disposition": "canonical",
+      "canonicalRow": 166,
+      "sourceIssueReference": "Jean Grey (2017) #3",
+      "normalizedSeriesTitle": "Jean Grey",
+      "seriesYear": 2017,
+      "issueNumber": "3",
+      "seriesId": 23044,
+      "issueId": 63121
+    },
+    {
+      "sourcePosition": 169,
+      "disposition": "canonical",
+      "canonicalRow": 167,
+      "sourceIssueReference": "Jean Grey (2017) #4",
+      "normalizedSeriesTitle": "Jean Grey",
+      "seriesYear": 2017,
+      "issueNumber": "4",
+      "seriesId": 23044,
+      "issueId": 63720
+    },
+    {
+      "sourcePosition": 170,
+      "disposition": "canonical",
+      "canonicalRow": 168,
+      "sourceIssueReference": "Jean Grey (2017) #5",
+      "normalizedSeriesTitle": "Jean Grey",
+      "seriesYear": 2017,
+      "issueNumber": "5",
+      "seriesId": 23044,
+      "issueId": 64144
+    },
+    {
+      "sourcePosition": 171,
+      "disposition": "canonical",
+      "canonicalRow": 169,
+      "sourceIssueReference": "Jean Grey (2017) #6",
+      "normalizedSeriesTitle": "Jean Grey",
+      "seriesYear": 2017,
+      "issueNumber": "6",
+      "seriesId": 23044,
+      "issueId": 64283
+    },
+    {
+      "sourcePosition": 172,
+      "disposition": "canonical",
+      "canonicalRow": 170,
+      "sourceIssueReference": "Jean Grey (2017) #9",
+      "normalizedSeriesTitle": "Jean Grey",
+      "seriesYear": 2017,
+      "issueNumber": "9",
+      "seriesId": 23044,
+      "issueId": 65082
+    },
+    {
+      "sourcePosition": 173,
+      "disposition": "canonical",
+      "canonicalRow": 171,
+      "sourceIssueReference": "Jean Grey (2017) #10",
+      "normalizedSeriesTitle": "Jean Grey",
+      "seriesYear": 2017,
+      "issueNumber": "10",
+      "seriesId": 23044,
+      "issueId": 65290
+    },
+    {
+      "sourcePosition": 174,
+      "disposition": "canonical",
+      "canonicalRow": 172,
+      "sourceIssueReference": "Cable (2017) #155",
+      "normalizedSeriesTitle": "Cable",
+      "seriesYear": 2017,
+      "issueNumber": "155",
+      "seriesId": 22386,
+      "issueId": 66535
+    },
+    {
+      "sourcePosition": 175,
+      "disposition": "canonical",
+      "canonicalRow": 173,
+      "sourceIssueReference": "Cable (2017) #156",
+      "normalizedSeriesTitle": "Cable",
+      "seriesYear": 2017,
+      "issueNumber": "156",
+      "seriesId": 22386,
+      "issueId": 66831
+    },
+    {
+      "sourcePosition": 176,
+      "disposition": "canonical",
+      "canonicalRow": 174,
+      "sourceIssueReference": "Cable (2017) #159",
+      "normalizedSeriesTitle": "Cable",
+      "seriesYear": 2017,
+      "issueNumber": "159",
+      "seriesId": 22386,
+      "issueId": 67907
+    },
+    {
+      "sourcePosition": 177,
+      "disposition": "canonical",
+      "canonicalRow": 175,
+      "sourceIssueReference": "Merry X-Men Holiday Special (2018) #1",
+      "normalizedSeriesTitle": "Merry X-Men Holiday Special",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "seriesId": 26256,
+      "issueId": 72340
+    },
+    {
+      "sourcePosition": 178,
+      "disposition": "canonical",
+      "canonicalRow": 176,
+      "sourceIssueReference": "War of the Realms: Uncanny X-Men (2019) #1",
+      "normalizedSeriesTitle": "War of the Realms: Uncanny X-Men",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 27319,
+      "issueId": 76332
+    },
+    {
+      "sourcePosition": 179,
+      "disposition": "canonical",
+      "canonicalRow": 177,
+      "sourceIssueReference": "War of the Realms: Uncanny X-Men (2019) #2",
+      "normalizedSeriesTitle": "War of the Realms: Uncanny X-Men",
+      "seriesYear": 2019,
+      "issueNumber": "2",
+      "seriesId": 27319,
+      "issueId": 76617
+    },
+    {
+      "sourcePosition": 180,
+      "disposition": "canonical",
+      "canonicalRow": 178,
+      "sourceIssueReference": "War of the Realms: Uncanny X-Men (2019) #3",
+      "normalizedSeriesTitle": "War of the Realms: Uncanny X-Men",
+      "seriesYear": 2019,
+      "issueNumber": "3",
+      "seriesId": 27319,
+      "issueId": 77261
+    },
+    {
+      "sourcePosition": 181,
+      "disposition": "canonical",
+      "canonicalRow": 179,
+      "sourceIssueReference": "Uncanny X-Men (2018) #15",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 2018,
+      "issueNumber": "15",
+      "seriesId": 26038,
+      "issueId": 73037
+    },
+    {
+      "sourcePosition": 182,
+      "disposition": "canonical",
+      "canonicalRow": 180,
+      "sourceIssueReference": "Uncanny X-Men (2018) #16",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 2018,
+      "issueNumber": "16",
+      "seriesId": 26038,
+      "issueId": 73038
+    },
+    {
+      "sourcePosition": 183,
+      "disposition": "canonical",
+      "canonicalRow": 181,
+      "sourceIssueReference": "Uncanny X-Men (2018) #17",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 2018,
+      "issueNumber": "17",
+      "seriesId": 26038,
+      "issueId": 73039
+    },
+    {
+      "sourcePosition": 184,
+      "disposition": "canonical",
+      "canonicalRow": 182,
+      "sourceIssueReference": "Uncanny X-Men (2018) #18",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 2018,
+      "issueNumber": "18",
+      "seriesId": 26038,
+      "issueId": 73040
+    },
+    {
+      "sourcePosition": 185,
+      "disposition": "canonical",
+      "canonicalRow": 183,
+      "sourceIssueReference": "Uncanny X-Men (2018) #19",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 2018,
+      "issueNumber": "19",
+      "seriesId": 26038,
+      "issueId": 73041
+    },
+    {
+      "sourcePosition": 186,
+      "disposition": "canonical",
+      "canonicalRow": 184,
+      "sourceIssueReference": "Uncanny X-Men (2018) #20",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 2018,
+      "issueNumber": "20",
+      "seriesId": 26038,
+      "issueId": 73042
+    },
+    {
+      "sourcePosition": 187,
+      "disposition": "canonical",
+      "canonicalRow": 185,
+      "sourceIssueReference": "Uncanny X-Men (2018) #21",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 2018,
+      "issueNumber": "21",
+      "seriesId": 26038,
+      "issueId": 73043
+    },
+    {
+      "sourcePosition": 188,
+      "disposition": "canonical",
+      "canonicalRow": 186,
+      "sourceIssueReference": "Uncanny X-Men (2018) #22",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 2018,
+      "issueNumber": "22",
+      "seriesId": 26038,
+      "issueId": 73044
+    },
+    {
+      "sourcePosition": 189,
+      "disposition": "canonical",
+      "canonicalRow": 187,
+      "sourceIssueReference": "House of X (2019) #5",
+      "normalizedSeriesTitle": "House of X",
+      "seriesYear": 2019,
+      "issueNumber": "5",
+      "seriesId": 26338,
+      "issueId": 72988
+    },
+    {
+      "sourcePosition": 190,
+      "disposition": "canonical",
+      "canonicalRow": 188,
+      "sourceIssueReference": "House of X (2019) #6",
+      "normalizedSeriesTitle": "House of X",
+      "seriesYear": 2019,
+      "issueNumber": "6",
+      "seriesId": 26338,
+      "issueId": 72989
+    },
+    {
+      "sourcePosition": 191,
+      "disposition": "canonical",
+      "canonicalRow": 189,
+      "sourceIssueReference": "Powers of X (2019) #6",
+      "normalizedSeriesTitle": "Powers of X",
+      "seriesYear": 2019,
+      "issueNumber": "6",
+      "seriesId": 26340,
+      "issueId": 72996
+    },
+    {
+      "sourcePosition": 192,
+      "disposition": "canonical",
+      "canonicalRow": 190,
+      "sourceIssueReference": "X-Factor (2020) #1",
+      "normalizedSeriesTitle": "X-Factor",
+      "seriesYear": 2020,
+      "issueNumber": "1",
+      "seriesId": 28053,
+      "issueId": 78746
+    },
+    {
+      "sourcePosition": 193,
+      "disposition": "canonical",
+      "canonicalRow": 191,
+      "sourceIssueReference": "X-Factor (2020) #2",
+      "normalizedSeriesTitle": "X-Factor",
+      "seriesYear": 2020,
+      "issueNumber": "2",
+      "seriesId": 28053,
+      "issueId": 78747
+    },
+    {
+      "sourcePosition": 194,
+      "disposition": "canonical",
+      "canonicalRow": 192,
+      "sourceIssueReference": "X-Factor (2020) #3",
+      "normalizedSeriesTitle": "X-Factor",
+      "seriesYear": 2020,
+      "issueNumber": "3",
+      "seriesId": 28053,
+      "issueId": 78748
+    },
+    {
+      "sourcePosition": 195,
+      "disposition": "canonical",
+      "canonicalRow": 193,
+      "sourceIssueReference": "X-Factor (2020) #5",
+      "normalizedSeriesTitle": "X-Factor",
+      "seriesYear": 2020,
+      "issueNumber": "5",
+      "seriesId": 28053,
+      "issueId": 78750
+    },
+    {
+      "sourcePosition": 196,
+      "disposition": "canonical",
+      "canonicalRow": 194,
+      "sourceIssueReference": "S.W.O.R.D. (2020) #2",
+      "normalizedSeriesTitle": "S.W.O.R.D.",
+      "seriesYear": 2020,
+      "issueNumber": "2",
+      "seriesId": 31083,
+      "issueId": 90341
+    },
+    {
+      "sourcePosition": 197,
+      "disposition": "canonical",
+      "canonicalRow": 195,
+      "sourceIssueReference": "S.W.O.R.D. (2020) #4",
+      "normalizedSeriesTitle": "S.W.O.R.D.",
+      "seriesYear": 2020,
+      "issueNumber": "4",
+      "seriesId": 31083,
+      "issueId": 90343
+    },
+    {
+      "sourcePosition": 198,
+      "disposition": "canonical",
+      "canonicalRow": 196,
+      "sourceIssueReference": "S.W.O.R.D. (2020) #5",
+      "normalizedSeriesTitle": "S.W.O.R.D.",
+      "seriesYear": 2020,
+      "issueNumber": "5",
+      "seriesId": 31083,
+      "issueId": 90344
+    },
+    {
+      "sourcePosition": 199,
+      "disposition": "canonical",
+      "canonicalRow": 197,
+      "sourceIssueReference": "Cable (2020) #9",
+      "normalizedSeriesTitle": "Cable",
+      "seriesYear": 2020,
+      "issueNumber": "9",
+      "seriesId": 28038,
+      "issueId": 78661
+    },
+    {
+      "sourcePosition": 200,
+      "disposition": "canonical",
+      "canonicalRow": 198,
+      "sourceIssueReference": "Cable (2020) #11",
+      "normalizedSeriesTitle": "Cable",
+      "seriesYear": 2020,
+      "issueNumber": "11",
+      "seriesId": 28038,
+      "issueId": 91335
+    },
+    {
+      "sourcePosition": 201,
+      "disposition": "canonical",
+      "canonicalRow": 199,
+      "sourceIssueReference": "Cable (2020) #12",
+      "normalizedSeriesTitle": "Cable",
+      "seriesYear": 2020,
+      "issueNumber": "12",
+      "seriesId": 28038,
+      "issueId": 91336
+    },
+    {
+      "sourcePosition": 202,
+      "disposition": "canonical",
+      "canonicalRow": 200,
+      "sourceIssueReference": "Way of X (2021) #1",
+      "normalizedSeriesTitle": "Way of X",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 31392,
+      "issueId": 91776
+    },
+    {
+      "sourcePosition": 203,
+      "disposition": "canonical",
+      "canonicalRow": 201,
+      "sourceIssueReference": "Way of X (2021) #2",
+      "normalizedSeriesTitle": "Way of X",
+      "seriesYear": 2021,
+      "issueNumber": "2",
+      "seriesId": 31392,
+      "issueId": 91777
+    },
+    {
+      "sourcePosition": 204,
+      "disposition": "canonical",
+      "canonicalRow": 202,
+      "sourceIssueReference": "Way of X (2021) #5",
+      "normalizedSeriesTitle": "Way of X",
+      "seriesYear": 2021,
+      "issueNumber": "5",
+      "seriesId": 31392,
+      "issueId": 91780
+    },
+    {
+      "sourcePosition": 205,
+      "disposition": "canonical",
+      "canonicalRow": 203,
+      "sourceIssueReference": "X-Men: The Onslaught Revelation (2021) #1",
+      "normalizedSeriesTitle": "X-Men: The Onslaught Revelation",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 33287,
+      "issueId": 97163
+    },
+    {
+      "sourcePosition": 206,
+      "disposition": "canonical",
+      "canonicalRow": 204,
+      "sourceIssueReference": "X-Men (2019) #21",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 2019,
+      "issueNumber": "21",
+      "seriesId": 27567,
+      "issueId": 90151
+    },
+    {
+      "sourcePosition": 207,
+      "disposition": "canonical",
+      "canonicalRow": 205,
+      "sourceIssueReference": "Planet-Size X-Men (2021) #1",
+      "normalizedSeriesTitle": "Planet-Size X-Men",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 31330,
+      "issueId": 91416
+    },
+    {
+      "sourcePosition": 208,
+      "disposition": "canonical",
+      "canonicalRow": 206,
+      "sourceIssueReference": "X-Factor (2020) #10",
+      "normalizedSeriesTitle": "X-Factor",
+      "seriesYear": 2020,
+      "issueNumber": "10",
+      "seriesId": 28053,
+      "issueId": 78755
+    },
+    {
+      "sourcePosition": 209,
+      "disposition": "canonical",
+      "canonicalRow": 207,
+      "sourceIssueReference": "Inferno (2021) #2",
+      "normalizedSeriesTitle": "Inferno",
+      "seriesYear": 2021,
+      "issueNumber": "2",
+      "seriesId": 32954,
+      "issueId": 96223
+    },
+    {
+      "sourcePosition": 210,
+      "disposition": "canonical",
+      "canonicalRow": 208,
+      "sourceIssueReference": "X-Men: The Trial of Magneto (2021) #1",
+      "normalizedSeriesTitle": "X-Men: The Trial of Magneto",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 32281,
+      "issueId": 94781
+    },
+    {
+      "sourcePosition": 211,
+      "disposition": "canonical",
+      "canonicalRow": 209,
+      "sourceIssueReference": "X-Men: The Trial of Magneto (2021) #2",
+      "normalizedSeriesTitle": "X-Men: The Trial of Magneto",
+      "seriesYear": 2021,
+      "issueNumber": "2",
+      "seriesId": 32281,
+      "issueId": 94782
+    },
+    {
+      "sourcePosition": 212,
+      "disposition": "canonical",
+      "canonicalRow": 210,
+      "sourceIssueReference": "X-Men: The Trial of Magneto (2021) #4",
+      "normalizedSeriesTitle": "X-Men: The Trial of Magneto",
+      "seriesYear": 2021,
+      "issueNumber": "4",
+      "seriesId": 32281,
+      "issueId": 94784
+    },
+    {
+      "sourcePosition": 213,
+      "disposition": "canonical",
+      "canonicalRow": 211,
+      "sourceIssueReference": "X-Men: The Trial of Magneto (2021) #5",
+      "normalizedSeriesTitle": "X-Men: The Trial of Magneto",
+      "seriesYear": 2021,
+      "issueNumber": "5",
+      "seriesId": 32281,
+      "issueId": 94785
+    },
+    {
+      "sourcePosition": 214,
+      "disposition": "canonical-repeat",
+      "canonicalRow": 203,
+      "canonicalSourcePosition": 205,
+      "sourceIssueReference": "X-Men: The Onslaught Revelation (2021) #1",
+      "normalizedSeriesTitle": "X-Men: The Onslaught Revelation",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 33287,
+      "issueId": 97163
+    },
+    {
+      "sourcePosition": 215,
+      "disposition": "canonical",
+      "canonicalRow": 212,
+      "sourceIssueReference": "X-Terminators (2022) #1",
+      "normalizedSeriesTitle": "X-Terminators",
+      "seriesYear": 2022,
+      "issueNumber": "1",
+      "seriesId": 34474,
+      "issueId": 100424
+    },
+    {
+      "sourcePosition": 216,
+      "disposition": "canonical",
+      "canonicalRow": 213,
+      "sourceIssueReference": "X-Terminators (2022) #2",
+      "normalizedSeriesTitle": "X-Terminators",
+      "seriesYear": 2022,
+      "issueNumber": "2",
+      "seriesId": 34474,
+      "issueId": 100425
+    },
+    {
+      "sourcePosition": 217,
+      "disposition": "canonical",
+      "canonicalRow": 214,
+      "sourceIssueReference": "X-Terminators (2022) #3",
+      "normalizedSeriesTitle": "X-Terminators",
+      "seriesYear": 2022,
+      "issueNumber": "3",
+      "seriesId": 34474,
+      "issueId": 100426
+    },
+    {
+      "sourcePosition": 218,
+      "disposition": "canonical",
+      "canonicalRow": 215,
+      "sourceIssueReference": "X-Terminators (2022) #4",
+      "normalizedSeriesTitle": "X-Terminators",
+      "seriesYear": 2022,
+      "issueNumber": "4",
+      "seriesId": 34474,
+      "issueId": 100427
+    },
+    {
+      "sourcePosition": 219,
+      "disposition": "canonical",
+      "canonicalRow": 216,
+      "sourceIssueReference": "X-Terminators (2022) #5",
+      "normalizedSeriesTitle": "X-Terminators",
+      "seriesYear": 2022,
+      "issueNumber": "5",
+      "seriesId": 34474,
+      "issueId": 100428
+    },
+    {
+      "sourcePosition": 220,
+      "disposition": "canonical",
+      "canonicalRow": 217,
+      "sourceIssueReference": "Marauders (2019) #1",
+      "normalizedSeriesTitle": "Marauders",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 27555,
+      "issueId": 76750
+    },
+    {
+      "sourcePosition": 221,
+      "disposition": "canonical",
+      "canonicalRow": 218,
+      "sourceIssueReference": "Marauders (2019) #2",
+      "normalizedSeriesTitle": "Marauders",
+      "seriesYear": 2019,
+      "issueNumber": "2",
+      "seriesId": 27555,
+      "issueId": 76751
+    },
+    {
+      "sourcePosition": 222,
+      "disposition": "canonical",
+      "canonicalRow": 219,
+      "sourceIssueReference": "Marauders (2019) #3",
+      "normalizedSeriesTitle": "Marauders",
+      "seriesYear": 2019,
+      "issueNumber": "3",
+      "seriesId": 27555,
+      "issueId": 76752
+    },
+    {
+      "sourcePosition": 223,
+      "disposition": "canonical",
+      "canonicalRow": 220,
+      "sourceIssueReference": "Marauders (2019) #4",
+      "normalizedSeriesTitle": "Marauders",
+      "seriesYear": 2019,
+      "issueNumber": "4",
+      "seriesId": 27555,
+      "issueId": 76753
+    },
+    {
+      "sourcePosition": 224,
+      "disposition": "canonical",
+      "canonicalRow": 221,
+      "sourceIssueReference": "Marauders (2019) #5",
+      "normalizedSeriesTitle": "Marauders",
+      "seriesYear": 2019,
+      "issueNumber": "5",
+      "seriesId": 27555,
+      "issueId": 76754
+    },
+    {
+      "sourcePosition": 225,
+      "disposition": "canonical",
+      "canonicalRow": 222,
+      "sourceIssueReference": "Marauders (2019) #7",
+      "normalizedSeriesTitle": "Marauders",
+      "seriesYear": 2019,
+      "issueNumber": "7",
+      "seriesId": 27555,
+      "issueId": 78401
+    },
+    {
+      "sourcePosition": 226,
+      "disposition": "canonical",
+      "canonicalRow": 223,
+      "sourceIssueReference": "Marauders (2019) #8",
+      "normalizedSeriesTitle": "Marauders",
+      "seriesYear": 2019,
+      "issueNumber": "8",
+      "seriesId": 27555,
+      "issueId": 78402
+    },
+    {
+      "sourcePosition": 227,
+      "disposition": "canonical",
+      "canonicalRow": 224,
+      "sourceIssueReference": "Marauders (2019) #9",
+      "normalizedSeriesTitle": "Marauders",
+      "seriesYear": 2019,
+      "issueNumber": "9",
+      "seriesId": 27555,
+      "issueId": 78403
+    },
+    {
+      "sourcePosition": 228,
+      "disposition": "canonical",
+      "canonicalRow": 225,
+      "sourceIssueReference": "Marauders (2019) #10",
+      "normalizedSeriesTitle": "Marauders",
+      "seriesYear": 2019,
+      "issueNumber": "10",
+      "seriesId": 27555,
+      "issueId": 78404
+    },
+    {
+      "sourcePosition": 229,
+      "disposition": "canonical",
+      "canonicalRow": 226,
+      "sourceIssueReference": "Marauders (2019) #11",
+      "normalizedSeriesTitle": "Marauders",
+      "seriesYear": 2019,
+      "issueNumber": "11",
+      "seriesId": 27555,
+      "issueId": 78405
+    },
+    {
+      "sourcePosition": 230,
+      "disposition": "canonical",
+      "canonicalRow": 227,
+      "sourceIssueReference": "Marauders (2019) #12",
+      "normalizedSeriesTitle": "Marauders",
+      "seriesYear": 2019,
+      "issueNumber": "12",
+      "seriesId": 27555,
+      "issueId": 90080
+    },
+    {
+      "sourcePosition": 231,
+      "disposition": "canonical",
+      "canonicalRow": 228,
+      "sourceIssueReference": "X-Men Red (2022) #1",
+      "normalizedSeriesTitle": "X-Men Red",
+      "seriesYear": 2022,
+      "issueNumber": "1",
+      "seriesId": 32962,
+      "issueId": 96265
+    },
+    {
+      "sourcePosition": 232,
+      "disposition": "canonical",
+      "canonicalRow": 229,
+      "sourceIssueReference": "X-Men Red (2022) #2",
+      "normalizedSeriesTitle": "X-Men Red",
+      "seriesYear": 2022,
+      "issueNumber": "2",
+      "seriesId": 32962,
+      "issueId": 96266
+    },
+    {
+      "sourcePosition": 233,
+      "disposition": "canonical",
+      "canonicalRow": 230,
+      "sourceIssueReference": "X-Men Red (2022) #3",
+      "normalizedSeriesTitle": "X-Men Red",
+      "seriesYear": 2022,
+      "issueNumber": "3",
+      "seriesId": 32962,
+      "issueId": 96267
+    },
+    {
+      "sourcePosition": 234,
+      "disposition": "canonical",
+      "canonicalRow": 231,
+      "sourceIssueReference": "X-Men Red (2022) #4",
+      "normalizedSeriesTitle": "X-Men Red",
+      "seriesYear": 2022,
+      "issueNumber": "4",
+      "seriesId": 32962,
+      "issueId": 96268
+    },
+    {
+      "sourcePosition": 235,
+      "disposition": "canonical",
+      "canonicalRow": 232,
+      "sourceIssueReference": "X-Men Red (2022) #5",
+      "normalizedSeriesTitle": "X-Men Red",
+      "seriesYear": 2022,
+      "issueNumber": "5",
+      "seriesId": 32962,
+      "issueId": 96269
+    },
+    {
+      "sourcePosition": 236,
+      "disposition": "canonical",
+      "canonicalRow": 233,
+      "sourceIssueReference": "X-Men Red (2022) #6",
+      "normalizedSeriesTitle": "X-Men Red",
+      "seriesYear": 2022,
+      "issueNumber": "6",
+      "seriesId": 32962,
+      "issueId": 102552
+    },
+    {
+      "sourcePosition": 237,
+      "disposition": "canonical",
+      "canonicalRow": 234,
+      "sourceIssueReference": "X-Men Red (2022) #7",
+      "normalizedSeriesTitle": "X-Men Red",
+      "seriesYear": 2022,
+      "issueNumber": "7",
+      "seriesId": 32962,
+      "issueId": 102553
+    },
+    {
+      "sourcePosition": 238,
+      "disposition": "canonical",
+      "canonicalRow": 235,
+      "sourceIssueReference": "X-Men Red (2022) #8",
+      "normalizedSeriesTitle": "X-Men Red",
+      "seriesYear": 2022,
+      "issueNumber": "8",
+      "seriesId": 32962,
+      "issueId": 102554
+    },
+    {
+      "sourcePosition": 239,
+      "disposition": "canonical",
+      "canonicalRow": 236,
+      "sourceIssueReference": "X-Men Red (2022) #9",
+      "normalizedSeriesTitle": "X-Men Red",
+      "seriesYear": 2022,
+      "issueNumber": "9",
+      "seriesId": 32962,
+      "issueId": 102555
+    },
+    {
+      "sourcePosition": 240,
+      "disposition": "canonical",
+      "canonicalRow": 237,
+      "sourceIssueReference": "X-Men Red (2022) #10",
+      "normalizedSeriesTitle": "X-Men Red",
+      "seriesYear": 2022,
+      "issueNumber": "10",
+      "seriesId": 32962,
+      "issueId": 102556
+    },
+    {
+      "sourcePosition": 241,
+      "disposition": "published-metadata-gap",
+      "sourceIssueReference": "X-Men: Hellfire Gala (2023) #1",
+      "normalizedSeriesTitle": "X-Men: Hellfire Gala",
+      "seriesYear": 2023,
+      "issueNumber": "1",
+      "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/563"
+    },
+    {
+      "sourcePosition": 242,
+      "disposition": "canonical",
+      "canonicalRow": 238,
+      "sourceIssueReference": "Free Comic Book Day 2023: Avengers/X-Men (2023) #1",
+      "normalizedSeriesTitle": "Free Comic Book Day 2023: Avengers/X-Men",
+      "seriesYear": 2023,
+      "issueNumber": "1",
+      "seriesId": 37007,
+      "issueId": 107204
+    },
+    {
+      "sourcePosition": 243,
+      "disposition": "canonical",
+      "canonicalRow": 239,
+      "sourceIssueReference": "X-Men Unlimited Infinity Comic (2021) #100",
+      "normalizedSeriesTitle": "X-Men Unlimited Infinity Comic",
+      "seriesYear": 2021,
+      "issueNumber": "100",
+      "seriesId": 31573,
+      "issueId": 106223
+    },
+    {
+      "sourcePosition": 244,
+      "disposition": "published-metadata-gap",
+      "sourceIssueReference": "X-Men Unlimited Infinity Comic (2021) #101",
+      "normalizedSeriesTitle": "X-Men Unlimited Infinity Comic",
+      "seriesYear": 2021,
+      "issueNumber": "101",
+      "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/563"
+    },
+    {
+      "sourcePosition": 245,
+      "disposition": "published-metadata-gap",
+      "sourceIssueReference": "X-Men Unlimited Infinity Comic (2021) #102",
+      "normalizedSeriesTitle": "X-Men Unlimited Infinity Comic",
+      "seriesYear": 2021,
+      "issueNumber": "102",
+      "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/563"
+    },
+    {
+      "sourcePosition": 246,
+      "disposition": "published-metadata-gap",
+      "sourceIssueReference": "X-Men Unlimited Infinity Comic (2021) #103",
+      "normalizedSeriesTitle": "X-Men Unlimited Infinity Comic",
+      "seriesYear": 2021,
+      "issueNumber": "103",
+      "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/563"
+    },
+    {
+      "sourcePosition": 247,
+      "disposition": "published-metadata-gap",
+      "sourceIssueReference": "X-Men Unlimited Infinity Comic (2021) #104",
+      "normalizedSeriesTitle": "X-Men Unlimited Infinity Comic",
+      "seriesYear": 2021,
+      "issueNumber": "104",
+      "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/563"
+    },
+    {
+      "sourcePosition": 248,
+      "disposition": "published-metadata-gap",
+      "sourceIssueReference": "X-Men Unlimited Infinity Comic (2021) #105",
+      "normalizedSeriesTitle": "X-Men Unlimited Infinity Comic",
+      "seriesYear": 2021,
+      "issueNumber": "105",
+      "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/563"
+    },
+    {
+      "sourcePosition": 249,
+      "disposition": "canonical",
+      "canonicalRow": 240,
+      "sourceIssueReference": "Invincible Iron Man (2022) #8",
+      "normalizedSeriesTitle": "Invincible Iron Man",
+      "seriesYear": 2022,
+      "issueNumber": "8",
+      "seriesId": 34717,
+      "issueId": 101536
+    },
+    {
+      "sourcePosition": 250,
+      "disposition": "canonical",
+      "canonicalRow": 241,
+      "sourceIssueReference": "X-Men: Before the Fall - Sons of X (2023) #1",
+      "normalizedSeriesTitle": "X-Men: Before the Fall - Sons of X",
+      "seriesYear": 2023,
+      "issueNumber": "1",
+      "seriesId": 36737,
+      "issueId": 106445
+    },
+    {
+      "sourcePosition": 251,
+      "disposition": "canonical",
+      "canonicalRow": 242,
+      "sourceIssueReference": "X-Men: Before the Fall - Mutant First Strike (2023) #1",
+      "normalizedSeriesTitle": "X-Men: Before the Fall - Mutant First Strike",
+      "seriesYear": 2023,
+      "issueNumber": "1",
+      "seriesId": 37414,
+      "issueId": 108968
+    },
+    {
+      "sourcePosition": 252,
+      "disposition": "canonical",
+      "canonicalRow": 243,
+      "sourceIssueReference": "Sins of Sinister: Dominion (2023) #1",
+      "normalizedSeriesTitle": "SINS OF SINISTER DOMINION 1",
+      "seriesYear": 2023,
+      "issueNumber": "1",
+      "seriesId": 36548,
+      "issueId": 105603
+    },
+    {
+      "sourcePosition": 253,
+      "disposition": "canonical",
+      "canonicalRow": 244,
+      "sourceIssueReference": "Immortal X-Men (2022) #1",
+      "normalizedSeriesTitle": "Immortal X-Men",
+      "seriesYear": 2022,
+      "issueNumber": "1",
+      "seriesId": 31375,
+      "issueId": 91732
+    },
+    {
+      "sourcePosition": 254,
+      "disposition": "canonical",
+      "canonicalRow": 245,
+      "sourceIssueReference": "Immortal X-Men (2022) #2",
+      "normalizedSeriesTitle": "Immortal X-Men",
+      "seriesYear": 2022,
+      "issueNumber": "2",
+      "seriesId": 31375,
+      "issueId": 91733
+    },
+    {
+      "sourcePosition": 255,
+      "disposition": "canonical",
+      "canonicalRow": 246,
+      "sourceIssueReference": "Immortal X-Men (2022) #3",
+      "normalizedSeriesTitle": "Immortal X-Men",
+      "seriesYear": 2022,
+      "issueNumber": "3",
+      "seriesId": 31375,
+      "issueId": 91734
+    },
+    {
+      "sourcePosition": 256,
+      "disposition": "canonical",
+      "canonicalRow": 247,
+      "sourceIssueReference": "Immortal X-Men (2022) #4",
+      "normalizedSeriesTitle": "Immortal X-Men",
+      "seriesYear": 2022,
+      "issueNumber": "4",
+      "seriesId": 31375,
+      "issueId": 91735
+    },
+    {
+      "sourcePosition": 257,
+      "disposition": "canonical",
+      "canonicalRow": 248,
+      "sourceIssueReference": "Immortal X-Men (2022) #5",
+      "normalizedSeriesTitle": "Immortal X-Men",
+      "seriesYear": 2022,
+      "issueNumber": "5",
+      "seriesId": 31375,
+      "issueId": 91736
+    },
+    {
+      "sourcePosition": 258,
+      "disposition": "canonical",
+      "canonicalRow": 249,
+      "sourceIssueReference": "Immortal X-Men (2022) #7",
+      "normalizedSeriesTitle": "Immortal X-Men",
+      "seriesYear": 2022,
+      "issueNumber": "7",
+      "seriesId": 31375,
+      "issueId": 91738
+    },
+    {
+      "sourcePosition": 259,
+      "disposition": "canonical",
+      "canonicalRow": 250,
+      "sourceIssueReference": "Immortal X-Men (2022) #8",
+      "normalizedSeriesTitle": "Immortal X-Men",
+      "seriesYear": 2022,
+      "issueNumber": "8",
+      "seriesId": 31375,
+      "issueId": 91739
+    },
+    {
+      "sourcePosition": 260,
+      "disposition": "canonical",
+      "canonicalRow": 251,
+      "sourceIssueReference": "Immortal X-Men (2022) #9",
+      "normalizedSeriesTitle": "Immortal X-Men",
+      "seriesYear": 2022,
+      "issueNumber": "9",
+      "seriesId": 31375,
+      "issueId": 91740
+    },
+    {
+      "sourcePosition": 261,
+      "disposition": "canonical",
+      "canonicalRow": 252,
+      "sourceIssueReference": "Immortal X-Men (2022) #10",
+      "normalizedSeriesTitle": "Immortal X-Men",
+      "seriesYear": 2022,
+      "issueNumber": "10",
+      "seriesId": 31375,
+      "issueId": 91741
+    },
+    {
+      "sourcePosition": 262,
+      "disposition": "canonical",
+      "canonicalRow": 253,
+      "sourceIssueReference": "Immortal X-Men (2022) #11",
+      "normalizedSeriesTitle": "Immortal X-Men",
+      "seriesYear": 2022,
+      "issueNumber": "11",
+      "seriesId": 31375,
+      "issueId": 91742
+    },
+    {
+      "sourcePosition": 263,
+      "disposition": "canonical",
+      "canonicalRow": 254,
+      "sourceIssueReference": "Immortal X-Men (2022) #12",
+      "normalizedSeriesTitle": "Immortal X-Men",
+      "seriesYear": 2022,
+      "issueNumber": "12",
+      "seriesId": 31375,
+      "issueId": 91743
+    },
+    {
+      "sourcePosition": 264,
+      "disposition": "canonical",
+      "canonicalRow": 255,
+      "sourceIssueReference": "Immortal X-Men (2022) #13",
+      "normalizedSeriesTitle": "Immortal X-Men",
+      "seriesYear": 2022,
+      "issueNumber": "13",
+      "seriesId": 31375,
+      "issueId": 107263
+    }
+  ]
+}

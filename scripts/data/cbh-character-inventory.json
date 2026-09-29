@@ -1625,13 +1625,35 @@
     "url": "https://www.comicbookherald.com/hope-summers-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
-    "sourceRetrievedAt": "2026-08-23",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "disposition": "new-order",
+    "reason": "Published as a partial guide with 255 exact originals, six visible metadata gaps and three backward repeats across 264 source positions. The approved complete-current-library review records 17 partial overlaps and two intentional existing subsets. Gap bundle: Issue 563.",
+    "sourceRetrievedAt": "2026-09-28",
+    "overlapIds": [
+      "emma-frost-reading-order",
+      "hickman-x-men",
+      "iron-man-reading-order",
+      "judgment-day",
+      "magneto-reading-order",
+      "messiah-complex",
+      "messiah-war",
+      "modern-x-men-fast-track",
+      "question-of-the-week-do-you-have-a-hulk-reading-order",
+      "second-coming",
+      "sins-of-sinister",
+      "war-of-the-realms",
+      "wolverine-reading-order",
+      "x-force-reading-order",
+      "x-men-divided-we-stand",
+      "x-men-inferno",
+      "x-men-regenesis",
+      "x-men-schism",
+      "young-avengers-reading-order"
+    ],
+    "catalogIds": [
+      "hope-summers-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Hope Summers"
     ],
@@ -1639,9 +1661,9 @@
       47
     ],
     "duplicateFlags": [],
-    "sourceContentSha256": "e0efde4afcfe1d75210fd1895bdd5812035b8ce3499a23fda316f8d83c1724bd",
+    "sourceContentSha256": "774aa4b8c8f13a20d48718546da359d3d6fabbd17cc9a292fc746fafb3ba4aaa",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 48,

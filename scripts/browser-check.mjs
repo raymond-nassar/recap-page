@@ -3232,8 +3232,8 @@ const SCENARIOS = [
         bestOf: await readSubset('best-of'),
       };
       t.check('desktop All, Complete, and Best of counts classify Adam exactly once',
-        desktop.all.readings === 59 && desktop.all.stories === 58
-        && desktop.all.cards === 58 && desktop.all.adamCards === 1
+        desktop.all.readings === 60 && desktop.all.stories === 59
+        && desktop.all.cards === 59 && desktop.all.adamCards === 1
         && desktop.complete.readings === 37 && desktop.complete.stories === 37
         && desktop.complete.cards === 37 && desktop.complete.adamCards === 1
         && desktop.bestOf.readings === 7 && desktop.bestOf.stories === 7
@@ -3248,8 +3248,8 @@ const SCENARIOS = [
         overflow: await page.evaluate(() => document.documentElement.scrollWidth > innerWidth),
       };
       t.check('narrow All, Complete, and Best of counts preserve Adam without horizontal overflow',
-        narrow.all.readings === 59 && narrow.all.stories === 58
-        && narrow.all.cards === 58 && narrow.all.adamCards === 1
+        narrow.all.readings === 60 && narrow.all.stories === 59
+        && narrow.all.cards === 59 && narrow.all.adamCards === 1
         && narrow.complete.readings === 37 && narrow.complete.stories === 37
         && narrow.complete.cards === 37 && narrow.complete.adamCards === 1
         && narrow.bestOf.readings === 7 && narrow.bestOf.stories === 7
@@ -3326,6 +3326,136 @@ const SCENARIOS = [
       t.check('guide navigation and reload keep the complete imported order',
         await page.evaluate((state) => localStorage.getItem('mrt.state.v2') === state, savedState));
       t.check('the Adam actual-data journey makes no external request and raises no browser error',
+        externalRequests.length === 0 && browserErrors.length === 0,
+        JSON.stringify({ externalRequests, browserErrors }));
+    },
+  },
+  {
+    id: 'hope-summers-actual-data',
+    title: 'the actual Hope Summers guide preserves its complete source-selected runtime vector',
+    async run(page, t) {
+      await page.setViewport({ width: 1280, height: 900 });
+      const browserErrors = [];
+      const externalRequests = [];
+      page.on('console', (message) => { if (message.type() === 'error') browserErrors.push(message.text()); });
+      page.on('pageerror', (error) => browserErrors.push(error.message));
+      page.on('request', (request) => {
+        const url = new URL(request.url());
+        if (url.protocol.startsWith('http') && url.origin !== page.__origin) externalRequests.push(request.url());
+      });
+      await page.evaluateOnNewDocument(() => {
+        localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
+        window.__mrtBlockExternal = true;
+      });
+
+      const cardSelector = '#spotlights-results [data-story="list:hope-summers-reading-order"]';
+      await open(page, '/?catalog=actual#/home');
+      await openBrowseCategory(page, 'character-spotlights');
+      await page.$eval('#spotlights-q', (input) => {
+        input.value = 'Hope Summers';
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+      });
+      await page.waitForSelector(cardSelector, { timeout: 15000 });
+      const card = await page.$eval(cardSelector, (node) => ({
+        title: node.querySelector('.catalog-card-title')?.textContent.trim(),
+        text: node.textContent,
+        addName: node.querySelector('[data-act="import"]')?.getAttribute('aria-label'),
+        sourceName: node.querySelector('a[href*="comicbookherald.com"]')?.getAttribute('aria-label'),
+        sourceHref: node.querySelector('a[href*="comicbookherald.com"]')?.href,
+      }));
+      t.check('the Hope card exposes the exact count, gap disclosure, source, and add action',
+        card.title === 'Hope Summers'
+        && card.text.includes('261 issues')
+        && card.text.includes('6 issues have no Marvel Unlimited links yet and cannot be opened')
+        && card.addName === 'Add to library: Hope Summers'
+        && card.sourceName === 'Source of Hope Summers: Comic Book Herald'
+        && card.sourceHref === 'https://www.comicbookherald.com/hope-summers-reading-order/',
+        JSON.stringify(card));
+
+      await click(page, `${cardSelector} [data-act="preview"]`);
+      await page.waitForSelector('#preview[open]', { timeout: 15000 });
+      await click(page, '#preview-add [data-act="main"]');
+      await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')
+        ?.textContent.includes('In library'));
+      const imported = await page.evaluate(async () => {
+        const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+        const payload = await fetch('/data/hope_summers_reading_order.json')
+          .then((response) => response.json());
+        const matches = Object.values(state.lists)
+          .filter((candidate) => candidate.catalogId === 'hope-summers-reading-order');
+        const list = matches[0];
+        const itemIds = list?.itemIds ?? [];
+        const expectedIds = payload.items.map((item) => item.issueId);
+        const titles = itemIds.map((id) => state.issues[id]?.title);
+        const gaps = itemIds
+          .map((issueId, index) => ({
+            index,
+            issueId,
+            title: state.issues[issueId]?.title,
+          }))
+          .filter(({ issueId }) => issueId < 0);
+        return {
+          matches: matches.length,
+          count: itemIds.length,
+          exactVector: itemIds.length === expectedIds.length
+            && itemIds.every((issueId, index) => issueId === expectedIds[index]),
+          first: titles[0],
+          last: titles.at(-1),
+          gaps,
+          repeatCounts: [24638, 39739, 97163]
+            .map((issueId) => itemIds.filter((candidate) => candidate === issueId).length),
+          kingSizePlacement: titles.slice(18, 21),
+          secondComingBoundaries: [titles[45], titles[58]],
+          avxBoundary: titles.slice(122, 127),
+          vendettaBoundary: titles.slice(141, 148),
+        };
+      });
+      t.check('import preserves all 261 canonical rows and both endpoint identities',
+        imported.matches === 1 && imported.count === 261 && imported.exactVector
+        && imported.first === 'X-Men: Messiah Complex (2007) #1'
+        && imported.last === 'Immortal X-Men (2022) #13',
+        JSON.stringify(imported));
+      t.check('import keeps the six researched gaps at their exact canonical positions',
+        JSON.stringify(imported.gaps) === JSON.stringify([
+          { index: 237, issueId: -447689596, title: 'X-Men: Hellfire Gala (2023) #1' },
+          { index: 240, issueId: -498022453, title: 'X-Men Unlimited Infinity Comic (2021) #101' },
+          { index: 241, issueId: -514800072, title: 'X-Men Unlimited Infinity Comic (2021) #102' },
+          { index: 242, issueId: -531577691, title: 'X-Men Unlimited Infinity Comic (2021) #103' },
+          { index: 243, issueId: -548355310, title: 'X-Men Unlimited Infinity Comic (2021) #104' },
+          { index: 244, issueId: -296691025, title: 'X-Men Unlimited Infinity Comic (2021) #105' },
+        ]),
+        JSON.stringify(imported.gaps));
+      t.check('the three repeated source references remain single runtime identities',
+        imported.repeatCounts.every((count) => count === 1),
+        JSON.stringify(imported.repeatCounts));
+      t.check('source-directed King-Size, Second Coming, AVX, and Vendetta placements survive import',
+        JSON.stringify(imported.kingSizePlacement) === JSON.stringify([
+          'Cable (2008) #6',
+          'CABLE KING-SIZE SPECTACULAR 1 (2008) #1',
+          'Cable (2008) #7',
+        ])
+        && JSON.stringify(imported.secondComingBoundaries) === JSON.stringify([
+          'X-Men: Second Coming (2010) #1',
+          'X-Men: Second Coming (2010) #2',
+        ])
+        && JSON.stringify(imported.avxBoundary) === JSON.stringify([
+          'Avengers Vs. X-Men (2012) #12',
+          'Avx: Consequences (2012) #1',
+          'Avx: Consequences (2012) #3',
+          'Avx: Consequences (2012) #4',
+          'Avx: Consequences (2012) #5',
+        ])
+        && JSON.stringify(imported.vendettaBoundary) === JSON.stringify([
+          'Cable and X-Force (2012) #15',
+          'Cable and X-Force (2012) #16',
+          'Cable and X-Force (2012) #17',
+          'Cable and X-Force (2012) #18',
+          'Uncanny X-Force (2013) #16',
+          'Cable and X-Force (2012) #19',
+          'Uncanny X-Force (2013) #17',
+        ]),
+        JSON.stringify(imported));
+      t.check('the Hope actual-data journey makes no external request and raises no browser error',
         externalRequests.length === 0 && browserErrors.length === 0,
         JSON.stringify({ externalRequests, browserErrors }));
     },

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-29T00:59:21.271Z",
+  "generatedAt": "2026-09-29T01:17:10.187Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -3526,6 +3526,53 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-09-07T08:41:05.684Z"
+    },
+    {
+      "id": "hope-summers-reading-order",
+      "file": "hope_summers_reading_order.json",
+      "name": "Hope Summers",
+      "description": "Follow Hope Summers from Messiah Complex through Immortal X-Men, using Comic Book Herald's character cuts and reading order.",
+      "type": "character-run",
+      "depth": "partial",
+      "spotlightKind": "other",
+      "count": 261,
+      "placeholderCount": 6,
+      "emptyRecordCount": 0,
+      "collections": 54,
+      "characters": [
+        "Hope Summers",
+        "Cable",
+        "X-Men",
+        "X-Force",
+        "Generation Hope"
+      ],
+      "keywords": [
+        "Hope Summers",
+        "Hope",
+        "Mutant Messiah",
+        "Cable",
+        "X-Men",
+        "X-Force",
+        "Generation Hope",
+        "Messiah Complex",
+        "Second Coming",
+        "Krakoa",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 16600,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/f0/513a8972c747e",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/hope-summers-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-09-29T01:17:10.187Z"
     },
     {
       "id": "question-of-the-week-do-you-have-a-hulk-reading-order",

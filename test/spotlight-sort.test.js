@@ -112,6 +112,7 @@ test('popularity sorting keeps the ranked stories first and the rest in their cu
     'Thanos',
     'Ant-Man',
     'Bucky Barnes / Winter Soldier',
+    'Hope Summers',
     'Hulk (and She-Hulk, Red Hulk)',
     'Shadow King',
     'Captain Marvel / Ms. Marvel',
