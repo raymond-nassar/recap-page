@@ -146,6 +146,8 @@ test('Doctor Octopus relationship approval regenerates against its reviewed sour
       'thunderbolts-reading-order',
       'nebula-reading-order',
       'hope-summers-reading-order',
+
+      'x-23-reading-order',
     ],
   });
   const expectedOrderIds = manifest.lists.filter((row) => (
@@ -155,6 +157,8 @@ test('Doctor Octopus relationship approval regenerates against its reviewed sour
         'thunderbolts-reading-order',
         'nebula-reading-order',
         'hope-summers-reading-order',
+
+        'x-23-reading-order',
       ].includes(row.id)
   )).map((row) => row.id);
 
