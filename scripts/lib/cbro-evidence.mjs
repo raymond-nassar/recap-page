@@ -110,7 +110,6 @@ export const CBH_LATER_ORDER_IDS = Object.freeze([
   'venom-reading-order',
   'magneto-reading-order',
   'loki-reading-order',
-  'guardians-of-the-galaxy-reading-order',
   'moon-knight-reading-order',
   'x-force-reading-order',
   'fantastic-four-reading-order',
@@ -126,7 +125,7 @@ export const CBH_LATER_ORDER_IDS = Object.freeze([
   'spider-gwen-reading-order',
   'spider-man-2099-reading-order', 'donny-cates-marvel-universe-reading-order-2017',
   'shadow-king-reading-order',
-  'thunderbolts-reading-order',
+  'thunderbolts-reading-order', 'nebula-reading-order',
 ]);
 export const CBRO_PACKET_REVIEW = 'MRT-003 central CBRO source review';
 export const CBRO_SELECTED_IDS = Object.freeze([
@@ -298,15 +297,6 @@ export const CBRO_RELEASE_IDS = Object.freeze({
   marvel2099Publication: 'mrt-003-c02-au01-pub',
 });
 export const CBRO_RELATIONSHIP_DECISIONS = Object.freeze({
-  [CBRO_RELEASE_IDS.original]: Object.freeze([
-    Object.freeze({
-      candidateId: 'bloodties',
-      orderId: 'black-widow-reading-order',
-      relationship: 'candidate-subset',
-      sharedIds: Object.freeze(['7250', '14313', '17788', '13848', '7251']),
-      rationale: 'Bloodties is the exact five-issue Black Widow candidate subset inside the broader Black Widow reading order.',
-    }),
-  ]),
   [CBRO_RELEASE_IDS.continuationBatchOne]: Object.freeze([
     Object.freeze({
       candidateId: 'kree-skrull-war',
@@ -321,13 +311,6 @@ export const CBRO_RELATIONSHIP_DECISIONS = Object.freeze({
       relationship: 'partial',
       sharedIds: Object.freeze(['7347']),
       rationale: 'The compact nine-issue event route keeps one shared Kree-Skrull chapter while the broader Ant-Man reading order serves a different story purpose.',
-    }),
-    Object.freeze({
-      candidateId: 'avengers-defenders-war',
-      orderId: 'silver-surfer-reading-order',
-      relationship: 'candidate-subset',
-      sharedIds: Object.freeze(['6970', '20392', '6971', '20403', '6972', '20263', '6973', '20274']),
-      rationale: 'Avengers/Defenders War is the exact eight-issue Silver Surfer candidate subset inside the broader Silver Surfer reading order.',
     }),
     Object.freeze({
       candidateId: 'thanos-war',
@@ -478,13 +461,6 @@ export const CBRO_RELATIONSHIP_DECISIONS = Object.freeze({
     }),
     Object.freeze({
       candidateId: 'secret-wars-ii',
-      orderId: 'nebula-reading-order',
-      relationship: 'partial',
-      sharedIds: Object.freeze(['7131']),
-      rationale: 'The Secret Wars II event route shares one Nebula issue for a distinct reader purpose.',
-    }),
-    Object.freeze({
-      candidateId: 'secret-wars-ii',
       orderId: 'xmen-claremont',
       relationship: 'partial',
       sharedIds: Object.freeze(['10367', '13737', '10373', '13743', '10374', '13744']),
@@ -518,33 +494,6 @@ export const CBRO_RELATIONSHIP_DECISIONS = Object.freeze({
       rationale: 'The selected eleven-chapter Mutant Massacre route has a distinct event purpose inside the broader optional X-Men chronology.',
     }),
   ]),
-  [CBRO_RELEASE_IDS.continuationBatchSix]: Object.freeze([
-    Object.freeze({
-      candidateId: 'operation-galactic-storm',
-      orderId: 'black-widow-reading-order',
-      relationship: 'partial',
-      sharedIds: Object.freeze([
-        '17822',
-        '18920',
-        '18283',
-        '7225',
-        '9525',
-        '11773',
-        '17823',
-        '18921',
-        '18284',
-        '7226',
-        '9526',
-        '11774',
-        '17824',
-        '18922',
-        '18285',
-        '7227',
-        '7782',
-      ]),
-      rationale: 'The Operation Galactic Storm event route shares a 17-issue Black Widow partial overlap while remaining a distinct event review.',
-    }),
-  ]),
   [CBRO_RELEASE_IDS.continuationBatchEight]: Object.freeze([
     Object.freeze({
       candidateId: 'phalanx-covenant',
@@ -573,7 +522,7 @@ export const CBRO_RELEASES = Object.freeze({
     authorIds: CBRO_AUTHOR_IDS,
     packetReview: CBRO_PACKET_REVIEW,
     authorityIdentity: 'MRT-003 coordinator',
-    relationshipReviewRationale: 'Every current library and selected peer comparison was reviewed; Bloodties is the approved Black Widow candidate subset and all remaining relationships are none.',
+    relationshipReviewRationale: 'Every current library and selected peer comparison was reviewed; all relationships are none.',
   }),
   [CBRO_RELEASE_IDS.continuationBatchOne]: Object.freeze({
     id: CBRO_RELEASE_IDS.continuationBatchOne,
@@ -581,7 +530,7 @@ export const CBRO_RELEASES = Object.freeze({
     authorIds: CBRO_CONTINUATION_AUTHOR_IDS,
     packetReview: CBRO_CONTINUATION_PACKET_REVIEW,
     authorityIdentity: 'MRT-003-C02 coordinator',
-    relationshipReviewRationale: 'Every current library and selected peer comparison was reviewed; the Kree-Skrull War subset, the Silver Surfer candidate subset, the Thanos War subset, and Ant-Man partial relationship are the approved non-none relationships.',
+    relationshipReviewRationale: 'Every current library and selected peer comparison was reviewed; the Kree-Skrull War subset, the Thanos War subset, and Ant-Man partial relationship are the approved non-none relationships.',
   }),
   [CBRO_RELEASE_IDS.continuationBatchTwo]: Object.freeze({
     id: CBRO_RELEASE_IDS.continuationBatchTwo,
@@ -605,7 +554,7 @@ export const CBRO_RELEASES = Object.freeze({
     authorIds: CBRO_BATCH_FOUR_AUTHOR_IDS,
     packetReview: CBRO_BATCH_FOUR_PACKET_REVIEW,
     authorityIdentity: 'MRT-003-C02-B04 coordinator',
-    relationshipReviewRationale: 'Every current library and selected peer comparison was reviewed; the eight named X-Men, Avengers, Doctor Doom, Nebula, and peer relationships are approved non-none relationships.',
+    relationshipReviewRationale: 'Every current library and selected peer comparison was reviewed; only the eight named X-Men, Avengers, Doctor Doom, and peer relationships are approved non-none relationships.',
   }),
   [CBRO_RELEASE_IDS.continuationBatchFive]: Object.freeze({
     id: CBRO_RELEASE_IDS.continuationBatchFive,
@@ -621,7 +570,7 @@ export const CBRO_RELEASES = Object.freeze({
     authorIds: CBRO_BATCH_SIX_AUTHOR_IDS,
     packetReview: CBRO_BATCH_SIX_PACKET_REVIEW,
     authorityIdentity: 'MRT-003-C02-B06 coordinator',
-    relationshipReviewRationale: 'Every current library and selected peer comparison was reviewed; the Black Widow partial relationship is the approved non-none relationship.',
+    relationshipReviewRationale: 'Every current library and selected peer comparison was reviewed; all relationships are none.',
   }),
   [CBRO_RELEASE_IDS.continuationBatchSeven]: Object.freeze({
     id: CBRO_RELEASE_IDS.continuationBatchSeven,

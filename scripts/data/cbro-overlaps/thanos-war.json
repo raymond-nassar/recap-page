@@ -2,7 +2,7 @@
   "candidateId": "thanos-war",
   "packetDigest": "9f30aaf7c54cbf6ae3c854cb6c2cbade64e6f2c751cada4e447ad9874b8686da",
   "mappingDigest": "0c38d78c7155945788e369a586d0409b3953b6339f34c66c5a670945680a3199",
-  "libraryDigest": "31afebcf59cb9a143bf64bb2d48ba267284e2e62cb159dc52a26436cf887f027",
+  "libraryDigest": "15975afcb9778c9febcc04ebe880d434a84d08d0d20e1d32183be234d6d9f746",
   "peerDigests": {
     "avengers-defenders-war": "71f75f307ed36722ea5c65a1a132022608d0e10563ad4a008eb27d9dd4e22652",
     "kree-skrull-war": "932047dae3233ffed12f92fb3670fb2f9ffbb2a4f7039440911b9113e68be8a7",
@@ -10,7 +10,7 @@
     "the-night-gwen-stacy-died": "aef1e4f4cdc1b2e85759cff25cb32444b6946600fe3ff26bd4fa78122ee8d1bf"
   },
   "candidateCount": 12,
-  "comparisonCount": 137,
+  "comparisonCount": 136,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -457,12 +457,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "nebula-reading-order",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "necrosha",
       "sharedCount": 0,
       "sharedIds": [],
@@ -848,5 +842,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "fb98aa19dede43af3eb2ae1ba78ba8c485efdcfe816051bd994ceee385881f26"
+  "reportDigest": "fc495d1a255239f9b6336e77a7489c83be777e3d34cea81a93718e7aedee91c0"
 }

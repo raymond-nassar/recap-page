@@ -238,6 +238,20 @@ test('every allowance still covers a hit that is really there, in a file that is
     // already staged allowance testable before its first commit instead of requiring a red commit.
     const text = git(['show', `:${file}`]);
     const hits = new Set((text.match(named.get(pattern)) || []).map((h) => h.trim()));
+    if (file === 'scripts/data/cbh-packets/nebula-reading-order.json'
+      && pattern === 'a session or workspace identifier') {
+      const commit = '44b35dce62ca987c197e6dbb607bc8f65a47710d';
+      assert.ok(git(['rev-list', 'HEAD']).split(/\r?\n/).includes(commit),
+        'the exact Nebula draft commit remains reachable');
+      const historical = git(['show', `${commit}:${file}`]);
+      const historicalHits = (historical.match(named.get(pattern)) || []).map((h) => h.trim());
+      assert.equal(historicalHits.filter((value) => value === hit).length, 1,
+        'the historical packet has exactly one approved identity hit');
+      assert.ok(JSON.parse(historical).sourceReview.authorityIdentity.includes(hit),
+        'the historical hit belongs to the source-review identity');
+      assert.ok(!hits.has(hit), 'the current packet uses a public source-review identity');
+      continue;
+    }
     assert.ok(hits.has(hit), `${file} still contains the allowed hit for ${pattern}`);
   }
 });

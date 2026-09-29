@@ -2,13 +2,13 @@
   "candidateId": "fatal-attractions",
   "packetDigest": "2f52914f5c42ab4c8459064bdafac5f932b7f628f00fbae37e1b16f409016bbb",
   "mappingDigest": "30a2f8e583d391f7df42fd671f9430f29dc180822482984b6c7d8963abf6caf9",
-  "libraryDigest": "be1396aef724485dc112d3285fc9c899b6af01c674227c98c2734f494d24517c",
+  "libraryDigest": "35dcbbf5769d2b2e265c757e76985744ab88fd3a7cedfa04c68009d88141ee15",
   "peerDigests": {
     "mys-tech-wars": "1ea66de3f195764b4a90af6c0a4e5d609846a4084db382a7ff295edcfc067306",
     "x-cutioners-song": "0d8647a95f37060f25d9c9f23b4a042c9c88ac43e5ce207fdf20f75a4a746582"
   },
   "candidateCount": 6,
-  "comparisonCount": 137,
+  "comparisonCount": 136,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -449,12 +449,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "nebula-reading-order",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "necrosha",
       "sharedCount": 0,
       "sharedIds": [],
@@ -833,5 +827,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "0f48675375342a278b8ebeef54672fb89c3e91a248458214c23673513380fd6f"
+  "reportDigest": "0f5ad9cc8cf71ca68a35571a820762c7825f29ea6bb8e2de933dfb4ecc335433"
 }

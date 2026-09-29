@@ -5,21 +5,12 @@
   "source": "https://www.comicbookherald.com/nebula-reading-order/",
   "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
   "sourceLicense": null,
-  "generatedAt": "2026-09-28T18:15:36.981Z",
+  "generatedAt": "2026-09-29T00:59:21.271Z",
   "apiBase": "https://marvel.emreparker.com/v1",
-  "count": 70,
-  "collections": 0,
-  "placeholders": 1,
-  "unresolved": [
-    {
-      "title": "Silver Surfer Annual (1988) #5",
-      "url": null,
-      "read": false,
-      "index": 22,
-      "section": "Defenders: Return Of The Defenders",
-      "sourceKey": "23"
-    }
-  ],
+  "count": 69,
+  "collections": 20,
+  "placeholders": 0,
+  "unresolved": [],
   "items": [
     {
       "issueId": 7127,
@@ -39,16 +30,8 @@
       "pageCount": 0,
       "creators": [
         {
-          "name": "Christie Scheele",
-          "role": "colorist"
-        },
-        {
           "name": "Tom Palmer",
           "role": "cover artist"
-        },
-        {
-          "name": "Jim Novak",
-          "role": "letterer"
         },
         {
           "name": "John Buscema",
@@ -58,7 +41,8 @@
           "name": "Roger Stern",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "The Nebula Cut (every comic she's in): Avengers (1963) #257-260, Avengers Annual #14."
     },
     {
       "issueId": 7128,
@@ -71,23 +55,15 @@
       "mu": "1985-08-01T00:00:00+0000",
       "digitalId": 35058,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/9/d0/55d4b296a7ce7",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/d0/55d4b296a7ce7",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 0,
       "creators": [
         {
-          "name": "Christie Scheele",
-          "role": "colorist"
-        },
-        {
           "name": "Tom Palmer",
           "role": "cover artist"
-        },
-        {
-          "name": "Jim Novak",
-          "role": "letterer"
         },
         {
           "name": "John Buscema",
@@ -97,7 +73,8 @@
           "name": "Roger Stern",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "The Nebula Cut (every comic she's in): Avengers (1963) #257-260, Avengers Annual #14."
     },
     {
       "issueId": 7129,
@@ -110,23 +87,15 @@
       "mu": "1985-09-01T00:00:00+0000",
       "digitalId": 35059,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/8/70/55d4b3042db2a",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/70/55d4b3042db2a",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 0,
       "creators": [
         {
-          "name": "Christie Scheele",
-          "role": "colorist"
-        },
-        {
           "name": "Tom Palmer",
           "role": "cover artist"
-        },
-        {
-          "name": "Jim Novak",
-          "role": "letterer"
         },
         {
           "name": "John Buscema",
@@ -136,7 +105,8 @@
           "name": "Roger Stern",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "The Nebula Cut (every comic she's in): Avengers (1963) #257-260, Avengers Annual #14."
     },
     {
       "issueId": 7131,
@@ -149,23 +119,15 @@
       "mu": "1985-10-01T00:00:00+0000",
       "digitalId": 12887,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/4/00/5888d43df2290",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/00/5888d43df2290",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 0,
       "creators": [
         {
-          "name": "Christie Scheele",
-          "role": "colorist"
-        },
-        {
           "name": "Tom Palmer",
           "role": "cover artist"
-        },
-        {
-          "name": "Jim Novak",
-          "role": "letterer"
         },
         {
           "name": "John Buscema",
@@ -175,7 +137,8 @@
           "name": "Roger Stern",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "The Nebula Cut (every comic she's in): Avengers (1963) #257-260, Avengers Annual #14."
     },
     {
       "issueId": 6928,
@@ -188,23 +151,15 @@
       "mu": "1985-07-30T00:00:00+0000",
       "digitalId": 5243,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/f0/5a294b89d476a",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/5a294b89d476a",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 0,
       "creators": [
         {
-          "name": "Christie Scheele",
-          "role": "colorist"
-        },
-        {
           "name": "Kyle Baker",
           "role": "cover artist"
-        },
-        {
-          "name": "John Workman",
-          "role": "letterer"
         },
         {
           "name": "John Byrne",
@@ -214,7 +169,8 @@
           "name": "Roger Stern",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "The Nebula Cut (every comic she's in): Avengers (1963) #257-260, Avengers Annual #14."
     },
     {
       "issueId": 17790,
@@ -227,12 +183,13 @@
       "mu": "2009-11-10T00:00:00+0000",
       "digitalId": 5265,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/f/80/4bb6e93bd6e3d",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/80/4bb6e93bd6e3d",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 0,
-      "creators": []
+      "creators": [],
+      "collectedIn": "The Nebula Cut: Avengers West Coast #48."
     },
     {
       "issueId": 7188,
@@ -245,23 +202,15 @@
       "mu": "2012-07-19T00:00:00+0000",
       "digitalId": 21869,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/3/b0/588b583ed0523",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/588b583ed0523",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 0,
       "creators": [
         {
-          "name": "Nel Yomtov",
-          "role": "colorist"
-        },
-        {
           "name": "Tom Palmer",
           "role": "cover artist"
-        },
-        {
-          "name": "Bill Oakley",
-          "role": "letterer"
         },
         {
           "name": "Paul Ryan",
@@ -271,7 +220,8 @@
           "name": "John Byrne",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "The Nebula Cut: Avengers (1963) #311-313."
     },
     {
       "issueId": 7189,
@@ -284,23 +234,15 @@
       "mu": "2012-07-19T00:00:00+0000",
       "digitalId": 21873,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/5/b0/588b632100dab",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/b0/588b632100dab",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 0,
       "creators": [
         {
-          "name": "Christie Scheele",
-          "role": "colorist"
-        },
-        {
           "name": "Tom Palmer",
           "role": "cover artist"
-        },
-        {
-          "name": "Bill Oakley",
-          "role": "letterer"
         },
         {
           "name": "Paul Ryan",
@@ -310,7 +252,8 @@
           "name": "John Byrne",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "The Nebula Cut: Avengers (1963) #311-313."
     },
     {
       "issueId": 7190,
@@ -323,23 +266,15 @@
       "mu": "2012-07-19T00:00:00+0000",
       "digitalId": 21874,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/4/60/4e9496d04f378",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/60/4e9496d04f378",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 0,
       "creators": [
         {
-          "name": "Mike Rockwitz",
-          "role": "colorist"
-        },
-        {
           "name": "Tom Palmer",
           "role": "cover artist"
-        },
-        {
-          "name": "Bill Oakley",
-          "role": "letterer"
         },
         {
           "name": "Paul Ryan",
@@ -349,7 +284,8 @@
           "name": "John Byrne",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "The Nebula Cut: Avengers (1963) #311-313."
     },
     {
       "issueId": 7191,
@@ -362,23 +298,15 @@
       "mu": "1990-02-01T00:00:00+0000",
       "digitalId": 29812,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/1/20/588b7271f1747",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/20/588b7271f1747",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 0,
       "creators": [
         {
-          "name": "Christie Scheele",
-          "role": "colorist"
-        },
-        {
           "name": "Tom Palmer",
           "role": "cover artist"
-        },
-        {
-          "name": "Bill Oakley",
-          "role": "letterer"
         },
         {
           "name": "Paul Ryan",
@@ -388,7 +316,8 @@
           "name": "John Byrne",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "The Nebula Cut: Avengers #314-318."
     },
     {
       "issueId": 7192,
@@ -401,23 +330,15 @@
       "mu": "1990-03-01T00:00:00+0000",
       "digitalId": 34472,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/a/a0/588b797ddae58",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/a0/588b797ddae58",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 0,
       "creators": [
         {
-          "name": "Christie Scheele",
-          "role": "colorist"
-        },
-        {
           "name": "Tom Palmer",
           "role": "cover artist"
-        },
-        {
-          "name": "Bill Oakley",
-          "role": "letterer"
         },
         {
           "name": "Paul Ryan",
@@ -427,7 +348,8 @@
           "name": "John Byrne",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "The Nebula Cut: Avengers #314-318."
     },
     {
       "issueId": 7193,
@@ -440,23 +362,15 @@
       "mu": "1990-04-01T00:00:00+0000",
       "digitalId": 29624,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/e/03/588b8142d6823",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/03/588b8142d6823",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 0,
       "creators": [
         {
-          "name": "Christie Scheele",
-          "role": "colorist"
-        },
-        {
           "name": "Tom Palmer",
           "role": "cover artist"
-        },
-        {
-          "name": "Bill Oakley",
-          "role": "letterer"
         },
         {
           "name": "Paul Ryan",
@@ -466,7 +380,8 @@
           "name": "John Byrne",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "The Nebula Cut: Avengers #314-318."
     },
     {
       "issueId": 7194,
@@ -479,23 +394,15 @@
       "mu": "1990-05-01T00:00:00+0000",
       "digitalId": 29625,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/2/20/588b89986a386",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/20/588b89986a386",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 0,
       "creators": [
         {
-          "name": "Christie Scheele",
-          "role": "colorist"
-        },
-        {
           "name": "Tom Palmer",
           "role": "cover artist"
-        },
-        {
-          "name": "Jack Morelli",
-          "role": "letterer"
         },
         {
           "name": "Paul Ryan",
@@ -505,7 +412,8 @@
           "name": "John Byrne",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "The Nebula Cut: Avengers #314-318."
     },
     {
       "issueId": 7195,
@@ -518,23 +426,15 @@
       "mu": "1990-06-01T00:00:00+0000",
       "digitalId": 29627,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/d/90/588b9c92ebff7",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/90/588b9c92ebff7",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 0,
       "creators": [
         {
-          "name": "Christie Scheele",
-          "role": "colorist"
-        },
-        {
           "name": "Tom Palmer",
           "role": "cover artist"
-        },
-        {
-          "name": "Jack Morelli",
-          "role": "letterer"
         },
         {
           "name": "Paul Ryan",
@@ -544,7 +444,8 @@
           "name": "Fabian Nicieza",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "The Nebula Cut: Avengers #314-318."
     },
     {
       "issueId": 15173,
@@ -557,23 +458,15 @@
       "mu": "1990-06-01T00:00:00+0000",
       "digitalId": 6872,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/60/5c92a53d96b40",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/5c92a53d96b40",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 0,
       "creators": [
         {
-          "name": "Tom Vincent",
-          "role": "colorist"
-        },
-        {
           "name": "Tom Christopher",
           "role": "cover artist"
-        },
-        {
-          "name": "Ken Bruzenak",
-          "role": "letterer"
         },
         {
           "name": "Ron Lim",
@@ -583,7 +476,8 @@
           "name": "Jim Starlin",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "The Nebula Cut: Silver Surfer (1987) #38."
     },
     {
       "issueId": 15181,
@@ -596,23 +490,15 @@
       "mu": "1991-01-01T00:00:00+0000",
       "digitalId": 48725,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/a0/5b2d5e8f55037",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/5b2d5e8f55037",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 0,
       "creators": [
         {
-          "name": "Tom Vincent",
-          "role": "colorist"
-        },
-        {
           "name": "Tom Christopher",
           "role": "cover artist"
-        },
-        {
-          "name": "Ken Bruzenak",
-          "role": "letterer"
         },
         {
           "name": "Ron Lim",
@@ -622,7 +508,8 @@
           "name": "Jim Starlin",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "The Nebula Cut: Silver Surfer #45."
     },
     {
       "issueId": 9286,
@@ -635,20 +522,12 @@
       "mu": "1991-07-01T00:00:00+0000",
       "digitalId": 2017,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/9/20/51f6911ce3cc3",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/51f6911ce3cc3",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 0,
       "creators": [
-        {
-          "name": "Christie Scheele",
-          "role": "colorist"
-        },
-        {
-          "name": "Ian Laughlin",
-          "role": "colorist"
-        },
         {
           "name": "Joe Rubinstein",
           "role": "cover artist"
@@ -658,10 +537,6 @@
           "role": "cover artist"
         },
         {
-          "name": "Jack Morelli",
-          "role": "letterer"
-        },
-        {
           "name": "George Perez",
           "role": "penciler"
         },
@@ -669,7 +544,8 @@
           "name": "Jim Starlin",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "Infinity Gauntlet"
     },
     {
       "issueId": 9287,
@@ -682,23 +558,15 @@
       "mu": "1991-08-01T00:00:00+0000",
       "digitalId": 3361,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/f/e0/51f691126c221",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/e0/51f691126c221",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 0,
       "creators": [
         {
-          "name": "Christie Scheele",
-          "role": "colorist"
-        },
-        {
           "name": "Joe Rubinstein",
           "role": "cover artist"
-        },
-        {
-          "name": "Jack Morelli",
-          "role": "letterer"
         },
         {
           "name": "George Perez",
@@ -708,7 +576,8 @@
           "name": "Jim Starlin",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "Infinity Gauntlet"
     },
     {
       "issueId": 9288,
@@ -721,27 +590,15 @@
       "mu": "1991-09-01T00:00:00+0000",
       "digitalId": 3362,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/7/00/51f691085d7fe",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/00/51f691085d7fe",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 0,
       "creators": [
         {
-          "name": "Christie Scheele",
-          "role": "colorist"
-        },
-        {
-          "name": "Ian Laughlin",
-          "role": "colorist"
-        },
-        {
           "name": "Joe Rubinstein",
           "role": "cover artist"
-        },
-        {
-          "name": "Jack Morelli",
-          "role": "letterer"
         },
         {
           "name": "George Perez",
@@ -751,7 +608,8 @@
           "name": "Jim Starlin",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "Infinity Gauntlet"
     },
     {
       "issueId": 9289,
@@ -764,20 +622,12 @@
       "mu": "1991-10-01T00:00:00+0000",
       "digitalId": 3363,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/c/70/51f690fbd05fd",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/70/51f690fbd05fd",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 0,
       "creators": [
-        {
-          "name": "Christie Scheele",
-          "role": "colorist"
-        },
-        {
-          "name": "Ian Laughlin",
-          "role": "colorist"
-        },
         {
           "name": "Bruce Solotoff",
           "role": "cover artist"
@@ -785,10 +635,6 @@
         {
           "name": "Joe Rubinstein",
           "role": "cover artist"
-        },
-        {
-          "name": "Jack Morelli",
-          "role": "letterer"
         },
         {
           "name": "George Perez",
@@ -802,7 +648,8 @@
           "name": "Jim Starlin",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "Infinity Gauntlet"
     },
     {
       "issueId": 9290,
@@ -815,27 +662,15 @@
       "mu": "1991-11-01T00:00:00+0000",
       "digitalId": 3364,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/e0/51f690f0e7b77",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/51f690f0e7b77",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 0,
       "creators": [
         {
-          "name": "Christie Scheele",
-          "role": "colorist"
-        },
-        {
-          "name": "Ian Laughlin",
-          "role": "colorist"
-        },
-        {
           "name": "Joe Rubinstein",
           "role": "cover artist"
-        },
-        {
-          "name": "Jack Morelli",
-          "role": "letterer"
         },
         {
           "name": "Ron Lim",
@@ -845,7 +680,8 @@
           "name": "Jim Starlin",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "Infinity Gauntlet"
     },
     {
       "issueId": 9291,
@@ -858,27 +694,15 @@
       "mu": "1991-12-01T00:00:00+0000",
       "digitalId": 3365,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/4/00/51f690e28c864",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/00/51f690e28c864",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 0,
       "creators": [
         {
-          "name": "Christie Scheele",
-          "role": "colorist"
-        },
-        {
-          "name": "Evelyn Stein",
-          "role": "colorist"
-        },
-        {
           "name": "Joe Rubinstein",
           "role": "cover artist"
-        },
-        {
-          "name": "Jack Morelli",
-          "role": "letterer"
         },
         {
           "name": "Ron Lim",
@@ -888,24 +712,8 @@
           "name": "Jim Starlin",
           "role": "writer"
         }
-      ]
-    },
-    {
-      "issueId": -746170030,
-      "title": "Silver Surfer Annual (1988) #5",
-      "number": "5",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "Defenders: Return Of The Defenders"
+      ],
+      "collectedIn": "Infinity Gauntlet"
     },
     {
       "issueId": 15205,
@@ -918,23 +726,15 @@
       "mu": "1992-07-01T00:00:00+0000",
       "digitalId": 49319,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/a/30/5b58b2e7d697d",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/30/5b58b2e7d697d",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 0,
       "creators": [
         {
-          "name": "Tom Vincent",
-          "role": "colorist"
-        },
-        {
           "name": "Tom Christopher",
           "role": "cover artist"
-        },
-        {
-          "name": "Ken Bruzenak",
-          "role": "letterer"
         },
         {
           "name": "Kevin West",
@@ -944,7 +744,8 @@
           "name": "Ron Marz",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "The Nebula Cut: Silver Surfer #67, #69."
     },
     {
       "issueId": 15207,
@@ -957,23 +758,15 @@
       "mu": "1992-08-01T00:00:00+0000",
       "digitalId": 57859,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/a0/673266a94c4bd",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/673266a94c4bd",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 0,
       "creators": [
         {
-          "name": "Tom Vincent",
-          "role": "colorist"
-        },
-        {
           "name": "Tom Christopher",
           "role": "cover artist"
-        },
-        {
-          "name": "Ken Bruzenak",
-          "role": "letterer"
         },
         {
           "name": "Kevin West",
@@ -983,7 +776,8 @@
           "name": "Ron Marz",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "The Nebula Cut: Silver Surfer #67, #69."
     },
     {
       "issueId": 15209,
@@ -996,23 +790,15 @@
       "mu": "1992-08-01T00:00:00+0000",
       "digitalId": 71220,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/d/03/673266a9433d6",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/03/673266a9433d6",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 0,
       "creators": [
         {
-          "name": "Tom Vincent",
-          "role": "colorist"
-        },
-        {
           "name": "Tom Christopher",
           "role": "cover artist"
-        },
-        {
-          "name": "Ken Bruzenak",
-          "role": "letterer"
         },
         {
           "name": "M.C. Wyman",
@@ -1022,7 +808,8 @@
           "name": "Ron Marz",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "The Herald Ordeal (issues #70-74)"
     },
     {
       "issueId": 15210,
@@ -1035,23 +822,15 @@
       "mu": "1992-09-01T00:00:00+0000",
       "digitalId": 71221,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/f/03/673266a9433c9",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/03/673266a9433c9",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 0,
       "creators": [
         {
-          "name": "Tom Vincent",
-          "role": "colorist"
-        },
-        {
           "name": "Tom Christopher",
           "role": "cover artist"
-        },
-        {
-          "name": "Ken Bruzenak",
-          "role": "letterer"
         },
         {
           "name": "M.C. Wyman",
@@ -1061,7 +840,8 @@
           "name": "Ron Marz",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "The Herald Ordeal (issues #70-74)"
     },
     {
       "issueId": 15211,
@@ -1074,23 +854,15 @@
       "mu": "1992-09-01T00:00:00+0000",
       "digitalId": 54816,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/1/20/673266a94b694",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/20/673266a94b694",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 0,
       "creators": [
         {
-          "name": "Tom Vincent",
-          "role": "colorist"
-        },
-        {
           "name": "Tom Christopher",
           "role": "cover artist"
-        },
-        {
-          "name": "Ken Bruzenak",
-          "role": "letterer"
         },
         {
           "name": "M.C. Wyman",
@@ -1100,7 +872,8 @@
           "name": "Ron Marz",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "The Herald Ordeal (issues #70-74)"
     },
     {
       "issueId": 15212,
@@ -1113,23 +886,15 @@
       "mu": "1992-10-01T00:00:00+0000",
       "digitalId": 71222,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/3/50/673266bb3842a",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/50/673266bb3842a",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 0,
       "creators": [
         {
-          "name": "Tom Vincent",
-          "role": "colorist"
-        },
-        {
           "name": "Tom Christopher",
           "role": "cover artist"
-        },
-        {
-          "name": "Ken Bruzenak",
-          "role": "letterer"
         },
         {
           "name": "Ron Lim",
@@ -1139,7 +904,8 @@
           "name": "Ron Marz",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "The Herald Ordeal (issues #70-74)"
     },
     {
       "issueId": 15213,
@@ -1152,23 +918,15 @@
       "mu": "1992-11-01T00:00:00+0000",
       "digitalId": 71223,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/9/00/673266bbcba25",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/00/673266bbcba25",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 0,
       "creators": [
         {
-          "name": "Tom Vincent",
-          "role": "colorist"
-        },
-        {
           "name": "Tom Christopher",
           "role": "cover artist"
-        },
-        {
-          "name": "Ken Bruzenak",
-          "role": "letterer"
         },
         {
           "name": "Ron Lim",
@@ -1178,7 +936,8 @@
           "name": "Ron Marz",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "The Herald Ordeal (issues #70-74)"
     },
     {
       "issueId": 15215,
@@ -1191,23 +950,15 @@
       "mu": "1993-01-01T00:00:00+0000",
       "digitalId": 54817,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/2/00/5e9870f833799",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/00/5e9870f833799",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 0,
       "creators": [
         {
-          "name": "Tom Vincent",
-          "role": "colorist"
-        },
-        {
           "name": "Tom Christopher",
           "role": "cover artist"
-        },
-        {
-          "name": "Ken Bruzenak",
-          "role": "letterer"
         },
         {
           "name": "Ron Lim",
@@ -1217,7 +968,8 @@
           "name": "Ron Marz",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "The Nebula Cut: Silver Surfer #76-78, Secret Defenders #9-10"
     },
     {
       "issueId": 15216,
@@ -1230,23 +982,15 @@
       "mu": "1993-02-01T00:00:00+0000",
       "digitalId": 54818,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/3/80/5e987112ea155",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/5e987112ea155",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 0,
       "creators": [
         {
-          "name": "Tom Vincent",
-          "role": "colorist"
-        },
-        {
           "name": "Tom Christopher",
           "role": "cover artist"
-        },
-        {
-          "name": "Ken Bruzenak",
-          "role": "letterer"
         },
         {
           "name": "Ron Lim",
@@ -1256,7 +1000,8 @@
           "name": "Ron Marz",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "The Nebula Cut: Silver Surfer #76-78, Secret Defenders #9-10"
     },
     {
       "issueId": 15217,
@@ -1269,23 +1014,15 @@
       "mu": "1993-03-01T00:00:00+0000",
       "digitalId": 54825,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/f/03/5e987109c2553",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/03/5e987109c2553",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 0,
       "creators": [
         {
-          "name": "Tom Vincent",
-          "role": "colorist"
-        },
-        {
           "name": "Tom Christopher",
           "role": "cover artist"
-        },
-        {
-          "name": "Ken Bruzenak",
-          "role": "letterer"
         },
         {
           "name": "Ron Lim",
@@ -1295,7 +1032,8 @@
           "name": "Ron Marz",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "The Nebula Cut: Silver Surfer #76-78, Secret Defenders #9-10"
     },
     {
       "issueId": 62313,
@@ -1308,23 +1046,15 @@
       "mu": "1993-11-01T00:00:00+0000",
       "digitalId": 43087,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/1/e0/5bc0fce4ac3d6",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/e0/5bc0fce4ac3d6",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 0,
       "creators": [
         {
-          "name": "John Kalisz",
-          "role": "colorist"
-        },
-        {
           "name": "Donald Hudson",
           "role": "cover artist"
-        },
-        {
-          "name": "Tom Grindberg",
-          "role": "letterer"
         },
         {
           "name": "John Costanza",
@@ -1334,7 +1064,8 @@
           "name": "Ron Marz",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "The Nebula Cut: Silver Surfer #76-78, Secret Defenders #9-10"
     },
     {
       "issueId": 62314,
@@ -1347,23 +1078,15 @@
       "mu": "1993-12-01T00:00:00+0000",
       "digitalId": 43088,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/2/90/5bc0fceed5d59",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/90/5bc0fceed5d59",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 0,
       "creators": [
         {
-          "name": "John Kalisz",
-          "role": "colorist"
-        },
-        {
           "name": "Donald Hudson",
           "role": "cover artist"
-        },
-        {
-          "name": "John Costanza",
-          "role": "letterer"
         },
         {
           "name": "Tom Grindberg",
@@ -1373,7 +1096,8 @@
           "name": "Ron Marz",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "The Nebula Cut: Silver Surfer #76-78, Secret Defenders #9-10"
     },
     {
       "issueId": 4109,
@@ -1386,29 +1110,22 @@
       "mu": "2006-04-26T00:00:00+0000",
       "digitalId": 1433,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/d0/57864ff113f2e",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/57864ff113f2e",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 32,
       "creators": [
         {
-          "name": "Dave Mccaig",
-          "role": "colorist"
-        },
-        {
           "name": "Jorge Lucas",
           "role": "cover artist"
-        },
-        {
-          "name": "Vc Joe Caramagna",
-          "role": "letterer"
         },
         {
           "name": "Simon Furman",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "The Nebula Cut: Annihilation: Ronan #1-2, #4."
     },
     {
       "issueId": 4219,
@@ -1421,29 +1138,22 @@
       "mu": "2006-05-24T00:00:00+0000",
       "digitalId": 5081,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/e/d0/578660897592d",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/d0/578660897592d",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 32,
       "creators": [
         {
-          "name": "Dave Mccaig",
-          "role": "colorist"
-        },
-        {
           "name": "Jorge Lucas",
           "role": "cover artist"
-        },
-        {
-          "name": "Vc Joe Caramagna",
-          "role": "letterer"
         },
         {
           "name": "Simon Furman",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "The Nebula Cut: Annihilation: Ronan #1-2, #4."
     },
     {
       "issueId": 4471,
@@ -1456,29 +1166,22 @@
       "mu": "2006-07-26T00:00:00+0000",
       "digitalId": 5083,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/c0/57866a57dd22b",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/57866a57dd22b",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 32,
       "creators": [
         {
-          "name": "Dave Mccaig",
-          "role": "colorist"
-        },
-        {
           "name": "Jorge Lucas",
           "role": "cover artist"
-        },
-        {
-          "name": "Vc Cory Petit",
-          "role": "letterer"
         },
         {
           "name": "Simon Furman",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "The Nebula Cut: Annihilation: Ronan #1-2, #4."
     },
     {
       "issueId": 50944,
@@ -1487,20 +1190,16 @@
       "url": "https://www.marvel.com/comics/issue/50944/guardians_of_the_galaxy_infinite_2014_1",
       "seriesId": 19072,
       "seriesName": "Guardians of the Galaxy Infinite (2014)",
-      "onSale": "2014-07-29T00:00:00+0000",
-      "mu": "2016-02-01T00:00:00+0000",
+      "onSale": "2014-07-29T00:00:00-0400",
+      "mu": "2016-02-01T00:00:00-0500",
       "digitalId": 34807,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/a/00/55cb668daf683",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/00/55cb668daf683",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 32,
       "creators": [
-        {
-          "name": "Reilly Brown",
-          "role": "inker"
-        },
         {
           "name": "Iban Coello",
           "role": "penciler"
@@ -1509,7 +1208,8 @@
           "name": "Tim Seeley",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "Guardians of the Galaxy Infinite (2014) #1"
     },
     {
       "issueId": 51919,
@@ -1522,8 +1222,8 @@
       "mu": "2015-08-10T00:00:00+0000",
       "digitalId": 36681,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/c/70/54f0a89faa90d",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/70/54f0a89faa90d",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 32,
@@ -1536,7 +1236,8 @@
           "name": "Brian Michael Bendis",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "The Nebula Cut: Guardians Team-Up #1-2."
     },
     {
       "issueId": 51924,
@@ -1549,8 +1250,8 @@
       "mu": "2015-08-31T00:00:00+0000",
       "digitalId": 36744,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/9/70/54fa044d9cd64",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/54fa044d9cd64",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 32,
@@ -1559,7 +1260,8 @@
           "name": "Brian Michael Bendis",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "The Nebula Cut: Guardians Team-Up #1-2."
     },
     {
       "issueId": 51841,
@@ -1572,16 +1274,12 @@
       "mu": "2017-06-26T00:00:00+0000",
       "digitalId": 43420,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/f/50/584b0e8aecf3b",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/50/584b0e8aecf3b",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 32,
       "creators": [
-        {
-          "name": "Katie Kubert",
-          "role": "editor"
-        },
         {
           "name": "Esad Ribic",
           "role": "penciler"
@@ -1594,7 +1292,8 @@
           "name": "Nicole Perlman",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "The Nebula Cut: Gamora #1, #5"
     },
     {
       "issueId": 51847,
@@ -1607,27 +1306,15 @@
       "mu": "2017-12-04T00:00:00+0000",
       "digitalId": 44551,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/3/80/5925b4656c40d",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/5925b4656c40d",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 32,
       "creators": [
         {
-          "name": "Andres Mossa",
-          "role": "colorist"
-        },
-        {
           "name": "Marco Checchetto",
           "role": "cover artist"
-        },
-        {
-          "name": "Christina Harrington",
-          "role": "editor"
-        },
-        {
-          "name": "Vc Travis Lanham",
-          "role": "letterer"
         },
         {
           "name": "Esad Ribic",
@@ -1637,7 +1324,8 @@
           "name": "Nicole Perlman",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "The Nebula Cut: Gamora #1, #5"
     },
     {
       "issueId": 61698,
@@ -1650,16 +1338,12 @@
       "mu": "2017-06-26T00:00:00+0000",
       "digitalId": 43452,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/1/03/584b1408a6621",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/03/584b1408a6621",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 32,
       "creators": [
-        {
-          "name": "Jordan D. White",
-          "role": "editor"
-        },
         {
           "name": "Mike Deodato",
           "role": "penciler"
@@ -1668,7 +1352,8 @@
           "name": "Jeff Lemire",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "The Nebula Cut: Thanos (2016) #2, #4-6."
     },
     {
       "issueId": 61700,
@@ -1681,16 +1366,12 @@
       "mu": "2017-08-28T00:00:00+0000",
       "digitalId": 44127,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/a/10/58a4884fedb45",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/10/58a4884fedb45",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 32,
       "creators": [
-        {
-          "name": "Jordan D. White",
-          "role": "editor"
-        },
         {
           "name": "Mike Deodato",
           "role": "penciler"
@@ -1699,7 +1380,8 @@
           "name": "Jeff Lemire",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "The Nebula Cut: Thanos (2016) #2, #4-6."
     },
     {
       "issueId": 61701,
@@ -1712,24 +1394,12 @@
       "mu": "2017-10-02T00:00:00+0000",
       "digitalId": 44323,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/03/58d1821d68231",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/03/58d1821d68231",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 32,
       "creators": [
-        {
-          "name": "Frank Martin",
-          "role": "colorist"
-        },
-        {
-          "name": "Jordan D. White",
-          "role": "editor"
-        },
-        {
-          "name": "Vc Clayton Cowles",
-          "role": "letterer"
-        },
         {
           "name": "Mike Deodato",
           "role": "penciler"
@@ -1738,7 +1408,8 @@
           "name": "Jeff Lemire",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "The Nebula Cut: Thanos (2016) #2, #4-6."
     },
     {
       "issueId": 61702,
@@ -1751,24 +1422,12 @@
       "mu": "2017-10-30T00:00:00+0000",
       "digitalId": 44565,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/7/10/58f7a425c9e81",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/10/58f7a425c9e81",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 32,
       "creators": [
-        {
-          "name": "Frank Martin",
-          "role": "colorist"
-        },
-        {
-          "name": "Jordan D. White",
-          "role": "editor"
-        },
-        {
-          "name": "Vc Clayton Cowles",
-          "role": "letterer"
-        },
         {
           "name": "Mike Deodato",
           "role": "penciler"
@@ -1777,7 +1436,8 @@
           "name": "Jeff Lemire",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "The Nebula Cut: Thanos (2016) #2, #4-6."
     },
     {
       "issueId": 61703,
@@ -1790,31 +1450,15 @@
       "mu": "2017-12-04T00:00:00+0000",
       "digitalId": 44777,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/1/40/5925b5c296982",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/40/5925b5c296982",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 32,
       "creators": [
         {
-          "name": "Frank Martin",
-          "role": "colorist"
-        },
-        {
-          "name": "Rachelle Rosenberg",
-          "role": "colorist"
-        },
-        {
           "name": "German Peralta",
           "role": "cover artist"
-        },
-        {
-          "name": "Jordan D. White",
-          "role": "editor"
-        },
-        {
-          "name": "Vc Clayton Cowles",
-          "role": "letterer"
         },
         {
           "name": "Mike Deodato Jr.",
@@ -1824,7 +1468,8 @@
           "name": "Jeff Lemire",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "Thanos Vol. 2: The God Quarry"
     },
     {
       "issueId": 61704,
@@ -1837,31 +1482,15 @@
       "mu": "2017-12-18T00:00:00+0000",
       "digitalId": 45003,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/4/50/593993f7f063b",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/50/593993f7f063b",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 32,
       "creators": [
         {
-          "name": "Rachelle Rosenberg",
-          "role": "colorist"
-        },
-        {
-          "name": "Rain Beredo",
-          "role": "colorist"
-        },
-        {
           "name": "German Peralta",
           "role": "cover artist"
-        },
-        {
-          "name": "Jordan D. White",
-          "role": "editor"
-        },
-        {
-          "name": "Vc Clayton Cowles",
-          "role": "letterer"
         },
         {
           "name": "Mike Deodato",
@@ -1871,7 +1500,8 @@
           "name": "Jeff Lemire",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "Thanos Vol. 2: The God Quarry"
     },
     {
       "issueId": 61705,
@@ -1884,31 +1514,15 @@
       "mu": "2018-01-29T00:00:00+0000",
       "digitalId": 45232,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/c/c0/596d182fcffc0",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/c0/596d182fcffc0",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 32,
       "creators": [
         {
-          "name": "Frank Martin",
-          "role": "colorist"
-        },
-        {
-          "name": "Rachelle Rosenberg",
-          "role": "colorist"
-        },
-        {
           "name": "German Peralta",
           "role": "cover artist"
-        },
-        {
-          "name": "Jordan D. White",
-          "role": "editor"
-        },
-        {
-          "name": "Vc Clayton Cowles",
-          "role": "letterer"
         },
         {
           "name": "Mike Deodato",
@@ -1918,7 +1532,8 @@
           "name": "Jeff Lemire",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "Thanos Vol. 2: The God Quarry"
     },
     {
       "issueId": 61706,
@@ -1931,31 +1546,15 @@
       "mu": "2018-03-05T00:00:00+0000",
       "digitalId": 45436,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/3/a0/5993503c1d3d8",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/a0/5993503c1d3d8",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 32,
       "creators": [
         {
-          "name": "Rachelle Rosenberg",
-          "role": "colorist"
-        },
-        {
-          "name": "Rain Beredo",
-          "role": "colorist"
-        },
-        {
           "name": "German Peralta",
           "role": "cover artist"
-        },
-        {
-          "name": "Jordan D. White",
-          "role": "editor"
-        },
-        {
-          "name": "Vc Clayton Cowles",
-          "role": "letterer"
         },
         {
           "name": "Mike Deodato",
@@ -1965,7 +1564,8 @@
           "name": "Jeff Lemire",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "Thanos Vol. 2: The God Quarry"
     },
     {
       "issueId": 61707,
@@ -1978,31 +1578,15 @@
       "mu": "2018-04-02T00:00:00+0000",
       "digitalId": 45712,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/4/d0/59c289f776f44",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/d0/59c289f776f44",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 32,
       "creators": [
         {
-          "name": "Frank Martin",
-          "role": "colorist"
-        },
-        {
-          "name": "Rachelle Rosenberg",
-          "role": "colorist"
-        },
-        {
           "name": "German Peralta",
           "role": "cover artist"
-        },
-        {
-          "name": "Jordan D. White",
-          "role": "editor"
-        },
-        {
-          "name": "Vc Clayton Cowles",
-          "role": "letterer"
         },
         {
           "name": "Mike Deodato",
@@ -2012,7 +1596,8 @@
           "name": "Jeff Lemire",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "Thanos Vol. 2: The God Quarry"
     },
     {
       "issueId": 61708,
@@ -2025,31 +1610,15 @@
       "mu": "2018-04-30T00:00:00+0000",
       "digitalId": 45967,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/a/40/59e7af28bb749",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/40/59e7af28bb749",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 32,
       "creators": [
         {
-          "name": "Frank Martin",
-          "role": "colorist"
-        },
-        {
-          "name": "Rachelle Rosenberg",
-          "role": "colorist"
-        },
-        {
           "name": "German Peralta",
           "role": "cover artist"
-        },
-        {
-          "name": "Allison Stock",
-          "role": "editor"
-        },
-        {
-          "name": "Vc Clayton Cowles",
-          "role": "letterer"
         },
         {
           "name": "Mike Deodato",
@@ -2059,7 +1628,8 @@
           "name": "Jeff Lemire",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "Thanos Vol. 2: The God Quarry"
     },
     {
       "issueId": 71308,
@@ -2072,31 +1642,15 @@
       "mu": "2019-03-11T00:00:00+0000",
       "digitalId": 49104,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/f/80/5b882a7cc8afa",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/80/5b882a7cc8afa",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 32,
       "creators": [
         {
-          "name": "Federico Blee",
-          "role": "colorist"
-        },
-        {
-          "name": "Jason Keith",
-          "role": "colorist"
-        },
-        {
           "name": "Matteo Lolli",
           "role": "cover artist"
-        },
-        {
-          "name": "Sarah Brunstad",
-          "role": "editor"
-        },
-        {
-          "name": "Vc Cory Petit",
-          "role": "letterer"
         },
         {
           "name": "Dale Keown",
@@ -2106,7 +1660,8 @@
           "name": "Cullen Bunn",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "Asgardians of the Galaxy Vol. 1: The Infinity Armada"
     },
     {
       "issueId": 71310,
@@ -2119,31 +1674,15 @@
       "mu": "2019-04-08T00:00:00+0000",
       "digitalId": 49455,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/c/10/5b9bb3ac39e22",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/10/5b9bb3ac39e22",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 32,
       "creators": [
         {
-          "name": "Federico Blee",
-          "role": "colorist"
-        },
-        {
-          "name": "Jason Keith",
-          "role": "colorist"
-        },
-        {
           "name": "Matteo Lolli",
           "role": "cover artist"
-        },
-        {
-          "name": "Sarah Brunstad",
-          "role": "editor"
-        },
-        {
-          "name": "Vc Cory Petit",
-          "role": "letterer"
         },
         {
           "name": "Dale Keown",
@@ -2153,7 +1692,8 @@
           "name": "Cullen Bunn",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "Asgardians of the Galaxy Vol. 1: The Infinity Armada"
     },
     {
       "issueId": 71311,
@@ -2166,24 +1706,12 @@
       "mu": "2019-05-13T00:00:00+0000",
       "digitalId": 49716,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/c/a0/5bdb65bd99a26",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/a0/5bdb65bd99a26",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 32,
       "creators": [
-        {
-          "name": "Erick Arciniega",
-          "role": "colorist"
-        },
-        {
-          "name": "Federico Blee",
-          "role": "colorist"
-        },
-        {
-          "name": "Jason Keith",
-          "role": "colorist"
-        },
         {
           "name": "Andre Lima Araujo",
           "role": "cover artist"
@@ -2191,14 +1719,6 @@
         {
           "name": "Matteo Lolli",
           "role": "cover artist"
-        },
-        {
-          "name": "Sarah Brunstad",
-          "role": "editor"
-        },
-        {
-          "name": "Vc Cory Petit",
-          "role": "letterer"
         },
         {
           "name": "Dale Keown",
@@ -2216,7 +1736,8 @@
           "name": "Cullen Bunn",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "Asgardians of the Galaxy Vol. 1: The Infinity Armada"
     },
     {
       "issueId": 71312,
@@ -2229,20 +1750,12 @@
       "mu": "2019-06-17T00:00:00+0000",
       "digitalId": 50029,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/50/5c083c9d950b1",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/5c083c9d950b1",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 32,
       "creators": [
-        {
-          "name": "Federico Blee",
-          "role": "colorist"
-        },
-        {
-          "name": "Jason Keith",
-          "role": "colorist"
-        },
         {
           "name": "Luca Maresca",
           "role": "cover artist"
@@ -2256,14 +1769,6 @@
           "role": "cover artist"
         },
         {
-          "name": "Sarah Brunstad",
-          "role": "editor"
-        },
-        {
-          "name": "Vc Cory Petit",
-          "role": "letterer"
-        },
-        {
           "name": "Dale Keown",
           "role": "penciler"
         },
@@ -2271,7 +1776,8 @@
           "name": "Cullen Bunn",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "Asgardians of the Galaxy Vol. 1: The Infinity Armada"
     },
     {
       "issueId": 71313,
@@ -2284,20 +1790,12 @@
       "mu": "2019-07-22T00:00:00+0000",
       "digitalId": 50396,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/f/03/5c37950a92459",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/03/5c37950a92459",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 32,
       "creators": [
-        {
-          "name": "Federico Blee",
-          "role": "colorist"
-        },
-        {
-          "name": "Jason Keith",
-          "role": "colorist"
-        },
         {
           "name": "Matteo Lolli",
           "role": "cover artist"
@@ -2305,14 +1803,6 @@
         {
           "name": "Stephanie Hans",
           "role": "cover artist"
-        },
-        {
-          "name": "Sarah Brunstad",
-          "role": "editor"
-        },
-        {
-          "name": "Vc Cory Petit",
-          "role": "letterer"
         },
         {
           "name": "Dale Keown",
@@ -2326,7 +1816,8 @@
           "name": "Cullen Bunn",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "Asgardians of the Galaxy Vol. 1: The Infinity Armada"
     },
     {
       "issueId": 73421,
@@ -2339,31 +1830,15 @@
       "mu": "2019-08-26T00:00:00+0000",
       "digitalId": 50576,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/e0/5c6492add5288",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/5c6492add5288",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 32,
       "creators": [
         {
-          "name": "Dean White",
-          "role": "colorist"
-        },
-        {
-          "name": "Marte Gracia",
-          "role": "colorist"
-        },
-        {
           "name": "Geoff Shaw",
           "role": "cover artist"
-        },
-        {
-          "name": "Darren Shan",
-          "role": "editor"
-        },
-        {
-          "name": "Vc Cory Petit",
-          "role": "letterer"
         },
         {
           "name": "David Marquez",
@@ -2373,7 +1848,8 @@
           "name": "Donny Cates",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "The Nebula Cut: Guardians of the Galaxy (2019) #2-6."
     },
     {
       "issueId": 73422,
@@ -2386,31 +1862,15 @@
       "mu": "2019-09-23T00:00:00+0000",
       "digitalId": 50874,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/a/10/5c8816e4ed8c4",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/10/5c8816e4ed8c4",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 32,
       "creators": [
         {
-          "name": "Dean White",
-          "role": "colorist"
-        },
-        {
-          "name": "Marte Gracia",
-          "role": "colorist"
-        },
-        {
           "name": "Geoff Shaw",
           "role": "cover artist"
-        },
-        {
-          "name": "Darren Shan",
-          "role": "editor"
-        },
-        {
-          "name": "Vc Cory Petit",
-          "role": "letterer"
         },
         {
           "name": "David Marquez",
@@ -2420,7 +1880,8 @@
           "name": "Donny Cates",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "The Nebula Cut: Guardians of the Galaxy (2019) #2-6."
     },
     {
       "issueId": 73423,
@@ -2433,31 +1894,15 @@
       "mu": "2019-10-21T00:00:00+0000",
       "digitalId": 51084,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/c/50/5cacf6e71392a",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/5cacf6e71392a",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 32,
       "creators": [
         {
-          "name": "David Curiel",
-          "role": "colorist"
-        },
-        {
-          "name": "Dean White",
-          "role": "colorist"
-        },
-        {
           "name": "Geoff Shaw",
           "role": "cover artist"
-        },
-        {
-          "name": "Darren Shan",
-          "role": "editor"
-        },
-        {
-          "name": "Vc Cory Petit",
-          "role": "letterer"
         },
         {
           "name": "David Marquez",
@@ -2467,7 +1912,8 @@
           "name": "Donny Cates",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "The Nebula Cut: Guardians of the Galaxy (2019) #2-6."
     },
     {
       "issueId": 73424,
@@ -2480,31 +1926,15 @@
       "mu": "2019-11-18T00:00:00+0000",
       "digitalId": 51358,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/3/80/5cd447994c012",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/5cd447994c012",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 32,
       "creators": [
         {
-          "name": "David Curiel",
-          "role": "colorist"
-        },
-        {
-          "name": "Dean White",
-          "role": "colorist"
-        },
-        {
           "name": "Geoff Shaw",
           "role": "cover artist"
-        },
-        {
-          "name": "Darren Shan",
-          "role": "editor"
-        },
-        {
-          "name": "Vc Cory Petit",
-          "role": "letterer"
         },
         {
           "name": "David Marquez",
@@ -2514,7 +1944,8 @@
           "name": "Donny Cates",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "The Nebula Cut: Guardians of the Galaxy (2019) #2-6."
     },
     {
       "issueId": 73425,
@@ -2527,31 +1958,15 @@
       "mu": "2019-12-23T00:00:00+0000",
       "digitalId": 51674,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/5/03/5d1275007565e",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/03/5d1275007565e",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 32,
       "creators": [
         {
-          "name": "David Curiel",
-          "role": "colorist"
-        },
-        {
-          "name": "Dean White",
-          "role": "colorist"
-        },
-        {
           "name": "Geoff Shaw",
           "role": "cover artist"
-        },
-        {
-          "name": "Darren Shan",
-          "role": "editor"
-        },
-        {
-          "name": "Vc Cory Petit",
-          "role": "letterer"
         },
         {
           "name": "David Marquez",
@@ -2561,7 +1976,8 @@
           "name": "Donny Cates",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "The Nebula Cut: Guardians of the Galaxy (2019) #2-6."
     },
     {
       "issueId": 78699,
@@ -2574,27 +1990,15 @@
       "mu": "2020-08-17T00:00:00+0000",
       "digitalId": 53995,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/3/c0/5e3b35b378871",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/c0/5e3b35b378871",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 32,
       "creators": [
         {
-          "name": "Michael Spicer",
-          "role": "colorist"
-        },
-        {
           "name": "Claire Roe",
           "role": "cover artist"
-        },
-        {
-          "name": "Darren Shan",
-          "role": "editor"
-        },
-        {
-          "name": "Vc Travis Lanham",
-          "role": "letterer"
         },
         {
           "name": "Jen Bartel",
@@ -2604,7 +2008,8 @@
           "name": "Vita Ayala",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "Nebula (2020) #1-2"
     },
     {
       "issueId": 78700,
@@ -2617,27 +2022,15 @@
       "mu": "2020-09-14T00:00:00+0000",
       "digitalId": 54304,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/3/d0/5e583574b5c26",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/d0/5e583574b5c26",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 32,
       "creators": [
         {
-          "name": "Michael Spicer",
-          "role": "colorist"
-        },
-        {
           "name": "Claire Roe",
           "role": "cover artist"
-        },
-        {
-          "name": "Darren Shan",
-          "role": "editor"
-        },
-        {
-          "name": "Vc Travis Lanham",
-          "role": "letterer"
         },
         {
           "name": "Jen Bartel",
@@ -2647,7 +2040,8 @@
           "name": "Vita Ayala",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "Nebula (2020) #1-2"
     },
     {
       "issueId": 73994,
@@ -2660,27 +2054,15 @@
       "mu": "2019-02-06T00:00:00+0000",
       "digitalId": 50567,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/5/03/5c523c1673581",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/03/5c523c1673581",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 32,
       "creators": [
         {
-          "name": "Federico Blee",
-          "role": "colorist"
-        },
-        {
           "name": "Matteo Buffagni",
           "role": "cover artist"
-        },
-        {
-          "name": "Sarah Brunstad",
-          "role": "editor"
-        },
-        {
-          "name": "Vc Cory Petit",
-          "role": "letterer"
         },
         {
           "name": "Jamal Campbell",
@@ -2690,7 +2072,8 @@
           "name": "Cullen Bunn",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "Collects: Asgardians of the Galaxy #6-10"
     },
     {
       "issueId": 73995,
@@ -2703,16 +2086,12 @@
       "mu": "2019-09-16T00:00:00+0000",
       "digitalId": 50916,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/5/e0/5c802d4d1317c",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/e0/5c802d4d1317c",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 32,
       "creators": [
-        {
-          "name": "Federico Blee",
-          "role": "colorist"
-        },
         {
           "name": "Matteo Buffagni",
           "role": "cover artist"
@@ -2722,14 +2101,6 @@
           "role": "cover artist"
         },
         {
-          "name": "Sarah Brunstad",
-          "role": "editor"
-        },
-        {
-          "name": "Vc Cory Petit",
-          "role": "letterer"
-        },
-        {
           "name": "Jamal Campbell",
           "role": "penciler"
         },
@@ -2737,7 +2108,8 @@
           "name": "Cullen Bunn",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "Collects: Asgardians of the Galaxy #6-10"
     },
     {
       "issueId": 73996,
@@ -2750,31 +2122,15 @@
       "mu": "2019-10-14T00:00:00+0000",
       "digitalId": 51122,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/c/10/5ca3bc5f952d0",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/10/5ca3bc5f952d0",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 32,
       "creators": [
         {
-          "name": "Antonio Fabela",
-          "role": "colorist"
-        },
-        {
-          "name": "Federico Blee",
-          "role": "colorist"
-        },
-        {
           "name": "Matteo Lolli",
           "role": "cover artist"
-        },
-        {
-          "name": "Sarah Brunstad",
-          "role": "editor"
-        },
-        {
-          "name": "Vc Cory Petit",
-          "role": "letterer"
         },
         {
           "name": "Gerardo Sandoval",
@@ -2784,7 +2140,8 @@
           "name": "Cullen Bunn",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "Collects: Asgardians of the Galaxy #6-10"
     },
     {
       "issueId": 73997,
@@ -2797,31 +2154,15 @@
       "mu": "2019-11-25T00:00:00+0000",
       "digitalId": 51444,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/f/f0/5cd9cb4b936ff",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/f0/5cd9cb4b936ff",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 32,
       "creators": [
         {
-          "name": "Antonio Fabela",
-          "role": "colorist"
-        },
-        {
-          "name": "Federico Blee",
-          "role": "colorist"
-        },
-        {
           "name": "Paolo Villanelli",
           "role": "cover artist"
-        },
-        {
-          "name": "Sarah Brunstad",
-          "role": "editor"
-        },
-        {
-          "name": "Vc Cory Petit",
-          "role": "letterer"
         },
         {
           "name": "Gerardo Sandoval",
@@ -2831,7 +2172,8 @@
           "name": "Cullen Bunn",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "Collects: Asgardians of the Galaxy #6-10"
     },
     {
       "issueId": 73998,
@@ -2844,31 +2186,15 @@
       "mu": "2019-06-12T00:00:00+0000",
       "digitalId": 51715,
       "cover": {
-        "path": "http://i.annihil.us/u/prod/marvel/i/mg/f/10/5cf826abc72ba",
-        "extension": "jpg"
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/10/5cf826abc72ba",
+        "ext": "jpg"
       },
       "description": null,
       "pageCount": 32,
       "creators": [
         {
-          "name": "Antonio Fabela",
-          "role": "colorist"
-        },
-        {
-          "name": "Federico Blee",
-          "role": "colorist"
-        },
-        {
           "name": "Luca Maresca",
           "role": "cover artist"
-        },
-        {
-          "name": "Sarah Brunstad",
-          "role": "editor"
-        },
-        {
-          "name": "Vc Cory Petit",
-          "role": "letterer"
         },
         {
           "name": "Gerardo Sandoval",
@@ -2878,7 +2204,8 @@
           "name": "Cullen Bunn",
           "role": "writer"
         }
-      ]
+      ],
+      "collectedIn": "Collects: Asgardians of the Galaxy #6-10"
     }
   ]
 }

@@ -124,7 +124,7 @@ export const ALLOWED = new Map([
   ['scripts/check-publication.mjs|a session or workspace identifier|34c17dd0-fd0e-4422-a238-6505fd798c8e',
     'the approved Nebula source-review identity recorded in the publication gate itself'],
   ['scripts/data/cbh-packets/nebula-reading-order.json|a session or workspace identifier|34c17dd0-fd0e-4422-a238-6505fd798c8e',
-    'the approved Nebula source-review identity recorded in the frozen packet'],
+    'the exact Nebula draft identity in reachable history; the current source-review identity is public'],
   [`${FIXTURES_FILE}|a private key block|-----BEGIN RSA ` + 'PRIVATE KEY-----',
     'the positive fixture for the private key pattern, a header with no key under it'],
   ...SHADOW_REVIEW_FILES.map((file) => [

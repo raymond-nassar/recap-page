@@ -1,8 +1,8 @@
 {
   "candidateId": "nebula-reading-order",
-  "packetDigest": "4648fa53a75cc85443b4fd6bbfbc141132eddde3ba945a16e5f3e72707c4c6b9",
-  "mappingDigest": "6347f7e338d2bdd7ced33795b4bde1b4fd3e2cbc501977b4711cda98a907f5e1",
-  "libraryDigest": "ebd19b52c243b9a5e883fcfdb8e8f1469ea31fbcb23f3f5aab0b877107eaddd7",
+  "packetDigest": "d58f3f5a1450a923b86d4757bf9162e2a9464d98f70ff682e681252528ba6b47",
+  "mappingDigest": "f21d0276cad52095b6fcfe432324b2e92064532624cdfaaef64709d8fccfa6a3",
+  "libraryDigest": "7294e91208125f481cb25012c6a3f7a952bb5d777c53a9ee47f24e94b624c5c5",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 70,
@@ -13,7 +13,7 @@
     "excludedSourceRowCount": 1
   },
   "candidateCount": 69,
-  "comparisonCount": 185,
+  "comparisonCount": 187,
   "comparisons": [
     {
       "orderId": "abomination-reading-order",
@@ -896,6 +896,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "shadow-king-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "shadowland",
       "sharedCount": 0,
       "sharedIds": [],
@@ -1056,6 +1062,12 @@
     },
     {
       "orderId": "thor-best-of",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "thunderbolts-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -1265,5 +1277,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "27a1b431b46edb7c4f24c8f0260fbf7e37638612d0f91d22931852fabb0f6e02"
+  "reportDigest": "0bca5c6b34c36249bc0b89c3157a0c4d6b029edfcaa1f332cc22427c7b0b02a4"
 }

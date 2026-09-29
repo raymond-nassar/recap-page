@@ -3,8 +3,9 @@
   "id": "nebula-reading-order",
   "inventoryId": "nebula-reading-order",
   "sourceUrl": "https://www.comicbookherald.com/nebula-reading-order/",
-  "sourceRetrievedAt": "2026-09-28",
-  "sourceIssueBearingBlocksSha256": "2443caa21765212ba9add37df0d102b56c78f20585dfd883eb641a3e2dcc8b85",
+  "sourceRetrievedAt": "2026-09-29",
+  "sourceContentSha256": "f0b7e05f1f184637714a2faa2b02b4482a5123f28a8b9c2a39d0cb92abb9b1e7",
+  "sourceIssueBearingBlocksSha256": "b9479bf6a1a4023fabe1562bb6d5d164176891c4c3daf2f206eeb3110fe6de35",
   "sourceBoundary": "Full issue-bearing page from Avengers (1963) #257 through the late Asgardians of the Galaxy #6-10 addition, using explicit Nebula cuts in preference to broader collection contents and retaining standalone or explicitly numbered prose selections. The final title-only Nebula by Ayala link is documented as an unnumbered series pointer, not a new inferred issue range.",
   "excludedSourceReferences": [
     "The final title-only Nebula by Ayala link is an unnumbered series pointer, not a new inferred issue range."
@@ -40,10 +41,8 @@
     "name": "Nebula",
     "description": "Follow Nebula from her Avengers appearances through cosmic stories and later Guardians-era comics, in Comic Book Herald's selected issue order.",
     "type": "character-run",
-    "depthIfNoOpenGaps": "complete",
-    "spotlightKindIfNoOpenGaps": "complete-guide",
-    "depthIfOpenGaps": "partial",
-    "spotlightKindIfOpenGaps": "other",
+    "depth": "partial",
+    "spotlightKind": "other",
     "beginner": false,
     "timeline": null,
     "group": null,
@@ -70,19 +69,14 @@
       "Guardians of the Galaxy",
       "Comic Book Herald"
     ],
-    "expectIncludingOpenGapPlaceholders": 69,
-    "coverDecision": "Use the exactly resolved original Avengers (1963) #257 ID and cover URL, not image bytes. Report the pinned ID at checkpoint 2.",
-    "insertionAnchor": {
-      "beforeId": "doctor-strange-multiverse-of-madness"
-    },
     "expect": 69,
     "coverIssueId": 7127
   },
   "sourceReview": {
     "authorityType": "stronger-model",
-    "authorityIdentity": "GPT-6 Astra coordinator, session 34c17dd0-fd0e-4422-a238-6505fd798c8e",
-    "reviewedAt": "2026-09-28T18:15:36.981Z",
-    "rationale": "Independently read the complete credited Comic Book Herald page. Retain its narrower Nebula cuts, the numbered collection contents where no cut exists, explicit standalone issues, and the numbered Silver Surfer prose selection. Preserve the late Asgardians additions at their published source position. The 65-row worker proposal omits five explicitly selected Silver Surfer issues and is not the approved vector. The source's two published Nebula issues require corroborated original identities; no issues are inferred from an Amazon URL or planned series length."
+    "authorityIdentity": "GPT-6 Astra coordinator, guide review for issue #554",
+    "rationale": "Independently read the complete credited Comic Book Herald page. Retain its narrower Nebula cuts, the numbered collection contents where no cut exists, explicit standalone issues, and the numbered Silver Surfer prose selection. Preserve the late Asgardians additions at their published source position. The 65-row worker proposal omits five explicitly selected Silver Surfer issues and is not the approved vector. The source's two published Nebula issues require corroborated original identities; no issues are inferred from an Amazon URL or planned series length.",
+    "reviewedAt": "2026-09-28T18:15:36.981Z"
   },
   "rows": [
     {
@@ -832,7 +826,7 @@
     {
       "sourcePosition": 64,
       "sourceIssueReference": "Nebula (2020) #1",
-      "sourceRangeReference": "Nebula (2020), conditional on original-publication evidence",
+      "sourceRangeReference": "Nebula (2020) #1-2",
       "normalizedSeriesTitle": "Nebula",
       "seriesYear": 2020,
       "issueNumber": "1",
@@ -844,7 +838,7 @@
     {
       "sourcePosition": 65,
       "sourceIssueReference": "Nebula (2020) #2",
-      "sourceRangeReference": "Nebula (2020), conditional on original-publication evidence",
+      "sourceRangeReference": "Nebula (2020) #1-2",
       "normalizedSeriesTitle": "Nebula",
       "seriesYear": 2020,
       "issueNumber": "2",
@@ -914,7 +908,7 @@
       "selectionNote": "Exact original series 25996, issue #10; source sequence retained without expanding the supplied series page."
     }
   ],
-  "packetDigest": "4648fa53a75cc85443b4fd6bbfbc141132eddde3ba945a16e5f3e72707c4c6b9",
+  "packetDigest": "d58f3f5a1450a923b86d4757bf9162e2a9464d98f70ff682e681252528ba6b47",
   "excludedSourceRows": [
     {
       "sourcePosition": 23,

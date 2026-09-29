@@ -194,15 +194,17 @@ test('Thunderbolts publishes the real #-1 gap as one placeholder with durable ev
   assert.match(provenance, /Issue #558[\s\S]+assigned to `raymond-nassar`/);
 });
 
-test('Thunderbolts approval covers all 186 current source-manifest peers', async () => {
+test('Thunderbolts approval covers all 186 source-manifest peers at its review', async () => {
   const report = await readJson(`scripts/data/cbh-overlaps/${id}.json`);
   const manifest = await readJson('src/data/curated-lists.json');
   const current = await buildReportForMapping(
     `scripts/data/cbh-mappings/${id}.json`,
     [],
-    { excludedOrderIds: [] },
+    { excludedOrderIds: ['nebula-reading-order'] },
   );
-  const expectedOrderIds = manifest.lists.filter((row) => row.id !== id).map((row) => row.id);
+  const expectedOrderIds = manifest.lists
+    .filter((row) => row.id !== id && row.id !== 'nebula-reading-order')
+    .map((row) => row.id);
   assert.deepEqual(current, report);
   assert.equal(report.comparisonCount, 186);
   assert.deepEqual(report.comparisons.reduce((counts, row) => {
@@ -232,8 +234,8 @@ test('Thunderbolts is discoverable with source credit and measured maintained to
   const entry = manifest.lists.find((row) => row.id === id);
   const card = catalog.lists.find((row) => row.id === id);
 
-  assert.equal(manifest.lists.length, 187);
-  assert.equal(catalog.lists.length, 264);
+  assert.equal(manifest.lists.length, 188);
+  assert.equal(catalog.lists.length, 265);
   assert.equal(inventory.length, 132);
   assert.doesNotThrow(() => validateInventoryState(inventory));
   assert.deepEqual(entry, mapping.approvedManifest);

@@ -2,7 +2,7 @@
   "candidateId": "avengers-defenders-war",
   "packetDigest": "ecb588c36414442f5717176d7acbfd2e3893b9eddaa3d87737c2925ec1abb985",
   "mappingDigest": "71f75f307ed36722ea5c65a1a132022608d0e10563ad4a008eb27d9dd4e22652",
-  "libraryDigest": "31afebcf59cb9a143bf64bb2d48ba267284e2e62cb159dc52a26436cf887f027",
+  "libraryDigest": "15975afcb9778c9febcc04ebe880d434a84d08d0d20e1d32183be234d6d9f746",
   "peerDigests": {
     "kree-skrull-war": "932047dae3233ffed12f92fb3670fb2f9ffbb2a4f7039440911b9113e68be8a7",
     "reed-richards-and-sue-storms-wedding": "b62eecba1e1a995204cd33364ae7c3e7cd3406c5a08a622a73a3a0dfbaed6e1a",
@@ -10,7 +10,7 @@
     "the-night-gwen-stacy-died": "aef1e4f4cdc1b2e85759cff25cb32444b6946600fe3ff26bd4fa78122ee8d1bf"
   },
   "candidateCount": 8,
-  "comparisonCount": 137,
+  "comparisonCount": 136,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -451,12 +451,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "nebula-reading-order",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "necrosha",
       "sharedCount": 0,
       "sharedIds": [],
@@ -844,5 +838,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "afc81d2c3a731b99c00fb65d444bd3b1d80b1b8cb974c504b0c0f20632315392"
+  "reportDigest": "c629c6f097ac3a9e049f8b908ffb11438e3eb377d5a24883a802c53755b7fb7f"
 }
