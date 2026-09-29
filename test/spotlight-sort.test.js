@@ -96,6 +96,7 @@ test('popularity sorting keeps the ranked stories first and the rest in their cu
     'Hawkeye (Clint Barton and Kate Bishop)',
     'Agents of Atlas',
     'White Tiger: Ava Ayala',
+    'Nova',
     'Phalanx',
     'Agatha Harkness',
     'Punisher',

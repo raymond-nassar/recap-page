@@ -38,14 +38,14 @@ test('no shipped reading order carries Marvel description prose', async () => {
     }
   }
 
-  assert.equal(orders.length, 272, `the catalog lists ${orders.length} orders, not 272, so this test's coverage has changed`);
+  assert.equal(orders.length, 273, `the catalog lists ${orders.length} orders, not 273, so this test's coverage has changed`);
 
   assert.ok(items > 1000, `only ${items} items were checked, so the data tree is not what this test thinks it is`);
   assert.deepEqual(offenders, [], `Marvel description prose is committed again in ${offenders.length} record(s)`);
 });
 
-// The test above reads the catalog, so it sees exactly the two hundred and sixty-nine files the catalog names and
-// nothing else. That is the shape of the miss it was written to prevent: the first strip left 41
+// The test above reads only files named by the catalog, so it misses the noncatalog parent and
+// the design mockups. That is the shape of the miss it was written to prevent: the first strip left 41
 // descriptions in design/mockups/mock-data.js, a generated projection of a reading order that no
 // catalog lists and no gate walked. A boundary defined by an enumeration is a boundary someone has
 // to keep complete, so this one is defined by the tree instead.
@@ -104,7 +104,7 @@ test('no file outside node_modules, .git and .copilot-tracking carries an items[
     }
   }
 
-  assert.equal(scanned, 276, `${scanned} item-bearing files were found, not 276, so this test's coverage has changed`);
+  assert.equal(scanned, 277, `${scanned} item-bearing files were found, not 277, so this test's coverage has changed`);
 
   assert.deepEqual(offenders, [], `Marvel description prose is committed in ${offenders.length} record(s) somewhere in the scanned tree`);
 });

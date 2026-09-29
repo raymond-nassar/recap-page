@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-29T13:46:22.180Z",
+  "generatedAt": "2026-09-29T14:32:41.918Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -2681,6 +2681,50 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-23T09:04:07.076Z"
+    },
+    {
+      "id": "nova-reading-order",
+      "file": "nova_reading_order.json",
+      "name": "Nova",
+      "description": "Follow Richard Rider and Sam Alexander through Nova's origins, New Warriors, cosmic stories and later teams in Comic Book Herald's selected reading order.",
+      "type": "character-run",
+      "depth": "partial",
+      "spotlightKind": "other",
+      "count": 371,
+      "placeholderCount": 2,
+      "emptyRecordCount": 0,
+      "collections": 49,
+      "characters": [
+        "Nova",
+        "Richard Rider",
+        "Sam Alexander",
+        "New Warriors",
+        "Nova Corps"
+      ],
+      "keywords": [
+        "Nova",
+        "Richard Rider",
+        "Sam Alexander",
+        "New Warriors",
+        "Nova Corps",
+        "Human Rocket",
+        "Marvel Cosmic",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 23363,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/f0/4bb583caa940d",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/nova-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-09-29T14:32:41.918Z"
     },
     {
       "id": "phalanx-reading-order",

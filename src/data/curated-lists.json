@@ -2202,6 +2202,43 @@
       "coverIssueId": 36489
     },
     {
+      "id": "nova-reading-order",
+      "name": "Nova",
+      "description": "Follow Richard Rider and Sam Alexander through Nova's origins, New Warriors, cosmic stories and later teams in Comic Book Herald's selected reading order.",
+      "type": "character-run",
+      "spotlightKind": "other",
+      "depth": "partial",
+      "beginner": false,
+      "coverIssueId": 23363,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "nova-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/nova-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "nova_reading_order.json",
+      "characters": [
+        "Nova",
+        "Richard Rider",
+        "Sam Alexander",
+        "New Warriors",
+        "Nova Corps"
+      ],
+      "keywords": [
+        "Nova",
+        "Richard Rider",
+        "Sam Alexander",
+        "New Warriors",
+        "Nova Corps",
+        "Human Rocket",
+        "Marvel Cosmic",
+        "Comic Book Herald"
+      ],
+      "expect": 371,
+      "timeline": null
+    },
+    {
       "id": "phalanx-reading-order",
       "name": "Phalanx",
       "description": "The Phalanx's Marvel Comics path from their Technarch-linked New Mutants origins through the Phalanx Covenant, later Uncanny X-Men encounters, and Legion of X.",

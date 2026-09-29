@@ -13,6 +13,14 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Follow both Novas through their reading guide
+
+Adds a credited Nova Reading List for Richard Rider and Sam Alexander. It preserves 369
+verified comics in the source's order and keeps two published 1994 originals visible
+as metadata gaps. Repeated appearances are listed once; two nonexistent 1994 issues
+and a cancelled Guardians issue are not presented as unreadable comics. Existing
+Reading Lists and saved progress are unchanged.
+
 ### Prepare separate official and prototype Android identities
 
 Android source configuration now gives the future official app a separate identity and label

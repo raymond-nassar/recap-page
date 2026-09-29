@@ -93,13 +93,14 @@ test('Silk retains the approved relationships against every current library peer
   const current = await buildReportForMapping(`scripts/data/cbh-mappings/${id}.json`, [], {
     excludedOrderIds: ['marvels-infinity-saga-gauntlet-wars-crusade-reading-order',
       'hawkeye-reading-order', 'marvel-zombies-reading-order',
-      'ms-marvel-kamala-khan-reading-order'],
+      'ms-marvel-kamala-khan-reading-order', 'nova-reading-order'],
   });
   const expectedOrderIds = library.lists.filter((entry) => entry.id !== id
     && entry.id !== 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order'
     && entry.id !== 'hawkeye-reading-order'
     && entry.id !== 'marvel-zombies-reading-order'
-    && entry.id !== 'ms-marvel-kamala-khan-reading-order')
+    && entry.id !== 'ms-marvel-kamala-khan-reading-order'
+    && entry.id !== 'nova-reading-order')
     .map((entry) => entry.id);
   assert.deepEqual(current, report);
   assert.doesNotThrow(() => validateReportDigest(report));
