@@ -13,6 +13,13 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Keep mobile series actions readable
+
+On narrow Android screens, series search actions now sit below the title rather than squeezing
+ordinary label words onto separate lines. Long series names keep the available row width, and
+enlarged text can wrap between words. Desktop layout, saved progress and the Settings-only cover
+choice are unchanged.
+
 ### Follow Ultimate Spider-Man across four distinct eras
 
 Adds a credited, source-ordered Ultimate Spider-Man Reading List covering Peter Parker and Miles

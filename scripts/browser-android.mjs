@@ -16,11 +16,12 @@ if (!existsSync(driver) || !existsSync(edge)) {
 }
 const puppeteer = (await import(pathToFileURL(driver).href)).default;
 await prepareAndroid();
-const root = resolve(ANDROID_ASSET_DIR);
+let root = resolve(ANDROID_ASSET_DIR);
 const mime = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.svg': 'image/svg+xml', '.png': 'image/png', '.webmanifest': 'application/manifest+json' };
 const noStyle = process.argv.includes('--without-mobile-style');
 const mobileUi = process.argv.includes('--only=mobile-ui');
 const launcherOnly = process.argv.includes('--only=launcher');
+const seriesReadability = process.argv.includes('--only=series-readability');
 const server = createServer(async (req, res) => {
   const path = new URL(req.url, 'http://127.0.0.1').pathname;
   if (path === LOCAL_SERVER_HEALTH_PATH) {
@@ -97,6 +98,159 @@ async function measure(page, label) {
   check(result.body >= 16, `${label}: body text must be at least 16px (${result.body})`);
   check(!result.overflow, `${label}: no horizontal page overflow`);
   check(result.small.length === 0, `${label}: undersized targets ${JSON.stringify(result.small)}`);
+}
+
+const SERIES = [
+  [900001, 'Avengers (2020)', 3],
+  [900002, 'Avengers Unlimited Infinity Comic (2022 - 2024)', 2],
+  [900003, 'Avengers: The Initiative Featuring the Extraordinary Academy (2020)', 1],
+];
+const SERIES_ISSUES = [1, 2].map((number) => ({
+  id: 900010 + number,
+  title: `Readability fixture #${number}`,
+  seriesId: 900002,
+  seriesName: SERIES[1][1],
+  issueNumber: String(number),
+  digitalId: 900020 + number,
+}));
+
+async function seriesFixtures(page) {
+  await page.evaluateOnNewDocument((series, issues) => {
+    const original = window.fetch.bind(window);
+    window.__seriesRequests = [];
+    window.fetch = async (input, options) => {
+      const url = new URL(input instanceof Request ? input.url : String(input), location.href);
+      const json = (value) => new Response(JSON.stringify(value), {
+        headers: { 'content-type': 'application/json' },
+      });
+      if (url.pathname === '/data/catalog.json') return json({ lists: [] });
+      if (url.pathname === '/data/series-index.json') {
+        return json({ kind: 'series', generatedAt: '2026-01-01', total: series.length, items: series });
+      }
+      if (url.origin !== location.origin) {
+        window.__seriesRequests.push(url.pathname);
+        if (url.pathname === '/v1/health') return json({ status: 'ok' });
+        if (url.pathname === '/v1/series/900002/issues') {
+          return json({ items: issues, total: issues.length, has_next: false });
+        }
+        throw new Error(`Unexpected fixture request: ${url.href}`);
+      }
+      return original(input, options);
+    };
+  }, SERIES, SERIES_ISSUES);
+}
+
+async function seriesResultReadability(page, label, desktop) {
+  await route(page, 'add-series');
+  await page.type('#series-q', 'Avengers');
+  await page.$eval('#form-series', (form) => form.requestSubmit());
+  await page.waitForSelector('#series-results .result');
+  const rendered = await page.evaluate(() => {
+    const box = (node) => {
+      const { left, right, top, bottom, width, height } = node.getBoundingClientRect();
+      return { left, right, top, bottom, width, height };
+    };
+    const rows = [...document.querySelectorAll('#series-results .result')];
+    return {
+      query: document.querySelector('#series-q').value,
+      summary: document.querySelector('#series-results > .rail-hint').textContent,
+      body: parseFloat(getComputedStyle(document.body).fontSize),
+      androidStyle: !!document.querySelector('link[href="./android/mobile.css"]'),
+      rows: rows.map((row) => ({
+        title: row.querySelector('.result-title').textContent,
+        count: row.querySelector('.result-meta').textContent,
+        label: row.querySelector('button').textContent,
+        name: row.querySelector('button').getAttribute('aria-label'),
+        row: box(row), main: box(row.querySelector('.result-main')),
+        button: box(row.querySelector('button')),
+        padding: parseFloat(getComputedStyle(row).paddingLeft),
+      })),
+    };
+  });
+  check(rendered.query === 'Avengers' && rendered.summary === '3 matches.',
+    `${label}: query and match count retained`);
+  check(JSON.stringify(rendered.rows.map((row) => row.title)) === JSON.stringify(SERIES.map((row) => row[1])),
+    `${label}: normal and long series titles retain their result order`);
+  check(rendered.androidStyle === !desktop, `${label}: correct Android or shared desktop stylesheet`);
+  check(rendered.body === (desktop ? 14 : label.includes('150%') ? 24 : 16),
+    `${label}: existing body scale retained (${rendered.body}px)`);
+  for (const [index, row] of rendered.rows.entries()) {
+    check(row.count === `${SERIES[index][2]} issues` && row.label === 'Add all issues'
+      && row.name === `Add all issues of ${row.title}`,
+    `${label}: ${row.title}: issue count and action names retained`);
+    check(row.button.width >= (desktop ? 44 : 48) && row.button.height >= (desktop ? 44 : 48),
+      `${label}: ${row.title}: action hit rectangle ${row.button.width}x${row.button.height}`);
+    check(desktop
+      ? row.button.left >= row.main.right && row.button.top < row.main.bottom
+      : row.button.top >= row.main.bottom
+        && row.main.width >= row.row.width - 2 * row.padding - 3,
+    `${label}: ${row.title}: ${desktop ? 'desktop row retained' : 'title uses full row width with action below'}`);
+  }
+  const words = await page.evaluate(() => {
+    const broken = [], clipped = [];
+    let measured = 0;
+    for (const node of document.querySelectorAll('#series-results .result :is(.result-title, .result-meta, button)')) {
+      const bounds = node.getBoundingClientRect();
+      const walker = document.createTreeWalker(node, NodeFilter.SHOW_TEXT);
+      while (walker.nextNode()) {
+        const text = walker.currentNode;
+        for (const match of text.textContent.matchAll(/\S+/g)) {
+          const range = document.createRange();
+          range.setStart(text, match.index);
+          range.setEnd(text, match.index + match[0].length);
+          const rects = [...range.getClientRects()].filter((rect) => rect.width && rect.height);
+          measured++;
+          if (rects.length !== 1) broken.push({ word: match[0], lines: rects.length, text: node.textContent });
+          if (rects.some((rect) => rect.left < bounds.left - 1 || rect.right > bounds.right + 1
+            || rect.top < bounds.top - 1 || rect.bottom > bounds.bottom + 1)) {
+            clipped.push({ word: match[0], text: node.textContent });
+          }
+        }
+      }
+    }
+    return { broken, clipped, measured, overflow: document.documentElement.scrollWidth > innerWidth + 1 };
+  });
+  check(words.measured > 30, `${label}: measured ordinary words in every result (${words.measured})`);
+  check(words.broken.length === 0, `${label}: whole rendered words ${JSON.stringify(words.broken)}`);
+  check(words.clipped.length === 0 && !words.overflow, `${label}: no hidden or overflowing result text ${JSON.stringify(words.clipped)}`);
+  await page.$eval('#series-results', (node) => node.scrollIntoView());
+  await screenshot(page, label, 'series-results');
+
+  // A narrow instance of an existing user-content surface guards against a blanket nowrap fix.
+  const emergency = await page.evaluate(() => {
+    const host = document.createElement('div');
+    host.className = 'reader-link';
+    const button = document.createElement('button');
+    button.className = 'btn';
+    button.textContent = `https://example.invalid/${'unbrokentext'.repeat(12)}`;
+    button.style.width = '100%';
+    host.append(button);
+    document.querySelector('#view-add-series').append(host);
+    const range = document.createRange();
+    range.selectNodeContents(button);
+    const rects = [...range.getClientRects()];
+    const box = button.getBoundingClientRect();
+    const wraps = rects.length > 1 && rects.every((rect) => rect.left >= box.left - 1 && rect.right <= box.right + 1);
+    host.remove();
+    return wraps;
+  });
+  check(emergency, `${label}: unrelated unbroken user content still wraps inside its control`);
+
+  await click(page, `#series-results button[aria-label="Add all issues of ${SERIES[1][1]}"]`);
+  await page.waitForFunction(() => document.querySelector('#series-results .notice-ok')?.textContent.includes('2 issues added.'));
+  const saved = await page.evaluate(() => {
+    const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+    return {
+      requests: window.__seriesRequests,
+      lists: state.listOrder.length,
+      ids: state.lists[state.active].itemIds,
+      read: Object.keys(state.read),
+    };
+  });
+  check(JSON.stringify(saved.requests) === JSON.stringify(['/v1/health', '/v1/series/900002/issues'])
+    && saved.lists === 1 && JSON.stringify(saved.ids) === JSON.stringify(SERIES_ISSUES.map((issue) => issue.id))
+    && saved.read.length === 0, `${label}: Add imports exactly the selected fixture series without marking it read ${JSON.stringify(saved)}`);
+  console.log(`CHECKED ${label}: ${rendered.rows.length} series results, ${words.measured} rendered words, Add behavior; hit rectangles ${JSON.stringify(rendered.rows.map((row) => row.button))}`);
 }
 
 async function mobileLayout(page, label, narrow) {
@@ -285,19 +439,34 @@ try {
   browser = await puppeteer.launch({ executablePath: edge, headless: !process.env.MRT_HEADED, args: ['--no-first-run', '--no-default-browser-check'] });
   let viewports = [{ width: 360, height: 800 }, { width: 412, height: 915 }, { width: 800, height: 360 }];
   if (mobileUi) viewports.push({ width: 360, height: 800, textScale: 1.3 }, { width: 1280, height: 900 });
+  if (seriesReadability) viewports = [
+    { width: 320, height: 740 },
+    { width: 360, height: 800 },
+    { width: 412, height: 915 },
+    { width: 360, height: 800, textScale: 1.5 },
+    { width: 1280, height: 900, desktop: true },
+  ];
   const onlyViewport = process.argv.find((arg) => arg.startsWith('--viewport='))?.slice('--viewport='.length);
-  if (onlyViewport) viewports = viewports.filter((viewport) => `${viewport.width}x${viewport.height}` === onlyViewport && !viewport.textScale);
+  if (onlyViewport) viewports = viewports.filter((viewport) => (
+    `${viewport.width}x${viewport.height}${viewport.textScale ? `@${viewport.textScale}` : ''}` === onlyViewport
+  ));
   assert.ok(viewports.length, `Unknown viewport: ${onlyViewport}`);
   for (const viewport of viewports) {
+    root = resolve(viewport.desktop ? 'src' : ANDROID_ASSET_DIR);
     const context = await browser.createBrowserContext();
     const page = await context.newPage();
     const errors = [];
     let lookupMode = 'empty';
     let appLookups = 0;
     page.on('pageerror', (error) => { errors.push(error.message); console.error(error.message); });
-    await page.setViewport({ ...viewport, isMobile: true, hasTouch: true, deviceScaleFactor: 1 });
+    await page.setViewport({ ...viewport, isMobile: !viewport.desktop, hasTouch: !viewport.desktop, deviceScaleFactor: 1 });
+    if (seriesReadability) await seriesFixtures(page);
     await page.setRequestInterception(true);
     page.on('request', (request) => {
+      if (seriesReadability && new URL(request.url()).origin !== origin) {
+        failures.push(`Unexpected external request: ${request.url()}`);
+        return request.abort();
+      }
       if (request.url().startsWith('https://bifrost.marvel.com/')) {
         appLookups++;
         if (lookupMode === 'offline') return request.abort('failed');
@@ -352,7 +521,13 @@ try {
         }
       }, viewport.textScale);
     }
-    const label = `${viewport.width}x${viewport.height}${viewport.textScale ? ' 130% text' : ''}`;
+    const label = `${viewport.width}x${viewport.height}${viewport.textScale ? ` ${viewport.textScale * 100}% text` : ''}`;
+    if (seriesReadability) {
+      await seriesResultReadability(page, label, !!viewport.desktop);
+      check(errors.length === 0, `${label}: page errors ${errors.join('; ')}`);
+      await context.close();
+      continue;
+    }
     if (launcherOnly) {
       const before = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
       for (const mode of ['empty', 'malformed', 'offline']) {

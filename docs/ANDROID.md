@@ -262,6 +262,14 @@ Set `MRT_PUPPETEER` to its absolute entry file and `MRT_EDGE` to the installed b
 if they are not in the usual development locations. `MRT_ANDROID_SCREENSHOTS` optionally names
 an output directory for fixture-only screenshots.
 
+`npm run android:browser -- --only=series-readability` checks series results at 320x740,
+360x800, 412x915 and 360x800 with 150% text tokens, plus the shared desktop entry at 1280x900.
+It measures actual word line rectangles, unclipped titles, action hit areas and emergency
+wrapping on an unrelated user-content control. Synthetic fixtures check result order, counts
+and Add behavior without live API or cover requests. Use `--viewport=320x740` or
+`--viewport=360x800@1.5` for an aimed-at pre-fix check. This is desktop Edge CSS text stress,
+not native fontScale, physical-phone, TalkBack, keyboard or safe-area certification.
+
 ## Native emulator checks without a local emulator
 
 The **CI** workflow has an optional **android_emulator** input, off by default. It runs the APK
