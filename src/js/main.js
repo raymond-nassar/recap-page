@@ -1709,7 +1709,9 @@ function openInReader(issue, event, source) {
   }
   announce(res.target === 'reader'
     ? `Opening ${issue.title} in Marvel Unlimited in a new tab.`
-    : `Opening ${issue.title} in a new tab and looking up its Unlimited link.`);
+    : res.target === 'page'
+      ? `Opening the Marvel issue page for ${issue.title} in a new tab.`
+      : `Opening ${issue.title} in a new tab and looking up its Unlimited link.`);
 }
 
 // ------------------------------------------------------------------ synopsis fetching

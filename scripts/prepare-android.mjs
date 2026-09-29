@@ -120,7 +120,7 @@ export async function prepareAndroid(output = ANDROID_ASSET_DIR) {
               <p class="rail-hint">
                 <a href="https://github.com/raymond-nassar/recap-page/blob/main/PRIVACY.md" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">Privacy policy (opens in your browser)</a>
               </p>
-              <p>In this Android prototype, Read also sends the digital issue ID to Marvel's Bifrost service to resolve an app link. Marvel sees the request and network address, not your saved lists, notes or read markers. The lookup is not stored by Recap Page. Open in browser remains available if the service or app cannot open the comic.</p>`);
+              <p>In this Android prototype, Read sends a known digital issue ID to Marvel's Bifrost service to resolve an app link. Without one, a recorded issue page whose metadata lookup was already refused opens in your browser instead; other issues still request metadata. Marvel sees the request and network address, not your saved lists, notes or read markers. The lookup is not stored by Recap Page. Open in browser remains available if the service or app cannot open the comic.</p>`);
   let launcher = await readFile(join(SOURCE, 'open.html'), 'utf8');
   const launchStylesheet = '<link rel="stylesheet" href="./open.css" />';
   const launchEntry = '<script type="module" src="./open.js"></script>';

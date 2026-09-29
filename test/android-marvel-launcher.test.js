@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createAndroidReader, digitalReference, resolveMarvelIssue } from '../packaging/android/web/reader.js';
+import { issuePageUrl } from '../src/js/lib/issuePageUrl.js';
 
 const drn = 'drn:src:marvel:unison::prod:03baf094-d1bf-4eb6-8533-0840ebc0d0b9';
 const appUrl = `marvelunlimited://issue/${drn}`;
@@ -37,7 +38,7 @@ function fixture(search = '?d=38811&i=52986', fetchImpl = async () => response(p
   const navigations = [];
   const requests = [];
   const launch = createAndroidReader({
-    host, elements, readApiBase,
+    host, elements, readApiBase, validateIssuePageUrl: issuePageUrl,
     location: { search, assign: (url) => navigations.push(url) },
     fetchImpl: (...args) => { requests.push(args); return fetchImpl(...args); },
   });
@@ -124,6 +125,60 @@ test('Android missing digital ID uses the configured metadata service before Bif
   assert.equal(f.requests[0][1].signal, f.requests[1][1].signal);
   assert.deepEqual(f.navigations, [appUrl]);
   assert.equal(f.elements.fallback.href, 'https://read.marvel.com/#/book/38811');
+});
+
+test('Android known-refused issue page keeps the exact slug without metadata or Bifrost', async () => {
+  const page = 'https://www.marvel.com/comics/issue/129224/ultimate_endgame_2025_1';
+  const search = `?i=129224&u=${encodeURIComponent(page)}&p=1`;
+  const f = fixture(search, () => assert.fail('Known-refused page must not fetch'), () => assert.fail('No settings lookup'));
+  assert.equal(f.elements.fallback.href, page);
+  await f.launch.start();
+  assert.deepEqual(f.navigations, [page]);
+  assert.equal(f.requests.length, 0);
+  assert.equal(f.timers.size, 0);
+  assert.equal(f.elements.appLink.hidden, true);
+  assert.match(f.elements.status.textContent, /issue page/);
+  assert.match(f.elements.status.textContent, /progress has not changed/);
+
+  const direct = fixture(`?d=38811&${search.slice(1)}`);
+  await direct.launch.start();
+  assert.deepEqual(direct.navigations, [appUrl], 'digital IDs still take the Bifrost route');
+  assert.equal(direct.elements.fallback.href, 'https://read.marvel.com/#/book/38811');
+});
+
+test('Android rejects forged page parameters and looks up unknown references', async () => {
+  const page = 'https://www.marvel.com/comics/issue/129224/ultimate_endgame_2025_1';
+  for (const search of [
+    `?i=129225&u=${encodeURIComponent(page)}&p=1`,
+    `?i=129224&u=${encodeURIComponent('https://evil.example/comics/issue/129224/x')}&p=1`,
+    `?i=129224&u=${encodeURIComponent(page)}&u=${encodeURIComponent(page)}&p=1`,
+    `?i=129224&u=${encodeURIComponent(page)}&p=0`,
+  ]) {
+    const f = fixture(search, async () => response({}, false));
+    await f.launch.start();
+    assert.equal(f.requests.length, 1, search);
+    assert.deepEqual(f.navigations, [], search);
+    assert.equal(f.elements.appLink.hidden, true);
+    const issueId = new URLSearchParams(search).get('i');
+    assert.equal(f.elements.fallback.href, search.includes('p=0') ? page
+      : `https://www.marvel.com/comics/issue/${issueId}/`);
+  }
+});
+
+test('Android valid page without refusal flag retains exact browser escape after unresolved lookup', async () => {
+  const page = 'https://www.marvel.com/comics/issue/129224/ultimate_endgame_2025_1';
+  const search = `?i=129224&u=${encodeURIComponent(page)}`;
+  for (const result of [response({}, false), response({ digitalId: null })]) {
+    const f = fixture(search, async () => result);
+    assert.equal(f.elements.fallback.href, page);
+    await f.launch.start();
+    assert.deepEqual(f.requests.map(([url]) => url), ['https://metadata.example/v1/issues/129224']);
+    assert.equal(f.requests[0][1].cache, 'no-store');
+    assert.equal(f.elements.fallback.href, page);
+    assert.deepEqual(f.navigations, [], 'unknown reference must not auto-open the page');
+    assert.equal(f.elements.appLink.hidden, true);
+    assert.equal(f.timers.size, 0);
+  }
 });
 
 test('Android invalid, unresolved and failed references remain on an informative fallback', async () => {

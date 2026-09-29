@@ -1,5 +1,6 @@
 import { digitalIdFromUrl } from './markdown.js';
 import { readerUrl } from '../reader.js';
+import { issuePageUrl } from './issuePageUrl.js';
 
 export const REPORT_LINK = Object.freeze({
   href: 'https://github.com/raymond-nassar/recap-page/issues/new?template=data-order.yml',
@@ -74,16 +75,21 @@ export function originalReaderLink(issue) {
 export function originalReaderDescription(issue) {
   const direct = originalReaderLink(issue);
   if (direct) return direct;
+  if (issue?.detailsRefused === true && issuePageUrl(issue.url ?? issue.detailUrl, issue.issueId)) {
+    return 'No direct reader link recorded; Read opens the Marvel issue page';
+  }
   return issue?.issueId > 0
     ? 'No direct reader link recorded; Read looks it up'
     : 'No original reader reference';
 }
 
 export function readerLinkReport(issue, digitalId = null) {
+  const page = issuePageUrl(issue?.url ?? issue?.detailUrl, issue?.issueId)
+    ?? `https://www.marvel.com/comics/issue/${issue?.issueId}/`;
   const lines = [
     `Comic: ${label(issue?.title, 'Untitled saved comic')}`,
     issue?.issueId > 0 && Number.isSafeInteger(issue.issueId)
-      ? `Marvel comic ID: ${issue.issueId}\nComic page: https://www.marvel.com/comics/issue/${issue.issueId}/`
+      ? `Marvel comic ID: ${issue.issueId}\nComic page: ${page}`
       : 'Marvel comic ID: Not recorded; this is a local manual/reader-only entry',
     `Original reader link: ${originalReaderDescription(issue)}`,
     `Proposed reader link: ${bookUrl(digitalId) ?? 'Not supplied'}`,

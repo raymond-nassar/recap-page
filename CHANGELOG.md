@@ -13,6 +13,14 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Preserve exact issue-page links when a reader ID is missing
+
+The New Ultimate Universe: Collected Editions now opens the matching, already recorded Marvel
+issue page for its 29 owner-confirmed comics without repeating a metadata lookup known to fail.
+The Android launcher uses the same safe page route. Known reader links still open directly, and
+unknown comics still get a lookup. No issue identity, list, saved progress, availability choice
+or direct reader ID was changed.
+
 ### Generate original Play asset previews without reader data
 
 Maintainer tooling now draws the original icon and feature artwork and captures two cover-free
