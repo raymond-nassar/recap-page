@@ -35,6 +35,13 @@ A credited Nebula guide now follows 69 original comics from her early Avengers a
 through later cosmic and Guardians-era stories. An owner-excluded annual remains documented in
 the source record but does not appear as an unreadable comic. Existing reading progress is unchanged.
 
+### Add the Hope Summers reading guide
+
+A Hope Summers reading guide now appears in the catalog with 261 entries in the source's order,
+including six clearly marked metadata gaps that remain tracked for later resolution. Saved reading
+progress is unchanged.
+
+
 ### Open Android reader links in Marvel Unlimited
 
 The Android prototype resolves an issue's app identifier when **Read** is pressed and attempts

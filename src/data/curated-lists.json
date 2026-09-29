@@ -2900,6 +2900,47 @@
       "coverIssueId": 8797
     },
     {
+      "id": "hope-summers-reading-order",
+      "name": "Hope Summers",
+      "description": "Follow Hope Summers from Messiah Complex through Immortal X-Men, using Comic Book Herald's character cuts and reading order.",
+      "type": "character-run",
+      "spotlightKind": "other",
+      "depth": "partial",
+      "beginner": false,
+      "coverIssueId": 16600,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "hope-summers-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/hope-summers-reading-order/",
+      "sourceSection": null,
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "hope_summers_reading_order.json",
+      "characters": [
+        "Hope Summers",
+        "Cable",
+        "X-Men",
+        "X-Force",
+        "Generation Hope"
+      ],
+      "keywords": [
+        "Hope Summers",
+        "Hope",
+        "Mutant Messiah",
+        "Cable",
+        "X-Men",
+        "X-Force",
+        "Generation Hope",
+        "Messiah Complex",
+        "Second Coming",
+        "Krakoa",
+        "Comic Book Herald"
+      ],
+      "expect": 261,
+      "timeline": null
+    },
+    {
       "id": "question-of-the-week-do-you-have-a-hulk-reading-order",
       "name": "Hulk (and She-Hulk, Red Hulk)",
       "description": "A gap-tolerant Hulk spotlight preserving the full source sequence for Hulk, She-Hulk, Red Hulk, Skaar, and related stories, with exact Marvel issue links where the maintained metadata verifies them.",
