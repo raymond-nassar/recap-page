@@ -15,8 +15,10 @@ abstract class PrepareAndroidIcon extends Copy {
 }
 
 def repositoryRoot = rootProject.projectDir.toPath().resolve('../..').normalize().toFile()
-def metadata = new JsonSlurper().parse(new File(repositoryRoot, 'package.json'))
-def betaRevision = 2
+def buildMetadata = new JsonSlurper().parseText(providers.exec {
+    workingDir repositoryRoot
+    commandLine 'node', 'scripts/android-release.mjs', 'version'
+}.standardOutput.asText.get())
 
 android {
     namespace 'io.github.raymondnassar.recappage.prototype'
@@ -26,9 +28,8 @@ android {
         applicationId 'io.github.raymondnassar.recappage.prototype'
         minSdk 26
         targetSdk 36
-        // Beta 1 shipped as 3000001. Keep Android updates monotonic independently of desktop versions.
-        versionCode 3000000 + betaRevision
-        versionName "${metadata.version}-beta.${betaRevision}"
+        versionCode buildMetadata.versionCode
+        versionName buildMetadata.versionName
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
     compileOptions {
@@ -63,7 +64,10 @@ def prepareAssets = tasks.register('prepareAndroidAssets', PrepareAndroidAssets)
     inputs.dir new File(repositoryRoot, 'src')
     inputs.dir new File(rootProject.projectDir, 'web')
     inputs.files new File(repositoryRoot, 'scripts/prepare-android.mjs'),
+        new File(repositoryRoot, 'scripts/lib/release-identity.mjs'),
+        new File(repositoryRoot, 'scripts/android-release.mjs'),
         new File(repositoryRoot, 'server.mjs'), new File(repositoryRoot, 'package.json')
+    inputs.property 'buildIdentity', groovy.json.JsonOutput.toJson(buildMetadata.identity)
 }
 
 def prepareIcon = tasks.register('prepareAndroidIcon', PrepareAndroidIcon) {

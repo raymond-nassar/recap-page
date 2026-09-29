@@ -1769,8 +1769,8 @@
     "fp": "0c6537943c08c527",
     "head": "<script type=\"module\" src=\"./dev-faults.js\"></script>"
   },
-  "docs/ARCHITECTURE.md|the-three-entry-points|src/index.html:1141|0": {
-    "anchor": "src/index.html:1141",
+  "docs/ARCHITECTURE.md|the-three-entry-points|src/index.html:1142|0": {
+    "anchor": "src/index.html:1142",
     "fp": "9f74c3a9fa356fa2",
     "head": "<script type=\"module\" src=\"./js/app.js\"></script>"
   },
@@ -1919,8 +1919,8 @@
     "fp": "b79dcc7a949b3231",
     "head": "export function synopsisFallback(issue, sessionEntry = null, noSynopsisMarker = undefined) {"
   },
-  "docs/DATA_PROVENANCE.md|what-the-first-hand-s-own-terms-said|src/index.html:1063|0": {
-    "anchor": "src/index.html:1063",
+  "docs/DATA_PROVENANCE.md|what-the-first-hand-s-own-terms-said|src/index.html:1064|0": {
+    "anchor": "src/index.html:1064",
     "fp": "cd4793f475d06ae8",
     "head": "<span>Marvel metadata via marvel.emreparker.com. <span data-marvel-copyright>© MARVEL</span></span>"
   },
@@ -1984,13 +1984,13 @@
     "fp": "e9a1e74dee2c791e",
     "head": "// The publication gate answered a question that only gets asked once, and it was asked on"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:4236-4247|0": {
-    "anchor": "CHANGELOG.md:4236-4247",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:4245-4256|0": {
+    "anchor": "CHANGELOG.md:4245-4256",
     "fp": "7ebb6ef43a1f1241",
     "head": "- **The project now watches its own development tooling for known security problems, and says how"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:4249-4259|0": {
-    "anchor": "CHANGELOG.md:4249-4259",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:4258-4268|0": {
+    "anchor": "CHANGELOG.md:4258-4268",
     "fp": "c37eedd88ad1c81c",
     "head": "- **The project now has a published security policy, which names a private route for reporting a"
   },

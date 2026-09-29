@@ -30,13 +30,13 @@ function fixture() {
 
 const file = { filename: 'recap-page-backup.json', type: 'application/json', text: '{"notes":"Caf\u00e9"}' };
 
-test('Android betas have a distinct package version and advance beyond Beta 1', async () => {
+test('Android package identity comes from the shared reserved-build contract', async () => {
   const build = await readFile(new URL('../packaging/android/app/build.gradle', import.meta.url), 'utf8');
-  assert.match(build, /def betaRevision = [1-9]\d*\b/);
-  assert.match(build, /versionCode 3000000 \+ betaRevision/);
-  const revision = Number(build.match(/def betaRevision = (\d+)/)[1]);
-  assert.ok(3000000 + revision > 3000001 && 3000000 + revision <= 2100000000);
-  assert.ok(build.includes('versionName "${metadata.version}-beta.${betaRevision}"'));
+  assert.match(build, /commandLine 'node', 'scripts\/android-release.mjs', 'version'/);
+  assert.match(build, /versionCode buildMetadata\.versionCode/);
+  assert.match(build, /versionName buildMetadata\.versionName/);
+  assert.match(build, /inputs\.property 'buildIdentity'/);
+  assert.doesNotMatch(build, /betaRevision/);
 });
 
 test('Android wrapper bootstrap matches the distribution and runs before the Windows launcher', async () => {
@@ -208,6 +208,10 @@ test('Android assets preserve every catalog payload and the shared feature modul
       assert.deepEqual(await readFile(join(output, name)), await readFile(join('src', name)), name);
     }
     const generated = await readFile(join(output, 'index.html'), 'utf8');
+    const identity = JSON.parse(await readFile(join(output, 'build-info.json'), 'utf8'));
+    assert.equal(identity.platform, 'android');
+    assert.equal(identity.channel, 'development');
+    assert.ok(generated.includes(`source ${identity.sourceRevision}`));
     assert.match(generated, /\.\/android\/mobile\.css/);
     assert.match(generated, /\.\/android\/app\.js/);
     assert.ok(generated.indexOf('styles.css') < generated.indexOf('android/mobile.css'));

@@ -18,6 +18,8 @@ import { mkdtemp, mkdir, rm, writeFile, copyFile, stat } from 'node:fs/promises'
 import { tmpdir } from 'node:os';
 import { dirname, join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { artifactRecord, assertSourceUnchanged, buildIdentity, writeBuildIdentity } from './lib/release-identity.mjs';
+import { APP_VERSION } from '../src/js/lib/version.js';
 
 // Pinned by the test matrix rather than by the engines floor. package.json asks for Node 20 or
 // newer, which every current line satisfies, so the floor narrows nothing. The CI matrix does: the
@@ -123,6 +125,7 @@ const readMe = [
 ].join('\r\n');
 
 async function main() {
+  const identity = await buildIdentity('windows-portable', APP_VERSION);
   const staging = await mkdtemp(join(tmpdir(), 'mrt-pack-'));
   // Staged outside the repository on purpose. A copy of src/ inside the tree would be walked by
   // the licence boundary test, which counts item-bearing files across everything that is not
@@ -157,11 +160,15 @@ async function main() {
       await copyFile(join(ROOT, file), destination);
     }
     await writeFile(join(payload, 'Read this first.txt'), readMe);
+    await writeBuildIdentity(join(payload, 'src'), identity);
 
     say('compressing');
     await rm(DIST, { recursive: true, force: true });
     await mkdir(DIST, { recursive: true });
     powershell(`Compress-Archive -LiteralPath '${payload}' -DestinationPath '${ARCHIVE}' -Force`);
+    assertSourceUnchanged(identity);
+    await writeFile(join(DIST, 'windows-artifact.json'),
+      `${JSON.stringify(await artifactRecord(ARCHIVE, identity), null, 2)}\n`);
 
     const { size } = await stat(ARCHIVE);
     say('');

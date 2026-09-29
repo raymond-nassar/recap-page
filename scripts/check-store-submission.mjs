@@ -102,7 +102,7 @@ export function validateSubmission() {
     'Do not upload or submit a package that differs',
     'Do not publish',
     'Everything above this heading records the first submission',
-    'published GitHub release',
+    'explicit default-branch dispatch',
     'microsoft-store-production',
     'approve that environment deployment',
     'existing pending submission',

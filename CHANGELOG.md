@@ -13,6 +13,15 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Identify builds without coupling platform releases
+
+Packaged About screens now identify the platform build and source revision separately from the
+shared product version. Android development APKs no longer masquerade as the last public beta.
+A source-bound, append-only Android code ledger and exact-artifact records distinguish a rebuild
+from promotion. Windows Store submission now requires an explicit protected Windows dispatch;
+publishing an Android or GitHub release does not start it. No release, signing identity, reader
+behavior or saved data changes as part of this groundwork.
+
 ### Follow the Thunderbolts through their changing teams
 
 Adds a Thunderbolts Reading List credited and linked to Comic Book Herald. It preserves the
