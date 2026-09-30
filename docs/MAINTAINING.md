@@ -122,12 +122,48 @@ cleanup also fails. Lifecycle diagnostics include allowlisted browser and driver
 observed numeric process exit or signal values. An unavailable cause is `unknown`, not evidence
 of a crash, resource limit or app defect; exits during requested cleanup are labelled separately.
 
+Ordinary scenarios that export files declare the total expected native downloads for their
+isolated context. Before closing it, the runner requires a browser `completed` event for each
+download, within one 15-second completion deadline. Captured blob text alone is not completion.
+The count survives page navigation; a late start, canceled or missing download, invalid event,
+disconnect or deadline failure is reported without replacing an earlier scenario failure.
+Cleanup is still attempted, and unresolved completion stops the ordinary suite.
+
 For a hosted browser-only diagnostic, dispatch **Windows App Certification Kit** at the exact
 committed branch with `diagnostic_target=ordinary-browser`, `diagnostic_only=true`,
 `native_only=false` and `release_preparation=false`. This runs the ordinary suite on Windows
 without native proof, WACK or packaging. Its `qualified=false` log record binds the source and
 workflow commit to the installed driver version and locked driver digest. It uploads no artifacts
 and cannot satisfy release or production acceptance. Invalid flag combinations fail before setup.
+
+For the bounded context/export comparison, use `diagnostic_target=ordinary-browser-context-isolation`
+with the same diagnostic-only flags. It runs two fresh Edge processes: blank context plus blank
+sentinel, then the unchanged reader round-trip plus blank sentinel. The ceiling is four explicit
+contexts and twelve create/page/close calls, with no retry. Edge 152.0.4191.66, Puppeteer 25.7.0,
+the recorded driver lock and supported Page download events are required; a mismatch aborts.
+Download observations preserve pending, completed, canceled and unobserved states across page
+navigation without changing download policy or waiting for completion. Observation can affect
+timing and becomes partial after context close. Both arms passing is inconclusive about the
+late-suite failure; a reader-arm failure implicates that full path, not export alone. This mode
+produces no qualifying artifact and does not replace the ordinary suite.
+
+The fixed `diagnostic_target=ordinary-browser-download-completion` uses the same diagnostic-only
+flags and exact toolchain gates. It compares the unchanged reader scenario without a completion
+wait against the same scenario with the ordinary completion gate, each in a fresh browser with
+one blank sentinel. Its maximum remains four explicit contexts and twelve create/page/close
+calls. Only these fixed nonqualifying controls bypass the ordinary completion requirement.
+Any arm failure remains nonzero, including when the treatment passes. A timeout or failure
+after observed completion rejects the candidate; both arms passing does not establish causality.
+Neither diagnostic proves a fix or satisfies full-suite or release acceptance.
+
+For repeated-export acceptance alone, `diagnostic_target=ordinary-browser-export-acceptance`
+uses the same guarded diagnostic-only job. It runs `readable-markdown-export` followed by
+`order-only-export` through their existing single-scenario selectors and stops on either failure.
+The maximum is two Node commands, two fresh browsers and two isolated contexts, requiring
+four and six native completions respectively. Positive final export actions use focused native
+Enter input; existing cancellation and deliberate-failure actions are unchanged. This checks input
+fidelity without changing download policy and does not establish why earlier native starts were
+missing. It uploads no artifacts and is not full-suite or release qualification.
 
 ### Prove the browser check detects failures
 

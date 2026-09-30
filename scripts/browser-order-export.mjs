@@ -23,6 +23,11 @@ async function click(page, selector) {
   await page.$eval(selector, (node) => node.click());
 }
 
+async function activateExport(page, selector) {
+  await page.focus(selector);
+  await page.keyboard.press('Enter');
+}
+
 async function downloaded(page, count) {
   await page.waitForFunction((n) => window.__mrtDownloads.length === n, {}, count);
   return page.evaluate(() => window.__mrtDownloads.at(-1).text);
@@ -30,6 +35,7 @@ async function downloaded(page, count) {
 
 export const orderOnlyExport = {
   id: 'order-only-export',
+  nativeDownloads: 6,
   title: 'order-only files exclude personal data without altering personal exports or saved state',
   async run(page, t) {
     await page.evaluateOnNewDocument((seed, source) => {
@@ -100,7 +106,7 @@ export const orderOnlyExport = {
     await page.waitForSelector('#markdown-export[open]');
     await click(page, '#markdown-export input[name="includeDescription"]');
     await click(page, '#markdown-export input[name="includeNotes"]');
-    await click(page, '#markdown-export button[type="submit"]');
+    await activateExport(page, '#markdown-export button[type="submit"]');
     const personal = await downloaded(page, 1);
     t.check('personal export includes explicitly selected notes and description with read checkboxes',
       personal.includes('PRIVATE LIST NOTE') && personal.includes('PRIVATE ISSUE NOTE')
@@ -108,11 +114,11 @@ export const orderOnlyExport = {
 
     await click(page, '[data-view="data"]');
     await page.waitForSelector('#view-data:not([hidden])');
-    await click(page, '#btn-export-json');
+    await activateExport(page, '#btn-export-json');
     const backupBefore = JSON.parse(await downloaded(page, 2));
     await click(page, '#btn-export-order-2');
     await page.waitForSelector('#ask[open]');
-    await click(page, '#ask-ok');
+    await activateExport(page, '#ask-ok');
     const markdown = await downloaded(page, 3);
     const parsed = parseChecklist(markdown);
     const rows = [...parsed.entries, ...parsed.unresolved].sort((a, b) => a.index - b.index);
@@ -130,7 +136,7 @@ export const orderOnlyExport = {
     t.check('the filename distinguishes order-only Markdown from a personal checklist',
       await page.evaluate(() => window.__exportFilenames.at(-1) === 'synthetic-shareable-order-order-only.md'));
 
-    await click(page, '#btn-export-json');
+    await activateExport(page, '#btn-export-json');
     const backupAfter = JSON.parse(await downloaded(page, 4));
     delete backupBefore.exportedAt;
     delete backupAfter.exportedAt;
@@ -146,7 +152,7 @@ export const orderOnlyExport = {
     await click(page, '#list-nav button[data-act="open"]');
     await click(page, '#btn-export-order');
     await page.waitForSelector('#ask[open]');
-    await click(page, '#ask-ok');
+    await activateExport(page, '#ask-ok');
     t.check('Reading and Backup export exactly the same order', await downloaded(page, 5) === markdown);
 
     await page.evaluate(() => localStorage.removeItem('mrt.state.v2'));
@@ -195,7 +201,7 @@ export const orderOnlyExport = {
     await page.waitForSelector('#ask[open]');
     const emptyDialog = await page.$eval('#ask', (node) => node.textContent);
     t.check('missing attribution is disclosed before downloading', /attribution is unavailable/.test(emptyDialog));
-    await click(page, '#ask-ok');
+    await activateExport(page, '#ask-ok');
     const empty = await downloaded(page, 1);
     t.check('an empty order downloads with no fabricated rows or attribution',
       /^# Synthetic shareable order/m.test(empty) && empty.includes('Source attribution is unavailable.')
