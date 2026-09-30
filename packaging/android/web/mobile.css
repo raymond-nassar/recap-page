@@ -167,6 +167,21 @@ body:has(#android-list-sheet[open]) { overflow: hidden; }
 }
 
 @media (max-width: 480px) {
+  #view-read > .head { gap: var(--space-4); margin-bottom: var(--space-4); }
+  #view-read .head-left { min-width: 0; }
+  #view-read #android-list-options { margin-bottom: var(--space-4); }
+  #hero .hero-in { display: flow-root; }
+  #hero .hero-in > .art {
+    float: left; width: 96px; max-width: 100%;
+    margin: 0 var(--space-5) var(--space-4) 0;
+  }
+  #hero .art .fallback { padding: var(--space-4); overflow-wrap: anywhere; }
+  #hero-by, #hero-desc { margin-bottom: var(--space-4); }
+  #btn-hero-description:not([hidden]) {
+    display: flex; clear: both; width: 100%; margin-bottom: var(--space-4);
+  }
+  #hero-desc, #hero-facts, #hero .cta { clear: both; }
+  #hero-facts { gap: var(--space-4) var(--space-5); margin-bottom: var(--space-4); }
   .hero .cta > .btn, .chero .cta > .btn { width: 100%; justify-content: center; }
   .facts { gap: var(--space-6); }
   .headright { flex-wrap: wrap; }

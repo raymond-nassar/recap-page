@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { createServer } from 'node:http';
-import { readFile, mkdir } from 'node:fs/promises';
+import { readFile, mkdir, writeFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { homedir } from 'node:os';
 import { join, resolve, sep, extname } from 'node:path';
@@ -8,7 +8,10 @@ import { pathToFileURL } from 'node:url';
 import { CSP } from '../server.mjs';
 import { prepareAndroid, ANDROID_ASSET_DIR } from './prepare-android.mjs';
 import { LOCAL_SERVER_HEALTH_PATH, LOCAL_SERVER_HEADER_NAME, LOCAL_SERVER_HEADER_VALUE } from '../src/js/lib/localServer.js';
-import { createEmptyState, createList, addIssuesToList, setIssueNote } from '../src/js/lib/model.js';
+import { createEmptyState, createList, addIssuesToList, setIssueNote, markRead, setDeferred, setOverride } from '../src/js/lib/model.js';
+import { KEY } from '../src/js/storage.js';
+import { SAVE_EDUCATION_KEY, SAVE_EDUCATION_STATE } from '../src/js/lib/saveEducation.js';
+import { issuePresentation } from '../src/js/lib/issueFocus.js';
 import { availableHomeCategories, groupCatalog, HOME_CATEGORIES, publishingAgeGroups, resolveReadingPaths } from '../src/js/lib/catalog.js';
 import { parseRoute } from '../src/js/lib/route.js';
 import { catalogCardProfiles, catalogCardReadability } from './browser-android-catalog-cards.mjs';
@@ -30,6 +33,19 @@ const noteReadability = process.argv.includes('--only=note-readability');
 const categoryReadability = process.argv.includes('--only=category-readability');
 const marvelAgesTarget = process.argv.includes('--only=marvel-ages-target');
 const catalogReadability = process.argv.includes('--only=catalog-cards');
+const readingFactsAx = process.argv.includes('--only=reading-facts-ax');
+const readingComposition = process.argv.includes('--only=reading-composition') || readingFactsAx;
+const readingCaseArg = process.argv.find((arg) => arg.startsWith('--reading-composition-case='));
+const readingCase = readingCaseArg?.slice('--reading-composition-case='.length);
+if (readingCaseArg !== undefined) {
+  assert.ok(readingComposition && !readingFactsAx && readingCase === 'M01' && process.argv.includes('--viewport=360x800'),
+    'Reading case selection must be M01 with --only=reading-composition --viewport=360x800');
+}
+if (readingFactsAx) {
+  assert.ok(process.env.MRT_READING_AX_EVIDENCE && !process.env.MRT_ANDROID_SCREENSHOTS
+    && !process.argv.some((arg) => arg.startsWith('--viewport=') || arg.startsWith('--case=')),
+  'Factual AX confirmation requires MRT_READING_AX_EVIDENCE, all five mobile profiles, and no screenshots');
+}
 const server = createServer(async (req, res) => {
   const path = new URL(req.url, 'http://127.0.0.1').pathname;
   if (path === LOCAL_SERVER_HEALTH_PATH) {
@@ -581,6 +597,404 @@ async function issueNoteReadability(page, label, desktop) {
     `${label}: viewing and exporting leave saved state byte-for-byte unchanged`);
 }
 
+const READING_LIST = 'reading-composition';
+const READING_SYNOPSIS = 'Original synthetic description for the reading composition check. It stays hidden until deliberately revealed, then wraps without covering any action.';
+const readingProfiles = [
+  { id: 'M01', width: 360, height: 800 },
+  { id: 'M03', width: 412, height: 915 },
+  { id: 'M04', width: 320, height: 740, long: true },
+  { id: 'M05', width: 360, height: 800, textScale: 1.5 },
+  { id: 'M06', width: 360, height: 800, textScale: 2, long: true },
+  { id: 'D01', width: 1280, height: 900, desktop: true },
+];
+let readingOrder;
+if (readingComposition) {
+  const entry = catalog.lists.find((list) => list.id === 'hickman-minimal');
+  assert.ok(entry, 'Reading composition requires the measured Hickman order');
+  readingOrder = JSON.parse(await readFile(new URL(`../src/data/${entry.file}`, import.meta.url)));
+  assert.equal(readingOrder.items.length, 89);
+  const item = readingOrder.items[3];
+  assert.deepEqual([item.issueId, item.digitalId, item.title], [43534, 28116, 'Avengers (2012) #4']);
+}
+
+function readingState(profile = {}) {
+  let state = createList(createEmptyState(), {
+    id: READING_LIST, name: readingOrder.name, description: readingOrder.description,
+    catalogId: readingOrder.id,
+  });
+  state = addIssuesToList(state, READING_LIST, readingOrder.items).state;
+  for (const item of readingOrder.items.slice(0, 3)) state = markRead(state, item.issueId, true, 1767225600000);
+  if (profile.long) {
+    state.lists[READING_LIST].name = 'Hickman to Secret Wars: a deliberately long Reading List title with every word retained';
+    state.issues[43534].title = 'Avengers (2012) #4: a long issue title with each word kept and room to read at a larger text size';
+  }
+  return state;
+}
+
+async function readingFixtures(page, profile) {
+  await page.evaluateOnNewDocument((state, key, educationKey, educationValue, synopsis, allowSynopsis) => {
+    if (!localStorage.getItem(key)) localStorage.setItem(key, JSON.stringify(state));
+    localStorage.setItem(educationKey, educationValue);
+    const original = window.fetch.bind(window);
+    window.__readingTest = { opens: [], requests: [] };
+    window.open = (...args) => { window.__readingTest.opens.push(args); return {}; };
+    window.fetch = (input, options) => {
+      const url = new URL(input instanceof Request ? input.url : String(input), location.href);
+      const json = (value) => Promise.resolve(new Response(JSON.stringify(value), {
+        headers: { 'content-type': 'application/json' },
+      }));
+      if (url.origin === location.origin) return original(input, options);
+      if (url.pathname === '/v1/health') return json({ status: 'ok' });
+      const match = /^\/v1\/issues\/(\d+)$/.exec(url.pathname);
+      if (allowSynopsis && match && Number(match[1]) === 43534) {
+        window.__readingTest.requests.push(Number(match[1]));
+        return json({ ...state.issues[Number(match[1])], description: synopsis });
+      }
+      throw new Error(`Unexpected reading fixture request: ${url.href}`);
+    };
+  }, readingState(profile), KEY, SAVE_EDUCATION_KEY, SAVE_EDUCATION_STATE.COMPLETE,
+  READING_SYNOPSIS, profile.id === 'M05');
+}
+
+async function readingGeometry(page) {
+  return page.evaluate(() => {
+    const box = (node) => {
+      const { left, right, top, bottom, width, height } = node.getBoundingClientRect();
+      return { left, right, top, bottom, width, height };
+    };
+    const hero = document.querySelector('#hero');
+    const art = hero.querySelector('.art');
+    const visible = (node) => !!node.getClientRects().length && !node.closest('[hidden]');
+    const inside = (rect, bounds) => rect.left >= bounds.left - 1 && rect.right <= bounds.right + 1
+      && rect.top >= bounds.top - 1 && rect.bottom <= bounds.bottom + 1;
+    const intersects = (a, b) => a.left < b.right - 1 && a.right > b.left + 1
+      && a.top < b.bottom - 1 && a.bottom > b.top + 1;
+    const parts = [...document.querySelectorAll('#order-name, #order-sub, #ring-label, #ring-sub, #hero .eyebrow, #hero-title, #hero-by, #hero-desc, #hero-facts dt, #hero-facts dd, #hero-fb > span, #hero .btn')];
+    const clipped = [], overlaps = [];
+    let ranges = 0;
+    for (const node of parts.filter(visible)) {
+      const walker = document.createTreeWalker(node, NodeFilter.SHOW_TEXT);
+      while (walker.nextNode()) {
+        if (!walker.currentNode.textContent.trim()) continue;
+        const range = document.createRange();
+        range.selectNodeContents(walker.currentNode);
+        for (const rect of [...range.getClientRects()].filter((entry) => entry.width && entry.height)) {
+          ranges++;
+          const bounds = box(node);
+          // Text ink can exceed a non-clipping line box; clipping ancestors own vertical containment.
+          if (rect.left < bounds.left - 1 || rect.right > bounds.right + 1
+            || (node.matches('.btn') && !inside(rect, bounds))) clipped.push(node.id || node.tagName);
+          for (let ancestor = node.parentElement; ancestor; ancestor = ancestor.parentElement) {
+            const style = getComputedStyle(ancestor);
+            if (/(hidden|clip)/.test(`${style.overflowX} ${style.overflowY}`) && !inside(rect, box(ancestor))) {
+              clipped.push(node.id || node.tagName);
+            }
+          }
+          if (node.closest('.hero-body') && intersects(rect, box(art))) overlaps.push(node.id || node.tagName);
+        }
+      }
+    }
+    const read = document.querySelector('#btn-hero-read');
+    const controls = [...hero.querySelectorAll('.btn')].filter(visible).map((node) => ({
+      id: node.id, text: node.textContent.trim(), box: box(node),
+      font: parseFloat(getComputedStyle(node).fontSize),
+    }));
+    for (const [index, control] of controls.entries()) {
+      if (controls.slice(index + 1).some((other) => intersects(control.box, other.box))) overlaps.push(control.id);
+    }
+    return {
+      title: document.querySelector('#order-name').textContent,
+      issue: document.querySelector('#hero-title').textContent,
+      byline: document.querySelector('#hero-by').textContent,
+      count: document.querySelector('#ring-sub').textContent,
+      facts: [...document.querySelectorAll('#hero-facts > div')].map((node) => ({
+        key: node.querySelector('dt').textContent, value: node.querySelector('dd').textContent,
+      })),
+      scroll: scrollY, body: parseFloat(getComputedStyle(document.body).fontSize),
+      titleFont: parseFloat(getComputedStyle(document.querySelector('#order-name')).fontSize),
+      issueFont: parseFloat(getComputedStyle(document.querySelector('#hero-title')).fontSize),
+      android: !!document.querySelector('link[href="./android/mobile.css"]'),
+      header: box(document.querySelector('#view-read > .head')), hero: box(hero), art: box(art),
+      issueBox: box(document.querySelector('#hero-title')), factsBox: box(document.querySelector('#hero-facts')),
+      controls, read: box(read), readVisible: visible(read), readDisabled: read.disabled,
+      readCount: document.querySelectorAll('#btn-hero-read').length,
+      ranges, clipped, overlaps, overflow: document.documentElement.scrollWidth > innerWidth + 1,
+      image: { shown: visible(document.querySelector('#hero-img')), loaded: document.querySelector('#hero-img').naturalWidth > 0 },
+    };
+  });
+}
+
+async function readingEvidence(page, profile, id = profile.id) {
+  await page.evaluate(() => {
+    window.scrollTo(0, 0);
+    return new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+  });
+  const result = await readingGeometry(page);
+  result.sourceRevision = JSON.parse(await readFile(join(ANDROID_ASSET_DIR, 'build-info.json'), 'utf8')).sourceRevision;
+  const state = readingState(profile);
+  const presentation = issuePresentation(state.issues[43534], { position: 4, total: 89 });
+  assert.ok(result.readCount === 1 && result.readVisible && !result.readDisabled
+    && Number.isFinite(result.read.bottom) && result.read.height > 0, `${id}: positive Read measurement`);
+  assert.equal(result.issue, state.issues[43534].title, `${id}: exact fixture issue`);
+  if (process.env.MRT_ANDROID_SCREENSHOTS) {
+    const output = process.env.MRT_ANDROID_SCREENSHOTS;
+    await mkdir(output, { recursive: true });
+    assert.ok(!existsSync(join(output, `reading-${id}.png`)) && !existsSync(join(output, `reading-${id}.json`)),
+      `${id}: use a fresh numbered evidence directory, never overwrite an earlier attempt`);
+    await writeFile(join(output, `reading-${id}.json`), `${JSON.stringify(result, null, 2)}\n`, { flag: 'wx' });
+    await page.screenshot({ path: join(output, `reading-${id}.png`), fullPage: !['M01', 'M02'].includes(id) });
+  }
+  console.log(`READING ${id}: ${JSON.stringify(result)}`);
+  check(result.title === state.lists[READING_LIST].name && result.byline === presentation.byline
+    && result.count === '3 of 89 read', `${id}: full title, byline and progress preserved`);
+  check(JSON.stringify(result.facts) === JSON.stringify(presentation.facts.map(({ key, value }) => ({ key, value }))),
+    `${id}: every exact factual value retained`);
+  const scale = profile.textScale || 1;
+  check(result.body === (profile.desktop ? 14 : 16 * scale) && result.titleFont === 28 * scale
+    && result.issueFont === (profile.desktop ? 40 : 32 * scale) && result.android === !profile.desktop,
+  `${id}: actual platform and unchanged text scale`);
+  check(result.ranges > 15 && !result.clipped.length && !result.overlaps.length && !result.overflow,
+    `${id}: measured text/control containment ${JSON.stringify({ clipped: result.clipped, overlaps: result.overlaps })}`);
+  check(result.controls.length === 5 + (id.startsWith('M05') ? 1 : 0)
+    && result.controls.every(({ box }) => box.width >= 48 && box.height >= (profile.desktop ? 44 : 48)),
+  `${id}: all existing action hit rectangles`);
+  if (['M01', 'M02'].includes(id)) {
+    check(result.scroll === 0 && result.read.left >= 0 && result.read.right <= 360 && result.read.top >= 0
+      && result.read.bottom <= 800, `${id}: complete primary Read bottom <=800 (actual ${result.read.bottom})`);
+    check(result.image.shown === (id === 'M02') && (id !== 'M02' || result.image.loaded),
+      `${id}: intended fallback or original synthetic-image geometry`);
+  }
+  if (profile.desktop && !process.argv.includes('--viewport=1280x900')) {
+    assert.ok(process.env.MRT_READING_BASELINE, 'Full reading batch requires the retained desktop baseline directory');
+    const baseline = JSON.parse(await readFile(join(process.env.MRT_READING_BASELINE, 'reading-D01.json'), 'utf8'));
+    const signature = ({ header, hero, art, issueBox, factsBox, controls, body, titleFont, issueFont }) => (
+      { header, hero, art, issueBox, factsBox, controls, body, titleFont, issueFont }
+    );
+    check(JSON.stringify(signature(result)) === JSON.stringify(signature(baseline)), 'D01: unchanged shared desktop geometry');
+  }
+  return result;
+}
+
+async function readingAccessibility(page, result, id) {
+  const client = await page.createCDPSession();
+  try {
+    const { nodes } = await client.send('Accessibility.getFullAXTree');
+    const { root } = await client.send('DOM.getDocument');
+    const { nodeId } = await client.send('DOM.querySelector', { nodeId: root.nodeId, selector: '#hero' });
+    const { node } = await client.send('DOM.describeNode', { nodeId });
+    const byId = new Map(nodes.map((entry) => [entry.nodeId, entry]));
+    const hero = nodes.find((entry) => entry.backendDOMNodeId === node.backendNodeId);
+    assert.ok(hero, `${id}: hero accessibility node exists`);
+    const walk = (entry) => entry ? [
+      ...(!entry.ignored ? [{ role: entry.role.value, name: entry.name?.value }] : []),
+      ...(entry.childIds || []).flatMap((key) => walk(byId.get(key))),
+    ] : [];
+    const tree = walk(hero);
+    const domFacts = await page.$$eval('#hero-facts > div', (pairs) => pairs.map((pair) => {
+      const term = pair.querySelector('dt'), definition = pair.querySelector('dd');
+      return {
+        termTag: term?.tagName, definitionTag: definition?.tagName,
+        key: term?.textContent, value: definition?.textContent,
+        renderedKey: term?.innerText, textTransform: term && getComputedStyle(term).textTransform,
+      };
+    }));
+    if (readingFactsAx) {
+      const output = process.env.MRT_READING_AX_EVIDENCE;
+      await mkdir(output, { recursive: true });
+      await writeFile(join(output, `${id}-facts-ax.json`), `${JSON.stringify({
+        profile: id, expectedFacts: result.facts, domFacts, heroSequence: tree, rawAxNodes: nodes,
+      }, null, 2)}\n`, { flag: 'wx' });
+    }
+    assert.equal(domFacts.length, result.facts.length, `${id}: original factual pair count`);
+    let previous = tree.findIndex((entry) => entry.role === 'heading' && entry.name === result.issue);
+    assert.ok(previous >= 0, `${id}: named issue heading retained in accessibility tree`);
+    previous = tree.findIndex((entry, at) => at > previous && entry.role === 'StaticText' && entry.name === result.byline);
+    assert.ok(previous >= 0, `${id}: exact byline precedes facts`);
+    for (const [index, fact] of result.facts.entries()) {
+      const dom = domFacts[index];
+      assert.ok(dom.termTag === 'DT' && dom.definitionTag === 'DD'
+        && dom.key === fact.key && dom.value === fact.value, `${id}: exact original dt/dd pair ${index}`);
+      assert.ok(dom.textTransform === 'uppercase' && dom.renderedKey === fact.key.toUpperCase(),
+        `${id}: only the inherited uppercase presentation may change the label spelling`);
+      const term = tree.findIndex((entry, at) => at > previous
+        && entry.role === 'StaticText' && entry.name === dom.renderedKey);
+      const definition = tree.findIndex((entry, at) => at > term
+        && entry.role === 'StaticText' && entry.name === fact.value);
+      const matches = term > previous && definition > term;
+      check(matches, `${id}: exact rendered AX label/value order for ${fact.key}`);
+      assert.ok(matches, `${id}: unexpected factual AX mismatch; inspect retained raw evidence before proceeding`);
+      previous = definition;
+    }
+    if (readingFactsAx) return;
+    const names = result.controls.filter((control) => control.id !== 'btn-hero-description').map((control) => control.text);
+    for (const name of names) {
+      const index = tree.findIndex((entry, at) => at > previous && entry.name?.startsWith(name));
+      check(index > previous, `${id}: meaningful accessibility sequence includes ${name}`);
+      previous = index;
+    }
+  } finally {
+    await client.detach();
+  }
+  await page.focus('#order-name');
+  const expected = ['#order-desc > summary', '#android-list-options',
+    ...result.controls.map((control) => `#${control.id}`)];
+  for (const selector of expected) {
+    await page.keyboard.press('Tab');
+    check(await page.$eval(selector, (node) => document.activeElement === node), `${id}: native Tab reaches ${selector}`);
+    check(await page.$eval(selector, (node) => {
+      const rect = node.getBoundingClientRect(), style = getComputedStyle(node);
+      const hit = document.elementFromPoint(rect.left + rect.width / 2, rect.top + rect.height / 2);
+      return rect.top >= 0 && rect.bottom <= innerHeight && (node === hit || node.contains(hit))
+        && node.matches(':focus-visible') && style.outlineStyle !== 'none';
+    }), `${id}: focused control visible and unobscured`);
+  }
+}
+
+async function readingReplaceState(page, state) {
+  await page.evaluate((key, value) => localStorage.setItem(key, JSON.stringify(value)), KEY, state);
+  await page.reload({ waitUntil: 'networkidle0' });
+  await page.waitForSelector('#view-read:not([hidden])');
+}
+
+async function readingSemantics(page) {
+  const saved = await page.evaluate((key) => localStorage.getItem(key), KEY);
+  await click(page, '#order-desc > summary');
+  check(await page.$eval('#order-desc', (node) => node.open), 'M01: About expands normally');
+  await click(page, '#order-desc > summary');
+  await click(page, '#android-list-options');
+  await backDialog(page);
+  check(await page.$eval('#android-list-options', (node) => document.activeElement === node),
+    'M01: list-sheet Back restores focus');
+  await page.focus('#btn-hero-inspect');
+  await click(page, '#btn-hero-inspect');
+  await page.waitForFunction(() => document.querySelector('#view-issue')?.hidden === false
+    && document.querySelector('#issue-focus-h')?.textContent === 'Avengers (2012) #4');
+  await page.goBack();
+  await page.waitForFunction(() => document.querySelector('#view-read')?.hidden === false
+    && document.activeElement?.id === 'btn-hero-inspect');
+  await click(page, '#btn-hero-read');
+  check(await page.evaluate((key, before) => localStorage.getItem(key) === before
+    && window.__readingTest.opens.length === 1 && window.__readingTest.requests.length === 0, KEY, saved),
+  'M01: inspect/disclosure/inert Read preserve state and do not fetch or launch a real reader');
+  await click(page, '#btn-hero-done');
+  await page.waitForFunction(() => document.querySelector('#hero-title')?.textContent === 'Avengers (2012) #5');
+  check(await page.evaluate((key) => {
+    const state = JSON.parse(localStorage.getItem(key));
+    return Object.keys(state.read).length === 4 && Object.hasOwn(state.read, 43534);
+  }, KEY), 'M01: Done marks exactly the current issue');
+  await click(page, '#btn-hero-defer');
+  await page.waitForFunction(() => document.querySelector('#hero-title')?.textContent === 'Avengers (2012) #6');
+  check(await page.evaluate((key, list) => {
+    const state = JSON.parse(localStorage.getItem(key));
+    return Object.keys(state.read).length === 4 && state.lists[list].deferredIssueIds.includes(43535)
+      && !Object.hasOwn(state.read, 43535);
+  }, KEY, READING_LIST), 'M01: Defer changes queue without marking read');
+
+  for (const kind of ['completed', 'all-deferred', 'empty', 'manual']) {
+    let state = readingState();
+    if (kind === 'completed') for (const item of readingOrder.items) state = markRead(state, item.issueId, true, 1767225600000);
+    if (kind === 'all-deferred') for (const item of readingOrder.items.slice(3)) state = setDeferred(state, READING_LIST, item.issueId);
+    if (kind === 'empty' || kind === 'manual') {
+      state = createList(createEmptyState(), { id: READING_LIST, name: `Reading ${kind}` });
+      if (kind === 'manual') state = addIssuesToList(state, READING_LIST, [{
+        issueId: -620, title: 'Manual issue without a digital reference', number: '1', source: 'manual',
+      }]).state;
+    }
+    await readingReplaceState(page, state);
+    const selector = kind === 'completed' ? '#all-read' : kind === 'all-deferred' ? '#all-deferred'
+      : kind === 'empty' ? '#reading-empty' : '#hero';
+    await page.waitForSelector(selector, { visible: true });
+    check(await page.$eval('#btn-hero-read', (node) => node.getClientRects().length === 0),
+      `M01 ${kind}: no effective Read control`);
+    check(await page.$eval('#hero', (node, expected) => node.hidden === expected, kind !== 'manual'),
+      `M01 ${kind}: intended hero visibility`);
+    if (kind === 'manual') {
+      for (const control of ['inspect', 'done', 'defer']) check(await page.$eval(`#btn-hero-${control}`,
+        (node) => node.getClientRects().length > 0), `M01 manual: ${control} remains reachable`);
+    }
+    const before = await page.evaluate((key) => localStorage.getItem(key), KEY);
+    await route(page, 'read');
+    check(await page.evaluate((key) => localStorage.getItem(key), KEY) === before, `M01 ${kind}: render preserves saved state`);
+  }
+  for (const [mu, override, label] of [
+    [null, null, '? Availability unknown'], ['2999-01-01', null, 'soon Scheduled 2999-01-01'],
+    ['2014-02-27', null, 'MU Expected in Unlimited'], [null, 'available', 'MU\u2713 You marked available'],
+    [null, 'unavailable', 'no You marked unavailable'],
+  ]) {
+    let state = readingState();
+    state.issues[43534].mu = mu;
+    if (override) state = setOverride(state, 43534, override);
+    await readingReplaceState(page, state);
+    await page.waitForFunction((expected) => document.querySelector('#hero-facts dd')?.textContent === expected, {}, label);
+    check(await page.$eval('#hero-facts dt', (node) => node.textContent === 'In Unlimited'),
+      `M01 ${label}: factual label retained`);
+    const geometry = await readingGeometry(page);
+    check(!geometry.clipped.length && !geometry.overlaps.length && !geometry.overflow, `M01 ${label}: readable status, not a boolean`);
+  }
+}
+
+async function readingCompositionCheck(page, profile) {
+  await route(page, 'read');
+  await page.waitForFunction((expected) => document.querySelector('#hero-title')?.textContent === expected,
+    {}, readingState(profile).issues[43534].title);
+  const before = await page.evaluate((key) => localStorage.getItem(key), KEY);
+  if (profile.id === 'M05') {
+    await page.focus('#btn-hero-inspect');
+    await click(page, '#btn-hero-inspect');
+    await page.waitForFunction(() => document.querySelector('#view-issue')?.hidden === false
+      && document.querySelector('#issue-focus-h')?.textContent === 'Avengers (2012) #4');
+    await click(page, '#btn-issue-synopsis');
+    await page.waitForSelector('#ask[open]');
+    await click(page, '#ask-ok');
+    await page.waitForFunction((text) => document.querySelector('#issue-focus-desc')?.textContent === text
+      && document.querySelector('#btn-issue-description')?.getAttribute('aria-expanded') === 'true',
+    {}, READING_SYNOPSIS);
+    assert.ok(await page.evaluate(() => JSON.stringify(window.__readingTest.requests) === '[43534]'),
+      'M05: exactly one on-demand issue request, no bulk synopsis run');
+    await click(page, '#btn-issue-description');
+    await page.goBack();
+    await page.waitForFunction(() => document.querySelector('#view-read')?.hidden === false
+      && document.activeElement?.id === 'btn-hero-inspect');
+    assert.ok(await page.$eval('#hero-desc', (node) => node.hidden && node.textContent === ''),
+      'M05: fetched description remains hidden until explicit disclosure');
+  }
+  if (readingFactsAx) {
+    const state = readingState(profile);
+    const presentation = issuePresentation(state.issues[43534], { position: 4, total: 89 });
+    await readingAccessibility(page, { ...presentation, issue: state.issues[43534].title }, profile.id);
+    assert.equal(await page.evaluate((key) => localStorage.getItem(key), KEY), before,
+      `${profile.id}: factual AX confirmation preserves saved state`);
+    console.log(`FACTS AX ${profile.id}: four exact source/rendered/AX label-value pairs confirmed`);
+    return;
+  }
+  const result = await readingEvidence(page, profile);
+  if (readingCase === 'M01') return;
+  if (!profile.desktop) await readingAccessibility(page, result, profile.id);
+  if (profile.id === 'M05') {
+    await page.focus('#btn-hero-description');
+    await page.keyboard.press('Enter');
+    await page.waitForFunction((text) => document.querySelector('#hero-desc')?.textContent === text, {}, READING_SYNOPSIS);
+    check(await page.$eval('#btn-hero-description', (node) => node.getAttribute('aria-expanded') === 'true'
+      && document.activeElement === node), 'M05: reveal retains focused disclosure');
+    await readingEvidence(page, profile, 'M05-expanded');
+    await page.keyboard.press('Enter');
+    check(await page.$eval('#hero-desc', (node) => node.hidden && node.textContent === ''), 'M05: description hides again');
+  }
+  check(await page.evaluate((key) => localStorage.getItem(key), KEY) === before,
+    `${profile.id}: layout, focus and disclosure preserve stored progress`);
+  if (profile.id === 'M01') {
+    await route(page, 'data');
+    await click(page, '#opt-covers');
+    await route(page, 'read');
+    await page.waitForFunction(() => document.querySelector('#hero-img')?.naturalWidth > 0);
+    await readingEvidence(page, profile, 'M02');
+    await route(page, 'data');
+    await click(page, '#opt-covers');
+    await route(page, 'read');
+    await readingSemantics(page);
+  }
+}
+
 async function mobileLayout(page, label, narrow) {
   await page.waitForSelector('#home-recommended:not([hidden])');
   if (narrow) {
@@ -797,6 +1211,7 @@ try {
     { width: 1280, height: 900, desktop: true },
   ];
   if (catalogReadability) viewports = catalogCardProfiles;
+  if (readingComposition) viewports = readingFactsAx ? readingProfiles.filter((profile) => !profile.desktop) : readingProfiles;
   const onlyCase = process.argv.find((arg) => arg.startsWith('--case='))?.slice('--case='.length);
   if (catalogReadability && onlyCase) viewports = viewports.filter((viewport) => onlyCase.split(',').includes(viewport.id));
   const onlyViewport = process.argv.find((arg) => arg.startsWith('--viewport='))?.slice('--viewport='.length);
@@ -815,10 +1230,17 @@ try {
     await page.setViewport({ ...viewport, isMobile: !viewport.desktop, hasTouch: !viewport.desktop, deviceScaleFactor: 1 });
     if (seriesReadability) await seriesFixtures(page);
     if (noteReadability) await noteFixtures(page);
+    if (readingComposition) await readingFixtures(page, viewport);
     if (categoryReadability || marvelAgesTarget || catalogReadability) await categoryFixtures(page);
     await page.setRequestInterception(true);
     page.on('request', (request) => {
-      if ((seriesReadability || noteReadability || categoryReadability || marvelAgesTarget || catalogReadability) && new URL(request.url()).origin !== origin) {
+      if (readingComposition && request.resourceType() === 'image' && new URL(request.url()).host === 'i.annihil.us') {
+        return request.respond({
+          status: 200, contentType: 'image/svg+xml',
+          body: '<svg xmlns="http://www.w3.org/2000/svg" width="200" height="300"><rect width="200" height="300" fill="#73579b"/><path d="M0 300L200 0" stroke="#fff" stroke-width="8"/></svg>',
+        });
+      }
+      if ((seriesReadability || noteReadability || categoryReadability || marvelAgesTarget || catalogReadability || readingComposition) && new URL(request.url()).origin !== origin) {
         failures.push(`Unexpected external request: ${request.url()}`);
         return request.abort();
       }
@@ -851,8 +1273,8 @@ try {
         body: JSON.stringify({ status: 'ok', ...order.items[0], items: [], data: [] }),
       });
     });
-    await page.evaluateOnNewDocument(() => {
-      localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
+    await page.evaluateOnNewDocument((reading) => {
+      localStorage.setItem('mrt.settings', JSON.stringify(reading ? { covers: false, theme: 'light' } : { covers: false }));
       window.addEventListener('load', () => {
         const channel = new MessageChannel();
         const harness = { requests: [], replies: [], autoSave: true };
@@ -872,7 +1294,7 @@ try {
           data: 'recap:connect:v1', origin: '', source: null, ports: [channel.port2],
         }));
       });
-    });
+    }, readingComposition);
     await page.goto(origin, { waitUntil: 'networkidle0' });
     if (viewport.textScale) {
       await page.evaluate((scale) => {
@@ -883,6 +1305,13 @@ try {
       }, viewport.textScale);
     }
     const label = `${viewport.width}x${viewport.height}${viewport.textScale ? ` ${viewport.textScale * 100}% text` : ''}`;
+    if (readingComposition) {
+      await readingCompositionCheck(page, viewport);
+      if (readingFactsAx) assert.deepEqual(errors, [], `${viewport.id}: no page errors`);
+      else check(errors.length === 0, `${viewport.id}: page errors ${errors.join('; ')}`);
+      await context.close();
+      continue;
+    }
     if (catalogReadability) {
       await catalogCardReadability({ page, viewport, catalog, check, route, click });
       check(errors.length === 0, `${viewport.id}: page errors ${errors.join('; ')}`);
@@ -1023,6 +1452,9 @@ try {
   }
   assert.equal(failures.length, 0, failures.join('\n'));
   console.log(`${assertions} Android web assertions passed. Native WebView/device behavior is not simulated proof.`);
+} catch (error) {
+  console.error(`Assertions recorded before exit: ${JSON.stringify({ assertions, failures })}`);
+  throw error;
 } finally {
   await browser?.close();
   server.closeAllConnections();
