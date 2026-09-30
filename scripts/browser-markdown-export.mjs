@@ -64,7 +64,8 @@ export const readableMarkdownExport = {
     };
     const preview = () => page.$eval('#markdown-export-preview', (node) => node.value);
     const download = async (count) => {
-      await page.$eval('#markdown-export button[type="submit"]', (node) => node.click());
+      await page.focus('#markdown-export button[type="submit"]');
+      await page.keyboard.press('Enter');
       await page.waitForFunction((n) => window.__mrtDownloads.length === n, {}, count);
       return page.evaluate(() => window.__mrtDownloads.at(-1));
     };
@@ -151,7 +152,8 @@ export const readableMarkdownExport = {
       after.state === before.state);
     t.check('the export flow makes no fetch requests', after.requests === before.requests,
       JSON.stringify({ before: before.requests, after: after.requests }));
-    await page.$eval('#btn-export-json', (node) => node.click());
+    await page.focus('#btn-export-json');
+    await page.keyboard.press('Enter');
     await page.waitForFunction(() => window.__mrtDownloads.length === 4);
     const backup = await page.evaluate(() => JSON.parse(window.__mrtDownloads.at(-1).text));
     t.check('the separate JSON backup preserves notes, progress, availability overrides and deferral',

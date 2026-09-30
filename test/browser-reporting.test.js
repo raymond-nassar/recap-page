@@ -587,3 +587,45 @@ test('all ordinary native-export scenarios declare their complete context totals
   assert.match(invalid.stdout, /reason=invalid-expectation/);
   assert.equal(invalid.facts.created, 1);
 });
+
+test('positive export actions use focused native Enter for every intended file', async () => {
+  const markdown = readFileSync(new URL('../scripts/browser-markdown-export.mjs', import.meta.url), 'utf8');
+  const order = readFileSync(new URL('../scripts/browser-order-export.mjs', import.meta.url), 'utf8');
+  const markdownHelper = markdown.match(/const download = async \(count\) => \{[\s\S]*?\n {4}\};/)?.[0];
+  const markdownCalls = [...markdown.matchAll(/const (?:first|second|third) = (await download\(\d+\));/g)]
+    .map((match) => match[1] + ';');
+  const jsonAction = markdown.match(/ {4}await page\.(?:\$eval|focus)\('#btn-export-json'[\s\S]*?(?= {4}await page\.waitForFunction)/)?.[0];
+  const orderHelpers = order.slice(order.indexOf('async function click('), order.indexOf('export const orderOnlyExport'));
+  const positiveOrder = order.slice(0, order.indexOf("URL.createObjectURL = () => { throw new Error('Synthetic download refusal')"));
+  const orderActions = [...positiveOrder.matchAll(/await \w+\(page, ('#(?:markdown-export button\[type="submit"\]|btn-export-json|ask-ok)')\);/g)]
+    .map((match) => match[0]);
+  assert.ok(markdownHelper && jsonAction && orderHelpers);
+  assert.equal(markdownCalls.length, 3);
+  assert.equal(orderActions.length, 6);
+  const AsyncFunction = Object.getPrototypeOf(async () => {}).constructor;
+  for (const [body, selectors] of [
+    [`${markdownHelper}\n${markdownCalls.join('\n')}\n${jsonAction}`, [
+      '#markdown-export button[type="submit"]', '#markdown-export button[type="submit"]',
+      '#markdown-export button[type="submit"]', '#btn-export-json',
+    ]],
+    [`${orderHelpers}\n${orderActions.join('\n')}`, [
+      '#markdown-export button[type="submit"]', '#btn-export-json', '#ask-ok',
+      '#btn-export-json', '#ask-ok', '#ask-ok',
+    ]],
+  ]) {
+    const events = [];
+    const page = {
+      focus: async (selector) => events.push(['focus', selector]),
+      keyboard: { press: async (key) => events.push(['key', key]) },
+      $eval: async (selector) => events.push(['script-click', selector]),
+      waitForFunction: async () => {},
+      evaluate: async () => ({ text: 'captured fixture', type: 'text/markdown' }),
+    };
+    await new AsyncFunction('page', body)(page);
+    assert.deepEqual(events, selectors.flatMap((selector) => [['focus', selector], ['key', 'Enter']]));
+  }
+  assert.match(markdown, /if \(blob\.type === 'text\/markdown'\) throw new Error\('Synthetic download failure'\)/);
+  assert.match(order, /await click\(page, '#ask-cancel'\)/);
+  assert.match(order.slice(order.indexOf("URL.createObjectURL = () => { throw new Error('Synthetic download refusal')")),
+    /await click\(page, '#ask-ok'\)/);
+});

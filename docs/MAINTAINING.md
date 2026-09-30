@@ -156,6 +156,15 @@ Any arm failure remains nonzero, including when the treatment passes. A timeout 
 after observed completion rejects the candidate; both arms passing does not establish causality.
 Neither diagnostic proves a fix or satisfies full-suite or release acceptance.
 
+For repeated-export acceptance alone, `diagnostic_target=ordinary-browser-export-acceptance`
+uses the same guarded diagnostic-only job. It runs `readable-markdown-export` followed by
+`order-only-export` through their existing single-scenario selectors and stops on either failure.
+The maximum is two Node commands, two fresh browsers and two isolated contexts, requiring
+four and six native completions respectively. Positive final export actions use focused native
+Enter input; existing cancellation and deliberate-failure actions are unchanged. This checks input
+fidelity without changing download policy and does not establish why earlier native starts were
+missing. It uploads no artifacts and is not full-suite or release qualification.
+
 ### Prove the browser check detects failures
 
 The proof runner introduces a reversible fault for one journey at a time:
