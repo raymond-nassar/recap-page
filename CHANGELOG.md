@@ -13,6 +13,13 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Bring the next reading action into view on phones
+
+On compact Android screens, the next issue's artwork sits beside its title and credits
+instead of above them. Tighter spacing brings the Read action into view sooner without
+shrinking text or hiding issue details. Enlarged text can still scroll. Desktop layout,
+reading actions and saved progress are unchanged.
+
 ### Give mobile catalog descriptions room to read
 
 On compact Android screens, catalog descriptions, issue counts and source credits now use
