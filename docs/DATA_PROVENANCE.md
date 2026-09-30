@@ -316,15 +316,15 @@ orders: **null means nobody granted anything for this file, not that the file is
 
 ### Reading orders, pinned
 
-Two hundred and eighty pinned reading-order payloads sit under
-[`src/data/`](../src/data): 279 visible catalog files and one noncatalog partition parent. They hold
-30,405 issue records covering 18,985 distinct tracked identities. The visible files hold 29,918 of those records;
+Two hundred and eighty-one pinned reading-order payloads sit under
+[`src/data/`](../src/data): 280 visible catalog files and one noncatalog partition parent. They hold
+30,819 issue records covering 19,267 distinct tracked identities. The visible files hold 30,332 of those records;
 the extra 487 are the retained Marvel Knights to Planet X parent whose ordinary children partition
 the same vector. Records use these fields:
 `issueId`, `title`,
 `number`, `url`, `seriesId`, `seriesName`, `onSale`, `mu`, `digitalId`, `pageCount`, a `cover`
-object of `path` and `ext`, and `creators` of `name` and `role`. Across all 280 payloads, 25,566
-records carry a cover URL and 24,017 carry creator credits.
+object of `path` and `ext`, and `creators` of `name` and `role`. Across all 281 payloads, 25,941
+records carry a cover URL and 24,375 carry creator credits.
 
 `description` was the field to look at hardest and is now empty. The others are facts about a
 publication: which issue, in which series, on what date. A description was Marvel's own prose
@@ -333,10 +333,10 @@ The key is `null` on every record, the vendoring script no longer writes it, and
 A further 41, 7,193 characters, were removed from the design mockups described below, which a
 first pass missed because it looked only at the files the catalog names.
 
-Of the visible records, 1,111 are unopenable placeholders for unresolved source positions and 228
+Of the visible records, 1,149 are unopenable placeholders for unresolved source positions and 229
 non-placeholder records carry neither a series ID nor a digital ID after an upstream refusal. Those
-1,339 gap positions affect 42 catalog entries: twenty-seven carry placeholders, twenty-two carry empty records, and
-seven carry both kinds. One legacy item retains a placeholder flag alongside real identity and launch
+1,378 gap positions affect 43 catalog entries: twenty-eight carry placeholders, twenty-three carry empty records, and
+eight carry both kinds. One legacy item retains a placeholder flag alongside real identity and launch
 metadata, so it belongs to neither gap category. Placeholder
 IDs are computed here by [`scripts/vendor-orders.mjs`](../scripts/vendor-orders.mjs) from the order
 and source identity and then negated, so none can be read as one of Marvel's. These records preserve
@@ -354,7 +354,7 @@ have exact issue identities.
 The Ultimate Spider-Man guide retains one unresolved 2002 special at source position 44 under
 [#601](https://github.com/raymond-nassar/recap-page/issues/601). Its eight later originals
 retain exact issue identities despite refused optional details. Those eight also appear in
-other orders; the 228 empty records above count each visible Reading List position, not
+other orders; the 229 empty records above count each visible Reading List position, not
 distinct original issue IDs.
 The [Namor guide](https://www.comicbookherald.com/namor-sub-mariner-reading-order/)
 was checked on 2026-09-29 from its Golden Age selections through the late Black Panther
@@ -382,6 +382,18 @@ than being replaced with other issues. The five assigned question bundles are
 [#630](https://github.com/raymond-nassar/recap-page/issues/630) through
 [#634](https://github.com/raymond-nassar/recap-page/issues/634). An unresolved original
 identity is not a claim about publication, provider-wide absence or reading availability.
+The [Iron Fist guide](https://www.comicbookherald.com/iron-fist-reading-order/) retains
+435 printed reading references and selects 430 ordered occurrences. Sixteen are
+backward references, leaving 414 canonical positions: 376 exact issue IDs and 38
+visible original-identity gaps tracked in
+[#649](https://github.com/raymond-nassar/recap-page/issues/649) through
+[#656](https://github.com/raymond-nassar/recap-page/issues/656). Heroes for Hire (1997)
+#9 retains its positive issue ID 59301 despite a refused optional detail request.
+Marvel Premiere (1972) #15 supplies the cover URL; no cover bytes are stored.
+Independent review of all 202 earlier orders approved 28 partial relationships, one
+existing-subset relationship and 173 without shared originals. The source-noted Namor
+#19-34 continuation and Marvel Fanfare (1996) #6 story-material qualification are
+visible without promoting an unnumbered external guide to a whole reading run.
 
 Cover art is referenced and never copied. `cover.path` is a URL on Marvel's image host, and the app
 renders it from there without hosting, proxying, or writing image bytes to localStorage, IndexedDB,
@@ -393,15 +405,17 @@ incidental property of the schema.
 |---|---|---|
 | Assembled from Marvel series metadata (publication order) | 8 | The selection of series, and the rule that branded series are in and unbranded crossover chapters are out. Generated by [`scripts/build-event-order.mjs`](../scripts/build-event-order.mjs), so the derivation is a script anyone can read and re-run |
 | Compiled for this project | 6 | The whole sequence, by hand. This includes the noncatalog Marvel Knights to Planet X partition parent. See the trail at the top of each file in [`src/data/orders/`](../src/data/orders) |
-| Compiled for this project from Comic Book Herald's guide | 147 | The guide's issue selection and sequence, re-expressed as local checklists. Every visible card links to the exact guide followed |
+| Compiled for this project from Comic Book Herald's guide | 148 | The guide's issue selection and sequence, re-expressed as local checklists. Every visible card links to the exact guide followed |
 | Compiled for this project from Comic Book Reading Orders | 39 | Factual issue identities and order from exact event pages or visible timeline sections. Every card links to the source followed |
 | Vendored from `emreparker/marvel-comics` | 2 | Nothing. The order is the upstream curator's; only the issue lookups were done here |
 
-The 202 source orders generate 279 visible Reading Lists. Marvel Knights to Planet X is the only
+The 203 source orders generate 280 visible Reading Lists. Marvel Knights to Planet X is the only
 partition: its 99 quoted source positions and 487 metadata-complete issues remain in one hidden
 parent, while a checked ledger generates 78 ungrouped child payloads. Their separate 78-stop path
 preserves owner order when timeline years move backward, and their overlap matrix is regenerated
-against the current visible catalog rather than copied into historical reports.
+against the current visible catalog rather than copied into historical reports. Its current
+report records 82 overlapping child-and-peer pairs across 22 visible peers, including one
+three-issue Iron Fist relationship, while preserving all earlier pairs.
 
 ### Series and creator indexes
 
@@ -414,11 +428,11 @@ selection here is not editorial, because it is simply all of them.
 
 ### Order checklists
 
-The 196 Markdown files in [`src/data/orders/`](../src/data/orders) are local source files.
+The 201 Markdown files in [`src/data/orders/`](../src/data/orders) are local source files.
 The two upstream Hickman checklists are fetched separately when vendored. The local sources
-comprise eight assembled from series metadata, 143 from reviewed Comic Book Herald selections,
+comprise eight assembled from series metadata, 148 from reviewed Comic Book Herald selections,
 thirty-nine from reviewed Comic Book Reading Orders selections, and six compiled by hand.
-Every file carries its own derivation trail. The 143 Comic Book Herald sources name that guide
+Every file carries its own derivation trail. The 148 Comic Book Herald sources name that guide
 on their catalog cards and link to the exact page or section followed. Thirty-nine reference
 Comic Book Reading Orders and name it on their card.
 
@@ -449,7 +463,7 @@ authored work, which is why they are named separately rather than left to this s
 | Field | Holds |
 |---|---|
 | `sourceOrigin` | Prose. Where the order came from and who compiled it. Always present. This is what the catalog shows a reader, because it is the credit that is owed |
-| `sourceLicense` | An SPDX expression, or `null`. Only a licence actually conveyed with the vendored order. `null` on all 280 pinned reading-order payloads today |
+| `sourceLicense` | An SPDX expression, or `null`. Only a licence actually conveyed with the vendored order. `null` on all 281 pinned reading-order payloads today |
 | `sourcePage` | A link a reader can follow to the upstream, when there is one |
 | `sourceSection` | A visible heading that distinguishes several guides on one exact page. Absent for an ordinary whole-page source |
 | `spotlightKind` | An editorial classification required only for character runs. `best-of` and `complete-guide` make distinct, reviewable claims about a guide's scope; `other` records that neither claim is accurate. It is authored here and is never copied or inferred from an upstream field |
@@ -460,9 +474,9 @@ refuses all ten of the old prose values by construction rather than by anyone re
 check. The shape test is the point. An enumeration of permitted identifiers would be one more
 list somebody has to keep complete.
 
-The current Character Spotlight shelf has 69 readings across 68 stories. Seven readings are
-explicit Best of selections, 38 are complete guides, and twenty-four are `other`. The two X-Men
-readings share one story and one classification, so the `other` group has twenty-three stories. The
+The current Character Spotlight shelf has 70 readings across 69 stories. Seven readings are
+explicit Best of selections, 38 are complete guides, and twenty-five are `other`. The two X-Men
+readings share one story and one classification, so the `other` group has twenty-four stories. The
 Doom primer and Essential Avengers remain under All rather than acquiring a claim their source
 boundaries do not support.
 
@@ -923,10 +937,10 @@ the book id out of an address the reader pastes.
 
 The generated catalog currently publishes three independent Reading Paths with 100 stops: two
 authored paths with 10 and 12 stops from the curated manifest at
-`src/data/curated-lists.json:6712-6751`, plus the 78-stop Marvel Knights to Planet X path generated
+`src/data/curated-lists.json:6749-6788`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all three at
-`src/data/catalog.json:10704-10829`.
+`src/data/catalog.json:10747-10872`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves

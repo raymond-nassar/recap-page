@@ -53,8 +53,8 @@ test('each bundled Reading List resolves through its grouped story to one canoni
 
 test('Character Spotlight taxonomy accounts for every reading and preserves grouped stories', () => {
   const spotlights = shelfLists(catalog.lists, 'spotlights');
-  assert.equal(spotlights.length, 69);
-  assert.equal(groupCatalog(spotlights).length, 68);
+  assert.equal(spotlights.length, 70);
+  assert.equal(groupCatalog(spotlights).length, 69);
 
 
   const bestOf = filterBySpotlightKind(spotlights, 'best-of');
@@ -63,7 +63,7 @@ test('Character Spotlight taxonomy accounts for every reading and preserves grou
   const expected = [
     ['best-of', 7, 7],
     ['complete-guide', 38, 38],
-    ['other', 24, 23],
+    ['other', 25, 24],
 
   ];
   for (const [kind, readingCount, storyCount] of expected) {
@@ -129,6 +129,11 @@ test('Character Spotlight taxonomy accounts for every reading and preserves grou
   assert.ok(hawkeye, 'Hawkeye is missing from Character Spotlight All');
   assert.ok(other.includes(hawkeye));
   assert.equal(completeGuide.includes(hawkeye), false);
+
+  const ironFist = spotlights.find((list) => list.id === 'iron-fist-reading-order');
+  assert.ok(ironFist, 'Iron Fist is missing from Character Spotlight All');
+  assert.ok(other.includes(ironFist));
+  assert.equal(completeGuide.includes(ironFist), false);
 
   const silk = spotlights.find((list) => list.id === 'silk-cindy-moon-reading-order');
   assert.ok(silk, 'Silk is missing from Character Spotlight All');

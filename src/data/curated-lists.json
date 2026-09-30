@@ -3298,6 +3298,43 @@
       "coverIssueId": 8073
     },
     {
+      "id": "iron-fist-reading-order",
+      "name": "Iron Fist",
+      "description": "Follow Comic Book Herald's Iron Fist route from the early originals through Heroes for Hire, Immortal Iron Fist and the later selected stories.",
+      "type": "character-run",
+      "depth": "partial",
+      "spotlightKind": "other",
+      "beginner": false,
+      "timeline": null,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceSection": null,
+      "sourceFile": "iron-fist-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/iron-fist-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "iron_fist_reading_order.json",
+      "characters": [
+        "Iron Fist",
+        "Danny Rand",
+        "Luke Cage",
+        "Heroes for Hire",
+        "Colleen Wing",
+        "Misty Knight"
+      ],
+      "keywords": [
+        "Iron Fist",
+        "Power Man",
+        "Immortal Iron Fist",
+        "K'un-Lun",
+        "Heroes for Hire",
+        "Comic Book Herald"
+      ],
+      "expect": 414,
+      "coverIssueId": 10201
+    },
+    {
       "id": "ultimate-spider-man-reading-order",
       "name": "Ultimate Spider-Man",
       "description": "Read Comic Book Herald's selected Peter Parker and Miles Morales stories across the original Ultimate universe, later Miles adventures and the separate new Ultimate universe.",

@@ -119,6 +119,7 @@ test('popularity sorting keeps the ranked stories first and the rest in their cu
     'Bucky Barnes / Winter Soldier',
     'Hope Summers',
     'Hulk (and She-Hulk, Red Hulk)',
+    'Iron Fist',
     'Ultimate Spider-Man',
     'Apocalypse / X-Men: Age of Apocalypse',
     'Shadow King',

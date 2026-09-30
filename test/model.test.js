@@ -1107,10 +1107,11 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // Age of Apocalypse adds sixteen qualified original-identity gaps.
   // Onslaught adds two distinct unresolved source originals.
   // Namor adds eight distinct unresolved originals and three known-ID optional-detail refusals.
-  assert.equal(claimed, 1111, 'the payload placeholder total moved; re-derive the figures in the record');
-  assert.equal(placeholders, 1111, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
-  assert.equal(empty, 228);
-  assert.equal(affected, 22);
+  // Iron Fist adds 38 original-identity gaps and one positive-ID optional-detail refusal.
+  assert.equal(claimed, 1149, 'the payload placeholder total moved; re-derive the figures in the record');
+  assert.equal(placeholders, 1149, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
+  assert.equal(empty, 229);
+  assert.equal(affected, 23);
 });
 
 // Every check above passes with the import path reverted, because they all call the counter
@@ -1353,7 +1354,8 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // Age of Apocalypse adds sixteen qualified original-identity gaps, not availability claims.
   // Onslaught adds two distinct unresolved originals, not subscription-availability claims.
   // Namor adds eight distinct source gaps; its three known-ID detail refusals share existing IDs.
-  assert.equal(refused.length, 1341);
+  // Iron Fist adds 38 distinct unresolved originals; #59301 remains a positive issue ID.
+  assert.equal(refused.length, 1379);
   const infinity = JSON.parse(readFileSync(join(dataDir,
     'marvels_infinity_saga_gauntlet_wars_crusade_reading_order.json'), 'utf8'));
   assert.equal(infinity.items.filter((item) => item.detailsRefused && item.issueId > 0).length, 11);

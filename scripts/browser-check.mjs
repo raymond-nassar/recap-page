@@ -3300,8 +3300,8 @@ const SCENARIOS = [
         bestOf: await readSubset('best-of'),
       };
       t.check('desktop All, Complete, and Best of counts classify Adam exactly once',
-        desktop.all.readings === 69 && desktop.all.stories === 68
-        && desktop.all.cards === 68 && desktop.all.adamCards === 1
+        desktop.all.readings === 70 && desktop.all.stories === 69
+        && desktop.all.cards === 69 && desktop.all.adamCards === 1
         && desktop.complete.readings === 38 && desktop.complete.stories === 38
         && desktop.complete.cards === 38 && desktop.complete.adamCards === 1
         && desktop.bestOf.readings === 7 && desktop.bestOf.stories === 7
@@ -3316,8 +3316,8 @@ const SCENARIOS = [
         overflow: await page.evaluate(() => document.documentElement.scrollWidth > innerWidth),
       };
       t.check('narrow All, Complete, and Best of counts preserve Adam without horizontal overflow',
-        narrow.all.readings === 69 && narrow.all.stories === 68
-        && narrow.all.cards === 68 && narrow.all.adamCards === 1
+        narrow.all.readings === 70 && narrow.all.stories === 69
+        && narrow.all.cards === 69 && narrow.all.adamCards === 1
         && narrow.complete.readings === 38 && narrow.complete.stories === 38
         && narrow.complete.cards === 38 && narrow.complete.adamCards === 1
         && narrow.bestOf.readings === 7 && narrow.bestOf.stories === 7
@@ -14785,6 +14785,7 @@ SCENARIOS.push({
 });
 SCENARIOS.push((await import('./browser-onslaught.mjs')).onslaughtActualData);
 SCENARIOS.push((await import('./browser-namor.mjs')).namorActualData);
+SCENARIOS.push((await import('./browser-iron-fist.mjs')).ironFistActualData);
 
 // Without this an unexpected throw leaves an unhandled rejection, which Node reports as a bare
 // stack and exits 1 on. Exit 1 is this check's word for "an assertion failed", so an internal
