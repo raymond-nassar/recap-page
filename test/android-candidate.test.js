@@ -224,7 +224,55 @@ test('actual asset bytes, source hashes, fixed origin and exact inventory are ch
     assert.throws(() => verifyDexDefinitions([...dexRows, dexRow('C', name)].join('\n')));
   }
   assert.throws(() => verifyDexDefinitions([...dexRows, dexRow('P', 'java.lang')].join('\n')), /package/);
+  const foreignClasses = Array.from({ length: 12 }, (_, index) => `com.example.Library${index}`);
+  const foreignInventory = [...dexRows, 'P d 7\t11\t80\tcom',
+    ...foreignClasses.map((name) => dexRow('C', name)),
+    dexRow('C', 'com.example.Referenced', 'r'),
+    `C d 9007199254740992\t0\t0\tcom.example.InvalidMetrics`,
+    dexRow('C', 'com.example.Invalid PRIVATE_CLASS_PAYLOAD'),
+    dexRow('M', 'com.example.Library0 void PRIVATE_METHOD(PRIVATE_PARAMETER)'),
+    dexRow('F', 'com.example.Library0 java.lang.String PRIVATE_FIELD')].join('\n');
+  assert.throws(() => verifyDexDefinitions(foreignInventory), (error) => {
+    assert.ok(error.message.startsWith('Android candidate: foreign DEX package hierarchy'));
+    const match = error.message.match(/; dexDefinition=(\{.*\})$/);
+    assert.ok(match, 'A rejected package must identify its bounded declared class context');
+    const detail = JSON.parse(match[1]);
+    assert.equal(detail.kind, 'P');
+    assert.equal(detail.status, 'd');
+    assert.deepEqual(detail.metrics, { definitions: 7, references: 11, bytes: 80 });
+    assert.equal(detail.nameShape, 'qualified');
+    assert.equal(detail.namespaceRelation, 'foreign');
+    assert.equal(detail.identifier, 'com');
+    assert.equal(detail.classCount, 12);
+    assert.deepEqual(detail.classes, [...foreignClasses].sort().slice(0, 8));
+    assert.doesNotMatch(error.message, /PRIVATE_/);
+    return true;
+  });
+  assert.throws(() => verifyDexDefinitions([...dexRows, dexRow('C', 'com.example.Foreign'),
+    dexRow('C', 'com.example.Foreign$Nested')].join('\n')), (error) => {
+    const detail = JSON.parse(error.message.match(/; dexDefinition=(\{.*\})$/)[1]);
+    assert.equal(detail.kind, 'C');
+    assert.equal(detail.identifier, 'com.example.Foreign');
+    assert.equal(detail.classCount, 2);
+    assert.deepEqual(detail.classes, ['com.example.Foreign', 'com.example.Foreign$Nested']);
+    return true;
+  });
+  for (const name of ['com/PRIVATE_URI', 'com.\u001bPRIVATE_CONTROL', `com.${'x'.repeat(201)}`]) {
+    assert.throws(() => verifyDexDefinitions([...dexRows, dexRow('P', name)].join('\n')), (error) => {
+      const detail = JSON.parse(error.message.match(/; dexDefinition=(\{.*\})$/)[1]);
+      assert.equal(detail.identifier, null);
+      assert.equal(detail.identifierSha256, digest(name));
+      assert.ok(['invalid', 'overlong'].includes(detail.nameShape));
+      assert.doesNotMatch(error.message, /PRIVATE_/);
+      return true;
+    });
+  }
   assert.throws(() => verifyDexDefinitions([...dexRows, dexRow('F', 'foreign.Library int value')].join('\n')), /owner/);
+  assert.throws(() => verifyDexDefinitions([...dexRows, dexRow('F', 'foreign.Library int PRIVATE_FIELD_PAYLOAD')].join('\n')), (error) => {
+    assert.ok(error.message.includes('owner') && !error.message.includes('dexDefinition='));
+    assert.doesNotMatch(error.message, /PRIVATE_/);
+    return true;
+  });
   assert.throws(() => verifyDexDefinitions([...dexRows, dexRow('M', `${PROTOTYPE_ID}.Missing void method()`)].join('\n')), /owner/);
   assert.throws(() => verifyDexDefinitions(dexRows.filter((line) => line !== dexRow('C', mainClass)).join('\n')), /MainActivity/);
   for (const status of ['r', 'x', 'k']) {

@@ -681,27 +681,74 @@ export function assertCodeFreeConfig(files) {
   requireValue(files.every((file) => !/^classes(?:[0-9]+)?\.dex$/.test(file.name)),
     'configuration APK must not contain DEX code');
 }
+const dexRow = (line) => line.match(/^([PCMF]) ([dkrx]) ([0-9]+)\t([0-9]+)\t([0-9]+)\t(.+)$/);
+const dexQualified = (name) => /^[A-Za-z_$][\w$]*(?:\.[A-Za-z_$][\w$]*)*$/.test(name);
+function dexDefinitionReceipt(dex, row) {
+  if (!row || !['P', 'C'].includes(row[1])) return null;
+  const [, kind, status, definitions, references, bytes, payload] = row;
+  const qualified = dexQualified(payload);
+  const safe = qualified && payload.length <= 200;
+  const relation = payload === '<TOTAL>' ? 'aggregate' : !qualified ? 'invalid'
+    : payload === PROTOTYPE_ID || payload.startsWith(`${PROTOTYPE_ID}.`) ? 'owned'
+      : PROTOTYPE_ID.startsWith(`${payload}.`) ? 'ancestor' : 'foreign';
+  const classes = new Set();
+  for (const line of dex.split(/\r?\n/)) {
+    if (line.length > 4096) continue;
+    const candidate = dexRow(line);
+    if (!candidate || candidate[1] !== 'C' || candidate[2] !== 'd'
+      || !candidate.slice(3, 6).every((value) => Number.isSafeInteger(Number(value)))
+      || !dexQualified(candidate[6]) || candidate[6].length > 200) continue;
+    const name = candidate[6];
+    const related = kind === 'P'
+      ? payload === '<TOTAL>' || (qualified && name.startsWith(`${payload}.`))
+      : qualified && (name === payload || name.startsWith(`${payload}$`));
+    if (related) classes.add(name);
+  }
+  const metric = (value) => Number.isSafeInteger(Number(value)) ? Number(value) : null;
+  return { kind, status, metrics: { definitions: metric(definitions), references: metric(references), bytes: metric(bytes) },
+    nameShape: !qualified ? 'invalid' : safe ? 'qualified' : 'overlong', namespaceRelation: relation,
+    identifier: safe ? payload : null, identifierSha256: digest(payload),
+    classCount: classes.size, classes: [...classes].sort().slice(0, 8) };
+}
 export function verifyDexDefinitions(dex) {
+  const context = { row: null };
+  try {
+    checkDexDefinitions(dex, context);
+  } catch (error) {
+    if (!(error instanceof CandidateError)) throw error;
+    const receipt = dexDefinitionReceipt(dex, context.row);
+    if (receipt) throw new CandidateError(`${error.message}; dexDefinition=${JSON.stringify(receipt)}`);
+    throw error;
+  }
+}
+function checkDexDefinitions(dex, context) {
   requireValue(typeof dex === 'string' && Buffer.byteLength(dex, 'utf8') <= 8 * 1024 * 1024,
     'DEX inventory exceeds the supported bound');
   for (let index = 0; index < dex.length; index += 1) {
     const code = dex.charCodeAt(index);
-    requireValue((code >= 32 || code === 9 || code === 10 || code === 13) && (code < 127 || code > 159),
-      'DEX inventory contains control characters');
+    if (!((code >= 32 || code === 9 || code === 10 || code === 13) && (code < 127 || code > 159))) {
+      const start = dex.lastIndexOf('\n', index) + 1;
+      const end = dex.indexOf('\n', index);
+      context.row = dexRow(dex.slice(start, end < 0 ? dex.length : end).replace(/\r$/, ''));
+      requireValue(false, 'DEX inventory contains control characters');
+    }
   }
-  requireValue(!/NativeIntegrationTest|FixtureDocumentProvider|FixtureMetadataServer|androidx\./.test(dex),
-    'unexpected shipped test/runtime dependency');
   const lines = dex.split(/\r?\n/);
+  const forbidden = /NativeIntegrationTest|FixtureDocumentProvider|FixtureMetadataServer|androidx\./;
+  if (forbidden.test(dex)) {
+    context.row = dexRow(lines.find((line) => forbidden.test(line)) || '');
+    requireValue(false, 'unexpected shipped test/runtime dependency');
+  }
   if (lines.at(-1) === '') lines.pop();
   requireValue(lines.length > 0 && lines.length <= 50000, 'DEX inventory row count is unsupported');
   const packages = new Set();
   const classes = new Set();
   const owners = [];
   let totals = 0;
-  const qualified = (name) => /^[A-Za-z_$][\w$]*(?:\.[A-Za-z_$][\w$]*)*$/.test(name);
   for (const line of lines) {
+    context.row = dexRow(line);
     requireValue(line.length <= 4096, 'DEX inventory row exceeds the supported bound');
-    const row = line.match(/^([PCMF]) ([dkrx]) ([0-9]+)\t([0-9]+)\t([0-9]+)\t(.+)$/);
+    const row = context.row;
     requireValue(row && !row[6].includes('\t'), 'malformed or unknown DEX row');
     const [, kind, status, definitions, references, bytes, payload] = row;
     requireValue(status === 'd', 'DEX row status must be defined in the no-mapping profile');
@@ -711,20 +758,21 @@ export function verifyDexDefinitions(dex) {
       if (payload === '<TOTAL>') {
         requireValue(++totals === 1, 'duplicate DEX aggregate root');
       } else {
-        requireValue(qualified(payload) && (PROTOTYPE_ID.startsWith(`${payload}.`)
+        requireValue(dexQualified(payload) && (PROTOTYPE_ID.startsWith(`${payload}.`)
           || payload === PROTOTYPE_ID || payload.startsWith(`${PROTOTYPE_ID}.`)), 'foreign DEX package hierarchy');
         requireValue(!packages.has(payload), 'duplicate DEX package row');
         packages.add(payload);
       }
     } else if (kind === 'C') {
-      requireValue(qualified(payload) && payload.startsWith(`${PROTOTYPE_ID}.`), 'foreign or malformed DEX class definition');
+      requireValue(dexQualified(payload) && payload.startsWith(`${PROTOTYPE_ID}.`), 'foreign or malformed DEX class definition');
       requireValue(!classes.has(payload), 'duplicate DEX class definition');
       classes.add(payload);
     } else {
       const member = payload.match(/^(\S+) (.+)$/);
-      requireValue(member && qualified(member[1]) && member[2].trim(), 'malformed DEX member row');
+      requireValue(member && dexQualified(member[1]) && member[2].trim(), 'malformed DEX member row');
       owners.push(member[1]);
     }
+    context.row = null;
   }
   requireValue(totals === 1, 'DEX aggregate root missing');
   requireValue(classes.has(`${PROTOTYPE_ID}.MainActivity`), 'exact MainActivity DEX definition missing');
