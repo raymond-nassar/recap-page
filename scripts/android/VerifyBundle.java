@@ -200,8 +200,27 @@ public final class VerifyBundle {
         return element.getTagName() + attributes + parts;
     }
 
+    private static String sdkToken(String value) {
+        if (value.isEmpty()) return "absent";
+        return value.matches("0|[1-9][0-9]{0,3}") ? value : "invalid";
+    }
+
+    private static void reportSdkShape(String kind, boolean configSplit, Integer ordinal, List<Element> sdk) {
+        if (!(kind.equals("app") || kind.equals("apk")) || sdk.size() > MAX_ENTRIES) return;
+        String min = sdk.isEmpty() ? "absent" : sdk.size() == 1 ? sdkToken(attr(sdk.get(0), "minSdkVersion")) : "invalid";
+        String target = sdk.isEmpty() ? "absent" : sdk.size() == 1 ? sdkToken(attr(sdk.get(0), "targetSdkVersion")) : "invalid";
+        System.err.println("SDK_SHAPE {\"kind\":\"" + kind + "\",\"configSplit\":" + configSplit
+                + ",\"splitOrdinal\":" + ordinal + ",\"usesSdkCount\":" + sdk.size()
+                + ",\"minSdk\":\"" + min + "\",\"targetSdk\":\"" + target + "\"}");
+    }
+
     private static void manifest(String[] args) throws Exception {
         require(args.length == 6 || args.length == 7, "MANIFEST_ARGUMENTS");
+        Integer ordinal = null;
+        if (args[5].equals("apk") && args.length == 7) {
+            require(args[6].matches("--split-ordinal=([0-9]|[12][0-9]|3[01])"), "MANIFEST_ARGUMENTS");
+            ordinal = Integer.valueOf(args[6].substring("--split-ordinal=".length()));
+        }
         Element root = xml(Path.of(args[1]));
         require(root.getTagName().equals("manifest") && root.getAttribute("package").equals(args[2]),
                 "MANIFEST_PACKAGE");
@@ -210,8 +229,10 @@ public final class VerifyBundle {
         require(test || (attr(root, "versionCode").equals(args[3])
                 && (attr(root, "versionName").equals(args[4]) || (split && attr(root, "versionName").isEmpty()))), "MANIFEST_VERSION");
         var sdk = children(root, "uses-sdk");
-        require(test || (split && sdk.isEmpty()) || (sdk.size() == 1 && attr(sdk.get(0), "minSdkVersion").equals("26")
-                && attr(sdk.get(0), "targetSdkVersion").equals("36")), "MANIFEST_SDK");
+        boolean sdkMatches = test || (split && sdk.isEmpty()) || (sdk.size() == 1 && attr(sdk.get(0), "minSdkVersion").equals("26")
+                && attr(sdk.get(0), "targetSdkVersion").equals("36"));
+        if (!sdkMatches) reportSdkShape(args[5], split, ordinal, sdk);
+        require(sdkMatches, "MANIFEST_SDK");
         var apps = children(root, "application");
         require(apps.size() == 1, "MANIFEST_APPLICATION");
         Element app = apps.get(0);
@@ -256,7 +277,7 @@ public final class VerifyBundle {
             for (String resource : List.of("fullBackupContent", "dataExtractionRules", "networkSecurityConfig")) {
                 require(attr(app, resource).startsWith("@"), "MANIFEST_POLICY_RESOURCE");
             }
-            if (args.length == 7) {
+            if (args.length == 7 && !args[5].equals("apk")) {
                 String resources = Files.readString(Path.of(args[6]));
                 var names = List.of("backup_rules", "data_extraction_rules", "network_security_config");
                 var attributes = List.of("fullBackupContent", "dataExtractionRules", "networkSecurityConfig");

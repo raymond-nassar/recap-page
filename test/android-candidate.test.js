@@ -339,6 +339,47 @@ test('private signing scratch is removed on child failure and refuses unknown cl
       assert.equal(error.message, 'Android candidate: inspection AAB_STRUCTURE failed; exit=1; signal=none; code=unclassified. Raw tool output was not retained.');
       return true;
     });
+    const sdkShape = { kind: 'apk', configSplit: true, splitOrdinal: 2, usesSdkCount: 1, minSdk: '21', targetSdk: 'absent' };
+    const sdkBase = 'Android candidate: inspection SPLIT_MANIFEST failed; exit=1; signal=none; code=MANIFEST_SDK';
+    const sdkFailure = (projection) => {
+      failure = { status: 1, signal: null, stderr: Buffer.from(`SDK_SHAPE ${projection}\nMANIFEST_SDK\n`) };
+      return () => execute('java', [privateText], {}, 'SPLIT_MANIFEST');
+    };
+    assert.throws(sdkFailure(JSON.stringify(sdkShape)), (error) => {
+      assert.equal(error.message, `${sdkBase}; sdk=${JSON.stringify(sdkShape)}. Raw tool output was not retained.`);
+      return true;
+    });
+    for (const invalid of [
+      { ...sdkShape, kind: 'PRIVATE_KIND' },
+      { ...sdkShape, configSplit: 'true' },
+      { ...sdkShape, splitOrdinal: 32 },
+      { ...sdkShape, splitOrdinal: null },
+      { ...sdkShape, usesSdkCount: -1 },
+      { ...sdkShape, usesSdkCount: 100001 },
+      { ...sdkShape, minSdk: '/private/keystore.p12' },
+      { ...sdkShape, targetSdk: '\u001b[31m36' },
+      { ...sdkShape, targetSdk: '10000' },
+      { ...sdkShape, privateAlias: privateText },
+    ]) {
+      assert.throws(sdkFailure(JSON.stringify(invalid)), (error) => {
+        assert.equal(error.message, `${sdkBase}. Raw tool output was not retained.`);
+        return true;
+      });
+    }
+    assert.throws(sdkFailure('not JSON PRIVATE_SECRET_VALUE'), (error) => {
+      assert.equal(error.message, `${sdkBase}. Raw tool output was not retained.`);
+      return true;
+    });
+    assert.throws(sdkFailure(JSON.stringify(sdkShape).replace('{"kind":', '{"kind":"apk","kind":')), (error) => {
+      assert.equal(error.message, `${sdkBase}. Raw tool output was not retained.`);
+      return true;
+    });
+    const appShape = { kind: 'app', configSplit: false, splitOrdinal: null, usesSdkCount: 0, minSdk: 'absent', targetSdk: 'absent' };
+    failure = { status: 1, signal: null, stderr: Buffer.from(`SDK_SHAPE ${JSON.stringify(appShape)}\nMANIFEST_SDK\n`) };
+    assert.throws(() => execute('java', [], {}, 'AAB_MANIFEST'), (error) => {
+      assert.equal(error.message, `Android candidate: inspection AAB_MANIFEST failed; exit=1; signal=none; code=MANIFEST_SDK; sdk=${JSON.stringify(appShape)}. Raw tool output was not retained.`);
+      return true;
+    });
     const before = calls;
     assert.throws(() => execute('java', [], {}, 'PRIVATE_STAGE'), /unknown inspection stage/);
     assert.throws(() => execute('java', ['certificate', privateText], {}, 'AAB_MANIFEST'), /secret-bearing commands/);

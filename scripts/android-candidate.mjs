@@ -65,6 +65,31 @@ function exactKeys(value, keys) {
   requireValue(value && typeof value === 'object' && !Array.isArray(value)
     && Object.keys(value).sort().join() === [...keys].sort().join(), 'unexpected report fields');
 }
+function sdkFailureShape(stderr, stage) {
+  if (!['AAB_MANIFEST', 'SPLIT_MANIFEST', 'BASE_APK_POLICY_MANIFEST'].includes(stage)) return null;
+  const lines = stderr.split(/\r?\n/).filter((line) => line.startsWith('SDK_SHAPE '));
+  if (lines.length !== 1) return null;
+  const payload = lines[0].slice('SDK_SHAPE '.length);
+  if (payload.length > 256) return null;
+  let value;
+  try {
+    value = JSON.parse(payload);
+  } catch {
+    return null;
+  }
+  const keys = ['kind', 'configSplit', 'splitOrdinal', 'usesSdkCount', 'minSdk', 'targetSdk'];
+  if (!value || typeof value !== 'object' || Array.isArray(value)
+    || Object.keys(value).join() !== keys.join() || JSON.stringify(value) !== payload) return null;
+  const apk = stage === 'SPLIT_MANIFEST';
+  if (value.kind !== (apk ? 'apk' : 'app') || typeof value.configSplit !== 'boolean'
+    || (apk ? !Number.isInteger(value.splitOrdinal) || value.splitOrdinal < 0 || value.splitOrdinal > 31
+      : value.configSplit || value.splitOrdinal !== null)
+    || !Number.isInteger(value.usesSdkCount) || value.usesSdkCount < 0 || value.usesSdkCount > 100000) return null;
+  for (const token of [value.minSdk, value.targetSdk]) {
+    if (typeof token !== 'string' || !/^(?:absent|invalid|0|[1-9][0-9]{0,3})$/.test(token)) return null;
+  }
+  return value;
+}
 export function execute(file, args, options = {}, inspectionStage) {
   if (inspectionStage !== undefined) {
     requireValue(INSPECTION_STAGES.has(inspectionStage), 'unknown inspection stage');
@@ -85,11 +110,13 @@ export function execute(file, args, options = {}, inspectionStage) {
       let code = 'unclassified';
       const stderr = Buffer.isBuffer(error?.stderr) ? error.stderr
         : typeof error?.stderr === 'string' ? Buffer.from(error.stderr, 'utf8') : null;
+      let sdk = null;
       if (VERIFIER_STAGES.has(inspectionStage) && stderr && stderr.length <= 4096) {
         const last = stderr.toString('utf8').replace(/\r?\n$/, '').split(/\r?\n/).at(-1);
         if (PUBLIC_VERIFIER_CODES.has(last)) code = last;
+        if (code === 'MANIFEST_SDK') sdk = sdkFailureShape(stderr.toString('utf8'), inspectionStage);
       }
-      throw new CandidateError(`Android candidate: inspection ${inspectionStage} failed; exit=${exit}; signal=${signal}; code=${code}. Raw tool output was not retained.`);
+      throw new CandidateError(`Android candidate: inspection ${inspectionStage} failed; exit=${exit}; signal=${signal}; code=${code}${sdk ? `; sdk=${JSON.stringify(sdk)}` : ''}. Raw tool output was not retained.`);
     }
     // Tool exceptions can contain expanded passwords, private aliases and complete stderr.
     throw new CandidateError(`Android candidate: ${basename(file)} failed; check this stage's approved inputs. Raw tool output was not retained.`);
@@ -526,7 +553,7 @@ async function inspectPackages(work, root) {
     const xmlPath = join(work, `split-${index}.xml`);
     const manifest = execute(sdkTool('apkanalyzer'), ['manifest', 'print', path], { env: cleanEnv() }, 'SPLIT_MANIFEST_DUMP');
     await writeFile(xmlPath, manifest);
-    java('SPLIT_MANIFEST', 'manifest', xmlPath, OFFICIAL_ID, String(version.versionCode), version.versionName, 'apk');
+    java('SPLIT_MANIFEST', 'manifest', xmlPath, OFFICIAL_ID, String(version.versionCode), version.versionName, 'apk', `--split-ordinal=${index}`);
     if (contents.files.some((file) => file.name === 'assets/recap/build-info.json')) {
       baseCount += 1;
       await checkAssets(join(extracted, 'assets', 'recap'), join(work, 'generated'), root, version.identity, 'base-APK');
@@ -597,6 +624,24 @@ async function jdkProof(work) {
   await mkdir(scratch, { mode: 0o700 });
   const env = { ...cleanEnv(), RECAP_PROOF_PASSWORD: randomBytes(32).toString('hex'), RECAP_PROOF_ALIAS: 'proof' };
   try {
+    const sdkFixtures = [
+      { min: '21', target: '', minToken: '21', targetToken: 'absent' },
+      { min: 'PRIVATE_VALUE_/private/keystore.p12', target: ' android:targetSdkVersion="36&#9;"', minToken: 'invalid', targetToken: 'invalid' },
+    ];
+    for (const [ordinal, fixture] of sdkFixtures.entries()) {
+      const manifest = join(scratch, `sdk-shape-${ordinal}.xml`);
+      await writeFile(manifest, `<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="${OFFICIAL_ID}" android:versionCode="3000002" split="config.fixture"><uses-sdk android:minSdkVersion="${fixture.min}"${fixture.target}/><application/></manifest>`);
+      const projection = { kind: 'apk', configSplit: true, splitOrdinal: ordinal, usesSdkCount: 1,
+        minSdk: fixture.minToken, targetSdk: fixture.targetToken };
+      let rejected = false;
+      try {
+        java('SPLIT_MANIFEST', 'manifest', manifest, OFFICIAL_ID, '3000002', '3.1.0', 'apk', `--split-ordinal=${ordinal}`);
+      } catch (error) {
+        rejected = error instanceof CandidateError
+          && error.message === `Android candidate: inspection SPLIT_MANIFEST failed; exit=1; signal=none; code=MANIFEST_SDK; sdk=${JSON.stringify(projection)}. Raw tool output was not retained.`;
+      }
+      requireValue(rejected, 'JDK SDK-shape fixture must fail with only the validated public projection');
+    }
     const store = join(scratch, 'fixture.p12');
     execute('keytool', ['-genkeypair', '-alias', 'proof', '-keyalg', 'RSA', '-keysize', '2048',
       '-validity', '2', '-dname', 'CN=Recap disposable verifier fixture', '-storetype', 'PKCS12',
