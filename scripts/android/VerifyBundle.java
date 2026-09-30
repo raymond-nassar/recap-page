@@ -226,6 +226,12 @@ public final class VerifyBundle {
         return value;
     }
 
+    private static boolean xmlResourceReferenceMatches(String reference, String name, String id) {
+        return reference.equals("@xml/" + name) || reference.equalsIgnoreCase("@" + id)
+                || reference.equalsIgnoreCase("@" + id.substring(2))
+                || reference.equalsIgnoreCase("@ref/" + id);
+    }
+
     private static void generatedResourceBinding(Element metadata, String resources) {
         var entry = java.util.regex.Pattern.compile(
                 "(?m)^\\s*resource (0x[0-9a-fA-F]+) (?:[\\w.]+:)?xml/splits0(?:\\s|$)").matcher(resources);
@@ -234,9 +240,7 @@ public final class VerifyBundle {
         int start = entry.end();
         require(!entry.find(), "GENERATED_SPLITS_RESOURCE");
         String reference = attr(metadata, "resource");
-        require(reference.equals("@xml/splits0") || reference.equalsIgnoreCase("@" + id)
-                || reference.equalsIgnoreCase("@" + id.substring(2))
-                || reference.equalsIgnoreCase("@ref/" + id), "GENERATED_SPLITS_RESOURCE");
+        require(xmlResourceReferenceMatches(reference, "splits0", id), "GENERATED_SPLITS_RESOURCE");
         var next = java.util.regex.Pattern.compile("(?m)^\\s*resource ").matcher(resources);
         int end = next.find(start) ? next.start() : resources.length();
         var files = java.util.regex.Pattern.compile("\\(file\\)\\s+([^\\s]+)").matcher(resources.substring(start, end));
@@ -348,9 +352,7 @@ public final class VerifyBundle {
                     var matcher = java.util.regex.Pattern.compile("resource (0x[0-9a-fA-F]+) (?:[\\w.]+:)?xml/"
                             + names.get(i) + "(?:\\s|$)").matcher(resources);
                     require(matcher.find(), "POLICY_RESOURCE_UNRESOLVED");
-                    require(reference.equals("@xml/" + names.get(i))
-                            || reference.equalsIgnoreCase("@" + matcher.group(1))
-                            || reference.equalsIgnoreCase("@" + matcher.group(1).substring(2)), "POLICY_RESOURCE_REFERENCE");
+                    require(xmlResourceReferenceMatches(reference, names.get(i), matcher.group(1)), "POLICY_RESOURCE_REFERENCE");
                 }
             }
         } else {

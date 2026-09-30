@@ -663,6 +663,38 @@ async function jdkProof(work) {
   await mkdir(scratch, { mode: 0o700 });
   const env = { ...cleanEnv(), RECAP_PROOF_PASSWORD: randomBytes(32).toString('hex'), RECAP_PROOF_ALIAS: 'proof' };
   try {
+    const resourceTable = join(scratch, 'reference-resources.txt');
+    const splitsXml = join(scratch, 'reference-splits0.xml');
+    await writeFile(resourceTable, 'resource 0x7f120000 xml/backup_rules\nresource 0x7f120001 xml/data_extraction_rules\n'
+      + 'resource 0x7f120002 xml/network_security_config\nresource 0x7f120003 xml/splits0\n  () (file) res/xml/splits0.xml type=XML\n');
+    await writeFile(splitsXml, '<splits/>');
+    const referenceFixtures = [
+      { refs: ['@ref/0x7f120000', '@ref/0x7f120001', '@ref/0x7f120002', '@ref/0x7f120003'], rejected: false },
+      { refs: ['@ref/0x7f120099', '@ref/0x7f120001', '@ref/0x7f120002', '@ref/0x7f120003'], rejected: true },
+      { refs: ['@other/0x7f120000', '@ref/0x7f120001', '@ref/0x7f120002', '@ref/0x7f120003'], rejected: true },
+      { refs: ['@ref/0x7f120000junk', '@ref/0x7f120001', '@ref/0x7f120002', '@ref/0x7f120003'], rejected: true },
+      { refs: ['@xml/backup_rules', '@0x7f120001', '@7f120002', '@xml/splits0'], rejected: false },
+    ];
+    for (const [index, fixture] of referenceFixtures.entries()) {
+      const manifest = join(scratch, `reference-${index}.xml`);
+      await writeFile(manifest, `<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="${OFFICIAL_ID}" android:versionCode="3000002" android:versionName="3.1.0">`
+        + '<uses-sdk android:minSdkVersion="32" android:targetSdkVersion="36"/><uses-permission android:name="android.permission.INTERNET"/>'
+        + '<queries><intent><action android:name="android.intent.action.VIEW"/><category android:name="android.intent.category.BROWSABLE"/><data android:scheme="https"/></intent></queries>'
+        + `<application android:allowBackup="false" android:usesCleartextTraffic="false" android:fullBackupContent="${fixture.refs[0]}" android:dataExtractionRules="${fixture.refs[1]}" android:networkSecurityConfig="${fixture.refs[2]}">`
+        + `<activity android:name="${PROTOTYPE_ID}.MainActivity" android:exported="true"/>`
+        + `<meta-data android:name="com.android.vending.splits" android:resource="${fixture.refs[3]}"/></application></manifest>`);
+      let rejected = false;
+      try {
+        java('BASE_APK_SPLITS_XML', 'generated-splits', manifest, '3000002', '3.1.0', resourceTable, splitsXml, manifest);
+      } catch (error) {
+        requireValue(error instanceof CandidateError
+          && error.message === 'Android candidate: inspection BASE_APK_SPLITS_XML failed; exit=1; signal=none; code=POLICY_RESOURCE_REFERENCE. Raw tool output was not retained.',
+        'JDK resource-reference fixture failed for an unexpected reason');
+        rejected = true;
+      }
+      requireValue(rejected === fixture.rejected, 'JDK exact resource-reference fixture changed acceptance');
+    }
+    console.log('Android candidate: JDK exact XML-resource reference fixtures passed.');
     const sdkFixtures = [
       { min: '21', target: '', minToken: '21', targetToken: 'absent' },
       { min: 'PRIVATE_VALUE_/private/keystore.p12', target: ' android:targetSdkVersion="36&#9;"', minToken: 'invalid', targetToken: 'invalid' },
