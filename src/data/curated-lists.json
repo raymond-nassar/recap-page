@@ -1862,6 +1862,41 @@
       "coverIssueId": 6704
     },
     {
+      "id": "shang-chi-master-of-kung-fu-reading-order",
+      "name": "Shang-Chi / Master of Kung Fu",
+      "description": "Follow Shang-Chi's original martial-arts comics, team appearances and later Ten Rings stories in Comic Book Herald's selected reading order.",
+      "type": "character-run",
+      "depth": "partial",
+      "spotlightKind": "other",
+      "beginner": false,
+      "timeline": null,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceSection": null,
+      "sourceFile": "shang-chi-master-of-kung-fu-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/shang-chi-master-of-kung-fu-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "shang_chi_master_of_kung_fu_reading_order.json",
+      "characters": [
+        "Shang-Chi",
+        "Master of Kung Fu",
+        "Iron Fist",
+        "Heroes for Hire",
+        "Agents of Atlas"
+      ],
+      "keywords": [
+        "Shang-Chi",
+        "Master of Kung Fu",
+        "MAX",
+        "Ten Rings",
+        "Comic Book Herald"
+      ],
+      "expect": 298,
+      "coverIssueId": 67118
+    },
+    {
       "id": "thunderbolts-reading-order",
       "name": "Thunderbolts",
       "description": "Follow the Thunderbolts across their changing teams, from the original series through King in Black, in Comic Book Herald's guide order.",

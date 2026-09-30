@@ -3389,13 +3389,32 @@
     "url": "https://www.comicbookherald.com/shang-chi-master-of-kung-fu-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
-    "sourceRetrievedAt": "2026-08-23",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "disposition": "new-order",
+    "reason": "Issue #612 and the coordinator approved 302 directed occurrences, 298 canonical slots, 290 exact originals, eight retained metadata gaps and all 198 published peer relationships. The generated guide corrects the printed Iron Fist volume range with separately recorded evidence.",
+    "sourceRetrievedAt": "2026-09-29",
+    "overlapIds": [
+      "agents-of-atlas-reading-order",
+      "amazing-spider-man-reading-order-modern-marvel-era",
+      "ant-man-reading-order",
+      "axis",
+      "black-widow-reading-order",
+      "doctor-strange-reading-order",
+      "heroic-age-avengers",
+      "hickman-full",
+      "hickman-minimal",
+      "iron-man-reading-order",
+      "moon-knight-reading-order",
+      "planet-hulk-reading-order-and-greg-pak-hulk-comics-guide",
+      "question-of-the-week-do-you-have-a-hulk-reading-order",
+      "silk-cindy-moon-reading-order",
+      "war-of-the-realms",
+      "wolverine-reading-order"
+    ],
+    "catalogIds": [
+      "shang-chi-master-of-kung-fu-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Shang-Chi"
     ],
@@ -3403,9 +3422,9 @@
       100
     ],
     "duplicateFlags": [],
-    "sourceContentSha256": "c2aa9f456a8080312ab18ec0d268a253bf00f4d1e675256e00a65b549a8f4dfe",
+    "sourceContentSha256": "a2534b38e8f99030977b7660c892a2f8594efbae78fab8385a25a58e64886a32",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 100,

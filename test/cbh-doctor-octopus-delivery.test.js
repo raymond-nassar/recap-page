@@ -149,9 +149,10 @@ test('Doctor Octopus relationship approval regenerates against its reviewed sour
 
       'x-23-reading-order', 'ms-marvel-kamala-khan-reading-order',
       'hawkeye-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order', 'marvel-zombies-reading-order', 'nova-reading-order', 'ultimate-spider-man-reading-order', 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide',
+      'shang-chi-master-of-kung-fu-reading-order',
     ],
   });
-  const expectedOrderIds = manifest.lists.filter((row) => (
+  const expectedOrderIds = manifest.lists.filter((row) => row.id !== 'shang-chi-master-of-kung-fu-reading-order' && (
     row.id !== id && row.id !== 'nova-reading-order' && row.id !== 'ultimate-spider-man-reading-order' && row.id !== 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide'
       && ![
         'shadow-king-reading-order',

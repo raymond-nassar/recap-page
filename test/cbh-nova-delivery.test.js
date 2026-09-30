@@ -257,10 +257,10 @@ test('Nova pins distinct original volumes and renders gaps without closed source
 
 test('Nova renewed approval covers every final-base peer and retains all 37 non-none relationships', async () => {
   const manifest = await readJson('src/data/curated-lists.json');
-  const orderIds = manifest.lists.filter((entry) => entry.id !== id
+  const orderIds = manifest.lists.filter((entry) => entry.id !== 'shang-chi-master-of-kung-fu-reading-order' && entry.id !== id
     && entry.id !== 'ultimate-spider-man-reading-order' && entry.id !== 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide').map((entry) => entry.id);
   const rebuilt = await buildReportForMapping(mappingPath, [], {
-    excludedOrderIds: ['ultimate-spider-man-reading-order', 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide'],
+    excludedOrderIds: ['ultimate-spider-man-reading-order', 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide', 'shang-chi-master-of-kung-fu-reading-order'],
   });
   assert.deepEqual(rebuilt, report);
   assert.doesNotThrow(() => validateReportDigest(report));

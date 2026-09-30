@@ -20,6 +20,15 @@ the card's full inner width below its artwork and title. Timeline cards lose a r
 indent while keeping the year markers and chronological structure. Text size, complete
 descriptions in Preview, actions, desktop layout and saved reading progress are unchanged.
 
+### Follow Shang-Chi from Master of Kung Fu to the Ten Rings
+
+Adds a credited 298-entry Shang-Chi Reading List spanning his original martial-arts
+comics, team appearances and later solo stories. It keeps four repeated source references
+from duplicating issues and leaves eight unresolved originals visible instead of
+substituting other editions. A corrected Iron Fist collection follows #6-7 and #73-77,
+while preserving the source's different printed range in the guide evidence. Existing
+Reading Lists and saved progress are unchanged.
+
 ### Follow Greg Pak's Hulk from Planet Hulk to Amadeus Cho
 
 Adds a separate, credited 107-issue creator Reading List following Comic Book Herald's directed

@@ -1,0 +1,2718 @@
+{
+  "guideId": "shang-chi-master-of-kung-fu-reading-order",
+  "packetDigest": "03a9db98c4ef92eeab5c2adbbdd0699bae781a56ca8d0a3b2ea95f955ae938be",
+  "mappingDigest": "3ca94a2657dca2348c7ed584af670210072201dbb6d783252d52df3f9f031698",
+  "relationshipApprovalDigest": "76f81c9a189e88b98556ba1a7c0564531675380a82428480117abd49599a6f5f",
+  "sourceOccurrenceCount": 302,
+  "retainedIdentities": 298,
+  "repeatTargets": [
+    {
+      "sourcePosition": 12,
+      "canonicalSourcePosition": 10
+    },
+    {
+      "sourcePosition": 207,
+      "canonicalSourcePosition": 31
+    },
+    {
+      "sourcePosition": 208,
+      "canonicalSourcePosition": 97
+    },
+    {
+      "sourcePosition": 209,
+      "canonicalSourcePosition": 98
+    }
+  ],
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "issueId": 67118,
+      "sourceKey": "1",
+      "title": "Special Marvel Edition (1971) #15",
+      "collectedIn": "Special Marvel Edition #15-16",
+      "seriesId": 24266,
+      "issueNumber": "15"
+    },
+    {
+      "sourcePosition": 2,
+      "issueId": 67119,
+      "sourceKey": "2",
+      "title": "Special Marvel Edition (1971) #16",
+      "collectedIn": "Special Marvel Edition #15-16",
+      "seriesId": 24266,
+      "issueNumber": "16"
+    },
+    {
+      "sourcePosition": 3,
+      "issueId": 67106,
+      "sourceKey": "3",
+      "title": "Master of Kung Fu (1974) #17",
+      "collectedIn": "Master Of Kung Fu (1974) #17 to #21",
+      "seriesId": 24265,
+      "issueNumber": "17"
+    },
+    {
+      "sourcePosition": 4,
+      "issueId": 67107,
+      "sourceKey": "4",
+      "title": "Master of Kung Fu (1974) #18",
+      "collectedIn": "Master Of Kung Fu (1974) #17 to #21",
+      "seriesId": 24265,
+      "issueNumber": "18"
+    },
+    {
+      "sourcePosition": 5,
+      "issueId": 67108,
+      "sourceKey": "5",
+      "title": "Master of Kung Fu (1974) #19",
+      "collectedIn": "Master Of Kung Fu (1974) #17 to #21",
+      "seriesId": 24265,
+      "issueNumber": "19"
+    },
+    {
+      "sourcePosition": 6,
+      "issueId": 67109,
+      "sourceKey": "6",
+      "title": "Master of Kung Fu (1974) #20",
+      "collectedIn": "Master Of Kung Fu (1974) #17 to #21",
+      "seriesId": 24265,
+      "issueNumber": "20"
+    },
+    {
+      "sourcePosition": 7,
+      "issueId": 67110,
+      "sourceKey": "7",
+      "title": "Master of Kung Fu (1974) #21",
+      "collectedIn": "Master Of Kung Fu (1974) #17 to #21",
+      "seriesId": 24265,
+      "issueNumber": "21"
+    },
+    {
+      "sourcePosition": 8,
+      "issueId": 67100,
+      "sourceKey": "8",
+      "title": "Giant-Size Spider-Man (1974) #2",
+      "collectedIn": "Giant-Size Spider-Man #2",
+      "seriesId": 23276,
+      "issueNumber": "2"
+    },
+    {
+      "sourcePosition": 9,
+      "issueId": 67096,
+      "sourceKey": "9",
+      "title": "Giant-Size Master of Kung Fu (1974) #1",
+      "collectedIn": "Giant-Size Master Of Kung Fu #1",
+      "seriesId": 24261,
+      "issueNumber": "1"
+    },
+    {
+      "sourcePosition": 10,
+      "issueId": 67111,
+      "sourceKey": "10",
+      "title": "Master of Kung Fu (1974) #22",
+      "collectedIn": "Master of Kung Fu #22",
+      "seriesId": 24265,
+      "issueNumber": "22"
+    },
+    {
+      "sourcePosition": 11,
+      "issueId": 67097,
+      "sourceKey": "11",
+      "title": "Giant-Size Master of Kung Fu (1974) #2",
+      "collectedIn": "Giant-Size Master of Kung Fu #2",
+      "seriesId": 24261,
+      "issueNumber": "2"
+    },
+    {
+      "sourcePosition": 13,
+      "issueId": 67112,
+      "sourceKey": "13",
+      "title": "Master of Kung Fu (1974) #23",
+      "collectedIn": "Master of Kung Fu #22 to #25",
+      "seriesId": 24265,
+      "issueNumber": "23"
+    },
+    {
+      "sourcePosition": 14,
+      "issueId": 67113,
+      "sourceKey": "14",
+      "title": "Master of Kung Fu (1974) #24",
+      "collectedIn": "Master of Kung Fu #22 to #25",
+      "seriesId": 24265,
+      "issueNumber": "24"
+    },
+    {
+      "sourcePosition": 15,
+      "issueId": 67114,
+      "sourceKey": "15",
+      "title": "Master of Kung Fu (1974) #25",
+      "collectedIn": "Master of Kung Fu #22 to #25",
+      "seriesId": 24265,
+      "issueNumber": "25"
+    },
+    {
+      "sourcePosition": 16,
+      "issueId": 67098,
+      "sourceKey": "16",
+      "title": "Giant-Size Master of Kung Fu (1974) #3",
+      "collectedIn": "Giant-Size Master of Kung Fu #3",
+      "seriesId": 24261,
+      "issueNumber": "3"
+    },
+    {
+      "sourcePosition": 17,
+      "issueId": 67115,
+      "sourceKey": "17",
+      "title": "Master of Kung Fu (1974) #26",
+      "collectedIn": "Master of Kung Fu #26 to #28",
+      "seriesId": 24265,
+      "issueNumber": "26"
+    },
+    {
+      "sourcePosition": 18,
+      "issueId": 67116,
+      "sourceKey": "18",
+      "title": "Master of Kung Fu (1974) #27",
+      "collectedIn": "Master of Kung Fu #26 to #28",
+      "seriesId": 24265,
+      "issueNumber": "27"
+    },
+    {
+      "sourcePosition": 19,
+      "issueId": 67117,
+      "sourceKey": "19",
+      "title": "Master of Kung Fu (1974) #28",
+      "collectedIn": "Master of Kung Fu #26 to #28",
+      "seriesId": 24265,
+      "issueNumber": "28"
+    },
+    {
+      "sourcePosition": 20,
+      "issueId": 67099,
+      "sourceKey": "20",
+      "title": "Giant-Size Master of Kung Fu (1974) #4",
+      "collectedIn": "Giant-Size Master of Kung Fu #4",
+      "seriesId": 24261,
+      "issueNumber": "4"
+    },
+    {
+      "sourcePosition": 21,
+      "issueId": 70302,
+      "sourceKey": "21",
+      "title": "Master of Kung Fu (1974) #29",
+      "collectedIn": "Master of Kung Fu #29 to #37",
+      "seriesId": 24265,
+      "issueNumber": "29"
+    },
+    {
+      "sourcePosition": 22,
+      "issueId": 70303,
+      "sourceKey": "22",
+      "title": "Master of Kung Fu (1974) #30",
+      "collectedIn": "Master of Kung Fu #29 to #37",
+      "seriesId": 24265,
+      "issueNumber": "30"
+    },
+    {
+      "sourcePosition": 23,
+      "issueId": 70304,
+      "sourceKey": "23",
+      "title": "Master of Kung Fu (1974) #31",
+      "collectedIn": "Master of Kung Fu #29 to #37",
+      "seriesId": 24265,
+      "issueNumber": "31"
+    },
+    {
+      "sourcePosition": 24,
+      "issueId": 70305,
+      "sourceKey": "24",
+      "title": "Master of Kung Fu (1974) #32",
+      "collectedIn": "Master of Kung Fu #29 to #37",
+      "seriesId": 24265,
+      "issueNumber": "32"
+    },
+    {
+      "sourcePosition": 25,
+      "issueId": 70306,
+      "sourceKey": "25",
+      "title": "Master of Kung Fu (1974) #33",
+      "collectedIn": "Master of Kung Fu #29 to #37",
+      "seriesId": 24265,
+      "issueNumber": "33"
+    },
+    {
+      "sourcePosition": 26,
+      "issueId": 70307,
+      "sourceKey": "26",
+      "title": "Master of Kung Fu (1974) #34",
+      "collectedIn": "Master of Kung Fu #29 to #37",
+      "seriesId": 24265,
+      "issueNumber": "34"
+    },
+    {
+      "sourcePosition": 27,
+      "issueId": 70308,
+      "sourceKey": "27",
+      "title": "Master of Kung Fu (1974) #35",
+      "collectedIn": "Master of Kung Fu #29 to #37",
+      "seriesId": 24265,
+      "issueNumber": "35"
+    },
+    {
+      "sourcePosition": 28,
+      "issueId": 70309,
+      "sourceKey": "28",
+      "title": "Master of Kung Fu (1974) #36",
+      "collectedIn": "Master of Kung Fu #29 to #37",
+      "seriesId": 24265,
+      "issueNumber": "36"
+    },
+    {
+      "sourcePosition": 29,
+      "issueId": 70310,
+      "sourceKey": "29",
+      "title": "Master of Kung Fu (1974) #37",
+      "collectedIn": "Master of Kung Fu #29 to #37",
+      "seriesId": 24265,
+      "issueNumber": "37"
+    },
+    {
+      "sourcePosition": 30,
+      "issueId": 19868,
+      "sourceKey": "30",
+      "title": "Iron Man Annual (1976) #4",
+      "collectedIn": "Special Marvel Edition #15-16, Master Of Kung Fu (1974) #17-37, Giant-Size Master Of Kung Fu #1-4, Giant-Size Spider-Man #2, & Iron Man Annual #4",
+      "seriesId": 3723,
+      "issueNumber": "4"
+    },
+    {
+      "sourcePosition": 31,
+      "issueId": 51036,
+      "sourceKey": "31",
+      "title": "Deadly Hands of Kung Fu (1974) #1",
+      "collectedIn": "Deadly Hands Of Kung Fu (1974) 1-18; Special (1974) 1",
+      "seriesId": 19133,
+      "issueNumber": "1"
+    },
+    {
+      "sourcePosition": 32,
+      "issueId": 63312,
+      "sourceKey": "32",
+      "title": "Deadly Hands of Kung Fu (1974) #2",
+      "collectedIn": "Deadly Hands Of Kung Fu (1974) 1-18; Special (1974) 1",
+      "seriesId": 19133,
+      "issueNumber": "2"
+    },
+    {
+      "sourcePosition": 33,
+      "issueId": 63313,
+      "sourceKey": "33",
+      "title": "Deadly Hands of Kung Fu (1974) #3",
+      "collectedIn": "Deadly Hands Of Kung Fu (1974) 1-18; Special (1974) 1",
+      "seriesId": 19133,
+      "issueNumber": "3"
+    },
+    {
+      "sourcePosition": 34,
+      "issueId": 63314,
+      "sourceKey": "34",
+      "title": "Deadly Hands of Kung Fu (1974) #4",
+      "collectedIn": "Deadly Hands Of Kung Fu (1974) 1-18; Special (1974) 1",
+      "seriesId": 19133,
+      "issueNumber": "4"
+    },
+    {
+      "sourcePosition": 35,
+      "issueId": 63315,
+      "sourceKey": "35",
+      "title": "Deadly Hands of Kung Fu (1974) #5",
+      "collectedIn": "Deadly Hands Of Kung Fu (1974) 1-18; Special (1974) 1",
+      "seriesId": 19133,
+      "issueNumber": "5"
+    },
+    {
+      "sourcePosition": 36,
+      "issueId": 63316,
+      "sourceKey": "36",
+      "title": "Deadly Hands of Kung Fu (1974) #6",
+      "collectedIn": "Deadly Hands Of Kung Fu (1974) 1-18; Special (1974) 1",
+      "seriesId": 19133,
+      "issueNumber": "6"
+    },
+    {
+      "sourcePosition": 37,
+      "issueId": 63317,
+      "sourceKey": "37",
+      "title": "Deadly Hands of Kung Fu (1974) #7",
+      "collectedIn": "Deadly Hands Of Kung Fu (1974) 1-18; Special (1974) 1",
+      "seriesId": 19133,
+      "issueNumber": "7"
+    },
+    {
+      "sourcePosition": 38,
+      "issueId": 63318,
+      "sourceKey": "38",
+      "title": "Deadly Hands of Kung Fu (1974) #8",
+      "collectedIn": "Deadly Hands Of Kung Fu (1974) 1-18; Special (1974) 1",
+      "seriesId": 19133,
+      "issueNumber": "8"
+    },
+    {
+      "sourcePosition": 39,
+      "issueId": 63319,
+      "sourceKey": "39",
+      "title": "Deadly Hands of Kung Fu (1974) #9",
+      "collectedIn": "Deadly Hands Of Kung Fu (1974) 1-18; Special (1974) 1",
+      "seriesId": 19133,
+      "issueNumber": "9"
+    },
+    {
+      "sourcePosition": 40,
+      "issueId": 63320,
+      "sourceKey": "40",
+      "title": "Deadly Hands of Kung Fu (1974) #10",
+      "collectedIn": "Deadly Hands Of Kung Fu (1974) 1-18; Special (1974) 1",
+      "seriesId": 19133,
+      "issueNumber": "10"
+    },
+    {
+      "sourcePosition": 41,
+      "issueId": 63321,
+      "sourceKey": "41",
+      "title": "Deadly Hands of Kung Fu (1974) #11",
+      "collectedIn": "Deadly Hands Of Kung Fu (1974) 1-18; Special (1974) 1",
+      "seriesId": 19133,
+      "issueNumber": "11"
+    },
+    {
+      "sourcePosition": 42,
+      "issueId": -1375080447,
+      "sourceKey": "42",
+      "title": "The Deadly Hands of Kung Fu (1974) #12",
+      "collectedIn": "Deadly Hands Of Kung Fu (1974) 1-18; Special (1974) 1",
+      "gap": true,
+      "sourceIssueReference": "The Deadly Hands of Kung Fu (1974) #12",
+      "trackingIssue": "https://github.com/raymond-nassar/recap-page/issues/626"
+    },
+    {
+      "sourcePosition": 43,
+      "issueId": 63323,
+      "sourceKey": "43",
+      "title": "Deadly Hands of Kung Fu (1974) #13",
+      "collectedIn": "Deadly Hands Of Kung Fu (1974) 1-18; Special (1974) 1",
+      "seriesId": 19133,
+      "issueNumber": "13"
+    },
+    {
+      "sourcePosition": 44,
+      "issueId": 63324,
+      "sourceKey": "44",
+      "title": "Deadly Hands of Kung Fu (1974) #14",
+      "collectedIn": "Deadly Hands Of Kung Fu (1974) 1-18; Special (1974) 1",
+      "seriesId": 19133,
+      "issueNumber": "14"
+    },
+    {
+      "sourcePosition": 45,
+      "issueId": 63325,
+      "sourceKey": "45",
+      "title": "Deadly Hands of Kung Fu (1974) #15",
+      "collectedIn": "Deadly Hands Of Kung Fu (1974) 1-18; Special (1974) 1",
+      "seriesId": 19133,
+      "issueNumber": "15"
+    },
+    {
+      "sourcePosition": 46,
+      "issueId": 63326,
+      "sourceKey": "46",
+      "title": "Deadly Hands of Kung Fu (1974) #16",
+      "collectedIn": "Deadly Hands Of Kung Fu (1974) 1-18; Special (1974) 1",
+      "seriesId": 19133,
+      "issueNumber": "16"
+    },
+    {
+      "sourcePosition": 47,
+      "issueId": 63327,
+      "sourceKey": "47",
+      "title": "Deadly Hands of Kung Fu (1974) #17",
+      "collectedIn": "Deadly Hands Of Kung Fu (1974) 1-18; Special (1974) 1",
+      "seriesId": 19133,
+      "issueNumber": "17"
+    },
+    {
+      "sourcePosition": 48,
+      "issueId": 63328,
+      "sourceKey": "48",
+      "title": "Deadly Hands of Kung Fu (1974) #18",
+      "collectedIn": "Deadly Hands Of Kung Fu (1974) 1-18; Special (1974) 1",
+      "seriesId": 19133,
+      "issueNumber": "18"
+    },
+    {
+      "sourcePosition": 49,
+      "issueId": -1224081876,
+      "sourceKey": "49",
+      "title": "Kung Fu Special (1974) #1",
+      "collectedIn": "Deadly Hands Of Kung Fu (1974) 1-18; Special (1974) 1",
+      "gap": true,
+      "sourceIssueReference": "Kung Fu Special (1974) #1",
+      "trackingIssue": "https://github.com/raymond-nassar/recap-page/issues/627"
+    },
+    {
+      "sourcePosition": 50,
+      "issueId": 70922,
+      "sourceKey": "50",
+      "title": "Master of Kung Fu Annual (1976) #1",
+      "collectedIn": "Master Of Kung Fu Annual (1976) 1, Master Of Kung Fu (1974) 38-70",
+      "seriesId": 25872,
+      "issueNumber": "1"
+    },
+    {
+      "sourcePosition": 51,
+      "issueId": 70311,
+      "sourceKey": "51",
+      "title": "Master of Kung Fu (1974) #38",
+      "collectedIn": "Master Of Kung Fu Annual (1976) 1, Master Of Kung Fu (1974) 38-70",
+      "seriesId": 24265,
+      "issueNumber": "38"
+    },
+    {
+      "sourcePosition": 52,
+      "issueId": 70312,
+      "sourceKey": "52",
+      "title": "Master of Kung Fu (1974) #39",
+      "collectedIn": "Master Of Kung Fu Annual (1976) 1, Master Of Kung Fu (1974) 38-70",
+      "seriesId": 24265,
+      "issueNumber": "39"
+    },
+    {
+      "sourcePosition": 53,
+      "issueId": 70313,
+      "sourceKey": "53",
+      "title": "Master of Kung Fu (1974) #40",
+      "collectedIn": "Master Of Kung Fu Annual (1976) 1, Master Of Kung Fu (1974) 38-70",
+      "seriesId": 24265,
+      "issueNumber": "40"
+    },
+    {
+      "sourcePosition": 54,
+      "issueId": 70314,
+      "sourceKey": "54",
+      "title": "Master of Kung Fu (1974) #41",
+      "collectedIn": "Master Of Kung Fu Annual (1976) 1, Master Of Kung Fu (1974) 38-70",
+      "seriesId": 24265,
+      "issueNumber": "41"
+    },
+    {
+      "sourcePosition": 55,
+      "issueId": 70315,
+      "sourceKey": "55",
+      "title": "Master of Kung Fu (1974) #42",
+      "collectedIn": "Master Of Kung Fu Annual (1976) 1, Master Of Kung Fu (1974) 38-70",
+      "seriesId": 24265,
+      "issueNumber": "42"
+    },
+    {
+      "sourcePosition": 56,
+      "issueId": 70316,
+      "sourceKey": "56",
+      "title": "Master of Kung Fu (1974) #43",
+      "collectedIn": "Master Of Kung Fu Annual (1976) 1, Master Of Kung Fu (1974) 38-70",
+      "seriesId": 24265,
+      "issueNumber": "43"
+    },
+    {
+      "sourcePosition": 57,
+      "issueId": 70317,
+      "sourceKey": "57",
+      "title": "Master of Kung Fu (1974) #44",
+      "collectedIn": "Master Of Kung Fu Annual (1976) 1, Master Of Kung Fu (1974) 38-70",
+      "seriesId": 24265,
+      "issueNumber": "44"
+    },
+    {
+      "sourcePosition": 58,
+      "issueId": 70318,
+      "sourceKey": "58",
+      "title": "Master of Kung Fu (1974) #45",
+      "collectedIn": "Master Of Kung Fu Annual (1976) 1, Master Of Kung Fu (1974) 38-70",
+      "seriesId": 24265,
+      "issueNumber": "45"
+    },
+    {
+      "sourcePosition": 59,
+      "issueId": 70319,
+      "sourceKey": "59",
+      "title": "Master of Kung Fu (1974) #46",
+      "collectedIn": "Master Of Kung Fu Annual (1976) 1, Master Of Kung Fu (1974) 38-70",
+      "seriesId": 24265,
+      "issueNumber": "46"
+    },
+    {
+      "sourcePosition": 60,
+      "issueId": 70320,
+      "sourceKey": "60",
+      "title": "Master of Kung Fu (1974) #47",
+      "collectedIn": "Master Of Kung Fu Annual (1976) 1, Master Of Kung Fu (1974) 38-70",
+      "seriesId": 24265,
+      "issueNumber": "47"
+    },
+    {
+      "sourcePosition": 61,
+      "issueId": 70321,
+      "sourceKey": "61",
+      "title": "Master of Kung Fu (1974) #48",
+      "collectedIn": "Master Of Kung Fu Annual (1976) 1, Master Of Kung Fu (1974) 38-70",
+      "seriesId": 24265,
+      "issueNumber": "48"
+    },
+    {
+      "sourcePosition": 62,
+      "issueId": 70322,
+      "sourceKey": "62",
+      "title": "Master of Kung Fu (1974) #49",
+      "collectedIn": "Master Of Kung Fu Annual (1976) 1, Master Of Kung Fu (1974) 38-70",
+      "seriesId": 24265,
+      "issueNumber": "49"
+    },
+    {
+      "sourcePosition": 63,
+      "issueId": 70846,
+      "sourceKey": "63",
+      "title": "Master of Kung Fu (1974) #50",
+      "collectedIn": "Master Of Kung Fu Annual (1976) 1, Master Of Kung Fu (1974) 38-70",
+      "seriesId": 24265,
+      "issueNumber": "50"
+    },
+    {
+      "sourcePosition": 64,
+      "issueId": 70847,
+      "sourceKey": "64",
+      "title": "Master of Kung Fu (1974) #51",
+      "collectedIn": "Master Of Kung Fu Annual (1976) 1, Master Of Kung Fu (1974) 38-70",
+      "seriesId": 24265,
+      "issueNumber": "51"
+    },
+    {
+      "sourcePosition": 65,
+      "issueId": 70848,
+      "sourceKey": "65",
+      "title": "Master of Kung Fu (1974) #52",
+      "collectedIn": "Master Of Kung Fu Annual (1976) 1, Master Of Kung Fu (1974) 38-70",
+      "seriesId": 24265,
+      "issueNumber": "52"
+    },
+    {
+      "sourcePosition": 66,
+      "issueId": 70849,
+      "sourceKey": "66",
+      "title": "Master of Kung Fu (1974) #53",
+      "collectedIn": "Master Of Kung Fu Annual (1976) 1, Master Of Kung Fu (1974) 38-70",
+      "seriesId": 24265,
+      "issueNumber": "53"
+    },
+    {
+      "sourcePosition": 67,
+      "issueId": 70850,
+      "sourceKey": "67",
+      "title": "Master of Kung Fu (1974) #54",
+      "collectedIn": "Master Of Kung Fu Annual (1976) 1, Master Of Kung Fu (1974) 38-70",
+      "seriesId": 24265,
+      "issueNumber": "54"
+    },
+    {
+      "sourcePosition": 68,
+      "issueId": 70851,
+      "sourceKey": "68",
+      "title": "Master of Kung Fu (1974) #55",
+      "collectedIn": "Master Of Kung Fu Annual (1976) 1, Master Of Kung Fu (1974) 38-70",
+      "seriesId": 24265,
+      "issueNumber": "55"
+    },
+    {
+      "sourcePosition": 69,
+      "issueId": 70852,
+      "sourceKey": "69",
+      "title": "Master of Kung Fu (1974) #56",
+      "collectedIn": "Master Of Kung Fu Annual (1976) 1, Master Of Kung Fu (1974) 38-70",
+      "seriesId": 24265,
+      "issueNumber": "56"
+    },
+    {
+      "sourcePosition": 70,
+      "issueId": 70853,
+      "sourceKey": "70",
+      "title": "Master of Kung Fu (1974) #57",
+      "collectedIn": "Master Of Kung Fu Annual (1976) 1, Master Of Kung Fu (1974) 38-70",
+      "seriesId": 24265,
+      "issueNumber": "57"
+    },
+    {
+      "sourcePosition": 71,
+      "issueId": 70854,
+      "sourceKey": "71",
+      "title": "Master of Kung Fu (1974) #58",
+      "collectedIn": "Master Of Kung Fu Annual (1976) 1, Master Of Kung Fu (1974) 38-70",
+      "seriesId": 24265,
+      "issueNumber": "58"
+    },
+    {
+      "sourcePosition": 72,
+      "issueId": 70855,
+      "sourceKey": "72",
+      "title": "Master of Kung Fu (1974) #59",
+      "collectedIn": "Master Of Kung Fu Annual (1976) 1, Master Of Kung Fu (1974) 38-70",
+      "seriesId": 24265,
+      "issueNumber": "59"
+    },
+    {
+      "sourcePosition": 73,
+      "issueId": 70856,
+      "sourceKey": "73",
+      "title": "Master of Kung Fu (1974) #60",
+      "collectedIn": "Master Of Kung Fu Annual (1976) 1, Master Of Kung Fu (1974) 38-70",
+      "seriesId": 24265,
+      "issueNumber": "60"
+    },
+    {
+      "sourcePosition": 74,
+      "issueId": 70857,
+      "sourceKey": "74",
+      "title": "Master of Kung Fu (1974) #61",
+      "collectedIn": "Master Of Kung Fu Annual (1976) 1, Master Of Kung Fu (1974) 38-70",
+      "seriesId": 24265,
+      "issueNumber": "61"
+    },
+    {
+      "sourcePosition": 75,
+      "issueId": 70858,
+      "sourceKey": "75",
+      "title": "Master of Kung Fu (1974) #62",
+      "collectedIn": "Master Of Kung Fu Annual (1976) 1, Master Of Kung Fu (1974) 38-70",
+      "seriesId": 24265,
+      "issueNumber": "62"
+    },
+    {
+      "sourcePosition": 76,
+      "issueId": 70859,
+      "sourceKey": "76",
+      "title": "Master of Kung Fu (1974) #63",
+      "collectedIn": "Master Of Kung Fu Annual (1976) 1, Master Of Kung Fu (1974) 38-70",
+      "seriesId": 24265,
+      "issueNumber": "63"
+    },
+    {
+      "sourcePosition": 77,
+      "issueId": 70860,
+      "sourceKey": "77",
+      "title": "Master of Kung Fu (1974) #64",
+      "collectedIn": "Master Of Kung Fu Annual (1976) 1, Master Of Kung Fu (1974) 38-70",
+      "seriesId": 24265,
+      "issueNumber": "64"
+    },
+    {
+      "sourcePosition": 78,
+      "issueId": 70861,
+      "sourceKey": "78",
+      "title": "Master of Kung Fu (1974) #65",
+      "collectedIn": "Master Of Kung Fu Annual (1976) 1, Master Of Kung Fu (1974) 38-70",
+      "seriesId": 24265,
+      "issueNumber": "65"
+    },
+    {
+      "sourcePosition": 79,
+      "issueId": 70862,
+      "sourceKey": "79",
+      "title": "Master of Kung Fu (1974) #66",
+      "collectedIn": "Master Of Kung Fu Annual (1976) 1, Master Of Kung Fu (1974) 38-70",
+      "seriesId": 24265,
+      "issueNumber": "66"
+    },
+    {
+      "sourcePosition": 80,
+      "issueId": 70863,
+      "sourceKey": "80",
+      "title": "Master of Kung Fu (1974) #67",
+      "collectedIn": "Master Of Kung Fu Annual (1976) 1, Master Of Kung Fu (1974) 38-70",
+      "seriesId": 24265,
+      "issueNumber": "67"
+    },
+    {
+      "sourcePosition": 81,
+      "issueId": 70864,
+      "sourceKey": "81",
+      "title": "Master of Kung Fu (1974) #68",
+      "collectedIn": "Master Of Kung Fu Annual (1976) 1, Master Of Kung Fu (1974) 38-70",
+      "seriesId": 24265,
+      "issueNumber": "68"
+    },
+    {
+      "sourcePosition": 82,
+      "issueId": 70865,
+      "sourceKey": "82",
+      "title": "Master of Kung Fu (1974) #69",
+      "collectedIn": "Master Of Kung Fu Annual (1976) 1, Master Of Kung Fu (1974) 38-70",
+      "seriesId": 24265,
+      "issueNumber": "69"
+    },
+    {
+      "sourcePosition": 83,
+      "issueId": 70866,
+      "sourceKey": "83",
+      "title": "Master of Kung Fu (1974) #70",
+      "collectedIn": "Master Of Kung Fu Annual (1976) 1, Master Of Kung Fu (1974) 38-70",
+      "seriesId": 24265,
+      "issueNumber": "70"
+    },
+    {
+      "sourcePosition": 84,
+      "issueId": 63329,
+      "sourceKey": "84",
+      "title": "Deadly Hands of Kung Fu (1974) #19",
+      "collectedIn": "Deadly Hands Of Kung Fu (1974) 19-33; Bizarre Adventures (1981) 25",
+      "seriesId": 19133,
+      "issueNumber": "19"
+    },
+    {
+      "sourcePosition": 85,
+      "issueId": 63330,
+      "sourceKey": "85",
+      "title": "Deadly Hands of Kung Fu (1974) #20",
+      "collectedIn": "Deadly Hands Of Kung Fu (1974) 19-33; Bizarre Adventures (1981) 25",
+      "seriesId": 19133,
+      "issueNumber": "20"
+    },
+    {
+      "sourcePosition": 86,
+      "issueId": 63331,
+      "sourceKey": "86",
+      "title": "Deadly Hands of Kung Fu (1974) #21",
+      "collectedIn": "Deadly Hands Of Kung Fu (1974) 19-33; Bizarre Adventures (1981) 25",
+      "seriesId": 19133,
+      "issueNumber": "21"
+    },
+    {
+      "sourcePosition": 87,
+      "issueId": 63332,
+      "sourceKey": "87",
+      "title": "Deadly Hands of Kung Fu (1974) #22",
+      "collectedIn": "Deadly Hands Of Kung Fu (1974) 19-33; Bizarre Adventures (1981) 25",
+      "seriesId": 19133,
+      "issueNumber": "22"
+    },
+    {
+      "sourcePosition": 88,
+      "issueId": 63333,
+      "sourceKey": "88",
+      "title": "Deadly Hands of Kung Fu (1974) #23",
+      "collectedIn": "Deadly Hands Of Kung Fu (1974) 19-33; Bizarre Adventures (1981) 25",
+      "seriesId": 19133,
+      "issueNumber": "23"
+    },
+    {
+      "sourcePosition": 89,
+      "issueId": 63334,
+      "sourceKey": "89",
+      "title": "Deadly Hands of Kung Fu (1974) #24",
+      "collectedIn": "Deadly Hands Of Kung Fu (1974) 19-33; Bizarre Adventures (1981) 25",
+      "seriesId": 19133,
+      "issueNumber": "24"
+    },
+    {
+      "sourcePosition": 90,
+      "issueId": 63335,
+      "sourceKey": "90",
+      "title": "Deadly Hands of Kung Fu (1974) #25",
+      "collectedIn": "Deadly Hands Of Kung Fu (1974) 19-33; Bizarre Adventures (1981) 25",
+      "seriesId": 19133,
+      "issueNumber": "25"
+    },
+    {
+      "sourcePosition": 91,
+      "issueId": 63336,
+      "sourceKey": "91",
+      "title": "Deadly Hands of Kung Fu (1974) #26",
+      "collectedIn": "Deadly Hands Of Kung Fu (1974) 19-33; Bizarre Adventures (1981) 25",
+      "seriesId": 19133,
+      "issueNumber": "26"
+    },
+    {
+      "sourcePosition": 92,
+      "issueId": 63337,
+      "sourceKey": "92",
+      "title": "Deadly Hands of Kung Fu (1974) #27",
+      "collectedIn": "Deadly Hands Of Kung Fu (1974) 19-33; Bizarre Adventures (1981) 25",
+      "seriesId": 19133,
+      "issueNumber": "27"
+    },
+    {
+      "sourcePosition": 93,
+      "issueId": 63338,
+      "sourceKey": "93",
+      "title": "Deadly Hands of Kung Fu (1974) #28",
+      "collectedIn": "Deadly Hands Of Kung Fu (1974) 19-33; Bizarre Adventures (1981) 25",
+      "seriesId": 19133,
+      "issueNumber": "28"
+    },
+    {
+      "sourcePosition": 94,
+      "issueId": 63339,
+      "sourceKey": "94",
+      "title": "Deadly Hands of Kung Fu (1974) #29",
+      "collectedIn": "Deadly Hands Of Kung Fu (1974) 19-33; Bizarre Adventures (1981) 25",
+      "seriesId": 19133,
+      "issueNumber": "29"
+    },
+    {
+      "sourcePosition": 95,
+      "issueId": 63340,
+      "sourceKey": "95",
+      "title": "Deadly Hands of Kung Fu (1974) #30",
+      "collectedIn": "Deadly Hands Of Kung Fu (1974) 19-33; Bizarre Adventures (1981) 25",
+      "seriesId": 19133,
+      "issueNumber": "30"
+    },
+    {
+      "sourcePosition": 96,
+      "issueId": 63341,
+      "sourceKey": "96",
+      "title": "Deadly Hands of Kung Fu (1974) #31",
+      "collectedIn": "Deadly Hands Of Kung Fu (1974) 19-33; Bizarre Adventures (1981) 25",
+      "seriesId": 19133,
+      "issueNumber": "31"
+    },
+    {
+      "sourcePosition": 97,
+      "issueId": 51037,
+      "sourceKey": "97",
+      "title": "Deadly Hands of Kung Fu (1974) #32",
+      "collectedIn": "Deadly Hands Of Kung Fu (1974) 19-33; Bizarre Adventures (1981) 25",
+      "seriesId": 19133,
+      "issueNumber": "32"
+    },
+    {
+      "sourcePosition": 98,
+      "issueId": 51038,
+      "sourceKey": "98",
+      "title": "Deadly Hands of Kung Fu (1974) #33",
+      "collectedIn": "Deadly Hands Of Kung Fu (1974) 19-33; Bizarre Adventures (1981) 25",
+      "seriesId": 19133,
+      "issueNumber": "33"
+    },
+    {
+      "sourcePosition": 99,
+      "issueId": 42867,
+      "sourceKey": "99",
+      "title": "Bizarre Adventures (1981) #25",
+      "collectedIn": "Deadly Hands Of Kung Fu (1974) 19-33; Bizarre Adventures (1981) 25",
+      "seriesId": 16347,
+      "issueNumber": "25"
+    },
+    {
+      "sourcePosition": 100,
+      "issueId": 70867,
+      "sourceKey": "100",
+      "title": "Master of Kung Fu (1974) #71",
+      "collectedIn": "Master Of Kung Fu (1974) 71-101; What If (1977) 16",
+      "seriesId": 24265,
+      "issueNumber": "71"
+    },
+    {
+      "sourcePosition": 101,
+      "issueId": 70868,
+      "sourceKey": "101",
+      "title": "Master of Kung Fu (1974) #72",
+      "collectedIn": "Master Of Kung Fu (1974) 71-101; What If (1977) 16",
+      "seriesId": 24265,
+      "issueNumber": "72"
+    },
+    {
+      "sourcePosition": 102,
+      "issueId": 70869,
+      "sourceKey": "102",
+      "title": "Master of Kung Fu (1974) #73",
+      "collectedIn": "Master Of Kung Fu (1974) 71-101; What If (1977) 16",
+      "seriesId": 24265,
+      "issueNumber": "73"
+    },
+    {
+      "sourcePosition": 103,
+      "issueId": 70870,
+      "sourceKey": "103",
+      "title": "Master of Kung Fu (1974) #74",
+      "collectedIn": "Master Of Kung Fu (1974) 71-101; What If (1977) 16",
+      "seriesId": 24265,
+      "issueNumber": "74"
+    },
+    {
+      "sourcePosition": 104,
+      "issueId": 70871,
+      "sourceKey": "104",
+      "title": "Master of Kung Fu (1974) #75",
+      "collectedIn": "Master Of Kung Fu (1974) 71-101; What If (1977) 16",
+      "seriesId": 24265,
+      "issueNumber": "75"
+    },
+    {
+      "sourcePosition": 105,
+      "issueId": 70872,
+      "sourceKey": "105",
+      "title": "Master of Kung Fu (1974) #76",
+      "collectedIn": "Master Of Kung Fu (1974) 71-101; What If (1977) 16",
+      "seriesId": 24265,
+      "issueNumber": "76"
+    },
+    {
+      "sourcePosition": 106,
+      "issueId": 70873,
+      "sourceKey": "106",
+      "title": "Master of Kung Fu (1974) #77",
+      "collectedIn": "Master Of Kung Fu (1974) 71-101; What If (1977) 16",
+      "seriesId": 24265,
+      "issueNumber": "77"
+    },
+    {
+      "sourcePosition": 107,
+      "issueId": 70874,
+      "sourceKey": "107",
+      "title": "Master of Kung Fu (1974) #78",
+      "collectedIn": "Master Of Kung Fu (1974) 71-101; What If (1977) 16",
+      "seriesId": 24265,
+      "issueNumber": "78"
+    },
+    {
+      "sourcePosition": 108,
+      "issueId": 70875,
+      "sourceKey": "108",
+      "title": "Master of Kung Fu (1974) #79",
+      "collectedIn": "Master Of Kung Fu (1974) 71-101; What If (1977) 16",
+      "seriesId": 24265,
+      "issueNumber": "79"
+    },
+    {
+      "sourcePosition": 109,
+      "issueId": 70876,
+      "sourceKey": "109",
+      "title": "Master of Kung Fu (1974) #80",
+      "collectedIn": "Master Of Kung Fu (1974) 71-101; What If (1977) 16",
+      "seriesId": 24265,
+      "issueNumber": "80"
+    },
+    {
+      "sourcePosition": 110,
+      "issueId": 70877,
+      "sourceKey": "110",
+      "title": "Master of Kung Fu (1974) #81",
+      "collectedIn": "Master Of Kung Fu (1974) 71-101; What If (1977) 16",
+      "seriesId": 24265,
+      "issueNumber": "81"
+    },
+    {
+      "sourcePosition": 111,
+      "issueId": 70878,
+      "sourceKey": "111",
+      "title": "Master of Kung Fu (1974) #82",
+      "collectedIn": "Master Of Kung Fu (1974) 71-101; What If (1977) 16",
+      "seriesId": 24265,
+      "issueNumber": "82"
+    },
+    {
+      "sourcePosition": 112,
+      "issueId": 70879,
+      "sourceKey": "112",
+      "title": "Master of Kung Fu (1974) #83",
+      "collectedIn": "Master Of Kung Fu (1974) 71-101; What If (1977) 16",
+      "seriesId": 24265,
+      "issueNumber": "83"
+    },
+    {
+      "sourcePosition": 113,
+      "issueId": 70880,
+      "sourceKey": "113",
+      "title": "Master of Kung Fu (1974) #84",
+      "collectedIn": "Master Of Kung Fu (1974) 71-101; What If (1977) 16",
+      "seriesId": 24265,
+      "issueNumber": "84"
+    },
+    {
+      "sourcePosition": 114,
+      "issueId": 70881,
+      "sourceKey": "114",
+      "title": "Master of Kung Fu (1974) #85",
+      "collectedIn": "Master Of Kung Fu (1974) 71-101; What If (1977) 16",
+      "seriesId": 24265,
+      "issueNumber": "85"
+    },
+    {
+      "sourcePosition": 115,
+      "issueId": 70882,
+      "sourceKey": "115",
+      "title": "Master of Kung Fu (1974) #86",
+      "collectedIn": "Master Of Kung Fu (1974) 71-101; What If (1977) 16",
+      "seriesId": 24265,
+      "issueNumber": "86"
+    },
+    {
+      "sourcePosition": 116,
+      "issueId": 70883,
+      "sourceKey": "116",
+      "title": "Master of Kung Fu (1974) #87",
+      "collectedIn": "Master Of Kung Fu (1974) 71-101; What If (1977) 16",
+      "seriesId": 24265,
+      "issueNumber": "87"
+    },
+    {
+      "sourcePosition": 117,
+      "issueId": 70884,
+      "sourceKey": "117",
+      "title": "Master of Kung Fu (1974) #88",
+      "collectedIn": "Master Of Kung Fu (1974) 71-101; What If (1977) 16",
+      "seriesId": 24265,
+      "issueNumber": "88"
+    },
+    {
+      "sourcePosition": 118,
+      "issueId": 70885,
+      "sourceKey": "118",
+      "title": "Master of Kung Fu (1974) #89",
+      "collectedIn": "Master Of Kung Fu (1974) 71-101; What If (1977) 16",
+      "seriesId": 24265,
+      "issueNumber": "89"
+    },
+    {
+      "sourcePosition": 119,
+      "issueId": 70886,
+      "sourceKey": "119",
+      "title": "Master of Kung Fu (1974) #90",
+      "collectedIn": "Master Of Kung Fu (1974) 71-101; What If (1977) 16",
+      "seriesId": 24265,
+      "issueNumber": "90"
+    },
+    {
+      "sourcePosition": 120,
+      "issueId": 70887,
+      "sourceKey": "120",
+      "title": "Master of Kung Fu (1974) #91",
+      "collectedIn": "Master Of Kung Fu (1974) 71-101; What If (1977) 16",
+      "seriesId": 24265,
+      "issueNumber": "91"
+    },
+    {
+      "sourcePosition": 121,
+      "issueId": 70888,
+      "sourceKey": "121",
+      "title": "Master of Kung Fu (1974) #92",
+      "collectedIn": "Master Of Kung Fu (1974) 71-101; What If (1977) 16",
+      "seriesId": 24265,
+      "issueNumber": "92"
+    },
+    {
+      "sourcePosition": 122,
+      "issueId": 70889,
+      "sourceKey": "122",
+      "title": "Master of Kung Fu (1974) #93",
+      "collectedIn": "Master Of Kung Fu (1974) 71-101; What If (1977) 16",
+      "seriesId": 24265,
+      "issueNumber": "93"
+    },
+    {
+      "sourcePosition": 123,
+      "issueId": 70890,
+      "sourceKey": "123",
+      "title": "Master of Kung Fu (1974) #94",
+      "collectedIn": "Master Of Kung Fu (1974) 71-101; What If (1977) 16",
+      "seriesId": 24265,
+      "issueNumber": "94"
+    },
+    {
+      "sourcePosition": 124,
+      "issueId": 70891,
+      "sourceKey": "124",
+      "title": "Master of Kung Fu (1974) #95",
+      "collectedIn": "Master Of Kung Fu (1974) 71-101; What If (1977) 16",
+      "seriesId": 24265,
+      "issueNumber": "95"
+    },
+    {
+      "sourcePosition": 125,
+      "issueId": 70892,
+      "sourceKey": "125",
+      "title": "Master of Kung Fu (1974) #96",
+      "collectedIn": "Master Of Kung Fu (1974) 71-101; What If (1977) 16",
+      "seriesId": 24265,
+      "issueNumber": "96"
+    },
+    {
+      "sourcePosition": 126,
+      "issueId": 70893,
+      "sourceKey": "126",
+      "title": "Master of Kung Fu (1974) #97",
+      "collectedIn": "Master Of Kung Fu (1974) 71-101; What If (1977) 16",
+      "seriesId": 24265,
+      "issueNumber": "97"
+    },
+    {
+      "sourcePosition": 127,
+      "issueId": 70894,
+      "sourceKey": "127",
+      "title": "Master of Kung Fu (1974) #98",
+      "collectedIn": "Master Of Kung Fu (1974) 71-101; What If (1977) 16",
+      "seriesId": 24265,
+      "issueNumber": "98"
+    },
+    {
+      "sourcePosition": 128,
+      "issueId": 70895,
+      "sourceKey": "128",
+      "title": "Master of Kung Fu (1974) #99",
+      "collectedIn": "Master Of Kung Fu (1974) 71-101; What If (1977) 16",
+      "seriesId": 24265,
+      "issueNumber": "99"
+    },
+    {
+      "sourcePosition": 129,
+      "issueId": 70896,
+      "sourceKey": "129",
+      "title": "Master of Kung Fu (1974) #100",
+      "collectedIn": "Master Of Kung Fu (1974) 71-101; What If (1977) 16",
+      "seriesId": 24265,
+      "issueNumber": "100"
+    },
+    {
+      "sourcePosition": 130,
+      "issueId": 70897,
+      "sourceKey": "130",
+      "title": "Master of Kung Fu (1974) #101",
+      "collectedIn": "Master Of Kung Fu (1974) 71-101; What If (1977) 16",
+      "seriesId": 24265,
+      "issueNumber": "101"
+    },
+    {
+      "sourcePosition": 131,
+      "issueId": 12128,
+      "sourceKey": "131",
+      "title": "What If? (1977) #16",
+      "collectedIn": "Master Of Kung Fu (1974) 71-101; What If (1977) 16",
+      "seriesId": 2095,
+      "issueNumber": "16"
+    },
+    {
+      "sourcePosition": 132,
+      "issueId": 70898,
+      "sourceKey": "132",
+      "title": "Master of Kung Fu (1974) #102",
+      "collectedIn": "Master Of Kung Fu (1974) 102-125; Marvel Comics Presents (1988) 1-8; Master Of Kung Fu: Bleeding Black (1990) 1",
+      "seriesId": 24265,
+      "issueNumber": "102"
+    },
+    {
+      "sourcePosition": 133,
+      "issueId": 70899,
+      "sourceKey": "133",
+      "title": "Master of Kung Fu (1974) #103",
+      "collectedIn": "Master Of Kung Fu (1974) 102-125; Marvel Comics Presents (1988) 1-8; Master Of Kung Fu: Bleeding Black (1990) 1",
+      "seriesId": 24265,
+      "issueNumber": "103"
+    },
+    {
+      "sourcePosition": 134,
+      "issueId": 70900,
+      "sourceKey": "134",
+      "title": "Master of Kung Fu (1974) #104",
+      "collectedIn": "Master Of Kung Fu (1974) 102-125; Marvel Comics Presents (1988) 1-8; Master Of Kung Fu: Bleeding Black (1990) 1",
+      "seriesId": 24265,
+      "issueNumber": "104"
+    },
+    {
+      "sourcePosition": 135,
+      "issueId": 70901,
+      "sourceKey": "135",
+      "title": "Master of Kung Fu (1974) #105",
+      "collectedIn": "Master Of Kung Fu (1974) 102-125; Marvel Comics Presents (1988) 1-8; Master Of Kung Fu: Bleeding Black (1990) 1",
+      "seriesId": 24265,
+      "issueNumber": "105"
+    },
+    {
+      "sourcePosition": 136,
+      "issueId": 70902,
+      "sourceKey": "136",
+      "title": "Master of Kung Fu (1974) #106",
+      "collectedIn": "Master Of Kung Fu (1974) 102-125; Marvel Comics Presents (1988) 1-8; Master Of Kung Fu: Bleeding Black (1990) 1",
+      "seriesId": 24265,
+      "issueNumber": "106"
+    },
+    {
+      "sourcePosition": 137,
+      "issueId": 70903,
+      "sourceKey": "137",
+      "title": "Master of Kung Fu (1974) #107",
+      "collectedIn": "Master Of Kung Fu (1974) 102-125; Marvel Comics Presents (1988) 1-8; Master Of Kung Fu: Bleeding Black (1990) 1",
+      "seriesId": 24265,
+      "issueNumber": "107"
+    },
+    {
+      "sourcePosition": 138,
+      "issueId": 70904,
+      "sourceKey": "138",
+      "title": "Master of Kung Fu (1974) #108",
+      "collectedIn": "Master Of Kung Fu (1974) 102-125; Marvel Comics Presents (1988) 1-8; Master Of Kung Fu: Bleeding Black (1990) 1",
+      "seriesId": 24265,
+      "issueNumber": "108"
+    },
+    {
+      "sourcePosition": 139,
+      "issueId": 70905,
+      "sourceKey": "139",
+      "title": "Master of Kung Fu (1974) #109",
+      "collectedIn": "Master Of Kung Fu (1974) 102-125; Marvel Comics Presents (1988) 1-8; Master Of Kung Fu: Bleeding Black (1990) 1",
+      "seriesId": 24265,
+      "issueNumber": "109"
+    },
+    {
+      "sourcePosition": 140,
+      "issueId": 70906,
+      "sourceKey": "140",
+      "title": "Master of Kung Fu (1974) #110",
+      "collectedIn": "Master Of Kung Fu (1974) 102-125; Marvel Comics Presents (1988) 1-8; Master Of Kung Fu: Bleeding Black (1990) 1",
+      "seriesId": 24265,
+      "issueNumber": "110"
+    },
+    {
+      "sourcePosition": 141,
+      "issueId": 70907,
+      "sourceKey": "141",
+      "title": "Master of Kung Fu (1974) #111",
+      "collectedIn": "Master Of Kung Fu (1974) 102-125; Marvel Comics Presents (1988) 1-8; Master Of Kung Fu: Bleeding Black (1990) 1",
+      "seriesId": 24265,
+      "issueNumber": "111"
+    },
+    {
+      "sourcePosition": 142,
+      "issueId": 70908,
+      "sourceKey": "142",
+      "title": "Master of Kung Fu (1974) #112",
+      "collectedIn": "Master Of Kung Fu (1974) 102-125; Marvel Comics Presents (1988) 1-8; Master Of Kung Fu: Bleeding Black (1990) 1",
+      "seriesId": 24265,
+      "issueNumber": "112"
+    },
+    {
+      "sourcePosition": 143,
+      "issueId": 70909,
+      "sourceKey": "143",
+      "title": "Master of Kung Fu (1974) #113",
+      "collectedIn": "Master Of Kung Fu (1974) 102-125; Marvel Comics Presents (1988) 1-8; Master Of Kung Fu: Bleeding Black (1990) 1",
+      "seriesId": 24265,
+      "issueNumber": "113"
+    },
+    {
+      "sourcePosition": 144,
+      "issueId": 70910,
+      "sourceKey": "144",
+      "title": "Master of Kung Fu (1974) #114",
+      "collectedIn": "Master Of Kung Fu (1974) 102-125; Marvel Comics Presents (1988) 1-8; Master Of Kung Fu: Bleeding Black (1990) 1",
+      "seriesId": 24265,
+      "issueNumber": "114"
+    },
+    {
+      "sourcePosition": 145,
+      "issueId": 70911,
+      "sourceKey": "145",
+      "title": "Master of Kung Fu (1974) #115",
+      "collectedIn": "Master Of Kung Fu (1974) 102-125; Marvel Comics Presents (1988) 1-8; Master Of Kung Fu: Bleeding Black (1990) 1",
+      "seriesId": 24265,
+      "issueNumber": "115"
+    },
+    {
+      "sourcePosition": 146,
+      "issueId": 70912,
+      "sourceKey": "146",
+      "title": "Master of Kung Fu (1974) #116",
+      "collectedIn": "Master Of Kung Fu (1974) 102-125; Marvel Comics Presents (1988) 1-8; Master Of Kung Fu: Bleeding Black (1990) 1",
+      "seriesId": 24265,
+      "issueNumber": "116"
+    },
+    {
+      "sourcePosition": 147,
+      "issueId": 70913,
+      "sourceKey": "147",
+      "title": "Master of Kung Fu (1974) #117",
+      "collectedIn": "Master Of Kung Fu (1974) 102-125; Marvel Comics Presents (1988) 1-8; Master Of Kung Fu: Bleeding Black (1990) 1",
+      "seriesId": 24265,
+      "issueNumber": "117"
+    },
+    {
+      "sourcePosition": 148,
+      "issueId": 70914,
+      "sourceKey": "148",
+      "title": "Master of Kung Fu (1974) #118",
+      "collectedIn": "Master Of Kung Fu (1974) 102-125; Marvel Comics Presents (1988) 1-8; Master Of Kung Fu: Bleeding Black (1990) 1",
+      "seriesId": 24265,
+      "issueNumber": "118"
+    },
+    {
+      "sourcePosition": 149,
+      "issueId": 70915,
+      "sourceKey": "149",
+      "title": "Master of Kung Fu (1974) #119",
+      "collectedIn": "Master Of Kung Fu (1974) 102-125; Marvel Comics Presents (1988) 1-8; Master Of Kung Fu: Bleeding Black (1990) 1",
+      "seriesId": 24265,
+      "issueNumber": "119"
+    },
+    {
+      "sourcePosition": 150,
+      "issueId": 70916,
+      "sourceKey": "150",
+      "title": "Master of Kung Fu (1974) #120",
+      "collectedIn": "Master Of Kung Fu (1974) 102-125; Marvel Comics Presents (1988) 1-8; Master Of Kung Fu: Bleeding Black (1990) 1",
+      "seriesId": 24265,
+      "issueNumber": "120"
+    },
+    {
+      "sourcePosition": 151,
+      "issueId": 70917,
+      "sourceKey": "151",
+      "title": "Master of Kung Fu (1974) #121",
+      "collectedIn": "Master Of Kung Fu (1974) 102-125; Marvel Comics Presents (1988) 1-8; Master Of Kung Fu: Bleeding Black (1990) 1",
+      "seriesId": 24265,
+      "issueNumber": "121"
+    },
+    {
+      "sourcePosition": 152,
+      "issueId": 70918,
+      "sourceKey": "152",
+      "title": "Master of Kung Fu (1974) #122",
+      "collectedIn": "Master Of Kung Fu (1974) 102-125; Marvel Comics Presents (1988) 1-8; Master Of Kung Fu: Bleeding Black (1990) 1",
+      "seriesId": 24265,
+      "issueNumber": "122"
+    },
+    {
+      "sourcePosition": 153,
+      "issueId": 70919,
+      "sourceKey": "153",
+      "title": "Master of Kung Fu (1974) #123",
+      "collectedIn": "Master Of Kung Fu (1974) 102-125; Marvel Comics Presents (1988) 1-8; Master Of Kung Fu: Bleeding Black (1990) 1",
+      "seriesId": 24265,
+      "issueNumber": "123"
+    },
+    {
+      "sourcePosition": 154,
+      "issueId": 70920,
+      "sourceKey": "154",
+      "title": "Master of Kung Fu (1974) #124",
+      "collectedIn": "Master Of Kung Fu (1974) 102-125; Marvel Comics Presents (1988) 1-8; Master Of Kung Fu: Bleeding Black (1990) 1",
+      "seriesId": 24265,
+      "issueNumber": "124"
+    },
+    {
+      "sourcePosition": 155,
+      "issueId": 70921,
+      "sourceKey": "155",
+      "title": "Master of Kung Fu (1974) #125",
+      "collectedIn": "Master Of Kung Fu (1974) 102-125; Marvel Comics Presents (1988) 1-8; Master Of Kung Fu: Bleeding Black (1990) 1",
+      "seriesId": 24265,
+      "issueNumber": "125"
+    },
+    {
+      "sourcePosition": 156,
+      "issueId": 10010,
+      "sourceKey": "156",
+      "title": "Marvel Comics Presents (1988) #1",
+      "collectedIn": "Master Of Kung Fu (1974) 102-125; Marvel Comics Presents (1988) 1-8; Master Of Kung Fu: Bleeding Black (1990) 1",
+      "seriesId": 2039,
+      "issueNumber": "1"
+    },
+    {
+      "sourcePosition": 157,
+      "issueId": 10097,
+      "sourceKey": "157",
+      "title": "Marvel Comics Presents (1988) #2",
+      "collectedIn": "Master Of Kung Fu (1974) 102-125; Marvel Comics Presents (1988) 1-8; Master Of Kung Fu: Bleeding Black (1990) 1",
+      "seriesId": 2039,
+      "issueNumber": "2"
+    },
+    {
+      "sourcePosition": 158,
+      "issueId": 10108,
+      "sourceKey": "158",
+      "title": "Marvel Comics Presents (1988) #3",
+      "collectedIn": "Master Of Kung Fu (1974) 102-125; Marvel Comics Presents (1988) 1-8; Master Of Kung Fu: Bleeding Black (1990) 1",
+      "seriesId": 2039,
+      "issueNumber": "3"
+    },
+    {
+      "sourcePosition": 159,
+      "issueId": 10119,
+      "sourceKey": "159",
+      "title": "Marvel Comics Presents (1988) #4",
+      "collectedIn": "Master Of Kung Fu (1974) 102-125; Marvel Comics Presents (1988) 1-8; Master Of Kung Fu: Bleeding Black (1990) 1",
+      "seriesId": 2039,
+      "issueNumber": "4"
+    },
+    {
+      "sourcePosition": 160,
+      "issueId": 10130,
+      "sourceKey": "160",
+      "title": "Marvel Comics Presents (1988) #5",
+      "collectedIn": "Master Of Kung Fu (1974) 102-125; Marvel Comics Presents (1988) 1-8; Master Of Kung Fu: Bleeding Black (1990) 1",
+      "seriesId": 2039,
+      "issueNumber": "5"
+    },
+    {
+      "sourcePosition": 161,
+      "issueId": 10141,
+      "sourceKey": "161",
+      "title": "Marvel Comics Presents (1988) #6",
+      "collectedIn": "Master Of Kung Fu (1974) 102-125; Marvel Comics Presents (1988) 1-8; Master Of Kung Fu: Bleeding Black (1990) 1",
+      "seriesId": 2039,
+      "issueNumber": "6"
+    },
+    {
+      "sourcePosition": 162,
+      "issueId": 10152,
+      "sourceKey": "162",
+      "title": "Marvel Comics Presents (1988) #7",
+      "collectedIn": "Master Of Kung Fu (1974) 102-125; Marvel Comics Presents (1988) 1-8; Master Of Kung Fu: Bleeding Black (1990) 1",
+      "seriesId": 2039,
+      "issueNumber": "7"
+    },
+    {
+      "sourcePosition": 163,
+      "issueId": 10163,
+      "sourceKey": "163",
+      "title": "Marvel Comics Presents (1988) #8",
+      "collectedIn": "Master Of Kung Fu (1974) 102-125; Marvel Comics Presents (1988) 1-8; Master Of Kung Fu: Bleeding Black (1990) 1",
+      "seriesId": 2039,
+      "issueNumber": "8"
+    },
+    {
+      "sourcePosition": 164,
+      "issueId": 70923,
+      "sourceKey": "164",
+      "title": "Master of Kung Fu: Bleeding Black (1990) #1",
+      "collectedIn": "Master Of Kung Fu (1974) 102-125; Marvel Comics Presents (1988) 1-8; Master Of Kung Fu: Bleeding Black (1990) 1",
+      "seriesId": 25873,
+      "issueNumber": "1"
+    },
+    {
+      "sourcePosition": 165,
+      "issueId": -1650929011,
+      "sourceKey": "165",
+      "title": "Shang-Chi: Master of Kung Fu (2002) #1",
+      "collectedIn": "Marvel Max Shang-Chi #1 To #6",
+      "gap": true,
+      "sourceIssueReference": "Shang-Chi: Master of Kung Fu (2002) #1",
+      "trackingIssue": "https://github.com/raymond-nassar/recap-page/issues/628"
+    },
+    {
+      "sourcePosition": 166,
+      "issueId": -1634151392,
+      "sourceKey": "166",
+      "title": "Shang-Chi: Master of Kung Fu (2002) #2",
+      "collectedIn": "Marvel Max Shang-Chi #1 To #6",
+      "gap": true,
+      "sourceIssueReference": "Shang-Chi: Master of Kung Fu (2002) #2",
+      "trackingIssue": "https://github.com/raymond-nassar/recap-page/issues/628"
+    },
+    {
+      "sourcePosition": 167,
+      "issueId": -1617373773,
+      "sourceKey": "167",
+      "title": "Shang-Chi: Master of Kung Fu (2002) #3",
+      "collectedIn": "Marvel Max Shang-Chi #1 To #6",
+      "gap": true,
+      "sourceIssueReference": "Shang-Chi: Master of Kung Fu (2002) #3",
+      "trackingIssue": "https://github.com/raymond-nassar/recap-page/issues/628"
+    },
+    {
+      "sourcePosition": 168,
+      "issueId": -1734817106,
+      "sourceKey": "168",
+      "title": "Shang-Chi: Master of Kung Fu (2002) #4",
+      "collectedIn": "Marvel Max Shang-Chi #1 To #6",
+      "gap": true,
+      "sourceIssueReference": "Shang-Chi: Master of Kung Fu (2002) #4",
+      "trackingIssue": "https://github.com/raymond-nassar/recap-page/issues/628"
+    },
+    {
+      "sourcePosition": 169,
+      "issueId": -1718039487,
+      "sourceKey": "169",
+      "title": "Shang-Chi: Master of Kung Fu (2002) #5",
+      "collectedIn": "Marvel Max Shang-Chi #1 To #6",
+      "gap": true,
+      "sourceIssueReference": "Shang-Chi: Master of Kung Fu (2002) #5",
+      "trackingIssue": "https://github.com/raymond-nassar/recap-page/issues/628"
+    },
+    {
+      "sourcePosition": 170,
+      "issueId": -1499783345,
+      "sourceKey": "170",
+      "title": "Shang-Chi: Master of Kung Fu (2002) #6",
+      "collectedIn": "Marvel Max Shang-Chi #1 To #6",
+      "gap": true,
+      "sourceIssueReference": "Shang-Chi: Master of Kung Fu (2002) #6",
+      "trackingIssue": "https://github.com/raymond-nassar/recap-page/issues/628"
+    },
+    {
+      "sourcePosition": 171,
+      "issueId": 4838,
+      "sourceKey": "171",
+      "title": "Heroes for Hire (2006) #1",
+      "collectedIn": "Heroes For Hire #1-5",
+      "seriesId": 1121,
+      "issueNumber": "1"
+    },
+    {
+      "sourcePosition": 172,
+      "issueId": 5123,
+      "sourceKey": "172",
+      "title": "Heroes for Hire (2006) #2",
+      "collectedIn": "Heroes For Hire #1-5",
+      "seriesId": 1121,
+      "issueNumber": "2"
+    },
+    {
+      "sourcePosition": 173,
+      "issueId": 5285,
+      "sourceKey": "173",
+      "title": "Heroes for Hire (2006) #3",
+      "collectedIn": "Heroes For Hire #1-5",
+      "seriesId": 1121,
+      "issueNumber": "3"
+    },
+    {
+      "sourcePosition": 174,
+      "issueId": 5595,
+      "sourceKey": "174",
+      "title": "Heroes for Hire (2006) #4",
+      "collectedIn": "Heroes For Hire #1-5",
+      "seriesId": 1121,
+      "issueNumber": "4"
+    },
+    {
+      "sourcePosition": 175,
+      "issueId": 5712,
+      "sourceKey": "175",
+      "title": "Heroes for Hire (2006) #5",
+      "collectedIn": "Heroes For Hire #1-5",
+      "seriesId": 1121,
+      "issueNumber": "5"
+    },
+    {
+      "sourcePosition": 176,
+      "issueId": 5848,
+      "sourceKey": "176",
+      "title": "Heroes for Hire (2006) #6",
+      "collectedIn": "Heroes For Hire #6-10",
+      "seriesId": 1121,
+      "issueNumber": "6"
+    },
+    {
+      "sourcePosition": 177,
+      "issueId": 6001,
+      "sourceKey": "177",
+      "title": "Heroes for Hire (2006) #7",
+      "collectedIn": "Heroes For Hire #6-10",
+      "seriesId": 1121,
+      "issueNumber": "7"
+    },
+    {
+      "sourcePosition": 178,
+      "issueId": 6187,
+      "sourceKey": "178",
+      "title": "Heroes for Hire (2006) #8",
+      "collectedIn": "Heroes For Hire #6-10",
+      "seriesId": 1121,
+      "issueNumber": "8"
+    },
+    {
+      "sourcePosition": 179,
+      "issueId": 6336,
+      "sourceKey": "179",
+      "title": "Heroes for Hire (2006) #9",
+      "collectedIn": "Heroes For Hire #6-10",
+      "seriesId": 1121,
+      "issueNumber": "9"
+    },
+    {
+      "sourcePosition": 180,
+      "issueId": 13474,
+      "sourceKey": "180",
+      "title": "Heroes for Hire (2006) #10",
+      "collectedIn": "Heroes For Hire #6-10",
+      "seriesId": 1121,
+      "issueNumber": "10"
+    },
+    {
+      "sourcePosition": 181,
+      "issueId": 15853,
+      "sourceKey": "181",
+      "title": "Heroes for Hire (2006) #11",
+      "collectedIn": "Heroes For Hire #11-15",
+      "seriesId": 1121,
+      "issueNumber": "11"
+    },
+    {
+      "sourcePosition": 182,
+      "issueId": 15963,
+      "sourceKey": "182",
+      "title": "Heroes for Hire (2006) #12",
+      "collectedIn": "Heroes For Hire #11-15",
+      "seriesId": 1121,
+      "issueNumber": "12"
+    },
+    {
+      "sourcePosition": 183,
+      "issueId": 16148,
+      "sourceKey": "183",
+      "title": "Heroes for Hire (2006) #13",
+      "collectedIn": "Heroes For Hire #11-15",
+      "seriesId": 1121,
+      "issueNumber": "13"
+    },
+    {
+      "sourcePosition": 184,
+      "issueId": 16515,
+      "sourceKey": "184",
+      "title": "Heroes for Hire (2006) #14",
+      "collectedIn": "Heroes For Hire #11-15",
+      "seriesId": 1121,
+      "issueNumber": "14"
+    },
+    {
+      "sourcePosition": 185,
+      "issueId": 16516,
+      "sourceKey": "185",
+      "title": "Heroes for Hire (2006) #15",
+      "collectedIn": "Heroes For Hire #11-15",
+      "seriesId": 1121,
+      "issueNumber": "15"
+    },
+    {
+      "sourcePosition": 186,
+      "issueId": 28594,
+      "sourceKey": "186",
+      "title": "Shang-Chi: Master of Kung Fu (2009) #1",
+      "collectedIn": "Shang-Chi: Master Of Kung Fu (2009) #1",
+      "seriesId": 9041,
+      "issueNumber": "1"
+    },
+    {
+      "sourcePosition": 187,
+      "issueId": 38488,
+      "sourceKey": "187",
+      "title": "Spider-Island: Deadly Hands of Kung Fu (2011) #1",
+      "collectedIn": "Spider-Island: Deadly Hands Of Kung-Fu #1 To #3",
+      "seriesId": 13879,
+      "issueNumber": "1"
+    },
+    {
+      "sourcePosition": 188,
+      "issueId": 38487,
+      "sourceKey": "188",
+      "title": "Spider-Island: Deadly Hands of Kung Fu (2011) #2",
+      "collectedIn": "Spider-Island: Deadly Hands Of Kung-Fu #1 To #3",
+      "seriesId": 13879,
+      "issueNumber": "2"
+    },
+    {
+      "sourcePosition": 189,
+      "issueId": 38484,
+      "sourceKey": "189",
+      "title": "Spider-Island: Deadly Hands of Kung Fu (2011) #3",
+      "collectedIn": "Spider-Island: Deadly Hands Of Kung-Fu #1 To #3",
+      "seriesId": 13879,
+      "issueNumber": "3"
+    },
+    {
+      "sourcePosition": 190,
+      "issueId": 29097,
+      "sourceKey": "190",
+      "title": "Secret Avengers (2010) #6",
+      "collectedIn": "Secret Avengers #6-12",
+      "seriesId": 9799,
+      "issueNumber": "6"
+    },
+    {
+      "sourcePosition": 191,
+      "issueId": 29098,
+      "sourceKey": "191",
+      "title": "Secret Avengers (2010) #7",
+      "collectedIn": "Secret Avengers #6-12",
+      "seriesId": 9799,
+      "issueNumber": "7"
+    },
+    {
+      "sourcePosition": 192,
+      "issueId": 29099,
+      "sourceKey": "192",
+      "title": "Secret Avengers (2010) #8",
+      "collectedIn": "Secret Avengers #6-12",
+      "seriesId": 9799,
+      "issueNumber": "8"
+    },
+    {
+      "sourcePosition": 193,
+      "issueId": 29100,
+      "sourceKey": "193",
+      "title": "Secret Avengers (2010) #9",
+      "collectedIn": "Secret Avengers #6-12",
+      "seriesId": 9799,
+      "issueNumber": "9"
+    },
+    {
+      "sourcePosition": 194,
+      "issueId": 29090,
+      "sourceKey": "194",
+      "title": "Secret Avengers (2010) #10",
+      "collectedIn": "Secret Avengers #6-12",
+      "seriesId": 9799,
+      "issueNumber": "10"
+    },
+    {
+      "sourcePosition": 195,
+      "issueId": 29091,
+      "sourceKey": "195",
+      "title": "Secret Avengers (2010) #11",
+      "collectedIn": "Secret Avengers #6-12",
+      "seriesId": 9799,
+      "issueNumber": "11"
+    },
+    {
+      "sourcePosition": 196,
+      "issueId": 29092,
+      "sourceKey": "196",
+      "title": "Secret Avengers (2010) #12",
+      "collectedIn": "Secret Avengers #6-12",
+      "seriesId": 9799,
+      "issueNumber": "12"
+    },
+    {
+      "sourcePosition": 197,
+      "issueId": 35160,
+      "sourceKey": "197",
+      "title": "Secret Avengers (2010) #16",
+      "collectedIn": "Secret Avengers 16-21",
+      "seriesId": 9799,
+      "issueNumber": "16"
+    },
+    {
+      "sourcePosition": 198,
+      "issueId": 37346,
+      "sourceKey": "198",
+      "title": "Secret Avengers (2010) #17",
+      "collectedIn": "Secret Avengers 16-21",
+      "seriesId": 9799,
+      "issueNumber": "17"
+    },
+    {
+      "sourcePosition": 199,
+      "issueId": 35140,
+      "sourceKey": "199",
+      "title": "Secret Avengers (2010) #18",
+      "collectedIn": "Secret Avengers 16-21",
+      "seriesId": 9799,
+      "issueNumber": "18"
+    },
+    {
+      "sourcePosition": 200,
+      "issueId": 35130,
+      "sourceKey": "200",
+      "title": "Secret Avengers (2010) #19",
+      "collectedIn": "Secret Avengers 16-21",
+      "seriesId": 9799,
+      "issueNumber": "19"
+    },
+    {
+      "sourcePosition": 201,
+      "issueId": 35128,
+      "sourceKey": "201",
+      "title": "Secret Avengers (2010) #20",
+      "collectedIn": "Secret Avengers 16-21",
+      "seriesId": 9799,
+      "issueNumber": "20"
+    },
+    {
+      "sourcePosition": 202,
+      "issueId": 35144,
+      "sourceKey": "202",
+      "title": "Secret Avengers (2010) #21",
+      "collectedIn": "Secret Avengers 16-21",
+      "seriesId": 9799,
+      "issueNumber": "21"
+    },
+    {
+      "sourcePosition": 203,
+      "issueId": 50533,
+      "sourceKey": "203",
+      "title": "Deadly Hands of Kung Fu (2014) #1",
+      "collectedIn": "Deadly Hands Of Kung Fu 1-4; Deadly Hands Of Kung Fu (1974) 1 (B Story), 32-33",
+      "seriesId": 18888,
+      "issueNumber": "1"
+    },
+    {
+      "sourcePosition": 204,
+      "issueId": 50534,
+      "sourceKey": "204",
+      "title": "Deadly Hands of Kung Fu (2014) #2",
+      "collectedIn": "Deadly Hands Of Kung Fu 1-4; Deadly Hands Of Kung Fu (1974) 1 (B Story), 32-33",
+      "seriesId": 18888,
+      "issueNumber": "2"
+    },
+    {
+      "sourcePosition": 205,
+      "issueId": 50535,
+      "sourceKey": "205",
+      "title": "Deadly Hands of Kung Fu (2014) #3",
+      "collectedIn": "Deadly Hands Of Kung Fu 1-4; Deadly Hands Of Kung Fu (1974) 1 (B Story), 32-33",
+      "seriesId": 18888,
+      "issueNumber": "3"
+    },
+    {
+      "sourcePosition": 206,
+      "issueId": 50536,
+      "sourceKey": "206",
+      "title": "Deadly Hands of Kung Fu (2014) #4",
+      "collectedIn": "Deadly Hands Of Kung Fu 1-4; Deadly Hands Of Kung Fu (1974) 1 (B Story), 32-33",
+      "seriesId": 18888,
+      "issueNumber": "4"
+    },
+    {
+      "sourcePosition": 210,
+      "issueId": 48745,
+      "sourceKey": "210",
+      "title": "Avengers World (2014) #1",
+      "collectedIn": "Avengers World 1-21, Avengers (2012) 34.1-34.2, Material From All-New Marvel Now! Point One",
+      "seriesId": 18398,
+      "issueNumber": "1"
+    },
+    {
+      "sourcePosition": 211,
+      "issueId": 48746,
+      "sourceKey": "211",
+      "title": "Avengers World (2014) #2",
+      "collectedIn": "Avengers World 1-21, Avengers (2012) 34.1-34.2, Material From All-New Marvel Now! Point One",
+      "seriesId": 18398,
+      "issueNumber": "2"
+    },
+    {
+      "sourcePosition": 212,
+      "issueId": 48747,
+      "sourceKey": "212",
+      "title": "Avengers World (2014) #3",
+      "collectedIn": "Avengers World 1-21, Avengers (2012) 34.1-34.2, Material From All-New Marvel Now! Point One",
+      "seriesId": 18398,
+      "issueNumber": "3"
+    },
+    {
+      "sourcePosition": 213,
+      "issueId": 48748,
+      "sourceKey": "213",
+      "title": "Avengers World (2014) #4",
+      "collectedIn": "Avengers World 1-21, Avengers (2012) 34.1-34.2, Material From All-New Marvel Now! Point One",
+      "seriesId": 18398,
+      "issueNumber": "4"
+    },
+    {
+      "sourcePosition": 214,
+      "issueId": 48749,
+      "sourceKey": "214",
+      "title": "Avengers World (2014) #5",
+      "collectedIn": "Avengers World 1-21, Avengers (2012) 34.1-34.2, Material From All-New Marvel Now! Point One",
+      "seriesId": 18398,
+      "issueNumber": "5"
+    },
+    {
+      "sourcePosition": 215,
+      "issueId": 50589,
+      "sourceKey": "215",
+      "title": "Avengers World (2014) #6",
+      "collectedIn": "Avengers World 1-21, Avengers (2012) 34.1-34.2, Material From All-New Marvel Now! Point One",
+      "seriesId": 18398,
+      "issueNumber": "6"
+    },
+    {
+      "sourcePosition": 216,
+      "issueId": 50590,
+      "sourceKey": "216",
+      "title": "Avengers World (2014) #7",
+      "collectedIn": "Avengers World 1-21, Avengers (2012) 34.1-34.2, Material From All-New Marvel Now! Point One",
+      "seriesId": 18398,
+      "issueNumber": "7"
+    },
+    {
+      "sourcePosition": 217,
+      "issueId": 50591,
+      "sourceKey": "217",
+      "title": "Avengers World (2014) #8",
+      "collectedIn": "Avengers World 1-21, Avengers (2012) 34.1-34.2, Material From All-New Marvel Now! Point One",
+      "seriesId": 18398,
+      "issueNumber": "8"
+    },
+    {
+      "sourcePosition": 218,
+      "issueId": 50592,
+      "sourceKey": "218",
+      "title": "Avengers World (2014) #9",
+      "collectedIn": "Avengers World 1-21, Avengers (2012) 34.1-34.2, Material From All-New Marvel Now! Point One",
+      "seriesId": 18398,
+      "issueNumber": "9"
+    },
+    {
+      "sourcePosition": 219,
+      "issueId": 50593,
+      "sourceKey": "219",
+      "title": "Avengers World (2014) #10",
+      "collectedIn": "Avengers World 1-21, Avengers (2012) 34.1-34.2, Material From All-New Marvel Now! Point One",
+      "seriesId": 18398,
+      "issueNumber": "10"
+    },
+    {
+      "sourcePosition": 220,
+      "issueId": 50594,
+      "sourceKey": "220",
+      "title": "Avengers World (2014) #11",
+      "collectedIn": "Avengers World 1-21, Avengers (2012) 34.1-34.2, Material From All-New Marvel Now! Point One",
+      "seriesId": 18398,
+      "issueNumber": "11"
+    },
+    {
+      "sourcePosition": 221,
+      "issueId": 50595,
+      "sourceKey": "221",
+      "title": "Avengers World (2014) #12",
+      "collectedIn": "Avengers World 1-21, Avengers (2012) 34.1-34.2, Material From All-New Marvel Now! Point One",
+      "seriesId": 18398,
+      "issueNumber": "12"
+    },
+    {
+      "sourcePosition": 222,
+      "issueId": 50596,
+      "sourceKey": "222",
+      "title": "Avengers World (2014) #13",
+      "collectedIn": "Avengers World 1-21, Avengers (2012) 34.1-34.2, Material From All-New Marvel Now! Point One",
+      "seriesId": 18398,
+      "issueNumber": "13"
+    },
+    {
+      "sourcePosition": 223,
+      "issueId": 50597,
+      "sourceKey": "223",
+      "title": "Avengers World (2014) #14",
+      "collectedIn": "Avengers World 1-21, Avengers (2012) 34.1-34.2, Material From All-New Marvel Now! Point One",
+      "seriesId": 18398,
+      "issueNumber": "14"
+    },
+    {
+      "sourcePosition": 224,
+      "issueId": 51063,
+      "sourceKey": "224",
+      "title": "Avengers World (2014) #15",
+      "collectedIn": "Avengers World 1-21, Avengers (2012) 34.1-34.2, Material From All-New Marvel Now! Point One",
+      "seriesId": 18398,
+      "issueNumber": "15"
+    },
+    {
+      "sourcePosition": 225,
+      "issueId": 51444,
+      "sourceKey": "225",
+      "title": "Avengers World (2014) #16",
+      "collectedIn": "Avengers World 1-21, Avengers (2012) 34.1-34.2, Material From All-New Marvel Now! Point One",
+      "seriesId": 18398,
+      "issueNumber": "16"
+    },
+    {
+      "sourcePosition": 226,
+      "issueId": 51445,
+      "sourceKey": "226",
+      "title": "Avengers World (2014) #17",
+      "collectedIn": "Avengers World 1-21, Avengers (2012) 34.1-34.2, Material From All-New Marvel Now! Point One",
+      "seriesId": 18398,
+      "issueNumber": "17"
+    },
+    {
+      "sourcePosition": 227,
+      "issueId": 51446,
+      "sourceKey": "227",
+      "title": "Avengers World (2014) #18",
+      "collectedIn": "Avengers World 1-21, Avengers (2012) 34.1-34.2, Material From All-New Marvel Now! Point One",
+      "seriesId": 18398,
+      "issueNumber": "18"
+    },
+    {
+      "sourcePosition": 228,
+      "issueId": 51447,
+      "sourceKey": "228",
+      "title": "Avengers World (2014) #19",
+      "collectedIn": "Avengers World 1-21, Avengers (2012) 34.1-34.2, Material From All-New Marvel Now! Point One",
+      "seriesId": 18398,
+      "issueNumber": "19"
+    },
+    {
+      "sourcePosition": 229,
+      "issueId": 51448,
+      "sourceKey": "229",
+      "title": "Avengers World (2014) #20",
+      "collectedIn": "Avengers World 1-21, Avengers (2012) 34.1-34.2, Material From All-New Marvel Now! Point One",
+      "seriesId": 18398,
+      "issueNumber": "20"
+    },
+    {
+      "sourcePosition": 230,
+      "issueId": 51449,
+      "sourceKey": "230",
+      "title": "Avengers World (2014) #21",
+      "collectedIn": "Avengers World 1-21, Avengers (2012) 34.1-34.2, Material From All-New Marvel Now! Point One",
+      "seriesId": 18398,
+      "issueNumber": "21"
+    },
+    {
+      "sourcePosition": 231,
+      "issueId": 50951,
+      "sourceKey": "231",
+      "title": "Avengers (2012) #34.1",
+      "collectedIn": "Avengers World 1-21, Avengers (2012) 34.1-34.2, Material From All-New Marvel Now! Point One",
+      "seriesId": 16452,
+      "issueNumber": "34.1"
+    },
+    {
+      "sourcePosition": 232,
+      "issueId": 51410,
+      "sourceKey": "232",
+      "title": "Avengers (2012) #34.2",
+      "collectedIn": "Avengers World 1-21, Avengers (2012) 34.1-34.2, Material From All-New Marvel Now! Point One",
+      "seriesId": 16452,
+      "issueNumber": "34.2"
+    },
+    {
+      "sourcePosition": 233,
+      "issueId": 52207,
+      "sourceKey": "233",
+      "title": "Master of Kung Fu (2015) #1",
+      "collectedIn": "Master Of Kung Fu 1-4, 5 Ronin 2",
+      "seriesId": 19580,
+      "issueNumber": "1"
+    },
+    {
+      "sourcePosition": 234,
+      "issueId": 52208,
+      "sourceKey": "234",
+      "title": "Master of Kung Fu (2015) #2",
+      "collectedIn": "Master Of Kung Fu 1-4, 5 Ronin 2",
+      "seriesId": 19580,
+      "issueNumber": "2"
+    },
+    {
+      "sourcePosition": 235,
+      "issueId": 52209,
+      "sourceKey": "235",
+      "title": "Master of Kung Fu (2015) #3",
+      "collectedIn": "Master Of Kung Fu 1-4, 5 Ronin 2",
+      "seriesId": 19580,
+      "issueNumber": "3"
+    },
+    {
+      "sourcePosition": 236,
+      "issueId": 52210,
+      "sourceKey": "236",
+      "title": "Master of Kung Fu (2015) #4",
+      "collectedIn": "Master Of Kung Fu 1-4, 5 Ronin 2",
+      "seriesId": 19580,
+      "issueNumber": "4"
+    },
+    {
+      "sourcePosition": 237,
+      "issueId": 36365,
+      "sourceKey": "237",
+      "title": "5 Ronin (2010) #2",
+      "collectedIn": "Master Of Kung Fu 1-4, 5 Ronin 2",
+      "seriesId": 12429,
+      "issueNumber": "2"
+    },
+    {
+      "sourcePosition": 238,
+      "issueId": 56095,
+      "sourceKey": "238",
+      "title": "The Totally Awesome Hulk (2015) #13",
+      "collectedIn": "Totally Awesome Hulk #13-18",
+      "seriesId": 20614,
+      "issueNumber": "13"
+    },
+    {
+      "sourcePosition": 239,
+      "issueId": 56096,
+      "sourceKey": "239",
+      "title": "The Totally Awesome Hulk (2015) #14",
+      "collectedIn": "Totally Awesome Hulk #13-18",
+      "seriesId": 20614,
+      "issueNumber": "14"
+    },
+    {
+      "sourcePosition": 240,
+      "issueId": 56097,
+      "sourceKey": "240",
+      "title": "The Totally Awesome Hulk (2015) #15",
+      "collectedIn": "Totally Awesome Hulk #13-18",
+      "seriesId": 20614,
+      "issueNumber": "15"
+    },
+    {
+      "sourcePosition": 241,
+      "issueId": 56098,
+      "sourceKey": "241",
+      "title": "The Totally Awesome Hulk (2015) #16",
+      "collectedIn": "Totally Awesome Hulk #13-18",
+      "seriesId": 20614,
+      "issueNumber": "16"
+    },
+    {
+      "sourcePosition": 242,
+      "issueId": 60847,
+      "sourceKey": "242",
+      "title": "The Totally Awesome Hulk (2015) #17",
+      "collectedIn": "Totally Awesome Hulk #13-18",
+      "seriesId": 20614,
+      "issueNumber": "17"
+    },
+    {
+      "sourcePosition": 243,
+      "issueId": 60848,
+      "sourceKey": "243",
+      "title": "The Totally Awesome Hulk (2015) #18",
+      "collectedIn": "Totally Awesome Hulk #13-18",
+      "seriesId": 20614,
+      "issueNumber": "18"
+    },
+    {
+      "sourcePosition": 244,
+      "issueId": 64282,
+      "sourceKey": "244",
+      "title": "Iron Fist (2017) #6",
+      "collectedIn": "Iron Fist (2017) #6-7, #73-77 (corrected collection; source prints #72-76)",
+      "seriesId": 22993,
+      "issueNumber": "6"
+    },
+    {
+      "sourcePosition": 245,
+      "issueId": 64601,
+      "sourceKey": "245",
+      "title": "Iron Fist (2017) #7",
+      "collectedIn": "Iron Fist (2017) #6-7, #73-77 (corrected collection; source prints #72-76)",
+      "seriesId": 22993,
+      "issueNumber": "7"
+    },
+    {
+      "sourcePosition": 246,
+      "issueId": 64770,
+      "sourceKey": "246",
+      "title": "Iron Fist (2017) #73",
+      "collectedIn": "Iron Fist (2017) #6-7, #73-77 (corrected collection; source prints #72-76)",
+      "seriesId": 22993,
+      "issueNumber": "73"
+    },
+    {
+      "sourcePosition": 247,
+      "issueId": 65081,
+      "sourceKey": "247",
+      "title": "Iron Fist (2017) #74",
+      "collectedIn": "Iron Fist (2017) #6-7, #73-77 (corrected collection; source prints #72-76)",
+      "seriesId": 22993,
+      "issueNumber": "74"
+    },
+    {
+      "sourcePosition": 248,
+      "issueId": 65289,
+      "sourceKey": "248",
+      "title": "Iron Fist (2017) #75",
+      "collectedIn": "Iron Fist (2017) #6-7, #73-77 (corrected collection; source prints #72-76)",
+      "seriesId": 22993,
+      "issueNumber": "75"
+    },
+    {
+      "sourcePosition": 249,
+      "issueId": 65576,
+      "sourceKey": "249",
+      "title": "Iron Fist (2017) #76",
+      "collectedIn": "Iron Fist (2017) #6-7, #73-77 (corrected collection; source prints #72-76)",
+      "seriesId": 22993,
+      "issueNumber": "76"
+    },
+    {
+      "sourcePosition": 250,
+      "issueId": 66103,
+      "sourceKey": "250",
+      "title": "Iron Fist (2017) #77",
+      "collectedIn": "Iron Fist (2017) #6-7, #73-77 (corrected collection; source prints #72-76)",
+      "seriesId": 22993,
+      "issueNumber": "77"
+    },
+    {
+      "sourcePosition": 251,
+      "issueId": 65085,
+      "sourceKey": "251",
+      "title": "Master of Kung Fu (2017) #126",
+      "collectedIn": "Master Of Kung Fu (2017) #126",
+      "seriesId": 23675,
+      "issueNumber": "126"
+    },
+    {
+      "sourcePosition": 252,
+      "issueId": 66683,
+      "sourceKey": "252",
+      "title": "Domino (2018) #1",
+      "collectedIn": "Domino 1-5",
+      "seriesId": 24137,
+      "issueNumber": "1"
+    },
+    {
+      "sourcePosition": 253,
+      "issueId": 67335,
+      "sourceKey": "253",
+      "title": "Domino (2018) #2",
+      "collectedIn": "Domino 1-5",
+      "seriesId": 24137,
+      "issueNumber": "2"
+    },
+    {
+      "sourcePosition": 254,
+      "issueId": 68329,
+      "sourceKey": "254",
+      "title": "Domino (2018) #3",
+      "collectedIn": "Domino 1-5",
+      "seriesId": 24137,
+      "issueNumber": "3"
+    },
+    {
+      "sourcePosition": 255,
+      "issueId": 68331,
+      "sourceKey": "255",
+      "title": "Domino (2018) #4",
+      "collectedIn": "Domino 1-5",
+      "seriesId": 24137,
+      "issueNumber": "4"
+    },
+    {
+      "sourcePosition": 256,
+      "issueId": 68332,
+      "sourceKey": "256",
+      "title": "Domino (2018) #5",
+      "collectedIn": "Domino 1-5",
+      "seriesId": 24137,
+      "issueNumber": "5"
+    },
+    {
+      "sourcePosition": 257,
+      "issueId": 76615,
+      "sourceKey": "257",
+      "title": "War of the Realms: New Agents of Atlas (2019) #1",
+      "collectedIn": "New Agents of Atlas #1 to #4",
+      "seriesId": 27505,
+      "issueNumber": "1"
+    },
+    {
+      "sourcePosition": 258,
+      "issueId": 76616,
+      "sourceKey": "258",
+      "title": "War of the Realms: New Agents of Atlas (2019) #2",
+      "collectedIn": "New Agents of Atlas #1 to #4",
+      "seriesId": 27505,
+      "issueNumber": "2"
+    },
+    {
+      "sourcePosition": 259,
+      "issueId": 77259,
+      "sourceKey": "259",
+      "title": "War of the Realms: New Agents of Atlas (2019) #3",
+      "collectedIn": "New Agents of Atlas #1 to #4",
+      "seriesId": 27505,
+      "issueNumber": "3"
+    },
+    {
+      "sourcePosition": 260,
+      "issueId": 77260,
+      "sourceKey": "260",
+      "title": "War of the Realms: New Agents of Atlas (2019) #4",
+      "collectedIn": "New Agents of Atlas #1 to #4",
+      "seriesId": 27505,
+      "issueNumber": "4"
+    },
+    {
+      "sourcePosition": 261,
+      "issueId": 77001,
+      "sourceKey": "261",
+      "title": "Agents of Atlas (2019) #1",
+      "collectedIn": "Agents of Atlas (2019) #1 to #5",
+      "seriesId": 27624,
+      "issueNumber": "1"
+    },
+    {
+      "sourcePosition": 262,
+      "issueId": 77002,
+      "sourceKey": "262",
+      "title": "Agents of Atlas (2019) #2",
+      "collectedIn": "Agents of Atlas (2019) #1 to #5",
+      "seriesId": 27624,
+      "issueNumber": "2"
+    },
+    {
+      "sourcePosition": 263,
+      "issueId": 77003,
+      "sourceKey": "263",
+      "title": "Agents of Atlas (2019) #3",
+      "collectedIn": "Agents of Atlas (2019) #1 to #5",
+      "seriesId": 27624,
+      "issueNumber": "3"
+    },
+    {
+      "sourcePosition": 264,
+      "issueId": 77004,
+      "sourceKey": "264",
+      "title": "Agents of Atlas (2019) #4",
+      "collectedIn": "Agents of Atlas (2019) #1 to #5",
+      "seriesId": 27624,
+      "issueNumber": "4"
+    },
+    {
+      "sourcePosition": 265,
+      "issueId": 77005,
+      "sourceKey": "265",
+      "title": "Agents of Atlas (2019) #5",
+      "collectedIn": "Agents of Atlas (2019) #1 to #5",
+      "seriesId": 27624,
+      "issueNumber": "5"
+    },
+    {
+      "sourcePosition": 266,
+      "issueId": 77665,
+      "sourceKey": "266",
+      "title": "Sword Master (2019) #1",
+      "collectedIn": "Sword Master (2019) #1 to #6",
+      "seriesId": 27779,
+      "issueNumber": "1"
+    },
+    {
+      "sourcePosition": 267,
+      "issueId": 78431,
+      "sourceKey": "267",
+      "title": "Sword Master (2019) #2",
+      "collectedIn": "Sword Master (2019) #1 to #6",
+      "seriesId": 27779,
+      "issueNumber": "2"
+    },
+    {
+      "sourcePosition": 268,
+      "issueId": 78932,
+      "sourceKey": "268",
+      "title": "Sword Master (2019) #3",
+      "collectedIn": "Sword Master (2019) #1 to #6",
+      "seriesId": 27779,
+      "issueNumber": "3"
+    },
+    {
+      "sourcePosition": 269,
+      "issueId": 82435,
+      "sourceKey": "269",
+      "title": "Sword Master (2019) #4",
+      "collectedIn": "Sword Master (2019) #1 to #6",
+      "seriesId": 27779,
+      "issueNumber": "4"
+    },
+    {
+      "sourcePosition": 270,
+      "issueId": 83235,
+      "sourceKey": "270",
+      "title": "Sword Master (2019) #5",
+      "collectedIn": "Sword Master (2019) #1 to #6",
+      "seriesId": 27779,
+      "issueNumber": "5"
+    },
+    {
+      "sourcePosition": 271,
+      "issueId": 83520,
+      "sourceKey": "271",
+      "title": "Sword Master (2019) #6",
+      "collectedIn": "Sword Master (2019) #1 to #6",
+      "seriesId": 27779,
+      "issueNumber": "6"
+    },
+    {
+      "sourcePosition": 272,
+      "issueId": 84410,
+      "sourceKey": "272",
+      "title": "Shang-Chi (2020) #1",
+      "collectedIn": "Shang-Chi (2020) #1 to #5",
+      "seriesId": 29714,
+      "issueNumber": "1"
+    },
+    {
+      "sourcePosition": 273,
+      "issueId": 84411,
+      "sourceKey": "273",
+      "title": "Shang-Chi (2020) #2",
+      "collectedIn": "Shang-Chi (2020) #1 to #5",
+      "seriesId": 29714,
+      "issueNumber": "2"
+    },
+    {
+      "sourcePosition": 274,
+      "issueId": 84412,
+      "sourceKey": "274",
+      "title": "Shang-Chi (2020) #3",
+      "collectedIn": "Shang-Chi (2020) #1 to #5",
+      "seriesId": 29714,
+      "issueNumber": "3"
+    },
+    {
+      "sourcePosition": 275,
+      "issueId": 84413,
+      "sourceKey": "275",
+      "title": "Shang-Chi (2020) #4",
+      "collectedIn": "Shang-Chi (2020) #1 to #5",
+      "seriesId": 29714,
+      "issueNumber": "4"
+    },
+    {
+      "sourcePosition": 276,
+      "issueId": 84414,
+      "sourceKey": "276",
+      "title": "Shang-Chi (2020) #5",
+      "collectedIn": "Shang-Chi (2020) #1 to #5",
+      "seriesId": 29714,
+      "issueNumber": "5"
+    },
+    {
+      "sourcePosition": 277,
+      "issueId": 83989,
+      "sourceKey": "277",
+      "title": "Atlantis Attacks (2020) #1",
+      "collectedIn": "Atlantis Attacks (2020) #1 to #5",
+      "seriesId": 29600,
+      "issueNumber": "1"
+    },
+    {
+      "sourcePosition": 278,
+      "issueId": 83993,
+      "sourceKey": "278",
+      "title": "Atlantis Attacks (2020) #2",
+      "collectedIn": "Atlantis Attacks (2020) #1 to #5",
+      "seriesId": 29600,
+      "issueNumber": "2"
+    },
+    {
+      "sourcePosition": 279,
+      "issueId": 83994,
+      "sourceKey": "279",
+      "title": "Atlantis Attacks (2020) #3",
+      "collectedIn": "Atlantis Attacks (2020) #1 to #5",
+      "seriesId": 29600,
+      "issueNumber": "3"
+    },
+    {
+      "sourcePosition": 280,
+      "issueId": 83995,
+      "sourceKey": "280",
+      "title": "Atlantis Attacks (2020) #4",
+      "collectedIn": "Atlantis Attacks (2020) #1 to #5",
+      "seriesId": 29600,
+      "issueNumber": "4"
+    },
+    {
+      "sourcePosition": 281,
+      "issueId": 83996,
+      "sourceKey": "281",
+      "title": "Atlantis Attacks (2020) #5",
+      "collectedIn": "Atlantis Attacks (2020) #1 to #5",
+      "seriesId": 29600,
+      "issueNumber": "5"
+    },
+    {
+      "sourcePosition": 282,
+      "issueId": 92003,
+      "sourceKey": "282",
+      "title": "The Legend Of Shang-Chi (2021) #1",
+      "collectedIn": "The Legend of Shang-Chi",
+      "seriesId": 31455,
+      "issueNumber": "1"
+    },
+    {
+      "sourcePosition": 283,
+      "issueId": 93327,
+      "sourceKey": "283",
+      "title": "Shang-Chi (2021) #1",
+      "collectedIn": "Shang-Chi (2021) #1 to #6",
+      "seriesId": 31902,
+      "issueNumber": "1"
+    },
+    {
+      "sourcePosition": 284,
+      "issueId": 93328,
+      "sourceKey": "284",
+      "title": "Shang-Chi (2021) #2",
+      "collectedIn": "Shang-Chi (2021) #1 to #6",
+      "seriesId": 31902,
+      "issueNumber": "2"
+    },
+    {
+      "sourcePosition": 285,
+      "issueId": 93329,
+      "sourceKey": "285",
+      "title": "Shang-Chi (2021) #3",
+      "collectedIn": "Shang-Chi (2021) #1 to #6",
+      "seriesId": 31902,
+      "issueNumber": "3"
+    },
+    {
+      "sourcePosition": 286,
+      "issueId": 93330,
+      "sourceKey": "286",
+      "title": "Shang-Chi (2021) #4",
+      "collectedIn": "Shang-Chi (2021) #1 to #6",
+      "seriesId": 31902,
+      "issueNumber": "4"
+    },
+    {
+      "sourcePosition": 287,
+      "issueId": 93331,
+      "sourceKey": "287",
+      "title": "Shang-Chi (2021) #5",
+      "collectedIn": "Shang-Chi (2021) #1 to #6",
+      "seriesId": 31902,
+      "issueNumber": "5"
+    },
+    {
+      "sourcePosition": 288,
+      "issueId": 93332,
+      "sourceKey": "288",
+      "title": "Shang-Chi (2021) #6",
+      "collectedIn": "Shang-Chi (2021) #1 to #6",
+      "seriesId": 31902,
+      "issueNumber": "6"
+    },
+    {
+      "sourcePosition": 289,
+      "issueId": 93333,
+      "sourceKey": "289",
+      "title": "Shang-Chi (2021) #7",
+      "collectedIn": "Shang-Chi (2021) #7 to #12, Marvel’s Voices: Identity (2021) #1 (Shang-Chi story)",
+      "seriesId": 31902,
+      "issueNumber": "7"
+    },
+    {
+      "sourcePosition": 290,
+      "issueId": 93334,
+      "sourceKey": "290",
+      "title": "Shang-Chi (2021) #8",
+      "collectedIn": "Shang-Chi (2021) #7 to #12, Marvel’s Voices: Identity (2021) #1 (Shang-Chi story)",
+      "seriesId": 31902,
+      "issueNumber": "8"
+    },
+    {
+      "sourcePosition": 291,
+      "issueId": 93335,
+      "sourceKey": "291",
+      "title": "Shang-Chi (2021) #9",
+      "collectedIn": "Shang-Chi (2021) #7 to #12, Marvel’s Voices: Identity (2021) #1 (Shang-Chi story)",
+      "seriesId": 31902,
+      "issueNumber": "9"
+    },
+    {
+      "sourcePosition": 292,
+      "issueId": 93336,
+      "sourceKey": "292",
+      "title": "Shang-Chi (2021) #10",
+      "collectedIn": "Shang-Chi (2021) #7 to #12, Marvel’s Voices: Identity (2021) #1 (Shang-Chi story)",
+      "seriesId": 31902,
+      "issueNumber": "10"
+    },
+    {
+      "sourcePosition": 293,
+      "issueId": 98696,
+      "sourceKey": "293",
+      "title": "Shang-Chi (2021) #11",
+      "collectedIn": "Shang-Chi (2021) #7 to #12, Marvel’s Voices: Identity (2021) #1 (Shang-Chi story)",
+      "seriesId": 31902,
+      "issueNumber": "11"
+    },
+    {
+      "sourcePosition": 294,
+      "issueId": 98697,
+      "sourceKey": "294",
+      "title": "Shang-Chi (2021) #12",
+      "collectedIn": "Shang-Chi (2021) #7 to #12, Marvel’s Voices: Identity (2021) #1 (Shang-Chi story)",
+      "seriesId": 31902,
+      "issueNumber": "12"
+    },
+    {
+      "sourcePosition": 295,
+      "issueId": 95679,
+      "sourceKey": "295",
+      "title": "Marvel's Voices: Identity (2021) #1",
+      "collectedIn": "Shang-Chi (2021) #7 to #12, Marvel’s Voices: Identity (2021) #1 (Shang-Chi story)",
+      "seriesId": 32837,
+      "issueNumber": "1"
+    },
+    {
+      "sourcePosition": 296,
+      "issueId": 103519,
+      "sourceKey": "296",
+      "title": "Shang-Chi and the Ten Rings (2022) #1",
+      "collectedIn": "Shang-Chi & The Ten Rings #1 to #6, Shang-Chi: Master of the Ten Rings #1",
+      "seriesId": 35631,
+      "issueNumber": "1"
+    },
+    {
+      "sourcePosition": 297,
+      "issueId": 103520,
+      "sourceKey": "297",
+      "title": "Shang-Chi and the Ten Rings (2022) #2",
+      "collectedIn": "Shang-Chi & The Ten Rings #1 to #6, Shang-Chi: Master of the Ten Rings #1",
+      "seriesId": 35631,
+      "issueNumber": "2"
+    },
+    {
+      "sourcePosition": 298,
+      "issueId": 103521,
+      "sourceKey": "298",
+      "title": "Shang-Chi and the Ten Rings (2022) #3",
+      "collectedIn": "Shang-Chi & The Ten Rings #1 to #6, Shang-Chi: Master of the Ten Rings #1",
+      "seriesId": 35631,
+      "issueNumber": "3"
+    },
+    {
+      "sourcePosition": 299,
+      "issueId": 103522,
+      "sourceKey": "299",
+      "title": "Shang-Chi and the Ten Rings (2022) #4",
+      "collectedIn": "Shang-Chi & The Ten Rings #1 to #6, Shang-Chi: Master of the Ten Rings #1",
+      "seriesId": 35631,
+      "issueNumber": "4"
+    },
+    {
+      "sourcePosition": 300,
+      "issueId": 103523,
+      "sourceKey": "300",
+      "title": "Shang-Chi and the Ten Rings (2022) #5",
+      "collectedIn": "Shang-Chi & The Ten Rings #1 to #6, Shang-Chi: Master of the Ten Rings #1",
+      "seriesId": 35631,
+      "issueNumber": "5"
+    },
+    {
+      "sourcePosition": 301,
+      "issueId": 103524,
+      "sourceKey": "301",
+      "title": "Shang-Chi and the Ten Rings (2022) #6",
+      "collectedIn": "Shang-Chi & The Ten Rings #1 to #6, Shang-Chi: Master of the Ten Rings #1",
+      "seriesId": 35631,
+      "issueNumber": "6"
+    },
+    {
+      "sourcePosition": 302,
+      "issueId": 103637,
+      "sourceKey": "302",
+      "title": "Shang-Chi: Master Of The Ten Rings (2023) #1",
+      "collectedIn": "Shang-Chi & The Ten Rings #1 to #6, Shang-Chi: Master of the Ten Rings #1",
+      "seriesId": 35648,
+      "issueNumber": "1"
+    }
+  ]
+}
