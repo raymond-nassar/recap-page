@@ -1103,8 +1103,9 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // Kamala adds five distinct original-edition gaps without guessing provider identities.
   // Nova adds two distinct published-original source positions. Ultimate Spider-Man adds one
   // unresolved Super Special and eight known-ID detail refusals in a newly affected guide.
-  assert.equal(claimed, 1077, 'the payload placeholder total moved; re-derive the figures in the record');
-  assert.equal(placeholders, 1077, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
+  // Shang-Chi adds eight distinct provider-original gaps.
+  assert.equal(claimed, 1085, 'the payload placeholder total moved; re-derive the figures in the record');
+  assert.equal(placeholders, 1085, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
   assert.equal(empty, 225);
   assert.equal(affected, 21);
 });
@@ -1345,7 +1346,8 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // Nova contributes two more distinct provider-ID-free source-position placeholders. Ultimate
   // Spider-Man adds its distinct Super Special gap, while all eight known-ID refusals share IDs
   // already counted in other guides.
-  assert.equal(refused.length, 1307);
+  // Shang-Chi adds eight distinct unresolved identities, not availability claims.
+  assert.equal(refused.length, 1315);
   const infinity = JSON.parse(readFileSync(join(dataDir,
     'marvels_infinity_saga_gauntlet_wars_crusade_reading_order.json'), 'utf8'));
   assert.equal(infinity.items.filter((item) => item.detailsRefused && item.issueId > 0).length, 11);

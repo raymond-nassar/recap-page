@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-29T20:42:37.101Z",
+  "generatedAt": "2026-09-30T00:36:53.656Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -2273,6 +2273,47 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-09-17T08:09:16.051Z"
+    },
+    {
+      "id": "shang-chi-master-of-kung-fu-reading-order",
+      "file": "shang_chi_master_of_kung_fu_reading_order.json",
+      "name": "Shang-Chi / Master of Kung Fu",
+      "description": "Follow Shang-Chi's original martial-arts comics, team appearances and later Ten Rings stories in Comic Book Herald's selected reading order.",
+      "type": "character-run",
+      "depth": "partial",
+      "spotlightKind": "other",
+      "count": 298,
+      "placeholderCount": 8,
+      "emptyRecordCount": 0,
+      "collections": 41,
+      "characters": [
+        "Shang-Chi",
+        "Master of Kung Fu",
+        "Iron Fist",
+        "Heroes for Hire",
+        "Agents of Atlas"
+      ],
+      "keywords": [
+        "Shang-Chi",
+        "Master of Kung Fu",
+        "MAX",
+        "Ten Rings",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 67118,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/5ab3f7d4375c7",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/shang-chi-master-of-kung-fu-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-09-30T00:36:53.656Z"
     },
     {
       "id": "thunderbolts-reading-order",

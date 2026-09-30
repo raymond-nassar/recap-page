@@ -91,6 +91,7 @@ test('popularity sorting keeps the ranked stories first and the rest in their cu
     'Vision',
     'Emma Frost',
     'Doctor Octopus / Otto Octavius',
+    'Shang-Chi / Master of Kung Fu',
     'Thunderbolts',
     'Nebula',
     'Hawkeye (Clint Barton and Kate Bishop)',

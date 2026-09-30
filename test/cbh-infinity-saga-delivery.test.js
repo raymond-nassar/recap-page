@@ -199,7 +199,8 @@ test('Infinity Saga admission and relationship review stay current under Across 
   assert.equal(report.comparisonCount, 191);
   const current = await buildReportForMapping(mappingPath, [], {
     excludedOrderIds: ['hawkeye-reading-order', 'marvel-zombies-reading-order',
-      'ms-marvel-kamala-khan-reading-order', 'nova-reading-order', 'ultimate-spider-man-reading-order', 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide'],
+      'ms-marvel-kamala-khan-reading-order', 'nova-reading-order', 'ultimate-spider-man-reading-order', 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide',
+      'shang-chi-master-of-kung-fu-reading-order'],
   });
   assert.deepEqual(current, report);
   assert.equal(mapping.relationshipReview?.approvalDigest,
@@ -208,6 +209,7 @@ test('Infinity Saga admission and relationship review stay current under Across 
     packet, mapping, report, currentLibraryDigest: current.libraryDigest,
     expectedOrderIds: manifest.lists.filter((row) =>
       row.id !== id && row.id !== 'hawkeye-reading-order'
+      && row.id !== 'shang-chi-master-of-kung-fu-reading-order'
       && row.id !== 'marvel-zombies-reading-order'
       && row.id !== 'ms-marvel-kamala-khan-reading-order'
       && row.id !== 'nova-reading-order' && row.id !== 'ultimate-spider-man-reading-order' && row.id !== 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide').map((row) => row.id),
@@ -221,6 +223,7 @@ test('Infinity Saga authoring rejects a pending in-memory mapping', () => {
     packet, mapping: pending, report, currentLibraryDigest: report.libraryDigest,
     expectedOrderIds: manifest.lists.filter((row) =>
       row.id !== id && row.id !== 'hawkeye-reading-order'
+      && row.id !== 'shang-chi-master-of-kung-fu-reading-order'
       && row.id !== 'marvel-zombies-reading-order'
       && row.id !== 'ms-marvel-kamala-khan-reading-order'
       && row.id !== 'nova-reading-order' && row.id !== 'ultimate-spider-man-reading-order' && row.id !== 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide').map((row) => row.id),
@@ -258,7 +261,7 @@ test('Infinity Saga pinned payload and catalog preserve Storylines discovery and
   assert.equal(entry.source, ledger.sourceUrl);
   assert.equal(catalog.lists.filter((row) => row.type === 'event').length, 188);
   assert.equal(catalog.lists.filter((row) => row.type === 'era').length, 10);
-  assert.equal(catalog.lists.filter((row) => row.type === 'character-run').length, 66);
+  assert.equal(catalog.lists.filter((row) => row.type === 'character-run').length, 67);
   const normalized = parseCatalog(catalog);
   const storylines = shelfStories(groupCatalog(normalized.lists), 'lines');
   const acrossEras = decadeSections(storylines).find((section) => section.key === 'across-eras');

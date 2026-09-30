@@ -118,7 +118,7 @@ test('Falcon approval preserves every source-manifest order in its reviewed libr
   const report = await readJson(`scripts/data/cbh-overlaps/${id}.json`);
   const manifest = await readJson('src/data/curated-lists.json');
   const current = await buildReportForMapping(
-    `scripts/data/cbh-mappings/${id}.json`, [], { ...await historicalAgathaLibrarySnapshot(), excludedOrderIds: ['donny-cates-marvel-universe-reading-order-2017', 'the-vision-reading-order', 'emma-frost-reading-order', 'doctor-octopus-otto-octavius-reading-order', 'shadow-king-reading-order', 'thunderbolts-reading-order', 'nebula-reading-order', 'hope-summers-reading-order', 'x-23-reading-order', 'ms-marvel-kamala-khan-reading-order', 'marvel-zombies-reading-order', 'hawkeye-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order', 'nova-reading-order', 'ultimate-spider-man-reading-order', 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide'] },
+    `scripts/data/cbh-mappings/${id}.json`, [], { ...await historicalAgathaLibrarySnapshot(), excludedOrderIds: ['donny-cates-marvel-universe-reading-order-2017', 'the-vision-reading-order', 'emma-frost-reading-order', 'doctor-octopus-otto-octavius-reading-order', 'shadow-king-reading-order', 'thunderbolts-reading-order', 'nebula-reading-order', 'hope-summers-reading-order', 'x-23-reading-order', 'ms-marvel-kamala-khan-reading-order', 'marvel-zombies-reading-order', 'hawkeye-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order', 'nova-reading-order', 'ultimate-spider-man-reading-order', 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide', 'shang-chi-master-of-kung-fu-reading-order'] },
 
   );
   assert.doesNotThrow(() => validateFrozenPacket(packet));
@@ -129,9 +129,9 @@ test('Falcon approval preserves every source-manifest order in its reviewed libr
   assert.deepEqual(current.comparisons, report.comparisons);
   assert.equal(current.libraryDigest, report.libraryDigest);
   assert.deepEqual(new Set(report.comparisons.map((row) => row.orderId)),
-    new Set(manifest.lists.filter((row) => row.id !== id && row.id !== 'nova-reading-order' && row.id !== 'ultimate-spider-man-reading-order' && row.id !== 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide'
+    new Set(manifest.lists.filter((row) => row.id !== 'shang-chi-master-of-kung-fu-reading-order' && row.id !== id && row.id !== 'nova-reading-order' && row.id !== 'ultimate-spider-man-reading-order' && row.id !== 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide'
       && row.id !== 'donny-cates-marvel-universe-reading-order-2017' && row.id !== 'the-vision-reading-order' && row.id !== 'emma-frost-reading-order' && row.id !== 'doctor-octopus-otto-octavius-reading-order' && row.id !== 'shadow-king-reading-order' && !['thunderbolts-reading-order', 'nebula-reading-order', 'hope-summers-reading-order', 'x-23-reading-order', 'ms-marvel-kamala-khan-reading-order', 'marvel-zombies-reading-order', 'hawkeye-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order'].includes(row.id)).map((row) => row.id)));
-  assert.equal(report.comparisonCount, manifest.lists.length - 18);
+  assert.equal(report.comparisonCount, manifest.lists.length - 19);
 
   assert.ok(report.comparisons.every((row) => row.relationship !== 'exact'));
   assert.equal(mapping.relationshipReview.dispositions.length, report.comparisonCount);

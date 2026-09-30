@@ -156,9 +156,11 @@ test('Greg Pak maps every selected original exactly once without expanding the o
 test('Greg Pak relationship review is current, real and not inherited by a pending clone', async () => {
   const library = await loadLibrarySnapshot();
   const current = await buildReportForMapping(`scripts/data/cbh-mappings/${id}.json`, [], {
-    excludedOrderIds: [],
+    excludedOrderIds: ['shang-chi-master-of-kung-fu-reading-order'],
   });
-  const expectedOrderIds = library.lists.filter((entry) => entry.id !== id).map((entry) => entry.id);
+  const expectedOrderIds = library.lists.filter((entry) =>
+    entry.id !== id && entry.id !== 'shang-chi-master-of-kung-fu-reading-order')
+    .map((entry) => entry.id);
   assert.deepEqual(current, report);
   assert.equal(report.comparisonCount, 197);
   assert.deepEqual(report.comparisons.reduce((counts, row) => {
@@ -210,7 +212,7 @@ test('Greg Pak publishes the exact 107-row creator route without replacing Plane
   assert.equal(originalPlanetHulk.items.length, 15);
   assert.deepEqual(originalPlanetHulk.items.map((item) => item.issueId),
     report.comparisons.find((row) => row.orderId === 'planet-hulk').sharedIds.map(Number));
-  assert.equal(manifest.lists.length, 198);
+  assert.equal(manifest.lists.length, 199);
   assert.deepEqual(parseManifest(manifest).errors, []);
   const position = manifest.lists.findIndex((entry) => entry.id === id);
   assert.equal(manifest.lists[position - 1].id, 'planet-hulk');
