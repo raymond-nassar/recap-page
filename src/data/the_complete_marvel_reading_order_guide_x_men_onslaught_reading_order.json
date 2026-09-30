@@ -1,0 +1,2628 @@
+{
+  "id": "the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order",
+  "name": "X-Men: Onslaught",
+  "description": "Follow Comic Book Herald's Road to Onslaught and Complete Epic sequence, with separately identified reference companions and the Heroes Reborn epilogue.",
+  "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/x-men-onslaught-reading-order/",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-09-30T01:30:16.714Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 74,
+  "collections": 7,
+  "placeholders": 2,
+  "unresolved": [
+    {
+      "title": "X-Men Hotshots",
+      "url": null,
+      "read": false,
+      "index": 23,
+      "section": "Road to Onslaught Vol. 2",
+      "sourceKey": "24"
+    },
+    {
+      "title": "Archangel #1",
+      "url": null,
+      "read": false,
+      "index": 26,
+      "section": "Road to Onslaught Vol. 3",
+      "sourceKey": "27"
+    }
+  ],
+  "items": [
+    {
+      "issueId": 12371,
+      "title": "X-MEN PRIME 1 (1995) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/12371/x-men_prime_1_1995_1",
+      "seriesId": 2102,
+      "seriesName": "X-MEN PRIME 1 (1995)",
+      "onSale": "1995-07-01T00:00:00+0000",
+      "mu": "1995-07-01T00:00:00+0000",
+      "digitalId": 3114,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/a0/51e710eca04f3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Cam Smith",
+          "role": "cover artist"
+        },
+        {
+          "name": "Hector Collazo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Farmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Mckenna",
+          "role": "cover artist"
+        },
+        {
+          "name": "P. Craig Russell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tim Townsend",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ben Herrera",
+          "role": "penciler"
+        },
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "Gary Frank",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Matsuda",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Mckone",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Pelletier",
+          "role": "penciler"
+        },
+        {
+          "name": "Terry Dodson",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Road to Onslaught Vol. 1"
+    },
+    {
+      "issueId": 13863,
+      "title": "Uncanny X-Men (1963) #322",
+      "number": "322",
+      "url": "https://www.marvel.com/comics/issue/13863/uncanny_x-men_1963_322",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1995-07-01T00:00:00+0000",
+      "mu": "2013-07-30T16:26:57+0000",
+      "digitalId": 30261,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/90/5111519f3214a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Pennington",
+          "role": "cover artist"
+        },
+        {
+          "name": "Matt Ryan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Grummett",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Road to Onslaught Vol. 1"
+    },
+    {
+      "issueId": 14331,
+      "title": "X-Men (1991) #42",
+      "number": "42",
+      "url": "https://www.marvel.com/comics/issue/14331/x-men_1991_42",
+      "seriesId": 2265,
+      "seriesName": "X-Men (1991 - 2001)",
+      "onSale": "1995-07-01T00:00:00+0000",
+      "mu": "1995-07-01T00:00:00+0000",
+      "digitalId": 35602,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/20/5b1144e45563d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Matt Ryan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Road to Onslaught Vol. 1"
+    },
+    {
+      "issueId": 14332,
+      "title": "X-Men (1991) #43",
+      "number": "43",
+      "url": "https://www.marvel.com/comics/issue/14332/x-men_1991_43",
+      "seriesId": 2265,
+      "seriesName": "X-Men (1991 - 2001)",
+      "onSale": "1995-08-01T00:00:00+0000",
+      "mu": "1995-08-01T00:00:00+0000",
+      "digitalId": 35603,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/e0/5b11473a55fda",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Cam Smith",
+          "role": "cover artist"
+        },
+        {
+          "name": "Matt Ryan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Road to Onslaught Vol. 1"
+    },
+    {
+      "issueId": 14333,
+      "title": "X-Men (1991) #44",
+      "number": "44",
+      "url": "https://www.marvel.com/comics/issue/14333/x-men_1991_44",
+      "seriesId": 2265,
+      "seriesName": "X-Men (1991 - 2001)",
+      "onSale": "1995-09-01T00:00:00+0000",
+      "mu": "1995-09-01T00:00:00+0000",
+      "digitalId": 35604,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/5581a7db31f5b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Matt Ryan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andy Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Road to Onslaught Vol. 1"
+    },
+    {
+      "issueId": 13864,
+      "title": "Uncanny X-Men (1963) #323",
+      "number": "323",
+      "url": "https://www.marvel.com/comics/issue/13864/uncanny_x-men_1963_323",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1995-08-01T00:00:00+0000",
+      "mu": "2014-05-26T00:00:00+0000",
+      "digitalId": 33237,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/60/5111523725c11",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Cam Smith",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Road to Onslaught Vol. 1"
+    },
+    {
+      "issueId": 13865,
+      "title": "Uncanny X-Men (1963) #324",
+      "number": "324",
+      "url": "https://www.marvel.com/comics/issue/13865/uncanny_x-men_1963_324",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1995-09-01T00:00:00+0000",
+      "mu": "2014-05-26T00:00:00+0000",
+      "digitalId": 33238,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/70/511152cebdb5b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tim Townsend",
+          "role": "cover artist"
+        },
+        {
+          "name": "Vince Russell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roger Cruz",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Road to Onslaught Vol. 1"
+    },
+    {
+      "issueId": 51107,
+      "title": "X-Men Annual (1995) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/51107/x-men_annual_1995_1",
+      "seriesId": 19205,
+      "seriesName": "X-Men Annual (1995)",
+      "onSale": "1995-01-01T00:00:00+0000",
+      "mu": "2017-04-03T00:00:00+0000",
+      "digitalId": 35618,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/50/58dea10a8faf6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "John Paul Leon",
+          "role": "penciler"
+        },
+        {
+          "name": "Terry Dodson",
+          "role": "penciler"
+        },
+        {
+          "name": "J. M. DeMatteis",
+          "role": "writer"
+        },
+        {
+          "name": "Ralph Macchio",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Road to Onslaught Vol. 1"
+    },
+    {
+      "issueId": 13866,
+      "title": "Uncanny X-Men (1963) #325",
+      "number": "325",
+      "url": "https://www.marvel.com/comics/issue/13866/uncanny_x-men_1963_325",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1995-10-01T00:00:00+0000",
+      "mu": "2014-05-28T00:00:00+0000",
+      "digitalId": 33239,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/10/591370988aa66",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Matt Ryan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tim Townsend",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Madureira",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Road to Onslaught Vol. 1"
+    },
+    {
+      "issueId": 14334,
+      "title": "X-Men (1991) #45",
+      "number": "45",
+      "url": "https://www.marvel.com/comics/issue/14334/x-men_1991_45",
+      "seriesId": 2265,
+      "seriesName": "X-Men (1991 - 2001)",
+      "onSale": "1995-10-01T00:00:00+0000",
+      "mu": "1995-10-01T00:00:00+0000",
+      "digitalId": 35605,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/80/5b114a5e470b2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Cam Smith",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andy Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Road to Onslaught Vol. 1"
+    },
+    {
+      "issueId": 13867,
+      "title": "Uncanny X-Men (1963) #326",
+      "number": "326",
+      "url": "https://www.marvel.com/comics/issue/13867/uncanny_x-men_1963_326",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1995-11-01T00:00:00+0000",
+      "mu": "2014-05-26T00:00:00+0000",
+      "digitalId": 33240,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/a0/5382c10968507",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tim Townsend",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Madureira",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Road to Onslaught Vol. 1"
+    },
+    {
+      "issueId": 18158,
+      "title": "X-Men Unlimited (1993) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/18158/x-men_unlimited_1993_8",
+      "seriesId": 3637,
+      "seriesName": "X-Men Unlimited (1993 - 2003)",
+      "onSale": "1995-10-01T00:00:00+0000",
+      "mu": "1995-10-01T00:00:00+0000",
+      "digitalId": 44514,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/5880c792a118b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Panosian",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ian Akin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dan Lawlis",
+          "role": "penciler"
+        },
+        {
+          "name": "Ian Churchill",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Matsuda",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Grummett",
+          "role": "penciler"
+        },
+        {
+          "name": "Howard Mackie",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Road to Onslaught Vol. 1"
+    },
+    {
+      "issueId": 51108,
+      "title": "X-Men/Clandestine (1996) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/51108/x-menclandestine_1996_1",
+      "seriesId": 19206,
+      "seriesName": "X-Men/Clandestine (1996)",
+      "onSale": "1996-10-01T00:00:00+0000",
+      "mu": "2017-04-24T00:00:00+0000",
+      "digitalId": 35616,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/5887afc510f4a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mark Farmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alan Davis",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Road to Onslaught Vol. 2"
+    },
+    {
+      "issueId": 51109,
+      "title": "X-Men/Clandestine (1996) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/51109/x-menclandestine_1996_2",
+      "seriesId": 19206,
+      "seriesName": "X-Men/Clandestine (1996)",
+      "onSale": "1996-11-01T00:00:00+0000",
+      "mu": "1996-11-01T00:00:00+0000",
+      "digitalId": 35617,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/f0/5887b0ab413da",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Farmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alan Davis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Road to Onslaught Vol. 2"
+    },
+    {
+      "issueId": 51106,
+      "title": "Uncanny X-Men Annual (1995) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/51106/uncanny_x-men_annual_1995_1",
+      "seriesId": 19204,
+      "seriesName": "Uncanny X-Men Annual (1995)",
+      "onSale": "1995-11-01T00:00:00+0000",
+      "mu": "2017-04-03T00:00:00+0000",
+      "digitalId": 35601,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/58501db8de933",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Matsuda",
+          "role": "penciler"
+        },
+        {
+          "name": "Terry Kavanagh",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Road to Onslaught Vol. 2"
+    },
+    {
+      "issueId": 14335,
+      "title": "X-Men (1991) #46",
+      "number": "46",
+      "url": "https://www.marvel.com/comics/issue/14335/x-men_1991_46",
+      "seriesId": 2265,
+      "seriesName": "X-Men (1991 - 2001)",
+      "onSale": "1995-11-01T00:00:00+0000",
+      "mu": "1995-11-01T00:00:00+0000",
+      "digitalId": 21854,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/a0/58a4aaeaa614c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Cam Smith",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andy Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Road to Onslaught Vol. 2"
+    },
+    {
+      "issueId": 14336,
+      "title": "X-Men (1991) #47",
+      "number": "47",
+      "url": "https://www.marvel.com/comics/issue/14336/x-men_1991_47",
+      "seriesId": 2265,
+      "seriesName": "X-Men (1991 - 2001)",
+      "onSale": "1995-12-01T00:00:00+0000",
+      "mu": "1995-12-01T00:00:00+0000",
+      "digitalId": 21856,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/00/58a4ac2043817",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Cam Smith",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jesse Delperdang",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andy Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Road to Onslaught Vol. 2"
+    },
+    {
+      "issueId": 13868,
+      "title": "Uncanny X-Men (1963) #327",
+      "number": "327",
+      "url": "https://www.marvel.com/comics/issue/13868/uncanny_x-men_1963_327",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1995-12-01T00:00:00+0000",
+      "mu": "2015-02-05T11:00:11+0000",
+      "digitalId": 33241,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/03/59146b805273a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tim Townsend",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roger Cruz",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Road to Onslaught Vol. 2"
+    },
+    {
+      "issueId": 18159,
+      "title": "X-Men Unlimited (1993) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/18159/x-men_unlimited_1993_9",
+      "seriesId": 3637,
+      "seriesName": "X-Men Unlimited (1993 - 2003)",
+      "onSale": "1995-12-01T00:00:00+0000",
+      "mu": "1995-12-01T00:00:00+0000",
+      "digitalId": 35609,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/5880c90b908ed",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Mcleod",
+          "role": "cover artist"
+        },
+        {
+          "name": "Val Semeiks",
+          "role": "penciler"
+        },
+        {
+          "name": "Larry Hama",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Road to Onslaught Vol. 2"
+    },
+    {
+      "issueId": 13869,
+      "title": "Uncanny X-Men (1963) #328",
+      "number": "328",
+      "url": "https://www.marvel.com/comics/issue/13869/uncanny_x-men_1963_328",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1996-01-01T00:00:00+0000",
+      "mu": "2015-02-05T11:00:48+0000",
+      "digitalId": 33242,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/90/591477ebe5312",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tim Townsend",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Madureira",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Road to Onslaught Vol. 2"
+    },
+    {
+      "issueId": 51105,
+      "title": "Sabretooth Special (1995) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/51105/sabretooth_special_1995_1",
+      "seriesId": 19203,
+      "seriesName": "Sabretooth Special (1995)",
+      "onSale": "1995-01-01T00:00:00+0000",
+      "mu": "2017-01-23T00:00:00+0000",
+      "digitalId": 35600,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/50/587fc036b9991",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Gary Frank",
+          "role": "penciler"
+        },
+        {
+          "name": "Michael Golden",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Road to Onslaught Vol. 2"
+    },
+    {
+      "issueId": 14337,
+      "title": "X-Men (1991) #48",
+      "number": "48",
+      "url": "https://www.marvel.com/comics/issue/14337/x-men_1991_48",
+      "seriesId": 2265,
+      "seriesName": "X-Men (1991 - 2001)",
+      "onSale": "1996-01-01T00:00:00+0000",
+      "mu": "1996-01-01T00:00:00+0000",
+      "digitalId": 35606,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/e0/58a4acac2c545",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andy Lanning",
+          "role": "cover artist"
+        },
+        {
+          "name": "Luke Ross",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Road to Onslaught Vol. 2"
+    },
+    {
+      "issueId": 14338,
+      "title": "X-Men (1991) #49",
+      "number": "49",
+      "url": "https://www.marvel.com/comics/issue/14338/x-men_1991_49",
+      "seriesId": 2265,
+      "seriesName": "X-Men (1991 - 2001)",
+      "onSale": "1996-02-01T00:00:00+0000",
+      "mu": "1996-02-01T00:00:00+0000",
+      "digitalId": 35607,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/b0/58a4adc095200",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Panosian",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jeff Matsuda",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Road to Onslaught Vol. 2"
+    },
+    {
+      "issueId": -1915148978,
+      "title": "X-Men Hotshots",
+      "number": null,
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Road to Onslaught Vol. 2"
+    },
+    {
+      "issueId": 13870,
+      "title": "Uncanny X-Men (1963) #329",
+      "number": "329",
+      "url": "https://www.marvel.com/comics/issue/13870/uncanny_x-men_1963_329",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1996-02-01T00:00:00+0000",
+      "mu": "2013-09-02T00:00:00+0000",
+      "digitalId": 31266,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/5266dd72ddd01",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tim Townsend",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Madureira",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeph Loeb",
+          "role": "writer"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Road to Onslaught Vol. 3"
+    },
+    {
+      "issueId": 13871,
+      "title": "Uncanny X-Men (1963) #330",
+      "number": "330",
+      "url": "https://www.marvel.com/comics/issue/13871/uncanny_x-men_1963_330",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1996-03-01T00:00:00+0000",
+      "mu": "2013-09-02T00:00:00+0000",
+      "digitalId": 31267,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/5266e2cfdc34c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tim Townsend",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Madureira",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeph Loeb",
+          "role": "writer"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Road to Onslaught Vol. 3"
+    },
+    {
+      "issueId": -1931926597,
+      "title": "Archangel #1",
+      "number": "1",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Road to Onslaught Vol. 3"
+    },
+    {
+      "issueId": 52991,
+      "title": "X-Men Vs. the Brood (1996) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/52991/x-men_vs_the_brood_1996_1",
+      "seriesId": 19824,
+      "seriesName": "X-Men Vs. the Brood (1996)",
+      "onSale": "1996-09-01T00:00:00+0000",
+      "mu": "1996-09-01T00:00:00+0000",
+      "digitalId": 35917,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/30/588768103e2f7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Paul Neary",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "John Ostrander",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Road to Onslaught Vol. 3"
+    },
+    {
+      "issueId": 52992,
+      "title": "X-Men Vs. the Brood (1996) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/52992/x-men_vs_the_brood_1996_2",
+      "seriesId": 19824,
+      "seriesName": "X-Men Vs. the Brood (1996)",
+      "onSale": "1996-10-01T00:00:00+0000",
+      "mu": "1996-10-01T00:00:00+0000",
+      "digitalId": 35918,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/20/588769a6d5abc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andy Lanning",
+          "role": "cover artist"
+        },
+        {
+          "name": "Harry Candelario",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Neary",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "Sal Velluto",
+          "role": "penciler"
+        },
+        {
+          "name": "John Ostrander",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Road to Onslaught Vol. 3"
+    },
+    {
+      "issueId": 18111,
+      "title": "X-Men Unlimited (1993) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/18111/x-men_unlimited_1993_10",
+      "seriesId": 3637,
+      "seriesName": "X-Men Unlimited (1993 - 2003)",
+      "onSale": "1996-03-01T00:00:00+0000",
+      "mu": "1996-03-01T00:00:00+0000",
+      "digitalId": 35914,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/5880ca529d562",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Frank Toscano",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Gnazzo",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Road to Onslaught Vol. 3"
+    },
+    {
+      "issueId": 14340,
+      "title": "X-Men (1991) #50",
+      "number": "50",
+      "url": "https://www.marvel.com/comics/issue/14340/x-men_1991_50",
+      "seriesId": 2265,
+      "seriesName": "X-Men (1991 - 2001)",
+      "onSale": "1996-03-01T00:00:00+0000",
+      "mu": "2010-10-09T00:00:00+0000",
+      "digitalId": 13992,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/a0/58a4ae5478036",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Cam Smith",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andy Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Road to Onslaught Vol. 3"
+    },
+    {
+      "issueId": 13872,
+      "title": "Uncanny X-Men (1963) #331",
+      "number": "331",
+      "url": "https://www.marvel.com/comics/issue/13872/uncanny_x-men_1963_331",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1996-04-01T00:00:00+0000",
+      "mu": "2013-09-02T00:00:00+0000",
+      "digitalId": 31268,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/5266dd32ec7c3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Paul Neary",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Road to Onslaught Vol. 3"
+    },
+    {
+      "issueId": 13873,
+      "title": "Uncanny X-Men (1963) #332",
+      "number": "332",
+      "url": "https://www.marvel.com/comics/issue/13873/uncanny_x-men_1963_332",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1996-05-01T00:00:00+0000",
+      "mu": "2013-07-29T00:00:00+0000",
+      "digitalId": 30450,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/f0/51f0038d6d1b6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tim Townsend",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Madureira",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Road to Onslaught Vol. 3"
+    },
+    {
+      "issueId": 14039,
+      "title": "Wolverine (1988) #101",
+      "number": "101",
+      "url": "https://www.marvel.com/comics/issue/14039/wolverine_1988_101",
+      "seriesId": 2262,
+      "seriesName": "Wolverine (1988 - 2003)",
+      "onSale": "1996-05-10T00:00:00+0000",
+      "mu": "2017-02-27T00:00:00+0000",
+      "digitalId": 35887,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/10/585a9e9aba85e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Chad Hunt",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Val Semeiks",
+          "role": "penciler"
+        },
+        {
+          "name": "Larry Hama",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Road to Onslaught Vol. 3"
+    },
+    {
+      "issueId": 14341,
+      "title": "X-Men (1991) #51",
+      "number": "51",
+      "url": "https://www.marvel.com/comics/issue/14341/x-men_1991_51",
+      "seriesId": 2265,
+      "seriesName": "X-Men (1991 - 2001)",
+      "onSale": "1996-04-01T00:00:00+0000",
+      "mu": "1996-04-01T00:00:00+0000",
+      "digitalId": 35912,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/00/58a4af4c883e7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Dell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Vince Russell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pasqual Ferry",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Road to Onslaught Vol. 3"
+    },
+    {
+      "issueId": 14342,
+      "title": "X-Men (1991) #52",
+      "number": "52",
+      "url": "https://www.marvel.com/comics/issue/14342/x-men_1991_52",
+      "seriesId": 2265,
+      "seriesName": "X-Men (1991 - 2001)",
+      "onSale": "1996-05-01T00:00:00+0000",
+      "mu": "1996-05-01T00:00:00+0000",
+      "digitalId": 35913,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/90/58a4b03f1ebc0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Cam Smith",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andy Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Road to Onslaught Vol. 3"
+    },
+    {
+      "issueId": 52990,
+      "title": "Xavier Institute Alumni Yearbook (1996) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/52990/xavier_institute_alumni_yearbook_1996_1",
+      "seriesId": 19823,
+      "seriesName": "Xavier Institute Alumni Yearbook (1996)",
+      "onSale": "1996-12-01T00:00:00+0000",
+      "mu": "2019-11-25T00:00:00+0000",
+      "digitalId": 35910,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/5dd844ad31605",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sam Liu",
+          "role": "penciler"
+        },
+        {
+          "name": "Various",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Road to Onslaught Vol. 3"
+    },
+    {
+      "issueId": 14343,
+      "title": "X-Men (1991) #53",
+      "number": "53",
+      "url": "https://www.marvel.com/comics/issue/14343/x-men_1991_53",
+      "seriesId": 2265,
+      "seriesName": "X-Men (1991 - 2001)",
+      "onSale": "1996-06-01T00:00:00+0000",
+      "mu": "1996-06-01T00:00:00+0000",
+      "digitalId": 8853,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/4bb86d47c23b5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Cam Smith",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Dell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andy Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Onslaught The Complete Epic, Book 1"
+    },
+    {
+      "issueId": 13875,
+      "title": "Uncanny X-Men (1963) #334",
+      "number": "334",
+      "url": "https://www.marvel.com/comics/issue/13875/uncanny_x-men_1963_334",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1996-07-01T00:00:00+0000",
+      "mu": "2008-09-17T00:00:00+0000",
+      "digitalId": 8727,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/a0/4bb8549f01637",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tim Townsend",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Madureira",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Onslaught The Complete Epic, Book 1"
+    },
+    {
+      "issueId": 14344,
+      "title": "X-Men (1991) #54",
+      "number": "54",
+      "url": "https://www.marvel.com/comics/issue/14344/x-men_1991_54",
+      "seriesId": 2265,
+      "seriesName": "X-Men (1991 - 2001)",
+      "onSale": "1996-07-01T00:00:00+0000",
+      "mu": "1996-07-01T00:00:00+0000",
+      "digitalId": 8854,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/a0/4bb86d42d4fd7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Panosian",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andy Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Onslaught The Complete Epic, Book 1"
+    },
+    {
+      "issueId": 20767,
+      "title": "Onslaught: X-Men (1996) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/20767/onslaught_x-men_1996_1",
+      "seriesId": 3900,
+      "seriesName": "Onslaught: X-Men (1996)",
+      "onSale": "1996-08-01T00:00:00+0000",
+      "mu": "2007-04-28T00:00:00+0000",
+      "digitalId": 8504,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/e0/4bb858cba0802",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Pasqual Ferry",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Onslaught The Complete Epic, Book 1"
+    },
+    {
+      "issueId": 7288,
+      "title": "Avengers (1963) #401",
+      "number": "401",
+      "url": "https://www.marvel.com/comics/issue/7288/avengers_1963_401",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1996-08-01T00:00:00+0000",
+      "mu": "1996-08-01T00:00:00+0000",
+      "digitalId": 8009,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/03/58921a71e8615",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Deodato Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Onslaught The Complete Epic, Book 1"
+    },
+    {
+      "issueId": 13245,
+      "title": "Fantastic Four (1961) #415",
+      "number": "415",
+      "url": "https://www.marvel.com/comics/issue/13245/fantastic_four_1961_415",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1996-08-01T00:00:00+0000",
+      "mu": "1996-08-01T00:00:00+0000",
+      "digitalId": 22596,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/00/50ae2c19633ed",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Wiacek",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlos Pacheco",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Onslaught The Complete Epic, Book 1"
+    },
+    {
+      "issueId": 7409,
+      "title": "Cable (1993) #34",
+      "number": "34",
+      "url": "https://www.marvel.com/comics/issue/7409/cable_1993_34",
+      "seriesId": 1995,
+      "seriesName": "Cable (1993 - 2002)",
+      "onSale": "1996-08-01T00:00:00+0000",
+      "mu": "1996-08-01T00:00:00+0000",
+      "digitalId": 8053,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/4bb87fab88700",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ian Churchill",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeph Loeb",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Onslaught The Complete Epic, Book 1"
+    },
+    {
+      "issueId": 9255,
+      "title": "Incredible Hulk (1962) #444",
+      "number": "444",
+      "url": "https://www.marvel.com/comics/issue/9255/incredible_hulk_1962_444",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1996-08-01T00:00:00+0000",
+      "mu": "2007-04-28T00:00:00+0000",
+      "digitalId": 8267,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/d0/4bb8717bcdd79",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Robin Riggs",
+          "role": "cover artist"
+        },
+        {
+          "name": "Angel Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Onslaught The Complete Epic, Book 1"
+    },
+    {
+      "issueId": 8564,
+      "title": "Excalibur (1988) #100",
+      "number": "100",
+      "url": "https://www.marvel.com/comics/issue/8564/excalibur_1988_100",
+      "seriesId": 2011,
+      "seriesName": "Excalibur (1988 - 1998)",
+      "onSale": "1996-08-01T00:00:00+0000",
+      "mu": "1996-08-01T00:00:00+0000",
+      "digitalId": 11019,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/5d1390da68c96",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jason Martin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Ketcham",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Simmons",
+          "role": "cover artist"
+        },
+        {
+          "name": "Casey Jones",
+          "role": "penciler"
+        },
+        {
+          "name": "Randall Green",
+          "role": "penciler"
+        },
+        {
+          "name": "Rob Haynes",
+          "role": "penciler"
+        },
+        {
+          "name": "Warren Ellis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Onslaught The Complete Epic, Book 2"
+    },
+    {
+      "issueId": 14042,
+      "title": "Wolverine (1988) #104",
+      "number": "104",
+      "url": "https://www.marvel.com/comics/issue/14042/wolverine_1988_104",
+      "seriesId": 2262,
+      "seriesName": "Wolverine (1988 - 2003)",
+      "onSale": "1996-08-01T00:00:00+0000",
+      "mu": "1996-08-01T00:00:00+0000",
+      "digitalId": 11770,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/60/4bb587849e5c7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Chad Hunt",
+          "role": "cover artist"
+        },
+        {
+          "name": "Val Semeiks",
+          "role": "penciler"
+        },
+        {
+          "name": "Larry Hama",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Onslaught The Complete Epic, Book 2"
+    },
+    {
+      "issueId": 12203,
+      "title": "X-Factor (1986) #125",
+      "number": "125",
+      "url": "https://www.marvel.com/comics/issue/12203/x-factor_1986_125",
+      "seriesId": 2098,
+      "seriesName": "X-Factor (1986 - 1998)",
+      "onSale": "1996-08-01T00:00:00+0000",
+      "mu": "1996-08-01T00:00:00+0000",
+      "digitalId": 11817,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/b0/4bb57b80dc3b0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jeff Matsuda",
+          "role": "penciler"
+        },
+        {
+          "name": "Stefano Raffaele",
+          "role": "penciler"
+        },
+        {
+          "name": "Howard Mackie",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Onslaught The Complete Epic, Book 2"
+    },
+    {
+      "issueId": 12204,
+      "title": "X-Factor (1986) #126",
+      "number": "126",
+      "url": "https://www.marvel.com/comics/issue/12204/x-factor_1986_126",
+      "seriesId": 2098,
+      "seriesName": "X-Factor (1986 - 1998)",
+      "onSale": "1996-09-01T00:00:00+0000",
+      "mu": "1996-09-01T00:00:00+0000",
+      "digitalId": 35284,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/c0/5865179411c63",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Herb Trimpe",
+          "role": "penciler"
+        },
+        {
+          "name": "Stefano Raffaele",
+          "role": "penciler"
+        },
+        {
+          "name": "Howard Mackie",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Onslaught The Complete Epic, Book 2"
+    },
+    {
+      "issueId": 51043,
+      "title": "Sensational Spider-Man (1996) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/51043/sensational_spider-man_1996_8",
+      "seriesId": 19135,
+      "seriesName": "Sensational Spider-Man (1996)",
+      "onSale": "1996-09-08T00:00:00+0000",
+      "mu": "2017-01-23T00:00:00+0000",
+      "digitalId": 35502,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/587fb963aa122",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Wieringo",
+          "role": "penciler"
+        },
+        {
+          "name": "Todd Dezago",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Onslaught The Complete Epic, Book 2"
+    },
+    {
+      "issueId": 6833,
+      "title": "The Amazing Spider-Man (1963) #415",
+      "number": "415",
+      "url": "https://www.marvel.com/comics/issue/6833/the_amazing_spider-man_1963_415",
+      "seriesId": 1987,
+      "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "onSale": "1996-09-01T00:00:00+0000",
+      "mu": "1996-09-01T00:00:00+0000",
+      "digitalId": 10900,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/00/57e0197a2a360",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Larry Mahlstedt",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Onslaught The Complete Epic, Book 2"
+    },
+    {
+      "issueId": 23910,
+      "title": "Green Goblin (1995) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/23910/green_goblin_1995_12",
+      "seriesId": 7077,
+      "seriesName": "Green Goblin (1995 - 1996)",
+      "onSale": "1996-09-01T00:00:00+0000",
+      "mu": "1996-09-01T00:00:00+0000",
+      "digitalId": 12127,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/5b4e5195eea07",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Derek Fisher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joshua Hood",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Onslaught The Complete Epic, Book 2"
+    },
+    {
+      "issueId": 10836,
+      "title": "Spider-Man (1990) #72",
+      "number": "72",
+      "url": "https://www.marvel.com/comics/issue/10836/spider-man_1990_72",
+      "seriesId": 2069,
+      "seriesName": "Spider-Man (1990 - 1998)",
+      "onSale": "1996-09-01T00:00:00+0000",
+      "mu": "1996-09-01T00:00:00+0000",
+      "digitalId": 11526,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/90/5bc76ef6710fb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Howard Mackie",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Onslaught The Complete Epic, Book 2"
+    },
+    {
+      "issueId": 18186,
+      "title": "X-Man (1995) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/18186/x-man_1995_18",
+      "seriesId": 3643,
+      "seriesName": "X-Man (1995 - 2000)",
+      "onSale": "1996-08-01T00:00:00+0000",
+      "mu": "1996-08-01T00:00:00+0000",
+      "digitalId": 8852,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/e0/59664591895fd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Onslaught The Complete Epic, Book 2"
+    },
+    {
+      "issueId": 18024,
+      "title": "X-Force (1991) #57",
+      "number": "57",
+      "url": "https://www.marvel.com/comics/issue/18024/x-force_1991_57",
+      "seriesId": 3633,
+      "seriesName": "X-Force (1991 - 2004)",
+      "onSale": "1996-08-01T00:00:00+0000",
+      "mu": "1996-08-01T00:00:00+0000",
+      "digitalId": 8851,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/80/4bb57a3acfa2b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Anthony Castrillo",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeph Loeb",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Onslaught The Complete Epic, Book 2"
+    },
+    {
+      "issueId": 23391,
+      "title": "Punisher (1995) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/23391/punisher_1995_11",
+      "seriesId": 6681,
+      "seriesName": "Punisher (1995 - 1996)",
+      "onSale": "1996-09-01T00:00:00+0000",
+      "mu": "1996-09-01T00:00:00+0000",
+      "digitalId": 11970,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/4bb56c3a578e0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Robert Jones",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Lyle",
+          "role": "penciler"
+        },
+        {
+          "name": "John Ostrander",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Onslaught The Complete Epic, Book 2"
+    },
+    {
+      "issueId": 14345,
+      "title": "X-Men (1991) #55",
+      "number": "55",
+      "url": "https://www.marvel.com/comics/issue/14345/x-men_1991_55",
+      "seriesId": 2265,
+      "seriesName": "X-Men (1991 - 2001)",
+      "onSale": "1996-08-01T00:00:00+0000",
+      "mu": "1996-08-01T00:00:00+0000",
+      "digitalId": 11849,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/e0/4bb57a282e1f0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Panosian",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andy Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Onslaught The Complete Epic, Book 3"
+    },
+    {
+      "issueId": 13877,
+      "title": "Uncanny X-Men (1963) #336",
+      "number": "336",
+      "url": "https://www.marvel.com/comics/issue/13877/uncanny_x-men_1963_336",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1996-09-01T00:00:00+0000",
+      "mu": "2010-06-18T00:00:00+0000",
+      "digitalId": 11733,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/4bb587ec60861",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Dell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tim Townsend",
+          "role": "cover artist"
+        },
+        {
+          "name": "Vince Russell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Madureira",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Onslaught The Complete Epic, Book 3"
+    },
+    {
+      "issueId": 7410,
+      "title": "Cable (1993) #35",
+      "number": "35",
+      "url": "https://www.marvel.com/comics/issue/7410/cable_1993_35",
+      "seriesId": 1995,
+      "seriesName": "Cable (1993 - 2002)",
+      "onSale": "1996-09-01T00:00:00+0000",
+      "mu": "1996-09-01T00:00:00+0000",
+      "digitalId": 10969,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/4bb5881d5c4c2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ian Churchill",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeph Loeb",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Onslaught The Complete Epic, Book 3"
+    },
+    {
+      "issueId": 18025,
+      "title": "X-Force (1991) #58",
+      "number": "58",
+      "url": "https://www.marvel.com/comics/issue/18025/x-force_1991_58",
+      "seriesId": 3633,
+      "seriesName": "X-Force (1991 - 2004)",
+      "onSale": "1996-09-01T00:00:00+0000",
+      "mu": "1996-09-01T00:00:00+0000",
+      "digitalId": 12016,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/c0/4bb540773a0dd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bud Larosa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Anthony Castrillo",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeph Loeb",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Onslaught The Complete Epic, Book 3"
+    },
+    {
+      "issueId": 18187,
+      "title": "X-Man (1995) #19",
+      "number": "19",
+      "url": "https://www.marvel.com/comics/issue/18187/x-man_1995_19",
+      "seriesId": 3643,
+      "seriesName": "X-Man (1995 - 2000)",
+      "onSale": "1996-09-01T00:00:00+0000",
+      "mu": "1996-09-01T00:00:00+0000",
+      "digitalId": 11839,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/70/596647547ff0e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bud Larosa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Skroce",
+          "role": "penciler"
+        },
+        {
+          "name": "Terry Kavanagh",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Onslaught The Complete Epic, Book 3"
+    },
+    {
+      "issueId": 9256,
+      "title": "Incredible Hulk (1962) #445",
+      "number": "445",
+      "url": "https://www.marvel.com/comics/issue/9256/incredible_hulk_1962_445",
+      "seriesId": 2021,
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "onSale": "1996-09-01T00:00:00+0000",
+      "mu": "2008-10-27T00:00:00+0000",
+      "digitalId": 10690,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/b0/5b6a10a961dae",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Robin Riggs",
+          "role": "cover artist"
+        },
+        {
+          "name": "Angel Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Onslaught The Complete Epic, Book 3"
+    },
+    {
+      "issueId": 9586,
+      "title": "Iron Man (1968) #332",
+      "number": "332",
+      "url": "https://www.marvel.com/comics/issue/9586/iron_man_1968_332",
+      "seriesId": 2029,
+      "seriesName": "Iron Man (1968 - 1996)",
+      "onSale": "1996-09-01T00:00:00+0000",
+      "mu": "1996-09-01T00:00:00+0000",
+      "digitalId": 11131,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/70/4bb5b79813bfc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Mckenna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tim Dzon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Terry Kavanagh",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Onslaught The Complete Epic, Book 3"
+    },
+    {
+      "issueId": 7289,
+      "title": "Avengers (1963) #402",
+      "number": "402",
+      "url": "https://www.marvel.com/comics/issue/7289/avengers_1963_402",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1996-09-01T00:00:00+0000",
+      "mu": "1996-09-01T00:00:00+0000",
+      "digitalId": 10665,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/50/58921b97d12b0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Onslaught The Complete Epic, Book 3"
+    },
+    {
+      "issueId": 11830,
+      "title": "Thor (1966) #502",
+      "number": "502",
+      "url": "https://www.marvel.com/comics/issue/11830/thor_1966_502",
+      "seriesId": 2083,
+      "seriesName": "Thor (1966 - 1996)",
+      "onSale": "1996-09-01T00:00:00+0000",
+      "mu": "1996-09-01T00:00:00+0000",
+      "digitalId": 11615,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/70/4bb57f012a017",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Onslaught The Complete Epic, Book 3"
+    },
+    {
+      "issueId": 14043,
+      "title": "Wolverine (1988) #105",
+      "number": "105",
+      "url": "https://www.marvel.com/comics/issue/14043/wolverine_1988_105",
+      "seriesId": 2262,
+      "seriesName": "Wolverine (1988 - 2003)",
+      "onSale": "1996-09-01T00:00:00+0000",
+      "mu": "1996-09-01T00:00:00+0000",
+      "digitalId": 11771,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/10/4bb5877f28c19",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Chad Hunt",
+          "role": "cover artist"
+        },
+        {
+          "name": "Harry Candelario",
+          "role": "cover artist"
+        },
+        {
+          "name": "Vince Russell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Val Semeiks",
+          "role": "penciler"
+        },
+        {
+          "name": "Larry Hama",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Onslaught The Complete Epic, Book 3"
+    },
+    {
+      "issueId": 13246,
+      "title": "Fantastic Four (1961) #416",
+      "number": "416",
+      "url": "https://www.marvel.com/comics/issue/13246/fantastic_four_1961_416",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1996-09-01T00:00:00+0000",
+      "mu": "1996-09-01T00:00:00+0000",
+      "digitalId": 11021,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/40/5ac7dbbcd54d7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bob Wiacek",
+          "role": "cover artist"
+        },
+        {
+          "name": "Harry Candelario",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Vince Russell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlos Pacheco",
+          "role": "penciler"
+        },
+        {
+          "name": "John Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Onslaught The Complete Epic, Book 4"
+    },
+    {
+      "issueId": 14346,
+      "title": "X-Men (1991) #56",
+      "number": "56",
+      "url": "https://www.marvel.com/comics/issue/14346/x-men_1991_56",
+      "seriesId": 2265,
+      "seriesName": "X-Men (1991 - 2001)",
+      "onSale": "1996-09-01T00:00:00+0000",
+      "mu": "1996-09-01T00:00:00+0000",
+      "digitalId": 11850,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/4bb4e9b286c42",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andy Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Onslaught The Complete Epic, Book 4"
+    },
+    {
+      "issueId": 10453,
+      "title": "Onslaught: Marvel Universe (1996) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/10453/onslaught_marvel_universe_1996_1",
+      "seriesId": 2057,
+      "seriesName": "Onslaught: Marvel Universe (1996)",
+      "onSale": "1996-10-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 2332,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/c0/57dae7fc9caf2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jesse Delperdang",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tim Townsend",
+          "role": "cover artist"
+        },
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Joe Bennett",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Onslaught The Complete Epic, Book 4"
+    },
+    {
+      "issueId": 7411,
+      "title": "Cable (1993) #36",
+      "number": "36",
+      "url": "https://www.marvel.com/comics/issue/7411/cable_1993_36",
+      "seriesId": 1995,
+      "seriesName": "Cable (1993 - 2002)",
+      "onSale": "1996-10-01T00:00:00+0000",
+      "mu": "1996-10-01T00:00:00+0000",
+      "digitalId": 10970,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/70/4bb51ce2b20d6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bernard Chang",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeph Loeb",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Onslaught The Complete Epic, Book 4"
+    },
+    {
+      "issueId": 13878,
+      "title": "Uncanny X-Men (1963) #337",
+      "number": "337",
+      "url": "https://www.marvel.com/comics/issue/13878/uncanny_x-men_1963_337",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "1996-10-01T00:00:00+0000",
+      "mu": "2007-01-01T00:00:00+0000",
+      "digitalId": 11734,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/5491b46db2b15",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tim Townsend",
+          "role": "cover artist"
+        },
+        {
+          "name": "Vince Russell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Madureira",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Onslaught The Complete Epic, Book 4"
+    },
+    {
+      "issueId": 14347,
+      "title": "X-Men (1991) #57",
+      "number": "57",
+      "url": "https://www.marvel.com/comics/issue/14347/x-men_1991_57",
+      "seriesId": 2265,
+      "seriesName": "X-Men (1991 - 2001)",
+      "onSale": "1996-10-01T00:00:00+0000",
+      "mu": "1996-10-01T00:00:00+0000",
+      "digitalId": 11851,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/70/4bb4e7a5d963b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andy Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Onslaught The Complete Epic, Book 4"
+    },
+    {
+      "issueId": 23388,
+      "title": "Onslaught Epilogue (1997) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/23388/onslaught_epilogue_1997_1",
+      "seriesId": 6680,
+      "seriesName": "Onslaught Epilogue (1997)",
+      "onSale": "1997-02-01T00:00:00+0000",
+      "mu": "2009-10-09T00:00:00+0000",
+      "digitalId": 11969,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/20/4bb4db2301eb2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Hilary Barta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jon Holdredge",
+          "role": "cover artist"
+        },
+        {
+          "name": "Randall Green",
+          "role": "penciler"
+        },
+        {
+          "name": "Larry Hama",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Onslaught The Complete Epic, Book 4"
+    },
+    {
+      "issueId": 16337,
+      "title": "Iron Man (1996) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/16337/iron_man_1996_6",
+      "seriesId": 13577,
+      "seriesName": "Iron Man (1996 - 1998)",
+      "onSale": "1997-04-01T00:00:00+0000",
+      "mu": "1997-04-01T00:00:00+0000",
+      "digitalId": 3997,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/40/4bc351e0af0b3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Dell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Richard Friend",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Regla",
+          "role": "cover artist"
+        },
+        {
+          "name": "Saleem Crawford",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Williams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Trevor Scott",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Lee",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan Benjamin",
+          "role": "penciler"
+        },
+        {
+          "name": "Whilce Portacio",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Onslaught The Complete Epic, Book 4"
+    }
+  ]
+}

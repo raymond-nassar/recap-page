@@ -1,0 +1,88 @@
+# X-Men: Onslaught: Issue-by-Issue Reading Checklist
+
+Generated for this project by scripts/author-cbh-packet.mjs from the reviewed and frozen the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order issue mapping.
+The mapping transcribes only issue-bearing references from Comic Book Herald's exact guide, expands its ranges, and preserves its source order.
+No source commentary or images are copied. Issue identities, titles, and exact links come from Marvel metadata or reviewed official Marvel issue pages after the packet resolution and overlap gates passed.
+See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permission boundary and review method.
+
+## Road to Onslaught Vol. 1
+- [ ] [X-MEN PRIME 1 (1995) #1 <!-- mrt:source-occurrence=1 -->](https://www.marvel.com/comics/issue/12371/x-men_prime_1_1995_1)
+- [ ] [Uncanny X-Men (1963) #322 <!-- mrt:source-occurrence=2 -->](https://www.marvel.com/comics/issue/13863/uncanny_x-men_1963_322)
+- [ ] [X-Men (1991) #42 <!-- mrt:source-occurrence=3 -->](https://www.marvel.com/comics/issue/14331/x-men_1991_42)
+- [ ] [X-Men (1991) #43 <!-- mrt:source-occurrence=4 -->](https://www.marvel.com/comics/issue/14332/x-men_1991_43)
+- [ ] [X-Men (1991) #44 <!-- mrt:source-occurrence=5 -->](https://www.marvel.com/comics/issue/14333/x-men_1991_44)
+- [ ] [Uncanny X-Men (1963) #323 <!-- mrt:source-occurrence=6 -->](https://www.marvel.com/comics/issue/13864/uncanny_x-men_1963_323)
+- [ ] [Uncanny X-Men (1963) #324 <!-- mrt:source-occurrence=7 -->](https://www.marvel.com/comics/issue/13865/uncanny_x-men_1963_324)
+- [ ] [X-Men Annual (1995) #1 <!-- mrt:source-occurrence=8 -->](https://www.marvel.com/comics/issue/51107/x-men_annual_1995_1)
+- [ ] [Uncanny X-Men (1963) #325 <!-- mrt:source-occurrence=9 -->](https://www.marvel.com/comics/issue/13866/uncanny_x-men_1963_325)
+- [ ] [X-Men (1991) #45 <!-- mrt:source-occurrence=10 -->](https://www.marvel.com/comics/issue/14334/x-men_1991_45)
+- [ ] [Uncanny X-Men (1963) #326 <!-- mrt:source-occurrence=11 -->](https://www.marvel.com/comics/issue/13867/uncanny_x-men_1963_326)
+- [ ] [X-Men Unlimited (1993) #8 <!-- mrt:source-occurrence=12 -->](https://www.marvel.com/comics/issue/18158/x-men_unlimited_1993_8)
+## Road to Onslaught Vol. 2
+- [ ] [X-Men/Clandestine (1996) #1 <!-- mrt:source-occurrence=13 -->](https://www.marvel.com/comics/issue/51108/x-menclandestine_1996_1)
+- [ ] [X-Men/Clandestine (1996) #2 <!-- mrt:source-occurrence=14 -->](https://www.marvel.com/comics/issue/51109/x-menclandestine_1996_2)
+- [ ] [Uncanny X-Men Annual (1995) #1 <!-- mrt:source-occurrence=15 -->](https://www.marvel.com/comics/issue/51106/uncanny_x-men_annual_1995_1)
+- [ ] [X-Men (1991) #46 <!-- mrt:source-occurrence=16 -->](https://www.marvel.com/comics/issue/14335/x-men_1991_46)
+- [ ] [X-Men (1991) #47 <!-- mrt:source-occurrence=17 -->](https://www.marvel.com/comics/issue/14336/x-men_1991_47)
+- [ ] [Uncanny X-Men (1963) #327 <!-- mrt:source-occurrence=18 -->](https://www.marvel.com/comics/issue/13868/uncanny_x-men_1963_327)
+- [ ] [X-Men Unlimited (1993) #9 <!-- mrt:source-occurrence=19 -->](https://www.marvel.com/comics/issue/18159/x-men_unlimited_1993_9)
+- [ ] [Uncanny X-Men (1963) #328 <!-- mrt:source-occurrence=20 -->](https://www.marvel.com/comics/issue/13869/uncanny_x-men_1963_328)
+- [ ] [Sabretooth Special (1995) #1 <!-- mrt:source-occurrence=21 -->](https://www.marvel.com/comics/issue/51105/sabretooth_special_1995_1)
+- [ ] [X-Men (1991) #48 <!-- mrt:source-occurrence=22 -->](https://www.marvel.com/comics/issue/14337/x-men_1991_48)
+- [ ] [X-Men (1991) #49 <!-- mrt:source-occurrence=23 -->](https://www.marvel.com/comics/issue/14338/x-men_1991_49)
+- [ ] X-Men Hotshots <!-- mrt:source-occurrence=24 -->
+## Road to Onslaught Vol. 3
+- [ ] [Uncanny X-Men (1963) #329 <!-- mrt:source-occurrence=25 -->](https://www.marvel.com/comics/issue/13870/uncanny_x-men_1963_329)
+- [ ] [Uncanny X-Men (1963) #330 <!-- mrt:source-occurrence=26 -->](https://www.marvel.com/comics/issue/13871/uncanny_x-men_1963_330)
+- [ ] Archangel #1 <!-- mrt:source-occurrence=27 -->
+- [ ] [X-Men Vs. the Brood (1996) #1 <!-- mrt:source-occurrence=28 -->](https://www.marvel.com/comics/issue/52991/x-men_vs_the_brood_1996_1)
+- [ ] [X-Men Vs. the Brood (1996) #2 <!-- mrt:source-occurrence=29 -->](https://www.marvel.com/comics/issue/52992/x-men_vs_the_brood_1996_2)
+- [ ] [X-Men Unlimited (1993) #10 <!-- mrt:source-occurrence=30 -->](https://www.marvel.com/comics/issue/18111/x-men_unlimited_1993_10)
+- [ ] [X-Men (1991) #50 <!-- mrt:source-occurrence=31 -->](https://www.marvel.com/comics/issue/14340/x-men_1991_50)
+- [ ] [Uncanny X-Men (1963) #331 <!-- mrt:source-occurrence=32 -->](https://www.marvel.com/comics/issue/13872/uncanny_x-men_1963_331)
+- [ ] [Uncanny X-Men (1963) #332 <!-- mrt:source-occurrence=33 -->](https://www.marvel.com/comics/issue/13873/uncanny_x-men_1963_332)
+- [ ] [Wolverine (1988) #101 <!-- mrt:source-occurrence=34 -->](https://www.marvel.com/comics/issue/14039/wolverine_1988_101)
+- [ ] [X-Men (1991) #51 <!-- mrt:source-occurrence=35 -->](https://www.marvel.com/comics/issue/14341/x-men_1991_51)
+- [ ] [X-Men (1991) #52 <!-- mrt:source-occurrence=36 -->](https://www.marvel.com/comics/issue/14342/x-men_1991_52)
+- [ ] [Xavier Institute Alumni Yearbook (1996) #1 <!-- mrt:source-occurrence=37 -->](https://www.marvel.com/comics/issue/52990/xavier_institute_alumni_yearbook_1996_1)
+## Onslaught The Complete Epic, Book 1
+- [ ] [X-Men (1991) #53 <!-- mrt:source-occurrence=38 -->](https://www.marvel.com/comics/issue/14343/x-men_1991_53)
+- [ ] [Uncanny X-Men (1963) #334 <!-- mrt:source-occurrence=39 -->](https://www.marvel.com/comics/issue/13875/uncanny_x-men_1963_334)
+- [ ] [X-Men (1991) #54 <!-- mrt:source-occurrence=40 -->](https://www.marvel.com/comics/issue/14344/x-men_1991_54)
+- [ ] [Onslaught: X-Men (1996) #1 <!-- mrt:source-occurrence=41 -->](https://www.marvel.com/comics/issue/20767/onslaught_x-men_1996_1)
+- [ ] [Avengers (1963) #401 <!-- mrt:source-occurrence=42 -->](https://www.marvel.com/comics/issue/7288/avengers_1963_401)
+- [ ] [Fantastic Four (1961) #415 <!-- mrt:source-occurrence=43 -->](https://www.marvel.com/comics/issue/13245/fantastic_four_1961_415)
+- [ ] [Cable (1993) #34 <!-- mrt:source-occurrence=44 -->](https://www.marvel.com/comics/issue/7409/cable_1993_34)
+- [ ] [Incredible Hulk (1962) #444 <!-- mrt:source-occurrence=45 -->](https://www.marvel.com/comics/issue/9255/incredible_hulk_1962_444)
+## Onslaught The Complete Epic, Book 2
+- [ ] [Excalibur (1988) #100 <!-- mrt:source-occurrence=46 -->](https://www.marvel.com/comics/issue/8564/excalibur_1988_100)
+- [ ] [Wolverine (1988) #104 <!-- mrt:source-occurrence=47 -->](https://www.marvel.com/comics/issue/14042/wolverine_1988_104)
+- [ ] [X-Factor (1986) #125 <!-- mrt:source-occurrence=48 -->](https://www.marvel.com/comics/issue/12203/x-factor_1986_125)
+- [ ] [X-Factor (1986) #126 <!-- mrt:source-occurrence=49 -->](https://www.marvel.com/comics/issue/12204/x-factor_1986_126)
+- [ ] [Sensational Spider-Man (1996) #8 <!-- mrt:source-occurrence=50 -->](https://www.marvel.com/comics/issue/51043/sensational_spider-man_1996_8)
+- [ ] [The Amazing Spider-Man (1963) #415 <!-- mrt:source-occurrence=51 -->](https://www.marvel.com/comics/issue/6833/the_amazing_spider-man_1963_415)
+- [ ] [Green Goblin (1995) #12 <!-- mrt:source-occurrence=52 -->](https://www.marvel.com/comics/issue/23910/green_goblin_1995_12)
+- [ ] [Spider-Man (1990) #72 <!-- mrt:source-occurrence=53 -->](https://www.marvel.com/comics/issue/10836/spider-man_1990_72)
+- [ ] [X-Man (1995) #18 <!-- mrt:source-occurrence=54 -->](https://www.marvel.com/comics/issue/18186/x-man_1995_18)
+- [ ] [X-Force (1991) #57 <!-- mrt:source-occurrence=55 -->](https://www.marvel.com/comics/issue/18024/x-force_1991_57)
+- [ ] [Punisher (1995) #11 <!-- mrt:source-occurrence=56 -->](https://www.marvel.com/comics/issue/23391/punisher_1995_11)
+## Onslaught The Complete Epic, Book 3
+- [ ] [X-Men (1991) #55 <!-- mrt:source-occurrence=57 -->](https://www.marvel.com/comics/issue/14345/x-men_1991_55)
+- [ ] [Uncanny X-Men (1963) #336 <!-- mrt:source-occurrence=58 -->](https://www.marvel.com/comics/issue/13877/uncanny_x-men_1963_336)
+- [ ] [Cable (1993) #35 <!-- mrt:source-occurrence=59 -->](https://www.marvel.com/comics/issue/7410/cable_1993_35)
+- [ ] [X-Force (1991) #58 <!-- mrt:source-occurrence=60 -->](https://www.marvel.com/comics/issue/18025/x-force_1991_58)
+- [ ] [X-Man (1995) #19 <!-- mrt:source-occurrence=61 -->](https://www.marvel.com/comics/issue/18187/x-man_1995_19)
+- [ ] [Incredible Hulk (1962) #445 <!-- mrt:source-occurrence=62 -->](https://www.marvel.com/comics/issue/9256/incredible_hulk_1962_445)
+- [ ] [Iron Man (1968) #332 <!-- mrt:source-occurrence=63 -->](https://www.marvel.com/comics/issue/9586/iron_man_1968_332)
+- [ ] [Avengers (1963) #402 <!-- mrt:source-occurrence=64 -->](https://www.marvel.com/comics/issue/7289/avengers_1963_402)
+- [ ] [Thor (1966) #502 <!-- mrt:source-occurrence=65 -->](https://www.marvel.com/comics/issue/11830/thor_1966_502)
+- [ ] [Wolverine (1988) #105 <!-- mrt:source-occurrence=66 -->](https://www.marvel.com/comics/issue/14043/wolverine_1988_105)
+## Onslaught The Complete Epic, Book 4
+- [ ] [Fantastic Four (1961) #416 <!-- mrt:source-occurrence=67 -->](https://www.marvel.com/comics/issue/13246/fantastic_four_1961_416)
+- [ ] [X-Men (1991) #56 <!-- mrt:source-occurrence=68 -->](https://www.marvel.com/comics/issue/14346/x-men_1991_56)
+- [ ] [Onslaught: Marvel Universe (1996) #1 <!-- mrt:source-occurrence=69 -->](https://www.marvel.com/comics/issue/10453/onslaught_marvel_universe_1996_1)
+- [ ] [Cable (1993) #36 <!-- mrt:source-occurrence=70 -->](https://www.marvel.com/comics/issue/7411/cable_1993_36)
+- [ ] [Uncanny X-Men (1963) #337 <!-- mrt:source-occurrence=71 -->](https://www.marvel.com/comics/issue/13878/uncanny_x-men_1963_337)
+- [ ] [X-Men (1991) #57 <!-- mrt:source-occurrence=72 -->](https://www.marvel.com/comics/issue/14347/x-men_1991_57)
+- [ ] [Onslaught Epilogue (1997) #1 <!-- mrt:source-occurrence=73 -->](https://www.marvel.com/comics/issue/23388/onslaught_epilogue_1997_1)
+- [ ] [Iron Man (1996) #6 <!-- mrt:source-occurrence=74 -->](https://www.marvel.com/comics/issue/16337/iron_man_1996_6)
