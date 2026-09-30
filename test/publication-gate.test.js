@@ -277,6 +277,19 @@ test('an unplanned second occurrence of an allowed shape is still reported', () 
   const second = new Map();
   findings(file, different, second);
   assert.deepEqual([...second.keys()], [pattern], 'a different hit of the same shape in the same file is a finding');
+
+  const browserFile = 'test/browser-reporting.test.js';
+  const browserHit = 'secret' + " : 'HeadlessChrome/140.0.7339.0'";
+  for (const [path, value, expected] of [
+    [browserFile, browserHit, 0],
+    [browserFile, browserHit.replace('140.0.7339.0', '141.0.7339.0'), 1],
+    ['some/other/file.js', browserHit, 1],
+  ]) {
+    const sink = new Map();
+    findings(path, value, sink);
+    assert.equal(sink.get('a secret assigned in code')?.length ?? 0, expected,
+      'only the exact browser-version ternary in its fixture is allowed');
+  }
 });
 
 test('Android reader identifier allowances are exact public or synthetic fixtures, not file exemptions', () => {

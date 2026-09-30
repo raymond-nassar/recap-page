@@ -145,6 +145,8 @@ export const ALLOWED = new Map([
   ['packaging/android/app/src/androidTest/java/io/github/raymondnassar/recappage/prototype/NativeIntegrationTest.java'
     + '|a session or workspace identifier|00000000-0000-4000-8000-' + '000000000099',
   'the fabricated native reader fixture DRN, not a session, user or workspace identity'],
+  ['test/browser-reporting.test.js|a secret assigned in code|' + 'secret' + " : 'HeadlessChrome/140.0.7339.0'",
+    'the fixed browser-version literal after a ternary colon in the reporter fixture, not an assigned credential'],
 ]);
 
 export function findings(label, text, sink) {

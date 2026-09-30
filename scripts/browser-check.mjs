@@ -30,8 +30,8 @@
 
 import { createStaticServer, DEFAULT_PORT, HOST } from '../server.mjs';
 import { existsSync, readFileSync } from 'node:fs';
-import { homedir } from 'node:os';
-import { join } from 'node:path';
+import { constants, homedir } from 'node:os';
+import { dirname, join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
 import {
@@ -9123,6 +9123,7 @@ const SCENARIOS = [
   },
   {
     id: 'reader-round-trip',
+    nativeDownloads: 1,
     title: 'an imported reader address survives export and reload without provider requests',
     async run(page, t) {
       await page.evaluateOnNewDocument(() => { window.__mrtSynopsis = 'refuse'; });
@@ -9878,6 +9879,7 @@ const SCENARIOS = [
   },
   {
     id: 'reading-shortcut',
+    nativeDownloads: 1,
     title: 'D can be switched off locally and a held key marks only one issue',
     async run(page, t) {
       await open(page, '/');
@@ -13735,26 +13737,116 @@ function tally() {
   };
 }
 
-async function runScenario(browser, origin, scenario, mutation) {
-  const context = await browser.createBrowserContext();
-  const page = await context.newPage();
-  page.__denyExternal = true;
+async function runScenario(browser, origin, scenario, mutation, diagnostic = null) {
+  let context;
   const t = tally();
   let error = null;
   let prepared = false;
+  let completed = false;
+  let infrastructure = false;
+  let completionFailed = false;
+  const exportsFiles = Object.hasOwn(scenario, 'nativeDownloads');
+  const expectedDownloads = scenario.nativeDownloads ?? 0;
+  const downloads = diagnostic ?? (exportsFiles
+    ? observeNativeDownloads('ordinary', 1, { valid: true, started: performance.now() }, false, true)
+    : null);
+  const requireCompletion = exportsFiles && downloads?.requireCompletion === true;
+  let stage = 'create-context';
+  const enter = (next) => {
+    stage = next;
+    console.log(`SCENARIO id=${scenario.id} stage=${stage}`);
+  };
+  const failCompletion = (err) => {
+    const reason = ['unobserved', 'missing-begin', 'pending-timeout', 'canceled', 'invalid-event',
+      'invalid-state', 'invalid-expectation', 'unexpected-count', 'observer-disconnected',
+      'observer-unavailable'].includes(err?.nativeDownloadReason) ? err.nativeDownloadReason : 'observer-error';
+    const failure = `stage=complete-native-downloads code=${failureCode(err)} reason=${reason}`;
+    error ??= failure;
+    infrastructure = true;
+    completionFailed = true;
+    console.log(`FAIL scenario=${scenario.id} ${failure}`);
+    t.check(`${scenario.id} native download completion`, false, failure);
+  };
   try {
-    await preparePage(page, origin, mutation);
+    enter('create-context');
+    context = await browser.createBrowserContext();
+    enter('create-page');
+    const page = await context.newPage();
+    page.__denyExternal = true;
+    if (downloads) {
+      enter('observe-downloads');
+      await downloads.attach(page, browser);
+    }
+    enter('prepare-page');
+    if (diagnostic?.blank) await page.setViewport({ width: 1280, height: 900 });
+    else await preparePage(page, origin, mutation);
     prepared = true;
+    enter('run');
     await scenario.run(page, t);
+    completed = true;
   } catch (err) {
-    error = err?.message ?? String(err);
+    error = `stage=${stage} code=${failureCode(err)}`;
+    console.log(`FAIL scenario=${scenario.id} ${error}`);
+    infrastructure = stage === 'create-context' || stage === 'create-page'
+      || err?.name === 'TargetCloseError' || browser.connected === false;
     t.check(`${scenario.id} ran to the end`, false, error);
   } finally {
-    await context.close().catch(() => {});
+    if (context) {
+      if (requireCompletion) {
+        enter('complete-native-downloads');
+        try {
+          await downloads.waitForCompleted(expectedDownloads);
+        } catch (err) {
+          failCompletion(err);
+        }
+      }
+      enter('close-context');
+      downloads?.snapshot('before-close');
+      try {
+        await context.close();
+      } catch (err) {
+        const cleanup = `stage=close-context code=${failureCode(err)}`;
+        error ??= cleanup;
+        infrastructure = true;
+        t.check(`${scenario.id} context cleanup`, false, cleanup);
+      }
+      downloads?.snapshot('after-close');
+      if (requireCompletion && downloads.failureReason && !completionFailed) {
+        failCompletion(nativeDownloadFailure(downloads.failureReason));
+      }
+      downloads?.dispose();
+    }
   }
+  console.log(`SCENARIO id=${scenario.id} stage=${error ? 'failed' : 'complete'}`);
   return {
     id: scenario.id, title: scenario.title, rows: t.rows, error, prepared,
+    completed: completed && !infrastructure, infrastructure,
   };
+}
+
+function failureCode(error) {
+  return ['Error', 'TypeError', 'RangeError', 'SyntaxError', 'TimeoutError', 'ProtocolError',
+    'TargetCloseError', 'AbortError'].includes(error?.name) ? error.name : 'unknown';
+}
+
+function safeVersion(value) {
+  return typeof value === 'string'
+    && /^(?:(?:HeadlessChrome|Chrome|Chromium|Edg|Microsoft Edge)\/)?\d{1,4}(?:\.\d{1,6}){2,3}$/.test(value)
+    ? value : 'unknown';
+}
+
+function driverVersion(driver) {
+  for (const parent of ['../..', '../../..']) {
+    const file = join(dirname(driver), parent, 'package.json');
+    if (!existsSync(file)) continue;
+    try {
+      const pkg = JSON.parse(readFileSync(file, 'utf8'));
+      if (pkg.name === 'puppeteer-core') return safeVersion(pkg.version);
+    } catch {
+      return 'unknown';
+    }
+  }
+  return 'unknown';
 }
 
 function report(results, { quiet = false } = {}) {
@@ -13772,7 +13864,7 @@ function report(results, { quiet = false } = {}) {
   return { passed, failed };
 }
 
-async function withStack(fn, { port = 0 } = {}) {
+async function withStack(fn, { port = 0, onCleanupFailure = null } = {}) {
   const driver = resolveDriver();
   if (!driver) {
     prerequisiteFailure('puppeteer-core was not found.', [
@@ -13804,8 +13896,8 @@ async function withStack(fn, { port = 0 } = {}) {
   try {
     ({ default: puppeteer } = await import(pathToFileURL(driver).href));
   } catch (err) {
-    prerequisiteFailure(`puppeteer-core was found at ${driver} but could not be loaded.`, [
-      String(err?.message ?? err),
+    prerequisiteFailure('puppeteer-core could not be loaded.', [
+      `stage=load-driver code=${failureCode(err)}`,
       '',
       'Reinstall it outside the tree, or point MRT_PUPPETEER at a working install.',
     ]);
@@ -13813,6 +13905,7 @@ async function withStack(fn, { port = 0 } = {}) {
 
   let browser;
   try {
+    console.log('BROWSER stage=launch');
     browser = await puppeteer.launch({
       executablePath: edge,
       headless: !process.env.MRT_HEADED,
@@ -13823,8 +13916,8 @@ async function withStack(fn, { port = 0 } = {}) {
       ],
     });
   } catch (err) {
-    prerequisiteFailure(`Microsoft Edge was found at ${edge} but could not be launched.`, [
-      String(err?.message ?? err),
+    prerequisiteFailure('Microsoft Edge could not be launched.', [
+      `stage=launch code=${failureCode(err)}`,
       '',
       'Check that MRT_EDGE names the executable itself, not the directory holding it.',
     ]);
@@ -13833,25 +13926,72 @@ async function withStack(fn, { port = 0 } = {}) {
   // Created only once the browser is up, so no exit path above can leave a listening socket
   // behind. Everything from here is covered by the finally.
   const server = createStaticServer();
+  const child = browser.process();
+  let browserVersion = 'unknown';
+  const driverRelease = driverVersion(driver);
+  let closing = false;
+  const browserEvidence = (stage, exit = child?.exitCode, signal = child?.signalCode) => {
+    const exitCode = Number.isInteger(exit) ? exit : 'unknown';
+    const signalCode = Object.hasOwn(constants.signals, signal) ? constants.signals[signal] : 'unknown';
+    console.log(`BROWSER stage=${stage} cleanup=${closing} browser=${browserVersion} driver=${driverRelease} exit=${exitCode} signal=${signalCode}`);
+  };
+  child?.once('exit', (code, signal) => browserEvidence('process-exit', code, signal));
+  browser.once('disconnected', () => browserEvidence('disconnected'));
+  let code = 1;
+  let primaryError = null;
   try {
+    try {
+      browserVersion = safeVersion(await browser.version());
+    } catch (err) {
+      console.log(`BROWSER stage=version code=${failureCode(err)}`);
+    }
+    browserEvidence('ready');
     await new Promise((resolve) => server.listen(port, HOST, resolve));
     const origin = `http://${HOST}:${server.address().port}`;
-    return await fn({ browser, origin, driver, edge });
+    code = await fn({ browser, origin, driver, edge });
+  } catch (err) {
+    primaryError = err;
   } finally {
-    await browser.close().catch(() => {});
-    server.closeAllConnections();
-    await new Promise((resolve) => server.close(resolve));
+    if (primaryError || code !== 0) browserEvidence('failure');
+    closing = true;
+    try {
+      await browser.close();
+    } catch (err) {
+      console.error(`FAIL stage=close-browser code=${failureCode(err)}`);
+      onCleanupFailure?.();
+      code = 1;
+    }
+    try {
+      server.closeAllConnections();
+      await new Promise((resolve, reject) => server.close((err) => err ? reject(err) : resolve()));
+    } catch (err) {
+      console.error(`FAIL stage=close-server code=${failureCode(err)}`);
+      onCleanupFailure?.();
+      code = 1;
+    }
   }
+  if (primaryError) throw primaryError;
+  return code;
 }
 
 async function main() {
+  if (process.argv.some((arg) => arg.startsWith('--diagnostic'))) {
+    const mode = process.argv[2]?.slice('--diagnostic='.length);
+    if (process.argv.slice(2).length !== 1
+      || process.argv[2] !== `--diagnostic=${mode}`
+      || !['context-export-isolation', 'native-export-completion'].includes(mode) || process.env.MRT_HEADED) {
+      console.error('FAIL diagnostic=context-export-isolation stage=arguments');
+      process.exitCode = 1;
+      return;
+    }
+    process.exitCode = await runContextExportIsolation(mode);
+    return;
+  }
   const prove = process.argv.includes('--prove');
   const only = process.argv.find((a) => a.startsWith('--only='))?.slice('--only='.length) ?? null;
   const port = ['cache-generations', 'catalog-gaps', 'reading-paths', 'reading-path-stop-actions', 'issue-return-visibility', 'reading-shortcut', 'issue-action-names', 'issue-443-row-actions', 'defer-next', 'defer-lifecycle', 'defer-persistence', 'order-only-export'].includes(only) ? DEFAULT_PORT : 0;
 
-  const code = await withStack(async ({ browser, origin, driver, edge }) => {
-    console.log(`driver  ${driver}`);
-    console.log(`browser ${edge}`);
+  const code = await withStack(async ({ browser, origin }) => {
     console.log(`origin  ${origin}  (${port === DEFAULT_PORT
       ? 'the required app origin in Edge temporary profile'
       : 'an ephemeral port, so the reading progress saved at :8787 is untouched'})`);
@@ -13863,9 +14003,21 @@ async function main() {
     }
 
     const results = [];
-    for (const scenario of scenarios) results.push(await runScenario(browser, origin, scenario, null));
-    const { passed, failed } = report(results);
-    console.log(`\n${passed} assertion(s) passed, ${failed} failed, across ${results.length} scenario(s)`);
+    let failed;
+    try {
+      for (const scenario of scenarios) {
+        const result = await runScenario(browser, origin, scenario, null);
+        results.push(result);
+        report([result]);
+        if (result.infrastructure) break;
+      }
+    } finally {
+      const totals = report(results, { quiet: true });
+      failed = totals.failed;
+      const completed = results.filter((result) => result.completed);
+      console.log(`\n${totals.passed} assertion(s) passed, ${failed} failed, across ${results.length} scenario(s)`);
+      console.log(`SCENARIOS completed=${completed.length} planned=${scenarios.length} last-completed=${completed.at(-1)?.id ?? 'none'}`);
+    }
     if (failed > 0) return 1;
 
     if (!prove) return 0;
@@ -13887,7 +14039,14 @@ async function main() {
       : MUTATIONS;
     for (const mutation of mutations) {
       const runs = [];
-      for (const scenario of scenarios) runs.push(await runScenario(browser, origin, scenario, mutation));
+      for (const scenario of scenarios) {
+        const result = await runScenario(browser, origin, scenario, mutation);
+        runs.push(result);
+        if (result.infrastructure) {
+          report(runs);
+          return 1;
+        }
+      }
       report(runs, { quiet: true });
       const red = runs.filter((r) => r.rows.some((row) => !row.ok)).map((r) => r.id);
       const aimed = runs.find((r) => r.id === mutation.breaks);
@@ -13907,7 +14066,257 @@ async function main() {
     return unproved === 0 ? 0 : 1;
   }, { port });
 
-  process.exit(code);
+  process.exitCode = code;
+}
+
+function nativeDownloadFailure(reason) {
+  return Object.assign(new Error('Native download completion was not established.'), {
+    name: ['missing-begin', 'pending-timeout'].includes(reason) ? 'TimeoutError' : 'Error',
+    nativeDownloadReason: reason,
+  });
+}
+
+function observeNativeDownloads(arm, ordinal, common, blank, requireCompletion) {
+  const downloads = new Map();
+  let attached = false;
+  let closing = false;
+  let closed = false;
+  let failureReason = null;
+  let expected = null;
+  let wake = () => {};
+  let session;
+  let observedPage;
+  let observedBrowser;
+  const emit = (stage, extra = {}) => console.log(`DOWNLOAD ${JSON.stringify({
+    arm, context: ordinal, stage, elapsedMs: Math.round(performance.now() - common.started), ...extra,
+  })}`);
+  const counters = () => {
+    const states = [...downloads.values()].map((download) => download.state);
+    return {
+      observation: states.length ? 'observed' : 'unobserved',
+      begun: states.length,
+      pending: states.filter((state) => state === 'inProgress').length,
+      completed: states.filter((state) => state === 'completed').length,
+      canceled: states.filter((state) => state === 'canceled').length,
+      partialAfterClose: closed,
+    };
+  };
+  const snapshot = (stage) => {
+    if (stage === 'before-close') closing = true;
+    if (stage === 'after-close') closed = true;
+    emit(stage, counters());
+  };
+  const fail = (reason) => {
+    failureReason ??= reason;
+    wake();
+  };
+  const disconnected = () => {
+    if (!closing) fail('observer-disconnected');
+  };
+  const record = (event, beginning) => {
+    const state = beginning ? 'inProgress' : event?.state;
+    if (typeof event?.guid !== 'string' || !event.guid || event.guid.length > 128
+      || !['inProgress', 'completed', 'canceled'].includes(state)
+      || (beginning ? downloads.has(event.guid) : !downloads.has(event.guid))) {
+      common.valid = false;
+      emit('invalid-event', { reason: 'invalid-event' });
+      fail('invalid-event');
+      return;
+    }
+    if (!downloads.has(event.guid)) downloads.set(event.guid, { ordinal: downloads.size + 1, state });
+    const download = downloads.get(event.guid);
+    if (download.state !== 'inProgress' && download.state !== state) {
+      common.valid = false;
+      emit('invalid-event', { reason: 'invalid-state' });
+      fail('invalid-state');
+      return;
+    }
+    download.state = state;
+    emit(beginning ? 'begin' : 'progress', { download: download.ordinal, state });
+    if (state === 'canceled') fail('canceled');
+    if (expected !== null && downloads.size > expected) fail('unexpected-count');
+    wake();
+  };
+  const begin = (event) => record(event, true);
+  const progress = (event) => record(event, false);
+  return {
+    blank,
+    requireCompletion,
+    snapshot,
+    get failureReason() { return failureReason; },
+    async attach(page, browser) {
+      try {
+        observedPage = page;
+        observedBrowser = browser;
+        page.once('close', disconnected);
+        browser.once('disconnected', disconnected);
+        session = await page.createCDPSession();
+        session.on('Page.downloadWillBegin', begin);
+        session.on('Page.downloadProgress', progress);
+        // Browser download events require a policy command; this deprecated channel does not.
+        await session.send('Page.enable');
+        attached = true;
+      } catch (error) {
+        common.valid = false;
+        fail('observer-unavailable');
+        throw error;
+      }
+    },
+    waitForCompleted(count) {
+      expected = Number.isSafeInteger(count) && count > 0 ? count : null;
+      return new Promise((resolve, reject) => {
+        let settled = false;
+        const finish = (reason = null) => {
+          if (settled) return;
+          settled = true;
+          clearTimeout(timer);
+          wake = () => {};
+          if (reason) failureReason ??= reason;
+          emit('completion-result', {
+            expected, ...counters(), result: reason ? 'failed' : 'completed', reason,
+          });
+          if (reason) reject(nativeDownloadFailure(reason));
+          else resolve();
+        };
+        wake = () => {
+          if (!Number.isSafeInteger(expected) || expected <= 0) return finish('invalid-expectation');
+          if (failureReason) return finish(failureReason);
+          if (!attached) return finish('unobserved');
+          if (downloads.size > expected) return finish('unexpected-count');
+          // An empty pending set is not completion before a late downloadWillBegin arrives.
+          if (downloads.size === expected && counters().completed === expected) finish();
+        };
+        emit('completion-wait', { expected, timeoutMs: 15000, ...counters() });
+        const timer = setTimeout(() => finish(downloads.size < expected ? 'missing-begin' : 'pending-timeout'), 15000);
+        wake();
+      });
+    },
+    dispose() {
+      session?.off('Page.downloadWillBegin', begin);
+      session?.off('Page.downloadProgress', progress);
+      observedPage?.off('close', disconnected);
+      observedBrowser?.off('disconnected', disconnected);
+    },
+  };
+}
+
+async function diagnosticBrowserIdentity(browser, driver, profiles, completionWait) {
+  const { tmpdir } = await import('node:os');
+  const { isAbsolute, relative } = await import('node:path');
+  const args = browser.process()?.spawnargs ?? [];
+  const profileArgs = args.filter((arg) => arg.startsWith('--user-data-dir='));
+  const profile = profileArgs[0]?.slice('--user-data-dir='.length) ?? '';
+  const location = relative(tmpdir(), profile);
+  const endpoint = new URL(browser.wsEndpoint());
+  const facts = {
+    browser: safeVersion(await browser.version()), driver: driverVersion(driver),
+    pipe: args.includes('--remote-debugging-pipe'),
+    debuggingPort: args.includes('--remote-debugging-port=0'),
+    webSocket: endpoint.protocol === 'ws:' && endpoint.hostname === '127.0.0.1' && !!endpoint.port,
+    headless: args.includes('--headless=new'),
+    temporaryProfile: profileArgs.length === 1 && isAbsolute(profile)
+      && !!location && !location.startsWith('..') && !isAbsolute(location),
+    distinctProfile: !!profile && !profiles.has(profile),
+  };
+  console.log(`DIAGNOSTIC identity=${JSON.stringify(facts)}`);
+  if (facts.browser !== 'Edg/152.0.4191.66' || facts.driver !== '25.7.0'
+    || facts.pipe || !facts.debuggingPort || !facts.webSocket || !facts.headless
+    || !facts.temporaryProfile || !facts.distinctProfile) throw new Error('Diagnostic identity mismatch');
+  profiles.add(profile);
+  const protocolUrl = new URL('/json/protocol', endpoint);
+  protocolUrl.protocol = 'http:';
+  const response = await fetch(protocolUrl, { redirect: 'error', signal: AbortSignal.timeout(5000) });
+  if (!response.ok) throw new Error('Diagnostic protocol unavailable');
+  const protocol = await response.json();
+  const page = protocol.domains?.find((domain) => domain.domain === 'Page');
+  const events = page?.events ?? [];
+  const begin = events.find((event) => event.name === 'downloadWillBegin');
+  const progress = events.find((event) => event.name === 'downloadProgress');
+  const guid = (event) => event?.parameters?.some((parameter) => parameter.name === 'guid' && parameter.type === 'string');
+  const states = progress?.parameters?.find((parameter) => parameter.name === 'state')?.enum ?? [];
+  if (!page?.commands?.some((command) => command.name === 'enable') || !guid(begin) || !guid(progress)
+    || !['inProgress', 'completed', 'canceled'].every((state) => states.includes(state))) {
+    throw new Error('Diagnostic download events unsupported');
+  }
+  console.log(`DIAGNOSTIC capability=Page-download-events policy-change=false completion-wait=${completionWait}`);
+}
+
+async function runContextExportIsolation(mode) {
+  const common = { valid: true, started: performance.now() };
+  const profiles = new Set();
+  const arms = [];
+  let exitCode = 0;
+  try {
+    const { createHash } = await import('node:crypto');
+    const lock = readFileSync(new URL('../.github/browser-proof/package-lock.json', import.meta.url));
+    if (createHash('sha256').update(lock).digest('hex')
+      !== '7b6c8f59c3fc5a4d4a9daa564678c53548e3d17646c458971bd933627415d860'
+      || !/^[0-9a-f]{40}$/.test(process.env.GITHUB_SHA ?? '')
+      || process.env.GITHUB_SHA !== process.env.GITHUB_WORKFLOW_SHA
+      || !/^[1-9]\d*$/.test(process.env.GITHUB_RUN_ID ?? '')
+      || !/^[1-9]\d*$/.test(process.env.GITHUB_RUN_ATTEMPT ?? '')
+      || driverVersion(resolveDriver() ?? '') !== '25.7.0') {
+      throw new Error('Diagnostic source or driver identity mismatch');
+    }
+    const reader = SCENARIOS.find((scenario) => scenario.id === 'reader-round-trip');
+    if (!reader) throw new Error('Diagnostic reader scenario missing');
+    const blank = {
+      id: 'context-only', title: 'blank browser context without app navigation',
+      async run(page, t) { t.check('the page remains blank', page.url() === 'about:blank'); },
+    };
+    const completionComparison = mode === 'native-export-completion';
+    const plannedArms = completionComparison
+      ? ['reader-observe-only', 'reader-completion'] : ['browser-only', 'reader-path'];
+    for (const arm of plannedArms) {
+      console.log(`DIAGNOSTIC arm=${arm} stage=launch qualified=false`);
+      const results = [];
+      const observations = [];
+      let processFailed = false;
+      const requireCompletion = arm === 'reader-completion';
+      const code = await withStack(async ({ browser, origin, driver }) => {
+        try {
+          await diagnosticBrowserIdentity(browser, driver, profiles, requireCompletion);
+        } catch (error) {
+          common.valid = false;
+          console.error(`FAIL diagnostic=${mode} arm=${arm} stage=identity-capability code=${failureCode(error)}`);
+          return 1;
+        }
+        browser.once('disconnected', () => observations.forEach((entry) => entry.snapshot('disconnected')));
+        browser.process()?.once('exit', (code) => {
+          if (Number.isInteger(code) && code !== 0) processFailed = true;
+          observations.forEach((entry) => entry.snapshot('process-exit'));
+        });
+        const first = arm === 'browser-only' ? blank : reader;
+        for (const [index, scenario] of [first, blank].entries()) {
+          console.log(`DIAGNOSTIC arm=${arm} context=${index + 1} stage=start`);
+          const observation = observeNativeDownloads(arm, index + 1, common, scenario === blank, requireCompletion);
+          observations.push(observation);
+          const result = await runScenario(browser, origin, scenario, null, observation);
+          results.push(result);
+          report([result]);
+          if (result.error || result.rows.some((row) => !row.ok) || !common.valid) break;
+        }
+        const totals = report(results, { quiet: true });
+        console.log(`DIAGNOSTIC arm=${arm} passed=${totals.passed} failed=${totals.failed}`);
+        console.log(`SCENARIOS completed=${results.filter((result) => result.completed).length} planned=2 last-completed=${results.filter((result) => result.completed).at(-1)?.id ?? 'none'}`);
+        return totals.failed || !common.valid ? 1 : 0;
+      }, { onCleanupFailure: () => { common.valid = false; } });
+      const armCode = code !== 0 || processFailed || !common.valid ? 1 : 0;
+      arms.push({ arm, code: armCode });
+      if (armCode !== 0) exitCode = 1;
+      if (!common.valid) break;
+    }
+  } catch (error) {
+    common.valid = false;
+    exitCode = 1;
+    console.error(`FAIL diagnostic=${mode} stage=setup code=${failureCode(error)}`);
+  }
+  const outcome = !common.valid ? 'setup-aborted'
+    : exitCode ? 'failure-observed' : 'both-passed-inconclusive';
+  console.log(`DIAGNOSTIC ${JSON.stringify({
+    diagnostic: mode, qualified: false, outcome, arms,
+  })}`);
+  return exitCode;
 }
 
 async function seedRemovalFixture(page, saved = fixtureReadingState()) {
@@ -14791,6 +15200,6 @@ SCENARIOS.push((await import('./browser-iron-fist.mjs')).ironFistActualData);
 // stack and exits 1 on. Exit 1 is this check's word for "an assertion failed", so an internal
 // fault would be read as a finding about the app.
 main().catch((err) => {
-  console.error(`\nThe check itself failed before it could report on the app:\n${err?.stack ?? err}`);
-  process.exit(1);
+  console.error(`\nThe check itself failed: stage=runner code=${failureCode(err)}`);
+  process.exitCode = 1;
 });

@@ -36,6 +36,28 @@ package is published. Android signing, final-artifact and physical-device accept
 distribution approvals remain separate. Known enlarged-text overflow on About is tracked in
 [#663](https://github.com/raymond-nassar/recap-page/issues/663), not claimed fixed by this release.
 
+### Require native download completion in browser proofs
+
+Browser scenarios that export files now require observed native completion before successful
+context teardown. Canceled, missing, incomplete or invalid download evidence fails explicitly,
+without hiding an earlier scenario or cleanup failure. A fixed nonqualifying comparison can
+test this lifecycle change; it does not claim the Windows browser failure is fixed.
+Real exports, app behaviour and saved reading progress are unchanged.
+
+### Retain browser-check evidence when automation disconnects
+
+The browser check now reports progress before creating each isolated context and retains
+completed results and the primary failure if cleanup also fails. Diagnostics include only
+allowlisted browser, driver and process facts; an unavailable exit cause stays unknown.
+A manual Windows browser-only diagnostic runs without packaging, uploads no artifacts and
+cannot qualify a release. App behaviour and saved reading progress are unchanged.
+
+### Let the Android comic launcher initialize
+
+Fixed the Android comic launcher failing to initialize because its required issue-page
+helper was blocked. Other app modules remain blocked in the popup. Saved reading progress
+is unchanged.
+
 ### Balance the Android Home heading
 
 The Home logo and short tagline now sit in the middle of the available content area on

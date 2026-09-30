@@ -32,6 +32,8 @@ public final class NavigationPolicyTest {
         check(!policy.isAppPage(origin + "/open.html"), "Launcher not main page");
         check(policy.isPopupPage(origin + "/open.html?d=1"), "Popup launch");
         check(policy.isPopupAsset("js/lib/apiBase.js"), "Popup settings dependency");
+        check(policy.isPopupAsset("js/lib/issuePageUrl.js"), "Popup issue-page dependency");
+        check(!policy.isPopupAsset("js/lib/model.js"), "No unrelated popup library module");
         check(policy.isPopupAsset("android/launch.css"), "Package-only popup accessibility stylesheet");
         check(!policy.isPopupAsset("android/bridge.js"), "No popup bridge");
         check(!policy.isPopupAsset("index.html"), "No popup main app");
