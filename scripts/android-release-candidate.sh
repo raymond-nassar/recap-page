@@ -4,8 +4,15 @@ set +x
 
 TOOL_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 export RECAP_ANDROID_TOOLING_ROOT="$TOOL_ROOT"
-SOURCE="${RECAP_ANDROID_SOURCE_ROOT:-$TOOL_ROOT}"
-WORK="${RECAP_ANDROID_WORK:?Set the owned runner work directory}"
+SOURCE="$TOOL_ROOT"
+case "${RECAP_ANDROID_SOURCE_SUBDIRECTORY:-}" in
+  '') ;;
+  application) SOURCE="$TOOL_ROOT/application" ;;
+  *) printf '%s\n' 'Unknown source checkout subdirectory' >&2; exit 1 ;;
+esac
+WORK="${RUNNER_TEMP:?}/recap-aab-${GITHUB_RUN_ID:?}-${GITHUB_RUN_ATTEMPT:?}"
+export RECAP_ANDROID_SOURCE_ROOT="$SOURCE"
+export RECAP_ANDROID_WORK="$WORK"
 SDK="${ANDROID_HOME:?Android SDK required}"
 export JAVA_HOME="${JAVA_HOME_17_X64:?The isolated runner must provide JDK 17}"
 export PATH="$JAVA_HOME/bin:$SDK/platform-tools:$SDK/build-tools/35.0.0:$PATH"

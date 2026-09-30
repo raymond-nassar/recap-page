@@ -251,8 +251,6 @@ jobs:
     env:
       RECAP_ANDROID_MODE: Rehearsal
       RECAP_ANDROID_SOURCE_SHA: ${{ inputs.android_rehearsal_source_sha }}
-      RECAP_ANDROID_SOURCE_ROOT: ${{ github.workspace }}
-      RECAP_ANDROID_WORK: ${{ runner.temp }}/recap-aab-${{ github.run_id }}-${{ github.run_attempt }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         timeout-minutes: 2

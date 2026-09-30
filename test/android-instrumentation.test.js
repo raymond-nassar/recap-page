@@ -77,6 +77,9 @@ test('registered CI keeps mutually exclusive manual rehearsal and original debug
   assert.match(native, /assert\.notEqual\(debug, rehearsal, 'Select exactly one native mode'\)/);
   assert.match(native, /assert\.equal\(process\.env\.RECAP_ANDROID_SOURCE_SHA, process\.env\.GITHUB_SHA\)/);
   assert.match(native, /RECAP_ANDROID_MODE: Rehearsal/);
+  const env = native.match(/^ {4}env:\r?\n([\s\S]*?)^ {4}steps:/m)?.[1];
+  assert.ok(env);
+  assert.doesNotMatch(env, /\$\{\{\s*runner\./);
   assert.match(native, /if: always\(\) && inputs\.android_emulator == true && inputs\.android_rehearsal != true/);
   assert.match(native, /if: success\(\) && inputs\.android_rehearsal == true && inputs\.android_emulator != true/);
   assert.match(native, /run: bash scripts\/android-release-candidate\.sh rehearsal/);

@@ -79,8 +79,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 90
     env:
-      RECAP_ANDROID_WORK: ${{ runner.temp }}/recap-aab-${{ github.run_id }}-${{ github.run_attempt }}
-      RECAP_ANDROID_SOURCE_ROOT: ${{ github.workspace }}/application
+      RECAP_ANDROID_SOURCE_SUBDIRECTORY: application
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         timeout-minutes: 2
@@ -137,8 +136,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 120
     env:
-      RECAP_ANDROID_WORK: ${{ runner.temp }}/recap-aab-${{ github.run_id }}-${{ github.run_attempt }}
-      RECAP_ANDROID_SOURCE_ROOT: ${{ github.workspace }}/application
+      RECAP_ANDROID_SOURCE_SUBDIRECTORY: application
       RECAP_ANDROID_AFTER_APPROVAL: 'true'
       RECAP_ANDROID_EXPECTED_ENVIRONMENT_ID: ${{ needs.preflight.outputs.environment_id }}
       RECAP_ANDROID_EXPECTED_POLICY_SHA: ${{ needs.preflight.outputs.policy_sha }}

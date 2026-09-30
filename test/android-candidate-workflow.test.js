@@ -20,6 +20,14 @@ test('candidate is direct manual main-only and missing protection cannot schedul
   assert.match(candidate, /environment: \$\{\{ needs\.preflight\.outputs\.environment \}\}/);
   assert.doesNotMatch(preflight, /^ {4}environment:|secrets\./m);
   assert.doesNotMatch(workflow, /contents: write|actions: write|id-token:|secrets: inherit/);
+  for (const job of [candidate, rehearsal]) {
+    const env = job.match(/^ {4}env:\r?\n([\s\S]*?)^ {4}steps:/m)?.[1];
+    assert.ok(env, 'Inspect the actual job-level environment');
+    assert.doesNotMatch(env, /\$\{\{\s*runner\./);
+    assert.match(env, /RECAP_ANDROID_SOURCE_SUBDIRECTORY: application/);
+  }
+  assert.match(shell, /WORK="\$\{RUNNER_TEMP:\?\}\/recap-aab-\$\{GITHUB_RUN_ID:\?\}-\$\{GITHUB_RUN_ATTEMPT:\?\}"/);
+  assert.match(shell, /export RECAP_ANDROID_WORK="\$WORK"/);
 });
 
 test('upload secrets are confined to the external signer step and never enter rehearsal', () => {
