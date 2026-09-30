@@ -549,6 +549,111 @@ export function verifyNativeReport(report, control) {
 const fileDigest = async (path) => digest(await readFile(path));
 const javaHelper = () => join(ROOT, 'scripts', 'android', 'VerifyBundle.java');
 const java = (stage, ...args) => execute('java', [javaHelper(), ...args], { env: cleanEnv() }, stage);
+export function compiledNetworkShape(raw) {
+  const unsupported = (reason) => ({ status: 'unsupported', reason });
+  if (typeof raw !== 'string' || raw.length > 32768) return unsupported('bounds');
+  if ([...raw].some((character) => {
+    const code = character.codePointAt(0);
+    return (code < 32 && code !== 10 && code !== 13) || (code >= 127 && code <= 159);
+  })) return unsupported('control');
+  const lines = raw.split(/\r?\n/).filter((line) => line.trim());
+  if (!lines.length || lines.length > 128 || lines.some((line) => line.length > 1024)) return unsupported('bounds');
+  const stack = [];
+  const roots = [];
+  const elements = [];
+  let attributeCount = 0;
+  let unknownAttributes = 0;
+  let textCount = 0;
+  const boolean = (input) => {
+    const withRaw = input.match(/^(.*) \(Raw: "(true|false)"\)$/);
+    const value = withRaw ? withRaw[1] : input;
+    const result = ['true', '"true"', '(boolean) true', '(type 0x12)0xffffffff', '(type 0x12)0x1'].includes(value) ? 'true'
+      : ['false', '"false"', '(boolean) false', '(type 0x12)0x0'].includes(value) ? 'false' : 'other';
+    return withRaw && withRaw[2] !== result ? 'other' : result;
+  };
+  for (const line of lines) {
+    const record = line.match(/^( *)([EATC]): (.*)$/);
+    if (!record) return unsupported('format');
+    const [, spaces, type, body] = record;
+    const indent = spaces.length;
+    if (indent > 32) return unsupported('bounds');
+    if (type === 'E') {
+      const element = body.match(/^(\S+) \(line=[0-9]{1,9}\)$/);
+      if (!element) return unsupported('format');
+      while (stack.length && stack.at(-1).indent >= indent) stack.pop();
+      if (stack.length >= 4 || elements.length >= 32) return unsupported('bounds');
+      const kind = ['network-security-config', 'base-config', 'domain-config', 'domain'].includes(element[1])
+        ? element[1] : 'other';
+      const node = { kind, indent, attributes: new Map(), children: [], text: [], markers: new Set() };
+      if (stack.length) stack.at(-1).children.push(node);
+      else roots.push(node);
+      stack.push(node);
+      elements.push(node);
+    } else {
+      const node = stack.at(-1);
+      if (!node || indent <= node.indent) return unsupported('structure');
+      if (type === 'A') {
+        const attribute = body.match(/^([^=]+)=(.*)$/);
+        if (!attribute || ++attributeCount > 64) return unsupported('bounds');
+        const name = attribute[1].replace(/\(0x[0-9a-fA-F]{1,8}\)$/, '');
+        if (['cleartextTrafficPermitted', 'includeSubdomains'].includes(name)) {
+          const values = node.attributes.get(name) || [];
+          values.push(boolean(attribute[2]));
+          node.attributes.set(name, values);
+        } else unknownAttributes += 1;
+      } else {
+        const text = body.match(/^'(.*)'$/) || body.match(/^"(.*)"$/);
+        if (!text) return unsupported('format');
+        if (++textCount > 16) return unsupported('bounds');
+        node.text.push(text[1]);
+        node.markers.add(type);
+      }
+    }
+  }
+  if (roots.length !== 1) return unsupported('structure');
+  const root = roots[0];
+  const bases = root.children.filter((node) => node.kind === 'base-config');
+  const configs = root.children.filter((node) => node.kind === 'domain-config');
+  const domains = configs[0]?.children.filter((node) => node.kind === 'domain') || [];
+  if (domains.length > 4) return unsupported('bounds');
+  const flag = (node, name) => {
+    const values = node?.attributes.get(name) || [];
+    return values.length === 0 ? 'absent' : values.length === 1 ? values[0] : 'other';
+  };
+  return {
+    status: 'observed', root: root.kind === 'network-security-config' ? root.kind : 'other',
+    elementCount: elements.length, baseConfigCount: bases.length, domainConfigCount: configs.length,
+    otherElements: elements.filter((node) => node.kind === 'other').length, unknownAttributes,
+    baseCleartext: flag(bases[0], 'cleartextTrafficPermitted'),
+    domainCleartext: flag(configs[0], 'cleartextTrafficPermitted'), domainCount: domains.length,
+    domains: domains.map((node) => {
+      const text = node.text.join('').trim();
+      return { includeSubdomains: flag(node, 'includeSubdomains'), textRecords: node.text.length,
+        textKind: node.markers.size === 0 ? 'absent' : node.markers.size === 1 ? [...node.markers][0] : 'mixed',
+        value: text === '' ? 'absent' : text === '127.0.0.1' ? 'loopback' : text === 'localhost' ? 'localhost' : 'other' };
+    }),
+  };
+}
+export async function verifyPolicyResource(stage, decoded, expected, apk, work) {
+  try {
+    return java(stage, 'resource', decoded, expected);
+  } catch (error) {
+    if (stage !== 'BASE_APK_NETWORK_RULES' || !(error instanceof CandidateError)
+      || !error.message.startsWith('Android candidate: inspection BASE_APK_NETWORK_RULES failed;')
+      || !/; code=RESOURCE_POLICY_MISMATCH(?:; network=|\. Raw tool output was not retained\.$)/.test(error.message)) throw error;
+    let observation;
+    try {
+      const raw = execFileSync(sdkTool('aapt2'),
+        ['dump', 'xmltree', '--file', 'res/xml/network_security_config.xml', apk],
+        { env: cleanEnv(), stdio: ['ignore', 'pipe', 'pipe'], timeout: 30000, maxBuffer: 128 * 1024 });
+      await writeFile(join(work, 'network-compiled-tree.raw.txt'), raw, { mode: 0o600, flag: 'wx' });
+      observation = compiledNetworkShape(raw.toString('utf8'));
+    } catch {
+      observation = { status: 'observer-failed' };
+    }
+    throw new CandidateError(`${error.message} Compiled network observer: ${JSON.stringify(observation)}`);
+  }
+}
 function sdkTool(name) {
   requireValue(process.env.ANDROID_HOME, 'Android SDK location required');
   return name === 'apkanalyzer'
@@ -648,7 +753,8 @@ async function inspectPackages(work, root) {
         const decoded = join(work, `${name}.xml`);
         await writeFile(decoded, execute(sdkTool('apkanalyzer'),
           ['resources', 'xml', '--file', `/res/xml/${name}.xml`, path], { env: cleanEnv() }, dumpStage));
-        java(verifyStage, 'resource', decoded, join(root, 'packaging', 'android', 'app', 'src', 'main', 'res', 'xml', `${name}.xml`));
+        await verifyPolicyResource(verifyStage, decoded,
+          join(root, 'packaging', 'android', 'app', 'src', 'main', 'res', 'xml', `${name}.xml`), path, work);
       }
       requireValue(contents.files.some((file) => file.name === 'res/xml/splits0.xml'),
         'derived base is missing its generated splits XML resource');

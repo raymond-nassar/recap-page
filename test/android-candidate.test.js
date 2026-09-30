@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdtemp, mkdir, writeFile, readFile, readdir, rm, cp } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { join, basename } from 'node:path';
 import { execFileSync } from 'node:child_process';
 import childProcess from 'node:child_process';
 import { syncBuiltinESMExports } from 'node:module';
@@ -10,7 +10,7 @@ import {
   ENVIRONMENT, OFFICIAL_ID, PROTOTYPE_ID, REPOSITORY, PACKET, digest,
   validateInvocation, protectionPolicy, requireApproval, eligibleReservation,
   requireUnusedCode, requireSourceAncestry, sourceCommand, checkRecord, assertFiles, checkAssets, noNative,
-  verifyNativeReport, withPrivateDirectory, certificateFingerprint, execute,
+  verifyNativeReport, withPrivateDirectory, certificateFingerprint, execute, verifyPolicyResource,
 } from '../scripts/android-candidate.mjs';
 import { reserveAndroidBuild, sourceIdentity, artifactRecord, verifyArtifact } from '../scripts/lib/release-identity.mjs';
 import { NATIVE_METHODS } from '../scripts/check-android-instrumentation.mjs';
@@ -476,6 +476,95 @@ test('private signing scratch is removed on child failure and refuses unknown cl
   } finally {
     childProcess.execFileSync = original;
     syncBuiltinESMExports();
+  }
+  const observerRoot = await mkdtemp(join(tmpdir(), 'recap-network-observer-'));
+  const oldAndroidHome = process.env.ANDROID_HOME;
+  process.env.ANDROID_HOME = join(observerRoot, 'synthetic-sdk');
+  const compiled = [
+    'E: network-security-config (line=1)',
+    '    E: base-config (line=2)',
+    '      A: cleartextTrafficPermitted=false',
+    '    E: domain-config (line=3)',
+    '      A: cleartextTrafficPermitted=true',
+    '        E: domain (line=4)',
+    '          A: includeSubdomains=false',
+    "            T: '127.0.0.1'",
+    '        E: domain (line=5)',
+    '          A: includeSubdomains=false',
+    "            T: 'localhost'",
+  ].join('\n') + '\n';
+  try {
+    const cases = [
+      { text: compiled, status: 'observed', hosts: ['loopback', 'localhost'] },
+      { text: compiled.replaceAll('T:', 'C:'), status: 'observed', hosts: ['loopback', 'localhost'] },
+      { text: compiled.split('\n').filter((line) => !line.includes('T:')).join('\n'), status: 'observed', hosts: ['absent', 'absent'] },
+      { text: 'not an XML tree', status: 'unsupported' },
+      { text: compiled.replace('127.0.0.1', 'PRIVATE_DOMAIN.invalid')
+        .replace('      A: cleartextTrafficPermitted=false', '      A: PRIVATE_ATTRIBUTE="PRIVATE_VALUE"\n      A: cleartextTrafficPermitted=false')
+        + '    E: PRIVATE_ELEMENT (line=9)\n', status: 'observed', hosts: ['other', 'localhost'], unknowns: true },
+      { text: compiled.replace('localhost', '\u001b[31mPRIVATE_CONTROL'), status: 'unsupported' },
+      { text: compiled.repeat(20), status: 'unsupported' },
+      { text: 'x'.repeat(32769), status: 'unsupported' },
+      { text: compiled, status: 'observer-failed', observerFailure: true },
+    ];
+    for (const [index, value] of cases.entries()) {
+      const work = join(observerRoot, String(index));
+      await mkdir(work);
+      const apk = join(work, 'same-derived-base.apk');
+      let observerCalls = 0;
+      childProcess.execFileSync = (file, args) => {
+        if (file === 'java') throw Object.assign(new Error(privateText), { status: 1, stderr: Buffer.from('RESOURCE_POLICY_MISMATCH\n') });
+        observerCalls += 1;
+        assert.equal(basename(file), 'aapt2');
+        assert.ok(file.includes(join('build-tools', '35.0.0')));
+        assert.deepEqual(args, ['dump', 'xmltree', '--file', 'res/xml/network_security_config.xml', apk]);
+        if (value.observerFailure) throw new Error(privateText);
+        return Buffer.from(value.text);
+      };
+      syncBuiltinESMExports();
+      await assert.rejects(verifyPolicyResource('BASE_APK_NETWORK_RULES', 'decoded.xml', 'source.xml', apk, work), (error) => {
+        assert.ok(error.message.startsWith('Android candidate: inspection BASE_APK_NETWORK_RULES failed; exit=1; signal=none; code=RESOURCE_POLICY_MISMATCH.'));
+        const match = error.message.match(/ Compiled network observer: (\{.*\})$/);
+        assert.ok(match, 'The original failure must include a separately classified observer outcome');
+        const observation = JSON.parse(match[1]);
+        assert.equal(observation.status, value.status);
+        if (value.hosts) assert.deepEqual(observation.domains.map((domain) => domain.value), value.hosts);
+        if (value.unknowns) {
+          assert.equal(observation.otherElements, 1);
+          assert.equal(observation.unknownAttributes, 1);
+        }
+        assert.doesNotMatch(error.message, /PRIVATE_|\/private\//);
+        return true;
+      });
+      assert.equal(observerCalls, 1);
+      if (!value.observerFailure) assert.equal(await readFile(join(work, 'network-compiled-tree.raw.txt'), 'utf8'), value.text);
+    }
+    for (const [stage, code] of [['BASE_APK_BACKUP_RULES', 'RESOURCE_POLICY_MISMATCH'],
+      ['BASE_APK_NETWORK_RULES', 'VERIFICATION_FAILED']]) {
+      let attempts = 0;
+      childProcess.execFileSync = () => {
+        attempts += 1;
+        throw Object.assign(new Error(privateText), { status: 1, stderr: Buffer.from(`${code}\n`) });
+      };
+      syncBuiltinESMExports();
+      await assert.rejects(verifyPolicyResource(stage, 'decoded.xml', 'source.xml', 'same.apk', observerRoot), (error) => {
+        assert.ok(error.message.includes(`code=${code}`) && !error.message.includes('Compiled network observer'));
+        return true;
+      });
+      assert.equal(attempts, 1);
+    }
+    let successCalls = 0;
+    childProcess.execFileSync = () => { successCalls += 1; return '{"verified":true}'; };
+    syncBuiltinESMExports();
+    assert.equal(await verifyPolicyResource('BASE_APK_NETWORK_RULES', 'decoded.xml', 'source.xml', 'same.apk', observerRoot),
+      '{"verified":true}');
+    assert.equal(successCalls, 1);
+  } finally {
+    childProcess.execFileSync = original;
+    syncBuiltinESMExports();
+    if (oldAndroidHome === undefined) delete process.env.ANDROID_HOME;
+    else process.env.ANDROID_HOME = oldAndroidHome;
+    await rm(observerRoot, { recursive: true, force: true });
   }
   const scratch = await mkdtemp(join(tmpdir(), 'recap-candidate-cleanup-'));
   try {
