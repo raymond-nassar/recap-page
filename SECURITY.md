@@ -84,9 +84,11 @@ the reasoning you were given is yours to quote.
   advisory against one of them has to be acted on is written down in `.github/dependabot.yml`, with
   the reasoning, so the threshold is something you can read rather than something you have to ask
   about.
-- **The workflows** in `.github/workflows/`. The CI workflow reads the repository and nothing else,
-  declared at   `.github/workflows/ci.yml:24-25`, and anything that would give it more than that is in
-  scope.
+- **The workflows** in `.github/workflows/`. CI uses read-only repository permissions,
+  declared at `.github/workflows/ci.yml:33-34`. The optional manual Android rehearsal also reads
+  repository Actions run metadata to verify its origin, declared at
+  `.github/workflows/ci.yml:248-250`. Neither grants write or Play publication access. Changes
+  that expand these permissions are in scope.
 
 ## Out of scope
 

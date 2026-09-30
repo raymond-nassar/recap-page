@@ -91,11 +91,12 @@ Marvel's service.
 
 ## Build and install
 
-**Current release hold:** the owner has approved identity preparation, not a new Android version.
-Until the current feature set is finalized, do not bump the version, reserve a release code,
-create an APK/AAB, distribute a build or upload/promote a Play candidate. The commands below
-describe the existing development workflow, not permission to run it during this hold.
-See [the owner decision](https://github.com/raymond-nassar/recap-page/issues/570#issuecomment-5894851669).
+**Feature-first release gate:** the owner authorized starting new releases after the accepted
+mobile features are finished and verified. Source preparation does not clear that gate or
+authorize a build by itself. Do not bump the version, reserve a release code, create an APK/AAB,
+distribute a build or upload/promote a candidate before the integrated feature source and the
+applicable execution approval are recorded. See
+[the conditional owner authorization](https://github.com/raymond-nassar/recap-page/issues/570#issuecomment-5906215612).
 
 Prerequisites:
 
@@ -157,16 +158,18 @@ removal before transferring progress.
 | Debug prototype | `io.github.raymondnassar.recappage.prototype` | Recap Page prototype |
 
 The default application ID is the official one; debug adds `.prototype`. The Java namespace
-remains `io.github.raymondnassar.recappage.prototype`, as do the existing native tests and their
-fixture identities. The unchanged `.MainActivity` declaration resolves against that namespace,
+remains `io.github.raymondnassar.recappage.prototype`, as do the native test classes.
+The test APK and document-provider identity follow the selected debug or release target.
+The unchanged `.MainActivity` declaration resolves against the Java namespace,
 not the installed application ID. The standard debug resource override retains the prototype
 label. These are [Android's documented identity rules](https://developer.android.com/build/configure-app-module),
 [Activity naming rules](https://developer.android.com/guide/topics/manifest/activity-element#nm)
 and [source-set rules](https://developer.android.com/build/build-variants#sourcesets),
 retrieved 2026-09-29.
 
-**Release signing is intentionally not configured.** Release retains the Android Gradle plugin's
-unsigned, non-debuggable defaults; it does not inherit the debug signer. Ordinary debug signing
+**Gradle release signing is intentionally not configured.** Release explicitly stays unsigned,
+non-debuggable and unshrunk; the protected producer signs the AAB outside Gradle. It does not
+inherit the debug signer. Ordinary debug signing
 is still disposable and does not make differently signed old betas update-compatible. An
 official application ID or source-bound candidate record is not signing or publication approval.
 
@@ -184,15 +187,84 @@ No key has been created or enrolled by this preparation. Actual enrollment, publ
 fingerprints, upload-key ownership and backup/recovery, and least-privilege CI access remain
 owner-approved work in [the signing issue](https://github.com/raymond-nassar/recap-page/issues/576).
 Never put private keys, passwords, identity documents or private Console identifiers in source,
-issues, logs or artifacts. The owner's new Personal Play account is awaiting Google identity
-verification; account creation does not establish production access or permission to publish.
+issues, logs or artifacts. The owner has reported verification of the new Personal Play account;
+that does not establish app-specific production access or permission to publish.
 
-The identity checks inspect source declarations and resource values only. No SDK-generated
-merged manifests/resources, signed package, native launch, side-by-side installation, migration
-or physical-device result is claimed. Those checks, production-key update continuity, rejection
-of incompatible signatures and invalid version transitions, and release-wide copy review remain
-open before relying on an official package. The existing prototype runtime is unchanged,
-including its prototype-specific failure wording. The release hold remains in force.
+Portable identity checks inspect source declarations, not Android installations. The producer
+below additionally requires actual artifact inspection and same-bundle native evidence when
+executed. Source implementation is not a passing result. Production-key update continuity,
+real-user migration, physical acceptance and release-wide copy review remain separate gates.
+The prototype runtime and its private storage identity are unchanged.
+
+## Protected App Bundle candidates
+
+The manual **Android release candidate** workflow builds and validates a candidate; it has no
+Play uploader and never publishes on merge. Its source is not a provisioned signing environment,
+an enrolled key, a native test result or release approval.
+
+Before its first merge to the default branch, rehearse through the already registered **CI**
+workflow. A new `workflow_dispatch` file is not dispatchable merely because `--ref` names a
+feature branch. After the feature/execution gate and a push, replace the placeholders with the
+actual branch and its full source commit:
+
+```text
+gh workflow run CI --ref YOUR_BRANCH -f android_emulator=false -f android_rehearsal=true -f android_rehearsal_source_sha=FULL_SOURCE_SHA
+```
+
+The two native flags are mutually exclusive and default off. Ordinary push/PR jobs and the
+existing debug-emulator mode remain separate. CI passes a literal Rehearsal mode to the shared
+producer, without a protected environment or upload credentials. Rehearsal retains only a
+sanitized JSON report, never a bundle, APK or signing key. Read back the actual workflow path,
+run/attempt, branch and source SHA before relying on its result.
+
+After default-branch registration, direct dispatch of `android-release-candidate.yml` supports
+Rehearsal or Candidate. Candidate is allowed only through that workflow directly on `main`,
+not through CI or another caller. It requires exact source and later ledger commits, an unsealed
+reserved code, an actually observed lower Play high-water and the parent's public issue-comment
+evidence reference. It does not allocate a code or choose a product version.
+
+These are approved configuration **names**, not evidence that the configuration exists:
+
+| Protected configuration | Purpose |
+|---|---|
+| Environment `android-release-candidate` | Exact main-only branch policy, required human reviewer, self-review disabled and admin bypass disabled. |
+| Secret `ANDROID_UPLOAD_KEYSTORE_BASE64` | Owner-custodied upload keystore, not a runner-generated production key. |
+| Secret `ANDROID_UPLOAD_STORE_PASSWORD` | Explicit keystore password. |
+| Secret `ANDROID_UPLOAD_KEY_ALIAS` | Explicit private-key entry. |
+| Secret `ANDROID_UPLOAD_KEY_PASSWORD` | Explicit key password; no fallback to the store password. |
+| Variable `ANDROID_UPLOAD_CERT_SHA256` | Approved public upload-certificate fingerprint, independently checked against the actual signer. |
+
+Provisioning, custody/backup/recovery and Play enrollment remain owner-controlled work under
+[#576](https://github.com/raymond-nassar/recap-page/issues/576). A human reviewer distinct from the
+dispatch initiator must approve the run. Environment-free preflight rejects already absent or
+weak protection before the protected job is scheduled. After approval, the producer rechecks
+environment identity/policy and actual approval history. Keep protection stable through signing:
+two API snapshots cannot make environment deletion and name-based job scheduling atomic.
+
+The producer builds clean pinned source with the approved later ledger, signs the AAB in a
+narrow temporary-key step, then deletes the upload material before native proof. It validates
+signed entries, manifest/resources/permissions, embedded source/build records and native-library
+inventory. Unexpected native libraries stop qualification for a separate ABI/16 KB assessment.
+It does not enable release shrinking or add runtime dependencies.
+
+APK splits come from those exact signed AAB bytes, with an explicitly disposable local signer
+and a matching release instrumentation APK. The existing six methods and restart pair run on
+that payload. Four selected startup invocations then seed distinct official/prototype state,
+replace the official app with the same split bytes, and probe both without reseeding. Installed
+APK hashes/certificates, actual instrumentation results and independent pre-replacement state
+digests must agree. This is synthetic API-36 payload, restart, same-byte reinstall and coexistence
+proof, not a Play-signer upgrade, real-user migration or physical-device acceptance.
+
+Only success after inspection, native proof and cleanup retains the AAB, `android-artifact.json`,
+`android-candidate.json` and `version-codes.proposed.json`, for seven days. Preserve the exact
+packet before expiry and review the proposed seal separately. Do not replace a newer ledger
+wholesale with that snapshot. Failed/abandoned candidate codes remain consumed; a retry or
+rebuild needs a new reservation. See [the exact-artifact contract](RELEASING.md).
+
+Before a later Play upload or track promotion, reverify the retained bytes, signer and current
+sealed ledger, and obtain the applicable rights, service-use, forms, device and Play approval
+evidence. The upload key is not Google's installed app signer; local proof does not bypass
+new-Personal-account closed-testing participation or duration requirements.
 
 ## Keep and transfer your progress
 

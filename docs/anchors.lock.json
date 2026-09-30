@@ -1934,8 +1934,8 @@
     "fp": "a6ceb97902e6f2c0",
     "head": "Two limits worth stating rather than discovering later. Every `required: true` in these forms is"
   },
-  "docs/PUBLICATION_RUNBOOK.md|settings-that-only-become-available-on-the-day|SECURITY.md:143-149|0": {
-    "anchor": "SECURITY.md:143-149",
+  "docs/PUBLICATION_RUNBOOK.md|settings-that-only-become-available-on-the-day|SECURITY.md:145-151|0": {
+    "anchor": "SECURITY.md:145-151",
     "fp": "8d555b25204faa9d",
     "head": "Secret scanning is on, and so is push protection, both enabled on 2026-08-16 once publication"
   },
@@ -1969,8 +1969,8 @@
     "fp": "61fe35744ce7a858",
     "head": "// The publication gate. This repository was published on 2026-08-16, and several of the things that"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true#security-md-143-149|SECURITY.md:143-149|0": {
-    "anchor": "SECURITY.md:143-149",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true#security-md-145-151|SECURITY.md:145-151|0": {
+    "anchor": "SECURITY.md:145-151",
     "fp": "8d555b25204faa9d",
     "head": "Secret scanning is on, and so is push protection, both enabled on 2026-08-16 once publication"
   },
@@ -1984,13 +1984,13 @@
     "fp": "e9a1e74dee2c791e",
     "head": "// The publication gate answered a question that only gets asked once, and it was asked on"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:4490-4501|0": {
-    "anchor": "CHANGELOG.md:4490-4501",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:4497-4508|0": {
+    "anchor": "CHANGELOG.md:4497-4508",
     "fp": "7ebb6ef43a1f1241",
     "head": "- **The project now watches its own development tooling for known security problems, and says how"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:4503-4513|0": {
-    "anchor": "CHANGELOG.md:4503-4513",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:4510-4520|0": {
+    "anchor": "CHANGELOG.md:4510-4520",
     "fp": "c37eedd88ad1c81c",
     "head": "- **The project now has a published security policy, which names a private route for reporting a"
   },
@@ -6089,8 +6089,13 @@
     "fp": "66318b8a9bc87d06",
     "head": ".row.is-read .cb { background: var(--teal); border-color: var(--teal); }"
   },
-  "SECURITY.md|in-scope|.github/workflows/ci.yml:24-25|0": {
-    "anchor": ".github/workflows/ci.yml:24-25",
+  "SECURITY.md|in-scope|.github/workflows/ci.yml:248-250|0": {
+    "anchor": ".github/workflows/ci.yml:248-250",
+    "fp": "d7904643223f00ed",
+    "head": "permissions:"
+  },
+  "SECURITY.md|in-scope|.github/workflows/ci.yml:33-34|0": {
+    "anchor": ".github/workflows/ci.yml:33-34",
     "fp": "95da3e6147977222",
     "head": "permissions:"
   },

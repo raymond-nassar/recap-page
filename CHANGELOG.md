@@ -13,6 +13,13 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Prepare verified Android App Bundle candidates
+
+Adds a manual build-and-validation path with protected upload-key signing and native checks
+using APKs generated from the same bundle. Secret-free rehearsal is separate from production
+credentials and publication. Signing custody, exact version reservations and later Play approval
+remain required; no saved reading data or backup format changes.
+
 ## 3.1.0
 
 ### More reading choices, clearer next steps

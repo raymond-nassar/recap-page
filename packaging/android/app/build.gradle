@@ -19,10 +19,17 @@ def buildMetadata = new JsonSlurper().parseText(providers.exec {
     workingDir repositoryRoot
     commandLine 'node', 'scripts/android-release.mjs', 'version'
 }.standardOutput.asText.get())
+def nativeTestBuildType = providers.gradleProperty('recapAndroidTestBuildType').getOrElse('debug')
+if (!(nativeTestBuildType in ['debug', 'release'])) {
+    throw new GradleException('recapAndroidTestBuildType must be debug or release')
+}
+def nativeTestTarget = nativeTestBuildType == 'release' ?
+    'io.github.raymondnassar.recappage' : 'io.github.raymondnassar.recappage.prototype'
 
 android {
     namespace 'io.github.raymondnassar.recappage.prototype'
     compileSdk 36
+    testBuildType nativeTestBuildType
 
     defaultConfig {
         applicationId 'io.github.raymondnassar.recappage'
@@ -30,7 +37,12 @@ android {
         targetSdk 36
         versionCode buildMetadata.versionCode
         versionName buildMetadata.versionName
+        testApplicationId "${nativeTestTarget}.test"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+        manifestPlaceholders = [
+            recapTestTargetPackage: nativeTestTarget,
+            recapTestProviderAuthority: "${nativeTestTarget}.test.documents",
+        ]
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
@@ -41,7 +53,11 @@ android {
             applicationIdSuffix '.prototype'
             debuggable true
         }
-        // Official signing awaits owner-approved enrollment; release stays unsigned and non-debuggable.
+        release {
+            debuggable false
+            minifyEnabled false
+            shrinkResources false
+        }
     }
     lint {
         abortOnError true

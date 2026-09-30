@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <queries>
-        <package android:name="io.github.raymondnassar.recappage.prototype" />
+        <package android:name="${recapTestTargetPackage}" />
     </queries>
     <application android:allowBackup="false">
+        <meta-data android:name="recap.test.target" android:value="${recapTestTargetPackage}" />
         <activity
             android:name="io.github.raymondnassar.recappage.prototype.NativeIntegrationTest$BrowserFixture"
             android:label="Recap browser fixture"
@@ -30,7 +31,7 @@
         <!-- Exported only in the test APK; the provider checks the caller's UID itself. -->
         <provider
             android:name="io.github.raymondnassar.recappage.prototype.FixtureDocumentProvider"
-            android:authorities="io.github.raymondnassar.recappage.prototype.test.documents"
+            android:authorities="${recapTestProviderAuthority}"
             android:exported="true"
             android:grantUriPermissions="true" />
     </application>

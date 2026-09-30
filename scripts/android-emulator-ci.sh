@@ -3,7 +3,32 @@ set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
+RECAP_ANDROID_DERIVED_INTERFACE=1
+MODE=debug
+if [[ "$#" != 0 ]]; then
+  [[ "$#" == 4 && "$1" == --derived-artifacts && "$3" == --result ]] || {
+    printf '%s\n' 'Expected no arguments or --derived-artifacts <control> --result <report>' >&2
+    exit 1
+  }
+  MODE=derived
+  CONTROL="$(realpath -e "$2")"
+  RESULT="$(realpath -m "$4")"
+  WORK="${RECAP_ANDROID_WORK:?Derived proof requires the producer workspace}"
+  TOOLING="${RECAP_ANDROID_TOOLING_ROOT:?Derived proof requires the pinned producer tooling}"
+  CANDIDATE="$TOOLING/scripts/android-candidate.mjs"
+  node "$CANDIDATE" native-input "$CONTROL" "$RESULT" > "$WORK/native-paths.txt"
+  mapfile -t paths < "$WORK/native-paths.txt"
+  [[ "${#paths[@]}" == 6 ]]
+  APKS="${paths[0]}"
+  BUNDLETOOL="${paths[1]}"
+  OFFICIAL_TEST="${paths[2]}"
+  PROTOTYPE_APK="${paths[3]}"
+  PROTOTYPE_TEST="${paths[4]}"
+  IFS=',' read -r -a NATIVE_METHODS <<< "${paths[5]}"
+  [[ "${#NATIVE_METHODS[@]}" == 6 ]]
+fi
 EVIDENCE="$ROOT/packaging/android/app/build/native-evidence"
+if [[ "$MODE" == derived ]]; then EVIDENCE="$WORK/native-evidence"; fi
 mkdir -p "$EVIDENCE"
 SDK="${ANDROID_HOME:?ANDROID_HOME must name the Linux Android SDK}"
 export JAVA_HOME="${JAVA_HOME_17_X64:?The runner must provide JDK 17}"
@@ -28,8 +53,10 @@ cleanup() {
     rm -f "$SOURCE_BACKUP"
   fi
   if [[ -n "$EMULATOR_PID" ]]; then
-    adb -s "$ANDROID_SERIAL" logcat -d -v threadtime 'AndroidRuntime:V' 'chromium:W' 'TestRunner:V' '*:S' > "$EVIDENCE/logcat.txt" 2>&1 || true
-    adb -s "$ANDROID_SERIAL" pull "/sdcard/Android/data/$APP/files/native-test-evidence" "$EVIDENCE/screenshots" > "$EVIDENCE/pull.txt" 2>&1 || true
+    if [[ "$MODE" == debug ]]; then
+      adb -s "$ANDROID_SERIAL" logcat -d -v threadtime 'AndroidRuntime:V' 'chromium:W' 'TestRunner:V' '*:S' > "$EVIDENCE/logcat.txt" 2>&1 || true
+      adb -s "$ANDROID_SERIAL" pull "/sdcard/Android/data/$APP/files/native-test-evidence" "$EVIDENCE/screenshots" > "$EVIDENCE/pull.txt" 2>&1 || true
+    fi
     adb -s "$ANDROID_SERIAL" emu kill > "$EVIDENCE/shutdown.txt" 2>&1 || true
     kill "$EMULATOR_PID" 2>/dev/null || true
     wait "$EMULATOR_PID" 2>/dev/null || true
@@ -113,6 +140,56 @@ instrument() {
   timeout 420 adb shell am instrument -w -r -e class "$selected" "$@" "$RUNNER" \
     | tee "$EVIDENCE/$label.log"
 }
+
+if [[ "$MODE" == derived ]]; then
+  CLASS=io.github.raymondnassar.recappage.prototype.NativeIntegrationTest
+  APP=io.github.raymondnassar.recappage
+  RUNNER="$APP.test/androidx.test.runner.AndroidJUnitRunner"
+  install_derived() {
+    java -jar "$BUNDLETOOL" install-apks --apks="$APKS" --device-id="$ANDROID_SERIAL"
+  }
+  candidate_instrument() {
+    local phase=$1
+    local method=$2
+    shift 2
+    instrument "$phase" "$method" -e candidatePhase "$phase" "$@"
+    node "$ROOT/scripts/check-android-instrumentation.mjs" "$EVIDENCE/$phase.log" "$EVIDENCE/$phase.json" "$method"
+    mkdir -p "$WORK/native-receipts/$phase"
+    local methods=("$method")
+    if [[ "$method" == all ]]; then methods=("${NATIVE_METHODS[@]}"); fi
+    for selected in "${methods[@]}"; do
+      adb -s "$ANDROID_SERIAL" pull \
+        "/sdcard/Android/data/$APP/files/native-test-evidence/candidate-$phase-$selected.json" \
+        "$WORK/native-receipts/$phase/$selected.json" > "$EVIDENCE/pull-$phase-$selected.txt"
+    done
+  }
+  install_derived
+  adb install -r -t "$OFFICIAL_TEST"
+  candidate_instrument suite all
+  candidate_instrument restart-seed startupAndPersistence
+  adb shell am force-stop "$APP"
+  candidate_instrument restart-probe startupAndPersistence -e restartProbe true
+  candidate_instrument official-seed startupAndPersistence -e installationPhase official-seed
+  adb install -r -t "$PROTOTYPE_APK"
+  adb install -r -t "$PROTOTYPE_TEST"
+  APP=io.github.raymondnassar.recappage.prototype
+  RUNNER="$APP.test/androidx.test.runner.AndroidJUnitRunner"
+  candidate_instrument prototype-seed startupAndPersistence -e installationPhase prototype-seed
+  APP=io.github.raymondnassar.recappage
+  RUNNER="$APP.test/androidx.test.runner.AndroidJUnitRunner"
+  adb shell am force-stop "$APP"
+  install_derived
+  candidate_instrument official-probe startupAndPersistence -e installationPhase official-probe
+  APP=io.github.raymondnassar.recappage.prototype
+  RUNNER="$APP.test/androidx.test.runner.AndroidJUnitRunner"
+  candidate_instrument prototype-probe startupAndPersistence -e installationPhase prototype-probe
+  adb shell iptables -C OUTPUT '!' -o lo -j REJECT
+  adb shell ip6tables -C OUTPUT '!' -o lo -j REJECT
+  printf '%s\n' 'external-network-blocked-v1' > "$EVIDENCE/network-verified.txt"
+  node "$CANDIDATE" native-report
+  git diff --exit-code
+  exit 0
+fi
 
 SOURCE_BACKUP="$(mktemp)"
 cp "$ACTIVITY_SOURCE" "$SOURCE_BACKUP"

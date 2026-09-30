@@ -55,7 +55,7 @@ test('Android CI stays explicitly opt-in and uses real offline Android with boun
   const workflow = readFileSync(new URL('../.github/workflows/ci.yml', import.meta.url), 'utf8');
   const runner = readFileSync(new URL('../scripts/android-emulator-ci.sh', import.meta.url), 'utf8');
   assert.match(workflow, /android_emulator:[\s\S]*?type: boolean[\s\S]*?default: false/);
-  assert.match(workflow, /if: \$\{\{ github\.event_name == 'workflow_dispatch' && inputs\.android_emulator == true \}\}/);
+  assert.match(workflow, /if: \$\{\{ github\.event_name == 'workflow_dispatch' && \(inputs\.android_emulator == true \|\| inputs\.android_rehearsal == true\) \}\}/);
   assert.match(workflow, /runs-on: ubuntu-24\.04/);
   assert.match(workflow, /retention-days: 7/);
   assert.match(runner, /system-images;android-36;google_apis;x86_64/);
@@ -68,4 +68,41 @@ test('Android CI stays explicitly opt-in and uses real offline Android with boun
   assert.doesNotMatch(workflow, /path:[\s\S]*outputs\/apk\/debug\/app-debug\.apk/);
   assert.ok(runner.indexOf('cp "$APK" "$EVIDENCE/verified-apk/') > runner.indexOf('node scripts/check-android-instrumentation.mjs "$EVIDENCE/restart-probe.log"'));
   assert.doesNotMatch(runner, /google-atd|aosp-atd|continue-on-error/);
+});
+
+test('registered CI keeps mutually exclusive manual rehearsal and original debug retention', () => {
+  const workflow = readFileSync(new URL('../.github/workflows/ci.yml', import.meta.url), 'utf8');
+  const native = workflow.slice(workflow.indexOf('\n  android-emulator:'));
+  assert.match(workflow, /android_rehearsal:[\s\S]*?type: boolean[\s\S]*?default: false/);
+  assert.match(native, /assert\.notEqual\(debug, rehearsal, 'Select exactly one native mode'\)/);
+  assert.match(native, /assert\.equal\(process\.env\.RECAP_ANDROID_SOURCE_SHA, process\.env\.GITHUB_SHA\)/);
+  assert.match(native, /RECAP_ANDROID_MODE: Rehearsal/);
+  assert.match(native, /if: always\(\) && inputs\.android_emulator == true && inputs\.android_rehearsal != true/);
+  assert.match(native, /if: success\(\) && inputs\.android_rehearsal == true && inputs\.android_emulator != true/);
+  assert.match(native, /run: bash scripts\/android-release-candidate\.sh rehearsal/);
+  assert.doesNotMatch(native, /secrets\.|environment:|workflow_call|secrets: inherit/);
+  assert.equal([...workflow.matchAll(/^ {2}[\w-]+:\r?$/gm)].filter((match) =>
+    ['  test:', '  lint:', '  android-emulator:'].includes(match[0].trimEnd())).length, 3);
+});
+
+test('derived native mode observes installed packages and probes before any ordinary reseeding', () => {
+  const root = '../packaging/android/app/src/androidTest/java/io/github/raymondnassar/recappage/prototype/';
+  const source = readFileSync(new URL(`${root}NativeIntegrationTest.java`, import.meta.url), 'utf8');
+  const runner = readFileSync(new URL('../scripts/android-emulator-ci.sh', import.meta.url), 'utf8');
+  assert.equal([...source.matchAll(/^ {4}@Test\r?$/gm)].length, 6);
+  const startup = source.slice(source.indexOf('public void startupAndPersistence()'), source.indexOf('public void systemPickerSaveAndCancel()'));
+  assert.ok(startup.indexOf('assertInstallation(role);') < startup.indexOf('if (!restartProbe) seed(false);'));
+  assert.match(startup, /if \(installationPhase\.endsWith\("-seed"\)\) seedInstallation\(role\)/);
+  const probe = source.slice(source.indexOf('private void assertInstallation('), source.indexOf('private void assertFixture('));
+  assert.doesNotMatch(probe, /localStorage\.clear|sessionStorage\.clear|setItem|seedInstallation\(/);
+  assert.match(probe, /Independent expected installation state/);
+  assert.match(source, /getApkContentsSigners\(\)/);
+  assert.match(source, /target\.getApplicationInfo\(\)\.splitSourceDirs/);
+  assert.match(source, /protected void succeeded[\s\S]*writeJson\(candidateEvidenceName\(\), candidateReceipt\)/);
+  const derived = runner.slice(runner.indexOf('if [[ "$MODE" == derived ]]; then\n  CLASS='), runner.indexOf('SOURCE_BACKUP="$(mktemp)"'));
+  assert.match(derived, /install-apks --apks="\$APKS" --device-id="\$ANDROID_SERIAL"/);
+  assert.match(derived, /check-android-instrumentation\.mjs" "\$EVIDENCE\/\$phase\.log"/);
+  assert.match(derived, /candidate_instrument official-seed[\s\S]*candidate_instrument prototype-seed[\s\S]*install_derived[\s\S]*candidate_instrument official-probe[\s\S]*candidate_instrument prototype-probe/);
+  assert.match(derived, /node "\$CANDIDATE" native-report/);
+  assert.doesNotMatch(derived, /\bgradle\b|assembleDebug|pm clear|uninstall/);
 });
