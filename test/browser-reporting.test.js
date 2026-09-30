@@ -150,12 +150,15 @@ test('browser reporting preserves successful scenario order, totals and isolated
   assert.doesNotMatch(result.stdout, /stage=failure|stage=failed/);
 });
 
-function diagnosticFixture(fault = '', args = ['--diagnostic=context-export-isolation'], expectedDownloads = 1) {
-  const lock = new URL('../.github/browser-proof/package-lock.json', import.meta.url).href;
+function diagnosticFixture(
+  fault = '', args = ['--diagnostic=context-export-isolation'], expectedDownloads = 1,
+  lockText = readFileSync(new URL('../.github/browser-proof/package-lock.json', import.meta.url), 'utf8'),
+) {
+  // The recorded Windows diagnostic hashes CRLF bytes; Linux CI checks out the same lock with LF.
+  const lock = lockText.replace(/\r?\n/g, '\r\n');
   const script = `
     import assert from 'node:assert/strict';
     import { EventEmitter } from 'node:events';
-    import { readFileSync as realReadFileSync } from 'node:fs';
     import { constants, tmpdir } from 'node:os';
     import { dirname, join } from 'node:path';
     process.argv = ['node', 'browser-check.mjs', ...process.argv.slice(2)];
@@ -207,7 +210,7 @@ function diagnosticFixture(fault = '', args = ['--diagnostic=context-export-isol
     const clearTimeout = (timer) => timers.delete(timer);
     const events = [];
     const readFileSync = (path) => String(path).endsWith('package-lock.json')
-      ? (fault === 'lock' ? 'wrong-lock' : realReadFileSync(new URL(${JSON.stringify(lock)})))
+      ? (fault === 'lock' ? 'wrong-lock' : ${JSON.stringify(lock)})
       : JSON.stringify({ name: 'puppeteer-core', version: fault === 'driver' ? 'unknown' : '25.7.0' });
     const existsSync = () => true;
     const resolveDriver = () => secret;
@@ -417,6 +420,18 @@ test('context isolation fixes two fresh arms and four contexts without changing 
     && record.context === 1 && record.stage === 'before-close');
   assert.equal(completed.completed, 1);
   assert.equal(completed.pending, 0);
+});
+
+test('Windows diagnostic fixture retains exact hosted lock identity from LF and CRLF checkouts', () => {
+  const lf = readFileSync(new URL('../.github/browser-proof/package-lock.json', import.meta.url), 'utf8')
+    .replace(/\r\n/g, '\n');
+  for (const lock of [lf, lf.replace(/\n/g, '\r\n')]) {
+    const result = diagnosticFixture('', ['--diagnostic=context-export-isolation'], 1, lock);
+    assert.equal(result.status, 0, result.output);
+    assert.equal(result.facts.launches, 2);
+    assert.equal(result.facts.created, 4);
+    assert.equal(result.summary.outcome, 'both-passed-inconclusive');
+  }
 });
 
 test('context isolation preserves failure status and never retries either planned arm', () => {
