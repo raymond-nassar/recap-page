@@ -13,6 +13,12 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Let the Android comic launcher initialize
+
+Fixed the Android comic launcher failing to initialize because its required issue-page
+helper was blocked. Other app modules remain blocked in the popup. Saved reading progress
+is unchanged.
+
 ### Balance the Android Home heading
 
 The Home logo and short tagline now sit in the middle of the available content area on
