@@ -13,6 +13,15 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Follow the Age of Apocalypse and Apocalypse's wider history
+
+Adds a credited 262-entry Reading List following Comic Book Herald's modern Age of Apocalypse
+route, Apocalypse history, later stories and a separate older-edition companion. The checklist
+links 246 exact issues and keeps 16 unresolved original-identity questions visible rather than
+guessing replacements or claiming those comics are unavailable. Thirteen backward references
+remain in the source record without duplicating checklist entries. Existing event lists and saved
+reading progress are unchanged.
+
 ### Bring the next reading action into view on phones
 
 On compact Android screens, the next issue's artwork sits beside its title and credits

@@ -221,11 +221,14 @@ test('Ultimate Spider-Man binds every current library peer to its independent ap
   const library = await loadLibrarySnapshot();
   const current = await buildReportForMapping(`scripts/data/cbh-mappings/${id}.json`, [], {
     excludedOrderIds: ['planet-hulk-reading-order-and-greg-pak-hulk-comics-guide',
-      'shang-chi-master-of-kung-fu-reading-order'],
+      'shang-chi-master-of-kung-fu-reading-order',
+      'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order'],
   });
   const expectedOrderIds = library.lists.filter((entry) => entry.id !== id
     && entry.id !== 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide'
-    && entry.id !== 'shang-chi-master-of-kung-fu-reading-order').map((entry) => entry.id);
+    && entry.id !== 'shang-chi-master-of-kung-fu-reading-order'
+    && entry.id !== 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order')
+    .map((entry) => entry.id);
   assert.deepEqual(current, report);
   assert.equal(report.comparisonCount, 196);
   assert.deepEqual(report.comparisons.reduce((counts, row) => {
@@ -333,7 +336,7 @@ test('Ultimate Spider-Man named checklist reproduces approved groups and 351 ori
   assert.equal(card.collections, 47);
   assert.equal(card.coverIssueId, 4372);
   assert.equal(card.source, packet.sourceUrl);
-  assert.equal(manifest.lists.length, 199);
+  assert.equal(manifest.lists.length, 200);
   const position = manifest.lists.findIndex((entry) => entry.id === id);
   assert.equal(manifest.lists[position + 1].id, 'venom-reading-order');
   assert.deepEqual(manifest.lists[position], mapping.approvedManifest);

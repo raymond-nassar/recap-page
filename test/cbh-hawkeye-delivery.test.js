@@ -246,6 +246,7 @@ test('Hawkeye has a complete approved current-library relationship and shipped i
   const existing = manifest.lists.filter((entry) =>
     entry.id !== id && entry.id !== 'marvel-zombies-reading-order'
     && entry.id !== 'shang-chi-master-of-kung-fu-reading-order'
+    && entry.id !== 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order'
     && entry.id !== 'ms-marvel-kamala-khan-reading-order'
     && entry.id !== 'nova-reading-order' && entry.id !== 'ultimate-spider-man-reading-order' && entry.id !== 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide');
   const orders = await Promise.all(existing.map(async (entry) => ({

@@ -132,6 +132,7 @@ export const CBH_LATER_ORDER_IDS = Object.freeze([
   'ultimate-spider-man-reading-order',
   'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide',
   'shang-chi-master-of-kung-fu-reading-order',
+  'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order',
 ]);
 export const CBRO_PACKET_REVIEW = 'MRT-003 central CBRO source review';
 export const CBRO_SELECTED_IDS = Object.freeze([

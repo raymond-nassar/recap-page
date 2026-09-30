@@ -198,11 +198,11 @@ test('Agatha relationship approval covers every source order present at review',
       'hope-summers-reading-order',
 
       'x-23-reading-order', 'ms-marvel-kamala-khan-reading-order', 'marvel-zombies-reading-order', 'hawkeye-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order', 'nova-reading-order', 'ultimate-spider-man-reading-order', 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide',
-      'shang-chi-master-of-kung-fu-reading-order',
+      'shang-chi-master-of-kung-fu-reading-order', 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order',
     ],
   });
   const expectedOrderIds = manifest.lists
-    .filter((entry) => entry.id !== 'shang-chi-master-of-kung-fu-reading-order' && entry.id !== id && entry.id !== 'nova-reading-order' && entry.id !== 'ultimate-spider-man-reading-order' && entry.id !== 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide'
+    .filter((entry) => entry.id !== 'shang-chi-master-of-kung-fu-reading-order' && entry.id !== 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order' && entry.id !== id && entry.id !== 'nova-reading-order' && entry.id !== 'ultimate-spider-man-reading-order' && entry.id !== 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide'
       && ![
         'thunderbolts-reading-order',
         'nebula-reading-order',

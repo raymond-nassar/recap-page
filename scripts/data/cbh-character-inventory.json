@@ -265,13 +265,42 @@
     "url": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/age-of-apocalypse-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The full-page source ledger preserves 232 ordered occurrences: 75 canonical candidates, 39 repeats, no gaps, and 118 exclusions. No complete Best/Essential section exists on the source page, so the full page remains the correct boundary while provider verification stays blocked.",
-    "sourceRetrievedAt": "2026-08-27",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "disposition": "new-order",
+    "reason": "The approved whole-page route publishes 262 distinct checklist entries from 275 selected occurrences: 246 exact original matches, 16 separately tracked original-identity questions, and 13 backward repeats. Older alternative ordering and six non-whole fragments remain factual provenance. All 26 current-library relationships have independent review; unresolved identity does not imply unavailability.",
+    "sourceRetrievedAt": "2026-09-29",
+    "overlapIds": [
+      "amazing-spider-man-reading-order-modern-marvel-era",
+      "axis",
+      "black-widow-reading-order",
+      "captain-marvel-ms-marvel-reading-order",
+      "daredevil-reading-order",
+      "deadpool-best-of",
+      "emma-frost-reading-order",
+      "fall-of-the-mutants",
+      "fantastic-four-reading-order",
+      "hope-summers-reading-order",
+      "loki-reading-order",
+      "magneto-reading-order",
+      "messiah-war",
+      "modern-x-men-fast-track",
+      "mutant-massacre",
+      "scarlet-witch-best-of",
+      "shadow-king-reading-order",
+      "spider-man-2099-reading-order",
+      "wolverine-reading-order",
+      "x-23-reading-order",
+      "x-cutioners-song",
+      "x-force-reading-order",
+      "x-men-regenesis",
+      "x-termination",
+      "xmen-claremont",
+      "xmen-claremont-complete"
+    ],
+    "catalogIds": [
+      "the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Apocalypse (X-Men)",
       "X-Men: Age of Apocalypse"
@@ -284,9 +313,9 @@
       "**DUPE-A** (same URL as #127)",
       "**DUPE-A** (same URL as #7)"
     ],
-    "sourceContentSha256": "b0691ad15d4f0a3fe5c0944fc2e2563ea60fb0e22efd49cc95a30a7908b08566",
+    "sourceContentSha256": "102e3bd2bc5f69ff6143c6e63298beb8d43a3077331189bb2754497c4fae582b",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 8,
