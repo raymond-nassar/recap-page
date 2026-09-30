@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 import { createServer } from 'node:http';
 import { readFile, mkdir, writeFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
@@ -38,6 +39,16 @@ const noteReadability = process.argv.includes('--only=note-readability');
 const categoryReadability = process.argv.includes('--only=category-readability');
 const marvelAgesTarget = process.argv.includes('--only=marvel-ages-target');
 const catalogReadability = process.argv.includes('--only=catalog-cards');
+const alignment = process.argv.includes('--only=alignment');
+const alignmentBaseline = process.argv.includes('--alignment-baseline');
+const alignmentMutation = process.argv.includes('--alignment-without-centering');
+if (alignment || alignmentBaseline || alignmentMutation) {
+  assert.ok(alignment && process.argv.filter((arg) => arg.startsWith('--only=')).length === 1
+    && process.env.MRT_ALIGNMENT_OUTPUT && !noStyle, 'Alignment requires one mode, normal styles and MRT_ALIGNMENT_OUTPUT');
+  assert.ok(alignmentBaseline || process.env.MRT_ALIGNMENT_BASELINE, 'Alignment comparison requires MRT_ALIGNMENT_BASELINE');
+  assert.ok(!alignmentMutation || (!alignmentBaseline && process.argv.includes('--case=A03')
+    && !process.env.MRT_ANDROID_SCREENSHOTS), 'Alignment mutation requires only A03 without screenshots');
+}
 const placeholderAx = process.argv.includes('--catalog-placeholder-ax');
 if (placeholderAx) {
   assert.ok(catalogReadability && process.argv.filter((arg) => arg.startsWith('--only=')).length === 1
@@ -1416,7 +1427,7 @@ const readingProfiles = [
   { id: 'D01', width: 1280, height: 900, desktop: true },
 ];
 let readingOrder;
-if (readingComposition) {
+if (readingComposition || alignment) {
   const entry = catalog.lists.find((list) => list.id === 'hickman-minimal');
   assert.ok(entry, 'Reading composition requires the measured Hickman order');
   readingOrder = JSON.parse(await readFile(new URL(`../src/data/${entry.file}`, import.meta.url)));
@@ -1803,6 +1814,233 @@ async function readingCompositionCheck(page, profile) {
   }
 }
 
+const alignmentProfiles = [
+  { id: 'A01', width: 320, height: 740, theme: 'light' },
+  { id: 'A02', width: 360, height: 800, theme: 'dark', populated: true },
+  { id: 'A03', width: 412, height: 915, theme: 'light' },
+  { id: 'A04', width: 360, height: 800, theme: 'light', textScale: 1.5, populated: true },
+  { id: 'A05', width: 320, height: 740, theme: 'dark', textScale: 2 },
+  { id: 'A06', width: 800, height: 360, theme: 'light', populated: true },
+  { id: 'A07', width: 1280, height: 900, theme: 'light', populated: true },
+  { id: 'A08', width: 1280, height: 900, theme: 'light', populated: true, desktop: true },
+];
+
+async function alignmentFixtures(page, profile) {
+  await categoryFixtures(page);
+  await page.evaluateOnNewDocument((state, key, educationKey, educationValue, theme) => {
+    if (!localStorage.getItem(key)) localStorage.setItem(key, JSON.stringify(state));
+    localStorage.setItem(educationKey, educationValue);
+    localStorage.setItem('mrt.settings', JSON.stringify({ covers: false, theme }));
+  }, profile.populated ? readingState() : createEmptyState(), KEY,
+  SAVE_EDUCATION_KEY, SAVE_EDUCATION_STATE.COMPLETE, profile.theme);
+}
+
+async function alignmentGeometry(page, selectors) {
+  await page.evaluate(async () => {
+    await document.fonts.ready;
+    window.scrollTo(0, 0);
+    await new Promise((done) => requestAnimationFrame(() => requestAnimationFrame(done)));
+    // Two frames sampled different intermediate widths in the rail's 150ms grid transition.
+    await Promise.all(document.querySelector('#shell').getAnimations()
+      .filter((animation) => animation.playState === 'running' && Number.isFinite(animation.effect.getComputedTiming().endTime))
+      .map((animation) => animation.finished));
+  });
+  return page.evaluate((selectors) => {
+    const box = (node) => {
+      const { left, right, top, bottom, width, height } = node.getBoundingClientRect();
+      return { left, right, top, bottom, width, height };
+    };
+    const nodes = selectors.map((selector) => {
+      const matches = document.querySelectorAll(selector);
+      if (matches.length !== 1) throw new Error(`${selector}: expected exactly one element, got ${matches.length}`);
+      const node = matches[0], bounds = box(node), style = getComputedStyle(node);
+      if (!bounds.width || !bounds.height || node.closest('[hidden]')) throw new Error(`${selector}: no visible geometry`);
+      const content = {
+        left: bounds.left + parseFloat(style.borderLeftWidth) + parseFloat(style.paddingLeft),
+        right: bounds.right - parseFloat(style.borderRightWidth) - parseFloat(style.paddingRight),
+      };
+      const words = [], clipped = [], broken = [];
+      const walker = document.createTreeWalker(node, NodeFilter.SHOW_TEXT);
+      const textTarget = node.matches('#home-h, .home-action, #hero-title, #hero-by, #hero-facts, .rail-hint, label, .sub');
+      while (textTarget && walker.nextNode()) {
+        const text = walker.currentNode;
+        if (!text.parentElement.getClientRects().length || text.parentElement.closest('[hidden], .visually-hidden')) continue;
+        for (const match of text.textContent.matchAll(/[A-Za-z]+/g)) {
+          const range = document.createRange();
+          range.setStart(text, match.index);
+          range.setEnd(text, match.index + match[0].length);
+          const rects = [...range.getClientRects()].filter((rect) => rect.width && rect.height);
+          if (!rects.length) continue;
+          words.push(match[0]);
+          // A rotated logo has sloping word boxes, so compare the word's single range, not letter baselines.
+          if (rects.length > 1) broken.push(match[0]);
+          const viewport = window.visualViewport;
+          for (const rect of rects) {
+            if (rect.left < viewport.offsetLeft - 1 || rect.right > viewport.offsetLeft + viewport.width + 1) clipped.push(match[0]);
+            for (let ancestor = text.parentElement; ancestor; ancestor = ancestor.parentElement) {
+              const css = getComputedStyle(ancestor), edge = box(ancestor);
+              if (/(hidden|clip)/.test(css.overflowX) && (rect.left < edge.left - 1 || rect.right > edge.right + 1)) clipped.push(match[0]);
+              if (/(hidden|clip)/.test(css.overflowY) && (rect.top < edge.top - 1 || rect.bottom > edge.bottom + 1)) clipped.push(match[0]);
+            }
+          }
+        }
+      }
+      return { selector, box: bounds, content, text: node.textContent.trim(), words: words.length,
+        clipped, broken, font: style.fontSize, family: style.fontFamily, weight: style.fontWeight,
+        transform: style.transform, align: style.textAlign, display: style.display,
+        name: node.getAttribute('aria-label'), current: node.getAttribute('aria-current') };
+    });
+    const viewport = window.visualViewport;
+    return {
+      nodes, rootWidth: document.documentElement.clientWidth, scrollWidth: document.documentElement.scrollWidth,
+      inner: { width: innerWidth, height: innerHeight },
+      visual: { width: viewport.width, height: viewport.height, scale: viewport.scale, left: viewport.offsetLeft },
+      android: !!document.querySelector('link[href="./android/mobile.css"]'),
+      active: document.activeElement.id, body: getComputedStyle(document.body).fontSize,
+    };
+  }, selectors);
+}
+
+async function alignmentCheck(page, profile) {
+  const { id } = profile;
+  const snapshots = {};
+  const baseline = alignmentBaseline ? null
+    : JSON.parse(await readFile(join(process.env.MRT_ALIGNMENT_BASELINE, `${id}.json`), 'utf8'));
+  const record = async (name, selectors) => {
+    const value = await alignmentGeometry(page, selectors);
+    snapshots[name] = value;
+    const absoluteFit = ['home', 'reading', 'sheet', 'spotlights'].includes(name);
+    check(value.rootWidth === profile.width && Math.abs(value.visual.width - profile.width) <= 1
+      && Math.abs(value.visual.scale - 1) < 0.001 && (!absoluteFit || value.scrollWidth <= value.rootWidth + 1),
+    `${id} ${name}: actual root/visual viewport bounds ${JSON.stringify({ root: value.rootWidth, visual: value.visual, scroll: value.scrollWidth, inner: value.inner })}`);
+    check(value.android === !profile.desktop, `${id} ${name}: actual platform entry`);
+    if (baseline) {
+      for (const key of ['rootWidth', 'scrollWidth', 'inner', 'visual', 'active', 'body']) {
+        assert.deepEqual(value[key], baseline.snapshots[name][key], `${id} ${name}: exact baseline ${key}`);
+      }
+    }
+    for (const node of value.nodes) {
+      if (absoluteFit) check(node.clipped.length === 0, `${id} ${name} ${node.selector}: no clipped words ${node.clipped}`);
+      if (node.selector === '#home-h' || node.selector === '.home-action') {
+        check(node.words > 0 && !node.broken.length, `${id} ${node.selector}: visible whole words`);
+      }
+      if (baseline) {
+        const previous = baseline.snapshots[name].nodes.find((entry) => entry.selector === node.selector);
+        assert.ok(previous, `${id}: baseline node ${name} ${node.selector}`);
+        assert.deepEqual(node.clipped, previous.clipped, `${id} ${name}: existing clipping unchanged`);
+        for (const key of ['text', 'font', 'family', 'weight', 'transform', 'align', 'display', 'name', 'current']) {
+          check(node[key] === previous[key], `${id} ${name} ${node.selector}: unchanged ${key}`);
+        }
+        const moving = name === 'home' && ['.home-lockup', '#home-h', '.home-action'].includes(node.selector)
+          && profile.width <= 880 && !profile.desktop;
+        for (const key of moving ? ['top', 'bottom', 'width', 'height'] : Object.keys(node.box)) {
+          check(Math.abs(node.box[key] - previous.box[key]) <= (name === 'about' ? 0 : 1), `${id} ${name} ${node.selector}: unchanged ${key}`);
+        }
+      }
+    }
+    return value;
+  };
+  await route(page, 'home');
+  await page.waitForSelector('#home-primary-paths:not([hidden])');
+  await page.waitForFunction((populated) => document.querySelector('#home-continue').hidden === !populated, {}, !!profile.populated);
+  check(await page.$eval('#view-home', (node) => !node.hidden), `${id}: actual Home route`);
+  if (profile.populated) {
+    check(await page.$eval('#chero-count', (node) => node.textContent === '3 of 89 issues read'), `${id}: populated reading fixture on Home`);
+  } else {
+    check(await page.$eval('#btn-home-add', (node) => !!node.getClientRects().length), `${id}: current fresh Home actions`);
+  }
+  const home = await record('home', ['#view-home > .head', '.home-lockup', '#home-h', '.home-action',
+    '#home-categories', '.brand[data-view="home"]']);
+  const [head, lockup, logo, tagline] = home.nodes;
+  const gutters = { left: lockup.box.left - head.content.left, right: head.content.right - lockup.box.right };
+  const centerError = Math.abs((lockup.box.left + lockup.box.right - head.content.left - head.content.right) / 2);
+  check(logo.text === 'RECAP PAGE!' && tagline.text === 'Browse. Choose. Read.', `${id}: exact masthead copy`);
+  check(home.body === `${(profile.desktop ? 14 : 16) * (profile.textScale || 1)}px`, `${id}: retained body scale`);
+  check(Math.abs(parseFloat(logo.font) - profile.logoBase * (profile.textScale || 1)) < 0.1,
+    `${id}: effective logo font grows with text stress`);
+  if (!alignmentBaseline) check(centerError <= 1 && Math.abs(gutters.left - gutters.right) <= 2,
+    `${id}: Home group centered in usable content (${JSON.stringify(gutters)})`);
+  if (!alignmentMutation && process.env.MRT_ANDROID_SCREENSHOTS) {
+    const image = join(process.env.MRT_ANDROID_SCREENSHOTS, `${id}-home.png`);
+    if (existsSync(image)) console.log(`Retained existing Home image without overwriting: ${image}`);
+    else await screenshot(page, id, 'home');
+  }
+  if (['A01', 'A06', 'A07', 'A08'].includes(id)) {
+    await click(page, '#btn-rail-toggle');
+    await record('navigation', ['.rail-header', '#btn-rail-toggle', '.brand[data-view="home"]']);
+    await click(page, '#btn-rail-toggle');
+    await page.focus('.brand[data-view="home"]');
+    check(await page.$eval('.brand[data-view="home"]', (node) => node === document.activeElement),
+      `${id}: Home navigation remains focusable`);
+  }
+  if (['A02', 'A06', 'A08'].includes(id)) {
+    await route(page, 'read');
+    await page.waitForFunction(() => document.querySelector('#hero-title').textContent === 'Avengers (2012) #4');
+    const reading = await record('reading', ['#hero', '#hero-title', '#hero-by', '#hero-facts', '#btn-hero-read']);
+    check(reading.nodes.slice(1, 4).every((node) => ['start', 'left'].includes(node.align)), `${id}: reading copy stays start-aligned`);
+    if (id === 'A02') {
+      const button = reading.nodes.at(-1).box;
+      check(button.top >= 0 && button.bottom <= profile.height && button.left >= 0 && button.right <= profile.width,
+        `${id}: full Read within default viewport (${button.bottom})`);
+      check(await page.$eval('#btn-hero-read', (node) => {
+        const rect = node.getBoundingClientRect();
+        return node.contains(document.elementFromPoint(rect.left + rect.width / 2, rect.top + rect.height / 2));
+      }), `${id}: primary Read not occluded`);
+      if (!alignmentBaseline) await screenshot(page, id, 'reading');
+    }
+  }
+  if (id === 'A03') {
+    await page.evaluate((key, state) => {
+      localStorage.setItem(key, JSON.stringify(state));
+      location.hash = '#/read';
+    }, KEY, readingState());
+    await page.reload({ waitUntil: 'networkidle0' });
+    await page.waitForSelector('#view-read:not([hidden])');
+    await page.waitForSelector('#android-list-options', { visible: true });
+    await page.focus('#android-list-options');
+    await click(page, '#android-list-options');
+    const panel = await record('sheet', ['#android-list-sheet', '#android-list-sheet .android-sheet-header', '#android-list-sheet .list-tools']);
+    check(Math.abs(panel.nodes[0].box.left + panel.nodes[0].box.right - profile.width) <= 2, `${id}: centered list sheet`);
+    if (!alignmentBaseline && !alignmentMutation) await screenshot(page, id, 'sheet');
+    await backDialog(page);
+    check(await page.$eval('#android-list-options', (node) => node === document.activeElement), `${id}: Back returns sheet focus`);
+    await page.evaluate((key, state) => {
+      localStorage.setItem(key, JSON.stringify(state));
+      location.hash = '#/library';
+    }, KEY, createEmptyState());
+    await page.reload({ waitUntil: 'networkidle0' });
+    await page.waitForSelector('#view-library:not([hidden])');
+    await record('empty', ['#view-library']);
+  }
+  if (['A04', 'A08'].includes(id)) {
+    await route(page, 'add-manual');
+    const form = await record('form', ['#sec-manual > .rail-hint', 'label[for="manual-title"]', '#manual-title']);
+    check(form.nodes.every((node) => ['start', 'left'].includes(node.align)), `${id}: form prose/labels/input start-aligned`);
+    if (id === 'A04' && !alignmentBaseline) await screenshot(page, id, 'form');
+    await route(page, 'data');
+    await record('settings', ['#view-data > .head .sub', '#opt-theme']);
+    await route(page, 'about');
+    await record('about', ['#view-about .head']);
+  }
+  if (id === 'A05') {
+    await route(page, 'spotlights');
+    await page.waitForSelector('#android-spotlight-options', { visible: true });
+    await page.focus('#android-spotlight-options');
+    await click(page, '#android-spotlight-options');
+    const panel = await record('spotlights', ['#android-spotlight-sheet', '#android-spotlight-sheet .android-sheet-header']);
+    check(Math.abs(panel.nodes[0].box.left + panel.nodes[0].box.right - profile.width) <= 2, `${id}: centered spotlight sheet`);
+    if (!alignmentBaseline) await screenshot(page, id, 'spotlights');
+    await backDialog(page);
+    check(await page.$eval('#android-spotlight-options', (node) => node === document.activeElement), `${id}: spotlight focus restored`);
+  }
+  const evidence = { profile, centerError, gutters, snapshots,
+    sourceRevision: JSON.parse(await readFile(join(ANDROID_ASSET_DIR, 'build-info.json'), 'utf8')).sourceRevision,
+    mobileCssSha256: createHash('sha256').update(await readFile('packaging/android/web/mobile.css')).digest('hex') };
+  await mkdir(process.env.MRT_ALIGNMENT_OUTPUT, { recursive: true });
+  await writeFile(join(process.env.MRT_ALIGNMENT_OUTPUT, `${id}.json`), `${JSON.stringify(evidence, null, 2)}\n`, { flag: 'wx' });
+  console.log(`ALIGNMENT ${id}: center error ${centerError}; gutters ${JSON.stringify(gutters)}; ${Object.keys(snapshots).length} states`);
+}
+
 async function mobileLayout(page, label, narrow) {
   await page.waitForSelector('#home-recommended:not([hidden])');
   if (narrow) {
@@ -2031,8 +2269,9 @@ try {
     { width: 800, height: 360 },
     { width: 1280, height: 900, desktop: true },
   ];
+  if (alignment) viewports = alignmentProfiles;
   const onlyCase = process.argv.find((arg) => arg.startsWith('--case='))?.slice('--case='.length);
-  if (catalogReadability && onlyCase) viewports = viewports.filter((viewport) => onlyCase.split(',').includes(viewport.id));
+  if ((catalogReadability || alignment) && onlyCase) viewports = viewports.filter((viewport) => onlyCase.split(',').includes(viewport.id));
   const onlyViewport = process.argv.find((arg) => arg.startsWith('--viewport='))?.slice('--viewport='.length);
   if (onlyViewport) viewports = viewports.filter((viewport) => (
     `${viewport.width}x${viewport.height}${viewport.textScale ? `@${viewport.textScale}` : ''}` === onlyViewport
@@ -2053,6 +2292,7 @@ try {
     if (seriesReadability) await seriesFixtures(page);
     if (noteReadability) await noteFixtures(page);
     if (readingComposition) await readingFixtures(page, viewport);
+    if (alignment) await alignmentFixtures(page, viewport);
     if (categoryReadability || marvelAgesTarget || catalogReadability || spotlightControls) await categoryFixtures(page);
     if (spotlightControls) {
       await page.evaluateOnNewDocument((theme) => {
@@ -2067,7 +2307,7 @@ try {
           body: '<svg xmlns="http://www.w3.org/2000/svg" width="200" height="300"><rect width="200" height="300" fill="#73579b"/><path d="M0 300L200 0" stroke="#fff" stroke-width="8"/></svg>',
         });
       }
-      if ((seriesReadability || noteReadability || categoryReadability || marvelAgesTarget || catalogReadability || readingComposition || spotlightControls) && new URL(request.url()).origin !== origin) {
+      if ((seriesReadability || noteReadability || categoryReadability || marvelAgesTarget || catalogReadability || readingComposition || spotlightControls || alignment) && new URL(request.url()).origin !== origin) {
         failures.push(`Unexpected external request: ${request.url()}`);
         return request.abort();
       }
@@ -2090,7 +2330,7 @@ try {
           });
         }
         if (request.url().endsWith('/data/catalog.json')) {
-          return request.respond({ status: 200, contentType: 'application/json', body: JSON.stringify(mobileUi || categoryReadability || marvelAgesTarget || catalogReadability || spotlightControls ? catalog : { ...catalog, lists: [orderEntry] }) });
+          return request.respond({ status: 200, contentType: 'application/json', body: JSON.stringify(mobileUi || categoryReadability || marvelAgesTarget || catalogReadability || spotlightControls || alignment ? catalog : { ...catalog, lists: [orderEntry] }) });
         }
         return request.continue();
       }
@@ -2121,8 +2361,9 @@ try {
           data: 'recap:connect:v1', origin: '', source: null, ports: [channel.port2],
         }));
       });
-    }, readingComposition, spotlightControls);
+    }, readingComposition, spotlightControls || alignment);
     await page.goto(origin, { waitUntil: 'networkidle0' });
+    if (alignment) viewport.logoBase = await page.$eval('#home-h', (node) => parseFloat(getComputedStyle(node).fontSize));
     if (spotlightCase === 'geometry') await spotlightGeometryCheckpoint(page, 'unscaled postboot');
     if (viewport.textScale) {
       await page.evaluate((scale) => {
@@ -2132,8 +2373,27 @@ try {
         }
       }, viewport.textScale);
     }
+    if (alignment && viewport.textScale) {
+      await page.$eval('#home-h', (node, font) => { node.style.fontSize = `${font}px`; }, viewport.logoBase * viewport.textScale);
+    }
     if (spotlightCase === 'geometry') await spotlightGeometryCheckpoint(page, 'after existing text scaling');
     const label = `${viewport.width}x${viewport.height}${viewport.textScale ? ` ${viewport.textScale * 100}% text` : ''}`;
+    if (alignment) {
+      if (alignmentMutation) {
+        await page.evaluate(() => {
+          const sheet = [...document.styleSheets].find((entry) => entry.href?.endsWith('/android/mobile.css'));
+          const media = [...sheet.cssRules].find((rule) => rule instanceof CSSMediaRule && rule.conditionText === '(max-width: 880px)');
+          const rule = [...media.cssRules].find((entry) => entry.selectorText === '#view-home > .head');
+          if (rule.style.justifyContent !== 'center') throw new Error('Mutation requires the actual Home centering declaration');
+          rule.style.removeProperty('justify-content');
+        });
+      }
+      await alignmentCheck(page, viewport);
+      check(errors.length === 0, `${viewport.id}: page errors ${errors.join('; ')}`);
+      await context.close();
+      if (failures.length > failuresBefore) break;
+      continue;
+    }
     if (spotlightControls) {
       try {
         await spotlightControlCheck(page, viewport);
