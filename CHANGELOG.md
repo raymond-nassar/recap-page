@@ -13,6 +13,12 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Keep decorative catalog tiles out of screen-reader content
+
+Catalog cover placeholders no longer repeat their initials and title in the accessibility
+tree. Guide headings, position markers, descriptions, credits and actions remain available.
+Visual tiles, keyboard navigation, cover settings and saved reading progress are unchanged.
+
 ### Keep mobile Character spotlights focused on guides
 
 On compact Android screens, one Filters and sort button replaces the three exposed choice

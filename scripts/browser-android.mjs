@@ -38,6 +38,11 @@ const noteReadability = process.argv.includes('--only=note-readability');
 const categoryReadability = process.argv.includes('--only=category-readability');
 const marvelAgesTarget = process.argv.includes('--only=marvel-ages-target');
 const catalogReadability = process.argv.includes('--only=catalog-cards');
+const placeholderAx = process.argv.includes('--catalog-placeholder-ax');
+if (placeholderAx) {
+  assert.ok(catalogReadability && process.argv.filter((arg) => arg.startsWith('--only=')).length === 1
+    && !noStyle, 'Placeholder AX proof requires only the catalog-cards mode with normal styles');
+}
 const readingFactsAx = process.argv.includes('--only=reading-facts-ax');
 const readingComposition = process.argv.includes('--only=reading-composition') || readingFactsAx;
 const spotlightControls = process.argv.includes('--only=spotlight-controls');
@@ -2013,7 +2018,9 @@ try {
     { width: 412, height: 915, textScale: 1.5 },
     { width: 1280, height: 900, desktop: true },
   ];
-  if (catalogReadability) viewports = catalogCardProfiles;
+  if (catalogReadability) viewports = placeholderAx
+    ? catalogCardProfiles.filter((profile) => ['M11', 'M16'].includes(profile.id))
+    : catalogCardProfiles;
   if (readingComposition) viewports = readingFactsAx ? readingProfiles.filter((profile) => !profile.desktop) : readingProfiles;
   if (spotlightControls) viewports = [
     { width: 320, height: 740 },
@@ -2031,6 +2038,8 @@ try {
     `${viewport.width}x${viewport.height}${viewport.textScale ? `@${viewport.textScale}` : ''}` === onlyViewport
   ));
   assert.ok(viewports.length, `Unknown viewport: ${onlyViewport}`);
+  if (placeholderAx) assert.deepEqual(viewports.map((profile) => profile.id), ['M11', 'M16'],
+    'Placeholder AX proof requires exactly M11 and M16');
   for (const viewport of viewports) {
     const failuresBefore = failures.length;
     root = resolve(viewport.desktop ? 'src' : ANDROID_ASSET_DIR);
@@ -2052,7 +2061,7 @@ try {
     }
     await page.setRequestInterception(true);
     page.on('request', (request) => {
-      if (readingComposition && request.resourceType() === 'image' && new URL(request.url()).host === 'i.annihil.us') {
+      if ((readingComposition || placeholderAx) && request.resourceType() === 'image' && new URL(request.url()).host === 'i.annihil.us') {
         return request.respond({
           status: 200, contentType: 'image/svg+xml',
           body: '<svg xmlns="http://www.w3.org/2000/svg" width="200" height="300"><rect width="200" height="300" fill="#73579b"/><path d="M0 300L200 0" stroke="#fff" stroke-width="8"/></svg>',
@@ -2147,7 +2156,7 @@ try {
       continue;
     }
     if (catalogReadability) {
-      await catalogCardReadability({ page, viewport, catalog, check, route, click });
+      await catalogCardReadability({ page, viewport, catalog, check, route, click, placeholderAx });
       check(errors.length === 0, `${viewport.id}: page errors ${errors.join('; ')}`);
       await context.close();
       continue;

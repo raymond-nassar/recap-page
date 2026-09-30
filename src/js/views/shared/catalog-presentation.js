@@ -223,7 +223,7 @@ export function createCatalogPresentation({
     const reportTarget = report ?? `#${surface}-report`;
     const title = story.name ?? story.lists[0].name;
     const img = el('img', { alt: '', loading: 'lazy', decoding: 'async' });
-    const fallback = el('div', { class: 'of cover-fallback', 'aria-hidden': true }, [
+    const fallback = el('div', { class: 'of cover-fallback', 'aria-hidden': 'true' }, [
       el('span', { class: 'ofs', text: shortTitle(title) }),
     ]);
     const desc = el('p', { class: 'catalog-card-desc' });
