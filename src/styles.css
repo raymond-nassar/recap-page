@@ -425,7 +425,7 @@ a { color: var(--blue); }
 .rail-toggle-label { display: none; }
 
 .brand {
-  display: flex; align-items: center; gap: var(--space-4); margin: 0 0 var(--space-6);
+  position: relative; display: flex; align-items: center; gap: var(--space-4); margin: 0 0 var(--space-6);
   background: none; border: 0; color: inherit; text-align: left;
   padding: var(--space-2) var(--space-3); border-radius: 8px; width: 100%; min-height: 44px;
 }
@@ -473,10 +473,10 @@ a { color: var(--blue); }
 
 /* The selected state is a purple accent bar AND a raised surface AND a heavier label, so it
    never depends on colour alone. */
-.ri[aria-current], .ri.on {
+.ri[aria-current], .ri.on, .brand[aria-current] {
   background: rgb(var(--tint-base) / 8%); color: var(--text); font-weight: 600;
 }
-.ri[aria-current]::before, .ri.on::before {
+.ri[aria-current]::before, .ri.on::before, .brand[aria-current]::before {
   content: ""; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
   width: 3px; height: 60%; border-radius: 0 3px 3px 0; background: var(--accent);
 }
@@ -525,7 +525,7 @@ a { color: var(--blue); }
 /* 44px minimum on an icon-only target, and the glyph centred inside it. */
 .railed .ri { justify-content: center; padding: var(--space-4) 0; min-width: 44px; }
 .railed .ri .init { display: grid; }
-.railed .ri[aria-current]::before, .railed .ri.on::before { height: 70%; }
+.railed .ri[aria-current]::before, .railed .ri.on::before, .railed .brand[aria-current]::before { height: 70%; }
 .railed .rail-foot { padding-left: 0; padding-right: 0; justify-items: center; }
 
 /* The status pill becomes a dot. Its text stays as the accessible name.
@@ -596,7 +596,7 @@ a { color: var(--blue); }
   .railed .ri .rail-list-name,
   .railed .ri .bar { display: block; }
   .railed .ri .n { display: inline; }
-  .railed .ri[aria-current]::before, .railed .ri.on::before { height: 60%; }
+  .railed .ri[aria-current]::before, .railed .ri.on::before, .railed .brand[aria-current]::before { height: 60%; }
   .railed .rail-foot {
     padding-left: var(--space-4);
     padding-right: var(--space-4);
@@ -1483,6 +1483,7 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: 6px; padding: 
 .notice-act button {
   min-height: 44px; padding-inline: var(--space-6); display: inline-flex; align-items: center;
 }
+#home-recommended .grow { flex: 1 1 19rem; min-width: 0; }
 
 /* Dismiss is the lesser of the two when a notice carries both, so it reads as secondary by losing
    its outline until it is pointed at or focused. The colour is left alone deliberately: dimming
@@ -1752,7 +1753,7 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
   .btn, .quiet, .mini, .ri { border: 1px solid ButtonBorder; }
   /* The accent bar and the raised surface both disappear in forced colours, so the
      selected item is marked with a border the mode is required to honour. */
-  .ri[aria-current], .ri.on { border: 2px solid Highlight; }
+  .ri[aria-current], .ri.on, .brand[aria-current] { border: 2px solid Highlight; }
   .breadcrumb a { color: LinkText; }
   .breadcrumb [aria-current="page"] { color: CanvasText; }
   .home-path, .yours button, .preview, .catalog-card { border: 1px solid CanvasText; }

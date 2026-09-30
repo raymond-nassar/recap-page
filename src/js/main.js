@@ -1462,6 +1462,9 @@ function showView(next, { focus = true, push = false } = {}) {
     if (btn.dataset.view === parent) btn.setAttribute('aria-current', 'page');
     else btn.removeAttribute('aria-current');
   }
+  const brand = $('.brand[data-view="home"]');
+  if (next === 'home') brand.setAttribute('aria-current', 'page');
+  else brand.removeAttribute('aria-current');
   renderRail();
   const shelf = CATALOG_SHELVES.find((s) => s.key === next);
   if (shelf) void catalogView.render(shelf.key);
@@ -2961,6 +2964,7 @@ const homeView = createHomeView({
     showView(category.route, { push: true });
     if (category.route === 'reading-paths') void readingPathsView.render();
   },
+  onNavigateHub: (destination) => showView(destination, { push: true }),
   onOpen: () => showView('read', { push: true }),
   onRead: openInReader,
   openPreview: (list, story) => previewView.open(list, story),

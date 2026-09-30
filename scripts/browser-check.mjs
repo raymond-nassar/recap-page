@@ -588,6 +588,27 @@ const MUTATIONS = [
     },
   },
   {
+    id: 'first-run-add-missing',
+    breaks: 'home-first-run-wayfinding',
+    why: 'the first-run action no longer reaches the Add comics hub',
+    script: () => {
+      addEventListener('load', () => {
+        document.querySelector('#btn-home-add')?.remove();
+      });
+    },
+  },
+  {
+    id: 'home-recommendation-cramped',
+    breaks: 'home-first-run-wayfinding',
+    why: 'the recommendation explanation shrinks back beside its wide Preview action',
+    script: () => {
+      addEventListener('load', () => {
+        const sheet = [...document.styleSheets].find((entry) => entry.href?.endsWith('styles.css'));
+        sheet.insertRule('#home-recommended .grow { flex: 1 1 0px !important; }', sheet.cssRules.length);
+      });
+    },
+  },
+  {
     id: 'home-copy-return',
     breaks: 'home-category-gateway',
     why: 'the first-run question is replaced by a generic heading and explanatory sentence',
@@ -3081,6 +3102,9 @@ const SCENARIOS = [
         screen.timeline === false, JSON.stringify(screen));
 
       await page.setViewport({ width: 390, height: 844 });
+      await page.waitForFunction(() => matchMedia('(max-width: 880px)').matches
+        && document.querySelector('#sidebar-panel').hidden
+        && document.querySelector('#btn-rail-toggle').getAttribute('aria-expanded') === 'false');
       await settleLayout();
       const screenNarrow = await page.$eval('#marvel-on-screen-results', (results) => {
         const cards = [...results.querySelectorAll('.catalog-card')];
@@ -4465,6 +4489,117 @@ const SCENARIOS = [
         && initial.recommendationHidden === false,
         JSON.stringify(initial));
 
+      await page.setViewport({ width: 390, height: 844 });
+      const intermediate = await page.evaluate(() => {
+        const browse = document.querySelector('#btn-home-browse');
+        const add = document.querySelector('#btn-home-add');
+        const copy = document.querySelector('#home-recommended .grow');
+        const preview = document.querySelector('#btn-home-recommended');
+        const bounds = (node) => node?.getBoundingClientRect();
+        return {
+          browse: bounds(browse)?.toJSON() ?? null,
+          add: bounds(add)?.toJSON() ?? null,
+          browseName: browse?.textContent.trim(),
+          addName: add?.textContent.trim(),
+          copyWidth: Math.round(bounds(copy)?.width ?? 0),
+          previewHeight: Math.round(bounds(preview)?.height ?? 0),
+          pageOverflow: document.documentElement.scrollWidth > innerWidth,
+          regionOverflow: document.querySelector('#home-first-run').scrollWidth
+            > document.querySelector('#home-first-run').clientWidth,
+          homeCurrent: document.querySelector('.brand')?.getAttribute('aria-current'),
+        };
+      });
+      t.check('at 390 pixels both named Browse and Add choices are visible without opening Navigation',
+        intermediate.browseName === 'Browse Reading Lists'
+        && intermediate.addName === 'Add comics'
+        && [intermediate.browse, intermediate.add].every((rect) => rect
+          && rect.top >= 0 && rect.bottom <= 844 && rect.left >= 0 && rect.right <= 390
+          && rect.height >= 44) && intermediate.homeCurrent === 'page',
+        JSON.stringify(intermediate));
+      t.check('at 390 pixels recommendation copy stays readable without horizontal overflow',
+        intermediate.copyWidth >= 240 && intermediate.previewHeight >= 44
+        && !intermediate.pageOverflow && !intermediate.regionOverflow,
+        JSON.stringify(intermediate));
+
+      await page.focus('#btn-home-browse');
+      await page.keyboard.press('Tab');
+      await page.waitForFunction(() => document.querySelector('#sidebar-panel').hidden
+        && document.querySelector('#btn-rail-toggle').getAttribute('aria-label') === 'Navigation',
+      { timeout: 3000 });
+      t.check('keyboard focus reaches the named Add action with a visible indicator',
+        await page.$eval('#btn-home-add', (button) => button === document.activeElement
+          && getComputedStyle(button).outlineStyle !== 'none'));
+      await page.keyboard.press('Enter');
+      await page.waitForFunction(() => location.hash === '#/add' && document.activeElement?.id === 'add-h');
+      const addDestination = await page.evaluate(() => ({
+        choices: [...document.querySelectorAll('#view-add .search-hub-card')]
+          .map((button) => button.dataset.view),
+        navigationExpanded: document.querySelector('#btn-rail-toggle')?.getAttribute('aria-expanded'),
+        viewport: innerWidth,
+        panelHidden: document.querySelector('#sidebar-panel')?.hidden,
+        toggleLabel: document.querySelector('#btn-rail-toggle')?.getAttribute('aria-label'),
+        narrowMedia: matchMedia('(max-width: 880px)').matches,
+      }));
+      t.check('first-run Add opens the existing five-choice hub and closes narrow Navigation',
+        JSON.stringify(addDestination.choices)
+          === JSON.stringify(['add-search', 'add-series', 'add-creator', 'add-import', 'add-manual'])
+        && addDestination.navigationExpanded === 'false', JSON.stringify(addDestination));
+      await page.evaluate(() => history.back());
+      await page.waitForFunction(() => location.hash === '#/home' && document.activeElement?.id === 'home-h');
+      t.check('Back from Add restores Home and heading focus', true);
+      await click(page, '#btn-home-browse');
+      await page.waitForFunction(() => location.hash === '#/browse' && document.activeElement?.id === 'browse-h');
+      await page.evaluate(() => history.back());
+      await page.waitForFunction(() => location.hash === '#/home' && document.activeElement?.id === 'home-h');
+      t.check('direct Browse uses the existing hub and Back restores Home focus', true);
+
+      await page.evaluate(() => { document.documentElement.style.fontSize = '200%'; });
+      const enlarged = await page.evaluate(() => {
+        const region = document.querySelector('#home-first-run');
+        const controls = [...region.querySelectorAll('button')];
+        return {
+          rootFont: getComputedStyle(document.documentElement).fontSize,
+          pageOverflow: document.documentElement.scrollWidth > innerWidth,
+          regionOverflow: region.scrollWidth > region.clientWidth,
+          controlsInViewport: controls.every((node) => {
+            const rect = node.getBoundingClientRect();
+            return rect.width > 0 && rect.height >= 44 && rect.left >= 0 && rect.right <= innerWidth;
+          }),
+        };
+      });
+      t.check('200 percent root text size reflows first-run controls without clipping',
+        enlarged.rootFont === '32px' && !enlarged.pageOverflow && !enlarged.regionOverflow
+        && enlarged.controlsInViewport, JSON.stringify(enlarged));
+      await page.evaluate(() => { document.documentElement.style.fontSize = ''; });
+
+      for (const theme of ['dark', 'light']) {
+        await page.evaluate((value) => { document.documentElement.dataset.theme = value; }, theme);
+        t.check(`${theme} first-run actions retain visible boundaries and names`,
+          await page.$eval('#btn-home-add', (button) => {
+            const style = getComputedStyle(button);
+            return !button.hidden && button.textContent.trim() === 'Add comics'
+              && style.borderStyle !== 'none' && style.borderWidth !== '0px';
+          }));
+      }
+      const client = await page.createCDPSession();
+      await client.send('Emulation.setEmulatedMedia', { features: [{ name: 'forced-colors', value: 'active' }] });
+      await page.focus('#btn-home-browse');
+      await page.keyboard.press('Tab');
+      t.check('forced colors keeps both entry actions bounded and keyboard focus visible',
+        await page.evaluate(() => {
+          const browse = document.querySelector('#btn-home-browse');
+          const add = document.querySelector('#btn-home-add');
+          const style = getComputedStyle(add);
+          const brand = document.querySelector('.brand');
+          return matchMedia('(forced-colors: active)').matches
+            && [browse, add].every((button) => getComputedStyle(button).borderWidth !== '0px')
+            && add === document.activeElement && style.outlineStyle !== 'none'
+            && brand.getAttribute('aria-current') === 'page'
+            && getComputedStyle(brand).borderWidth === '2px';
+        }));
+      await client.send('Emulation.setEmulatedMedia', { features: [] });
+      await page.evaluate(() => { delete document.documentElement.dataset.theme; });
+
       await page.setViewport({ width: 320, height: 900 });
       const narrow = await page.evaluate(() => {
         const region = document.querySelector('#home-first-run');
@@ -4487,6 +4622,15 @@ const SCENARIOS = [
         JSON.stringify(narrow));
 
       await page.setViewport({ width: 1280, height: 900 });
+      t.check('first-run actions stay 44 pixels high and unclipped at desktop width',
+        await page.evaluate(() => {
+          const controls = [...document.querySelectorAll('#home-first-run button')];
+          return controls.length === 3 && document.documentElement.scrollWidth <= innerWidth
+            && controls.every((button) => {
+              const rect = button.getBoundingClientRect();
+              return rect.height >= 44 && rect.left >= 0 && rect.right <= innerWidth;
+            });
+        }));
       await click(page, '.ri[data-view="browse"]');
       await page.waitForSelector('#view-browse:not([hidden])');
       t.check('first-run guidance exists only on Home',
@@ -6738,6 +6882,16 @@ const SCENARIOS = [
           current: document.querySelector('.ri[aria-current="page"]')?.dataset.view,
         };
       });
+      await click(page, '.brand[data-view="home"]');
+      t.check('Home is the only current navigation destination on the expanded rail',
+        await page.evaluate(() => document.querySelector('.brand')?.getAttribute('aria-current') === 'page'
+          && document.querySelectorAll('.ri[aria-current="page"]').length === 0
+          && getComputedStyle(document.querySelector('.brand'), '::before').width === '3px'));
+      await click(page, '.ri[data-view="browse"]');
+      t.check('Browse clears Home current while selecting only its own rail entry',
+        await page.evaluate(() => !document.querySelector('.brand').hasAttribute('aria-current')
+          && document.querySelectorAll('.ri[aria-current="page"]').length === 1
+          && document.querySelector('.ri[aria-current="page"]')?.dataset.view === 'browse'));
       t.check('Browse renders the same available categories and counts as Home',
         JSON.stringify(gateway.home) === JSON.stringify(gateway.browse),
         JSON.stringify(gateway));
@@ -6752,7 +6906,8 @@ const SCENARIOS = [
         current: document.querySelector('.ri[aria-current="page"]')?.dataset.view,
       }));
       t.check('a category child keeps Browse selected',
-        browseChild.hash === '#/lines' && browseChild.current === 'browse',
+        browseChild.hash === '#/lines' && browseChild.current === 'browse'
+        && await page.$eval('.brand', (brand) => !brand.hasAttribute('aria-current')),
         JSON.stringify(browseChild));
 
       await click(page, '.ri[data-view="add"]');
@@ -6771,7 +6926,8 @@ const SCENARIOS = [
         current: document.querySelector('.ri[aria-current="page"]')?.dataset.view,
       }));
       t.check('an Add child keeps Add selected',
-        addChild.hash === '#/add-manual' && addChild.current === 'add',
+        addChild.hash === '#/add-manual' && addChild.current === 'add'
+        && await page.$eval('.brand', (brand) => !brand.hasAttribute('aria-current')),
         JSON.stringify(addChild));
 
       await click(page, '.ri[data-view="library"]');
@@ -6788,7 +6944,8 @@ const SCENARIOS = [
         current: document.querySelector('.ri[aria-current="page"]')?.dataset.view,
       }));
       t.check('a Library child keeps Library selected',
-        libraryChild.hash === '#/progress' && libraryChild.current === 'library',
+        libraryChild.hash === '#/progress' && libraryChild.current === 'library'
+        && await page.$eval('.brand', (brand) => !brand.hasAttribute('aria-current')),
         JSON.stringify(libraryChild));
 
       const rail = await page.evaluate(() => {
@@ -6810,6 +6967,16 @@ const SCENARIOS = [
       t.check('the fixed rail fits without vertical scrolling at the reference viewport',
         rail.scrollHeight <= rail.clientHeight,
         JSON.stringify(rail));
+      await click(page, '.brand[data-view="home"]');
+      await click(page, '#btn-rail-toggle');
+      t.check('collapsed desktop rail keeps Home selected without selecting another destination',
+        await page.evaluate(() => {
+          const brand = document.querySelector('.brand');
+          return document.querySelector('#shell').classList.contains('railed')
+            && brand.getAttribute('aria-current') === 'page'
+            && getComputedStyle(brand, '::before').width === '3px'
+            && document.querySelectorAll('.ri[aria-current="page"]').length === 0;
+        }));
     },
   },
   {
@@ -9907,11 +10074,13 @@ const SCENARIOS = [
         next: document.querySelector('#chero-next').textContent,
         count: document.querySelector('#chero-count').textContent,
         readHidden: document.querySelector('#btn-chero-read').hidden,
+        reviewHidden: document.querySelector('#btn-chero-review').hidden,
       }));
       t.check('Home keeps the saved empty list visible without saying it is read',
         homeEmpty.visible
         && homeEmpty.next === 'No issues in this Reading List yet. Open it to add comics.'
-        && homeEmpty.count === '0 of 0 issues read' && homeEmpty.readHidden, JSON.stringify(homeEmpty));
+        && homeEmpty.count === '0 of 0 issues read' && homeEmpty.readHidden
+        && homeEmpty.reviewHidden, JSON.stringify(homeEmpty));
       await click(page, '#btn-chero-open');
       await page.reload({ waitUntil: 'load' });
       const unchanged = await readState(page);
@@ -9961,7 +10130,8 @@ const SCENARIOS = [
       t.check('Home partial progress retains its next-issue action',
         await page.$eval('#chero-count', (node) => node.textContent === '1 of 2 issues read')
         && await page.$eval('#chero-next', (node) => node.textContent === 'Next: Second manual issue 441')
-        && await page.$eval('#btn-chero-read', (node) => !node.hidden));
+        && await page.$eval('#btn-chero-read', (node) => !node.hidden)
+        && await page.$eval('#btn-chero-review', (node) => !node.hidden));
       await click(page, '#btn-chero-open');
       await click(page, '#btn-hero-done');
       const completed = await readingStatus();
@@ -9976,7 +10146,8 @@ const SCENARIOS = [
       t.check('Home completion remains accurate for a nonempty list',
         await page.$eval('#chero-count', (node) => node.textContent === '2 of 2 issues read')
         && await page.$eval('#chero-next', (node) => node.textContent === 'You have read every issue in this order.')
-        && await page.$eval('#btn-chero-read', (node) => node.hidden));
+        && await page.$eval('#btn-chero-read', (node) => node.hidden)
+        && await page.$eval('#btn-chero-review', (node) => !node.hidden));
       await click(page, '#btn-chero-open');
       await openFullOrder(page);
       for (const id of ids) {
@@ -13567,7 +13738,7 @@ function tally() {
 async function runScenario(browser, origin, scenario, mutation) {
   const context = await browser.createBrowserContext();
   const page = await context.newPage();
-  page.__denyExternal = scenario.id === 'shang-chi-actual-data';
+  page.__denyExternal = true;
   const t = tally();
   let error = null;
   let prepared = false;
@@ -13676,7 +13847,7 @@ async function withStack(fn, { port = 0 } = {}) {
 async function main() {
   const prove = process.argv.includes('--prove');
   const only = process.argv.find((a) => a.startsWith('--only='))?.slice('--only='.length) ?? null;
-  const port = ['cache-generations', 'catalog-gaps', 'reading-paths', 'reading-path-stop-actions', 'issue-return-visibility', 'reading-shortcut', 'reading-list-empty-441', 'issue-action-names', 'issue-443-row-actions', 'defer-next', 'defer-lifecycle', 'defer-persistence', 'order-only-export'].includes(only) ? DEFAULT_PORT : 0;
+  const port = ['cache-generations', 'catalog-gaps', 'reading-paths', 'reading-path-stop-actions', 'issue-return-visibility', 'reading-shortcut', 'issue-action-names', 'issue-443-row-actions', 'defer-next', 'defer-lifecycle', 'defer-persistence', 'order-only-export'].includes(only) ? DEFAULT_PORT : 0;
 
   const code = await withStack(async ({ browser, origin, driver, edge }) => {
     console.log(`driver  ${driver}`);
