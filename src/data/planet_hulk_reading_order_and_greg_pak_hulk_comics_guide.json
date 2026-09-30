@@ -1,0 +1,3903 @@
+{
+  "id": "planet-hulk-reading-order-and-greg-pak-hulk-comics-guide",
+  "name": "Greg Pak's Hulk: Planet Hulk to Totally Awesome Hulk",
+  "description": "Follow Comic Book Herald's selected Hulk route through Planet Hulk, World War Hulk, Skaar and Amadeus Cho, with the source's directed issue order.",
+  "source": "https://www.comicbookherald.com/planet-hulk-reading-order-and-greg-pak-hulk-comics-guide/",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-09-29T20:42:37.101Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 107,
+  "collections": 32,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 3105,
+      "title": "Amazing Fantasy (2004) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/3105/amazing_fantasy_2004_15",
+      "seriesId": 769,
+      "seriesName": "Amazing Fantasy (2004 - 2006)",
+      "onSale": "2005-11-30T00:00:00+0000",
+      "mu": "2005-11-30T00:00:00+0000",
+      "digitalId": 1066,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/d0/5b5891c1eb8f5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Stanisci",
+          "role": "cover artist"
+        },
+        {
+          "name": "Nick Dragotta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Norman Lee",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Takeshi Miyazawa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "penciler"
+        },
+        {
+          "name": "Khary Randolph",
+          "role": "penciler"
+        },
+        {
+          "name": "Patrick Scherberger",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        },
+        {
+          "name": "Robert Kirkman",
+          "role": "writer"
+        },
+        {
+          "name": "Roberto Aguirre-Sacasa",
+          "role": "writer"
+        },
+        {
+          "name": "Sean Mckeever",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p015: Separately numbered Amadeus Cho short-story recommendation; linked also in Planet Hulk omnibus Collects"
+    },
+    {
+      "issueId": 3034,
+      "title": "Fantastic Four (1998) #533",
+      "number": "533",
+      "url": "https://www.marvel.com/comics/issue/3034/fantastic_four_1998_533",
+      "seriesId": 421,
+      "seriesName": "Fantastic Four (1998 - 2012)",
+      "onSale": "2005-12-21T00:00:00+0000",
+      "mu": "2005-12-21T00:00:00+0000",
+      "digitalId": 1871,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/57e9769240ba1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andy Lanning",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Mckone",
+          "role": "penciler"
+        },
+        {
+          "name": "J. Michael Straczynski",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p023: Issues: Fantastic Four #533 to #535, and Incredible Hulk #88 to #91"
+    },
+    {
+      "issueId": 3186,
+      "title": "Fantastic Four (1998) #534",
+      "number": "534",
+      "url": "https://www.marvel.com/comics/issue/3186/fantastic_four_1998_534",
+      "seriesId": 421,
+      "seriesName": "Fantastic Four (1998 - 2012)",
+      "onSale": "2006-02-01T00:00:00+0000",
+      "mu": "2006-02-01T00:00:00+0000",
+      "digitalId": 3704,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/03/57e97667103b2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andy Lanning",
+          "role": "cover artist"
+        },
+        {
+          "name": "Cam Smith",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kev Walker",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kris Justice",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Mckone",
+          "role": "penciler"
+        },
+        {
+          "name": "J. Michael Straczynski",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p023: Issues: Fantastic Four #533 to #535, and Incredible Hulk #88 to #91"
+    },
+    {
+      "issueId": 3502,
+      "title": "Fantastic Four (1998) #535",
+      "number": "535",
+      "url": "https://www.marvel.com/comics/issue/3502/fantastic_four_1998_535",
+      "seriesId": 421,
+      "seriesName": "Fantastic Four (1998 - 2012)",
+      "onSale": "2006-02-22T00:00:00+0000",
+      "mu": "2006-02-22T00:00:00+0000",
+      "digitalId": 3705,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/20/57e97427c2bff",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andy Lanning",
+          "role": "cover artist"
+        },
+        {
+          "name": "Cam Smith",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Mckone",
+          "role": "penciler"
+        },
+        {
+          "name": "J. Michael Straczynski",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p023: Issues: Fantastic Four #533 to #535, and Incredible Hulk #88 to #91"
+    },
+    {
+      "issueId": 3057,
+      "title": "Hulk (1999) #88",
+      "number": "88",
+      "url": "https://www.marvel.com/comics/issue/3057/hulk_1999_88",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2005-11-09T00:00:00+0000",
+      "mu": "2005-11-09T00:00:00+0000",
+      "digitalId": 811,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/5b3e30759eb28",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Keu Cha",
+          "role": "penciler"
+        },
+        {
+          "name": "Daniel Way",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p023: Issues: Fantastic Four #533 to #535, and Incredible Hulk #88 to #91"
+    },
+    {
+      "issueId": 3092,
+      "title": "Hulk (1999) #89",
+      "number": "89",
+      "url": "https://www.marvel.com/comics/issue/3092/hulk_1999_89",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2005-11-30T00:00:00+0000",
+      "mu": "2005-11-30T00:00:00+0000",
+      "digitalId": 2013,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/4d2517ce593e6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Keu Cha",
+          "role": "penciler"
+        },
+        {
+          "name": "Daniel Way",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p023: Issues: Fantastic Four #533 to #535, and Incredible Hulk #88 to #91"
+    },
+    {
+      "issueId": 3205,
+      "title": "Hulk (1999) #90",
+      "number": "90",
+      "url": "https://www.marvel.com/comics/issue/3205/hulk_1999_90",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2005-12-21T00:00:00+0000",
+      "mu": "2005-12-21T00:00:00+0000",
+      "digitalId": 2014,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/5b3e3a9fb5627",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juan Santacruz",
+          "role": "penciler"
+        },
+        {
+          "name": "Daniel Way",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p023: Issues: Fantastic Four #533 to #535, and Incredible Hulk #88 to #91"
+    },
+    {
+      "issueId": 3413,
+      "title": "Hulk (1999) #91",
+      "number": "91",
+      "url": "https://www.marvel.com/comics/issue/3413/hulk_1999_91",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2006-01-18T00:00:00+0000",
+      "mu": "2006-01-18T00:00:00+0000",
+      "digitalId": 2015,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/4d250c45e208e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Juan Santacruz",
+          "role": "penciler"
+        },
+        {
+          "name": "Daniel Way",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p023: Issues: Fantastic Four #533 to #535, and Incredible Hulk #88 to #91"
+    },
+    {
+      "issueId": 3530,
+      "title": "Hulk (1999) #92",
+      "number": "92",
+      "url": "https://www.marvel.com/comics/issue/3530/hulk_1999_92",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2006-02-08T00:00:00+0000",
+      "mu": "2008-01-01T00:00:00+0000",
+      "digitalId": 2016,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/b0/4f6a2316f20a4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jeffrey Huet",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlo Pagulayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p025: Issues: #92 to #105, Giant-Size Hulk #1 (read after Incredible Hulk #95)"
+    },
+    {
+      "issueId": 3984,
+      "title": "NEW AVENGERS: ILLUMINATI ONE-SHOT 1 (2006) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/3984/new_avengers_illuminati_one-shot_1_2006_1",
+      "seriesId": 43504,
+      "seriesName": "NEW AVENGERS: ILLUMINATI ONE-SHOT 1 (2006 - Present)",
+      "onSale": "2006-04-19T00:00:00+0000",
+      "mu": "2006-04-19T00:00:00+0000",
+      "digitalId": 1193,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/55ba3e95d3a92",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Alex Maleev",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p017: Issues: New Avengers: Illuminati (2006) One-Shot"
+    },
+    {
+      "issueId": 3955,
+      "title": "Hulk (1999) #93",
+      "number": "93",
+      "url": "https://www.marvel.com/comics/issue/3955/hulk_1999_93",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2006-03-22T00:00:00+0000",
+      "mu": "2006-03-22T00:00:00+0000",
+      "digitalId": 4886,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/e0/5b3e6cd253c2b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jeffrey Huet",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlo Pagulayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p025: Issues: #92 to #105, Giant-Size Hulk #1 (read after Incredible Hulk #95)"
+    },
+    {
+      "issueId": 4081,
+      "title": "Hulk (1999) #94",
+      "number": "94",
+      "url": "https://www.marvel.com/comics/issue/4081/hulk_1999_94",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2006-04-26T00:00:00+0000",
+      "mu": "2006-04-26T00:00:00+0000",
+      "digitalId": 6130,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/a0/5b3e75ab10b17",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alex Nino",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jeffrey Huet",
+          "role": "cover artist"
+        },
+        {
+          "name": "Michael Allred",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlo Pagulayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Michael Avon Oeming",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p025: Issues: #92 to #105, Giant-Size Hulk #1 (read after Incredible Hulk #95)"
+    },
+    {
+      "issueId": 4195,
+      "title": "Hulk (1999) #95",
+      "number": "95",
+      "url": "https://www.marvel.com/comics/issue/4195/hulk_1999_95",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2006-05-31T00:00:00+0000",
+      "mu": "2006-05-31T00:00:00+0000",
+      "digitalId": 6131,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/5b3e7cd86203f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jeffrey Huet",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sean Parsons",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlo Pagulayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Marshall Rogers",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p025: Issues: #92 to #105, Giant-Size Hulk #1 (read after Incredible Hulk #95)"
+    },
+    {
+      "issueId": 4338,
+      "title": "GIANT-SIZE HULK 1 (2006) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/4338/giant-size_hulk_1_2006_1",
+      "seriesId": 1108,
+      "seriesName": "GIANT-SIZE HULK 1 (2006)",
+      "onSale": "2006-06-21T00:00:00+0000",
+      "mu": "2006-06-21T00:00:00+0000",
+      "digitalId": 6028,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/c0/5b928ed8af2be",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 96,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Raul Fonts",
+          "role": "cover artist"
+        },
+        {
+          "name": "Aaron Lopresti",
+          "role": "penciler"
+        },
+        {
+          "name": "Juan Santacruz",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p025: Issues: #92 to #105, Giant-Size Hulk #1 (read after Incredible Hulk #95)"
+    },
+    {
+      "issueId": 4446,
+      "title": "Hulk (1999) #96",
+      "number": "96",
+      "url": "https://www.marvel.com/comics/issue/4446/hulk_1999_96",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2006-07-05T00:00:00+0000",
+      "mu": "2006-07-05T00:00:00+0000",
+      "digitalId": 6132,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/a0/5b3e8427cdf2f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Aaron Lopresti",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p025: Issues: #92 to #105, Giant-Size Hulk #1 (read after Incredible Hulk #95)"
+    },
+    {
+      "issueId": 4764,
+      "title": "Hulk (1999) #97",
+      "number": "97",
+      "url": "https://www.marvel.com/comics/issue/4764/hulk_1999_97",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2006-08-09T00:00:00+0000",
+      "mu": "2006-08-09T00:00:00+0000",
+      "digitalId": 6133,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/50/5b3f7384664f8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Aaron Lopresti",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p025: Issues: #92 to #105, Giant-Size Hulk #1 (read after Incredible Hulk #95)"
+    },
+    {
+      "issueId": 5055,
+      "title": "Hulk (1999) #98",
+      "number": "98",
+      "url": "https://www.marvel.com/comics/issue/5055/hulk_1999_98",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2006-09-13T00:00:00+0000",
+      "mu": "2006-09-13T00:00:00+0000",
+      "digitalId": 6134,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/80/5b3f7e2d0b6f7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sandu Florea",
+          "role": "cover artist"
+        },
+        {
+          "name": "Aaron Lopresti",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p025: Issues: #92 to #105, Giant-Size Hulk #1 (read after Incredible Hulk #95)"
+    },
+    {
+      "issueId": 5207,
+      "title": "Hulk (1999) #99",
+      "number": "99",
+      "url": "https://www.marvel.com/comics/issue/5207/hulk_1999_99",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2006-10-04T00:00:00+0000",
+      "mu": "2006-10-04T00:00:00+0000",
+      "digitalId": 6135,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/70/5b3f862c002a0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sandu Florea",
+          "role": "cover artist"
+        },
+        {
+          "name": "Aaron Lopresti",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p025: Issues: #92 to #105, Giant-Size Hulk #1 (read after Incredible Hulk #95)"
+    },
+    {
+      "issueId": 5414,
+      "title": "Hulk (1999) #100",
+      "number": "100",
+      "url": "https://www.marvel.com/comics/issue/5414/hulk_1999_100",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2006-11-01T00:00:00+0000",
+      "mu": "2006-11-01T00:00:00+0000",
+      "digitalId": 6083,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/d0/5b3fa63895912",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 104,
+      "creators": [
+        {
+          "name": "Jeffrey Huet",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jonathan Sibal",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlo Pagulayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Gary Frank",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p025: Issues: #92 to #105, Giant-Size Hulk #1 (read after Incredible Hulk #95)"
+    },
+    {
+      "issueId": 5671,
+      "title": "Hulk (1999) #101",
+      "number": "101",
+      "url": "https://www.marvel.com/comics/issue/5671/hulk_1999_101",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2006-12-06T00:00:00+0000",
+      "mu": "2006-12-06T00:00:00+0000",
+      "digitalId": 6084,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/b0/5b3faaae437c1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jeffrey Huet",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jonathan Sibal",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlo Pagulayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Gary Frank",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p025: Issues: #92 to #105, Giant-Size Hulk #1 (read after Incredible Hulk #95)"
+    },
+    {
+      "issueId": 5811,
+      "title": "Hulk (1999) #102",
+      "number": "102",
+      "url": "https://www.marvel.com/comics/issue/5811/hulk_1999_102",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2007-01-03T00:00:00+0000",
+      "mu": "2007-01-03T00:00:00+0000",
+      "digitalId": 8250,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/e0/5b3fb30166b5d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sandu Florea",
+          "role": "cover artist"
+        },
+        {
+          "name": "Aaron Lopresti",
+          "role": "penciler"
+        },
+        {
+          "name": "Jose Ladronn",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p025: Issues: #92 to #105, Giant-Size Hulk #1 (read after Incredible Hulk #95)"
+    },
+    {
+      "issueId": 27399,
+      "title": "Hulk (1999) #103",
+      "number": "103",
+      "url": "https://www.marvel.com/comics/issue/27399/hulk_1999_103",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2007-02-07T00:00:00+0000",
+      "mu": "2007-02-07T00:00:00+0000",
+      "digitalId": 16059,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/5b3fb885a0828",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sandu Florea",
+          "role": "cover artist"
+        },
+        {
+          "name": "Aaron Lopresti",
+          "role": "penciler"
+        },
+        {
+          "name": "Jose Ladronn",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p025: Issues: #92 to #105, Giant-Size Hulk #1 (read after Incredible Hulk #95)"
+    },
+    {
+      "issueId": 6099,
+      "title": "Hulk (1999) #104",
+      "number": "104",
+      "url": "https://www.marvel.com/comics/issue/6099/hulk_1999_104",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2007-03-07T00:00:00+0000",
+      "mu": "2007-03-07T00:00:00+0000",
+      "digitalId": 8252,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/5b3fd74b09152",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jeffrey Huet",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlo Pagulayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Jose Ladronn",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p025: Issues: #92 to #105, Giant-Size Hulk #1 (read after Incredible Hulk #95)"
+    },
+    {
+      "issueId": 6245,
+      "title": "Hulk (1999) #105",
+      "number": "105",
+      "url": "https://www.marvel.com/comics/issue/6245/hulk_1999_105",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2007-04-04T00:00:00+0000",
+      "mu": "2007-04-04T00:00:00+0000",
+      "digitalId": 8253,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/30/5b4365838dc69",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jeffrey Huet",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlo Pagulayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Jose Ladronn",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p025: Issues: #92 to #105, Giant-Size Hulk #1 (read after Incredible Hulk #95)"
+    },
+    {
+      "issueId": 20812,
+      "title": "What If? Planet Hulk (2007) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/20812/what_if_planet_hulk_2007_1",
+      "seriesId": 3915,
+      "seriesName": "What If? Planet Hulk (2007)",
+      "onSale": "2007-10-24T00:00:00+0000",
+      "mu": "2008-09-26T00:00:00+0000",
+      "digitalId": 8754,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/4bb662074659a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Gary Martin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leonard Kirk",
+          "role": "cover artist"
+        },
+        {
+          "name": "Fred Hembeck",
+          "role": "penciler"
+        },
+        {
+          "name": "Rafa Sandoval",
+          "role": "penciler"
+        },
+        {
+          "name": "Carlo Pagulayan",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p027: Issues: #1"
+    },
+    {
+      "issueId": 13426,
+      "title": "Hulk (1999) #106",
+      "number": "106",
+      "url": "https://www.marvel.com/comics/issue/13426/hulk_1999_106",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2007-05-02T00:00:00+0000",
+      "mu": "2008-04-11T00:00:00+0000",
+      "digitalId": 8254,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/516320485c126",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jon Sibal",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jonathan Sibal",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gary Frank",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p038: Incredible Hulk #106; World War Hulk #1; Incredible #107; World War Hulk #2; Incredible Hulk #108; World War Hulk #3; Incredible Hulk #109; Incredible Hulk #110; World War Hulk #4; Incredible Hulk #111; World War Hulk #5; World War Hulk: Aftersmash #1; Incredible Hulk #112"
+    },
+    {
+      "issueId": 15873,
+      "title": "World War Hulk (2007) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/15873/world_war_hulk_2007_1",
+      "seriesId": 2400,
+      "seriesName": "World War Hulk (2007)",
+      "onSale": "2007-06-13T00:00:00+0000",
+      "mu": "2008-05-09T00:00:00+0000",
+      "digitalId": 8799,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/03/4f674b7218168",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Klaus Janson",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Finch",
+          "role": "penciler"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p039: Incredible Hulk #106; World War Hulk #1; Incredible #107; World War Hulk #2; Incredible Hulk #108; World War Hulk #3; Incredible Hulk #109; Incredible Hulk #110; World War Hulk #4; Incredible Hulk #111; World War Hulk #5; World War Hulk: Aftersmash #1; Incredible Hulk #112"
+    },
+    {
+      "issueId": 15807,
+      "title": "Hulk (1999) #107",
+      "number": "107",
+      "url": "https://www.marvel.com/comics/issue/15807/hulk_1999_107",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2007-06-20T00:00:00+0000",
+      "mu": "2008-05-09T00:00:00+0000",
+      "digitalId": 8255,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/a0/5b43749954687",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jon Sibal",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jonathan Sibal",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gary Frank",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p040: Incredible Hulk #106; World War Hulk #1; Incredible #107; World War Hulk #2; Incredible Hulk #108; World War Hulk #3; Incredible Hulk #109; Incredible Hulk #110; World War Hulk #4; Incredible Hulk #111; World War Hulk #5; World War Hulk: Aftersmash #1; Incredible Hulk #112"
+    },
+    {
+      "issueId": 15984,
+      "title": "World War Hulk (2007) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/15984/world_war_hulk_2007_2",
+      "seriesId": 2400,
+      "seriesName": "World War Hulk (2007)",
+      "onSale": "2007-07-18T00:00:00+0000",
+      "mu": "2007-07-18T00:00:00+0000",
+      "digitalId": 8801,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/50/4f674bf82d748",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 56,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Klaus Janson",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Finch",
+          "role": "penciler"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p041: Incredible Hulk #106; World War Hulk #1; Incredible #107; World War Hulk #2; Incredible Hulk #108; World War Hulk #3; Incredible Hulk #109; Incredible Hulk #110; World War Hulk #4; Incredible Hulk #111; World War Hulk #5; World War Hulk: Aftersmash #1; Incredible Hulk #112"
+    },
+    {
+      "issueId": 15925,
+      "title": "Hulk (1999) #108",
+      "number": "108",
+      "url": "https://www.marvel.com/comics/issue/15925/hulk_1999_108",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2007-07-25T00:00:00+0000",
+      "mu": "2007-07-25T00:00:00+0000",
+      "digitalId": 8256,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/c0/51632057add32",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jay Leisten",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Leonard Kirk",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p042: Incredible Hulk #106; World War Hulk #1; Incredible #107; World War Hulk #2; Incredible Hulk #108; World War Hulk #3; Incredible Hulk #109; Incredible Hulk #110; World War Hulk #4; Incredible Hulk #111; World War Hulk #5; World War Hulk: Aftersmash #1; Incredible Hulk #112"
+    },
+    {
+      "issueId": 16168,
+      "title": "World War Hulk (2007) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/16168/world_war_hulk_2007_3",
+      "seriesId": 2400,
+      "seriesName": "World War Hulk (2007)",
+      "onSale": "2007-08-01T00:00:00+0000",
+      "mu": "2007-08-01T00:00:00+0000",
+      "digitalId": 8802,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/4f674e1b5b09e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 56,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Klaus Janson",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Finch",
+          "role": "penciler"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p043: Incredible Hulk #106; World War Hulk #1; Incredible #107; World War Hulk #2; Incredible Hulk #108; World War Hulk #3; Incredible Hulk #109; Incredible Hulk #110; World War Hulk #4; Incredible Hulk #111; World War Hulk #5; World War Hulk: Aftersmash #1; Incredible Hulk #112"
+    },
+    {
+      "issueId": 16107,
+      "title": "Hulk (1999) #109",
+      "number": "109",
+      "url": "https://www.marvel.com/comics/issue/16107/hulk_1999_109",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2007-08-08T00:00:00+0000",
+      "mu": "2007-08-08T00:00:00+0000",
+      "digitalId": 8257,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/4f67834d223b4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jeffrey Huet",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlo Pagulayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Gary Frank",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p044: Incredible Hulk #106; World War Hulk #1; Incredible #107; World War Hulk #2; Incredible Hulk #108; World War Hulk #3; Incredible Hulk #109; Incredible Hulk #110; World War Hulk #4; Incredible Hulk #111; World War Hulk #5; World War Hulk: Aftersmash #1; Incredible Hulk #112"
+    },
+    {
+      "issueId": 16448,
+      "title": "Hulk (1999) #110",
+      "number": "110",
+      "url": "https://www.marvel.com/comics/issue/16448/hulk_1999_110",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2007-09-05T00:00:00+0000",
+      "mu": "2007-09-05T00:00:00+0000",
+      "digitalId": 8258,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/50/5163205c77f6a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jeffrey Huet",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlo Pagulayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Gary Frank",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p046: Incredible Hulk #106; World War Hulk #1; Incredible #107; World War Hulk #2; Incredible Hulk #108; World War Hulk #3; Incredible Hulk #109; Incredible Hulk #110; World War Hulk #4; Incredible Hulk #111; World War Hulk #5; World War Hulk: Aftersmash #1; Incredible Hulk #112"
+    },
+    {
+      "issueId": 16557,
+      "title": "World War Hulk (2007) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/16557/world_war_hulk_2007_4",
+      "seriesId": 2400,
+      "seriesName": "World War Hulk (2007)",
+      "onSale": "2007-09-19T00:00:00+0000",
+      "mu": "2007-09-19T00:00:00+0000",
+      "digitalId": 8804,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/10/4f674f3028099",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 56,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Klaus Janson",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Finch",
+          "role": "penciler"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p047: Incredible Hulk #106; World War Hulk #1; Incredible #107; World War Hulk #2; Incredible Hulk #108; World War Hulk #3; Incredible Hulk #109; Incredible Hulk #110; World War Hulk #4; Incredible Hulk #111; World War Hulk #5; World War Hulk: Aftersmash #1; Incredible Hulk #112"
+    },
+    {
+      "issueId": 16449,
+      "title": "Hulk (1999) #111",
+      "number": "111",
+      "url": "https://www.marvel.com/comics/issue/16449/hulk_1999_111",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2007-11-21T00:00:00+0000",
+      "mu": "2010-01-01T00:00:00+0000",
+      "digitalId": 8259,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/5b438c354a771",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Khoi Pham",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlo Pagulayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Fred Van Lente",
+          "role": "writer"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p048: Incredible Hulk #106; World War Hulk #1; Incredible #107; World War Hulk #2; Incredible Hulk #108; World War Hulk #3; Incredible Hulk #109; Incredible Hulk #110; World War Hulk #4; Incredible Hulk #111; World War Hulk #5; World War Hulk: Aftersmash #1; Incredible Hulk #112"
+    },
+    {
+      "issueId": 16560,
+      "title": "World War Hulk (2007) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/16560/world_war_hulk_2007_5",
+      "seriesId": 2400,
+      "seriesName": "World War Hulk (2007)",
+      "onSale": "2007-11-14T00:00:00+0000",
+      "mu": "2007-11-14T00:00:00+0000",
+      "digitalId": 8807,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/90/4f674f957277b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 64,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Klaus Janson",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Finch",
+          "role": "penciler"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p049: Incredible Hulk #106; World War Hulk #1; Incredible #107; World War Hulk #2; Incredible Hulk #108; World War Hulk #3; Incredible Hulk #109; Incredible Hulk #110; World War Hulk #4; Incredible Hulk #111; World War Hulk #5; World War Hulk: Aftersmash #1; Incredible Hulk #112"
+    },
+    {
+      "issueId": 17231,
+      "title": "WORLD WAR HULK: AFTERSMASH 1 (2007) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/17231/world_war_hulk_aftersmash_1_2007_1",
+      "seriesId": 3020,
+      "seriesName": "WORLD WAR HULK: AFTERSMASH 1 (2007)",
+      "onSale": "2007-12-05T00:00:00+0000",
+      "mu": "2007-12-05T00:00:00+0000",
+      "digitalId": 8808,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/40/4f6756d455960",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 64,
+      "creators": [
+        {
+          "name": "Jay Leisten",
+          "role": "cover artist"
+        },
+        {
+          "name": "Vicente Cifuentes",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Rafa Sandoval",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Giarrusso",
+          "role": "writer"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p050: Incredible Hulk #106; World War Hulk #1; Incredible #107; World War Hulk #2; Incredible Hulk #108; World War Hulk #3; Incredible Hulk #109; Incredible Hulk #110; World War Hulk #4; Incredible Hulk #111; World War Hulk #5; World War Hulk: Aftersmash #1; Incredible Hulk #112"
+    },
+    {
+      "issueId": 17212,
+      "title": "Hulk (1999) #112",
+      "number": "112",
+      "url": "https://www.marvel.com/comics/issue/17212/hulk_1999_112",
+      "seriesId": 465,
+      "seriesName": "Hulk (1999 - 2008)",
+      "onSale": "2007-12-19T00:00:00+0000",
+      "mu": "2007-12-19T00:00:00+0000",
+      "digitalId": 8260,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/03/5b439352e9623",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Khoi Pham",
+          "role": "cover artist"
+        },
+        {
+          "name": "Arthur Adams",
+          "role": "penciler"
+        },
+        {
+          "name": "Fred Van Lente",
+          "role": "writer"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p051: Incredible Hulk #106; World War Hulk #1; Incredible #107; World War Hulk #2; Incredible Hulk #108; World War Hulk #3; Incredible Hulk #109; Incredible Hulk #110; World War Hulk #4; Incredible Hulk #111; World War Hulk #5; World War Hulk: Aftersmash #1; Incredible Hulk #112"
+    },
+    {
+      "issueId": 17361,
+      "title": "World War Hulk: Warbound (2007) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/17361/world_war_hulk_warbound_2007_1",
+      "seriesId": 3171,
+      "seriesName": "World War Hulk: Warbound (2007)",
+      "onSale": "2007-12-19T00:00:00+0000",
+      "mu": "2008-07-10T00:00:00+0000",
+      "digitalId": 8823,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/593ed5207fdc8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Leonard Kirk",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roger Bonet",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rafa Sandoval",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p058: Issues: World War Hulk: Warbound #1 to #5"
+    },
+    {
+      "issueId": 23232,
+      "title": "World War Hulk: Warbound (2007) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/23232/world_war_hulk_warbound_2007_2",
+      "seriesId": 3171,
+      "seriesName": "World War Hulk: Warbound (2007)",
+      "onSale": "2008-03-01T00:00:00+0000",
+      "mu": "2008-12-05T00:00:00+0000",
+      "digitalId": 12008,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/59414acd477df",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Roger Bonet",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rafa Sandoval",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p058: Issues: World War Hulk: Warbound #1 to #5"
+    },
+    {
+      "issueId": 23233,
+      "title": "World War Hulk: Warbound (2007) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/23233/world_war_hulk_warbound_2007_3",
+      "seriesId": 3171,
+      "seriesName": "World War Hulk: Warbound (2007)",
+      "onSale": "2008-04-01T00:00:00+0000",
+      "mu": "2009-01-30T00:00:00+0000",
+      "digitalId": 12009,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/60/59415471643d0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Roger Bonet",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rafa Sandoval",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p058: Issues: World War Hulk: Warbound #1 to #5"
+    },
+    {
+      "issueId": 23234,
+      "title": "World War Hulk: Warbound (2007) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/23234/world_war_hulk_warbound_2007_4",
+      "seriesId": 3171,
+      "seriesName": "World War Hulk: Warbound (2007)",
+      "onSale": "2008-05-01T00:00:00+0000",
+      "mu": "2010-02-12T00:00:00+0000",
+      "digitalId": 12010,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/c0/5846f1868099e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Printed block p058: Issues: World War Hulk: Warbound #1 to #5"
+    },
+    {
+      "issueId": 23235,
+      "title": "World War Hulk: Warbound (2007) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/23235/world_war_hulk_warbound_2007_5",
+      "seriesId": 3171,
+      "seriesName": "World War Hulk: Warbound (2007)",
+      "onSale": "2008-06-16T00:00:00+0000",
+      "mu": "2008-01-01T00:00:00+0000",
+      "digitalId": 12011,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/40/59415ff9b4e5f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Gary Martin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leonard Kirk",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p058: Issues: World War Hulk: Warbound #1 to #5"
+    },
+    {
+      "issueId": 23067,
+      "title": "Incredible Hercules (2008) #113",
+      "number": "113",
+      "url": "https://www.marvel.com/comics/issue/23067/incredible_hercules_2008_113",
+      "seriesId": 3762,
+      "seriesName": "Incredible Hercules (2008 - 2010)",
+      "onSale": "2008-01-16T00:00:00+0000",
+      "mu": "2008-01-16T00:00:00+0000",
+      "digitalId": 10628,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/90/5c36325318269",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Paul Neary",
+          "role": "cover artist"
+        },
+        {
+          "name": "Arthur Adams",
+          "role": "penciler"
+        },
+        {
+          "name": "Khoi Pham",
+          "role": "penciler"
+        },
+        {
+          "name": "Fred Van Lente",
+          "role": "writer"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p063: Issues: #113 to #115"
+    },
+    {
+      "issueId": 20636,
+      "title": "Incredible Hercules (2008) #114",
+      "number": "114",
+      "url": "https://www.marvel.com/comics/issue/20636/incredible_hercules_2008_114",
+      "seriesId": 3762,
+      "seriesName": "Incredible Hercules (2008 - 2010)",
+      "onSale": "2008-02-20T00:00:00+0000",
+      "mu": "2008-02-20T00:00:00+0000",
+      "digitalId": 10559,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/5c364729cf213",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Arthur Adams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Neary",
+          "role": "cover artist"
+        },
+        {
+          "name": "Khoi Pham",
+          "role": "penciler"
+        },
+        {
+          "name": "Fred Van Lente",
+          "role": "writer"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p063: Issues: #113 to #115"
+    },
+    {
+      "issueId": 20827,
+      "title": "Incredible Hercules (2008) #115",
+      "number": "115",
+      "url": "https://www.marvel.com/comics/issue/20827/incredible_hercules_2008_115",
+      "seriesId": 3762,
+      "seriesName": "Incredible Hercules (2008 - 2010)",
+      "onSale": "2008-03-19T00:00:00+0000",
+      "mu": "2008-10-16T00:00:00+0000",
+      "digitalId": 10575,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/03/5c36510462b29",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Neary",
+          "role": "cover artist"
+        },
+        {
+          "name": "Arthur Adams",
+          "role": "penciler"
+        },
+        {
+          "name": "Khoi Pham",
+          "role": "penciler"
+        },
+        {
+          "name": "Fred Van Lente",
+          "role": "writer"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p063: Issues: #113 to #115"
+    },
+    {
+      "issueId": 23911,
+      "title": "Hulk Vs. Hercules: When Titans Collide (2008) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/23911/hulk_vs_hercules_when_titans_collide_2008_1",
+      "seriesId": 7078,
+      "seriesName": "Hulk Vs. Hercules: When Titans Collide (2008)",
+      "onSale": "2008-06-01T00:00:00+0000",
+      "mu": "2009-03-27T00:00:00+0000",
+      "digitalId": 12134,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/4bb583d038fe5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bill Everett",
+          "role": "penciler"
+        },
+        {
+          "name": "Bob Layton",
+          "role": "penciler"
+        },
+        {
+          "name": "Carlos Cuevas",
+          "role": "penciler"
+        },
+        {
+          "name": "Dennis Calero",
+          "role": "penciler"
+        },
+        {
+          "name": "Eric Nguyen",
+          "role": "penciler"
+        },
+        {
+          "name": "Guru-eFX",
+          "role": "penciler"
+        },
+        {
+          "name": "Khoi Pham",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Neary",
+          "role": "penciler"
+        },
+        {
+          "name": "Reilly Brown",
+          "role": "penciler"
+        },
+        {
+          "name": "Terry Pallot",
+          "role": "penciler"
+        },
+        {
+          "name": "Fred Van Lente",
+          "role": "writer"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p067: Issues: #1"
+    },
+    {
+      "issueId": 21371,
+      "title": "Skaar: Son of Hulk (2008) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/21371/skaar_son_of_hulk_2008_1",
+      "seriesId": 5002,
+      "seriesName": "Skaar: Son of Hulk (2008 - 2010)",
+      "onSale": "2008-06-11T00:00:00+0000",
+      "mu": "2008-06-11T00:00:00+0000",
+      "digitalId": 11516,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/b0/5caca6e9f3f46",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jeffrey Huet",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlo Pagulayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Garney",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p071: Issues: #1 to #6, Skaar: Son of Hulk Presents - Savage World of Sakaar #1"
+    },
+    {
+      "issueId": 21550,
+      "title": "Skaar: Son of Hulk (2008) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/21550/skaar_son_of_hulk_2008_2",
+      "seriesId": 5002,
+      "seriesName": "Skaar: Son of Hulk (2008 - 2010)",
+      "onSale": "2008-07-30T00:00:00+0000",
+      "mu": "2008-07-30T00:00:00+0000",
+      "digitalId": 11517,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/03/4d25050f75756",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Butch Guice",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Garney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p071: Issues: #1 to #6, Skaar: Son of Hulk Presents - Savage World of Sakaar #1"
+    },
+    {
+      "issueId": 21745,
+      "title": "Skaar: Son of Hulk (2008) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/21745/skaar_son_of_hulk_2008_3",
+      "seriesId": 5002,
+      "seriesName": "Skaar: Son of Hulk (2008 - 2010)",
+      "onSale": "2008-08-27T00:00:00+0000",
+      "mu": "2008-08-27T00:00:00+0000",
+      "digitalId": 11518,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/10/4d24ebaf6e5d0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Butch Guice",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Garney",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p071: Issues: #1 to #6, Skaar: Son of Hulk Presents - Savage World of Sakaar #1"
+    },
+    {
+      "issueId": 22050,
+      "title": "SKAAR: SON OF HULK PRESENTS - SAVAGE WORLD OF SAKAAR 1 (2008) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/22050/skaar_son_of_hulk_presents_-_savage_world_of_sakaar_1_2008_1",
+      "seriesId": 5752,
+      "seriesName": "SKAAR: SON OF HULK PRESENTS - SAVAGE WORLD OF SAKAAR 1 (2008)",
+      "onSale": "2008-09-24T00:00:00+0000",
+      "mu": "2008-09-24T00:00:00+0000",
+      "digitalId": 12104,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/20/4bb715ca98b0e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 64,
+      "creators": [
+        {
+          "name": "Gabriel Hardman",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jason Paz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tim Truman",
+          "role": "cover artist"
+        },
+        {
+          "name": "Timothy Green II",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlo Pagulayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Garney",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p071: Issues: #1 to #6, Skaar: Son of Hulk Presents - Savage World of Sakaar #1"
+    },
+    {
+      "issueId": 22304,
+      "title": "Skaar: Son of Hulk (2008) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/22304/skaar_son_of_hulk_2008_4",
+      "seriesId": 5002,
+      "seriesName": "Skaar: Son of Hulk (2008 - 2010)",
+      "onSale": "2008-10-29T00:00:00+0000",
+      "mu": "2008-10-29T00:00:00+0000",
+      "digitalId": 11519,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/e0/5cacdf74bae22",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Butch Guice",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Garney",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p071: Issues: #1 to #6, Skaar: Son of Hulk Presents - Savage World of Sakaar #1"
+    },
+    {
+      "issueId": 22509,
+      "title": "Skaar: Son of Hulk (2008) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/22509/skaar_son_of_hulk_2008_5",
+      "seriesId": 5002,
+      "seriesName": "Skaar: Son of Hulk (2008 - 2010)",
+      "onSale": "2008-11-26T00:00:00+0000",
+      "mu": "2008-11-26T00:00:00+0000",
+      "digitalId": 11520,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/5cace811a8972",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Butch Guice",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Garney",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p071: Issues: #1 to #6, Skaar: Son of Hulk Presents - Savage World of Sakaar #1"
+    },
+    {
+      "issueId": 22916,
+      "title": "Skaar: Son of Hulk (2008) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/22916/skaar_son_of_hulk_2008_6",
+      "seriesId": 5002,
+      "seriesName": "Skaar: Son of Hulk (2008 - 2010)",
+      "onSale": "2008-12-24T00:00:00+0000",
+      "mu": "2008-12-24T00:00:00+0000",
+      "digitalId": 11521,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/f0/5cacef0c1916c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Butch Guice",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Garney",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p071: Issues: #1 to #6, Skaar: Son of Hulk Presents - Savage World of Sakaar #1"
+    },
+    {
+      "issueId": 24268,
+      "title": "PLANET SKAAR PROLOGUE 1 (2009) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/24268/planet_skaar_prologue_1_2009_1",
+      "seriesId": 7461,
+      "seriesName": "PLANET SKAAR PROLOGUE 1 (2009)",
+      "onSale": "2009-05-20T00:00:00+0000",
+      "mu": "2009-05-20T00:00:00+0000",
+      "digitalId": 15464,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/5cae433c90348",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Dan Panosian",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Garner",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p075: Issues: Planet Skaar Prolgue, Skaar: Son of Hulk #7 to #12"
+    },
+    {
+      "issueId": 23115,
+      "title": "Skaar: Son of Hulk (2008) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/23115/skaar_son_of_hulk_2008_7",
+      "seriesId": 5002,
+      "seriesName": "Skaar: Son of Hulk (2008 - 2010)",
+      "onSale": "2009-01-28T00:00:00+0000",
+      "mu": "2009-09-11T00:00:00+0000",
+      "digitalId": 13407,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/90/5cacf918f3dcd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Butch Guice",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Mcguinness",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p075: Issues: Planet Skaar Prolgue, Skaar: Son of Hulk #7 to #12"
+    },
+    {
+      "issueId": 23609,
+      "title": "Skaar: Son of Hulk (2008) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/23609/skaar_son_of_hulk_2008_8",
+      "seriesId": 5002,
+      "seriesName": "Skaar: Son of Hulk (2008 - 2010)",
+      "onSale": "2009-02-25T00:00:00+0000",
+      "mu": "2009-02-25T00:00:00+0000",
+      "digitalId": 13098,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/d0/5cad02621860f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Cory Hamscher",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Yardin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Enrique Romero",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p075: Issues: Planet Skaar Prolgue, Skaar: Son of Hulk #7 to #12"
+    },
+    {
+      "issueId": 23768,
+      "title": "Skaar: Son of Hulk (2008) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/23768/skaar_son_of_hulk_2008_9",
+      "seriesId": 5002,
+      "seriesName": "Skaar: Son of Hulk (2008 - 2010)",
+      "onSale": "2009-03-25T00:00:00+0000",
+      "mu": "2009-03-25T00:00:00+0000",
+      "digitalId": 13100,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/e0/5cad03570de35",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Cory Hamscher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Garner",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p075: Issues: Planet Skaar Prolgue, Skaar: Son of Hulk #7 to #12"
+    },
+    {
+      "issueId": 23769,
+      "title": "Skaar: Son of Hulk (2008) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/23769/skaar_son_of_hulk_2008_10",
+      "seriesId": 5002,
+      "seriesName": "Skaar: Son of Hulk (2008 - 2010)",
+      "onSale": "2009-04-29T00:00:00+0000",
+      "mu": "2011-04-08T00:00:00+0000",
+      "digitalId": 15595,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/40/5cadfcfb50f6d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Cory Hamscher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Terry Pallot",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Garner",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p075: Issues: Planet Skaar Prolgue, Skaar: Son of Hulk #7 to #12"
+    },
+    {
+      "issueId": 24168,
+      "title": "Skaar: Son of Hulk (2008) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/24168/skaar_son_of_hulk_2008_11",
+      "seriesId": 5002,
+      "seriesName": "Skaar: Son of Hulk (2008 - 2010)",
+      "onSale": "2009-06-03T00:00:00+0000",
+      "mu": "2011-04-22T00:00:00+0000",
+      "digitalId": 12533,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/00/5cadfd92b4f10",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Cory Hamscher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dan Panosian",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Adams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Travis Charest",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p075: Issues: Planet Skaar Prolgue, Skaar: Son of Hulk #7 to #12"
+    },
+    {
+      "issueId": 26314,
+      "title": "Skaar: Son of Hulk (2008) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/26314/skaar_son_of_hulk_2008_12",
+      "seriesId": 5002,
+      "seriesName": "Skaar: Son of Hulk (2008 - 2010)",
+      "onSale": "2009-06-24T00:00:00+0000",
+      "mu": "2011-04-22T00:00:00+0000",
+      "digitalId": 12728,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/e0/5cae02fcf1913",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Dexter Vines",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Adams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Mcguinness",
+          "role": "penciler"
+        },
+        {
+          "name": "Rodney Buchemi",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p075: Issues: Planet Skaar Prolgue, Skaar: Son of Hulk #7 to #12"
+    },
+    {
+      "issueId": 27645,
+      "title": "Incredible Hulks (2010) #601",
+      "number": "601",
+      "url": "https://www.marvel.com/comics/issue/27645/incredible_hulks_2010_601",
+      "seriesId": 8842,
+      "seriesName": "Incredible Hulks (2010 - 2011)",
+      "onSale": "2009-08-26T00:00:00+0000",
+      "mu": "2010-02-20T00:00:00+0000",
+      "digitalId": 13791,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/f0/5ba505eb76b2d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Ariel Olivetti",
+          "role": "penciler"
+        },
+        {
+          "name": "Michael Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "Fred Van Lente",
+          "role": "writer"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p078: Collects: Incredible Hulk #601 to #605, Dark Reign - The List: Hulk"
+    },
+    {
+      "issueId": 27646,
+      "title": "Incredible Hulks (2010) #602",
+      "number": "602",
+      "url": "https://www.marvel.com/comics/issue/27646/incredible_hulks_2010_602",
+      "seriesId": 8842,
+      "seriesName": "Incredible Hulks (2010 - 2011)",
+      "onSale": "2009-09-23T00:00:00+0000",
+      "mu": "2010-11-05T00:00:00+0000",
+      "digitalId": 16377,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/30/4f6351ae2ccd7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Michael Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "Fred Van Lente",
+          "role": "writer"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p078: Collects: Incredible Hulk #601 to #605, Dark Reign - The List: Hulk"
+    },
+    {
+      "issueId": 27647,
+      "title": "Incredible Hulks (2010) #603",
+      "number": "603",
+      "url": "https://www.marvel.com/comics/issue/27647/incredible_hulks_2010_603",
+      "seriesId": 8842,
+      "seriesName": "Incredible Hulks (2010 - 2011)",
+      "onSale": "2009-10-21T00:00:00+0000",
+      "mu": "2011-04-08T00:00:00+0000",
+      "digitalId": 17478,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/5ba5447853fc2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Cam Smith",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ariel Olivetti",
+          "role": "penciler"
+        },
+        {
+          "name": "Giuseppe Camuncoli",
+          "role": "penciler"
+        },
+        {
+          "name": "Michael Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "Fred Van Lente",
+          "role": "writer"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p078: Collects: Incredible Hulk #601 to #605, Dark Reign - The List: Hulk"
+    },
+    {
+      "issueId": 27648,
+      "title": "Incredible Hulks (2010) #604",
+      "number": "604",
+      "url": "https://www.marvel.com/comics/issue/27648/incredible_hulks_2010_604",
+      "seriesId": 8842,
+      "seriesName": "Incredible Hulks (2010 - 2011)",
+      "onSale": "2009-11-18T00:00:00+0000",
+      "mu": "2011-04-08T00:00:00+0000",
+      "digitalId": 17207,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/03/4f63535e27110",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Cam Smith",
+          "role": "cover artist"
+        },
+        {
+          "name": "Giuseppe Camuncoli",
+          "role": "penciler"
+        },
+        {
+          "name": "Michael Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "Fred Van Lente",
+          "role": "writer"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p078: Collects: Incredible Hulk #601 to #605, Dark Reign - The List: Hulk"
+    },
+    {
+      "issueId": 27650,
+      "title": "Incredible Hulks (2010) #605",
+      "number": "605",
+      "url": "https://www.marvel.com/comics/issue/27650/incredible_hulks_2010_605",
+      "seriesId": 8842,
+      "seriesName": "Incredible Hulks (2010 - 2011)",
+      "onSale": "2009-12-09T00:00:00+0000",
+      "mu": "2011-04-22T00:00:00+0000",
+      "digitalId": 17618,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/40/4f6353cd7a988",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ariel Olivetti",
+          "role": "penciler"
+        },
+        {
+          "name": "Michael Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Pelletier",
+          "role": "penciler"
+        },
+        {
+          "name": "Fred Van Lente",
+          "role": "writer"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p078: Collects: Incredible Hulk #601 to #605, Dark Reign - The List: Hulk"
+    },
+    {
+      "issueId": 27419,
+      "title": "Dark Reign: The List - Hulk (2009) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/27419/dark_reign_the_list_-_hulk_2009_1",
+      "seriesId": 8748,
+      "seriesName": "Dark Reign: The List - Hulk (2009)",
+      "onSale": "2009-10-21T00:00:00+0000",
+      "mu": "2011-02-24T15:26:47+0000",
+      "digitalId": 17615,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/5b5b3188e62d1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p078: Collects: Incredible Hulk #601 to #605, Dark Reign - The List: Hulk"
+    },
+    {
+      "issueId": 29293,
+      "title": "Fall of the Hulks Alpha (2009) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/29293/fall_of_the_hulks_alpha_2009_1",
+      "seriesId": 9136,
+      "seriesName": "Fall of the Hulks Alpha (2009)",
+      "onSale": "2009-12-03T00:00:00+0000",
+      "mu": "2010-10-25T00:00:00+0000",
+      "digitalId": 14796,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/a0/59418f757ce49",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Vicente Cifuentes",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Pelletier",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p081: Collects: Fall of the Hulks: Alpha, Incredible Hulk #606 to #608"
+    },
+    {
+      "issueId": 27651,
+      "title": "Incredible Hulks (2010) #606",
+      "number": "606",
+      "url": "https://www.marvel.com/comics/issue/27651/incredible_hulks_2010_606",
+      "seriesId": 8842,
+      "seriesName": "Incredible Hulks (2010 - 2011)",
+      "onSale": "2010-01-20T00:00:00+0000",
+      "mu": "2011-04-22T00:00:00+0000",
+      "digitalId": 18503,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/52c5cdf707041",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Printed block p081: Collects: Fall of the Hulks: Alpha, Incredible Hulk #606 to #608"
+    },
+    {
+      "issueId": 27652,
+      "title": "Incredible Hulks (2010) #607",
+      "number": "607",
+      "url": "https://www.marvel.com/comics/issue/27652/incredible_hulks_2010_607",
+      "seriesId": 8842,
+      "seriesName": "Incredible Hulks (2010 - 2011)",
+      "onSale": "2010-02-17T00:00:00+0000",
+      "mu": "2010-11-23T00:00:00+0000",
+      "digitalId": 13897,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/40/5ba90b08ee82d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Pelletier",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan Stegman",
+          "role": "penciler"
+        },
+        {
+          "name": "Fred Van Lente",
+          "role": "writer"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p081: Collects: Fall of the Hulks: Alpha, Incredible Hulk #606 to #608"
+    },
+    {
+      "issueId": 27653,
+      "title": "Incredible Hulks (2010) #608",
+      "number": "608",
+      "url": "https://www.marvel.com/comics/issue/27653/incredible_hulks_2010_608",
+      "seriesId": 8842,
+      "seriesName": "Incredible Hulks (2010 - 2011)",
+      "onSale": "2010-03-17T00:00:00+0000",
+      "mu": "2010-11-26T00:00:00+0000",
+      "digitalId": 14084,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/00/5ba92b3ab1892",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Pelletier",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan Stegman",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        },
+        {
+          "name": "Harrison Wilcox",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p081: Collects: Fall of the Hulks: Alpha, Incredible Hulk #606 to #608"
+    },
+    {
+      "issueId": 31074,
+      "title": "Incredible Hulks (2010) #609",
+      "number": "609",
+      "url": "https://www.marvel.com/comics/issue/31074/incredible_hulks_2010_609",
+      "seriesId": 8842,
+      "seriesName": "Incredible Hulks (2010 - 2011)",
+      "onSale": "2010-05-12T00:00:00+0000",
+      "mu": "2015-07-30T11:14:25+0000",
+      "digitalId": 14622,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/70/4f58cad895575",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jeffrey Huet",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Finch",
+          "role": "penciler"
+        },
+        {
+          "name": "Miguel Munera",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Pelletier",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        },
+        {
+          "name": "Scott Reed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p084: Collects: Incredible Hulk #609 to #611"
+    },
+    {
+      "issueId": 31076,
+      "title": "Incredible Hulks (2010) #610",
+      "number": "610",
+      "url": "https://www.marvel.com/comics/issue/31076/incredible_hulks_2010_610",
+      "seriesId": 8842,
+      "seriesName": "Incredible Hulks (2010 - 2011)",
+      "onSale": "2010-06-16T00:00:00+0000",
+      "mu": "2011-05-06T00:00:00+0000",
+      "digitalId": 14945,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/30/5ba94a69af985",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Miguel Angel Munera Sancho",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Pelletier",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        },
+        {
+          "name": "Scott Reed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p084: Collects: Incredible Hulk #609 to #611"
+    },
+    {
+      "issueId": 31077,
+      "title": "Incredible Hulks (2010) #611",
+      "number": "611",
+      "url": "https://www.marvel.com/comics/issue/31077/incredible_hulks_2010_611",
+      "seriesId": 8842,
+      "seriesName": "Incredible Hulks (2010 - 2011)",
+      "onSale": "2010-08-11T00:00:00+0000",
+      "mu": "2011-08-26T00:00:00+0000",
+      "digitalId": 15657,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/c0/5baa3c7b9ef87",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Pelletier",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p084: Collects: Incredible Hulk #609 to #611"
+    },
+    {
+      "issueId": 36771,
+      "title": "Incredible Hulks (2010) #612",
+      "number": "612",
+      "url": "https://www.marvel.com/comics/issue/36771/incredible_hulks_2010_612",
+      "seriesId": 8842,
+      "seriesName": "Incredible Hulks (2010 - 2011)",
+      "onSale": "2010-09-01T00:00:00+0000",
+      "mu": "2011-10-07T00:00:00+0000",
+      "digitalId": 15922,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/b0/59cd483ee1ee1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Pelletier",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p087: Issues: #612 to #617"
+    },
+    {
+      "issueId": 36774,
+      "title": "Incredible Hulks (2010) #613",
+      "number": "613",
+      "url": "https://www.marvel.com/comics/issue/36774/incredible_hulks_2010_613",
+      "seriesId": 8842,
+      "seriesName": "Incredible Hulks (2010 - 2011)",
+      "onSale": "2010-09-15T00:00:00+0000",
+      "mu": "2011-10-07T00:00:00+0000",
+      "digitalId": 16085,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/59cd481a4713b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Raney",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p087: Issues: #612 to #617"
+    },
+    {
+      "issueId": 30436,
+      "title": "Incredible Hulks (2010) #614",
+      "number": "614",
+      "url": "https://www.marvel.com/comics/issue/30436/incredible_hulks_2010_614",
+      "seriesId": 8842,
+      "seriesName": "Incredible Hulks (2010 - 2011)",
+      "onSale": "2010-10-13T00:00:00+0000",
+      "mu": "2011-11-04T00:00:00+0000",
+      "digitalId": 16719,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/30/4f58ce6f567bc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Barry Kitson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jason Paz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mirco Pierfederici",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlo Pagulayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        },
+        {
+          "name": "Joshua Williamson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p087: Issues: #612 to #617"
+    },
+    {
+      "issueId": 30437,
+      "title": "Incredible Hulks (2010) #615",
+      "number": "615",
+      "url": "https://www.marvel.com/comics/issue/30437/incredible_hulks_2010_615",
+      "seriesId": 8842,
+      "seriesName": "Incredible Hulks (2010 - 2011)",
+      "onSale": "2010-10-27T00:00:00+0000",
+      "mu": "2011-11-04T00:00:00+0000",
+      "digitalId": 16991,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/60/59cd47faa570a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Danny Miki - Crimelab",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jason Paz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Barry Kitson",
+          "role": "penciler"
+        },
+        {
+          "name": "Carlo Pagulayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Raney",
+          "role": "penciler"
+        },
+        {
+          "name": "Ben Mccool",
+          "role": "writer"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p087: Issues: #612 to #617"
+    },
+    {
+      "issueId": 30438,
+      "title": "Incredible Hulks (2010) #616",
+      "number": "616",
+      "url": "https://www.marvel.com/comics/issue/30438/incredible_hulks_2010_616",
+      "seriesId": 8842,
+      "seriesName": "Incredible Hulks (2010 - 2011)",
+      "onSale": "2010-11-10T00:00:00+0000",
+      "mu": "2011-11-18T00:00:00+0000",
+      "digitalId": 17575,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/f0/4f58cf2355078",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Barry Kitson",
+          "role": "penciler"
+        },
+        {
+          "name": "Carlo Pagulayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p087: Issues: #612 to #617"
+    },
+    {
+      "issueId": 30439,
+      "title": "Incredible Hulks (2010) #617",
+      "number": "617",
+      "url": "https://www.marvel.com/comics/issue/30439/incredible_hulks_2010_617",
+      "seriesId": 8842,
+      "seriesName": "Incredible Hulks (2010 - 2011)",
+      "onSale": "2010-11-24T00:00:00+0000",
+      "mu": "2011-11-18T00:00:00+0000",
+      "digitalId": 17914,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/d0/5ba2b5fcc32fd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Barry Kitson",
+          "role": "penciler"
+        },
+        {
+          "name": "Carlo Pagulayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p087: Issues: #612 to #617"
+    },
+    {
+      "issueId": 31236,
+      "title": "Incredible Hulks (2010) #618",
+      "number": "618",
+      "url": "https://www.marvel.com/comics/issue/31236/incredible_hulks_2010_618",
+      "seriesId": 8842,
+      "seriesName": "Incredible Hulks (2010 - 2011)",
+      "onSale": "2010-12-08T00:00:00+0000",
+      "mu": "2013-04-08T00:00:00+0000",
+      "digitalId": 18248,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/52c5b58c47334",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlo Pagulayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Pelletier",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p090: Collects: Incredible Hulks #618 to #621"
+    },
+    {
+      "issueId": 34050,
+      "title": "Incredible Hulks (2010) #619",
+      "number": "619",
+      "url": "https://www.marvel.com/comics/issue/34050/incredible_hulks_2010_619",
+      "seriesId": 8842,
+      "seriesName": "Incredible Hulks (2010 - 2011)",
+      "onSale": "2010-12-22T00:00:00+0000",
+      "mu": "2013-04-08T00:00:00+0000",
+      "digitalId": 18552,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/a0/52c5b57d98070",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlo Pagulayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Pelletier",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p090: Collects: Incredible Hulks #618 to #621"
+    },
+    {
+      "issueId": 34021,
+      "title": "Incredible Hulks (2010) #620",
+      "number": "620",
+      "url": "https://www.marvel.com/comics/issue/34021/incredible_hulks_2010_620",
+      "seriesId": 8842,
+      "seriesName": "Incredible Hulks (2010 - 2011)",
+      "onSale": "2011-01-12T00:00:00+0000",
+      "mu": "2011-12-16T00:00:00+0000",
+      "digitalId": 18867,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/4f58d13c5c70c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlo Pagulayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Pelletier",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p090: Collects: Incredible Hulks #618 to #621"
+    },
+    {
+      "issueId": 35101,
+      "title": "Incredible Hulks (2010) #621",
+      "number": "621",
+      "url": "https://www.marvel.com/comics/issue/35101/incredible_hulks_2010_621",
+      "seriesId": 8842,
+      "seriesName": "Incredible Hulks (2010 - 2011)",
+      "onSale": "2011-01-26T00:00:00+0000",
+      "mu": "2011-12-15T00:00:00+0000",
+      "digitalId": 18992,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/20/4f58d1d4df0a2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jason Paz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlo Pagulayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Pelletier",
+          "role": "penciler"
+        },
+        {
+          "name": "Sana Takeda",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        },
+        {
+          "name": "Joshua Williamson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p090: Collects: Incredible Hulks #618 to #621"
+    },
+    {
+      "issueId": 36051,
+      "title": "Incredible Hulks (2010) #623",
+      "number": "623",
+      "url": "https://www.marvel.com/comics/issue/36051/incredible_hulks_2010_623",
+      "seriesId": 8842,
+      "seriesName": "Incredible Hulks (2010 - 2011)",
+      "onSale": "2011-02-23T00:00:00+0000",
+      "mu": "2011-12-16T00:00:00+0000",
+      "digitalId": 19716,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/80/4f5787a9aefd8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrew Hennessy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dale Eaglesham",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p093: Collects: Incredible Hulks #623 to #629"
+    },
+    {
+      "issueId": 36050,
+      "title": "Incredible Hulks (2010) #624",
+      "number": "624",
+      "url": "https://www.marvel.com/comics/issue/36050/incredible_hulks_2010_624",
+      "seriesId": 8842,
+      "seriesName": "Incredible Hulks (2010 - 2011)",
+      "onSale": "2011-03-09T00:00:00+0000",
+      "mu": "2011-12-16T00:00:00+0000",
+      "digitalId": 19938,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/4d6d57ec6740b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrew Hennessy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dale Eaglesham",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p093: Collects: Incredible Hulks #623 to #629"
+    },
+    {
+      "issueId": 36049,
+      "title": "Incredible Hulks (2010) #625",
+      "number": "625",
+      "url": "https://www.marvel.com/comics/issue/36049/incredible_hulks_2010_625",
+      "seriesId": 8842,
+      "seriesName": "Incredible Hulks (2010 - 2011)",
+      "onSale": "2011-03-30T00:00:00+0000",
+      "mu": "2011-12-30T00:00:00+0000",
+      "digitalId": 20239,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/40/4f5788e89d964",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrew Hennessy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dale Eaglesham",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p093: Collects: Incredible Hulks #623 to #629"
+    },
+    {
+      "issueId": 36053,
+      "title": "Incredible Hulks (2010) #626",
+      "number": "626",
+      "url": "https://www.marvel.com/comics/issue/36053/incredible_hulks_2010_626",
+      "seriesId": 8842,
+      "seriesName": "Incredible Hulks (2010 - 2011)",
+      "onSale": "2011-04-13T00:00:00+0000",
+      "mu": "2012-02-10T00:00:00+0000",
+      "digitalId": 20472,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/e0/5ba40273bdfd5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Cory Hamscher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jock",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Grummett",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p093: Collects: Incredible Hulks #623 to #629"
+    },
+    {
+      "issueId": 36047,
+      "title": "Incredible Hulks (2010) #627",
+      "number": "627",
+      "url": "https://www.marvel.com/comics/issue/36047/incredible_hulks_2010_627",
+      "seriesId": 8842,
+      "seriesName": "Incredible Hulks (2010 - 2011)",
+      "onSale": "2011-04-27T00:00:00+0000",
+      "mu": "2012-01-13T00:00:00+0000",
+      "digitalId": 20694,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/b0/5ba4eaf632bcb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Cory Hamscher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Doug Braithwaite",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Grummett",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p093: Collects: Incredible Hulks #623 to #629"
+    },
+    {
+      "issueId": 36052,
+      "title": "Incredible Hulks (2010) #628",
+      "number": "628",
+      "url": "https://www.marvel.com/comics/issue/36052/incredible_hulks_2010_628",
+      "seriesId": 8842,
+      "seriesName": "Incredible Hulks (2010 - 2011)",
+      "onSale": "2011-05-11T00:00:00+0000",
+      "mu": "2012-01-13T00:00:00+0000",
+      "digitalId": 20954,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/4f57ba58a5444",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Cory Hamscher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Doug Braithwaite",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Grummett",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p093: Collects: Incredible Hulks #623 to #629"
+    },
+    {
+      "issueId": 36048,
+      "title": "Incredible Hulks (2010) #629",
+      "number": "629",
+      "url": "https://www.marvel.com/comics/issue/36048/incredible_hulks_2010_629",
+      "seriesId": 8842,
+      "seriesName": "Incredible Hulks (2010 - 2011)",
+      "onSale": "2011-05-25T00:00:00+0000",
+      "mu": "2012-02-24T00:00:00+0000",
+      "digitalId": 21239,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/40/4f57bbc886e47",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Cory Hamscher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Frank Cho",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Grummett",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p093: Collects: Incredible Hulks #623 to #629"
+    },
+    {
+      "issueId": 36044,
+      "title": "Incredible Hulks (2010) #630",
+      "number": "630",
+      "url": "https://www.marvel.com/comics/issue/36044/incredible_hulks_2010_630",
+      "seriesId": 8842,
+      "seriesName": "Incredible Hulks (2010 - 2011)",
+      "onSale": "2011-06-08T00:00:00+0000",
+      "mu": "2012-02-24T00:00:00+0000",
+      "digitalId": 21440,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/30/4f57be0ad16a8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Pelletier",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p095: Collects: Incredible Hulks #630 to #635"
+    },
+    {
+      "issueId": 36046,
+      "title": "Incredible Hulks (2010) #631",
+      "number": "631",
+      "url": "https://www.marvel.com/comics/issue/36046/incredible_hulks_2010_631",
+      "seriesId": 8842,
+      "seriesName": "Incredible Hulks (2010 - 2011)",
+      "onSale": "2011-06-22T00:00:00+0000",
+      "mu": "2012-02-24T00:00:00+0000",
+      "digitalId": 21860,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/4f57bf615a481",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Pelletier",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p095: Collects: Incredible Hulks #630 to #635"
+    },
+    {
+      "issueId": 36045,
+      "title": "Incredible Hulks (2010) #632",
+      "number": "632",
+      "url": "https://www.marvel.com/comics/issue/36045/incredible_hulks_2010_632",
+      "seriesId": 8842,
+      "seriesName": "Incredible Hulks (2010 - 2011)",
+      "onSale": "2011-07-13T00:00:00+0000",
+      "mu": "2012-02-24T00:00:00+0000",
+      "digitalId": 22513,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/4f57c0a618c4f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Pelletier",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p095: Collects: Incredible Hulks #630 to #635"
+    },
+    {
+      "issueId": 36909,
+      "title": "Incredible Hulks (2010) #633",
+      "number": "633",
+      "url": "https://www.marvel.com/comics/issue/36909/incredible_hulks_2010_633",
+      "seriesId": 8842,
+      "seriesName": "Incredible Hulks (2010 - 2011)",
+      "onSale": "2011-07-27T00:00:00+0000",
+      "mu": "2012-02-29T00:00:00+0000",
+      "digitalId": 22868,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/00/4f57cd8a98206",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Pelletier",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p095: Collects: Incredible Hulks #630 to #635"
+    },
+    {
+      "issueId": 36908,
+      "title": "Incredible Hulks (2010) #634",
+      "number": "634",
+      "url": "https://www.marvel.com/comics/issue/36908/incredible_hulks_2010_634",
+      "seriesId": 8842,
+      "seriesName": "Incredible Hulks (2010 - 2011)",
+      "onSale": "2011-08-10T00:00:00+0000",
+      "mu": "2012-02-29T00:00:00+0000",
+      "digitalId": 23355,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/4f57ce76a028e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Pelletier",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p095: Collects: Incredible Hulks #630 to #635"
+    },
+    {
+      "issueId": 38109,
+      "title": "Incredible Hulks (2010) #635",
+      "number": "635",
+      "url": "https://www.marvel.com/comics/issue/38109/incredible_hulks_2010_635",
+      "seriesId": 8842,
+      "seriesName": "Incredible Hulks (2010 - 2011)",
+      "onSale": "2011-08-31T00:00:00+0000",
+      "mu": "2012-07-05T00:00:00+0000",
+      "digitalId": 23709,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/4e53a57a86213",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Pelletier",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Printed block p095: Collects: Incredible Hulks #630 to #635"
+    },
+    {
+      "issueId": 56083,
+      "title": "The Totally Awesome Hulk (2015) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/56083/the_totally_awesome_hulk_2015_1",
+      "seriesId": 20614,
+      "seriesName": "The Totally Awesome Hulk (2015 - 2017)",
+      "onSale": "2015-12-02T00:00:00+0000",
+      "mu": "2016-06-06T00:00:00+0000",
+      "digitalId": 40639,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/5655d41c2e832",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Frank Cho",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p099: Collects: The Totally Awesome Hulk #1 to #4"
+    },
+    {
+      "issueId": 56084,
+      "title": "The Totally Awesome Hulk (2015) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/56084/the_totally_awesome_hulk_2015_2",
+      "seriesId": 20614,
+      "seriesName": "The Totally Awesome Hulk (2015 - 2017)",
+      "onSale": "2016-01-06T00:00:00+0000",
+      "mu": "2016-07-04T00:00:00+0000",
+      "digitalId": 40810,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/00/568aaa2201974",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Frank Cho",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p099: Collects: The Totally Awesome Hulk #1 to #4"
+    },
+    {
+      "issueId": 56085,
+      "title": "The Totally Awesome Hulk (2015) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/56085/the_totally_awesome_hulk_2015_3",
+      "seriesId": 20614,
+      "seriesName": "The Totally Awesome Hulk (2015 - 2017)",
+      "onSale": "2016-02-10T00:00:00+0000",
+      "mu": "2016-08-08T00:00:00+0000",
+      "digitalId": 41131,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/c0/56a2aab934f21",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Frank Cho",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p099: Collects: The Totally Awesome Hulk #1 to #4"
+    },
+    {
+      "issueId": 56086,
+      "title": "The Totally Awesome Hulk (2015) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/56086/the_totally_awesome_hulk_2015_4",
+      "seriesId": 20614,
+      "seriesName": "The Totally Awesome Hulk (2015 - 2017)",
+      "onSale": "2016-03-23T00:00:00+0000",
+      "mu": "2016-09-26T00:00:00+0000",
+      "digitalId": 41461,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/50/56e71c78795d1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Frank Cho",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p099: Collects: The Totally Awesome Hulk #1 to #4"
+    },
+    {
+      "issueId": 56095,
+      "title": "The Totally Awesome Hulk (2015) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/56095/the_totally_awesome_hulk_2015_13",
+      "seriesId": 20614,
+      "seriesName": "The Totally Awesome Hulk (2015 - 2017)",
+      "onSale": "2016-12-14T00:00:00+0000",
+      "mu": "2017-06-19T00:00:00+0000",
+      "digitalId": 43455,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/5834ce7f2765a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Bernard Chang",
+          "role": "penciler"
+        },
+        {
+          "name": "Luke Ross",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p106: Collects: Totally Awesome Hulk #13 to #18"
+    },
+    {
+      "issueId": 56096,
+      "title": "The Totally Awesome Hulk (2015) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/56096/the_totally_awesome_hulk_2015_14",
+      "seriesId": 20614,
+      "seriesName": "The Totally Awesome Hulk (2015 - 2017)",
+      "onSale": "2017-01-11T00:00:00+0000",
+      "mu": "2017-07-17T00:00:00+0000",
+      "digitalId": 43851,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/d0/586fe9f0a57aa",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Bernard Chang",
+          "role": "penciler"
+        },
+        {
+          "name": "Luke Ross",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p106: Collects: Totally Awesome Hulk #13 to #18"
+    },
+    {
+      "issueId": 56097,
+      "title": "The Totally Awesome Hulk (2015) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/56097/the_totally_awesome_hulk_2015_15",
+      "seriesId": 20614,
+      "seriesName": "The Totally Awesome Hulk (2015 - 2017)",
+      "onSale": "2017-01-25T00:00:00+0000",
+      "mu": "2017-07-31T00:00:00+0000",
+      "digitalId": 43852,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/50/58790dc765815",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jeon Woo Seok",
+          "role": "penciler"
+        },
+        {
+          "name": "Mahmud Asrar",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p106: Collects: Totally Awesome Hulk #13 to #18"
+    },
+    {
+      "issueId": 56098,
+      "title": "The Totally Awesome Hulk (2015) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/56098/the_totally_awesome_hulk_2015_16",
+      "seriesId": 20614,
+      "seriesName": "The Totally Awesome Hulk (2015 - 2017)",
+      "onSale": "2017-02-08T00:00:00+0000",
+      "mu": "2017-08-14T00:00:00+0000",
+      "digitalId": 44387,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/e0/588fb9b812613",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mahmud Asrar",
+          "role": "penciler"
+        },
+        {
+          "name": "Stonehouse",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p106: Collects: Totally Awesome Hulk #13 to #18"
+    },
+    {
+      "issueId": 60847,
+      "title": "The Totally Awesome Hulk (2015) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/60847/the_totally_awesome_hulk_2015_17",
+      "seriesId": 20614,
+      "seriesName": "The Totally Awesome Hulk (2015 - 2017)",
+      "onSale": "2017-03-15T00:00:00+0000",
+      "mu": "2017-03-15T00:00:00+0000",
+      "digitalId": 44068,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/58c1810d4a36e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mahmud Asrar",
+          "role": "cover artist"
+        },
+        {
+          "name": "S Stonehouse",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p106: Collects: Totally Awesome Hulk #13 to #18"
+    },
+    {
+      "issueId": 60848,
+      "title": "The Totally Awesome Hulk (2015) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/60848/the_totally_awesome_hulk_2015_18",
+      "seriesId": 20614,
+      "seriesName": "The Totally Awesome Hulk (2015 - 2017)",
+      "onSale": "2017-04-19T00:00:00+0000",
+      "mu": "2017-04-19T00:00:00+0000",
+      "digitalId": 44536,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/58ee7c329d254",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mahmud Asrar",
+          "role": "cover artist"
+        },
+        {
+          "name": "S Stonehouse",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Printed block p106: Collects: Totally Awesome Hulk #13 to #18"
+    }
+  ]
+}

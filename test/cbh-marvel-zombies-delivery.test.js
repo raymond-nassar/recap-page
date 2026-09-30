@@ -231,13 +231,13 @@ test('Marvel Zombies renewed relationship receipt covers every current library p
   ]);
   const current = await buildReportForMapping(
     `scripts/data/cbh-mappings/${id}.json`, [], {
-      excludedOrderIds: ['ms-marvel-kamala-khan-reading-order', 'nova-reading-order', 'ultimate-spider-man-reading-order'],
+      excludedOrderIds: ['ms-marvel-kamala-khan-reading-order', 'nova-reading-order', 'ultimate-spider-man-reading-order', 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide'],
     },
   );
   const expectedOrderIds = manifest.lists.filter((entry) => entry.id !== id)
     .filter((entry) => entry.id !== 'ms-marvel-kamala-khan-reading-order'
       && entry.id !== 'nova-reading-order'
-      && entry.id !== 'ultimate-spider-man-reading-order')
+      && entry.id !== 'ultimate-spider-man-reading-order' && entry.id !== 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide')
     .map((entry) => entry.id);
   assert.deepEqual(current, report);
   assert.equal(report.comparisonCount, 193);

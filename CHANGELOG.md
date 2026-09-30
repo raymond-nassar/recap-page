@@ -20,6 +20,14 @@ the card's full inner width below its artwork and title. Timeline cards lose a r
 indent while keeping the year markers and chronological structure. Text size, complete
 descriptions in Preview, actions, desktop layout and saved reading progress are unchanged.
 
+### Follow Greg Pak's Hulk from Planet Hulk to Amadeus Cho
+
+Adds a separate, credited 107-issue creator Reading List following Comic Book Herald's directed
+route through Planet Hulk, World War Hulk, Skaar, Incredible Hulks and Totally Awesome Hulk.
+The five later references back to World War Hulk do not duplicate chapters in the checklist.
+The opening Amazing Fantasy issue is included for its Amadeus Cho story. The existing 15-issue
+Planet Hulk event and saved reading progress remain unchanged.
+
 ### Match the mobile Marvel Ages action to other touch targets
 
 The Android action to browse all Modern Age Reading Lists now has the same 48px minimum

@@ -142,6 +142,12 @@ test('Character Spotlight taxonomy accounts for every reading and preserves grou
   assert.ok(nova, 'Nova is missing from Character Spotlight All');
   assert.ok(other.includes(nova));
   assert.equal(completeGuide.includes(nova), false);
+  const gregPak = catalog.lists.find((list) =>
+    list.id === 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide');
+  assert.ok(gregPak, 'The Greg Pak creator route is missing from the catalog');
+  assert.equal(catalogListShelf(catalog.lists, gregPak.id), 'lines');
+  assert.equal(spotlights.includes(gregPak), false);
+  assert.equal(gregPak.spotlightKind, null);
 
 });
 

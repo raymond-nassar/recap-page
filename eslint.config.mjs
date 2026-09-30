@@ -123,6 +123,7 @@ export default [
       'scripts/browser-markdown-export.mjs',
       'scripts/browser-order-export.mjs',
       'scripts/browser-ultimate-spider-man.mjs',
+      'scripts/browser-greg-pak-hulk.mjs',
       'scripts/capture-store-assets.mjs',
       'scripts/capture-play-assets.mjs',
       'scripts/upgrade-check.mjs',
