@@ -11,6 +11,7 @@ import { LOCAL_SERVER_HEALTH_PATH, LOCAL_SERVER_HEADER_NAME, LOCAL_SERVER_HEADER
 import { createEmptyState, createList, addIssuesToList, setIssueNote } from '../src/js/lib/model.js';
 import { availableHomeCategories, groupCatalog, HOME_CATEGORIES, publishingAgeGroups, resolveReadingPaths } from '../src/js/lib/catalog.js';
 import { parseRoute } from '../src/js/lib/route.js';
+import { catalogCardProfiles, catalogCardReadability } from './browser-android-catalog-cards.mjs';
 
 const driver = process.env.MRT_PUPPETEER || join(homedir(), '.mrt-scratch', 'node_modules', 'puppeteer-core', 'lib', 'puppeteer', 'puppeteer-core.js');
 const edge = process.env.MRT_EDGE || 'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe';
@@ -28,6 +29,7 @@ const seriesReadability = process.argv.includes('--only=series-readability');
 const noteReadability = process.argv.includes('--only=note-readability');
 const categoryReadability = process.argv.includes('--only=category-readability');
 const marvelAgesTarget = process.argv.includes('--only=marvel-ages-target');
+const catalogReadability = process.argv.includes('--only=catalog-cards');
 const server = createServer(async (req, res) => {
   const path = new URL(req.url, 'http://127.0.0.1').pathname;
   if (path === LOCAL_SERVER_HEALTH_PATH) {
@@ -794,6 +796,9 @@ try {
     { width: 412, height: 915, textScale: 1.5 },
     { width: 1280, height: 900, desktop: true },
   ];
+  if (catalogReadability) viewports = catalogCardProfiles;
+  const onlyCase = process.argv.find((arg) => arg.startsWith('--case='))?.slice('--case='.length);
+  if (catalogReadability && onlyCase) viewports = viewports.filter((viewport) => onlyCase.split(',').includes(viewport.id));
   const onlyViewport = process.argv.find((arg) => arg.startsWith('--viewport='))?.slice('--viewport='.length);
   if (onlyViewport) viewports = viewports.filter((viewport) => (
     `${viewport.width}x${viewport.height}${viewport.textScale ? `@${viewport.textScale}` : ''}` === onlyViewport
@@ -810,10 +815,10 @@ try {
     await page.setViewport({ ...viewport, isMobile: !viewport.desktop, hasTouch: !viewport.desktop, deviceScaleFactor: 1 });
     if (seriesReadability) await seriesFixtures(page);
     if (noteReadability) await noteFixtures(page);
-    if (categoryReadability || marvelAgesTarget) await categoryFixtures(page);
+    if (categoryReadability || marvelAgesTarget || catalogReadability) await categoryFixtures(page);
     await page.setRequestInterception(true);
     page.on('request', (request) => {
-      if ((seriesReadability || noteReadability || categoryReadability || marvelAgesTarget) && new URL(request.url()).origin !== origin) {
+      if ((seriesReadability || noteReadability || categoryReadability || marvelAgesTarget || catalogReadability) && new URL(request.url()).origin !== origin) {
         failures.push(`Unexpected external request: ${request.url()}`);
         return request.abort();
       }
@@ -829,8 +834,14 @@ try {
         });
       }
       if (request.url().startsWith(origin)) {
+        if (catalogReadability && new URL(request.url()).pathname === '/__catalog-cover.svg') {
+          return request.respond({
+            status: 200, contentType: 'image/svg+xml',
+            body: '<svg xmlns="http://www.w3.org/2000/svg" width="92" height="138"><rect width="92" height="138" fill="#73579b"/><path d="M0 138L92 0" stroke="#fff" stroke-width="4"/></svg>',
+          });
+        }
         if (request.url().endsWith('/data/catalog.json')) {
-          return request.respond({ status: 200, contentType: 'application/json', body: JSON.stringify(mobileUi || categoryReadability || marvelAgesTarget ? catalog : { ...catalog, lists: [orderEntry] }) });
+          return request.respond({ status: 200, contentType: 'application/json', body: JSON.stringify(mobileUi || categoryReadability || marvelAgesTarget || catalogReadability ? catalog : { ...catalog, lists: [orderEntry] }) });
         }
         return request.continue();
       }
@@ -872,6 +883,12 @@ try {
       }, viewport.textScale);
     }
     const label = `${viewport.width}x${viewport.height}${viewport.textScale ? ` ${viewport.textScale * 100}% text` : ''}`;
+    if (catalogReadability) {
+      await catalogCardReadability({ page, viewport, catalog, check, route, click });
+      check(errors.length === 0, `${viewport.id}: page errors ${errors.join('; ')}`);
+      await context.close();
+      continue;
+    }
     if (marvelAgesTarget) {
       await marvelAgesTouchTarget(page, label, viewport);
       check(errors.length === 0, `${label}: page errors ${errors.join('; ')}`);

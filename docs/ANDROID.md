@@ -287,6 +287,17 @@ Desktop keeps its 44px height and horizontal heading layout. Use `--viewport=360
 for the focused pre-fix reproduction. The bundled catalog and isolated state run without
 live API or cover requests; text-token stress is not native Android fontScale or device proof.
 
+`npm run android:browser -- --only=catalog-cards` checks the real catalog renderer in generated
+Android assets and the shared desktop entry. Its fixed 16-case matrix covers 320/360/412px,
+both themes, 150/200% text-token stress, landscape and desktop, plus 700/701px boundary
+measurements. It measures full-width prose, timeline markers, complete credits and gap text,
+meaningful accessibility order, Preview/Add and filter/sort compatibility. Cover geometry uses
+an original local test image, never publisher artwork. Use `--case=M02` for one case;
+`MRT_CATALOG_EVIDENCE` stores measurements. Existing decorative accessibility exposure
+([#638](https://github.com/raymond-nassar/recap-page/issues/638)) is retained rather than
+presented as a clean accessibility result. These are Edge web checks,
+not physical Android, native fontScale or TalkBack acceptance.
+
 ## Native emulator checks without a local emulator
 
 The **CI** workflow has an optional **android_emulator** input, off by default. It runs the APK

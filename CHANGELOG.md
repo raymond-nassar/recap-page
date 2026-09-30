@@ -13,6 +13,13 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Give mobile catalog descriptions room to read
+
+On compact Android screens, catalog descriptions, issue counts and source credits now use
+the card's full inner width below its artwork and title. Timeline cards lose a redundant
+indent while keeping the year markers and chronological structure. Text size, complete
+descriptions in Preview, actions, desktop layout and saved reading progress are unchanged.
+
 ### Follow Greg Pak's Hulk from Planet Hulk to Amadeus Cho
 
 Adds a separate, credited 107-issue creator Reading List following Comic Book Herald's directed
