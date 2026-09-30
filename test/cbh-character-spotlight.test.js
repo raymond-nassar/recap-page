@@ -645,6 +645,7 @@ async function libraryDigestForScope(manifest, excludedIds, librarySnapshot = nu
   excluded.add('ultimate-spider-man-reading-order');
   excluded.add('planet-hulk-reading-order-and-greg-pak-hulk-comics-guide');
   excluded.add('shang-chi-master-of-kung-fu-reading-order');
+  excluded.add('the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order');
   const lists = sourceManifest.lists.filter((entry) => !excluded.has(entry.id));
   const paths = (sourceManifest.paths ?? []).filter((entry) => (
     !excluded.has(entry.id)
@@ -683,6 +684,7 @@ async function historicalReportLibraryDigest(manifest, excludedIds, librarySnaps
     'thunderbolts-reading-order', 'hope-summers-reading-order',
     'x-23-reading-order', 'marvel-zombies-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order',
     'shang-chi-master-of-kung-fu-reading-order',
+    'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order',
   ], librarySnapshot);
 }
 
@@ -709,6 +711,8 @@ test('Agatha historical replay helper reproduces the saved Punisher report diges
         'shadow-king-reading-order',
         'thunderbolts-reading-order', 'hope-summers-reading-order',
         'x-23-reading-order', 'marvel-zombies-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order',
+        'shang-chi-master-of-kung-fu-reading-order',
+        'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order',
       ],
     },
   );
@@ -732,6 +736,8 @@ test('Agatha historical replay helper reproduces the saved Punisher report diges
         'shadow-king-reading-order',
         'thunderbolts-reading-order', 'hope-summers-reading-order',
         'x-23-reading-order', 'marvel-zombies-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order',
+        'shang-chi-master-of-kung-fu-reading-order',
+        'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order',
       ],
     },
   );
@@ -797,7 +803,7 @@ test('Abomination preserves the unresolved Hulk annual and selects the exact 198
   }
 });
 
-test('the character inventory preserves every central disposition, ships 57 character runs, two creators and two era guides, and records five approved reuses', async () => {
+test('the character inventory preserves every central disposition, ships 58 character runs, two creators and two era guides, and records five approved reuses', async () => {
 
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
   assert.doesNotThrow(() => validateInventoryState(inventory));
@@ -809,17 +815,17 @@ test('the character inventory preserves every central disposition, ships 57 char
     counts[record.centralDisposition] = (counts[record.centralDisposition] ?? 0) + 1;
     return counts;
   }, {});
-  assert.equal(dispositionCounts.deferred, 61);
+  assert.equal(dispositionCounts.deferred, 60);
   assert.equal(dispositionCounts.excluded, 6);
   assert.equal(dispositionCounts.blocked ?? 0, 0);
-  assert.equal(dispositionCounts['pilot-approved'], 61);
+  assert.equal(dispositionCounts['pilot-approved'], 62);
 
   assert.equal(dispositionCounts['reuse-existing'], 5);
 
   const shipped = inventory.filter((record) => record.deliveryStatus === 'shipped');
   assert.deepEqual(shipped.reduce((counts, record) => ({
     ...counts, [record.guideType]: (counts[record.guideType] ?? 0) + 1,
-  }), {}), { 'character-run': 57, 'creator-run': 2, era: 2 });
+  }), {}), { 'character-run': 58, 'creator-run': 2, era: 2 });
   assert.deepEqual(shipped.map((record) => record.id), [
     abominationCandidateId,
     'adam-warlock-reading-order',
@@ -827,6 +833,7 @@ test('the character inventory preserves every central disposition, ships 57 char
     'agents-of-atlas-reading-order',
     'amazing-spider-man-reading-order-modern-marvel-era',
     'ant-man-reading-order',
+    'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order',
     blackPantherCandidateId,
     'black-widow-reading-order',
     'captain-america-reading-order-modern-marvel-era',
@@ -1018,7 +1025,7 @@ test('Adam Warlock publishes the settled source with one exact resolution and th
   const currentReport = await buildCurrentReportForMapping(
     path.join(root, 'scripts', 'data', 'cbh-mappings', `${id}.json`),
     [],
-    { excludedOrderIds: ['mephisto-reading-order', 'miles-morales-spider-man-reading-order', 'spider-gwen-reading-order', 'best-ultron-reading-order', 'winter-soldier-bucky-barnes-reading-order', 'spider-man-2099-reading-order', 'donny-cates-marvel-universe-reading-order-2017', 'falcon-sam-wilson-captain-america-reading-order', 'the-vision-reading-order', 'emma-frost-reading-order', 'doctor-octopus-otto-octavius-reading-order', 'shadow-king-reading-order', 'thunderbolts-reading-order', 'nebula-reading-order', 'hope-summers-reading-order', 'x-23-reading-order', 'marvel-zombies-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order', 'nova-reading-order'] },
+    { excludedOrderIds: ['mephisto-reading-order', 'miles-morales-spider-man-reading-order', 'spider-gwen-reading-order', 'best-ultron-reading-order', 'winter-soldier-bucky-barnes-reading-order', 'spider-man-2099-reading-order', 'donny-cates-marvel-universe-reading-order-2017', 'falcon-sam-wilson-captain-america-reading-order', 'the-vision-reading-order', 'emma-frost-reading-order', 'doctor-octopus-otto-octavius-reading-order', 'shadow-king-reading-order', 'thunderbolts-reading-order', 'nebula-reading-order', 'hope-summers-reading-order', 'x-23-reading-order', 'marvel-zombies-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order', 'nova-reading-order', 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order'] },
   );
   const expectedOrderIds = manifest.lists
     .filter((entry) => entry.id !== id && entry.id !== hawkeyeLaterId
@@ -1031,7 +1038,7 @@ test('Adam Warlock publishes the settled source with one exact resolution and th
     .filter((id) => id !== 'ms-marvel-kamala-khan-reading-order' && id !== 'nova-reading-order'
       && id !== 'ultimate-spider-man-reading-order'
       && id !== 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide'
-      && id !== 'shang-chi-master-of-kung-fu-reading-order');
+      && id !== 'shang-chi-master-of-kung-fu-reading-order' && id !== 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order');
 
   assert.doesNotThrow(() => validateFrozenPacket(packet));
   assert.doesNotThrow(() => validateMappingDigest(mapping));
@@ -1442,7 +1449,7 @@ test('Black Widow settles issue 311 with exact identities and availability exclu
   const currentReport = await buildCurrentReportForMapping(
     path.join(root, 'scripts', 'data', 'cbh-mappings', `${id}.json`),
     [],
-    { excludedOrderIds: ['mephisto-reading-order', 'miles-morales-spider-man-reading-order', 'spider-gwen-reading-order', 'best-ultron-reading-order', 'winter-soldier-bucky-barnes-reading-order', 'spider-man-2099-reading-order', 'donny-cates-marvel-universe-reading-order-2017', 'falcon-sam-wilson-captain-america-reading-order', 'the-vision-reading-order', 'emma-frost-reading-order', 'doctor-octopus-otto-octavius-reading-order', 'shadow-king-reading-order', 'thunderbolts-reading-order', 'nebula-reading-order', 'hope-summers-reading-order', 'x-23-reading-order', 'marvel-zombies-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order', 'nova-reading-order'] },
+    { excludedOrderIds: ['mephisto-reading-order', 'miles-morales-spider-man-reading-order', 'spider-gwen-reading-order', 'best-ultron-reading-order', 'winter-soldier-bucky-barnes-reading-order', 'spider-man-2099-reading-order', 'donny-cates-marvel-universe-reading-order-2017', 'falcon-sam-wilson-captain-america-reading-order', 'the-vision-reading-order', 'emma-frost-reading-order', 'doctor-octopus-otto-octavius-reading-order', 'shadow-king-reading-order', 'thunderbolts-reading-order', 'nebula-reading-order', 'hope-summers-reading-order', 'x-23-reading-order', 'marvel-zombies-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order', 'nova-reading-order', 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order'] },
   );
   const expectedExact = new Map([
     [7, 6908],
@@ -1910,7 +1917,7 @@ test('the Punisher guide preserves its full source ledger through publication', 
         'shadow-king-reading-order',
         'thunderbolts-reading-order', 'hope-summers-reading-order',
         'x-23-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order',
-        'shang-chi-master-of-kung-fu-reading-order',
+        'shang-chi-master-of-kung-fu-reading-order', 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order',
       ],
     },
   );
@@ -2069,7 +2076,7 @@ test('the Punisher guide preserves its full source ledger through publication', 
   assert.equal(mapping.approvedSourceCount, 857);
   assert.equal(report.candidateCount, 544);
   assert.equal(report.comparisonCount, 158);
-  assert.equal(report.comparisonCount, manifest.lists.length - 41);
+  assert.equal(report.comparisonCount, manifest.lists.length - 42);
 
   assert.deepEqual(regeneratedReport, report);
   assert.doesNotThrow(() => assertApprovedRelationshipReview({
@@ -2205,18 +2212,20 @@ test('the Doctor Strange guide preserves its complete source ledger through publ
   assert.equal(manifest.lists[doctorIndex + 1].id, inhumansCandidateId);
   assert.equal(manifest.lists[doctorIndex + 2].id, youngAvengersCandidateId);
   assert.equal(manifest.lists[doctorIndex + 3].id, magnetoCandidateId);
-  assert.equal(manifest.lists[doctorIndex + 4].id, 'xmen-claremont');
-  assert.equal(manifest.lists[doctorIndex + 5].id, 'xmen-claremont-complete');
-  assert.equal(manifest.lists[doctorIndex + 6].id, 'shadow-king-reading-order');
-  assert.equal(manifest.lists[doctorIndex + 7].id, captainMarvelCandidateId);
-  assert.equal(manifest.lists[doctorIndex + 8].id, 'ms-marvel-kamala-khan-reading-order');
-  assert.equal(manifest.lists[doctorIndex + 9].id, 'captain-america-best-of');
-  assert.equal(manifest.lists[doctorIndex + 10].id, 'captain-america-reading-order-modern-marvel-era');
-  assert.equal(manifest.lists[doctorIndex + 11].id, 'doctor-doom-primer');
-  assert.equal(manifest.lists[doctorIndex + 12].id, 'spider-man-best-of');
-  assert.equal(manifest.lists[doctorIndex + 13].id, 'thor-best-of');
-  assert.equal(manifest.lists[doctorIndex + 14].id, 'deadpool-best-of');
-  assert.equal(manifest.lists[doctorIndex + 15].id, 'scarlet-witch-best-of');
+  assert.equal(manifest.lists[doctorIndex + 4].id,
+    'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order');
+  assert.equal(manifest.lists[doctorIndex + 5].id, 'xmen-claremont');
+  assert.equal(manifest.lists[doctorIndex + 6].id, 'xmen-claremont-complete');
+  assert.equal(manifest.lists[doctorIndex + 7].id, 'shadow-king-reading-order');
+  assert.equal(manifest.lists[doctorIndex + 8].id, captainMarvelCandidateId);
+  assert.equal(manifest.lists[doctorIndex + 9].id, 'ms-marvel-kamala-khan-reading-order');
+  assert.equal(manifest.lists[doctorIndex + 10].id, 'captain-america-best-of');
+  assert.equal(manifest.lists[doctorIndex + 11].id, 'captain-america-reading-order-modern-marvel-era');
+  assert.equal(manifest.lists[doctorIndex + 12].id, 'doctor-doom-primer');
+  assert.equal(manifest.lists[doctorIndex + 13].id, 'spider-man-best-of');
+  assert.equal(manifest.lists[doctorIndex + 14].id, 'thor-best-of');
+  assert.equal(manifest.lists[doctorIndex + 15].id, 'deadpool-best-of');
+  assert.equal(manifest.lists[doctorIndex + 16].id, 'scarlet-witch-best-of');
 });
 
 test('the Loki source ledger preserves every occurrence and boundary decision', async () => {
@@ -2655,7 +2664,7 @@ test('Silver Surfer settles all four issue #304 gaps without losing source posit
      && id !== 'nova-reading-order'
      && id !== 'ultimate-spider-man-reading-order'
      && id !== 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide'
-     && id !== 'shang-chi-master-of-kung-fu-reading-order')
+     && id !== 'shang-chi-master-of-kung-fu-reading-order' && id !== 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order')
     .sort();
   const historicalLibrary = await historicalAgathaLibrarySnapshot();
   const reviewedLibraryDigest = await libraryDigestForScope(
@@ -2694,6 +2703,7 @@ test('Silver Surfer settles all four issue #304 gaps without losing source posit
         'shadow-king-reading-order',
         'thunderbolts-reading-order', 'hope-summers-reading-order',
         'x-23-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order',
+        'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order',
       ],
     },
   );
@@ -4318,7 +4328,9 @@ test('the frozen Star-Lord evidence stays complete, fresh, distinct, and exact',
   assert.equal(starLordChronology[starLordIndex + 15].id, inhumansCandidateId);
   assert.equal(starLordChronology[starLordIndex + 16].id, youngAvengersCandidateId);
   assert.equal(starLordChronology[starLordIndex + 17].id, magnetoCandidateId);
-  assert.equal(starLordChronology[starLordIndex + 18].id, 'xmen-claremont');
+  assert.equal(starLordChronology[starLordIndex + 18].id,
+    'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order');
+  assert.equal(starLordChronology[starLordIndex + 19].id, 'xmen-claremont');
 
   const reordered = structuredClone(packet);
   const numeric = reordered.rows.slice(65, 77)
@@ -4629,10 +4641,10 @@ test('the first character batch stays exact through evidence, catalog, and gener
 
   const allBatchIds = evidence.flatMap((item) => item.mapping.rows.map((row) => String(row.selectedIssueId)));
   assert.equal(new Set(allBatchIds).size, 81);
-  assert.equal(catalog.lists.length, 276);
+  assert.equal(catalog.lists.length, 277);
   const characterRuns = catalog.lists.filter((entry) => entry.type === 'character-run');
-  assert.equal(characterRuns.length, 67);
-  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 66);
+  assert.equal(characterRuns.length, 68);
+  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 67);
 
 });
 
@@ -4979,7 +4991,7 @@ test('X-Force publishes the exact settled source and bounded complete-library re
   assert.equal(mapping.candidateMetadata.length, 285);
   assert.deepEqual(mapping.sourceGapResolutions, packet.sourceGapResolutions);
   assert.equal(report.candidateCount, 285);
-  assert.equal(report.comparisonCount, manifest.lists.length - 34);
+  assert.equal(report.comparisonCount, manifest.lists.length - 35);
 
   assert.deepEqual(
     report.comparisons

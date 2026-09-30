@@ -3300,8 +3300,8 @@ const SCENARIOS = [
         bestOf: await readSubset('best-of'),
       };
       t.check('desktop All, Complete, and Best of counts classify Adam exactly once',
-        desktop.all.readings === 67 && desktop.all.stories === 66
-        && desktop.all.cards === 66 && desktop.all.adamCards === 1
+        desktop.all.readings === 68 && desktop.all.stories === 67
+        && desktop.all.cards === 67 && desktop.all.adamCards === 1
         && desktop.complete.readings === 38 && desktop.complete.stories === 38
         && desktop.complete.cards === 38 && desktop.complete.adamCards === 1
         && desktop.bestOf.readings === 7 && desktop.bestOf.stories === 7
@@ -3316,8 +3316,8 @@ const SCENARIOS = [
         overflow: await page.evaluate(() => document.documentElement.scrollWidth > innerWidth),
       };
       t.check('narrow All, Complete, and Best of counts preserve Adam without horizontal overflow',
-        narrow.all.readings === 67 && narrow.all.stories === 66
-        && narrow.all.cards === 66 && narrow.all.adamCards === 1
+        narrow.all.readings === 68 && narrow.all.stories === 67
+        && narrow.all.cards === 67 && narrow.all.adamCards === 1
         && narrow.complete.readings === 38 && narrow.complete.stories === 38
         && narrow.complete.cards === 38 && narrow.complete.adamCards === 1
         && narrow.bestOf.readings === 7 && narrow.bestOf.stories === 7
@@ -14778,6 +14778,11 @@ SCENARIOS.push({
 SCENARIOS.push((await import('./browser-ultimate-spider-man.mjs')).ultimateSpiderManActualData);
 SCENARIOS.push((await import('./browser-greg-pak-hulk.mjs')).gregPakHulkActualData);
 SCENARIOS.push((await import('./browser-shang-chi.mjs')).shangChiActualData);
+SCENARIOS.push({
+  id: 'age-of-apocalypse-actual-data',
+  title: 'Age of Apocalypse actual data preview, import, reload and source positions',
+  run: (await import('./browser-age-of-apocalypse.mjs')).checkAgeOfApocalypseActualData,
+});
 
 // Without this an unexpected throw leaves an unhandled rejection, which Node reports as a bare
 // stack and exits 1 on. Exit 1 is this check's word for "an assertion failed", so an internal

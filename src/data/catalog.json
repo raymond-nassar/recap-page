@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-30T00:36:53.656Z",
+  "generatedAt": "2026-09-30T01:11:28.509Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -4314,6 +4314,52 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-09-06T13:03:58.297Z"
+    },
+    {
+      "id": "the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order",
+      "file": "the_complete_marvel_reading_order_guide_age_of_apocalypse_reading_order.json",
+      "name": "Apocalypse / X-Men: Age of Apocalypse",
+      "description": "Follow Comic Book Herald's Age of Apocalypse reading order and separately grouped Apocalypse history, later returns and older-edition companion.",
+      "type": "character-run",
+      "depth": "partial",
+      "spotlightKind": "other",
+      "count": 262,
+      "placeholderCount": 16,
+      "emptyRecordCount": 0,
+      "collections": 12,
+      "characters": [
+        "Apocalypse",
+        "X-Men",
+        "Legion",
+        "X-Man",
+        "Magneto",
+        "Cyclops",
+        "Phoenix"
+      ],
+      "keywords": [
+        "Apocalypse",
+        "Age of Apocalypse",
+        "Legion Quest",
+        "Dawn",
+        "Earth-616",
+        "Age of Apocalypse 2012",
+        "X-Men of Apocalypse",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 12386,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/00/599b1cf83439a",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/age-of-apocalypse-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-09-30T01:11:28.509Z"
     },
     {
       "id": "xmen-claremont",
