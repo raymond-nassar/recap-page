@@ -129,6 +129,17 @@ without native proof, WACK or packaging. Its `qualified=false` log record binds 
 workflow commit to the installed driver version and locked driver digest. It uploads no artifacts
 and cannot satisfy release or production acceptance. Invalid flag combinations fail before setup.
 
+For the bounded context/export comparison, use `diagnostic_target=ordinary-browser-context-isolation`
+with the same diagnostic-only flags. It runs two fresh Edge processes: blank context plus blank
+sentinel, then the unchanged reader round-trip plus blank sentinel. The ceiling is four explicit
+contexts and twelve create/page/close calls, with no retry. Edge 152.0.4191.66, Puppeteer 25.7.0,
+the recorded driver lock and supported Page download events are required; a mismatch aborts.
+Download observations preserve pending, completed, canceled and unobserved states across page
+navigation without changing download policy or waiting for completion. Observation can affect
+timing and becomes partial after context close. Both arms passing is inconclusive about the
+late-suite failure; a reader-arm failure implicates that full path, not export alone. This mode
+produces no qualifying artifact and does not replace the ordinary suite.
+
 ### Prove the browser check detects failures
 
 The proof runner introduces a reversible fault for one journey at a time:
