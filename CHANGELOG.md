@@ -13,6 +13,14 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Retain browser-check evidence when automation disconnects
+
+The browser check now reports progress before creating each isolated context and retains
+completed results and the primary failure if cleanup also fails. Diagnostics include only
+allowlisted browser, driver and process facts; an unavailable exit cause stays unknown.
+A manual Windows browser-only diagnostic runs without packaging, uploads no artifacts and
+cannot qualify a release. App behaviour and saved reading progress are unchanged.
+
 ### Balance the Android Home heading
 
 The Home logo and short tagline now sit in the middle of the available content area on

@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { runInNewContext } from 'node:vm';
@@ -177,7 +178,7 @@ test('native producer outputs and job deadlines bind every package consumer', ()
   assert.match(workflow, /native-startup-proof\.ps1 -Architecture '\$\{\{ matrix\.architecture \}\}'/);
   const jobs = workflow.slice(workflow.search(/^jobs:\r?$/m))
     .split(/(?=^ {2}[a-z][\w-]*:)/m).slice(1);
-  assert.deepEqual(jobs.map((job) => /^ {2}([\w-]+):/.exec(job)?.[1]), ['native', 'certify', 'installed', 'preparation']);
+  assert.deepEqual(jobs.map((job) => /^ {2}([\w-]+):/.exec(job)?.[1]), ['native', 'certify', 'installed', 'preparation', 'browser-diagnostic']);
   assert.match(workflow, /native_only:\r?\n {8}description: .+\r?\n {8}type: boolean\r?\n {8}required: false\r?\n {8}default: false/);
   assert.match(workflow, /diagnostic_only:\r?\n {8}description: .+\r?\n {8}type: boolean\r?\n {8}required: false\r?\n {8}default: false/);
   const predicate = "!(github.event_name == 'workflow_dispatch' && (inputs.native_only == true || inputs.diagnostic_only == true))";
@@ -245,6 +246,101 @@ test('native producer outputs and job deadlines bind every package consumer', ()
     assert.ok(acquisition.indexOf('$failures.Count') > acquisition.indexOf('./scripts/run-wack.ps1'));
     assert.match(acquisition, /throw \[AggregateException\]/);
     assert.doesNotMatch(workflow, /continue-on-error/);
+  }
+  const browserMode = {
+    diagnostic_target: 'ordinary-browser', diagnostic_only: true,
+    native_only: false, release_preparation: false,
+  };
+  const selected = (event, inputs) => jobs.filter((job) => {
+    const expression = job.match(/^ {4}if: \$\{\{ (.+) \}\}\r?$/m)?.[1];
+    assert.ok(expression, 'each lane has an explicit route');
+    return runInNewContext(expression, { github: { event_name: event }, inputs });
+  }).map((job) => /^ {2}([\w-]+):/.exec(job)[1]);
+  for (const [event, inputs, expected] of [
+    ['workflow_dispatch', browserMode, ['browser-diagnostic']],
+    ['workflow_dispatch', {}, ['native', 'certify', 'installed']],
+    ['workflow_dispatch', { release_preparation: true }, ['native', 'certify', 'installed', 'preparation']],
+    ['workflow_dispatch', { diagnostic_only: true, diagnostic_target: 'handles' }, ['native']],
+    ['pull_request', browserMode, ['native', 'certify', 'installed']],
+  ]) assert.deepEqual(selected(event, inputs), expected);
+  const invalidModes = [
+    { ...browserMode, diagnostic_only: false },
+    { ...browserMode, native_only: true },
+    { ...browserMode, release_preparation: true },
+    { ...browserMode, diagnostic_only: false, release_preparation: true },
+  ];
+  for (const inputs of invalidModes) {
+    const active = selected('workflow_dispatch', inputs);
+    assert.ok(active.includes('browser-diagnostic') && active.includes('native'));
+    assert.ok(!active.includes('preparation'), 'invalid browser mode must not prepare a release');
+  }
+  const guard = (job) => job.match(/ {8}run: \|\r?\n([\s\S]*?)(?=\r?\n {6}-)/)?.[1].replace(/^ {10}/gm, '');
+  const browserGuard = guard(browserDiagnostic);
+  const nativeGuard = guard(jobs[0]);
+  assert.ok(browserGuard && nativeGuard);
+  assert.ok(browserDiagnostic.indexOf(browserGuard.trim().split('\n')[0])
+    < browserDiagnostic.indexOf('actions/checkout@'));
+  if (process.platform === 'win32') {
+    const cases = [browserMode, ...invalidModes].map((inputs, index) => `
+      $env:DIAGNOSTIC_ONLY = '${inputs.diagnostic_only}';
+      $env:NATIVE_ONLY = '${inputs.native_only}';
+      $env:RELEASE_PREPARATION = '${inputs.release_preparation}';
+      $rejected = $false;
+      try { & { ${browserGuard} } } catch { $rejected = $true }
+      if ($rejected -ne $${index !== 0}) { throw 'Browser diagnostic mode guard differs.' }
+      ${index === 0 ? '' : `
+        $rejected = $false;
+        try { & { ${nativeGuard} } } catch { $rejected = $true }
+        if (-not $rejected) { throw 'Invalid browser mode reached native setup.' }
+      `}
+    `).join('\n');
+    const output = execFileSync('powershell.exe', ['-NoProfile', '-NonInteractive', '-Command', `
+      $ErrorActionPreference = 'Stop';
+      $env:GITHUB_EVENT_NAME = 'workflow_dispatch';
+      $env:DIAGNOSTIC_TARGET = 'ordinary-browser';
+      ${cases}
+      Write-Output 'PASS browser-mode-guards cases=5';
+    `], { encoding: 'utf8', timeout: 15000 });
+    assert.match(output, /PASS browser-mode-guards cases=5/);
+  }
+  assert.match(browserDiagnostic, /runs-on: windows-2022/);
+  assert.match(browserDiagnostic, /ref: \$\{\{ github\.sha \}\}/);
+  assert.match(browserDiagnostic, /persist-credentials: false/);
+  assert.match(browserDiagnostic, /npm ci --prefix \$root --ignore-scripts/);
+  assert.match(browserDiagnostic, /"MRT_PUPPETEER=\$root" >> \$env:GITHUB_ENV/);
+  assert.match(browserDiagnostic, /timeout-minutes: 40\r?\n {8}run: npm run browser/);
+  assert.match(browserDiagnostic, /always\(\) && steps\.browser-driver\.outcome != 'skipped'/);
+  assert.doesNotMatch(browserDiagnostic, /environment:|secrets\.|upload-artifact|msix:|run-wack|native-startup|npm run pack|release-preparation\.json/);
+  const identity = browserDiagnostic.match(/ {10}@'\r?\n([\s\S]*?)\r?\n {10}'@ \| node/)?.[1]
+    .replace(/^ {10}/gm, '').replace(/^import .+;\r?\n/gm, '');
+  assert.ok(identity);
+  for (const mismatch of [false, true]) {
+    const records = [];
+    const errors = [];
+    const process = { env: {
+      GITHUB_SHA: 'a'.repeat(40), GITHUB_WORKFLOW_SHA: (mismatch ? 'b' : 'a').repeat(40),
+      GITHUB_RUN_ID: '123', GITHUB_RUN_ATTEMPT: '1', MRT_PUPPETEER: 'isolated-driver',
+      PRIVATE_VALUE: 'never-output',
+    } };
+    runInNewContext(identity, {
+      execFileSync: () => 'a'.repeat(40), createHash, join, process,
+      readFileSync: (path) => path.endsWith('package-lock.json') ? 'fixture-lock'
+        : JSON.stringify(path.includes('node_modules') ? { version: '25.7.0' }
+          : { dependencies: { 'puppeteer-core': '25.7.0' } }),
+      console: { log: (value) => records.push(JSON.parse(value)), error: (value) => errors.push(value) },
+    });
+    assert.equal(process.exitCode, mismatch ? 1 : undefined);
+    if (mismatch) {
+      assert.deepEqual(records, []);
+      assert.deepEqual(errors, ['FAIL diagnostic=ordinary-browser code=identity']);
+    } else {
+      assert.deepEqual(errors, []);
+      assert.deepEqual(records, [{
+        diagnostic: 'ordinary-browser', qualified: false, source: 'a'.repeat(40), workflow: 'a'.repeat(40),
+        run: '123', attempt: '1', driver: '25.7.0',
+        driverLockSha256: createHash('sha256').update('fixture-lock').digest('hex'),
+      }]);
+    }
   }
   for (const job of jobs) {
     const backstop = Number(job.match(/^ {4}timeout-minutes: (\d+)/m)?.[1]);
@@ -515,8 +611,8 @@ test('native artifact transfer pins exact inputs and refuses digest mismatches',
 });
 
 test('app startup prerequisites preserve native-only and all five installed journey routes', () => {
-  const jobs = [...workflow.slice(workflow.indexOf('\njobs:')).matchAll(/^ {2}[a-z]+:\r?$/gm)];
-  const expression = workflow.match(/^ {4}if: \$\{\{ (.+inputs\.native_only.+) \}\}\r?$/m)?.[1];
+  const jobs = [...workflow.slice(workflow.indexOf('\njobs:')).matchAll(/^ {2}[a-z][\w-]*:\r?$/gm)];
+  const expression = workflow.slice(workflow.indexOf('\n  certify:')).match(/^ {4}if: \$\{\{ (.+inputs\.native_only.+) \}\}\r?$/m)?.[1];
   assert.ok(expression);
   for (const [event, inputs, enabled] of [
     ['workflow_dispatch', { native_only: true, diagnostic_only: false }, false],
@@ -526,7 +622,7 @@ test('app startup prerequisites preserve native-only and all five installed jour
     ['pull_request', {}, true],
     ['workflow_dispatch', { diagnostic_only: true }, false],
   ]) assert.equal(runInNewContext(expression, { github: { event_name: event }, inputs }), enabled);
-  assert.equal(jobs.length, 4);
+  assert.equal(jobs.length, 5);
   assert.match(workflow, /--scenario=certification-functionality/);
   assert.match(workflow, /--scenario=busy-port-refusal/);
   assert.match(workflow, /--scenario=update-state-continuity/);
@@ -536,7 +632,8 @@ test('app startup prerequisites preserve native-only and all five installed jour
   assert.match(build, /WaitForExit\(120000\)/);
 });
 
-const preparation = workflow.slice(workflow.indexOf('\n  preparation:'));
+const browserDiagnostic = workflow.slice(workflow.indexOf('\n  browser-diagnostic:'));
+const preparation = workflow.slice(workflow.indexOf('\n  preparation:'), workflow.indexOf('\n  browser-diagnostic:'));
 
 test('portable preparation excludes nonmanual and incomplete proof executions', () => {
   assert.match(workflow, /release_preparation:\r?\n {8}description: .+\r?\n {8}type: boolean\r?\n {8}required: false\r?\n {8}default: false/);
