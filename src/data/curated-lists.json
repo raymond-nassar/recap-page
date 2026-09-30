@@ -3559,6 +3559,46 @@
       "coverIssueId": 13741
     },
     {
+      "id": "the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order",
+      "name": "Apocalypse / X-Men: Age of Apocalypse",
+      "description": "Follow Comic Book Herald's Age of Apocalypse reading order and separately grouped Apocalypse history, later returns and older-edition companion.",
+      "type": "character-run",
+      "depth": "partial",
+      "spotlightKind": "other",
+      "beginner": false,
+      "timeline": null,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceSection": null,
+      "sourceFile": "the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/age-of-apocalypse-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "the_complete_marvel_reading_order_guide_age_of_apocalypse_reading_order.json",
+      "characters": [
+        "Apocalypse",
+        "X-Men",
+        "Legion",
+        "X-Man",
+        "Magneto",
+        "Cyclops",
+        "Phoenix"
+      ],
+      "keywords": [
+        "Apocalypse",
+        "Age of Apocalypse",
+        "Legion Quest",
+        "Dawn",
+        "Earth-616",
+        "Age of Apocalypse 2012",
+        "X-Men of Apocalypse",
+        "Comic Book Herald"
+      ],
+      "expect": 262,
+      "coverIssueId": 12386
+    },
+    {
       "id": "xmen-claremont",
       "name": "X-Men: Silver Age to Claremont",
       "description": "The X-Men from their 1963 debut to the year after the Mutant Massacre, in one order: the Lee and Kirby run, Giant-Size X-Men and the Claremont and Cockrum relaunch, the Phoenix, Dark Phoenix and Brood sagas, Days of Future Past, God Loves Man Kills, and the arrival of the New Mutants and X-Factor. Compiled by hand from a reader's outline of Comic Book Herald's guides, read as a reference and re-expressed here, so the order is not derived from Marvel metadata and cannot be checked against it. The Mutant Massacre is read in the crossover's own interleaved order. X-Men #67-93 are left out because all 27 are reprints of issues this order already carries and Marvel holds no metadata for the reprint years. The outline ran out partway through X-Factor's second year, so this stops at X-Factor #23 and reaches neither Fall of the Mutants nor Inferno.",

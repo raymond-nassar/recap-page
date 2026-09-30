@@ -125,6 +125,7 @@ export default [
       'scripts/browser-ultimate-spider-man.mjs',
       'scripts/browser-greg-pak-hulk.mjs',
       'scripts/browser-shang-chi.mjs',
+      'scripts/browser-age-of-apocalypse.mjs',
       'scripts/capture-store-assets.mjs',
       'scripts/capture-play-assets.mjs',
       'scripts/upgrade-check.mjs',

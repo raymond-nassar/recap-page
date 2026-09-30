@@ -93,9 +93,9 @@ test('Silk retains the approved relationships against every current library peer
   const current = await buildReportForMapping(`scripts/data/cbh-mappings/${id}.json`, [], {
     excludedOrderIds: ['marvels-infinity-saga-gauntlet-wars-crusade-reading-order',
       'hawkeye-reading-order', 'marvel-zombies-reading-order',
-      'ms-marvel-kamala-khan-reading-order', 'nova-reading-order', 'ultimate-spider-man-reading-order', 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide', 'shang-chi-master-of-kung-fu-reading-order'],
+      'ms-marvel-kamala-khan-reading-order', 'nova-reading-order', 'ultimate-spider-man-reading-order', 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide', 'shang-chi-master-of-kung-fu-reading-order', 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order'],
   });
-  const expectedOrderIds = library.lists.filter((entry) => entry.id !== 'shang-chi-master-of-kung-fu-reading-order' && entry.id !== id
+  const expectedOrderIds = library.lists.filter((entry) => entry.id !== 'shang-chi-master-of-kung-fu-reading-order' && entry.id !== 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order' && entry.id !== id
     && entry.id !== 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order'
     && entry.id !== 'hawkeye-reading-order'
     && entry.id !== 'marvel-zombies-reading-order'
