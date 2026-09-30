@@ -44,6 +44,10 @@ TEST_APK="$ROOT/packaging/android/app/build/outputs/apk/androidTest/debug/app-de
 ACTIVITY_SOURCE="$ROOT/packaging/android/app/src/main/java/io/github/raymondnassar/recappage/prototype/MainActivity.java"
 SOURCE_BACKUP=""
 EMULATOR_PID=""
+NATIVE_FAILURE_ACTIVE=0
+CHECKER="$ROOT/scripts/check-android-instrumentation.mjs"
+INSTRUMENT_EXIT=0
+TEE_EXIT=0
 
 cleanup() {
   local result=$?
@@ -57,9 +61,30 @@ cleanup() {
       adb -s "$ANDROID_SERIAL" logcat -d -v threadtime 'AndroidRuntime:V' 'chromium:W' 'TestRunner:V' '*:S' > "$EVIDENCE/logcat.txt" 2>&1 || true
       adb -s "$ANDROID_SERIAL" pull "/sdcard/Android/data/$APP/files/native-test-evidence" "$EVIDENCE/screenshots" > "$EVIDENCE/pull.txt" 2>&1 || true
     fi
-    adb -s "$ANDROID_SERIAL" emu kill > "$EVIDENCE/shutdown.txt" 2>&1 || true
-    kill "$EMULATOR_PID" 2>/dev/null || true
-    wait "$EMULATOR_PID" 2>/dev/null || true
+    if [[ "$MODE" == derived && "$NATIVE_FAILURE_ACTIVE" == 1 ]]; then
+      local shutdown_exit=0 term_sent=0 kill_sent=0
+      if timeout --kill-after=1 2 adb -s "$ANDROID_SERIAL" emu kill > "$EVIDENCE/shutdown.txt" 2>&1; then
+        shutdown_exit=0
+      else
+        shutdown_exit=$?
+      fi
+      if kill "$EMULATOR_PID" 2>/dev/null; then term_sent=1; fi
+      if kill -0 "$EMULATOR_PID" 2>/dev/null; then
+        if kill -KILL "$EMULATOR_PID" 2>/dev/null; then kill_sent=1; fi
+      fi
+      if [[ -f "$WORK/android-native-failure.json" ]]; then
+        if RECAP_NATIVE_EMULATOR_PID="$EMULATOR_PID" timeout --kill-after=1 3 node "$CHECKER" --finalize-native-failure \
+          "$shutdown_exit" "$term_sent" "$kill_sent"; then
+          :
+        else
+          printf 'Native failure shutdown receipt could not be finalized (exit %s); primary exit remains %s.\n' "$?" "$result" >&2
+        fi
+      fi
+    else
+      adb -s "$ANDROID_SERIAL" emu kill > "$EVIDENCE/shutdown.txt" 2>&1 || true
+      kill "$EMULATOR_PID" 2>/dev/null || true
+      wait "$EMULATOR_PID" 2>/dev/null || true
+    fi
   fi
   exit "$result"
 }
@@ -137,8 +162,73 @@ instrument() {
   shift 2
   local selected="$CLASS"
   if [[ "$method" != all ]]; then selected="$CLASS#$method"; fi
-  timeout 420 adb shell am instrument -w -r -e class "$selected" "$@" "$RUNNER" \
-    | tee "$EVIDENCE/$label.log"
+  local statuses
+  if timeout 420 adb shell am instrument -w -r -e class "$selected" "$@" "$RUNNER" \
+    2>&1 | tee "$EVIDENCE/$label.log"; then
+    statuses=("${PIPESTATUS[@]}")
+  else
+    statuses=("${PIPESTATUS[@]}")
+  fi
+  INSTRUMENT_EXIT="${statuses[0]}"
+  TEE_EXIT="${statuses[1]}"
+  if [[ "$INSTRUMENT_EXIT" != 0 ]]; then return "$INSTRUMENT_EXIT"; fi
+  return "$TEE_EXIT"
+}
+
+capture_native_failure() {
+  local phase=$1 method=$2 primary=$3 checker_exit=$4 pull_exit=$5
+  if [[ "$MODE" != derived || "${RECAP_ANDROID_MODE:-}" != Rehearsal ]]; then return 0; fi
+  NATIVE_FAILURE_ACTIVE=1
+  # Hard bounds: capture 34s + shutdown 3s + finalization 4s + failed checker/pull 4s.
+  if RECAP_NATIVE_EMULATOR_PID="$EMULATOR_PID" RECAP_NATIVE_TARGET="$APP" timeout --kill-after=1 33 node "$CHECKER" --capture-native-failure \
+    "$phase" "$method" "$primary" "$INSTRUMENT_EXIT" "$TEE_EXIT" "$checker_exit" "$pull_exit"; then
+    :
+  else
+    printf 'Native failure capsule unavailable (capture exit %s); primary exit remains %s.\n' "$?" "$primary" >&2
+  fi
+}
+
+candidate_instrument() {
+  local phase=$1 method=$2
+  shift 2
+  local primary=0 checker_exit=- pull_exit=-
+  if instrument "$phase" "$method" -e candidatePhase "$phase" "$@"; then
+    :
+  else
+    primary=$?
+  fi
+  if [[ "$primary" == 0 ]]; then
+    if timeout --kill-after=1 3 node "$CHECKER" "$EVIDENCE/$phase.log" "$EVIDENCE/$phase.json" "$method"; then
+      checker_exit=0
+    else
+      primary=$?
+      checker_exit=$primary
+    fi
+  fi
+  if [[ "$primary" != 0 ]]; then
+    capture_native_failure "$phase" "$method" "$primary" "$checker_exit" "$pull_exit"
+    return "$primary"
+  fi
+  if mkdir -p "$WORK/native-receipts/$phase"; then
+    :
+  else
+    primary=$?
+    capture_native_failure "$phase" "$method" "$primary" "$checker_exit" "$primary"
+    return "$primary"
+  fi
+  local methods=("$method")
+  if [[ "$method" == all ]]; then methods=("${NATIVE_METHODS[@]}"); fi
+  for selected in "${methods[@]}"; do
+    if timeout --kill-after=1 3 adb -s "$ANDROID_SERIAL" pull \
+      "/sdcard/Android/data/$APP/files/native-test-evidence/candidate-$phase-$selected.json" \
+      "$WORK/native-receipts/$phase/$selected.json" > "$EVIDENCE/pull-$phase-$selected.txt" 2>&1; then
+      pull_exit=0
+    else
+      primary=$?
+      capture_native_failure "$phase" "$method" "$primary" "$checker_exit" "$primary"
+      return "$primary"
+    fi
+  done
 }
 
 if [[ "$MODE" == derived ]]; then
@@ -147,21 +237,6 @@ if [[ "$MODE" == derived ]]; then
   RUNNER="$APP.test/androidx.test.runner.AndroidJUnitRunner"
   install_derived() {
     java -jar "$BUNDLETOOL" install-apks --apks="$APKS" --device-id="$ANDROID_SERIAL"
-  }
-  candidate_instrument() {
-    local phase=$1
-    local method=$2
-    shift 2
-    instrument "$phase" "$method" -e candidatePhase "$phase" "$@"
-    node "$ROOT/scripts/check-android-instrumentation.mjs" "$EVIDENCE/$phase.log" "$EVIDENCE/$phase.json" "$method"
-    mkdir -p "$WORK/native-receipts/$phase"
-    local methods=("$method")
-    if [[ "$method" == all ]]; then methods=("${NATIVE_METHODS[@]}"); fi
-    for selected in "${methods[@]}"; do
-      adb -s "$ANDROID_SERIAL" pull \
-        "/sdcard/Android/data/$APP/files/native-test-evidence/candidate-$phase-$selected.json" \
-        "$WORK/native-receipts/$phase/$selected.json" > "$EVIDENCE/pull-$phase-$selected.txt"
-    done
   }
   install_derived
   adb install -r -t "$OFFICIAL_TEST"

@@ -111,9 +111,15 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         run: bash scripts/android-release-candidate.sh rehearsal
       - name: Remove any remaining signing scratch
+        id: native_cleanup
         if: always()
         timeout-minutes: 3
-        run: bash scripts/android-release-candidate.sh cleanup
+        run: |
+          bash scripts/android-release-candidate.sh cleanup
+          capsule="$RUNNER_TEMP/recap-aab-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT/android-native-failure.json"
+          if [[ -f "$capsule" ]]; then
+            node scripts/check-android-instrumentation.mjs --validate-native-failure >> "$GITHUB_OUTPUT"
+          fi
       - name: Retain only the verified rehearsal report
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         timeout-minutes: 3
@@ -122,6 +128,16 @@ jobs:
           retention-days: 7
           if-no-files-found: error
           path: ${{ runner.temp }}/recap-aab-${{ github.run_id }}-${{ github.run_attempt }}/public/android-rehearsal.json
+
+      - name: Retain only validated nonpromotable native failure facts
+        if: failure() && inputs.mode == 'Rehearsal' && steps.native_cleanup.outputs.failure_capsule == 'true'
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        timeout-minutes: 1
+        with:
+          name: android-rehearsal-failure-${{ github.run_id }}-${{ github.run_attempt }}
+          retention-days: 7
+          if-no-files-found: error
+          path: ${{ runner.temp }}/recap-aab-${{ github.run_id }}-${{ github.run_attempt }}/android-native-failure.json
 
   candidate:
     name: Build and validate the protected candidate without uploading to Play

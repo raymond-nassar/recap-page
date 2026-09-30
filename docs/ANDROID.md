@@ -225,6 +225,26 @@ producer, without a protected environment or upload credentials. Rehearsal retai
 sanitized JSON report, never a bundle, APK or signing key. Read back the actual workflow path,
 run/attempt, branch and source SHA before relying on its result.
 
+If a native Rehearsal invocation fails, the runner preserves the first nonzero instrumentation,
+`tee`, checker or receipt-stage exit and stops before the next phase. It can retain one separate
+`android-native-failure.json` capsule with `qualified: false`, never an accepted rehearsal report.
+Both manual Rehearsal workflows validate the capsule's exact owned path, source/run identity,
+closed schema and 256 KiB size limit after signing cleanup before uploading that one file.
+Candidate jobs do not retain this failure capsule.
+
+The capsule contains bounded instrumentation facts, actual owned target/phase agreement, guest
+liveness, UID-filtered crash markers, host emulator status and selected receipt booleans. Sanitized
+excerpts contain only recognized diagnostic markers; unknown text, paths, secrets, certificates,
+packages, memory and screenshots are excluded. Missing, truncated and failed captures are explicit.
+The capture helper permits one 2-second device probe, one 5-second liveness command, one 5-second
+UID-filtered log read and at most six 2-second reads of exact receipt filenames. Device loss stops
+further guest requests. The outer capture limit is 33 seconds, emulator shutdown is 2 seconds,
+and finalization is 3 seconds, each with a 1-second forced-kill grace. Including a failed 3-second
+checker or receipt operation and its 1-second grace, the hard-bound total is at most 45 seconds.
+The existing 420-second instrumentation timeout and test assertions
+are unchanged. A diagnostic capsule does not prove which failure caused another or clear release
+qualification gates.
+
 After default-branch registration, direct dispatch of `android-release-candidate.yml` supports
 Rehearsal or Candidate. Candidate is allowed only through that workflow directly on `main`,
 not through CI or another caller. It requires exact source and later ledger commits, an unsealed

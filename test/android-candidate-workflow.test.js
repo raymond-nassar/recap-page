@@ -59,6 +59,21 @@ test('same-AAB proof and cleanup precede exact allowlisted retention with no Pla
   assert.deepEqual(retained, ['recap-page-android.aab', 'android-artifact.json', 'android-candidate.json', 'version-codes.proposed.json']);
   assert.doesNotMatch(workflow, /\/public\/\*|androidpublisher|fastlane|upload_to_play_store|gradle.*publish/i);
   assert.match(rehearsal, /\/public\/android-rehearsal\.json/);
+  const ci = read('.github/workflows/ci.yml').split('\n  android-emulator:')[1];
+  for (const surface of [rehearsal, ci]) {
+    assert.match(surface, /id: native_cleanup/);
+    assert.ok(surface.indexOf('bash scripts/android-release-candidate.sh cleanup')
+      < surface.indexOf('--validate-native-failure'));
+    assert.match(surface, /if: failure\(\) && .*steps\.native_cleanup\.outputs\.failure_capsule == 'true'/);
+    assert.match(surface, /path: \$\{\{ runner\.temp \}\}\/recap-aab-\$\{\{ github\.run_id \}\}-\$\{\{ github\.run_attempt \}\}\/android-native-failure\.json/);
+    assert.doesNotMatch(surface, /\/public\/android-native-failure|path:.*native-failure.*\*/);
+    const outer = Number(surface.match(/^ {4}timeout-minutes: (\d+)/m)[1]);
+    const steps = [...surface.matchAll(/^ {8}timeout-minutes: (\d+)/gm)].map((match) => Number(match[1]));
+    assert.ok(steps.reduce((sum, value) => sum + value, 0) < outer);
+  }
+  assert.match(rehearsal, /if: failure\(\) && inputs\.mode == 'Rehearsal'/);
+  assert.match(ci, /if: failure\(\) && inputs\.android_rehearsal == true && inputs\.android_emulator != true/);
+  assert.doesNotMatch(candidate, /native-failure|failure_capsule/);
 });
 
 test('actual JDK proof owns signature enforcement while held interfaces fail explicitly', () => {
