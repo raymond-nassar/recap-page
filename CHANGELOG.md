@@ -13,6 +13,12 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Balance the Android Home heading
+
+The Home logo and short tagline now sit in the middle of the available content area on
+compact Android screens. Text sizes, reading content, navigation, desktop layout and saved
+progress are unchanged.
+
 ### Keep decorative catalog tiles out of screen-reader content
 
 Catalog cover placeholders no longer repeat their initials and title in the accessibility

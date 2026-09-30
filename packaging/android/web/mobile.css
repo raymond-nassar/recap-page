@@ -125,7 +125,7 @@ body:has(#android-list-sheet[open], #android-spotlight-sheet[open]) { overflow: 
   .shell, .shell.railed { min-height: 100dvh; }
   .rail-header { gap: var(--space-4); }
   .rail-toggle { flex-shrink: 0; }
-  #view-home > .head { display: flex; align-items: flex-start; }
+  #view-home > .head { display: flex; align-items: flex-start; justify-content: center; }
   .home-lockup { min-width: 0; }
   .home-brand { overflow-wrap: normal; font-size: var(--t-title-lg); }
   .wrap { padding: var(--space-6) var(--space-6) var(--space-9); }
