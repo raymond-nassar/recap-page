@@ -214,12 +214,48 @@ public final class VerifyBundle {
                 + ",\"minSdk\":\"" + min + "\",\"targetSdk\":\"" + target + "\"}");
     }
 
+    private static Element generatedMetadata(Element app) {
+        var metadata = children(app, "meta-data");
+        require(metadata.size() == 1, "GENERATED_SPLITS_METADATA");
+        Element value = metadata.get(0);
+        require(value.getAttributes().getLength() == 2 && children(value, null).isEmpty()
+                && value.getTextContent().isBlank()
+                && attr(value, "name").equals("com.android.vending.splits")
+                && !attr(value, "resource").isEmpty() && attr(value, "value").isEmpty(),
+                "GENERATED_SPLITS_METADATA");
+        return value;
+    }
+
+    private static void generatedResourceBinding(Element metadata, String resources) {
+        var entry = java.util.regex.Pattern.compile(
+                "(?m)^\\s*resource (0x[0-9a-fA-F]+) (?:[\\w.]+:)?xml/splits0(?:\\s|$)").matcher(resources);
+        require(entry.find(), "GENERATED_SPLITS_RESOURCE");
+        String id = entry.group(1);
+        int start = entry.end();
+        require(!entry.find(), "GENERATED_SPLITS_RESOURCE");
+        String reference = attr(metadata, "resource");
+        require(reference.equals("@xml/splits0") || reference.equalsIgnoreCase("@" + id)
+                || reference.equalsIgnoreCase("@" + id.substring(2))
+                || reference.equalsIgnoreCase("@ref/" + id), "GENERATED_SPLITS_RESOURCE");
+        var next = java.util.regex.Pattern.compile("(?m)^\\s*resource ").matcher(resources);
+        int end = next.find(start) ? next.start() : resources.length();
+        var files = java.util.regex.Pattern.compile("\\(file\\)\\s+([^\\s]+)").matcher(resources.substring(start, end));
+        require(files.find() && files.group(1).equals("res/xml/splits0.xml") && !files.find(),
+                "GENERATED_SPLITS_RESOURCE");
+    }
+
     private static void manifest(String[] args) throws Exception {
-        require(args.length == 6 || args.length == 7, "MANIFEST_ARGUMENTS");
+        manifest(args, true);
+    }
+
+    private static void manifest(String[] args, boolean reportSuccess) throws Exception {
+        require(args.length == 7 || args.length == 8, "MANIFEST_ARGUMENTS");
+        require(args[6].equals("publishing") || args[6].equals("bundletool-1.18.3-api36"), "MANIFEST_ARGUMENTS");
+        boolean derivedProfile = args[6].equals("bundletool-1.18.3-api36");
         Integer ordinal = null;
-        if (args[5].equals("apk") && args.length == 7) {
-            require(args[6].matches("--split-ordinal=([0-9]|[12][0-9]|3[01])"), "MANIFEST_ARGUMENTS");
-            ordinal = Integer.valueOf(args[6].substring("--split-ordinal=".length()));
+        if (args[5].equals("apk") && args.length == 8) {
+            require(args[7].matches("--split-ordinal=([0-9]|[12][0-9]|3[01])"), "MANIFEST_ARGUMENTS");
+            ordinal = Integer.valueOf(args[7].substring("--split-ordinal=".length()));
         }
         Element root = xml(Path.of(args[1]));
         require(root.getTagName().equals("manifest") && root.getAttribute("package").equals(args[2]),
@@ -229,8 +265,13 @@ public final class VerifyBundle {
         require(test || (attr(root, "versionCode").equals(args[3])
                 && (attr(root, "versionName").equals(args[4]) || (split && attr(root, "versionName").isEmpty()))), "MANIFEST_VERSION");
         var sdk = children(root, "uses-sdk");
-        boolean sdkMatches = test || (split && sdk.isEmpty()) || (sdk.size() == 1 && attr(sdk.get(0), "minSdkVersion").equals("26")
-                && attr(sdk.get(0), "targetSdkVersion").equals("36"));
+        String minimum = derivedProfile && !split ? "32" : "26";
+        boolean derivedConfig = derivedProfile && split;
+        boolean sdkMatches = test || (derivedConfig
+                ? sdk.size() == 1 && attr(sdk.get(0), "minSdkVersion").equals("32")
+                        && attr(sdk.get(0), "targetSdkVersion").isEmpty()
+                : (split && sdk.isEmpty()) || (sdk.size() == 1 && attr(sdk.get(0), "minSdkVersion").equals(minimum)
+                        && attr(sdk.get(0), "targetSdkVersion").equals("36")));
         if (!sdkMatches) reportSdkShape(args[5], split, ordinal, sdk);
         require(sdkMatches, "MANIFEST_SDK");
         var apps = children(root, "application");
@@ -243,9 +284,20 @@ public final class VerifyBundle {
                     && (attr(app, "testOnly").isEmpty() || attr(app, "testOnly").equals("false")),
                     "DEBUGGABLE_APPLICATION");
             if (split) {
+                if (derivedConfig) {
+                    require(root.getAttribute("split").matches("config\\.[A-Za-z0-9_]{1,180}")
+                            && (attr(root, "isFeatureSplit").isEmpty() || attr(root, "isFeatureSplit").equals("false"))
+                            && root.getAttribute("configForSplit").isEmpty() && attr(root, "configForSplit").isEmpty()
+                            && children(root, "uses-split").isEmpty(), "SPLIT_IDENTITY");
+                    require(attr(app, "hasCode").equals("false")
+                            && attr(app, "name").isEmpty()
+                            && children(root, null).stream().allMatch(child ->
+                                    List.of("uses-sdk", "application").contains(child.getTagName())),
+                            "SPLIT_COMPONENTS");
+                }
                 require(children(app, null).isEmpty() && children(root, "instrumentation").isEmpty()
                         && children(root, "uses-permission").isEmpty(), "SPLIT_COMPONENTS");
-                System.out.println("{\"verified\":true}");
+                if (reportSuccess) System.out.println("{\"verified\":true}");
                 return;
             }
             require(attr(app, "allowBackup").equals("false") && attr(app, "usesCleartextTraffic").equals("false"),
@@ -271,14 +323,24 @@ public final class VerifyBundle {
                     && children(query, "data").get(0).getAttributes().getLength() == 1,
                     "MANIFEST_BROWSER_QUERY");
             var components = children(app, null);
-            require(components.size() == 1 && components.get(0).getTagName().equals("activity")
-                    && attr(components.get(0), "name").equals("io.github.raymondnassar.recappage.prototype.MainActivity")
-                    && attr(components.get(0), "exported").equals("true"), "MANIFEST_COMPONENTS");
+            var activities = children(app, "activity");
+            require(activities.size() == 1
+                    && attr(activities.get(0), "name").equals("io.github.raymondnassar.recappage.prototype.MainActivity")
+                    && attr(activities.get(0), "exported").equals("true"), "MANIFEST_COMPONENTS");
+            if (derivedProfile) {
+                generatedMetadata(app);
+                require(components.size() == 2
+                        && components.stream().allMatch(child ->
+                                List.of("activity", "meta-data").contains(child.getTagName())), "MANIFEST_COMPONENTS");
+            } else {
+                require(components.size() == 1, "MANIFEST_COMPONENTS");
+            }
             for (String resource : List.of("fullBackupContent", "dataExtractionRules", "networkSecurityConfig")) {
                 require(attr(app, resource).startsWith("@"), "MANIFEST_POLICY_RESOURCE");
             }
-            if (args.length == 7 && !args[5].equals("apk")) {
-                String resources = Files.readString(Path.of(args[6]));
+            if (args.length == 8 && !args[5].equals("apk")) {
+                String resources = Files.readString(Path.of(args[7]));
+                if (derivedProfile) generatedResourceBinding(generatedMetadata(app), resources);
                 var names = List.of("backup_rules", "data_extraction_rules", "network_security_config");
                 var attributes = List.of("fullBackupContent", "dataExtractionRules", "networkSecurityConfig");
                 for (int i = 0; i < names.size(); i++) {
@@ -297,6 +359,45 @@ public final class VerifyBundle {
                     && attr(instrumentation.get(0), "targetPackage").equals(args[2].replaceFirst("\\.test$", "")),
                     "INSTRUMENTATION_TARGET");
         }
+        if (reportSuccess) System.out.println("{\"verified\":true}");
+    }
+
+    private static void generatedSplits(String[] args) throws Exception {
+        require(args.length >= 7 && args.length <= 38, "GENERATED_SPLITS_XML");
+        String expectedPackage = "io.github.raymondnassar.recappage";
+        manifest(new String[] { "manifest", args[1], expectedPackage, args[2], args[3],
+                "app", "bundletool-1.18.3-api36", args[4] }, false);
+        String expectedBase = canonical(xml(Path.of(args[1])));
+        Set<String> splitIds = new HashSet<>();
+        for (int index = 6; index < args.length; index++) {
+            Element split = xml(Path.of(args[index]));
+            String id = split.getAttribute("split");
+            require(splitIds.add(id), "GENERATED_SPLITS_MAPPING");
+            manifest(new String[] { "manifest", args[index], expectedPackage, args[2], args[3],
+                    "apk", "bundletool-1.18.3-api36", "--split-ordinal=" + (index - 6) }, false);
+            if (id.isEmpty()) require(canonical(split).equals(expectedBase), "GENERATED_SPLITS_MAPPING");
+        }
+        require(splitIds.contains(""), "GENERATED_SPLITS_MAPPING");
+        Element tree = xml(Path.of(args[5]));
+        require(tree.getTagName().equals("splits") && tree.getAttributes().getLength() == 0
+                && tree.getTextContent().isBlank(), "GENERATED_SPLITS_XML");
+        var modules = children(tree, null);
+        for (Element module : modules) {
+            require(module.getTagName().equals("module") && module.getAttributes().getLength() == 1
+                    && module.hasAttribute("name") && module.getAttribute("name").isEmpty(),
+                    "GENERATED_SPLITS_MAPPING");
+            var languages = children(module, null);
+            require(languages.size() == 1 && languages.get(0).getTagName().equals("language")
+                    && languages.get(0).getAttributes().getLength() == 0, "GENERATED_SPLITS_XML");
+            for (Element entry : children(languages.get(0), null)) {
+                require(entry.getTagName().equals("entry") && entry.getAttributes().getLength() == 2
+                        && entry.hasAttribute("key") && entry.hasAttribute("split")
+                        && children(entry, null).isEmpty() && splitIds.contains(entry.getAttribute("split")),
+                        "GENERATED_SPLITS_MAPPING");
+            }
+        }
+        // This fixed source profile has no localized Android resources, checked before derivation inspection.
+        require(modules.isEmpty(), "GENERATED_SPLITS_MAPPING");
         System.out.println("{\"verified\":true}");
     }
 
@@ -306,6 +407,7 @@ public final class VerifyBundle {
             switch (args[0]) {
                 case "archive" -> archive(args);
                 case "manifest" -> manifest(args);
+                case "generated-splits" -> generatedSplits(args);
                 case "resource" -> {
                     require(args.length == 3 && canonical(xml(Path.of(args[1]))).equals(canonical(xml(Path.of(args[2])))),
                             "RESOURCE_POLICY_MISMATCH");

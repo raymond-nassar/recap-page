@@ -209,6 +209,28 @@ test('only exact candidate identity and the complete public allowlist may be ret
 });
 
 test('actual asset bytes, source hashes, fixed origin and exact inventory are checked', async () => {
+  const { derivedSdkContext, assertCodeFreeConfig, assertGeneratedSplitsSource, BUNDLETOOL } = await import('../scripts/android-candidate.mjs');
+  assert.equal(typeof derivedSdkContext, 'function', 'Bind derived SDK expectations to the reviewed tool and device profile');
+  const device = { sdkVersion: 36, screenDensity: 420, supportedAbis: ['x86_64'], supportedLocales: ['en-US'] };
+  assert.equal(derivedSdkContext(BUNDLETOOL.sha256, device), 'bundletool-1.18.3-api36');
+  for (const changed of [{ ...device, sdkVersion: 35 }, { ...device, supportedAbis: ['arm64-v8a'] },
+    { ...device, screenDensity: 480 }, { ...device, expectedMinSdk: 32 }]) {
+    assert.throws(() => derivedSdkContext(BUNDLETOOL.sha256, changed));
+  }
+  assert.throws(() => derivedSdkContext('0'.repeat(64), device));
+  assert.equal(typeof assertGeneratedSplitsSource, 'function');
+  assertGeneratedSplitsSource([{ name: 'base/res/xml/backup_rules.xml' }],
+    ['xml', 'values', 'values-v27', 'values-night', 'values-night-v27']);
+  assert.throws(() => assertGeneratedSplitsSource([{ name: 'base/res/xml/splits0.xml' }], ['xml', 'values']), /collision/);
+  assert.throws(() => assertGeneratedSplitsSource([], ['values-fr']), /resource profile/);
+  assertCodeFreeConfig([{ name: 'AndroidManifest.xml' }, { name: 'resources.arsc' }]);
+  for (const name of ['classes.dex', 'classes2.dex', 'classes10.dex']) {
+    assert.throws(() => assertCodeFreeConfig([{ name }]), /must not contain DEX/);
+  }
+  const verifierSource = await readFile(new URL('../scripts/android-candidate.mjs', import.meta.url), 'utf8');
+  assert.match(verifierSource, /java\('SPLIT_MANIFEST',[^\n]+version\.versionName, 'apk', derivedContext,/);
+  assert.match(verifierSource, /java\('BASE_APK_POLICY_MANIFEST',[\s\S]*?version\.versionName,\s*'app', derivedContext,/);
+  assert.match(verifierSource, /java\('BASE_APK_SPLITS_XML', 'generated-splits', baseManifestPath,[\s\S]*?\.\.\.splitManifestPaths\)/);
   noNative([{ name: 'base/assets/recap/js/lib/model.js', elf: false }]);
   for (const entry of [{ name: 'base/lib/x86_64/library.so', elf: false },
     { name: 'lib/x86_64/library.so', elf: false }, { name: 'base/assets/disguised', elf: true }]) {
@@ -380,6 +402,18 @@ test('private signing scratch is removed on child failure and refuses unknown cl
       assert.equal(error.message, `Android candidate: inspection AAB_MANIFEST failed; exit=1; signal=none; code=MANIFEST_SDK; sdk=${JSON.stringify(appShape)}. Raw tool output was not retained.`);
       return true;
     });
+    failure = { status: 1, signal: null, stderr: Buffer.from('SPLIT_IDENTITY\n') };
+    assert.throws(() => execute('java', [], {}, 'SPLIT_MANIFEST'), (error) => {
+      assert.equal(error.message, 'Android candidate: inspection SPLIT_MANIFEST failed; exit=1; signal=none; code=SPLIT_IDENTITY. Raw tool output was not retained.');
+      return true;
+    });
+    for (const code of ['GENERATED_SPLITS_METADATA', 'GENERATED_SPLITS_RESOURCE', 'GENERATED_SPLITS_XML', 'GENERATED_SPLITS_MAPPING']) {
+      failure = { status: 1, signal: null, stderr: Buffer.from(`${code}\n`) };
+      assert.throws(() => execute('java', [], {}, 'BASE_APK_SPLITS_XML'), (error) => {
+        assert.equal(error.message, `Android candidate: inspection BASE_APK_SPLITS_XML failed; exit=1; signal=none; code=${code}. Raw tool output was not retained.`);
+        return true;
+      });
+    }
     const before = calls;
     assert.throws(() => execute('java', [], {}, 'PRIVATE_STAGE'), /unknown inspection stage/);
     assert.throws(() => execute('java', ['certificate', privateText], {}, 'AAB_MANIFEST'), /secret-bearing commands/);

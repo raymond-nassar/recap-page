@@ -255,6 +255,32 @@ APK hashes/certificates, actual instrumentation results and independent pre-repl
 digests must agree. This is synthetic API-36 payload, restart, same-byte reinstall and coexistence
 proof, not a Play-signer upgrade, real-user migration or physical-device acceptance.
 
+The publishing AAB must retain minimum SDK 26 and target SDK 36. For the pinned bundletool
+1.18.3 and API-36/x86_64 proof profile, the generated base APK must instead declare exactly
+minimum SDK 32 and target SDK 36. If that profile produces base-module configuration APKs,
+each must declare minimum SDK 32 with no explicit target SDK. Such configuration APKs must
+contain no code, components or permissions and cannot identify themselves as feature splits
+or target another module. Their presence in a particular result is established by its inventory,
+not assumed from this rule. That tool enables a sparse-resource variant and writes its variant
+minimum into all generated splits. Both base-manifest checks use the same fixed context,
+bound to the reviewed tool digest and device profile; none accepts an arbitrary higher minimum.
+The qualification report's existing scope text records the publishing and tested minima separately.
+This does not raise the app's published minimum or establish native behavior on API 26. Changing
+the tool or proof profile requires renewed qualification, not an SDK fallback.
+See the pinned [variant-minimum implementation](https://github.com/google/bundletool/blob/586a43a450712a1067f3d92cf7574dee68226302/src/main/java/com/android/tools/build/bundletool/splitters/ModuleSplitter.java),
+read on 2026-09-30.
+
+Publishing manifests still permit only the original activity. Derived-base inspection additionally
+requires exactly one `com.android.vending.splits` metadata entry, whose resource reference must
+resolve to `xml/splits0` and the packaged `res/xml/splits0.xml`. The current native source has no
+localized resource directories or collision with that generated filename, so its language-mapping
+set must be empty. Inspection checks the closed XML structure and the decoded split inventory;
+new localization or a source collision requires a reviewed profile update, not an ignored mismatch.
+Unknown or duplicate metadata, scalar metadata values, extra executable components and wrong or
+dangling resource bindings fail. Conditional tool metadata is not generally exempted. This follows
+the pinned [splits-resource generator](https://github.com/google/bundletool/blob/586a43a450712a1067f3d92cf7574dee68226302/src/main/java/com/android/tools/build/bundletool/model/utils/SplitsXmlInjector.java),
+read on 2026-09-30.
+
 Only success after inspection, native proof and cleanup retains the AAB, `android-artifact.json`,
 `android-candidate.json` and `version-codes.proposed.json`, for seven days. Preserve the exact
 packet before expiry and review the proposed seal separately. Do not replace a newer ledger
