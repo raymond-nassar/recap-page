@@ -200,7 +200,7 @@ test('Infinity Saga admission and relationship review stay current under Across 
   const current = await buildReportForMapping(mappingPath, [], {
     excludedOrderIds: ['hawkeye-reading-order', 'marvel-zombies-reading-order',
       'ms-marvel-kamala-khan-reading-order', 'nova-reading-order', 'ultimate-spider-man-reading-order', 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide',
-      'shang-chi-master-of-kung-fu-reading-order', 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order', 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order'],
+      'shang-chi-master-of-kung-fu-reading-order', 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order', 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order', 'namor-sub-mariner-reading-order'],
   });
   assert.deepEqual(current, report);
   assert.equal(mapping.relationshipReview?.approvalDigest,
@@ -212,7 +212,7 @@ test('Infinity Saga admission and relationship review stay current under Across 
       && row.id !== 'shang-chi-master-of-kung-fu-reading-order' && row.id !== 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order' && row.id !== 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order'
       && row.id !== 'marvel-zombies-reading-order'
       && row.id !== 'ms-marvel-kamala-khan-reading-order'
-      && row.id !== 'nova-reading-order' && row.id !== 'ultimate-spider-man-reading-order' && row.id !== 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide').map((row) => row.id),
+      && row.id !== 'nova-reading-order' && row.id !== 'ultimate-spider-man-reading-order' && row.id !== 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide').filter((row) => row.id !== 'namor-sub-mariner-reading-order').map((row) => row.id),
   }));
 });
 
@@ -226,7 +226,7 @@ test('Infinity Saga authoring rejects a pending in-memory mapping', () => {
       && row.id !== 'shang-chi-master-of-kung-fu-reading-order' && row.id !== 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order' && row.id !== 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order'
       && row.id !== 'marvel-zombies-reading-order'
       && row.id !== 'ms-marvel-kamala-khan-reading-order'
-      && row.id !== 'nova-reading-order' && row.id !== 'ultimate-spider-man-reading-order' && row.id !== 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide').map((row) => row.id),
+      && row.id !== 'nova-reading-order' && row.id !== 'ultimate-spider-man-reading-order' && row.id !== 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide').filter((row) => row.id !== 'namor-sub-mariner-reading-order').map((row) => row.id),
   }), /not approved/);
 });
 
@@ -261,7 +261,7 @@ test('Infinity Saga pinned payload and catalog preserve Storylines discovery and
   assert.equal(entry.source, ledger.sourceUrl);
   assert.equal(catalog.lists.filter((row) => row.type === 'event').length, 189);
   assert.equal(catalog.lists.filter((row) => row.type === 'era').length, 10);
-  assert.equal(catalog.lists.filter((row) => row.type === 'character-run').length, 68);
+  assert.equal(catalog.lists.filter((row) => row.type === 'character-run').length, 69);
   const normalized = parseCatalog(catalog);
   const storylines = shelfStories(groupCatalog(normalized.lists), 'lines');
   const acrossEras = decadeSections(storylines).find((section) => section.key === 'across-eras');

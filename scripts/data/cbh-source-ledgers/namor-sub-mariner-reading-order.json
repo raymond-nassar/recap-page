@@ -1,0 +1,3010 @@
+{
+  "schemaVersion": 1,
+  "id": "namor-sub-mariner-reading-order",
+  "sourceUrl": "https://www.comicbookherald.com/namor-sub-mariner-reading-order/",
+  "sourceRetrievedAt": "2026-09-29",
+  "scopeIssue": "https://github.com/raymond-nassar/recap-page/issues/611",
+  "gapIssue": "https://github.com/raymond-nassar/recap-page/issues/622",
+  "sourceBoundary": "Entire current page from Golden Age Sub-Mariner Comics1-4 through Black Panther2021#14, preserving the source's section sequence, all explicitly selected whole-issue collection contents and standalone numbered recommendations.",
+  "sourceContent": {
+    "sha256": "b0f9854bb0fa9ccd839abb597ee1edacf55bba3a7cba6cd8e1b9c2f8ffba0f74",
+    "normalization": "Worker-observed browser article innerText, NFC-normalized, Unicode whitespace collapsed to one ASCII space and trimmed, then UTF-8 SHA-256. This is normalized rendered article text, not raw response bytes. Raw response hash is unavailable after403; do not invent it."
+  },
+  "sourceHashDefinition": "UTF-8 SHA-256 of compact JSON.stringify of the ordered kind/reference/section projection; parent independently reproduced the digest from the factual projection.",
+  "sourceIssueBearingBlocksSha256": "4a9872ac276a553cb29bc45049be9811294fa6679f0a39b439be39e647eae259",
+  "factualProjection": [
+    {
+      "kind": "section",
+      "reference": "Namor The Sub-Mariner Comic Books",
+      "section": ""
+    },
+    {
+      "kind": "section",
+      "reference": "0) Golden Age Sub-Mariner",
+      "section": "Namor The Sub-Mariner Comic Books"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Sub-Mariner Comics #1-4",
+      "section": "0) Golden Age Sub-Mariner"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Sub-Mariner Comics #5-8",
+      "section": "0) Golden Age Sub-Mariner"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Sub-Mariner Comics #9-12",
+      "section": "0) Golden Age Sub-Mariner"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: All-Winners Comics (1941) #1-4",
+      "section": "0) Golden Age Sub-Mariner"
+    },
+    {
+      "kind": "section",
+      "reference": "I) Fantastic Four Return & Sub-Mariner Solo Comics",
+      "section": "0) Golden Age Sub-Mariner"
+    },
+    {
+      "kind": "standalone",
+      "reference": "Fantastic Four #4",
+      "section": "I) Fantastic Four Return & Sub-Mariner Solo Comics"
+    },
+    {
+      "kind": "standalone",
+      "reference": "Fantastic Four #6",
+      "section": "I) Fantastic Four Return & Sub-Mariner Solo Comics"
+    },
+    {
+      "kind": "standalone",
+      "reference": "Fantastic Four #9",
+      "section": "I) Fantastic Four Return & Sub-Mariner Solo Comics"
+    },
+    {
+      "kind": "standalone",
+      "reference": "Fantastic Four #14",
+      "section": "I) Fantastic Four Return & Sub-Mariner Solo Comics"
+    },
+    {
+      "kind": "standalone",
+      "reference": "Strange Tales #107",
+      "section": "I) Fantastic Four Return & Sub-Mariner Solo Comics"
+    },
+    {
+      "kind": "standalone",
+      "reference": "Fantastic Four Annual #1",
+      "section": "I) Fantastic Four Return & Sub-Mariner Solo Comics"
+    },
+    {
+      "kind": "standalone",
+      "reference": "Fantastic Four #27",
+      "section": "I) Fantastic Four Return & Sub-Mariner Solo Comics"
+    },
+    {
+      "kind": "standalone",
+      "reference": "Fantastic Four #33",
+      "section": "I) Fantastic Four Return & Sub-Mariner Solo Comics"
+    },
+    {
+      "kind": "standalone",
+      "reference": "Avengers #3",
+      "section": "I) Fantastic Four Return & Sub-Mariner Solo Comics"
+    },
+    {
+      "kind": "standalone",
+      "reference": "Avengers #4",
+      "section": "I) Fantastic Four Return & Sub-Mariner Solo Comics"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Tales To Astonish #70-87, Daredevil (1964) #7 And Tales Of Suspense #80",
+      "section": "I) Fantastic Four Return & Sub-Mariner Solo Comics"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Tales To Astonish #88 To #101, Iron Man & Sub-Mariner #1, Sub-Mariner #1",
+      "section": "I) Fantastic Four Return & Sub-Mariner Solo Comics"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Sub-Mariner #2-13",
+      "section": "I) Fantastic Four Return & Sub-Mariner Solo Comics"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: The Sub-Mariner #14-25",
+      "section": "I) Fantastic Four Return & Sub-Mariner Solo Comics"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Sub-Mariner (1968) 25-38, Ka-Zar (1970) 1",
+      "section": "I) Fantastic Four Return & Sub-Mariner Solo Comics"
+    },
+    {
+      "kind": "section",
+      "reference": "II) Defenders",
+      "section": "I) Fantastic Four Return & Sub-Mariner Solo Comics"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Sub-Mariner Nos. 34-35, Marvel Features Nos. 1-3 & The Defenders Nos. 1-6",
+      "section": "II) Defenders"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Sub-Mariner (1968) 39-49; Daredevil (1964) 77",
+      "section": "II) Defenders"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects:",
+      "section": "II) Defenders"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Giant-Size Invaders 1; Invaders 1-22, Annual 1; Marvel Premiere 29-30; Avengers 71",
+      "section": "II) Defenders"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Invaders (1975) 23-41, Invaders (1993) 1-4, Giant-Size Invaders 2, What If? (1977) 4",
+      "section": "II) Defenders"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Sub-Mariner (1968) 50-60",
+      "section": "II) Defenders"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Sub-Mariner (1968) 61-72",
+      "section": "II) Defenders"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Fantastic Four (1961) #142-150, Giant-Size Fantastic Four #2, Avengers (1963) #127 And Material From Giant-Size Super-Stars #1",
+      "section": "II) Defenders"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Defenders 17-21, Giant-Size Defenders 2-4, Marvel Two-In-One 6-7",
+      "section": "II) Defenders"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Defenders (1972) 22-30, Giant-Size Defenders 5, Marvel Super-Heroes (1967) 18",
+      "section": "II) Defenders"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Defenders (1972) 31-41, Annual (1976) 1, Marvel Treasury Edition (1974) 12",
+      "section": "II) Defenders"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Defenders (1972) 42-57; Material From Foom (1973) 19",
+      "section": "II) Defenders"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Giant-Size Super-Villain Team-Up 1-2; Super-Villain Team-Up 1-14, 16-17; Avengers 154-156; Champions 16",
+      "section": "II) Defenders"
+    },
+    {
+      "kind": "section",
+      "reference": "III) Atlantis Attacks & John Byrne Solo Series",
+      "section": "II) Defenders"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Marvel Universe #1-7",
+      "section": "III) Atlantis Attacks & John Byrne Solo Series"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Defenders (1972) 92-109; Marvel Team-Up (1972) 101; Captain America (1968) 268",
+      "section": "III) Atlantis Attacks & John Byrne Solo Series"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Defenders (1972) 110-125, Avengers Annual (1967) 11",
+      "section": "III) Atlantis Attacks & John Byrne Solo Series"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Alpha Flight (1983) #9-19 And X-Men (1963) #109",
+      "section": "III) Atlantis Attacks & John Byrne Solo Series"
+    },
+    {
+      "kind": "numbered-note",
+      "reference": "Alpha Flight (1983) #12-16: contextual character-appearance cut within the selected #9-19 collection",
+      "section": "III) Atlantis Attacks & John Byrne Solo Series"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Prince Namor, The Sub-Mariner #1 To #4",
+      "section": "III) Atlantis Attacks & John Byrne Solo Series"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Avengers (1963) #264-277, Alpha Flight (1983) #39, Avengers Annual #15, And West Coast Avengers Annual #1",
+      "section": "III) Atlantis Attacks & John Byrne Solo Series"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Avengers (1963) #278-285 And Avengers Annual #16; Plus: Marvel Graphic Novel #27: Emperor Doom; X-Men Vs. Avengers #1-4; And West Coast Avengers Annual #2",
+      "section": "III) Atlantis Attacks & John Byrne Solo Series"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Avengers (1963) 286-293",
+      "section": "III) Atlantis Attacks & John Byrne Solo Series"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Silver Surfer Annual #2, Iron Man Annual #10, Marvel Comics Presents #26, Uncanny X-Men Annual #13, Amazing Spider-Man Annual #23, Punisher Annual #2, Spectacular Spider-Man Annual #9, Daredevil Annual #4, Avengers Annual #18, New Mutants #76, Annual #5, X-Factor Annual #4, Web Of Spider-Man Annual #5, Avengers West Coast #56, Annual #4, Thor Annual #14, Fantastic Four Annual #22",
+      "section": "III) Atlantis Attacks & John Byrne Solo Series"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Namor, The Sub-Mariner (1990) #1-9",
+      "section": "III) Atlantis Attacks & John Byrne Solo Series"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Namor The Sub-Mariner (1990) #10-18",
+      "section": "III) Atlantis Attacks & John Byrne Solo Series"
+    },
+    {
+      "kind": "section",
+      "reference": "IV) Namor Enters the 2000’s",
+      "section": "III) Atlantis Attacks & John Byrne Solo Series"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Black Panther (1998) 36-49, 57-58; Incredible Hulk (2000) 33; Thor (1966) 370; Material From Marvel Double-Shot 2",
+      "section": "IV) Namor Enters the 2000’s"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Namor The Sub-Mariner 60-62, Fantastic Four: Atlantis Rising 1-2, Fantastic Force (1994) 8-9, Fantastic Four (1961) 401-402, Fantastic Four Unlimited 11",
+      "section": "IV) Namor Enters the 2000’s"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Fantastic Four: 1234 #1 To #4",
+      "section": "IV) Namor Enters the 2000’s"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Namor Vol. 2 #1 to #12",
+      "section": "IV) Namor Enters the 2000’s"
+    },
+    {
+      "kind": "section",
+      "reference": "V) Civil War + Illuminati",
+      "section": "IV) Namor Enters the 2000’s"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Frontline #1 to #11",
+      "section": "V) Civil War + Illuminati"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Sub-Mariner #1 to #5",
+      "section": "V) Civil War + Illuminati"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: New Avengers Illumaniti #1 To #5",
+      "section": "V) Civil War + Illuminati"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Sub-Mariner: The Depths #1-5",
+      "section": "V) Civil War + Illuminati"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Dark Reign: The Cabal #1",
+      "section": "V) Civil War + Illuminati"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Avengers/Invaders #1-12",
+      "section": "V) Civil War + Illuminati"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Invaders Now! #1-5",
+      "section": "V) Civil War + Illuminati"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Fantastic Four #570",
+      "section": "V) Civil War + Illuminati"
+    },
+    {
+      "kind": "section",
+      "reference": "VI) Namor and the X-Men",
+      "section": "V) Civil War + Illuminati"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Uncanny X-Men #513 To #531",
+      "section": "VI) Namor and the X-Men"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Namor: The First Mutant #1-6",
+      "section": "VI) Namor and the X-Men"
+    },
+    {
+      "kind": "numbered-note",
+      "reference": "X-Men #1: contextual relaunch marker, not a reading selection",
+      "section": "VI) Namor and the X-Men"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Namor: The First Mutant #5-11",
+      "section": "VI) Namor and the X-Men"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Defenders #1-6",
+      "section": "VI) Namor and the X-Men"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Defenders (2011) #7-12",
+      "section": "VI) Namor and the X-Men"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Uncanny X-Men #1 to #4",
+      "section": "VI) Namor and the X-Men"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Avengers Vs. X-Men 0-12, Point One (Avx Story)",
+      "section": "VI) Namor and the X-Men"
+    },
+    {
+      "kind": "section",
+      "reference": "VIII) New Avengers To Secret Wars",
+      "section": "VI) Namor and the X-Men"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: New Avengers 1-6",
+      "section": "VIII) New Avengers To Secret Wars"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: New Avengers 7-12",
+      "section": "VIII) New Avengers To Secret Wars"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: New Avengers 13-17",
+      "section": "VIII) New Avengers To Secret Wars"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: All-New Invaders 1-5",
+      "section": "VIII) New Avengers To Secret Wars"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Invaders 6-10",
+      "section": "VIII) New Avengers To Secret Wars"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: All -New Invaders 11-15",
+      "section": "VIII) New Avengers To Secret Wars"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: New Avengers 18-23",
+      "section": "VIII) New Avengers To Secret Wars"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Avengers 35-44, New Avengers 24-33",
+      "section": "VIII) New Avengers To Secret Wars"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Secret Wars 0-9",
+      "section": "VIII) New Avengers To Secret Wars"
+    },
+    {
+      "kind": "section",
+      "reference": "IX) Squadron Supreme",
+      "section": "VIII) New Avengers To Secret Wars"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Squadron Supreme (2015) #1-5",
+      "section": "IX) Squadron Supreme"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Squadron Supreme (2015) #6-9",
+      "section": "IX) Squadron Supreme"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Squadron Supreme (2015) 10-15",
+      "section": "IX) Squadron Supreme"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Secret Empire #0, Secret Empire #1-10, Secret Empire Omega #1, Captain America #25 And Material From Free Comic Book Day 2017 (Secret Empire 1)",
+      "section": "IX) Squadron Supreme"
+    },
+    {
+      "kind": "section",
+      "reference": "X) Return to Atlantis Attacks – Namor the Supervillain",
+      "section": "IX) Squadron Supreme"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Avengers (2018) #7-12",
+      "section": "X) Return to Atlantis Attacks – Namor the Supervillain"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Invaders #1 to #6",
+      "section": "X) Return to Atlantis Attacks – Namor the Supervillain"
+    },
+    {
+      "kind": "numbered-note",
+      "reference": "Powers of X #5: only issue selected from the House of X / Powers of X pointer",
+      "section": "X) Return to Atlantis Attacks – Namor the Supervillain"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Invaders #7 to #12",
+      "section": "X) Return to Atlantis Attacks – Namor the Supervillain"
+    },
+    {
+      "kind": "section",
+      "reference": "Latest Additions:",
+      "section": "X) Return to Atlantis Attacks – Namor the Supervillain"
+    },
+    {
+      "kind": "numbered-note",
+      "reference": "Avengers (2018) #32",
+      "section": "Latest Additions:"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Atlantis Attacks (2020) #1 to #5",
+      "section": "Latest Additions:"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: King in Black: Namor (2020) #1 to #5",
+      "section": "Latest Additions:"
+    },
+    {
+      "kind": "numbered-note",
+      "reference": "Avengers (2018) #53",
+      "section": "Latest Additions:"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Maestro: World War M #1 to #5",
+      "section": "Latest Additions:"
+    },
+    {
+      "kind": "collects",
+      "reference": "Collects: Namor The Sub-Mariner: Conquered Shores #1 to #5",
+      "section": "Latest Additions:"
+    },
+    {
+      "kind": "numbered-note",
+      "reference": "Black Panther (2021) #14",
+      "section": "Latest Additions:"
+    }
+  ],
+  "browserDomHash": {
+    "sha256": "a02cd994648a3286648e11f032b009684dfe6a29c8603c1196a77bf759cf2fe4",
+    "normalization": "Worker browser-serialized .entry-content.outerHTML, not fetched raw HTML and not an independent raw-response measurement."
+  },
+  "rawHttpResponseSha256": null,
+  "articleSections": [
+    "0) Golden Age Sub-Mariner",
+    "I) Fantastic Four Return & Sub-Mariner Solo Comics",
+    "II) Defenders",
+    "III) Atlantis Attacks & John Byrne Solo Series",
+    "IV) Namor Enters the 2000’s",
+    "V) Civil War + Illuminati",
+    "VI) Namor and the X-Men",
+    "VIII) New Avengers To Secret Wars",
+    "IX) Squadron Supreme",
+    "X) Return to Atlantis Attacks – Namor the Supervillain",
+    "Latest Additions:"
+  ],
+  "excludedSourceReferences": [
+    "Block 22: Defenders Masterworks Volume 2. Collects is empty; no numbers specified.",
+    "Block 27: Giant-Size Super-Stars #1. Material From; only a fragment, not a whole comic.",
+    "Block 31: FOOM (1973) #19. Material From; only a fragment, not a whole comic.",
+    "Block 37: Alpha Flight #12-16. Numbered explanatory character-cut note; not an additional second occurrence of the five collection issues.",
+    "Block 45: Marvel Double-Shot #2. Material From; only a fragment, not a whole comic.",
+    "Block 59: X-Men #1. Contextual relaunch date, not a separate reading selection.",
+    "Block 64: Point One (AvX story). Only a specified story fragment, not the whole issue.",
+    "Block 77: Free Comic Book Day 2017 (Secret Empire #1). Material From; only a specified excerpt, not the whole issue.",
+    "Block 77: Secret Empire: Brave New World. Unnumbered optional anthology pointer in contextual note; no inferred run.",
+    "Block 80: House of X / Powers of X full event. Only Powers of X #5 selected; link is not an issue sequence.",
+    "Block 84: King in Black full event. Only named Namor miniseries selected; link is not an issue sequence."
+  ],
+  "blocks": [
+    {
+      "sourceBlock": 1,
+      "kind": "collects",
+      "section": "0) Golden Age Sub-Mariner",
+      "reference": "Collects: Sub-Mariner Comics #1-4",
+      "firstSourcePosition": 1,
+      "selectedOccurrenceCount": 4,
+      "selectedIssueReferences": [
+        "Sub-Mariner Comics #1",
+        "Sub-Mariner Comics #2",
+        "Sub-Mariner Comics #3",
+        "Sub-Mariner Comics #4"
+      ],
+      "originalIssueIds": [
+        11184,
+        11195,
+        11206,
+        11210
+      ]
+    },
+    {
+      "sourceBlock": 2,
+      "kind": "collects",
+      "section": "0) Golden Age Sub-Mariner",
+      "reference": "Collects: Sub-Mariner Comics #5-8",
+      "firstSourcePosition": 5,
+      "selectedOccurrenceCount": 4,
+      "selectedIssueReferences": [
+        "Sub-Mariner Comics #5",
+        "Sub-Mariner Comics #6",
+        "Sub-Mariner Comics #7",
+        "Sub-Mariner Comics #8"
+      ],
+      "originalIssueIds": [
+        11211,
+        11212,
+        11213,
+        11214
+      ]
+    },
+    {
+      "sourceBlock": 3,
+      "kind": "collects",
+      "section": "0) Golden Age Sub-Mariner",
+      "reference": "Collects: Sub-Mariner Comics #9-12",
+      "firstSourcePosition": 9,
+      "selectedOccurrenceCount": 4,
+      "selectedIssueReferences": [
+        "Sub-Mariner Comics #9",
+        "Sub-Mariner Comics #10",
+        "Sub-Mariner Comics #11",
+        "Sub-Mariner Comics #12"
+      ],
+      "originalIssueIds": [
+        11215,
+        11185,
+        11186,
+        11187
+      ]
+    },
+    {
+      "sourceBlock": 4,
+      "kind": "collects",
+      "section": "0) Golden Age Sub-Mariner",
+      "reference": "Collects: All-Winners Comics (1941) #1-4",
+      "firstSourcePosition": 13,
+      "selectedOccurrenceCount": 4,
+      "selectedIssueReferences": [
+        "All-Winners Comics #1",
+        "All-Winners Comics #2",
+        "All-Winners Comics #3",
+        "All-Winners Comics #4"
+      ],
+      "originalIssueIds": [
+        12555,
+        12566,
+        12568,
+        12569
+      ]
+    },
+    {
+      "sourceBlock": 5,
+      "kind": "standalone",
+      "section": "I) Fantastic Four Return & Sub-Mariner Solo Comics",
+      "reference": "Fantastic Four #4",
+      "firstSourcePosition": 17,
+      "selectedOccurrenceCount": 1,
+      "selectedIssueReferences": [
+        "Fantastic Four #4"
+      ],
+      "originalIssueIds": [
+        13227
+      ]
+    },
+    {
+      "sourceBlock": 6,
+      "kind": "standalone",
+      "section": "I) Fantastic Four Return & Sub-Mariner Solo Comics",
+      "reference": "Fantastic Four #6",
+      "firstSourcePosition": 18,
+      "selectedOccurrenceCount": 1,
+      "selectedIssueReferences": [
+        "Fantastic Four #6"
+      ],
+      "originalIssueIds": [
+        13266
+      ]
+    },
+    {
+      "sourceBlock": 7,
+      "kind": "standalone",
+      "section": "I) Fantastic Four Return & Sub-Mariner Solo Comics",
+      "reference": "Fantastic Four #9",
+      "firstSourcePosition": 19,
+      "selectedOccurrenceCount": 1,
+      "selectedIssueReferences": [
+        "Fantastic Four #9"
+      ],
+      "originalIssueIds": [
+        13299
+      ]
+    },
+    {
+      "sourceBlock": 8,
+      "kind": "standalone",
+      "section": "I) Fantastic Four Return & Sub-Mariner Solo Comics",
+      "reference": "Fantastic Four #14",
+      "firstSourcePosition": 20,
+      "selectedOccurrenceCount": 1,
+      "selectedIssueReferences": [
+        "Fantastic Four #14"
+      ],
+      "originalIssueIds": [
+        12939
+      ]
+    },
+    {
+      "sourceBlock": 9,
+      "kind": "standalone",
+      "section": "I) Fantastic Four Return & Sub-Mariner Solo Comics",
+      "reference": "Strange Tales #107",
+      "firstSourcePosition": 21,
+      "selectedOccurrenceCount": 1,
+      "selectedIssueReferences": [
+        "Strange Tales #107"
+      ],
+      "originalIssueIds": [
+        11025
+      ]
+    },
+    {
+      "sourceBlock": 10,
+      "kind": "standalone",
+      "section": "I) Fantastic Four Return & Sub-Mariner Solo Comics",
+      "reference": "Fantastic Four Annual #1",
+      "firstSourcePosition": 22,
+      "selectedOccurrenceCount": 1,
+      "selectedIssueReferences": [
+        "Fantastic Four Annual #1"
+      ],
+      "originalIssueIds": [
+        8687
+      ]
+    },
+    {
+      "sourceBlock": 11,
+      "kind": "standalone",
+      "section": "I) Fantastic Four Return & Sub-Mariner Solo Comics",
+      "reference": "Fantastic Four #27",
+      "firstSourcePosition": 23,
+      "selectedOccurrenceCount": 1,
+      "selectedIssueReferences": [
+        "Fantastic Four #27"
+      ],
+      "originalIssueIds": [
+        13083
+      ]
+    },
+    {
+      "sourceBlock": 12,
+      "kind": "standalone",
+      "section": "I) Fantastic Four Return & Sub-Mariner Solo Comics",
+      "reference": "Fantastic Four #33",
+      "firstSourcePosition": 24,
+      "selectedOccurrenceCount": 1,
+      "selectedIssueReferences": [
+        "Fantastic Four #33"
+      ],
+      "originalIssueIds": [
+        13150
+      ]
+    },
+    {
+      "sourceBlock": 13,
+      "kind": "standalone",
+      "section": "I) Fantastic Four Return & Sub-Mariner Solo Comics",
+      "reference": "Avengers #3",
+      "firstSourcePosition": 25,
+      "selectedOccurrenceCount": 1,
+      "selectedIssueReferences": [
+        "Avengers #3"
+      ],
+      "originalIssueIds": [
+        7174
+      ]
+    },
+    {
+      "sourceBlock": 14,
+      "kind": "standalone",
+      "section": "I) Fantastic Four Return & Sub-Mariner Solo Comics",
+      "reference": "Avengers #4",
+      "firstSourcePosition": 26,
+      "selectedOccurrenceCount": 1,
+      "selectedIssueReferences": [
+        "Avengers #4"
+      ],
+      "originalIssueIds": [
+        7285
+      ]
+    },
+    {
+      "sourceBlock": 15,
+      "kind": "collects",
+      "section": "I) Fantastic Four Return & Sub-Mariner Solo Comics",
+      "reference": "Collects: Tales To Astonish #70-87, Daredevil (1964) #7 And Tales Of Suspense #80",
+      "firstSourcePosition": 27,
+      "selectedOccurrenceCount": 20,
+      "selectedIssueReferences": [
+        "Tales to Astonish #70",
+        "Tales to Astonish #71",
+        "Tales to Astonish #72",
+        "Tales to Astonish #73",
+        "Tales to Astonish #74",
+        "Tales to Astonish #75",
+        "Tales to Astonish #76",
+        "Tales to Astonish #77",
+        "Tales to Astonish #78",
+        "Tales to Astonish #79",
+        "Tales to Astonish #80",
+        "Tales to Astonish #81",
+        "Tales to Astonish #82",
+        "Tales to Astonish #83",
+        "Tales to Astonish #84",
+        "Tales to Astonish #85",
+        "Tales to Astonish #86",
+        "Tales to Astonish #87",
+        "Daredevil #7",
+        "Tales of Suspense #80"
+      ],
+      "originalIssueIds": [
+        11416,
+        11417,
+        11418,
+        11419,
+        11420,
+        11421,
+        11422,
+        11423,
+        11424,
+        11425,
+        11427,
+        11428,
+        11429,
+        11430,
+        11431,
+        11432,
+        11433,
+        11434,
+        8420,
+        11326
+      ]
+    },
+    {
+      "sourceBlock": 16,
+      "kind": "collects",
+      "section": "I) Fantastic Four Return & Sub-Mariner Solo Comics",
+      "reference": "Collects: Tales To Astonish #88 To #101, Iron Man & Sub-Mariner #1, Sub-Mariner #1",
+      "firstSourcePosition": 47,
+      "selectedOccurrenceCount": 16,
+      "selectedIssueReferences": [
+        "Tales to Astonish #88",
+        "Tales to Astonish #89",
+        "Tales to Astonish #90",
+        "Tales to Astonish #91",
+        "Tales to Astonish #92",
+        "Tales to Astonish #93",
+        "Tales to Astonish #94",
+        "Tales to Astonish #95",
+        "Tales to Astonish #96",
+        "Tales to Astonish #97",
+        "Tales to Astonish #98",
+        "Tales to Astonish #99",
+        "Tales to Astonish #100",
+        "Tales to Astonish #101",
+        "Iron Man and Sub-Mariner #1",
+        "Sub-Mariner #1"
+      ],
+      "originalIssueIds": [
+        11435,
+        11436,
+        11438,
+        11439,
+        11440,
+        11441,
+        11442,
+        11443,
+        11444,
+        11445,
+        11446,
+        11447,
+        11349,
+        11350,
+        9659,
+        17062
+      ]
+    },
+    {
+      "sourceBlock": 17,
+      "kind": "collects",
+      "section": "I) Fantastic Four Return & Sub-Mariner Solo Comics",
+      "reference": "Collects: Sub-Mariner #2-13",
+      "firstSourcePosition": 63,
+      "selectedOccurrenceCount": 12,
+      "selectedIssueReferences": [
+        "Sub-Mariner #2",
+        "Sub-Mariner #3",
+        "Sub-Mariner #4",
+        "Sub-Mariner #5",
+        "Sub-Mariner #6",
+        "Sub-Mariner #7",
+        "Sub-Mariner #8",
+        "Sub-Mariner #9",
+        "Sub-Mariner #10",
+        "Sub-Mariner #11",
+        "Sub-Mariner #12",
+        "Sub-Mariner #13"
+      ],
+      "originalIssueIds": [
+        17073,
+        17084,
+        17095,
+        17106,
+        17117,
+        17128,
+        17132,
+        17133,
+        17063,
+        17064,
+        17065,
+        17066
+      ]
+    },
+    {
+      "sourceBlock": 18,
+      "kind": "collects",
+      "section": "I) Fantastic Four Return & Sub-Mariner Solo Comics",
+      "reference": "Collects: The Sub-Mariner #14-25",
+      "firstSourcePosition": 75,
+      "selectedOccurrenceCount": 12,
+      "selectedIssueReferences": [
+        "Sub-Mariner #14",
+        "Sub-Mariner #15",
+        "Sub-Mariner #16",
+        "Sub-Mariner #17",
+        "Sub-Mariner #18",
+        "Sub-Mariner #19",
+        "Sub-Mariner #20",
+        "Sub-Mariner #21",
+        "Sub-Mariner #22",
+        "Sub-Mariner #23",
+        "Sub-Mariner #24",
+        "Sub-Mariner #25"
+      ],
+      "originalIssueIds": [
+        17067,
+        17068,
+        17069,
+        17070,
+        17071,
+        17072,
+        17074,
+        17075,
+        17076,
+        17077,
+        17078,
+        17079
+      ]
+    },
+    {
+      "sourceBlock": 19,
+      "kind": "collects",
+      "section": "I) Fantastic Four Return & Sub-Mariner Solo Comics",
+      "reference": "Collects: Sub-Mariner (1968) 25-38, Ka-Zar (1970) 1",
+      "firstSourcePosition": 87,
+      "selectedOccurrenceCount": 15,
+      "selectedIssueReferences": [
+        "Sub-Mariner #25",
+        "Sub-Mariner #26",
+        "Sub-Mariner #27",
+        "Sub-Mariner #28",
+        "Sub-Mariner #29",
+        "Sub-Mariner #30",
+        "Sub-Mariner #31",
+        "Sub-Mariner #32",
+        "Sub-Mariner #33",
+        "Sub-Mariner #34",
+        "Sub-Mariner #35",
+        "Sub-Mariner #36",
+        "Sub-Mariner #37",
+        "Sub-Mariner #38",
+        "Ka-Zar #1"
+      ],
+      "originalIssueIds": [
+        17079,
+        17080,
+        17081,
+        17082,
+        17083,
+        17085,
+        17086,
+        17087,
+        17088,
+        17089,
+        17090,
+        17091,
+        17092,
+        17093,
+        70666
+      ]
+    },
+    {
+      "sourceBlock": 20,
+      "kind": "collects",
+      "section": "II) Defenders",
+      "reference": "Collects: Sub-Mariner Nos. 34-35, Marvel Features Nos. 1-3 & The Defenders Nos. 1-6",
+      "firstSourcePosition": 102,
+      "selectedOccurrenceCount": 11,
+      "selectedIssueReferences": [
+        "Sub-Mariner #34",
+        "Sub-Mariner #35",
+        "Marvel Feature #1",
+        "Marvel Feature #2",
+        "Marvel Feature #3",
+        "Defenders #1",
+        "Defenders #2",
+        "Defenders #3",
+        "Defenders #4",
+        "Defenders #5",
+        "Defenders #6"
+      ],
+      "originalIssueIds": [
+        17089,
+        17090,
+        23319,
+        23323,
+        23324,
+        20262,
+        20326,
+        20337,
+        20348,
+        20359,
+        20370
+      ]
+    },
+    {
+      "sourceBlock": 21,
+      "kind": "collects",
+      "section": "II) Defenders",
+      "reference": "Collects: Sub-Mariner (1968) 39-49; Daredevil (1964) 77",
+      "firstSourcePosition": 113,
+      "selectedOccurrenceCount": 12,
+      "selectedIssueReferences": [
+        "Sub-Mariner #39",
+        "Sub-Mariner #40",
+        "Sub-Mariner #41",
+        "Sub-Mariner #42",
+        "Sub-Mariner #43",
+        "Sub-Mariner #44",
+        "Sub-Mariner #45",
+        "Sub-Mariner #46",
+        "Sub-Mariner #47",
+        "Sub-Mariner #48",
+        "Sub-Mariner #49",
+        "Daredevil #77"
+      ],
+      "originalIssueIds": [
+        17094,
+        17096,
+        17097,
+        17098,
+        17099,
+        17100,
+        17101,
+        17102,
+        17103,
+        17104,
+        17105,
+        8428
+      ]
+    },
+    {
+      "sourceBlock": 22,
+      "kind": "collects",
+      "section": "II) Defenders",
+      "reference": "Collects:",
+      "firstSourcePosition": null,
+      "selectedOccurrenceCount": 0,
+      "selectedIssueReferences": [],
+      "originalIssueIds": []
+    },
+    {
+      "sourceBlock": 23,
+      "kind": "collects",
+      "section": "II) Defenders",
+      "reference": "Collects: Giant-Size Invaders 1; Invaders 1-22, Annual 1; Marvel Premiere 29-30; Avengers 71",
+      "firstSourcePosition": 125,
+      "selectedOccurrenceCount": 27,
+      "selectedIssueReferences": [
+        "Giant-Size Invaders #1",
+        "Invaders #1",
+        "Invaders #2",
+        "Invaders #3",
+        "Invaders #4",
+        "Invaders #5",
+        "Invaders #6",
+        "Invaders #7",
+        "Invaders #8",
+        "Invaders #9",
+        "Invaders #10",
+        "Invaders #11",
+        "Invaders #12",
+        "Invaders #13",
+        "Invaders #14",
+        "Invaders #15",
+        "Invaders #16",
+        "Invaders #17",
+        "Invaders #18",
+        "Invaders #19",
+        "Invaders #20",
+        "Invaders #21",
+        "Invaders #22",
+        "Invaders Annual #1",
+        "Marvel Premiere #29",
+        "Marvel Premiere #30",
+        "Avengers #71"
+      ],
+      "originalIssueIds": [
+        51104,
+        19969,
+        19980,
+        19991,
+        20002,
+        20005,
+        20006,
+        20007,
+        20008,
+        20009,
+        19970,
+        19971,
+        19972,
+        19973,
+        19974,
+        19975,
+        19976,
+        19977,
+        19978,
+        19979,
+        19981,
+        19982,
+        19983,
+        9326,
+        10216,
+        10218,
+        7323
+      ]
+    },
+    {
+      "sourceBlock": 24,
+      "kind": "collects",
+      "section": "II) Defenders",
+      "reference": "Collects: Invaders (1975) 23-41, Invaders (1993) 1-4, Giant-Size Invaders 2, What If? (1977) 4",
+      "firstSourcePosition": 152,
+      "selectedOccurrenceCount": 25,
+      "selectedIssueReferences": [
+        "Invaders #23",
+        "Invaders #24",
+        "Invaders #25",
+        "Invaders #26",
+        "Invaders #27",
+        "Invaders #28",
+        "Invaders #29",
+        "Invaders #30",
+        "Invaders #31",
+        "Invaders #32",
+        "Invaders #33",
+        "Invaders #34",
+        "Invaders #35",
+        "Invaders #36",
+        "Invaders #37",
+        "Invaders #38",
+        "Invaders #39",
+        "Invaders #40",
+        "Invaders #41",
+        "Invaders #1",
+        "Invaders #2",
+        "Invaders #3",
+        "Invaders #4",
+        "Giant-Size Invaders #2",
+        "What If? #4"
+      ],
+      "originalIssueIds": [
+        19984,
+        null,
+        19986,
+        19987,
+        19988,
+        19989,
+        19990,
+        19992,
+        19993,
+        19994,
+        19995,
+        19996,
+        19997,
+        19998,
+        19999,
+        20000,
+        20001,
+        20003,
+        20004,
+        51125,
+        51126,
+        51127,
+        51128,
+        51124,
+        12154
+      ]
+    },
+    {
+      "sourceBlock": 25,
+      "kind": "collects",
+      "section": "II) Defenders",
+      "reference": "Collects: Sub-Mariner (1968) 50-60",
+      "firstSourcePosition": 177,
+      "selectedOccurrenceCount": 11,
+      "selectedIssueReferences": [
+        "Sub-Mariner #50",
+        "Sub-Mariner #51",
+        "Sub-Mariner #52",
+        "Sub-Mariner #53",
+        "Sub-Mariner #54",
+        "Sub-Mariner #55",
+        "Sub-Mariner #56",
+        "Sub-Mariner #57",
+        "Sub-Mariner #58",
+        "Sub-Mariner #59",
+        "Sub-Mariner #60"
+      ],
+      "originalIssueIds": [
+        17107,
+        17108,
+        17109,
+        17110,
+        17111,
+        17112,
+        17113,
+        17114,
+        17115,
+        17116,
+        17118
+      ]
+    },
+    {
+      "sourceBlock": 26,
+      "kind": "collects",
+      "section": "II) Defenders",
+      "reference": "Collects: Sub-Mariner (1968) 61-72",
+      "firstSourcePosition": 188,
+      "selectedOccurrenceCount": 12,
+      "selectedIssueReferences": [
+        "Sub-Mariner #61",
+        "Sub-Mariner #62",
+        "Sub-Mariner #63",
+        "Sub-Mariner #64",
+        "Sub-Mariner #65",
+        "Sub-Mariner #66",
+        "Sub-Mariner #67",
+        "Sub-Mariner #68",
+        "Sub-Mariner #69",
+        "Sub-Mariner #70",
+        "Sub-Mariner #71",
+        "Sub-Mariner #72"
+      ],
+      "originalIssueIds": [
+        17119,
+        17120,
+        17121,
+        17122,
+        17123,
+        17124,
+        17125,
+        17126,
+        17127,
+        17129,
+        17130,
+        17131
+      ]
+    },
+    {
+      "sourceBlock": 27,
+      "kind": "collects",
+      "section": "II) Defenders",
+      "reference": "Collects: Fantastic Four (1961) #142-150, Giant-Size Fantastic Four #2, Avengers (1963) #127 And Material From Giant-Size Super-Stars #1",
+      "firstSourcePosition": 200,
+      "selectedOccurrenceCount": 11,
+      "selectedIssueReferences": [
+        "Fantastic Four #142",
+        "Fantastic Four #143",
+        "Fantastic Four #144",
+        "Fantastic Four #145",
+        "Fantastic Four #146",
+        "Fantastic Four #147",
+        "Fantastic Four #148",
+        "Fantastic Four #149",
+        "Fantastic Four #150",
+        "Giant-Size Fantastic Four #2",
+        "Avengers #127"
+      ],
+      "originalIssueIds": [
+        12942,
+        12943,
+        12944,
+        12945,
+        12946,
+        12947,
+        12948,
+        12949,
+        12951,
+        22449,
+        6983
+      ]
+    },
+    {
+      "sourceBlock": 28,
+      "kind": "collects",
+      "section": "II) Defenders",
+      "reference": "Collects: Defenders 17-21, Giant-Size Defenders 2-4, Marvel Two-In-One 6-7",
+      "firstSourcePosition": 211,
+      "selectedOccurrenceCount": 10,
+      "selectedIssueReferences": [
+        "Defenders #17",
+        "Defenders #18",
+        "Defenders #19",
+        "Defenders #20",
+        "Defenders #21",
+        "Giant-Size Defenders #2",
+        "Giant-Size Defenders #3",
+        "Giant-Size Defenders #4",
+        "Marvel Two-in-One #6",
+        "Marvel Two-in-One #7"
+      ],
+      "originalIssueIds": [
+        20323,
+        20324,
+        20325,
+        20327,
+        20328,
+        20027,
+        20028,
+        20029,
+        19531,
+        19542
+      ]
+    },
+    {
+      "sourceBlock": 29,
+      "kind": "collects",
+      "section": "II) Defenders",
+      "reference": "Collects: Defenders (1972) 22-30, Giant-Size Defenders 5, Marvel Super-Heroes (1967) 18",
+      "firstSourcePosition": 221,
+      "selectedOccurrenceCount": 11,
+      "selectedIssueReferences": [
+        "Defenders #22",
+        "Defenders #23",
+        "Defenders #24",
+        "Defenders #25",
+        "Defenders #26",
+        "Defenders #27",
+        "Defenders #28",
+        "Defenders #29",
+        "Defenders #30",
+        "Giant-Size Defenders #5",
+        "Marvel Super-Heroes #18"
+      ],
+      "originalIssueIds": [
+        20329,
+        20330,
+        20331,
+        20332,
+        20333,
+        20334,
+        20335,
+        20336,
+        20338,
+        20030,
+        15429
+      ]
+    },
+    {
+      "sourceBlock": 30,
+      "kind": "collects",
+      "section": "II) Defenders",
+      "reference": "Collects: Defenders (1972) 31-41, Annual (1976) 1, Marvel Treasury Edition (1974) 12",
+      "firstSourcePosition": 232,
+      "selectedOccurrenceCount": 13,
+      "selectedIssueReferences": [
+        "Defenders #31",
+        "Defenders #32",
+        "Defenders #33",
+        "Defenders #34",
+        "Defenders #35",
+        "Defenders #36",
+        "Defenders #37",
+        "Defenders #38",
+        "Defenders #39",
+        "Defenders #40",
+        "Defenders #41",
+        "Defenders Annual #1",
+        "Marvel Treasury Edition #12"
+      ],
+      "originalIssueIds": [
+        20339,
+        20340,
+        20341,
+        20342,
+        20343,
+        20344,
+        20345,
+        20346,
+        20347,
+        20349,
+        20350,
+        57812,
+        56316
+      ]
+    },
+    {
+      "sourceBlock": 31,
+      "kind": "collects",
+      "section": "II) Defenders",
+      "reference": "Collects: Defenders (1972) 42-57; Material From Foom (1973) 19",
+      "firstSourcePosition": 245,
+      "selectedOccurrenceCount": 16,
+      "selectedIssueReferences": [
+        "Defenders #42",
+        "Defenders #43",
+        "Defenders #44",
+        "Defenders #45",
+        "Defenders #46",
+        "Defenders #47",
+        "Defenders #48",
+        "Defenders #49",
+        "Defenders #50",
+        "Defenders #51",
+        "Defenders #52",
+        "Defenders #53",
+        "Defenders #54",
+        "Defenders #55",
+        "Defenders #56",
+        "Defenders #57"
+      ],
+      "originalIssueIds": [
+        20351,
+        20352,
+        20353,
+        20354,
+        20355,
+        20356,
+        20357,
+        20358,
+        20360,
+        20361,
+        20362,
+        20363,
+        20364,
+        20365,
+        20366,
+        20367
+      ]
+    },
+    {
+      "sourceBlock": 32,
+      "kind": "collects",
+      "section": "II) Defenders",
+      "reference": "Collects: Giant-Size Super-Villain Team-Up 1-2; Super-Villain Team-Up 1-14, 16-17; Avengers 154-156; Champions 16",
+      "firstSourcePosition": 261,
+      "selectedOccurrenceCount": 22,
+      "selectedIssueReferences": [
+        "Giant-Size Super-Villain Team-Up #1",
+        "Giant-Size Super-Villain Team-Up #2",
+        "Super-Villain Team-Up #1",
+        "Super-Villain Team-Up #2",
+        "Super-Villain Team-Up #3",
+        "Super-Villain Team-Up #4",
+        "Super-Villain Team-Up #5",
+        "Super-Villain Team-Up #6",
+        "Super-Villain Team-Up #7",
+        "Super-Villain Team-Up #8",
+        "Super-Villain Team-Up #9",
+        "Super-Villain Team-Up #10",
+        "Super-Villain Team-Up #11",
+        "Super-Villain Team-Up #12",
+        "Super-Villain Team-Up #13",
+        "Super-Villain Team-Up #14",
+        "Super-Villain Team-Up #16",
+        "Super-Villain Team-Up #17",
+        "Avengers #154",
+        "Avengers #155",
+        "Avengers #156",
+        "Champions #16"
+      ],
+      "originalIssueIds": [
+        53672,
+        53673,
+        18779,
+        18788,
+        18789,
+        18790,
+        18791,
+        18792,
+        18793,
+        18794,
+        18795,
+        18780,
+        18781,
+        18782,
+        18783,
+        18784,
+        18786,
+        18787,
+        7013,
+        7014,
+        7015,
+        8062
+      ]
+    },
+    {
+      "sourceBlock": 33,
+      "kind": "collects",
+      "section": "III) Atlantis Attacks & John Byrne Solo Series",
+      "reference": "Collects: Marvel Universe #1-7",
+      "firstSourcePosition": 283,
+      "selectedOccurrenceCount": 7,
+      "selectedIssueReferences": [
+        "Marvel Universe #1",
+        "Marvel Universe #2",
+        "Marvel Universe #3",
+        "Marvel Universe #4",
+        "Marvel Universe #5",
+        "Marvel Universe #6",
+        "Marvel Universe #7"
+      ],
+      "originalIssueIds": [
+        73102,
+        73103,
+        73104,
+        73105,
+        73106,
+        73107,
+        73108
+      ]
+    },
+    {
+      "sourceBlock": 34,
+      "kind": "collects",
+      "section": "III) Atlantis Attacks & John Byrne Solo Series",
+      "reference": "Collects: Defenders (1972) 92-109; Marvel Team-Up (1972) 101; Captain America (1968) 268",
+      "firstSourcePosition": 290,
+      "selectedOccurrenceCount": 20,
+      "selectedIssueReferences": [
+        "Defenders #92",
+        "Defenders #93",
+        "Defenders #94",
+        "Defenders #95",
+        "Defenders #96",
+        "Defenders #97",
+        "Defenders #98",
+        "Defenders #99",
+        "Defenders #100",
+        "Defenders #101",
+        "Defenders #102",
+        "Defenders #103",
+        "Defenders #104",
+        "Defenders #105",
+        "Defenders #106",
+        "Defenders #107",
+        "Defenders #108",
+        "Defenders #109",
+        "Marvel Team-Up #101",
+        "Captain America #268"
+      ],
+      "originalIssueIds": [
+        20406,
+        20407,
+        20408,
+        20409,
+        20410,
+        20411,
+        20412,
+        20413,
+        20264,
+        20265,
+        20266,
+        20267,
+        20268,
+        20269,
+        20270,
+        20271,
+        20272,
+        20273,
+        19578,
+        7649
+      ]
+    },
+    {
+      "sourceBlock": 35,
+      "kind": "collects",
+      "section": "III) Atlantis Attacks & John Byrne Solo Series",
+      "reference": "Collects: Defenders (1972) 110-125, Avengers Annual (1967) 11",
+      "firstSourcePosition": 310,
+      "selectedOccurrenceCount": 17,
+      "selectedIssueReferences": [
+        "Defenders #110",
+        "Defenders #111",
+        "Defenders #112",
+        "Defenders #113",
+        "Defenders #114",
+        "Defenders #115",
+        "Defenders #116",
+        "Defenders #117",
+        "Defenders #118",
+        "Defenders #119",
+        "Defenders #120",
+        "Defenders #121",
+        "Defenders #122",
+        "Defenders #123",
+        "Defenders #124",
+        "Defenders #125",
+        "Avengers Annual #11"
+      ],
+      "originalIssueIds": [
+        20275,
+        20276,
+        20277,
+        20278,
+        20279,
+        20280,
+        20281,
+        20282,
+        20283,
+        20284,
+        20286,
+        20287,
+        20288,
+        20289,
+        20290,
+        20291,
+        6925
+      ]
+    },
+    {
+      "sourceBlock": 36,
+      "kind": "collects",
+      "section": "III) Atlantis Attacks & John Byrne Solo Series",
+      "reference": "Collects: Alpha Flight (1983) #9-19 And X-Men (1963) #109",
+      "firstSourcePosition": 327,
+      "selectedOccurrenceCount": 12,
+      "selectedIssueReferences": [
+        "Alpha Flight #9",
+        "Alpha Flight #10",
+        "Alpha Flight #11",
+        "Alpha Flight #12",
+        "Alpha Flight #13",
+        "Alpha Flight #14",
+        "Alpha Flight #15",
+        "Alpha Flight #16",
+        "Alpha Flight #17",
+        "Alpha Flight #18",
+        "Alpha Flight #19",
+        "Uncanny X-Men #109"
+      ],
+      "originalIssueIds": [
+        12756,
+        12638,
+        12649,
+        12660,
+        12671,
+        12673,
+        12674,
+        12675,
+        12676,
+        12677,
+        12678,
+        12424
+      ]
+    },
+    {
+      "sourceBlock": 37,
+      "kind": "numbered-note",
+      "section": "III) Atlantis Attacks & John Byrne Solo Series",
+      "reference": "Alpha Flight (1983) #12-16: contextual character-appearance cut within the selected #9-19 collection",
+      "firstSourcePosition": null,
+      "selectedOccurrenceCount": 0,
+      "selectedIssueReferences": [],
+      "originalIssueIds": []
+    },
+    {
+      "sourceBlock": 38,
+      "kind": "collects",
+      "section": "III) Atlantis Attacks & John Byrne Solo Series",
+      "reference": "Collects: Prince Namor, The Sub-Mariner #1 To #4",
+      "firstSourcePosition": 339,
+      "selectedOccurrenceCount": 4,
+      "selectedIssueReferences": [
+        "Prince Namor, the Sub-Mariner #1",
+        "Prince Namor, the Sub-Mariner #2",
+        "Prince Namor, the Sub-Mariner #3",
+        "Prince Namor, the Sub-Mariner #4"
+      ],
+      "originalIssueIds": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "sourceBlock": 39,
+      "kind": "collects",
+      "section": "III) Atlantis Attacks & John Byrne Solo Series",
+      "reference": "Collects: Avengers (1963) #264-277, Alpha Flight (1983) #39, Avengers Annual #15, And West Coast Avengers Annual #1",
+      "firstSourcePosition": 343,
+      "selectedOccurrenceCount": 17,
+      "selectedIssueReferences": [
+        "Avengers #264",
+        "Avengers #265",
+        "Avengers #266",
+        "Avengers #267",
+        "Avengers #268",
+        "Avengers #269",
+        "Avengers #270",
+        "Avengers #271",
+        "Avengers #272",
+        "Avengers #273",
+        "Avengers #274",
+        "Avengers #275",
+        "Avengers #276",
+        "Avengers #277",
+        "Alpha Flight #39",
+        "Avengers Annual #15",
+        "West Coast Avengers Annual #1"
+      ],
+      "originalIssueIds": [
+        7135,
+        7136,
+        7137,
+        7138,
+        7139,
+        7140,
+        7142,
+        7143,
+        7144,
+        7145,
+        7146,
+        7147,
+        7148,
+        7149,
+        12700,
+        6929,
+        56327
+      ]
+    },
+    {
+      "sourceBlock": 40,
+      "kind": "collects",
+      "section": "III) Atlantis Attacks & John Byrne Solo Series",
+      "reference": "Collects: Avengers (1963) #278-285 And Avengers Annual #16; Plus: Marvel Graphic Novel #27: Emperor Doom; X-Men Vs. Avengers #1-4; And West Coast Avengers Annual #2",
+      "firstSourcePosition": 360,
+      "selectedOccurrenceCount": 15,
+      "selectedIssueReferences": [
+        "Avengers #278",
+        "Avengers #279",
+        "Avengers #280",
+        "Avengers #281",
+        "Avengers #282",
+        "Avengers #283",
+        "Avengers #284",
+        "Avengers #285",
+        "Avengers Annual #16",
+        "Marvel Graphic Novel #27",
+        "X-Men vs. Avengers #1",
+        "X-Men vs. Avengers #2",
+        "X-Men vs. Avengers #3",
+        "X-Men vs. Avengers #4",
+        "West Coast Avengers Annual #2"
+      ],
+      "originalIssueIds": [
+        7150,
+        7151,
+        7153,
+        7154,
+        7155,
+        7156,
+        7157,
+        7158,
+        6930,
+        null,
+        42807,
+        42808,
+        42809,
+        42810,
+        17939
+      ]
+    },
+    {
+      "sourceBlock": 41,
+      "kind": "collects",
+      "section": "III) Atlantis Attacks & John Byrne Solo Series",
+      "reference": "Collects: Avengers (1963) 286-293",
+      "firstSourcePosition": 375,
+      "selectedOccurrenceCount": 8,
+      "selectedIssueReferences": [
+        "Avengers #286",
+        "Avengers #287",
+        "Avengers #288",
+        "Avengers #289",
+        "Avengers #290",
+        "Avengers #291",
+        "Avengers #292",
+        "Avengers #293"
+      ],
+      "originalIssueIds": [
+        7159,
+        7160,
+        7161,
+        7162,
+        7164,
+        7165,
+        7166,
+        7167
+      ]
+    },
+    {
+      "sourceBlock": 42,
+      "kind": "collects",
+      "section": "III) Atlantis Attacks & John Byrne Solo Series",
+      "reference": "Collects: Silver Surfer Annual #2, Iron Man Annual #10, Marvel Comics Presents #26, Uncanny X-Men Annual #13, Amazing Spider-Man Annual #23, Punisher Annual #2, Spectacular Spider-Man Annual #9, Daredevil Annual #4, Avengers Annual #18, New Mutants #76, Annual #5, X-Factor Annual #4, Web Of Spider-Man Annual #5, Avengers West Coast #56, Annual #4, Thor Annual #14, Fantastic Four Annual #22",
+      "firstSourcePosition": 383,
+      "selectedOccurrenceCount": 17,
+      "selectedIssueReferences": [
+        "Silver Surfer Annual #2",
+        "Iron Man Annual #10",
+        "Marvel Comics Presents #26",
+        "Uncanny X-Men Annual #13",
+        "Amazing Spider-Man Annual #23",
+        "Punisher Annual #2",
+        "Spectacular Spider-Man Annual #9",
+        "Daredevil Annual #4",
+        "Avengers Annual #18",
+        "New Mutants #76",
+        "New Mutants Annual #5",
+        "X-Factor Annual #4",
+        "Web of Spider-Man Annual #5",
+        "West Coast Avengers #56",
+        "West Coast Avengers Annual #4",
+        "Thor Annual #14",
+        "Fantastic Four Annual #22"
+      ],
+      "originalIssueIds": [
+        69460,
+        19861,
+        10104,
+        12359,
+        16898,
+        69855,
+        70350,
+        70349,
+        6932,
+        10417,
+        10339,
+        23512,
+        70100,
+        17798,
+        17842,
+        16675,
+        8701
+      ]
+    },
+    {
+      "sourceBlock": 43,
+      "kind": "collects",
+      "section": "III) Atlantis Attacks & John Byrne Solo Series",
+      "reference": "Collects: Namor, The Sub-Mariner (1990) #1-9",
+      "firstSourcePosition": 400,
+      "selectedOccurrenceCount": 9,
+      "selectedIssueReferences": [
+        "Namor, the Sub-Mariner #1",
+        "Namor, the Sub-Mariner #2",
+        "Namor, the Sub-Mariner #3",
+        "Namor, the Sub-Mariner #4",
+        "Namor, the Sub-Mariner #5",
+        "Namor, the Sub-Mariner #6",
+        "Namor, the Sub-Mariner #7",
+        "Namor, the Sub-Mariner #8",
+        "Namor, the Sub-Mariner #9"
+      ],
+      "originalIssueIds": [
+        65854,
+        65855,
+        65856,
+        65857,
+        65858,
+        65859,
+        65860,
+        65861,
+        65862
+      ]
+    },
+    {
+      "sourceBlock": 44,
+      "kind": "collects",
+      "section": "III) Atlantis Attacks & John Byrne Solo Series",
+      "reference": "Collects: Namor The Sub-Mariner (1990) #10-18",
+      "firstSourcePosition": 409,
+      "selectedOccurrenceCount": 9,
+      "selectedIssueReferences": [
+        "Namor, the Sub-Mariner #10",
+        "Namor, the Sub-Mariner #11",
+        "Namor, the Sub-Mariner #12",
+        "Namor, the Sub-Mariner #13",
+        "Namor, the Sub-Mariner #14",
+        "Namor, the Sub-Mariner #15",
+        "Namor, the Sub-Mariner #16",
+        "Namor, the Sub-Mariner #17",
+        "Namor, the Sub-Mariner #18"
+      ],
+      "originalIssueIds": [
+        66014,
+        66015,
+        66016,
+        66017,
+        66018,
+        66019,
+        66020,
+        66021,
+        66022
+      ]
+    },
+    {
+      "sourceBlock": 45,
+      "kind": "collects",
+      "section": "IV) Namor Enters the 2000’s",
+      "reference": "Collects: Black Panther (1998) 36-49, 57-58; Incredible Hulk (2000) 33; Thor (1966) 370; Material From Marvel Double-Shot 2",
+      "firstSourcePosition": 418,
+      "selectedOccurrenceCount": 18,
+      "selectedIssueReferences": [
+        "Black Panther #36",
+        "Black Panther #37",
+        "Black Panther #38",
+        "Black Panther #39",
+        "Black Panther #40",
+        "Black Panther #41",
+        "Black Panther #42",
+        "Black Panther #43",
+        "Black Panther #44",
+        "Black Panther #45",
+        "Black Panther #46",
+        "Black Panther #47",
+        "Black Panther #48",
+        "Black Panther #49",
+        "Black Panther #57",
+        "Black Panther #58",
+        "Incredible Hulk #33",
+        "Thor #370"
+      ],
+      "originalIssueIds": [
+        12604,
+        12605,
+        12606,
+        12607,
+        12609,
+        12610,
+        12611,
+        12612,
+        12613,
+        12614,
+        12615,
+        12616,
+        12617,
+        12618,
+        12627,
+        12628,
+        14433,
+        11698
+      ]
+    },
+    {
+      "sourceBlock": 46,
+      "kind": "collects",
+      "section": "IV) Namor Enters the 2000’s",
+      "reference": "Collects: Namor The Sub-Mariner 60-62, Fantastic Four: Atlantis Rising 1-2, Fantastic Force (1994) 8-9, Fantastic Four (1961) 401-402, Fantastic Four Unlimited 11",
+      "firstSourcePosition": 436,
+      "selectedOccurrenceCount": 10,
+      "selectedIssueReferences": [
+        "Namor, the Sub-Mariner #60",
+        "Namor, the Sub-Mariner #61",
+        "Namor, the Sub-Mariner #62",
+        "Fantastic Four: Atlantis Rising #1",
+        "Fantastic Four: Atlantis Rising #2",
+        "Fantastic Force #8",
+        "Fantastic Force #9",
+        "Fantastic Four #401",
+        "Fantastic Four #402",
+        "Fantastic Four Unlimited #11"
+      ],
+      "originalIssueIds": [
+        64624,
+        64623,
+        64957,
+        64626,
+        64625,
+        64629,
+        64628,
+        13230,
+        13231,
+        64627
+      ]
+    },
+    {
+      "sourceBlock": 47,
+      "kind": "collects",
+      "section": "IV) Namor Enters the 2000’s",
+      "reference": "Collects: Fantastic Four: 1234 #1 To #4",
+      "firstSourcePosition": 446,
+      "selectedOccurrenceCount": 4,
+      "selectedIssueReferences": [
+        "Fantastic Four: 1234 #1",
+        "Fantastic Four: 1234 #2",
+        "Fantastic Four: 1234 #3",
+        "Fantastic Four: 1234 #4"
+      ],
+      "originalIssueIds": [
+        16081,
+        16082,
+        16083,
+        16084
+      ]
+    },
+    {
+      "sourceBlock": 48,
+      "kind": "collects",
+      "section": "IV) Namor Enters the 2000’s",
+      "reference": "Collects: Namor Vol. 2 #1 to #12",
+      "firstSourcePosition": 450,
+      "selectedOccurrenceCount": 12,
+      "selectedIssueReferences": [
+        "Namor #1",
+        "Namor #2",
+        "Namor #3",
+        "Namor #4",
+        "Namor #5",
+        "Namor #6",
+        "Namor #7",
+        "Namor #8",
+        "Namor #9",
+        "Namor #10",
+        "Namor #11",
+        "Namor #12"
+      ],
+      "originalIssueIds": [
+        10310,
+        10314,
+        10315,
+        10316,
+        10317,
+        10318,
+        135,
+        134,
+        133,
+        139,
+        138,
+        137
+      ]
+    },
+    {
+      "sourceBlock": 49,
+      "kind": "collects",
+      "section": "V) Civil War + Illuminati",
+      "reference": "Collects: Frontline #1 to #11",
+      "firstSourcePosition": 462,
+      "selectedOccurrenceCount": 11,
+      "selectedIssueReferences": [
+        "Civil War: Front Line #1",
+        "Civil War: Front Line #2",
+        "Civil War: Front Line #3",
+        "Civil War: Front Line #4",
+        "Civil War: Front Line #5",
+        "Civil War: Front Line #6",
+        "Civil War: Front Line #7",
+        "Civil War: Front Line #8",
+        "Civil War: Front Line #9",
+        "Civil War: Front Line #10",
+        "Civil War: Front Line #11"
+      ],
+      "originalIssueIds": [
+        4339,
+        4340,
+        4496,
+        4497,
+        4819,
+        4823,
+        5115,
+        5116,
+        5269,
+        5270,
+        5994
+      ]
+    },
+    {
+      "sourceBlock": 50,
+      "kind": "collects",
+      "section": "V) Civil War + Illuminati",
+      "reference": "Collects: Sub-Mariner #1 to #5",
+      "firstSourcePosition": 473,
+      "selectedOccurrenceCount": 5,
+      "selectedIssueReferences": [
+        "Sub-Mariner #1",
+        "Sub-Mariner #2",
+        "Sub-Mariner #3",
+        "Sub-Mariner #4",
+        "Sub-Mariner #5"
+      ],
+      "originalIssueIds": [
+        15886,
+        15995,
+        16179,
+        16578,
+        16579
+      ]
+    },
+    {
+      "sourceBlock": 51,
+      "kind": "collects",
+      "section": "V) Civil War + Illuminati",
+      "reference": "Collects: New Avengers Illumaniti #1 To #5",
+      "firstSourcePosition": 478,
+      "selectedOccurrenceCount": 5,
+      "selectedIssueReferences": [
+        "New Avengers: Illuminati #1",
+        "New Avengers: Illuminati #2",
+        "New Avengers: Illuminati #3",
+        "New Avengers: Illuminati #4",
+        "New Avengers: Illuminati #5"
+      ],
+      "originalIssueIds": [
+        5723,
+        5864,
+        13481,
+        15968,
+        17254
+      ]
+    },
+    {
+      "sourceBlock": 52,
+      "kind": "collects",
+      "section": "V) Civil War + Illuminati",
+      "reference": "Collects: Sub-Mariner: The Depths #1-5",
+      "firstSourcePosition": 483,
+      "selectedOccurrenceCount": 5,
+      "selectedIssueReferences": [
+        "Sub-Mariner: The Depths #1",
+        "Sub-Mariner: The Depths #2",
+        "Sub-Mariner: The Depths #3",
+        "Sub-Mariner: The Depths #4",
+        "Sub-Mariner: The Depths #5"
+      ],
+      "originalIssueIds": [
+        21971,
+        22295,
+        22502,
+        23108,
+        23764
+      ]
+    },
+    {
+      "sourceBlock": 53,
+      "kind": "collects",
+      "section": "V) Civil War + Illuminati",
+      "reference": "Collects: Dark Reign: The Cabal #1",
+      "firstSourcePosition": 488,
+      "selectedOccurrenceCount": 1,
+      "selectedIssueReferences": [
+        "Dark Reign: The Cabal #1"
+      ],
+      "originalIssueIds": [
+        24059
+      ]
+    },
+    {
+      "sourceBlock": 54,
+      "kind": "collects",
+      "section": "V) Civil War + Illuminati",
+      "reference": "Collects: Avengers/Invaders #1-12",
+      "firstSourcePosition": 489,
+      "selectedOccurrenceCount": 12,
+      "selectedIssueReferences": [
+        "Avengers/Invaders #1",
+        "Avengers/Invaders #2",
+        "Avengers/Invaders #3",
+        "Avengers/Invaders #4",
+        "Avengers/Invaders #5",
+        "Avengers/Invaders #6",
+        "Avengers/Invaders #7",
+        "Avengers/Invaders #8",
+        "Avengers/Invaders #9",
+        "Avengers/Invaders #10",
+        "Avengers/Invaders #11",
+        "Avengers/Invaders #12"
+      ],
+      "originalIssueIds": [
+        21247,
+        21393,
+        21565,
+        21761,
+        22330,
+        22524,
+        22935,
+        23132,
+        24549,
+        23975,
+        24174,
+        24539
+      ]
+    },
+    {
+      "sourceBlock": 55,
+      "kind": "collects",
+      "section": "V) Civil War + Illuminati",
+      "reference": "Collects: Invaders Now! #1-5",
+      "firstSourcePosition": 501,
+      "selectedOccurrenceCount": 5,
+      "selectedIssueReferences": [
+        "Invaders Now! #1",
+        "Invaders Now! #2",
+        "Invaders Now! #3",
+        "Invaders Now! #4",
+        "Invaders Now! #5"
+      ],
+      "originalIssueIds": [
+        34480,
+        34474,
+        34477,
+        34482,
+        34475
+      ]
+    },
+    {
+      "sourceBlock": 56,
+      "kind": "collects",
+      "section": "V) Civil War + Illuminati",
+      "reference": "Collects: Fantastic Four #570",
+      "firstSourcePosition": 506,
+      "selectedOccurrenceCount": 1,
+      "selectedIssueReferences": [
+        "Fantastic Four #570"
+      ],
+      "originalIssueIds": [
+        25182
+      ]
+    },
+    {
+      "sourceBlock": 57,
+      "kind": "collects",
+      "section": "VI) Namor and the X-Men",
+      "reference": "Collects: Uncanny X-Men #513 To #531",
+      "firstSourcePosition": 507,
+      "selectedOccurrenceCount": 19,
+      "selectedIssueReferences": [
+        "Uncanny X-Men #513",
+        "Uncanny X-Men #514",
+        "Uncanny X-Men #515",
+        "Uncanny X-Men #516",
+        "Uncanny X-Men #517",
+        "Uncanny X-Men #518",
+        "Uncanny X-Men #519",
+        "Uncanny X-Men #520",
+        "Uncanny X-Men #521",
+        "Uncanny X-Men #522",
+        "Uncanny X-Men #523",
+        "Uncanny X-Men #524",
+        "Uncanny X-Men #525",
+        "Uncanny X-Men #526",
+        "Uncanny X-Men #527",
+        "Uncanny X-Men #528",
+        "Uncanny X-Men #529",
+        "Uncanny X-Men #530",
+        "Uncanny X-Men #531"
+      ],
+      "originalIssueIds": [
+        26966,
+        26967,
+        26968,
+        26969,
+        26970,
+        26971,
+        26972,
+        26973,
+        26974,
+        30619,
+        32564,
+        30621,
+        30622,
+        30623,
+        30624,
+        30625,
+        30626,
+        30627,
+        30628
+      ]
+    },
+    {
+      "sourceBlock": 58,
+      "kind": "collects",
+      "section": "VI) Namor and the X-Men",
+      "reference": "Collects: Namor: The First Mutant #1-6",
+      "firstSourcePosition": 526,
+      "selectedOccurrenceCount": 6,
+      "selectedIssueReferences": [
+        "Namor: The First Mutant #1",
+        "Namor: The First Mutant #2",
+        "Namor: The First Mutant #3",
+        "Namor: The First Mutant #4",
+        "Namor: The First Mutant #5",
+        "Namor: The First Mutant #6"
+      ],
+      "originalIssueIds": [
+        36078,
+        36079,
+        36077,
+        36080,
+        36082,
+        35948
+      ]
+    },
+    {
+      "sourceBlock": 59,
+      "kind": "numbered-note",
+      "section": "VI) Namor and the X-Men",
+      "reference": "X-Men #1: contextual relaunch marker, not a reading selection",
+      "firstSourcePosition": null,
+      "selectedOccurrenceCount": 0,
+      "selectedIssueReferences": [],
+      "originalIssueIds": []
+    },
+    {
+      "sourceBlock": 60,
+      "kind": "collects",
+      "section": "VI) Namor and the X-Men",
+      "reference": "Collects: Namor: The First Mutant #5-11",
+      "firstSourcePosition": 532,
+      "selectedOccurrenceCount": 7,
+      "selectedIssueReferences": [
+        "Namor: The First Mutant #5",
+        "Namor: The First Mutant #6",
+        "Namor: The First Mutant #7",
+        "Namor: The First Mutant #8",
+        "Namor: The First Mutant #9",
+        "Namor: The First Mutant #10",
+        "Namor: The First Mutant #11"
+      ],
+      "originalIssueIds": [
+        36082,
+        35948,
+        35960,
+        36085,
+        36334,
+        35920,
+        36084
+      ]
+    },
+    {
+      "sourceBlock": 61,
+      "kind": "collects",
+      "section": "VI) Namor and the X-Men",
+      "reference": "Collects: Defenders #1-6",
+      "firstSourcePosition": 539,
+      "selectedOccurrenceCount": 6,
+      "selectedIssueReferences": [
+        "Defenders #1",
+        "Defenders #2",
+        "Defenders #3",
+        "Defenders #4",
+        "Defenders #5",
+        "Defenders #6"
+      ],
+      "originalIssueIds": [
+        39757,
+        39762,
+        39763,
+        39758,
+        39759,
+        39761
+      ]
+    },
+    {
+      "sourceBlock": 62,
+      "kind": "collects",
+      "section": "VI) Namor and the X-Men",
+      "reference": "Collects: Defenders (2011) #7-12",
+      "firstSourcePosition": 545,
+      "selectedOccurrenceCount": 6,
+      "selectedIssueReferences": [
+        "Defenders #7",
+        "Defenders #8",
+        "Defenders #9",
+        "Defenders #10",
+        "Defenders #11",
+        "Defenders #12"
+      ],
+      "originalIssueIds": [
+        39760,
+        39767,
+        39766,
+        39765,
+        39764,
+        39756
+      ]
+    },
+    {
+      "sourceBlock": 63,
+      "kind": "collects",
+      "section": "VI) Namor and the X-Men",
+      "reference": "Collects: Uncanny X-Men #1 to #4",
+      "firstSourcePosition": 551,
+      "selectedOccurrenceCount": 4,
+      "selectedIssueReferences": [
+        "Uncanny X-Men #1",
+        "Uncanny X-Men #2",
+        "Uncanny X-Men #3",
+        "Uncanny X-Men #4"
+      ],
+      "originalIssueIds": [
+        40166,
+        40154,
+        40159,
+        40164
+      ]
+    },
+    {
+      "sourceBlock": 64,
+      "kind": "collects",
+      "section": "VI) Namor and the X-Men",
+      "reference": "Collects: Avengers Vs. X-Men 0-12, Point One (Avx Story)",
+      "firstSourcePosition": 555,
+      "selectedOccurrenceCount": 13,
+      "selectedIssueReferences": [
+        "Avengers vs. X-Men #0",
+        "Avengers vs. X-Men #1",
+        "Avengers vs. X-Men #2",
+        "Avengers vs. X-Men #3",
+        "Avengers vs. X-Men #4",
+        "Avengers vs. X-Men #5",
+        "Avengers vs. X-Men #6",
+        "Avengers vs. X-Men #7",
+        "Avengers vs. X-Men #8",
+        "Avengers vs. X-Men #9",
+        "Avengers vs. X-Men #10",
+        "Avengers vs. X-Men #11",
+        "Avengers vs. X-Men #12"
+      ],
+      "originalIssueIds": [
+        42332,
+        41188,
+        41191,
+        41187,
+        41193,
+        41190,
+        41189,
+        41192,
+        41275,
+        41277,
+        41276,
+        41279,
+        41278
+      ]
+    },
+    {
+      "sourceBlock": 65,
+      "kind": "collects",
+      "section": "VIII) New Avengers To Secret Wars",
+      "reference": "Collects: New Avengers 1-6",
+      "firstSourcePosition": 568,
+      "selectedOccurrenceCount": 6,
+      "selectedIssueReferences": [
+        "New Avengers #1",
+        "New Avengers #2",
+        "New Avengers #3",
+        "New Avengers #4",
+        "New Avengers #5",
+        "New Avengers #6"
+      ],
+      "originalIssueIds": [
+        43512,
+        43516,
+        43517,
+        43518,
+        43519,
+        43520
+      ]
+    },
+    {
+      "sourceBlock": 66,
+      "kind": "collects",
+      "section": "VIII) New Avengers To Secret Wars",
+      "reference": "Collects: New Avengers 7-12",
+      "firstSourcePosition": 574,
+      "selectedOccurrenceCount": 6,
+      "selectedIssueReferences": [
+        "New Avengers #7",
+        "New Avengers #8",
+        "New Avengers #9",
+        "New Avengers #10",
+        "New Avengers #11",
+        "New Avengers #12"
+      ],
+      "originalIssueIds": [
+        43521,
+        43522,
+        43523,
+        43524,
+        43525,
+        43526
+      ]
+    },
+    {
+      "sourceBlock": 67,
+      "kind": "collects",
+      "section": "VIII) New Avengers To Secret Wars",
+      "reference": "Collects: New Avengers 13-17",
+      "firstSourcePosition": 580,
+      "selectedOccurrenceCount": 5,
+      "selectedIssueReferences": [
+        "New Avengers #13",
+        "New Avengers #14",
+        "New Avengers #15",
+        "New Avengers #16",
+        "New Avengers #17"
+      ],
+      "originalIssueIds": [
+        43527,
+        48784,
+        48785,
+        48786,
+        48787
+      ]
+    },
+    {
+      "sourceBlock": 68,
+      "kind": "collects",
+      "section": "VIII) New Avengers To Secret Wars",
+      "reference": "Collects: All-New Invaders 1-5",
+      "firstSourcePosition": 585,
+      "selectedOccurrenceCount": 5,
+      "selectedIssueReferences": [
+        "All-New Invaders #1",
+        "All-New Invaders #2",
+        "All-New Invaders #3",
+        "All-New Invaders #4",
+        "All-New Invaders #5"
+      ],
+      "originalIssueIds": [
+        48354,
+        48355,
+        48356,
+        48357,
+        48358
+      ]
+    },
+    {
+      "sourceBlock": 69,
+      "kind": "collects",
+      "section": "VIII) New Avengers To Secret Wars",
+      "reference": "Collects: Invaders 6-10",
+      "firstSourcePosition": 590,
+      "selectedOccurrenceCount": 5,
+      "selectedIssueReferences": [
+        "All-New Invaders #6",
+        "All-New Invaders #7",
+        "All-New Invaders #8",
+        "All-New Invaders #9",
+        "All-New Invaders #10"
+      ],
+      "originalIssueIds": [
+        48359,
+        48360,
+        48361,
+        48362,
+        48363
+      ]
+    },
+    {
+      "sourceBlock": 70,
+      "kind": "collects",
+      "section": "VIII) New Avengers To Secret Wars",
+      "reference": "Collects: All -New Invaders 11-15",
+      "firstSourcePosition": 595,
+      "selectedOccurrenceCount": 5,
+      "selectedIssueReferences": [
+        "All-New Invaders #11",
+        "All-New Invaders #12",
+        "All-New Invaders #13",
+        "All-New Invaders #14",
+        "All-New Invaders #15"
+      ],
+      "originalIssueIds": [
+        48364,
+        48365,
+        51272,
+        51273,
+        51274
+      ]
+    },
+    {
+      "sourceBlock": 71,
+      "kind": "collects",
+      "section": "VIII) New Avengers To Secret Wars",
+      "reference": "Collects: New Avengers 18-23",
+      "firstSourcePosition": 600,
+      "selectedOccurrenceCount": 6,
+      "selectedIssueReferences": [
+        "New Avengers #18",
+        "New Avengers #19",
+        "New Avengers #20",
+        "New Avengers #21",
+        "New Avengers #22",
+        "New Avengers #23"
+      ],
+      "originalIssueIds": [
+        48788,
+        48789,
+        48790,
+        48791,
+        48792,
+        50095
+      ]
+    },
+    {
+      "sourceBlock": 72,
+      "kind": "collects",
+      "section": "VIII) New Avengers To Secret Wars",
+      "reference": "Collects: Avengers 35-44, New Avengers 24-33",
+      "firstSourcePosition": 606,
+      "selectedOccurrenceCount": 20,
+      "selectedIssueReferences": [
+        "Avengers #35",
+        "Avengers #36",
+        "Avengers #37",
+        "Avengers #38",
+        "Avengers #39",
+        "Avengers #40",
+        "Avengers #41",
+        "Avengers #42",
+        "Avengers #43",
+        "Avengers #44",
+        "New Avengers #24",
+        "New Avengers #25",
+        "New Avengers #26",
+        "New Avengers #27",
+        "New Avengers #28",
+        "New Avengers #29",
+        "New Avengers #30",
+        "New Avengers #31",
+        "New Avengers #32",
+        "New Avengers #33"
+      ],
+      "originalIssueIds": [
+        48389,
+        48390,
+        48391,
+        48392,
+        48393,
+        48394,
+        48395,
+        48396,
+        48397,
+        48398,
+        50096,
+        50973,
+        52257,
+        52259,
+        51172,
+        52261,
+        52263,
+        52265,
+        52266,
+        52267
+      ]
+    },
+    {
+      "sourceBlock": 73,
+      "kind": "collects",
+      "section": "VIII) New Avengers To Secret Wars",
+      "reference": "Collects: Secret Wars 0-9",
+      "firstSourcePosition": 626,
+      "selectedOccurrenceCount": 10,
+      "selectedIssueReferences": [
+        "Secret Wars #0",
+        "Secret Wars #1",
+        "Secret Wars #2",
+        "Secret Wars #3",
+        "Secret Wars #4",
+        "Secret Wars #5",
+        "Secret Wars #6",
+        "Secret Wars #7",
+        "Secret Wars #8",
+        "Secret Wars #9"
+      ],
+      "originalIssueIds": [
+        null,
+        52447,
+        52450,
+        52451,
+        52452,
+        52453,
+        52454,
+        52455,
+        52456,
+        57620
+      ]
+    },
+    {
+      "sourceBlock": 74,
+      "kind": "collects",
+      "section": "IX) Squadron Supreme",
+      "reference": "Collects: Squadron Supreme (2015) #1-5",
+      "firstSourcePosition": 636,
+      "selectedOccurrenceCount": 5,
+      "selectedIssueReferences": [
+        "Squadron Supreme #1",
+        "Squadron Supreme #2",
+        "Squadron Supreme #3",
+        "Squadron Supreme #4",
+        "Squadron Supreme #5"
+      ],
+      "originalIssueIds": [
+        55737,
+        55739,
+        55741,
+        55742,
+        55743
+      ]
+    },
+    {
+      "sourceBlock": 75,
+      "kind": "collects",
+      "section": "IX) Squadron Supreme",
+      "reference": "Collects: Squadron Supreme (2015) #6-9",
+      "firstSourcePosition": 641,
+      "selectedOccurrenceCount": 4,
+      "selectedIssueReferences": [
+        "Squadron Supreme #6",
+        "Squadron Supreme #7",
+        "Squadron Supreme #8",
+        "Squadron Supreme #9"
+      ],
+      "originalIssueIds": [
+        55744,
+        55745,
+        55746,
+        55747
+      ]
+    },
+    {
+      "sourceBlock": 76,
+      "kind": "collects",
+      "section": "IX) Squadron Supreme",
+      "reference": "Collects: Squadron Supreme (2015) 10-15",
+      "firstSourcePosition": 645,
+      "selectedOccurrenceCount": 6,
+      "selectedIssueReferences": [
+        "Squadron Supreme #10",
+        "Squadron Supreme #11",
+        "Squadron Supreme #12",
+        "Squadron Supreme #13",
+        "Squadron Supreme #14",
+        "Squadron Supreme #15"
+      ],
+      "originalIssueIds": [
+        55748,
+        55749,
+        55750,
+        55751,
+        55752,
+        55753
+      ]
+    },
+    {
+      "sourceBlock": 77,
+      "kind": "collects",
+      "section": "IX) Squadron Supreme",
+      "reference": "Collects: Secret Empire #0, Secret Empire #1-10, Secret Empire Omega #1, Captain America #25 And Material From Free Comic Book Day 2017 (Secret Empire 1)",
+      "firstSourcePosition": 651,
+      "selectedOccurrenceCount": 13,
+      "selectedIssueReferences": [
+        "Secret Empire #0",
+        "Secret Empire #1",
+        "Secret Empire #2",
+        "Secret Empire #3",
+        "Secret Empire #4",
+        "Secret Empire #5",
+        "Secret Empire #6",
+        "Secret Empire #7",
+        "Secret Empire #8",
+        "Secret Empire #9",
+        "Secret Empire #10",
+        "Secret Empire Omega #1",
+        "Captain America [volume unresolved] #25"
+      ],
+      "originalIssueIds": [
+        62725,
+        63296,
+        62835,
+        62836,
+        63191,
+        63125,
+        63753,
+        63869,
+        64166,
+        64259,
+        64285,
+        64438,
+        null
+      ]
+    },
+    {
+      "sourceBlock": 78,
+      "kind": "collects",
+      "section": "X) Return to Atlantis Attacks – Namor the Supervillain",
+      "reference": "Collects: Avengers (2018) #7-12",
+      "firstSourcePosition": 664,
+      "selectedOccurrenceCount": 6,
+      "selectedIssueReferences": [
+        "Avengers #7",
+        "Avengers #8",
+        "Avengers #9",
+        "Avengers #10",
+        "Avengers #11",
+        "Avengers #12"
+      ],
+      "originalIssueIds": [
+        67764,
+        67765,
+        67766,
+        67767,
+        67768,
+        67769
+      ]
+    },
+    {
+      "sourceBlock": 79,
+      "kind": "collects",
+      "section": "X) Return to Atlantis Attacks – Namor the Supervillain",
+      "reference": "Collects: Invaders #1 to #6",
+      "firstSourcePosition": 670,
+      "selectedOccurrenceCount": 6,
+      "selectedIssueReferences": [
+        "Invaders #1",
+        "Invaders #2",
+        "Invaders #3",
+        "Invaders #4",
+        "Invaders #5",
+        "Invaders #6"
+      ],
+      "originalIssueIds": [
+        74763,
+        74764,
+        74765,
+        74766,
+        74767,
+        74768
+      ]
+    },
+    {
+      "sourceBlock": 80,
+      "kind": "numbered-note",
+      "section": "X) Return to Atlantis Attacks – Namor the Supervillain",
+      "reference": "Powers of X #5: only issue selected from the House of X / Powers of X pointer",
+      "firstSourcePosition": 676,
+      "selectedOccurrenceCount": 1,
+      "selectedIssueReferences": [
+        "Powers of X #5"
+      ],
+      "originalIssueIds": [
+        72995
+      ]
+    },
+    {
+      "sourceBlock": 81,
+      "kind": "collects",
+      "section": "X) Return to Atlantis Attacks – Namor the Supervillain",
+      "reference": "Collects: Invaders #7 to #12",
+      "firstSourcePosition": 677,
+      "selectedOccurrenceCount": 6,
+      "selectedIssueReferences": [
+        "Invaders #7",
+        "Invaders #8",
+        "Invaders #9",
+        "Invaders #10",
+        "Invaders #11",
+        "Invaders #12"
+      ],
+      "originalIssueIds": [
+        74769,
+        74770,
+        74771,
+        74772,
+        78485,
+        78486
+      ]
+    },
+    {
+      "sourceBlock": 82,
+      "kind": "numbered-note",
+      "section": "Latest Additions:",
+      "reference": "Avengers (2018) #32",
+      "firstSourcePosition": 683,
+      "selectedOccurrenceCount": 1,
+      "selectedIssueReferences": [
+        "Avengers #32"
+      ],
+      "originalIssueIds": [
+        77449
+      ]
+    },
+    {
+      "sourceBlock": 83,
+      "kind": "collects",
+      "section": "Latest Additions:",
+      "reference": "Collects: Atlantis Attacks (2020) #1 to #5",
+      "firstSourcePosition": 684,
+      "selectedOccurrenceCount": 5,
+      "selectedIssueReferences": [
+        "Atlantis Attacks #1",
+        "Atlantis Attacks #2",
+        "Atlantis Attacks #3",
+        "Atlantis Attacks #4",
+        "Atlantis Attacks #5"
+      ],
+      "originalIssueIds": [
+        83989,
+        83993,
+        83994,
+        83995,
+        83996
+      ]
+    },
+    {
+      "sourceBlock": 84,
+      "kind": "collects",
+      "section": "Latest Additions:",
+      "reference": "Collects: King in Black: Namor (2020) #1 to #5",
+      "firstSourcePosition": 689,
+      "selectedOccurrenceCount": 5,
+      "selectedIssueReferences": [
+        "King in Black: Namor #1",
+        "King in Black: Namor #2",
+        "King in Black: Namor #3",
+        "King in Black: Namor #4",
+        "King in Black: Namor #5"
+      ],
+      "originalIssueIds": [
+        91747,
+        91748,
+        91749,
+        91750,
+        92259
+      ]
+    },
+    {
+      "sourceBlock": 85,
+      "kind": "numbered-note",
+      "section": "Latest Additions:",
+      "reference": "Avengers (2018) #53",
+      "firstSourcePosition": 694,
+      "selectedOccurrenceCount": 1,
+      "selectedIssueReferences": [
+        "Avengers #53"
+      ],
+      "originalIssueIds": [
+        92197
+      ]
+    },
+    {
+      "sourceBlock": 86,
+      "kind": "collects",
+      "section": "Latest Additions:",
+      "reference": "Collects: Maestro: World War M #1 to #5",
+      "firstSourcePosition": 695,
+      "selectedOccurrenceCount": 5,
+      "selectedIssueReferences": [
+        "Maestro: World War M #1",
+        "Maestro: World War M #2",
+        "Maestro: World War M #3",
+        "Maestro: World War M #4",
+        "Maestro: World War M #5"
+      ],
+      "originalIssueIds": [
+        94079,
+        94080,
+        94081,
+        94082,
+        94083
+      ]
+    },
+    {
+      "sourceBlock": 87,
+      "kind": "collects",
+      "section": "Latest Additions:",
+      "reference": "Collects: Namor The Sub-Mariner: Conquered Shores #1 to #5",
+      "firstSourcePosition": 700,
+      "selectedOccurrenceCount": 5,
+      "selectedIssueReferences": [
+        "Namor, the Sub-Mariner: Conquered Shores #1",
+        "Namor, the Sub-Mariner: Conquered Shores #2",
+        "Namor, the Sub-Mariner: Conquered Shores #3",
+        "Namor, the Sub-Mariner: Conquered Shores #4",
+        "Namor, the Sub-Mariner: Conquered Shores #5"
+      ],
+      "originalIssueIds": [
+        100388,
+        100389,
+        100390,
+        100391,
+        100392
+      ]
+    },
+    {
+      "sourceBlock": 88,
+      "kind": "numbered-note",
+      "section": "Latest Additions:",
+      "reference": "Black Panther (2021) #14",
+      "firstSourcePosition": 705,
+      "selectedOccurrenceCount": 1,
+      "selectedIssueReferences": [
+        "Black Panther #14"
+      ],
+      "originalIssueIds": [
+        102503
+      ]
+    }
+  ]
+}

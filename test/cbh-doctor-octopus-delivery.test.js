@@ -149,7 +149,7 @@ test('Doctor Octopus relationship approval regenerates against its reviewed sour
 
       'x-23-reading-order', 'ms-marvel-kamala-khan-reading-order',
       'hawkeye-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order', 'marvel-zombies-reading-order', 'nova-reading-order', 'ultimate-spider-man-reading-order', 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide',
-      'shang-chi-master-of-kung-fu-reading-order', 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order', 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order',
+      'shang-chi-master-of-kung-fu-reading-order', 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order', 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order', 'namor-sub-mariner-reading-order',
     ],
   });
   const expectedOrderIds = manifest.lists.filter((row) => row.id !== 'shang-chi-master-of-kung-fu-reading-order' && row.id !== 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order' && row.id !== 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order' && (
@@ -164,7 +164,7 @@ test('Doctor Octopus relationship approval regenerates against its reviewed sour
         'hawkeye-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order', 'marvel-zombies-reading-order',
 
       ].includes(row.id)
-  )).map((row) => row.id);
+  )).filter((row) => row.id !== 'namor-sub-mariner-reading-order').map((row) => row.id);
 
   assert.deepEqual(current, report);
   assert.equal(report.comparisonCount, 184);

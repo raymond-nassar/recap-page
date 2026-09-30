@@ -198,7 +198,7 @@ test('Agatha relationship approval covers every source order present at review',
       'hope-summers-reading-order',
 
       'x-23-reading-order', 'ms-marvel-kamala-khan-reading-order', 'marvel-zombies-reading-order', 'hawkeye-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order', 'nova-reading-order', 'ultimate-spider-man-reading-order', 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide',
-      'shang-chi-master-of-kung-fu-reading-order', 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order', 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order',
+      'shang-chi-master-of-kung-fu-reading-order', 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order', 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order', 'namor-sub-mariner-reading-order',
     ],
   });
   const expectedOrderIds = manifest.lists
@@ -210,7 +210,7 @@ test('Agatha relationship approval covers every source order present at review',
 
         'x-23-reading-order', 'ms-marvel-kamala-khan-reading-order', 'marvel-zombies-reading-order', 'hawkeye-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order',
 
-      ].includes(entry.id))
+      ].includes(entry.id)).filter((row) => row.id !== 'namor-sub-mariner-reading-order')
     .map((entry) => entry.id);
 
   assert.deepEqual(current, report);

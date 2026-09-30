@@ -38,7 +38,7 @@ test('no shipped reading order carries Marvel description prose', async () => {
     }
   }
 
-  assert.equal(orders.length, 278, `the catalog lists ${orders.length} orders, not 278, so this test's coverage has changed`);
+  assert.equal(orders.length, 279, `the catalog lists ${orders.length} orders, not 279, so this test's coverage has changed`);
 
   assert.ok(items > 1000, `only ${items} items were checked, so the data tree is not what this test thinks it is`);
   assert.deepEqual(offenders, [], `Marvel description prose is committed again in ${offenders.length} record(s)`);
@@ -104,7 +104,7 @@ test('no file outside node_modules, .git and .copilot-tracking carries an items[
     }
   }
 
-  assert.equal(scanned, 282, `${scanned} item-bearing files were found, not 282, so this test's coverage has changed`);
+  assert.equal(scanned, 283, `${scanned} item-bearing files were found, not 283, so this test's coverage has changed`);
 
   assert.deepEqual(offenders, [], `Marvel description prose is committed in ${offenders.length} record(s) somewhere in the scanned tree`);
 });
