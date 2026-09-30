@@ -122,6 +122,13 @@ cleanup also fails. Lifecycle diagnostics include allowlisted browser and driver
 observed numeric process exit or signal values. An unavailable cause is `unknown`, not evidence
 of a crash, resource limit or app defect; exits during requested cleanup are labelled separately.
 
+Ordinary scenarios that export files declare the total expected native downloads for their
+isolated context. Before closing it, the runner requires a browser `completed` event for each
+download, within one 15-second completion deadline. Captured blob text alone is not completion.
+The count survives page navigation; a late start, canceled or missing download, invalid event,
+disconnect or deadline failure is reported without replacing an earlier scenario failure.
+Cleanup is still attempted, and unresolved completion stops the ordinary suite.
+
 For a hosted browser-only diagnostic, dispatch **Windows App Certification Kit** at the exact
 committed branch with `diagnostic_target=ordinary-browser`, `diagnostic_only=true`,
 `native_only=false` and `release_preparation=false`. This runs the ordinary suite on Windows
@@ -139,6 +146,15 @@ navigation without changing download policy or waiting for completion. Observati
 timing and becomes partial after context close. Both arms passing is inconclusive about the
 late-suite failure; a reader-arm failure implicates that full path, not export alone. This mode
 produces no qualifying artifact and does not replace the ordinary suite.
+
+The fixed `diagnostic_target=ordinary-browser-download-completion` uses the same diagnostic-only
+flags and exact toolchain gates. It compares the unchanged reader scenario without a completion
+wait against the same scenario with the ordinary completion gate, each in a fresh browser with
+one blank sentinel. Its maximum remains four explicit contexts and twelve create/page/close
+calls. Only these fixed nonqualifying controls bypass the ordinary completion requirement.
+Any arm failure remains nonzero, including when the treatment passes. A timeout or failure
+after observed completion rejects the candidate; both arms passing does not establish causality.
+Neither diagnostic proves a fix or satisfies full-suite or release acceptance.
 
 ### Prove the browser check detects failures
 

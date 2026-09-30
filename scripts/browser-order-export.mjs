@@ -30,6 +30,7 @@ async function downloaded(page, count) {
 
 export const orderOnlyExport = {
   id: 'order-only-export',
+  nativeDownloads: 6,
   title: 'order-only files exclude personal data without altering personal exports or saved state',
   async run(page, t) {
     await page.evaluateOnNewDocument((seed, source) => {

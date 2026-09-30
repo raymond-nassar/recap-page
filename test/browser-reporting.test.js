@@ -96,7 +96,9 @@ function fixture(failAt) {
     ${source.slice(start, end)}
     ${source.slice(entry)}
   `;
-  const result = spawnSync(process.execPath, ['--input-type=module', '-e', script], {
+  // Expanded lifecycle fixtures exceeded Windows' argument limit; stdin preserves their source.
+  const result = spawnSync(process.execPath, ['--input-type=module', '-'], {
+    input: script,
     encoding: 'utf8',
     timeout: 10_000,
   });
@@ -148,7 +150,7 @@ test('browser reporting preserves successful scenario order, totals and isolated
   assert.doesNotMatch(result.stdout, /stage=failure|stage=failed/);
 });
 
-function diagnosticFixture(fault = '', args = ['--diagnostic=context-export-isolation']) {
+function diagnosticFixture(fault = '', args = ['--diagnostic=context-export-isolation'], expectedDownloads = 1) {
   const lock = new URL('../.github/browser-proof/package-lock.json', import.meta.url).href;
   const script = `
     import assert from 'node:assert/strict';
@@ -156,10 +158,11 @@ function diagnosticFixture(fault = '', args = ['--diagnostic=context-export-isol
     import { readFileSync as realReadFileSync } from 'node:fs';
     import { constants, tmpdir } from 'node:os';
     import { dirname, join } from 'node:path';
-    process.argv = ['node', 'browser-check.mjs', ...process.argv.slice(1)];
+    process.argv = ['node', 'browser-check.mjs', ...process.argv.slice(2)];
     const fault = ${JSON.stringify(fault)};
+    const expectedDownloads = ${JSON.stringify(expectedDownloads)};
     const secret = 'PRIVATE_PROFILE https://private.invalid/ PRIVATE_STDERR';
-    const failure = () => Object.assign(new Error(secret), { name: 'TargetCloseError' });
+    const failure = (name = 'TargetCloseError') => Object.assign(new Error(secret), { name });
     process.env.GITHUB_SHA = 'a'.repeat(40);
     process.env.GITHUB_WORKFLOW_SHA = fault === 'source' ? 'b'.repeat(40) : process.env.GITHUB_SHA;
     process.env.GITHUB_RUN_ID = '123';
@@ -172,6 +175,36 @@ function diagnosticFixture(fault = '', args = ['--diagnostic=context-export-isol
     let closes = 0;
     let prepared = 0;
     let readerRuns = 0;
+    let activePage;
+    let activeBrowser;
+    let elapsed = 0;
+    const timers = new Set();
+    const delays = [];
+    const complete = (page, guid = secret) => page.session.emit('Page.downloadProgress', { guid, state: 'completed' });
+    const setTimeout = (callback, delay) => {
+      assert.equal(delay, 15000);
+      delays.push(delay);
+      const timer = { callback, delay };
+      timers.add(timer);
+      queueMicrotask(() => {
+        if (!timers.has(timer)) return;
+        if (fault === 'late-begin') {
+          activePage.session.emit('Page.downloadWillBegin', { guid: secret });
+          complete(activePage);
+        } else if (['delayed-completion', 'matched'].includes(fault)) {
+          complete(activePage);
+        } else if (fault === 'disconnect-wait') {
+          activeBrowser.connected = false;
+          activeBrowser.emit('disconnected');
+        }
+        if (timers.delete(timer)) {
+          elapsed += delay;
+          callback();
+        }
+      });
+      return timer;
+    };
+    const clearTimeout = (timer) => timers.delete(timer);
     const events = [];
     const readFileSync = (path) => String(path).endsWith('package-lock.json')
       ? (fault === 'lock' ? 'wrong-lock' : realReadFileSync(new URL(${JSON.stringify(lock)})))
@@ -212,25 +245,44 @@ function diagnosticFixture(fault = '', args = ['--diagnostic=context-export-isol
     };
     const SCENARIOS = [{
       id: 'reader-round-trip', title: 'existing reader fixture',
+      nativeDownloads: expectedDownloads,
       async run(page, t) {
         readerRuns += 1;
+        activePage = page;
         events.push('reader-run');
-        if (fault !== 'no-events') {
+        const count = fault === 'missing-last' ? expectedDownloads - 1
+          : fault === 'extra-download' ? expectedDownloads + 1 : expectedDownloads;
+        for (let index = 0; index < count && !['no-events', 'late-begin'].includes(fault); index += 1) {
+          const guid = index ? secret + index : secret;
           page.session.emit('Page.downloadWillBegin', {
-            guid: secret, url: secret, suggestedFilename: secret,
+            guid, url: secret, suggestedFilename: secret,
           });
           page.session.emit('Page.downloadProgress', {
-            guid: secret, state: 'inProgress', receivedBytes: 12, totalBytes: 12,
+            guid, state: fault === 'invalid-event' ? secret : 'inProgress', receivedBytes: 12, totalBytes: 12,
           });
-          if (!['pending', 'late-terminal'].includes(fault)) {
+          if (!['pending', 'late-terminal', 'delayed-completion', 'matched', 'disconnect-wait', 'primary-pending-close'].includes(fault)) {
             page.session.emit('Page.downloadProgress', {
-              guid: secret, state: fault === 'canceled' ? 'canceled' : 'completed', filePath: secret,
+              guid, state: fault === 'canceled' ? 'canceled' : 'completed', filePath: secret,
             });
+          }
+          if (fault === 'duplicate-begin') page.session.emit('Page.downloadWillBegin', { guid });
+          if (fault === 'invalid-state') page.session.emit('Page.downloadProgress', { guid, state: 'inProgress' });
+          if (fault === 'reload-six' && index === 4) {
+            page.documentDownloads = [];
+            page.emit('framenavigated', {});
+            events.push('document-reset');
           }
         }
         for (let index = 0; index < 9; index += 1) {
           t.check('reader check ' + index, fault !== 'assertion' || index !== 4);
         }
+        if (fault === 'primary-pending-close') throw failure('TypeError');
+      },
+    }, {
+      id: 'after-reader', title: 'ordinary continuation',
+      async run(_page, t) {
+        events.push('ordinary-continuation');
+        t.check('following ordinary scenario ran', true);
       },
     }];
     const MUTATIONS = [];
@@ -259,7 +311,8 @@ function diagnosticFixture(fault = '', args = ['--diagnostic=context-export-isol
           const ordinal = ++armContexts;
           events.push('create-' + arm + '-' + ordinal);
           if ((fault === 'control-sentinel' && arm === 1 && ordinal === 2)
-            || (fault === 'reader-sentinel' && arm === 2 && ordinal === 2)) {
+            || (fault === 'reader-sentinel' && arm === 2 && ordinal === 2)
+            || (fault === 'matched' && ordinal === 2 && !activePage.nativeCompleted)) {
             browser.connected = false;
             browser.emit('disconnected');
             throw failure();
@@ -276,11 +329,14 @@ function diagnosticFixture(fault = '', args = ['--diagnostic=context-export-isol
                   if (fault === 'observe') throw failure();
                 },
               });
-              page = {
+              page = Object.assign(new EventEmitter(), {
                 session, createCDPSession: async () => session,
                 url: () => 'about:blank',
                 setViewport: async (viewport) => assert.deepEqual(viewport, { width: 1280, height: 900 }),
-              };
+              });
+              session.on('Page.downloadProgress', (event) => {
+                if (event.state === 'completed') page.nativeCompleted = true;
+              });
               return page;
             },
             close: async () => {
@@ -290,6 +346,7 @@ function diagnosticFixture(fault = '', args = ['--diagnostic=context-export-isol
                 page.session.emit('Page.downloadProgress', { guid: secret, state: 'completed' });
               }
               if (fault === 'context-close' && arm === 2 && ordinal === 1) throw failure();
+              if (fault === 'primary-pending-close' && ordinal === 1) throw failure();
             },
           };
         },
@@ -301,14 +358,16 @@ function diagnosticFixture(fault = '', args = ['--diagnostic=context-export-isol
           if (fault === 'browser-close') throw failure();
         },
       });
+      activeBrowser = browser;
       return browser;
     } };
     ${source.slice(start, end)}
     await main();
     console.log('FIXTURE ' + JSON.stringify({ launches, created, pages, closes, prepared, readerRuns, events }));
+    console.log('CLOCK ' + JSON.stringify({ delays, elapsed, pending: timers.size }));
   `;
-  const result = spawnSync(process.execPath, ['--input-type=module', '-e', script, '--', ...args], {
-    encoding: 'utf8', timeout: 10_000,
+  const result = spawnSync(process.execPath, ['--input-type=module', '-', ...args], {
+    input: script, encoding: 'utf8', timeout: 10_000,
   });
   assert.ifError(result.error);
   assert.equal(result.signal, null);
@@ -317,8 +376,10 @@ function diagnosticFixture(fault = '', args = ['--diagnostic=context-export-isol
   const record = result.stdout.split(/\r?\n/).find((line) => line.startsWith('FIXTURE '));
   assert.ok(record, output);
   const summary = result.stdout.split(/\r?\n/).find((line) => line.startsWith('DIAGNOSTIC {'));
+  const clock = result.stdout.split(/\r?\n/).find((line) => line.startsWith('CLOCK '));
   return {
     ...result, output, facts: JSON.parse(record.slice(8)),
+    clock: JSON.parse(clock.slice(6)),
     summary: summary ? JSON.parse(summary.slice(11)) : null,
     downloads: result.stdout.split(/\r?\n/).filter((line) => line.startsWith('DOWNLOAD '))
       .map((line) => JSON.parse(line.slice(9))),
@@ -406,6 +467,7 @@ test('context isolation logs terminal unobserved and pending downloads without w
 test('context isolation rejects extra selectors and launch overrides before any launch', () => {
   for (const args of [
     ['--diagnostic=unknown'],
+    ['--diagnosticXnative-export-completion'],
     ['--diagnostic=context-export-isolation', '--only=reader-round-trip'],
     ['--diagnostic=context-export-isolation', '--prove'],
     ['--diagnostic=context-export-isolation', '--forced-colors'],
@@ -418,4 +480,110 @@ test('context isolation rejects extra selectors and launch overrides before any 
   const headed = diagnosticFixture('headed');
   assert.equal(headed.status, 1, headed.output);
   assert.equal(headed.facts.launches, 0);
+});
+
+test('ordinary native completion requires an observed begin even when no download is pending yet', () => {
+  const result = diagnosticFixture('no-events', []);
+  assert.equal(result.status, 1, result.output);
+  assert.match(result.stdout, /stage=complete-native-downloads code=TimeoutError reason=missing-begin/);
+  assert.equal(result.facts.created, 1, 'unmet completion stops ordinary continuation');
+  assert.equal(result.facts.closes, 1, 'failed completion still closes its context');
+  assert.equal(result.clock.elapsed, 15000);
+  assert.deepEqual(result.clock.delays, [15000]);
+  assert.equal(result.clock.pending, 0);
+  assert.doesNotMatch(result.stdout, /SCENARIO id=after-reader/);
+});
+
+test('ordinary native completion handles late and pre-observed events with one context deadline', () => {
+  for (const fault of ['', 'late-begin', 'delayed-completion']) {
+    const result = diagnosticFixture(fault, []);
+    assert.equal(result.status, 0, result.output);
+    assert.equal(result.facts.created, 2);
+    assert.ok(result.facts.events.includes('ordinary-continuation'));
+    assert.deepEqual(result.clock, { delays: [15000], elapsed: 0, pending: 0 });
+    const complete = result.stdout.indexOf('"stage":"completion-result"');
+    const close = result.stdout.indexOf('SCENARIO id=reader-round-trip stage=close-context');
+    assert.ok(complete > 0 && complete < close);
+    assert.match(result.stdout, /"expected":1,.*"completed":1,.*"result":"completed"/);
+  }
+});
+
+test('ordinary native completion counts all six downloads across document reset and rejects a late missing last one', () => {
+  const complete = diagnosticFixture('reload-six', [], 6);
+  assert.equal(complete.status, 0, complete.output);
+  assert.ok(complete.facts.events.includes('document-reset'));
+  assert.match(complete.stdout, /"expected":6,.*"begun":6,.*"completed":6,.*"result":"completed"/);
+  assert.deepEqual(complete.clock, { delays: [15000], elapsed: 0, pending: 0 });
+  const missing = diagnosticFixture('missing-last', [], 6);
+  assert.equal(missing.status, 1, missing.output);
+  assert.match(missing.stdout, /"expected":6,.*"begun":5,.*"completed":5,.*"reason":"missing-begin"/);
+  assert.equal(missing.facts.created, 1);
+  assert.deepEqual(missing.clock, { delays: [15000], elapsed: 15000, pending: 0 });
+});
+
+test('ordinary native completion fails canceled pending invalid count and disconnect evidence explicitly', () => {
+  for (const [fault, reason] of [
+    ['canceled', 'canceled'], ['pending', 'pending-timeout'],
+    ['invalid-event', 'invalid-event'], ['duplicate-begin', 'invalid-event'],
+    ['invalid-state', 'invalid-state'], ['extra-download', 'unexpected-count'],
+    ['disconnect-wait', 'observer-disconnected'],
+  ]) {
+    const result = diagnosticFixture(fault, []);
+    assert.equal(result.status, 1, result.output);
+    assert.match(result.stdout, new RegExp('stage=complete-native-downloads code=\\w+ reason=' + reason));
+    assert.equal(result.facts.created, 1);
+    assert.equal(result.facts.closes, 1);
+    assert.equal(result.clock.pending, 0);
+    assert.deepEqual(result.clock.delays, [15000]);
+    assert.equal(result.clock.elapsed, fault === 'pending' ? 15000 : 0);
+  }
+});
+
+test('native completion retains the primary scenario failure and both completion and cleanup failures', () => {
+  const result = diagnosticFixture('primary-pending-close', []);
+  assert.equal(result.status, 1, result.output);
+  assert.match(result.stdout, /FAIL scenario=reader-round-trip stage=run code=TypeError/);
+  assert.match(result.stdout, /native download completion\s+stage=complete-native-downloads code=TimeoutError reason=pending-timeout/);
+  assert.match(result.stdout, /context cleanup\s+stage=close-context code=TargetCloseError/);
+  assert.match(result.stdout, /9 assertion\(s\) passed, 3 failed/);
+  assert.match(result.stdout, /SCENARIOS completed=0 planned=2 last-completed=none/);
+  assert.ok(result.facts.events.includes('browser-close-1'));
+  assert.ok(result.facts.events.includes('server-close-1'));
+  assert.equal(result.facts.created, 1);
+  assert.equal(result.clock.pending, 0);
+});
+
+test('the fixed completion comparison preserves a failing control and uses the ordinary gate only for treatment', () => {
+  const result = diagnosticFixture('matched', ['--diagnostic=native-export-completion']);
+  assert.equal(result.status, 1, result.output);
+  assert.deepEqual(result.summary, {
+    diagnostic: 'native-export-completion', qualified: false, outcome: 'failure-observed',
+    arms: [{ arm: 'reader-observe-only', code: 1 }, { arm: 'reader-completion', code: 0 }],
+  });
+  assert.equal(result.facts.launches, 2);
+  assert.equal(result.facts.created, 4);
+  assert.equal(result.facts.readerRuns, 2);
+  assert.equal((result.stdout.match(/ok {3}reader check/g) ?? []).length, 18);
+  assert.deepEqual(result.clock, { delays: [15000], elapsed: 0, pending: 0 });
+  assert.equal(result.downloads.filter((record) => record.stage === 'completion-wait').length, 1);
+  assert.ok(result.downloads.some((record) => record.arm === 'reader-completion'
+    && record.stage === 'completion-result' && record.result === 'completed'));
+  assert.match(result.stdout, /capability=Page-download-events policy-change=false completion-wait=false/);
+  assert.match(result.stdout, /capability=Page-download-events policy-change=false completion-wait=true/);
+});
+
+test('all ordinary native-export scenarios declare their complete context totals', () => {
+  for (const [file, id, count] of [
+    ['browser-check.mjs', 'reader-round-trip', 1],
+    ['browser-check.mjs', 'reading-shortcut', 1],
+    ['browser-markdown-export.mjs', 'readable-markdown-export', 4],
+    ['browser-order-export.mjs', 'order-only-export', 6],
+  ]) {
+    const text = readFileSync(new URL('../scripts/' + file, import.meta.url), 'utf8');
+    assert.match(text, new RegExp("id: '" + id + "',\\s+nativeDownloads: " + count + ','));
+  }
+  const invalid = diagnosticFixture('', [], 0);
+  assert.equal(invalid.status, 1, invalid.output);
+  assert.match(invalid.stdout, /reason=invalid-expectation/);
+  assert.equal(invalid.facts.created, 1);
 });

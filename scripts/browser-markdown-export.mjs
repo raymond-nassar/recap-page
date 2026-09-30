@@ -9,6 +9,7 @@ const expected = [
 
 export const readableMarkdownExport = {
   id: 'readable-markdown-export',
+  nativeDownloads: 4,
   title: 'readable Markdown export is private by default and preserves the whole list',
   async run(page, t) {
     await page.evaluateOnNewDocument((schemaVersion) => {

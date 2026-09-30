@@ -252,7 +252,8 @@ test('native producer outputs and job deadlines bind every package consumer', ()
     native_only: false, release_preparation: false,
   };
   const contextMode = { ...browserMode, diagnostic_target: 'ordinary-browser-context-isolation' };
-  assert.match(workflow, /options: \[console-wack, handles, f01-smoke, ordinary-browser, ordinary-browser-context-isolation\]/);
+  const completionMode = { ...browserMode, diagnostic_target: 'ordinary-browser-download-completion' };
+  assert.match(workflow, /options: \[console-wack, handles, f01-smoke, ordinary-browser, ordinary-browser-context-isolation, ordinary-browser-download-completion\]/);
   const selected = (event, inputs) => jobs.filter((job) => {
     const expression = job.match(/^ {4}if: \$\{\{ (.+) \}\}\r?$/m)?.[1];
     assert.ok(expression, 'each lane has an explicit route');
@@ -261,13 +262,15 @@ test('native producer outputs and job deadlines bind every package consumer', ()
   for (const [event, inputs, expected] of [
     ['workflow_dispatch', browserMode, ['browser-diagnostic']],
     ['workflow_dispatch', contextMode, ['browser-diagnostic']],
+    ['workflow_dispatch', completionMode, ['browser-diagnostic']],
     ['workflow_dispatch', {}, ['native', 'certify', 'installed']],
     ['workflow_dispatch', { release_preparation: true }, ['native', 'certify', 'installed', 'preparation']],
     ['workflow_dispatch', { diagnostic_only: true, diagnostic_target: 'handles' }, ['native']],
     ['pull_request', browserMode, ['native', 'certify', 'installed']],
     ['pull_request', contextMode, ['native', 'certify', 'installed']],
+    ['pull_request', completionMode, ['native', 'certify', 'installed']],
   ]) assert.deepEqual(selected(event, inputs), expected);
-  const invalidModes = [browserMode, contextMode].flatMap((mode) => [
+  const invalidModes = [browserMode, contextMode, completionMode].flatMap((mode) => [
     { ...mode, diagnostic_only: false },
     { ...mode, native_only: true },
     { ...mode, release_preparation: true },
@@ -285,15 +288,15 @@ test('native producer outputs and job deadlines bind every package consumer', ()
   assert.ok(browserDiagnostic.indexOf(browserGuard.trim().split('\n')[0])
     < browserDiagnostic.indexOf('actions/checkout@'));
   if (process.platform === 'win32') {
-    const cases = [browserMode, contextMode, ...invalidModes].map((inputs, index) => `
+    const cases = [browserMode, contextMode, completionMode, ...invalidModes].map((inputs, index) => `
       $env:DIAGNOSTIC_TARGET = '${inputs.diagnostic_target}';
       $env:DIAGNOSTIC_ONLY = '${inputs.diagnostic_only}';
       $env:NATIVE_ONLY = '${inputs.native_only}';
       $env:RELEASE_PREPARATION = '${inputs.release_preparation}';
       $rejected = $false;
       try { & { ${browserGuard} } } catch { $rejected = $true }
-      if ($rejected -ne $${index >= 2}) { throw 'Browser diagnostic mode guard differs.' }
-      ${index < 2 ? '' : `
+      if ($rejected -ne $${index >= 3}) { throw 'Browser diagnostic mode guard differs.' }
+      ${index < 3 ? '' : `
         $rejected = $false;
         try { & { ${nativeGuard} } } catch { $rejected = $true }
         if (-not $rejected) { throw 'Invalid browser mode reached native setup.' }
@@ -303,9 +306,9 @@ test('native producer outputs and job deadlines bind every package consumer', ()
       $ErrorActionPreference = 'Stop';
       $env:GITHUB_EVENT_NAME = 'workflow_dispatch';
       ${cases}
-      Write-Output 'PASS browser-mode-guards cases=10';
+      Write-Output 'PASS browser-mode-guards cases=15';
     `], { encoding: 'utf8', timeout: 15000 });
-    assert.match(output, /PASS browser-mode-guards cases=10/);
+    assert.match(output, /PASS browser-mode-guards cases=15/);
   }
   assert.match(browserDiagnostic, /runs-on: windows-2022/);
   assert.match(browserDiagnostic, /ref: \$\{\{ github\.sha \}\}/);
@@ -317,6 +320,8 @@ test('native producer outputs and job deadlines bind every package consumer', ()
   assert.match(execute, /DIAGNOSTIC_TARGET: \$\{\{ inputs\.diagnostic_target \}\}/);
   assert.match(execute, /if \(\$env:DIAGNOSTIC_TARGET -eq 'ordinary-browser-context-isolation'\)/);
   assert.match(execute, /npm run browser -- --diagnostic=context-export-isolation/);
+  assert.match(execute, /elseif \(\$env:DIAGNOSTIC_TARGET -eq 'ordinary-browser-download-completion'\)/);
+  assert.match(execute, /npm run browser -- --diagnostic=native-export-completion/);
   assert.match(execute, /} else \{\r?\n {12}npm run browser\r?\n {10}}/);
   assert.match(execute, /if \(\$LASTEXITCODE -ne 0\) \{ throw/);
   assert.match(browserDiagnostic, /always\(\) && steps\.browser-driver\.outcome != 'skipped'/);
@@ -326,7 +331,9 @@ test('native producer outputs and job deadlines bind every package consumer', ()
   assert.ok(identity);
   for (const [target, mismatch] of [
     ['ordinary-browser', false], ['ordinary-browser-context-isolation', false],
-    ['ordinary-browser-context-isolation', true], ['invalid', false],
+    ['ordinary-browser-download-completion', false],
+    ['ordinary-browser-context-isolation', true], ['ordinary-browser-download-completion', true],
+    ['invalid', false],
   ]) {
     const records = [];
     const errors = [];

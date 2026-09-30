@@ -13,6 +13,14 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Require native download completion in browser proofs
+
+Browser scenarios that export files now require observed native completion before successful
+context teardown. Canceled, missing, incomplete or invalid download evidence fails explicitly,
+without hiding an earlier scenario or cleanup failure. A fixed nonqualifying comparison can
+test this lifecycle change; it does not claim the Windows browser failure is fixed.
+Real exports, app behaviour and saved reading progress are unchanged.
+
 ### Retain browser-check evidence when automation disconnects
 
 The browser check now reports progress before creating each isolated context and retains

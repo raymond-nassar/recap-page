@@ -9123,6 +9123,7 @@ const SCENARIOS = [
   },
   {
     id: 'reader-round-trip',
+    nativeDownloads: 1,
     title: 'an imported reader address survives export and reload without provider requests',
     async run(page, t) {
       await page.evaluateOnNewDocument(() => { window.__mrtSynopsis = 'refuse'; });
@@ -9878,6 +9879,7 @@ const SCENARIOS = [
   },
   {
     id: 'reading-shortcut',
+    nativeDownloads: 1,
     title: 'D can be switched off locally and a held key marks only one issue',
     async run(page, t) {
       await open(page, '/');
@@ -13742,10 +13744,28 @@ async function runScenario(browser, origin, scenario, mutation, diagnostic = nul
   let prepared = false;
   let completed = false;
   let infrastructure = false;
+  let completionFailed = false;
+  const exportsFiles = Object.hasOwn(scenario, 'nativeDownloads');
+  const expectedDownloads = scenario.nativeDownloads ?? 0;
+  const downloads = diagnostic ?? (exportsFiles
+    ? observeNativeDownloads('ordinary', 1, { valid: true, started: performance.now() }, false, true)
+    : null);
+  const requireCompletion = exportsFiles && downloads?.requireCompletion === true;
   let stage = 'create-context';
   const enter = (next) => {
     stage = next;
     console.log(`SCENARIO id=${scenario.id} stage=${stage}`);
+  };
+  const failCompletion = (err) => {
+    const reason = ['unobserved', 'missing-begin', 'pending-timeout', 'canceled', 'invalid-event',
+      'invalid-state', 'invalid-expectation', 'unexpected-count', 'observer-disconnected',
+      'observer-unavailable'].includes(err?.nativeDownloadReason) ? err.nativeDownloadReason : 'observer-error';
+    const failure = `stage=complete-native-downloads code=${failureCode(err)} reason=${reason}`;
+    error ??= failure;
+    infrastructure = true;
+    completionFailed = true;
+    console.log(`FAIL scenario=${scenario.id} ${failure}`);
+    t.check(`${scenario.id} native download completion`, false, failure);
   };
   try {
     enter('create-context');
@@ -13753,9 +13773,9 @@ async function runScenario(browser, origin, scenario, mutation, diagnostic = nul
     enter('create-page');
     const page = await context.newPage();
     page.__denyExternal = true;
-    if (diagnostic) {
+    if (downloads) {
       enter('observe-downloads');
-      await diagnostic.attach(page);
+      await downloads.attach(page, browser);
     }
     enter('prepare-page');
     if (diagnostic?.blank) await page.setViewport({ width: 1280, height: 900 });
@@ -13772,8 +13792,16 @@ async function runScenario(browser, origin, scenario, mutation, diagnostic = nul
     t.check(`${scenario.id} ran to the end`, false, error);
   } finally {
     if (context) {
+      if (requireCompletion) {
+        enter('complete-native-downloads');
+        try {
+          await downloads.waitForCompleted(expectedDownloads);
+        } catch (err) {
+          failCompletion(err);
+        }
+      }
       enter('close-context');
-      diagnostic?.snapshot('before-close');
+      downloads?.snapshot('before-close');
       try {
         await context.close();
       } catch (err) {
@@ -13782,7 +13810,11 @@ async function runScenario(browser, origin, scenario, mutation, diagnostic = nul
         infrastructure = true;
         t.check(`${scenario.id} context cleanup`, false, cleanup);
       }
-      diagnostic?.snapshot('after-close');
+      downloads?.snapshot('after-close');
+      if (requireCompletion && downloads.failureReason && !completionFailed) {
+        failCompletion(nativeDownloadFailure(downloads.failureReason));
+      }
+      downloads?.dispose();
     }
   }
   console.log(`SCENARIO id=${scenario.id} stage=${error ? 'failed' : 'complete'}`);
@@ -13944,13 +13976,15 @@ async function withStack(fn, { port = 0, onCleanupFailure = null } = {}) {
 
 async function main() {
   if (process.argv.some((arg) => arg.startsWith('--diagnostic'))) {
+    const mode = process.argv[2]?.slice('--diagnostic='.length);
     if (process.argv.slice(2).length !== 1
-      || process.argv[2] !== '--diagnostic=context-export-isolation' || process.env.MRT_HEADED) {
+      || process.argv[2] !== `--diagnostic=${mode}`
+      || !['context-export-isolation', 'native-export-completion'].includes(mode) || process.env.MRT_HEADED) {
       console.error('FAIL diagnostic=context-export-isolation stage=arguments');
       process.exitCode = 1;
       return;
     }
-    process.exitCode = await runContextExportIsolation();
+    process.exitCode = await runContextExportIsolation(mode);
     return;
   }
   const prove = process.argv.includes('--prove');
@@ -14035,57 +14069,138 @@ async function main() {
   process.exitCode = code;
 }
 
-function observeDiagnosticDownloads(arm, ordinal, common, blank) {
+function nativeDownloadFailure(reason) {
+  return Object.assign(new Error('Native download completion was not established.'), {
+    name: ['missing-begin', 'pending-timeout'].includes(reason) ? 'TimeoutError' : 'Error',
+    nativeDownloadReason: reason,
+  });
+}
+
+function observeNativeDownloads(arm, ordinal, common, blank, requireCompletion) {
   const downloads = new Map();
+  let attached = false;
+  let closing = false;
   let closed = false;
+  let failureReason = null;
+  let expected = null;
+  let wake = () => {};
+  let session;
+  let observedPage;
+  let observedBrowser;
   const emit = (stage, extra = {}) => console.log(`DOWNLOAD ${JSON.stringify({
     arm, context: ordinal, stage, elapsedMs: Math.round(performance.now() - common.started), ...extra,
   })}`);
-  const snapshot = (stage) => {
-    if (stage === 'after-close') closed = true;
+  const counters = () => {
     const states = [...downloads.values()].map((download) => download.state);
-    emit(stage, {
+    return {
       observation: states.length ? 'observed' : 'unobserved',
       begun: states.length,
       pending: states.filter((state) => state === 'inProgress').length,
       completed: states.filter((state) => state === 'completed').length,
       canceled: states.filter((state) => state === 'canceled').length,
       partialAfterClose: closed,
-    });
+    };
+  };
+  const snapshot = (stage) => {
+    if (stage === 'before-close') closing = true;
+    if (stage === 'after-close') closed = true;
+    emit(stage, counters());
+  };
+  const fail = (reason) => {
+    failureReason ??= reason;
+    wake();
+  };
+  const disconnected = () => {
+    if (!closing) fail('observer-disconnected');
   };
   const record = (event, beginning) => {
     const state = beginning ? 'inProgress' : event?.state;
     if (typeof event?.guid !== 'string' || !event.guid || event.guid.length > 128
       || !['inProgress', 'completed', 'canceled'].includes(state)
-      || (!beginning && !downloads.has(event.guid))) {
+      || (beginning ? downloads.has(event.guid) : !downloads.has(event.guid))) {
       common.valid = false;
-      console.error(`FAIL diagnostic=context-export-isolation arm=${arm} stage=download-event code=invalid`);
+      emit('invalid-event', { reason: 'invalid-event' });
+      fail('invalid-event');
       return;
     }
     if (!downloads.has(event.guid)) downloads.set(event.guid, { ordinal: downloads.size + 1, state });
     const download = downloads.get(event.guid);
+    if (download.state !== 'inProgress' && download.state !== state) {
+      common.valid = false;
+      emit('invalid-event', { reason: 'invalid-state' });
+      fail('invalid-state');
+      return;
+    }
     download.state = state;
     emit(beginning ? 'begin' : 'progress', { download: download.ordinal, state });
+    if (state === 'canceled') fail('canceled');
+    if (expected !== null && downloads.size > expected) fail('unexpected-count');
+    wake();
   };
+  const begin = (event) => record(event, true);
+  const progress = (event) => record(event, false);
   return {
     blank,
+    requireCompletion,
     snapshot,
-    async attach(page) {
+    get failureReason() { return failureReason; },
+    async attach(page, browser) {
       try {
-        const session = await page.createCDPSession();
-        session.on('Page.downloadWillBegin', (event) => record(event, true));
-        session.on('Page.downloadProgress', (event) => record(event, false));
+        observedPage = page;
+        observedBrowser = browser;
+        page.once('close', disconnected);
+        browser.once('disconnected', disconnected);
+        session = await page.createCDPSession();
+        session.on('Page.downloadWillBegin', begin);
+        session.on('Page.downloadProgress', progress);
         // Browser download events require a policy command; this deprecated channel does not.
         await session.send('Page.enable');
+        attached = true;
       } catch (error) {
         common.valid = false;
+        fail('observer-unavailable');
         throw error;
       }
+    },
+    waitForCompleted(count) {
+      expected = Number.isSafeInteger(count) && count > 0 ? count : null;
+      return new Promise((resolve, reject) => {
+        let settled = false;
+        const finish = (reason = null) => {
+          if (settled) return;
+          settled = true;
+          clearTimeout(timer);
+          wake = () => {};
+          if (reason) failureReason ??= reason;
+          emit('completion-result', {
+            expected, ...counters(), result: reason ? 'failed' : 'completed', reason,
+          });
+          if (reason) reject(nativeDownloadFailure(reason));
+          else resolve();
+        };
+        wake = () => {
+          if (!Number.isSafeInteger(expected) || expected <= 0) return finish('invalid-expectation');
+          if (failureReason) return finish(failureReason);
+          if (!attached) return finish('unobserved');
+          if (downloads.size > expected) return finish('unexpected-count');
+          // An empty pending set is not completion before a late downloadWillBegin arrives.
+          if (downloads.size === expected && counters().completed === expected) finish();
+        };
+        emit('completion-wait', { expected, timeoutMs: 15000, ...counters() });
+        const timer = setTimeout(() => finish(downloads.size < expected ? 'missing-begin' : 'pending-timeout'), 15000);
+        wake();
+      });
+    },
+    dispose() {
+      session?.off('Page.downloadWillBegin', begin);
+      session?.off('Page.downloadProgress', progress);
+      observedPage?.off('close', disconnected);
+      observedBrowser?.off('disconnected', disconnected);
     },
   };
 }
 
-async function diagnosticBrowserIdentity(browser, driver, profiles) {
+async function diagnosticBrowserIdentity(browser, driver, profiles, completionWait) {
   const { tmpdir } = await import('node:os');
   const { isAbsolute, relative } = await import('node:path');
   const args = browser.process()?.spawnargs ?? [];
@@ -14123,10 +14238,10 @@ async function diagnosticBrowserIdentity(browser, driver, profiles) {
     || !['inProgress', 'completed', 'canceled'].every((state) => states.includes(state))) {
     throw new Error('Diagnostic download events unsupported');
   }
-  console.log('DIAGNOSTIC capability=Page-download-events policy-change=false completion-wait=false');
+  console.log(`DIAGNOSTIC capability=Page-download-events policy-change=false completion-wait=${completionWait}`);
 }
 
-async function runContextExportIsolation() {
+async function runContextExportIsolation(mode) {
   const common = { valid: true, started: performance.now() };
   const profiles = new Set();
   const arms = [];
@@ -14149,17 +14264,21 @@ async function runContextExportIsolation() {
       id: 'context-only', title: 'blank browser context without app navigation',
       async run(page, t) { t.check('the page remains blank', page.url() === 'about:blank'); },
     };
-    for (const arm of ['browser-only', 'reader-path']) {
+    const completionComparison = mode === 'native-export-completion';
+    const plannedArms = completionComparison
+      ? ['reader-observe-only', 'reader-completion'] : ['browser-only', 'reader-path'];
+    for (const arm of plannedArms) {
       console.log(`DIAGNOSTIC arm=${arm} stage=launch qualified=false`);
       const results = [];
       const observations = [];
       let processFailed = false;
+      const requireCompletion = arm === 'reader-completion';
       const code = await withStack(async ({ browser, origin, driver }) => {
         try {
-          await diagnosticBrowserIdentity(browser, driver, profiles);
+          await diagnosticBrowserIdentity(browser, driver, profiles, requireCompletion);
         } catch (error) {
           common.valid = false;
-          console.error(`FAIL diagnostic=context-export-isolation arm=${arm} stage=identity-capability code=${failureCode(error)}`);
+          console.error(`FAIL diagnostic=${mode} arm=${arm} stage=identity-capability code=${failureCode(error)}`);
           return 1;
         }
         browser.once('disconnected', () => observations.forEach((entry) => entry.snapshot('disconnected')));
@@ -14167,10 +14286,10 @@ async function runContextExportIsolation() {
           if (Number.isInteger(code) && code !== 0) processFailed = true;
           observations.forEach((entry) => entry.snapshot('process-exit'));
         });
-        const first = arm === 'reader-path' ? reader : blank;
+        const first = arm === 'browser-only' ? blank : reader;
         for (const [index, scenario] of [first, blank].entries()) {
           console.log(`DIAGNOSTIC arm=${arm} context=${index + 1} stage=start`);
-          const observation = observeDiagnosticDownloads(arm, index + 1, common, scenario === blank);
+          const observation = observeNativeDownloads(arm, index + 1, common, scenario === blank, requireCompletion);
           observations.push(observation);
           const result = await runScenario(browser, origin, scenario, null, observation);
           results.push(result);
@@ -14190,12 +14309,12 @@ async function runContextExportIsolation() {
   } catch (error) {
     common.valid = false;
     exitCode = 1;
-    console.error(`FAIL diagnostic=context-export-isolation stage=setup code=${failureCode(error)}`);
+    console.error(`FAIL diagnostic=${mode} stage=setup code=${failureCode(error)}`);
   }
   const outcome = !common.valid ? 'setup-aborted'
     : exitCode ? 'failure-observed' : 'both-passed-inconclusive';
   console.log(`DIAGNOSTIC ${JSON.stringify({
-    diagnostic: 'context-export-isolation', qualified: false, outcome, arms,
+    diagnostic: mode, qualified: false, outcome, arms,
   })}`);
   return exitCode;
 }
