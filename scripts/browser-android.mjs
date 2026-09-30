@@ -15,6 +15,11 @@ import { issuePresentation } from '../src/js/lib/issueFocus.js';
 import { availableHomeCategories, groupCatalog, HOME_CATEGORIES, publishingAgeGroups, resolveReadingPaths } from '../src/js/lib/catalog.js';
 import { parseRoute } from '../src/js/lib/route.js';
 import { catalogCardProfiles, catalogCardReadability } from './browser-android-catalog-cards.mjs';
+import {
+  catalogFacets, defaultPath, filterByFacet, filterBySpotlightKind, modernTimelineLists,
+  parseCatalog, pathPlacements, searchCatalog, shelfLists, sortSpotlightStories,
+  sourceLabel, sourceLink, spotlightKindLabel, spotlightSortLabel,
+} from '../src/js/lib/catalog.js';
 
 const driver = process.env.MRT_PUPPETEER || join(homedir(), '.mrt-scratch', 'node_modules', 'puppeteer-core', 'lib', 'puppeteer', 'puppeteer-core.js');
 const edge = process.env.MRT_EDGE || 'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe';
@@ -35,6 +40,22 @@ const marvelAgesTarget = process.argv.includes('--only=marvel-ages-target');
 const catalogReadability = process.argv.includes('--only=catalog-cards');
 const readingFactsAx = process.argv.includes('--only=reading-facts-ax');
 const readingComposition = process.argv.includes('--only=reading-composition') || readingFactsAx;
+const spotlightControls = process.argv.includes('--only=spotlight-controls');
+const spotlightCase = process.argv.find((arg) => arg.startsWith('--spotlight-case='))?.split('=')[1];
+if (spotlightCase) {
+  assert.ok(spotlightControls && ['baseline', 'density', 'summary', 'lifecycle', 'native-keyboard', 'geometry'].includes(spotlightCase),
+    'Unknown spotlight case');
+}
+if (spotlightCase === 'native-keyboard') {
+  assert.ok(process.argv.includes('--viewport=360x800') && !process.env.MRT_ANDROID_SCREENSHOTS,
+    'Native keyboard comparison requires the single360 profile and no screenshots');
+}
+if (spotlightCase === 'geometry') {
+  assert.ok(process.argv.includes('--viewport=320x740@2'),
+    'Geometry confirmation requires the existing320x740@2 profile');
+}
+const spotlightEvidence = [];
+const spotlightGeometry = [];
 const readingCaseArg = process.argv.find((arg) => arg.startsWith('--reading-composition-case='));
 const readingCase = readingCaseArg?.slice('--reading-composition-case='.length);
 if (readingCaseArg !== undefined) {
@@ -122,6 +143,788 @@ async function measure(page, label) {
   check(result.body >= 16, `${label}: body text must be at least 16px (${result.body})`);
   check(!result.overflow, `${label}: no horizontal page overflow`);
   check(result.small.length === 0, `${label}: undersized targets ${JSON.stringify(result.small)}`);
+}
+
+async function spotlightSnapshot(page) {
+  return page.evaluate(() => {
+    const box = (node) => {
+      if (!node) return null;
+      const { x, y, width, height, right, bottom } = node.getBoundingClientRect();
+      return { x, y, width, height, right, bottom };
+    };
+    const sheet = document.querySelector('#android-spotlight-sheet');
+    const trigger = document.querySelector('#android-spotlight-options');
+    const active = document.activeElement;
+    const shown = (node) => !!node?.getClientRects().length;
+    const roots = [sheet?.open ? sheet : document.querySelector('#view-spotlights')].filter(Boolean);
+    const targets = roots.flatMap((root) => [...root.querySelectorAll(
+      sheet?.open ? 'button, .fp > span' : '#android-spotlight-options, .spotlight-controls .fp > span, #spotlights-filters .fp > span',
+    )])
+      .filter(shown).map((node) => ({
+        text: node.textContent.trim(), box: box(node),
+        clipped: node.scrollWidth > node.clientWidth + 1,
+        align: getComputedStyle(node).textAlign,
+      }));
+    const values = (name) => [...document.querySelectorAll(`input[name="${name}"]`)]
+      .map((node) => ({ value: node.value, checked: node.checked, visible: shown(node),
+        label: node.nextElementSibling?.textContent.trim() }));
+    return {
+      hash: location.hash, active: active?.id || active?.outerHTML.slice(0, 180),
+      viewport: { width: innerWidth, height: innerHeight },
+      compact: document.documentElement.classList.contains('android-spotlight-compact'),
+      focus: {
+        tag: active?.tagName, id: active?.id, name: active?.getAttribute('name'),
+        value: active?.getAttribute('value'),
+        checked: active?.matches('input[type="radio"]') ? active.checked : null,
+        documentFocused: document.hasFocus(),
+      },
+      body: parseFloat(getComputedStyle(document.body).fontSize),
+      rootSize: parseFloat(getComputedStyle(document.documentElement).fontSize),
+      overflow: document.documentElement.scrollWidth > innerWidth + 1,
+      android: !!document.querySelector('link[href="./android/mobile.css"]'),
+      heading: box(document.querySelector('#spotlights-h')),
+      search: box(document.querySelector('#form-spotlights-search')),
+      query: document.querySelector('#spotlights-q')?.value,
+      trigger: box(trigger), triggerVisible: shown(trigger),
+      summary: document.querySelector('#android-spotlight-summary')?.textContent,
+      expanded: trigger?.getAttribute('aria-expanded'), sheet: box(sheet), open: !!sheet?.open,
+      modal: sheet?.matches(':modal') === true,
+      orientation: box(document.querySelector('#spotlights-results .shelf-orientation')),
+      first: box(document.querySelector('#spotlights-results .catalog-card')),
+      keys: [...document.querySelectorAll('#spotlights-results .catalog-card')].map((node) => node.dataset.story),
+      report: document.querySelector('#spotlights-report')?.textContent,
+      sorts: values('spotlights-sort'), kinds: values('spotlights-kind'), facets: values('spotlights-category'),
+      targets, dialogs: [...document.querySelectorAll('dialog[open]')].map((node) => node.id),
+    };
+  });
+}
+
+async function spotlightKeyboardFocus(page, selector = '#android-spotlight-sheet') {
+  return page.evaluate((selector) => {
+    const node = document.activeElement;
+    const sheet = document.querySelector(selector);
+    const inside = sheet?.contains(node) === true;
+    const ancestors = [];
+    for (let parent = node?.parentElement; parent; parent = parent.parentElement) {
+      ancestors.push({ tag: parent.tagName, id: parent.id, class: parent.className });
+    }
+    return {
+      tag: node?.tagName, name: node?.getAttribute('name'), value: node?.getAttribute('value'),
+      id: node?.id, text: node?.tagName === 'BUTTON' ? node.textContent : null,
+      role: node?.getAttribute('role') || (node?.matches('input[type="radio"]') ? 'radio'
+        : node?.tagName === 'BUTTON' ? 'button' : node?.tagName === 'DIALOG' ? 'dialog'
+          : node?.tagName === 'BODY' ? 'generic' : null),
+      ancestors, documentFocused: document.hasFocus(),
+      open: sheet?.open === true, modal: sheet?.matches(':modal') === true, inside,
+      dialogId: sheet?.id,
+      layout: sheet ? {
+        overflowY: getComputedStyle(sheet).overflowY,
+        clientHeight: sheet.clientHeight, scrollHeight: sheet.scrollHeight,
+        tabindexAttribute: sheet.getAttribute('tabindex'), tabindexProperty: sheet.tabIndex,
+      } : null,
+      backgroundAppControl: !inside && !!node?.matches(
+        'button, input, select, textarea, summary, a[href], [tabindex], [contenteditable="true"]',
+      ),
+    };
+  }, selector);
+}
+
+async function spotlightGeometryCheckpoint(page, checkpoint) {
+  const requested = page.viewport();
+  assert.ok(requested, 'Geometry diagnostics require an explicit viewport');
+  const result = await page.evaluate(({ checkpoint, requested }) => {
+    const root = document.documentElement;
+    const body = document.body;
+    const box = (node) => {
+      const { x, y, width, height, right, bottom } = node.getBoundingClientRect();
+      return { x, y, width, height, right, bottom };
+    };
+    const identity = (node) => ({
+      tag: node.tagName, id: node.id || null, class: node.getAttribute('class'),
+    });
+    const dimensions = (node) => ({
+      clientWidth: node.clientWidth, clientHeight: node.clientHeight,
+      scrollWidth: node.scrollWidth, scrollHeight: node.scrollHeight,
+      scrollLeft: node.scrollLeft, scrollTop: node.scrollTop,
+    });
+    const css = (node) => {
+      const style = getComputedStyle(node);
+      return Object.fromEntries([
+        'display', 'position', 'width', 'minWidth', 'maxWidth', 'height', 'maxHeight',
+        'top', 'right', 'bottom', 'left', 'marginLeft', 'marginRight', 'transform',
+        'flex', 'flexBasis', 'flexShrink', 'flexWrap', 'alignItems', 'justifyContent',
+        'whiteSpace', 'overflowX', 'overflowY', 'overflowWrap', 'wordBreak', 'clip', 'clipPath',
+        'fontSize', 'fontFamily', 'fontWeight', 'lineHeight', 'boxSizing', 'direction', 'textAlign',
+      ].map((name) => [name, style[name]]));
+    };
+    const inspect = (node) => node ? { ...identity(node), rect: box(node), ...dimensions(node), css: css(node) } : null;
+    const clips = (style) => ['auto', 'scroll', 'hidden', 'clip'].includes(style.overflowX)
+      || (style.clip && style.clip !== 'auto') || (style.clipPath && style.clipPath !== 'none');
+    const offenders = [];
+    for (const node of [root, ...document.querySelectorAll('body, body *')]) {
+      const rect = box(node);
+      if (!rect.width || !rect.height || getComputedStyle(node).visibility !== 'visible') continue;
+      const style = css(node);
+      const selfClips = !!clips(style);
+      const contentRight = !selfClips && Number.isFinite(node.scrollWidth)
+        ? Math.max(rect.right, rect.x + node.scrollWidth) : rect.right;
+      const beyondConfigured = rect.x < -1 || contentRight > requested.width + 1;
+      const beyondRootClient = rect.x < -1 || contentRight > root.clientWidth + 1;
+      if (!beyondConfigured && !beyondRootClient) continue;
+      const modal = node.closest('dialog:modal');
+      let clippingAncestor = null;
+      if (node !== modal) {
+        for (let ancestor = node.parentElement; ancestor; ancestor = ancestor.parentElement) {
+          const ancestorStyle = css(ancestor);
+          if (clips(ancestorStyle)) { clippingAncestor = inspect(ancestor); break; }
+          if (ancestor === modal) break;
+        }
+      }
+      const horizontalScroller = ['auto', 'scroll'].includes(style.overflowX)
+        && node.scrollWidth > node.clientWidth + 1;
+      const inHorizontalScroller = clippingAncestor
+        && ['auto', 'scroll'].includes(clippingAncestor.css.overflowX)
+        && clippingAncestor.scrollWidth > clippingAncestor.clientWidth + 1;
+      offenders.push({
+        ...identity(node), rect, ...dimensions(node), css: style, contentRight,
+        beyondConfigured, beyondRootClient, selfClips, clippingAncestor,
+        horizontalScroller, inHorizontalScroller: !!inHorizontalScroller,
+        outsideRequestedHeight: rect.bottom <= 0 || rect.y >= requested.height,
+        whollyOffscreenX: rect.right <= 0 || rect.x >= requested.width,
+        modalOwner: modal?.id || null, view: node.closest('.view')?.id || null,
+        story: node.closest('[data-story]')?.getAttribute('data-story') || null,
+        parent: node.parentElement ? identity(node.parentElement) : null,
+      });
+    }
+    offenders.sort((a, b) => Number(!!a.clippingAncestor || a.horizontalScroller || a.selfClips)
+      - Number(!!b.clippingAncestor || b.horizontalScroller || b.selfClips));
+    const viewport = window.visualViewport;
+    const bodyStyle = getComputedStyle(body);
+    return {
+      checkpoint, requestedPuppeteerViewport: requested,
+      route: location.hash, currentView: document.querySelector('.view:not([hidden])')?.id,
+      readyState: document.readyState, rootClass: root.className, bodyClass: body.className,
+      inner: { width: innerWidth, height: innerHeight, scrollX, scrollY },
+      visualViewport: viewport ? {
+        width: viewport.width, height: viewport.height, scale: viewport.scale,
+        offsetLeft: viewport.offsetLeft, offsetTop: viewport.offsetTop,
+        pageLeft: viewport.pageLeft, pageTop: viewport.pageTop,
+      } : null,
+      documentElement: inspect(root), body: inspect(body),
+      screen: {
+        width: screen.width, height: screen.height, availWidth: screen.availWidth, availHeight: screen.availHeight,
+        orientation: screen.orientation?.type, angle: screen.orientation?.angle, devicePixelRatio,
+        outerWidth, outerHeight,
+      },
+      metaViewport: document.querySelector('meta[name="viewport"]')?.content || null,
+      bodyType: {
+        fontSize: bodyStyle.fontSize, lineHeight: bodyStyle.lineHeight, fontFamily: bodyStyle.fontFamily,
+        fontWeight: bodyStyle.fontWeight, textSizeAdjust: bodyStyle.getPropertyValue('text-size-adjust'),
+        webkitTextSizeAdjust: bodyStyle.getPropertyValue('-webkit-text-size-adjust'),
+      },
+      components: {
+        navigationHeader: inspect(document.querySelector('.rail-header')),
+        currentHeading: inspect(document.querySelector('.view:not([hidden]) > .head')),
+        searchForm: inspect(document.querySelector('#form-spotlights-search')),
+        searchLabel: inspect(document.querySelector('#form-spotlights-search > label')),
+        searchRow: inspect(document.querySelector('#form-spotlights-search .field-row')),
+        searchInput: inspect(document.querySelector('#spotlights-q')),
+        sheet: inspect(document.querySelector('#android-spotlight-sheet')),
+        sheetHeader: inspect(document.querySelector('#android-spotlight-sheet .android-sheet-header')),
+        sheetTitle: inspect(document.querySelector('#android-spotlight-sheet h2')),
+        close: inspect(document.querySelector('#android-spotlight-sheet .android-sheet-header button')),
+      },
+      horizontalExtents: {
+        total: offenders.length,
+        beyondConfigured: offenders.filter((node) => node.beyondConfigured).length,
+        beyondRootClient: offenders.filter((node) => node.beyondRootClient).length,
+        sampled: offenders.slice(0, 15),
+      },
+    };
+  }, { checkpoint, requested });
+  spotlightGeometry.push(result);
+  console.log(`SPOTLIGHT GEOMETRY ${JSON.stringify(result)}`);
+}
+
+function requireSpotlightCheck(value, message) {
+  check(value, message);
+  assert.ok(value, message);
+}
+
+async function spotlightKeyboardCycle(target, selector, background, record, label) {
+  const identity = (focus) => focus.tag === 'BODY' ? 'viewport'
+    : focus.tag === 'DIALOG' && focus.id === focus.dialogId ? 'dialog'
+      : focus.role === 'button' && focus.text === 'Close' ? 'close'
+        : `${focus.name}:${focus.value}`;
+  const read = () => spotlightKeyboardFocus(target, selector);
+  const safe = (focus) => focus.open && focus.modal && !focus.backgroundAppControl;
+  record.background = { before: await read() };
+  record.background.target = await target.$eval(background, (node) => {
+    const { width, height } = node.getBoundingClientRect();
+    const description = { tag: node.tagName, id: node.id, width, height };
+    node.focus();
+    return description;
+  });
+  record.background.after = await read();
+  console.log(`SPOTLIGHT NATIVE BACKGROUND ${JSON.stringify({ label, ...record.background })}`);
+  const layout = record.background.before.layout;
+  requireSpotlightCheck(layout?.overflowY === 'auto' && layout.clientHeight > 0
+    && layout.tabindexAttribute === null, `${label}: bounded native dialog without authored tabindex`);
+  record.scrollable = layout.scrollHeight > layout.clientHeight;
+  record.checked = await target.$$eval(`${selector} input:checked`, (nodes) => nodes
+    .map((node) => ({ name: node.name, value: node.value, type: node.type })));
+  const groups = ['spotlights-sort', 'spotlights-kind', 'spotlights-category'];
+  requireSpotlightCheck(record.checked.length === groups.length && groups.every((name) => (
+    record.checked.filter((node) => node.name === name && node.type === 'radio').length === 1
+  )), `${label}: exactly the three original checked radio groups`);
+  const order = ['close', ...groups.map((name) => `${name}:${record.checked.find((node) => node.name === name).value}`)];
+  if (record.scrollable) order.unshift('dialog');
+  record.order = order;
+  const limit = order.length + 1;
+  const startIndex = order.indexOf('close');
+  requireSpotlightCheck(record.background.target.width > 0 && record.background.target.height > 0
+    && safe(record.background.before) && safe(record.background.after)
+    && record.background.before.inside && record.background.before.documentFocused
+    && record.background.after.inside && record.background.after.documentFocused
+    && identity(record.background.before) === 'close'
+    && identity(record.background.before) === identity(record.background.after),
+  `${label}: visible background control cannot take modal focus`);
+  record.directionStarts = {};
+  for (const direction of ['forward', 'reverse']) {
+    const start = record.directionStarts[direction] = await read();
+    requireSpotlightCheck(safe(start) && start.inside && start.documentFocused && identity(start) === 'close',
+      `${label}: ${direction} starts naturally on Close with document focus`);
+    const sequence = record[direction] = [];
+    let current = startIndex;
+    let fallback = false;
+    let pending = false;
+    let complete = false;
+    for (let index = 0; index < limit; index++) {
+      const step = { step: index + 1, key: direction === 'forward' ? 'Tab' : 'Shift+Tab', before: await read() };
+      sequence.push(step);
+      if (direction === 'reverse') await target.keyboard.down('Shift');
+      await target.keyboard.press('Tab');
+      if (direction === 'reverse') await target.keyboard.up('Shift');
+      step.after = await read();
+      step.identity = identity(step.after);
+      console.log(`SPOTLIGHT NATIVE KEY ${JSON.stringify({ label, direction, ...step })}`);
+      const expectedBefore = pending ? identity(step.before) === 'viewport' && !step.before.inside
+        : step.before.inside && step.before.documentFocused && identity(step.before) === order[current];
+      requireSpotlightCheck(expectedBefore && safe(step.before) && safe(step.after),
+        `${label}: ${direction} ${index + 1} remains modal without background focus`);
+      const next = (current + (direction === 'forward' ? 1 : order.length - 1)) % order.length;
+      if (step.identity === 'viewport') {
+        requireSpotlightCheck(!fallback && !pending && !step.after.inside
+          && (direction === 'forward' ? current === order.length - 1 : current === 0),
+        `${label}: ${direction} viewport fallback is confined to its single native boundary`);
+        fallback = true;
+        pending = true;
+      } else {
+        requireSpotlightCheck(step.after.inside && step.after.documentFocused && step.identity === order[next],
+          `${label}: ${direction} ${index + 1} reaches the exact next native focus stop`);
+        pending = false;
+        current = next;
+        if (current === startIndex) { complete = true; break; }
+      }
+    }
+    requireSpotlightCheck(complete && !pending, `${label}: ${direction} completes its cycle and re-enters within ${limit} keys`);
+  }
+}
+
+async function spotlightNativeKeyboardComparison(page, raw) {
+  raw.nativeComparison = { reference: {}, app: {}, requests: [] };
+  const record = raw.nativeComparison;
+  const reference = await page.browserContext().newPage();
+  const referenceUrl = `${origin}/__spotlight-native-reference.html`;
+  const html = '<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1">'
+    + '<title>Native dialog reference</title></head><body><input id="native-background" aria-label="Background search">'
+    + '<button type="button">Background button</button><dialog id="native-sheet" aria-labelledby="native-title" style="max-height:160px;overflow-y:auto">'
+    + '<h2 id="native-title">Native filters</h2><button type="button">Close</button></dialog></body></html>';
+  record.html = html;
+  record.groups = [
+    { name: 'spotlights-sort', radios: raw.before.sorts },
+    { name: 'spotlights-kind', radios: raw.before.kinds },
+    { name: 'spotlights-category', radios: raw.before.facets },
+  ];
+  try {
+    await reference.setViewport(page.viewport());
+    await reference.setRequestInterception(true);
+    reference.on('request', (request) => {
+      record.requests.push(request.url());
+      if (request.url() === referenceUrl) return request.respond({ status: 200, contentType: 'text/html', body: html });
+      if (request.url() === `${origin}/favicon.ico`) return request.respond({ status: 204 });
+      return request.abort();
+    });
+    await reference.goto(referenceUrl, { waitUntil: 'domcontentloaded', timeout: 10000 });
+    await reference.evaluate((groups) => {
+      const sheet = document.querySelector('#native-sheet');
+      for (const group of groups) {
+        const fieldset = document.createElement('fieldset');
+        const legend = document.createElement('legend');
+        legend.textContent = group.name;
+        fieldset.append(legend);
+        for (const radio of group.radios) {
+          const label = document.createElement('label');
+          const input = document.createElement('input');
+          input.type = 'radio'; input.name = group.name; input.value = radio.value; input.checked = radio.checked;
+          label.append(input, document.createTextNode(radio.label));
+          fieldset.append(label);
+        }
+        sheet.append(fieldset);
+      }
+      sheet.showModal();
+      sheet.querySelector('button').focus();
+    }, record.groups);
+    await reference.bringToFront();
+    await reference.focus('#native-sheet button');
+    await spotlightKeyboardCycle(reference, '#native-sheet', '#native-background', record.reference, 'Native reference');
+    requireSpotlightCheck(record.reference.scrollable, 'Native reference is genuinely scrollable');
+    requireSpotlightCheck(record.reference.forward.some((step) => step.identity === 'viewport'),
+      'Native reference reproduces the observed forward boundary fallback');
+    requireSpotlightCheck(record.requests.every((url) => url === referenceUrl || url === `${origin}/favicon.ico`),
+      'Native reference requests only its owned fixture and favicon');
+  } finally {
+    await reference.close();
+  }
+  await page.bringToFront();
+  await page.focus('#android-spotlight-sheet .android-sheet-header button');
+  await spotlightKeyboardCycle(page, '#android-spotlight-sheet', '#spotlights-q', record.app, 'Spotlight app');
+  requireSpotlightCheck(record.app.scrollable, 'Spotlight app is genuinely scrollable for the paired confirmation');
+  const signature = (steps) => steps.map((step) => ({
+    identity: step.identity, documentFocused: step.after.documentFocused,
+    open: step.after.open, modal: step.after.modal, background: step.after.backgroundAppControl,
+  }));
+  for (const direction of ['forward', 'reverse']) {
+    requireSpotlightCheck(JSON.stringify(signature(record.reference[direction])) === JSON.stringify(signature(record.app[direction])),
+      `Spotlight app matches native reference ${direction} boundary and checked-radio order`);
+  }
+  record.matched = true;
+}
+
+async function spotlightControlCheck(page, profile) {
+  const label = `${profile.width}x${profile.height}@${profile.textScale || 1}${profile.desktop ? ' desktop' : ''}`;
+  const parsed = parseCatalog(catalog);
+  const mine = shelfLists(parsed.lists, 'spotlights');
+  const facets = catalogFacets(mine);
+  assert.ok(!parsed.dropped && groupCatalog(mine).length > 12 && facets.length > 1,
+    'Spotlight fixture must parse completely and expose search/categories');
+  const state = { kind: 'all', facet: 'all', query: '', sort: null };
+  const stories = () => sortSpotlightStories(groupCatalog(searchCatalog(
+    filterByFacet(filterBySpotlightKind(mine, state.kind), state.facet), state.query,
+  )), state.sort);
+  const summaryText = () => {
+    const labels = [];
+    if (state.kind !== 'all') labels.push(spotlightKindLabel(state.kind));
+    if (state.facet !== 'all') {
+      const facet = facets.find((entry) => entry.key === state.facet);
+      labels.push(`${facet.label} (${facet.count})`);
+    }
+    return `${spotlightSortLabel(state.sort)}; ${labels.join('; ') || 'no filters'}`;
+  };
+  async function settled({ summary = true, announce = false } = {}) {
+    const keys = stories().map((story) => story.key);
+    await page.waitForFunction((expected) => {
+      const root = document.querySelector('#spotlights-results');
+      if (!root || root.textContent.includes('Loading the catalog')) return false;
+      return JSON.stringify([...root.querySelectorAll('.catalog-card')].map((node) => node.dataset.story))
+        === JSON.stringify(expected);
+    }, { timeout: 5000 }, keys);
+    const actual = await spotlightSnapshot(page);
+    check(JSON.stringify(actual.keys) === JSON.stringify(keys), `${label}: exact helper-derived result order`);
+    check(actual.sorts.find((radio) => radio.checked)?.value === (state.sort || 'current-order')
+      && actual.kinds.find((radio) => radio.checked)?.value === state.kind
+      && actual.facets.find((radio) => radio.checked)?.value === state.facet
+      && actual.query === state.query, `${label}: original checked values and search agree`);
+    if (summary && !profile.desktop) {
+      check(actual.summary === summaryText(), `${label}: selected summary ${JSON.stringify(actual.summary)} equals ${JSON.stringify(summaryText())}`);
+    }
+    if (announce) {
+      await page.waitForFunction((count) => {
+        const text = document.querySelector('#announcer')?.textContent || '';
+        return count ? text.includes(`shows ${count} Reading List`) : text.includes('No Reading Lists');
+      }, { timeout: 5000 }, keys.length);
+      check(true, `${label}: rendered result announcement reports ${keys.length} stories`);
+    }
+  }
+  const open = async () => {
+    await click(page, '#android-spotlight-options');
+    await page.waitForSelector('#android-spotlight-sheet[open]', { timeout: 5000 });
+  };
+  const close = async () => {
+    await click(page, '#android-spotlight-sheet .android-sheet-header button');
+    await page.waitForFunction(() => document.querySelector('#android-spotlight-sheet')?.open === false, { timeout: 5000 });
+  };
+  const choose = async (name, value) => {
+    await click(page, `input[name="${name}"][value=${JSON.stringify(value)}]`);
+    if (name === 'spotlights-sort') state.sort = value === 'popularity' ? value : null;
+    if (name === 'spotlights-kind') state.kind = value;
+    if (name === 'spotlights-category') state.facet = value;
+    await settled();
+  };
+  await route(page, 'spotlights');
+  await page.waitForSelector('#spotlights-results .catalog-card', { timeout: 10000 });
+  await page.evaluate(() => window.scrollTo(0, 0));
+  const before = await spotlightSnapshot(page);
+  if (spotlightCase === 'geometry') await spotlightGeometryCheckpoint(page, 'spotlights settled closed');
+  const cdp = await page.createCDPSession();
+  const ax = await cdp.send('Accessibility.getFullAXTree');
+  await cdp.detach();
+  const raw = { label, case: spotlightCase || 'full', before,
+    ax: ax.nodes.filter((node) => !node.ignored && (['radio', 'dialog'].includes(node.role?.value)
+      || (node.role?.value === 'button' && node.name?.value === 'Filters and sort')))
+      .map((node) => ({ role: node.role?.value, name: node.name?.value, description: node.description?.value, properties: node.properties })) };
+  spotlightEvidence.push(raw);
+  console.log(`SPOTLIGHT RAW ${JSON.stringify(raw)}`);
+  if (spotlightCase === 'baseline') return;
+  if (profile.width === 360 && !profile.textScale) {
+    check(before.first?.y <= 448, `${label}: density first card <=448px (actual ${before.first?.y})`);
+  }
+  if (spotlightCase === 'density') return;
+  const saved = await page.evaluate(() => ({ progress: localStorage.getItem('mrt.state.v2'), settings: localStorage.getItem('mrt.settings') }));
+  check(before.body === (profile.desktop ? 14 : 16 * (profile.textScale || 1))
+    && before.rootSize === 16, `${label}: original readable type size`);
+  check(before.android === !profile.desktop && !before.overflow, `${label}: correct shell and no page overflow`);
+  check(before.search?.height > 0, `${label}: search remains discoverable outside the sheet`);
+  check(JSON.stringify(before.facets.map(({ value, label: text }) => [value, text]))
+    === JSON.stringify(facets.map((facet) => [facet.key, `${facet.label} (${facet.count})`])),
+  `${label}: original runtime facet order and counts`);
+  await settled();
+  const first = stories()[0];
+  const selected = defaultPath(first, () => false);
+  const metadata = await page.$eval('#spotlights-results .catalog-card', (node) => ({
+    title: node.querySelector('.catalog-card-title')?.textContent,
+    count: node.querySelector('.catalog-card-meta')?.textContent,
+    source: node.querySelector('.result-source')?.textContent,
+    href: node.querySelector('.result-source a')?.getAttribute('href') || null,
+    actions: [...node.querySelectorAll('.catalog-card-actions button')].map((button) => button.getAttribute('aria-label')),
+  }));
+  check(metadata.title === (first.name || first.lists[0].name)
+    && metadata.count?.startsWith(`${selected.count} issue`)
+    && metadata.actions.some((name) => name?.includes(selected.name)),
+  `${label}: meaningful guide title, count and original actions retained`);
+  check(sourceLink(selected) ? metadata.href === sourceLink(selected)
+    : metadata.href === null && (!sourceLabel(selected) || metadata.source?.includes(sourceLabel(selected))),
+  `${label}: linked or plain attribution follows sourceLink`);
+  if (!spotlightCase && profile.width === 360 && !profile.textScale && !profile.desktop) {
+    await screenshot(page, '360x800-default', 'spotlight-closed');
+  }
+  if (profile.desktop) {
+    if (!spotlightCase) await screenshot(page, '1280x900-desktop', 'spotlights');
+    check(!before.triggerVisible && before.sorts.every((radio) => radio.visible)
+      && before.kinds.every((radio) => radio.visible), `${label}: actual desktop controls remain exposed`);
+    await choose('spotlights-sort', 'popularity');
+    await choose('spotlights-category', facets[1].key);
+    return;
+  }
+  check(before.triggerVisible && before.sorts.every((radio) => !radio.visible)
+    && before.kinds.every((radio) => !radio.visible) && before.facets.every((radio) => !radio.visible),
+  `${label}: only compact entry exposed, no hidden focusable radio rows`);
+  const triggerAx = raw.ax.find((node) => node.role === 'button' && node.name === 'Filters and sort');
+  check(triggerAx?.description === summaryText(), `${label}: trigger name and selection description are nonduplicating`);
+  await page.evaluate(() => {
+    window.__spotlightNodes = {
+      controls: document.querySelector('.spotlight-controls'), categories: document.querySelector('#spotlights-filters'),
+      radios: [...document.querySelectorAll('input[name^="spotlights-"]')],
+    };
+  });
+  await page.focus('#android-spotlight-options');
+  await page.keyboard.press('Enter');
+  await page.waitForSelector('#android-spotlight-sheet[open]', { timeout: 5000 });
+  const panel = await spotlightSnapshot(page);
+  if (spotlightCase === 'geometry') await spotlightGeometryCheckpoint(page, 'spotlight panel open');
+  raw.panel = panel;
+  const panelCdp = await page.createCDPSession();
+  const panelAx = await panelCdp.send('Accessibility.getFullAXTree');
+  await panelCdp.detach();
+  raw.panelAx = panelAx.nodes.filter((node) => !node.ignored && ['dialog', 'radio'].includes(node.role?.value))
+    .map((node) => ({ role: node.role?.value, name: node.name?.value, properties: node.properties }));
+  console.log(`SPOTLIGHT PANEL ${JSON.stringify({ label, panel, ax: raw.panelAx })}`);
+  check(raw.panelAx.some((node) => node.role === 'dialog' && node.name === 'Filters and sort'),
+    `${label}: named native dialog`);
+  check(panel.open && panel.expanded === 'true'
+    && Math.abs(panel.sheet.bottom - profile.height) <= 1 && panel.sheet.y >= 0
+    && Math.abs(panel.sheet.x - (profile.width - panel.sheet.width) / 2) <= 1,
+  `${label}: centered bottom sheet fits viewport`);
+  if (spotlightCase === 'geometry') {
+    if (failures.length) return;
+    const closed = spotlightGeometry.find((point) => point.checkpoint === 'spotlights settled closed');
+    const opened = spotlightGeometry.find((point) => point.checkpoint === 'spotlight panel open');
+    for (const point of [closed, opened]) {
+      requireSpotlightCheck(point?.inner.width === profile.width && point.inner.height === profile.height
+        && point.visualViewport?.width === profile.width && point.visualViewport.height === profile.height
+        && point.visualViewport.scale === 1 && point.documentElement.clientWidth === profile.width
+        && point.documentElement.scrollWidth <= point.documentElement.clientWidth
+        && point.body.scrollWidth <= point.documentElement.clientWidth,
+      `${label}: ${point?.checkpoint}: requested, visual and root viewport stay bounded without zoom`);
+    }
+    const form = closed.components.searchForm.rect;
+    for (const key of ['searchLabel', 'searchRow', 'searchInput']) {
+      const node = closed.components[key];
+      requireSpotlightCheck(node.rect.x >= form.x - 1 && node.rect.right <= form.right + 1
+        && node.rect.width > 0, `${label}: ${key} stays within the search form`);
+    }
+    raw.geometryLabels = await page.evaluate(() => {
+      const sheet = document.querySelector('#android-spotlight-sheet');
+      const viewport = window.visualViewport;
+      const rows = [...sheet.querySelectorAll('h2, button, legend, .fp > span')]
+        .filter((node) => node.getClientRects().length)
+        .map((node) => {
+          node.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'instant' });
+          const box = node.getBoundingClientRect();
+          const range = document.createRange();
+          range.selectNodeContents(node);
+          const textRects = [...range.getClientRects()].filter((rect) => rect.width && rect.height);
+          return {
+            tag: node.tagName, text: node.textContent.trim(),
+            rect: { x: box.x, y: box.y, width: box.width, height: box.height, right: box.right, bottom: box.bottom },
+            visible: box.x >= viewport.offsetLeft - 1 && box.right <= viewport.offsetLeft + viewport.width + 1
+              && box.y >= viewport.offsetTop - 1 && box.bottom <= viewport.offsetTop + viewport.height + 1,
+            fullText: textRects.length > 0 && textRects.every((rect) => rect.left >= box.left - 1
+              && rect.right <= box.right + 1 && rect.top >= box.top - 1 && rect.bottom <= box.bottom + 1),
+          };
+        });
+      sheet.scrollTop = 0;
+      return rows;
+    });
+    console.log(`SPOTLIGHT GEOMETRY LABELS ${JSON.stringify(raw.geometryLabels)}`);
+    requireSpotlightCheck(raw.geometryLabels.length > 0 && raw.geometryLabels.every((row) => row.visible && row.fullText),
+      `${label}: Close, headings and every option label are fully readable within the viewport when scrolled into view`);
+    await screenshot(page, '320x740-text200-fixed', 'spotlight-open');
+    return;
+  }
+  check(panel.targets.every((target) => target.box.width >= 47.5 && target.box.height >= 47.5 && !target.clipped),
+    `${label}: all panel controls have unclipped 48px hit rectangles`);
+  check(panel.active?.includes('Close') && panel.targets.every((target) => target.box.right <= panel.sheet.right + 1),
+    `${label}: focus enters Close and labels fit the sheet`);
+  if (!spotlightCase && profile.width === 360 && !profile.textScale) {
+    await screenshot(page, '360x800-default', 'spotlight-open');
+  }
+  if (!spotlightCase && profile.width === 320 && profile.textScale === 2) {
+    await screenshot(page, '320x740-text200', 'spotlight-open');
+  }
+  if (spotlightCase === 'native-keyboard') {
+    await spotlightNativeKeyboardComparison(page, raw);
+    return;
+  }
+  raw.keyboard = {};
+  await spotlightKeyboardCycle(page, '#android-spotlight-sheet', '#spotlights-q', raw.keyboard, label);
+  await page.focus('input[name="spotlights-sort"][value="current-order"]');
+  await page.keyboard.press('ArrowRight');
+  state.sort = 'popularity';
+  await settled();
+  const lastFacet = facets.at(-1).key;
+  await page.focus(`input[name="spotlights-category"][value=${JSON.stringify(lastFacet)}]`);
+  await page.keyboard.press('Space');
+  state.facet = lastFacet;
+  await settled();
+  check(await page.$eval('input[name="spotlights-category"]:checked', (input) => {
+    const box = input.closest('.fp').getBoundingClientRect();
+    return box.top >= 0 && box.bottom <= innerHeight + 1;
+  }), `${label}: final category is reachable by keyboard within the scrolling sheet`);
+  const longFacet = [...facets].filter((facet) => facet.key !== 'all').sort((a, b) => b.label.length - a.label.length)[0];
+  if (profile.textScale) {
+    await choose('spotlights-kind', 'complete-guide');
+    await choose('spotlights-category', longFacet.key);
+  }
+  await close();
+  const closed = await spotlightSnapshot(page);
+  check(closed.active === 'android-spotlight-options' && !closed.open
+    && closed.expanded === 'false' && closed.summary === summaryText(),
+  `${label}: close preserves selections and returns focus`);
+  check(closed.trigger.width >= 48 && closed.trigger.height >= 48 && !closed.overflow,
+    `${label}: long summary grows without clipping or width loss`);
+  check(closed.targets.every((target) => !target.clipped), `${label}: entire selection summary remains readable`);
+  await page.keyboard.press('Tab');
+  check(await page.evaluate(() => !document.activeElement?.matches('input[name^="spotlights-"]')
+    && document.activeElement !== document.body), `${label}: collapsed choice rows are skipped by Tab`);
+  if (profile.width !== 360 || profile.textScale) return;
+
+  if (!spotlightCase || spotlightCase === 'summary') {
+    const compound = ['best-of', 'complete-guide'].flatMap((kind) => facets
+      .filter((facet) => facet.key !== 'all')
+      .map((facet) => ({ kind, facet: facet.key, lists: filterByFacet(filterBySpotlightKind(mine, kind), facet.key) })))
+      .find((candidate) => candidate.lists.length);
+    assert.ok(compound, 'A nonempty compound kind/category selection is required');
+    await open();
+    await choose('spotlights-kind', compound.kind);
+    await choose('spotlights-category', compound.facet);
+    await close();
+    state.query = compound.lists[0].name;
+    await page.$eval('#spotlights-q', (input, value) => {
+      input.value = value; input.dispatchEvent(new Event('input', { bubbles: true }));
+    }, state.query);
+    await settled();
+    assert.ok(stories().length, 'The compound query must render at least one guide before reset');
+    const placements = pathPlacements(parsed.paths, parsed.lists);
+    const originStory = groupCatalog(modernTimelineLists(parsed.lists))
+      .find((story) => placements.get(story.key)?.first.shelf === 'spotlights');
+    assert.ok(originStory, 'A real timeline path link back to a spotlight stop is required');
+    await route(page, 'catalog');
+    const pathRoot = `#catalog-results [data-story=${JSON.stringify(originStory.key)}] .result-path`;
+    await click(page, `${pathRoot} > summary`);
+    await click(page, `${pathRoot} a[href^="#/spotlights"]`);
+    state.kind = 'all'; state.facet = 'all'; state.query = '';
+    await settled({ summary: false });
+    const reset = await spotlightSnapshot(page);
+    check(reset.summary === summaryText(), `${label}: event-free reset refreshes summary while retaining popularity`);
+    raw.eventFreeReset = reset;
+    if (spotlightCase === 'summary') return;
+  }
+  if (!spotlightCase) {
+    await open();
+    for (const kind of ['all', 'best-of', 'complete-guide']) await choose('spotlights-kind', kind);
+    await choose('spotlights-kind', 'all');
+    for (const facet of facets) await choose('spotlights-category', facet.key);
+    await choose('spotlights-category', 'all');
+    await choose('spotlights-sort', 'current-order');
+    await close();
+    state.query = mine[0].name;
+    await page.$eval('#spotlights-q', (input, value) => {
+      input.value = value; input.dispatchEvent(new Event('input', { bubbles: true }));
+    }, state.query);
+    await settled({ announce: true });
+    state.query = '';
+    await click(page, '#spotlights-clear');
+    await settled();
+    state.query = 'no-such-spotlight-618-fixture';
+    await page.$eval('#spotlights-q', (input, value) => {
+      input.value = value; input.dispatchEvent(new Event('input', { bubbles: true }));
+    }, state.query);
+    await settled({ announce: true });
+    state.query = '';
+    await click(page, '#spotlights-clear');
+    await settled();
+    console.log(`SPOTLIGHT AXES ${JSON.stringify({ sorts: 2, kinds: 3, facets: facets.length, queries: 3 })}`);
+  }
+
+  async function restored() {
+    const result = await page.evaluate(() => {
+      const old = window.__spotlightNodes;
+      const all = [...document.querySelectorAll('input[name^="spotlights-"]')];
+      return {
+        nodes: old.controls === document.querySelector('#view-spotlights .spotlight-controls')
+          && old.categories === document.querySelector('#view-spotlights > #spotlights-filters'),
+        radios: all.length === old.radios.length && old.radios.every((node) => all.includes(node)),
+      };
+    });
+    requireSpotlightCheck(result.nodes && result.radios, `${label}: original controls and category restored exactly once`);
+  }
+  raw.responsive = [];
+  raw.responsiveHistory = { before: await page.evaluate(() => ({ hash: location.hash, length: history.length })) };
+  async function rememberResize(checkpoint) {
+    const snapshot = await spotlightSnapshot(page);
+    raw.responsive.push({ checkpoint, snapshot });
+    console.log(`SPOTLIGHT RESPONSIVE ${JSON.stringify({
+      label, checkpoint, viewport: snapshot.viewport, compact: snapshot.compact,
+      focus: snapshot.focus, open: snapshot.open, summary: snapshot.summary,
+    })}`);
+    return snapshot;
+  }
+  await open();
+  await rememberResize('open narrow sheet');
+  await page.setViewport({ width: 1280, height: 900, isMobile: true, hasTouch: true });
+  await page.waitForFunction(() => document.querySelector('#android-spotlight-sheet')?.open === false, { timeout: 5000 });
+  await restored();
+  const wide = await rememberResize('wide after sheet closes');
+  check(!wide.triggerVisible && wide.sorts.every((radio) => radio.visible)
+    && wide.facets.every((radio) => radio.visible), `${label}: widening exposes every original control`);
+  requireSpotlightCheck(await page.$eval('input[name="spotlights-sort"]:checked', (node) => document.activeElement === node),
+    `${label}: widening the open sheet focuses the checked sort`);
+  await page.setViewport({ width: 360, height: 800, isMobile: true, hasTouch: true });
+  await rememberResize('narrow before trigger focus wait');
+  await page.waitForFunction(() => document.activeElement?.id === 'android-spotlight-options', { timeout: 5000 });
+  await rememberResize('narrow trigger focused');
+  await settled();
+
+  await page.setViewport({ width: 1280, height: 900, isMobile: true, hasTouch: true });
+  await rememberResize('closed trigger widened before focus wait');
+  await page.waitForFunction(() => {
+    const radio = document.querySelector('input[name="spotlights-sort"]:checked');
+    return radio !== null && document.activeElement === radio;
+  }, { timeout: 5000 });
+  await rememberResize('closed trigger handed focus to wide checked sort');
+  requireSpotlightCheck(await page.$eval('input[name="spotlights-sort"]:checked', (node) => document.activeElement === node),
+    `${label}: widening the closed focused trigger focuses the checked sort`);
+  await page.setViewport({ width: 360, height: 800, isMobile: true, hasTouch: true });
+  await page.waitForFunction(() => document.activeElement?.id === 'android-spotlight-options', { timeout: 5000 });
+  await rememberResize('closed controls returned to narrow trigger');
+
+  await page.focus('#spotlights-q');
+  await rememberResize('unrelated narrow search focused');
+  await page.setViewport({ width: 1280, height: 900, isMobile: true, hasTouch: true });
+  await page.waitForFunction(() => !document.documentElement.classList.contains('android-spotlight-compact'), { timeout: 5000 });
+  await rememberResize('unrelated search after widening');
+  requireSpotlightCheck(await page.$eval('#spotlights-q', (node) => document.activeElement === node),
+    `${label}: widening does not steal search focus`);
+  await page.setViewport({ width: 360, height: 800, isMobile: true, hasTouch: true });
+  await page.waitForFunction(() => document.documentElement.classList.contains('android-spotlight-compact'), { timeout: 5000 });
+  await rememberResize('unrelated search after narrowing');
+  requireSpotlightCheck(await page.$eval('#spotlights-q', (node) => document.activeElement === node),
+    `${label}: narrowing does not steal search focus`);
+  await restored();
+  await settled();
+  raw.responsiveHistory.after = await page.evaluate(() => ({ hash: location.hash, length: history.length }));
+  requireSpotlightCheck(JSON.stringify(raw.responsiveHistory.after) === JSON.stringify(raw.responsiveHistory.before),
+    `${label}: responsive focus handoffs preserve route and history`);
+  if (spotlightCase === 'lifecycle') return;
+  for (const action of ['Escape', 'backdrop', 'bridge']) {
+    await open();
+    if (action === 'Escape') await page.keyboard.press('Escape');
+    if (action === 'backdrop') {
+      const top = await page.$eval('#android-spotlight-sheet', (node) => node.getBoundingClientRect().top);
+      assert.ok(top > 2, 'Backdrop fixture must expose a point outside the dialog');
+      await page.touchscreen.tap(2, top / 2);
+    }
+    if (action === 'bridge') {
+      const count = await page.evaluate(() => window.__androidTest?.replies.length || 0);
+      await page.evaluate(() => window.__androidTest.back());
+      await page.waitForFunction((length) => {
+        const reply = window.__androidTest?.replies[length];
+        return reply?.kind === 'back-result' && reply.handled === true;
+      }, { timeout: 5000 }, count);
+    }
+    await page.waitForFunction(() => document.querySelector('#android-spotlight-sheet')?.open === false, { timeout: 5000 });
+    await restored();
+    check(await page.evaluate(() => document.activeElement?.id === 'android-spotlight-options'),
+      `${label}: ${action} returns focus without undoing choices`);
+  }
+  await open();
+  await route(page, 'browse');
+  await page.waitForFunction(() => document.activeElement?.id === 'browse-h', { timeout: 5000 });
+  check(!(await spotlightSnapshot(page)).open, `${label}: hash departure closes before destination focus`);
+  await route(page, 'spotlights');
+  state.sort = null;
+  await settled();
+  await open();
+  await page.$eval('.brand[data-view="home"]', (node) => node.click());
+  await page.waitForFunction(() => {
+    const home = document.querySelector('#view-home');
+    return home && !home.hidden && home.querySelector('h1') === document.activeElement;
+  }, { timeout: 5000 });
+  check(!(await spotlightSnapshot(page)).open, `${label}: no-hash navigation recovers destination focus`);
+  await route(page, 'spotlights');
+  await settled();
+  await open();
+  const history = await page.evaluate(() => window.history.length);
+  await choose('spotlights-sort', 'popularity');
+  check(await page.evaluate(() => window.history.length) === history + 1, `${label}: one sort change pushes history once`);
+  await choose('spotlights-sort', 'current-order');
+  await page.goBack();
+  state.sort = 'popularity';
+  await settled();
+  check(!(await spotlightSnapshot(page)).open
+    && await page.evaluate(() => document.activeElement?.id === 'spotlights-h'),
+  `${label}: sort-only Back restores summary/results and unobstructed heading focus`);
+  await open();
+  await page.goForward();
+  state.sort = null;
+  await settled();
+  check(!(await spotlightSnapshot(page)).open
+    && await page.evaluate(() => document.activeElement?.id === 'spotlights-h'),
+  `${label}: sort-only Forward retains focus semantics`);
+  await restored();
+  const after = await page.evaluate(() => ({ progress: localStorage.getItem('mrt.state.v2'), settings: localStorage.getItem('mrt.settings') }));
+  check(JSON.stringify(after) === JSON.stringify(saved), `${label}: filters leave progress and settings unchanged`);
 }
 
 const SERIES = [
@@ -1212,6 +2015,15 @@ try {
   ];
   if (catalogReadability) viewports = catalogCardProfiles;
   if (readingComposition) viewports = readingFactsAx ? readingProfiles.filter((profile) => !profile.desktop) : readingProfiles;
+  if (spotlightControls) viewports = [
+    { width: 320, height: 740 },
+    { width: 360, height: 800 },
+    { width: 412, height: 915, theme: 'dark' },
+    { width: 360, height: 800, textScale: 1.5 },
+    { width: 320, height: 740, textScale: 2 },
+    { width: 800, height: 360 },
+    { width: 1280, height: 900, desktop: true },
+  ];
   const onlyCase = process.argv.find((arg) => arg.startsWith('--case='))?.slice('--case='.length);
   if (catalogReadability && onlyCase) viewports = viewports.filter((viewport) => onlyCase.split(',').includes(viewport.id));
   const onlyViewport = process.argv.find((arg) => arg.startsWith('--viewport='))?.slice('--viewport='.length);
@@ -1220,6 +2032,7 @@ try {
   ));
   assert.ok(viewports.length, `Unknown viewport: ${onlyViewport}`);
   for (const viewport of viewports) {
+    const failuresBefore = failures.length;
     root = resolve(viewport.desktop ? 'src' : ANDROID_ASSET_DIR);
     const context = await browser.createBrowserContext();
     const page = await context.newPage();
@@ -1231,7 +2044,12 @@ try {
     if (seriesReadability) await seriesFixtures(page);
     if (noteReadability) await noteFixtures(page);
     if (readingComposition) await readingFixtures(page, viewport);
-    if (categoryReadability || marvelAgesTarget || catalogReadability) await categoryFixtures(page);
+    if (categoryReadability || marvelAgesTarget || catalogReadability || spotlightControls) await categoryFixtures(page);
+    if (spotlightControls) {
+      await page.evaluateOnNewDocument((theme) => {
+        localStorage.setItem('mrt.settings', JSON.stringify({ covers: false, theme }));
+      }, viewport.theme || 'light');
+    }
     await page.setRequestInterception(true);
     page.on('request', (request) => {
       if (readingComposition && request.resourceType() === 'image' && new URL(request.url()).host === 'i.annihil.us') {
@@ -1240,7 +2058,7 @@ try {
           body: '<svg xmlns="http://www.w3.org/2000/svg" width="200" height="300"><rect width="200" height="300" fill="#73579b"/><path d="M0 300L200 0" stroke="#fff" stroke-width="8"/></svg>',
         });
       }
-      if ((seriesReadability || noteReadability || categoryReadability || marvelAgesTarget || catalogReadability || readingComposition) && new URL(request.url()).origin !== origin) {
+      if ((seriesReadability || noteReadability || categoryReadability || marvelAgesTarget || catalogReadability || readingComposition || spotlightControls) && new URL(request.url()).origin !== origin) {
         failures.push(`Unexpected external request: ${request.url()}`);
         return request.abort();
       }
@@ -1263,7 +2081,7 @@ try {
           });
         }
         if (request.url().endsWith('/data/catalog.json')) {
-          return request.respond({ status: 200, contentType: 'application/json', body: JSON.stringify(mobileUi || categoryReadability || marvelAgesTarget || catalogReadability ? catalog : { ...catalog, lists: [orderEntry] }) });
+          return request.respond({ status: 200, contentType: 'application/json', body: JSON.stringify(mobileUi || categoryReadability || marvelAgesTarget || catalogReadability || spotlightControls ? catalog : { ...catalog, lists: [orderEntry] }) });
         }
         return request.continue();
       }
@@ -1273,8 +2091,8 @@ try {
         body: JSON.stringify({ status: 'ok', ...order.items[0], items: [], data: [] }),
       });
     });
-    await page.evaluateOnNewDocument((reading) => {
-      localStorage.setItem('mrt.settings', JSON.stringify(reading ? { covers: false, theme: 'light' } : { covers: false }));
+    await page.evaluateOnNewDocument((reading, spotlight) => {
+      if (!spotlight) localStorage.setItem('mrt.settings', JSON.stringify(reading ? { covers: false, theme: 'light' } : { covers: false }));
       window.addEventListener('load', () => {
         const channel = new MessageChannel();
         const harness = { requests: [], replies: [], autoSave: true };
@@ -1294,8 +2112,9 @@ try {
           data: 'recap:connect:v1', origin: '', source: null, ports: [channel.port2],
         }));
       });
-    }, readingComposition);
+    }, readingComposition, spotlightControls);
     await page.goto(origin, { waitUntil: 'networkidle0' });
+    if (spotlightCase === 'geometry') await spotlightGeometryCheckpoint(page, 'unscaled postboot');
     if (viewport.textScale) {
       await page.evaluate((scale) => {
         for (const name of ['--t-caption', '--t-body', '--t-body-lg', '--t-subtitle', '--t-title', '--t-title-lg']) {
@@ -1304,7 +2123,22 @@ try {
         }
       }, viewport.textScale);
     }
+    if (spotlightCase === 'geometry') await spotlightGeometryCheckpoint(page, 'after existing text scaling');
     const label = `${viewport.width}x${viewport.height}${viewport.textScale ? ` ${viewport.textScale * 100}% text` : ''}`;
+    if (spotlightControls) {
+      try {
+        await spotlightControlCheck(page, viewport);
+      } catch (error) {
+        const diagnostics = await spotlightSnapshot(page);
+        spotlightEvidence.push({ label, error: error.message, stack: error.stack, diagnostics, pageErrors: errors });
+        console.error(`SPOTLIGHT INTERRUPTED ${JSON.stringify(spotlightEvidence.at(-1))}`);
+        check(false, `${label}: spotlight scenario completed (${error.message})`);
+      }
+      check(errors.length === 0, `${label}: page errors ${errors.join('; ')}`);
+      await context.close();
+      if (failures.length > failuresBefore) break;
+      continue;
+    }
     if (readingComposition) {
       await readingCompositionCheck(page, viewport);
       if (readingFactsAx) assert.deepEqual(errors, [], `${viewport.id}: no page errors`);
@@ -1456,6 +2290,13 @@ try {
   console.error(`Assertions recorded before exit: ${JSON.stringify({ assertions, failures })}`);
   throw error;
 } finally {
+  if (spotlightControls && process.env.MRT_SPOTLIGHT_EVIDENCE) {
+    await writeFile(process.env.MRT_SPOTLIGHT_EVIDENCE,
+      `${JSON.stringify({
+        assertions, failures, profiles: spotlightEvidence,
+        ...(spotlightCase === 'geometry' ? { geometry: spotlightGeometry } : {}),
+      }, null, 2)}\n`);
+  }
   await browser?.close();
   server.closeAllConnections();
   await new Promise((done) => server.close(done));
