@@ -27,6 +27,7 @@ def nativeTestTarget = nativeTestBuildType == 'release' ?
     'io.github.raymondnassar.recappage' : 'io.github.raymondnassar.recappage.prototype'
 
 android {
+    enableKotlin = false
     namespace 'io.github.raymondnassar.recappage.prototype'
     compileSdk 36
     testBuildType nativeTestBuildType

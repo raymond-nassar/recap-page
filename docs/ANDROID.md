@@ -91,6 +91,14 @@ Marvel's service.
 
 ## Build and install
 
+The Java-only Android module disables AGP 9.4.1's built-in Kotlin integration with the module-level
+`enableKotlin = false` setting. Otherwise AGP can add the Kotlin standard library even when Kotlin
+compilation reports `NO-SOURCE`. Explicit instrumentation-test dependencies are unchanged, and the
+application DEX checks still reject foreign runtime classes. See the official
+[Java-only module guidance](https://developer.android.com/build/migrate-to-built-in-kotlin)
+and [AGP 9.4 API](https://developer.android.com/reference/tools/gradle-api/9.4/com/android/build/api/dsl/CommonExtension),
+read on 2026-09-30. This setting does not by itself prove a rebuilt artifact or test harness passes.
+
 **Feature-first release gate:** the owner authorized starting new releases after the accepted
 mobile features are finished and verified. Source preparation does not clear that gate or
 authorize a build by itself. Do not bump the version, reserve a release code, create an APK/AAB,

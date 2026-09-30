@@ -31,7 +31,14 @@ function fixture() {
 const file = { filename: 'recap-page-backup.json', type: 'application/json', text: '{"notes":"Caf\u00e9"}' };
 
 test('Android package identity comes from the shared reserved-build contract', async () => {
-  const build = await readFile(new URL('../packaging/android/app/build.gradle', import.meta.url), 'utf8');
+  const [build, rootBuild, properties] = await Promise.all([
+    readFile(new URL('../packaging/android/app/build.gradle', import.meta.url), 'utf8'),
+    readFile(new URL('../packaging/android/build.gradle', import.meta.url), 'utf8'),
+    readFile(new URL('../packaging/android/gradle.properties', import.meta.url), 'utf8'),
+  ]);
+  assert.match(rootBuild, /id 'com\.android\.application' version '9\.4\.1'/);
+  assert.match(build, /android \{\s+enableKotlin = false/);
+  assert.doesNotMatch(properties, /^\s*android\.builtInKotlin\s*=/m);
   assert.match(build, /commandLine 'node', 'scripts\/android-release.mjs', 'version'/);
   assert.match(build, /versionCode buildMetadata\.versionCode/);
   assert.match(build, /versionName buildMetadata\.versionName/);
