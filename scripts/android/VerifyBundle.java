@@ -200,6 +200,95 @@ public final class VerifyBundle {
         return element.getTagName() + attributes + parts;
     }
 
+    private record NetworkElement(int indent, Element element) {}
+
+    private static String networkTreeBoolean(String encoded) {
+        var raw = java.util.regex.Pattern.compile("^(.*) \\(Raw: \"(true|false)\"\\)$").matcher(encoded);
+        String value = raw.matches() ? raw.group(1) : encoded;
+        String decoded;
+        if (List.of("true", "\"true\"", "(boolean) true", "(type 0x12)0xffffffff", "(type 0x12)0x1").contains(value)) decoded = "true";
+        else if (List.of("false", "\"false\"", "(boolean) false", "(type 0x12)0x0").contains(value)) decoded = "false";
+        else throw new IllegalArgumentException("NETWORK_TREE_FORMAT");
+        require(!raw.matches() || raw.group(2).equals(decoded), "NETWORK_TREE_FORMAT");
+        return decoded;
+    }
+
+    private static Element networkTree(Path path) throws Exception {
+        require(Files.size(path) <= 32768, "NETWORK_TREE_BOUNDS");
+        String[] lines = Files.readString(path).split("\\r?\\n", -1);
+        require(lines.length <= 128, "NETWORK_TREE_BOUNDS");
+        var document = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
+        var stack = new ArrayList<NetworkElement>();
+        int elements = 0;
+        int attributes = 0;
+        int texts = 0;
+        for (String line : lines) {
+            require(line.length() <= 1024, "NETWORK_TREE_BOUNDS");
+            require(line.chars().noneMatch(Character::isISOControl), "NETWORK_TREE_FORMAT");
+            if (line.isBlank()) continue;
+            var record = java.util.regex.Pattern.compile("^( *)([EATC]): (.*)$").matcher(line);
+            require(record.matches(), "NETWORK_TREE_FORMAT");
+            int indent = record.group(1).length();
+            require(indent <= 32, "NETWORK_TREE_BOUNDS");
+            String kind = record.group(2);
+            String body = record.group(3);
+            if (kind.equals("E")) {
+                var name = java.util.regex.Pattern.compile("^([a-z][a-z0-9-]*) \\(line=[0-9]{1,9}\\)$").matcher(body);
+                require(name.matches() && List.of("network-security-config", "base-config", "domain-config", "domain")
+                        .contains(name.group(1)), "NETWORK_TREE_FORMAT");
+                while (!stack.isEmpty() && stack.get(stack.size() - 1).indent() >= indent) stack.remove(stack.size() - 1);
+                require(++elements <= 32 && stack.size() < 4, "NETWORK_TREE_BOUNDS");
+                Element element = document.createElement(name.group(1));
+                if (stack.isEmpty()) {
+                    require(indent == 0 && document.getDocumentElement() == null
+                            && name.group(1).equals("network-security-config"), "NETWORK_TREE_FORMAT");
+                    document.appendChild(element);
+                } else {
+                    NetworkElement parent = stack.get(stack.size() - 1);
+                    require(indent == parent.indent() + 4, "NETWORK_TREE_FORMAT");
+                    parent.element().appendChild(element);
+                }
+                stack.add(new NetworkElement(indent, element));
+            } else {
+                int parentIndent = indent - (kind.equals("A") ? 2 : 4);
+                while (!stack.isEmpty() && stack.get(stack.size() - 1).indent() > parentIndent) stack.remove(stack.size() - 1);
+                require(!stack.isEmpty() && stack.get(stack.size() - 1).indent() == parentIndent, "NETWORK_TREE_FORMAT");
+                Element parent = stack.get(stack.size() - 1).element();
+                if (kind.equals("A")) {
+                    require(++attributes <= 64, "NETWORK_TREE_BOUNDS");
+                    var attribute = java.util.regex.Pattern.compile("^(cleartextTrafficPermitted|includeSubdomains)(?:\\(0x[0-9a-fA-F]{1,8}\\))?=(.*)$").matcher(body);
+                    require(attribute.matches(), "NETWORK_TREE_FORMAT");
+                    String name = attribute.group(1);
+                    require(!parent.hasAttribute(name), "NETWORK_TREE_FORMAT");
+                    parent.setAttribute(name, networkTreeBoolean(attribute.group(2)));
+                } else {
+                    require(++texts <= 16 && body.length() >= 2, "NETWORK_TREE_BOUNDS");
+                    char quote = body.charAt(0);
+                    require((quote == '\'' || quote == '"') && body.charAt(body.length() - 1) == quote, "NETWORK_TREE_FORMAT");
+                    String text = body.substring(1, body.length() - 1);
+                    require(text.indexOf(quote) < 0 && text.indexOf('\\') < 0, "NETWORK_TREE_FORMAT");
+                    parent.appendChild(document.createTextNode(text));
+                }
+            }
+        }
+        require(document.getDocumentElement() != null, "NETWORK_TREE_FORMAT");
+        return document.getDocumentElement();
+    }
+
+    private static void resource(String[] args, boolean compiledNetwork) throws Exception {
+        require(args.length == 3, "RESOURCE_POLICY_MISMATCH");
+        Element expected = xml(Path.of(args[2]));
+        if (compiledNetwork) require(expected.getTagName().equals("network-security-config"), "NETWORK_TREE_FORMAT");
+        Element actual = compiledNetwork ? networkTree(Path.of(args[1])) : xml(Path.of(args[1]));
+        boolean matches = canonical(actual).equals(canonical(expected));
+        if (!matches && expected.getTagName().equals("network-security-config")) {
+            System.err.println("NETWORK_SHAPE {\"expected\":" + networkShape(expected)
+                    + ",\"actual\":" + networkShape(actual) + "}");
+        }
+        require(matches, "RESOURCE_POLICY_MISMATCH");
+        System.out.println("{\"verified\":true}");
+    }
+
     private static String networkCount(int count) {
         return count <= 16 ? Integer.toString(count) : "\"overflow\"";
     }
@@ -502,18 +591,8 @@ public final class VerifyBundle {
                 case "archive" -> archive(args);
                 case "manifest" -> manifest(args);
                 case "generated-splits" -> generatedSplits(args);
-                case "resource" -> {
-                    require(args.length == 3, "RESOURCE_POLICY_MISMATCH");
-                    Element actual = xml(Path.of(args[1]));
-                    Element expected = xml(Path.of(args[2]));
-                    boolean matches = canonical(actual).equals(canonical(expected));
-                    if (!matches && expected.getTagName().equals("network-security-config")) {
-                        System.err.println("NETWORK_SHAPE {\"expected\":" + networkShape(expected)
-                                + ",\"actual\":" + networkShape(actual) + "}");
-                    }
-                    require(matches, "RESOURCE_POLICY_MISMATCH");
-                    System.out.println("{\"verified\":true}");
-                }
+                case "resource" -> resource(args, false);
+                case "network-resource" -> resource(args, true);
                 case "certificate" -> {
                     require(args.length == 4, "CERTIFICATE_ARGUMENTS");
                     String password = System.getenv(args[3]);

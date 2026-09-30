@@ -281,6 +281,15 @@ dangling resource bindings fail. Conditional tool metadata is not generally exem
 the pinned [splits-resource generator](https://github.com/google/bundletool/blob/586a43a450712a1067f3d92cf7574dee68226302/src/main/java/com/android/tools/build/bundletool/model/utils/SplitsXmlInjector.java),
 read on 2026-09-30.
 
+Network-policy verification reads the same derived APK's compiled resource with pinned build-tools
+35.0.0 AAPT2. A strict network-only decoder preserves the supported element and attribute identities,
+actual boolean values, child order and character-data records in a DOM, then uses the existing
+canonical comparison against the source policy. Missing or changed domain text and flags still fail.
+Unknown attributes, elements, namespaces, malformed records and unsupported encodings fail closed.
+The older APK Analyzer text view is not authoritative for this resource because it can omit domain
+text. Backup and data-extraction XML retain their existing verification path. Reduced diagnostic
+summaries never replace canonical verification or supply missing expected hosts or flags.
+
 Only success after inspection, native proof and cleanup retains the AAB, `android-artifact.json`,
 `android-candidate.json` and `version-codes.proposed.json`, for seven days. Preserve the exact
 packet before expiry and review the proposed seal separately. Do not replace a newer ledger

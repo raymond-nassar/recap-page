@@ -513,7 +513,12 @@ test('private signing scratch is removed on child failure and refuses unknown cl
       const apk = join(work, 'same-derived-base.apk');
       let observerCalls = 0;
       childProcess.execFileSync = (file, args) => {
-        if (file === 'java') throw Object.assign(new Error(privateText), { status: 1, stderr: Buffer.from('RESOURCE_POLICY_MISMATCH\n') });
+        if (file === 'java') {
+          assert.equal(args[1], 'network-resource');
+          assert.equal(observerCalls, 1, 'Canonical validation must consume the independent compiled tree');
+          assert.equal(args[2], join(work, 'network-compiled-tree.raw.txt'));
+          throw Object.assign(new Error(privateText), { status: 1, stderr: Buffer.from('RESOURCE_POLICY_MISMATCH\n') });
+        }
         observerCalls += 1;
         assert.equal(basename(file), 'aapt2');
         assert.ok(file.includes(join('build-tools', '35.0.0')));
@@ -523,6 +528,10 @@ test('private signing scratch is removed on child failure and refuses unknown cl
       };
       syncBuiltinESMExports();
       await assert.rejects(verifyPolicyResource('BASE_APK_NETWORK_RULES', 'decoded.xml', 'source.xml', apk, work), (error) => {
+        if (value.observerFailure) {
+          assert.equal(error.message, 'Android candidate: authoritative compiled network read failed; raw tool output was not retained.');
+          return true;
+        }
         assert.ok(error.message.startsWith('Android candidate: inspection BASE_APK_NETWORK_RULES failed; exit=1; signal=none; code=RESOURCE_POLICY_MISMATCH.'));
         const match = error.message.match(/ Compiled network observer: (\{.*\})$/);
         assert.ok(match, 'The original failure must include a separately classified observer outcome');
@@ -542,23 +551,26 @@ test('private signing scratch is removed on child failure and refuses unknown cl
     for (const [stage, code] of [['BASE_APK_BACKUP_RULES', 'RESOURCE_POLICY_MISMATCH'],
       ['BASE_APK_NETWORK_RULES', 'VERIFICATION_FAILED']]) {
       let attempts = 0;
-      childProcess.execFileSync = () => {
+      const work = join(observerRoot, stage);
+      await mkdir(work);
+      childProcess.execFileSync = (file) => {
         attempts += 1;
+        if (file !== 'java') return Buffer.from(compiled);
         throw Object.assign(new Error(privateText), { status: 1, stderr: Buffer.from(`${code}\n`) });
       };
       syncBuiltinESMExports();
-      await assert.rejects(verifyPolicyResource(stage, 'decoded.xml', 'source.xml', 'same.apk', observerRoot), (error) => {
+      await assert.rejects(verifyPolicyResource(stage, 'decoded.xml', 'source.xml', 'same.apk', work), (error) => {
         assert.ok(error.message.includes(`code=${code}`) && !error.message.includes('Compiled network observer'));
         return true;
       });
-      assert.equal(attempts, 1);
+      assert.equal(attempts, stage === 'BASE_APK_NETWORK_RULES' ? 2 : 1);
     }
     let successCalls = 0;
-    childProcess.execFileSync = () => { successCalls += 1; return '{"verified":true}'; };
+    childProcess.execFileSync = (file) => { successCalls += 1; return file === 'java' ? '{"verified":true}' : Buffer.from(compiled); };
     syncBuiltinESMExports();
     assert.equal(await verifyPolicyResource('BASE_APK_NETWORK_RULES', 'decoded.xml', 'source.xml', 'same.apk', observerRoot),
       '{"verified":true}');
-    assert.equal(successCalls, 1);
+    assert.equal(successCalls, 2);
   } finally {
     childProcess.execFileSync = original;
     syncBuiltinESMExports();

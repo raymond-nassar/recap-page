@@ -46,6 +46,7 @@ const PUBLIC_VERIFIER_CODES = new Set([
   'MANIFEST_PACKAGE', 'MANIFEST_PERMISSIONS', 'MANIFEST_POLICY_RESOURCE', 'MANIFEST_QUERIES',
   'MANIFEST_QUERY_INTENT', 'MANIFEST_QUERY_INVENTORY', 'MANIFEST_ROOT_INVENTORY', 'MANIFEST_SDK',
   'MANIFEST_TEST_COMPONENT', 'MANIFEST_VERSION', 'OUTPUT_EXISTS', 'POLICY_RESOURCE_REFERENCE',
+  'NETWORK_TREE_FORMAT', 'NETWORK_TREE_BOUNDS',
   'POLICY_RESOURCE_UNRESOLVED', 'RESOURCE_POLICY_MISMATCH', 'SIGNER_ARGUMENT', 'SPLIT_COMPONENTS', 'SPLIT_IDENTITY',
   'UNEXPECTED_SIGNER', 'UNKNOWN_COMMAND', 'UNSIGNED_ENTRY', 'VERIFICATION_FAILED',
   'ZIP_CENTRAL_ENTRY', 'ZIP_CENTRAL_LENGTH', 'ZIP_DIRECTORY', 'ZIP_ENCRYPTED', 'ZIP_END',
@@ -635,22 +636,24 @@ export function compiledNetworkShape(raw) {
   };
 }
 export async function verifyPolicyResource(stage, decoded, expected, apk, work) {
+  if (stage !== 'BASE_APK_NETWORK_RULES') return java(stage, 'resource', decoded, expected);
+  let raw;
+  const path = join(work, 'network-compiled-tree.raw.txt');
   try {
-    return java(stage, 'resource', decoded, expected);
+    raw = execFileSync(sdkTool('aapt2'),
+      ['dump', 'xmltree', '--file', 'res/xml/network_security_config.xml', apk],
+      { env: cleanEnv(), stdio: ['ignore', 'pipe', 'pipe'], timeout: 30000, maxBuffer: 128 * 1024 });
+    await writeFile(path, raw, { mode: 0o600, flag: 'wx' });
+  } catch {
+    throw new CandidateError('Android candidate: authoritative compiled network read failed; raw tool output was not retained.');
+  }
+  try {
+    return java(stage, 'network-resource', path, expected);
   } catch (error) {
-    if (stage !== 'BASE_APK_NETWORK_RULES' || !(error instanceof CandidateError)
+    if (!(error instanceof CandidateError)
       || !error.message.startsWith('Android candidate: inspection BASE_APK_NETWORK_RULES failed;')
       || !/; code=RESOURCE_POLICY_MISMATCH(?:; network=|\. Raw tool output was not retained\.$)/.test(error.message)) throw error;
-    let observation;
-    try {
-      const raw = execFileSync(sdkTool('aapt2'),
-        ['dump', 'xmltree', '--file', 'res/xml/network_security_config.xml', apk],
-        { env: cleanEnv(), stdio: ['ignore', 'pipe', 'pipe'], timeout: 30000, maxBuffer: 128 * 1024 });
-      await writeFile(join(work, 'network-compiled-tree.raw.txt'), raw, { mode: 0o600, flag: 'wx' });
-      observation = compiledNetworkShape(raw.toString('utf8'));
-    } catch {
-      observation = { status: 'observer-failed' };
-    }
+    const observation = compiledNetworkShape(raw.toString('utf8'));
     throw new CandidateError(`${error.message} Compiled network observer: ${JSON.stringify(observation)}`);
   }
 }
@@ -751,8 +754,10 @@ async function inspectPackages(work, root) {
         ['network_security_config', 'BASE_APK_NETWORK_XML_DUMP', 'BASE_APK_NETWORK_RULES'],
       ]) {
         const decoded = join(work, `${name}.xml`);
-        await writeFile(decoded, execute(sdkTool('apkanalyzer'),
-          ['resources', 'xml', '--file', `/res/xml/${name}.xml`, path], { env: cleanEnv() }, dumpStage));
+        if (verifyStage !== 'BASE_APK_NETWORK_RULES') {
+          await writeFile(decoded, execute(sdkTool('apkanalyzer'),
+            ['resources', 'xml', '--file', `/res/xml/${name}.xml`, path], { env: cleanEnv() }, dumpStage));
+        }
         await verifyPolicyResource(verifyStage, decoded,
           join(root, 'packaging', 'android', 'app', 'src', 'main', 'res', 'xml', `${name}.xml`), path, work);
       }
@@ -814,6 +819,51 @@ async function jdkProof(work) {
   await mkdir(scratch, { mode: 0o700 });
   const env = { ...cleanEnv(), RECAP_PROOF_PASSWORD: randomBytes(32).toString('hex'), RECAP_PROOF_ALIAS: 'proof' };
   try {
+    const networkSource = join(scratch, 'network-policy.xml');
+    await writeFile(networkSource, '<network-security-config><base-config cleartextTrafficPermitted="false"/>'
+      + '<domain-config cleartextTrafficPermitted="true"><domain includeSubdomains="false">127.0.0.1</domain>'
+      + '<domain includeSubdomains="false">localhost</domain></domain-config></network-security-config>');
+    const networkTree = [
+      'E: network-security-config (line=2)',
+      '    E: base-config (line=3)', '      A: cleartextTrafficPermitted=false',
+      '    E: domain-config (line=4)', '      A: cleartextTrafficPermitted="true" (Raw: "true")',
+      '        E: domain (line=5)', '          A: includeSubdomains=false', "            T: '127.0.0.1'",
+      '        E: domain (line=6)', '          A: includeSubdomains="false" (Raw: "false")', "            C: 'localhost'",
+    ].join('\n') + '\n';
+    const annotatedNetwork = networkTree.replaceAll('cleartextTrafficPermitted', 'cleartextTrafficPermitted(0x00000000)')
+      .replaceAll('includeSubdomains', 'includeSubdomains(0x00000000)');
+    const networkFixtures = [
+      [networkTree, null],
+      [networkTree.replace('127.0.0.1', 'example.invalid'), 'RESOURCE_POLICY_MISMATCH'],
+      [networkTree.replace("            T: '127.0.0.1'\n", ''), 'RESOURCE_POLICY_MISMATCH'],
+      [networkTree.replace('cleartextTrafficPermitted=false', 'cleartextTrafficPermitted=true')
+        .replace('cleartextTrafficPermitted="true" (Raw: "true")', 'cleartextTrafficPermitted=false')
+        .replace('includeSubdomains=false', 'includeSubdomains=true'), 'RESOURCE_POLICY_MISMATCH'],
+      [networkTree.replace('      A: cleartextTrafficPermitted=false',
+        '      A: cleartextTrafficPermitted=false\n      A: unexpected="private"'), 'NETWORK_TREE_FORMAT'],
+      [networkTree + "        E: domain (line=7)\n          A: includeSubdomains=false\n            T: 'example.invalid'\n", 'RESOURCE_POLICY_MISMATCH'],
+      ['N: unsupported=urn:unsupported (line=1)\n' + networkTree, 'NETWORK_TREE_FORMAT'],
+      [networkTree.replace("T: '127.0.0.1'", "T: '127.0.0.1"), 'NETWORK_TREE_FORMAT'],
+      [annotatedNetwork, null],
+      [annotatedNetwork.replace('(0x00000000)', '(0xNOPE)'), 'NETWORK_TREE_FORMAT'],
+    ];
+    for (const [index, [tree, code]] of networkFixtures.entries()) {
+      const fixture = join(scratch, `network-tree-${index}.txt`);
+      await writeFile(fixture, tree);
+      let rejected = false;
+      try {
+        java('BASE_APK_NETWORK_RULES', 'network-resource', fixture, networkSource);
+      } catch (error) {
+        const prefix = `Android candidate: inspection BASE_APK_NETWORK_RULES failed; exit=1; signal=none; code=${code}`;
+        requireValue(code && error instanceof CandidateError
+          && (error.message === `${prefix}. Raw tool output was not retained.`
+            || (code === 'RESOURCE_POLICY_MISMATCH' && error.message.startsWith(`${prefix}; network=`))),
+        `JDK network policy fixture ${index} failed for an unexpected reason`);
+        rejected = true;
+      }
+      requireValue(rejected === (code !== null), `JDK network policy fixture ${index} changed acceptance`);
+    }
+    console.log(`Android candidate: JDK text-preserving network policy fixtures passed (${networkFixtures.length} cases).`);
     const resourceTable = join(scratch, 'reference-resources.txt');
     const splitsXml = join(scratch, 'reference-splits0.xml');
     await writeFile(resourceTable, 'resource 0x7f120000 xml/backup_rules\nresource 0x7f120001 xml/data_extraction_rules\n'
