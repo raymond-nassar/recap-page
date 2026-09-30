@@ -128,6 +128,7 @@ export default [
       'scripts/browser-age-of-apocalypse.mjs',
       'scripts/browser-onslaught.mjs',
       'scripts/browser-namor.mjs',
+      'scripts/browser-iron-fist.mjs',
       'scripts/capture-store-assets.mjs',
       'scripts/capture-play-assets.mjs',
       'scripts/upgrade-check.mjs',

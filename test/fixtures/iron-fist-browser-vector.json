@@ -1,0 +1,3803 @@
+{
+  "guideId": "iron-fist-reading-order",
+  "packetDigest": "1268ac4816f3fed217405c7eae4024c4cde8f0ad8c3a682cae666ad2fe274638",
+  "mappingDigest": "e48c7e646b0a53bd0eaaf45f4db56a55fe130f0e76c289912afe38de01509ade",
+  "sourceOnlyDigest": "3ad765cfd6ccc172c54789e3cbff99689adfbd93d999a9bd502e057edd4443ee",
+  "selectedDigest": "b1eee976c446ba808930a4afbc38fddeec1ecaacb1137eb29c44b19c8bfca495",
+  "sourceOccurrenceCount": 430,
+  "repeatTargets": [
+    {
+      "sourcePosition": 80,
+      "firstSelectedPosition": 63
+    },
+    {
+      "sourcePosition": 81,
+      "firstSelectedPosition": 66
+    },
+    {
+      "sourcePosition": 82,
+      "firstSelectedPosition": 67
+    },
+    {
+      "sourcePosition": 83,
+      "firstSelectedPosition": 68
+    },
+    {
+      "sourcePosition": 84,
+      "firstSelectedPosition": 69
+    },
+    {
+      "sourcePosition": 85,
+      "firstSelectedPosition": 70
+    },
+    {
+      "sourcePosition": 86,
+      "firstSelectedPosition": 71
+    },
+    {
+      "sourcePosition": 87,
+      "firstSelectedPosition": 72
+    },
+    {
+      "sourcePosition": 88,
+      "firstSelectedPosition": 73
+    },
+    {
+      "sourcePosition": 89,
+      "firstSelectedPosition": 74
+    },
+    {
+      "sourcePosition": 90,
+      "firstSelectedPosition": 75
+    },
+    {
+      "sourcePosition": 91,
+      "firstSelectedPosition": 76
+    },
+    {
+      "sourcePosition": 92,
+      "firstSelectedPosition": 77
+    },
+    {
+      "sourcePosition": 93,
+      "firstSelectedPosition": 78
+    },
+    {
+      "sourcePosition": 94,
+      "firstSelectedPosition": 79
+    },
+    {
+      "sourcePosition": 264,
+      "firstSelectedPosition": 262
+    }
+  ],
+  "expectedCount": 414,
+  "rows": [
+    {
+      "position": 1,
+      "sourcePosition": 1,
+      "issueId": 10201,
+      "title": "Marvel Premiere (1972) #15",
+      "section": "Collects: Marvel Premiere #15 to #25, Iron Fist #1 to #15, Marvel Team-Up #63 to #64",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 2,
+      "sourcePosition": 2,
+      "issueId": 10202,
+      "title": "Marvel Premiere (1972) #16",
+      "section": "Collects: Marvel Premiere #15 to #25, Iron Fist #1 to #15, Marvel Team-Up #63 to #64",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 3,
+      "sourcePosition": 3,
+      "issueId": 10203,
+      "title": "Marvel Premiere (1972) #17",
+      "section": "Collects: Marvel Premiere #15 to #25, Iron Fist #1 to #15, Marvel Team-Up #63 to #64",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 4,
+      "sourcePosition": 4,
+      "issueId": 10204,
+      "title": "Marvel Premiere (1972) #18",
+      "section": "Collects: Marvel Premiere #15 to #25, Iron Fist #1 to #15, Marvel Team-Up #63 to #64",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 5,
+      "sourcePosition": 5,
+      "issueId": 10205,
+      "title": "Marvel Premiere (1972) #19",
+      "section": "Collects: Marvel Premiere #15 to #25, Iron Fist #1 to #15, Marvel Team-Up #63 to #64",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 6,
+      "sourcePosition": 6,
+      "issueId": 10207,
+      "title": "Marvel Premiere (1972) #20",
+      "section": "Collects: Marvel Premiere #15 to #25, Iron Fist #1 to #15, Marvel Team-Up #63 to #64",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 7,
+      "sourcePosition": 7,
+      "issueId": 10208,
+      "title": "Marvel Premiere (1972) #21",
+      "section": "Collects: Marvel Premiere #15 to #25, Iron Fist #1 to #15, Marvel Team-Up #63 to #64",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 8,
+      "sourcePosition": 8,
+      "issueId": 10209,
+      "title": "Marvel Premiere (1972) #22",
+      "section": "Collects: Marvel Premiere #15 to #25, Iron Fist #1 to #15, Marvel Team-Up #63 to #64",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 9,
+      "sourcePosition": 9,
+      "issueId": 10210,
+      "title": "Marvel Premiere (1972) #23",
+      "section": "Collects: Marvel Premiere #15 to #25, Iron Fist #1 to #15, Marvel Team-Up #63 to #64",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 10,
+      "sourcePosition": 10,
+      "issueId": 10211,
+      "title": "Marvel Premiere (1972) #24",
+      "section": "Collects: Marvel Premiere #15 to #25, Iron Fist #1 to #15, Marvel Team-Up #63 to #64",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 11,
+      "sourcePosition": 11,
+      "issueId": 10212,
+      "title": "Marvel Premiere (1972) #25",
+      "section": "Collects: Marvel Premiere #15 to #25, Iron Fist #1 to #15, Marvel Team-Up #63 to #64",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 12,
+      "sourcePosition": 12,
+      "issueId": -606889064,
+      "title": "Deadly Hands of Kung Fu Special Edition (1974) #1",
+      "section": "Issues: Deadly Hands of Kung Fu Special Edition #1, Deadly Hands of Kung Fu #10, Deadly Hands of Kung Fu #18 to #24",
+      "placeholder": true,
+      "detailsRefused": false
+    },
+    {
+      "position": 13,
+      "sourcePosition": 13,
+      "issueId": 63320,
+      "title": "Deadly Hands of Kung Fu (1974) #10",
+      "section": "Issues: Deadly Hands of Kung Fu Special Edition #1, Deadly Hands of Kung Fu #10, Deadly Hands of Kung Fu #18 to #24",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 14,
+      "sourcePosition": 14,
+      "issueId": 63328,
+      "title": "Deadly Hands of Kung Fu (1974) #18",
+      "section": "Issues: Deadly Hands of Kung Fu Special Edition #1, Deadly Hands of Kung Fu #10, Deadly Hands of Kung Fu #18 to #24",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 15,
+      "sourcePosition": 15,
+      "issueId": 63329,
+      "title": "Deadly Hands of Kung Fu (1974) #19",
+      "section": "Issues: Deadly Hands of Kung Fu Special Edition #1, Deadly Hands of Kung Fu #10, Deadly Hands of Kung Fu #18 to #24",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 16,
+      "sourcePosition": 16,
+      "issueId": 63330,
+      "title": "Deadly Hands of Kung Fu (1974) #20",
+      "section": "Issues: Deadly Hands of Kung Fu Special Edition #1, Deadly Hands of Kung Fu #10, Deadly Hands of Kung Fu #18 to #24",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 17,
+      "sourcePosition": 17,
+      "issueId": 63331,
+      "title": "Deadly Hands of Kung Fu (1974) #21",
+      "section": "Issues: Deadly Hands of Kung Fu Special Edition #1, Deadly Hands of Kung Fu #10, Deadly Hands of Kung Fu #18 to #24",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 18,
+      "sourcePosition": 18,
+      "issueId": 63332,
+      "title": "Deadly Hands of Kung Fu (1974) #22",
+      "section": "Issues: Deadly Hands of Kung Fu Special Edition #1, Deadly Hands of Kung Fu #10, Deadly Hands of Kung Fu #18 to #24",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 19,
+      "sourcePosition": 19,
+      "issueId": 63333,
+      "title": "Deadly Hands of Kung Fu (1974) #23",
+      "section": "Issues: Deadly Hands of Kung Fu Special Edition #1, Deadly Hands of Kung Fu #10, Deadly Hands of Kung Fu #18 to #24",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 20,
+      "sourcePosition": 20,
+      "issueId": 63334,
+      "title": "Deadly Hands of Kung Fu (1974) #24",
+      "section": "Issues: Deadly Hands of Kung Fu Special Edition #1, Deadly Hands of Kung Fu #10, Deadly Hands of Kung Fu #18 to #24",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 21,
+      "sourcePosition": 21,
+      "issueId": 22621,
+      "title": "Iron Fist (1975) #1",
+      "section": "Collects: Marvel Premiere #15 to #25, Iron Fist #1 to #15, Marvel Team-Up #63 to #64",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 22,
+      "sourcePosition": 22,
+      "issueId": 22628,
+      "title": "Iron Fist (1975) #2",
+      "section": "Collects: Marvel Premiere #15 to #25, Iron Fist #1 to #15, Marvel Team-Up #63 to #64",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 23,
+      "sourcePosition": 23,
+      "issueId": 22629,
+      "title": "Iron Fist (1975) #3",
+      "section": "Collects: Marvel Premiere #15 to #25, Iron Fist #1 to #15, Marvel Team-Up #63 to #64",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 24,
+      "sourcePosition": 24,
+      "issueId": 22630,
+      "title": "Iron Fist (1975) #4",
+      "section": "Collects: Marvel Premiere #15 to #25, Iron Fist #1 to #15, Marvel Team-Up #63 to #64",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 25,
+      "sourcePosition": 25,
+      "issueId": 22631,
+      "title": "Iron Fist (1975) #5",
+      "section": "Collects: Marvel Premiere #15 to #25, Iron Fist #1 to #15, Marvel Team-Up #63 to #64",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 26,
+      "sourcePosition": 26,
+      "issueId": 22632,
+      "title": "Iron Fist (1975) #6",
+      "section": "Collects: Marvel Premiere #15 to #25, Iron Fist #1 to #15, Marvel Team-Up #63 to #64",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 27,
+      "sourcePosition": 27,
+      "issueId": 22633,
+      "title": "Iron Fist (1975) #7",
+      "section": "Collects: Marvel Premiere #15 to #25, Iron Fist #1 to #15, Marvel Team-Up #63 to #64",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 28,
+      "sourcePosition": 28,
+      "issueId": 22634,
+      "title": "Iron Fist (1975) #8",
+      "section": "Collects: Marvel Premiere #15 to #25, Iron Fist #1 to #15, Marvel Team-Up #63 to #64",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 29,
+      "sourcePosition": 29,
+      "issueId": 22635,
+      "title": "Iron Fist (1975) #9",
+      "section": "Collects: Marvel Premiere #15 to #25, Iron Fist #1 to #15, Marvel Team-Up #63 to #64",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 30,
+      "sourcePosition": 30,
+      "issueId": 22622,
+      "title": "Iron Fist (1975) #10",
+      "section": "Collects: Marvel Premiere #15 to #25, Iron Fist #1 to #15, Marvel Team-Up #63 to #64",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 31,
+      "sourcePosition": 31,
+      "issueId": 22623,
+      "title": "Iron Fist (1975) #11",
+      "section": "Collects: Marvel Premiere #15 to #25, Iron Fist #1 to #15, Marvel Team-Up #63 to #64",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 32,
+      "sourcePosition": 32,
+      "issueId": 22624,
+      "title": "Iron Fist (1975) #12",
+      "section": "Collects: Marvel Premiere #15 to #25, Iron Fist #1 to #15, Marvel Team-Up #63 to #64",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 33,
+      "sourcePosition": 33,
+      "issueId": 22625,
+      "title": "Iron Fist (1975) #13",
+      "section": "Collects: Marvel Premiere #15 to #25, Iron Fist #1 to #15, Marvel Team-Up #63 to #64",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 34,
+      "sourcePosition": 34,
+      "issueId": 22626,
+      "title": "Iron Fist (1975) #14",
+      "section": "Collects: Marvel Premiere #15 to #25, Iron Fist #1 to #15, Marvel Team-Up #63 to #64",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 35,
+      "sourcePosition": 35,
+      "issueId": 22627,
+      "title": "Iron Fist (1975) #15",
+      "section": "Collects: Marvel Premiere #15 to #25, Iron Fist #1 to #15, Marvel Team-Up #63 to #64",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 36,
+      "sourcePosition": 36,
+      "issueId": 19685,
+      "title": "Marvel Team-Up (1972) #63",
+      "section": "Collects: Marvel Premiere #15 to #25, Iron Fist #1 to #15, Marvel Team-Up #63 to #64",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 37,
+      "sourcePosition": 37,
+      "issueId": 19686,
+      "title": "Marvel Team-Up (1972) #64",
+      "section": "Collects: Marvel Premiere #15 to #25, Iron Fist #1 to #15, Marvel Team-Up #63 to #64",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 38,
+      "sourcePosition": 38,
+      "issueId": 56351,
+      "title": "Power Man (1974) #48",
+      "section": "Collects: Power Man #48 to #49, Power Man & Iron Fist #50 to #70",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 39,
+      "sourcePosition": 39,
+      "issueId": 56352,
+      "title": "Power Man (1974) #49",
+      "section": "Collects: Power Man #48 to #49, Power Man & Iron Fist #50 to #70",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 40,
+      "sourcePosition": 40,
+      "issueId": 56357,
+      "title": "Power Man (1974) #50",
+      "section": "Collects: Power Man #48 to #49, Power Man & Iron Fist #50 to #70",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 41,
+      "sourcePosition": 41,
+      "issueId": 56358,
+      "title": "Power Man (1974) #51",
+      "section": "Collects: Power Man #48 to #49, Power Man & Iron Fist #50 to #70",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 42,
+      "sourcePosition": 42,
+      "issueId": 56359,
+      "title": "Power Man (1974) #52",
+      "section": "Collects: Power Man #48 to #49, Power Man & Iron Fist #50 to #70",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 43,
+      "sourcePosition": 43,
+      "issueId": 56360,
+      "title": "Power Man (1974) #53",
+      "section": "Collects: Power Man #48 to #49, Power Man & Iron Fist #50 to #70",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 44,
+      "sourcePosition": 44,
+      "issueId": 56361,
+      "title": "Power Man (1974) #54",
+      "section": "Collects: Power Man #48 to #49, Power Man & Iron Fist #50 to #70",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 45,
+      "sourcePosition": 45,
+      "issueId": 56362,
+      "title": "Power Man (1974) #55",
+      "section": "Collects: Power Man #48 to #49, Power Man & Iron Fist #50 to #70",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 46,
+      "sourcePosition": 46,
+      "issueId": 56363,
+      "title": "Power Man (1974) #56",
+      "section": "Collects: Power Man #48 to #49, Power Man & Iron Fist #50 to #70",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 47,
+      "sourcePosition": 47,
+      "issueId": 56364,
+      "title": "Power Man (1974) #57",
+      "section": "Collects: Power Man #48 to #49, Power Man & Iron Fist #50 to #70",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 48,
+      "sourcePosition": 48,
+      "issueId": 56365,
+      "title": "Power Man (1974) #58",
+      "section": "Collects: Power Man #48 to #49, Power Man & Iron Fist #50 to #70",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 49,
+      "sourcePosition": 49,
+      "issueId": 56366,
+      "title": "Power Man (1974) #59",
+      "section": "Collects: Power Man #48 to #49, Power Man & Iron Fist #50 to #70",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 50,
+      "sourcePosition": 50,
+      "issueId": 56367,
+      "title": "Power Man (1974) #60",
+      "section": "Collects: Power Man #48 to #49, Power Man & Iron Fist #50 to #70",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 51,
+      "sourcePosition": 51,
+      "issueId": 56368,
+      "title": "Power Man (1974) #61",
+      "section": "Collects: Power Man #48 to #49, Power Man & Iron Fist #50 to #70",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 52,
+      "sourcePosition": 52,
+      "issueId": 56369,
+      "title": "Power Man (1974) #62",
+      "section": "Collects: Power Man #48 to #49, Power Man & Iron Fist #50 to #70",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 53,
+      "sourcePosition": 53,
+      "issueId": 56370,
+      "title": "Power Man (1974) #63",
+      "section": "Collects: Power Man #48 to #49, Power Man & Iron Fist #50 to #70",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 54,
+      "sourcePosition": 54,
+      "issueId": 56371,
+      "title": "Power Man (1974) #64",
+      "section": "Collects: Power Man #48 to #49, Power Man & Iron Fist #50 to #70",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 55,
+      "sourcePosition": 55,
+      "issueId": 56372,
+      "title": "Power Man (1974) #65",
+      "section": "Collects: Power Man #48 to #49, Power Man & Iron Fist #50 to #70",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 56,
+      "sourcePosition": 56,
+      "issueId": 56373,
+      "title": "Power Man (1974) #66",
+      "section": "Collects: Power Man #48 to #49, Power Man & Iron Fist #50 to #70",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 57,
+      "sourcePosition": 57,
+      "issueId": 56374,
+      "title": "Power Man (1974) #67",
+      "section": "Collects: Power Man #48 to #49, Power Man & Iron Fist #50 to #70",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 58,
+      "sourcePosition": 58,
+      "issueId": 56375,
+      "title": "Power Man (1974) #68",
+      "section": "Collects: Power Man #48 to #49, Power Man & Iron Fist #50 to #70",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 59,
+      "sourcePosition": 59,
+      "issueId": 56376,
+      "title": "Power Man (1974) #69",
+      "section": "Collects: Power Man #48 to #49, Power Man & Iron Fist #50 to #70",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 60,
+      "sourcePosition": 60,
+      "issueId": 56377,
+      "title": "Power Man (1974) #70",
+      "section": "Collects: Power Man #48 to #49, Power Man & Iron Fist #50 to #70",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 61,
+      "sourcePosition": 61,
+      "issueId": 62325,
+      "title": "Power Man (1974) #71",
+      "section": "Collects: Power Man & Iron Fist #71 to #72, Daredevil #178, Power Man & Iron Fist #74 to #89",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 62,
+      "sourcePosition": 62,
+      "issueId": 62326,
+      "title": "Power Man (1974) #72",
+      "section": "Collects: Power Man & Iron Fist #71 to #72, Daredevil #178, Power Man & Iron Fist #74 to #89",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 63,
+      "sourcePosition": 63,
+      "issueId": 8160,
+      "title": "Daredevil (1964) #178",
+      "section": "Collects: Power Man & Iron Fist #71 to #72, Daredevil #178, Power Man & Iron Fist #74 to #89",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 64,
+      "sourcePosition": 64,
+      "issueId": 62327,
+      "title": "Power Man (1974) #74",
+      "section": "Collects: Power Man & Iron Fist #71 to #72, Daredevil #178, Power Man & Iron Fist #74 to #89",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 65,
+      "sourcePosition": 65,
+      "issueId": 62328,
+      "title": "Power Man (1974) #75",
+      "section": "Collects: Power Man & Iron Fist #71 to #72, Daredevil #178, Power Man & Iron Fist #74 to #89",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 66,
+      "sourcePosition": 66,
+      "issueId": 62329,
+      "title": "Power Man (1974) #76",
+      "section": "Collects: Power Man & Iron Fist #71 to #72, Daredevil #178, Power Man & Iron Fist #74 to #89",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 67,
+      "sourcePosition": 67,
+      "issueId": 62330,
+      "title": "Power Man (1974) #77",
+      "section": "Collects: Power Man & Iron Fist #71 to #72, Daredevil #178, Power Man & Iron Fist #74 to #89",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 68,
+      "sourcePosition": 68,
+      "issueId": 62331,
+      "title": "Power Man (1974) #78",
+      "section": "Collects: Power Man & Iron Fist #71 to #72, Daredevil #178, Power Man & Iron Fist #74 to #89",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 69,
+      "sourcePosition": 69,
+      "issueId": 62332,
+      "title": "Power Man (1974) #79",
+      "section": "Collects: Power Man & Iron Fist #71 to #72, Daredevil #178, Power Man & Iron Fist #74 to #89",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 70,
+      "sourcePosition": 70,
+      "issueId": 62333,
+      "title": "Power Man (1974) #80",
+      "section": "Collects: Power Man & Iron Fist #71 to #72, Daredevil #178, Power Man & Iron Fist #74 to #89",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 71,
+      "sourcePosition": 71,
+      "issueId": 62334,
+      "title": "Power Man (1974) #81",
+      "section": "Collects: Power Man & Iron Fist #71 to #72, Daredevil #178, Power Man & Iron Fist #74 to #89",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 72,
+      "sourcePosition": 72,
+      "issueId": 62335,
+      "title": "Power Man (1974) #82",
+      "section": "Collects: Power Man & Iron Fist #71 to #72, Daredevil #178, Power Man & Iron Fist #74 to #89",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 73,
+      "sourcePosition": 73,
+      "issueId": 62336,
+      "title": "Power Man (1974) #83",
+      "section": "Collects: Power Man & Iron Fist #71 to #72, Daredevil #178, Power Man & Iron Fist #74 to #89",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 74,
+      "sourcePosition": 74,
+      "issueId": 62337,
+      "title": "Power Man (1974) #84",
+      "section": "Collects: Power Man & Iron Fist #71 to #72, Daredevil #178, Power Man & Iron Fist #74 to #89",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 75,
+      "sourcePosition": 75,
+      "issueId": 62338,
+      "title": "Power Man (1974) #85",
+      "section": "Collects: Power Man & Iron Fist #71 to #72, Daredevil #178, Power Man & Iron Fist #74 to #89",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 76,
+      "sourcePosition": 76,
+      "issueId": 62339,
+      "title": "Power Man (1974) #86",
+      "section": "Collects: Power Man & Iron Fist #71 to #72, Daredevil #178, Power Man & Iron Fist #74 to #89",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 77,
+      "sourcePosition": 77,
+      "issueId": 62340,
+      "title": "Power Man (1974) #87",
+      "section": "Collects: Power Man & Iron Fist #71 to #72, Daredevil #178, Power Man & Iron Fist #74 to #89",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 78,
+      "sourcePosition": 78,
+      "issueId": 62341,
+      "title": "Power Man (1974) #88",
+      "section": "Collects: Power Man & Iron Fist #71 to #72, Daredevil #178, Power Man & Iron Fist #74 to #89",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 79,
+      "sourcePosition": 79,
+      "issueId": 62342,
+      "title": "Power Man (1974) #89",
+      "section": "Collects: Power Man & Iron Fist #71 to #72, Daredevil #178, Power Man & Iron Fist #74 to #89",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 80,
+      "sourcePosition": 95,
+      "issueId": 62412,
+      "title": "Power Man (1974) #90",
+      "section": "Collects: Daredevil #178, Power Man and Iron Fist #76 to #100",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 81,
+      "sourcePosition": 96,
+      "issueId": 62413,
+      "title": "Power Man (1974) #91",
+      "section": "Collects: Daredevil #178, Power Man and Iron Fist #76 to #100",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 82,
+      "sourcePosition": 97,
+      "issueId": 62414,
+      "title": "Power Man (1974) #92",
+      "section": "Collects: Daredevil #178, Power Man and Iron Fist #76 to #100",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 83,
+      "sourcePosition": 98,
+      "issueId": -708834706,
+      "title": "Power Man and Iron Fist (1978) #93",
+      "section": "Collects: Daredevil #178, Power Man and Iron Fist #76 to #100",
+      "placeholder": true,
+      "detailsRefused": false
+    },
+    {
+      "position": 84,
+      "sourcePosition": 99,
+      "issueId": -692057087,
+      "title": "Power Man and Iron Fist (1978) #94",
+      "section": "Collects: Daredevil #178, Power Man and Iron Fist #76 to #100",
+      "placeholder": true,
+      "detailsRefused": false
+    },
+    {
+      "position": 85,
+      "sourcePosition": 100,
+      "issueId": -1524419230,
+      "title": "Power Man and Iron Fist (1978) #95",
+      "section": "Collects: Daredevil #178, Power Man and Iron Fist #76 to #100",
+      "placeholder": true,
+      "detailsRefused": false
+    },
+    {
+      "position": 86,
+      "sourcePosition": 101,
+      "issueId": -1507641611,
+      "title": "Power Man and Iron Fist (1978) #96",
+      "section": "Collects: Daredevil #178, Power Man and Iron Fist #76 to #100",
+      "placeholder": true,
+      "detailsRefused": false
+    },
+    {
+      "position": 87,
+      "sourcePosition": 102,
+      "issueId": -1490863992,
+      "title": "Power Man and Iron Fist (1978) #97",
+      "section": "Collects: Daredevil #178, Power Man and Iron Fist #76 to #100",
+      "placeholder": true,
+      "detailsRefused": false
+    },
+    {
+      "position": 88,
+      "sourcePosition": 103,
+      "issueId": -1474086373,
+      "title": "Power Man and Iron Fist (1978) #98",
+      "section": "Collects: Daredevil #178, Power Man and Iron Fist #76 to #100",
+      "placeholder": true,
+      "detailsRefused": false
+    },
+    {
+      "position": 89,
+      "sourcePosition": 104,
+      "issueId": -1457308754,
+      "title": "Power Man and Iron Fist (1978) #99",
+      "section": "Collects: Daredevil #178, Power Man and Iron Fist #76 to #100",
+      "placeholder": true,
+      "detailsRefused": false
+    },
+    {
+      "position": 90,
+      "sourcePosition": 105,
+      "issueId": 62423,
+      "title": "Power Man (1974) #100",
+      "section": "Collects: Daredevil #178, Power Man and Iron Fist #76 to #100",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 91,
+      "sourcePosition": 106,
+      "issueId": 79521,
+      "title": "Power Man (1974) #101",
+      "section": "Power Man & Iron Fist #101 to #125",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 92,
+      "sourcePosition": 107,
+      "issueId": 79522,
+      "title": "Power Man (1974) #102",
+      "section": "Power Man & Iron Fist #101 to #125",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 93,
+      "sourcePosition": 108,
+      "issueId": 79523,
+      "title": "Power Man (1974) #103",
+      "section": "Power Man & Iron Fist #101 to #125",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 94,
+      "sourcePosition": 109,
+      "issueId": 79535,
+      "title": "Power Man (1974) #104",
+      "section": "Power Man & Iron Fist #101 to #125",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 95,
+      "sourcePosition": 110,
+      "issueId": 79524,
+      "title": "Power Man (1974) #105",
+      "section": "Power Man & Iron Fist #101 to #125",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 96,
+      "sourcePosition": 111,
+      "issueId": 79536,
+      "title": "Power Man (1974) #106",
+      "section": "Power Man & Iron Fist #101 to #125",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 97,
+      "sourcePosition": 112,
+      "issueId": 79537,
+      "title": "Power Man (1974) #107",
+      "section": "Power Man & Iron Fist #101 to #125",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 98,
+      "sourcePosition": 113,
+      "issueId": 79525,
+      "title": "Power Man (1974) #108",
+      "section": "Power Man & Iron Fist #101 to #125",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 99,
+      "sourcePosition": 114,
+      "issueId": 79526,
+      "title": "Power Man (1974) #109",
+      "section": "Power Man & Iron Fist #101 to #125",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 100,
+      "sourcePosition": 115,
+      "issueId": 79527,
+      "title": "Power Man (1974) #110",
+      "section": "Power Man & Iron Fist #101 to #125",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 101,
+      "sourcePosition": 116,
+      "issueId": 79528,
+      "title": "Power Man (1974) #111",
+      "section": "Power Man & Iron Fist #101 to #125",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 102,
+      "sourcePosition": 117,
+      "issueId": 79529,
+      "title": "Power Man (1974) #112",
+      "section": "Power Man & Iron Fist #101 to #125",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 103,
+      "sourcePosition": 118,
+      "issueId": 79538,
+      "title": "Power Man (1974) #113",
+      "section": "Power Man & Iron Fist #101 to #125",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 104,
+      "sourcePosition": 119,
+      "issueId": 79539,
+      "title": "Power Man (1974) #114",
+      "section": "Power Man & Iron Fist #101 to #125",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 105,
+      "sourcePosition": 120,
+      "issueId": 79530,
+      "title": "Power Man (1974) #115",
+      "section": "Power Man & Iron Fist #101 to #125",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 106,
+      "sourcePosition": 121,
+      "issueId": 79531,
+      "title": "Power Man (1974) #116",
+      "section": "Power Man & Iron Fist #101 to #125",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 107,
+      "sourcePosition": 122,
+      "issueId": 79532,
+      "title": "Power Man (1974) #117",
+      "section": "Power Man & Iron Fist #101 to #125",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 108,
+      "sourcePosition": 123,
+      "issueId": 79533,
+      "title": "Power Man (1974) #118",
+      "section": "Power Man & Iron Fist #101 to #125",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 109,
+      "sourcePosition": 124,
+      "issueId": 79534,
+      "title": "Power Man (1974) #119",
+      "section": "Power Man & Iron Fist #101 to #125",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 110,
+      "sourcePosition": 125,
+      "issueId": 79540,
+      "title": "Power Man (1974) #120",
+      "section": "Power Man & Iron Fist #101 to #125",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 111,
+      "sourcePosition": 126,
+      "issueId": 71530,
+      "title": "Power Man (1974) #121",
+      "section": "Power Man & Iron Fist #101 to #125",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 112,
+      "sourcePosition": 127,
+      "issueId": 79541,
+      "title": "Power Man (1974) #122",
+      "section": "Power Man & Iron Fist #101 to #125",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 113,
+      "sourcePosition": 128,
+      "issueId": 79542,
+      "title": "Power Man (1974) #123",
+      "section": "Power Man & Iron Fist #101 to #125",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 114,
+      "sourcePosition": 129,
+      "issueId": 79543,
+      "title": "Power Man (1974) #124",
+      "section": "Power Man & Iron Fist #101 to #125",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 115,
+      "sourcePosition": 130,
+      "issueId": 79544,
+      "title": "Power Man (1974) #125",
+      "section": "Power Man & Iron Fist #101 to #125",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 116,
+      "sourcePosition": 131,
+      "issueId": 66014,
+      "title": "Namor the Sub-Mariner (1990) #10",
+      "section": "Issues: Namor the Sub-Mariner #10 to #18 (series continues to issue #34 with Iron Fist relevance).",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 117,
+      "sourcePosition": 132,
+      "issueId": 66015,
+      "title": "Namor the Sub-Mariner (1990) #11",
+      "section": "Issues: Namor the Sub-Mariner #10 to #18 (series continues to issue #34 with Iron Fist relevance).",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 118,
+      "sourcePosition": 133,
+      "issueId": 66016,
+      "title": "Namor the Sub-Mariner (1990) #12",
+      "section": "Issues: Namor the Sub-Mariner #10 to #18 (series continues to issue #34 with Iron Fist relevance).",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 119,
+      "sourcePosition": 134,
+      "issueId": 66017,
+      "title": "Namor the Sub-Mariner (1990) #13",
+      "section": "Issues: Namor the Sub-Mariner #10 to #18 (series continues to issue #34 with Iron Fist relevance).",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 120,
+      "sourcePosition": 135,
+      "issueId": 66018,
+      "title": "Namor the Sub-Mariner (1990) #14",
+      "section": "Issues: Namor the Sub-Mariner #10 to #18 (series continues to issue #34 with Iron Fist relevance).",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 121,
+      "sourcePosition": 136,
+      "issueId": 66019,
+      "title": "Namor the Sub-Mariner (1990) #15",
+      "section": "Issues: Namor the Sub-Mariner #10 to #18 (series continues to issue #34 with Iron Fist relevance).",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 122,
+      "sourcePosition": 137,
+      "issueId": 66020,
+      "title": "Namor the Sub-Mariner (1990) #16",
+      "section": "Issues: Namor the Sub-Mariner #10 to #18 (series continues to issue #34 with Iron Fist relevance).",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 123,
+      "sourcePosition": 138,
+      "issueId": 66021,
+      "title": "Namor the Sub-Mariner (1990) #17",
+      "section": "Issues: Namor the Sub-Mariner #10 to #18 (series continues to issue #34 with Iron Fist relevance).",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 124,
+      "sourcePosition": 139,
+      "issueId": 66022,
+      "title": "Namor the Sub-Mariner (1990) #18",
+      "section": "Issues: Namor the Sub-Mariner #10 to #18 (series continues to issue #34 with Iron Fist relevance).",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 125,
+      "sourcePosition": 140,
+      "issueId": -1121116412,
+      "title": "Namor the Sub-Mariner (1990) #19",
+      "section": "Namor the Sub-Mariner #19-34: source-noted Iron Fist-relevance continuation (outside named Volume 2 contents)",
+      "placeholder": true,
+      "detailsRefused": false
+    },
+    {
+      "position": 126,
+      "sourcePosition": 141,
+      "issueId": -1104338793,
+      "title": "Namor the Sub-Mariner (1990) #20",
+      "section": "Namor the Sub-Mariner #19-34: source-noted Iron Fist-relevance continuation (outside named Volume 2 contents)",
+      "placeholder": true,
+      "detailsRefused": false
+    },
+    {
+      "position": 127,
+      "sourcePosition": 142,
+      "issueId": -1087561174,
+      "title": "Namor the Sub-Mariner (1990) #21",
+      "section": "Namor the Sub-Mariner #19-34: source-noted Iron Fist-relevance continuation (outside named Volume 2 contents)",
+      "placeholder": true,
+      "detailsRefused": false
+    },
+    {
+      "position": 128,
+      "sourcePosition": 143,
+      "issueId": -1070783555,
+      "title": "Namor the Sub-Mariner (1990) #22",
+      "section": "Namor the Sub-Mariner #19-34: source-noted Iron Fist-relevance continuation (outside named Volume 2 contents)",
+      "placeholder": true,
+      "detailsRefused": false
+    },
+    {
+      "position": 129,
+      "sourcePosition": 144,
+      "issueId": -1188226888,
+      "title": "Namor the Sub-Mariner (1990) #23",
+      "section": "Namor the Sub-Mariner #19-34: source-noted Iron Fist-relevance continuation (outside named Volume 2 contents)",
+      "placeholder": true,
+      "detailsRefused": false
+    },
+    {
+      "position": 130,
+      "sourcePosition": 145,
+      "issueId": -1171449269,
+      "title": "Namor the Sub-Mariner (1990) #24",
+      "section": "Namor the Sub-Mariner #19-34: source-noted Iron Fist-relevance continuation (outside named Volume 2 contents)",
+      "placeholder": true,
+      "detailsRefused": false
+    },
+    {
+      "position": 131,
+      "sourcePosition": 146,
+      "issueId": -1154671650,
+      "title": "Namor the Sub-Mariner (1990) #25",
+      "section": "Namor the Sub-Mariner #19-34: source-noted Iron Fist-relevance continuation (outside named Volume 2 contents)",
+      "placeholder": true,
+      "detailsRefused": false
+    },
+    {
+      "position": 132,
+      "sourcePosition": 147,
+      "issueId": -1137894031,
+      "title": "Namor the Sub-Mariner (1990) #26",
+      "section": "Namor the Sub-Mariner #19-34: source-noted Iron Fist-relevance continuation (outside named Volume 2 contents)",
+      "placeholder": true,
+      "detailsRefused": false
+    },
+    {
+      "position": 133,
+      "sourcePosition": 148,
+      "issueId": -1255337364,
+      "title": "Namor the Sub-Mariner (1990) #27",
+      "section": "Namor the Sub-Mariner #19-34: source-noted Iron Fist-relevance continuation (outside named Volume 2 contents)",
+      "placeholder": true,
+      "detailsRefused": false
+    },
+    {
+      "position": 134,
+      "sourcePosition": 149,
+      "issueId": -1238559745,
+      "title": "Namor the Sub-Mariner (1990) #28",
+      "section": "Namor the Sub-Mariner #19-34: source-noted Iron Fist-relevance continuation (outside named Volume 2 contents)",
+      "placeholder": true,
+      "detailsRefused": false
+    },
+    {
+      "position": 135,
+      "sourcePosition": 150,
+      "issueId": -1020303603,
+      "title": "Namor the Sub-Mariner (1990) #29",
+      "section": "Namor the Sub-Mariner #19-34: source-noted Iron Fist-relevance continuation (outside named Volume 2 contents)",
+      "placeholder": true,
+      "detailsRefused": false
+    },
+    {
+      "position": 136,
+      "sourcePosition": 151,
+      "issueId": -1037081222,
+      "title": "Namor the Sub-Mariner (1990) #30",
+      "section": "Namor the Sub-Mariner #19-34: source-noted Iron Fist-relevance continuation (outside named Volume 2 contents)",
+      "placeholder": true,
+      "detailsRefused": false
+    },
+    {
+      "position": 137,
+      "sourcePosition": 152,
+      "issueId": -1053858841,
+      "title": "Namor the Sub-Mariner (1990) #31",
+      "section": "Namor the Sub-Mariner #19-34: source-noted Iron Fist-relevance continuation (outside named Volume 2 contents)",
+      "placeholder": true,
+      "detailsRefused": false
+    },
+    {
+      "position": 138,
+      "sourcePosition": 153,
+      "issueId": -1070636460,
+      "title": "Namor the Sub-Mariner (1990) #32",
+      "section": "Namor the Sub-Mariner #19-34: source-noted Iron Fist-relevance continuation (outside named Volume 2 contents)",
+      "placeholder": true,
+      "detailsRefused": false
+    },
+    {
+      "position": 139,
+      "sourcePosition": 154,
+      "issueId": -1087414079,
+      "title": "Namor the Sub-Mariner (1990) #33",
+      "section": "Namor the Sub-Mariner #19-34: source-noted Iron Fist-relevance continuation (outside named Volume 2 contents)",
+      "placeholder": true,
+      "detailsRefused": false
+    },
+    {
+      "position": 140,
+      "sourcePosition": 155,
+      "issueId": -1104191698,
+      "title": "Namor the Sub-Mariner (1990) #34",
+      "section": "Namor the Sub-Mariner #19-34: source-noted Iron Fist-relevance continuation (outside named Volume 2 contents)",
+      "placeholder": true,
+      "detailsRefused": false
+    },
+    {
+      "position": 141,
+      "sourcePosition": 156,
+      "issueId": -1120969317,
+      "title": "Cage (1992) #9",
+      "section": "Cage #9",
+      "placeholder": true,
+      "detailsRefused": false
+    },
+    {
+      "position": 142,
+      "sourcePosition": 157,
+      "issueId": 10024,
+      "title": "Marvel Comics Presents (1988) #111",
+      "section": "Collects: Marvel Comics Presents #111, #113 to #118, #125 to #137, #140 to #141",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 143,
+      "sourcePosition": 158,
+      "issueId": 10026,
+      "title": "Marvel Comics Presents (1988) #113",
+      "section": "Collects: Marvel Comics Presents #111, #113 to #118, #125 to #137, #140 to #141",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 144,
+      "sourcePosition": 159,
+      "issueId": 10027,
+      "title": "Marvel Comics Presents (1988) #114",
+      "section": "Collects: Marvel Comics Presents #111, #113 to #118, #125 to #137, #140 to #141",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 145,
+      "sourcePosition": 160,
+      "issueId": 10028,
+      "title": "Marvel Comics Presents (1988) #115",
+      "section": "Collects: Marvel Comics Presents #111, #113 to #118, #125 to #137, #140 to #141",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 146,
+      "sourcePosition": 161,
+      "issueId": 10029,
+      "title": "Marvel Comics Presents (1988) #116",
+      "section": "Collects: Marvel Comics Presents #111, #113 to #118, #125 to #137, #140 to #141",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 147,
+      "sourcePosition": 162,
+      "issueId": 10030,
+      "title": "Marvel Comics Presents (1988) #117",
+      "section": "Collects: Marvel Comics Presents #111, #113 to #118, #125 to #137, #140 to #141",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 148,
+      "sourcePosition": 163,
+      "issueId": 10031,
+      "title": "Marvel Comics Presents (1988) #118",
+      "section": "Collects: Marvel Comics Presents #111, #113 to #118, #125 to #137, #140 to #141",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 149,
+      "sourcePosition": 164,
+      "issueId": 10039,
+      "title": "Marvel Comics Presents (1988) #125",
+      "section": "Collects: Marvel Comics Presents #111, #113 to #118, #125 to #137, #140 to #141",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 150,
+      "sourcePosition": 165,
+      "issueId": 10040,
+      "title": "Marvel Comics Presents (1988) #126",
+      "section": "Collects: Marvel Comics Presents #111, #113 to #118, #125 to #137, #140 to #141",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 151,
+      "sourcePosition": 166,
+      "issueId": 10041,
+      "title": "Marvel Comics Presents (1988) #127",
+      "section": "Collects: Marvel Comics Presents #111, #113 to #118, #125 to #137, #140 to #141",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 152,
+      "sourcePosition": 167,
+      "issueId": 10042,
+      "title": "Marvel Comics Presents (1988) #128",
+      "section": "Collects: Marvel Comics Presents #111, #113 to #118, #125 to #137, #140 to #141",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 153,
+      "sourcePosition": 168,
+      "issueId": 10043,
+      "title": "Marvel Comics Presents (1988) #129",
+      "section": "Collects: Marvel Comics Presents #111, #113 to #118, #125 to #137, #140 to #141",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 154,
+      "sourcePosition": 169,
+      "issueId": 10045,
+      "title": "Marvel Comics Presents (1988) #130",
+      "section": "Collects: Marvel Comics Presents #111, #113 to #118, #125 to #137, #140 to #141",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 155,
+      "sourcePosition": 170,
+      "issueId": 10046,
+      "title": "Marvel Comics Presents (1988) #131",
+      "section": "Collects: Marvel Comics Presents #111, #113 to #118, #125 to #137, #140 to #141",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 156,
+      "sourcePosition": 171,
+      "issueId": 10047,
+      "title": "Marvel Comics Presents (1988) #132",
+      "section": "Collects: Marvel Comics Presents #111, #113 to #118, #125 to #137, #140 to #141",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 157,
+      "sourcePosition": 172,
+      "issueId": 10048,
+      "title": "Marvel Comics Presents (1988) #133",
+      "section": "Collects: Marvel Comics Presents #111, #113 to #118, #125 to #137, #140 to #141",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 158,
+      "sourcePosition": 173,
+      "issueId": 10049,
+      "title": "Marvel Comics Presents (1988) #134",
+      "section": "Collects: Marvel Comics Presents #111, #113 to #118, #125 to #137, #140 to #141",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 159,
+      "sourcePosition": 174,
+      "issueId": 10050,
+      "title": "Marvel Comics Presents (1988) #135",
+      "section": "Collects: Marvel Comics Presents #111, #113 to #118, #125 to #137, #140 to #141",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 160,
+      "sourcePosition": 175,
+      "issueId": 10051,
+      "title": "Marvel Comics Presents (1988) #136",
+      "section": "Collects: Marvel Comics Presents #111, #113 to #118, #125 to #137, #140 to #141",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 161,
+      "sourcePosition": 176,
+      "issueId": 10052,
+      "title": "Marvel Comics Presents (1988) #137",
+      "section": "Collects: Marvel Comics Presents #111, #113 to #118, #125 to #137, #140 to #141",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 162,
+      "sourcePosition": 177,
+      "issueId": 10056,
+      "title": "Marvel Comics Presents (1988) #140",
+      "section": "Collects: Marvel Comics Presents #111, #113 to #118, #125 to #137, #140 to #141",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 163,
+      "sourcePosition": 178,
+      "issueId": 10057,
+      "title": "Marvel Comics Presents (1988) #141",
+      "section": "Collects: Marvel Comics Presents #111, #113 to #118, #125 to #137, #140 to #141",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 164,
+      "sourcePosition": 179,
+      "issueId": -1372979374,
+      "title": "Marvel Fanfare (1996) #6",
+      "section": "Marvel Fanfare (1996) #6 (whole original; Heroes for Hire story material), then Heroes for Hire (1997) #1-9",
+      "placeholder": true,
+      "detailsRefused": false
+    },
+    {
+      "position": 165,
+      "sourcePosition": 180,
+      "issueId": -1257308840,
+      "title": "Heroes for Hire (1997) #1",
+      "section": "Marvel Fanfare (1996) #6 (whole original; Heroes for Hire story material), then Heroes for Hire (1997) #1-9",
+      "placeholder": true,
+      "detailsRefused": false
+    },
+    {
+      "position": 166,
+      "sourcePosition": 181,
+      "issueId": 62005,
+      "title": "Heroes for Hire (1997) #2",
+      "section": "Marvel Fanfare (1996) #6 (whole original; Heroes for Hire story material), then Heroes for Hire (1997) #1-9",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 167,
+      "sourcePosition": 182,
+      "issueId": 62006,
+      "title": "Heroes for Hire (1997) #3",
+      "section": "Marvel Fanfare (1996) #6 (whole original; Heroes for Hire story material), then Heroes for Hire (1997) #1-9",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 168,
+      "sourcePosition": 183,
+      "issueId": 62007,
+      "title": "Heroes for Hire (1997) #4",
+      "section": "Marvel Fanfare (1996) #6 (whole original; Heroes for Hire story material), then Heroes for Hire (1997) #1-9",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 169,
+      "sourcePosition": 184,
+      "issueId": 62008,
+      "title": "Heroes for Hire (1997) #5",
+      "section": "Marvel Fanfare (1996) #6 (whole original; Heroes for Hire story material), then Heroes for Hire (1997) #1-9",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 170,
+      "sourcePosition": 185,
+      "issueId": 62009,
+      "title": "Heroes for Hire (1997) #6",
+      "section": "Marvel Fanfare (1996) #6 (whole original; Heroes for Hire story material), then Heroes for Hire (1997) #1-9",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 171,
+      "sourcePosition": 186,
+      "issueId": 50676,
+      "title": "Heroes for Hire (1997) #7",
+      "section": "Marvel Fanfare (1996) #6 (whole original; Heroes for Hire story material), then Heroes for Hire (1997) #1-9",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 172,
+      "sourcePosition": 187,
+      "issueId": 62011,
+      "title": "Heroes for Hire (1997) #8",
+      "section": "Marvel Fanfare (1996) #6 (whole original; Heroes for Hire story material), then Heroes for Hire (1997) #1-9",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 173,
+      "sourcePosition": 188,
+      "issueId": 59301,
+      "title": "Heroes For Hire (1997) #9",
+      "section": "Marvel Fanfare (1996) #6 (whole original; Heroes for Hire story material), then Heroes for Hire (1997) #1-9",
+      "placeholder": false,
+      "detailsRefused": true
+    },
+    {
+      "position": 174,
+      "sourcePosition": 189,
+      "issueId": -1374752173,
+      "title": "Heroes for Hire (1997) #10",
+      "section": "Collects: Heroes for Hire #10 to #15, Quicksilver #11, Heroes for Hire #16, Quicksilver #12, Heroes for Hire/Quicksilver Annual ’98 #1, Heroes for Hire #17 to #19",
+      "placeholder": true,
+      "detailsRefused": false
+    },
+    {
+      "position": 175,
+      "sourcePosition": 190,
+      "issueId": -1156496031,
+      "title": "Heroes for Hire (1997) #11",
+      "section": "Collects: Heroes for Hire #10 to #15, Quicksilver #11, Heroes for Hire #16, Quicksilver #12, Heroes for Hire/Quicksilver Annual ’98 #1, Heroes for Hire #17 to #19",
+      "placeholder": true,
+      "detailsRefused": false
+    },
+    {
+      "position": 176,
+      "sourcePosition": 191,
+      "issueId": 62012,
+      "title": "Heroes for Hire (1997) #12",
+      "section": "Collects: Heroes for Hire #10 to #15, Quicksilver #11, Heroes for Hire #16, Quicksilver #12, Heroes for Hire/Quicksilver Annual ’98 #1, Heroes for Hire #17 to #19",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 177,
+      "sourcePosition": 192,
+      "issueId": 62013,
+      "title": "Heroes for Hire (1997) #13",
+      "section": "Collects: Heroes for Hire #10 to #15, Quicksilver #11, Heroes for Hire #16, Quicksilver #12, Heroes for Hire/Quicksilver Annual ’98 #1, Heroes for Hire #17 to #19",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 178,
+      "sourcePosition": 193,
+      "issueId": 62014,
+      "title": "Heroes for Hire (1997) #14",
+      "section": "Collects: Heroes for Hire #10 to #15, Quicksilver #11, Heroes for Hire #16, Quicksilver #12, Heroes for Hire/Quicksilver Annual ’98 #1, Heroes for Hire #17 to #19",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 179,
+      "sourcePosition": 194,
+      "issueId": -1089385555,
+      "title": "Heroes for Hire (1997) #15",
+      "section": "Collects: Heroes for Hire #10 to #15, Quicksilver #11, Heroes for Hire #16, Quicksilver #12, Heroes for Hire/Quicksilver Annual ’98 #1, Heroes for Hire #17 to #19",
+      "placeholder": true,
+      "detailsRefused": false
+    },
+    {
+      "position": 180,
+      "sourcePosition": 195,
+      "issueId": 53687,
+      "title": "Quicksilver (1997) #11",
+      "section": "Collects: Heroes for Hire #10 to #15, Quicksilver #11, Heroes for Hire #16, Quicksilver #12, Heroes for Hire/Quicksilver Annual ’98 #1, Heroes for Hire #17 to #19",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 181,
+      "sourcePosition": 196,
+      "issueId": -1122940793,
+      "title": "Heroes for Hire (1997) #16",
+      "section": "Collects: Heroes for Hire #10 to #15, Quicksilver #11, Heroes for Hire #16, Quicksilver #12, Heroes for Hire/Quicksilver Annual ’98 #1, Heroes for Hire #17 to #19",
+      "placeholder": true,
+      "detailsRefused": false
+    },
+    {
+      "position": 182,
+      "sourcePosition": 197,
+      "issueId": 53688,
+      "title": "Quicksilver (1997) #12",
+      "section": "Collects: Heroes for Hire #10 to #15, Quicksilver #11, Heroes for Hire #16, Quicksilver #12, Heroes for Hire/Quicksilver Annual ’98 #1, Heroes for Hire #17 to #19",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 183,
+      "sourcePosition": 198,
+      "issueId": -1290716983,
+      "title": "Heroes for Hire/Quicksilver Annual (1998) #1",
+      "section": "Collects: Heroes for Hire #10 to #15, Quicksilver #11, Heroes for Hire #16, Quicksilver #12, Heroes for Hire/Quicksilver Annual ’98 #1, Heroes for Hire #17 to #19",
+      "placeholder": true,
+      "detailsRefused": false
+    },
+    {
+      "position": 184,
+      "sourcePosition": 199,
+      "issueId": 62015,
+      "title": "Heroes for Hire (1997) #17",
+      "section": "Collects: Heroes for Hire #10 to #15, Quicksilver #11, Heroes for Hire #16, Quicksilver #12, Heroes for Hire/Quicksilver Annual ’98 #1, Heroes for Hire #17 to #19",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 185,
+      "sourcePosition": 200,
+      "issueId": 62016,
+      "title": "Heroes for Hire (1997) #18",
+      "section": "Collects: Heroes for Hire #10 to #15, Quicksilver #11, Heroes for Hire #16, Quicksilver #12, Heroes for Hire/Quicksilver Annual ’98 #1, Heroes for Hire #17 to #19",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 186,
+      "sourcePosition": 201,
+      "issueId": 62017,
+      "title": "Heroes for Hire (1997) #19",
+      "section": "Collects: Heroes for Hire #10 to #15, Quicksilver #11, Heroes for Hire #16, Quicksilver #12, Heroes for Hire/Quicksilver Annual ’98 #1, Heroes for Hire #17 to #19",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 187,
+      "sourcePosition": 202,
+      "issueId": 54897,
+      "title": "Iron Fist (1996) #1",
+      "section": "Collects: Iron Fist (1996) #1 to #2, Iron Fist (1998) #1 to #3, Iron Fist/Wolverine #1 to #4, Iron Fist (2004) #1 to #6",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 188,
+      "sourcePosition": 203,
+      "issueId": 54898,
+      "title": "Iron Fist (1996) #2",
+      "section": "Collects: Iron Fist (1996) #1 to #2, Iron Fist (1998) #1 to #3, Iron Fist/Wolverine #1 to #4, Iron Fist (2004) #1 to #6",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 189,
+      "sourcePosition": 204,
+      "issueId": 54899,
+      "title": "Iron Fist (1998) #1",
+      "section": "Collects: Iron Fist (1996) #1 to #2, Iron Fist (1998) #1 to #3, Iron Fist/Wolverine #1 to #4, Iron Fist (2004) #1 to #6",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 190,
+      "sourcePosition": 205,
+      "issueId": 54900,
+      "title": "Iron Fist (1998) #2",
+      "section": "Collects: Iron Fist (1996) #1 to #2, Iron Fist (1998) #1 to #3, Iron Fist/Wolverine #1 to #4, Iron Fist (2004) #1 to #6",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 191,
+      "sourcePosition": 206,
+      "issueId": 54901,
+      "title": "Iron Fist (1998) #3",
+      "section": "Collects: Iron Fist (1996) #1 to #2, Iron Fist (1998) #1 to #3, Iron Fist/Wolverine #1 to #4, Iron Fist (2004) #1 to #6",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 192,
+      "sourcePosition": 207,
+      "issueId": 54902,
+      "title": "Iron Fist/Wolverine: The Return of K'un Lun (2000) #1",
+      "section": "Collects: Iron Fist (1996) #1 to #2, Iron Fist (1998) #1 to #3, Iron Fist/Wolverine #1 to #4, Iron Fist (2004) #1 to #6",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 193,
+      "sourcePosition": 208,
+      "issueId": 54903,
+      "title": "Iron Fist/Wolverine: The Return of K'un Lun (2000) #2",
+      "section": "Collects: Iron Fist (1996) #1 to #2, Iron Fist (1998) #1 to #3, Iron Fist/Wolverine #1 to #4, Iron Fist (2004) #1 to #6",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 194,
+      "sourcePosition": 209,
+      "issueId": 54904,
+      "title": "Iron Fist/Wolverine: The Return of K'un Lun (2000) #3",
+      "section": "Collects: Iron Fist (1996) #1 to #2, Iron Fist (1998) #1 to #3, Iron Fist/Wolverine #1 to #4, Iron Fist (2004) #1 to #6",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 195,
+      "sourcePosition": 210,
+      "issueId": 54905,
+      "title": "Iron Fist/Wolverine: The Return of K'un Lun (2000) #4",
+      "section": "Collects: Iron Fist (1996) #1 to #2, Iron Fist (1998) #1 to #3, Iron Fist/Wolverine #1 to #4, Iron Fist (2004) #1 to #6",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 196,
+      "sourcePosition": 211,
+      "issueId": 406,
+      "title": "Iron Fist (2004) #1",
+      "section": "Collects: Iron Fist (1996) #1 to #2, Iron Fist (1998) #1 to #3, Iron Fist/Wolverine #1 to #4, Iron Fist (2004) #1 to #6",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 197,
+      "sourcePosition": 212,
+      "issueId": 469,
+      "title": "Iron Fist (2004) #2",
+      "section": "Collects: Iron Fist (1996) #1 to #2, Iron Fist (1998) #1 to #3, Iron Fist/Wolverine #1 to #4, Iron Fist (2004) #1 to #6",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 198,
+      "sourcePosition": 213,
+      "issueId": 651,
+      "title": "Iron Fist (2004) #3",
+      "section": "Collects: Iron Fist (1996) #1 to #2, Iron Fist (1998) #1 to #3, Iron Fist/Wolverine #1 to #4, Iron Fist (2004) #1 to #6",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 199,
+      "sourcePosition": 214,
+      "issueId": 737,
+      "title": "Iron Fist (2004) #4",
+      "section": "Collects: Iron Fist (1996) #1 to #2, Iron Fist (1998) #1 to #3, Iron Fist/Wolverine #1 to #4, Iron Fist (2004) #1 to #6",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 200,
+      "sourcePosition": 215,
+      "issueId": 584,
+      "title": "Iron Fist (2004) #5",
+      "section": "Collects: Iron Fist (1996) #1 to #2, Iron Fist (1998) #1 to #3, Iron Fist/Wolverine #1 to #4, Iron Fist (2004) #1 to #6",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 201,
+      "sourcePosition": 216,
+      "issueId": 558,
+      "title": "Iron Fist (2004) #6",
+      "section": "Collects: Iron Fist (1996) #1 to #2, Iron Fist (1998) #1 to #3, Iron Fist/Wolverine #1 to #4, Iron Fist (2004) #1 to #6",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 202,
+      "sourcePosition": 217,
+      "issueId": 15640,
+      "title": "Daredevil (1998) #38",
+      "section": "Issues: Daredevil #38 to #40, #59 to #60",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 203,
+      "sourcePosition": 218,
+      "issueId": 15641,
+      "title": "Daredevil (1998) #39",
+      "section": "Issues: Daredevil #38 to #40, #59 to #60",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 204,
+      "sourcePosition": 219,
+      "issueId": 15643,
+      "title": "Daredevil (1998) #40",
+      "section": "Issues: Daredevil #38 to #40, #59 to #60",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 205,
+      "sourcePosition": 220,
+      "issueId": 481,
+      "title": "Daredevil (1998) #59",
+      "section": "Issues: Daredevil #38 to #40, #59 to #60",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 206,
+      "sourcePosition": 221,
+      "issueId": 647,
+      "title": "Daredevil (1998) #60",
+      "section": "Issues: Daredevil #38 to #40, #59 to #60",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 207,
+      "sourcePosition": 222,
+      "issueId": 3203,
+      "title": "Daughters of the Dragon (2006) #1",
+      "section": "Issues: Daughters of the Dragon #1 to #6",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 208,
+      "sourcePosition": 223,
+      "issueId": 3525,
+      "title": "Daughters of the Dragon (2006) #2",
+      "section": "Issues: Daughters of the Dragon #1 to #6",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 209,
+      "sourcePosition": 224,
+      "issueId": 3928,
+      "title": "Daughters of the Dragon (2006) #3",
+      "section": "Issues: Daughters of the Dragon #1 to #6",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 210,
+      "sourcePosition": 225,
+      "issueId": 4054,
+      "title": "Daughters of the Dragon (2006) #4",
+      "section": "Issues: Daughters of the Dragon #1 to #6",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 211,
+      "sourcePosition": 226,
+      "issueId": 4168,
+      "title": "Daughters of the Dragon (2006) #5",
+      "section": "Issues: Daughters of the Dragon #1 to #6",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 212,
+      "sourcePosition": 227,
+      "issueId": 4269,
+      "title": "Daughters of the Dragon (2006) #6",
+      "section": "Issues: Daughters of the Dragon #1 to #6",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 213,
+      "sourcePosition": 228,
+      "issueId": 3482,
+      "title": "Daredevil (1998) #82",
+      "section": "Issues: Daredevil #82 to #87",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 214,
+      "sourcePosition": 229,
+      "issueId": 3946,
+      "title": "Daredevil (1998) #83",
+      "section": "Issues: Daredevil #82 to #87",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 215,
+      "sourcePosition": 230,
+      "issueId": 4070,
+      "title": "Daredevil (1998) #84",
+      "section": "Issues: Daredevil #82 to #87",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 216,
+      "sourcePosition": 231,
+      "issueId": 4183,
+      "title": "Daredevil (1998) #85",
+      "section": "Issues: Daredevil #82 to #87",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 217,
+      "sourcePosition": 232,
+      "issueId": 4284,
+      "title": "Daredevil (1998) #86",
+      "section": "Issues: Daredevil #82 to #87",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 218,
+      "sourcePosition": 233,
+      "issueId": 4439,
+      "title": "Daredevil (1998) #87",
+      "section": "Issues: Daredevil #82 to #87",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 219,
+      "sourcePosition": 234,
+      "issueId": 5963,
+      "title": "New Avengers (2004) #27",
+      "section": "Issues: New Avengers #27 to #37",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 220,
+      "sourcePosition": 235,
+      "issueId": 6122,
+      "title": "New Avengers (2004) #28",
+      "section": "Issues: New Avengers #27 to #37",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 221,
+      "sourcePosition": 236,
+      "issueId": 6265,
+      "title": "New Avengers (2004) #29",
+      "section": "Issues: New Avengers #27 to #37",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 222,
+      "sourcePosition": 237,
+      "issueId": 13437,
+      "title": "New Avengers (2004) #30",
+      "section": "Issues: New Avengers #27 to #37",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 223,
+      "sourcePosition": 238,
+      "issueId": 15819,
+      "title": "New Avengers (2004) #31",
+      "section": "Issues: New Avengers #27 to #37",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 224,
+      "sourcePosition": 239,
+      "issueId": 15938,
+      "title": "New Avengers (2004) #32",
+      "section": "Issues: New Avengers #27 to #37",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 225,
+      "sourcePosition": 240,
+      "issueId": 16121,
+      "title": "New Avengers (2004) #33",
+      "section": "Issues: New Avengers #27 to #37",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 226,
+      "sourcePosition": 241,
+      "issueId": 16469,
+      "title": "New Avengers (2004) #34",
+      "section": "Issues: New Avengers #27 to #37",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 227,
+      "sourcePosition": 242,
+      "issueId": 16470,
+      "title": "New Avengers (2004) #35",
+      "section": "Issues: New Avengers #27 to #37",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 228,
+      "sourcePosition": 243,
+      "issueId": 17225,
+      "title": "New Avengers (2004) #36",
+      "section": "Issues: New Avengers #27 to #37",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 229,
+      "sourcePosition": 244,
+      "issueId": 17357,
+      "title": "New Avengers (2004) #37",
+      "section": "Issues: New Avengers #27 to #37",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 230,
+      "sourcePosition": 245,
+      "issueId": 5473,
+      "title": "The Immortal Iron Fist (2006) #1",
+      "section": "Immortal Iron Fist #1 to #9",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 231,
+      "sourcePosition": 246,
+      "issueId": 5727,
+      "title": "The Immortal Iron Fist (2006) #2",
+      "section": "Immortal Iron Fist #1 to #9",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 232,
+      "sourcePosition": 247,
+      "issueId": 5869,
+      "title": "The Immortal Iron Fist (2006) #3",
+      "section": "Immortal Iron Fist #1 to #9",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 233,
+      "sourcePosition": 248,
+      "issueId": 6179,
+      "title": "The Immortal Iron Fist (2006) #4",
+      "section": "Immortal Iron Fist #1 to #9",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 234,
+      "sourcePosition": 249,
+      "issueId": 6328,
+      "title": "The Immortal Iron Fist (2006) #5",
+      "section": "Immortal Iron Fist #1 to #9",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 235,
+      "sourcePosition": 250,
+      "issueId": 13487,
+      "title": "The Immortal Iron Fist (2006) #6",
+      "section": "Immortal Iron Fist #1 to #9",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 236,
+      "sourcePosition": 251,
+      "issueId": 15864,
+      "title": "The Immortal Iron Fist (2006) #7",
+      "section": "Immortal Iron Fist #1 to #9",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 237,
+      "sourcePosition": 252,
+      "issueId": 15973,
+      "title": "The Immortal Iron Fist (2006) #8",
+      "section": "Immortal Iron Fist #1 to #9",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 238,
+      "sourcePosition": 253,
+      "issueId": 16158,
+      "title": "The Immortal Iron Fist (2006) #9",
+      "section": "Immortal Iron Fist #1 to #9",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 239,
+      "sourcePosition": 254,
+      "issueId": 16610,
+      "title": "IMMORTAL IRON FIST ANNUAL 1 (2007) #1",
+      "section": "Immortal Iron Fist Annual #1",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 240,
+      "sourcePosition": 255,
+      "issueId": 16534,
+      "title": "The Immortal Iron Fist (2006) #10",
+      "section": "Immortal Iron Fist #10 to #12",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 241,
+      "sourcePosition": 256,
+      "issueId": 17258,
+      "title": "The Immortal Iron Fist (2006) #11",
+      "section": "Immortal Iron Fist #10 to #12",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 242,
+      "sourcePosition": 257,
+      "issueId": 17393,
+      "title": "The Immortal Iron Fist (2006) #12",
+      "section": "Immortal Iron Fist #10 to #12",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 243,
+      "sourcePosition": 258,
+      "issueId": 20716,
+      "title": "IMMORTAL IRON FIST: ORSON RANDALL AND THE GREEN MIST OF DEATH 1 (2008) #1",
+      "section": "Immortal Iron Fist: Orson Randall and the Green Mist of Death #1",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 244,
+      "sourcePosition": 259,
+      "issueId": 17635,
+      "title": "The Immortal Iron Fist (2006) #13",
+      "section": "Immortal Iron Fist #13 to #16",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 245,
+      "sourcePosition": 260,
+      "issueId": 21008,
+      "title": "The Immortal Iron Fist (2006) #14",
+      "section": "Immortal Iron Fist #13 to #16",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 246,
+      "sourcePosition": 261,
+      "issueId": 21222,
+      "title": "The Immortal Iron Fist (2006) #15",
+      "section": "Immortal Iron Fist #13 to #16",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 247,
+      "sourcePosition": 262,
+      "issueId": 21361,
+      "title": "The Immortal Iron Fist (2006) #16",
+      "section": "Immortal Iron Fist #13 to #16",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 248,
+      "sourcePosition": 263,
+      "issueId": 21800,
+      "title": "IMMORTAL IRON FIST: THE ORIGIN OF DANNY RAND 1 (2008) #1",
+      "section": "Immortal Iron Fist: The Origin of Danny Rand",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 249,
+      "sourcePosition": 265,
+      "issueId": 21542,
+      "title": "The Immortal Iron Fist (2006) #17",
+      "section": "Issues: Immortal Iron Fist #16 to #20, Immortal Iron Fist: Orson Randall and the Death Queen of California, Immortal Iron Fist #21 to #27, Immortal Weapons #1 to #5",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 250,
+      "sourcePosition": 266,
+      "issueId": 21740,
+      "title": "The Immortal Iron Fist (2006) #18",
+      "section": "Issues: Immortal Iron Fist #16 to #20, Immortal Iron Fist: Orson Randall and the Death Queen of California, Immortal Iron Fist #21 to #27, Immortal Weapons #1 to #5",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 251,
+      "sourcePosition": 267,
+      "issueId": 22298,
+      "title": "The Immortal Iron Fist (2006) #19",
+      "section": "Issues: Immortal Iron Fist #16 to #20, Immortal Iron Fist: Orson Randall and the Death Queen of California, Immortal Iron Fist #21 to #27, Immortal Weapons #1 to #5",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 252,
+      "sourcePosition": 268,
+      "issueId": 22505,
+      "title": "The Immortal Iron Fist (2006) #20",
+      "section": "Issues: Immortal Iron Fist #16 to #20, Immortal Iron Fist: Orson Randall and the Death Queen of California, Immortal Iron Fist #21 to #27, Immortal Weapons #1 to #5",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 253,
+      "sourcePosition": 269,
+      "issueId": 22040,
+      "title": "IMMORTAL IRON FIST: ORSON RANDALL AND THE DEATH QUEEN OF CALIFORNIA 1 (2008) #1",
+      "section": "Issues: Immortal Iron Fist #16 to #20, Immortal Iron Fist: Orson Randall and the Death Queen of California, Immortal Iron Fist #21 to #27, Immortal Weapons #1 to #5",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 254,
+      "sourcePosition": 270,
+      "issueId": 22911,
+      "title": "The Immortal Iron Fist (2006) #21",
+      "section": "Issues: Immortal Iron Fist #16 to #20, Immortal Iron Fist: Orson Randall and the Death Queen of California, Immortal Iron Fist #21 to #27, Immortal Weapons #1 to #5",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 255,
+      "sourcePosition": 271,
+      "issueId": 23111,
+      "title": "The Immortal Iron Fist (2006) #22",
+      "section": "Issues: Immortal Iron Fist #16 to #20, Immortal Iron Fist: Orson Randall and the Death Queen of California, Immortal Iron Fist #21 to #27, Immortal Weapons #1 to #5",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 256,
+      "sourcePosition": 272,
+      "issueId": 23607,
+      "title": "The Immortal Iron Fist (2006) #23",
+      "section": "Issues: Immortal Iron Fist #16 to #20, Immortal Iron Fist: Orson Randall and the Death Queen of California, Immortal Iron Fist #21 to #27, Immortal Weapons #1 to #5",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 257,
+      "sourcePosition": 273,
+      "issueId": 23767,
+      "title": "The Immortal Iron Fist (2006) #24",
+      "section": "Issues: Immortal Iron Fist #16 to #20, Immortal Iron Fist: Orson Randall and the Death Queen of California, Immortal Iron Fist #21 to #27, Immortal Weapons #1 to #5",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 258,
+      "sourcePosition": 274,
+      "issueId": 23967,
+      "title": "The Immortal Iron Fist (2006) #25",
+      "section": "Issues: Immortal Iron Fist #16 to #20, Immortal Iron Fist: Orson Randall and the Death Queen of California, Immortal Iron Fist #21 to #27, Immortal Weapons #1 to #5",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 259,
+      "sourcePosition": 275,
+      "issueId": 24166,
+      "title": "The Immortal Iron Fist (2006) #26",
+      "section": "Issues: Immortal Iron Fist #16 to #20, Immortal Iron Fist: Orson Randall and the Death Queen of California, Immortal Iron Fist #21 to #27, Immortal Weapons #1 to #5",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 260,
+      "sourcePosition": 276,
+      "issueId": 25411,
+      "title": "The Immortal Iron Fist (2006) #27",
+      "section": "Issues: Immortal Iron Fist #16 to #20, Immortal Iron Fist: Orson Randall and the Death Queen of California, Immortal Iron Fist #21 to #27, Immortal Weapons #1 to #5",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 261,
+      "sourcePosition": 277,
+      "issueId": 24824,
+      "title": "Immortal Weapons (2009) #1",
+      "section": "Issues: Immortal Iron Fist #16 to #20, Immortal Iron Fist: Orson Randall and the Death Queen of California, Immortal Iron Fist #21 to #27, Immortal Weapons #1 to #5",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 262,
+      "sourcePosition": 278,
+      "issueId": 24825,
+      "title": "Immortal Weapons (2009) #2",
+      "section": "Issues: Immortal Iron Fist #16 to #20, Immortal Iron Fist: Orson Randall and the Death Queen of California, Immortal Iron Fist #21 to #27, Immortal Weapons #1 to #5",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 263,
+      "sourcePosition": 279,
+      "issueId": 24826,
+      "title": "Immortal Weapons (2009) #3",
+      "section": "Issues: Immortal Iron Fist #16 to #20, Immortal Iron Fist: Orson Randall and the Death Queen of California, Immortal Iron Fist #21 to #27, Immortal Weapons #1 to #5",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 264,
+      "sourcePosition": 280,
+      "issueId": 24827,
+      "title": "Immortal Weapons (2009) #4",
+      "section": "Issues: Immortal Iron Fist #16 to #20, Immortal Iron Fist: Orson Randall and the Death Queen of California, Immortal Iron Fist #21 to #27, Immortal Weapons #1 to #5",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 265,
+      "sourcePosition": 281,
+      "issueId": 24828,
+      "title": "Immortal Weapons (2009) #5",
+      "section": "Issues: Immortal Iron Fist #16 to #20, Immortal Iron Fist: Orson Randall and the Death Queen of California, Immortal Iron Fist #21 to #27, Immortal Weapons #1 to #5",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 266,
+      "sourcePosition": 282,
+      "issueId": 21929,
+      "title": "Daredevil (1998) #111",
+      "section": "Issues: Daredevil #111 to #115",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 267,
+      "sourcePosition": 283,
+      "issueId": 22257,
+      "title": "Daredevil (1998) #112",
+      "section": "Issues: Daredevil #111 to #115",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 268,
+      "sourcePosition": 284,
+      "issueId": 22465,
+      "title": "Daredevil (1998) #113",
+      "section": "Issues: Daredevil #111 to #115",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 269,
+      "sourcePosition": 285,
+      "issueId": 22860,
+      "title": "Daredevil (1998) #114",
+      "section": "Issues: Daredevil #111 to #115",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 270,
+      "sourcePosition": 286,
+      "issueId": 23075,
+      "title": "Daredevil (1998) #115",
+      "section": "Issues: Daredevil #111 to #115",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 271,
+      "sourcePosition": 287,
+      "issueId": 32702,
+      "title": "New Avengers (2010) #1",
+      "section": "Issues: New Avengers #1 to #16",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 272,
+      "sourcePosition": 288,
+      "issueId": 32711,
+      "title": "New Avengers (2010) #2",
+      "section": "Issues: New Avengers #1 to #16",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 273,
+      "sourcePosition": 289,
+      "issueId": 32712,
+      "title": "New Avengers (2010) #3",
+      "section": "Issues: New Avengers #1 to #16",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 274,
+      "sourcePosition": 290,
+      "issueId": 32714,
+      "title": "New Avengers (2010) #4",
+      "section": "Issues: New Avengers #1 to #16",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 275,
+      "sourcePosition": 291,
+      "issueId": 32717,
+      "title": "New Avengers (2010) #5",
+      "section": "Issues: New Avengers #1 to #16",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 276,
+      "sourcePosition": 292,
+      "issueId": 32719,
+      "title": "New Avengers (2010) #6",
+      "section": "Issues: New Avengers #1 to #16",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 277,
+      "sourcePosition": 293,
+      "issueId": 32720,
+      "title": "New Avengers (2010) #7",
+      "section": "Issues: New Avengers #1 to #16",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 278,
+      "sourcePosition": 294,
+      "issueId": 32722,
+      "title": "New Avengers (2010) #8",
+      "section": "Issues: New Avengers #1 to #16",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 279,
+      "sourcePosition": 295,
+      "issueId": 32725,
+      "title": "New Avengers (2010) #9",
+      "section": "Issues: New Avengers #1 to #16",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 280,
+      "sourcePosition": 296,
+      "issueId": 32704,
+      "title": "New Avengers (2010) #10",
+      "section": "Issues: New Avengers #1 to #16",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 281,
+      "sourcePosition": 297,
+      "issueId": 32706,
+      "title": "New Avengers (2010) #11",
+      "section": "Issues: New Avengers #1 to #16",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 282,
+      "sourcePosition": 298,
+      "issueId": 32709,
+      "title": "New Avengers (2010) #12",
+      "section": "Issues: New Avengers #1 to #16",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 283,
+      "sourcePosition": 299,
+      "issueId": 35261,
+      "title": "New Avengers (2010) #13",
+      "section": "Issues: New Avengers #1 to #16",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 284,
+      "sourcePosition": 300,
+      "issueId": 35256,
+      "title": "New Avengers (2010) #14",
+      "section": "Issues: New Avengers #1 to #16",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 285,
+      "sourcePosition": 301,
+      "issueId": 35254,
+      "title": "New Avengers (2010) #15",
+      "section": "Issues: New Avengers #1 to #16",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 286,
+      "sourcePosition": 302,
+      "issueId": 35257,
+      "title": "New Avengers (2010) #16",
+      "section": "Issues: New Avengers #1 to #16",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 287,
+      "sourcePosition": 303,
+      "issueId": 37189,
+      "title": "Heroes for Hire (2010) #1",
+      "section": "Issues: Heroes for Hire #1 to #5",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 288,
+      "sourcePosition": 304,
+      "issueId": 37196,
+      "title": "Heroes for Hire (2010) #2",
+      "section": "Issues: Heroes for Hire #1 to #5",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 289,
+      "sourcePosition": 305,
+      "issueId": 37198,
+      "title": "Heroes for Hire (2010) #3",
+      "section": "Issues: Heroes for Hire #1 to #5",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 290,
+      "sourcePosition": 306,
+      "issueId": 37187,
+      "title": "Heroes for Hire (2010) #4",
+      "section": "Issues: Heroes for Hire #1 to #5",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 291,
+      "sourcePosition": 307,
+      "issueId": 37197,
+      "title": "Heroes for Hire (2010) #5",
+      "section": "Issues: Heroes for Hire #1 to #5",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 292,
+      "sourcePosition": 308,
+      "issueId": 37194,
+      "title": "Heroes for Hire (2010) #6",
+      "section": "Issues: #6 to #12",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 293,
+      "sourcePosition": 309,
+      "issueId": 37188,
+      "title": "Heroes for Hire (2010) #7",
+      "section": "Issues: #6 to #12",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 294,
+      "sourcePosition": 310,
+      "issueId": 37190,
+      "title": "Heroes for Hire (2010) #8",
+      "section": "Issues: #6 to #12",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 295,
+      "sourcePosition": 311,
+      "issueId": 37192,
+      "title": "Heroes for Hire (2010) #9",
+      "section": "Issues: #6 to #12",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 296,
+      "sourcePosition": 312,
+      "issueId": 37191,
+      "title": "Heroes for Hire (2010) #10",
+      "section": "Issues: #6 to #12",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 297,
+      "sourcePosition": 313,
+      "issueId": 37193,
+      "title": "Heroes for Hire (2010) #11",
+      "section": "Issues: #6 to #12",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 298,
+      "sourcePosition": 314,
+      "issueId": 37195,
+      "title": "Heroes for Hire (2010) #12",
+      "section": "Issues: #6 to #12",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 299,
+      "sourcePosition": 315,
+      "issueId": 36035,
+      "title": "Power Man and Iron Fist (2011) #1",
+      "section": "Issues: Power Man & Iron Fist #1 to #5 (2011)",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 300,
+      "sourcePosition": 316,
+      "issueId": 36025,
+      "title": "Power Man and Iron Fist (2011) #2",
+      "section": "Issues: Power Man & Iron Fist #1 to #5 (2011)",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 301,
+      "sourcePosition": 317,
+      "issueId": 36028,
+      "title": "Power Man and Iron Fist (2011) #3",
+      "section": "Issues: Power Man & Iron Fist #1 to #5 (2011)",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 302,
+      "sourcePosition": 318,
+      "issueId": 36026,
+      "title": "Power Man and Iron Fist (2011) #4",
+      "section": "Issues: Power Man & Iron Fist #1 to #5 (2011)",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 303,
+      "sourcePosition": 319,
+      "issueId": 36027,
+      "title": "Power Man and Iron Fist (2011) #5",
+      "section": "Issues: Power Man & Iron Fist #1 to #5 (2011)",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 304,
+      "sourcePosition": 320,
+      "issueId": 39757,
+      "title": "Defenders (2011) #1",
+      "section": "Issues: Defenders #1 to #12 (2011)",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 305,
+      "sourcePosition": 321,
+      "issueId": 39762,
+      "title": "Defenders (2011) #2",
+      "section": "Issues: Defenders #1 to #12 (2011)",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 306,
+      "sourcePosition": 322,
+      "issueId": 39763,
+      "title": "Defenders (2011) #3",
+      "section": "Issues: Defenders #1 to #12 (2011)",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 307,
+      "sourcePosition": 323,
+      "issueId": 39758,
+      "title": "Defenders (2011) #4",
+      "section": "Issues: Defenders #1 to #12 (2011)",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 308,
+      "sourcePosition": 324,
+      "issueId": 39759,
+      "title": "Defenders (2011) #5",
+      "section": "Issues: Defenders #1 to #12 (2011)",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 309,
+      "sourcePosition": 325,
+      "issueId": 39761,
+      "title": "Defenders (2011) #6",
+      "section": "Issues: Defenders #1 to #12 (2011)",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 310,
+      "sourcePosition": 326,
+      "issueId": 39760,
+      "title": "Defenders (2011) #7",
+      "section": "Issues: Defenders #1 to #12 (2011)",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 311,
+      "sourcePosition": 327,
+      "issueId": 39767,
+      "title": "Defenders (2011) #8",
+      "section": "Issues: Defenders #1 to #12 (2011)",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 312,
+      "sourcePosition": 328,
+      "issueId": 39766,
+      "title": "Defenders (2011) #9",
+      "section": "Issues: Defenders #1 to #12 (2011)",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 313,
+      "sourcePosition": 329,
+      "issueId": 39765,
+      "title": "Defenders (2011) #10",
+      "section": "Issues: Defenders #1 to #12 (2011)",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 314,
+      "sourcePosition": 330,
+      "issueId": 39764,
+      "title": "Defenders (2011) #11",
+      "section": "Issues: Defenders #1 to #12 (2011)",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 315,
+      "sourcePosition": 331,
+      "issueId": 39756,
+      "title": "Defenders (2011) #12",
+      "section": "Issues: Defenders #1 to #12 (2011)",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 316,
+      "sourcePosition": 332,
+      "issueId": 49303,
+      "title": "Iron Fist: The Living Weapon (2014) #1",
+      "section": "Issues: Iron Fist: The Living Weapon #1 to #6",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 317,
+      "sourcePosition": 333,
+      "issueId": 49305,
+      "title": "Iron Fist: The Living Weapon (2014) #2",
+      "section": "Issues: Iron Fist: The Living Weapon #1 to #6",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 318,
+      "sourcePosition": 334,
+      "issueId": 49307,
+      "title": "Iron Fist: The Living Weapon (2014) #3",
+      "section": "Issues: Iron Fist: The Living Weapon #1 to #6",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 319,
+      "sourcePosition": 335,
+      "issueId": 49308,
+      "title": "Iron Fist: The Living Weapon (2014) #4",
+      "section": "Issues: Iron Fist: The Living Weapon #1 to #6",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 320,
+      "sourcePosition": 336,
+      "issueId": 49309,
+      "title": "Iron Fist: The Living Weapon (2014) #5",
+      "section": "Issues: Iron Fist: The Living Weapon #1 to #6",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 321,
+      "sourcePosition": 337,
+      "issueId": 49310,
+      "title": "Iron Fist: The Living Weapon (2014) #6",
+      "section": "Issues: Iron Fist: The Living Weapon #1 to #6",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 322,
+      "sourcePosition": 338,
+      "issueId": 49311,
+      "title": "Iron Fist: The Living Weapon (2014) #7",
+      "section": "Issues: Iron Fist: The Living Weapon #7 to #12",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 323,
+      "sourcePosition": 339,
+      "issueId": 49312,
+      "title": "Iron Fist: The Living Weapon (2014) #8",
+      "section": "Issues: Iron Fist: The Living Weapon #7 to #12",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 324,
+      "sourcePosition": 340,
+      "issueId": 49313,
+      "title": "Iron Fist: The Living Weapon (2014) #9",
+      "section": "Issues: Iron Fist: The Living Weapon #7 to #12",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 325,
+      "sourcePosition": 341,
+      "issueId": 49314,
+      "title": "Iron Fist: The Living Weapon (2014) #10",
+      "section": "Issues: Iron Fist: The Living Weapon #7 to #12",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 326,
+      "sourcePosition": 342,
+      "issueId": 49315,
+      "title": "Iron Fist: The Living Weapon (2014) #11",
+      "section": "Issues: Iron Fist: The Living Weapon #7 to #12",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 327,
+      "sourcePosition": 343,
+      "issueId": 49316,
+      "title": "Iron Fist: The Living Weapon (2014) #12",
+      "section": "Issues: Iron Fist: The Living Weapon #7 to #12",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 328,
+      "sourcePosition": 344,
+      "issueId": 57948,
+      "title": "Power Man and Iron Fist (2016) #1",
+      "section": "Issues: Power Man and Iron Fist #1 to #5",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 329,
+      "sourcePosition": 345,
+      "issueId": 57950,
+      "title": "Power Man and Iron Fist (2016) #2",
+      "section": "Issues: Power Man and Iron Fist #1 to #5",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 330,
+      "sourcePosition": 346,
+      "issueId": 57952,
+      "title": "Power Man and Iron Fist (2016) #3",
+      "section": "Issues: Power Man and Iron Fist #1 to #5",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 331,
+      "sourcePosition": 347,
+      "issueId": 57953,
+      "title": "Power Man and Iron Fist (2016) #4",
+      "section": "Issues: Power Man and Iron Fist #1 to #5",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 332,
+      "sourcePosition": 348,
+      "issueId": 57954,
+      "title": "Power Man and Iron Fist (2016) #5",
+      "section": "Issues: Power Man and Iron Fist #1 to #5",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 333,
+      "sourcePosition": 349,
+      "issueId": 57955,
+      "title": "Power Man and Iron Fist (2016) #6",
+      "section": "Issues: Power Man and Iron Fist #6 to #9",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 334,
+      "sourcePosition": 350,
+      "issueId": 57956,
+      "title": "Power Man and Iron Fist (2016) #7",
+      "section": "Issues: Power Man and Iron Fist #6 to #9",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 335,
+      "sourcePosition": 351,
+      "issueId": 57957,
+      "title": "Power Man and Iron Fist (2016) #8",
+      "section": "Issues: Power Man and Iron Fist #6 to #9",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 336,
+      "sourcePosition": 352,
+      "issueId": 57958,
+      "title": "Power Man and Iron Fist (2016) #9",
+      "section": "Issues: Power Man and Iron Fist #6 to #9",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 337,
+      "sourcePosition": 353,
+      "issueId": 57959,
+      "title": "Power Man and Iron Fist (2016) #10",
+      "section": "Issues : Power Man & Iron Fist (2016) #10 to #15",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 338,
+      "sourcePosition": 354,
+      "issueId": 57960,
+      "title": "Power Man and Iron Fist (2016) #11",
+      "section": "Issues : Power Man & Iron Fist (2016) #10 to #15",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 339,
+      "sourcePosition": 355,
+      "issueId": 57961,
+      "title": "Power Man and Iron Fist (2016) #12",
+      "section": "Issues : Power Man & Iron Fist (2016) #10 to #15",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 340,
+      "sourcePosition": 356,
+      "issueId": 60753,
+      "title": "Power Man and Iron Fist (2016) #13",
+      "section": "Issues : Power Man & Iron Fist (2016) #10 to #15",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 341,
+      "sourcePosition": 357,
+      "issueId": 60754,
+      "title": "Power Man and Iron Fist (2016) #14",
+      "section": "Issues : Power Man & Iron Fist (2016) #10 to #15",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 342,
+      "sourcePosition": 358,
+      "issueId": 60755,
+      "title": "Power Man and Iron Fist (2016) #15",
+      "section": "Issues : Power Man & Iron Fist (2016) #10 to #15",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 343,
+      "sourcePosition": 359,
+      "issueId": 62650,
+      "title": "Iron Fist (2017) #1",
+      "section": "Issues : Iron Fist (2017) #1 to #5",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 344,
+      "sourcePosition": 360,
+      "issueId": 61564,
+      "title": "Iron Fist (2017) #2",
+      "section": "Issues : Iron Fist (2017) #1 to #5",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 345,
+      "sourcePosition": 361,
+      "issueId": 61565,
+      "title": "Iron Fist (2017) #3",
+      "section": "Issues : Iron Fist (2017) #1 to #5",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 346,
+      "sourcePosition": 362,
+      "issueId": 61566,
+      "title": "Iron Fist (2017) #4",
+      "section": "Issues : Iron Fist (2017) #1 to #5",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 347,
+      "sourcePosition": 363,
+      "issueId": 63719,
+      "title": "Iron Fist (2017) #5",
+      "section": "Issues : Iron Fist (2017) #1 to #5",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 348,
+      "sourcePosition": 364,
+      "issueId": 64282,
+      "title": "Iron Fist (2017) #6",
+      "section": "Issues : Iron Fist (2017) #6 to #7, #73 to #77",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 349,
+      "sourcePosition": 365,
+      "issueId": 64601,
+      "title": "Iron Fist (2017) #7",
+      "section": "Issues : Iron Fist (2017) #6 to #7, #73 to #77",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 350,
+      "sourcePosition": 366,
+      "issueId": 64770,
+      "title": "Iron Fist (2017) #73",
+      "section": "Issues : Iron Fist (2017) #6 to #7, #73 to #77",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 351,
+      "sourcePosition": 367,
+      "issueId": 65081,
+      "title": "Iron Fist (2017) #74",
+      "section": "Issues : Iron Fist (2017) #6 to #7, #73 to #77",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 352,
+      "sourcePosition": 368,
+      "issueId": 65289,
+      "title": "Iron Fist (2017) #75",
+      "section": "Issues : Iron Fist (2017) #6 to #7, #73 to #77",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 353,
+      "sourcePosition": 369,
+      "issueId": 65576,
+      "title": "Iron Fist (2017) #76",
+      "section": "Issues : Iron Fist (2017) #6 to #7, #73 to #77",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 354,
+      "sourcePosition": 370,
+      "issueId": 66103,
+      "title": "Iron Fist (2017) #77",
+      "section": "Issues : Iron Fist (2017) #6 to #7, #73 to #77",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 355,
+      "sourcePosition": 371,
+      "issueId": 62923,
+      "title": "Defenders (2017) #1",
+      "section": "Issues : Defenders (2017) #1 to #5, material from FCBD 2017 (Guardians of the Galaxy) #1",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 356,
+      "sourcePosition": 372,
+      "issueId": 63230,
+      "title": "Defenders (2017) #2",
+      "section": "Issues : Defenders (2017) #1 to #5, material from FCBD 2017 (Guardians of the Galaxy) #1",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 357,
+      "sourcePosition": 373,
+      "issueId": 63692,
+      "title": "Defenders (2017) #3",
+      "section": "Issues : Defenders (2017) #1 to #5, material from FCBD 2017 (Guardians of the Galaxy) #1",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 358,
+      "sourcePosition": 374,
+      "issueId": 64138,
+      "title": "Defenders (2017) #4",
+      "section": "Issues : Defenders (2017) #1 to #5, material from FCBD 2017 (Guardians of the Galaxy) #1",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 359,
+      "sourcePosition": 375,
+      "issueId": 64527,
+      "title": "Defenders (2017) #5",
+      "section": "Issues : Defenders (2017) #1 to #5, material from FCBD 2017 (Guardians of the Galaxy) #1",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 360,
+      "sourcePosition": 376,
+      "issueId": 64794,
+      "title": "Defenders (2017) #6",
+      "section": "Issues : Defenders (2017) #6 to #10",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 361,
+      "sourcePosition": 377,
+      "issueId": 65068,
+      "title": "Defenders (2017) #7",
+      "section": "Issues : Defenders (2017) #6 to #10",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 362,
+      "sourcePosition": 378,
+      "issueId": 65275,
+      "title": "Defenders (2017) #8",
+      "section": "Issues : Defenders (2017) #6 to #10",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 363,
+      "sourcePosition": 379,
+      "issueId": 65511,
+      "title": "Defenders (2017) #9",
+      "section": "Issues : Defenders (2017) #6 to #10",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 364,
+      "sourcePosition": 380,
+      "issueId": 66276,
+      "title": "Defenders (2017) #10",
+      "section": "Issues : Defenders (2017) #6 to #10",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 365,
+      "sourcePosition": 381,
+      "issueId": -1806451215,
+      "title": "Immortal Iron Fists (2017) #1",
+      "section": "Issues : Immortal Iron Fists #1 to #6",
+      "placeholder": true,
+      "detailsRefused": false
+    },
+    {
+      "position": 366,
+      "sourcePosition": 382,
+      "issueId": -1856784072,
+      "title": "Immortal Iron Fists (2017) #2",
+      "section": "Issues : Immortal Iron Fists #1 to #6",
+      "placeholder": true,
+      "detailsRefused": false
+    },
+    {
+      "position": 367,
+      "sourcePosition": 383,
+      "issueId": -1840006453,
+      "title": "Immortal Iron Fists (2017) #3",
+      "section": "Issues : Immortal Iron Fists #1 to #6",
+      "placeholder": true,
+      "detailsRefused": false
+    },
+    {
+      "position": 368,
+      "sourcePosition": 384,
+      "issueId": -1756118358,
+      "title": "Immortal Iron Fists (2017) #4",
+      "section": "Issues : Immortal Iron Fists #1 to #6",
+      "placeholder": true,
+      "detailsRefused": false
+    },
+    {
+      "position": 369,
+      "sourcePosition": 385,
+      "issueId": -1739340739,
+      "title": "Immortal Iron Fists (2017) #5",
+      "section": "Issues : Immortal Iron Fists #1 to #6",
+      "placeholder": true,
+      "detailsRefused": false
+    },
+    {
+      "position": 370,
+      "sourcePosition": 386,
+      "issueId": -1789673596,
+      "title": "Immortal Iron Fists (2017) #6",
+      "section": "Issues : Immortal Iron Fists #1 to #6",
+      "placeholder": true,
+      "detailsRefused": false
+    },
+    {
+      "position": 371,
+      "sourcePosition": 387,
+      "issueId": 66279,
+      "title": "Doctor Strange: Damnation (2018) #1",
+      "section": "Issues : Doctor Strange: Damnation #1 to #4, Damnation: Johnny Blaze - Ghost Rider #1, Doctor Strange (2015) #386 to #389, Iron Fist (2017) #78 to #80, and Ben Reilly: Scarlet Spider #15 to #17",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 372,
+      "sourcePosition": 388,
+      "issueId": 66409,
+      "title": "Doctor Strange: Damnation (2018) #2",
+      "section": "Issues : Doctor Strange: Damnation #1 to #4, Damnation: Johnny Blaze - Ghost Rider #1, Doctor Strange (2015) #386 to #389, Iron Fist (2017) #78 to #80, and Ben Reilly: Scarlet Spider #15 to #17",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 373,
+      "sourcePosition": 389,
+      "issueId": 66540,
+      "title": "Doctor Strange: Damnation (2018) #3",
+      "section": "Issues : Doctor Strange: Damnation #1 to #4, Damnation: Johnny Blaze - Ghost Rider #1, Doctor Strange (2015) #386 to #389, Iron Fist (2017) #78 to #80, and Ben Reilly: Scarlet Spider #15 to #17",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 374,
+      "sourcePosition": 390,
+      "issueId": 66910,
+      "title": "Doctor Strange: Damnation (2018) #4",
+      "section": "Issues : Doctor Strange: Damnation #1 to #4, Damnation: Johnny Blaze - Ghost Rider #1, Doctor Strange (2015) #386 to #389, Iron Fist (2017) #78 to #80, and Ben Reilly: Scarlet Spider #15 to #17",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 375,
+      "sourcePosition": 391,
+      "issueId": 66537,
+      "title": "Damnation: Johnny Blaze - Ghost Rider (2018) #1",
+      "section": "Issues : Doctor Strange: Damnation #1 to #4, Damnation: Johnny Blaze - Ghost Rider #1, Doctor Strange (2015) #386 to #389, Iron Fist (2017) #78 to #80, and Ben Reilly: Scarlet Spider #15 to #17",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 376,
+      "sourcePosition": 392,
+      "issueId": 66278,
+      "title": "Doctor Strange (2015) #386",
+      "section": "Issues : Doctor Strange: Damnation #1 to #4, Damnation: Johnny Blaze - Ghost Rider #1, Doctor Strange (2015) #386 to #389, Iron Fist (2017) #78 to #80, and Ben Reilly: Scarlet Spider #15 to #17",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 377,
+      "sourcePosition": 393,
+      "issueId": 66493,
+      "title": "Doctor Strange (2015) #387",
+      "section": "Issues : Doctor Strange: Damnation #1 to #4, Damnation: Johnny Blaze - Ghost Rider #1, Doctor Strange (2015) #386 to #389, Iron Fist (2017) #78 to #80, and Ben Reilly: Scarlet Spider #15 to #17",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 378,
+      "sourcePosition": 394,
+      "issueId": 66762,
+      "title": "Doctor Strange (2015) #388",
+      "section": "Issues : Doctor Strange: Damnation #1 to #4, Damnation: Johnny Blaze - Ghost Rider #1, Doctor Strange (2015) #386 to #389, Iron Fist (2017) #78 to #80, and Ben Reilly: Scarlet Spider #15 to #17",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 379,
+      "sourcePosition": 395,
+      "issueId": 66909,
+      "title": "Doctor Strange (2015) #389",
+      "section": "Issues : Doctor Strange: Damnation #1 to #4, Damnation: Johnny Blaze - Ghost Rider #1, Doctor Strange (2015) #386 to #389, Iron Fist (2017) #78 to #80, and Ben Reilly: Scarlet Spider #15 to #17",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 380,
+      "sourcePosition": 396,
+      "issueId": 66543,
+      "title": "Iron Fist (2017) #78",
+      "section": "Issues : Doctor Strange: Damnation #1 to #4, Damnation: Johnny Blaze - Ghost Rider #1, Doctor Strange (2015) #386 to #389, Iron Fist (2017) #78 to #80, and Ben Reilly: Scarlet Spider #15 to #17",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 381,
+      "sourcePosition": 397,
+      "issueId": 66688,
+      "title": "Iron Fist (2017) #79",
+      "section": "Issues : Doctor Strange: Damnation #1 to #4, Damnation: Johnny Blaze - Ghost Rider #1, Doctor Strange (2015) #386 to #389, Iron Fist (2017) #78 to #80, and Ben Reilly: Scarlet Spider #15 to #17",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 382,
+      "sourcePosition": 398,
+      "issueId": 66843,
+      "title": "Iron Fist (2017) #80",
+      "section": "Issues : Doctor Strange: Damnation #1 to #4, Damnation: Johnny Blaze - Ghost Rider #1, Doctor Strange (2015) #386 to #389, Iron Fist (2017) #78 to #80, and Ben Reilly: Scarlet Spider #15 to #17",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 383,
+      "sourcePosition": 399,
+      "issueId": 66485,
+      "title": "Ben Reilly: Scarlet Spider (2017) #15",
+      "section": "Issues : Doctor Strange: Damnation #1 to #4, Damnation: Johnny Blaze - Ghost Rider #1, Doctor Strange (2015) #386 to #389, Iron Fist (2017) #78 to #80, and Ben Reilly: Scarlet Spider #15 to #17",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 384,
+      "sourcePosition": 400,
+      "issueId": 66532,
+      "title": "Ben Reilly: Scarlet Spider (2017) #16",
+      "section": "Issues : Doctor Strange: Damnation #1 to #4, Damnation: Johnny Blaze - Ghost Rider #1, Doctor Strange (2015) #386 to #389, Iron Fist (2017) #78 to #80, and Ben Reilly: Scarlet Spider #15 to #17",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 385,
+      "sourcePosition": 401,
+      "issueId": 66756,
+      "title": "Ben Reilly: Scarlet Spider (2017) #17",
+      "section": "Issues : Doctor Strange: Damnation #1 to #4, Damnation: Johnny Blaze - Ghost Rider #1, Doctor Strange (2015) #386 to #389, Iron Fist (2017) #78 to #80, and Ben Reilly: Scarlet Spider #15 to #17",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 386,
+      "sourcePosition": 402,
+      "issueId": 71874,
+      "title": "Typhoid Fever: Spider-Man (2018) #1",
+      "section": "Issues : Typhoid Fever: Spider-Man, Typhoid Fever: X-Men, Typhoid Fever: Iron Fist",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 387,
+      "sourcePosition": 403,
+      "issueId": 71875,
+      "title": "Typhoid Fever: X-Men (2018) #1",
+      "section": "Issues : Typhoid Fever: Spider-Man, Typhoid Fever: X-Men, Typhoid Fever: Iron Fist",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 388,
+      "sourcePosition": 404,
+      "issueId": 71876,
+      "title": "Typhoid Fever: Iron Fist (2018) #1",
+      "section": "Issues : Typhoid Fever: Spider-Man, Typhoid Fever: X-Men, Typhoid Fever: Iron Fist",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 389,
+      "sourcePosition": 405,
+      "issueId": 71267,
+      "title": "Iron Fist - Marvel Digital Original (2018) #1",
+      "section": "Issues : Iron Fist: Marvel Digital Original #1 to #3",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 390,
+      "sourcePosition": 406,
+      "issueId": 71268,
+      "title": "Iron Fist - Marvel Digital Original (2018) #2",
+      "section": "Issues : Iron Fist: Marvel Digital Original #1 to #3",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 391,
+      "sourcePosition": 407,
+      "issueId": 71269,
+      "title": "Iron Fist - Marvel Digital Original (2018) #3",
+      "section": "Issues : Iron Fist: Marvel Digital Original #1 to #3",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 392,
+      "sourcePosition": 408,
+      "issueId": 75482,
+      "title": "War of the Realms Strikeforce: The Land of Giants (2019) #1",
+      "section": "Issues : War of the Realms Strike Force: The Land of the Giants, The Dark Elf Realms, and The War Avengers",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 393,
+      "sourcePosition": 409,
+      "issueId": 75483,
+      "title": "War of the Realms Strikeforce: The Dark Elf Realm (2019) #1",
+      "section": "Issues : War of the Realms Strike Force: The Land of the Giants, The Dark Elf Realms, and The War Avengers",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 394,
+      "sourcePosition": 410,
+      "issueId": 75484,
+      "title": "War Of The Realms Strikeforce: The War Avengers (2019) #1",
+      "section": "Issues : War of the Realms Strike Force: The Land of the Giants, The Dark Elf Realms, and The War Avengers",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 395,
+      "sourcePosition": 411,
+      "issueId": 77061,
+      "title": "Absolute Carnage: Lethal Protectors (2019) #1",
+      "section": "Issues : Absolute Carnage: Lethal Protectors (2019) #1 to #3, Absolute Carnage: Avengers (2019) #1",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 396,
+      "sourcePosition": 412,
+      "issueId": 77062,
+      "title": "Absolute Carnage: Lethal Protectors (2019) #2",
+      "section": "Issues : Absolute Carnage: Lethal Protectors (2019) #1 to #3, Absolute Carnage: Avengers (2019) #1",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 397,
+      "sourcePosition": 413,
+      "issueId": 77063,
+      "title": "Absolute Carnage: Lethal Protectors (2019) #3",
+      "section": "Issues : Absolute Carnage: Lethal Protectors (2019) #1 to #3, Absolute Carnage: Avengers (2019) #1",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 398,
+      "sourcePosition": 414,
+      "issueId": 77059,
+      "title": "Absolute Carnage: Avengers (2019) #1",
+      "section": "Issues : Absolute Carnage: Lethal Protectors (2019) #1 to #3, Absolute Carnage: Avengers (2019) #1",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 399,
+      "sourcePosition": 415,
+      "issueId": 81094,
+      "title": "Contagion (2019) #1",
+      "section": "Issues : Contagion (2019) #1 to #5",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 400,
+      "sourcePosition": 416,
+      "issueId": 81096,
+      "title": "Contagion (2019) #2",
+      "section": "Issues : Contagion (2019) #1 to #5",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 401,
+      "sourcePosition": 417,
+      "issueId": 81098,
+      "title": "Contagion (2019) #3",
+      "section": "Issues : Contagion (2019) #1 to #5",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 402,
+      "sourcePosition": 418,
+      "issueId": 81100,
+      "title": "Contagion (2019) #4",
+      "section": "Issues : Contagion (2019) #1 to #5",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 403,
+      "sourcePosition": 419,
+      "issueId": 81102,
+      "title": "Contagion (2019) #5",
+      "section": "Issues : Contagion (2019) #1 to #5",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 404,
+      "sourcePosition": 420,
+      "issueId": 84165,
+      "title": "Iron Fist: Heart of the Dragon (2021) #1",
+      "section": "Issues : Iron Fist: Heart of the Dragon (2021) #1 to #6",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 405,
+      "sourcePosition": 421,
+      "issueId": 84166,
+      "title": "Iron Fist: Heart of the Dragon (2021) #2",
+      "section": "Issues : Iron Fist: Heart of the Dragon (2021) #1 to #6",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 406,
+      "sourcePosition": 422,
+      "issueId": 84167,
+      "title": "Iron Fist: Heart of the Dragon (2021) #3",
+      "section": "Issues : Iron Fist: Heart of the Dragon (2021) #1 to #6",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 407,
+      "sourcePosition": 423,
+      "issueId": 84168,
+      "title": "Iron Fist: Heart of the Dragon (2021) #4",
+      "section": "Issues : Iron Fist: Heart of the Dragon (2021) #1 to #6",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 408,
+      "sourcePosition": 424,
+      "issueId": 84169,
+      "title": "Iron Fist: Heart of the Dragon (2021) #5",
+      "section": "Issues : Iron Fist: Heart of the Dragon (2021) #1 to #6",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 409,
+      "sourcePosition": 425,
+      "issueId": 84170,
+      "title": "Iron Fist: Heart of the Dragon (2021) #6",
+      "section": "Issues : Iron Fist: Heart of the Dragon (2021) #1 to #6",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 410,
+      "sourcePosition": 426,
+      "issueId": 97115,
+      "title": "Iron Fist (2022) #1",
+      "section": "Issues : Iron Fist (2022) #1 to #5",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 411,
+      "sourcePosition": 427,
+      "issueId": 97117,
+      "title": "Iron Fist (2022) #2",
+      "section": "Issues : Iron Fist (2022) #1 to #5",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 412,
+      "sourcePosition": 428,
+      "issueId": 97118,
+      "title": "Iron Fist (2022) #3",
+      "section": "Issues : Iron Fist (2022) #1 to #5",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 413,
+      "sourcePosition": 429,
+      "issueId": 97119,
+      "title": "Iron Fist (2022) #4",
+      "section": "Issues : Iron Fist (2022) #1 to #5",
+      "placeholder": false,
+      "detailsRefused": false
+    },
+    {
+      "position": 414,
+      "sourcePosition": 430,
+      "issueId": 97120,
+      "title": "Iron Fist (2022) #5",
+      "section": "Issues : Iron Fist (2022) #1 to #5",
+      "placeholder": false,
+      "detailsRefused": false
+    }
+  ]
+}

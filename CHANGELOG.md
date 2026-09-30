@@ -13,6 +13,15 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Follow Iron Fist from Marvel Premiere to his later solo stories
+
+Adds a credited 414-position Iron Fist Reading List with 376 exact issue links and 38
+visible questions about original issue identities. Sixteen later references to earlier
+comics remain in the source record without duplicating checklist entries. The Namor
+continuation and a Heroes for Hire story in Marvel Fanfare carry visible scope notes.
+One exact issue remains on the list even though optional provider details were refused.
+Existing Reading Lists and saved progress are unchanged.
+
 ### Follow Namor through Golden Age and modern stories
 
 Adds a credited Namor Reading List spanning the Golden Age, Atlantis, the Invaders,

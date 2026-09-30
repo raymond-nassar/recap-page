@@ -39,6 +39,7 @@ const currentOverlaps = [
   ['doctor-octopus-otto-octavius-reading-order', 15],
   ['emma-frost-reading-order', 33],
   ['fantastic-four-reading-order', 23],
+  ['iron-fist-reading-order', 3],
   ['iron-man-reading-order', 6],
   ['loki-reading-order', 2],
   ['magneto-reading-order', 17],

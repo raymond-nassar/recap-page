@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-30T01:59:06.178Z",
+  "generatedAt": "2026-09-30T04:55:50.710Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -3997,6 +3997,49 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-27T13:18:34.558Z"
+    },
+    {
+      "id": "iron-fist-reading-order",
+      "file": "iron_fist_reading_order.json",
+      "name": "Iron Fist",
+      "description": "Follow Comic Book Herald's Iron Fist route from the early originals through Heroes for Hire, Immortal Iron Fist and the later selected stories.",
+      "type": "character-run",
+      "depth": "partial",
+      "spotlightKind": "other",
+      "count": 414,
+      "placeholderCount": 38,
+      "emptyRecordCount": 1,
+      "collections": 48,
+      "characters": [
+        "Iron Fist",
+        "Danny Rand",
+        "Luke Cage",
+        "Heroes for Hire",
+        "Colleen Wing",
+        "Misty Knight"
+      ],
+      "keywords": [
+        "Iron Fist",
+        "Power Man",
+        "Immortal Iron Fist",
+        "K'un-Lun",
+        "Heroes for Hire",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 10201,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/4bc473d7dd562",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/iron-fist-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-09-30T04:55:50.710Z"
     },
     {
       "id": "ultimate-spider-man-reading-order",

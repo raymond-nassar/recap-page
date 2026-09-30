@@ -138,10 +138,10 @@ test('Namor exact original vector, eight gaps and five backward references conse
   assert.doesNotThrow(() => assertMappingMatchesPacketOccurrences(packet, mapping));
 });
 
-test('Namor independent approval covers every current published reading order', async () => {
+test('Namor independent approval covers every peer in its publication snapshot', async () => {
   const library = await loadLibrarySnapshot();
   const current = await buildReportForMapping(`scripts/data/cbh-mappings/${id}.json`, [], {
-    excludedOrderIds: [],
+    excludedOrderIds: ['iron-fist-reading-order'],
   });
   assert.deepEqual(current, report);
   assert.equal(report.comparisonCount, 201);
@@ -168,8 +168,16 @@ test('Namor independent approval covers every current published reading order', 
   assert.equal(mapping.relationshipReview.reportDigest, report.reportDigest);
   assert.doesNotThrow(() => assertApprovedRelationshipReview({
     packet, mapping, report, currentLibraryDigest: current.libraryDigest,
-    expectedOrderIds: library.lists.filter((row) => row.id !== id).map((row) => row.id),
+    expectedOrderIds: library.lists.filter((row) =>
+      row.id !== id && row.id !== 'iron-fist-reading-order').map((row) => row.id),
   }));
+  const ironFist = await readJson('src/data/iron_fist_reading_order.json');
+  const shared = new Set(ironFist.items.filter((row) => row.issueId > 0).map((row) => row.issueId));
+  assert.deepEqual((await readJson('src/data/namor_sub_mariner_reading_order.json')).items
+    .map((row) => row.issueId).filter((issueId) => shared.has(issueId)),
+  [66014, 66015, 66016, 66017, 66018, 66019, 66020, 66021, 66022,
+    39757, 39762, 39763, 39758, 39759, 39761, 39760, 39767,
+    39766, 39765, 39764, 39756]);
   const pending = structuredClone(mapping);
   pending.reviewStatus = 'pending-independent-review';
   delete pending.packetReview;
