@@ -13,6 +13,29 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+## 3.1.0
+
+### More reading choices, clearer next steps
+
+- Start from clearer Home actions and find more credited character, creator and event guides.
+- Keep unresolved source positions visible instead of replacing them with different comics.
+- Use more readable Android cards, notes and controls, with Character spotlight filters in a
+  compact sheet and the next reading action closer to hand.
+- Open an exact recorded issue page when no reader ID is available, without repeating a lookup
+  known to fail. Android also retains browser escape after a Marvel Unlimited app handoff.
+- Identify packaged copies by their platform build and source, with separate platform release
+  controls and clearer Android privacy and backup information.
+
+Saved reading data and JSON backups from version 3.0.1 remain compatible with 3.1.0; the saved-data
+format stays at schema 3. Export a backup before upgrading and keep using version 3 or later.
+Windows keeps the same browser profile and fixed local address. An official Android installation
+has separate storage from the prototype and needs deliberate backup/restore, not automatic transfer.
+
+This version record prepares the release; it does not claim that a new Windows or Google Play
+package is published. Android signing, final-artifact and physical-device acceptance, and public
+distribution approvals remain separate. Known enlarged-text overflow on About is tracked in
+[#663](https://github.com/raymond-nassar/recap-page/issues/663), not claimed fixed by this release.
+
 ### Balance the Android Home heading
 
 The Home logo and short tagline now sit in the middle of the available content area on
