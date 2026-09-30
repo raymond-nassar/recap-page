@@ -4404,15 +4404,26 @@
     "id": "the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order",
     "title": "X-Men: Onslaught",
     "url": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/x-men-onslaught-reading-order/",
-    "guideType": "character-run",
+    "guideType": "event",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
-    "sourceRetrievedAt": "2026-08-23",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "disposition": "new-order",
+    "reason": "Publishes 72 exact original comics and 2 explicit unresolved identity gaps across 74 selected positions. All 100 printed references remain source evidence; the approved 200-peer report records 8 partial relationships and no exact duplicate.",
+    "sourceRetrievedAt": "2026-09-29",
+    "overlapIds": [
+      "agatha-harkness-reading-order",
+      "amazing-spider-man-reading-order-modern-marvel-era",
+      "black-widow-reading-order",
+      "fantastic-four-reading-order",
+      "iron-man-reading-order",
+      "question-of-the-week-do-you-have-a-hulk-reading-order",
+      "the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order",
+      "wolverine-reading-order"
+    ],
+    "catalogIds": [
+      "the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "X-Men: Onslaught"
     ],
@@ -4420,9 +4431,9 @@
       128
     ],
     "duplicateFlags": [],
-    "sourceContentSha256": "33d162bb882f43b5f558ec43e50728f0a5eba1d2fd8d75d63ca4ef7f7fbcec2d",
+    "sourceContentSha256": "0c072bcb1ffab9042a159bfcdc84bcf25041bdc6eabf3fa04709f6270ee154d0",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 128,

@@ -123,13 +123,15 @@ test('AoA exact-ID vector retains 246 distinct originals and all 16 qualified qu
     /exact original identity remains unresolved/);
 });
 
-test('AoA relationship report is rebuilt from every other published source order', async () => {
+test('AoA relationship report is rebuilt from every peer at its review', async () => {
   const manifest = await readJson('src/data/curated-lists.json');
   const expectedOrderIds = manifest.lists.map((item) => item.id)
-    .filter((orderId) => orderId !== id)
+    .filter((orderId) => orderId !== id
+      && orderId !== 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order')
     .sort((left, right) => left.localeCompare(right));
   const live = await buildReportForMapping(
-    `scripts/data/cbh-mappings/${id}.json`, [], { excludedOrderIds: [] },
+    `scripts/data/cbh-mappings/${id}.json`, [],
+    { excludedOrderIds: ['the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order'] },
   );
   assert.equal(expectedOrderIds.length, 199);
   assert.deepEqual(report.comparisons.map((item) => item.orderId), expectedOrderIds);
@@ -197,7 +199,7 @@ test('AoA published checklist preserves 262 positions under factual section head
   assert.ok(all.every((item) => !item.section || item.section.length <= MAX_COLLECTION));
   const chosen = parsed.entries.find((entry) => entry.sourceKey === '275');
   assert.match(chosen.section, /Older-edition companion: The Chosen/);
-  assert.equal(manifest.lists.length, 200);
+  assert.equal(manifest.lists.length, 201);
   assert.equal(manifest.lists[manifest.lists.findIndex((entry) => entry.id === id) + 1].id,
     'xmen-claremont');
   assert.deepEqual(manifest.lists.find((entry) => entry.id === id), packet.proposedManifest);

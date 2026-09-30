@@ -5261,6 +5261,40 @@
       "coverIssueId": 13857
     },
     {
+      "id": "the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order",
+      "name": "X-Men: Onslaught",
+      "description": "Follow Comic Book Herald's Road to Onslaught and Complete Epic sequence, with separately identified reference companions and the Heroes Reborn epilogue.",
+      "type": "event",
+      "depth": "partial",
+      "beginner": false,
+      "timeline": 1996,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/x-men-onslaught-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "the_complete_marvel_reading_order_guide_x_men_onslaught_reading_order.json",
+      "characters": [
+        "X-Men",
+        "Onslaught",
+        "Avengers",
+        "Fantastic Four",
+        "Hulk",
+        "Cable"
+      ],
+      "keywords": [
+        "Onslaught",
+        "Road to Onslaught",
+        "Complete Epic",
+        "Heroes Reborn",
+        "Comic Book Herald"
+      ],
+      "expect": 74,
+      "coverIssueId": 20767
+    },
+    {
       "id": "operation-zero-tolerance",
       "name": "Operation: Zero Tolerance",
       "description": "Twenty chapters following the X-Men family through Operation: Zero Tolerance.",

@@ -1,0 +1,1603 @@
+{
+  "schemaVersion": 1,
+  "id": "the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order",
+  "scopeIssue": "https://github.com/raymond-nassar/recap-page/issues/637",
+  "sourceUrl": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/x-men-onslaught-reading-order/",
+  "sourceRetrievedAt": "2026-09-29",
+  "sourceContentSha256": "0c072bcb1ffab9042a159bfcdc84bcf25041bdc6eabf3fa04709f6270ee154d0",
+  "sourceIssueBearingBlocksSha256": "0c072bcb1ffab9042a159bfcdc84bcf25041bdc6eabf3fa04709f6270ee154d0",
+  "sourceHashDefinition": "Both fields deliberately refer to ONE identical factual measurement: UTF-8 compact JSON.stringify({sourceUrl,blocks:[{section,references}]}) preserving printed block/reference order. Neither is a raw-response, full-HTML or full-article-text hash, and they are not two independent observations.",
+  "selectedProjectionSha256": "5c1d335e875f00513f62ceec416f94149079d8fcaf4e2ed0e72fa4775647d8ea",
+  "selectedProjectionDefinition": "Parent-reproduced UTF-8 JSON.stringify of the source-ordered selected rows, object fields in this order:sourcePosition,printedPosition,sourceBlock,sourceGroup,sourceIssueReference. sourceBlock is1-based printed block index;sourceGroup is original block.section. Other normalization/display metadata is separate.",
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "Independent source coordinator for guide issue #637",
+    "rationale": "The coordinator independently read the entire current article and reproduced its100-reference factual projection. The primaryRoad/Epic route retains74 provisional whole-publication selections, including SensationalSpiderMan8 and the two independently cataloged reference/art companions. Twenty-two optionalPrelude excerpts,one explicitly unrelated unnumberedSwimsuit reference,two expressly one-page excerpts andone unverifiedTimelines reference remain explicit provenance, not invented whole comics. XMenTimelines has not been established as a separate publication, so no#1 or duplicate annual is fabricated.",
+    "reviewedAt": "2026-09-29"
+  },
+  "blocks": [
+    {
+      "sourceBlock": 1,
+      "sourceGroup": "Road to Onslaught Vol. 1",
+      "role": "selected-sequence",
+      "references": [
+        "X-Men Prime #1",
+        "Uncanny X-Men #322",
+        "X-Men #42",
+        "X-Men #43",
+        "X-Men #44",
+        "Uncanny X-Men #323",
+        "Uncanny X-Men #324",
+        "X-Men Annual '95 #1",
+        "Uncanny X-Men #325",
+        "X-Men #45",
+        "Uncanny X-Men #326",
+        "X-Men Unlimited #8",
+        "Marvel Swimsuit Special"
+      ]
+    },
+    {
+      "sourceBlock": 2,
+      "sourceGroup": "Road to Onslaught Vol. 2",
+      "role": "selected-sequence",
+      "references": [
+        "X-Men & The ClanDestine #1",
+        "X-Men & The ClanDestine #2",
+        "Uncanny X-Men Annual '95",
+        "X-Men Timelines",
+        "X-Men #46",
+        "X-Men #47",
+        "Uncanny X-Men #327",
+        "X-Men Unlimited #9",
+        "Uncanny X-Men #328",
+        "Sabretooth #1",
+        "X-Men #48",
+        "X-Men #49",
+        "X-Men Hotshots"
+      ]
+    },
+    {
+      "sourceBlock": 3,
+      "sourceGroup": "Road to Onslaught Vol. 3",
+      "role": "selected-sequence",
+      "references": [
+        "Uncanny X-Men #329",
+        "Uncanny X-Men #330",
+        "Archangel #1",
+        "X-Men vs. The Brood #1",
+        "X-Men vs. The Brood #2",
+        "X-Men Unlimited #10",
+        "X-Men #50",
+        "Uncanny X-Men #331",
+        "Uncanny X-Men #332",
+        "Wolverine #101",
+        "X-Men #51",
+        "X-Men #52",
+        "Xavier Institute Yearbook"
+      ]
+    },
+    {
+      "sourceBlock": 4,
+      "sourceGroup": "Onslaught Prelude Comic Book Issue Order (not recommended; excerpts)",
+      "role": "optional-excerpt-only",
+      "references": [
+        "Uncanny X-Men #287",
+        "X-Men #25",
+        "X-Man #10",
+        "Uncanny X-Men #322",
+        "Wolverine #93",
+        "X-Men #46",
+        "X-Men #49",
+        "X-Men #50",
+        "X-Force #52",
+        "Uncanny X-Men #331",
+        "X-Men Unlimited #10",
+        "Wolverine #100",
+        "Generation X #15",
+        "Cable #31",
+        "Cable #32",
+        "Uncanny X-Men #333",
+        "X-Man #15",
+        "X-Man #16",
+        "X-Man #17",
+        "X-Men Unlimited #11",
+        "Excalibur #99",
+        "Cable #33"
+      ]
+    },
+    {
+      "sourceBlock": 5,
+      "sourceGroup": "Onslaught The Complete Epic, Book 1",
+      "role": "selected-sequence",
+      "references": [
+        "X-Men #53",
+        "Uncanny X-Men #334",
+        "X-Men #54",
+        "Fantastic Four #414",
+        "Avengers #400",
+        "Onslaught: X-Men",
+        "Avengers #401",
+        "Fantastic Four #415",
+        "Cable #34",
+        "Incredible Hulk #444"
+      ]
+    },
+    {
+      "sourceBlock": 6,
+      "sourceGroup": "Onslaught The Complete Epic, Book 2",
+      "role": "selected-sequence",
+      "references": [
+        "Excalibur #100",
+        "Wolverine #104",
+        "X-Factor #125",
+        "X-Factor #126",
+        "The Sensational Spider-Man #8",
+        "Amazing Spider-Man #415",
+        "Green Goblin #12",
+        "Spider-Man #72",
+        "X-Man #18",
+        "X-Force #57",
+        "Punisher #11"
+      ]
+    },
+    {
+      "sourceBlock": 7,
+      "sourceGroup": "Onslaught The Complete Epic, Book 3",
+      "role": "selected-sequence",
+      "references": [
+        "X-Men #55",
+        "Uncanny X-Men #336",
+        "Cable #35",
+        "X-Force #58",
+        "X-Man #19",
+        "Incredible Hulk #445",
+        "Iron Man #332",
+        "Avengers #402",
+        "Thor #502",
+        "Wolverine #105"
+      ]
+    },
+    {
+      "sourceBlock": 8,
+      "sourceGroup": "Onslaught The Complete Epic, Book 4",
+      "role": "selected-sequence",
+      "references": [
+        "Fantastic Four #416",
+        "X-Men #56",
+        "Onslaught: Marvel Universe",
+        "Cable #36",
+        "Uncanny X-Men #337",
+        "X-Men #57",
+        "Onslaught Epilogue",
+        "Iron Man #6 (Heroes Reborn)"
+      ]
+    }
+  ],
+  "printedPositions": [
+    {
+      "printedPosition": 1,
+      "sourceBlock": 1,
+      "blockPosition": 1,
+      "sourceGroup": "Road to Onslaught Vol. 1",
+      "sourceIssueReference": "X-Men Prime #1",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 1
+    },
+    {
+      "printedPosition": 2,
+      "sourceBlock": 1,
+      "blockPosition": 2,
+      "sourceGroup": "Road to Onslaught Vol. 1",
+      "sourceIssueReference": "Uncanny X-Men #322",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 2
+    },
+    {
+      "printedPosition": 3,
+      "sourceBlock": 1,
+      "blockPosition": 3,
+      "sourceGroup": "Road to Onslaught Vol. 1",
+      "sourceIssueReference": "X-Men #42",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 3
+    },
+    {
+      "printedPosition": 4,
+      "sourceBlock": 1,
+      "blockPosition": 4,
+      "sourceGroup": "Road to Onslaught Vol. 1",
+      "sourceIssueReference": "X-Men #43",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 4
+    },
+    {
+      "printedPosition": 5,
+      "sourceBlock": 1,
+      "blockPosition": 5,
+      "sourceGroup": "Road to Onslaught Vol. 1",
+      "sourceIssueReference": "X-Men #44",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 5
+    },
+    {
+      "printedPosition": 6,
+      "sourceBlock": 1,
+      "blockPosition": 6,
+      "sourceGroup": "Road to Onslaught Vol. 1",
+      "sourceIssueReference": "Uncanny X-Men #323",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 6
+    },
+    {
+      "printedPosition": 7,
+      "sourceBlock": 1,
+      "blockPosition": 7,
+      "sourceGroup": "Road to Onslaught Vol. 1",
+      "sourceIssueReference": "Uncanny X-Men #324",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 7
+    },
+    {
+      "printedPosition": 8,
+      "sourceBlock": 1,
+      "blockPosition": 8,
+      "sourceGroup": "Road to Onslaught Vol. 1",
+      "sourceIssueReference": "X-Men Annual '95 #1",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 8
+    },
+    {
+      "printedPosition": 9,
+      "sourceBlock": 1,
+      "blockPosition": 9,
+      "sourceGroup": "Road to Onslaught Vol. 1",
+      "sourceIssueReference": "Uncanny X-Men #325",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 9
+    },
+    {
+      "printedPosition": 10,
+      "sourceBlock": 1,
+      "blockPosition": 10,
+      "sourceGroup": "Road to Onslaught Vol. 1",
+      "sourceIssueReference": "X-Men #45",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 10
+    },
+    {
+      "printedPosition": 11,
+      "sourceBlock": 1,
+      "blockPosition": 11,
+      "sourceGroup": "Road to Onslaught Vol. 1",
+      "sourceIssueReference": "Uncanny X-Men #326",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 11
+    },
+    {
+      "printedPosition": 12,
+      "sourceBlock": 1,
+      "blockPosition": 12,
+      "sourceGroup": "Road to Onslaught Vol. 1",
+      "sourceIssueReference": "X-Men Unlimited #8",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 12
+    },
+    {
+      "printedPosition": 13,
+      "sourceBlock": 1,
+      "blockPosition": 13,
+      "sourceGroup": "Road to Onslaught Vol. 1",
+      "sourceIssueReference": "Marvel Swimsuit Special",
+      "disposition": "excluded-source-unrelated"
+    },
+    {
+      "printedPosition": 14,
+      "sourceBlock": 2,
+      "blockPosition": 1,
+      "sourceGroup": "Road to Onslaught Vol. 2",
+      "sourceIssueReference": "X-Men & The ClanDestine #1",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 13
+    },
+    {
+      "printedPosition": 15,
+      "sourceBlock": 2,
+      "blockPosition": 2,
+      "sourceGroup": "Road to Onslaught Vol. 2",
+      "sourceIssueReference": "X-Men & The ClanDestine #2",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 14
+    },
+    {
+      "printedPosition": 16,
+      "sourceBlock": 2,
+      "blockPosition": 3,
+      "sourceGroup": "Road to Onslaught Vol. 2",
+      "sourceIssueReference": "Uncanny X-Men Annual '95",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 15
+    },
+    {
+      "printedPosition": 17,
+      "sourceBlock": 2,
+      "blockPosition": 4,
+      "sourceGroup": "Road to Onslaught Vol. 2",
+      "sourceIssueReference": "X-Men Timelines",
+      "disposition": "unverified-reference-provenance"
+    },
+    {
+      "printedPosition": 18,
+      "sourceBlock": 2,
+      "blockPosition": 5,
+      "sourceGroup": "Road to Onslaught Vol. 2",
+      "sourceIssueReference": "X-Men #46",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 16
+    },
+    {
+      "printedPosition": 19,
+      "sourceBlock": 2,
+      "blockPosition": 6,
+      "sourceGroup": "Road to Onslaught Vol. 2",
+      "sourceIssueReference": "X-Men #47",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 17
+    },
+    {
+      "printedPosition": 20,
+      "sourceBlock": 2,
+      "blockPosition": 7,
+      "sourceGroup": "Road to Onslaught Vol. 2",
+      "sourceIssueReference": "Uncanny X-Men #327",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 18
+    },
+    {
+      "printedPosition": 21,
+      "sourceBlock": 2,
+      "blockPosition": 8,
+      "sourceGroup": "Road to Onslaught Vol. 2",
+      "sourceIssueReference": "X-Men Unlimited #9",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 19
+    },
+    {
+      "printedPosition": 22,
+      "sourceBlock": 2,
+      "blockPosition": 9,
+      "sourceGroup": "Road to Onslaught Vol. 2",
+      "sourceIssueReference": "Uncanny X-Men #328",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 20
+    },
+    {
+      "printedPosition": 23,
+      "sourceBlock": 2,
+      "blockPosition": 10,
+      "sourceGroup": "Road to Onslaught Vol. 2",
+      "sourceIssueReference": "Sabretooth #1",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 21
+    },
+    {
+      "printedPosition": 24,
+      "sourceBlock": 2,
+      "blockPosition": 11,
+      "sourceGroup": "Road to Onslaught Vol. 2",
+      "sourceIssueReference": "X-Men #48",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 22
+    },
+    {
+      "printedPosition": 25,
+      "sourceBlock": 2,
+      "blockPosition": 12,
+      "sourceGroup": "Road to Onslaught Vol. 2",
+      "sourceIssueReference": "X-Men #49",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 23
+    },
+    {
+      "printedPosition": 26,
+      "sourceBlock": 2,
+      "blockPosition": 13,
+      "sourceGroup": "Road to Onslaught Vol. 2",
+      "sourceIssueReference": "X-Men Hotshots",
+      "disposition": "selected-qualified-companion",
+      "sourcePosition": 24
+    },
+    {
+      "printedPosition": 27,
+      "sourceBlock": 3,
+      "blockPosition": 1,
+      "sourceGroup": "Road to Onslaught Vol. 3",
+      "sourceIssueReference": "Uncanny X-Men #329",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 25
+    },
+    {
+      "printedPosition": 28,
+      "sourceBlock": 3,
+      "blockPosition": 2,
+      "sourceGroup": "Road to Onslaught Vol. 3",
+      "sourceIssueReference": "Uncanny X-Men #330",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 26
+    },
+    {
+      "printedPosition": 29,
+      "sourceBlock": 3,
+      "blockPosition": 3,
+      "sourceGroup": "Road to Onslaught Vol. 3",
+      "sourceIssueReference": "Archangel #1",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 27
+    },
+    {
+      "printedPosition": 30,
+      "sourceBlock": 3,
+      "blockPosition": 4,
+      "sourceGroup": "Road to Onslaught Vol. 3",
+      "sourceIssueReference": "X-Men vs. The Brood #1",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 28
+    },
+    {
+      "printedPosition": 31,
+      "sourceBlock": 3,
+      "blockPosition": 5,
+      "sourceGroup": "Road to Onslaught Vol. 3",
+      "sourceIssueReference": "X-Men vs. The Brood #2",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 29
+    },
+    {
+      "printedPosition": 32,
+      "sourceBlock": 3,
+      "blockPosition": 6,
+      "sourceGroup": "Road to Onslaught Vol. 3",
+      "sourceIssueReference": "X-Men Unlimited #10",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 30
+    },
+    {
+      "printedPosition": 33,
+      "sourceBlock": 3,
+      "blockPosition": 7,
+      "sourceGroup": "Road to Onslaught Vol. 3",
+      "sourceIssueReference": "X-Men #50",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 31
+    },
+    {
+      "printedPosition": 34,
+      "sourceBlock": 3,
+      "blockPosition": 8,
+      "sourceGroup": "Road to Onslaught Vol. 3",
+      "sourceIssueReference": "Uncanny X-Men #331",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 32
+    },
+    {
+      "printedPosition": 35,
+      "sourceBlock": 3,
+      "blockPosition": 9,
+      "sourceGroup": "Road to Onslaught Vol. 3",
+      "sourceIssueReference": "Uncanny X-Men #332",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 33
+    },
+    {
+      "printedPosition": 36,
+      "sourceBlock": 3,
+      "blockPosition": 10,
+      "sourceGroup": "Road to Onslaught Vol. 3",
+      "sourceIssueReference": "Wolverine #101",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 34
+    },
+    {
+      "printedPosition": 37,
+      "sourceBlock": 3,
+      "blockPosition": 11,
+      "sourceGroup": "Road to Onslaught Vol. 3",
+      "sourceIssueReference": "X-Men #51",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 35
+    },
+    {
+      "printedPosition": 38,
+      "sourceBlock": 3,
+      "blockPosition": 12,
+      "sourceGroup": "Road to Onslaught Vol. 3",
+      "sourceIssueReference": "X-Men #52",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 36
+    },
+    {
+      "printedPosition": 39,
+      "sourceBlock": 3,
+      "blockPosition": 13,
+      "sourceGroup": "Road to Onslaught Vol. 3",
+      "sourceIssueReference": "Xavier Institute Yearbook",
+      "disposition": "selected-qualified-companion",
+      "sourcePosition": 37
+    },
+    {
+      "printedPosition": 40,
+      "sourceBlock": 4,
+      "blockPosition": 1,
+      "sourceGroup": "Onslaught Prelude Comic Book Issue Order (not recommended; excerpts)",
+      "sourceIssueReference": "Uncanny X-Men #287",
+      "disposition": "optional-prelude-unique-excerpt"
+    },
+    {
+      "printedPosition": 41,
+      "sourceBlock": 4,
+      "blockPosition": 2,
+      "sourceGroup": "Onslaught Prelude Comic Book Issue Order (not recommended; excerpts)",
+      "sourceIssueReference": "X-Men #25",
+      "disposition": "optional-prelude-unique-excerpt"
+    },
+    {
+      "printedPosition": 42,
+      "sourceBlock": 4,
+      "blockPosition": 3,
+      "sourceGroup": "Onslaught Prelude Comic Book Issue Order (not recommended; excerpts)",
+      "sourceIssueReference": "X-Man #10",
+      "disposition": "optional-prelude-unique-excerpt"
+    },
+    {
+      "printedPosition": 43,
+      "sourceBlock": 4,
+      "blockPosition": 4,
+      "sourceGroup": "Onslaught Prelude Comic Book Issue Order (not recommended; excerpts)",
+      "sourceIssueReference": "Uncanny X-Men #322",
+      "disposition": "optional-prelude-backward-excerpt",
+      "backwardPrintedPosition": 2
+    },
+    {
+      "printedPosition": 44,
+      "sourceBlock": 4,
+      "blockPosition": 5,
+      "sourceGroup": "Onslaught Prelude Comic Book Issue Order (not recommended; excerpts)",
+      "sourceIssueReference": "Wolverine #93",
+      "disposition": "optional-prelude-unique-excerpt"
+    },
+    {
+      "printedPosition": 45,
+      "sourceBlock": 4,
+      "blockPosition": 6,
+      "sourceGroup": "Onslaught Prelude Comic Book Issue Order (not recommended; excerpts)",
+      "sourceIssueReference": "X-Men #46",
+      "disposition": "optional-prelude-backward-excerpt",
+      "backwardPrintedPosition": 18
+    },
+    {
+      "printedPosition": 46,
+      "sourceBlock": 4,
+      "blockPosition": 7,
+      "sourceGroup": "Onslaught Prelude Comic Book Issue Order (not recommended; excerpts)",
+      "sourceIssueReference": "X-Men #49",
+      "disposition": "optional-prelude-backward-excerpt",
+      "backwardPrintedPosition": 25
+    },
+    {
+      "printedPosition": 47,
+      "sourceBlock": 4,
+      "blockPosition": 8,
+      "sourceGroup": "Onslaught Prelude Comic Book Issue Order (not recommended; excerpts)",
+      "sourceIssueReference": "X-Men #50",
+      "disposition": "optional-prelude-backward-excerpt",
+      "backwardPrintedPosition": 33
+    },
+    {
+      "printedPosition": 48,
+      "sourceBlock": 4,
+      "blockPosition": 9,
+      "sourceGroup": "Onslaught Prelude Comic Book Issue Order (not recommended; excerpts)",
+      "sourceIssueReference": "X-Force #52",
+      "disposition": "optional-prelude-unique-excerpt"
+    },
+    {
+      "printedPosition": 49,
+      "sourceBlock": 4,
+      "blockPosition": 10,
+      "sourceGroup": "Onslaught Prelude Comic Book Issue Order (not recommended; excerpts)",
+      "sourceIssueReference": "Uncanny X-Men #331",
+      "disposition": "optional-prelude-backward-excerpt",
+      "backwardPrintedPosition": 34
+    },
+    {
+      "printedPosition": 50,
+      "sourceBlock": 4,
+      "blockPosition": 11,
+      "sourceGroup": "Onslaught Prelude Comic Book Issue Order (not recommended; excerpts)",
+      "sourceIssueReference": "X-Men Unlimited #10",
+      "disposition": "optional-prelude-backward-excerpt",
+      "backwardPrintedPosition": 32
+    },
+    {
+      "printedPosition": 51,
+      "sourceBlock": 4,
+      "blockPosition": 12,
+      "sourceGroup": "Onslaught Prelude Comic Book Issue Order (not recommended; excerpts)",
+      "sourceIssueReference": "Wolverine #100",
+      "disposition": "optional-prelude-unique-excerpt"
+    },
+    {
+      "printedPosition": 52,
+      "sourceBlock": 4,
+      "blockPosition": 13,
+      "sourceGroup": "Onslaught Prelude Comic Book Issue Order (not recommended; excerpts)",
+      "sourceIssueReference": "Generation X #15",
+      "disposition": "optional-prelude-unique-excerpt"
+    },
+    {
+      "printedPosition": 53,
+      "sourceBlock": 4,
+      "blockPosition": 14,
+      "sourceGroup": "Onslaught Prelude Comic Book Issue Order (not recommended; excerpts)",
+      "sourceIssueReference": "Cable #31",
+      "disposition": "optional-prelude-unique-excerpt"
+    },
+    {
+      "printedPosition": 54,
+      "sourceBlock": 4,
+      "blockPosition": 15,
+      "sourceGroup": "Onslaught Prelude Comic Book Issue Order (not recommended; excerpts)",
+      "sourceIssueReference": "Cable #32",
+      "disposition": "optional-prelude-unique-excerpt"
+    },
+    {
+      "printedPosition": 55,
+      "sourceBlock": 4,
+      "blockPosition": 16,
+      "sourceGroup": "Onslaught Prelude Comic Book Issue Order (not recommended; excerpts)",
+      "sourceIssueReference": "Uncanny X-Men #333",
+      "disposition": "optional-prelude-unique-excerpt"
+    },
+    {
+      "printedPosition": 56,
+      "sourceBlock": 4,
+      "blockPosition": 17,
+      "sourceGroup": "Onslaught Prelude Comic Book Issue Order (not recommended; excerpts)",
+      "sourceIssueReference": "X-Man #15",
+      "disposition": "optional-prelude-unique-excerpt"
+    },
+    {
+      "printedPosition": 57,
+      "sourceBlock": 4,
+      "blockPosition": 18,
+      "sourceGroup": "Onslaught Prelude Comic Book Issue Order (not recommended; excerpts)",
+      "sourceIssueReference": "X-Man #16",
+      "disposition": "optional-prelude-unique-excerpt"
+    },
+    {
+      "printedPosition": 58,
+      "sourceBlock": 4,
+      "blockPosition": 19,
+      "sourceGroup": "Onslaught Prelude Comic Book Issue Order (not recommended; excerpts)",
+      "sourceIssueReference": "X-Man #17",
+      "disposition": "optional-prelude-unique-excerpt"
+    },
+    {
+      "printedPosition": 59,
+      "sourceBlock": 4,
+      "blockPosition": 20,
+      "sourceGroup": "Onslaught Prelude Comic Book Issue Order (not recommended; excerpts)",
+      "sourceIssueReference": "X-Men Unlimited #11",
+      "disposition": "optional-prelude-unique-excerpt"
+    },
+    {
+      "printedPosition": 60,
+      "sourceBlock": 4,
+      "blockPosition": 21,
+      "sourceGroup": "Onslaught Prelude Comic Book Issue Order (not recommended; excerpts)",
+      "sourceIssueReference": "Excalibur #99",
+      "disposition": "optional-prelude-unique-excerpt"
+    },
+    {
+      "printedPosition": 61,
+      "sourceBlock": 4,
+      "blockPosition": 22,
+      "sourceGroup": "Onslaught Prelude Comic Book Issue Order (not recommended; excerpts)",
+      "sourceIssueReference": "Cable #33",
+      "disposition": "optional-prelude-unique-excerpt"
+    },
+    {
+      "printedPosition": 62,
+      "sourceBlock": 5,
+      "blockPosition": 1,
+      "sourceGroup": "Onslaught The Complete Epic, Book 1",
+      "sourceIssueReference": "X-Men #53",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 38
+    },
+    {
+      "printedPosition": 63,
+      "sourceBlock": 5,
+      "blockPosition": 2,
+      "sourceGroup": "Onslaught The Complete Epic, Book 1",
+      "sourceIssueReference": "Uncanny X-Men #334",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 39
+    },
+    {
+      "printedPosition": 64,
+      "sourceBlock": 5,
+      "blockPosition": 3,
+      "sourceGroup": "Onslaught The Complete Epic, Book 1",
+      "sourceIssueReference": "X-Men #54",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 40
+    },
+    {
+      "printedPosition": 65,
+      "sourceBlock": 5,
+      "blockPosition": 4,
+      "sourceGroup": "Onslaught The Complete Epic, Book 1",
+      "sourceIssueReference": "Fantastic Four #414",
+      "disposition": "excluded-one-page-excerpt"
+    },
+    {
+      "printedPosition": 66,
+      "sourceBlock": 5,
+      "blockPosition": 5,
+      "sourceGroup": "Onslaught The Complete Epic, Book 1",
+      "sourceIssueReference": "Avengers #400",
+      "disposition": "excluded-one-page-excerpt"
+    },
+    {
+      "printedPosition": 67,
+      "sourceBlock": 5,
+      "blockPosition": 6,
+      "sourceGroup": "Onslaught The Complete Epic, Book 1",
+      "sourceIssueReference": "Onslaught: X-Men",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 41
+    },
+    {
+      "printedPosition": 68,
+      "sourceBlock": 5,
+      "blockPosition": 7,
+      "sourceGroup": "Onslaught The Complete Epic, Book 1",
+      "sourceIssueReference": "Avengers #401",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 42
+    },
+    {
+      "printedPosition": 69,
+      "sourceBlock": 5,
+      "blockPosition": 8,
+      "sourceGroup": "Onslaught The Complete Epic, Book 1",
+      "sourceIssueReference": "Fantastic Four #415",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 43
+    },
+    {
+      "printedPosition": 70,
+      "sourceBlock": 5,
+      "blockPosition": 9,
+      "sourceGroup": "Onslaught The Complete Epic, Book 1",
+      "sourceIssueReference": "Cable #34",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 44
+    },
+    {
+      "printedPosition": 71,
+      "sourceBlock": 5,
+      "blockPosition": 10,
+      "sourceGroup": "Onslaught The Complete Epic, Book 1",
+      "sourceIssueReference": "Incredible Hulk #444",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 45
+    },
+    {
+      "printedPosition": 72,
+      "sourceBlock": 6,
+      "blockPosition": 1,
+      "sourceGroup": "Onslaught The Complete Epic, Book 2",
+      "sourceIssueReference": "Excalibur #100",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 46
+    },
+    {
+      "printedPosition": 73,
+      "sourceBlock": 6,
+      "blockPosition": 2,
+      "sourceGroup": "Onslaught The Complete Epic, Book 2",
+      "sourceIssueReference": "Wolverine #104",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 47
+    },
+    {
+      "printedPosition": 74,
+      "sourceBlock": 6,
+      "blockPosition": 3,
+      "sourceGroup": "Onslaught The Complete Epic, Book 2",
+      "sourceIssueReference": "X-Factor #125",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 48
+    },
+    {
+      "printedPosition": 75,
+      "sourceBlock": 6,
+      "blockPosition": 4,
+      "sourceGroup": "Onslaught The Complete Epic, Book 2",
+      "sourceIssueReference": "X-Factor #126",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 49
+    },
+    {
+      "printedPosition": 76,
+      "sourceBlock": 6,
+      "blockPosition": 5,
+      "sourceGroup": "Onslaught The Complete Epic, Book 2",
+      "sourceIssueReference": "The Sensational Spider-Man #8",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 50
+    },
+    {
+      "printedPosition": 77,
+      "sourceBlock": 6,
+      "blockPosition": 6,
+      "sourceGroup": "Onslaught The Complete Epic, Book 2",
+      "sourceIssueReference": "Amazing Spider-Man #415",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 51
+    },
+    {
+      "printedPosition": 78,
+      "sourceBlock": 6,
+      "blockPosition": 7,
+      "sourceGroup": "Onslaught The Complete Epic, Book 2",
+      "sourceIssueReference": "Green Goblin #12",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 52
+    },
+    {
+      "printedPosition": 79,
+      "sourceBlock": 6,
+      "blockPosition": 8,
+      "sourceGroup": "Onslaught The Complete Epic, Book 2",
+      "sourceIssueReference": "Spider-Man #72",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 53
+    },
+    {
+      "printedPosition": 80,
+      "sourceBlock": 6,
+      "blockPosition": 9,
+      "sourceGroup": "Onslaught The Complete Epic, Book 2",
+      "sourceIssueReference": "X-Man #18",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 54
+    },
+    {
+      "printedPosition": 81,
+      "sourceBlock": 6,
+      "blockPosition": 10,
+      "sourceGroup": "Onslaught The Complete Epic, Book 2",
+      "sourceIssueReference": "X-Force #57",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 55
+    },
+    {
+      "printedPosition": 82,
+      "sourceBlock": 6,
+      "blockPosition": 11,
+      "sourceGroup": "Onslaught The Complete Epic, Book 2",
+      "sourceIssueReference": "Punisher #11",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 56
+    },
+    {
+      "printedPosition": 83,
+      "sourceBlock": 7,
+      "blockPosition": 1,
+      "sourceGroup": "Onslaught The Complete Epic, Book 3",
+      "sourceIssueReference": "X-Men #55",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 57
+    },
+    {
+      "printedPosition": 84,
+      "sourceBlock": 7,
+      "blockPosition": 2,
+      "sourceGroup": "Onslaught The Complete Epic, Book 3",
+      "sourceIssueReference": "Uncanny X-Men #336",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 58
+    },
+    {
+      "printedPosition": 85,
+      "sourceBlock": 7,
+      "blockPosition": 3,
+      "sourceGroup": "Onslaught The Complete Epic, Book 3",
+      "sourceIssueReference": "Cable #35",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 59
+    },
+    {
+      "printedPosition": 86,
+      "sourceBlock": 7,
+      "blockPosition": 4,
+      "sourceGroup": "Onslaught The Complete Epic, Book 3",
+      "sourceIssueReference": "X-Force #58",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 60
+    },
+    {
+      "printedPosition": 87,
+      "sourceBlock": 7,
+      "blockPosition": 5,
+      "sourceGroup": "Onslaught The Complete Epic, Book 3",
+      "sourceIssueReference": "X-Man #19",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 61
+    },
+    {
+      "printedPosition": 88,
+      "sourceBlock": 7,
+      "blockPosition": 6,
+      "sourceGroup": "Onslaught The Complete Epic, Book 3",
+      "sourceIssueReference": "Incredible Hulk #445",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 62
+    },
+    {
+      "printedPosition": 89,
+      "sourceBlock": 7,
+      "blockPosition": 7,
+      "sourceGroup": "Onslaught The Complete Epic, Book 3",
+      "sourceIssueReference": "Iron Man #332",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 63
+    },
+    {
+      "printedPosition": 90,
+      "sourceBlock": 7,
+      "blockPosition": 8,
+      "sourceGroup": "Onslaught The Complete Epic, Book 3",
+      "sourceIssueReference": "Avengers #402",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 64
+    },
+    {
+      "printedPosition": 91,
+      "sourceBlock": 7,
+      "blockPosition": 9,
+      "sourceGroup": "Onslaught The Complete Epic, Book 3",
+      "sourceIssueReference": "Thor #502",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 65
+    },
+    {
+      "printedPosition": 92,
+      "sourceBlock": 7,
+      "blockPosition": 10,
+      "sourceGroup": "Onslaught The Complete Epic, Book 3",
+      "sourceIssueReference": "Wolverine #105",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 66
+    },
+    {
+      "printedPosition": 93,
+      "sourceBlock": 8,
+      "blockPosition": 1,
+      "sourceGroup": "Onslaught The Complete Epic, Book 4",
+      "sourceIssueReference": "Fantastic Four #416",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 67
+    },
+    {
+      "printedPosition": 94,
+      "sourceBlock": 8,
+      "blockPosition": 2,
+      "sourceGroup": "Onslaught The Complete Epic, Book 4",
+      "sourceIssueReference": "X-Men #56",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 68
+    },
+    {
+      "printedPosition": 95,
+      "sourceBlock": 8,
+      "blockPosition": 3,
+      "sourceGroup": "Onslaught The Complete Epic, Book 4",
+      "sourceIssueReference": "Onslaught: Marvel Universe",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 69
+    },
+    {
+      "printedPosition": 96,
+      "sourceBlock": 8,
+      "blockPosition": 4,
+      "sourceGroup": "Onslaught The Complete Epic, Book 4",
+      "sourceIssueReference": "Cable #36",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 70
+    },
+    {
+      "printedPosition": 97,
+      "sourceBlock": 8,
+      "blockPosition": 5,
+      "sourceGroup": "Onslaught The Complete Epic, Book 4",
+      "sourceIssueReference": "Uncanny X-Men #337",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 71
+    },
+    {
+      "printedPosition": 98,
+      "sourceBlock": 8,
+      "blockPosition": 6,
+      "sourceGroup": "Onslaught The Complete Epic, Book 4",
+      "sourceIssueReference": "X-Men #57",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 72
+    },
+    {
+      "printedPosition": 99,
+      "sourceBlock": 8,
+      "blockPosition": 7,
+      "sourceGroup": "Onslaught The Complete Epic, Book 4",
+      "sourceIssueReference": "Onslaught Epilogue",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 73
+    },
+    {
+      "printedPosition": 100,
+      "sourceBlock": 8,
+      "blockPosition": 8,
+      "sourceGroup": "Onslaught The Complete Epic, Book 4",
+      "sourceIssueReference": "Iron Man #6 (Heroes Reborn)",
+      "disposition": "selected-original-candidate",
+      "sourcePosition": 74
+    }
+  ],
+  "selectedPositions": [
+    {
+      "sourcePosition": 1,
+      "printedPosition": 1,
+      "sourceBlock": 1,
+      "sourceGroup": "Road to Onslaught Vol. 1",
+      "sourceIssueReference": "X-Men Prime #1"
+    },
+    {
+      "sourcePosition": 2,
+      "printedPosition": 2,
+      "sourceBlock": 1,
+      "sourceGroup": "Road to Onslaught Vol. 1",
+      "sourceIssueReference": "Uncanny X-Men #322"
+    },
+    {
+      "sourcePosition": 3,
+      "printedPosition": 3,
+      "sourceBlock": 1,
+      "sourceGroup": "Road to Onslaught Vol. 1",
+      "sourceIssueReference": "X-Men #42"
+    },
+    {
+      "sourcePosition": 4,
+      "printedPosition": 4,
+      "sourceBlock": 1,
+      "sourceGroup": "Road to Onslaught Vol. 1",
+      "sourceIssueReference": "X-Men #43"
+    },
+    {
+      "sourcePosition": 5,
+      "printedPosition": 5,
+      "sourceBlock": 1,
+      "sourceGroup": "Road to Onslaught Vol. 1",
+      "sourceIssueReference": "X-Men #44"
+    },
+    {
+      "sourcePosition": 6,
+      "printedPosition": 6,
+      "sourceBlock": 1,
+      "sourceGroup": "Road to Onslaught Vol. 1",
+      "sourceIssueReference": "Uncanny X-Men #323"
+    },
+    {
+      "sourcePosition": 7,
+      "printedPosition": 7,
+      "sourceBlock": 1,
+      "sourceGroup": "Road to Onslaught Vol. 1",
+      "sourceIssueReference": "Uncanny X-Men #324"
+    },
+    {
+      "sourcePosition": 8,
+      "printedPosition": 8,
+      "sourceBlock": 1,
+      "sourceGroup": "Road to Onslaught Vol. 1",
+      "sourceIssueReference": "X-Men Annual '95 #1"
+    },
+    {
+      "sourcePosition": 9,
+      "printedPosition": 9,
+      "sourceBlock": 1,
+      "sourceGroup": "Road to Onslaught Vol. 1",
+      "sourceIssueReference": "Uncanny X-Men #325"
+    },
+    {
+      "sourcePosition": 10,
+      "printedPosition": 10,
+      "sourceBlock": 1,
+      "sourceGroup": "Road to Onslaught Vol. 1",
+      "sourceIssueReference": "X-Men #45"
+    },
+    {
+      "sourcePosition": 11,
+      "printedPosition": 11,
+      "sourceBlock": 1,
+      "sourceGroup": "Road to Onslaught Vol. 1",
+      "sourceIssueReference": "Uncanny X-Men #326"
+    },
+    {
+      "sourcePosition": 12,
+      "printedPosition": 12,
+      "sourceBlock": 1,
+      "sourceGroup": "Road to Onslaught Vol. 1",
+      "sourceIssueReference": "X-Men Unlimited #8"
+    },
+    {
+      "sourcePosition": 13,
+      "printedPosition": 14,
+      "sourceBlock": 2,
+      "sourceGroup": "Road to Onslaught Vol. 2",
+      "sourceIssueReference": "X-Men & The ClanDestine #1"
+    },
+    {
+      "sourcePosition": 14,
+      "printedPosition": 15,
+      "sourceBlock": 2,
+      "sourceGroup": "Road to Onslaught Vol. 2",
+      "sourceIssueReference": "X-Men & The ClanDestine #2"
+    },
+    {
+      "sourcePosition": 15,
+      "printedPosition": 16,
+      "sourceBlock": 2,
+      "sourceGroup": "Road to Onslaught Vol. 2",
+      "sourceIssueReference": "Uncanny X-Men Annual '95"
+    },
+    {
+      "sourcePosition": 16,
+      "printedPosition": 18,
+      "sourceBlock": 2,
+      "sourceGroup": "Road to Onslaught Vol. 2",
+      "sourceIssueReference": "X-Men #46"
+    },
+    {
+      "sourcePosition": 17,
+      "printedPosition": 19,
+      "sourceBlock": 2,
+      "sourceGroup": "Road to Onslaught Vol. 2",
+      "sourceIssueReference": "X-Men #47"
+    },
+    {
+      "sourcePosition": 18,
+      "printedPosition": 20,
+      "sourceBlock": 2,
+      "sourceGroup": "Road to Onslaught Vol. 2",
+      "sourceIssueReference": "Uncanny X-Men #327"
+    },
+    {
+      "sourcePosition": 19,
+      "printedPosition": 21,
+      "sourceBlock": 2,
+      "sourceGroup": "Road to Onslaught Vol. 2",
+      "sourceIssueReference": "X-Men Unlimited #9"
+    },
+    {
+      "sourcePosition": 20,
+      "printedPosition": 22,
+      "sourceBlock": 2,
+      "sourceGroup": "Road to Onslaught Vol. 2",
+      "sourceIssueReference": "Uncanny X-Men #328"
+    },
+    {
+      "sourcePosition": 21,
+      "printedPosition": 23,
+      "sourceBlock": 2,
+      "sourceGroup": "Road to Onslaught Vol. 2",
+      "sourceIssueReference": "Sabretooth #1"
+    },
+    {
+      "sourcePosition": 22,
+      "printedPosition": 24,
+      "sourceBlock": 2,
+      "sourceGroup": "Road to Onslaught Vol. 2",
+      "sourceIssueReference": "X-Men #48"
+    },
+    {
+      "sourcePosition": 23,
+      "printedPosition": 25,
+      "sourceBlock": 2,
+      "sourceGroup": "Road to Onslaught Vol. 2",
+      "sourceIssueReference": "X-Men #49"
+    },
+    {
+      "sourcePosition": 24,
+      "printedPosition": 26,
+      "sourceBlock": 2,
+      "sourceGroup": "Road to Onslaught Vol. 2",
+      "sourceIssueReference": "X-Men Hotshots"
+    },
+    {
+      "sourcePosition": 25,
+      "printedPosition": 27,
+      "sourceBlock": 3,
+      "sourceGroup": "Road to Onslaught Vol. 3",
+      "sourceIssueReference": "Uncanny X-Men #329"
+    },
+    {
+      "sourcePosition": 26,
+      "printedPosition": 28,
+      "sourceBlock": 3,
+      "sourceGroup": "Road to Onslaught Vol. 3",
+      "sourceIssueReference": "Uncanny X-Men #330"
+    },
+    {
+      "sourcePosition": 27,
+      "printedPosition": 29,
+      "sourceBlock": 3,
+      "sourceGroup": "Road to Onslaught Vol. 3",
+      "sourceIssueReference": "Archangel #1"
+    },
+    {
+      "sourcePosition": 28,
+      "printedPosition": 30,
+      "sourceBlock": 3,
+      "sourceGroup": "Road to Onslaught Vol. 3",
+      "sourceIssueReference": "X-Men vs. The Brood #1"
+    },
+    {
+      "sourcePosition": 29,
+      "printedPosition": 31,
+      "sourceBlock": 3,
+      "sourceGroup": "Road to Onslaught Vol. 3",
+      "sourceIssueReference": "X-Men vs. The Brood #2"
+    },
+    {
+      "sourcePosition": 30,
+      "printedPosition": 32,
+      "sourceBlock": 3,
+      "sourceGroup": "Road to Onslaught Vol. 3",
+      "sourceIssueReference": "X-Men Unlimited #10"
+    },
+    {
+      "sourcePosition": 31,
+      "printedPosition": 33,
+      "sourceBlock": 3,
+      "sourceGroup": "Road to Onslaught Vol. 3",
+      "sourceIssueReference": "X-Men #50"
+    },
+    {
+      "sourcePosition": 32,
+      "printedPosition": 34,
+      "sourceBlock": 3,
+      "sourceGroup": "Road to Onslaught Vol. 3",
+      "sourceIssueReference": "Uncanny X-Men #331"
+    },
+    {
+      "sourcePosition": 33,
+      "printedPosition": 35,
+      "sourceBlock": 3,
+      "sourceGroup": "Road to Onslaught Vol. 3",
+      "sourceIssueReference": "Uncanny X-Men #332"
+    },
+    {
+      "sourcePosition": 34,
+      "printedPosition": 36,
+      "sourceBlock": 3,
+      "sourceGroup": "Road to Onslaught Vol. 3",
+      "sourceIssueReference": "Wolverine #101"
+    },
+    {
+      "sourcePosition": 35,
+      "printedPosition": 37,
+      "sourceBlock": 3,
+      "sourceGroup": "Road to Onslaught Vol. 3",
+      "sourceIssueReference": "X-Men #51"
+    },
+    {
+      "sourcePosition": 36,
+      "printedPosition": 38,
+      "sourceBlock": 3,
+      "sourceGroup": "Road to Onslaught Vol. 3",
+      "sourceIssueReference": "X-Men #52"
+    },
+    {
+      "sourcePosition": 37,
+      "printedPosition": 39,
+      "sourceBlock": 3,
+      "sourceGroup": "Road to Onslaught Vol. 3",
+      "sourceIssueReference": "Xavier Institute Yearbook"
+    },
+    {
+      "sourcePosition": 38,
+      "printedPosition": 62,
+      "sourceBlock": 5,
+      "sourceGroup": "Onslaught The Complete Epic, Book 1",
+      "sourceIssueReference": "X-Men #53"
+    },
+    {
+      "sourcePosition": 39,
+      "printedPosition": 63,
+      "sourceBlock": 5,
+      "sourceGroup": "Onslaught The Complete Epic, Book 1",
+      "sourceIssueReference": "Uncanny X-Men #334"
+    },
+    {
+      "sourcePosition": 40,
+      "printedPosition": 64,
+      "sourceBlock": 5,
+      "sourceGroup": "Onslaught The Complete Epic, Book 1",
+      "sourceIssueReference": "X-Men #54"
+    },
+    {
+      "sourcePosition": 41,
+      "printedPosition": 67,
+      "sourceBlock": 5,
+      "sourceGroup": "Onslaught The Complete Epic, Book 1",
+      "sourceIssueReference": "Onslaught: X-Men"
+    },
+    {
+      "sourcePosition": 42,
+      "printedPosition": 68,
+      "sourceBlock": 5,
+      "sourceGroup": "Onslaught The Complete Epic, Book 1",
+      "sourceIssueReference": "Avengers #401"
+    },
+    {
+      "sourcePosition": 43,
+      "printedPosition": 69,
+      "sourceBlock": 5,
+      "sourceGroup": "Onslaught The Complete Epic, Book 1",
+      "sourceIssueReference": "Fantastic Four #415"
+    },
+    {
+      "sourcePosition": 44,
+      "printedPosition": 70,
+      "sourceBlock": 5,
+      "sourceGroup": "Onslaught The Complete Epic, Book 1",
+      "sourceIssueReference": "Cable #34"
+    },
+    {
+      "sourcePosition": 45,
+      "printedPosition": 71,
+      "sourceBlock": 5,
+      "sourceGroup": "Onslaught The Complete Epic, Book 1",
+      "sourceIssueReference": "Incredible Hulk #444"
+    },
+    {
+      "sourcePosition": 46,
+      "printedPosition": 72,
+      "sourceBlock": 6,
+      "sourceGroup": "Onslaught The Complete Epic, Book 2",
+      "sourceIssueReference": "Excalibur #100"
+    },
+    {
+      "sourcePosition": 47,
+      "printedPosition": 73,
+      "sourceBlock": 6,
+      "sourceGroup": "Onslaught The Complete Epic, Book 2",
+      "sourceIssueReference": "Wolverine #104"
+    },
+    {
+      "sourcePosition": 48,
+      "printedPosition": 74,
+      "sourceBlock": 6,
+      "sourceGroup": "Onslaught The Complete Epic, Book 2",
+      "sourceIssueReference": "X-Factor #125"
+    },
+    {
+      "sourcePosition": 49,
+      "printedPosition": 75,
+      "sourceBlock": 6,
+      "sourceGroup": "Onslaught The Complete Epic, Book 2",
+      "sourceIssueReference": "X-Factor #126"
+    },
+    {
+      "sourcePosition": 50,
+      "printedPosition": 76,
+      "sourceBlock": 6,
+      "sourceGroup": "Onslaught The Complete Epic, Book 2",
+      "sourceIssueReference": "The Sensational Spider-Man #8"
+    },
+    {
+      "sourcePosition": 51,
+      "printedPosition": 77,
+      "sourceBlock": 6,
+      "sourceGroup": "Onslaught The Complete Epic, Book 2",
+      "sourceIssueReference": "Amazing Spider-Man #415"
+    },
+    {
+      "sourcePosition": 52,
+      "printedPosition": 78,
+      "sourceBlock": 6,
+      "sourceGroup": "Onslaught The Complete Epic, Book 2",
+      "sourceIssueReference": "Green Goblin #12"
+    },
+    {
+      "sourcePosition": 53,
+      "printedPosition": 79,
+      "sourceBlock": 6,
+      "sourceGroup": "Onslaught The Complete Epic, Book 2",
+      "sourceIssueReference": "Spider-Man #72"
+    },
+    {
+      "sourcePosition": 54,
+      "printedPosition": 80,
+      "sourceBlock": 6,
+      "sourceGroup": "Onslaught The Complete Epic, Book 2",
+      "sourceIssueReference": "X-Man #18"
+    },
+    {
+      "sourcePosition": 55,
+      "printedPosition": 81,
+      "sourceBlock": 6,
+      "sourceGroup": "Onslaught The Complete Epic, Book 2",
+      "sourceIssueReference": "X-Force #57"
+    },
+    {
+      "sourcePosition": 56,
+      "printedPosition": 82,
+      "sourceBlock": 6,
+      "sourceGroup": "Onslaught The Complete Epic, Book 2",
+      "sourceIssueReference": "Punisher #11"
+    },
+    {
+      "sourcePosition": 57,
+      "printedPosition": 83,
+      "sourceBlock": 7,
+      "sourceGroup": "Onslaught The Complete Epic, Book 3",
+      "sourceIssueReference": "X-Men #55"
+    },
+    {
+      "sourcePosition": 58,
+      "printedPosition": 84,
+      "sourceBlock": 7,
+      "sourceGroup": "Onslaught The Complete Epic, Book 3",
+      "sourceIssueReference": "Uncanny X-Men #336"
+    },
+    {
+      "sourcePosition": 59,
+      "printedPosition": 85,
+      "sourceBlock": 7,
+      "sourceGroup": "Onslaught The Complete Epic, Book 3",
+      "sourceIssueReference": "Cable #35"
+    },
+    {
+      "sourcePosition": 60,
+      "printedPosition": 86,
+      "sourceBlock": 7,
+      "sourceGroup": "Onslaught The Complete Epic, Book 3",
+      "sourceIssueReference": "X-Force #58"
+    },
+    {
+      "sourcePosition": 61,
+      "printedPosition": 87,
+      "sourceBlock": 7,
+      "sourceGroup": "Onslaught The Complete Epic, Book 3",
+      "sourceIssueReference": "X-Man #19"
+    },
+    {
+      "sourcePosition": 62,
+      "printedPosition": 88,
+      "sourceBlock": 7,
+      "sourceGroup": "Onslaught The Complete Epic, Book 3",
+      "sourceIssueReference": "Incredible Hulk #445"
+    },
+    {
+      "sourcePosition": 63,
+      "printedPosition": 89,
+      "sourceBlock": 7,
+      "sourceGroup": "Onslaught The Complete Epic, Book 3",
+      "sourceIssueReference": "Iron Man #332"
+    },
+    {
+      "sourcePosition": 64,
+      "printedPosition": 90,
+      "sourceBlock": 7,
+      "sourceGroup": "Onslaught The Complete Epic, Book 3",
+      "sourceIssueReference": "Avengers #402"
+    },
+    {
+      "sourcePosition": 65,
+      "printedPosition": 91,
+      "sourceBlock": 7,
+      "sourceGroup": "Onslaught The Complete Epic, Book 3",
+      "sourceIssueReference": "Thor #502"
+    },
+    {
+      "sourcePosition": 66,
+      "printedPosition": 92,
+      "sourceBlock": 7,
+      "sourceGroup": "Onslaught The Complete Epic, Book 3",
+      "sourceIssueReference": "Wolverine #105"
+    },
+    {
+      "sourcePosition": 67,
+      "printedPosition": 93,
+      "sourceBlock": 8,
+      "sourceGroup": "Onslaught The Complete Epic, Book 4",
+      "sourceIssueReference": "Fantastic Four #416"
+    },
+    {
+      "sourcePosition": 68,
+      "printedPosition": 94,
+      "sourceBlock": 8,
+      "sourceGroup": "Onslaught The Complete Epic, Book 4",
+      "sourceIssueReference": "X-Men #56"
+    },
+    {
+      "sourcePosition": 69,
+      "printedPosition": 95,
+      "sourceBlock": 8,
+      "sourceGroup": "Onslaught The Complete Epic, Book 4",
+      "sourceIssueReference": "Onslaught: Marvel Universe"
+    },
+    {
+      "sourcePosition": 70,
+      "printedPosition": 96,
+      "sourceBlock": 8,
+      "sourceGroup": "Onslaught The Complete Epic, Book 4",
+      "sourceIssueReference": "Cable #36"
+    },
+    {
+      "sourcePosition": 71,
+      "printedPosition": 97,
+      "sourceBlock": 8,
+      "sourceGroup": "Onslaught The Complete Epic, Book 4",
+      "sourceIssueReference": "Uncanny X-Men #337"
+    },
+    {
+      "sourcePosition": 72,
+      "printedPosition": 98,
+      "sourceBlock": 8,
+      "sourceGroup": "Onslaught The Complete Epic, Book 4",
+      "sourceIssueReference": "X-Men #57"
+    },
+    {
+      "sourcePosition": 73,
+      "printedPosition": 99,
+      "sourceBlock": 8,
+      "sourceGroup": "Onslaught The Complete Epic, Book 4",
+      "sourceIssueReference": "Onslaught Epilogue"
+    },
+    {
+      "sourcePosition": 74,
+      "printedPosition": 100,
+      "sourceBlock": 8,
+      "sourceGroup": "Onslaught The Complete Epic, Book 4",
+      "sourceIssueReference": "Iron Man #6 (Heroes Reborn)"
+    }
+  ],
+  "counts": {
+    "printedPositions": 100,
+    "selectedPositions": 74,
+    "selectedOrdinaryOriginals": 72,
+    "selectedQualifiedCompanions": 2,
+    "selectedRepeats": 0,
+    "selectedByBlock": [
+      12,
+      12,
+      13,
+      0,
+      8,
+      11,
+      10,
+      8
+    ]
+  },
+  "provenance": {
+    "unverifiedTimelines": "Printed position 17 names X-Men Timelines without a number. No standalone original or association with printed position 16 has been established; keep the reference outside the whole-publication vector and return new exact identity evidence to the coordinator.",
+    "sabretoothSpecial": "Printed position 23 says Sabretooth #1; the exact Road Vol. 2 bibliography identifies Sabretooth Special (1995) #1 rather than the 1993 miniseries. https://leagueofcomicgeeks.com/comic/3202804/x-men-road-to-onslaught-vol-2-tp",
+    "companions": "Selected printed positions 26 and 39 are qualified 1996 #1 art/reference companions, Hot Shots: X-Men and Xavier Institute Alumni Yearbook; preserve their raw source names and confirm exact original metadata separately.",
+    "optionalPrelude": "Printed positions 40-61 are optional excerpt provenance only. Six backward links refer to earlier Road issues, not selected repeats.",
+    "exclusions": "Printed position 13 is an explicitly unrelated unnumbered Swimsuit reference; positions 65 and 66 name only one page from each original. Sensational Spider-Man #8 at position 76 remains a selected whole-issue candidate.",
+    "alternatives": "Do not add Uncanny X-Men #335, Generation X #18-19, X-Men Unlimited #12, later Onslaught returns or a revised Prelude #282 from comments or other collections."
+  }
+}

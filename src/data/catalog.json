@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-30T01:11:28.509Z",
+  "generatedAt": "2026-09-30T01:30:16.714Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -6378,6 +6378,47 @@
       "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
       "sourceLicense": null,
       "updatedAt": "2026-08-25T15:53:03.208Z"
+    },
+    {
+      "id": "the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order",
+      "file": "the_complete_marvel_reading_order_guide_x_men_onslaught_reading_order.json",
+      "name": "X-Men: Onslaught",
+      "description": "Follow Comic Book Herald's Road to Onslaught and Complete Epic sequence, with separately identified reference companions and the Heroes Reborn epilogue.",
+      "type": "event",
+      "depth": "partial",
+      "count": 74,
+      "placeholderCount": 2,
+      "emptyRecordCount": 0,
+      "collections": 7,
+      "characters": [
+        "X-Men",
+        "Onslaught",
+        "Avengers",
+        "Fantastic Four",
+        "Hulk",
+        "Cable"
+      ],
+      "keywords": [
+        "Onslaught",
+        "Road to Onslaught",
+        "Complete Epic",
+        "Heroes Reborn",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 1996,
+      "coverIssueId": 20767,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/e0/4bb858cba0802",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/x-men-onslaught-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-09-30T01:30:16.714Z"
     },
     {
       "id": "operation-zero-tolerance",

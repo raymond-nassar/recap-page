@@ -1,0 +1,4949 @@
+{
+  "id": "the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order",
+  "inventoryId": "the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order",
+  "packetDigest": "bb1acf2ec257462ed1e71bcf75c308bf9dc4726561e80c20158c0e5fa6f931d9",
+  "sourceUrl": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/x-men-onslaught-reading-order/",
+  "sourceRetrievedAt": "2026-09-29",
+  "sourceProvider": "comic-book-herald",
+  "sourceContentSha256": "0c072bcb1ffab9042a159bfcdc84bcf25041bdc6eabf3fa04709f6270ee154d0",
+  "sourceRetrievalStatus": "retrieved",
+  "approvedSourceCount": 74,
+  "excludedSourceReferences": [
+    "Printed position 13: unnumbered Marvel Swimsuit Special is explicitly unrelated to the source sequence; no other Swimsuit identity or owner exclusion is inferred.",
+    "Printed position 17: X-Men Timelines remains unresolved reference/backmatter provenance with neither independently established standalone original nor proven association with the adjacent annual; no invented #1.",
+    "Printed positions 40-61: all 22 optional not-recommended Prelude excerpt references are provenance only; six refer back to Road positions and are not selected repeats.",
+    "Printed positions 65-66: Fantastic Four #414 and Avengers #400 are each expressly one-page FROM-issue excerpts, not selected full originals.",
+    "Printed position 76: Sensational Spider-Man #8 is selected; minimal story relevance is not a claim of one-panel collected excerpt.",
+    "Collection headings, omnibus alternatives, unnumbered linked events, reader comments and later Onslaught returns do not add whole publications to the selected sequence."
+  ],
+  "sourceOccurrenceCount": 74,
+  "sourceGaps": [
+    {
+      "sourcePosition": 24,
+      "sourceIssueReference": "X-Men Hotshots",
+      "sourceRangeReference": "Road to Onslaught Vol. 2",
+      "sourceGroup": "Road to Onslaught Vol. 2",
+      "normalizedSeriesTitle": "Hot Shots: X-Men",
+      "seriesYear": 1996,
+      "issueNumber": "1",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-09-30",
+      "auditBasis": "The source selects X-Men Hotshots. Independent catalog listings supply a qualified 1996 #1 art/reference lead, not an exact provider issue identity. Two narrow title searches returned HTTP 200 with zero items and an intervening differently punctuated search returned HTTP 500 without retry. This bounds only those queries, not publication, provider-wide metadata, or subscription availability.",
+      "evidenceSources": [
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/x-men-onslaught-reading-order/",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Hot%20Shots%20X%20Men&limit=100",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=X-Men%20Hot%20Shots%201996&limit=100",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=X-Men%3A%20Hot%20Shots&limit=100",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/640",
+          "retrievedAt": "2026-09-30"
+        }
+      ],
+      "evidenceDigest": "a69ee53867b4bcfe0f1b1e5a6106da1c5167f5c016340822d8976830e2259308"
+    },
+    {
+      "sourcePosition": 27,
+      "sourceIssueReference": "Archangel #1",
+      "sourceRangeReference": "Road to Onslaught Vol. 3",
+      "sourceGroup": "Road to Onslaught Vol. 3",
+      "normalizedSeriesTitle": "Archangel",
+      "seriesYear": 1996,
+      "issueNumber": "1",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-09-30",
+      "auditBasis": "The source selects Archangel #1. An independently indexed 1996 original is a provisional bibliographic lead; its detail page was inaccessible. Narrow issue searches with and without the unverified year returned HTTP 200 with zero items. This bounds only those queries, not publication, provider-wide metadata, or subscription availability.",
+      "evidenceSources": [
+        {
+          "kind": "guide",
+          "url": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/x-men-onslaught-reading-order/",
+          "retrievedAt": "2026-09-29"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Archangel&limit=100",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Archangel%201996&limit=100",
+          "retrievedAt": "2026-09-30"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/641",
+          "retrievedAt": "2026-09-30"
+        }
+      ],
+      "evidenceDigest": "d75884a273aab619a1ea3f4314ed05b7d2d6698767842aada54323d0f4aec345"
+    }
+  ],
+  "reviewStatus": "approved",
+  "proposedManifest": {
+    "id": "the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order",
+    "name": "X-Men: Onslaught",
+    "description": "Follow Comic Book Herald's Road to Onslaught and Complete Epic sequence, with separately identified reference companions and the Heroes Reborn epilogue.",
+    "type": "event",
+    "depth": "partial",
+    "beginner": false,
+    "timeline": 1996,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order.md",
+    "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/x-men-onslaught-reading-order/",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "the_complete_marvel_reading_order_guide_x_men_onslaught_reading_order.json",
+    "characters": [
+      "X-Men",
+      "Onslaught",
+      "Avengers",
+      "Fantastic Four",
+      "Hulk",
+      "Cable"
+    ],
+    "keywords": [
+      "Onslaught",
+      "Road to Onslaught",
+      "Complete Epic",
+      "Heroes Reborn",
+      "Comic Book Herald"
+    ],
+    "expect": 74,
+    "coverIssueId": 20767
+  },
+  "candidateMetadata": [
+    {
+      "id": 12371,
+      "title": "X-MEN PRIME 1",
+      "issueTitle": "X-MEN PRIME 1 (1995) #1",
+      "seriesTitle": "X-Men Prime",
+      "apiSeriesName": "X-MEN PRIME 1 (1995)",
+      "seriesName": "X-MEN PRIME 1 (1995)",
+      "seriesId": 2102,
+      "issueNumber": "1",
+      "seriesYear": 1995,
+      "detailUrl": "https://www.marvel.com/comics/issue/12371/x-men_prime_1_1995_1",
+      "onSaleDate": "1995-07-01T00:00:00+0000",
+      "manualSeriesSelection": true,
+      "manualSeriesSelectionApproved": true
+    },
+    {
+      "id": 13863,
+      "title": "Uncanny X-Men",
+      "issueTitle": "Uncanny X-Men (1963) #322",
+      "seriesTitle": "Uncanny X-Men",
+      "apiSeriesName": "Uncanny X-Men (1963 - 2011)",
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "seriesId": 2258,
+      "issueNumber": "322",
+      "seriesYear": 1963,
+      "detailUrl": "https://www.marvel.com/comics/issue/13863/uncanny_x-men_1963_322",
+      "onSaleDate": "1995-07-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 14331,
+      "title": "X-Men",
+      "issueTitle": "X-Men (1991) #42",
+      "seriesTitle": "X-Men",
+      "apiSeriesName": "X-Men (1991 - 2001)",
+      "seriesName": "X-Men (1991 - 2001)",
+      "seriesId": 2265,
+      "issueNumber": "42",
+      "seriesYear": 1991,
+      "detailUrl": "https://www.marvel.com/comics/issue/14331/x-men_1991_42",
+      "onSaleDate": "1995-07-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 14332,
+      "title": "X-Men",
+      "issueTitle": "X-Men (1991) #43",
+      "seriesTitle": "X-Men",
+      "apiSeriesName": "X-Men (1991 - 2001)",
+      "seriesName": "X-Men (1991 - 2001)",
+      "seriesId": 2265,
+      "issueNumber": "43",
+      "seriesYear": 1991,
+      "detailUrl": "https://www.marvel.com/comics/issue/14332/x-men_1991_43",
+      "onSaleDate": "1995-08-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 14333,
+      "title": "X-Men",
+      "issueTitle": "X-Men (1991) #44",
+      "seriesTitle": "X-Men",
+      "apiSeriesName": "X-Men (1991 - 2001)",
+      "seriesName": "X-Men (1991 - 2001)",
+      "seriesId": 2265,
+      "issueNumber": "44",
+      "seriesYear": 1991,
+      "detailUrl": "https://www.marvel.com/comics/issue/14333/x-men_1991_44",
+      "onSaleDate": "1995-09-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 13864,
+      "title": "Uncanny X-Men",
+      "issueTitle": "Uncanny X-Men (1963) #323",
+      "seriesTitle": "Uncanny X-Men",
+      "apiSeriesName": "Uncanny X-Men (1963 - 2011)",
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "seriesId": 2258,
+      "issueNumber": "323",
+      "seriesYear": 1963,
+      "detailUrl": "https://www.marvel.com/comics/issue/13864/uncanny_x-men_1963_323",
+      "onSaleDate": "1995-08-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 13865,
+      "title": "Uncanny X-Men",
+      "issueTitle": "Uncanny X-Men (1963) #324",
+      "seriesTitle": "Uncanny X-Men",
+      "apiSeriesName": "Uncanny X-Men (1963 - 2011)",
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "seriesId": 2258,
+      "issueNumber": "324",
+      "seriesYear": 1963,
+      "detailUrl": "https://www.marvel.com/comics/issue/13865/uncanny_x-men_1963_324",
+      "onSaleDate": "1995-09-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 51107,
+      "title": "X-Men Annual",
+      "issueTitle": "X-Men Annual (1995) #1",
+      "seriesTitle": "X-Men Annual",
+      "apiSeriesName": "X-Men Annual (1995)",
+      "seriesName": "X-Men Annual (1995)",
+      "seriesId": 19205,
+      "issueNumber": "1",
+      "seriesYear": 1995,
+      "detailUrl": "https://www.marvel.com/comics/issue/51107/x-men_annual_1995_1",
+      "onSaleDate": "1995-01-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 13866,
+      "title": "Uncanny X-Men",
+      "issueTitle": "Uncanny X-Men (1963) #325",
+      "seriesTitle": "Uncanny X-Men",
+      "apiSeriesName": "Uncanny X-Men (1963 - 2011)",
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "seriesId": 2258,
+      "issueNumber": "325",
+      "seriesYear": 1963,
+      "detailUrl": "https://www.marvel.com/comics/issue/13866/uncanny_x-men_1963_325",
+      "onSaleDate": "1995-10-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 14334,
+      "title": "X-Men",
+      "issueTitle": "X-Men (1991) #45",
+      "seriesTitle": "X-Men",
+      "apiSeriesName": "X-Men (1991 - 2001)",
+      "seriesName": "X-Men (1991 - 2001)",
+      "seriesId": 2265,
+      "issueNumber": "45",
+      "seriesYear": 1991,
+      "detailUrl": "https://www.marvel.com/comics/issue/14334/x-men_1991_45",
+      "onSaleDate": "1995-10-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 13867,
+      "title": "Uncanny X-Men",
+      "issueTitle": "Uncanny X-Men (1963) #326",
+      "seriesTitle": "Uncanny X-Men",
+      "apiSeriesName": "Uncanny X-Men (1963 - 2011)",
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "seriesId": 2258,
+      "issueNumber": "326",
+      "seriesYear": 1963,
+      "detailUrl": "https://www.marvel.com/comics/issue/13867/uncanny_x-men_1963_326",
+      "onSaleDate": "1995-11-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 18158,
+      "title": "X-Men Unlimited",
+      "issueTitle": "X-Men Unlimited (1993) #8",
+      "seriesTitle": "X-Men Unlimited",
+      "apiSeriesName": "X-Men Unlimited (1993 - 2003)",
+      "seriesName": "X-Men Unlimited (1993 - 2003)",
+      "seriesId": 3637,
+      "issueNumber": "8",
+      "seriesYear": 1993,
+      "detailUrl": "https://www.marvel.com/comics/issue/18158/x-men_unlimited_1993_8",
+      "onSaleDate": "1995-10-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 51108,
+      "title": "X-Men/Clandestine",
+      "issueTitle": "X-Men/Clandestine (1996) #1",
+      "seriesTitle": "X-Men & The ClanDestine",
+      "apiSeriesName": "X-Men/Clandestine (1996)",
+      "seriesName": "X-Men/Clandestine (1996)",
+      "seriesId": 19206,
+      "issueNumber": "1",
+      "seriesYear": 1996,
+      "detailUrl": "https://www.marvel.com/comics/issue/51108/x-menclandestine_1996_1",
+      "onSaleDate": "1996-10-01T00:00:00+0000",
+      "manualSeriesSelection": true,
+      "manualSeriesSelectionApproved": true
+    },
+    {
+      "id": 51109,
+      "title": "X-Men/Clandestine",
+      "issueTitle": "X-Men/Clandestine (1996) #2",
+      "seriesTitle": "X-Men & The ClanDestine",
+      "apiSeriesName": "X-Men/Clandestine (1996)",
+      "seriesName": "X-Men/Clandestine (1996)",
+      "seriesId": 19206,
+      "issueNumber": "2",
+      "seriesYear": 1996,
+      "detailUrl": "https://www.marvel.com/comics/issue/51109/x-menclandestine_1996_2",
+      "onSaleDate": "1996-11-01T00:00:00+0000",
+      "manualSeriesSelection": true,
+      "manualSeriesSelectionApproved": true
+    },
+    {
+      "id": 51106,
+      "title": "Uncanny X-Men Annual",
+      "issueTitle": "Uncanny X-Men Annual (1995) #1",
+      "seriesTitle": "Uncanny X-Men Annual",
+      "apiSeriesName": "Uncanny X-Men Annual (1995)",
+      "seriesName": "Uncanny X-Men Annual (1995)",
+      "seriesId": 19204,
+      "issueNumber": "1",
+      "seriesYear": 1995,
+      "detailUrl": "https://www.marvel.com/comics/issue/51106/uncanny_x-men_annual_1995_1",
+      "onSaleDate": "1995-11-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 14335,
+      "title": "X-Men",
+      "issueTitle": "X-Men (1991) #46",
+      "seriesTitle": "X-Men",
+      "apiSeriesName": "X-Men (1991 - 2001)",
+      "seriesName": "X-Men (1991 - 2001)",
+      "seriesId": 2265,
+      "issueNumber": "46",
+      "seriesYear": 1991,
+      "detailUrl": "https://www.marvel.com/comics/issue/14335/x-men_1991_46",
+      "onSaleDate": "1995-11-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 14336,
+      "title": "X-Men",
+      "issueTitle": "X-Men (1991) #47",
+      "seriesTitle": "X-Men",
+      "apiSeriesName": "X-Men (1991 - 2001)",
+      "seriesName": "X-Men (1991 - 2001)",
+      "seriesId": 2265,
+      "issueNumber": "47",
+      "seriesYear": 1991,
+      "detailUrl": "https://www.marvel.com/comics/issue/14336/x-men_1991_47",
+      "onSaleDate": "1995-12-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 13868,
+      "title": "Uncanny X-Men",
+      "issueTitle": "Uncanny X-Men (1963) #327",
+      "seriesTitle": "Uncanny X-Men",
+      "apiSeriesName": "Uncanny X-Men (1963 - 2011)",
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "seriesId": 2258,
+      "issueNumber": "327",
+      "seriesYear": 1963,
+      "detailUrl": "https://www.marvel.com/comics/issue/13868/uncanny_x-men_1963_327",
+      "onSaleDate": "1995-12-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 18159,
+      "title": "X-Men Unlimited",
+      "issueTitle": "X-Men Unlimited (1993) #9",
+      "seriesTitle": "X-Men Unlimited",
+      "apiSeriesName": "X-Men Unlimited (1993 - 2003)",
+      "seriesName": "X-Men Unlimited (1993 - 2003)",
+      "seriesId": 3637,
+      "issueNumber": "9",
+      "seriesYear": 1993,
+      "detailUrl": "https://www.marvel.com/comics/issue/18159/x-men_unlimited_1993_9",
+      "onSaleDate": "1995-12-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 13869,
+      "title": "Uncanny X-Men",
+      "issueTitle": "Uncanny X-Men (1963) #328",
+      "seriesTitle": "Uncanny X-Men",
+      "apiSeriesName": "Uncanny X-Men (1963 - 2011)",
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "seriesId": 2258,
+      "issueNumber": "328",
+      "seriesYear": 1963,
+      "detailUrl": "https://www.marvel.com/comics/issue/13869/uncanny_x-men_1963_328",
+      "onSaleDate": "1996-01-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 51105,
+      "title": "Sabretooth Special",
+      "issueTitle": "Sabretooth Special (1995) #1",
+      "seriesTitle": "Sabretooth Special",
+      "apiSeriesName": "Sabretooth Special (1995)",
+      "seriesName": "Sabretooth Special (1995)",
+      "seriesId": 19203,
+      "issueNumber": "1",
+      "seriesYear": 1995,
+      "detailUrl": "https://www.marvel.com/comics/issue/51105/sabretooth_special_1995_1",
+      "onSaleDate": "1995-01-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 14337,
+      "title": "X-Men",
+      "issueTitle": "X-Men (1991) #48",
+      "seriesTitle": "X-Men",
+      "apiSeriesName": "X-Men (1991 - 2001)",
+      "seriesName": "X-Men (1991 - 2001)",
+      "seriesId": 2265,
+      "issueNumber": "48",
+      "seriesYear": 1991,
+      "detailUrl": "https://www.marvel.com/comics/issue/14337/x-men_1991_48",
+      "onSaleDate": "1996-01-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 14338,
+      "title": "X-Men",
+      "issueTitle": "X-Men (1991) #49",
+      "seriesTitle": "X-Men",
+      "apiSeriesName": "X-Men (1991 - 2001)",
+      "seriesName": "X-Men (1991 - 2001)",
+      "seriesId": 2265,
+      "issueNumber": "49",
+      "seriesYear": 1991,
+      "detailUrl": "https://www.marvel.com/comics/issue/14338/x-men_1991_49",
+      "onSaleDate": "1996-02-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 13870,
+      "title": "Uncanny X-Men",
+      "issueTitle": "Uncanny X-Men (1963) #329",
+      "seriesTitle": "Uncanny X-Men",
+      "apiSeriesName": "Uncanny X-Men (1963 - 2011)",
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "seriesId": 2258,
+      "issueNumber": "329",
+      "seriesYear": 1963,
+      "detailUrl": "https://www.marvel.com/comics/issue/13870/uncanny_x-men_1963_329",
+      "onSaleDate": "1996-02-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 13871,
+      "title": "Uncanny X-Men",
+      "issueTitle": "Uncanny X-Men (1963) #330",
+      "seriesTitle": "Uncanny X-Men",
+      "apiSeriesName": "Uncanny X-Men (1963 - 2011)",
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "seriesId": 2258,
+      "issueNumber": "330",
+      "seriesYear": 1963,
+      "detailUrl": "https://www.marvel.com/comics/issue/13871/uncanny_x-men_1963_330",
+      "onSaleDate": "1996-03-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 52991,
+      "title": "X-Men Vs. the Brood",
+      "issueTitle": "X-Men Vs. the Brood (1996) #1",
+      "seriesTitle": "X-Men Vs. the Brood",
+      "apiSeriesName": "X-Men Vs. the Brood (1996)",
+      "seriesName": "X-Men Vs. the Brood (1996)",
+      "seriesId": 19824,
+      "issueNumber": "1",
+      "seriesYear": 1996,
+      "detailUrl": "https://www.marvel.com/comics/issue/52991/x-men_vs_the_brood_1996_1",
+      "onSaleDate": "1996-09-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 52992,
+      "title": "X-Men Vs. the Brood",
+      "issueTitle": "X-Men Vs. the Brood (1996) #2",
+      "seriesTitle": "X-Men Vs. the Brood",
+      "apiSeriesName": "X-Men Vs. the Brood (1996)",
+      "seriesName": "X-Men Vs. the Brood (1996)",
+      "seriesId": 19824,
+      "issueNumber": "2",
+      "seriesYear": 1996,
+      "detailUrl": "https://www.marvel.com/comics/issue/52992/x-men_vs_the_brood_1996_2",
+      "onSaleDate": "1996-10-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 18111,
+      "title": "X-Men Unlimited",
+      "issueTitle": "X-Men Unlimited (1993) #10",
+      "seriesTitle": "X-Men Unlimited",
+      "apiSeriesName": "X-Men Unlimited (1993 - 2003)",
+      "seriesName": "X-Men Unlimited (1993 - 2003)",
+      "seriesId": 3637,
+      "issueNumber": "10",
+      "seriesYear": 1993,
+      "detailUrl": "https://www.marvel.com/comics/issue/18111/x-men_unlimited_1993_10",
+      "onSaleDate": "1996-03-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 14340,
+      "title": "X-Men",
+      "issueTitle": "X-Men (1991) #50",
+      "seriesTitle": "X-Men",
+      "apiSeriesName": "X-Men (1991 - 2001)",
+      "seriesName": "X-Men (1991 - 2001)",
+      "seriesId": 2265,
+      "issueNumber": "50",
+      "seriesYear": 1991,
+      "detailUrl": "https://www.marvel.com/comics/issue/14340/x-men_1991_50",
+      "onSaleDate": "1996-03-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 13872,
+      "title": "Uncanny X-Men",
+      "issueTitle": "Uncanny X-Men (1963) #331",
+      "seriesTitle": "Uncanny X-Men",
+      "apiSeriesName": "Uncanny X-Men (1963 - 2011)",
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "seriesId": 2258,
+      "issueNumber": "331",
+      "seriesYear": 1963,
+      "detailUrl": "https://www.marvel.com/comics/issue/13872/uncanny_x-men_1963_331",
+      "onSaleDate": "1996-04-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 13873,
+      "title": "Uncanny X-Men",
+      "issueTitle": "Uncanny X-Men (1963) #332",
+      "seriesTitle": "Uncanny X-Men",
+      "apiSeriesName": "Uncanny X-Men (1963 - 2011)",
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "seriesId": 2258,
+      "issueNumber": "332",
+      "seriesYear": 1963,
+      "detailUrl": "https://www.marvel.com/comics/issue/13873/uncanny_x-men_1963_332",
+      "onSaleDate": "1996-05-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 14039,
+      "title": "Wolverine",
+      "issueTitle": "Wolverine (1988) #101",
+      "seriesTitle": "Wolverine",
+      "apiSeriesName": "Wolverine (1988 - 2003)",
+      "seriesName": "Wolverine (1988 - 2003)",
+      "seriesId": 2262,
+      "issueNumber": "101",
+      "seriesYear": 1988,
+      "detailUrl": "https://www.marvel.com/comics/issue/14039/wolverine_1988_101",
+      "onSaleDate": "1996-05-10T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 14341,
+      "title": "X-Men",
+      "issueTitle": "X-Men (1991) #51",
+      "seriesTitle": "X-Men",
+      "apiSeriesName": "X-Men (1991 - 2001)",
+      "seriesName": "X-Men (1991 - 2001)",
+      "seriesId": 2265,
+      "issueNumber": "51",
+      "seriesYear": 1991,
+      "detailUrl": "https://www.marvel.com/comics/issue/14341/x-men_1991_51",
+      "onSaleDate": "1996-04-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 14342,
+      "title": "X-Men",
+      "issueTitle": "X-Men (1991) #52",
+      "seriesTitle": "X-Men",
+      "apiSeriesName": "X-Men (1991 - 2001)",
+      "seriesName": "X-Men (1991 - 2001)",
+      "seriesId": 2265,
+      "issueNumber": "52",
+      "seriesYear": 1991,
+      "detailUrl": "https://www.marvel.com/comics/issue/14342/x-men_1991_52",
+      "onSaleDate": "1996-05-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 52990,
+      "title": "Xavier Institute Alumni Yearbook",
+      "issueTitle": "Xavier Institute Alumni Yearbook (1996) #1",
+      "seriesTitle": "Xavier Institute Alumni Yearbook",
+      "apiSeriesName": "Xavier Institute Alumni Yearbook (1996)",
+      "seriesName": "Xavier Institute Alumni Yearbook (1996)",
+      "seriesId": 19823,
+      "issueNumber": "1",
+      "seriesYear": 1996,
+      "detailUrl": "https://www.marvel.com/comics/issue/52990/xavier_institute_alumni_yearbook_1996_1",
+      "onSaleDate": "1996-12-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 14343,
+      "title": "X-Men",
+      "issueTitle": "X-Men (1991) #53",
+      "seriesTitle": "X-Men",
+      "apiSeriesName": "X-Men (1991 - 2001)",
+      "seriesName": "X-Men (1991 - 2001)",
+      "seriesId": 2265,
+      "issueNumber": "53",
+      "seriesYear": 1991,
+      "detailUrl": "https://www.marvel.com/comics/issue/14343/x-men_1991_53",
+      "onSaleDate": "1996-06-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 13875,
+      "title": "Uncanny X-Men",
+      "issueTitle": "Uncanny X-Men (1963) #334",
+      "seriesTitle": "Uncanny X-Men",
+      "apiSeriesName": "Uncanny X-Men (1963 - 2011)",
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "seriesId": 2258,
+      "issueNumber": "334",
+      "seriesYear": 1963,
+      "detailUrl": "https://www.marvel.com/comics/issue/13875/uncanny_x-men_1963_334",
+      "onSaleDate": "1996-07-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 14344,
+      "title": "X-Men",
+      "issueTitle": "X-Men (1991) #54",
+      "seriesTitle": "X-Men",
+      "apiSeriesName": "X-Men (1991 - 2001)",
+      "seriesName": "X-Men (1991 - 2001)",
+      "seriesId": 2265,
+      "issueNumber": "54",
+      "seriesYear": 1991,
+      "detailUrl": "https://www.marvel.com/comics/issue/14344/x-men_1991_54",
+      "onSaleDate": "1996-07-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 20767,
+      "title": "Onslaught: X-Men",
+      "issueTitle": "Onslaught: X-Men (1996) #1",
+      "seriesTitle": "Onslaught: X-Men",
+      "apiSeriesName": "Onslaught: X-Men (1996)",
+      "seriesName": "Onslaught: X-Men (1996)",
+      "seriesId": 3900,
+      "issueNumber": "1",
+      "seriesYear": 1996,
+      "detailUrl": "https://www.marvel.com/comics/issue/20767/onslaught_x-men_1996_1",
+      "onSaleDate": "1996-08-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 7288,
+      "title": "Avengers",
+      "issueTitle": "Avengers (1963) #401",
+      "seriesTitle": "Avengers",
+      "apiSeriesName": "Avengers (1963 - 1996)",
+      "seriesName": "Avengers (1963 - 1996)",
+      "seriesId": 1991,
+      "issueNumber": "401",
+      "seriesYear": 1963,
+      "detailUrl": "https://www.marvel.com/comics/issue/7288/avengers_1963_401",
+      "onSaleDate": "1996-08-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 13245,
+      "title": "Fantastic Four",
+      "issueTitle": "Fantastic Four (1961) #415",
+      "seriesTitle": "Fantastic Four",
+      "apiSeriesName": "Fantastic Four (1961 - 1998)",
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "seriesId": 2121,
+      "issueNumber": "415",
+      "seriesYear": 1961,
+      "detailUrl": "https://www.marvel.com/comics/issue/13245/fantastic_four_1961_415",
+      "onSaleDate": "1996-08-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 7409,
+      "title": "Cable",
+      "issueTitle": "Cable (1993) #34",
+      "seriesTitle": "Cable",
+      "apiSeriesName": "Cable (1993 - 2002)",
+      "seriesName": "Cable (1993 - 2002)",
+      "seriesId": 1995,
+      "issueNumber": "34",
+      "seriesYear": 1993,
+      "detailUrl": "https://www.marvel.com/comics/issue/7409/cable_1993_34",
+      "onSaleDate": "1996-08-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 9255,
+      "title": "Incredible Hulk",
+      "issueTitle": "Incredible Hulk (1962) #444",
+      "seriesTitle": "Incredible Hulk",
+      "apiSeriesName": "Incredible Hulk (1962 - 1999)",
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "seriesId": 2021,
+      "issueNumber": "444",
+      "seriesYear": 1962,
+      "detailUrl": "https://www.marvel.com/comics/issue/9255/incredible_hulk_1962_444",
+      "onSaleDate": "1996-08-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 8564,
+      "title": "Excalibur",
+      "issueTitle": "Excalibur (1988) #100",
+      "seriesTitle": "Excalibur",
+      "apiSeriesName": "Excalibur (1988 - 1998)",
+      "seriesName": "Excalibur (1988 - 1998)",
+      "seriesId": 2011,
+      "issueNumber": "100",
+      "seriesYear": 1988,
+      "detailUrl": "https://www.marvel.com/comics/issue/8564/excalibur_1988_100",
+      "onSaleDate": "1996-08-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 14042,
+      "title": "Wolverine",
+      "issueTitle": "Wolverine (1988) #104",
+      "seriesTitle": "Wolverine",
+      "apiSeriesName": "Wolverine (1988 - 2003)",
+      "seriesName": "Wolverine (1988 - 2003)",
+      "seriesId": 2262,
+      "issueNumber": "104",
+      "seriesYear": 1988,
+      "detailUrl": "https://www.marvel.com/comics/issue/14042/wolverine_1988_104",
+      "onSaleDate": "1996-08-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 12203,
+      "title": "X-Factor",
+      "issueTitle": "X-Factor (1986) #125",
+      "seriesTitle": "X-Factor",
+      "apiSeriesName": "X-Factor (1986 - 1998)",
+      "seriesName": "X-Factor (1986 - 1998)",
+      "seriesId": 2098,
+      "issueNumber": "125",
+      "seriesYear": 1986,
+      "detailUrl": "https://www.marvel.com/comics/issue/12203/x-factor_1986_125",
+      "onSaleDate": "1996-08-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 12204,
+      "title": "X-Factor",
+      "issueTitle": "X-Factor (1986) #126",
+      "seriesTitle": "X-Factor",
+      "apiSeriesName": "X-Factor (1986 - 1998)",
+      "seriesName": "X-Factor (1986 - 1998)",
+      "seriesId": 2098,
+      "issueNumber": "126",
+      "seriesYear": 1986,
+      "detailUrl": "https://www.marvel.com/comics/issue/12204/x-factor_1986_126",
+      "onSaleDate": "1996-09-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 51043,
+      "title": "Sensational Spider-Man",
+      "issueTitle": "Sensational Spider-Man (1996) #8",
+      "seriesTitle": "Sensational Spider-Man",
+      "apiSeriesName": "Sensational Spider-Man (1996)",
+      "seriesName": "Sensational Spider-Man (1996)",
+      "seriesId": 19135,
+      "issueNumber": "8",
+      "seriesYear": 1996,
+      "detailUrl": "https://www.marvel.com/comics/issue/51043/sensational_spider-man_1996_8",
+      "onSaleDate": "1996-09-08T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 6833,
+      "title": "The Amazing Spider-Man",
+      "issueTitle": "The Amazing Spider-Man (1963) #415",
+      "seriesTitle": "The Amazing Spider-Man",
+      "apiSeriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "seriesId": 1987,
+      "issueNumber": "415",
+      "seriesYear": 1963,
+      "detailUrl": "https://www.marvel.com/comics/issue/6833/the_amazing_spider-man_1963_415",
+      "onSaleDate": "1996-09-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 23910,
+      "title": "Green Goblin",
+      "issueTitle": "Green Goblin (1995) #12",
+      "seriesTitle": "Green Goblin",
+      "apiSeriesName": "Green Goblin (1995 - 1996)",
+      "seriesName": "Green Goblin (1995 - 1996)",
+      "seriesId": 7077,
+      "issueNumber": "12",
+      "seriesYear": 1995,
+      "detailUrl": "https://www.marvel.com/comics/issue/23910/green_goblin_1995_12",
+      "onSaleDate": "1996-09-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 10836,
+      "title": "Spider-Man",
+      "issueTitle": "Spider-Man (1990) #72",
+      "seriesTitle": "Spider-Man",
+      "apiSeriesName": "Spider-Man (1990 - 1998)",
+      "seriesName": "Spider-Man (1990 - 1998)",
+      "seriesId": 2069,
+      "issueNumber": "72",
+      "seriesYear": 1990,
+      "detailUrl": "https://www.marvel.com/comics/issue/10836/spider-man_1990_72",
+      "onSaleDate": "1996-09-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 18186,
+      "title": "X-Man",
+      "issueTitle": "X-Man (1995) #18",
+      "seriesTitle": "X-Man",
+      "seriesId": 3643,
+      "issueNumber": "18",
+      "seriesYear": 1995,
+      "detailUrl": "https://www.marvel.com/comics/issue/18186/x-man_1995_18",
+      "onSaleDate": "1996-08-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 18024,
+      "title": "X-Force",
+      "issueTitle": "X-Force (1991) #57",
+      "seriesTitle": "X-Force",
+      "apiSeriesName": "X-Force (1991 - 2004)",
+      "seriesName": "X-Force (1991 - 2004)",
+      "seriesId": 3633,
+      "issueNumber": "57",
+      "seriesYear": 1991,
+      "detailUrl": "https://www.marvel.com/comics/issue/18024/x-force_1991_57",
+      "onSaleDate": "1996-08-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 23391,
+      "title": "Punisher",
+      "issueTitle": "Punisher (1995) #11",
+      "seriesTitle": "Punisher",
+      "apiSeriesName": "Punisher (1995 - 1996)",
+      "seriesName": "Punisher (1995 - 1996)",
+      "seriesId": 6681,
+      "issueNumber": "11",
+      "seriesYear": 1995,
+      "detailUrl": "https://www.marvel.com/comics/issue/23391/punisher_1995_11",
+      "onSaleDate": "1996-09-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 14345,
+      "title": "X-Men",
+      "issueTitle": "X-Men (1991) #55",
+      "seriesTitle": "X-Men",
+      "apiSeriesName": "X-Men (1991 - 2001)",
+      "seriesName": "X-Men (1991 - 2001)",
+      "seriesId": 2265,
+      "issueNumber": "55",
+      "seriesYear": 1991,
+      "detailUrl": "https://www.marvel.com/comics/issue/14345/x-men_1991_55",
+      "onSaleDate": "1996-08-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 13877,
+      "title": "Uncanny X-Men",
+      "issueTitle": "Uncanny X-Men (1963) #336",
+      "seriesTitle": "Uncanny X-Men",
+      "apiSeriesName": "Uncanny X-Men (1963 - 2011)",
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "seriesId": 2258,
+      "issueNumber": "336",
+      "seriesYear": 1963,
+      "detailUrl": "https://www.marvel.com/comics/issue/13877/uncanny_x-men_1963_336",
+      "onSaleDate": "1996-09-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 7410,
+      "title": "Cable",
+      "issueTitle": "Cable (1993) #35",
+      "seriesTitle": "Cable",
+      "apiSeriesName": "Cable (1993 - 2002)",
+      "seriesName": "Cable (1993 - 2002)",
+      "seriesId": 1995,
+      "issueNumber": "35",
+      "seriesYear": 1993,
+      "detailUrl": "https://www.marvel.com/comics/issue/7410/cable_1993_35",
+      "onSaleDate": "1996-09-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 18025,
+      "title": "X-Force",
+      "issueTitle": "X-Force (1991) #58",
+      "seriesTitle": "X-Force",
+      "apiSeriesName": "X-Force (1991 - 2004)",
+      "seriesName": "X-Force (1991 - 2004)",
+      "seriesId": 3633,
+      "issueNumber": "58",
+      "seriesYear": 1991,
+      "detailUrl": "https://www.marvel.com/comics/issue/18025/x-force_1991_58",
+      "onSaleDate": "1996-09-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 18187,
+      "title": "X-Man",
+      "issueTitle": "X-Man (1995) #19",
+      "seriesTitle": "X-Man",
+      "seriesId": 3643,
+      "issueNumber": "19",
+      "seriesYear": 1995,
+      "detailUrl": "https://www.marvel.com/comics/issue/18187/x-man_1995_19",
+      "onSaleDate": "1996-09-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 9256,
+      "title": "Incredible Hulk",
+      "issueTitle": "Incredible Hulk (1962) #445",
+      "seriesTitle": "Incredible Hulk",
+      "apiSeriesName": "Incredible Hulk (1962 - 1999)",
+      "seriesName": "Incredible Hulk (1962 - 1999)",
+      "seriesId": 2021,
+      "issueNumber": "445",
+      "seriesYear": 1962,
+      "detailUrl": "https://www.marvel.com/comics/issue/9256/incredible_hulk_1962_445",
+      "onSaleDate": "1996-09-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 9586,
+      "title": "Iron Man",
+      "issueTitle": "Iron Man (1968) #332",
+      "seriesTitle": "Iron Man",
+      "apiSeriesName": "Iron Man (1968 - 1996)",
+      "seriesName": "Iron Man (1968 - 1996)",
+      "seriesId": 2029,
+      "issueNumber": "332",
+      "seriesYear": 1968,
+      "detailUrl": "https://www.marvel.com/comics/issue/9586/iron_man_1968_332",
+      "onSaleDate": "1996-09-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 7289,
+      "title": "Avengers",
+      "issueTitle": "Avengers (1963) #402",
+      "seriesTitle": "Avengers",
+      "apiSeriesName": "Avengers (1963 - 1996)",
+      "seriesName": "Avengers (1963 - 1996)",
+      "seriesId": 1991,
+      "issueNumber": "402",
+      "seriesYear": 1963,
+      "detailUrl": "https://www.marvel.com/comics/issue/7289/avengers_1963_402",
+      "onSaleDate": "1996-09-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 11830,
+      "title": "Thor",
+      "issueTitle": "Thor (1966) #502",
+      "seriesTitle": "Thor",
+      "apiSeriesName": "Thor (1966 - 1996)",
+      "seriesName": "Thor (1966 - 1996)",
+      "seriesId": 2083,
+      "issueNumber": "502",
+      "seriesYear": 1966,
+      "detailUrl": "https://www.marvel.com/comics/issue/11830/thor_1966_502",
+      "onSaleDate": "1996-09-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 14043,
+      "title": "Wolverine",
+      "issueTitle": "Wolverine (1988) #105",
+      "seriesTitle": "Wolverine",
+      "apiSeriesName": "Wolverine (1988 - 2003)",
+      "seriesName": "Wolverine (1988 - 2003)",
+      "seriesId": 2262,
+      "issueNumber": "105",
+      "seriesYear": 1988,
+      "detailUrl": "https://www.marvel.com/comics/issue/14043/wolverine_1988_105",
+      "onSaleDate": "1996-09-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 13246,
+      "title": "Fantastic Four",
+      "issueTitle": "Fantastic Four (1961) #416",
+      "seriesTitle": "Fantastic Four",
+      "apiSeriesName": "Fantastic Four (1961 - 1998)",
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "seriesId": 2121,
+      "issueNumber": "416",
+      "seriesYear": 1961,
+      "detailUrl": "https://www.marvel.com/comics/issue/13246/fantastic_four_1961_416",
+      "onSaleDate": "1996-09-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 14346,
+      "title": "X-Men",
+      "issueTitle": "X-Men (1991) #56",
+      "seriesTitle": "X-Men",
+      "apiSeriesName": "X-Men (1991 - 2001)",
+      "seriesName": "X-Men (1991 - 2001)",
+      "seriesId": 2265,
+      "issueNumber": "56",
+      "seriesYear": 1991,
+      "detailUrl": "https://www.marvel.com/comics/issue/14346/x-men_1991_56",
+      "onSaleDate": "1996-09-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 10453,
+      "title": "Onslaught: Marvel Universe",
+      "issueTitle": "Onslaught: Marvel Universe (1996) #1",
+      "seriesTitle": "Onslaught: Marvel Universe",
+      "apiSeriesName": "Onslaught: Marvel Universe (1996)",
+      "seriesName": "Onslaught: Marvel Universe (1996)",
+      "seriesId": 2057,
+      "issueNumber": "1",
+      "seriesYear": 1996,
+      "detailUrl": "https://www.marvel.com/comics/issue/10453/onslaught_marvel_universe_1996_1",
+      "onSaleDate": "1996-10-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 7411,
+      "title": "Cable",
+      "issueTitle": "Cable (1993) #36",
+      "seriesTitle": "Cable",
+      "apiSeriesName": "Cable (1993 - 2002)",
+      "seriesName": "Cable (1993 - 2002)",
+      "seriesId": 1995,
+      "issueNumber": "36",
+      "seriesYear": 1993,
+      "detailUrl": "https://www.marvel.com/comics/issue/7411/cable_1993_36",
+      "onSaleDate": "1996-10-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 13878,
+      "title": "Uncanny X-Men",
+      "issueTitle": "Uncanny X-Men (1963) #337",
+      "seriesTitle": "Uncanny X-Men",
+      "apiSeriesName": "Uncanny X-Men (1963 - 2011)",
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "seriesId": 2258,
+      "issueNumber": "337",
+      "seriesYear": 1963,
+      "detailUrl": "https://www.marvel.com/comics/issue/13878/uncanny_x-men_1963_337",
+      "onSaleDate": "1996-10-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 14347,
+      "title": "X-Men",
+      "issueTitle": "X-Men (1991) #57",
+      "seriesTitle": "X-Men",
+      "apiSeriesName": "X-Men (1991 - 2001)",
+      "seriesName": "X-Men (1991 - 2001)",
+      "seriesId": 2265,
+      "issueNumber": "57",
+      "seriesYear": 1991,
+      "detailUrl": "https://www.marvel.com/comics/issue/14347/x-men_1991_57",
+      "onSaleDate": "1996-10-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 23388,
+      "title": "Onslaught Epilogue",
+      "issueTitle": "Onslaught Epilogue (1997) #1",
+      "seriesTitle": "Onslaught Epilogue",
+      "apiSeriesName": "Onslaught Epilogue (1997)",
+      "seriesName": "Onslaught Epilogue (1997)",
+      "seriesId": 6680,
+      "issueNumber": "1",
+      "seriesYear": 1997,
+      "detailUrl": "https://www.marvel.com/comics/issue/23388/onslaught_epilogue_1997_1",
+      "onSaleDate": "1997-02-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    },
+    {
+      "id": 16337,
+      "title": "Iron Man",
+      "issueTitle": "Iron Man (1996) #6",
+      "seriesTitle": "Iron Man",
+      "apiSeriesName": "Iron Man (1996 - 1998)",
+      "seriesName": "Iron Man (1996 - 1998)",
+      "seriesId": 13577,
+      "issueNumber": "6",
+      "seriesYear": 1996,
+      "detailUrl": "https://www.marvel.com/comics/issue/16337/iron_man_1996_6",
+      "onSaleDate": "1997-04-01T00:00:00+0000",
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false
+    }
+  ],
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "printedPosition": 1,
+      "sourceBlock": 1,
+      "sourceIssueReference": "X-Men Prime #1",
+      "sourceRangeReference": "Road to Onslaught Vol. 1",
+      "sourceGroup": "Road to Onslaught Vol. 1",
+      "normalizedSeriesTitle": "X-Men Prime",
+      "seriesYear": 1995,
+      "issueNumber": "1",
+      "seriesId": 2102,
+      "candidateIssueId": 12371,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Original X-Men Prime (1995) #1 is provider series 2102, labeled X-MEN PRIME 1; not the 2017 series or a collection.",
+      "candidateIssueIds": [
+        "12371"
+      ],
+      "selectedIssueId": 12371,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12371/x-men_prime_1_1995_1",
+      "resolvedIssueTitle": "X-MEN PRIME 1 (1995) #1",
+      "note": "Original X-Men Prime (1995) #1 is provider series 2102, labeled X-MEN PRIME 1; not the 2017 series or a collection.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        12371
+      ]
+    },
+    {
+      "sourcePosition": 2,
+      "printedPosition": 2,
+      "sourceBlock": 1,
+      "sourceIssueReference": "Uncanny X-Men #322",
+      "sourceRangeReference": "Road to Onslaught Vol. 1",
+      "sourceGroup": "Road to Onslaught Vol. 1",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "322",
+      "seriesId": 2258,
+      "candidateIssueId": 13863,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "13863"
+      ],
+      "selectedIssueId": 13863,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13863/uncanny_x-men_1963_322",
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #322",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        13863
+      ]
+    },
+    {
+      "sourcePosition": 3,
+      "printedPosition": 3,
+      "sourceBlock": 1,
+      "sourceIssueReference": "X-Men #42",
+      "sourceRangeReference": "Road to Onslaught Vol. 1",
+      "sourceGroup": "Road to Onslaught Vol. 1",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 1991,
+      "issueNumber": "42",
+      "seriesId": 2265,
+      "candidateIssueId": 14331,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "14331"
+      ],
+      "selectedIssueId": 14331,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14331/x-men_1991_42",
+      "resolvedIssueTitle": "X-Men (1991) #42",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        14331
+      ]
+    },
+    {
+      "sourcePosition": 4,
+      "printedPosition": 4,
+      "sourceBlock": 1,
+      "sourceIssueReference": "X-Men #43",
+      "sourceRangeReference": "Road to Onslaught Vol. 1",
+      "sourceGroup": "Road to Onslaught Vol. 1",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 1991,
+      "issueNumber": "43",
+      "seriesId": 2265,
+      "candidateIssueId": 14332,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "14332"
+      ],
+      "selectedIssueId": 14332,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14332/x-men_1991_43",
+      "resolvedIssueTitle": "X-Men (1991) #43",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        14332
+      ]
+    },
+    {
+      "sourcePosition": 5,
+      "printedPosition": 5,
+      "sourceBlock": 1,
+      "sourceIssueReference": "X-Men #44",
+      "sourceRangeReference": "Road to Onslaught Vol. 1",
+      "sourceGroup": "Road to Onslaught Vol. 1",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 1991,
+      "issueNumber": "44",
+      "seriesId": 2265,
+      "candidateIssueId": 14333,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "14333"
+      ],
+      "selectedIssueId": 14333,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14333/x-men_1991_44",
+      "resolvedIssueTitle": "X-Men (1991) #44",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        14333
+      ]
+    },
+    {
+      "sourcePosition": 6,
+      "printedPosition": 6,
+      "sourceBlock": 1,
+      "sourceIssueReference": "Uncanny X-Men #323",
+      "sourceRangeReference": "Road to Onslaught Vol. 1",
+      "sourceGroup": "Road to Onslaught Vol. 1",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "323",
+      "seriesId": 2258,
+      "candidateIssueId": 13864,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "13864"
+      ],
+      "selectedIssueId": 13864,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13864/uncanny_x-men_1963_323",
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #323",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        13864
+      ]
+    },
+    {
+      "sourcePosition": 7,
+      "printedPosition": 7,
+      "sourceBlock": 1,
+      "sourceIssueReference": "Uncanny X-Men #324",
+      "sourceRangeReference": "Road to Onslaught Vol. 1",
+      "sourceGroup": "Road to Onslaught Vol. 1",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "324",
+      "seriesId": 2258,
+      "candidateIssueId": 13865,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "13865"
+      ],
+      "selectedIssueId": 13865,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13865/uncanny_x-men_1963_324",
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #324",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        13865
+      ]
+    },
+    {
+      "sourcePosition": 8,
+      "printedPosition": 8,
+      "sourceBlock": 1,
+      "sourceIssueReference": "X-Men Annual '95 #1",
+      "sourceRangeReference": "Road to Onslaught Vol. 1",
+      "sourceGroup": "Road to Onslaught Vol. 1",
+      "normalizedSeriesTitle": "X-Men Annual",
+      "seriesYear": 1995,
+      "issueNumber": "1",
+      "seriesId": 19205,
+      "candidateIssueId": 51107,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "51107"
+      ],
+      "selectedIssueId": 51107,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/51107/x-men_annual_1995_1",
+      "resolvedIssueTitle": "X-Men Annual (1995) #1",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        51107
+      ]
+    },
+    {
+      "sourcePosition": 9,
+      "printedPosition": 9,
+      "sourceBlock": 1,
+      "sourceIssueReference": "Uncanny X-Men #325",
+      "sourceRangeReference": "Road to Onslaught Vol. 1",
+      "sourceGroup": "Road to Onslaught Vol. 1",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "325",
+      "seriesId": 2258,
+      "candidateIssueId": 13866,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "13866"
+      ],
+      "selectedIssueId": 13866,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13866/uncanny_x-men_1963_325",
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #325",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        13866
+      ]
+    },
+    {
+      "sourcePosition": 10,
+      "printedPosition": 10,
+      "sourceBlock": 1,
+      "sourceIssueReference": "X-Men #45",
+      "sourceRangeReference": "Road to Onslaught Vol. 1",
+      "sourceGroup": "Road to Onslaught Vol. 1",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 1991,
+      "issueNumber": "45",
+      "seriesId": 2265,
+      "candidateIssueId": 14334,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "14334"
+      ],
+      "selectedIssueId": 14334,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14334/x-men_1991_45",
+      "resolvedIssueTitle": "X-Men (1991) #45",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        14334
+      ]
+    },
+    {
+      "sourcePosition": 11,
+      "printedPosition": 11,
+      "sourceBlock": 1,
+      "sourceIssueReference": "Uncanny X-Men #326",
+      "sourceRangeReference": "Road to Onslaught Vol. 1",
+      "sourceGroup": "Road to Onslaught Vol. 1",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "326",
+      "seriesId": 2258,
+      "candidateIssueId": 13867,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "13867"
+      ],
+      "selectedIssueId": 13867,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13867/uncanny_x-men_1963_326",
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #326",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        13867
+      ]
+    },
+    {
+      "sourcePosition": 12,
+      "printedPosition": 12,
+      "sourceBlock": 1,
+      "sourceIssueReference": "X-Men Unlimited #8",
+      "sourceRangeReference": "Road to Onslaught Vol. 1",
+      "sourceGroup": "Road to Onslaught Vol. 1",
+      "normalizedSeriesTitle": "X-Men Unlimited",
+      "seriesYear": 1993,
+      "issueNumber": "8",
+      "seriesId": 3637,
+      "candidateIssueId": 18158,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "18158"
+      ],
+      "selectedIssueId": 18158,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18158/x-men_unlimited_1993_8",
+      "resolvedIssueTitle": "X-Men Unlimited (1993) #8",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        18158
+      ]
+    },
+    {
+      "sourcePosition": 13,
+      "printedPosition": 14,
+      "sourceBlock": 2,
+      "sourceIssueReference": "X-Men & The ClanDestine #1",
+      "sourceRangeReference": "Road to Onslaught Vol. 2",
+      "sourceGroup": "Road to Onslaught Vol. 2",
+      "normalizedSeriesTitle": "X-Men & The ClanDestine",
+      "seriesYear": 1996,
+      "issueNumber": "1",
+      "seriesId": 19206,
+      "candidateIssueId": 51108,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source-era publication-year lead only; confirm exact original title and year during identity mapping before assigning an issue ID. Original X-Men & The ClanDestine #1 is provider X-Men/Clandestine (1996) #1; exact crossover series alias reviewed.",
+      "candidateIssueIds": [
+        "51108"
+      ],
+      "selectedIssueId": 51108,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/51108/x-menclandestine_1996_1",
+      "resolvedIssueTitle": "X-Men/Clandestine (1996) #1",
+      "note": "Source-era publication-year lead only; confirm exact original title and year during identity mapping before assigning an issue ID. Original X-Men & The ClanDestine #1 is provider X-Men/Clandestine (1996) #1; exact crossover series alias reviewed.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        51108
+      ]
+    },
+    {
+      "sourcePosition": 14,
+      "printedPosition": 15,
+      "sourceBlock": 2,
+      "sourceIssueReference": "X-Men & The ClanDestine #2",
+      "sourceRangeReference": "Road to Onslaught Vol. 2",
+      "sourceGroup": "Road to Onslaught Vol. 2",
+      "normalizedSeriesTitle": "X-Men & The ClanDestine",
+      "seriesYear": 1996,
+      "issueNumber": "2",
+      "seriesId": 19206,
+      "candidateIssueId": 51109,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source-era publication-year lead only; confirm exact original title and year during identity mapping before assigning an issue ID. Original X-Men & The ClanDestine #2 is provider X-Men/Clandestine (1996) #2; exact crossover series alias reviewed.",
+      "candidateIssueIds": [
+        "51109"
+      ],
+      "selectedIssueId": 51109,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/51109/x-menclandestine_1996_2",
+      "resolvedIssueTitle": "X-Men/Clandestine (1996) #2",
+      "note": "Source-era publication-year lead only; confirm exact original title and year during identity mapping before assigning an issue ID. Original X-Men & The ClanDestine #2 is provider X-Men/Clandestine (1996) #2; exact crossover series alias reviewed.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        51109
+      ]
+    },
+    {
+      "sourcePosition": 15,
+      "printedPosition": 16,
+      "sourceBlock": 2,
+      "sourceIssueReference": "Uncanny X-Men Annual '95",
+      "sourceRangeReference": "Road to Onslaught Vol. 2",
+      "sourceGroup": "Road to Onslaught Vol. 2",
+      "normalizedSeriesTitle": "Uncanny X-Men Annual",
+      "seriesYear": 1995,
+      "issueNumber": "1",
+      "seriesId": 19204,
+      "candidateIssueId": 51106,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "51106"
+      ],
+      "selectedIssueId": 51106,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/51106/uncanny_x-men_annual_1995_1",
+      "resolvedIssueTitle": "Uncanny X-Men Annual (1995) #1",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        51106
+      ]
+    },
+    {
+      "sourcePosition": 16,
+      "printedPosition": 18,
+      "sourceBlock": 2,
+      "sourceIssueReference": "X-Men #46",
+      "sourceRangeReference": "Road to Onslaught Vol. 2",
+      "sourceGroup": "Road to Onslaught Vol. 2",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 1991,
+      "issueNumber": "46",
+      "seriesId": 2265,
+      "candidateIssueId": 14335,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "14335"
+      ],
+      "selectedIssueId": 14335,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14335/x-men_1991_46",
+      "resolvedIssueTitle": "X-Men (1991) #46",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        14335
+      ]
+    },
+    {
+      "sourcePosition": 17,
+      "printedPosition": 19,
+      "sourceBlock": 2,
+      "sourceIssueReference": "X-Men #47",
+      "sourceRangeReference": "Road to Onslaught Vol. 2",
+      "sourceGroup": "Road to Onslaught Vol. 2",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 1991,
+      "issueNumber": "47",
+      "seriesId": 2265,
+      "candidateIssueId": 14336,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "14336"
+      ],
+      "selectedIssueId": 14336,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14336/x-men_1991_47",
+      "resolvedIssueTitle": "X-Men (1991) #47",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        14336
+      ]
+    },
+    {
+      "sourcePosition": 18,
+      "printedPosition": 20,
+      "sourceBlock": 2,
+      "sourceIssueReference": "Uncanny X-Men #327",
+      "sourceRangeReference": "Road to Onslaught Vol. 2",
+      "sourceGroup": "Road to Onslaught Vol. 2",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "327",
+      "seriesId": 2258,
+      "candidateIssueId": 13868,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "13868"
+      ],
+      "selectedIssueId": 13868,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13868/uncanny_x-men_1963_327",
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #327",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        13868
+      ]
+    },
+    {
+      "sourcePosition": 19,
+      "printedPosition": 21,
+      "sourceBlock": 2,
+      "sourceIssueReference": "X-Men Unlimited #9",
+      "sourceRangeReference": "Road to Onslaught Vol. 2",
+      "sourceGroup": "Road to Onslaught Vol. 2",
+      "normalizedSeriesTitle": "X-Men Unlimited",
+      "seriesYear": 1993,
+      "issueNumber": "9",
+      "seriesId": 3637,
+      "candidateIssueId": 18159,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "18159"
+      ],
+      "selectedIssueId": 18159,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18159/x-men_unlimited_1993_9",
+      "resolvedIssueTitle": "X-Men Unlimited (1993) #9",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        18159
+      ]
+    },
+    {
+      "sourcePosition": 20,
+      "printedPosition": 22,
+      "sourceBlock": 2,
+      "sourceIssueReference": "Uncanny X-Men #328",
+      "sourceRangeReference": "Road to Onslaught Vol. 2",
+      "sourceGroup": "Road to Onslaught Vol. 2",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "328",
+      "seriesId": 2258,
+      "candidateIssueId": 13869,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "13869"
+      ],
+      "selectedIssueId": 13869,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13869/uncanny_x-men_1963_328",
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #328",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        13869
+      ]
+    },
+    {
+      "sourcePosition": 21,
+      "printedPosition": 23,
+      "sourceBlock": 2,
+      "sourceIssueReference": "Sabretooth #1",
+      "sourceRangeReference": "Road to Onslaught Vol. 2",
+      "sourceGroup": "Road to Onslaught Vol. 2",
+      "normalizedSeriesTitle": "Sabretooth Special",
+      "seriesYear": 1995,
+      "issueNumber": "1",
+      "seriesId": 19203,
+      "candidateIssueId": 51105,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Road Vol. 2 bibliography identifies the original Sabretooth Special (1995) #1, not Sabretooth (1993) miniseries #1.",
+      "candidateIssueIds": [
+        "51105"
+      ],
+      "selectedIssueId": 51105,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/51105/sabretooth_special_1995_1",
+      "resolvedIssueTitle": "Sabretooth Special (1995) #1",
+      "note": "Road Vol. 2 bibliography identifies the original Sabretooth Special (1995) #1, not Sabretooth (1993) miniseries #1.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        51105
+      ]
+    },
+    {
+      "sourcePosition": 22,
+      "printedPosition": 24,
+      "sourceBlock": 2,
+      "sourceIssueReference": "X-Men #48",
+      "sourceRangeReference": "Road to Onslaught Vol. 2",
+      "sourceGroup": "Road to Onslaught Vol. 2",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 1991,
+      "issueNumber": "48",
+      "seriesId": 2265,
+      "candidateIssueId": 14337,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "14337"
+      ],
+      "selectedIssueId": 14337,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14337/x-men_1991_48",
+      "resolvedIssueTitle": "X-Men (1991) #48",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        14337
+      ]
+    },
+    {
+      "sourcePosition": 23,
+      "printedPosition": 25,
+      "sourceBlock": 2,
+      "sourceIssueReference": "X-Men #49",
+      "sourceRangeReference": "Road to Onslaught Vol. 2",
+      "sourceGroup": "Road to Onslaught Vol. 2",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 1991,
+      "issueNumber": "49",
+      "seriesId": 2265,
+      "candidateIssueId": 14338,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "14338"
+      ],
+      "selectedIssueId": 14338,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14338/x-men_1991_49",
+      "resolvedIssueTitle": "X-Men (1991) #49",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        14338
+      ]
+    },
+    {
+      "sourcePosition": 25,
+      "printedPosition": 27,
+      "sourceBlock": 3,
+      "sourceIssueReference": "Uncanny X-Men #329",
+      "sourceRangeReference": "Road to Onslaught Vol. 3",
+      "sourceGroup": "Road to Onslaught Vol. 3",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "329",
+      "seriesId": 2258,
+      "candidateIssueId": 13870,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "13870"
+      ],
+      "selectedIssueId": 13870,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13870/uncanny_x-men_1963_329",
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #329",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        13870
+      ]
+    },
+    {
+      "sourcePosition": 26,
+      "printedPosition": 28,
+      "sourceBlock": 3,
+      "sourceIssueReference": "Uncanny X-Men #330",
+      "sourceRangeReference": "Road to Onslaught Vol. 3",
+      "sourceGroup": "Road to Onslaught Vol. 3",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "330",
+      "seriesId": 2258,
+      "candidateIssueId": 13871,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "13871"
+      ],
+      "selectedIssueId": 13871,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13871/uncanny_x-men_1963_330",
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #330",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        13871
+      ]
+    },
+    {
+      "sourcePosition": 28,
+      "printedPosition": 30,
+      "sourceBlock": 3,
+      "sourceIssueReference": "X-Men vs. The Brood #1",
+      "sourceRangeReference": "Road to Onslaught Vol. 3",
+      "sourceGroup": "Road to Onslaught Vol. 3",
+      "normalizedSeriesTitle": "X-Men Vs. the Brood",
+      "seriesYear": 1996,
+      "issueNumber": "1",
+      "seriesId": 19824,
+      "candidateIssueId": 52991,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "52991"
+      ],
+      "selectedIssueId": 52991,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/52991/x-men_vs_the_brood_1996_1",
+      "resolvedIssueTitle": "X-Men Vs. the Brood (1996) #1",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        52991
+      ]
+    },
+    {
+      "sourcePosition": 29,
+      "printedPosition": 31,
+      "sourceBlock": 3,
+      "sourceIssueReference": "X-Men vs. The Brood #2",
+      "sourceRangeReference": "Road to Onslaught Vol. 3",
+      "sourceGroup": "Road to Onslaught Vol. 3",
+      "normalizedSeriesTitle": "X-Men Vs. the Brood",
+      "seriesYear": 1996,
+      "issueNumber": "2",
+      "seriesId": 19824,
+      "candidateIssueId": 52992,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "52992"
+      ],
+      "selectedIssueId": 52992,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/52992/x-men_vs_the_brood_1996_2",
+      "resolvedIssueTitle": "X-Men Vs. the Brood (1996) #2",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        52992
+      ]
+    },
+    {
+      "sourcePosition": 30,
+      "printedPosition": 32,
+      "sourceBlock": 3,
+      "sourceIssueReference": "X-Men Unlimited #10",
+      "sourceRangeReference": "Road to Onslaught Vol. 3",
+      "sourceGroup": "Road to Onslaught Vol. 3",
+      "normalizedSeriesTitle": "X-Men Unlimited",
+      "seriesYear": 1993,
+      "issueNumber": "10",
+      "seriesId": 3637,
+      "candidateIssueId": 18111,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "18111"
+      ],
+      "selectedIssueId": 18111,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18111/x-men_unlimited_1993_10",
+      "resolvedIssueTitle": "X-Men Unlimited (1993) #10",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        18111
+      ]
+    },
+    {
+      "sourcePosition": 31,
+      "printedPosition": 33,
+      "sourceBlock": 3,
+      "sourceIssueReference": "X-Men #50",
+      "sourceRangeReference": "Road to Onslaught Vol. 3",
+      "sourceGroup": "Road to Onslaught Vol. 3",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 1991,
+      "issueNumber": "50",
+      "seriesId": 2265,
+      "candidateIssueId": 14340,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "14340"
+      ],
+      "selectedIssueId": 14340,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14340/x-men_1991_50",
+      "resolvedIssueTitle": "X-Men (1991) #50",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        14340
+      ]
+    },
+    {
+      "sourcePosition": 32,
+      "printedPosition": 34,
+      "sourceBlock": 3,
+      "sourceIssueReference": "Uncanny X-Men #331",
+      "sourceRangeReference": "Road to Onslaught Vol. 3",
+      "sourceGroup": "Road to Onslaught Vol. 3",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "331",
+      "seriesId": 2258,
+      "candidateIssueId": 13872,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "13872"
+      ],
+      "selectedIssueId": 13872,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13872/uncanny_x-men_1963_331",
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #331",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        13872
+      ]
+    },
+    {
+      "sourcePosition": 33,
+      "printedPosition": 35,
+      "sourceBlock": 3,
+      "sourceIssueReference": "Uncanny X-Men #332",
+      "sourceRangeReference": "Road to Onslaught Vol. 3",
+      "sourceGroup": "Road to Onslaught Vol. 3",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "332",
+      "seriesId": 2258,
+      "candidateIssueId": 13873,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "13873"
+      ],
+      "selectedIssueId": 13873,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13873/uncanny_x-men_1963_332",
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #332",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        13873
+      ]
+    },
+    {
+      "sourcePosition": 34,
+      "printedPosition": 36,
+      "sourceBlock": 3,
+      "sourceIssueReference": "Wolverine #101",
+      "sourceRangeReference": "Road to Onslaught Vol. 3",
+      "sourceGroup": "Road to Onslaught Vol. 3",
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 1988,
+      "issueNumber": "101",
+      "seriesId": 2262,
+      "candidateIssueId": 14039,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "14039"
+      ],
+      "selectedIssueId": 14039,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14039/wolverine_1988_101",
+      "resolvedIssueTitle": "Wolverine (1988) #101",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        14039
+      ]
+    },
+    {
+      "sourcePosition": 35,
+      "printedPosition": 37,
+      "sourceBlock": 3,
+      "sourceIssueReference": "X-Men #51",
+      "sourceRangeReference": "Road to Onslaught Vol. 3",
+      "sourceGroup": "Road to Onslaught Vol. 3",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 1991,
+      "issueNumber": "51",
+      "seriesId": 2265,
+      "candidateIssueId": 14341,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "14341"
+      ],
+      "selectedIssueId": 14341,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14341/x-men_1991_51",
+      "resolvedIssueTitle": "X-Men (1991) #51",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        14341
+      ]
+    },
+    {
+      "sourcePosition": 36,
+      "printedPosition": 38,
+      "sourceBlock": 3,
+      "sourceIssueReference": "X-Men #52",
+      "sourceRangeReference": "Road to Onslaught Vol. 3",
+      "sourceGroup": "Road to Onslaught Vol. 3",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 1991,
+      "issueNumber": "52",
+      "seriesId": 2265,
+      "candidateIssueId": 14342,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "14342"
+      ],
+      "selectedIssueId": 14342,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14342/x-men_1991_52",
+      "resolvedIssueTitle": "X-Men (1991) #52",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        14342
+      ]
+    },
+    {
+      "sourcePosition": 37,
+      "printedPosition": 39,
+      "sourceBlock": 3,
+      "sourceIssueReference": "Xavier Institute Yearbook",
+      "sourceRangeReference": "Road to Onslaught Vol. 3",
+      "sourceGroup": "Road to Onslaught Vol. 3",
+      "normalizedSeriesTitle": "Xavier Institute Alumni Yearbook",
+      "seriesYear": 1996,
+      "issueNumber": "1",
+      "seriesId": 19823,
+      "candidateIssueId": 52990,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source-selected art/reference companion; independently indexed original identity, not a narrative chapter.",
+      "candidateIssueIds": [
+        "52990"
+      ],
+      "selectedIssueId": 52990,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/52990/xavier_institute_alumni_yearbook_1996_1",
+      "resolvedIssueTitle": "Xavier Institute Alumni Yearbook (1996) #1",
+      "note": "Source-selected art/reference companion; independently indexed original identity, not a narrative chapter.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        52990
+      ]
+    },
+    {
+      "sourcePosition": 38,
+      "printedPosition": 62,
+      "sourceBlock": 5,
+      "sourceIssueReference": "X-Men #53",
+      "sourceRangeReference": "Onslaught The Complete Epic, Book 1",
+      "sourceGroup": "Onslaught The Complete Epic, Book 1",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 1991,
+      "issueNumber": "53",
+      "seriesId": 2265,
+      "candidateIssueId": 14343,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "14343"
+      ],
+      "selectedIssueId": 14343,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14343/x-men_1991_53",
+      "resolvedIssueTitle": "X-Men (1991) #53",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        14343
+      ]
+    },
+    {
+      "sourcePosition": 39,
+      "printedPosition": 63,
+      "sourceBlock": 5,
+      "sourceIssueReference": "Uncanny X-Men #334",
+      "sourceRangeReference": "Onslaught The Complete Epic, Book 1",
+      "sourceGroup": "Onslaught The Complete Epic, Book 1",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "334",
+      "seriesId": 2258,
+      "candidateIssueId": 13875,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "13875"
+      ],
+      "selectedIssueId": 13875,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13875/uncanny_x-men_1963_334",
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #334",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        13875
+      ]
+    },
+    {
+      "sourcePosition": 40,
+      "printedPosition": 64,
+      "sourceBlock": 5,
+      "sourceIssueReference": "X-Men #54",
+      "sourceRangeReference": "Onslaught The Complete Epic, Book 1",
+      "sourceGroup": "Onslaught The Complete Epic, Book 1",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 1991,
+      "issueNumber": "54",
+      "seriesId": 2265,
+      "candidateIssueId": 14344,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "14344"
+      ],
+      "selectedIssueId": 14344,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14344/x-men_1991_54",
+      "resolvedIssueTitle": "X-Men (1991) #54",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        14344
+      ]
+    },
+    {
+      "sourcePosition": 41,
+      "printedPosition": 67,
+      "sourceBlock": 5,
+      "sourceIssueReference": "Onslaught: X-Men",
+      "sourceRangeReference": "Onslaught The Complete Epic, Book 1",
+      "sourceGroup": "Onslaught The Complete Epic, Book 1",
+      "normalizedSeriesTitle": "Onslaught: X-Men",
+      "seriesYear": 1996,
+      "issueNumber": "1",
+      "seriesId": 3900,
+      "candidateIssueId": 20767,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "20767"
+      ],
+      "selectedIssueId": 20767,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/20767/onslaught_x-men_1996_1",
+      "resolvedIssueTitle": "Onslaught: X-Men (1996) #1",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        20767
+      ]
+    },
+    {
+      "sourcePosition": 42,
+      "printedPosition": 68,
+      "sourceBlock": 5,
+      "sourceIssueReference": "Avengers #401",
+      "sourceRangeReference": "Onslaught The Complete Epic, Book 1",
+      "sourceGroup": "Onslaught The Complete Epic, Book 1",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "401",
+      "seriesId": 1991,
+      "candidateIssueId": 7288,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "7288"
+      ],
+      "selectedIssueId": 7288,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/7288/avengers_1963_401",
+      "resolvedIssueTitle": "Avengers (1963) #401",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        7288
+      ]
+    },
+    {
+      "sourcePosition": 43,
+      "printedPosition": 69,
+      "sourceBlock": 5,
+      "sourceIssueReference": "Fantastic Four #415",
+      "sourceRangeReference": "Onslaught The Complete Epic, Book 1",
+      "sourceGroup": "Onslaught The Complete Epic, Book 1",
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "415",
+      "seriesId": 2121,
+      "candidateIssueId": 13245,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "13245"
+      ],
+      "selectedIssueId": 13245,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13245/fantastic_four_1961_415",
+      "resolvedIssueTitle": "Fantastic Four (1961) #415",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        13245
+      ]
+    },
+    {
+      "sourcePosition": 44,
+      "printedPosition": 70,
+      "sourceBlock": 5,
+      "sourceIssueReference": "Cable #34",
+      "sourceRangeReference": "Onslaught The Complete Epic, Book 1",
+      "sourceGroup": "Onslaught The Complete Epic, Book 1",
+      "normalizedSeriesTitle": "Cable",
+      "seriesYear": 1993,
+      "issueNumber": "34",
+      "seriesId": 1995,
+      "candidateIssueId": 7409,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "7409"
+      ],
+      "selectedIssueId": 7409,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/7409/cable_1993_34",
+      "resolvedIssueTitle": "Cable (1993) #34",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        7409
+      ]
+    },
+    {
+      "sourcePosition": 45,
+      "printedPosition": 71,
+      "sourceBlock": 5,
+      "sourceIssueReference": "Incredible Hulk #444",
+      "sourceRangeReference": "Onslaught The Complete Epic, Book 1",
+      "sourceGroup": "Onslaught The Complete Epic, Book 1",
+      "normalizedSeriesTitle": "Incredible Hulk",
+      "seriesYear": 1962,
+      "issueNumber": "444",
+      "seriesId": 2021,
+      "candidateIssueId": 9255,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "9255"
+      ],
+      "selectedIssueId": 9255,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/9255/incredible_hulk_1962_444",
+      "resolvedIssueTitle": "Incredible Hulk (1962) #444",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        9255
+      ]
+    },
+    {
+      "sourcePosition": 46,
+      "printedPosition": 72,
+      "sourceBlock": 6,
+      "sourceIssueReference": "Excalibur #100",
+      "sourceRangeReference": "Onslaught The Complete Epic, Book 2",
+      "sourceGroup": "Onslaught The Complete Epic, Book 2",
+      "normalizedSeriesTitle": "Excalibur",
+      "seriesYear": 1988,
+      "issueNumber": "100",
+      "seriesId": 2011,
+      "candidateIssueId": 8564,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "8564"
+      ],
+      "selectedIssueId": 8564,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8564/excalibur_1988_100",
+      "resolvedIssueTitle": "Excalibur (1988) #100",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        8564
+      ]
+    },
+    {
+      "sourcePosition": 47,
+      "printedPosition": 73,
+      "sourceBlock": 6,
+      "sourceIssueReference": "Wolverine #104",
+      "sourceRangeReference": "Onslaught The Complete Epic, Book 2",
+      "sourceGroup": "Onslaught The Complete Epic, Book 2",
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 1988,
+      "issueNumber": "104",
+      "seriesId": 2262,
+      "candidateIssueId": 14042,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "14042"
+      ],
+      "selectedIssueId": 14042,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14042/wolverine_1988_104",
+      "resolvedIssueTitle": "Wolverine (1988) #104",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        14042
+      ]
+    },
+    {
+      "sourcePosition": 48,
+      "printedPosition": 74,
+      "sourceBlock": 6,
+      "sourceIssueReference": "X-Factor #125",
+      "sourceRangeReference": "Onslaught The Complete Epic, Book 2",
+      "sourceGroup": "Onslaught The Complete Epic, Book 2",
+      "normalizedSeriesTitle": "X-Factor",
+      "seriesYear": 1986,
+      "issueNumber": "125",
+      "seriesId": 2098,
+      "candidateIssueId": 12203,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "12203"
+      ],
+      "selectedIssueId": 12203,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12203/x-factor_1986_125",
+      "resolvedIssueTitle": "X-Factor (1986) #125",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        12203
+      ]
+    },
+    {
+      "sourcePosition": 49,
+      "printedPosition": 75,
+      "sourceBlock": 6,
+      "sourceIssueReference": "X-Factor #126",
+      "sourceRangeReference": "Onslaught The Complete Epic, Book 2",
+      "sourceGroup": "Onslaught The Complete Epic, Book 2",
+      "normalizedSeriesTitle": "X-Factor",
+      "seriesYear": 1986,
+      "issueNumber": "126",
+      "seriesId": 2098,
+      "candidateIssueId": 12204,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "12204"
+      ],
+      "selectedIssueId": 12204,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12204/x-factor_1986_126",
+      "resolvedIssueTitle": "X-Factor (1986) #126",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        12204
+      ]
+    },
+    {
+      "sourcePosition": 50,
+      "printedPosition": 76,
+      "sourceBlock": 6,
+      "sourceIssueReference": "The Sensational Spider-Man #8",
+      "sourceRangeReference": "Onslaught The Complete Epic, Book 2",
+      "sourceGroup": "Onslaught The Complete Epic, Book 2",
+      "normalizedSeriesTitle": "Sensational Spider-Man",
+      "seriesYear": 1996,
+      "issueNumber": "8",
+      "seriesId": 19135,
+      "candidateIssueId": 51043,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "51043"
+      ],
+      "selectedIssueId": 51043,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/51043/sensational_spider-man_1996_8",
+      "resolvedIssueTitle": "Sensational Spider-Man (1996) #8",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        51043
+      ]
+    },
+    {
+      "sourcePosition": 51,
+      "printedPosition": 77,
+      "sourceBlock": 6,
+      "sourceIssueReference": "Amazing Spider-Man #415",
+      "sourceRangeReference": "Onslaught The Complete Epic, Book 2",
+      "sourceGroup": "Onslaught The Complete Epic, Book 2",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 1963,
+      "issueNumber": "415",
+      "seriesId": 1987,
+      "candidateIssueId": 6833,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "6833"
+      ],
+      "selectedIssueId": 6833,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6833/the_amazing_spider-man_1963_415",
+      "resolvedIssueTitle": "The Amazing Spider-Man (1963) #415",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        6833
+      ]
+    },
+    {
+      "sourcePosition": 52,
+      "printedPosition": 78,
+      "sourceBlock": 6,
+      "sourceIssueReference": "Green Goblin #12",
+      "sourceRangeReference": "Onslaught The Complete Epic, Book 2",
+      "sourceGroup": "Onslaught The Complete Epic, Book 2",
+      "normalizedSeriesTitle": "Green Goblin",
+      "seriesYear": 1995,
+      "issueNumber": "12",
+      "seriesId": 7077,
+      "candidateIssueId": 23910,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "23910"
+      ],
+      "selectedIssueId": 23910,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/23910/green_goblin_1995_12",
+      "resolvedIssueTitle": "Green Goblin (1995) #12",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        23910
+      ]
+    },
+    {
+      "sourcePosition": 53,
+      "printedPosition": 79,
+      "sourceBlock": 6,
+      "sourceIssueReference": "Spider-Man #72",
+      "sourceRangeReference": "Onslaught The Complete Epic, Book 2",
+      "sourceGroup": "Onslaught The Complete Epic, Book 2",
+      "normalizedSeriesTitle": "Spider-Man",
+      "seriesYear": 1990,
+      "issueNumber": "72",
+      "seriesId": 2069,
+      "candidateIssueId": 10836,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "10836"
+      ],
+      "selectedIssueId": 10836,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10836/spider-man_1990_72",
+      "resolvedIssueTitle": "Spider-Man (1990) #72",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        10836
+      ]
+    },
+    {
+      "sourcePosition": 54,
+      "printedPosition": 80,
+      "sourceBlock": 6,
+      "sourceIssueReference": "X-Man #18",
+      "sourceRangeReference": "Onslaught The Complete Epic, Book 2",
+      "sourceGroup": "Onslaught The Complete Epic, Book 2",
+      "normalizedSeriesTitle": "X-Man",
+      "seriesYear": 1995,
+      "issueNumber": "18",
+      "seriesId": 3643,
+      "candidateIssueId": 18186,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "18186"
+      ],
+      "selectedIssueId": 18186,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18186/x-man_1995_18",
+      "resolvedIssueTitle": "X-Man (1995) #18",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        18186
+      ]
+    },
+    {
+      "sourcePosition": 55,
+      "printedPosition": 81,
+      "sourceBlock": 6,
+      "sourceIssueReference": "X-Force #57",
+      "sourceRangeReference": "Onslaught The Complete Epic, Book 2",
+      "sourceGroup": "Onslaught The Complete Epic, Book 2",
+      "normalizedSeriesTitle": "X-Force",
+      "seriesYear": 1991,
+      "issueNumber": "57",
+      "seriesId": 3633,
+      "candidateIssueId": 18024,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "18024"
+      ],
+      "selectedIssueId": 18024,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18024/x-force_1991_57",
+      "resolvedIssueTitle": "X-Force (1991) #57",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        18024
+      ]
+    },
+    {
+      "sourcePosition": 56,
+      "printedPosition": 82,
+      "sourceBlock": 6,
+      "sourceIssueReference": "Punisher #11",
+      "sourceRangeReference": "Onslaught The Complete Epic, Book 2",
+      "sourceGroup": "Onslaught The Complete Epic, Book 2",
+      "normalizedSeriesTitle": "Punisher",
+      "seriesYear": 1995,
+      "issueNumber": "11",
+      "seriesId": 6681,
+      "candidateIssueId": 23391,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source-era publication-year lead only; confirm exact original title and year during identity mapping before assigning an issue ID.",
+      "candidateIssueIds": [
+        "23391"
+      ],
+      "selectedIssueId": 23391,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/23391/punisher_1995_11",
+      "resolvedIssueTitle": "Punisher (1995) #11",
+      "note": "Source-era publication-year lead only; confirm exact original title and year during identity mapping before assigning an issue ID.",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        23391
+      ]
+    },
+    {
+      "sourcePosition": 57,
+      "printedPosition": 83,
+      "sourceBlock": 7,
+      "sourceIssueReference": "X-Men #55",
+      "sourceRangeReference": "Onslaught The Complete Epic, Book 3",
+      "sourceGroup": "Onslaught The Complete Epic, Book 3",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 1991,
+      "issueNumber": "55",
+      "seriesId": 2265,
+      "candidateIssueId": 14345,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "14345"
+      ],
+      "selectedIssueId": 14345,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14345/x-men_1991_55",
+      "resolvedIssueTitle": "X-Men (1991) #55",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        14345
+      ]
+    },
+    {
+      "sourcePosition": 58,
+      "printedPosition": 84,
+      "sourceBlock": 7,
+      "sourceIssueReference": "Uncanny X-Men #336",
+      "sourceRangeReference": "Onslaught The Complete Epic, Book 3",
+      "sourceGroup": "Onslaught The Complete Epic, Book 3",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "336",
+      "seriesId": 2258,
+      "candidateIssueId": 13877,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "13877"
+      ],
+      "selectedIssueId": 13877,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13877/uncanny_x-men_1963_336",
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #336",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        13877
+      ]
+    },
+    {
+      "sourcePosition": 59,
+      "printedPosition": 85,
+      "sourceBlock": 7,
+      "sourceIssueReference": "Cable #35",
+      "sourceRangeReference": "Onslaught The Complete Epic, Book 3",
+      "sourceGroup": "Onslaught The Complete Epic, Book 3",
+      "normalizedSeriesTitle": "Cable",
+      "seriesYear": 1993,
+      "issueNumber": "35",
+      "seriesId": 1995,
+      "candidateIssueId": 7410,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "7410"
+      ],
+      "selectedIssueId": 7410,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/7410/cable_1993_35",
+      "resolvedIssueTitle": "Cable (1993) #35",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        7410
+      ]
+    },
+    {
+      "sourcePosition": 60,
+      "printedPosition": 86,
+      "sourceBlock": 7,
+      "sourceIssueReference": "X-Force #58",
+      "sourceRangeReference": "Onslaught The Complete Epic, Book 3",
+      "sourceGroup": "Onslaught The Complete Epic, Book 3",
+      "normalizedSeriesTitle": "X-Force",
+      "seriesYear": 1991,
+      "issueNumber": "58",
+      "seriesId": 3633,
+      "candidateIssueId": 18025,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "18025"
+      ],
+      "selectedIssueId": 18025,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18025/x-force_1991_58",
+      "resolvedIssueTitle": "X-Force (1991) #58",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        18025
+      ]
+    },
+    {
+      "sourcePosition": 61,
+      "printedPosition": 87,
+      "sourceBlock": 7,
+      "sourceIssueReference": "X-Man #19",
+      "sourceRangeReference": "Onslaught The Complete Epic, Book 3",
+      "sourceGroup": "Onslaught The Complete Epic, Book 3",
+      "normalizedSeriesTitle": "X-Man",
+      "seriesYear": 1995,
+      "issueNumber": "19",
+      "seriesId": 3643,
+      "candidateIssueId": 18187,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "18187"
+      ],
+      "selectedIssueId": 18187,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18187/x-man_1995_19",
+      "resolvedIssueTitle": "X-Man (1995) #19",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        18187
+      ]
+    },
+    {
+      "sourcePosition": 62,
+      "printedPosition": 88,
+      "sourceBlock": 7,
+      "sourceIssueReference": "Incredible Hulk #445",
+      "sourceRangeReference": "Onslaught The Complete Epic, Book 3",
+      "sourceGroup": "Onslaught The Complete Epic, Book 3",
+      "normalizedSeriesTitle": "Incredible Hulk",
+      "seriesYear": 1962,
+      "issueNumber": "445",
+      "seriesId": 2021,
+      "candidateIssueId": 9256,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "9256"
+      ],
+      "selectedIssueId": 9256,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/9256/incredible_hulk_1962_445",
+      "resolvedIssueTitle": "Incredible Hulk (1962) #445",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        9256
+      ]
+    },
+    {
+      "sourcePosition": 63,
+      "printedPosition": 89,
+      "sourceBlock": 7,
+      "sourceIssueReference": "Iron Man #332",
+      "sourceRangeReference": "Onslaught The Complete Epic, Book 3",
+      "sourceGroup": "Onslaught The Complete Epic, Book 3",
+      "normalizedSeriesTitle": "Iron Man",
+      "seriesYear": 1968,
+      "issueNumber": "332",
+      "seriesId": 2029,
+      "candidateIssueId": 9586,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "9586"
+      ],
+      "selectedIssueId": 9586,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/9586/iron_man_1968_332",
+      "resolvedIssueTitle": "Iron Man (1968) #332",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        9586
+      ]
+    },
+    {
+      "sourcePosition": 64,
+      "printedPosition": 90,
+      "sourceBlock": 7,
+      "sourceIssueReference": "Avengers #402",
+      "sourceRangeReference": "Onslaught The Complete Epic, Book 3",
+      "sourceGroup": "Onslaught The Complete Epic, Book 3",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1963,
+      "issueNumber": "402",
+      "seriesId": 1991,
+      "candidateIssueId": 7289,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "7289"
+      ],
+      "selectedIssueId": 7289,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/7289/avengers_1963_402",
+      "resolvedIssueTitle": "Avengers (1963) #402",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        7289
+      ]
+    },
+    {
+      "sourcePosition": 65,
+      "printedPosition": 91,
+      "sourceBlock": 7,
+      "sourceIssueReference": "Thor #502",
+      "sourceRangeReference": "Onslaught The Complete Epic, Book 3",
+      "sourceGroup": "Onslaught The Complete Epic, Book 3",
+      "normalizedSeriesTitle": "Thor",
+      "seriesYear": 1966,
+      "issueNumber": "502",
+      "seriesId": 2083,
+      "candidateIssueId": 11830,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "11830"
+      ],
+      "selectedIssueId": 11830,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/11830/thor_1966_502",
+      "resolvedIssueTitle": "Thor (1966) #502",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        11830
+      ]
+    },
+    {
+      "sourcePosition": 66,
+      "printedPosition": 92,
+      "sourceBlock": 7,
+      "sourceIssueReference": "Wolverine #105",
+      "sourceRangeReference": "Onslaught The Complete Epic, Book 3",
+      "sourceGroup": "Onslaught The Complete Epic, Book 3",
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 1988,
+      "issueNumber": "105",
+      "seriesId": 2262,
+      "candidateIssueId": 14043,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "14043"
+      ],
+      "selectedIssueId": 14043,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14043/wolverine_1988_105",
+      "resolvedIssueTitle": "Wolverine (1988) #105",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        14043
+      ]
+    },
+    {
+      "sourcePosition": 67,
+      "printedPosition": 93,
+      "sourceBlock": 8,
+      "sourceIssueReference": "Fantastic Four #416",
+      "sourceRangeReference": "Onslaught The Complete Epic, Book 4",
+      "sourceGroup": "Onslaught The Complete Epic, Book 4",
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "416",
+      "seriesId": 2121,
+      "candidateIssueId": 13246,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "13246"
+      ],
+      "selectedIssueId": 13246,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13246/fantastic_four_1961_416",
+      "resolvedIssueTitle": "Fantastic Four (1961) #416",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        13246
+      ]
+    },
+    {
+      "sourcePosition": 68,
+      "printedPosition": 94,
+      "sourceBlock": 8,
+      "sourceIssueReference": "X-Men #56",
+      "sourceRangeReference": "Onslaught The Complete Epic, Book 4",
+      "sourceGroup": "Onslaught The Complete Epic, Book 4",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 1991,
+      "issueNumber": "56",
+      "seriesId": 2265,
+      "candidateIssueId": 14346,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "14346"
+      ],
+      "selectedIssueId": 14346,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14346/x-men_1991_56",
+      "resolvedIssueTitle": "X-Men (1991) #56",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        14346
+      ]
+    },
+    {
+      "sourcePosition": 69,
+      "printedPosition": 95,
+      "sourceBlock": 8,
+      "sourceIssueReference": "Onslaught: Marvel Universe",
+      "sourceRangeReference": "Onslaught The Complete Epic, Book 4",
+      "sourceGroup": "Onslaught The Complete Epic, Book 4",
+      "normalizedSeriesTitle": "Onslaught: Marvel Universe",
+      "seriesYear": 1996,
+      "issueNumber": "1",
+      "seriesId": 2057,
+      "candidateIssueId": 10453,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "10453"
+      ],
+      "selectedIssueId": 10453,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10453/onslaught_marvel_universe_1996_1",
+      "resolvedIssueTitle": "Onslaught: Marvel Universe (1996) #1",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        10453
+      ]
+    },
+    {
+      "sourcePosition": 70,
+      "printedPosition": 96,
+      "sourceBlock": 8,
+      "sourceIssueReference": "Cable #36",
+      "sourceRangeReference": "Onslaught The Complete Epic, Book 4",
+      "sourceGroup": "Onslaught The Complete Epic, Book 4",
+      "normalizedSeriesTitle": "Cable",
+      "seriesYear": 1993,
+      "issueNumber": "36",
+      "seriesId": 1995,
+      "candidateIssueId": 7411,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "7411"
+      ],
+      "selectedIssueId": 7411,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/7411/cable_1993_36",
+      "resolvedIssueTitle": "Cable (1993) #36",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        7411
+      ]
+    },
+    {
+      "sourcePosition": 71,
+      "printedPosition": 97,
+      "sourceBlock": 8,
+      "sourceIssueReference": "Uncanny X-Men #337",
+      "sourceRangeReference": "Onslaught The Complete Epic, Book 4",
+      "sourceGroup": "Onslaught The Complete Epic, Book 4",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "337",
+      "seriesId": 2258,
+      "candidateIssueId": 13878,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "13878"
+      ],
+      "selectedIssueId": 13878,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/13878/uncanny_x-men_1963_337",
+      "resolvedIssueTitle": "Uncanny X-Men (1963) #337",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        13878
+      ]
+    },
+    {
+      "sourcePosition": 72,
+      "printedPosition": 98,
+      "sourceBlock": 8,
+      "sourceIssueReference": "X-Men #57",
+      "sourceRangeReference": "Onslaught The Complete Epic, Book 4",
+      "sourceGroup": "Onslaught The Complete Epic, Book 4",
+      "normalizedSeriesTitle": "X-Men",
+      "seriesYear": 1991,
+      "issueNumber": "57",
+      "seriesId": 2265,
+      "candidateIssueId": 14347,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "14347"
+      ],
+      "selectedIssueId": 14347,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14347/x-men_1991_57",
+      "resolvedIssueTitle": "X-Men (1991) #57",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        14347
+      ]
+    },
+    {
+      "sourcePosition": 73,
+      "printedPosition": 99,
+      "sourceBlock": 8,
+      "sourceIssueReference": "Onslaught Epilogue",
+      "sourceRangeReference": "Onslaught The Complete Epic, Book 4",
+      "sourceGroup": "Onslaught The Complete Epic, Book 4",
+      "normalizedSeriesTitle": "Onslaught Epilogue",
+      "seriesYear": 1997,
+      "issueNumber": "1",
+      "seriesId": 6680,
+      "candidateIssueId": 23388,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "23388"
+      ],
+      "selectedIssueId": 23388,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/23388/onslaught_epilogue_1997_1",
+      "resolvedIssueTitle": "Onslaught Epilogue (1997) #1",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        23388
+      ]
+    },
+    {
+      "sourcePosition": 74,
+      "printedPosition": 100,
+      "sourceBlock": 8,
+      "sourceIssueReference": "Iron Man #6 (Heroes Reborn)",
+      "sourceRangeReference": "Onslaught The Complete Epic, Book 4",
+      "sourceGroup": "Onslaught The Complete Epic, Book 4",
+      "normalizedSeriesTitle": "Iron Man",
+      "seriesYear": 1996,
+      "issueNumber": "6",
+      "seriesId": 13577,
+      "candidateIssueId": 16337,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        "16337"
+      ],
+      "selectedIssueId": 16337,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/16337/iron_man_1996_6",
+      "resolvedIssueTitle": "Iron Man (1996) #6",
+      "note": "",
+      "status": "exact",
+      "resolutionStatus": "exact",
+      "selectedIssueIds": [
+        16337
+      ]
+    }
+  ],
+  "mappingDigest": "7a59e5fe9b7386e5a443ec213f74753fedd8d1fd0f60b4a19c76f453aaaef57f",
+  "packetReview": "Independent coordinator for issue#637 renews the actualfull200-peer review for72exact originals/twounresolved selectedpositions/74canonical andzero selectedrepeats. Allold198comparisons andIDs unchanged,newAoAshared12371only,newShangnone. Keeptwo1995annuals,1995SabretoothSpecial,1996ClanDestine,qualifiedYearbook,distinctOnslaughtone-shots andIronManvolumes. Cover20767,event/partial/timeline1996/noSpotlight,beforeoperation-zero-tolerance unchanged. SourceSwimsuit remainsunnumbered/unrelated,notowner#2exception. No provider-wideabsence,unavailability ornonpublication conclusion from search results.",
+  "approvedManifest": {
+    "id": "the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order",
+    "name": "X-Men: Onslaught",
+    "description": "Follow Comic Book Herald's Road to Onslaught and Complete Epic sequence, with separately identified reference companions and the Heroes Reborn epilogue.",
+    "type": "event",
+    "depth": "partial",
+    "beginner": false,
+    "timeline": 1996,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order.md",
+    "sourcePage": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/x-men-onslaught-reading-order/",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "the_complete_marvel_reading_order_guide_x_men_onslaught_reading_order.json",
+    "characters": [
+      "X-Men",
+      "Onslaught",
+      "Avengers",
+      "Fantastic Four",
+      "Hulk",
+      "Cable"
+    ],
+    "keywords": [
+      "Onslaught",
+      "Road to Onslaught",
+      "Complete Epic",
+      "Heroes Reborn",
+      "Comic Book Herald"
+    ],
+    "expect": 74,
+    "coverIssueId": 20767
+  },
+  "relationshipReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "Independent source coordinator for guide issue #637",
+    "rationale": "The coordinator independently reviewed all72originals andseven earlier shared-original sets; renewal after actualShang/AoA publication retains every old198comparisonobject and addsShangnone plusAoApartialonly12371XMenPrime1995#1. Full200-peer report has8partial/192none. Preserve74selected positions/two explicit gaps and complete100-reference provenance. Minimal story relevance doesnotremoveSensationalSpiderMan8; page-onlyFF414/Avengers400 andoptionalPreludeexcerpts remain non-whole. UnverifiedTimelines is provenance,not an invented75th comic.",
+    "reviewedAt": "2026-09-30T03:35:56.898Z",
+    "packetDigest": "bb1acf2ec257462ed1e71bcf75c308bf9dc4726561e80c20158c0e5fa6f931d9",
+    "mappingDigest": "7a59e5fe9b7386e5a443ec213f74753fedd8d1fd0f60b4a19c76f453aaaef57f",
+    "reportDigest": "1ef070ad35dfd5507f78515c7465f988f0a3ded82fd416a3990ba81734d9b7bf",
+    "libraryDigest": "473bfe1e3e3247395973c2464b01fcbfafc858ed656417baf5cdf44ea5174903",
+    "peerDigests": {},
+    "sourceCounts": {
+      "sourceOccurrenceCount": 74,
+      "sourceIdentityCount": 74,
+      "includedIssueCount": 72,
+      "sourceGapCount": 2,
+      "repeatedSourceReferenceCount": 0
+    },
+    "dispositions": [
+      {
+        "orderId": "abomination-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "absolute-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "adam-warlock-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "agatha-harkness-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "FantasticFour416 is explicitly selected as a whole original by this exact page. Retain it despite a different omnibus's material-from wording; Agatha's overlap doesnotchange this source.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "age-of-x-man",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "agents-of-atlas-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "all-new-all-different-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "SensationalSpiderMan8,AmazingSpiderMan415 andSpiderMan1990#72 are explicit EpicBook2 selections. A one-panel tie-in connection is not proof only a panel is collected; preserve the whole selectedSensational original.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "annihilation-conquest",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "ant-man-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "apocalypse-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "atlantis-attacks",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "avengers-defenders-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "avengers-disassembled",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "avengers-enemy-within",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "axis",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "best-ultron-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "black-panther-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "black-widow-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "XMen53-54,OnslaughtXMen1,Avengers401,FF415,Cable34 andHulk444 are direct source steps. Keep their exact interleave and distinct original volumes without trimming the shared event spine.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "bloodties",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "captain-america-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "captain-america-reading-order-modern-marvel-era",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "captain-marvel-ms-marvel-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "chaos-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "childs-play",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "civil-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "civil-war-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "civil-war-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "clone-conspiracy",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "contest-of-champions",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "damnation",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "daredevil-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "dark-phoenix-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "dark-reign-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "dark-web",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "days-of-future-past",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "days-of-future-present",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "dead-mans-hand",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "deadpool-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "death-of-doctor-strange",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "devils-reign",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "doctor-doom-primer",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "doctor-octopus-otto-octavius-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "doctor-strange-multiverse-of-madness",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "doctor-strange-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "donny-cates-marvel-universe-reading-order-2017",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "doomwar",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "eighth-day",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "emma-frost-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "essential-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "evolutionary-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "falcon-sam-wilson-captain-america-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "fall-house-x-rise-powers-x",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "fall-of-the-mutants",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "fantastic-four-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "FantasticFour415-416 andOnslaughtMarvelUniverse1 are explicitly selected full originals. Preserve them while FF414 remains separately recorded as a one-page excerpt,not an omitted metadata lookup.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "fatal-attractions",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "generations",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "groot-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "guardians-of-the-galaxy-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "hawkeye-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "heroes-reborn-2021",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "heroic-age-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "hickman-full",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "hickman-minimal",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "hickman-x-men",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "hope-summers-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "house-of-m",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "house-of-m-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "hunt-for-wolverine",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "hunt-for-xavier",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "inferno",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "infinite-destinies",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "infinity-countdown-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "inhumans-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "inhumans-vs-x-men",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "iron-man-2020",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "iron-man-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "The source's finalHeroesRebornIronMan1996#6 is the exact selected epilogue,not the precedingIronMan1968#332 or a later same-number relaunch.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "judgment-day",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "king-in-black",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "kravens-last-hunt",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "kree-skrull-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "last-annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "loki-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "magneto-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "magneto-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "marvel-2099",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "marvel-fresh-start-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "marvel-multiverse",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "marvel-super-heroes-secret-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "marvel-what-if",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "marvel-zombies-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "marvels-best-phoenix-comics",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "marvels-infinity-saga-gauntlet-wars-crusade-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "maximum-security",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "mephisto-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "messiah-complex",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "messiah-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "midnight-massacre",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "miles-morales-spider-man-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "minimum-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "modern-x-men-fast-track",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "monsters-unleashed",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "moon-knight-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "ms-marvel-kamala-khan-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "muir-island-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "mutant-massacre",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "mys-tech-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "nebula-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "necrosha",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "new-ultimate-universe",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "new-ultimate-universe-trades",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "nick-fury-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "nova-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "operation-galactic-storm",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "operation-zero-tolerance",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "original-clone-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "phalanx-covenant",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "phalanx-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "phoenix-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "planet-hulk",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "planet-hulk-reading-order-and-greg-pak-hulk-comics-guide",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "punisher-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "question-of-the-week-do-you-have-a-hulk-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Cable34,IncredibleHulk1962#444-445 andOnslaughtMarvelUniverse1 are explicitly selected chapters. Keep this page's order and original identities rather than import a broader Hulk range.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "reckoning-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "reed-richards-and-sue-storms-wedding",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "revolutionary-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "rise-of-the-midnight-sons",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "rocket-raccoon-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "runaways-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "scarlet-witch-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "second-coming",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "secret-invasion",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "secret-invasion-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "secret-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "secret-wars-ii",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "setup-to-modern-timeline",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "shadow-king-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "shadowland",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "shang-chi-master-of-kung-fu-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "silent-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "silk-cindy-moon-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "silver-surfer-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "sins-of-sinister",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "spider-geddon",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "spider-gwen-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "spider-island",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "spider-man-2099-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "spider-man-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "spider-man-far-from-home",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "spider-man-identity-crisis",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "spider-man-no-way-home",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "spider-man-the-other",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "spider-verse",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "star-lord-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "thanos-imperative",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "thanos-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "thanos-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "The newly publishedAoAroute and thissource's firstRoad entry both explicitly select exact1995XMenPrime#1/12371. Keep it at the firstOnslaught position and its distinctAoAposition; neither guide replaces the other.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "the-defenders-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "the-night-gwen-stacy-died",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "the-vision-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "thor-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "thunderbolts-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "time-and-time-again",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "ultimate-marvel-intro",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "ultimate-spider-man-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "venom-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "venomverse",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "wandavision",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "war-of-kings",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "war-of-the-realms",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "white-tiger-ava-ayala",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "winter-soldier-bucky-barnes-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "wolverine-goes-to-hell",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "wolverine-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Wolverine1988#104 is a direct EpicBook2 selection; retain its exact place and the separately selected101/105 rather than reduce the route to a Wolverine-specific cut.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "world-war-hulk-aftersmash",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "wraith-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "x-23-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "x-cutioners-song",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "x-force-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "x-men-age-of-x",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "x-men-battle-of-the-atom",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "x-men-curse-of-the-mutants",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "x-men-divided-we-stand",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "x-men-extermination",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "x-men-inferno",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "x-men-manifest-destiny",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "x-men-nation-x",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "x-men-regenesis",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "x-men-schism",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "x-men-trial-of-jean-grey",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "x-men-utopia",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "x-of-swords",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "x-termination",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "x-tinction-agenda",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "xmen-claremont",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "xmen-claremont-complete",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      },
+      {
+        "orderId": "young-avengers-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Independent source coordinator for guide issue #637",
+        "rationale": "Verified no shared issue IDs in the complete source-library report.",
+        "reviewedAt": "2026-09-30T03:35:56.898Z"
+      }
+    ],
+    "approvalDigest": "9afcd9cf0ac10dc87ba9d0a6c9fa5a334f34d4be75b806b9950ff9ca73cbcda8"
+  }
+}

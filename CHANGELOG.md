@@ -13,6 +13,13 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Follow the X-Men: Onslaught event
+
+Adds a credited, 74-position Reading List following the Road to Onslaught and Complete Epic
+route. Seventy-two original comics have exact issue links; two unresolved references retain
+visible placeholders and their source positions. Optional Prelude excerpts do not duplicate
+whole issues, and the existing Operation: Zero Tolerance list and saved progress are unchanged.
+
 ### Follow the Age of Apocalypse and Apocalypse's wider history
 
 Adds a credited 262-entry Reading List following Comic Book Herald's modern Age of Apocalypse

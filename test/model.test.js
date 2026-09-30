@@ -1105,8 +1105,9 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // unresolved Super Special and eight known-ID detail refusals in a newly affected guide.
   // Shang-Chi adds eight distinct provider-original gaps.
   // Age of Apocalypse adds sixteen qualified original-identity gaps.
-  assert.equal(claimed, 1101, 'the payload placeholder total moved; re-derive the figures in the record');
-  assert.equal(placeholders, 1101, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
+  // Onslaught adds two distinct unresolved source originals.
+  assert.equal(claimed, 1103, 'the payload placeholder total moved; re-derive the figures in the record');
+  assert.equal(placeholders, 1103, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
   assert.equal(empty, 225);
   assert.equal(affected, 21);
 });
@@ -1349,7 +1350,8 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // already counted in other guides.
   // Shang-Chi adds eight distinct unresolved identities, not availability claims.
   // Age of Apocalypse adds sixteen qualified original-identity gaps, not availability claims.
-  assert.equal(refused.length, 1331);
+  // Onslaught adds two distinct unresolved originals, not subscription-availability claims.
+  assert.equal(refused.length, 1333);
   const infinity = JSON.parse(readFileSync(join(dataDir,
     'marvels_infinity_saga_gauntlet_wars_crusade_reading_order.json'), 'utf8'));
   assert.equal(infinity.items.filter((item) => item.detailsRefused && item.issueId > 0).length, 11);
