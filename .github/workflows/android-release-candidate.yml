@@ -90,7 +90,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         timeout-minutes: 2
         with:
-          ref: ${{ inputs.source_sha }}
+          ref: ${{ github.sha }}
           path: application
           fetch-depth: 0
           persist-credentials: false

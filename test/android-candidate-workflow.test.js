@@ -19,6 +19,8 @@ test('candidate is direct manual main-only and missing protection cannot schedul
   assert.match(candidate, /needs\.preflight\.outputs\.environment == 'android-release-candidate'/);
   assert.match(candidate, /environment: \$\{\{ needs\.preflight\.outputs\.environment \}\}/);
   assert.doesNotMatch(preflight, /^ {4}environment:|secrets\./m);
+  assert.match(rehearsal, /ref: \$\{\{ github\.sha \}\}\s+path: application/);
+  assert.doesNotMatch(rehearsal, /ref: \$\{\{ inputs\.source_sha \}\}/);
   assert.doesNotMatch(workflow, /contents: write|actions: write|id-token:|secrets: inherit/);
   for (const job of [candidate, rehearsal]) {
     const env = job.match(/^ {4}env:\r?\n([\s\S]*?)^ {4}steps:/m)?.[1];
