@@ -13,6 +13,13 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Keep mobile Character spotlights focused on guides
+
+On compact Android screens, one Filters and sort button replaces the three exposed choice
+rows while search stays visible. Its summary shows the current selections, and the original
+controls open in a bottom sheet with immediate updates. Closing the sheet keeps selections.
+Desktop controls, reading-guide content and saved progress are unchanged.
+
 ### Follow Iron Fist from Marvel Premiere to his later solo stories
 
 Adds a credited 414-position Iron Fist Reading List with 376 exact issue links and 38

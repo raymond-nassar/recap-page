@@ -44,9 +44,12 @@ dialog.ask, dialog.preview {
 :root:not(.android-keyboard) :is(.view h1, .catalog-card-title)[tabindex="-1"]:focus {
   outline: none;
 }
-#android-list-options { display: none; }
-body:has(#android-list-sheet[open]) { overflow: hidden; }
-#android-list-sheet {
+#android-list-options, #android-spotlight-options { display: none; }
+.android-spotlight-compact #android-spotlight-options { display: flex; }
+.android-spotlight-compact #view-spotlights .spotlight-controls,
+.android-spotlight-compact #view-spotlights > #spotlights-filters { display: none; }
+body:has(#android-list-sheet[open], #android-spotlight-sheet[open]) { overflow: hidden; }
+#android-list-sheet, #android-spotlight-sheet {
   inset: auto 0 0;
   box-sizing: border-box;
   width: 100%;
@@ -62,7 +65,7 @@ body:has(#android-list-sheet[open]) { overflow: hidden; }
   overflow-y: auto;
   overscroll-behavior: contain;
 }
-#android-list-sheet::backdrop { background: rgb(var(--shadow-rgb) / 60%); }
+#android-list-sheet::backdrop, #android-spotlight-sheet::backdrop { background: rgb(var(--shadow-rgb) / 60%); }
 .android-sheet-header {
   display: flex;
   align-items: center;
@@ -87,6 +90,25 @@ body:has(#android-list-sheet[open]) { overflow: hidden; }
 #android-list-sheet .field-row { flex-direction: column; align-items: stretch; padding-left: var(--space-5); }
 #android-list-sheet [hidden] { display: none; }
 
+#android-spotlight-sheet .android-sheet-header { align-items: flex-start; }
+#android-spotlight-sheet .android-sheet-header button { flex-shrink: 0; overflow-wrap: normal; }
+#android-spotlight-sheet .spotlight-controls { flex-direction: column; align-items: stretch; gap: 0; }
+#android-spotlight-sheet .filters {
+  flex-direction: column; align-items: stretch; width: 100%; overflow: visible;
+  margin: var(--space-6) 0 0; padding: var(--space-2); gap: var(--space-4);
+}
+#android-spotlight-sheet legend {
+  position: static; width: auto; height: auto; overflow: visible; clip: auto;
+  white-space: normal; margin: 0 0 var(--space-4); font-weight: 600; text-align: start;
+}
+#android-spotlight-sheet .fp { position: relative; }
+#android-spotlight-sheet .fp > span {
+  width: 100%; font-size: var(--t-body); text-align: start; white-space: normal;
+  padding: var(--space-4) var(--space-5); overflow-wrap: normal;
+}
+#android-spotlight-sheet [hidden] { display: none; }
+#android-spotlight-summary { font-weight: 400; }
+
 @media (min-width: 881px) {
   .shell.railed { grid-template-columns: 56px minmax(0, 1fr); }
   .railed .rail { padding-inline: var(--space-2); }
@@ -94,6 +116,12 @@ body:has(#android-list-sheet[open]) { overflow: hidden; }
 }
 
 @media (max-width: 880px) {
+  #form-spotlights-search { grid-template-columns: minmax(0, 1fr); }
+  .android-spotlight-ui #android-spotlight-options {
+    flex-direction: column; align-items: flex-start; gap: 0;
+    width: 100%; margin-top: var(--space-5); padding: var(--space-4) var(--space-5);
+    line-height: 1.5; text-align: start; overflow-wrap: normal;
+  }
   .shell, .shell.railed { min-height: 100dvh; }
   .rail-header { gap: var(--space-4); }
   .rail-toggle { flex-shrink: 0; }
