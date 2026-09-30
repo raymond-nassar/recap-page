@@ -26,6 +26,7 @@ export function createHomeView({
   onCatalogDropped,
   onCatalogLoadFailure,
   onNavigateCategory,
+  onNavigateHub,
   onOpen,
   onRead,
   onReview,
@@ -74,7 +75,7 @@ export function createHomeView({
       el('button', {
         type: 'button',
         id: 'btn-home-recommended',
-        class: 'btn',
+        class: 'btn btn-g',
       }, 'Preview this Reading List'),
     ]);
     const section = el('section', {
@@ -91,6 +92,20 @@ export function createHomeView({
         class: 'home-first-run-copy',
         text: 'Browse curated Reading Lists. Add individual issues or your own list.',
       }),
+      el('div', { class: 'cta home-start-actions' }, [
+        el('button', {
+          type: 'button',
+          class: 'btn btn-g',
+          id: 'btn-home-browse',
+          onclick: () => onNavigateHub('browse'),
+        }, 'Browse Reading Lists'),
+        el('button', {
+          type: 'button',
+          class: 'btn',
+          id: 'btn-home-add',
+          onclick: () => onNavigateHub('add'),
+        }, 'Add comics'),
+      ]),
       recommendation,
     ]);
     current.categoriesRoot.prepend(section);
@@ -117,6 +132,7 @@ export function createHomeView({
     nodes.continueFill.style.setProperty('width', `${total ? ((read / total) * 100).toFixed(1) : 0}%`);
     nodes.continueCount.textContent = `${read} of ${total} issue${total === 1 ? '' : 's'} read${deferred ? `. ${deferred} deferred` : ''}`;
     nodes.continueDeferred.hidden = deferred === 0;
+    nodes.continueReview.hidden = total === 0;
 
     if (issue) {
       nodes.continueNext.textContent = `Next: ${issue.title}`;

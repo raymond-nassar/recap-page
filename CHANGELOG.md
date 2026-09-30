@@ -29,6 +29,12 @@ guessing replacements or claiming those comics are unavailable. Thirteen backwar
 remain in the source record without duplicating checklist entries. Existing event lists and saved
 reading progress are unchanged.
 
+### Clarify the first steps through Home
+
+New readers can open Browse or Add comics directly from Home, and the optional recommendation
+stays readable at narrow widths. An empty saved list no longer offers a review with no issues,
+and Home now shows its current location in Navigation. Saved progress is unchanged.
+
 ### Bring the next reading action into view on phones
 
 On compact Android screens, the next issue's artwork sits beside its title and credits
