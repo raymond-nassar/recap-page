@@ -681,6 +681,63 @@ export function assertCodeFreeConfig(files) {
   requireValue(files.every((file) => !/^classes(?:[0-9]+)?\.dex$/.test(file.name)),
     'configuration APK must not contain DEX code');
 }
+export function verifyDexDefinitions(dex) {
+  requireValue(typeof dex === 'string' && Buffer.byteLength(dex, 'utf8') <= 8 * 1024 * 1024,
+    'DEX inventory exceeds the supported bound');
+  for (let index = 0; index < dex.length; index += 1) {
+    const code = dex.charCodeAt(index);
+    requireValue((code >= 32 || code === 9 || code === 10 || code === 13) && (code < 127 || code > 159),
+      'DEX inventory contains control characters');
+  }
+  requireValue(!/NativeIntegrationTest|FixtureDocumentProvider|FixtureMetadataServer|androidx\./.test(dex),
+    'unexpected shipped test/runtime dependency');
+  const lines = dex.split(/\r?\n/);
+  if (lines.at(-1) === '') lines.pop();
+  requireValue(lines.length > 0 && lines.length <= 50000, 'DEX inventory row count is unsupported');
+  const packages = new Set();
+  const classes = new Set();
+  const owners = [];
+  let totals = 0;
+  const qualified = (name) => /^[A-Za-z_$][\w$]*(?:\.[A-Za-z_$][\w$]*)*$/.test(name);
+  for (const line of lines) {
+    requireValue(line.length <= 4096, 'DEX inventory row exceeds the supported bound');
+    const row = line.match(/^([PCMF]) ([dkrx]) ([0-9]+)\t([0-9]+)\t([0-9]+)\t(.+)$/);
+    requireValue(row && !row[6].includes('\t'), 'malformed or unknown DEX row');
+    const [, kind, status, definitions, references, bytes, payload] = row;
+    requireValue(status === 'd', 'DEX row status must be defined in the no-mapping profile');
+    requireValue([definitions, references, bytes].every((value) => Number.isSafeInteger(Number(value))),
+      'DEX numeric column exceeds the supported bound');
+    if (kind === 'P') {
+      if (payload === '<TOTAL>') {
+        requireValue(++totals === 1, 'duplicate DEX aggregate root');
+      } else {
+        requireValue(qualified(payload) && (PROTOTYPE_ID.startsWith(`${payload}.`)
+          || payload === PROTOTYPE_ID || payload.startsWith(`${PROTOTYPE_ID}.`)), 'foreign DEX package hierarchy');
+        requireValue(!packages.has(payload), 'duplicate DEX package row');
+        packages.add(payload);
+      }
+    } else if (kind === 'C') {
+      requireValue(qualified(payload) && payload.startsWith(`${PROTOTYPE_ID}.`), 'foreign or malformed DEX class definition');
+      requireValue(!classes.has(payload), 'duplicate DEX class definition');
+      classes.add(payload);
+    } else {
+      const member = payload.match(/^(\S+) (.+)$/);
+      requireValue(member && qualified(member[1]) && member[2].trim(), 'malformed DEX member row');
+      owners.push(member[1]);
+    }
+  }
+  requireValue(totals === 1, 'DEX aggregate root missing');
+  requireValue(classes.has(`${PROTOTYPE_ID}.MainActivity`), 'exact MainActivity DEX definition missing');
+  requireValue(owners.every((owner) => classes.has(owner)), 'DEX member owner is not a declared allowed class');
+  const classPackages = new Set();
+  for (const type of classes) {
+    for (let end = type.lastIndexOf('.'); end > 0; end = type.lastIndexOf('.', end - 1)) {
+      classPackages.add(type.slice(0, end));
+    }
+  }
+  requireValue([...packages].every((name) => classPackages.has(name)),
+    'DEX package aggregate has no declared class');
+}
 export function assertGeneratedSplitsSource(files, directories) {
   requireValue(!files.some((file) => file.name === 'base/res/xml/splits0.xml'),
     'generated splits0 resource collision with the publishing source');
@@ -766,13 +823,7 @@ async function inspectPackages(work, root) {
       await writeFile(join(work, 'splits0.xml'), execute(sdkTool('apkanalyzer'),
         ['resources', 'xml', '--file', '/res/xml/splits0.xml', path], { env: cleanEnv() }, 'BASE_APK_SPLITS_XML_DUMP'));
       const dex = execute(sdkTool('apkanalyzer'), ['dex', 'packages', '--defined-only', path], { env: cleanEnv() }, 'BASE_APK_DEX');
-      const symbols = dex.split(/\r?\n/).map((line) => line.trim().split(/\s+/).at(-1))
-        .filter((name) => name && /^[A-Za-z_$][\w.$]*$/.test(name));
-      requireValue(symbols.some((name) => name.includes('MainActivity'))
-        && symbols.every((name) => name === '<TOTAL>' || name === 'name' || PROTOTYPE_ID.startsWith(`${name}.`)
-          || name === PROTOTYPE_ID || name.startsWith(`${PROTOTYPE_ID}.`))
-        && !/NativeIntegrationTest|FixtureDocumentProvider|FixtureMetadataServer|androidx\./.test(dex),
-      'unexpected shipped DEX class or test/runtime dependency');
+      verifyDexDefinitions(dex);
     } else {
       assertCodeFreeConfig(contents.files);
     }

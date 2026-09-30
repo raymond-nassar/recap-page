@@ -10,7 +10,7 @@ import {
   ENVIRONMENT, OFFICIAL_ID, PROTOTYPE_ID, REPOSITORY, PACKET, digest,
   validateInvocation, protectionPolicy, requireApproval, eligibleReservation,
   requireUnusedCode, requireSourceAncestry, sourceCommand, checkRecord, assertFiles, checkAssets, noNative,
-  verifyNativeReport, withPrivateDirectory, certificateFingerprint, execute, verifyPolicyResource,
+  verifyNativeReport, withPrivateDirectory, certificateFingerprint, execute, verifyPolicyResource, verifyDexDefinitions,
 } from '../scripts/android-candidate.mjs';
 import { reserveAndroidBuild, sourceIdentity, artifactRecord, verifyArtifact } from '../scripts/lib/release-identity.mjs';
 import { NATIVE_METHODS } from '../scripts/check-android-instrumentation.mjs';
@@ -209,6 +209,41 @@ test('only exact candidate identity and the complete public allowlist may be ret
 });
 
 test('actual asset bytes, source hashes, fixed origin and exact inventory are checked', async () => {
+  const mainClass = `${PROTOTYPE_ID}.MainActivity`;
+  const nestedClass = `${mainClass}$Chrome`;
+  const dexRow = (kind, payload, status = 'd') => `${kind} ${status} 0\t0\t0\t${payload}`;
+  const dexRows = [dexRow('P', '<TOTAL>'), dexRow('P', 'io'), dexRow('P', PROTOTYPE_ID),
+    dexRow('C', mainClass), dexRow('C', nestedClass),
+    dexRow('F', `${mainClass} android.os.Handler handler`),
+    dexRow('M', `${mainClass} void onCreate(android.os.Bundle)`),
+    dexRow('F', `${nestedClass} boolean popup`), dexRow('M', `${nestedClass} void <init>()`)];
+  assert.doesNotThrow(() => verifyDexDefinitions(dexRows.join('\n')),
+    'Typed field and method payloads must be checked by their declared class owners');
+  for (const name of ['foreign.Library', `${PROTOTYPE_ID}Extra.MainActivity`, `${PROTOTYPE_ID}.NativeIntegrationTest`,
+    `${PROTOTYPE_ID}.FixtureDocumentProvider`, `${PROTOTYPE_ID}.FixtureMetadataServer`, 'androidx.core.Library']) {
+    assert.throws(() => verifyDexDefinitions([...dexRows, dexRow('C', name)].join('\n')));
+  }
+  assert.throws(() => verifyDexDefinitions([...dexRows, dexRow('P', 'java.lang')].join('\n')), /package/);
+  assert.throws(() => verifyDexDefinitions([...dexRows, dexRow('F', 'foreign.Library int value')].join('\n')), /owner/);
+  assert.throws(() => verifyDexDefinitions([...dexRows, dexRow('M', `${PROTOTYPE_ID}.Missing void method()`)].join('\n')), /owner/);
+  assert.throws(() => verifyDexDefinitions(dexRows.filter((line) => line !== dexRow('C', mainClass)).join('\n')), /MainActivity/);
+  for (const status of ['r', 'x', 'k']) {
+    assert.throws(() => verifyDexDefinitions(dexRows.map((line) => line === dexRow('C', mainClass)
+      ? dexRow('C', mainClass, status) : line).join('\n')), /status/);
+  }
+  for (const malformed of ['Z d 0\t0\t0\tunknown', `C d -1\t0\t0\t${mainClass}`,
+    `C d 0\t0\twrong\t${mainClass}`, `C d 9007199254740992\t0\t0\t${mainClass}`,
+    dexRow('M', mainClass), `${dexRow('C', mainClass)} extra`, dexRow('C', 'int'),
+    dexRow('F', `${mainClass} int field\tunexpected`), 'PRIVATE_HEADER']) {
+    assert.throws(() => verifyDexDefinitions([...dexRows, malformed].join('\n')));
+  }
+  assert.throws(() => verifyDexDefinitions(''), /row count/);
+  assert.throws(() => verifyDexDefinitions(dexRows.slice(1).join('\n')), /aggregate root/);
+  assert.throws(() => verifyDexDefinitions([...dexRows, dexRows[0]].join('\n')), /duplicate/);
+  assert.throws(() => verifyDexDefinitions([...dexRows, dexRow('C', mainClass)].join('\n')), /duplicate/);
+  assert.throws(() => verifyDexDefinitions([...dexRows, dexRow('P', `${PROTOTYPE_ID}.empty`)].join('\n')), /no declared class/);
+  assert.throws(() => verifyDexDefinitions(dexRows.join('\n') + '\u001b'), /control/);
+  assert.throws(() => verifyDexDefinitions([...dexRows, dexRow('F', `${mainClass} ${'x'.repeat(4097)}`)].join('\n')), /bound/);
   const { derivedSdkContext, assertCodeFreeConfig, assertGeneratedSplitsSource, BUNDLETOOL } = await import('../scripts/android-candidate.mjs');
   assert.equal(typeof derivedSdkContext, 'function', 'Bind derived SDK expectations to the reviewed tool and device profile');
   const device = { sdkVersion: 36, screenDensity: 420, supportedAbis: ['x86_64'], supportedLocales: ['en-US'] };
