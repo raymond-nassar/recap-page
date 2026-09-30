@@ -230,13 +230,37 @@ test('actual asset bytes, source hashes, fixed origin and exact inventory are ch
     await writeFile(join(generated, 'build-info.json'), JSON.stringify(identity()));
     await writeFile(join(generated, '.recap-android-assets'), 'owned fixture');
     await writeFile(join(generated, 'android-assets.json'), JSON.stringify({ build: identity(), files }));
-    await cp(generated, extracted, { recursive: true });
-    assert.equal((await checkAssets(extracted, generated, root, identity())).files, 5);
+    await mkdir(extracted);
+    for (const name of [...files.map((file) => file.path), 'android-assets.json']) {
+      await cp(join(generated, name), join(extracted, name));
+    }
+    assert.equal((await checkAssets(extracted, generated, root, identity(), 'AAB')).files, 4);
     await writeFile(join(extracted, 'sample.js'), 'changed');
-    await assert.rejects(checkAssets(extracted, generated, root, identity()), /differs/);
+    await assert.rejects(checkAssets(extracted, generated, root, identity(), 'AAB'), /differs/);
+    await writeFile(join(extracted, 'sample.js'), 'fixture');
+    await rm(join(extracted, 'sample.js'));
+    await assert.rejects(checkAssets(extracted, generated, root, identity(), 'AAB'),
+      /AAB.*missing=1 \[sample\.js\].*extra=0/);
     await writeFile(join(extracted, 'sample.js'), 'fixture');
     await writeFile(join(extracted, 'extra.txt'), 'unlisted');
-    await assert.rejects(checkAssets(extracted, generated, root, identity()), /extra/);
+    await assert.rejects(checkAssets(extracted, generated, root, identity(), 'base-APK'),
+      /base-APK.*missing=0.*extra=1 \[extra\.txt\]/);
+    await rm(join(extracted, 'extra.txt'));
+    await writeFile(join(extracted, '.recap-android-assets'), 'owned fixture');
+    await assert.rejects(checkAssets(extracted, generated, root, identity(), 'AAB'),
+      /AAB.*extra=1 \[\.recap-android-assets\]/);
+    await rm(join(extracted, '.recap-android-assets'));
+    const longName = `0-${'x'.repeat(159)}`;
+    for (const name of [longName, '1 unsafe', 'a.txt', 'b.txt', 'c.txt', 'd.txt']) {
+      await writeFile(join(extracted, name), 'unlisted');
+    }
+    await assert.rejects(checkAssets(extracted, generated, root, identity(), 'AAB'), (error) => {
+      assert.match(error.message, /extra=6 \[\[unreportable-name\], \[unreportable-name\], a\.txt, b\.txt, c\.txt\]/);
+      assert.ok(!error.message.includes(longName) && !error.message.includes('1 unsafe'));
+      assert.ok(!error.message.includes('d.txt') && !error.message.includes(extracted));
+      return true;
+    });
+    assert.equal(await readFile(join(generated, '.recap-android-assets'), 'utf8'), 'owned fixture');
   } finally {
     await rm(scratch, { recursive: true, force: true });
   }

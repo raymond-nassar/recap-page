@@ -319,48 +319,59 @@ async function assertIntegration(root) {
   'INTEGRATION_HELD: release testBuildType, derived runner interface v1 and non-reseeding installation phases must land before execution');
 }
 
-export async function checkAssets(extracted, generated, root, identity) {
+export async function checkAssets(extracted, generated, root, identity, stage) {
+  requireValue(['AAB', 'base-APK'].includes(stage), 'unknown asset verification stage');
   const manifest = await json(join(generated, 'android-assets.json'));
-  requireValue(JSON.stringify(manifest.build) === JSON.stringify(identity), 'generated asset build identity mismatch');
-  const expected = new Set(['.recap-android-assets', 'android-assets.json']);
+  requireValue(JSON.stringify(manifest.build) === JSON.stringify(identity), `${stage} generated asset build identity mismatch`);
+  const expected = new Set(['android-assets.json']);
   for (const file of manifest.files) {
     requireValue(typeof file.path === 'string' && !file.path.startsWith('/')
       && file.path.split('/').every((part) => part && part !== '.' && part !== '..')
-      && !file.path.includes('\\') && !expected.has(file.path), 'unsafe or duplicate asset path');
+      && !file.path.includes('\\') && !expected.has(file.path)
+      && file.path !== '.recap-android-assets', `${stage} unsafe, private or duplicate asset path`);
     expected.add(file.path);
-    const actual = await readFile(join(extracted, file.path));
-    requireValue(digest(actual) === file.sha256 && actual.equals(await readFile(join(generated, file.path))),
-      'bundled asset differs from preserved generated source');
-    if (file.source) {
-      requireValue(/^(src|packaging\/android\/web)\//.test(file.source) && !file.source.includes('..'),
-        'asset provenance leaves approved source');
-      requireValue(digest(await readFile(join(root, file.source))) === file.sourceSha256, 'asset source hash mismatch');
-    }
   }
   async function list(path, prefix = '') {
     const output = [];
     for (const entry of await readdir(path, { withFileTypes: true })) {
-      requireValue(!entry.isSymbolicLink(), 'asset symlink refused');
+      requireValue(!entry.isSymbolicLink(), `${stage} asset symlink refused`);
       const name = prefix ? `${prefix}/${entry.name}` : entry.name;
       if (entry.isDirectory()) output.push(...await list(join(path, entry.name), name));
       else if (entry.isFile()) output.push(name);
-      else throw new CandidateError('Android candidate: nonregular asset refused');
+      else throw new CandidateError(`Android candidate: ${stage} nonregular asset refused`);
     }
     return output.sort();
   }
-  requireValue((await list(extracted)).join() === [...expected].sort().join(), 'missing or extra bundled assets');
+  const actualPaths = await list(extracted);
+  const actualSet = new Set(actualPaths);
+  const missing = [...expected].filter((name) => !actualSet.has(name)).sort();
+  const extra = actualPaths.filter((name) => !expected.has(name));
+  const describe = (names) => names.slice(0, 5).map((name) => name.length <= 160
+    && /^[A-Za-z0-9_.+/-]+$/.test(name) && !name.startsWith('/')
+    && name.split('/').every((part) => part && part !== '.' && part !== '..')
+    ? name : '[unreportable-name]').join(', ');
+  requireValue(missing.length === 0 && extra.length === 0,
+    `${stage} missing or extra bundled assets: missing=${missing.length} [${describe(missing)}]; extra=${extra.length} [${describe(extra)}]`);
+  for (const file of manifest.files) {
+    const actual = await readFile(join(extracted, file.path));
+    requireValue(digest(actual) === file.sha256 && actual.equals(await readFile(join(generated, file.path))),
+      `${stage} bundled asset differs from preserved generated source`);
+    if (file.source) {
+      requireValue(/^(src|packaging\/android\/web)\//.test(file.source) && !file.source.includes('..'),
+        `${stage} asset provenance leaves approved source`);
+      requireValue(digest(await readFile(join(root, file.source))) === file.sourceSha256, `${stage} asset source hash mismatch`);
+    }
+  }
   requireValue((await readFile(join(extracted, 'android-assets.json'))).equals(await readFile(join(generated, 'android-assets.json'))),
-    'embedded asset inventory differs from preserved output');
-  requireValue((await readFile(join(extracted, '.recap-android-assets'))).equals(await readFile(join(generated, '.recap-android-assets'))),
-    'generated asset ownership marker differs');
+    `${stage} embedded asset inventory differs from preserved output`);
   const embedded = validateIdentity(await json(join(extracted, 'build-info.json')));
   requireValue(expected.has('build-info.json') && expected.has('android-config.json')
-    && JSON.stringify(embedded) === JSON.stringify(identity), 'embedded build record differs from selected source identity');
+    && JSON.stringify(embedded) === JSON.stringify(identity), `${stage} embedded build record differs from selected source identity`);
   const config = await json(join(extracted, 'android-config.json'));
   requireValue(config.origin === 'http://127.0.0.1:8787' && config.version === identity.productVersion,
-    'packaged local origin or product version changed');
+    `${stage} packaged local origin or product version changed`);
   for (const forbidden of ['dev-faults.html', 'dev-faults.js', 'sw.js', 'js/app.js']) {
-    requireValue(!expected.has(forbidden), 'development-only asset bundled');
+    requireValue(!expected.has(forbidden), `${stage} development-only asset bundled`);
   }
   return { files: expected.size, manifestSha256: digest(await readFile(join(generated, 'android-assets.json'))) };
 }
@@ -447,7 +458,7 @@ async function inspectPackages(work, root) {
   const bundleManifest = join(work, 'bundle-manifest.xml');
   await writeFile(bundleManifest, bundletool(work, 'dump', 'manifest', `--bundle=${bundle}`, '--module=base'));
   java('manifest', bundleManifest, OFFICIAL_ID, String(version.versionCode), version.versionName, 'app');
-  await checkAssets(join(work, 'bundle', 'base', 'assets', 'recap'), join(work, 'generated'), root, version.identity);
+  await checkAssets(join(work, 'bundle', 'base', 'assets', 'recap'), join(work, 'generated'), root, version.identity, 'AAB');
   const apks = JSON.parse(java('archive', join(work, 'derived.apks'), '-', join(work, 'apks')));
   const splits = apks.files.filter((file) => file.name.endsWith('.apk'));
   requireValue(splits.length > 0 && splits.length <= 32
@@ -468,7 +479,7 @@ async function inspectPackages(work, root) {
     java('manifest', xmlPath, OFFICIAL_ID, String(version.versionCode), version.versionName, 'apk');
     if (contents.files.some((file) => file.name === 'assets/recap/build-info.json')) {
       baseCount += 1;
-      await checkAssets(join(extracted, 'assets', 'recap'), join(work, 'generated'), root, version.identity);
+      await checkAssets(join(extracted, 'assets', 'recap'), join(work, 'generated'), root, version.identity, 'base-APK');
       const badging = execute(sdkTool('aapt2'), ['dump', 'badging', path], { env: cleanEnv() });
       requireValue(/^application-label:'Recap Page'$/m.test(badging), 'resolved application label mismatch');
       const resources = execute(sdkTool('aapt2'), ['dump', 'resources', path], { env: cleanEnv() });
@@ -708,7 +719,7 @@ async function main() {
   } else if (command === 'assets') {
     const { identity } = await json(join(work, 'version.json'));
     await save(join(work, 'assets-check.json'), await checkAssets(join(work, 'bundle', 'base', 'assets', 'recap'),
-      join(work, 'generated'), root, identity));
+      join(work, 'generated'), root, identity, 'AAB'));
   } else if (command === 'finish') {
     const receipt = await json(join(work, 'preflight.json'));
     const { identity } = await json(join(work, 'version.json'));
