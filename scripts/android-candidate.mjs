@@ -23,6 +23,36 @@ const HASH = /^[0-9a-f]{64}$/;
 const LEDGER = 'packaging/android/version-codes.json';
 const SECRET_NAMES = ['ANDROID_UPLOAD_KEYSTORE_BASE64', 'ANDROID_UPLOAD_STORE_PASSWORD',
   'ANDROID_UPLOAD_KEY_ALIAS', 'ANDROID_UPLOAD_KEY_PASSWORD'];
+const VERIFIER_STAGES = new Set([
+  'AAB_ARCHIVE', 'AAB_MANIFEST', 'APKS_ARCHIVE', 'SPLIT_ARCHIVE', 'SPLIT_MANIFEST',
+  'BASE_APK_POLICY_MANIFEST', 'BASE_APK_BACKUP_RULES', 'BASE_APK_EXTRACTION_RULES',
+  'BASE_APK_NETWORK_RULES', 'RELEASE_HARNESS_MANIFEST', 'PROTOTYPE_HARNESS_MANIFEST',
+  'JDK_FIXTURE_ARCHIVE',
+]);
+const INSPECTION_STAGES = new Set([
+  ...VERIFIER_STAGES, 'AAB_STRUCTURE', 'AAB_MANIFEST_DUMP', 'SPLIT_SIGNATURE',
+  'SPLIT_ALIGNMENT', 'SPLIT_MANIFEST_DUMP', 'BASE_APK_BADGING', 'BASE_APK_RESOURCES_DUMP',
+  'BASE_APK_BACKUP_XML_DUMP', 'BASE_APK_EXTRACTION_XML_DUMP', 'BASE_APK_NETWORK_XML_DUMP',
+  'BASE_APK_DEX', 'RELEASE_HARNESS_SIGNATURE', 'RELEASE_HARNESS_MANIFEST_DUMP',
+  'PROTOTYPE_SIGNATURE', 'PROTOTYPE_HARNESS_SIGNATURE', 'PROTOTYPE_SUMMARY',
+  'PROTOTYPE_HARNESS_MANIFEST_DUMP',
+]);
+const PUBLIC_VERIFIER_CODES = new Set([
+  'ARCHIVE_ARGUMENTS', 'CERTIFICATE_KEY_POLICY', 'COMMAND_REQUIRED', 'DEBUGGABLE_APPLICATION',
+  'EMPTY_ARCHIVE', 'INSTRUMENTATION_TARGET', 'MANIFEST_APPLICATION', 'MANIFEST_ARGUMENTS',
+  'MANIFEST_BACKUP_NETWORK', 'MANIFEST_BROWSER_QUERY', 'MANIFEST_COMPONENTS', 'MANIFEST_KIND',
+  'MANIFEST_PACKAGE', 'MANIFEST_PERMISSIONS', 'MANIFEST_POLICY_RESOURCE', 'MANIFEST_QUERIES',
+  'MANIFEST_QUERY_INTENT', 'MANIFEST_QUERY_INVENTORY', 'MANIFEST_ROOT_INVENTORY', 'MANIFEST_SDK',
+  'MANIFEST_TEST_COMPONENT', 'MANIFEST_VERSION', 'OUTPUT_EXISTS', 'POLICY_RESOURCE_REFERENCE',
+  'POLICY_RESOURCE_UNRESOLVED', 'RESOURCE_POLICY_MISMATCH', 'SIGNER_ARGUMENT', 'SPLIT_COMPONENTS',
+  'UNEXPECTED_SIGNER', 'UNKNOWN_COMMAND', 'UNSIGNED_ENTRY', 'VERIFICATION_FAILED',
+  'ZIP_CENTRAL_ENTRY', 'ZIP_CENTRAL_LENGTH', 'ZIP_DIRECTORY', 'ZIP_ENCRYPTED', 'ZIP_END',
+  'ZIP_ENTRY_DISK', 'ZIP_ENTRY_LENGTH', 'ZIP_ENTRY_NAME', 'ZIP_ENTRY_SIZE', 'ZIP_ENTRY_TRAVERSAL',
+  'ZIP_EXPANSION_LIMIT', 'ZIP_MULTIDISK', 'ZIP_SIZE', 'ZIP_SPECIAL_FILE',
+]);
+const INSPECTION_SIGNALS = new Set([
+  'SIGABRT', 'SIGBUS', 'SIGFPE', 'SIGHUP', 'SIGILL', 'SIGINT', 'SIGKILL', 'SIGPIPE', 'SIGSEGV', 'SIGTERM',
+]);
 
 export class CandidateError extends Error {}
 function requireValue(condition, message) {
@@ -35,13 +65,32 @@ function exactKeys(value, keys) {
   requireValue(value && typeof value === 'object' && !Array.isArray(value)
     && Object.keys(value).sort().join() === [...keys].sort().join(), 'unexpected report fields');
 }
-function execute(file, args, options = {}) {
+export function execute(file, args, options = {}, inspectionStage) {
+  if (inspectionStage !== undefined) {
+    requireValue(INSPECTION_STAGES.has(inspectionStage), 'unknown inspection stage');
+    const tool = basename(file).replace(/\.exe$/i, '');
+    requireValue(!args.includes('certificate') && !['jarsigner', 'keytool'].includes(tool)
+      && !(tool === 'apksigner' && args[0] === 'sign'),
+    'secret-bearing commands do not support inspection diagnostics');
+  }
   try {
     return execFileSync(file, args, {
       encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 120000,
       maxBuffer: 32 * 1024 * 1024, ...options,
     }).trim();
-  } catch {
+  } catch (error) {
+    if (inspectionStage !== undefined) {
+      const exit = Number.isInteger(error?.status) && error.status >= 1 && error.status <= 255 ? error.status : 'unknown';
+      const signal = error?.signal == null ? 'none' : INSPECTION_SIGNALS.has(error.signal) ? error.signal : 'unrecognized';
+      let code = 'unclassified';
+      const stderr = Buffer.isBuffer(error?.stderr) ? error.stderr
+        : typeof error?.stderr === 'string' ? Buffer.from(error.stderr, 'utf8') : null;
+      if (VERIFIER_STAGES.has(inspectionStage) && stderr && stderr.length <= 4096) {
+        const last = stderr.toString('utf8').replace(/\r?\n$/, '').split(/\r?\n/).at(-1);
+        if (PUBLIC_VERIFIER_CODES.has(last)) code = last;
+      }
+      throw new CandidateError(`Android candidate: inspection ${inspectionStage} failed; exit=${exit}; signal=${signal}; code=${code}. Raw tool output was not retained.`);
+    }
     // Tool exceptions can contain expanded passwords, private aliases and complete stderr.
     throw new CandidateError(`Android candidate: ${basename(file)} failed; check this stage's approved inputs. Raw tool output was not retained.`);
   }
@@ -425,20 +474,20 @@ export function verifyNativeReport(report, control) {
 
 const fileDigest = async (path) => digest(await readFile(path));
 const javaHelper = () => join(ROOT, 'scripts', 'android', 'VerifyBundle.java');
-const java = (...args) => execute('java', [javaHelper(), ...args], { env: cleanEnv() });
+const java = (stage, ...args) => execute('java', [javaHelper(), ...args], { env: cleanEnv() }, stage);
 function sdkTool(name) {
   requireValue(process.env.ANDROID_HOME, 'Android SDK location required');
   return name === 'apkanalyzer'
     ? join(process.env.ANDROID_HOME, 'cmdline-tools', 'latest', 'bin', name)
     : join(process.env.ANDROID_HOME, 'build-tools', '35.0.0', name);
 }
-const bundletool = (work, ...args) => execute('java', ['-jar', join(work, 'bundletool.jar'), ...args], { env: cleanEnv() });
+const bundletool = (stage, work, ...args) => execute('java', ['-jar', join(work, 'bundletool.jar'), ...args], { env: cleanEnv() }, stage);
 export function noNative(files) {
   requireValue(files.every((file) => !file.elf && !/^(?:[^/]+\/)?lib\//.test(file.name) && !file.name.endsWith('.so')),
     'unexpected native library; scoped ABI/16 KB reassessment required');
 }
-function apkCertificate(path) {
-  const result = execute(sdkTool('apksigner'), ['verify', '--verbose', '--print-certs', path], { env: cleanEnv() });
+function apkCertificate(path, stage) {
+  const result = execute(sdkTool('apksigner'), ['verify', '--verbose', '--print-certs', path], { env: cleanEnv() }, stage);
   const matches = [...result.matchAll(/^Signer #\d+ certificate SHA-256 digest: ([a-fA-F0-9:]+)$/gm)];
   requireValue(matches.length === 1, 'APK needs exactly one verified signer');
   return certificateFingerprint(matches[0][1]);
@@ -450,16 +499,17 @@ async function inspectPackages(work, root) {
   const bundle = join(work, 'recap-page-android.aab');
   requireValue(await fileDigest(join(work, 'bundletool.jar')) === BUNDLETOOL.sha256, 'bundletool checksum mismatch');
   const before = await fileDigest(bundle);
-  bundletool(work, 'validate', `--bundle=${bundle}`);
-  const inventory = JSON.parse(java('archive', bundle, certificateFingerprint(signer.sha256), join(work, 'bundle')));
+  bundletool('AAB_STRUCTURE', work, 'validate', `--bundle=${bundle}`);
+  const inventory = JSON.parse(java('AAB_ARCHIVE', 'archive', bundle, certificateFingerprint(signer.sha256), join(work, 'bundle')));
   noNative(inventory.files);
   requireValue(inventory.files.every((file) => /^(base\/|META-INF\/|BUNDLE-METADATA\/|BundleConfig\.pb$)/.test(file.name))
     && inventory.files.some((file) => file.name === 'base/manifest/AndroidManifest.xml'), 'unexpected or missing bundle module');
   const bundleManifest = join(work, 'bundle-manifest.xml');
-  await writeFile(bundleManifest, bundletool(work, 'dump', 'manifest', `--bundle=${bundle}`, '--module=base'));
-  java('manifest', bundleManifest, OFFICIAL_ID, String(version.versionCode), version.versionName, 'app');
+  await writeFile(bundleManifest, bundletool('AAB_MANIFEST_DUMP', work, 'dump', 'manifest', `--bundle=${bundle}`, '--module=base'));
+  java('AAB_MANIFEST', 'manifest', bundleManifest, OFFICIAL_ID, String(version.versionCode), version.versionName, 'app');
   await checkAssets(join(work, 'bundle', 'base', 'assets', 'recap'), join(work, 'generated'), root, version.identity, 'AAB');
-  const apks = JSON.parse(java('archive', join(work, 'derived.apks'), '-', join(work, 'apks')));
+  console.log('Android candidate: AAB public asset checks passed.');
+  const apks = JSON.parse(java('APKS_ARCHIVE', 'archive', join(work, 'derived.apks'), '-', join(work, 'apks')));
   const splits = apks.files.filter((file) => file.name.endsWith('.apk'));
   requireValue(splits.length > 0 && splits.length <= 32
     && splits.every((file) => file.name.startsWith('splits/')), 'expected one bounded device-specific split set');
@@ -468,31 +518,36 @@ async function inspectPackages(work, root) {
   let baseCount = 0;
   for (const [index, split] of splits.entries()) {
     const path = join(work, 'apks', split.name);
-    requireValue(apkCertificate(path) === proof, 'derived split signer mismatch');
-    execute(sdkTool('zipalign'), ['-c', '-P', '16', '4', path], { env: cleanEnv() });
+    requireValue(apkCertificate(path, 'SPLIT_SIGNATURE') === proof, 'derived split signer mismatch');
+    execute(sdkTool('zipalign'), ['-c', '-P', '16', '4', path], { env: cleanEnv() }, 'SPLIT_ALIGNMENT');
     const extracted = join(work, `split-${index}`);
-    const contents = JSON.parse(java('archive', path, '-', extracted));
+    const contents = JSON.parse(java('SPLIT_ARCHIVE', 'archive', path, '-', extracted));
     noNative(contents.files);
     const xmlPath = join(work, `split-${index}.xml`);
-    const manifest = execute(sdkTool('apkanalyzer'), ['manifest', 'print', path], { env: cleanEnv() });
+    const manifest = execute(sdkTool('apkanalyzer'), ['manifest', 'print', path], { env: cleanEnv() }, 'SPLIT_MANIFEST_DUMP');
     await writeFile(xmlPath, manifest);
-    java('manifest', xmlPath, OFFICIAL_ID, String(version.versionCode), version.versionName, 'apk');
+    java('SPLIT_MANIFEST', 'manifest', xmlPath, OFFICIAL_ID, String(version.versionCode), version.versionName, 'apk');
     if (contents.files.some((file) => file.name === 'assets/recap/build-info.json')) {
       baseCount += 1;
       await checkAssets(join(extracted, 'assets', 'recap'), join(work, 'generated'), root, version.identity, 'base-APK');
-      const badging = execute(sdkTool('aapt2'), ['dump', 'badging', path], { env: cleanEnv() });
+      console.log('Android candidate: base-APK public asset checks passed.');
+      const badging = execute(sdkTool('aapt2'), ['dump', 'badging', path], { env: cleanEnv() }, 'BASE_APK_BADGING');
       requireValue(/^application-label:'Recap Page'$/m.test(badging), 'resolved application label mismatch');
-      const resources = execute(sdkTool('aapt2'), ['dump', 'resources', path], { env: cleanEnv() });
+      const resources = execute(sdkTool('aapt2'), ['dump', 'resources', path], { env: cleanEnv() }, 'BASE_APK_RESOURCES_DUMP');
       await writeFile(join(work, 'resources.txt'), resources);
-      java('manifest', xmlPath, OFFICIAL_ID, String(version.versionCode), version.versionName,
+      java('BASE_APK_POLICY_MANIFEST', 'manifest', xmlPath, OFFICIAL_ID, String(version.versionCode), version.versionName,
         'app', join(work, 'resources.txt'));
-      for (const name of ['backup_rules', 'data_extraction_rules', 'network_security_config']) {
+      for (const [name, dumpStage, verifyStage] of [
+        ['backup_rules', 'BASE_APK_BACKUP_XML_DUMP', 'BASE_APK_BACKUP_RULES'],
+        ['data_extraction_rules', 'BASE_APK_EXTRACTION_XML_DUMP', 'BASE_APK_EXTRACTION_RULES'],
+        ['network_security_config', 'BASE_APK_NETWORK_XML_DUMP', 'BASE_APK_NETWORK_RULES'],
+      ]) {
         const decoded = join(work, `${name}.xml`);
         await writeFile(decoded, execute(sdkTool('apkanalyzer'),
-          ['resources', 'xml', '--file', `/res/xml/${name}.xml`, path], { env: cleanEnv() }));
-        java('resource', decoded, join(root, 'packaging', 'android', 'app', 'src', 'main', 'res', 'xml', `${name}.xml`));
+          ['resources', 'xml', '--file', `/res/xml/${name}.xml`, path], { env: cleanEnv() }, dumpStage));
+        java(verifyStage, 'resource', decoded, join(root, 'packaging', 'android', 'app', 'src', 'main', 'res', 'xml', `${name}.xml`));
       }
-      const dex = execute(sdkTool('apkanalyzer'), ['dex', 'packages', '--defined-only', path], { env: cleanEnv() });
+      const dex = execute(sdkTool('apkanalyzer'), ['dex', 'packages', '--defined-only', path], { env: cleanEnv() }, 'BASE_APK_DEX');
       const symbols = dex.split(/\r?\n/).map((line) => line.trim().split(/\s+/).at(-1))
         .filter((name) => name && /^[A-Za-z_$][\w.$]*$/.test(name));
       requireValue(symbols.some((name) => name.includes('MainActivity'))
@@ -504,21 +559,21 @@ async function inspectPackages(work, root) {
   }
   requireValue(baseCount === 1, 'exactly one derived base APK must carry the source assets');
   const harness = join(work, 'release-test.apk');
-  requireValue(apkCertificate(harness) === proof, 'release harness and derived split signers must match');
+  requireValue(apkCertificate(harness, 'RELEASE_HARNESS_SIGNATURE') === proof, 'release harness and derived split signers must match');
   const harnessXml = join(work, 'harness.xml');
-  await writeFile(harnessXml, execute(sdkTool('apkanalyzer'), ['manifest', 'print', harness], { env: cleanEnv() }));
-  java('manifest', harnessXml, `${OFFICIAL_ID}.test`, String(version.versionCode), version.versionName, 'test');
+  await writeFile(harnessXml, execute(sdkTool('apkanalyzer'), ['manifest', 'print', harness], { env: cleanEnv() }, 'RELEASE_HARNESS_MANIFEST_DUMP'));
+  java('RELEASE_HARNESS_MANIFEST', 'manifest', harnessXml, `${OFFICIAL_ID}.test`, String(version.versionCode), version.versionName, 'test');
   const prototype = join(work, 'prototype.apk');
   const prototypeHarness = join(work, 'prototype-test.apk');
-  const debugSigner = apkCertificate(prototype);
-  requireValue(apkCertificate(prototypeHarness) === debugSigner, 'prototype harness signer mismatch');
-  const summary = execute(sdkTool('apkanalyzer'), ['apk', 'summary', prototype], { env: cleanEnv() }).split(/\s+/);
+  const debugSigner = apkCertificate(prototype, 'PROTOTYPE_SIGNATURE');
+  requireValue(apkCertificate(prototypeHarness, 'PROTOTYPE_HARNESS_SIGNATURE') === debugSigner, 'prototype harness signer mismatch');
+  const summary = execute(sdkTool('apkanalyzer'), ['apk', 'summary', prototype], { env: cleanEnv() }, 'PROTOTYPE_SUMMARY').split(/\s+/);
   requireValue(summary.length === 3 && summary[0] === PROTOTYPE_ID && summary[1] === String(DEVELOPMENT_ANDROID_CODE)
     && summary[2] === `${version.identity.productVersion}-dev.${version.identity.sourceRevision.slice(0, 8)}`,
   'prototype coexistence control must retain its clean development identity');
   const prototypeHarnessXml = join(work, 'prototype-harness.xml');
-  await writeFile(prototypeHarnessXml, execute(sdkTool('apkanalyzer'), ['manifest', 'print', prototypeHarness], { env: cleanEnv() }));
-  java('manifest', prototypeHarnessXml, `${PROTOTYPE_ID}.test`, summary[1], summary[2], 'test');
+  await writeFile(prototypeHarnessXml, execute(sdkTool('apkanalyzer'), ['manifest', 'print', prototypeHarness], { env: cleanEnv() }, 'PROTOTYPE_HARNESS_MANIFEST_DUMP'));
+  java('PROTOTYPE_HARNESS_MANIFEST', 'manifest', prototypeHarnessXml, `${PROTOTYPE_ID}.test`, summary[1], summary[2], 'test');
   requireValue(await fileDigest(bundle) === before, 'bundle changed during derived package inspection');
   const control = {
     schemaVersion: 1, interfaceVersion: 1, bundleSha256: before,
@@ -552,7 +607,7 @@ async function jdkProof(work) {
     execute('jar', ['--create', '--file', jar, '-C', scratch, 'original.txt'], { env });
     execute('jarsigner', ['-keystore', store, '-storepass:env', 'RECAP_PROOF_PASSWORD',
       '-keypass:env', 'RECAP_PROOF_PASSWORD', '-sigfile', 'RECAP', jar, 'proof'], { env });
-    java('archive', jar, cert.sha256, join(scratch, 'positive'));
+    java('JDK_FIXTURE_ARCHIVE', 'archive', jar, cert.sha256, join(scratch, 'positive'));
     await writeFile(join(scratch, 'addition.txt'), 'Unsigned extra payload\n');
     execute('jar', ['--update', '--file', jar, '-C', scratch, 'addition.txt'], { env });
     const runVerifier = (helper, output) => spawnSync('java', [helper, 'archive', jar, cert.sha256, output], {

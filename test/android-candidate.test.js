@@ -4,11 +4,13 @@ import { mkdtemp, mkdir, writeFile, readFile, readdir, rm, cp } from 'node:fs/pr
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { execFileSync } from 'node:child_process';
+import childProcess from 'node:child_process';
+import { syncBuiltinESMExports } from 'node:module';
 import {
   ENVIRONMENT, OFFICIAL_ID, PROTOTYPE_ID, REPOSITORY, PACKET, digest,
   validateInvocation, protectionPolicy, requireApproval, eligibleReservation,
   requireUnusedCode, requireSourceAncestry, sourceCommand, checkRecord, assertFiles, checkAssets, noNative,
-  verifyNativeReport, withPrivateDirectory, certificateFingerprint,
+  verifyNativeReport, withPrivateDirectory, certificateFingerprint, execute,
 } from '../scripts/android-candidate.mjs';
 import { reserveAndroidBuild, sourceIdentity, artifactRecord, verifyArtifact } from '../scripts/lib/release-identity.mjs';
 import { NATIVE_METHODS } from '../scripts/check-android-instrumentation.mjs';
@@ -297,6 +299,59 @@ test('native proof binds twelve executions to exact installed bytes and non-rese
 });
 
 test('private signing scratch is removed on child failure and refuses unknown cleanup scope', async () => {
+  const original = childProcess.execFileSync;
+  const privateText = 'PRIVATE_SECRET_VALUE /private/keystore.p12 PRIVATE_ALIAS';
+  let failure;
+  let calls = 0;
+  childProcess.execFileSync = () => { calls += 1; throw failure; };
+  syncBuiltinESMExports();
+  try {
+    const cases = [
+      { status: 7, signal: null, stderr: 'MANIFEST_SDK\n', exit: '7', signalName: 'none', code: 'MANIFEST_SDK' },
+      { status: null, signal: 'SIGTERM', stderr: 'VERIFICATION_FAILED\n', exit: 'unknown', signalName: 'SIGTERM', code: 'VERIFICATION_FAILED' },
+      { status: 256, signal: 'PRIVATE_SIGNAL', stderr: 'PRIVATE_UNKNOWN_CODE\n', exit: 'unknown', signalName: 'unrecognized', code: 'unclassified' },
+      { status: 0, signal: null, stderr: 'MANIFEST_SDK /private/keystore.p12\n', exit: 'unknown', signalName: 'none', code: 'unclassified' },
+      { status: 1, signal: null, stderr: '\u001b[31mMANIFEST_SDK\u001b[0m\n', exit: '1', signalName: 'none', code: 'unclassified' },
+      { status: 2, signal: null, stderr: `${privateText}\nMANIFEST_SDK\n`, exit: '2', signalName: 'none', code: 'MANIFEST_SDK' },
+      { status: 3, signal: null, stderr: `${'x'.repeat(4097)}\nMANIFEST_SDK\n`, exit: '3', signalName: 'none', code: 'unclassified' },
+    ];
+    for (const value of cases) {
+      failure = Object.assign(new Error(privateText), {
+        status: value.status, signal: value.signal, stderr: Buffer.from(value.stderr),
+        stdout: Buffer.from(privateText), path: '/private/keystore.p12', spawnargs: [privateText],
+      });
+      assert.throws(() => execute('java', [privateText], { env: { PRIVATE_ENV: privateText } }, 'AAB_MANIFEST'), (error) => {
+        assert.equal(error.message, `Android candidate: inspection AAB_MANIFEST failed; exit=${value.exit}; signal=${value.signalName}; code=${value.code}. Raw tool output was not retained.`);
+        assert.doesNotMatch(error.message, /PRIVATE_|\/private\//);
+        assert.ok([...error.message].every((character) => {
+          const code = character.codePointAt(0);
+          return code > 31 && (code < 127 || code > 159);
+        }));
+        return true;
+      });
+      assert.throws(() => execute('java', ['certificate', privateText]), (error) => {
+        assert.equal(error.message, "Android candidate: java failed; check this stage's approved inputs. Raw tool output was not retained.");
+        return true;
+      });
+    }
+    failure = { status: 1, signal: null, stderr: Buffer.from('MANIFEST_SDK\n') };
+    assert.throws(() => execute('java', ['-jar', privateText], {}, 'AAB_STRUCTURE'), (error) => {
+      assert.equal(error.message, 'Android candidate: inspection AAB_STRUCTURE failed; exit=1; signal=none; code=unclassified. Raw tool output was not retained.');
+      return true;
+    });
+    const before = calls;
+    assert.throws(() => execute('java', [], {}, 'PRIVATE_STAGE'), /unknown inspection stage/);
+    assert.throws(() => execute('java', ['certificate', privateText], {}, 'AAB_MANIFEST'), /secret-bearing commands/);
+    assert.throws(() => execute('jarsigner', [privateText], {}, 'AAB_ARCHIVE'), /secret-bearing commands/);
+    assert.throws(() => execute('apksigner', ['sign', privateText], {}, 'SPLIT_SIGNATURE'), /secret-bearing commands/);
+    assert.equal(calls, before);
+    childProcess.execFileSync = () => ' verified\n';
+    syncBuiltinESMExports();
+    assert.equal(execute('java', [], {}, 'AAB_MANIFEST'), 'verified');
+  } finally {
+    childProcess.execFileSync = original;
+    syncBuiltinESMExports();
+  }
   const scratch = await mkdtemp(join(tmpdir(), 'recap-candidate-cleanup-'));
   try {
     await assert.rejects(withPrivateDirectory(scratch, 'upload-secret', async (directory) => {
