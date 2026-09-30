@@ -7,26 +7,32 @@ App launch, or selecting the brand lockup in the sidebar.
 1. The page asks **"Where do you want to start?"**
 2. One line distinguishes **Browse curated Reading Lists** from **Add individual issues or your own
    list**.
-3. When its bundled Reading List resolves, a compact callout offers **Setup to Modern Timeline** as
+3. **Browse Reading Lists** opens the Browse hub, and **Add comics** opens the Add hub without
+   requiring the narrow Navigation menu. Both actions are available before the optional
+   recommendation resolves; the category tiles remain available below.
+4. When its bundled Reading List resolves, a compact callout offers **Setup to Modern Timeline** as
    the recommended preparation path. Its action opens Preview without adding or changing progress.
-4. Three large path tiles appear when their shelves contain published Reading Lists:
+5. Three large path tiles appear when their shelves contain published Reading Lists:
    - **Modern Timeline** with the compact label **Browse by year**
    - **Storylines** with the compact label **Browse complete arcs**
    - **Character spotlights** with the compact label **Browse heroes and teams**
-5. Each tile shows its Reading List count and opens the matching browse screen.
-6. Additional populated categories appear under **Discover More**. The whole group remains
+6. Each tile shows its Reading List count and opens the matching browse screen.
+7. Additional populated categories appear under **Discover More**. The whole group remains
    hidden while no additional category has content:
    - **MCU Prep** opens preparation lists for Marvel Cinematic Universe titles.
    - **Marvel Ages** opens one chronological gateway for populated publishing periods.
-7. Marvel attribution remains at the end of the surface.
+8. Marvel attribution remains at the end of the surface.
 
 ## State B: Library Has Lists
 1. **Continue reading** names the active Reading List, progress, next issue and direct actions.
+   An empty saved list retains **Open the list** but does not offer **Review earlier issues**.
 2. **Your Reading Lists** shows every saved list as a compact progress tile.
 3. **Explore** offers the same content-backed category gateway as State A.
 4. Marvel attribution remains at the end of the surface.
 
 ## Transitions
+- The first-run Browse and Add actions use their existing hubs, create browser history entries,
+  and move focus to the destination heading. Back returns to Home.
 - Primary or additional category tile opens its own browse subpage and creates a browser history entry.
 - Marvel Ages first shows populated earlier ages, then populated Modern periods. Its **Browse all
   Modern Age Reading Lists** action keeps Modern available as an aggregate.
@@ -72,6 +78,7 @@ App launch, or selecting the brand lockup in the sidebar.
 
 ## Accessibility Requirements
 - [ ] Each category group is a list and each tile is one native button
+- [ ] First-run Browse and Add are named native controls, at least 44px high, with visible focus
 - [ ] The accessible name begins with the visible category heading and compact label
 - [ ] Every tile is at least 44px high and has a visible keyboard focus indicator
 - [ ] Category meaning does not depend on colour or icon alone

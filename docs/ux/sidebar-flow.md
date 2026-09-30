@@ -23,6 +23,8 @@ in the rail.
 
 ## Parent Selection
 
+- Home selects the brand as the only current navigation destination, with `aria-current="page"`
+  and the same visible selected treatment as other rail buttons. Other routes clear it.
 - Timeline, Storylines, Character spotlights and future category pages select Browse.
 - Search issues, Find a series, Browse a creator, Paste a Reading List and Add by hand select Add
   comics.

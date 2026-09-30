@@ -179,6 +179,7 @@ function harness({
     onCatalogDropped: (count) => calls.warnings.push(count),
     onCatalogLoadFailure: (options) => calls.failures.push(options),
     onNavigateCategory: (category) => calls.navigate.push(category.route),
+    onNavigateHub: (viewName) => calls.navigate.push(viewName),
     onOpen: () => { calls.open += 1; },
     onReview: () => calls.navigate.push('review'),
     onReviewDeferred: () => calls.navigate.push('deferred'),
@@ -244,6 +245,28 @@ test('Home view owns first-run, saved-list, recommendation, and shared gateway p
   assert.equal(recommended.hidden, false);
   findById(firstRun, 'btn-home-recommended').onclick();
   assert.deepEqual(h.calls.preview, ['recommended']);
+});
+
+test('first-run Home offers Browse and Add before the optional recommendation resolves', () => {
+  const h = harness({ catalogLoader: () => new Promise(() => {}) });
+  const before = structuredClone(h.state);
+  h.view.render();
+  const firstRun = findById(h.nodes.categoriesRoot, 'home-first-run');
+  const browse = findById(firstRun, 'btn-home-browse');
+  const add = findById(firstRun, 'btn-home-add');
+  assert.equal(firstRun.hidden, false);
+  assert.equal(findById(firstRun, 'home-recommended').hidden, true);
+  assert.equal(browse.children[0], 'Browse Reading Lists');
+  assert.equal(add.children[0], 'Add comics');
+  browse.onclick();
+  add.onclick();
+  assert.deepEqual(h.calls.navigate, ['browse', 'add']);
+  assert.deepEqual(h.calls.preview, []);
+  assert.deepEqual(h.state, before);
+  h.state.listOrder.push('a');
+  h.state.lists.a = { id: 'a', name: 'Alpha order', itemIds: [] };
+  h.view.render();
+  assert.equal(firstRun.hidden, true);
 });
 
 test('453 Home refresh uses effective launchability and saved provenance without repainting gateways', () => {
@@ -355,6 +378,23 @@ test('Home view completion state removes the read action without inventing a nex
   assert.equal(h.calls.coverFallbacks.length, 1);
 });
 
+test('Home Review is withdrawn only when the active saved list has no issues', () => {
+  const progress = { read: 0, total: 0 };
+  const h = harness({ populated: true, nextIssue: null, progress });
+  h.state.lists.a.itemIds = [];
+  const before = structuredClone(h.state);
+  h.view.render();
+  assert.equal(h.nodes.continueReview.hidden, true);
+  assert.equal(h.nodes.continueOpen.hidden, false);
+  progress.total = 1;
+  h.view.refreshReader();
+  assert.equal(h.nodes.continueReview.hidden, false);
+  progress.total = 0;
+  h.view.render();
+  assert.equal(h.nodes.continueReview.hidden, true);
+  assert.deepEqual(h.state, before);
+});
+
 test('441 Home describes an empty saved list without claiming completion or changing its contents', () => {
   const h = harness({ populated: true, nextIssue: null, progress: { read: 0, total: 0 } });
   h.state.lists.a.itemIds = [];
@@ -369,12 +409,12 @@ test('441 Home describes an empty saved list without claiming completion or chan
   assert.equal(h.nodes.continueFill.style.width, '0%');
   assert.equal(h.nodes.continueBar.attributes['aria-valuenow'], '0');
   assert.equal(h.nodes.continueOpen.attributes['aria-label'], 'Open Reading List: Alpha order');
+  assert.equal(h.nodes.continueReview.hidden, true);
   h.nodes.continueRead.listeners.click({});
   h.nodes.continueOpen.listeners.click();
-  h.nodes.continueReview.listeners.click();
   assert.equal(h.calls.read.length, 0);
   assert.equal(h.calls.open, 1);
-  assert.deepEqual(h.calls.navigate, ['review']);
+  assert.deepEqual(h.calls.navigate, []);
   assert.deepEqual(h.state, before);
 });
 
