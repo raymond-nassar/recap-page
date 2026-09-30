@@ -13,6 +13,13 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Follow Namor through Golden Age and modern stories
+
+Adds a credited Namor Reading List spanning the Golden Age, Atlantis, the Invaders,
+the Defenders and later stories. It preserves 700 distinct source positions: 692
+verified original comics and eight visible metadata gaps. Five repeated source
+appearances point back to earlier positions instead of duplicating checklist rows.
+Existing Reading Lists and saved progress are unchanged.
 ### Follow the X-Men: Onslaught event
 
 Adds a credited, 74-position Reading List following the Road to Onslaught and Complete Epic

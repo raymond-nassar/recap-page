@@ -142,12 +142,12 @@ test('Nebula approved relationship report preserves all 187 reviewed orders', as
       && row.id !== 'x-23-reading-order' && row.id !== 'ms-marvel-kamala-khan-reading-order' && row.id !== 'marvel-zombies-reading-order'
       && row.id !== 'hawkeye-reading-order'
       && row.id !== 'silk-cindy-moon-reading-order'
-      && row.id !== 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order')
+      && row.id !== 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order').filter((row) => row.id !== 'namor-sub-mariner-reading-order')
     .map((row) => row.id);
   const regenerated = await buildReportForMapping(`scripts/data/cbh-mappings/${id}.json`, [], {
     excludedOrderIds: ['hope-summers-reading-order', 'x-23-reading-order', 'marvel-zombies-reading-order',
       'hawkeye-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order',
-      'ms-marvel-kamala-khan-reading-order', 'nova-reading-order', 'ultimate-spider-man-reading-order', 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide', 'shang-chi-master-of-kung-fu-reading-order', 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order', 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order'],
+      'ms-marvel-kamala-khan-reading-order', 'nova-reading-order', 'ultimate-spider-man-reading-order', 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide', 'shang-chi-master-of-kung-fu-reading-order', 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order', 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order', 'namor-sub-mariner-reading-order'],
 
   });
   assert.deepEqual(regenerated, report);
@@ -194,10 +194,12 @@ test('Nebula ships the full vector without placeholders and credits the exact so
   assert.match(markdown, /^## Nebula \(2020\) #1-2$/m);
   assert.deepEqual(payload.items.filter((row) => [78699, 78700].includes(row.issueId))
     .map((row) => row.collectedIn), ['Nebula (2020) #1-2', 'Nebula (2020) #1-2']);
-  assert.equal(manifest.lists[manifestIndex - 1].id, 'thunderbolts-reading-order');
+  assert.equal(manifest.lists[manifestIndex - 2].id, 'thunderbolts-reading-order');
+  assert.equal(manifest.lists[manifestIndex - 1].id, 'namor-sub-mariner-reading-order');
   assert.equal(manifest.lists[manifestIndex + 1].id, 'hawkeye-reading-order');
   assert.equal(manifest.lists[manifestIndex + 2].id, packet.insertionAnchor.beforeId);
-  assert.equal(catalog.lists[catalogIndex - 1].id, 'thunderbolts-reading-order');
+  assert.equal(catalog.lists[catalogIndex - 2].id, 'thunderbolts-reading-order');
+  assert.equal(catalog.lists[catalogIndex - 1].id, 'namor-sub-mariner-reading-order');
   assert.equal(catalog.lists[catalogIndex + 1].id, 'hawkeye-reading-order');
   assert.equal(catalog.lists[catalogIndex + 2].id, packet.insertionAnchor.beforeId);
   assert.deepEqual(parsed.entries.map((row) => row.issueId), approvedIssueIds);

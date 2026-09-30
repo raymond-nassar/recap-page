@@ -223,7 +223,7 @@ async function buildReportForMapping(mappingPath, peerPaths = [], options = {}) 
 async function buildCurrentReportForMapping(mappingPath, peerPaths = [], options = {}) {
   return buildRawReportForMapping(mappingPath, peerPaths, {
     ...options,
-    excludedOrderIds: [...(options.excludedOrderIds ?? CBH_LATER_ORDER_IDS), hawkeyeLaterId, 'ms-marvel-kamala-khan-reading-order', 'ultimate-spider-man-reading-order', 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide', 'shang-chi-master-of-kung-fu-reading-order', 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order'],
+    excludedOrderIds: [...(options.excludedOrderIds ?? CBH_LATER_ORDER_IDS), hawkeyeLaterId, 'ms-marvel-kamala-khan-reading-order', 'ultimate-spider-man-reading-order', 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide', 'shang-chi-master-of-kung-fu-reading-order', 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order', 'namor-sub-mariner-reading-order'],
   });
 }
 
@@ -648,6 +648,7 @@ async function libraryDigestForScope(manifest, excludedIds, librarySnapshot = nu
   excluded.add('planet-hulk-reading-order-and-greg-pak-hulk-comics-guide');
   excluded.add('shang-chi-master-of-kung-fu-reading-order');
   excluded.add('the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order');
+  excluded.add('namor-sub-mariner-reading-order');
   const lists = sourceManifest.lists.filter((entry) => !excluded.has(entry.id));
   const paths = (sourceManifest.paths ?? []).filter((entry) => (
     !excluded.has(entry.id)
@@ -805,7 +806,7 @@ test('Abomination preserves the unresolved Hulk annual and selects the exact 198
   }
 });
 
-test('the character inventory preserves every central disposition, ships 58 character runs, two creators and two era guides, and records five approved reuses', async () => {
+test('the character inventory preserves every central disposition, ships 59 character runs, two creators and two era guides, and records five approved reuses', async () => {
 
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
   assert.doesNotThrow(() => validateInventoryState(inventory));
@@ -817,17 +818,17 @@ test('the character inventory preserves every central disposition, ships 58 char
     counts[record.centralDisposition] = (counts[record.centralDisposition] ?? 0) + 1;
     return counts;
   }, {});
-  assert.equal(dispositionCounts.deferred, 59);
+  assert.equal(dispositionCounts.deferred, 58);
   assert.equal(dispositionCounts.excluded, 6);
   assert.equal(dispositionCounts.blocked ?? 0, 0);
-  assert.equal(dispositionCounts['pilot-approved'], 63);
+  assert.equal(dispositionCounts['pilot-approved'], 64);
 
   assert.equal(dispositionCounts['reuse-existing'], 5);
 
   const shipped = inventory.filter((record) => record.deliveryStatus === 'shipped');
   assert.deepEqual(shipped.reduce((counts, record) => ({
     ...counts, [record.guideType]: (counts[record.guideType] ?? 0) + 1,
-  }), {}), { 'character-run': 58, 'creator-run': 2, era: 2, event: 1 });
+  }), {}), { 'character-run': 59, 'creator-run': 2, era: 2, event: 1 });
   assert.deepEqual(shipped.map((record) => record.id), [
     abominationCandidateId,
     'adam-warlock-reading-order',
@@ -862,6 +863,7 @@ test('the character inventory preserves every central disposition, ships 58 char
     'mephisto-reading-order',
     moonKnightCandidateId,
     'ms-marvel-kamala-khan-reading-order',
+    'namor-sub-mariner-reading-order',
     'nebula-reading-order',
     'omnibussin-nick-fury-from-war-world-ii-to-s-h-i-e-l-d',
     'nova-reading-order',
@@ -1042,7 +1044,7 @@ test('Adam Warlock publishes the settled source with one exact resolution and th
     .filter((id) => id !== 'ms-marvel-kamala-khan-reading-order' && id !== 'nova-reading-order'
       && id !== 'ultimate-spider-man-reading-order'
       && id !== 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide'
-      && id !== 'shang-chi-master-of-kung-fu-reading-order' && id !== 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order');
+      && id !== 'shang-chi-master-of-kung-fu-reading-order' && id !== 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order' && id !== 'namor-sub-mariner-reading-order');
 
   assert.doesNotThrow(() => validateFrozenPacket(packet));
   assert.doesNotThrow(() => validateMappingDigest(mapping));
@@ -2080,7 +2082,7 @@ test('the Punisher guide preserves its full source ledger through publication', 
   assert.equal(mapping.approvedSourceCount, 857);
   assert.equal(report.candidateCount, 544);
   assert.equal(report.comparisonCount, 158);
-  assert.equal(report.comparisonCount, manifest.lists.length - 43);
+  assert.equal(report.comparisonCount, manifest.lists.length - 44);
 
   assert.deepEqual(regeneratedReport, report);
   assert.doesNotThrow(() => assertApprovedRelationshipReview({
@@ -2669,7 +2671,7 @@ test('Silver Surfer settles all four issue #304 gaps without losing source posit
      && id !== 'nova-reading-order'
      && id !== 'ultimate-spider-man-reading-order'
      && id !== 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide'
-     && id !== 'shang-chi-master-of-kung-fu-reading-order' && id !== 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order')
+     && id !== 'shang-chi-master-of-kung-fu-reading-order' && id !== 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order' && id !== 'namor-sub-mariner-reading-order')
     .sort();
   const historicalLibrary = await historicalAgathaLibrarySnapshot();
   const reviewedLibraryDigest = await libraryDigestForScope(
@@ -4646,10 +4648,10 @@ test('the first character batch stays exact through evidence, catalog, and gener
 
   const allBatchIds = evidence.flatMap((item) => item.mapping.rows.map((row) => String(row.selectedIssueId)));
   assert.equal(new Set(allBatchIds).size, 81);
-  assert.equal(catalog.lists.length, 278);
+  assert.equal(catalog.lists.length, 279);
   const characterRuns = catalog.lists.filter((entry) => entry.type === 'character-run');
-  assert.equal(characterRuns.length, 68);
-  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 67);
+  assert.equal(characterRuns.length, 69);
+  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 68);
 
 });
 
@@ -4996,7 +4998,7 @@ test('X-Force publishes the exact settled source and bounded complete-library re
   assert.equal(mapping.candidateMetadata.length, 285);
   assert.deepEqual(mapping.sourceGapResolutions, packet.sourceGapResolutions);
   assert.equal(report.candidateCount, 285);
-  assert.equal(report.comparisonCount, manifest.lists.length - 36);
+  assert.equal(report.comparisonCount, manifest.lists.length - 37);
 
   assert.deepEqual(
     report.comparisons

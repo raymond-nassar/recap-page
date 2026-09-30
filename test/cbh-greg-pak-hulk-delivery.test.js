@@ -158,12 +158,14 @@ test('Greg Pak relationship review is current, real and not inherited by a pendi
   const current = await buildReportForMapping(`scripts/data/cbh-mappings/${id}.json`, [], {
     excludedOrderIds: ['shang-chi-master-of-kung-fu-reading-order',
       'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order',
-      'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order'],
+      'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order',
+      'namor-sub-mariner-reading-order'],
   });
   const expectedOrderIds = library.lists.filter((entry) =>
     entry.id !== id && entry.id !== 'shang-chi-master-of-kung-fu-reading-order'
       && entry.id !== 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order'
-      && entry.id !== 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order')
+      && entry.id !== 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order'
+      && entry.id !== 'namor-sub-mariner-reading-order')
     .map((entry) => entry.id);
   assert.deepEqual(current, report);
   assert.equal(report.comparisonCount, 197);
@@ -216,7 +218,7 @@ test('Greg Pak publishes the exact 107-row creator route without replacing Plane
   assert.equal(originalPlanetHulk.items.length, 15);
   assert.deepEqual(originalPlanetHulk.items.map((item) => item.issueId),
     report.comparisons.find((row) => row.orderId === 'planet-hulk').sharedIds.map(Number));
-  assert.equal(manifest.lists.length, 201);
+  assert.equal(manifest.lists.length, 202);
   assert.deepEqual(parseManifest(manifest).errors, []);
   const position = manifest.lists.findIndex((entry) => entry.id === id);
   assert.equal(manifest.lists[position - 1].id, 'planet-hulk');
