@@ -1984,13 +1984,13 @@
     "fp": "e9a1e74dee2c791e",
     "head": "// The publication gate answered a question that only gets asked once, and it was asked on"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:4473-4484|0": {
-    "anchor": "CHANGELOG.md:4473-4484",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:4481-4492|0": {
+    "anchor": "CHANGELOG.md:4481-4492",
     "fp": "7ebb6ef43a1f1241",
     "head": "- **The project now watches its own development tooling for known security problems, and says how"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:4486-4496|0": {
-    "anchor": "CHANGELOG.md:4486-4496",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:4494-4504|0": {
+    "anchor": "CHANGELOG.md:4494-4504",
     "fp": "c37eedd88ad1c81c",
     "head": "- **The project now has a published security policy, which names a private route for reporting a"
   },
@@ -6019,8 +6019,8 @@
     "fp": "2a5f696a4a2adc8e",
     "head": "be a heuristic about significance, and a heuristic about which anchors are worth counting is exactly"
   },
-  "scripts/check-counts.mjs|preamble|scripts/check-publication.mjs:207-211|0": {
-    "anchor": "scripts/check-publication.mjs:207-211",
+  "scripts/check-counts.mjs|preamble|scripts/check-publication.mjs:209-213|0": {
+    "anchor": "scripts/check-publication.mjs:209-213",
     "fp": "36abce5861d613b7",
     "head": "// A file git could not read is not a file that read clean. Read from the index enumerated by"
   },

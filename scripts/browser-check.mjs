@@ -30,8 +30,8 @@
 
 import { createStaticServer, DEFAULT_PORT, HOST } from '../server.mjs';
 import { existsSync, readFileSync } from 'node:fs';
-import { homedir } from 'node:os';
-import { join } from 'node:path';
+import { constants, homedir } from 'node:os';
+import { dirname, join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
 import {
@@ -13736,25 +13736,78 @@ function tally() {
 }
 
 async function runScenario(browser, origin, scenario, mutation) {
-  const context = await browser.createBrowserContext();
-  const page = await context.newPage();
-  page.__denyExternal = true;
+  let context;
   const t = tally();
   let error = null;
   let prepared = false;
+  let completed = false;
+  let infrastructure = false;
+  let stage = 'create-context';
+  const enter = (next) => {
+    stage = next;
+    console.log(`SCENARIO id=${scenario.id} stage=${stage}`);
+  };
   try {
+    enter('create-context');
+    context = await browser.createBrowserContext();
+    enter('create-page');
+    const page = await context.newPage();
+    page.__denyExternal = true;
+    enter('prepare-page');
     await preparePage(page, origin, mutation);
     prepared = true;
+    enter('run');
     await scenario.run(page, t);
+    completed = true;
   } catch (err) {
-    error = err?.message ?? String(err);
+    error = `stage=${stage} code=${failureCode(err)}`;
+    console.log(`FAIL scenario=${scenario.id} ${error}`);
+    infrastructure = stage === 'create-context' || stage === 'create-page'
+      || err?.name === 'TargetCloseError' || browser.connected === false;
     t.check(`${scenario.id} ran to the end`, false, error);
   } finally {
-    await context.close().catch(() => {});
+    if (context) {
+      enter('close-context');
+      try {
+        await context.close();
+      } catch (err) {
+        const cleanup = `stage=close-context code=${failureCode(err)}`;
+        error ??= cleanup;
+        infrastructure = true;
+        t.check(`${scenario.id} context cleanup`, false, cleanup);
+      }
+    }
   }
+  console.log(`SCENARIO id=${scenario.id} stage=${error ? 'failed' : 'complete'}`);
   return {
     id: scenario.id, title: scenario.title, rows: t.rows, error, prepared,
+    completed: completed && !infrastructure, infrastructure,
   };
+}
+
+function failureCode(error) {
+  return ['Error', 'TypeError', 'RangeError', 'SyntaxError', 'TimeoutError', 'ProtocolError',
+    'TargetCloseError', 'AbortError'].includes(error?.name) ? error.name : 'unknown';
+}
+
+function safeVersion(value) {
+  return typeof value === 'string'
+    && /^(?:(?:HeadlessChrome|Chrome|Chromium|Edg|Microsoft Edge)\/)?\d{1,4}(?:\.\d{1,6}){2,3}$/.test(value)
+    ? value : 'unknown';
+}
+
+function driverVersion(driver) {
+  for (const parent of ['../..', '../../..']) {
+    const file = join(dirname(driver), parent, 'package.json');
+    if (!existsSync(file)) continue;
+    try {
+      const pkg = JSON.parse(readFileSync(file, 'utf8'));
+      if (pkg.name === 'puppeteer-core') return safeVersion(pkg.version);
+    } catch {
+      return 'unknown';
+    }
+  }
+  return 'unknown';
 }
 
 function report(results, { quiet = false } = {}) {
@@ -13804,8 +13857,8 @@ async function withStack(fn, { port = 0 } = {}) {
   try {
     ({ default: puppeteer } = await import(pathToFileURL(driver).href));
   } catch (err) {
-    prerequisiteFailure(`puppeteer-core was found at ${driver} but could not be loaded.`, [
-      String(err?.message ?? err),
+    prerequisiteFailure('puppeteer-core could not be loaded.', [
+      `stage=load-driver code=${failureCode(err)}`,
       '',
       'Reinstall it outside the tree, or point MRT_PUPPETEER at a working install.',
     ]);
@@ -13813,6 +13866,7 @@ async function withStack(fn, { port = 0 } = {}) {
 
   let browser;
   try {
+    console.log('BROWSER stage=launch');
     browser = await puppeteer.launch({
       executablePath: edge,
       headless: !process.env.MRT_HEADED,
@@ -13823,8 +13877,8 @@ async function withStack(fn, { port = 0 } = {}) {
       ],
     });
   } catch (err) {
-    prerequisiteFailure(`Microsoft Edge was found at ${edge} but could not be launched.`, [
-      String(err?.message ?? err),
+    prerequisiteFailure('Microsoft Edge could not be launched.', [
+      `stage=launch code=${failureCode(err)}`,
       '',
       'Check that MRT_EDGE names the executable itself, not the directory holding it.',
     ]);
@@ -13833,15 +13887,50 @@ async function withStack(fn, { port = 0 } = {}) {
   // Created only once the browser is up, so no exit path above can leave a listening socket
   // behind. Everything from here is covered by the finally.
   const server = createStaticServer();
+  const child = browser.process();
+  let browserVersion = 'unknown';
+  const driverRelease = driverVersion(driver);
+  let closing = false;
+  const browserEvidence = (stage, exit = child?.exitCode, signal = child?.signalCode) => {
+    const exitCode = Number.isInteger(exit) ? exit : 'unknown';
+    const signalCode = Object.hasOwn(constants.signals, signal) ? constants.signals[signal] : 'unknown';
+    console.log(`BROWSER stage=${stage} cleanup=${closing} browser=${browserVersion} driver=${driverRelease} exit=${exitCode} signal=${signalCode}`);
+  };
+  child?.once('exit', (code, signal) => browserEvidence('process-exit', code, signal));
+  browser.once('disconnected', () => browserEvidence('disconnected'));
+  let code = 1;
+  let primaryError = null;
   try {
+    try {
+      browserVersion = safeVersion(await browser.version());
+    } catch (err) {
+      console.log(`BROWSER stage=version code=${failureCode(err)}`);
+    }
+    browserEvidence('ready');
     await new Promise((resolve) => server.listen(port, HOST, resolve));
     const origin = `http://${HOST}:${server.address().port}`;
-    return await fn({ browser, origin, driver, edge });
+    code = await fn({ browser, origin, driver, edge });
+  } catch (err) {
+    primaryError = err;
   } finally {
-    await browser.close().catch(() => {});
-    server.closeAllConnections();
-    await new Promise((resolve) => server.close(resolve));
+    if (primaryError || code !== 0) browserEvidence('failure');
+    closing = true;
+    try {
+      await browser.close();
+    } catch (err) {
+      console.error(`FAIL stage=close-browser code=${failureCode(err)}`);
+      code = 1;
+    }
+    try {
+      server.closeAllConnections();
+      await new Promise((resolve, reject) => server.close((err) => err ? reject(err) : resolve()));
+    } catch (err) {
+      console.error(`FAIL stage=close-server code=${failureCode(err)}`);
+      code = 1;
+    }
   }
+  if (primaryError) throw primaryError;
+  return code;
 }
 
 async function main() {
@@ -13849,9 +13938,7 @@ async function main() {
   const only = process.argv.find((a) => a.startsWith('--only='))?.slice('--only='.length) ?? null;
   const port = ['cache-generations', 'catalog-gaps', 'reading-paths', 'reading-path-stop-actions', 'issue-return-visibility', 'reading-shortcut', 'issue-action-names', 'issue-443-row-actions', 'defer-next', 'defer-lifecycle', 'defer-persistence', 'order-only-export'].includes(only) ? DEFAULT_PORT : 0;
 
-  const code = await withStack(async ({ browser, origin, driver, edge }) => {
-    console.log(`driver  ${driver}`);
-    console.log(`browser ${edge}`);
+  const code = await withStack(async ({ browser, origin }) => {
     console.log(`origin  ${origin}  (${port === DEFAULT_PORT
       ? 'the required app origin in Edge temporary profile'
       : 'an ephemeral port, so the reading progress saved at :8787 is untouched'})`);
@@ -13863,9 +13950,21 @@ async function main() {
     }
 
     const results = [];
-    for (const scenario of scenarios) results.push(await runScenario(browser, origin, scenario, null));
-    const { passed, failed } = report(results);
-    console.log(`\n${passed} assertion(s) passed, ${failed} failed, across ${results.length} scenario(s)`);
+    let failed;
+    try {
+      for (const scenario of scenarios) {
+        const result = await runScenario(browser, origin, scenario, null);
+        results.push(result);
+        report([result]);
+        if (result.infrastructure) break;
+      }
+    } finally {
+      const totals = report(results, { quiet: true });
+      failed = totals.failed;
+      const completed = results.filter((result) => result.completed);
+      console.log(`\n${totals.passed} assertion(s) passed, ${failed} failed, across ${results.length} scenario(s)`);
+      console.log(`SCENARIOS completed=${completed.length} planned=${scenarios.length} last-completed=${completed.at(-1)?.id ?? 'none'}`);
+    }
     if (failed > 0) return 1;
 
     if (!prove) return 0;
@@ -13887,7 +13986,14 @@ async function main() {
       : MUTATIONS;
     for (const mutation of mutations) {
       const runs = [];
-      for (const scenario of scenarios) runs.push(await runScenario(browser, origin, scenario, mutation));
+      for (const scenario of scenarios) {
+        const result = await runScenario(browser, origin, scenario, mutation);
+        runs.push(result);
+        if (result.infrastructure) {
+          report(runs);
+          return 1;
+        }
+      }
       report(runs, { quiet: true });
       const red = runs.filter((r) => r.rows.some((row) => !row.ok)).map((r) => r.id);
       const aimed = runs.find((r) => r.id === mutation.breaks);
@@ -13907,7 +14013,7 @@ async function main() {
     return unproved === 0 ? 0 : 1;
   }, { port });
 
-  process.exit(code);
+  process.exitCode = code;
 }
 
 async function seedRemovalFixture(page, saved = fixtureReadingState()) {
@@ -14791,6 +14897,6 @@ SCENARIOS.push((await import('./browser-iron-fist.mjs')).ironFistActualData);
 // stack and exits 1 on. Exit 1 is this check's word for "an assertion failed", so an internal
 // fault would be read as a finding about the app.
 main().catch((err) => {
-  console.error(`\nThe check itself failed before it could report on the app:\n${err?.stack ?? err}`);
-  process.exit(1);
+  console.error(`\nThe check itself failed: stage=runner code=${failureCode(err)}`);
+  process.exitCode = 1;
 });

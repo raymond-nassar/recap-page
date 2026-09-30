@@ -116,6 +116,19 @@ reading progress at the standard app address untouched. The targeted `cache-gene
 Stop the normal app server before any targeted run so the runner can bind that port. Each journey
 prints its own assertion and timing totals.
 
+Scenario progress is printed before browser-context creation, and completed results are reported
+as they arrive. A browser failure preserves those results and the primary failing stage even if
+cleanup also fails. Lifecycle diagnostics include allowlisted browser and driver versions and
+observed numeric process exit or signal values. An unavailable cause is `unknown`, not evidence
+of a crash, resource limit or app defect; exits during requested cleanup are labelled separately.
+
+For a hosted browser-only diagnostic, dispatch **Windows App Certification Kit** at the exact
+committed branch with `diagnostic_target=ordinary-browser`, `diagnostic_only=true`,
+`native_only=false` and `release_preparation=false`. This runs the ordinary suite on Windows
+without native proof, WACK or packaging. Its `qualified=false` log record binds the source and
+workflow commit to the installed driver version and locked driver digest. It uploads no artifacts
+and cannot satisfy release or production acceptance. Invalid flag combinations fail before setup.
+
 ### Prove the browser check detects failures
 
 The proof runner introduces a reversible fault for one journey at a time:
