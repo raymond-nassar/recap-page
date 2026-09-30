@@ -21,6 +21,12 @@ allowlisted browser, driver and process facts; an unavailable exit cause stays u
 A manual Windows browser-only diagnostic runs without packaging, uploads no artifacts and
 cannot qualify a release. App behaviour and saved reading progress are unchanged.
 
+### Let the Android comic launcher initialize
+
+Fixed the Android comic launcher failing to initialize because its required issue-page
+helper was blocked. Other app modules remain blocked in the popup. Saved reading progress
+is unchanged.
+
 ### Balance the Android Home heading
 
 The Home logo and short tagline now sit in the middle of the available content area on

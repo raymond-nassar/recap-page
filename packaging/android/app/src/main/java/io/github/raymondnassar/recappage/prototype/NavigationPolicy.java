@@ -15,8 +15,8 @@ import java.util.regex.Pattern;
 final class NavigationPolicy {
     static final int MAX_SAVE_BYTES = 32 * 1024 * 1024;
     private static final Set<String> POPUP_ASSETS = new HashSet<>(Arrays.asList(
-            "open.html", "open.js", "open.css", "js/lib/apiBase.js", "android/launch.css",
-            "android/launcher.js", "android/reader.js"));
+            "open.html", "open.js", "open.css", "js/lib/apiBase.js", "js/lib/issuePageUrl.js",
+            "android/launch.css", "android/launcher.js", "android/reader.js"));
     private static final Pattern MARVEL_ISSUE = Pattern.compile(
             "marvelunlimited://issue/drn:src:marvel:unison::prod:"
                     + "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}");
