@@ -92,6 +92,47 @@ function sdkFailureShape(stderr, stage) {
   }
   return value;
 }
+function networkFailureShape(stderr) {
+  const lines = stderr.split(/\r?\n/).filter((line) => line.startsWith('NETWORK_SHAPE '));
+  if (lines.length !== 1) return null;
+  const payload = lines[0].slice('NETWORK_SHAPE '.length);
+  if (payload.length > 3072) return null;
+  let value;
+  try {
+    value = JSON.parse(payload);
+  } catch {
+    return null;
+  }
+  const keys = (object, names) => object && typeof object === 'object' && !Array.isArray(object)
+    && Object.keys(object).join() === names.join();
+  if (!keys(value, ['expected', 'actual']) || JSON.stringify(value) !== payload) return null;
+  const count = (n) => n === 'overflow' || (Number.isInteger(n) && n >= 0 && n <= 16);
+  const namespace = (n) => ['none', 'android', 'other'].includes(n);
+  const attributeNamespace = (n) => namespace(n) || ['absent', 'ambiguous'].includes(n);
+  const boolean = (n) => ['true', 'false', 'absent', 'other'].includes(n);
+  const textKind = (n) => ['empty', 'blank', 'text', 'cdata', 'mixed', 'other'].includes(n);
+  const element = (node) => namespace(node.namespace) && count(node.attributes)
+    && count(node.children) && textKind(node.textKind);
+  const config = (node) => node === null || (keys(node,
+    ['namespace', 'attributes', 'children', 'textKind', 'cleartext', 'cleartextNamespace'])
+    && element(node) && boolean(node.cleartext) && attributeNamespace(node.cleartextNamespace));
+  for (const tree of [value.expected, value.actual]) {
+    if (!keys(tree, ['root', 'namespace', 'attributes', 'children', 'textKind', 'baseCount',
+      'domainConfigCount', 'base', 'domainConfig', 'domainCount', 'domains'])
+      || !['network-security-config', 'other'].includes(tree.root) || !element(tree)
+      || !count(tree.baseCount) || !count(tree.domainConfigCount) || !count(tree.domainCount)
+      || !config(tree.base) || !config(tree.domainConfig) || !Array.isArray(tree.domains)
+      || tree.domains.length !== (tree.domainCount === 'overflow' ? 4 : Math.min(tree.domainCount, 4))
+      || (tree.baseCount === 0) !== (tree.base === null)
+      || (tree.domainConfigCount === 0) !== (tree.domainConfig === null)) return null;
+    for (const domain of tree.domains) {
+      if (!keys(domain, ['namespace', 'attributes', 'children', 'textKind', 'includeSubdomains', 'includeNamespace', 'value'])
+        || !element(domain) || !boolean(domain.includeSubdomains) || !attributeNamespace(domain.includeNamespace)
+        || !['loopback', 'localhost', 'absent', 'other'].includes(domain.value)) return null;
+    }
+  }
+  return value;
+}
 export function execute(file, args, options = {}, inspectionStage) {
   if (inspectionStage !== undefined) {
     requireValue(INSPECTION_STAGES.has(inspectionStage), 'unknown inspection stage');
@@ -113,12 +154,16 @@ export function execute(file, args, options = {}, inspectionStage) {
       const stderr = Buffer.isBuffer(error?.stderr) ? error.stderr
         : typeof error?.stderr === 'string' ? Buffer.from(error.stderr, 'utf8') : null;
       let sdk = null;
+      let network = null;
       if (VERIFIER_STAGES.has(inspectionStage) && stderr && stderr.length <= 4096) {
         const last = stderr.toString('utf8').replace(/\r?\n$/, '').split(/\r?\n/).at(-1);
         if (PUBLIC_VERIFIER_CODES.has(last)) code = last;
         if (code === 'MANIFEST_SDK') sdk = sdkFailureShape(stderr.toString('utf8'), inspectionStage);
+        if (code === 'RESOURCE_POLICY_MISMATCH' && inspectionStage === 'BASE_APK_NETWORK_RULES') {
+          network = networkFailureShape(stderr.toString('utf8'));
+        }
       }
-      throw new CandidateError(`Android candidate: inspection ${inspectionStage} failed; exit=${exit}; signal=${signal}; code=${code}${sdk ? `; sdk=${JSON.stringify(sdk)}` : ''}. Raw tool output was not retained.`);
+      throw new CandidateError(`Android candidate: inspection ${inspectionStage} failed; exit=${exit}; signal=${signal}; code=${code}${sdk ? `; sdk=${JSON.stringify(sdk)}` : ''}${network ? `; network=${JSON.stringify(network)}` : ''}. Raw tool output was not retained.`);
     }
     // Tool exceptions can contain expanded passwords, private aliases and complete stderr.
     throw new CandidateError(`Android candidate: ${basename(file)} failed; check this stage's approved inputs. Raw tool output was not retained.`);

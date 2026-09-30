@@ -200,6 +200,98 @@ public final class VerifyBundle {
         return element.getTagName() + attributes + parts;
     }
 
+    private static String networkCount(int count) {
+        return count <= 16 ? Integer.toString(count) : "\"overflow\"";
+    }
+
+    private static String networkNamespace(Node node) {
+        String namespace = node.getNamespaceURI();
+        return namespace == null || namespace.isEmpty() ? "none" : ANDROID.equals(namespace) ? "android" : "other";
+    }
+
+    private static int networkAttributeCount(Element element) {
+        int count = 0;
+        for (int i = 0; i < element.getAttributes().getLength(); i++) {
+            if (!XMLConstants.XMLNS_ATTRIBUTE_NS_URI.equals(element.getAttributes().item(i).getNamespaceURI())) count++;
+        }
+        return count;
+    }
+
+    private static List<Element> networkChildren(Element element, String name) {
+        return children(element, null).stream().filter(child -> name.equals(child.getLocalName())
+                || name.equals(child.getTagName())).toList();
+    }
+
+    private static List<Node> networkAttributes(Element element, String name) {
+        List<Node> values = new ArrayList<>();
+        for (int i = 0; i < element.getAttributes().getLength(); i++) {
+            Node attribute = element.getAttributes().item(i);
+            if (name.equals(attribute.getLocalName()) || name.equals(attribute.getNodeName())) values.add(attribute);
+        }
+        return values;
+    }
+
+    private static String networkBoolean(List<Node> values) {
+        if (values.isEmpty()) return "absent";
+        if (values.size() != 1) return "other";
+        String value = values.get(0).getNodeValue();
+        return value.equals("true") || value.equals("false") ? value : "other";
+    }
+
+    private static String networkAttributeNamespace(List<Node> values) {
+        return values.isEmpty() ? "absent" : values.size() == 1 ? networkNamespace(values.get(0)) : "ambiguous";
+    }
+
+    private static String networkTextKind(Element element) {
+        boolean text = false;
+        boolean cdata = false;
+        boolean blank = false;
+        boolean other = false;
+        for (Node node = element.getFirstChild(); node != null; node = node.getNextSibling()) {
+            if (node.getNodeType() == Node.TEXT_NODE || node.getNodeType() == Node.CDATA_SECTION_NODE) {
+                if (node.getNodeValue().isBlank()) blank = true;
+                else if (node.getNodeType() == Node.TEXT_NODE) text = true;
+                else cdata = true;
+            } else if (!(node instanceof Element) && node.getNodeType() != Node.COMMENT_NODE) other = true;
+        }
+        return other ? "other" : text && cdata ? "mixed" : text ? "text" : cdata ? "cdata" : blank ? "blank" : "empty";
+    }
+
+    private static String networkConfigShape(Element element) {
+        if (element == null) return "null";
+        var cleartext = networkAttributes(element, "cleartextTrafficPermitted");
+        return "{\"namespace\":\"" + networkNamespace(element) + "\",\"attributes\":" + networkCount(networkAttributeCount(element))
+                + ",\"children\":" + networkCount(children(element, null).size()) + ",\"textKind\":\"" + networkTextKind(element)
+                + "\",\"cleartext\":\"" + networkBoolean(cleartext) + "\",\"cleartextNamespace\":\""
+                + networkAttributeNamespace(cleartext) + "\"}";
+    }
+
+    private static String networkDomainShape(Element element) {
+        var subdomains = networkAttributes(element, "includeSubdomains");
+        String text = element.getTextContent().trim();
+        String value = text.isEmpty() ? "absent" : text.equals("127.0.0.1") ? "loopback" : text.equals("localhost") ? "localhost" : "other";
+        return "{\"namespace\":\"" + networkNamespace(element) + "\",\"attributes\":" + networkCount(networkAttributeCount(element))
+                + ",\"children\":" + networkCount(children(element, null).size()) + ",\"textKind\":\"" + networkTextKind(element)
+                + "\",\"includeSubdomains\":\"" + networkBoolean(subdomains) + "\",\"includeNamespace\":\""
+                + networkAttributeNamespace(subdomains) + "\",\"value\":\"" + value + "\"}";
+    }
+
+    private static String networkShape(Element root) {
+        var bases = networkChildren(root, "base-config");
+        var configs = networkChildren(root, "domain-config");
+        Element base = bases.isEmpty() ? null : bases.get(0);
+        Element config = configs.isEmpty() ? null : configs.get(0);
+        List<Element> domains = config == null ? List.of() : networkChildren(config, "domain");
+        List<String> domainShapes = domains.stream().limit(4).map(VerifyBundle::networkDomainShape).toList();
+        String tag = root.getTagName().equals("network-security-config") ? "network-security-config" : "other";
+        return "{\"root\":\"" + tag + "\",\"namespace\":\"" + networkNamespace(root)
+                + "\",\"attributes\":" + networkCount(networkAttributeCount(root))
+                + ",\"children\":" + networkCount(children(root, null).size()) + ",\"textKind\":\"" + networkTextKind(root)
+                + "\",\"baseCount\":" + networkCount(bases.size()) + ",\"domainConfigCount\":" + networkCount(configs.size())
+                + ",\"base\":" + networkConfigShape(base) + ",\"domainConfig\":" + networkConfigShape(config)
+                + ",\"domainCount\":" + networkCount(domains.size()) + ",\"domains\":[" + String.join(",", domainShapes) + "]}";
+    }
+
     private static String sdkToken(String value) {
         if (value.isEmpty()) return "absent";
         return value.matches("0|[1-9][0-9]{0,3}") ? value : "invalid";
@@ -411,8 +503,15 @@ public final class VerifyBundle {
                 case "manifest" -> manifest(args);
                 case "generated-splits" -> generatedSplits(args);
                 case "resource" -> {
-                    require(args.length == 3 && canonical(xml(Path.of(args[1]))).equals(canonical(xml(Path.of(args[2])))),
-                            "RESOURCE_POLICY_MISMATCH");
+                    require(args.length == 3, "RESOURCE_POLICY_MISMATCH");
+                    Element actual = xml(Path.of(args[1]));
+                    Element expected = xml(Path.of(args[2]));
+                    boolean matches = canonical(actual).equals(canonical(expected));
+                    if (!matches && expected.getTagName().equals("network-security-config")) {
+                        System.err.println("NETWORK_SHAPE {\"expected\":" + networkShape(expected)
+                                + ",\"actual\":" + networkShape(actual) + "}");
+                    }
+                    require(matches, "RESOURCE_POLICY_MISMATCH");
                     System.out.println("{\"verified\":true}");
                 }
                 case "certificate" -> {

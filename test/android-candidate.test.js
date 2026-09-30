@@ -414,6 +414,56 @@ test('private signing scratch is removed on child failure and refuses unknown cl
         return true;
       });
     }
+    const config = (cleartext) => ({ namespace: 'none', attributes: 1, children: 0, textKind: 'empty',
+      cleartext, cleartextNamespace: 'none' });
+    const domain = (value) => ({ namespace: 'none', attributes: 1, children: 0, textKind: 'text',
+      includeSubdomains: 'false', includeNamespace: 'none', value });
+    const expectedNetwork = { root: 'network-security-config', namespace: 'none', attributes: 0,
+      children: 2, textKind: 'blank', baseCount: 1, domainConfigCount: 1, base: config('false'),
+      domainConfig: { ...config('true'), children: 2, textKind: 'blank' }, domainCount: 2,
+      domains: [domain('loopback'), domain('localhost')] };
+    const projection = { expected: expectedNetwork, actual: { ...expectedNetwork, base: config('true') } };
+    const networkError = (value, stage = 'BASE_APK_NETWORK_RULES', code = 'RESOURCE_POLICY_MISMATCH') => {
+      failure = { status: 1, signal: null, stderr: Buffer.from(`NETWORK_SHAPE ${JSON.stringify(value)}\n${code}\n`) };
+      return () => execute('java', [privateText], {}, stage);
+    };
+    assert.throws(networkError(projection), (error) => {
+      assert.equal(error.message, `Android candidate: inspection BASE_APK_NETWORK_RULES failed; exit=1; signal=none; code=RESOURCE_POLICY_MISMATCH; network=${JSON.stringify(projection)}. Raw tool output was not retained.`);
+      return true;
+    });
+    for (const actual of [
+      { ...expectedNetwork, root: 'PRIVATE_ROOT' },
+      { ...expectedNetwork, namespace: '/private/path' },
+      { ...expectedNetwork, children: 17 },
+      { ...expectedNetwork, base: { ...config('false'), cleartext: '\u001b[31mtrue' } },
+      { ...expectedNetwork, domains: [domain('PRIVATE_DOMAIN'), domain('localhost')] },
+      { ...expectedNetwork, domains: Array(5).fill(domain('loopback')) },
+      { ...expectedNetwork, privateAlias: privateText },
+    ]) {
+      assert.throws(networkError({ expected: expectedNetwork, actual }), (error) => {
+        assert.equal(error.message, 'Android candidate: inspection BASE_APK_NETWORK_RULES failed; exit=1; signal=none; code=RESOURCE_POLICY_MISMATCH. Raw tool output was not retained.');
+        return true;
+      });
+    }
+    failure = { status: 1, signal: null, stderr: Buffer.from('NETWORK_SHAPE not-json PRIVATE_SECRET_VALUE\nRESOURCE_POLICY_MISMATCH\n') };
+    assert.throws(() => execute('java', [], {}, 'BASE_APK_NETWORK_RULES'), (error) => {
+      assert.ok(!error.message.includes('PRIVATE_') && !error.message.includes('network='));
+      return true;
+    });
+    const duplicateProjection = JSON.stringify(projection).replace('{"expected":', '{"expected":null,"expected":');
+    failure = { status: 1, signal: null, stderr: Buffer.from(`NETWORK_SHAPE ${duplicateProjection}\nRESOURCE_POLICY_MISMATCH\n`) };
+    assert.throws(() => execute('java', [], {}, 'BASE_APK_NETWORK_RULES'), (error) => {
+      assert.ok(!error.message.includes('network='));
+      return true;
+    });
+    assert.throws(networkError(projection, 'BASE_APK_BACKUP_RULES'), (error) => {
+      assert.ok(!error.message.includes('network='));
+      return true;
+    });
+    assert.throws(networkError(projection, 'BASE_APK_NETWORK_RULES', 'VERIFICATION_FAILED'), (error) => {
+      assert.ok(!error.message.includes('network='));
+      return true;
+    });
     const before = calls;
     assert.throws(() => execute('java', [], {}, 'PRIVATE_STAGE'), /unknown inspection stage/);
     assert.throws(() => execute('java', ['certificate', privateText], {}, 'AAB_MANIFEST'), /secret-bearing commands/);
