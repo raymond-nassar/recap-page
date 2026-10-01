@@ -71,13 +71,27 @@ only the store track, not the bytes:
 node scripts/android-release.mjs promotion <artifact> <record.json>
 ```
 
-This command verifies the exact sealed candidate and does not rebuild, upload or approve it.
-No Play uploader, production identity, signing key or protected Android deployment is created here.
-Issue [#578](https://github.com/raymond-nassar/recap-page/issues/578) must wire these contracts into
-one serialized protected producer/uploader, verify package metadata after signing, retain artifacts,
-recheck the latest ledger and store code high-water mark, and distinguish first upload from
-track promotion. It must fail closed on an uncertain upload response, not allocate/retry blindly.
-Owner/account/signing/privacy/rights gates remain required.
+This command verifies exact sealed bytes; it does not validate a package's signature/structure,
+rebuild, upload or approve it. The separate manual
+[Android candidate producer](ANDROID.md#protected-app-bundle-candidates) supplies actual
+signature, contents and same-AAB-derived native checks. It has no Play uploader and does not
+provision protected configuration or key custody.
+
+The producer checks the selected later ledger against current main, including after approval.
+An old unsealed snapshot cannot override a newer seal. Existing version/record commands execute
+from the selected application's checkout, not from the later tooling checkout; changing only a
+working directory would not change their source identity.
+
+The retained four-file packet binds the final signed AAB, strict artifact record, separate
+public-safe qualification record and proposed ledger seal. The qualification record distinguishes
+the upload signer from disposable local APK signing. Apply only its verified seal to the matching
+entry in the then-current ledger, preserving later reservations. Do not rebuild or re-sign after
+qualification, overwrite a newer ledger wholesale, or treat artifact retention as upload approval.
+
+Actual upload and track promotion remain separate owner-controlled operations. Recheck the latest
+sealed ledger, the retained AAB's signature/contents and actual Play code/track state first. A
+failed or uncertain upload is a stop, not permission to retry or allocate blindly.
+Owner/account/signing/privacy/rights/device and Play testing gates remain required.
 
 Without a reservation, Gradle deliberately makes a **development** APK with code `3000002` and
 version name `<product>-dev.<source-prefix>`, adding `-dirty` when applicable. This is not an
@@ -107,10 +121,15 @@ existing live free-product/pending-draft/higher-version checks. The publisher st
 exact bundle before mutation. Do not dispatch this workflow to test trigger behavior.
 
 The Android synthetic CI job remains explicit opt-in and has no store credentials or publication
-authority. Windows dispatch cannot launch it. Future Play workflows must have a separate protected
-environment and explicit immutable artifact selection, never a generic `release: published`
-subscription. Existing Android prereleases retain their `android-v...` tags; `v...` continues to
-identify the desktop GitHub release expected by Windows submission.
+authority. Its debug and secret-free AAB-rehearsal modes are mutually exclusive. Use that registered
+manual entry for premerge rehearsal; a new manual workflow must first exist on the default branch
+before it can be directly dispatched. Windows dispatch cannot launch Android proof.
+
+Candidate signing requires a direct manual dispatch of its own workflow on main, an existing
+protected environment and actual run-bound human approval. It is separate from rehearsal and
+from any future Play uploader. No generic `release: published` subscription is used. Existing
+Android prereleases retain their `android-v...` tags; `v...` continues to identify the desktop
+GitHub release expected by Windows submission.
 
 ## Delivered release matrix
 

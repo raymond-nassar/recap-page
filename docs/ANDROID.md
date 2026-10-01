@@ -91,11 +91,20 @@ Marvel's service.
 
 ## Build and install
 
-**Current release hold:** the owner has approved identity preparation, not a new Android version.
-Until the current feature set is finalized, do not bump the version, reserve a release code,
-create an APK/AAB, distribute a build or upload/promote a Play candidate. The commands below
-describe the existing development workflow, not permission to run it during this hold.
-See [the owner decision](https://github.com/raymond-nassar/recap-page/issues/570#issuecomment-5894851669).
+The Java-only Android module disables AGP 9.4.1's built-in Kotlin integration with the module-level
+`enableKotlin = false` setting. Otherwise AGP can add the Kotlin standard library even when Kotlin
+compilation reports `NO-SOURCE`. Explicit instrumentation-test dependencies are unchanged, and the
+application DEX checks still reject foreign runtime classes. See the official
+[Java-only module guidance](https://developer.android.com/build/migrate-to-built-in-kotlin)
+and [AGP 9.4 API](https://developer.android.com/reference/tools/gradle-api/9.4/com/android/build/api/dsl/CommonExtension),
+read on 2026-09-30. This setting does not by itself prove a rebuilt artifact or test harness passes.
+
+**Feature-first release gate:** the owner authorized starting new releases after the accepted
+mobile features are finished and verified. Source preparation does not clear that gate or
+authorize a build by itself. Do not bump the version, reserve a release code, create an APK/AAB,
+distribute a build or upload/promote a candidate before the integrated feature source and the
+applicable execution approval are recorded. See
+[the conditional owner authorization](https://github.com/raymond-nassar/recap-page/issues/570#issuecomment-5906215612).
 
 Prerequisites:
 
@@ -157,16 +166,18 @@ removal before transferring progress.
 | Debug prototype | `io.github.raymondnassar.recappage.prototype` | Recap Page prototype |
 
 The default application ID is the official one; debug adds `.prototype`. The Java namespace
-remains `io.github.raymondnassar.recappage.prototype`, as do the existing native tests and their
-fixture identities. The unchanged `.MainActivity` declaration resolves against that namespace,
+remains `io.github.raymondnassar.recappage.prototype`, as do the native test classes.
+The test APK and document-provider identity follow the selected debug or release target.
+The unchanged `.MainActivity` declaration resolves against the Java namespace,
 not the installed application ID. The standard debug resource override retains the prototype
 label. These are [Android's documented identity rules](https://developer.android.com/build/configure-app-module),
 [Activity naming rules](https://developer.android.com/guide/topics/manifest/activity-element#nm)
 and [source-set rules](https://developer.android.com/build/build-variants#sourcesets),
 retrieved 2026-09-29.
 
-**Release signing is intentionally not configured.** Release retains the Android Gradle plugin's
-unsigned, non-debuggable defaults; it does not inherit the debug signer. Ordinary debug signing
+**Gradle release signing is intentionally not configured.** Release explicitly stays unsigned,
+non-debuggable and unshrunk; the protected producer signs the AAB outside Gradle. It does not
+inherit the debug signer. Ordinary debug signing
 is still disposable and does not make differently signed old betas update-compatible. An
 official application ID or source-bound candidate record is not signing or publication approval.
 
@@ -184,15 +195,139 @@ No key has been created or enrolled by this preparation. Actual enrollment, publ
 fingerprints, upload-key ownership and backup/recovery, and least-privilege CI access remain
 owner-approved work in [the signing issue](https://github.com/raymond-nassar/recap-page/issues/576).
 Never put private keys, passwords, identity documents or private Console identifiers in source,
-issues, logs or artifacts. The owner's new Personal Play account is awaiting Google identity
-verification; account creation does not establish production access or permission to publish.
+issues, logs or artifacts. The owner has reported verification of the new Personal Play account;
+that does not establish app-specific production access or permission to publish.
 
-The identity checks inspect source declarations and resource values only. No SDK-generated
-merged manifests/resources, signed package, native launch, side-by-side installation, migration
-or physical-device result is claimed. Those checks, production-key update continuity, rejection
-of incompatible signatures and invalid version transitions, and release-wide copy review remain
-open before relying on an official package. The existing prototype runtime is unchanged,
-including its prototype-specific failure wording. The release hold remains in force.
+Portable identity checks inspect source declarations, not Android installations. The producer
+below additionally requires actual artifact inspection and same-bundle native evidence when
+executed. Source implementation is not a passing result. Production-key update continuity,
+real-user migration, physical acceptance and release-wide copy review remain separate gates.
+The prototype runtime and its private storage identity are unchanged.
+
+## Protected App Bundle candidates
+
+The manual **Android release candidate** workflow builds and validates a candidate; it has no
+Play uploader and never publishes on merge. Its source is not a provisioned signing environment,
+an enrolled key, a native test result or release approval.
+
+Before its first merge to the default branch, rehearse through the already registered **CI**
+workflow. A new `workflow_dispatch` file is not dispatchable merely because `--ref` names a
+feature branch. After the feature/execution gate and a push, replace the placeholders with the
+actual branch and its full source commit:
+
+```text
+gh workflow run CI --ref YOUR_BRANCH -f android_emulator=false -f android_rehearsal=true -f android_rehearsal_source_sha=FULL_SOURCE_SHA
+```
+
+The two native flags are mutually exclusive and default off. Ordinary push/PR jobs and the
+existing debug-emulator mode remain separate. CI passes a literal Rehearsal mode to the shared
+producer, without a protected environment or upload credentials. Rehearsal retains only a
+sanitized JSON report, never a bundle, APK or signing key. Read back the actual workflow path,
+run/attempt, branch and source SHA before relying on its result.
+
+If a native Rehearsal invocation fails, the runner preserves the first nonzero instrumentation,
+`tee`, checker or receipt-stage exit and stops before the next phase. It can retain one separate
+`android-native-failure.json` capsule with `qualified: false`, never an accepted rehearsal report.
+Both manual Rehearsal workflows validate the capsule's exact owned path, source/run identity,
+closed schema and 256 KiB size limit after signing cleanup before uploading that one file.
+Candidate jobs do not retain this failure capsule.
+
+The capsule contains bounded instrumentation facts, actual owned target/phase agreement, guest
+liveness, UID-filtered crash markers, host emulator status and selected receipt booleans. Sanitized
+excerpts contain only recognized diagnostic markers; unknown text, paths, secrets, certificates,
+packages, memory and screenshots are excluded. Missing, truncated and failed captures are explicit.
+The capture helper permits one 2-second device probe, one 5-second liveness command, one 5-second
+UID-filtered log read and at most six 2-second reads of exact receipt filenames. Device loss stops
+further guest requests. The outer capture limit is 33 seconds, emulator shutdown is 2 seconds,
+and finalization is 3 seconds, each with a 1-second forced-kill grace. Including a failed 3-second
+checker or receipt operation and its 1-second grace, the hard-bound total is at most 45 seconds.
+The existing 420-second instrumentation timeout and test assertions
+are unchanged. A diagnostic capsule does not prove which failure caused another or clear release
+qualification gates.
+
+After default-branch registration, direct dispatch of `android-release-candidate.yml` supports
+Rehearsal or Candidate. Candidate is allowed only through that workflow directly on `main`,
+not through CI or another caller. It requires exact source and later ledger commits, an unsealed
+reserved code, an actually observed lower Play high-water and the parent's public issue-comment
+evidence reference. It does not allocate a code or choose a product version.
+
+These are approved configuration **names**, not evidence that the configuration exists:
+
+| Protected configuration | Purpose |
+|---|---|
+| Environment `android-release-candidate` | Exact main-only branch policy, required human reviewer, same-owner manual approval permitted and admin bypass disabled. |
+| Secret `ANDROID_UPLOAD_KEYSTORE_BASE64` | Owner-custodied upload keystore, not a runner-generated production key. |
+| Secret `ANDROID_UPLOAD_STORE_PASSWORD` | Explicit keystore password. |
+| Secret `ANDROID_UPLOAD_KEY_ALIAS` | Explicit private-key entry. |
+| Secret `ANDROID_UPLOAD_KEY_PASSWORD` | Explicit key password; no fallback to the store password. |
+| Variable `ANDROID_UPLOAD_CERT_SHA256` | Approved public upload-certificate fingerprint, independently checked against the actual signer. |
+
+Provisioning, custody/backup/recovery and Play enrollment remain owner-controlled work under
+[#576](https://github.com/raymond-nassar/recap-page/issues/576). A listed authorized human must manually
+approve the run, including their own dispatch; the agent must never approve it. Preflight rejects absent or
+weak protection before the protected job is scheduled. After approval, the producer rechecks
+environment identity/policy and actual approval history. Keep protection stable through signing:
+two API snapshots cannot make environment deletion and name-based job scheduling atomic.
+
+The producer builds clean pinned source with the approved later ledger, signs the AAB in a
+narrow temporary-key step, then deletes the upload material before native proof. It validates
+signed entries, manifest/resources/permissions, embedded source/build records and native-library
+inventory. Unexpected native libraries stop qualification for a separate ABI/16 KB assessment.
+It does not enable release shrinking or add runtime dependencies.
+
+APK splits come from those exact signed AAB bytes, with an explicitly disposable local signer
+and a matching release instrumentation APK. The existing six methods and restart pair run on
+that payload. Four selected startup invocations then seed distinct official/prototype state,
+replace the official app with the same split bytes, and probe both without reseeding. Installed
+APK hashes/certificates, actual instrumentation results and independent pre-replacement state
+digests must agree. This is synthetic API-36 payload, restart, same-byte reinstall and coexistence
+proof, not a Play-signer upgrade, real-user migration or physical-device acceptance.
+
+The publishing AAB must retain minimum SDK 26 and target SDK 36. For the pinned bundletool
+1.18.3 and API-36/x86_64 proof profile, the generated base APK must instead declare exactly
+minimum SDK 32 and target SDK 36. If that profile produces base-module configuration APKs,
+each must declare minimum SDK 32 with no explicit target SDK. Such configuration APKs must
+contain no code, components or permissions and cannot identify themselves as feature splits
+or target another module. Their presence in a particular result is established by its inventory,
+not assumed from this rule. That tool enables a sparse-resource variant and writes its variant
+minimum into all generated splits. Both base-manifest checks use the same fixed context,
+bound to the reviewed tool digest and device profile; none accepts an arbitrary higher minimum.
+The qualification report's existing scope text records the publishing and tested minima separately.
+This does not raise the app's published minimum or establish native behavior on API 26. Changing
+the tool or proof profile requires renewed qualification, not an SDK fallback.
+See the pinned [variant-minimum implementation](https://github.com/google/bundletool/blob/586a43a450712a1067f3d92cf7574dee68226302/src/main/java/com/android/tools/build/bundletool/splitters/ModuleSplitter.java),
+read on 2026-09-30.
+
+Publishing manifests still permit only the original activity. Derived-base inspection additionally
+requires exactly one `com.android.vending.splits` metadata entry, whose resource reference must
+resolve to `xml/splits0` and the packaged `res/xml/splits0.xml`. The current native source has no
+localized resource directories or collision with that generated filename, so its language-mapping
+set must be empty. Inspection checks the closed XML structure and the decoded split inventory;
+new localization or a source collision requires a reviewed profile update, not an ignored mismatch.
+Unknown or duplicate metadata, scalar metadata values, extra executable components and wrong or
+dangling resource bindings fail. Conditional tool metadata is not generally exempted. This follows
+the pinned [splits-resource generator](https://github.com/google/bundletool/blob/586a43a450712a1067f3d92cf7574dee68226302/src/main/java/com/android/tools/build/bundletool/model/utils/SplitsXmlInjector.java),
+read on 2026-09-30.
+
+Network-policy verification reads the same derived APK's compiled resource with pinned build-tools
+35.0.0 AAPT2. A strict network-only decoder preserves the supported element and attribute identities,
+actual boolean values, child order and character-data records in a DOM, then uses the existing
+canonical comparison against the source policy. Missing or changed domain text and flags still fail.
+Unknown attributes, elements, namespaces, malformed records and unsupported encodings fail closed.
+The older APK Analyzer text view is not authoritative for this resource because it can omit domain
+text. Backup and data-extraction XML retain their existing verification path. Reduced diagnostic
+summaries never replace canonical verification or supply missing expected hosts or flags.
+
+Only success after inspection, native proof and cleanup retains the AAB, `android-artifact.json`,
+`android-candidate.json` and `version-codes.proposed.json`, for seven days. Preserve the exact
+packet before expiry and review the proposed seal separately. Do not replace a newer ledger
+wholesale with that snapshot. Failed/abandoned candidate codes remain consumed; a retry or
+rebuild needs a new reservation. See [the exact-artifact contract](RELEASING.md).
+
+Before a later Play upload or track promotion, reverify the retained bytes, signer and current
+sealed ledger, and obtain the applicable rights, service-use, forms, device and Play approval
+evidence. The upload key is not Google's installed app signer; local proof does not bypass
+new-Personal-account closed-testing participation or duration requirements.
 
 ## Keep and transfer your progress
 
@@ -323,6 +458,15 @@ asserted through intercepted Android intents, not by signing into Marvel or rend
 Those deliberate test doubles retain the production navigation policy and native message port.
 The reader test forwards through the real popup client while substituting only its fixed
 synthetic Bifrost response.
+
+Tap proof keeps real touchscreen injection and trusted pointer/click, target/focus and
+no-context-menu checks. A temporary non-consuming public touch listener measures DOWN/UP
+delivery to the WebView with monotonic uptime, separately from preparation and injection-call
+time. The platform long-press threshold is unchanged; missing, cancelled, duplicate or non-touch
+delivery cannot count as a short gesture. The listener is removed on every exit. This measures
+delivered automated input, not physical-finger duration, and still needs native execution.
+See [the public listener contract](https://developer.android.com/reference/android/view/View.OnTouchListener),
+read on 2026-09-30.
 
 The reader scenario also registers test-only browser and domain-handler activities. On the
 isolated emulator it temporarily selects Chrome as the browser default and approves the synthetic
