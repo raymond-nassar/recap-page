@@ -299,6 +299,32 @@ test('Android reader identifier allowances are exact public or synthetic fixture
   }
 });
 
+test('native failure privacy fixtures have exactly two file-and-hit-specific allowances', () => {
+  const file = 'test/android-instrumentation.test.js';
+  const homePattern = 'a path inside one machine\'s home directory';
+  const secretPattern = 'a secret assigned in code';
+  const home = '/ho' + 'me/private/';
+  const secret = 'pass' + "word = 'PRIVATE_SECRET'";
+  const actual = new Map();
+  findings(file, git(['show', `:${file}`]), actual);
+  assert.equal(actual.size, 0, 'The indexed native fixtures must have no remaining findings');
+  const intended = [`${file}|${homePattern}|${home}`, `${file}|${secretPattern}|${secret}`];
+  assert.deepEqual([...ALLOWED.keys()].filter((key) => key.startsWith(`${file}|`)).sort(), [...intended].sort());
+  for (const [pattern, hit, changed] of [
+    [homePattern, home, '/ho' + 'me/another-fixture/'],
+    [secretPattern, secret, 'pass' + "word = 'DIFFERENT_SECRET'"],
+  ]) {
+    const accepted = new Map();
+    findings(file, hit, accepted);
+    assert.equal(accepted.size, 0);
+    for (const [label, value] of [[file, changed], ['some/other/file.js', hit]]) {
+      const rejected = new Map();
+      findings(label, value, rejected);
+      assert.deepEqual([...rejected.keys()], [pattern], 'Only the exact approved file/detector/hit may be allowed');
+    }
+  }
+});
+
 const STORE_PUBLISHER_FILES = [
   'docs/MICROSOFT_STORE.md',
   'docs/MICROSOFT_STORE_SUBMISSION.md',
