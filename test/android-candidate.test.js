@@ -333,7 +333,8 @@ test('actual asset bytes, source hashes, fixed origin and exact inventory are ch
   try {
     const root = join(scratch, 'source');
     const generated = join(scratch, 'generated');
-    const extracted = join(scratch, 'extracted');
+    const assets = join(scratch, 'assets');
+    const extracted = join(assets, 'recap');
     await mkdir(join(root, 'src'), { recursive: true });
     await mkdir(generated);
     await writeFile(join(root, 'src', 'sample.js'), 'fixture');
@@ -347,32 +348,57 @@ test('actual asset bytes, source hashes, fixed origin and exact inventory are ch
     await writeFile(join(generated, 'build-info.json'), JSON.stringify(identity()));
     await writeFile(join(generated, '.recap-android-assets'), 'owned fixture');
     await writeFile(join(generated, 'android-assets.json'), JSON.stringify({ build: identity(), files }));
-    await mkdir(extracted);
+    await mkdir(extracted, { recursive: true });
     for (const name of [...files.map((file) => file.path), 'android-assets.json']) {
       await cp(join(generated, name), join(extracted, name));
     }
     assert.equal((await checkAssets(extracted, generated, root, identity(), 'AAB')).files, 4);
+    assert.equal((await checkAssets(extracted, generated, root, identity(), 'base-APK')).files, 4);
+    const admission = [];
+    for (const stage of ['AAB', 'base-APK']) {
+      await writeFile(join(assets, 'unlisted-fixture.txt'), 'unlisted sibling asset');
+      let rejected = false;
+      try {
+        await checkAssets(extracted, generated, root, identity(), stage);
+      } catch (error) {
+        assert.match(error.message, new RegExp(`${stage}.*extra=1 \\[unlisted-fixture\\.txt\\]`));
+        rejected = true;
+      } finally {
+        await rm(join(assets, 'unlisted-fixture.txt'));
+      }
+      admission.push([stage, rejected]);
+    }
+    let configRejected = false;
+    try {
+      assertCodeFreeConfig([{ name: 'AndroidManifest.xml' }, { name: 'assets/unlisted-fixture.txt' }]);
+    } catch (error) {
+      assert.match(error.message, /configuration APK must not contain assets/);
+      configRejected = true;
+    }
+    admission.push(['configuration', configRejected]);
+    assert.deepEqual(admission, [['AAB', true], ['base-APK', true], ['configuration', true]],
+      'Every actual artifact helper must reject assets outside its complete generated inventory');
     await writeFile(join(extracted, 'sample.js'), 'changed');
     await assert.rejects(checkAssets(extracted, generated, root, identity(), 'AAB'), /differs/);
     await writeFile(join(extracted, 'sample.js'), 'fixture');
     await rm(join(extracted, 'sample.js'));
     await assert.rejects(checkAssets(extracted, generated, root, identity(), 'AAB'),
-      /AAB.*missing=1 \[sample\.js\].*extra=0/);
+      /AAB.*missing=1 \[recap\/sample\.js\].*extra=0/);
     await writeFile(join(extracted, 'sample.js'), 'fixture');
     await writeFile(join(extracted, 'extra.txt'), 'unlisted');
     await assert.rejects(checkAssets(extracted, generated, root, identity(), 'base-APK'),
-      /base-APK.*missing=0.*extra=1 \[extra\.txt\]/);
+      /base-APK.*missing=0.*extra=1 \[recap\/extra\.txt\]/);
     await rm(join(extracted, 'extra.txt'));
     await writeFile(join(extracted, '.recap-android-assets'), 'owned fixture');
     await assert.rejects(checkAssets(extracted, generated, root, identity(), 'AAB'),
-      /AAB.*extra=1 \[\.recap-android-assets\]/);
+      /AAB.*extra=1 \[recap\/\.recap-android-assets\]/);
     await rm(join(extracted, '.recap-android-assets'));
     const longName = `0-${'x'.repeat(159)}`;
     for (const name of [longName, '1 unsafe', 'a.txt', 'b.txt', 'c.txt', 'd.txt']) {
       await writeFile(join(extracted, name), 'unlisted');
     }
     await assert.rejects(checkAssets(extracted, generated, root, identity(), 'AAB'), (error) => {
-      assert.match(error.message, /extra=6 \[\[unreportable-name\], \[unreportable-name\], a\.txt, b\.txt, c\.txt\]/);
+      assert.match(error.message, /extra=6 \[\[unreportable-name\], \[unreportable-name\], recap\/a\.txt, recap\/b\.txt, recap\/c\.txt\]/);
       assert.ok(!error.message.includes(longName) && !error.message.includes('1 unsafe'));
       assert.ok(!error.message.includes('d.txt') && !error.message.includes(extracted));
       return true;

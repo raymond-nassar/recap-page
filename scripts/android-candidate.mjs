@@ -444,6 +444,9 @@ async function assertIntegration(root) {
 
 export async function checkAssets(extracted, generated, root, identity, stage) {
   requireValue(['AAB', 'base-APK'].includes(stage), 'unknown asset verification stage');
+  const assetRoot = resolve(extracted, '..');
+  requireValue(basename(extracted) === 'recap' && basename(assetRoot) === 'assets',
+    `${stage} asset verification requires the complete assets/recap boundary`);
   const manifest = await json(join(generated, 'android-assets.json'));
   requireValue(JSON.stringify(manifest.build) === JSON.stringify(identity), `${stage} generated asset build identity mismatch`);
   const expected = new Set(['android-assets.json']);
@@ -465,10 +468,11 @@ export async function checkAssets(extracted, generated, root, identity, stage) {
     }
     return output.sort();
   }
-  const actualPaths = await list(extracted);
+  const completeExpected = new Set([...expected].map((name) => `recap/${name}`));
+  const actualPaths = await list(assetRoot);
   const actualSet = new Set(actualPaths);
-  const missing = [...expected].filter((name) => !actualSet.has(name)).sort();
-  const extra = actualPaths.filter((name) => !expected.has(name));
+  const missing = [...completeExpected].filter((name) => !actualSet.has(name)).sort();
+  const extra = actualPaths.filter((name) => !completeExpected.has(name));
   const describe = (names) => names.slice(0, 5).map((name) => name.length <= 160
     && /^[A-Za-z0-9_.+/-]+$/.test(name) && !name.startsWith('/')
     && name.split('/').every((part) => part && part !== '.' && part !== '..')
@@ -679,6 +683,8 @@ export function noNative(files) {
 export function assertCodeFreeConfig(files) {
   requireValue(files.every((file) => !/^classes(?:[0-9]+)?\.dex$/.test(file.name)),
     'configuration APK must not contain DEX code');
+  requireValue(files.every((file) => file.name !== 'assets' && !file.name.startsWith('assets/')),
+    'configuration APK must not contain assets');
 }
 const dexRow = (line) => line.match(/^([PCMF]) ([dkrx]) ([0-9]+)\t([0-9]+)\t([0-9]+)\t(.+)$/);
 const dexQualified = (name) => /^[A-Za-z_$][\w$]*(?:\.[A-Za-z_$][\w$]*)*$/.test(name);
