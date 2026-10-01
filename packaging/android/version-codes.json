@@ -7,7 +7,11 @@
       "productVersion": "3.1.0",
       "sourceRevision": "ce06404cc77f68e3b2c8f2f0c6f92d13abf61261",
       "sourceTree": "5d2029a27bb99d0cada02a3a4c3ddbdf7e3cdcb9",
-      "artifact": null
+      "artifact": {
+        "name": "recap-page-android.aab",
+        "bytes": 3337903,
+        "sha256": "17d88c333e545d48a81709875fc4943cd20a1aa68cb40a55f72515b25add307f"
+      }
     }
   ]
 }
