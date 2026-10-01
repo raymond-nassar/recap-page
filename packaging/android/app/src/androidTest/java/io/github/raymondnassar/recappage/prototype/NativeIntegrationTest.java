@@ -962,7 +962,43 @@ public final class NativeIntegrationTest {
         return evaluate(target, "window.__nativeAsync.value");
     }
 
+    private static final class DeliveredTap {
+        private long down = -1;
+        private long up = -1;
+        private int downs;
+        private int ups;
+        private boolean cancelled;
+        private boolean nonTouchscreen;
+
+        synchronized void down(long time, boolean touchscreen) {
+            if (++downs == 1) down = time;
+            nonTouchscreen |= !touchscreen;
+        }
+
+        synchronized void up(long time, boolean touchscreen) {
+            if (++ups == 1) up = time;
+            nonTouchscreen |= !touchscreen;
+        }
+
+        synchronized void cancel() {
+            cancelled = true;
+        }
+
+        synchronized boolean complete() {
+            return downs == 1 && ups == 1 && down >= 0 && up >= down && !cancelled && !nonTouchscreen;
+        }
+
+        synchronized boolean shorterThan(long threshold) {
+            return complete() && up - down < threshold;
+        }
+
+        synchronized long[] snapshot() {
+            return new long[] { down, up, downs, ups, cancelled ? 1 : 0, nonTouchscreen ? 1 : 0, complete() ? 1 : 0 };
+        }
+    }
+
     private void tap(WebView target, String selector) throws Exception {
+        long preparationStarted = SystemClock.uptimeMillis();
         waitFor("Touchable DOM control " + selector, WAIT_MS, () -> truth(target,
                 "(() => {const e=document.querySelector(" + quote(selector) + ");"
                         + "return !!e && !e.disabled && e.getBoundingClientRect().width>0;})()"));
@@ -982,8 +1018,11 @@ public final class NativeIntegrationTest {
                 + "document.querySelector(" + quote(selector)
                 + ").scrollIntoView({block:'center',inline:'nearest',behavior:'instant'});return true;})()");
         lastTapTarget = target;
-        lastTapRecord = new JSONObject().put("selector", selector);
+        lastTapRecord = new JSONObject().put("selector", selector).put("preparationStarted", preparationStarted);
         tapDiagnostics.put(lastTapRecord);
+        DeliveredTap delivered = new DeliveredTap();
+        boolean observing = false;
+        Throwable failure = null;
         try {
             AtomicReference<JSONObject> previous = new AtomicReference<>();
             int[] stable = { 0 };
@@ -1005,40 +1044,81 @@ public final class NativeIntegrationTest {
             double ratio = box.getDouble("nativeWidth") / box.getDouble("viewport");
             float x = (float) (box.getDouble("nativeX") + box.getDouble("x") * ratio);
             float y = (float) (box.getDouble("nativeY") + box.getDouble("y") * ratio);
+            onMain(() -> {
+                // Injection can wait before DOWN dispatch; observe delivery without consuming input.
+                target.setOnTouchListener((view, event) -> {
+                    long received = SystemClock.uptimeMillis();
+                    boolean touchscreen = event.isFromSource(InputDevice.SOURCE_TOUCHSCREEN);
+                    switch (event.getActionMasked()) {
+                        case MotionEvent.ACTION_DOWN -> delivered.down(received, touchscreen);
+                        case MotionEvent.ACTION_UP -> delivered.up(received, touchscreen);
+                        case MotionEvent.ACTION_CANCEL, MotionEvent.ACTION_POINTER_DOWN, MotionEvent.ACTION_POINTER_UP -> delivered.cancel();
+                        default -> { }
+                    }
+                    return false;
+                });
+                return null;
+            });
+            observing = true;
+            android.app.UiAutomation automation = instrumentation.getUiAutomation();
             long downTime = SystemClock.uptimeMillis();
+            lastTapRecord.put("preparationMs", downTime - preparationStarted);
             long upTime;
             MotionEvent down = MotionEvent.obtain(downTime, downTime, MotionEvent.ACTION_DOWN, x, y, 0);
             down.setSource(InputDevice.SOURCE_TOUCHSCREEN);
             try {
-                // Waiting for DOWN acknowledgement held the pointer for 289ms on the emulator.
-                assertTrue("Touchscreen DOWN is accepted", instrumentation.getUiAutomation().injectInputEvent(down, false));
+                assertTrue("Touchscreen DOWN is accepted", automation.injectInputEvent(down, false));
             } finally {
                 upTime = SystemClock.uptimeMillis();
                 MotionEvent up = MotionEvent.obtain(downTime, upTime, MotionEvent.ACTION_UP, x, y, 0);
                 up.setSource(InputDevice.SOURCE_TOUCHSCREEN);
                 try {
-                    assertTrue("Touchscreen UP is accepted", instrumentation.getUiAutomation().injectInputEvent(up, false));
+                    assertTrue("Touchscreen UP is accepted", automation.injectInputEvent(up, false));
                 } finally {
                     down.recycle();
                     up.recycle();
                     lastTapRecord.put("downTime", downTime).put("upTime", upTime)
-                            .put("heldMs", upTime - downTime).put("screenX", x).put("screenY", y);
+                            .put("createdEventIntervalMs", upTime - downTime)
+                            .put("injectionCallSpanMs", SystemClock.uptimeMillis() - downTime)
+                            .put("screenX", x).put("screenY", y);
                 }
             }
-            long maxHold = ViewConfiguration.getLongPressTimeout() - 1;
-            lastTapRecord.put("longPressThresholdMs", maxHold + 1);
-            assertTrue("Real touchscreen tap must stay shorter than a long press: " + lastTapRecord,
-                    upTime - downTime <= maxHold);
-            waitFor("Trusted click reaches " + selector, WAIT_MS, () -> truth(target,
-                    "window.__nativeTap.events.some(e=>e.type==='click' && e.trusted && e.onTarget)"));
+            long longPressThreshold = ViewConfiguration.getLongPressTimeout();
+            lastTapRecord.put("longPressThresholdMs", longPressThreshold);
+            waitFor("Trusted click reaches " + selector, WAIT_MS, () -> {
+                recordDeliveredTap(delivered);
+                if (!delivered.complete()) return false;
+                assertTrue("Delivered touchscreen interval must stay shorter than a long press: " + lastTapRecord,
+                        delivered.shorterThan(longPressThreshold));
+                return truth(target, "window.__nativeTap.events.some(e=>e.type==='click' && e.trusted && e.onTarget)");
+            });
             assertTrue("Real pointer DOWN and UP reach " + selector, truth(target,
                     "['pointerdown','pointerup'].every(type=>window.__nativeTap.events.some("
                             + "e=>e.type===type && e.trusted && e.onTarget))"));
             assertFalse("A short tap must not open text selection", truth(target,
                     "window.__nativeTap.events.some(e=>e.type==='contextmenu')"));
+        } catch (Exception | Error error) {
+            failure = error;
+            throw error;
         } finally {
-            captureTapDiagnostics();
+            try {
+                if (observing) onMain(() -> { target.setOnTouchListener(null); return null; });
+                recordDeliveredTap(delivered);
+                captureTapDiagnostics();
+            } catch (Exception | Error cleanupError) {
+                if (failure != null) failure.addSuppressed(cleanupError);
+                else throw cleanupError;
+            }
         }
+    }
+
+    private void recordDeliveredTap(DeliveredTap delivered) throws Exception {
+        long[] sample = delivered.snapshot();
+        lastTapRecord.put("deliveredDownTime", sample[0] < 0 ? JSONObject.NULL : sample[0])
+                .put("deliveredUpTime", sample[1] < 0 ? JSONObject.NULL : sample[1])
+                .put("deliveredDownCount", sample[2]).put("deliveredUpCount", sample[3])
+                .put("deliveredCancelled", sample[4] == 1).put("deliveredNonTouchscreen", sample[5] == 1)
+                .put("deliveredHeldMs", sample[6] == 1 ? sample[1] - sample[0] : JSONObject.NULL);
     }
 
     private JSONObject tapGeometry(WebView target, String selector) throws Exception {

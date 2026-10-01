@@ -15,10 +15,10 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ### Prepare verified Android App Bundle candidates
 
-Adds a manual build-and-validation path with protected upload-key signing and native checks
-using APKs generated from the same bundle. Secret-free rehearsal is separate from production
-credentials and publication. Signing custody, exact version reservations and later Play approval
-remain required; no saved reading data or backup format changes.
+Adds a manual build-and-validation path with protected upload-key signing and same-bundle native
+checks. The required human reviewer may approve their own dispatch; approval is never automatic.
+Secret-free rehearsal stays separate. Signing custody, exact version reservations and later Play
+approval remain required; no saved reading data or backup format changes.
 
 ## 3.1.0
 

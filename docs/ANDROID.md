@@ -255,7 +255,7 @@ These are approved configuration **names**, not evidence that the configuration 
 
 | Protected configuration | Purpose |
 |---|---|
-| Environment `android-release-candidate` | Exact main-only branch policy, required human reviewer, self-review disabled and admin bypass disabled. |
+| Environment `android-release-candidate` | Exact main-only branch policy, required human reviewer, same-owner manual approval permitted and admin bypass disabled. |
 | Secret `ANDROID_UPLOAD_KEYSTORE_BASE64` | Owner-custodied upload keystore, not a runner-generated production key. |
 | Secret `ANDROID_UPLOAD_STORE_PASSWORD` | Explicit keystore password. |
 | Secret `ANDROID_UPLOAD_KEY_ALIAS` | Explicit private-key entry. |
@@ -263,8 +263,8 @@ These are approved configuration **names**, not evidence that the configuration 
 | Variable `ANDROID_UPLOAD_CERT_SHA256` | Approved public upload-certificate fingerprint, independently checked against the actual signer. |
 
 Provisioning, custody/backup/recovery and Play enrollment remain owner-controlled work under
-[#576](https://github.com/raymond-nassar/recap-page/issues/576). A human reviewer distinct from the
-dispatch initiator must approve the run. Environment-free preflight rejects already absent or
+[#576](https://github.com/raymond-nassar/recap-page/issues/576). A listed authorized human must manually
+approve the run, including their own dispatch; the agent must never approve it. Preflight rejects absent or
 weak protection before the protected job is scheduled. After approval, the producer rechecks
 environment identity/policy and actual approval history. Keep protection stable through signing:
 two API snapshots cannot make environment deletion and name-based job scheduling atomic.
@@ -458,6 +458,15 @@ asserted through intercepted Android intents, not by signing into Marvel or rend
 Those deliberate test doubles retain the production navigation policy and native message port.
 The reader test forwards through the real popup client while substituting only its fixed
 synthetic Bifrost response.
+
+Tap proof keeps real touchscreen injection and trusted pointer/click, target/focus and
+no-context-menu checks. A temporary non-consuming public touch listener measures DOWN/UP
+delivery to the WebView with monotonic uptime, separately from preparation and injection-call
+time. The platform long-press threshold is unchanged; missing, cancelled, duplicate or non-touch
+delivery cannot count as a short gesture. The listener is removed on every exit. This measures
+delivered automated input, not physical-finger duration, and still needs native execution.
+See [the public listener contract](https://developer.android.com/reference/android/view/View.OnTouchListener),
+read on 2026-09-30.
 
 The reader scenario also registers test-only browser and domain-handler activities. On the
 isolated emulator it temporarily selects Chrome as the browser default and approves the synthetic

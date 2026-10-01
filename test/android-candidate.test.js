@@ -38,7 +38,7 @@ function environment() {
   return {
     name: ENVIRONMENT, id: 12, can_admins_bypass: false,
     deployment_branch_policy: { custom_branch_policies: true, protected_branches: false },
-    protection_rules: [{ type: 'required_reviewers', prevent_self_review: true,
+    protection_rules: [{ type: 'required_reviewers', prevent_self_review: false,
       reviewers: [{ type: 'User', reviewer: { id: 7, type: 'User' } }] }],
   };
 }
@@ -77,10 +77,12 @@ test('manual caller identity makes CI rehearsal-only even when Candidate inputs 
 test('protection requires actual no-bypass human review and exact main-only deployment policy', () => {
   const policy = protectionPolicy(environment(), branches());
   assert.equal(policy.environmentId, 12);
+  assert.equal(policy.preventSelfReview, false);
   for (const modify of [
     (env) => { delete env.can_admins_bypass; },
     (env) => { env.can_admins_bypass = true; },
-    (env) => { env.protection_rules[0].prevent_self_review = false; },
+    (env) => { env.protection_rules[0].prevent_self_review = true; },
+    (env) => { delete env.protection_rules[0].prevent_self_review; },
     (env) => { env.protection_rules[0].reviewers[0].type = 'Team'; },
     (env) => { env.protection_rules = []; },
     (env) => { env.deployment_branch_policy = null; },
@@ -100,13 +102,21 @@ test('policy restoration without the actual current-run environment approval is 
   const policy = protectionPolicy(environment(), branches());
   const { context } = invocation();
   assert.equal(requireApproval(approve(), policy, context).approved, true);
+  assert.equal(requireApproval(approve(), policy,
+    { ...context, actor: 'reviewer', triggeringActor: 'reviewer' }).approved, true,
+  'The listed human owner may manually approve their own dispatched run');
+  assert.equal(requireApproval([{ ...approve()[0], user: { id: 7, type: 'User', login: 'initiator' } }], policy, context).approved, true);
   for (const history of [[], null, [{ ...approve()[0], state: 'rejected' }],
+    [{ ...approve()[0], state: 'waiting' }],
     [{ ...approve()[0], environments: [{ id: 13 }] }],
-    [{ ...approve()[0], user: { id: 7, type: 'User', login: 'initiator' } }],
+    [{ ...approve()[0], user: { id: 7, type: 'Bot', login: 'reviewer' } }],
+    [{ ...approve()[0], user: null }],
     [{ ...approve()[0], user: { id: 8, type: 'User', login: 'reviewer' } }],
     [...approve(), ...approve()]]) {
     assert.throws(() => requireApproval(history, policy, context));
   }
+  assert.throws(() => requireApproval([{ ...approve()[0], user: { id: 8, type: 'User', login: 'initiator' } }], policy, context),
+    /listed authorized human/, 'Matching the actor does not authorize an unlisted reviewer');
   assert.throws(() => requireApproval(approve(), policy, { ...context, attempt: 2 }));
 });
 

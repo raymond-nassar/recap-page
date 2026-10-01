@@ -231,13 +231,13 @@ export function protectionPolicy(environment, branches) {
   const rules = environment.protection_rules;
   requireValue(Array.isArray(rules), 'environment protection rules unavailable');
   const review = rules.filter((rule) => rule.type === 'required_reviewers');
-  requireValue(review.length === 1 && review[0].prevent_self_review === true
-    && Array.isArray(review[0].reviewers), 'human review with self-review disabled is required');
+  requireValue(review.length === 1 && review[0].prevent_self_review === false
+    && Array.isArray(review[0].reviewers), 'required human review must permit the authorized owner to approve their own run');
   const reviewers = review[0].reviewers.filter((entry) => entry.type === 'User'
     && Number.isSafeInteger(entry.reviewer?.id) && entry.reviewer.type === 'User')
     .map((entry) => entry.reviewer.id).sort((a, b) => a - b);
   requireValue(reviewers.length > 0, 'a directly verifiable authorized human reviewer is required');
-  const policy = { environmentId: environment.id, reviewers, preventSelfReview: true,
+  const policy = { environmentId: environment.id, reviewers, preventSelfReview: false,
     adminBypass: false, branch: 'main', rules };
   return { ...policy, sha256: digest(JSON.stringify(policy)) };
 }
@@ -247,9 +247,8 @@ export function requireApproval(approvals, policy, context) {
   const relevant = approvals.filter((entry) => entry.environments?.some((env) => env.id === policy.environmentId));
   requireValue(relevant.length === 1 && relevant[0].state === 'approved', 'one unambiguous approved environment review required');
   const user = relevant[0].user;
-  requireValue(user?.type === 'User' && policy.reviewers.includes(user.id)
-    && user.login !== context.actor && user.login !== context.triggeringActor,
-  'approval must be an authorized human distinct from the dispatch initiator');
+  requireValue(user?.type === 'User' && policy.reviewers.includes(user.id),
+    'approval must be a listed authorized human');
   return { runId: context.runId, environmentId: policy.environmentId, policySha256: policy.sha256, approved: true };
 }
 
