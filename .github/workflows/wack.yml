@@ -14,14 +14,14 @@ on:
         required: false
         default: false
       diagnostic_only:
-        description: Acquire the bounded x64 console and WACK diagnostic facts
+        description: Acquire bounded nonqualifying diagnostic facts
         type: boolean
         required: false
         default: false
       diagnostic_target:
         description: Bounded diagnostic target when diagnostic_only is enabled
         type: choice
-        options: [console-wack, handles, f01-smoke]
+        options: [console-wack, handles, f01-smoke, ordinary-browser, ordinary-browser-context-isolation, ordinary-browser-download-completion, ordinary-browser-export-acceptance]
         required: false
         default: console-wack
   pull_request:
@@ -67,6 +67,7 @@ concurrency:
 jobs:
   native:
     name: Build and prove the native startup boundary
+    if: ${{ !(github.event_name == 'workflow_dispatch' && (inputs.diagnostic_target == 'ordinary-browser' || inputs.diagnostic_target == 'ordinary-browser-context-isolation' || inputs.diagnostic_target == 'ordinary-browser-download-completion' || inputs.diagnostic_target == 'ordinary-browser-export-acceptance') && inputs.diagnostic_only == true && inputs.native_only == false && inputs.release_preparation == false) }}
     runs-on: windows-2022
     timeout-minutes: 181
     outputs:
@@ -82,6 +83,9 @@ jobs:
           DIAGNOSTIC_TARGET: ${{ inputs.diagnostic_target }}
           RELEASE_PREPARATION: ${{ inputs.release_preparation }}
         run: |
+          if ($env:GITHUB_EVENT_NAME -eq 'workflow_dispatch' -and $env:DIAGNOSTIC_TARGET -in @('ordinary-browser', 'ordinary-browser-context-isolation', 'ordinary-browser-download-completion', 'ordinary-browser-export-acceptance')) {
+            throw 'Browser diagnostics require the dedicated diagnostic-only route.'
+          }
           if ($env:RELEASE_PREPARATION -eq 'true' -and
               ($env:NATIVE_ONLY -eq 'true' -or $env:DIAGNOSTIC_ONLY -eq 'true')) {
             throw 'release_preparation requires the complete Windows proof.'
@@ -718,7 +722,7 @@ jobs:
 
   preparation:
     name: Prepare the portable release candidate
-    if: ${{ github.event_name == 'workflow_dispatch' && inputs.release_preparation == true && inputs.native_only != true && inputs.diagnostic_only != true }}
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.release_preparation == true && inputs.native_only != true && inputs.diagnostic_only != true && inputs.diagnostic_target != 'ordinary-browser' && inputs.diagnostic_target != 'ordinary-browser-context-isolation' && inputs.diagnostic_target != 'ordinary-browser-download-completion' && inputs.diagnostic_target != 'ordinary-browser-export-acceptance' }}
     runs-on: windows-2022
     timeout-minutes: 120
     steps:
@@ -956,3 +960,103 @@ jobs:
           if ($failures.Count -ne 0) {
             throw [AggregateException]::new('Portable preparation cleanup failed.', [Exception[]]$failures)
           }
+
+  browser-diagnostic:
+    name: Ordinary browser diagnostic (not release qualification)
+    if: ${{ github.event_name == 'workflow_dispatch' && (inputs.diagnostic_target == 'ordinary-browser' || inputs.diagnostic_target == 'ordinary-browser-context-isolation' || inputs.diagnostic_target == 'ordinary-browser-download-completion' || inputs.diagnostic_target == 'ordinary-browser-export-acceptance') }}
+    runs-on: windows-2022
+    timeout-minutes: 60
+    steps:
+      - name: Reject invalid browser diagnostic modes before setup
+        timeout-minutes: 2
+        shell: pwsh
+        env:
+          DIAGNOSTIC_ONLY: ${{ inputs.diagnostic_only }}
+          NATIVE_ONLY: ${{ inputs.native_only }}
+          RELEASE_PREPARATION: ${{ inputs.release_preparation }}
+        run: |
+          if ($env:DIAGNOSTIC_ONLY -ne 'true' -or $env:NATIVE_ONLY -ne 'false' -or $env:RELEASE_PREPARATION -ne 'false') {
+            throw 'Browser diagnostics require diagnostic_only=true, native_only=false, release_preparation=false.'
+          }
+      - name: Check out the exact diagnostic source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        timeout-minutes: 2
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Set up the diagnostic driver
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        timeout-minutes: 4
+        with:
+          node-version: '24'
+      - name: Install the isolated locked browser driver
+        id: browser-driver
+        timeout-minutes: 4
+        shell: pwsh
+        run: |
+          $root = Join-Path $env:RUNNER_TEMP 'recap-browser-diagnostic-driver'
+          Copy-Item -LiteralPath ./.github/browser-proof -Destination $root -Recurse -ErrorAction Stop
+          npm ci --prefix $root --ignore-scripts
+          if ($LASTEXITCODE -ne 0) { throw 'The diagnostic browser driver could not be installed.' }
+          $entry = Join-Path $root 'node_modules\puppeteer-core\lib\puppeteer\puppeteer-core.js'
+          if (-not (Test-Path -LiteralPath $entry -PathType Leaf)) { throw 'The diagnostic browser driver is missing.' }
+          "MRT_PUPPETEER=$root" >> $env:GITHUB_ENV
+      - name: Record nonqualifying source and driver identity
+        timeout-minutes: 2
+        shell: pwsh
+        env:
+          DIAGNOSTIC_TARGET: ${{ inputs.diagnostic_target }}
+        run: |
+          @'
+          import { execFileSync } from 'node:child_process';
+          import { createHash } from 'node:crypto';
+          import { readFileSync } from 'node:fs';
+          import { join } from 'node:path';
+          try {
+            const source = execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim();
+            const workflow = process.env.GITHUB_WORKFLOW_SHA;
+            const run = process.env.GITHUB_RUN_ID;
+            const attempt = process.env.GITHUB_RUN_ATTEMPT;
+            const driver = JSON.parse(readFileSync(join(process.env.MRT_PUPPETEER, 'node_modules', 'puppeteer-core', 'package.json'), 'utf8')).version;
+            const expectedDriver = JSON.parse(readFileSync('.github/browser-proof/package.json', 'utf8')).dependencies['puppeteer-core'];
+            if (!/^[0-9a-f]{40}$/.test(source) || source !== process.env.GITHUB_SHA || source !== workflow
+              || !/^[1-9]\d*$/.test(run) || !/^[1-9]\d*$/.test(attempt)
+              || !/^\d+\.\d+\.\d+$/.test(driver) || driver !== expectedDriver) throw new Error();
+            const driverLockSha256 = createHash('sha256').update(readFileSync('.github/browser-proof/package-lock.json')).digest('hex');
+            const diagnostic = process.env.DIAGNOSTIC_TARGET;
+            if (!['ordinary-browser', 'ordinary-browser-context-isolation', 'ordinary-browser-download-completion', 'ordinary-browser-export-acceptance'].includes(diagnostic)) throw new Error();
+            console.log(JSON.stringify({ diagnostic, qualified: false, source, workflow, run, attempt, driver, driverLockSha256 }));
+          } catch {
+            console.error('FAIL diagnostic=ordinary-browser code=identity');
+            process.exitCode = 1;
+          }
+          '@ | node --input-type=module
+          if ($LASTEXITCODE -ne 0) { throw 'Diagnostic identity could not be established.' }
+      - name: Run the ordinary browser suite without qualification
+        timeout-minutes: 40
+        shell: pwsh
+        env:
+          DIAGNOSTIC_TARGET: ${{ inputs.diagnostic_target }}
+        run: |
+          if ($env:DIAGNOSTIC_TARGET -eq 'ordinary-browser-context-isolation') {
+            npm run browser -- --diagnostic=context-export-isolation
+          } elseif ($env:DIAGNOSTIC_TARGET -eq 'ordinary-browser-download-completion') {
+            npm run browser -- --diagnostic=native-export-completion
+          } elseif ($env:DIAGNOSTIC_TARGET -eq 'ordinary-browser-export-acceptance') {
+            npm run browser -- --only=readable-markdown-export
+            if ($LASTEXITCODE -ne 0) { throw 'Readable Markdown export acceptance failed.' }
+            npm run browser -- --only=order-only-export
+          } else {
+            npm run browser
+          }
+          if ($LASTEXITCODE -ne 0) { throw 'The nonqualifying browser diagnostic failed.' }
+      - name: Remove the isolated diagnostic driver
+        if: ${{ always() && steps.browser-driver.outcome != 'skipped' }}
+        timeout-minutes: 2
+        shell: pwsh
+        run: |
+          $root = Join-Path $env:RUNNER_TEMP 'recap-browser-diagnostic-driver'
+          if (Test-Path -LiteralPath $root) {
+            Remove-Item -LiteralPath $root -Recurse -Force -ErrorAction Stop
+          }
+          if (Test-Path -LiteralPath $root) { throw 'The diagnostic driver remains.' }
