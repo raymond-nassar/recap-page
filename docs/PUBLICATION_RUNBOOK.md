@@ -39,7 +39,7 @@ Two things have to be settled here. Neither is a setting, and both are one-way.
 
 The first is BL-099. Its fifth acceptance item asks for legal review before the committed data tree
 can be described as MIT-licensed, and it is deliberately unticked. The provenance record names that
-review as the reason for the current state at `docs/DATA_PROVENANCE.md:11-13`, and sets out the four
+review as the reason for the current state at `docs/DATA_PROVENANCE.md:8-9`, and sets out the four
 questions such a review would have to answer. On 2026-08-15 the owner recorded being satisfied with
 BL-099 and chose to move ahead without commissioning it. That is an accepted risk rather than an
 answered question, it is written into the provenance document in those terms, and the acceptance
@@ -110,7 +110,7 @@ Do them in this order. The first pair has a real dependency and the third does n
 
 1. **Secret scanning, and then push protection**, closing BL-089. Push protection depends on secret
    scanning, and asking for push protection on its own is accepted and quietly does nothing, which
-   is the trap recorded at `SECURITY.md:143-149`. Turn on scanning first, confirm its alerts
+   is the trap recorded at `SECURITY.md:114-116`. Turn on scanning first, confirm its alerts
    endpoint stops answering 404, and only then turn on protection.
 2. **Private vulnerability reporting**, closing BL-096. This is the one with a user-visible
    consequence: until it is on, the security policy sends a reporter to a public issue.
@@ -131,12 +131,12 @@ BL-133, so the passages named below no longer say what this table says they said
 
 | Where | What it asserted before publication | Why publication broke it |
 |---|---|---|
-| `SECURITY.md:39-44` | Private reporting cannot be turned on here, so a reporter should open a public issue asking for a channel and put no detail in it | The fallback stops being the live route once BL-096 is on. The paragraph still needs its other half, for a reporter who does not find the option because it was never enabled |
-| `SECURITY.md:143-149` | Secret scanning is not on and cannot be, with the exact refusal GitHub gives | Both halves of that become wrong once BL-089 is done, including the note that push protection accepts a request and changes nothing |
-| `CONTRIBUTING.md:7-11` | Nobody outside can see the code, open an issue or send a change, so the guide describes contributing rather than reporting it | The whole paragraph is about a condition that has ended. It also points at the security policy's private route as a parallel case, so the two want editing together |
-| `CODE_OF_CONDUCT.md:40-43` | There is no private channel to the maintainer, and GitHub's private reporting features are unavailable | This one asks for its own revision in its last sentence. Whether a private channel now exists is a decision, not an automatic consequence |
+| `SECURITY.md:34-36` | Private reporting cannot be turned on here, so a reporter should open a public issue asking for a channel and put no detail in it | The fallback stops being the live route once BL-096 is on. The paragraph still needs its other half, for a reporter who does not find the option because it was never enabled |
+| `SECURITY.md:114-116` | Secret scanning is not on and cannot be, with the exact refusal GitHub gives | Both halves of that become wrong once BL-089 is done, including the note that push protection accepts a request and changes nothing |
+| `CONTRIBUTING.md:4` | Nobody outside can see the code, open an issue or send a change, so the guide describes contributing rather than reporting it | The whole paragraph is about a condition that has ended. It also points at the security policy's private route as a parallel case, so the two want editing together |
+| `CODE_OF_CONDUCT.md:43-45` | There is no private channel to the maintainer, and GitHub's private reporting features are unavailable | This one asks for its own revision in its last sentence. Whether a private channel now exists is a decision, not an automatic consequence |
 | `.github/ISSUE_TEMPLATE/config.yml:1-7` | Blank issues must stay on because the security policy's fallback is the live route rather than a spare one | The reason weakens, but read the rest of that comment before acting on it. Turning blank issues off would still leave a reporter with three forms that all ask for detail and no way to ask for a channel |
-| `docs/DATA_PROVENANCE.md:11-13` | The open legal question is the reason this repository has not been published | Only edit this once the first section of this document is genuinely closed, and record what the answer was |
+| `docs/DATA_PROVENANCE.md:8-9` | The open legal question is the reason this repository has not been published | Only edit this once the first section of this document is genuinely closed, and record what the answer was |
 | `scripts/check-publication.mjs:2-5` | The gate's own opening comment states the repository is private | The gate keeps working and keeps being worth running. The comment describes a condition that has changed |
 | `test/publication-gate.test.js:21-25` | The gate answers a question asked once, on the day someone publishes | Written for the day before. Worth a sentence saying the day happened, because the tests still defend the boundary afterwards |
 | `.github/CODEOWNERS:5-8` | Code owner approval cannot be required, quoting GitHub's 403 and its "make this repository public" remedy | The obstacle is gone once step 3 below is done. The sentence before it, that the file routes nothing because there is one collaborator, is about headcount and stays true |
@@ -156,8 +156,8 @@ that must not be rewritten, for the same reason the dated tracking artifacts are
 - `PRODUCT_BACKLOG.md:7071-7076`, why blank issues stay enabled.
 - `PRODUCT_BACKLOG.md:7114-7118`, why `required: true` collects nothing today.
 - `PRODUCT_BACKLOG.md:9219-9224`, the three settings named as refused on this repository today.
-- `CHANGELOG.md:4512-4523`, the released note that secret scanning cannot be turned on.
-- `CHANGELOG.md:4525-4535`, the released note that the private channel is not switched on.
+- `CHANGELOG.md:4527-4538`, the released note that secret scanning cannot be turned on.
+- `CHANGELOG.md:4540-4550`, the released note that the private channel is not switched on.
 
 The twelfth was live and did have to change: the introduction at `PRODUCT_BACKLOG.md:30-42` listed
 BL-089, BL-096 and BL-098 among the items whose acceptance could not be met, and once they were met
@@ -201,7 +201,7 @@ different ones drifted two anchors, the passage's own and a wider range containi
 them with eight drifted three, the third being that distant citation, which no edit had gone near.
 
 One assertion in the suite defends this prose, and knowing which one is worth more than a surprise
-red run. `test/intake-config.test.js:109-115` requires the security policy to contain the sentence
+red run. `test/intake-config.test.js:109-116` requires the security policy to contain the sentence
 telling a reporter to open an issue saying only that they have a security report, and requires blank
 issues to stay enabled, because the first is the stated reason for the second. That sentence sits
 inside the first passage in the table above. So rewriting that paragraph either keeps the sentence

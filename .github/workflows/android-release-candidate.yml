@@ -1,0 +1,219 @@
+name: Android release candidate
+run-name: Android ${{ inputs.mode }} code ${{ inputs.version_code || 'development' }} source ${{ inputs.source_sha }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Secret-free rehearsal or explicitly approved signed candidate
+        type: choice
+        options: [Rehearsal, Candidate]
+        default: Rehearsal
+      source_sha:
+        description: Exact application commit; rehearsal must equal the dispatched ref
+        type: string
+        required: true
+      ledger_sha:
+        description: Later approved ledger commit, Candidate only
+        type: string
+      version_code:
+        description: Unsealed reserved Android code, Candidate only
+        type: string
+      play_high_water:
+        description: Actually observed Play code high-water, Candidate only
+        type: string
+      play_evidence:
+        description: Parent issue-comment evidence for the observation, Candidate only
+        type: string
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: android-aab-${{ inputs.mode == 'Candidate' && 'candidate' || github.run_id }}
+  cancel-in-progress: false
+
+env:
+  RECAP_ANDROID_MODE: ${{ inputs.mode }}
+  RECAP_ANDROID_SOURCE_SHA: ${{ inputs.source_sha }}
+  RECAP_ANDROID_LEDGER_SHA: ${{ inputs.ledger_sha }}
+  RECAP_ANDROID_CODE: ${{ inputs.version_code }}
+  RECAP_ANDROID_PLAY_HIGH_WATER: ${{ inputs.play_high_water }}
+  RECAP_ANDROID_PLAY_EVIDENCE: ${{ inputs.play_evidence }}
+
+jobs:
+  preflight:
+    name: Validate source and existing protection without an environment
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    outputs:
+      environment: ${{ steps.check.outputs.environment }}
+      environment_id: ${{ steps.check.outputs.environment_id }}
+      policy_sha: ${{ steps.check.outputs.policy_sha }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        timeout-minutes: 2
+        with:
+          ref: ${{ github.workflow_sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        timeout-minutes: 4
+        with:
+          node-version: '24'
+      - name: Refuse invalid invocation, ledger or missing protection
+        id: check
+        timeout-minutes: 4
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          RECAP_ANDROID_WORK: ${{ runner.temp }}/recap-aab-${{ github.run_id }}-${{ github.run_attempt }}-preflight
+        run: node scripts/android-candidate.mjs preflight
+
+  rehearsal:
+    name: Secret-free same-bundle rehearsal
+    needs: preflight
+    if: >-
+      github.event_name == 'workflow_dispatch' &&
+      inputs.mode == 'Rehearsal'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    env:
+      RECAP_ANDROID_SOURCE_SUBDIRECTORY: application
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        timeout-minutes: 2
+        with:
+          ref: ${{ github.workflow_sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        timeout-minutes: 2
+        with:
+          ref: ${{ github.sha }}
+          path: application
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        timeout-minutes: 4
+        with:
+          node-version: '24'
+      - name: Prepare isolated native host
+        timeout-minutes: 6
+        run: |
+          test -c /dev/kvm
+          sudo chmod a+rw /dev/kvm
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends libpulse0
+      - name: Rehearse with disposable keys and exact derived APKs
+        timeout-minutes: 50
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: bash scripts/android-release-candidate.sh rehearsal
+      - name: Remove any remaining signing scratch
+        id: native_cleanup
+        if: always()
+        timeout-minutes: 3
+        run: |
+          bash scripts/android-release-candidate.sh cleanup
+          capsule="$RUNNER_TEMP/recap-aab-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT/android-native-failure.json"
+          if [[ -f "$capsule" ]]; then
+            node scripts/check-android-instrumentation.mjs --validate-native-failure >> "$GITHUB_OUTPUT"
+          fi
+      - name: Retain only the verified rehearsal report
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        timeout-minutes: 3
+        with:
+          name: android-rehearsal-${{ github.run_id }}-${{ github.run_attempt }}
+          retention-days: 7
+          if-no-files-found: error
+          path: ${{ runner.temp }}/recap-aab-${{ github.run_id }}-${{ github.run_attempt }}/public/android-rehearsal.json
+
+      - name: Retain only validated nonpromotable native failure facts
+        if: failure() && inputs.mode == 'Rehearsal' && steps.native_cleanup.outputs.failure_capsule == 'true'
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        timeout-minutes: 1
+        with:
+          name: android-rehearsal-failure-${{ github.run_id }}-${{ github.run_attempt }}
+          retention-days: 7
+          if-no-files-found: error
+          path: ${{ runner.temp }}/recap-aab-${{ github.run_id }}-${{ github.run_attempt }}/android-native-failure.json
+
+  candidate:
+    name: Build and validate the protected candidate without uploading to Play
+    needs: preflight
+    if: >-
+      github.event_name == 'workflow_dispatch' &&
+      inputs.mode == 'Candidate' &&
+      github.ref == 'refs/heads/main' &&
+      github.workflow_ref == format('{0}/.github/workflows/android-release-candidate.yml@refs/heads/main', github.repository) &&
+      needs.preflight.outputs.environment == 'android-release-candidate'
+    environment: ${{ needs.preflight.outputs.environment }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    env:
+      RECAP_ANDROID_SOURCE_SUBDIRECTORY: application
+      RECAP_ANDROID_AFTER_APPROVAL: 'true'
+      RECAP_ANDROID_EXPECTED_ENVIRONMENT_ID: ${{ needs.preflight.outputs.environment_id }}
+      RECAP_ANDROID_EXPECTED_POLICY_SHA: ${{ needs.preflight.outputs.policy_sha }}
+      ANDROID_UPLOAD_CERT_SHA256: ${{ vars.ANDROID_UPLOAD_CERT_SHA256 }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        timeout-minutes: 2
+        with:
+          ref: ${{ github.workflow_sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        timeout-minutes: 2
+        with:
+          ref: ${{ inputs.source_sha }}
+          path: application
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        timeout-minutes: 4
+        with:
+          node-version: '24'
+      - name: Prepare isolated native host
+        timeout-minutes: 6
+        run: |
+          test -c /dev/kvm
+          sudo chmod a+rw /dev/kvm
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends libpulse0
+      - name: Recheck actual approval and build unsigned pinned source
+        timeout-minutes: 20
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: bash scripts/android-release-candidate.sh prepare
+      - name: Sign with the approved upload key outside Gradle
+        timeout-minutes: 4
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          ANDROID_UPLOAD_KEYSTORE_BASE64: ${{ secrets.ANDROID_UPLOAD_KEYSTORE_BASE64 }}
+          ANDROID_UPLOAD_STORE_PASSWORD: ${{ secrets.ANDROID_UPLOAD_STORE_PASSWORD }}
+          ANDROID_UPLOAD_KEY_ALIAS: ${{ secrets.ANDROID_UPLOAD_KEY_ALIAS }}
+          ANDROID_UPLOAD_KEY_PASSWORD: ${{ secrets.ANDROID_UPLOAD_KEY_PASSWORD }}
+        run: bash scripts/android-release-candidate.sh sign
+      - name: Inspect and test packages derived from this exact signed AAB
+        timeout-minutes: 35
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: bash scripts/android-release-candidate.sh qualify
+      - name: Remove any remaining signing scratch
+        if: always()
+        timeout-minutes: 3
+        run: bash scripts/android-release-candidate.sh cleanup
+      - name: Retain only the fully verified candidate and proposed seal
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        timeout-minutes: 3
+        with:
+          name: android-candidate-${{ inputs.version_code }}-${{ github.run_id }}
+          retention-days: 7
+          if-no-files-found: error
+          path: |
+            ${{ runner.temp }}/recap-aab-${{ github.run_id }}-${{ github.run_attempt }}/public/recap-page-android.aab
+            ${{ runner.temp }}/recap-aab-${{ github.run_id }}-${{ github.run_attempt }}/public/android-artifact.json
+            ${{ runner.temp }}/recap-aab-${{ github.run_id }}-${{ github.run_attempt }}/public/android-candidate.json
+            ${{ runner.temp }}/recap-aab-${{ github.run_id }}-${{ github.run_attempt }}/public/version-codes.proposed.json

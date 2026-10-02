@@ -23,6 +23,8 @@ import android.app.Instrumentation;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.pm.PackageInfo;
+import android.content.pm.Signature;
 import android.content.pm.ResolveInfo;
 import android.content.res.Configuration;
 import android.graphics.Insets;
@@ -72,6 +74,7 @@ import java.lang.reflect.Field;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
@@ -105,6 +108,13 @@ public final class NativeIntegrationTest {
     private String method;
     private boolean intentsInitialized;
     private boolean restartProbe;
+    private String candidatePhase = "";
+    private String installationPhase = "";
+    private boolean storageCleared;
+    private boolean stateMatched;
+    private boolean settingsMatched;
+    private JSONObject installationEvidence;
+    private JSONObject candidateReceipt;
     private WebView lastTapTarget;
     private JSONObject lastTapRecord;
     private List<String> originalBrowserRole;
@@ -117,6 +127,18 @@ public final class NativeIntegrationTest {
         @Override
         protected void starting(Description description) {
             method = description.getMethodName();
+        }
+
+        @Override
+        protected void succeeded(Description description) {
+            if (candidatePhase.isEmpty()) return;
+            try {
+                assertNotNull("A successful native method has observed package evidence", candidateReceipt);
+                candidateReceipt.getJSONObject("execution").put("status", "passed").put("tests", 1).put("skipped", 0);
+                writeJson(candidateEvidenceName(), candidateReceipt);
+            } catch (Exception error) {
+                throw new AssertionError("Could not retain successful native package evidence", error);
+            }
         }
 
         @Override
@@ -142,10 +164,38 @@ public final class NativeIntegrationTest {
     public void launch() throws Exception {
         assertEquals("This bounded suite requires the full API-36 phone image", 36, Build.VERSION.SDK_INT);
         Context target = instrumentation.getTargetContext();
+        assertEquals("Test metadata selects this installed target",
+                FixtureDocumentProvider.targetPackage(instrumentation.getContext()), target.getPackageName());
         evidence = new File(target.getExternalFilesDir(null), "native-test-evidence");
         assertTrue("Synthetic evidence directory is writable", evidence.isDirectory() || evidence.mkdirs());
         device = UiDevice.getInstance(instrumentation);
-        restartProbe = "true".equals(InstrumentationRegistry.getArguments().getString("restartProbe"));
+        Bundle arguments = InstrumentationRegistry.getArguments();
+        String restart = arguments.getString("restartProbe", "false");
+        assertTrue("restartProbe must be boolean", "true".equals(restart) || "false".equals(restart));
+        restartProbe = "true".equals(restart);
+        String requestedPhase = arguments.getString("candidatePhase", "");
+        assertTrue("Known candidate evidence phase", requestedPhase.isEmpty()
+                || List.of("suite", "restart-seed", "restart-probe", "official-seed",
+                        "prototype-seed", "official-probe", "prototype-probe").contains(requestedPhase));
+        candidatePhase = requestedPhase;
+        installationPhase = arguments.getString("installationPhase", "");
+        if (!candidatePhase.isEmpty()) {
+            assertEquals("Only restart-probe sets restartProbe", "restart-probe".equals(candidatePhase), restartProbe);
+            if (!"suite".equals(candidatePhase)) assertEquals("Only startup handles selected phases", "startupAndPersistence", method);
+        }
+        if (!installationPhase.isEmpty()) {
+            assertTrue("Known installation phase", List.of("official-seed", "prototype-seed",
+                    "official-probe", "prototype-probe").contains(installationPhase));
+            assertEquals("Installation and evidence phase agree", installationPhase, candidatePhase);
+            assertFalse("Installation probes cannot request ordinary restart seeding", restartProbe);
+            String expectedTarget = installationPhase.startsWith("prototype")
+                    ? "io.github.raymondnassar.recappage.prototype" : "io.github.raymondnassar.recappage";
+            assertEquals("Installation phase targets the matching package", expectedTarget, target.getPackageName());
+        } else {
+            assertFalse("Installation evidence cannot use the ordinary seeding path",
+                    candidatePhase.startsWith("official-") || candidatePhase.startsWith("prototype-"));
+        }
+        if (!candidatePhase.isEmpty()) Files.deleteIfExists(new File(evidence, candidateEvidenceName()).toPath());
         for (String setting : new String[] {
                 "font_scale", "accelerometer_rotation", "user_rotation", "show_ime_with_hard_keyboard" }) {
             originalSettings.put(setting, device.executeShellCommand("settings get system " + setting).trim());
@@ -189,6 +239,7 @@ public final class NativeIntegrationTest {
                     return null;
                 });
                 writeJson(evidenceName("measurements.json"), measurements);
+                if (!candidatePhase.isEmpty()) candidateReceipt = observedCandidateReceipt();
             }
         } finally {
             try {
@@ -225,6 +276,12 @@ public final class NativeIntegrationTest {
 
     @Test
     public void startupAndPersistence() throws Exception {
+        if (!installationPhase.isEmpty()) {
+            String role = installationPhase.startsWith("prototype") ? "prototype" : "official";
+            if (installationPhase.endsWith("-seed")) seedInstallation(role);
+            assertInstallation(role);
+            return;
+        }
         if (!restartProbe) seed(false);
         assertEquals("Bundled assets keep the canonical storage origin", ORIGIN, text(web, "location.origin"));
         assertEquals("Persistent marker from the immediately preceding seed invocation",
@@ -245,6 +302,13 @@ public final class NativeIntegrationTest {
         assertEquals("Reload must not change synthetic reading state", before, stateSummary());
         measurements.put("startupMode", restartProbe ? "after-host-force-stop" : "seed")
                 .put("readCount", 1).put("listCount", 1).put("progressPercent", 50);
+        if (!candidatePhase.isEmpty()) {
+            stateMatched = true;
+            settingsMatched = truth(web, "(() => {const s=JSON.parse(localStorage.getItem('mrt.settings'));"
+                    + "return s.covers===false && s.theme==='dark' && s.hideDescriptions===true"
+                    + " && s.apiBase==='http://127.0.0.1:9/v1';})()");
+            assertTrue("Restart preserves the seeded device settings", settingsMatched);
+        }
     }
 
     @Test
@@ -305,7 +369,7 @@ public final class NativeIntegrationTest {
                 "const m=await import(location.origin+'/js/lib/model.js');"
                 + "const b=m.exportBackup(JSON.parse(localStorage.getItem('mrt.state.v2')));"
                 + "b.exportedAt='2026-09-26T00:00:00.000Z';return JSON.stringify(b,null,2)+'\\n';");
-        stubDocument(Intent.ACTION_CREATE_DOCUMENT, FixtureDocumentProvider.SAVED);
+        stubDocument(Intent.ACTION_CREATE_DOCUMENT, FixtureDocumentProvider.saved(instrumentation.getContext()));
         startNativeSave(backup, "native-fixture-backup.json");
         // The negative control changes only the native connect marker. An unready bridge returns
         // false without opening a picker, so the aimed assertion must precede picker assertions.
@@ -326,7 +390,7 @@ public final class NativeIntegrationTest {
         route("data");
         assertEquals("Restore starts from an actually empty list set", 0,
                 number(web, "JSON.parse(localStorage.getItem('mrt.state.v2')).listOrder.length"));
-        stubDocument(Intent.ACTION_OPEN_DOCUMENT, FixtureDocumentProvider.SAVED);
+        stubDocument(Intent.ACTION_OPEN_DOCUMENT, FixtureDocumentProvider.saved(instrumentation.getContext()));
         tap(web, "#restore-file");
         waitFor("Real WebView file callback restores provider bytes", WAIT_MS,
                 () -> truth(web, "document.querySelector('#restore-report').textContent.includes('Restored.')"));
@@ -339,7 +403,7 @@ public final class NativeIntegrationTest {
         assertReadingProgress();
         route("data");
 
-        stubDocument(Intent.ACTION_CREATE_DOCUMENT, FixtureDocumentProvider.REFUSED);
+        stubDocument(Intent.ACTION_CREATE_DOCUMENT, FixtureDocumentProvider.refused(instrumentation.getContext()));
         startNativeSave(backup, "native-refused-backup.json");
         waitFor("Provider refusal reaches the live JavaScript bridge", WAIT_MS,
                 () -> truth(web, "window.__nativeSave && window.__nativeSave.done"));
@@ -358,7 +422,7 @@ public final class NativeIntegrationTest {
                 .put("providerSaves", 1).put("providerRestores", 1).put("providerRefusals", 1);
 
         provider("reset");
-        stubDocument(Intent.ACTION_CREATE_DOCUMENT, FixtureDocumentProvider.SAVED);
+        stubDocument(Intent.ACTION_CREATE_DOCUMENT, FixtureDocumentProvider.saved(instrumentation.getContext()));
         String large = "{\"probe\":\"" + "x".repeat(2 * 1024 * 1024) + "\"}";
         startNativeSave(large, "native-large-transport.json");
         waitFor("A multi-megabyte message reaches native document completion", WAIT_MS,
@@ -368,7 +432,7 @@ public final class NativeIntegrationTest {
         waitFor("Large provider output stream is closed", WAIT_MS, () -> provider("stats").getInt("closedWrites") == 1);
         // Read the document stream, not a large Bundle, which would introduce Binder into this probe.
         try (InputStream input = instrumentation.getTargetContext().getContentResolver()
-                .openInputStream(FixtureDocumentProvider.SAVED)) {
+                .openInputStream(FixtureDocumentProvider.saved(instrumentation.getContext()))) {
             assertNotNull("The large synthetic document can be read", input);
             assertArrayEquals("Large native export preserves exact UTF-8 bytes",
                     large.getBytes(StandardCharsets.UTF_8), input.readAllBytes());
@@ -685,6 +749,7 @@ public final class NativeIntegrationTest {
     }
 
     private void seed(boolean unknownDigitalId) throws Exception {
+        storageCleared = true;
         String base = server == null ? "http://127.0.0.1:9/v1" : server.baseUrl();
         asyncJs(web, "const m=await import(location.origin+'/js/lib/model.js');"
                 + "localStorage.clear();sessionStorage.clear();"
@@ -704,6 +769,57 @@ public final class NativeIntegrationTest {
                 + "history.replaceState(null,'','/#/read/native-fixture');return true;");
         reload();
         assertFixture();
+    }
+
+    private String installationFixture(String role) {
+        assertTrue("Fixed synthetic role", "official".equals(role) || "prototype".equals(role));
+        return "const m=await import(location.origin+'/js/lib/model.js');"
+                + "const {KEY}=await import(location.origin+'/js/storage.js');"
+                + "let s=m.createList(m.createEmptyState(),{id:'native-fixture',name:" + quote(role + " installation fixture")
+                + ",description:'Synthetic installation only',note:" + quote(role + " list note") + "});"
+                + "s=m.addIssuesToList(s,'native-fixture',["
+                + "{issueId:900000001,title:'Synthetic #1',number:1,seriesId:900000010,seriesName:'Synthetic only',hydrated:true},"
+                + "{issueId:900000002,title:'Synthetic #2',number:2,seriesId:900000010,seriesName:'Synthetic only',hydrated:true}]).state;"
+                + "s.lists['native-fixture'].created=1750000000000;"
+                + "s=m.markRead(s,900000001,true,1750000000000);"
+                + "s=m.setOverride(s,900000001,'available');s=m.setOverride(s,900000002,'unavailable');"
+                + "s=m.setDeferred(s,'native-fixture',900000002,true);"
+                + "s.notes['900000001']=" + quote(role + " note one") + ";"
+                + "s.notes['900000002']=" + quote(role + " note two") + ";"
+                + "const settings={covers:false,theme:" + quote("official".equals(role) ? "dark" : "light")
+                + ",hideDescriptions:true,apiBase:'http://127.0.0.1:9/v1'};"
+                + "const stable=v=>JSON.stringify((function sort(x){return Array.isArray(x)?x.map(sort):"
+                + "x&&typeof x==='object'?Object.fromEntries(Object.keys(x).sort().map(k=>[k,sort(x[k])])):x;})(v));";
+    }
+
+    private void seedInstallation(String role) throws Exception {
+        assertTrue("Only explicit seed phases clear synthetic storage", installationPhase.endsWith("-seed"));
+        storageCleared = true;
+        asyncJs(web, installationFixture(role)
+                + "localStorage.clear();sessionStorage.clear();"
+                + "localStorage.setItem(KEY,JSON.stringify(s));"
+                + "localStorage.setItem('mrt.settings',JSON.stringify(settings));"
+                + "history.replaceState(null,'','/#/library');return true;");
+        reload();
+    }
+
+    private void assertInstallation(String role) throws Exception {
+        JSONObject snapshot = (JSONObject) asyncJs(web, installationFixture(role)
+                + "const actual=JSON.parse(localStorage.getItem(KEY));"
+                + "if(!actual)throw Error('Missing installation state');delete actual.writeToken;"
+                + "const actualSettings=JSON.parse(localStorage.getItem('mrt.settings'));"
+                + "if(!actualSettings)throw Error('Missing installation settings');"
+                + "return {stateMatched:stable(actual)===stable(s),"
+                + "settingsMatched:Object.keys(settings).every(k=>actualSettings[k]===settings[k]),"
+                + "state:stable(actual),settings:stable(actualSettings)};");
+        stateMatched = snapshot.getBoolean("stateMatched");
+        settingsMatched = snapshot.getBoolean("settingsMatched");
+        assertTrue("Independent expected installation state matches retained data", stateMatched);
+        assertTrue("Independent expected device settings match retained data", settingsMatched);
+        if (installationPhase.endsWith("-probe")) assertFalse("A probe cannot clear or reseed storage", storageCleared);
+        installationEvidence = new JSONObject().put("role", role)
+                .put("stateSha256", sha256(snapshot.getString("state").getBytes(StandardCharsets.UTF_8)))
+                .put("settingsSha256", sha256(snapshot.getString("settings").getBytes(StandardCharsets.UTF_8)));
     }
 
     private void assertFixture() throws Exception {
@@ -846,7 +962,43 @@ public final class NativeIntegrationTest {
         return evaluate(target, "window.__nativeAsync.value");
     }
 
+    private static final class DeliveredTap {
+        private long down = -1;
+        private long up = -1;
+        private int downs;
+        private int ups;
+        private boolean cancelled;
+        private boolean nonTouchscreen;
+
+        synchronized void down(long time, boolean touchscreen) {
+            if (++downs == 1) down = time;
+            nonTouchscreen |= !touchscreen;
+        }
+
+        synchronized void up(long time, boolean touchscreen) {
+            if (++ups == 1) up = time;
+            nonTouchscreen |= !touchscreen;
+        }
+
+        synchronized void cancel() {
+            cancelled = true;
+        }
+
+        synchronized boolean complete() {
+            return downs == 1 && ups == 1 && down >= 0 && up >= down && !cancelled && !nonTouchscreen;
+        }
+
+        synchronized boolean shorterThan(long threshold) {
+            return complete() && up - down < threshold;
+        }
+
+        synchronized long[] snapshot() {
+            return new long[] { down, up, downs, ups, cancelled ? 1 : 0, nonTouchscreen ? 1 : 0, complete() ? 1 : 0 };
+        }
+    }
+
     private void tap(WebView target, String selector) throws Exception {
+        long preparationStarted = SystemClock.uptimeMillis();
         waitFor("Touchable DOM control " + selector, WAIT_MS, () -> truth(target,
                 "(() => {const e=document.querySelector(" + quote(selector) + ");"
                         + "return !!e && !e.disabled && e.getBoundingClientRect().width>0;})()"));
@@ -866,8 +1018,11 @@ public final class NativeIntegrationTest {
                 + "document.querySelector(" + quote(selector)
                 + ").scrollIntoView({block:'center',inline:'nearest',behavior:'instant'});return true;})()");
         lastTapTarget = target;
-        lastTapRecord = new JSONObject().put("selector", selector);
+        lastTapRecord = new JSONObject().put("selector", selector).put("preparationStarted", preparationStarted);
         tapDiagnostics.put(lastTapRecord);
+        DeliveredTap delivered = new DeliveredTap();
+        boolean observing = false;
+        Throwable failure = null;
         try {
             AtomicReference<JSONObject> previous = new AtomicReference<>();
             int[] stable = { 0 };
@@ -889,40 +1044,81 @@ public final class NativeIntegrationTest {
             double ratio = box.getDouble("nativeWidth") / box.getDouble("viewport");
             float x = (float) (box.getDouble("nativeX") + box.getDouble("x") * ratio);
             float y = (float) (box.getDouble("nativeY") + box.getDouble("y") * ratio);
+            onMain(() -> {
+                // Injection can wait before DOWN dispatch; observe delivery without consuming input.
+                target.setOnTouchListener((view, event) -> {
+                    long received = SystemClock.uptimeMillis();
+                    boolean touchscreen = event.isFromSource(InputDevice.SOURCE_TOUCHSCREEN);
+                    switch (event.getActionMasked()) {
+                        case MotionEvent.ACTION_DOWN -> delivered.down(received, touchscreen);
+                        case MotionEvent.ACTION_UP -> delivered.up(received, touchscreen);
+                        case MotionEvent.ACTION_CANCEL, MotionEvent.ACTION_POINTER_DOWN, MotionEvent.ACTION_POINTER_UP -> delivered.cancel();
+                        default -> { }
+                    }
+                    return false;
+                });
+                return null;
+            });
+            observing = true;
+            android.app.UiAutomation automation = instrumentation.getUiAutomation();
             long downTime = SystemClock.uptimeMillis();
+            lastTapRecord.put("preparationMs", downTime - preparationStarted);
             long upTime;
             MotionEvent down = MotionEvent.obtain(downTime, downTime, MotionEvent.ACTION_DOWN, x, y, 0);
             down.setSource(InputDevice.SOURCE_TOUCHSCREEN);
             try {
-                // Waiting for DOWN acknowledgement held the pointer for 289ms on the emulator.
-                assertTrue("Touchscreen DOWN is accepted", instrumentation.getUiAutomation().injectInputEvent(down, false));
+                assertTrue("Touchscreen DOWN is accepted", automation.injectInputEvent(down, false));
             } finally {
                 upTime = SystemClock.uptimeMillis();
                 MotionEvent up = MotionEvent.obtain(downTime, upTime, MotionEvent.ACTION_UP, x, y, 0);
                 up.setSource(InputDevice.SOURCE_TOUCHSCREEN);
                 try {
-                    assertTrue("Touchscreen UP is accepted", instrumentation.getUiAutomation().injectInputEvent(up, false));
+                    assertTrue("Touchscreen UP is accepted", automation.injectInputEvent(up, false));
                 } finally {
                     down.recycle();
                     up.recycle();
                     lastTapRecord.put("downTime", downTime).put("upTime", upTime)
-                            .put("heldMs", upTime - downTime).put("screenX", x).put("screenY", y);
+                            .put("createdEventIntervalMs", upTime - downTime)
+                            .put("injectionCallSpanMs", SystemClock.uptimeMillis() - downTime)
+                            .put("screenX", x).put("screenY", y);
                 }
             }
-            long maxHold = ViewConfiguration.getLongPressTimeout() - 1;
-            lastTapRecord.put("longPressThresholdMs", maxHold + 1);
-            assertTrue("Real touchscreen tap must stay shorter than a long press: " + lastTapRecord,
-                    upTime - downTime <= maxHold);
-            waitFor("Trusted click reaches " + selector, WAIT_MS, () -> truth(target,
-                    "window.__nativeTap.events.some(e=>e.type==='click' && e.trusted && e.onTarget)"));
+            long longPressThreshold = ViewConfiguration.getLongPressTimeout();
+            lastTapRecord.put("longPressThresholdMs", longPressThreshold);
+            waitFor("Trusted click reaches " + selector, WAIT_MS, () -> {
+                recordDeliveredTap(delivered);
+                if (!delivered.complete()) return false;
+                assertTrue("Delivered touchscreen interval must stay shorter than a long press: " + lastTapRecord,
+                        delivered.shorterThan(longPressThreshold));
+                return truth(target, "window.__nativeTap.events.some(e=>e.type==='click' && e.trusted && e.onTarget)");
+            });
             assertTrue("Real pointer DOWN and UP reach " + selector, truth(target,
                     "['pointerdown','pointerup'].every(type=>window.__nativeTap.events.some("
                             + "e=>e.type===type && e.trusted && e.onTarget))"));
             assertFalse("A short tap must not open text selection", truth(target,
                     "window.__nativeTap.events.some(e=>e.type==='contextmenu')"));
+        } catch (Exception | Error error) {
+            failure = error;
+            throw error;
         } finally {
-            captureTapDiagnostics();
+            try {
+                if (observing) onMain(() -> { target.setOnTouchListener(null); return null; });
+                recordDeliveredTap(delivered);
+                captureTapDiagnostics();
+            } catch (Exception | Error cleanupError) {
+                if (failure != null) failure.addSuppressed(cleanupError);
+                else throw cleanupError;
+            }
         }
+    }
+
+    private void recordDeliveredTap(DeliveredTap delivered) throws Exception {
+        long[] sample = delivered.snapshot();
+        lastTapRecord.put("deliveredDownTime", sample[0] < 0 ? JSONObject.NULL : sample[0])
+                .put("deliveredUpTime", sample[1] < 0 ? JSONObject.NULL : sample[1])
+                .put("deliveredDownCount", sample[2]).put("deliveredUpCount", sample[3])
+                .put("deliveredCancelled", sample[4] == 1).put("deliveredNonTouchscreen", sample[5] == 1)
+                .put("deliveredHeldMs", sample[6] == 1 ? sample[1] - sample[0] : JSONObject.NULL);
     }
 
     private JSONObject tapGeometry(WebView target, String selector) throws Exception {
@@ -1018,7 +1214,7 @@ public final class NativeIntegrationTest {
 
     private Bundle provider(String operation) {
         Bundle result = instrumentation.getTargetContext().getContentResolver()
-                .call(FixtureDocumentProvider.SAVED, operation, null, null);
+                .call(FixtureDocumentProvider.saved(instrumentation.getContext()), operation, null, null);
         assertNotNull("Test-only provider responds to " + operation, result);
         return result;
     }
@@ -1110,7 +1306,61 @@ public final class NativeIntegrationTest {
     }
 
     private String evidenceName(String suffix) {
-        return method + (restartProbe ? "-restart-probe" : "") + "-" + suffix;
+        return method + (candidatePhase.isEmpty() ? (restartProbe ? "-restart-probe" : "")
+                : "-" + candidatePhase + "-" + instrumentation.getTargetContext().getPackageName()) + "-" + suffix;
+    }
+
+    private String candidateEvidenceName() {
+        return "candidate-" + candidatePhase + "-" + method + ".json";
+    }
+
+    private static String sha256(byte[] bytes) throws Exception {
+        return hex(MessageDigest.getInstance("SHA-256").digest(bytes));
+    }
+
+    private static String hex(byte[] bytes) {
+        StringBuilder result = new StringBuilder();
+        for (byte value : bytes) result.append(String.format(java.util.Locale.ROOT, "%02x", value & 0xff));
+        return result.toString();
+    }
+
+    private static String fileSha256(String path) throws Exception {
+        MessageDigest hash = MessageDigest.getInstance("SHA-256");
+        try (InputStream stream = Files.newInputStream(new File(path).toPath())) {
+            byte[] buffer = new byte[65536];
+            int count;
+            while ((count = stream.read(buffer)) != -1) hash.update(buffer, 0, count);
+        }
+        return hex(hash.digest());
+    }
+
+    private JSONObject observedCandidateReceipt() throws Exception {
+        Context target = instrumentation.getTargetContext();
+        PackageInfo info = target.getPackageManager().getPackageInfo(target.getPackageName(), PackageManager.GET_SIGNING_CERTIFICATES);
+        assertNotNull("Installed target exposes its signing identity", info.signingInfo);
+        Signature[] certificates = info.signingInfo.getApkContentsSigners();
+        assertEquals("Exactly one installed APK signer", 1, certificates.length);
+        List<String> hashes = new ArrayList<>();
+        hashes.add(fileSha256(target.getApplicationInfo().sourceDir));
+        if (target.getApplicationInfo().splitSourceDirs != null) {
+            for (String split : target.getApplicationInfo().splitSourceDirs) hashes.add(fileSha256(split));
+        }
+        Collections.sort(hashes);
+        JSONObject execution = new JSONObject().put("phase", candidatePhase).put("method", method)
+                .put("packageName", target.getPackageName()).put("uid", target.getApplicationInfo().uid)
+                .put("appHashes", new JSONArray(hashes))
+                .put("harnessHash", fileSha256(instrumentation.getContext().getApplicationInfo().sourceDir))
+                .put("signerSha256", sha256(certificates[0].toByteArray()))
+                .put("stateMatched", stateMatched).put("settingsMatched", settingsMatched).put("storageCleared", storageCleared);
+        String webView = onMain(() -> {
+            assertNotNull("Actual WebView package is available", WebView.getCurrentWebViewPackage());
+            return WebView.getCurrentWebViewPackage().versionName;
+        });
+        JSONObject deviceInfo = new JSONObject().put("sdk", Build.VERSION.SDK_INT).put("abi", Build.SUPPORTED_ABIS[0])
+                .put("width", device.getDisplayWidth()).put("height", device.getDisplayHeight())
+                .put("density", target.getResources().getDisplayMetrics().densityDpi).put("webViewVersion", webView);
+        return new JSONObject().put("execution", execution).put("device", deviceInfo)
+                .put("installation", installationEvidence == null ? JSONObject.NULL : installationEvidence);
     }
 
     private void writeJson(String name, JSONObject value) throws Exception {

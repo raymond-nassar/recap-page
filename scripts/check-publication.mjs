@@ -145,6 +145,10 @@ export const ALLOWED = new Map([
   ['packaging/android/app/src/androidTest/java/io/github/raymondnassar/recappage/prototype/NativeIntegrationTest.java'
     + '|a session or workspace identifier|00000000-0000-4000-8000-' + '000000000099',
   'the fabricated native reader fixture DRN, not a session, user or workspace identity'],
+  ['test/android-instrumentation.test.js|a path inside one machine\'s home directory|/ho' + 'me/private/',
+    'a fabricated privacy-negative log path that the native capsule test asserts is never retained'],
+  ['test/android-instrumentation.test.js|a secret assigned in code|pass' + "word = 'PRIVATE_SECRET'",
+    'a fixed synthetic forbidden-field payload that the native capsule schema rejects, not a credential'],
   ['test/browser-reporting.test.js|a secret assigned in code|' + 'secret' + " : 'HeadlessChrome/140.0.7339.0'",
     'the fixed browser-version literal after a ternary colon in the reporter fixture, not an assigned credential'],
 ]);

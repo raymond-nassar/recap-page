@@ -1,11 +1,10 @@
 # Maintaining Recap Page
 
-This guide owns the operational procedures for checking, extending, and releasing Recap Page.
-[The contribution guide](../CONTRIBUTING.md) owns contribution policy and coding standards.
-[The architecture guide](ARCHITECTURE.md) explains how the application is assembled.
+Use this guide to check, extend and release Recap Page.
+[The contribution guide](../CONTRIBUTING.md) covers contribution policy and coding standards.
+[The architecture guide](ARCHITECTURE.md) explains how the app fits together.
 
-The project has no browser build step and no runtime dependencies. `npm ci` installs development
-tools only.
+The app has no browser build step or runtime dependencies. `npm ci` installs development tools only.
 
 ## Run the complete local check set
 
@@ -28,18 +27,17 @@ npm run palette
 npm run publication
 ```
 
-All eight run in CI. The checks cover lint and tests, documentation counts, stated file sizes,
-evidence anchors, spacing and contrast regressions, and publication content. The browser journeys
-below are manual release checks because they require installed Edge and a driver outside the
-repository.
+All eight run in CI. They check lint and tests, documentation counts, stated file sizes,
+evidence anchors, spacing, contrast and publication content. The browser journeys below are
+manual release checks: they need installed Edge and a driver outside the repository.
 
-Historical-anchor candidate paths use native Windows resolution before containment
-checks, so different spellings of the same directory cannot evade the worktree
-boundary. Other platforms retain their existing resolution behavior.
+Historical-anchor candidate paths use native Windows resolution before containment checks.
+Different spellings of the same directory cannot bypass the worktree boundary. Resolution on
+other platforms is unchanged.
 
 ### Run the test suite directly
 
-The test script is deliberately the bare Node test command:
+The test script uses the bare Node test command:
 
 ```text
 npm test
@@ -49,15 +47,15 @@ Do not replace it with a quoted glob. Node 20 treats that glob as a literal file
 
 ### Run the live API contract check
 
-The contract check calls the live third-party metadata API, so it is intentionally outside CI:
+The contract check calls the live third-party metadata API and runs outside CI:
 
 ```text
 npm run contract
 ```
 
-It confirms that the response fields the app consumes are still present. A network outage, rate
-limit, or temporary API problem can fail it even when the repository is correct. Run it manually
-before trusting a release.
+It checks that the response fields the app uses still exist. Network outages, rate limits and
+temporary API problems can fail it even when the code is correct. Run it manually before trusting
+a release.
 
 To override the representative order or issue:
 
@@ -73,8 +71,7 @@ $env:MRT_CONTRACT_ORDER_ID='<order-id>'; $env:MRT_CONTRACT_ISSUE_ID='<issue-id>'
 
 ## Run the browser check
 
-Browser coverage uses `puppeteer-core` from a scratch installation outside this repository. It must
-not become a dependency in `package.json`.
+Use `puppeteer-core` installed outside this repository. Never add it to `package.json`.
 
 Install it once in a temporary directory. `MRT_PUPPETEER` may point to that directory, its
 `node_modules/puppeteer-core` package, or the absolute entry-file path. Then run:
@@ -100,15 +97,15 @@ export MRT_PUPPETEER=/absolute/path/to/scratch-directory
 npm run browser
 ```
 
-The runner launches installed Edge by default and can use an explicit executable:
+The runner uses installed Edge by default. To choose another executable:
 
 ```text
 MRT_EDGE=/absolute/path/to/browser npm run browser
 ```
 
-The check normally serves the app on an ephemeral port, uses an isolated profile, stubs the catalog
-network before the page loads, and exits nonzero on a failed journey. The temporary port keeps the
-reading progress at the standard app address untouched. The targeted `cache-generations`,
+The check normally uses an ephemeral port and an isolated profile, stubs catalog requests before
+the page loads, and exits nonzero if a journey fails. Saved progress at the normal app address
+stays untouched. The targeted `cache-generations`,
 `catalog-gaps`, `reading-paths`, `reading-path-stop-actions`, `issue-return-visibility`,
 `reading-shortcut`, `reading-list-empty-441`, `issue-action-names`, `issue-443-row-actions`,
 `defer-next`, `defer-lifecycle`, `defer-persistence`, and `order-only-export` journeys require
@@ -116,36 +113,36 @@ reading progress at the standard app address untouched. The targeted `cache-gene
 Stop the normal app server before any targeted run so the runner can bind that port. Each journey
 prints its own assertion and timing totals.
 
-Scenario progress is printed before browser-context creation, and completed results are reported
-as they arrive. A browser failure preserves those results and the primary failing stage even if
-cleanup also fails. Lifecycle diagnostics include allowlisted browser and driver versions and
-observed numeric process exit or signal values. An unavailable cause is `unknown`, not evidence
-of a crash, resource limit or app defect; exits during requested cleanup are labelled separately.
+The runner prints progress before creating each browser context and reports results as they
+finish. Browser and cleanup failures preserve completed results and the primary failing stage.
+Diagnostics include allowlisted browser and driver versions and observed numeric process exit
+or signal values. An unavailable cause is `unknown`, not proof of a crash, resource limit or app
+defect. Exits during requested cleanup are labelled separately.
 
-Ordinary scenarios that export files declare the total expected native downloads for their
-isolated context. Before closing it, the runner requires a browser `completed` event for each
-download, within one 15-second completion deadline. Captured blob text alone is not completion.
-The count survives page navigation; a late start, canceled or missing download, invalid event,
-disconnect or deadline failure is reported without replacing an earlier scenario failure.
-Cleanup is still attempted, and unresolved completion stops the ordinary suite.
+Ordinary export scenarios declare the total expected native downloads in their isolated context.
+Before closing it, the runner requires a browser `completed` event for every download within one
+15-second deadline. Captured blob text alone is not completion. The count survives navigation.
+A late start, canceled or missing download, invalid event, disconnect or missed deadline is
+reported without replacing an earlier scenario failure. Cleanup is still attempted.
+Unresolved completion stops the ordinary suite.
 
-For a hosted browser-only diagnostic, dispatch **Windows App Certification Kit** at the exact
+For a hosted browser-only check, dispatch **Windows App Certification Kit** at the exact
 committed branch with `diagnostic_target=ordinary-browser`, `diagnostic_only=true`,
 `native_only=false` and `release_preparation=false`. This runs the ordinary suite on Windows
-without native proof, WACK or packaging. Its `qualified=false` log record binds the source and
+without native proof, WACK or packaging. Its `qualified=false` record binds the source and
 workflow commit to the installed driver version and locked driver digest. It uploads no artifacts
 and cannot satisfy release or production acceptance. Invalid flag combinations fail before setup.
 
 For the bounded context/export comparison, use `diagnostic_target=ordinary-browser-context-isolation`
 with the same diagnostic-only flags. It runs two fresh Edge processes: blank context plus blank
-sentinel, then the unchanged reader round-trip plus blank sentinel. The ceiling is four explicit
+sentinel, then the unchanged reader round-trip plus blank sentinel. The limit is four explicit
 contexts and twelve create/page/close calls, with no retry. Edge 152.0.4191.66, Puppeteer 25.7.0,
 the recorded driver lock and supported Page download events are required; a mismatch aborts.
-Download observations preserve pending, completed, canceled and unobserved states across page
-navigation without changing download policy or waiting for completion. Observation can affect
-timing and becomes partial after context close. Both arms passing is inconclusive about the
-late-suite failure; a reader-arm failure implicates that full path, not export alone. This mode
-produces no qualifying artifact and does not replace the ordinary suite.
+Download observations retain pending, completed, canceled and unobserved states across navigation.
+They do not change download policy or wait for completion. Observation can affect timing and
+becomes partial after context close. Both arms passing cannot explain the late-suite failure.
+A reader-arm failure points to that full path, not export alone. This mode produces no qualifying
+artifact and does not replace the ordinary suite.
 
 The fixed `diagnostic_target=ordinary-browser-download-completion` uses the same diagnostic-only
 flags and exact toolchain gates. It compares the unchanged reader scenario without a completion
@@ -156,14 +153,14 @@ Any arm failure remains nonzero, including when the treatment passes. A timeout 
 after observed completion rejects the candidate; both arms passing does not establish causality.
 Neither diagnostic proves a fix or satisfies full-suite or release acceptance.
 
-For repeated-export acceptance alone, `diagnostic_target=ordinary-browser-export-acceptance`
+To check repeated exports alone, `diagnostic_target=ordinary-browser-export-acceptance`
 uses the same guarded diagnostic-only job. It runs `readable-markdown-export` followed by
 `order-only-export` through their existing single-scenario selectors and stops on either failure.
 The maximum is two Node commands, two fresh browsers and two isolated contexts, requiring
-four and six native completions respectively. Positive final export actions use focused native
-Enter input; existing cancellation and deliberate-failure actions are unchanged. This checks input
-fidelity without changing download policy and does not establish why earlier native starts were
-missing. It uploads no artifacts and is not full-suite or release qualification.
+four and six native completions respectively. Final actions that confirm an export use focused
+native Enter input; cancellation and deliberate-failure actions are unchanged. This checks input
+without changing download policy. It does not explain why earlier native starts were missing.
+It uploads no artifacts and is not full-suite or release qualification.
 
 ### Prove the browser check detects failures
 
@@ -173,37 +170,35 @@ The proof runner introduces a reversible fault for one journey at a time:
 npm run browser:prove -- --only=<scenario-name>
 ```
 
-Plan a bounded proof matrix before running it. Default to no more than three mutations, each aimed
-only at the scenario that should detect that changed behavior.
+Plan the proof before running it. Default to no more than three mutations, each run only against
+the scenario that should detect the changed behavior.
 
-Each run expects that journey to fail for the intended reason, restores the original source, and
-runs the same journey again to prove it passes.
-Never run the all-mutations, all-scenarios matrix
-without explicit owner approval; calculate its command
-cardinality first.
+Each run requires the intended failure, restores the source, and reruns the same journey to prove
+it passes. Never run every mutation against every scenario without explicit owner approval.
+Calculate the number of commands first.
 
 ## Run the upgrade check
 
-The same invocation also pins the pre-deferral schema-2 build at
-`ba23627bd7d094b649a7c3d113ab659bf88b4a8e`. It saves nonempty schema-3 intent in the
-candidate, tries ordinary writes from both a live stale older tab and a freshly loaded older
-build at the same isolated origin, and returns to the candidate. Exact canonical bytes,
-retained read timestamps, list identity and order must survive; deliberate destructive recovery
-is not part of the downgrade-refusal claim.
+This check also pins the pre-deferral schema-2 build at
+`ba23627bd7d094b649a7c3d113ab659bf88b4a8e`. It saves nonempty schema-3 intent in the candidate,
+tries ordinary writes from a live stale older tab and a freshly loaded older build at the same
+isolated origin, then returns to the candidate. Exact canonical bytes, read timestamps, list
+identity and order must survive. This downgrade-refusal check does not cover deliberate
+destructive recovery.
 
-The upgrade runner reconstructs the v1.4.0 app from local Git history, runs that historical build,
-and then replaces its folder with the current candidate at the same browser address:
+The runner recreates v1.4.0 from local Git history, runs it, then replaces its folder with the
+current candidate at the same browser address:
 
 ```text
 npm run upgrade
 ```
 
-The historical server and complete source tree come directly from the local v1.4.0 tag, byte for
-byte and without a network request. A missing tag or unreadable Git object fails as a prerequisite
-instead of falling back to current source. The old build imports an order and marks one issue read;
-the current build must preserve the order, issue sequence, read marker, and visible nonzero progress.
-Run it only after the candidate version has been bumped: if both builds report 1.4.0, the runner
-stops before opening Edge because it cannot prove that the folder swap loaded the candidate.
+The historical server and complete source tree come byte for byte from the local v1.4.0 tag,
+without a network request. A missing tag or unreadable Git object stops the run; it never falls
+back to current source. The old build imports an order and marks one issue read. The candidate
+must preserve the order, issue sequence, read marker and visible nonzero progress.
+Bump the candidate version before running: if both builds report 1.4.0, the runner stops before
+opening Edge because it cannot prove the folder swap loaded the candidate.
 
 ### Prove the upgrade check detects failures
 
@@ -213,44 +208,43 @@ The proof runner mutates one disposable copy at a time:
 npm run upgrade:prove
 ```
 
-It expects each aimed assertion to fail, removes the disposable mutation, and then requires the
-normal runner to pass. The upgrade proof has no single-scenario selector.
+It requires each targeted assertion to fail, removes the mutation, then requires the normal runner
+to pass. The upgrade proof has no single-scenario selector.
 
 ## Review pinned GitHub Actions
 
-The workflows pin each third-party action to a full commit SHA. The ordinary CI workflow runs
-deterministic repository checks only. An explicitly requested manual Windows preparation run
-can retain the portable ZIP and its provenance for review; ordinary CI and Windows proof runs
-do not upload that archive.
+Workflows pin third-party actions to full commit SHAs. Ordinary CI runs only deterministic
+repository checks. An explicitly requested manual Windows preparation run can retain the portable
+ZIP and its provenance for review. Ordinary CI and Windows proof runs do not upload that archive.
 
-The separate Windows package workflow runs when package behavior or its own automation changes in a
-pull request, and it remains manually dispatchable. Its WACK job uses the supported Windows Server
-2022 x64 command-line host. Architecture-native installed jobs exercise the certification journey on
-x64 and Windows on Arm. Every job uses a read-only token, telemetry opt-out, and ephemeral randomly
-signed packages. The browser driver is installed outside the repository and does not become a
-dependency. The proof jobs upload no package, certificate, installer, browser profile, raw output, or
-WACK report. The optional preparation job retains only the portable ZIP and an allowlisted
-provenance record. The maintained Store guide records the proof's bounded result and cleanup contract.
-One Windows producer compiles the native x64/ARM64 GUI and isolated proof tools. Only those exact
-binaries and source/output hash records transfer to other jobs; consumers verify their producer
-digest against the same commit and source bytes. Native console/UI observation is CI-only.
+The separate Windows package workflow runs for pull requests that change package behavior or the
+workflow itself. It also supports manual dispatch. WACK uses the supported Windows Server 2022 x64
+command-line host. Native installed jobs run the certification journey on x64 and Windows on Arm.
+Every job uses a read-only token, telemetry opt-out and temporary randomly signed packages.
+The browser driver stays outside repository dependencies. Proof jobs upload no package, certificate,
+installer, browser profile, raw output or WACK report. The optional preparation job retains only the
+portable ZIP and an allowlisted provenance record. The Store guide records the proof's limits,
+result and cleanup requirements.
+One Windows producer compiles the native x64/ARM64 GUI and isolated proof tools. Only those binaries
+and source/output hash records pass to other jobs, which verify the producer digest against the
+same commit and source bytes. Native console/UI observation is CI-only.
 
 The installed proof's `puppeteer-core` graph is pinned in `.github/browser-proof/package-lock.json`.
-The workflow copies that manifest and lock into its temporary directory and runs `npm ci` there. It
-never adds the driver to the root package, so browser runtime dependencies remain zero and the proof
-does not execute a newly resolved transitive graph on every run.
+The workflow copies the manifest and lock to its temporary directory and runs `npm ci` there.
+This uses the locked dependencies, not newly resolved versions. The driver never enters the root
+package; browser runtime dependencies stay at zero.
 
 ### Check the Microsoft Store submission packet
 
-The maintained submission packet keeps the proposed Partner Center fields, owner-only stop points,
-and sanitized listing assets reviewable without entering Partner Center:
+Review proposed Partner Center fields, owner-only stop points and sanitized listing assets without
+entering Partner Center:
 
 ```text
 npm run store:check
 ```
 
 The check requires five 1920 by 1080 Desktop screenshots, the exact 300 by 300 purple panels tile,
-field-limit-safe listing copy, public HTTPS URLs, the first-submission stop points, and the separate
+listing copy within field limits, public HTTPS URLs, first-submission stop points and a separate
 future-update policy. It reads no account data and makes no network request.
 
 Regenerate the assets only with installed Edge and the same scratch `puppeteer-core` boundary as the
@@ -261,10 +255,9 @@ $env:MRT_PUPPETEER='C:\path\to\scratch-directory'
 npm run store:assets
 ```
 
-The generator uses an isolated temporary browser profile, turns cover art off, captures fixed
-synthetic progress, audits the visible text and layout before each image, and removes
-the profile afterwards. Review every generated image before committing it. Package icons and
-package-copied files are not changed.
+The generator uses an isolated temporary profile with cover art off and fixed synthetic progress.
+It checks visible text and layout before each capture and removes the profile afterwards.
+Review every image before committing it. Package icons and package-copied files stay unchanged.
 
 Before changing an action pin:
 
@@ -284,29 +277,26 @@ Do not replace a full SHA with a floating tag such as `@v4`.
 
 ## Add a curated reading order
 
-Curated orders are data, not application code. Append one entry to
-`src/data/curated-lists.json`, then run:
+To add a curated order, append one entry to `src/data/curated-lists.json`, then run:
 
 ```text
 npm run vendor
 ```
 
-To vendor an order means fetching it once and committing the result. The app reads that reviewed
-file instead of calling the metadata API while someone is using it. The vendor run fills issue
-details, writes the order under `src/data`, and rebuilds `src/data/catalog.json`.
+Vendoring fetches an order once for review and commit. The app reads that file instead of fetching
+it from the metadata API during use. The command fills issue details, writes the order under
+`src/data`, and rebuilds `src/data/catalog.json`.
 
-An order comes from exactly one place: `sourceUrl` fetches an upstream HTTPS checklist, while
-`sourceFile` reads a checklist committed under `src/data/orders`. Keep the `id` stable and unique.
-Provide the reader-facing name and description, the order type and depth, discovery tags, source
-credit, source license, and an expected issue count when one is known. Story groups and variants are
-optional.
+Use exactly one source: `sourceUrl` fetches an upstream HTTPS checklist; `sourceFile` reads one
+committed under `src/data/orders`. Keep the `id` stable and unique. Provide a reader-facing name
+and description, order type and depth, discovery tags, source credit and license, and an expected
+issue count when known. Story groups and variants are optional.
 
-Every `character-run` also requires `spotlightKind`. Use `best-of` only for a deliberately selected
-set of recommended stories, `complete-guide` only for a guide that follows its declared character or
-group scope completely, and `other` when neither claim is accurate. The value is editorial: never
-derive it from the number of issues, reading depth, title, description, or source address. Every
-reading in one story group must use the same value. `other` keeps the card under All without adding a
-visible fourth filter.
+Every `character-run` requires `spotlightKind`. Use `best-of` only for selected recommended stories,
+`complete-guide` only for a guide covering its declared character or group scope completely, and
+`other` when neither fits. Choose this value editorially, never from issue count, reading depth,
+title, description or source address. Every reading in a story group must use the same value.
+`other` keeps the card under All without adding a visible fourth filter.
 
 Rebuild only the order being added:
 
@@ -317,9 +307,9 @@ npm run vendor -- --only=<id>
 Re-vendoring every order costs hundreds of API requests and restamps files whose content did not
 change. A malformed or unresolved entry fails rather than shipping a quietly shorter order.
 For an approved single order with previously observed issue-detail responses, use
-`--metadata-cache=<directory>` together with `--only=<id>` to read its complete request-bound
-cache without any network calls. Each requested issue must have a file named for the SHA-256 of
-its exact metadata API URL. A successful record contains `url`, `urlSha256`, `status: 200`,
+`--metadata-cache=<directory>` with `--only=<id>` to read its complete request-bound cache offline.
+Each requested issue needs a file named for the SHA-256 of its exact metadata API URL.
+A successful record contains `url`, `urlSha256`, `status: 200`,
 `body` and `bodySha256`, with the hashes computed from the URL and `JSON.stringify(body)`.
 A provider refusal may instead contain `url`, `urlSha256`, `status: 404`, `fetchedAt` and
 `error: "404 <exact URL>"`, with no `body` or `bodySha256`; it remains an explicit
@@ -328,25 +318,25 @@ HTTP 404 this way. Missing records, unbound or corrupt responses, other HTTP err
 transport failures abort before any output changes. Retain genuine successful records and
 retry only missing requests under the existing vendoring rate limit.
 
-One local source can be a partition parent. Give it a `partitionFile`, set `catalog` to `false`, and
-keep the checked ledger under `scripts/data`. The vendor validates source-position coverage, the
-pinned parent issue vector, child metadata, derived years, path order and overlaps before writing
-anything. It then keeps the parent payload for provenance and existing saved lists while emitting
-ordinary child payloads and catalog entries. Catalog-only regeneration is offline and still rebuilds
-the children, generated path and overlap matrix. Its catalog and overlap timestamps reuse the newest
-pinned payload timestamp, so unchanged inputs produce byte-identical output on a second run:
+A local source can be a partition parent. Give it a `partitionFile`, set `catalog` to `false`,
+and keep the checked ledger under `scripts/data`. Before writing anything, the vendor validates
+source-position coverage, the pinned parent issue vector, child metadata, derived years, path order
+and overlaps. It keeps the parent payload for provenance and saved lists, then writes ordinary child
+payloads and catalog entries. Offline catalog-only regeneration rebuilds the children, generated
+path and overlap matrix. Catalog and overlap timestamps reuse the newest pinned payload timestamp,
+so unchanged inputs produce byte-identical output on a second run:
 
 ```text
 npm run vendor -- --catalog-only
 npm run vendor -- --only=<parent-or-generated-child-id>
 ```
 
-A generated child ID resolves to its partition parent so the whole family remains coherent. Review
-all generated files as one batch. Do not hand-edit a child payload or the overlap matrix.
+A generated child ID resolves to its partition parent, keeping the family together. Review all
+generated files as one batch. Do not hand-edit a child payload or the overlap matrix.
 
 ### Preserve source evidence
 
-Every manually curated order must have enough evidence for another maintainer to reproduce it.
+Record enough evidence for another maintainer to reproduce every manually curated order.
 [The data provenance guide](DATA_PROVENANCE.md) defines the required source packet and normalization
 rules.
 
@@ -371,50 +361,49 @@ product data:
 4. A central approval in the mapping for every reported relationship.
 5. A discrepancy and browser review report explaining every exception.
 
-The central source owner writes `scripts/data/cbh-packets/<id>.json`. The packet fixes the inventory
-identity, exact page and visible section, source boundary, exclusions, row order, expected count,
-complete manifest proposal, chronology insertion anchor, and source-review identity. Its
+The central source owner writes `scripts/data/cbh-packets/<id>.json`, fixing the inventory identity,
+exact page and visible section, source boundary, exclusions, row order, expected count, complete
+manifest proposal, chronology insertion anchor and source-review identity. Its
 `packetDigest` is SHA-256 over canonical JSON with recursively sorted object keys and preserved
 array order. Changing any frozen field requires a new digest and a new downstream review.
 
-When a source names the same whole issue more than once, keep one canonical row at its first source
-occurrence and add `sourceOccurrenceCount` plus `repeatedSourceReferences`. Each repeated reference
-records its full-source position, earlier canonical row, raw issue and range text, and normalized
-title, year and issue number. Do not describe a required repeat as an exclusion and do not put the
-same comic into canonical rows twice. Preparation reconstructs every canonical mapping
+When a source repeats a whole issue, keep one canonical row at its first occurrence and add
+`sourceOccurrenceCount` plus `repeatedSourceReferences`. Each repeated reference records its
+full-source position, earlier canonical row, raw issue and range text, and normalized title, year
+and issue number. Never classify a required repeat as an exclusion or duplicate it in canonical
+rows. Preparation reconstructs every canonical mapping
 `sourcePosition`; approval re-derives those positions and the occurrence-total
 `approvedSourceCount` from the packet before accepting downstream digests.
 
-Packets with no repeated issue omit both optional fields and retain their existing digest meaning.
-The same rule applies to CBRO packets. In a CBRO inventory, `sourceRowCount` is the total source
-occurrence count when the packet has repeats, while the manifest expectation and generated checklist
-remain the distinct comic count.
+Omit both optional fields when no issue repeats; the existing digest meaning stays unchanged.
+CBRO packets follow the same rule. With repeats, a CBRO inventory's `sourceRowCount` counts all
+source occurrences. The manifest expectation and generated checklist count distinct comics.
 
-For a `complete-guide`, enumerate every source-defined whole issue in that packet. A prose-only
-recommendation or collected edition may stay outside the row set when the source does not make it an
-issue in the sequence. An ambiguous identity blocks that candidate instead of permitting an inferred
-replacement or a shorter guide. Missing optional metadata does not block publication when reviewed
-evidence establishes the Marvel issue ID, title, number, series identity, and exact issue link.
-Preserve those facts in the row and allow unavailable dates, cover, digital ID, page count, and
-creators to remain `null` or empty in the pinned payload.
+For a `complete-guide`, list every source-defined whole issue. Exclude prose-only recommendations
+or collected editions only when the source does not place them in the issue sequence.
+An ambiguous identity blocks the candidate; never infer a replacement or shorten the guide.
+Missing optional metadata does not block publication if reviewed evidence establishes the Marvel
+issue ID, title, number, series identity and exact issue link. Keep those facts in the row.
+Unavailable dates, cover, digital ID, page count and creators may stay `null` or empty in the
+pinned payload.
 
-A source-defined guide may instead ship as `depth: partial` and `spotlightKind: other` when the user
-has approved a gap-tolerant release. Keep exact issue identities in `rows`, including identities
-established by reviewed evidence when the configured metadata provider omits them. Put every
-unresolved or explicitly unavailable identity in optional `sourceGaps`, mirrored in the mapping and
-excluded from Markdown and browser payloads. Each gap records its one-based source position, raw
-issue and range references, normalized identity, kind and status, checked date, audit basis, sorted
-evidence sources and a digest recomputed from that complete evidence. `published-metadata-gap` is
-open and fillable; `availability-exclusion` is closed after an explicit availability disposition;
-`source-correction` is closed and cannot become an issue. Link a maintained tracking Issue from the
-gap evidence when future availability or metadata work has been assigned separately.
+A user-approved gap-tolerant guide may ship as `depth: partial` and `spotlightKind: other`.
+Keep exact identities in `rows`, including those established by reviewed evidence but omitted by
+the metadata provider. Put every unresolved or explicitly unavailable identity in optional
+`sourceGaps`, mirror it in the mapping, and exclude it from Markdown and browser payloads.
+Each gap records its one-based source position, raw issue and range references, normalized identity,
+kind and status, checked date, audit basis, sorted evidence sources and a digest recomputed from
+that complete evidence. `published-metadata-gap` is open and fillable; `availability-exclusion` is
+closed after an explicit availability disposition; `source-correction` is closed and cannot become
+an issue. Link a maintained tracking Issue from the gap evidence when future availability or
+metadata work has been assigned separately.
 
 Exact rows, gaps and repeated references must partition every source position. Exact rows plus gaps
-must also be unique, pairwise-disjoint source identities. Resolving an open gap requires either an exact row or a closed availability exclusion with the same
-identity at the same position. Renew the packet first, then mapping, overlap report and central
-approval; each unchanged downstream layer must fail stale until renewed. Closed gaps cannot become
-exact rows later without a new policy decision. Moved positions, changed identities and unexplained
-removals fail instead of becoming metadata.
+must also have unique, pairwise-disjoint identities. Resolve an open gap only with an exact row or
+closed availability exclusion at the same position with the same identity. Renew the packet first,
+then the mapping, overlap report and central approval. Each downstream layer must fail as stale
+until renewed. A closed gap cannot become an exact row without a new policy decision.
+Moved positions, changed identities and unexplained removals fail; they cannot become metadata.
 
 The maintained source records are split by program. Modern event and crossover candidates remain in
 `scripts/data/cbh-modern-inventory.json`, whose fixed 86-record baseline is unchanged. Character and
@@ -444,16 +433,16 @@ npm run cbh:prepare -- --only=<id>
 npm run cbh:resolve -- scripts/data/cbh-mappings/<id>.json
 ```
 
-The preparation command validates the packet against its inventory record and the current catalog.
-It writes only `scripts/data/cbh-mappings/<id>.json`. A mapping worker may edit that one mapping and
-nothing else. The worker does not choose source boundaries, chronology, overlap dispositions, or
-manifest fields. Keep source sequence. Do not regroup issues just to make the file look cleaner.
+Preparation checks the packet against its inventory record and current catalog, then writes only
+`scripts/data/cbh-mappings/<id>.json`. A mapping worker may edit only that mapping, not source
+boundaries, chronology, overlap dispositions or manifest fields. Keep the source sequence.
+Do not regroup issues to make the file look cleaner.
 Exclude prose-only recommendations, optional older runs, collected editions, and non-comic notes
 unless the source clearly makes them part of the issue order.
 
-When one page contains several distinct guides, keep its exact URL and set `sourceSection` to the
-stable visible heading for each guide. The page and section together are the source identity. A
-guide without `sourceSection` remains unique by URL alone. Never invent a URL fragment or DOM id.
+When a page has several guides, keep its exact URL and set `sourceSection` to each guide's stable
+visible heading. Page and section together identify the source. Without `sourceSection`, the URL
+alone must be unique. Never invent a URL fragment or DOM id.
 
 ### Resolve issue IDs deterministically
 
@@ -482,9 +471,9 @@ comparison may cite the maintained policy authority. Lower-cost mapping workers 
 relationship.
 
 The central reviewer records one disposition per comparison in `relationshipReview.dispositions`,
-plus the report, packet, mapping, library, and peer digests, reviewer identity, rationale, timestamp,
-and `approvalDigest`. Review fields do not participate in `mappingDigest`, so adding a correct
-approval cannot invalidate its own mapping evidence.
+plus report, packet, mapping, library and peer digests, reviewer identity, rationale, timestamp
+and `approvalDigest`. Review fields are excluded from `mappingDigest`, so a correct approval
+cannot invalidate the mapping evidence.
 
 Only an approved, current mapping can be authored and vendored:
 
@@ -493,17 +482,15 @@ node scripts/author-cbh-packet.mjs --only=<id>[,<id>...] [--peer=<shipped-peer-i
 npm run vendor -- --only=<id>
 ```
 
-Authoring validates every named candidate before writing any checklist or manifest entry. It stops
-when the packet, mapping sequence, report, live catalog, peer mapping, disposition, or approved
-manifest differs from the reviewed evidence. Omitting `--only` retains the existing legacy batch
-behavior. Every resulting catalog card must credit Comic Book Herald and link to the exact guide
-section followed.
+Authoring checks every named candidate before writing any checklist or manifest entry.
+It stops if the packet, mapping sequence, report, live catalog, peer mapping, disposition or approved
+manifest differs from reviewed evidence. Omitting `--only` keeps the legacy batch behavior.
+Every catalog card must credit Comic Book Herald and link to the exact guide section followed.
 
 Use `--peer` when a separately authored candidate was reviewed against a shipped guide's mapping.
-Pass several reviewed peers as one comma-separated value when required. Each peer remains in the
-manifest unchanged, is counted exactly once in the relationship report, and is excluded from the
-ordinary reviewed-library digest. A partial relationship does not permit any source sequence to
-lose shared issues.
+Pass multiple reviewed peers as one comma-separated value. Each stays unchanged in the manifest,
+appears exactly once in the relationship report, and is excluded from the ordinary reviewed-library
+digest. A partial relationship never permits dropping shared issues from a source sequence.
 
 An exact metadata issue can legitimately omit its number from the official title. A source-to-metadata
 number translation may preserve that title only when the packet pins the exact candidate issue ID,
@@ -526,9 +513,9 @@ first issue, last issue, and reading sequence.
 
 ## Build a Comic Book Reading Orders historical event packet
 
-Historical CBRO events use the same five evidence layers and central relationship policy as the CBH
-workflow, but provider identity, source paths, attribution, and authoring remain separate. Do not put
-CBRO evidence under a `cbh-` data path or use Comic Book Herald attribution for it.
+Historical CBRO events use CBH's five evidence layers and central relationship policy.
+Keep provider identity, source paths, attribution and authoring separate. Never put CBRO evidence
+under a `cbh-` data path or attribute it to Comic Book Herald.
 
 The maintained inventory is `scripts/data/cbro-historical-inventory.json`. It contains the 58 event
 timeline entries before Maximum Security; the cutoff itself and every later entry are absent. A
@@ -558,15 +545,15 @@ npm run vendor -- --only=<id>[,<id>...]
 ```
 
 The range freezer accepts only explicit visible labels, inclusive issue-number ranges, candidate
-issue IDs, metadata series IDs, and reviewed source-to-metadata alias notes. It creates packets
-through the shared CBRO packet-digest primitive and does not fetch, copy, or reproduce source prose.
-Preparation writes one exact mapping per frozen packet. A mapping worker does not choose source
-boundaries, exclusions, manifest fields, aliases, chronology, or relationship dispositions. Approval
-regenerates a factual report against every current shipped order and every selected peer. Exact
-duplicates have no approval path. Subset and partial relationships remain central decisions.
-The original five-guide release remains the default when no release is named. A release ID selects
-one known complete source-order or chronology-order set. Unknown releases, incomplete or mixed sets,
-duplicates, and the wrong order are refused so an omitted guide cannot become an ordinary library
+issue IDs, metadata series IDs and reviewed source-to-metadata alias notes. It uses the shared CBRO
+packet-digest function and never fetches, copies or reproduces source prose. Preparation writes one
+exact mapping per frozen packet. A mapping worker cannot choose source boundaries, exclusions,
+manifest fields, aliases, chronology or relationship dispositions. Approval regenerates a factual report against
+every shipped order and selected peer. Exact duplicates cannot be approved. Subset and partial
+relationships need central decisions.
+Without a named release, the original five-guide release is the default. A release ID selects one
+known complete source-order or chronology-order set. Unknown releases, incomplete or mixed sets,
+duplicates and wrong order are refused. An omitted guide must not become an ordinary library
 comparison instead of a bound peer.
 
 The maintained historical program currently ships 39 guides. The ninth continuation release has two
@@ -598,27 +585,25 @@ a Character Spotlight classification; Storylines remains the canonical shelf.
 
 ## Create reading paths and collected-edition groups
 
-A reading path is a named sequence of existing order IDs. An ordinary authored path belongs in the
-`paths` array beside the curated lists in `src/data/curated-lists.json`. A partition path belongs in
-its ledger because its child IDs do not exist until generation. Each step is a list `id`, not a
-story-group key. Include a stable path ID, reader-facing name and description, source credit, and at
-least two steps.
+A reading path names a sequence of existing order IDs. Put an authored path in the `paths` array
+beside the curated lists in `src/data/curated-lists.json`. Put a partition path in its ledger;
+its child IDs exist only after generation. Each step is a list `id`, not a story-group key.
+Include a stable path ID, reader-facing name and description, source credit and at least two steps.
 
 The vendor run refuses missing list IDs, duplicate stories, duplicate path IDs, stale generated
 steps, and paths with fewer than two steps. Tests also verify that shipped path stops do not overlap.
 
-A hand-authored checklist can divide issues with `##` subheadings. Each subheading names a collected
-edition and groups the issues beneath it. A `#` heading remains the order title and ends any open
-edition. Orders without subheadings remain ordinary issue orders.
+A hand-authored checklist can group issues into collected editions under `##` subheadings.
+Each subheading names the edition. A `#` heading names the order and ends any open edition.
+Without subheadings, the checklist remains an ordinary issue order.
 
-The grouping is the curator's claim, so say in the order description where the volume lineup came
-from and which issues it leaves out. Issue read state remains shared across grouped and ordinary
-orders.
+In the order description, credit the volume lineup and name any omitted issues; the curator owns
+that grouping claim. Issue read state stays shared across grouped and ordinary orders.
 
 ## Regenerate event orders
 
-The generated event orders use the series IDs Marvel branded with each event. The script fetches
-their issues and writes a checklist in publication order under `src/data/orders`:
+The script uses the series IDs Marvel branded with each event, fetches their issues and writes
+a publication-order checklist under `src/data/orders`:
 
 ```text
 node scripts/build-event-order.mjs
@@ -627,9 +612,9 @@ node scripts/build-event-order.mjs --dry-run
 node scripts/build-event-order.mjs --audit
 ```
 
-Run the audit before regeneration. It scans the full series catalog and fails when a matching series
-is in neither the include list nor the explicit rejection record. The output is committed, so review
-the order as a data diff before vendoring it.
+Run the audit first. It scans the full series catalog and fails if a matching series is in neither
+the include list nor the explicit rejection record. Review the generated order's data diff before
+vendoring and committing it.
 
 ## Rebuild series and creator indexes
 
@@ -640,16 +625,15 @@ local indexes:
 npm run vendor:index
 ```
 
-The command pages the complete series and creator catalogs and writes compact snapshots to
-`src/data/series-index.json` and `src/data/creators-index.json`. The app loads each file only when
-its search card opens. A new upstream record is not searchable until the snapshots are rebuilt.
+The command reads every page of the series and creator catalogs and writes compact snapshots to
+`src/data/series-index.json` and `src/data/creators-index.json`. The app loads each file when its
+search card opens. Rebuild the snapshots to make new upstream records searchable.
 
 ## Activate Microsoft Store update automation
 
-The first Microsoft Store submission remains manual. Do not activate automated updates until that
-free submission is certified and live. Implementation can merge earlier only after the protected
-environment exists, because GitHub creates a referenced environment without protection rules when
-one does not already exist.
+The first Microsoft Store submission is manual. Do not activate automated updates until that free
+submission is certified and live. Before merging the implementation, create the protected
+environment. Otherwise GitHub creates it without protection rules.
 
 Before the Store workflow reaches the default branch:
 
@@ -660,9 +644,9 @@ Before the Store workflow reaches the default branch:
    Validate and Submit dispatches. Application tags are checked inside the job.
 4. Do not merge the workflow if this protection cannot be expressed and enforced.
 
-The environment can exist before Store certification and does not need credentials yet. Until the
-first version is live, reject any deployment approval request. After it is live, create an Entra
-application with Partner Center Manager access and add these environment secrets:
+The environment needs no credentials before Store certification. Reject every deployment approval
+until the first version is live. Then create an Entra application with Partner Center Manager access
+and add these environment secrets:
 
 ```text
 PARTNER_CENTER_TENANT_ID
@@ -674,42 +658,41 @@ Add the Store product identity as the environment variable
 `MICROSOFT_STORE_PRODUCT_ID`. Never place those values in repository variables, workflow text,
 logs, issue comments, or artifacts.
 
-Dispatch **Microsoft Store release** manually from the default branch before the first production
-update. The protected approval must appear before the job starts. The rehearsal builds, inspects,
-and WACK-tests the current bundle, authenticates, and reads the application and exact last published
-submission through Microsoft's submission API. It also confirms that the bundle version is higher
-than every published package version. It must report **read-only activation rehearsal passed**. It
-cannot create a submission, upload a package, update or commit a submission, delete, poll, operate a
-rollout, or operate a flight.
+Before the first production update, manually dispatch **Microsoft Store release** from the default
+branch. Protected approval must appear before the job starts. The rehearsal builds, inspects and
+WACK-tests the current bundle, authenticates, and reads the application and exact last published
+submission through Microsoft's submission API. It checks that the bundle version exceeds every
+published package version. Require **read-only activation rehearsal passed**. The rehearsal cannot
+create, update or commit a submission, upload a package, delete, poll, or operate a rollout or flight.
 
 If the rehearsal reports an unrecognized pricing field, package field, or rollout field, stop.
-Update the fixture-backed contract from the documented API and the observed sanitized field shape rather
-than accepting a missing value. Do not test the contract by creating a draft.
+Update the fixture-backed contract using the documented API and observed sanitized field shape.
+Never accept a missing value or create a draft to test the contract.
 
 ### Operate a Store update
 
-Complete the ordinary release preparation below, including version-bound Store notes. Publishing a
-GitHub release no longer starts the Store job. Explicitly dispatch Submit from the default branch
-with the stable `v<version>` tag and its full source SHA. Protected approval is the
-owner's authorization to build and submit that release. Reject approval if the Store product has
-pending work or if the release was not intended as the next Store update.
+Complete release preparation below, including version-bound Store notes. A GitHub release does not
+start the Store job. Explicitly dispatch Submit from the default branch with the stable
+`v<version>` tag and full source SHA. Protected approval authorizes building and submitting that
+release. Reject approval if the Store product has pending work or this is not the intended next
+Store update.
 
-The job proves the tag commit is on the default branch, builds once, inspects the packages, runs
-WACK, and confirms the bundle hash did not change. Only then does it authenticate, reject unsafe
-Partner Center state, create one draft, capture its submission ID, upload the bundle archive, set
-immediate publication with rollout disabled, verify that exact draft, and commit that same ID once.
-Each HTTP mutation is sent once without an automatic retry policy. The create request fails rather
-than deleting an existing pending submission.
+The job verifies the tag commit is on the default branch, builds once, inspects packages, runs WACK
+and confirms the bundle hash is unchanged. Only then does it authenticate, reject unsafe Partner
+Center state, create one draft, record its submission ID, upload the bundle archive, set immediate
+publication with rollout disabled, verify that draft and commit the same ID once. HTTP mutations
+are sent once, without automatic retries. Creation fails rather than deleting an existing pending
+submission.
 
-A successful commit acknowledgement is not publication. The publisher observes status with read-only
-requests for at most five minutes, distinguishing acknowledgement, processing, certification,
-publication pending and Published. It independently verifies the exact ingested package/version and
-approved notes, then checks preserved nonpackage intent. Local observation or proof blockers report
-`verification-pending`, not Store rejection, while retaining the acknowledged commit and last valid
-Store status. Required proof missing at the deadline also returns nonzero. Confirmed terminal/error
-outcomes remain `failed`. Neither result sends another mutation. Only Published with every required
-proof is a published outcome; fully verified ingestion in processing or certification remains distinct.
-The summary contains safe identity, stage/code, status, independent proof results and notes hash.
+A commit acknowledgement is not publication. For at most five minutes, read-only requests track
+acknowledgement, processing, certification, publication pending and Published. The publisher
+independently verifies the exact ingested package/version and approved notes, then checks preserved
+nonpackage intent. Local observation or proof blockers report `verification-pending`, not Store
+rejection, and retain the acknowledged commit and last valid Store status. Missing required proof
+at the deadline returns nonzero. Confirmed terminal/error outcomes remain `failed`.
+Neither result sends another mutation. Only Published with every required proof counts as published;
+verified ingestion during processing or certification does not. The summary contains safe identity,
+stage/code, status, independent proof results and notes hash.
 
 Microsoft publishes automatically after certification, which can take up to three business days.
 There is no second manual publishing hold. A pending observation is not a claim of delivery.
@@ -724,10 +707,9 @@ commit on the default branch. The workflow checks out the application there and 
 publisher at the dispatch workflow commit separately. Its summary records both identities and the
 WACK-qualified bundle hash. This does not move the public tag or replace its ZIP.
 
-The normal protected environment approval still authorizes the specific submission. Default manual
-dispatch remains `Validate`, with no tag or source SHA and no Store mutation. Both paths retain the
-live-product, free-price, strictly-higher-version and no-pending-submission guards. Never use a
-catch-up submission to resume or replace an existing draft.
+Protected environment approval authorizes the specific submission. Manual dispatch defaults to
+`Validate`, with no tag, source SHA or Store mutation. Both paths require a live free product,
+a strictly higher version and no pending submission. Never use catch-up to resume or replace a draft.
 
 ### Recover a Store update
 
@@ -740,11 +722,10 @@ catch-up submission to resume or replace an existing draft.
 | Certification failed | Use the certification report, correct the application, and publish a new GitHub release with a higher version. |
 | Runner lost after commit | Treat Partner Center as authoritative. The pending guard prevents another upload while Store work remains. |
 
-The workflow captures no raw Store response in its summary and uploads no package or diagnostic
-artifact. Its always-run cleanup removes generated packages, temporary Store JSON and upload
-archives, WACK reports, package registration, and temporary certificate trust. Access tokens remain
-in process memory only. A cleanup failure is a release failure and must be resolved before another
-run.
+The summary contains no raw Store response; the workflow uploads no package or diagnostic artifact.
+Cleanup always runs to remove generated packages, temporary Store JSON and upload archives, WACK
+reports, package registration and temporary certificate trust. Access tokens stay in process
+memory only. A cleanup failure is a release failure. Resolve it before another run.
 
 When changing the Store submission API script, WinApp CLI, checkout action, or Node setup action,
 review the upstream contract or release notes, replace any affected immutable pin, update the
@@ -787,18 +768,17 @@ Keep #488 open until handoff, draft read-back and disposal finish; publishing is
 
 ## Cutting a release
 
-First select the affected platforms using [the coordinated release policy](RELEASING.md).
-Product version, platform build number and publication approval are separate. Update its delivered
-matrix only from confirmed platform delivery; an Android-only release does not publish Windows.
+Select affected platforms using [the coordinated release policy](RELEASING.md). Product version,
+platform build number and publication approval are separate. Update the delivered matrix only
+after confirmed platform delivery. An Android-only release does not publish Windows.
 
-Release preparation and GitHub publication are separate actions. Prepare and merge the release
-commit first. Create the GitHub release from the exact merged commit on the default branch, never
-from an unmerged branch commit.
+Prepare and merge the release commit before GitHub publication. Create the release from that exact
+merged commit on the default branch, never an unmerged branch commit.
 
 ### 1. Finalize the release record
 
-Move the current changelog entries under a version heading. Keep the release notes benefit-led and
-link to the full changelog.
+Move current changelog entries under a version heading. Lead release notes with what improves for
+readers and link to the full changelog.
 
 Update the canonical application version and its synchronized release files together:
 
@@ -806,23 +786,20 @@ Update the canonical application version and its synchronized release files toge
 npm version <major|minor|patch> --no-git-tag-version
 ```
 
-The npm version lifecycle updates the browser version constant in the same operation. The MSIX
-packer derives Store revision `.0` and proof-only revision `.1` from that application version, so
-neither package version is maintained separately. Confirm the package metadata, lock file, and
-browser constant agree and the stored-data schema is still correct. Use a major version for a
-substantial new product generation. A major version is also required whenever an older build cannot
-read data written by the new build, but a product-generation release may preserve the existing
-schema. Use a minor version for features within the current generation and a patch for behavior
-fixes that intentionally change neither data nor interface.
+The npm version lifecycle also updates the browser version constant. The MSIX packer derives Store
+revision `.0` and proof-only revision `.1` from it; do not maintain package versions separately.
+Confirm package metadata, lock file and browser constant agree, and the stored-data schema is
+correct. Use a major version for a substantial new product generation or data an older build cannot
+read. A new generation may keep the existing schema. Use a minor version for features within the
+current generation and a patch for behavior fixes that change neither data nor interface.
 
 ### 2. Run release validation
 
-Repeat the eight deterministic gates from the start of this guide. Check that every advertised
-branch is either the default or the head of an open pull request in this repository, then fetch the
-current remote state and run the full publication-surface gate. The branch-only check uses the
-public GitHub API without a token in a local clone; set `GITHUB_TOKEN` when checking a private fork
-or when the public unauthenticated rate limit is unavailable. Then run the live contract, browser,
-upgrade, and package checks:
+Repeat the eight deterministic gates above. Check that every advertised branch is the default or
+the head of an open pull request in this repository. Fetch current remote state and run the full
+publication-surface gate. The local branch-only check uses GitHub's public API without a token.
+Set `GITHUB_TOKEN` for a private fork or when the unauthenticated rate limit is unavailable.
+Then run the live contract, browser, upgrade and package checks:
 
 ```text
 npm run publication:branches
@@ -845,7 +822,7 @@ Do not commit `dist`.
 For hosted preparation, manually dispatch **Windows App Certification Kit** at the clean,
 committed candidate with `release_preparation=true`, `native_only=false` and
 `diagnostic_only=false`. The option defaults off and never runs on a pull request.
-The independent Windows preparation job runs the eight gates, live contract, full ordinary
+The separate Windows preparation job runs the eight gates, live contract, full ordinary
 browser suite, actual historical upgrade, Store packet check and existing portable packer.
 Browser tooling uses the external locked driver and a temporary profile.
 
@@ -857,13 +834,12 @@ every portable file with its source or the checksum-verified official runtime ar
 The ZIP keeps `Start on Windows.cmd`, its persistent command window and official x64 Node;
 the native branded startup belongs only to MSIX. No launcher or package behavior changes.
 
-An uploaded ZIP alone is not a qualified candidate: all five jobs and their cleanup must
-pass, including the existing native controls and all five installed journeys. Preserve the
-two retained files and verify their hashes before the artifact expires. Keep their original
-candidate provenance after merge rather than claiming they were built at a later commit.
-Store packages, certificates, private inputs and raw reports remain temporary. This route
-creates neither a tag nor a GitHub release and cannot submit a Store update. The protected
-read-only Store rehearsal remains a separate postmerge action.
+An uploaded ZIP is not enough: all five jobs and cleanup must pass, including native controls
+and all five installed journeys. Save the two retained files and verify their hashes before expiry.
+Keep the original candidate provenance after merge; never claim a later commit built them.
+Store packages, certificates, private inputs and raw reports remain temporary. This route creates
+no tag or GitHub release and cannot submit a Store update. Run the protected read-only Store
+rehearsal separately after merge.
 
 ### 3. Merge before tagging
 
@@ -903,33 +879,31 @@ tag names.
 
 ## Maintain runtime Reading Paths
 
-Treat the parsed generated catalog as the browser's authority for Reading Paths. Ordinary path
-declarations live in `src/data/curated-lists.json`, while a reviewed chapter partition can emit
-another path through `scripts/lib/chapter-orders.mjs`. Reading only the manifest would therefore
-drop a valid generated path. After vendoring, validate the resolved set with:
+Use the parsed generated catalog for browser Reading Paths. Ordinary declarations live in
+`src/data/curated-lists.json`; reviewed chapter partitions can generate another path through
+`scripts/lib/chapter-orders.mjs`. The manifest alone misses generated paths. After vendoring,
+validate the resolved set:
 
 ```text
 node --test test/reading-path.test.js test/modern-timeline.test.js
 ```
 
-The aggregate Reading paths screen and shelf badges answer different questions. The aggregate model
-keeps every path independently, including a future story shared by more than one path. Shelf
-placement intentionally keeps the first path for one stable badge. Do not reuse the shelf placement
-map to build the complete screen.
+The Reading paths screen keeps every path, including a future story shared by several paths.
+Shelf badges keep only the first path for a stable badge. Never build the complete screen from
+the shelf placement map.
 
-The route has one path-specific query, `path=<validated-id>`. A selection belongs to browser history,
-not saved state or the reading filter. Preserve the requested id while the catalog loads, reject
-stale render continuations, and canonically replace a missing or invalid id after resolution.
+The route has one path-specific query, `path=<validated-id>`. Selection belongs to browser history,
+not saved state or the reading filter. Keep the requested id while the catalog loads, reject stale
+render continuations, and canonically replace missing or invalid ids after resolution.
 
-Progress for each stop must continue to prefer the exact imported catalog id, then the first imported
-sibling in catalog order, then **Not added**. State replacement from another tab and whole-origin
-clearing update only those progress labels; rebuilding the selector would discard its DOM identity
-and keyboard focus.
+For each stop's progress, prefer the exact imported catalog id, then the first imported sibling in
+catalog order, then **Not added**. After another tab replaces state or the whole origin is cleared,
+update only progress labels. Rebuilding the selector loses its DOM identity and keyboard focus.
 
 ## Build and prove the Microsoft Store bundle
 
-[The Microsoft Store package guide](MICROSOFT_STORE.md) owns the exact production identity, activation
-decision, isolated trust procedure, proof matrix, cleanup, and remaining Store gates.
+[The Microsoft Store package guide](MICROSOFT_STORE.md) defines the exact production identity,
+activation decision, isolated trust procedure, proof matrix, cleanup and remaining Store gates.
 
 Use the controlled Windows Actions workflow, not the personal Store installation. The native
 producer requires the hosted Visual Studio 2022 x64/ARM64 tools and SDK 10.0.26100.0. It builds
@@ -942,19 +916,18 @@ winapp --version
 npm run msix:pack
 ```
 
-The packer writes signed x64 and ARM64 packages at `<application-version>.0` plus their bundle under
-ignored `dist/msix/`. It also writes the x64 `<application-version>.1` update artifact under
-`dist/msix-proof/`, where it cannot enter the Store bundle. Both official Node archives are checked
-against Node's published SHA-256 list. Each package activates its native GUI, which starts the
-official architecture-matched Node coordinator without a console. That coordinator remains the
-authority for readiness, browser handoff and the unchanged detached server. Startup inputs are
-included before generation hashing. Package assets are generated and all outputs are
-signed with one transient certificate before the private key and password are deleted. Never commit
-anything under `dist/`.
+The packer writes signed x64 and ARM64 packages at `<application-version>.0` and their bundle under
+ignored `dist/msix/`. The x64 `<application-version>.1` update artifact goes under `dist/msix-proof/`
+and cannot enter the Store bundle. Both official Node archives are checked against Node's published
+SHA-256 list. Each package activates its native GUI, which starts the official architecture-matched
+Node coordinator without a console. That coordinator controls readiness, browser handoff and the
+unchanged detached server. Startup inputs are included before generation hashing. The packer
+generates assets and signs all outputs with one transient certificate, then deletes the private
+key and password. Never commit anything under `dist/`.
 
-On any build host, inspect every package and both bundle slices for identity, updater absence, Node
-hashes, the exact native-plus-Node executable set, native source/hash binding and PE machine/subsystem
-fields without starting a foreign runtime:
+On any build host, inspect every package and both bundle slices without starting a foreign runtime.
+Check identity, updater absence, Node hashes, the exact native-plus-Node executable set, native
+source/hash binding and PE machine/subsystem fields:
 
 ```text
 npm run msix:inspect -- --structural
@@ -964,9 +937,9 @@ On Windows on Arm, `npm run msix:inspect` also measures the x64-emulated and nat
 processes. Certification workflows use the structural form, then leave native execution to the
 matching installed-proof host.
 
-The public CER requires temporary administrator trust in the disposable runner before installation.
-No owner credential or Store signing secret is used. The hosted jobs run the three proof scenarios
-after that trust step; do not run them against a personal installation:
+Before installation, temporarily trust the public CER as administrator in the disposable runner.
+No owner credential or Store signing secret is used. Hosted jobs then run the three proof scenarios.
+Never run them against a personal installation:
 
 ```text
 npm run msix:prove -- --scenario=certification-functionality
@@ -979,8 +952,8 @@ Those commands default to the standalone x64 package. Add
 ARM64 slice from the final bundle. The update journey remains x64 because the `.1` package is
 proof-only and never belongs in the Store bundle.
 
-Loose registration is useful for activation debugging but is not installation evidence. Record it
-as such. The final proof must remove the exact package, its recorded processes, and the temporary
+Loose registration can debug activation but is not installation evidence; label it accordingly.
+The final proof must remove the exact package, its recorded processes and the temporary
 TrustedPeople certificate, then confirm port 8787 is free.
 
 `npm run pack` remains the GitHub ZIP build. Do not merge the ZIP and MSIX paths or rename the stable
@@ -1004,10 +977,27 @@ index.html
 site.css
 assets/home-960.png
 assets/avengers-disassembled-reading-960.png
+assets/android-feature-graphic.png
+assets/android-library-preview.png
+assets/android-reading-preview.png
 ```
 
 The two 960 by 900 images use a clean demo profile, cover art off, and the collapsed sidebar.
-Keep them byte-identical to their namesakes under `docs/screenshots/`. Do not add
+Keep them byte-identical to their namesakes under `docs/screenshots/`.
+
+The three Android images live under `pages/assets/`. The feature graphic is owner-supplied;
+the two phone layouts are selected, inspected copies from `npm run play:assets`, generated from
+the source revision recorded in [the asset provenance](project-home-assets.json). That record
+binds the source, renderer, fictional fixture and image hashes; it is not deployed with the site.
+The page labels these as desktop-rendered development previews, not native-device screenshots
+or approved Play assets. Keep that distinction and the earlier-beta warning visible. A new
+capture does not authorize a store listing, release or publication.
+
+Refresh these copies deliberately, with the provenance and image contracts in
+`test/pages-home.test.js`. The original generated preview packet remains ignored; never
+force-add it. Keep every image local to the Pages artifact, with its real dimensions and
+meaningful alternative text. The page's larger feature tour remains bounded by its word budget.
+Do not add
 `src`, an app manifest, a service worker, a script, a form, an iframe, an external font, analytics,
 telemetry or another application origin to the artifact.
 
@@ -1096,11 +1086,11 @@ delivery record.
 
 ## Interpret qualified startup evidence
 
-The controlled Windows proof reports `app-startup-contract-v2`, not a machine-wide window census.
+The controlled Windows proof reports `app-startup-contract-v2`, not every window on the machine.
 It requires the exact installed startup closure and activation, a source-bound producer receipt
-from the real creation-option tests, a qualified native64 command environment, every internal
-startup actor, calibrated app-client terminal evidence, the declared behavior and completed
-capture-owned cleanup. A required unknown is inconclusive, not a pass.
+from real creation-option tests, a qualified native64 command environment, every internal startup
+actor, calibrated app-client terminal evidence, declared behavior and completed capture-owned
+cleanup. A required unknown is inconclusive, not a pass.
 
 The accounted Console API host is still part of the app's actor and terminal evidence. Exact
 system-image and validated client-parent identity do not prove invisibility. Do not extend that
@@ -1108,18 +1098,18 @@ role to arbitrary system children or allow its children to inherit a CMD externa
 Its arguments are a Windows-owned protocol, not a matched app script, and its normal completed
 exit is0 independently of an expected client refusal.
 
-The host reads both AutoRun hives without modifying them and compares expected inbox helper
+The host reads both AutoRun hives without changing them and compares expected inbox helper
 identities before and after capture. A window-observing negative counts only with its intended
-failure and a complete qualified `host-completion-v2` record. An early expected failure cannot
-hide a failed final host sample. Decoder-only N1 does not pretend to collect host evidence.
+failure and a complete qualified `host-completion-v2` record. An early expected failure cannot hide
+a failed final host sample. Decoder-only N1 collects no host evidence.
 
-Unassessed global activity and external URI-handler UI stay visible as separate uncertainty.
-Do not treat an image label, a PID outside the app tree, or a previous result as an exemption.
-The actual installed functionality, busy-port and update journeys still need their own successful
-completion after package and scenario cleanup. Preserve primary and secondary failure chronology.
-After actual driver completion, the bounded final report read imports a specific native failure
-before a generic failed-exit fallback. Only an imported specific record is marked as consumed;
-earlier genuine faults, poisoned reports and later cleanup failures retain their ordering.
+Report unassessed global activity and external URI-handler UI as separate uncertainty. An image
+label, a PID outside the app tree or a previous result is no exemption. Installed functionality,
+busy-port and update journeys must each complete successfully after package and scenario cleanup.
+Keep primary and secondary failures in order. After driver completion, the bounded final report
+read imports a specific native failure before a generic failed-exit fallback. Only an imported
+specific record is marked consumed. Keep earlier genuine faults, poisoned reports and later
+cleanup failures in order.
 
 Each installed command must return exit0 and exactly one matching final journey record after
 its outer cleanup; capture or behavior output alone is not completion. An unsettled CLI fails
@@ -1127,10 +1117,10 @@ at process quiescence rather than exiting successfully. The foreign busy-port ho
 most64 accepted sockets, discards their input without replying, and requires actual listener
 and socket closure within its referenced2000ms cleanup deadline.
 
-The existing native-only workflow input is a cheap compiler/preflight gate, not installed
-certification. A complete run rebuilds its own producer artifacts at the same settled source head.
-Keep the finite approved run budget, exact input hashes, actual inner command counts, skipped
-stages and original preview flags. No proof result alone authorizes a PR or Store release.
+The native-only workflow input checks compilation and prerequisites, not installed certification.
+A complete run rebuilds its producer artifacts at the same settled source head. Keep the approved
+run limit, exact input hashes, actual inner command counts, skipped stages and original preview
+flags. No proof result alone authorizes a PR or Store release.
 
 ## Store release-note payloads
 
@@ -1156,16 +1146,16 @@ An API-created draft must be finished through the API, not edited through Partne
 Any mutation requires a separately reviewed, exact-draft recovery; ordinary publishing still
 rejects pending submissions. The public release tag and qualified package source remain immutable.
 
-Each release owns `docs/releases/<application-version>-store.json` with exactly `version`, `locale`
-and `text`. Use the canonical application version, `en-us`, and concise hyphen-bullet lines of at
-most 1500 characters in total. Include important upgrade compatibility guidance; do not copy GitHub
-download instructions into Store notes.
+Keep each release's Store notes in `docs/releases/<application-version>-store.json` with exactly
+`version`, `locale` and `text`. Use the canonical application version, `en-us`, and concise
+hyphen-bullet lines totaling at most 1500 characters. Include important upgrade compatibility
+guidance, not GitHub download instructions.
 
-Both protected workflow paths pass that file to `publish-store-update.ps1` as `ReleaseNotesPath`.
-The publisher validates the version, text and existing English base listing before creating a draft.
-It changes only that listing's release notes, preserving other languages, descriptions, images and
-unrelated settings. Exact note read-back is required before the one-time draft commit. A missing or
-ambiguous listing field is a blocker, not permission to create or substitute one.
+Both protected workflow paths pass the file to `publish-store-update.ps1` as `ReleaseNotesPath`.
+Before creating a draft, the publisher validates the version, text and existing English base listing.
+It changes only that listing's release notes; other languages, descriptions, images and unrelated
+settings stay unchanged. Exact note read-back is required before the one-time draft commit.
+A missing or ambiguous listing field blocks the run. Never create or substitute one.
 
 Run `node --test test/microsoft-store-release.test.js` for the payload and delivery contracts.
 Repeat the protected read-only rehearsal after changing publisher behavior, as required above.
@@ -1192,50 +1182,47 @@ follow a successful mutation: inspect the same draft read-only instead of trying
 
 ### Diagnose a current Store readback without changing it
 
-Use **Read-only Store readback diagnosis** for current or future stopped submissions, not the
-incident-bound 3.0.0 reconstruction or recovery workflows above. Dispatch only from the default
-branch, coordinate with the current Store operator, and retain the required owner review on
-`microsoft-store-production`. The shared production concurrency group does not cancel an active
-operation. Approval authorizes observation only, never resumption or commit.
+Use **Read-only Store readback diagnosis** for current or future stopped submissions.
+The 3.0.0 workflows above apply only to that incident. Dispatch only from the default branch,
+coordinate with the current Store operator, and keep the required owner review on
+`microsoft-store-production`. Shared production concurrency does not cancel an active operation.
+Approval permits observation only, never resumption or commit.
 
 Supply `release_tag`, full `source_sha`, `expected_pending_id`, `expected_published_id`,
-`bundle_sha256` and `notes_sha256`. The notes hash is SHA-256 of the exact approved `text` string's
-UTF-8 bytes, not the JSON file. The workflow runs the reviewed diagnostic at its own workflow
-commit and reads application version and notes from a separate immutable release checkout. It
-requires an existing non-draft, non-prerelease public release, the exact tag commit on the default
-branch, a matching package version and filename, and the approved notes hash before authentication.
-It does not build MSIX packages, move a tag, alter a public release, or call the publisher.
+`bundle_sha256` and `notes_sha256`. Hash the exact approved `text` string's UTF-8 bytes with SHA-256,
+not the JSON file. The diagnostic runs at its own reviewed workflow commit and reads version and
+notes from a separate immutable release checkout. Before authentication, it requires an existing
+non-draft, non-prerelease public release, the exact tag commit on the default branch, a matching
+package version and filename, and the approved notes hash. It never builds MSIX packages, moves
+a tag, alters a public release or calls the publisher.
 
-Each check reports a fixed identifier, pass/fail result and code. Store reads are limited to the
+Each check reports a fixed identifier, pass/fail result and code. Store reads cover only the
 application, exact configured published and pending submissions, pending status, and final
-application/published rechecks. Responses are held in memory; no raw response or private baseline
-is written to disk or uploaded as an artifact. HTTP errors, malformed fields and mismatches do
-not suppress independent checks. There is no retry. Authentication is the only POST; Store
-mutation count must remain zero.
+application/published rechecks. Responses stay in memory; no raw response or private baseline
+goes to disk or an artifact. HTTP errors, malformed fields and mismatches do not suppress other
+checks. There is no retry. Authentication is the only POST; Store mutation count must stay zero.
 
 The report shows allowlisted statuses, numeric package versions, file statuses and filename-match
-booleans. Missing and null package versions are distinct observations, not a generic failure.
-Other values appear only as types, hashes and counts. Status messages are never emitted; only
-documented error/warning codes and counts are exposed. Paths use known API field names, a
-conservative locale allowlist and array indices; other keys are hashed. Differences are bounded
-to 100 records per view, with explicit total and truncation indicators.
+booleans. It distinguishes missing package versions from null. Other values appear only as types,
+hashes and counts. Never emit status messages, only documented error/warning codes and counts.
+Paths use known API field names, a conservative locale allowlist and array indices; other keys
+are hashed. Each view allows at most 100 difference records and states the total and any truncation.
 
-The expected update is constructed from the **current** published submission plus the approved
-release notes and package replacement. The semantic comparison shares the publisher's exact
-`mutableIntent`, new-package metadata handling and narrow deleted-bundle omission rule below. Additional views expose differences before
-new-package normalization and before general normalization, excluding upload authorization and
-status detail bodies. Those views are observations, not new acceptance rules. The publisher
-retains its no-pending and higher-version preflight guards; failures include fixed contract codes
-and safe semantic paths rather than only the stage name.
+The expected update uses the **current** published submission, approved release notes and package
+replacement. It shares the publisher's exact `mutableIntent`, new-package metadata handling and
+narrow deleted-bundle omission rule below. Additional views show differences before new-package
+and general normalization, excluding upload authorization and status detail bodies. These are
+observations, not acceptance rules. The publisher still requires no pending submission and a higher
+version. Failures include fixed contract codes and safe semantic paths, not just the stage name.
 
-Set `read_uploaded_bundle=true` only when the operator also authorizes an upload read. The optional
-GET accepts only an unexpired HTTPS Azure Blob ingestion URL, sends no Authorization header, and
-refuses redirects. It caps transfer and expanded bundle size at 256 MiB each, with a 60-second
-request deadline. It accepts only a single exact-name stored or deflated bundle in a non-ZIP64
-archive with no archive comment, matching sizes and a calculated payload CRC-32. Bytes remain in memory. The report includes the current ZIP
-hash/size, bundle hash/size and equality to the supplied qualified bundle hash. Denial, timeout,
-unsupported ZIP layout, limits or mismatch are explicit failed checks; metadata checks still
-complete. No uploaded bytes are assumed merely because metadata names the expected package.
+Set `read_uploaded_bundle=true` only with the operator's approval to read the upload. This GET
+accepts only an unexpired HTTPS Azure Blob ingestion URL, sends no Authorization header and refuses
+redirects. Transfer and expanded bundle size are each capped at 256 MiB, with a 60-second deadline.
+The archive must be non-ZIP64 with no comment, holding a single exact-name stored or deflated bundle
+with matching sizes and a calculated payload CRC-32. Bytes stay in memory. The report gives current
+ZIP and bundle hashes/sizes and compares the bundle with the supplied qualified hash.
+Denial, timeout, unsupported ZIP layout, limits or mismatch explicitly fail; metadata checks still
+complete. Metadata naming the expected package proves nothing about uploaded bytes.
 
 The original upload ZIP digest is **UNRECORDED**. A current upload read can establish its current
 bytes, not invent an original ZIP digest or prove when those bytes were uploaded. Without that
@@ -1256,60 +1243,58 @@ a publisher readback failure. Diagnose the actual failed checks before consideri
 
 ### Commit an already uploaded, verified Store update
 
-Use **Commit verified existing Store update** only after the Store operator has reviewed a fresh
-read-only diagnosis and explicitly approved committing that exact current submission. This is not
-the normal publisher and not the older incident-bound recovery. It cannot create a submission,
+Use **Commit verified existing Store update** only after the Store operator reviews a fresh
+read-only diagnosis and explicitly approves committing that exact current submission.
+This is separate from normal publishing and incident-bound recovery. It cannot create a submission,
 upload a blob, PUT a draft, delete anything, rebuild the app or change a release/tag.
-The normal publisher still refuses an existing pending submission and requires a higher version.
+The normal publisher still refuses pending submissions and requires a higher version.
 
-Supply the diagnosis inputs above plus `current_zip_sha256`, the approved SHA-256 of the
-**current remote upload ZIP**, and explicitly select `commit_only=true`. The inner `bundle_sha256`
-must come from the previously qualified package, not merely its filename or API metadata.
-Never substitute the current ZIP hash for an unrecorded original-upload digest. The approved notes
-hash still covers the UTF-8 note text, not its JSON container. Inputs are reusable; no incident
-submission, release or hash is built into this path.
+Supply the diagnosis inputs plus `current_zip_sha256`, the approved SHA-256 of the **current remote
+upload ZIP**, and explicitly select `commit_only=true`. The inner `bundle_sha256` must come from
+the previously qualified package, not its filename or API metadata. Never substitute the current
+ZIP hash for an unrecorded original-upload digest. Hash the approved UTF-8 note text, not its JSON
+container. Inputs are reusable; this path has no built-in incident submission, release or hash.
 
-Dispatch on the default branch with the reviewed workflow commit. Current tooling and immutable
-application source are separate checkouts; only the former executes. The existing
-`microsoft-store-production` environment must retain its required owner approval. Its shared
-concurrency group has cancellation disabled and the workflow token has only `contents: read`.
-Preflight refuses a missing explicit approval or any `GITHUB_RUN_ATTEMPT` other than `1` before
-Store authentication. A rerun cannot be used as a retry. The script also requires the explicit
-`--commit-only` command; its default operation and `--diagnose` remain read-only.
+Dispatch on the default branch at the reviewed workflow commit. Check out current tooling and
+immutable application source separately; only the tooling executes. Keep required owner approval
+on `microsoft-store-production`. Shared concurrency has cancellation disabled; the token has only
+`contents: read`. Before Store authentication, preflight refuses missing explicit approval or any
+`GITHUB_RUN_ATTEMPT` other than `1`. Never retry by rerunning. The script also requires
+`--commit-only`; its default operation and `--diagnose` stay read-only.
 
-The authorization is **current verified intent**: the expected current published submission plus
-the approved package replacement and notes. Historical created/published snapshots are unavailable,
-not reconstructed, recovered or resealed. Shared individual checks require the exact references,
-source/tag/version, free pricing, pending state without errors, old/new package identities and
-statuses, approved notes, immediate publication, disabled rollout and preserved editable settings.
-The remote ZIP is read afresh with the bounded single-entry, exact-name, CRC, size and inner-bundle
-hash checks. Its current ZIP hash must equal the separately approved runtime input.
+Approval covers **current verified intent**: the expected current published submission plus approved
+package replacement and notes. Historical created/published snapshots are unavailable, not
+reconstructed, recovered or resealed. Shared checks require exact references, source/tag/version,
+free pricing, pending state without errors, old/new package identities and statuses, approved notes,
+immediate publication, disabled rollout and unchanged editable settings. A fresh remote ZIP read
+must pass the bounded single-entry, exact-name, CRC, size and inner-bundle hash checks.
+Its current ZIP hash must equal the separately approved runtime input.
 
-After byte proof, the workflow re-reads application references, published intent, pending intent,
-notes/packages and status immediately before commit. Any changed intent, upload location,
-processing state or error blocks the POST. Sequential reads cannot eliminate external races;
-coordinate with the sole Store operator and do not edit the draft in Partner Center.
+After checking bytes, the workflow re-reads application references, published and pending intent,
+notes/packages and status immediately before commit. Changed intent, upload location, processing
+state or an error blocks the POST. Sequential reads cannot prevent external races. Coordinate with
+the sole Store operator and never edit the draft in Partner Center.
 
-The only Store mutation permitted by the transport is one POST to the validated pending
-submission's commit endpoint. Only HTTP 200 or 202 with a body containing solely `CommitStarted`
-status acknowledges it. The attempt and submission ID remain in the safe outcome on a timeout,
-malformed response, HTTP error or report-writing failure. Ambiguous commits receive no retry and
-no automatic follow-up GET; inspect the exact submission separately before any further decision.
-Acknowledged commits use the normal publisher's shared five-minute observer. Package/version, approved
-English notes and preserved nonpackage intent have independent proof results. An editable-intent
-mismatch can leave package and notes `verified` while intent is `review-required`; the overall result
-is still `verification-pending` and the CLI/workflow exits nonzero. No mismatched field is normalized
-away. Changed notes or a wrong package likewise require review, not a claim of Store rejection.
+The transport permits one Store mutation: one POST to the validated pending submission's commit
+endpoint. Only HTTP 200 or 202 with a body containing solely `CommitStarted` status acknowledges
+it. Timeout, malformed response, HTTP error or report-writing failure preserve the attempt and
+submission ID in the safe outcome. Never retry an ambiguous commit or send an automatic follow-up
+GET. Inspect that exact submission separately before deciding what to do.
+Acknowledged commits use the normal publisher's shared five-minute observer. Package/version,
+approved English notes and preserved nonpackage intent have separate proof results. An editable-intent
+mismatch can leave package and notes `verified` while intent is `review-required`. The overall
+result stays `verification-pending` and the CLI/workflow exits nonzero. No mismatched field is
+normalized away. Changed notes or a wrong package also require review, not a claim of Store rejection.
 
 Transport errors, malformed/unknown status, unexpected None/PendingCommit after acknowledgement,
-readback identity failures and missing required proof at the deadline are also local incomplete
-verification. Reports preserve the acknowledged commit and last validated Store status, with a fixed
+readback identity failures and missing required proof at the deadline also mean incomplete local
+verification. Reports keep the acknowledged commit and last validated Store status with a fixed
 stage/code; malformed status cannot overwrite it. Confirmed terminal states such as CommitFailed
-or an observed nonempty error list remain `failed`. Both failure and incomplete verification exit
-nonzero without retry. Certification with complete proofs remains a successful observation, not
-publication or a reason to resubmit. Published without all required proofs never succeeds.
-Reports contain safe identities, phases, statuses, hashes and proof results, never raw errors,
-response objects, upload paths, SAS URLs, credentials or private metadata.
+or an observed nonempty error list remain `failed`. Failure and incomplete verification both exit
+nonzero without retry. Certification with complete proofs is a successful observation, not
+publication or a reason to resubmit. Published without every required proof never succeeds.
+Reports contain safe identities, phases, statuses, hashes and proof results. They never contain raw
+errors, response objects, upload paths, SAS URLs, credentials or private metadata.
 
 In particular, `allowTargetFutureDeviceFamilies` remains an editable device-family:boolean
 dictionary. Neither Microsoft's

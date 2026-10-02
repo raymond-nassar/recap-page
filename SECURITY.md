@@ -1,205 +1,163 @@
 # Security policy
 
-## What this project is, because it decides what a vulnerability can be here
+<a id="what-this-project-is-because-it-decides-what-a-vulnerability-can-be-here"></a>
 
-Recap Page is a static site served by a small loopback server on your own machine. There is no
-hosted backend to attack, no account to take over and no database holding anyone else's data. The
-app has no runtime dependencies at all, so nothing in `package.json` reaches the browser. Everything
-it declares is development tooling: the four packages listed at `package.json:52-56` are the linter
-and the three packages its configuration needs, and they run only on a maintainer's machine and in
-CI. Your reading progress lives in one browser storage key and never leaves the machine it was made
-on.
+## About the app
 
-That shape rules most classic vulnerability categories out and leaves a smaller set that matters a
-great deal. Anything that silently loses or corrupts the reading progress a person has spent months
-building is the most serious thing that can go wrong here, and it is treated as a security issue
-rather than an ordinary defect.
+Recap Page keeps reading data on your device. Desktop uses a loopback server and browser storage;
+Android has separate private app storage. There is no hosted backend, account, or shared user
+database.
+
+The app has no runtime dependencies. Its development dependencies are lint tooling: the four
+packages listed at `package.json:52-56` run on a maintainer's machine or in CI, not in the browser.
+
+Silent loss or corruption of saved reading progress is the highest-severity security issue here.
 
 ## What is supported
 
 Security fixes target the current state of the default branch and the latest published release.
-Older releases and tags are unsupported, and fixes are not backported to them. If you are running
-an older copy, upgrade before reporting unless the problem itself prevents a safe upgrade.
+Older releases and tags are unsupported; fixes are not backported. Upgrade before reporting unless
+the problem prevents a safe upgrade.
 
-Major versions mark a substantial new product generation. They are also required whenever stored
-data changes in a way an older build cannot read. The rule is written in full at
-`src/js/lib/version.js:5-15`. Release notes state whether saved progress remains compatible, and an
-exported backup is prudent before every upgrade.
+Major versions mark a new product generation or a saved-data change older builds cannot read;
+see `src/js/lib/version.js:5-15`. Check release notes for compatibility and export a backup before
+upgrading.
 
 ## Reporting a vulnerability
 
-**Do not open a public issue, discussion or pull request for a suspected vulnerability.** A public
-report is a disclosure, and it is one you cannot take back. That applies even when you are not sure
-it is a real issue: report it privately and let it be assessed.
+**Do not open a public issue, discussion or pull request for a suspected vulnerability.**
+Report privately even if you are unsure; public disclosure cannot be taken back.
 
-Use GitHub's private vulnerability reporting, on the repository's **Security** tab, under **Report a
-vulnerability**. That route creates a private draft advisory that only you and the maintainer can
-see, and it is the only channel this project accepts.
+Use **Security > Report a vulnerability** on GitHub. This creates a private draft advisory visible
+only to you and the maintainer. It is the project's accepted reporting channel.
 
-If that option is not on the Security tab, it has not been turned on. It is off by default, and on
-this repository it was enabled on 2026-08-16, so it should be there. If it is not, you may be
-reading this in a fork where it was never enabled. In either case, open an issue saying
-only that you have a security report and asking how to send it. **Put no details in it**: not the
-symptom, not the file, not the steps. That issue is a request for a channel, not a report, and one
-will be arranged in reply.
+Private reporting was enabled here on 2026-08-16, but may be unavailable in a fork. If the option
+is missing, open an issue asking how to send a private report. **Put no details in it**: no symptom,
+file, or reproduction steps. That issue requests a reporting channel, not disclosure of the problem.
 
-Please include what you would want if you were on the other side of it: what you did, what happened,
-what you expected, which browser and version, and whether any saved reading data was affected. A
-minimal reproduction is worth more than a long description. If a fix is obvious to you, say so, but
-do not send a pull request that reveals the issue before it is fixed.
+In the private report, include what you did, what happened, what you expected, your browser and
+version, and whether saved reading data was affected. Provide a minimal reproduction and any
+suggested fix. Do not submit a public pull request that reveals the issue before it is fixed.
 
 ## What to expect
 
-This is a single-maintainer project worked on in bursts, so what follows is a target rather than a
-guarantee, and saying so plainly is more use to you than a number nobody is on call to meet.
+This is a single-maintainer project. These are targets, not guaranteed response times:
 
-- An acknowledgement that the report has been read, aimed at within seven days.
-- An assessment of whether it is in scope and how serious it is, with the reasoning, not just a
-  verdict.
-- A fix on the default branch for anything accepted, and a note in `CHANGELOG.md` describing it in
-  the terms a person using the app would notice.
-- Credit in that entry if you want it, and none if you would rather not. Ask either way.
+- Acknowledgement within seven days.
+- An assessment of scope and severity, with reasons.
+- A fix on the default branch for accepted reports and a reader-facing note in `CHANGELOG.md`.
+- Credit if you want it. Let the maintainer know your preference.
 
-Please hold off on public disclosure until a fix is on the default branch, or until ninety days have
-passed, whichever comes first. If the report is declined you are free to publish immediately, and
-the reasoning you were given is yours to quote.
+Wait to disclose until a fix reaches the default branch or ninety days pass, whichever comes first.
+If the report is declined, you may publish immediately and quote the reasoning.
 
 ## In scope
 
-- **Loss or corruption of saved reading progress**, including anything that makes a backup, a
-  restore or an undo report an outcome that is not what actually happened. This is the highest
-  severity category in this project.
-- **The development server**, `server.mjs`, which serves the app on the loopback origin. Path
-  traversal out of the served directory, or a response that would let a page from elsewhere read
-  what it serves, are both in scope.
-- **The rule for which metadata API base a stored setting may name**, at
-  `src/js/lib/apiBase.js:26-38`. It is not a list of permitted hosts, and deliberately not: anyone
-  may point the app at their own mirror. What it does is forbid cleartext anywhere but loopback, so
-  a way past that, or a way to set a base the rule should have rejected, is in scope.
+- **Lost or corrupted reading progress**, including a backup, restore, or undo that reports the
+  wrong result. This is the highest-severity category.
+- **The development server**, `server.mjs`: path traversal outside its served directory or
+  responses that let another origin read its content.
+- **Metadata API base validation**, at `src/js/lib/apiBase.js:26-38`. Readers may use their own
+  mirrors, so hosts are not allowlisted. Cleartext is allowed only on loopback. Bypassing that
+  rule or accepting an invalid base is in scope.
 - **Generated and vendored data.** Content under `src/data/`, whether written by the scripts in
   `scripts/` or kept by hand, that could execute, exfiltrate or mislead when rendered is in scope,
   as is anything in the generators that would let an upstream response do that.
-- **Dependencies**, meaning the lint tooling and the GitHub Actions used by the workflow. They do
-  not reach the browser, but they do run against a maintainer's checkout and in CI. How quickly an
-  advisory against one of them has to be acted on is written down in `.github/dependabot.yml`, with
-  the reasoning, so the threshold is something you can read rather than something you have to ask
-  about.
-- **The workflows** in `.github/workflows/`. The CI workflow reads the repository and nothing else,
-  declared at   `.github/workflows/ci.yml:24-25`, and anything that would give it more than that is in
-  scope.
+- **Development dependencies and GitHub Actions.** They run against a maintainer's checkout and in
+  CI, not in the browser. `.github/dependabot.yml` defines advisory response thresholds.
+- **The workflows** in `.github/workflows/`. CI uses read-only repository permissions,
+  declared at `.github/workflows/ci.yml:33-34`. The optional manual Android rehearsal also reads
+  repository Actions run metadata to verify its origin, declared at
+  `.github/workflows/ci.yml:248-250`. Neither grants write or Play publication access. Changes
+  that expand these permissions are in scope.
 
 ## Out of scope
 
 - **Marvel's own services**, including `marvel.com`, `read.marvel.com` and the Marvel Unlimited
   reader. This app links out to them and never scrapes them. Report issues there to Marvel.
-- **The third-party metadata API** the app reads from. Its availability, its correctness and its
-  rate limits are not this project's to fix, and the app is written to degrade rather than break
-  when it is unavailable.
+- **The third-party metadata API**, including its availability, correctness, and rate limits.
+  The app should keep working when metadata is unavailable.
 - **The end of the metadata snapshot in 2025.** That is a documented boundary with a manual entry
   form as its mitigation, not a defect.
-- **The fault harness** at `src/dev-faults.html`. It damages saved reading data deliberately, says
-  so in the page before any button, and exists so the recovery paths can be exercised. Reporting
-  that it destroys data is reporting what it is for.
-- **Anything that requires an attacker to already have the reader's browser profile or their
-  machine.** At that point they have the data directly, and no change here would help.
+- **Expected damage from the fault harness** at `src/dev-faults.html`. It warns before the buttons
+  that it deliberately damages saved data to exercise recovery.
+- **Attacks requiring access to the reader's browser profile or machine.** That already gives
+  direct access to the saved data.
 - **Missing hardening that has no reachable consequence.** A recommendation from a scanner is
   welcome as an ordinary issue; it is not a vulnerability report.
 
 ## What already reduces risk here
 
-Recorded so a report can start from what is true rather than from what a scanner assumed.
+Consider these safeguards when preparing a report:
 
-- There are no accounts, no cloud services, no analytics and no telemetry. The app does make
-  outbound requests: opening it asks a public metadata API whether it is reachable, searching for
-  an issue sends what you typed to that same comics database, and adding a selected series or
-  creator asks it for every issue in that run. Requests for issue details name the comic, and covers
-  are fetched from Marvel's own image servers, so both receiving hosts can see which issues you are
-  looking at; the reachability check names nothing. Pressing **Read** opens Marvel Unlimited when a
-  direct reader link is known. Otherwise the launch tab may ask the metadata service for that link
-  and falls back to the issue's page on marvel.com. Adding an issue by hand sends the words in the
-  title box to the Marvel Fandom wiki, a community site Marvel does not run, and only when you press
-  the lookup button; that wiki sees the title you searched for and is sent no cookie, no referrer
-  and nothing about your library. The Android prototype additionally sends the digital issue ID to
-  Marvel's Bifrost service when opening an issue. That anonymous, uncached lookup resolves the app
-  identifier; it sends no credentials or referrer and does not persist the response. Marvel can see
-  the digital ID and network address. Your reading progress and your notes are never sent to any of them.
-  The app does not check or download software updates; Microsoft Store owns update delivery for the
-  Store package.
-- Covers are requested from Marvel's image server and from no other host. The address is reported
-  by the metadata service, which is a party the reader chooses and one that could be compromised
-  or hostile, so an address naming anything else is refused before a request is made rather than
-  fetched and hidden. The host is written once, in `src/js/lib/coverHost.js`, and imported both by
-  the normalizer that decides which cover addresses may be built and by the `img-src` directive
-  the development server sends, so the rule and the policy that enforces it cannot drift apart.
+- There are no accounts or hosted reading-data services, and no analytics, tracking, or telemetry. On startup, the app
+  asks the comics database whether it is reachable. Issue searches send the words you type; adding
+  a selected series or creator requests every issue in that run. Details requests name the comic,
+  and covers load from Marvel's own image servers. Those services see which issues you request;
+  the reachability check names none. Pressing **Read** opens Marvel Unlimited when a reader link
+  is known. Otherwise the launch tab asks the metadata service for that link and falls back to the
+  issue page on marvel.com. The hand-entry lookup sends your title to the Marvel Fandom wiki only
+  when you press the lookup button, with no cookie, referrer, or library data. The Android prototype
+  also sends the digital issue ID to Marvel's Bifrost service for an app link. That request sends
+  no credentials or referrer, bypasses caching, and saves no response. Marvel sees the digital ID
+  and network address. Saved progress and notes are never sent by these service requests.
+  The app has no software update check or download; Microsoft Store delivers Store package updates.
+- Covers are requested only from Marvel's image host. A metadata service could return a hostile
+  URL, so other hosts are rejected before any request. `src/js/lib/coverHost.js` supplies the
+  allowed host to both normalization and the server's `img-src` policy.
 - The development server sends its content security policy on every application-generated
   response, built at `server.mjs:64-75`, alongside the three companion headers assembled at
   `server.mjs:79-84`. The server contract checks all seven application statuses at
   `test/server-contract.test.js:274-315`. Responses rejected by Node's HTTP parser before the
   request handler runs are outside that guarantee.
-- The repository holds no secrets. Nothing in the scripts or the workflow reads a credential, and
-  the metadata API needs no key.
-- Dependabot alerts and Dependabot security updates are both switched on, so an advisory against
-  the lint tooling or the workflow's actions arrives as a pull request rather than as silence.
-  Secret scanning is on, and so is push protection, both enabled on 2026-08-16 once publication
-  made them available: they are free on any public repository, and while this one was private
-  GitHub answered a request to enable scanning with "Secret scanning is not available for this
-  repository". Anyone can see the state without a write: asking for its alerts answers with a list
-  rather than 404 "Secret scanning is disabled on this repository". Push protection depends on
-  scanning and was enabled second for that reason. Asked for on its own it is accepted and then
-  changes nothing, which is worth knowing before anyone reads that success as coverage.
+- Keep secrets out of the repository. The default metadata API needs no key.
+- Dependabot alerts and security updates are enabled. Secret scanning and push protection were
+  enabled on 2026-08-16 after publication. Push protection depends on scanning: enabling it alone
+  can report success without providing coverage.
 - CI runs on every pull request with `contents: read` and nothing else.
-- Every claim of the form `path:line` in every tracked file is fingerprinted against the lines it
-  names, so documentation that has drifted from the code fails the build rather than misleading a
-  reader.
+- Every `path:line` claim in tracked files is fingerprinted against its cited content.
+  Drift fails the build.
 
 ## Windows package boundary
 
-The x64 and ARM64 MSIX packages declare `runFullTrust` for one reason: their native Node entry
-process runs a small local coordinator, which starts the unchanged server at `127.0.0.1:8787` and
-opens the external default browser. The coordinator requests only the local cache-proof health
-endpoint, performs no external network request, and does not read browser storage. It removes
-`MRT_PORT` and `MRT_NO_OPEN` case-insensitively before starting the server because Windows
-environment names are case-insensitive.
+The x64 and ARM64 MSIX packages use `runFullTrust` to run a Node coordinator that starts the server
+at `127.0.0.1:8787` and opens the default browser. The coordinator requests only the local cache-proof
+health endpoint, makes no external requests, and does not read browser storage. It removes
+`MRT_PORT` and `MRT_NO_OPEN` case-insensitively before starting the server, matching Windows
+environment-name rules.
 
-The package server is detached from the short-lived console and has independent standard streams.
-That keeps closing the launch console from silently stopping local data access. Reuse requires the
-Recap Page server identity, a digest of the exact package inputs, and a listening process whose
-executable and server command both resolve inside the current package. An older or foreign process
-on the fixed port cannot be accepted as the current app. Package update and removal own termination
-of the background process; proof cleanup terminates only exact recorded process IDs if those
-operations fail.
+The server runs independently of the launch console, with separate standard streams. Reuse requires
+the Recap Page server identity, the exact package-input digest, and a listener whose executable and
+server command both belong to the current package. Older or foreign listeners are rejected.
+Package update and removal terminate the background process. If they fail, proof cleanup terminates
+only the recorded process IDs.
 
-The package adds no analytics or telemetry. Package Support Framework was evaluated and rejected
-because Microsoft's NuGet binaries may collect usage telemetry when Windows diagnostic collection
-is enabled. The selected coordinator is maintained JavaScript executed by the same checksum-verified
-official Node runtime the package already needs.
+The package adds no analytics or telemetry. Package Support Framework was rejected because its
+Microsoft NuGet binaries may collect telemetry when Windows diagnostics are enabled. The JavaScript
+coordinator uses the package's existing checksum-verified official Node runtime.
 
-Local package signing uses a generated self-signed certificate only for the proof machine. The
-private PFX and random password are deleted after packaging. The public certificate must be trusted
-with administrator approval before local install and removed by exact thumbprint after the proof.
-No certificate, password, package, runtime download, or generated asset belongs in git.
+Local proof signing uses a self-signed certificate for that machine only. Delete its private PFX
+and random password after packaging. Trust the public certificate with administrator approval before
+installing, then remove it by exact thumbprint after the proof. Keep certificates, passwords,
+packages, runtime downloads, and generated proof assets out of git.
 
-Package files are read-only and hold no durable reader data. Lists, notes, settings, overrides, and
-read markers remain in the browser profile at the exact loopback origin. The dedicated
-[privacy policy](PRIVACY.md) owns the complete reader-facing disclosure.
+Package files are read-only and hold no saved reading data. Lists, notes, settings, overrides, and
+read markers stay in the browser profile at the exact loopback origin.
+The [privacy policy](PRIVACY.md) gives the full disclosure.
 
 ## Public project home and question form
 
-The GitHub Pages project home is a separate information artifact, not another app entry point. Its
-published inventory is one HTML file, one stylesheet and two checked cover-off screenshots. It
-contains no script, form, iframe, service worker, manifest, tracker module, analytics or telemetry.
-It cannot read browser state stored under `127.0.0.1:8787`.
+The GitHub Pages project home is an information site, not the app. It publishes only approved HTML,
+CSS, and showcase images. It has no script, form, iframe, service worker, manifest, tracker module,
+analytics, or telemetry, and cannot read browser state at `127.0.0.1:8787`.
 
-The Pages workflow reads the reviewed repository, uploads that exact artifact and gives only its
-deployment job `pages: write` and `id-token: write`. It uses no secret and never publishes a pull
-request head. Changes to that artifact, its allowlist, its workflow or its hosted boundary are in
-scope for this policy.
+The Pages workflow uploads the reviewed artifact. Only its deployment job has `pages: write` and
+`id-token: write`. It uses no secret and never publishes a pull request head. The artifact,
+allowlist, workflow, and hosting boundary are in scope for this policy.
 
-The public question form is framed by selected maintained documentation. It is not a
-security-reporting channel and receives only what a visitor deliberately types; the tracker never
-calls it. **Do not put suspected vulnerability details in the project home, a public issue, a
-discussion or a pull request.** Use private vulnerability reporting as described above.
+The public question form asks about maintained documentation and receives only what a visitor
+types. The tracker never calls it. **Do not put suspected vulnerability details in the project home,
+a public issue, a discussion or a pull request.** Report privately as described above.
 
-GitHub Pages request handling and public Issue processing belong to GitHub rather than to the
-tracker. The [privacy policy](PRIVACY.md) owns that disclosure and the limits of removing content
-after it has already been published.
+GitHub handles Pages requests and public Issues. See the [privacy policy](PRIVACY.md) for details
+and the limits of removing content after publication.

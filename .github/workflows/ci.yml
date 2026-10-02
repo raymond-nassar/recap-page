@@ -19,6 +19,15 @@ on:
         type: boolean
         required: false
         default: false
+      android_rehearsal:
+        description: Rehearse the Android AAB producer without protected secrets or retained packages
+        type: boolean
+        required: false
+        default: false
+      android_rehearsal_source_sha:
+        description: Exact pushed source SHA required only for the manual AAB rehearsal
+        type: string
+        required: false
 
 # The workflow only ever reads the repository. Nothing here publishes or writes.
 permissions:
@@ -232,19 +241,46 @@ jobs:
 
   android-emulator:
     name: Android emulator integration
-    if: ${{ github.event_name == 'workflow_dispatch' && inputs.android_emulator == true }}
+    if: ${{ github.event_name == 'workflow_dispatch' && (inputs.android_emulator == true || inputs.android_rehearsal == true) }}
     runs-on: ubuntu-24.04
-    timeout-minutes: 45
+    # The deadline gate counts both mutually exclusive execution paths.
+    timeout-minutes: 100
+    permissions:
+      contents: read
+      actions: read
+    env:
+      RECAP_ANDROID_MODE: Rehearsal
+      RECAP_ANDROID_SOURCE_SHA: ${{ inputs.android_rehearsal_source_sha }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         timeout-minutes: 2
         with:
           persist-credentials: false
+          fetch-depth: 0
 
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         timeout-minutes: 4
         with:
           node-version: '24'
+
+      - name: Require one explicit native mode before preparing the host
+        timeout-minutes: 2
+        env:
+          NATIVE_DEBUG: ${{ inputs.android_emulator }}
+          NATIVE_REHEARSAL: ${{ inputs.android_rehearsal }}
+        run: |
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          const debug = process.env.NATIVE_DEBUG === 'true';
+          const rehearsal = process.env.NATIVE_REHEARSAL === 'true';
+          assert.equal(process.env.GITHUB_EVENT_NAME, 'workflow_dispatch');
+          assert.notEqual(debug, rehearsal, 'Select exactly one native mode');
+          if (rehearsal) {
+            assert.match(process.env.RECAP_ANDROID_SOURCE_SHA || '', /^[0-9a-f]{40}$/);
+            assert.equal(process.env.RECAP_ANDROID_SOURCE_SHA, process.env.GITHUB_SHA);
+            assert.equal(process.env.GITHUB_SHA, process.env.GITHUB_WORKFLOW_SHA);
+          }
+          JS
 
       - name: Prepare the isolated emulator host
         timeout-minutes: 6
@@ -255,11 +291,30 @@ jobs:
           sudo apt-get install -y --no-install-recommends libpulse0
 
       - name: Run full Android with synthetic data
+        if: inputs.android_emulator == true && inputs.android_rehearsal != true
         timeout-minutes: 25
         run: bash scripts/android-emulator-ci.sh
 
+      - name: Run the shared secret-free AAB rehearsal
+        if: inputs.android_rehearsal == true && inputs.android_emulator != true
+        timeout-minutes: 50
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: bash scripts/android-release-candidate.sh rehearsal
+
+      - name: Remove rehearsal signing scratch
+        id: native_cleanup
+        if: always() && inputs.android_rehearsal == true && inputs.android_emulator != true
+        timeout-minutes: 3
+        run: |
+          bash scripts/android-release-candidate.sh cleanup
+          capsule="$RUNNER_TEMP/recap-aab-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT/android-native-failure.json"
+          if [[ -f "$capsule" ]]; then
+            node scripts/check-android-instrumentation.mjs --validate-native-failure >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Preserve native test evidence
-        if: always()
+        if: always() && inputs.android_emulator == true && inputs.android_rehearsal != true
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         timeout-minutes: 3
         with:
@@ -269,3 +324,23 @@ jobs:
           path: |
             packaging/android/app/build/native-evidence/
             packaging/android/app/build/reports/lint-results-debug.*
+
+      - name: Preserve only the verified rehearsal JSON
+        if: success() && inputs.android_rehearsal == true && inputs.android_emulator != true
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        timeout-minutes: 3
+        with:
+          name: android-rehearsal-${{ github.run_id }}-${{ github.run_attempt }}
+          retention-days: 7
+          if-no-files-found: error
+          path: ${{ runner.temp }}/recap-aab-${{ github.run_id }}-${{ github.run_attempt }}/public/android-rehearsal.json
+
+      - name: Preserve only validated nonpromotable native failure facts
+        if: failure() && inputs.android_rehearsal == true && inputs.android_emulator != true && steps.native_cleanup.outputs.failure_capsule == 'true'
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        timeout-minutes: 1
+        with:
+          name: android-rehearsal-failure-${{ github.run_id }}-${{ github.run_attempt }}
+          retention-days: 7
+          if-no-files-found: error
+          path: ${{ runner.temp }}/recap-aab-${{ github.run_id }}-${{ github.run_attempt }}/android-native-failure.json

@@ -12,6 +12,7 @@ import {
   writeFile,
 } from 'node:fs/promises';
 import { existsSync, readFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 
@@ -54,21 +55,33 @@ const QUESTION_CONTEXT_LINKS = [
 ];
 const EXPECTED_HREFS = [
   '#main',
-  '#demo',
+  '#android',
+  '#features',
   '#getting-started',
-  '#troubleshooting',
   '#documentation',
   '#feedback',
   '#getting-started',
-  `${REPOSITORY}#readme`,
+  '#android',
+  `${REPOSITORY}/blob/main/docs/ANDROID.md`,
+  `${REPOSITORY}/releases/tag/android-v3.0.1-beta.2`,
+  './assets/android-library-preview.png',
+  './assets/android-reading-preview.png',
+  '#demo',
+  `${REPOSITORY}/blob/main/CHANGELOG.md`,
   'https://www.comicbookherald.com/where-do-i-start-with-avengers-trade-collections/',
+  './assets/home-960.png',
+  './assets/avengers-disassembled-reading-960.png',
   'https://apps.microsoft.com/detail/9PDJ7XR9Q40Q',
+  `${REPOSITORY}/blob/main/docs/ANDROID_BETA.md`,
   `${REPOSITORY}/releases/latest/download/marvel-reading-tracker-windows.zip`,
   `${REPOSITORY}/blob/main/docs/RUNNING.md`,
   APP_ORIGIN,
+  `${REPOSITORY}/blob/main/docs/ANDROID_BETA.md#send-back-a-short-report`,
   `${REPOSITORY}/blob/main/docs/RUNNING.md#troubleshooting`,
   `${REPOSITORY}/blob/main/SUPPORT.md`,
   '#project-questions',
+  `${REPOSITORY}/blob/main/docs/ANDROID.md`,
+  `${REPOSITORY}#readme`,
   `${REPOSITORY}/blob/main/docs/RUNNING.md`,
   `${REPOSITORY}/blob/main/docs/ARCHITECTURE.md`,
   `${REPOSITORY}/blob/main/docs/DATA_PROVENANCE.md`,
@@ -141,9 +154,73 @@ async function copyApprovedSources(root) {
   }
 }
 
+test('the project home distinguishes Android development from the earlier beta', () => {
+  const android = html.match(/<section id="android"[\s\S]*?<\/section>/)?.[0] ?? '';
+  const copy = android.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ');
+  assert.match(copy, /Android in development/);
+  assert.match(copy, /Not available on Google Play/);
+  assert.match(copy, /The beta doesn't include all the features shown here/);
+  assert.match(copy, /Open in browser/);
+  assert.match(copy, /No computer needed/);
+  assert.match(copy, /Lists and progress are made up/);
+  assert.match(copy, /previews made in a desktop browser, not on a phone/);
+  assert.ok(android.includes(`${REPOSITORY}/blob/main/docs/ANDROID.md`));
+  assert.ok(android.includes(`${REPOSITORY}/releases/tag/android-v3.0.1-beta.2`));
+  assert.doesNotMatch(html, /not a native phone app|play\.google\.com\/store|Get it on Google Play/);
+  const features = html.match(/<section id="features"[\s\S]*?<\/section>/)?.[0] ?? '';
+  for (const feature of [
+    'Reading Paths', 'Modern Timeline', 'Character spotlights', 'MCU Prep',
+    'Defer for later', 'notes', 'descriptions', 'unknown, scheduled, or expected',
+    'available or unavailable', 'JSON backup', 'Markdown checklist', 'Share an order',
+    'source credits',
+  ]) assert.ok(features.includes(feature), `missing feature explanation: ${feature}`);
+  assert.match(copy, /Desktop and Android save separately/);
+  assert.match(copy, /Restoring replaces the app's saved data/);
+});
+
+test('the showcase includes the supplied artwork and current phone previews', () => {
+  const images = [...html.matchAll(/<img\b[\s\S]*?\/>/g)].map((tag) => attributes(tag[0]));
+  assert.deepEqual(images.slice(0, 3).map(({ src, width, height }) => ({ src, width, height })), [
+    { src: './assets/android-feature-graphic.png', width: '1024', height: '500' },
+    { src: './assets/android-library-preview.png', width: '1080', height: '1920' },
+    { src: './assets/android-reading-preview.png', width: '1080', height: '1920' },
+  ]);
+  assert.equal(images[0].fetchpriority, 'high');
+  assert.equal(images[0].loading, 'eager');
+  assert.ok(images.slice(1).every((image) => image.loading === 'lazy'));
+
+  const provenance = JSON.parse(readFileSync(join(ROOT, 'docs', 'project-home-assets.json'), 'utf8'));
+  assert.equal(provenance.androidPreviews.renderer.nativeDevice, null);
+  assert.equal(provenance.androidPreviews.renderer.nativeBridge, false);
+  assert.equal(provenance.androidPreviews.releaseAcceptance, false);
+  assert.equal(provenance.androidPreviews.playListingApproval, false);
+  assert.match(provenance.androidPreviews.sourceRevision, /^[0-9a-f]{40}$/);
+  const records = [provenance.featureArtwork, ...provenance.androidPreviews.files];
+  assert.deepEqual(records.map(({ file }) => file), [
+    'pages/assets/android-feature-graphic.png',
+    'pages/assets/android-library-preview.png',
+    'pages/assets/android-reading-preview.png',
+  ]);
+  for (const record of records) {
+    const bytes = readFileSync(join(ROOT, ...record.file.split('/')));
+    assert.equal(createHash('sha256').update(bytes).digest('hex'), record.sha256, record.file);
+    assert.equal(bytes.readUInt32BE(16), record.width, record.file);
+    assert.equal(bytes.readUInt32BE(20), record.height, record.file);
+    if (record.bytes !== undefined) assert.equal(bytes.length, record.bytes, record.file);
+  }
+});
+
 test('the source inventory and generated contract stay exact', async () => {
-  assert.deepEqual((await readdir(join(ROOT, 'pages'))).sort(), ['index.html', 'site.css']);
+  assert.deepEqual((await readdir(join(ROOT, 'pages'))).sort(), ['assets', 'index.html', 'site.css']);
+  assert.deepEqual((await readdir(join(ROOT, 'pages', 'assets'))).sort(), [
+    'android-feature-graphic.png',
+    'android-library-preview.png',
+    'android-reading-preview.png',
+  ]);
   assert.deepEqual(PAGE_OUTPUTS, [
+    'assets/android-feature-graphic.png',
+    'assets/android-library-preview.png',
+    'assets/android-reading-preview.png',
     'assets/avengers-disassembled-reading-960.png',
     'assets/home-960.png',
     'index.html',
@@ -156,6 +233,9 @@ test('the source inventory and generated contract stay exact', async () => {
       'pages/site.css',
       'docs/screenshots/home-960.png',
       'docs/screenshots/avengers-disassembled-reading-960.png',
+      'pages/assets/android-feature-graphic.png',
+      'pages/assets/android-library-preview.png',
+      'pages/assets/android-reading-preview.png',
     ],
   );
 });
@@ -173,6 +253,8 @@ test('the page exposes every task through semantic no-script structure', () => {
   const requiredIds = [
     'main',
     'overview',
+    'android',
+    'features',
     'demo',
     'getting-started',
     'troubleshooting',
@@ -200,14 +282,14 @@ test('the page exposes every task through semantic no-script structure', () => {
   assert.doesNotMatch(html, /<(?:script|form|iframe)\b/i);
   assert.doesNotMatch(html, /\b(?:localStorage|serviceWorker|manifest\.webmanifest|localhost)\b/i);
   assert.doesNotMatch(html, /\btarget="/i);
-  assert.match(html, /GitHub hosts this site and receives web request information, including your IP address/);
-  assert.match(html, /This site cannot access your reading data\. The app runs only on your computer/);
+  assert.match(html, /GitHub hosts this site and receives request details, including your IP address/);
+  assert.match(html, /This site can't access your saved reading data/);
 });
 
 test('the project home keeps its copy concise and its navigation focused', () => {
   const visibleCopy = html.slice(html.indexOf('<body>')).replace(/<[^>]+>/g, ' ');
   const words = visibleCopy.match(/\S+/g) ?? [];
-  assert.ok(words.length <= 600, `${words.length} words exceed the 600-word page budget`);
+  assert.ok(words.length <= 800, `${words.length} words exceed the 800-word feature-tour budget`);
   const navigation = html.match(/<nav class="section-nav"[^>]*>[\s\S]*?<\/nav>/)?.[0] ?? '';
   assert.equal((navigation.match(/<a\b/g) ?? []).length, 5);
   assert.doesNotMatch(html, /class="eyebrow"/);
@@ -249,7 +331,8 @@ test('all links and fragments resolve to the approved destinations', () => {
 
   const cleartext = [...html.matchAll(/http:\/\/[^"<\s]+/g)].map((match) => match[0]);
   assert.deepEqual(cleartext, [APP_ORIGIN, APP_ORIGIN]);
-  assert.ok(hrefs.every((href) => href.startsWith('#') || href.startsWith('https://') || href === APP_ORIGIN));
+  assert.ok(hrefs.every((href) => href.startsWith('#') || href.startsWith('https://')
+    || href === APP_ORIGIN || (href.startsWith('./assets/') && PAGE_OUTPUTS.includes(href.slice(2)))));
 });
 
 test('the exact-origin warning appears before the only local-app link', () => {
@@ -259,25 +342,33 @@ test('the exact-origin warning appears before the only local-app link', () => {
   assert.ok(warning >= 0 && address > warning && appLink > address);
   assert.match(
     html.slice(warning, appLink),
-    /different hostname or port\s+uses separate browser storage and looks like a fresh app/,
+    /different address, port, or profile won't show your saved progress/,
   );
 });
 
-test('the demo is exactly the two current described product views', () => {
+test('all five showcase images have accurate dimensions and useful alternatives', () => {
   const images = [...html.matchAll(/<img\b[\s\S]*?\/>/g)].map((tag) => attributes(tag[0]));
   assert.deepEqual(
     images.map(({ src }) => src),
-    ['./assets/home-960.png', './assets/avengers-disassembled-reading-960.png'],
+    [
+      './assets/android-feature-graphic.png',
+      './assets/android-library-preview.png',
+      './assets/android-reading-preview.png',
+      './assets/home-960.png',
+      './assets/avengers-disassembled-reading-960.png',
+    ],
   );
+  let totalBytes = 0;
   for (const image of images) {
     assert.ok(image.alt?.length > 20, `${image.src} has no useful text alternative`);
-    assert.equal(image.width, '960');
-    assert.equal(image.height, '900');
-    assert.equal(image.loading, 'lazy');
-    const bytes = readFileSync(join(ROOT, 'docs', 'screenshots', image.src.split('/').at(-1)));
+    const entry = PAGE_SOURCES.find(({ destination }) => destination === image.src.slice(2));
+    assert.ok(entry, `${image.src} is not included in the built page`);
+    const bytes = readFileSync(join(ROOT, ...entry.source.split('/')));
     assert.equal(bytes.readUInt32BE(16), Number(image.width));
     assert.equal(bytes.readUInt32BE(20), Number(image.height));
+    totalBytes += bytes.length;
   }
+  assert.ok(totalBytes <= 2 * 1024 * 1024, `${totalBytes} image bytes exceed the 2 MiB showcase budget`);
 });
 
 test('the public question disclosure is complete before the form link', () => {
@@ -286,12 +377,13 @@ test('the public question disclosure is complete before the form link', () => {
     html.indexOf('<section id="feedback"'),
   );
   const disclosure = section.slice(0, section.indexOf(QUESTION_FORM_URL)).replace(/\s+/g, ' ');
-  assert.match(disclosure, /GitHub sign-in is required/);
+  assert.match(disclosure, /Sign in to GitHub to post/);
   assert.match(disclosure, /username, question, and replies are public/);
-  assert.match(disclosure, /GitHub hosts and processes this content/);
+  assert.match(disclosure, /GitHub hosts and processes posts/);
   assert.match(disclosure, /Recap Page sends nothing automatically/);
-  assert.match(disclosure, /Name the documentation you checked and what remains unclear/);
-  assert.match(disclosure, /Do not include reading progress, lists, notes, backups, personal information, attachments, or vulnerability details/);
+  assert.match(disclosure, /Questions about Recap Page\?/);
+  assert.doesNotMatch(disclosure, /Get a human answer|Name the documentation you checked/);
+  assert.match(disclosure, /Don't post reading progress, lists, notes, backups, personal information, attachments, or vulnerability details/);
   assert.match(disclosure, /Before you post/);
   assert.equal([...section.matchAll(new RegExp(QUESTION_FORM_URL.replace('?', '\\?'), 'g'))].length, 1);
 
@@ -464,17 +556,22 @@ test('an invalid source inventory is refused before the destination is touched',
     await copyApprovedSources(root);
     await mkdir(destination, { recursive: true });
     await writeFile(join(destination, 'previous.txt'), 'keep this complete artifact', 'utf8');
-    await writeFile(join(root, 'pages', 'unexpected.html'), '<p>not approved</p>', 'utf8');
-
-    await assert.rejects(
-      buildPages({ root, destination }),
-      /Pages source inventory/,
-    );
-    assert.equal(
-      await readFile(join(destination, 'previous.txt'), 'utf8'),
-      'keep this complete artifact',
-    );
-    assert.deepEqual(await readdir(destination), ['previous.txt']);
+    for (const unexpected of [
+      join(root, 'pages', 'unexpected.html'),
+      join(root, 'pages', 'assets', 'unexpected.png'),
+    ]) {
+      await writeFile(unexpected, 'not approved', 'utf8');
+      await assert.rejects(
+        buildPages({ root, destination }),
+        /Pages source inventory/,
+      );
+      assert.equal(
+        await readFile(join(destination, 'previous.txt'), 'utf8'),
+        'keep this complete artifact',
+      );
+      assert.deepEqual(await readdir(destination), ['previous.txt']);
+      await rm(unexpected);
+    }
   } finally {
     await rm(temporary, { recursive: true, force: true });
   }

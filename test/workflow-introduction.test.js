@@ -32,17 +32,23 @@ test('the introduction walks through a real cross-series transition with synthet
 test('all introduction surfaces distinguish shared progress and manual reading from access promises', () => {
   for (const source of [page, readme, listing]) {
     const copy = text(source);
-    assert.match(copy, /Read markers are shared for the same issue across overlapping Reading Lists/);
-    assert.match(copy, /each list keeps its own order/);
-    assert.match(copy, /not detected automatically/);
+    assert.match(copy, /Read markers are shared for the same issue across overlapping Reading Lists|An issue marked read stays read across lists/);
+    assert.match(copy, /each list keeps its own order/i);
+    assert.match(copy, /(?:not|isn't) detected automatically/);
     assert.match(copy, /same browser profile/);
     assert.match(copy, /separate tab/);
     assert.match(copy, /official issue page/);
-    assert.match(copy, /not guaranteed access/);
+    assert.match(copy, /not guaranteed access|A link doesn't guarantee access/);
     assert.match(copy, /subscription/);
     assert.match(copy, /desktop/);
-    assert.match(copy, /not a native phone app/);
     assert.match(copy, /No automatic device sync or offline comic reading/);
+  }
+  assert.match(text(listing), /not a native phone app/);
+  for (const source of [page, readme]) {
+    const copy = text(source);
+    assert.match(copy, /Android (?:app )?in development/);
+    assert.match(copy, /not a Google Play release|Not available on Google Play/);
+    assert.doesNotMatch(copy, /not a native phone app/);
   }
 });
 
@@ -51,7 +57,7 @@ test('the public walkthrough remains an ordered no-script text explanation with 
   assert.ok(walkthrough, 'the walkthrough must be a semantic ordered list');
   assert.equal((walkthrough.match(/<li>/g) ?? []).length, 5);
   assert.doesNotMatch(walkthrough, /<(?:img|video|iframe|script|button|input)\b/);
-  assert.match(page, /Sample views below, with cover art off/);
+  assert.match(page, /Desktop views with cover art off/);
   assert.doesNotMatch(page, /<(?:script|form|iframe)\b/);
   assert.doesNotMatch([page, readme, listing].join('\n'), /[\u2013\u2014]/);
 });
