@@ -6121,7 +6121,7 @@
   },
   "SECURITY.md|what-this-project-is-because-it-decides-what-a-v|package.json:52-56|0": {
     "anchor": "package.json:52-56",
-    "fp": "c9119e95ddb6adfa",
+    "fp": "2cfacf17c11b3f1b",
     "head": "\"devDependencies\": {"
   },
   "src/js/views/data.js|preamble|src/js/storage.js:336-339|0": {

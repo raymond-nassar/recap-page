@@ -1785,3 +1785,11 @@ test('Windows packaging adds no browser runtime dependency', () => {
   assert.deepEqual(pkg.dependencies ?? {}, {});
   assert.equal(Object.keys(pkg.devDependencies ?? {}).some((name) => /winapp|msix|package.?support/i.test(name)), false);
 });
+
+test('installed proof opens external search through the app navigation controls', () => {
+  const proof = read(PROOF);
+  assert.match(proof, /external\.\$eval\('\.ri\[data-view="add"\]', \(button\) => button\.click\(\)\)/);
+  assert.match(proof, /external\.waitForFunction\(\(\) => !document\.querySelector\('#view-add'\)\.hidden\)/);
+  assert.match(proof, /external\.\$eval\('\.search-hub-card\[data-view="add-search"\]', \(button\) => button\.click\(\)\)/);
+  assert.doesNotMatch(proof, /setRoute\(external, '#\/add-search'\)/);
+});
