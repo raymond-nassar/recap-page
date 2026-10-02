@@ -178,10 +178,10 @@ test('the contract check is still outside CI, which is why the guide says to run
 
 test('the governance record gives active planning one owner for each concern', () => {
   const governance = flat['GOVERNANCE.md'];
-  assert.match(governance, /The Issue owns scope, acceptance criteria, dependencies and discussion/);
-  assert.match(governance, /open or closed state owns whether the work is active or completed/);
-  assert.match(governance, /The Project owns readiness, priority, work type, epic and scoring fields/);
-  assert.match(governance, /built-in status is the planning view rather than a second completion record/);
+  assert.match(governance, /The Issue records scope, acceptance criteria, dependencies and discussion/);
+  assert.match(governance, /open or closed state shows whether work is active or completed/);
+  assert.match(governance, /The Project tracks readiness, priority, work type, epic and scoring fields/);
+  assert.match(governance, /built-in status is a planning view, not a second completion record/);
   assert.match(
     governance,
     /frozen \[historical backlog\]\(PRODUCT_BACKLOG\.md\) preserves the original rationale/,

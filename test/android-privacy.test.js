@@ -72,7 +72,7 @@ test('public privacy policy names the actual platform, search, provider and eras
   assert.match(text, /salvage copies[^.]*not removed/i);
   assert.match(text, /pre-restore and staging copies[^.]*attempted/i);
   assert.match(text, /previously exported files/i);
-  assert.match(text, /recipient retention[^.]*not established/i);
+  assert.match(text, /policy does not establish how long recipients keep request data/i);
   assert.match(text, /no-store[^.]*not[^.]*deletion/i);
   assert.match(text, /uninstalling[^.]*does not remove browser-owned state/i);
 });

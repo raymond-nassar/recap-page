@@ -1,34 +1,36 @@
 # Recap Page
 
-**A private reading companion for Marvel Unlimited.** [Open the project home](https://raymond-nassar.github.io/recap-page/) for a quick tour, setup, help and project questions.
+**A private reading companion for Marvel Unlimited.** [Open the project home](https://raymond-nassar.github.io/recap-page/) for a tour and setup.
 
 Follow a Marvel story across series, open the next unread comic, and keep your place. Recap Page
-runs locally in your desktop browser without an account; the supported release is not a native phone app.
+runs locally in your desktop browser without an account, with an Android app in development.
 No automatic device sync or offline comic reading.
 
-An [experimental Android prototype](docs/ANDROID.md) is available for building and sideloading.
-It keeps the same features with phone-sized controls; physical-device acceptance is still required.
+The [Android development build](docs/ANDROID.md) has phone-sized controls, Marvel Unlimited app
+links and a browser fallback. No computer needed. The
+[earlier beta](https://github.com/raymond-nassar/recap-page/releases/tag/android-v3.0.1-beta.2)
+doesn't include all the current features. Not available on Google Play.
+See the [phone previews](https://raymond-nassar.github.io/recap-page/#android)
+and [beta guide](docs/ANDROID_BETA.md) before testing.
 
-It does not include comics, bypass a subscription, or replace Marvel Unlimited. When a direct
-Marvel Unlimited link is available, **Read** opens the official reader in a separate tab. Otherwise the
-new tab looks up that link and falls back to the issue's official page on marvel.com when none can
-be resolved. An official issue page is not guaranteed access. You need your own subscription
-to read included issues.
+Comics and a Marvel Unlimited subscription aren't included. On desktop, **Read** opens a separate
+tab: the official reader if a link is found, or the comic's official issue page on marvel.com.
+A link doesn't guarantee access. Recap Page cannot replace Marvel Unlimited or bypass a subscription.
 
 ## A reading session, from start to resume
 
-This example uses made-up progress, not someone's reading history.
+An example with made-up progress:
 
-1. In **Browse**, add **Civil War: An Avengers Reading List**, compiled from
+1. In **Browse**, add **Civil War: An Avengers Reading List** from
    [Comic Book Herald's guide](https://www.comicbookherald.com/where-do-i-start-with-avengers-trade-collections/).
-2. Imagine the first six comics are marked read. **Civil War (2006) #7** is the next unread issue.
+2. With the first six comics marked read, **Civil War (2006) #7** is next.
 3. Choose **Read** to open the official reader where a link is available.
-4. Return to Recap Page and choose **Done, next** yourself. **New Avengers (2004) #21** becomes next;
-   reading is not detected automatically.
-5. Stop here, then reopen this Reading List in the same browser profile to resume at that unread comic.
+4. Return and choose **Done, next**. **New Avengers (2004) #21** is next.
+   Reading isn't detected automatically.
+5. Reopen the list in the same browser profile to resume.
 
-Read markers are shared for the same issue across overlapping Reading Lists; each list keeps its
-own order. The sample views below show a different list, with cover art off.
+An issue marked read stays read across lists. Each list keeps its own order.
+The screenshots show a different list, with cover art off.
 
 ![Recap Page Home with a recommended starting guide and focused discovery choices,
 with cover art off](docs/screenshots/home-960.png)
@@ -38,61 +40,62 @@ with cover art off](docs/screenshots/avengers-disassembled-reading-960.png)
 
 ## Made for long reading journeys
 
-- **Start with a story, not a spreadsheet.** Browse curated events, eras, characters, modern
-  continuity runs, and MCU Prep companion picks.
-- **Always know what comes next.** The current issue, next issue, part labels, and completion
-  progress stay visible.
-- **Read your way.** Choose an issue, mark anything read or unread, add notes, or track a custom
-  issue outside the curated catalog.
-- **Move through a whole universe.** Open Reading Paths from Home or Browse, choose a journey, and
-  see every stop in order with progress from the matching list, another imported version, or **Not added**.
-- **Find anything quickly.** Search curated Reading Lists under Browse, or find issues, series, and
-  creators under Add comics.
-- **Keep control of availability.** Scheduled, expected, unknown, and both explicit override states
-  remain distinct.
-- **Protect your progress.** Export a backup whenever you like and restore it on the same or another
-  computer.
-- **Use the browser you already trust.** Recap Page works in Edge, Chrome, Firefox, and Safari, and
-  can be installed as a browser app.
+- **Explore Marvel.** Browse events, eras, characters, modern continuity runs, and MCU Prep.
+- **See what's next.** Keep the current comic, next issue, part labels, and progress in view.
+- **Make your own lists.** Choose issues, mark them read or unread, write notes, and add custom comics.
+- **Read at your own pace.** Defer a comic in one list without marking it read. Revisit deferred or
+  earlier issues, and reveal descriptions when you're ready.
+- **Follow Reading Paths.** From Home or Browse, see each stop's progress from the matching list,
+  another imported version, or **Not added**.
+- **Find comics.** Search curated lists in Browse, or issues, series, and creators in Add comics.
+- **Check availability.** Unknown, scheduled, and expected stay separate from your own available or
+  unavailable checks.
+- **Back up your progress.** Restore a backup on this device or another. Android and desktop save
+  separately. Restoring replaces the app's saved data.
+- **Share an order.** Preview a personal Markdown checklist or export an order without notes,
+  reading history, or availability overrides.
+- **Choose your browser.** Use Edge, Chrome, Firefox, or Safari, or install Recap Page as a browser app.
 
 ## Privacy
 
 ### Your data stays with you
 
-There is no account, no analytics or tracking, and your reading progress is never sent anywhere.
-Reading state, notes, settings, overrides, and custom entries stay in your browser storage.
+There is no account and no analytics or tracking. Saved reading data is not uploaded automatically.
+Lists, progress, notes, settings, overrides, and custom entries stay on your device. You can export them to a
+destination you choose; see the [privacy policy](PRIVACY.md) for details.
 
-Recap Page makes a small number of direct requests so it can show live information:
+Some features make direct requests:
 
-- When the app starts, it asks the comics database whether the service is reachable.
-- Searching for an issue sends the words you typed to the comics database and downloads matching
-  metadata.
-- Adding a series or creator asks the comics database for every issue in that run.
+- Startup checks whether the comics database is reachable.
+- Issue searches send the words you type to the comics database and fetch matching details.
+- Series and creator name searches use bundled indexes. Adding a series or creator requests every issue.
 - Cover images load from Marvel's own image servers unless cover art is switched off in **Backup & settings**.
-- Pressing **Read** opens Marvel Unlimited directly when the reader link is known. Otherwise the new
-  tab asks the comics database for that link and falls back to the issue page on marvel.com.
-- Those requests reveal which issues you are looking at to the service receiving them.
-- The Android prototype also sends the digital issue ID to Marvel's Bifrost service when opening
-  an issue, to resolve its app link. It sends no credentials, lists, notes or read markers, stores
-  no returned app identifier, and keeps **Open in browser** available.
-- The hand-entry title lookup sends the title you typed to the Marvel Fandom wiki only when you press
-  **Look up on Marvel Fandom**. It does not fetch a cover.
+- **Read** opens Marvel Unlimited if the reader link is known. Otherwise the new tab asks the
+  comics database for that link, falling back to the issue page on marvel.com.
+- Android also sends the digital issue ID to Marvel's Bifrost service to find an app link.
+  It sends no credentials, lists, notes, or read markers, saves no returned app identifier,
+  and keeps **Open in browser** available.
+- **Look up on Marvel Fandom** sends your hand-entered title to that wiki only when you choose it.
+  It does not fetch a cover.
 
-Recap Page stores cover URLs only. It never hosts, proxies, or writes comic image bytes to storage
-it controls. The browser may manage its ordinary web cache when it loads an image from Marvel.
+These services can see your network address and the issue or search details needed for the request.
+They do not receive your saved lists, progress, or notes.
+
+Recap Page stores cover URLs, not image bytes. It never hosts or proxies comic images.
+Your browser may cache images it loads from Marvel.
 
 ## Run it on your computer
 
 ### Install from Microsoft Store
 
-[Open Recap Page in Microsoft Store](https://apps.microsoft.com/detail/9PDJ7XR9Q40Q). The Store is
-the primary Windows discovery and installation channel and is the only channel the app uses for
-product updates. The listing may not offer installation until the current certification completes.
+[Open Recap Page in Microsoft Store](https://apps.microsoft.com/detail/9PDJ7XR9Q40Q), the primary
+Windows installation channel. Microsoft Store is the app's only product update channel.
+A version still in certification may not be available to install yet.
 
 ### Standalone Windows archive
 
-The standalone archive remains available for manual installs and testing. The app does not check
-for, download, or direct updates from this channel.
+Use the archive for manual installs and testing. The app does not check for, download, or direct
+updates from this channel.
 
 1. [Download the latest Windows
    archive](https://github.com/raymond-nassar/recap-page/releases/latest/download/marvel-reading-tracker-windows.zip).
@@ -111,12 +114,12 @@ The app opens at:
 
 <http://127.0.0.1:8787/>
 
-**Always use that exact address.** A different hostname or port has separate browser storage and
-looks like a fresh app. Use a normal browser window rather than an editor preview so the **Read**
-button can open Marvel's reader.
+**Always use that exact address and the same browser profile.** Another address, port, or profile
+has separate storage. Use a normal browser window, not an editor preview, so **Read** can open
+Marvel's reader.
 
-[The complete running guide](docs/RUNNING.md) covers first-run warnings, browser installation,
-stopping and restarting, safe ports, and troubleshooting.
+[The running guide](docs/RUNNING.md) covers first-run warnings, browser installation,
+restarting, safe ports, and troubleshooting.
 
 ## Upgrade without losing progress
 
@@ -129,10 +132,9 @@ For a standalone archive or source copy:
 3. Download the latest archive or source.
 4. Start the new copy at <http://127.0.0.1:8787/>.
 
-Your progress belongs to that exact browser address, not to the package or folder you replace.
-Staying on `127.0.0.1:8787` in the same browser profile keeps it in place. Major versions mark a
-substantial new generation of the app and are also required for any saved-data change an older
-build cannot read. Release notes state whether progress remains compatible.
+Progress belongs to that browser address and profile, not the folder or package you replace.
+Keep using `127.0.0.1:8787` in the same profile. Major versions mark a new product generation or a
+saved-data change older builds cannot read. Read the release notes for compatibility details.
 
 ## Learn more
 

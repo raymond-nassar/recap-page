@@ -1924,35 +1924,35 @@
     "fp": "cd4793f475d06ae8",
     "head": "<span>Marvel metadata via marvel.emreparker.com. <span data-marvel-copyright>© MARVEL</span></span>"
   },
-  "docs/PUBLICATION_RUNBOOK.md|before-anything-is-flipped|docs/DATA_PROVENANCE.md:11-13|0": {
-    "anchor": "docs/DATA_PROVENANCE.md:11-13",
-    "fp": "4fe337c262402dbd",
-    "head": "**It draws no legal conclusion, and it is not legal advice.** Whether the tree as a whole may be"
+  "docs/PUBLICATION_RUNBOOK.md|before-anything-is-flipped|docs/DATA_PROVENANCE.md:8-9|0": {
+    "anchor": "docs/DATA_PROVENANCE.md:8-9",
+    "fp": "c591f8eb9ec4e139",
+    "head": "**This is not legal advice or a legal conclusion.** Redistribution of the complete data tree remains"
   },
   "docs/PUBLICATION_RUNBOOK.md|settings-that-only-become-available-on-the-day|PRODUCT_BACKLOG.md:7114-7118|0": {
     "anchor": "PRODUCT_BACKLOG.md:7114-7118",
     "fp": "a6ceb97902e6f2c0",
     "head": "Two limits worth stating rather than discovering later. Every `required: true` in these forms is"
   },
-  "docs/PUBLICATION_RUNBOOK.md|settings-that-only-become-available-on-the-day|SECURITY.md:145-151|0": {
-    "anchor": "SECURITY.md:145-151",
-    "fp": "8d555b25204faa9d",
-    "head": "Secret scanning is on, and so is push protection, both enabled on 2026-08-16 once publication"
+  "docs/PUBLICATION_RUNBOOK.md|settings-that-only-become-available-on-the-day|SECURITY.md:114-116|0": {
+    "anchor": "SECURITY.md:114-116",
+    "fp": "2abc83ccc79cd632",
+    "head": "- Dependabot alerts and security updates are enabled. Secret scanning and push protection were"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true#code-of-conduct-md-40-43|CODE_OF_CONDUCT.md:40-43|0": {
-    "anchor": "CODE_OF_CONDUCT.md:40-43",
-    "fp": "77acb893d9d37da1",
-    "head": "That second route exists because this repository has no private channel to the maintainer for a"
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true#code-of-conduct-md-43-45|CODE_OF_CONDUCT.md:43-45|0": {
+    "anchor": "CODE_OF_CONDUCT.md:43-45",
+    "fp": "2a6fa673a83192e9",
+    "head": "There is no private maintainer channel or published contact address"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true#contributing-md-7-11|CONTRIBUTING.md:7-11|0": {
-    "anchor": "CONTRIBUTING.md:7-11",
-    "fp": "d73b4e06582fea99",
-    "head": "One thing to know before anything else: this repository was published on 2026-08-16, so the code is"
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true#contributing-md-4|CONTRIBUTING.md:4|0": {
+    "anchor": "CONTRIBUTING.md:4",
+    "fp": "2ce03c76d1686500",
+    "head": "The repository has been public since 2026-08-16 and accepts issues and pull requests."
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true#docs-data-provenance-md-11-13|docs/DATA_PROVENANCE.md:11-13|0": {
-    "anchor": "docs/DATA_PROVENANCE.md:11-13",
-    "fp": "4fe337c262402dbd",
-    "head": "**It draws no legal conclusion, and it is not legal advice.** Whether the tree as a whole may be"
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true#docs-data-provenance-md-8-9|docs/DATA_PROVENANCE.md:8-9|0": {
+    "anchor": "docs/DATA_PROVENANCE.md:8-9",
+    "fp": "c591f8eb9ec4e139",
+    "head": "**This is not legal advice or a legal conclusion.** Redistribution of the complete data tree remains"
   },
   "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true#github-codeowners-5-8|.github/CODEOWNERS:5-8|0": {
     "anchor": ".github/CODEOWNERS:5-8",
@@ -1969,28 +1969,28 @@
     "fp": "61fe35744ce7a858",
     "head": "// The publication gate. This repository was published on 2026-08-16, and several of the things that"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true#security-md-145-151|SECURITY.md:145-151|0": {
-    "anchor": "SECURITY.md:145-151",
-    "fp": "8d555b25204faa9d",
-    "head": "Secret scanning is on, and so is push protection, both enabled on 2026-08-16 once publication"
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true#security-md-114-116|SECURITY.md:114-116|0": {
+    "anchor": "SECURITY.md:114-116",
+    "fp": "2abc83ccc79cd632",
+    "head": "- Dependabot alerts and security updates are enabled. Secret scanning and push protection were"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true#security-md-39-44|SECURITY.md:39-44|0": {
-    "anchor": "SECURITY.md:39-44",
-    "fp": "a52faa95cf1721d7",
-    "head": "If that option is not on the Security tab, it has not been turned on. It is off by default, and on"
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true#security-md-34-36|SECURITY.md:34-36|0": {
+    "anchor": "SECURITY.md:34-36",
+    "fp": "23dc7e0da5fde923",
+    "head": "Private reporting was enabled here on 2026-08-16, but may be unavailable in a fork. If the option"
   },
   "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true#test-publication-gate-test-js-21-25|test/publication-gate.test.js:21-25|0": {
     "anchor": "test/publication-gate.test.js:21-25",
     "fp": "e9a1e74dee2c791e",
     "head": "// The publication gate answered a question that only gets asked once, and it was asked on"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:4519-4530|0": {
-    "anchor": "CHANGELOG.md:4519-4530",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:4527-4538|0": {
+    "anchor": "CHANGELOG.md:4527-4538",
     "fp": "7ebb6ef43a1f1241",
     "head": "- **The project now watches its own development tooling for known security problems, and says how"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:4532-4542|0": {
-    "anchor": "CHANGELOG.md:4532-4542",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:4540-4550|0": {
+    "anchor": "CHANGELOG.md:4540-4550",
     "fp": "c37eedd88ad1c81c",
     "head": "- **The project now has a published security policy, which names a private route for reporting a"
   },
@@ -2044,9 +2044,9 @@
     "fp": "38d80111ac4d6ef8",
     "head": "Three settings are the actionable half: secret scanning with push protection behind it, private"
   },
-  "docs/PUBLICATION_RUNBOOK.md|what-the-rewrites-cost-the-evidence-anchors-gate|test/intake-config.test.js:109-115|0": {
-    "anchor": "test/intake-config.test.js:109-115",
-    "fp": "b49d224a819dbd31",
+  "docs/PUBLICATION_RUNBOOK.md|what-the-rewrites-cost-the-evidence-anchors-gate|test/intake-config.test.js:109-116|0": {
+    "anchor": "test/intake-config.test.js:109-116",
+    "fp": "ff29af84034caf13",
     "head": "test('blank issues stay enabled, because the security policy sends reporters through one', () => {"
   },
   "docs/UX_STUDY.md|as-is-journey-map#checking-progress|src/index.html:496-498|0": {
@@ -6089,6 +6089,11 @@
     "fp": "66318b8a9bc87d06",
     "head": ".row.is-read .cb { background: var(--teal); border-color: var(--teal); }"
   },
+  "SECURITY.md|about-the-app|package.json:52-56|0": {
+    "anchor": "package.json:52-56",
+    "fp": "c9119e95ddb6adfa",
+    "head": "\"devDependencies\": {"
+  },
   "SECURITY.md|in-scope|.github/workflows/ci.yml:248-250|0": {
     "anchor": ".github/workflows/ci.yml:248-250",
     "fp": "d7904643223f00ed",
@@ -6123,11 +6128,6 @@
     "anchor": "src/js/lib/version.js:5-15",
     "fp": "0c786a4a0e0b5b8d",
     "head": "//   MAJOR  marks a substantial new product generation. It is also required when stored data"
-  },
-  "SECURITY.md|what-this-project-is-because-it-decides-what-a-v|package.json:52-56|0": {
-    "anchor": "package.json:52-56",
-    "fp": "c9119e95ddb6adfa",
-    "head": "\"devDependencies\": {"
   },
   "src/js/views/data.js|preamble|src/js/storage.js:336-339|0": {
     "anchor": "src/js/storage.js:336-339",

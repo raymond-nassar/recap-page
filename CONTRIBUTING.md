@@ -1,106 +1,82 @@
 # Contributing
 
-This is a reading tracker for one person at a time, built to a particular standard, and the point
-of this document is to make that standard something you can read rather than something you have to
-infer from a review.
+Help improve Recap Page while protecting the reader's data and keeping the app simple.
+The repository has been public since 2026-08-16 and accepts issues and pull requests.
 
-One thing to know before anything else: this repository was published on 2026-08-16, so the code is
-visible, issues are open and changes can be sent. What follows describes how contributing works and
-is now also how it happens, in the same way the security policy's private reporting route stopped
-being a description and was switched on the same day. Nothing here is aspirational about the
-standard itself, which is applied to every change already.
-
-If you only want to read comics with the app, you do not need any of this. Start at
-[the running guide](docs/RUNNING.md) instead.
+To use the app, start with [the running guide](docs/RUNNING.md).
 
 ## What this project is trying to be
 
-A local-first companion to Marvel Unlimited that keeps your place in long reading orders. It has no
-accounts, no hosted backend, no analytics and nothing uploaded anywhere. A small loopback server
-serves the static files on your own machine. Your reading progress lives in one key in your own
-browser, and there is no copy of it anywhere else, which is the promise the whole design is arranged
-around and also the reason a defect in saving or restoring it is treated as the most serious kind of
-bug this project can have.
+A local-first Marvel Unlimited companion that keeps your place in reading orders. There are no
+accounts, hosted backends, analytics, or automatic uploads of saved reading data. Desktop uses a local
+server and browser storage; Android has separate app storage. Readers can export their own backups.
+Silent loss or corruption of saved reading progress is treated as a security issue.
 
 ## What will be declined, and why
 
-These are settled. A change that needs one of them broken will be declined however well it is
-built, so it is worth checking against the list before you spend an evening on it.
+Check these constraints before starting. Changes that break them will be declined.
 
-- **Anything that uploads reading progress, adds an account, or introduces a service.** The product
-  promise is that nothing leaves the device.
-- **Anything that copies, stores, proxies or caches comic artwork.** The app stores the address of
-  a cover and never the bytes.
-- **Anything that reads Marvel's own sites by scraping them.** The app links out to them and asks a
-  third-party metadata database for details.
-- **Anything that adds a package the browser would load.** Runtime dependencies are zero. Tooling
-  that runs on a maintainer's machine or in CI is welcome and is discussed below.
-- **Anything that moves the app off the loopback address it is served on.** Saved progress belongs
-  to one exact address, port included, so serving it somewhere else silently shows an empty
-  tracker. The address is not a default that can be relaxed.
-- **Anything that reduces "can you read this issue yet" to yes or no.** The app deliberately
-  distinguishes not knowing, a scheduled date, an expectation, and a reader saying either that they
-  checked and it was there or that they checked and it was not. The upstream dates are unreliable
-  enough that collapsing those would mean claiming things that are not true.
+- **Reading-data uploads, accounts, or new services.** Saved data stays local unless the reader
+  explicitly exports it.
+- **Comic artwork in app-controlled storage.** Store cover URLs, never image bytes. Do not host,
+  proxy, or cache comic artwork.
+- **Scraping Marvel's sites.** Link to them; get details from the third-party metadata service.
+- **Packages loaded by the browser.** Runtime dependencies stay at zero. Development and CI tools
+  may be added when justified.
+- **A different loopback address or port.** Each address has separate browser storage. Changing it
+  makes saved progress look missing; the address is not a configurable default.
+- **Yes-or-no availability.** Keep unknown, scheduled, expected, explicitly available, and
+  explicitly unavailable distinct. Unreliable upstream dates do not justify a claim of access.
 - **Emulating the Marvel Unlimited app.** That was measured and closed, and
   [the reasons](docs/WHY_A_BROWSER_APP.md) are hardware findings rather than preferences.
 
-The bundled metadata snapshot ends in 2025. A later comic therefore starts with no bundled cover or
-details, and the manual entry form is the mitigation: when the reader explicitly asks, it can look
-up factual details on Marvel Fandom and can preserve a pasted Marvel Unlimited reader link. The
-snapshot boundary itself is not a defect to fix.
+The bundled metadata snapshot ends in 2025. Newer comics start without bundled covers or details.
+Readers can add them by hand, request a Marvel Fandom lookup, or paste a Marvel Unlimited reader
+link. The snapshot boundary is not a defect.
 
 ## Before you write anything
 
-Say what you are planning first, in an issue. Not because permission is needed, but because the
-[planning Project](https://github.com/users/raymond-nassar/projects/1) weighs active work against
-everything else waiting rather than judging it on the day it arrives. Some items have been waiting
-a while on purpose.
+Describe your proposal in an issue first and check the
+[planning Project](https://github.com/users/raymond-nassar/projects/1) for existing work and priorities.
 
-Then read, in this order: what the app is trying to do, in the first half of the README; how it is
-put together, in [the architecture record](docs/ARCHITECTURE.md); and the
-[maintainer guide](docs/MAINTAINING.md), which covers running the checks, reviewing a pinned action,
-adding a curated reading list and cutting a release.
+Read the README, [architecture guide](docs/ARCHITECTURE.md), and
+[maintainer guide](docs/MAINTAINING.md) before changing code. The maintainer guide covers checks,
+pinned actions, curated lists, and releases.
 
 ## How a change is judged
 
 Three rules do most of the work.
 
-**One thing per pull request, unless the maintainer explicitly combines a delivery.** If you find
-something else worth doing while you are in there, it ordinarily becomes an entry in the backlog
-rather than another commit on the branch. This is not tidiness: a pull request that does two things
-cannot be reverted for one of them. The combined UX delivery on 2026-08-22 is the recorded exception,
-made by the maintainer after reviewing the work in progress rather than inferred by a contributor.
+**One thing per pull request, unless the maintainer explicitly combines a delivery.** File unrelated
+work as a repository Issue, not another commit on the branch. This keeps changes independently
+revertible. The maintainer-approved combined UX delivery on 2026-08-22 is an exception, not a precedent
+contributors should infer.
 
-**Claims carry evidence.** A statement about this codebase carries the file and the line it is true
-at, written the way the existing documents write them. A statement about anything outside carries a
-link and the date you retrieved it. Recollection is not evidence, and neither is a number that was
-correct when someone wrote it down.
+**Claims carry evidence.** Cite the file and line for codebase claims. For external claims, give the
+URL and retrieval date. Use evidence you checked, not recollection.
 
-Those references are checked automatically, by the content of the lines rather than by the numbers,
-so editing code moves them and the check goes red. That is the check working. Re-aim each one at
-whatever now says what the claim says, and read every pairing the tool prints before accepting it.
-Accepting them wholesale to clear a red build locks the wrong lines in permanently, which is the
-exact failure the check exists to end.
+The anchors check fingerprints cited content, not just line numbers. After an edit, re-aim each
+affected citation and read every claim-and-line pairing before blessing it. Never bless a mismatch
+just to clear a failed check.
 
-**Numbers are re-derived, not carried forward.** Counts of anything, in any document you touch, are
-recomputed rather than copied from the previous version. Two of them were wrong here for a while
-and every automated check passed the whole time.
+**Recompute counts.** Verify counts in the part of a document you change. An old number is not
+evidence, and the automated gates do not check every count.
 
 ## Writing
 
-Comments explain why, with evidence, rather than restating what the line does. "Measured in Edge on
-a first run with storage cleared, speaking surfaces went from 9 to 3" is the register.
+Write for the reader's task. Use familiar words, direct verbs, and short paragraphs. Put the action
+or outcome before implementation details, and remove repetition rather than useful information.
+Keep exact commands, control names, limits, and safety warnings. Avoid commentary about the document
+itself when you can simply give the information.
+
+Code comments explain why, with evidence where needed. Do not restate the code.
 
 No em dashes anywhere in anything a reader sees. Commas, colons and full stops instead.
 
-A pull request opens with a plain English summary, before any section written for someone who
-already knows the codebase. Name no file and no identifier in it: say what the thing does instead.
-Say what a person using the app would notice, and say so plainly when the answer is nothing, which
-it often is. Give the reason before the mechanism. Four short paragraphs at most. It goes first
-because the technical sections were making it harder to tell whether a change was right, not
-easier. The template that appears when you open a pull request puts it first for the same reason,
-and its other sections are the rest of this document in the order a reviewer reads them.
+Start each pull request with `## In plain English`. In at most four short paragraphs, explain why
+the change matters and what a reader will notice, including when nothing changes for them. Use no
+file names, identifiers, commands, or backlog IDs; describe what those things do instead.
+Give the reason before the mechanism. Keep the technical sections after this summary.
 
 ## The checks
 
@@ -108,9 +84,8 @@ and its other sections are the rest of this document in the order a reviewer rea
 npm ci
 ```
 
-Installs the linting tools, and nothing it installs reaches the browser. You need it for the
-linter only. The app has no parts to install, so `npm start` and `npm test` both work in a fresh
-copy with nothing installed.
+This installs lint tooling only; none of it reaches the browser. With Node.js installed,
+`npm start` and `npm test` work in a fresh checkout without installing packages.
 
 ```
 npm test
@@ -123,133 +98,103 @@ npm run palette
 npm run publication
 ```
 
-All eight run in CI on every pull request. `npm test` runs the unit tests. `npm run lint` runs
-ESLint. `npm run anchors` checks that every file-and-line citation still names lines saying what
-the citation claims. `npm run counts` recomputes the figures the backlog states about its own
-ranked table, and `npm run sizes` recounts any file a sentence states the length of. `npm run
-spacing` checks that layout rhythm stays on its shared scale, and `npm run palette` checks colour
-contrast. `npm run publication` checks that nothing in the history or the tracked files would be a
-problem if this repository were made public.
+All eight run in CI on every pull request. They check unit behavior, lint, evidence anchors, backlog
+counts, stated file sizes, spacing, colour contrast, and publication safety. The publication check
+covers tracked files and Git history.
 
 ### Historical evidence anchors
 
-Ordinary citations still describe the tree being checked. A small set of frozen claims instead uses
-the required historical registry. Each registry entry keeps the existing citation and occurrence key
-but binds it to one full commit id, literal repository path, line range, exact content SHA-256, and
-normalized claim SHA-256. The checker never fetches, follows a rename, searches for similar text,
-trusts the generated lock as provenance, or falls back to current content. Missing, malformed,
-unavailable, duplicate, stale, or partial history stops both check and bless.
+Ordinary citations describe the tree being checked. Frozen claims use the required historical
+registry, which binds each existing citation and occurrence key to a full commit id, literal path,
+line range, content SHA-256, and normalized claim SHA-256. The checker never fetches, follows renames,
+searches for similar text, uses the lock as provenance, or falls back to current content.
 
-The registry is canonical JSON and normal blessing cannot change it. Prepare a new sealed target only
-after every source, test, and documentation edit is final:
+Normal blessing cannot change the canonical JSON registry. Prepare a sealed target only after all
+source, test, and documentation edits are final:
 
 ```text
 npm run anchors -- --prepare-history <target-path> --output <absolute-path-outside-worktree>
 npm run anchors -- --apply-history <candidate-path> --approved-sha256 <candidate-sha256>
 ```
 
-Generate the candidate twice on the unchanged tree and require byte-identical files. Read every
-printed claim against its immutable line, record the candidate digest, then apply exactly those
-bytes. Any tracked-file or occurrence change invalidates approval and requires a new candidate.
-Apply atomically replaces only the historical registry. Run the ordinary anchor inspection and
-bless cycle afterwards; a clean final check still means zero drifted, zero new, and zero removed.
+Generate the candidate twice from the unchanged tree and require byte-identical files. Read every
+claim against its immutable line, record the digest, and apply those exact bytes. Any tracked-file
+or occurrence change requires a new candidate. Apply atomically replaces only the registry.
+Then inspect and bless ordinary anchors. The final check must show zero drifted, zero new, and zero
+removed.
 
-Historical checks require full local Git history. A shallow clone, missing object, noncommit object,
-nonancestor source, missing or binary path, invalid range, blank range edge, content mismatch, claim
-mismatch, orphan entry, or incomplete sealed target is a broken evidence state, not a reason to
-weaken the check.
+Historical checks require full local Git history. Check and bless both fail on a shallow clone,
+missing or noncommit object, nonancestor source, missing or binary path, invalid or blank-edged range,
+content or claim mismatch, malformed or duplicate entry, orphan entry, or incomplete sealed target.
+Fix the evidence; do not weaken the check.
 
 ```
 npm run contract
 ```
 
-Deliberately outside CI, because it calls a live third-party API and would fail builds for reasons
-that have nothing to do with the change under test. Run it by hand before trusting a release.
+Run this by hand before a release. It stays outside CI because a live third-party API outage should
+not fail an otherwise valid build.
 
 ```
 npm run browser
 ```
 
-Also outside CI. It drives the installed Edge browser through the application and must finish with
-zero failed assertions before a change that touches routes, rendering or interaction is trusted.
-Its browser driver is deliberately installed in a scratch directory outside this repository, so a
-missing driver is a prerequisite failure rather than a reason to add a dependency here.
+This also runs outside CI, using installed Edge. Require zero failed assertions for changes to
+routes, rendering, or interaction. Install its driver in a scratch directory outside the repository,
+never as a project dependency.
 
 ## Tests
 
-A new check has to be seen to fail before it is worth anything. Stash your fix, watch the check go
-red, restore it, and say in the pull request that you did. One check written here passed on the
-broken tree for a reason nobody would have guessed, and it looked green and proved nothing.
-
-Prefer the smallest revert that turns it red. Reverting a whole module tells you the suite notices
-the change; removing one line tells you which line each test defends, and that second answer is the
-one worth writing down.
+Prove each new check fails without the fix. Stash the smallest relevant change, run the check,
+restore the fix, and record the result in the pull request. A targeted failure shows which behavior
+the test protects; reverting a whole module proves less.
 
 ## The fault harness destroys data on purpose
 
-The app ships a page at `src/dev-faults.html` whose buttons deliberately damage saved reading data,
-so that the recovery paths can be exercised against real damage rather than against a mock. It is
-served alongside the app and shares its storage, which is what makes it useful and also what makes
-it dangerous.
+The fault harness at `src/dev-faults.html` deliberately damages saved reading data to exercise
+recovery paths. It is served alongside the app and shares its storage.
 
-**Take both backups before you open it.** The page offers two and they are not alternatives: a
-downloaded file, which survives anything that happens to the browser, and a snapshot inside the
-browser, which is what the page's own one-click restore uses. The snapshot lives in the same storage
-the faults damage, and the button that removes all tracker data removes it too, along with every
-other key the app owns. After that one the downloaded file is the only copy left, which is why the
-page calls it the copy that cannot fail.
+**Take both backups before using a fault button:** a downloaded file and the in-browser snapshot.
+The snapshot supports one-click restore, but the fault that removes all tracker data deletes it too.
+After that fault, the downloaded file is the only backup left. Keep it outside browser storage.
 
-Reporting that this page destroys data is reporting what it is for. Reporting that it destroyed
-data it should not have, or that a recovery path did not put things back the way it said it did, is
-a real and serious bug.
+Expected damage from a fault button is not a bug. Unexpected damage, or a recovery result that
+differs from what the app reports, is serious.
 
-Recovery code deserves the hardest review in the repository, and this is measured rather than
-assumed: twice now, across two separate review passes, the most dangerous code in a change was the
-code added to prevent data loss. It runs only when something has already gone wrong, so it is the
-least exercised path in the app. When you review it, ask what happens when the recovery itself
-fails, when it is offered twice, when the thing it points at no longer exists, and when the reader
-reaches the same state by a different route in between.
+Review recovery code especially carefully. Check what happens when recovery fails, is offered
+twice, points to data that no longer exists, or follows another route to the same state.
 
 ## Adding or correcting data
 
-Everything under `src/data/` is either generated by a script or pinned by hand, and
-[the data provenance record](docs/DATA_PROVENANCE.md) sets out file by file where each field came
-from and under what terms. A change there needs the same, in the pull request: where it came from,
-and what allows it to be here.
+For changes under `src/data/`, state the source and permission to use it in the pull request.
+Follow [the data provenance record](docs/DATA_PROVENANCE.md), which documents each file and field.
 
-Covers are addresses, never bytes. Marvel's own pages are linked, never scraped. An order authored
-for this project carries a source trail that someone else could follow.
+Covers are URLs, never bytes. Link to Marvel's pages; never scrape them. Every reading order needs
+a source trail someone else can follow.
 
-The mechanics of adding a curated list, including the manifest fields and the scripts that build
-one, are in [Add a curated reading order](docs/MAINTAINING.md#add-a-curated-reading-order).
+For manifest fields and scripts, see
+[Add a curated reading order](docs/MAINTAINING.md#add-a-curated-reading-order).
 
 ## Dependencies
 
-Runtime dependencies stay at zero and that is not negotiable. Development tooling is a different
-question and the answer is usually yes, if it earns its place: name it in the pull request with
-what it does and why the thing it checks is worth checking automatically.
+Runtime dependencies stay at zero. To propose a development tool, explain what it checks and why
+automating that check is useful.
 
-Anything the workflow calls is pinned to a full commit revision rather than a tag, because a tag is
-a pointer its owner can move and calling one means agreeing in advance to run whatever they publish
-next. [Review pinned GitHub Actions](docs/MAINTAINING.md#review-pinned-github-actions) explains what
-to check before merging one of those.
+Pin workflow actions to full commit revisions, not movable tags. Follow
+[Review pinned GitHub Actions](docs/MAINTAINING.md#review-pinned-github-actions) before updating one.
 
 ## Reporting problems
 
-A suspected security problem never goes in a public issue. [The security policy](SECURITY.md)
-explains how to report one and what counts as one here, and the short version is that anything
-which silently loses or corrupts saved reading progress is treated as a security issue.
+A suspected security problem never goes in a public issue. Follow
+[the security policy](SECURITY.md), including for silent loss or corruption of reading progress.
 
-Everything else, including where to ask a question and what is out of scope, is in
-[the support guide](SUPPORT.md).
+For other questions and problems, see [the support guide](SUPPORT.md).
 
 ## Conduct
 
-[The code of conduct](CODE_OF_CONDUCT.md) applies to everything in this repository. It is short and
-worth the two minutes.
+[The code of conduct](CODE_OF_CONDUCT.md) applies throughout the repository.
 
 ## Who decides
 
-[The governance record](GOVERNANCE.md) says how roadmap, release, moderation and maintainer
-decisions are made, and by whom. The honest summary is that there is one maintainer, and the value
-of writing it down is that the reasoning is inspectable even when the decision is one person's.
+The sole maintainer makes roadmap, release, and moderation decisions.
+[The governance guide](GOVERNANCE.md) explains the process and where decisions are recorded.

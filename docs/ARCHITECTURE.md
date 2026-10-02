@@ -1,44 +1,28 @@
 # How the app is put together
 
-This document draws the shape the code already has: which parts own which, what happens between a
-click and the screen changing, and where a reader's progress actually lives. It exists because the
-repository explains a great deal in words and draws none of it, so anyone describing the app to
-another person has had to read the source first.
+How the browser core owns state, updates screens, and saves reading progress. These diagrams describe
+the current implementation, not a proposed redesign. See [Android](ANDROID.md) for the native wrapper.
 
-It is a description, not a proposal. Nothing here argues for moving code, and no diagram should be
-read as a target shape. Where the drawing shows something awkward, it is because the code is that
-shape today.
-
-The diagrams are Mermaid in fenced code blocks, which GitHub renders where the file is read. That
-adds nothing to `package.json`, needs no build step, and keeps the pictures in the same review as
-the prose rather than in a binary nobody can diff.
+GitHub renders the Mermaid diagrams directly. They need no build step or dependency, and their
+source can be reviewed alongside the prose.
 
 ## The three entry points
 
-The app is served from one origin and has three pages, each loading exactly one module. The tracker
-itself is loaded at `src/index.html:1136`. The launch page, which is the tab a reader's issue opens
-into, is loaded at `src/open.html:19`. A fault-injection harness that exists for development and is
-no part of the running app is loaded at `src/dev-faults.html:135`.
+The desktop source has three pages at one origin, each loading one module: the tracker at
+`src/index.html:1136`, the reader launch tab at `src/open.html:19`, and the development-only fault
+harness at `src/dev-faults.html:135`.
 
-The module the tracker page loads is not the view layer itself but a small entry whose whole body is
-a call to `boot()` and then a registration of the offline worker, at `src/js/app.js:12-24`. The
-indirection is the seam that makes the view
-layer testable: loading it used to be the same act as starting the application, so a test could not
-reach a render function without booting an app that then never exited. The entry has to be a module
-rather than an inline script because the server sends `script-src 'self'`, which an inline script
-would need a nonce to satisfy.
+The tracker entry calls `boot()` and registers the offline worker at `src/js/app.js:12-24`.
+Separating startup lets tests import view functions without booting the app. The external module
+also satisfies `script-src 'self'`; inline startup code would require a content security policy change.
 
-Nothing bundles or transpiles. The browser loads ES modules directly from `src/`, which is why the
-import graph below is also the load graph.
+The browser loads ES modules directly from `src/`, without bundling or transpilation.
 
 ## The module graph, drawn as ownership
 
-Imports say what a file mentions. Ownership says who made the thing and who can change it, which
-is the question a reader of this app actually has. Most modules expose stateless functions and
-contracts. The controller constructs its core service objects together at
-`src/js/main.js:78-101`; application-wide bookkeeping lives at module scope, while constructed view
-modules own state that is local to one screen. Read that block for the application's service wiring,
-not as an exhaustive inventory of every value kept in memory.
+Most modules expose stateless functions and contracts. The controller constructs the core services
+at `src/js/main.js:78-101` and keeps application-wide bookkeeping at module scope. Constructed views
+own their screen-local state. That block shows service wiring, not every value held in memory.
 
 ```mermaid
 flowchart TD
@@ -95,51 +79,38 @@ flowchart TD
   curated --> vendor["vendor-orders.mjs"]
 ```
 
-A thick arrow means constructs and holds. A thin arrow means holds a reference to something
-another part constructed. A dotted arrow means calls, and owns nothing.
+A thick arrow means constructs and owns; a thin arrow means holds a reference; a dotted arrow means
+calls without ownership.
 
-Four things the picture is making a point of.
+**The view layer owns state; the library has no mutable singleton service.** Each rate limiter owns
+its queue and two rolling windows at `src/js/lib/limiter.js:11-20`, so separate instances have
+independent budgets. Save education and session synopsis state are instance-owned too.
 
-**The view layer owns the state, and the library owns no mutable singleton service.** Where state
-exists it belongs to an instance the view layer made, as the rate limiter's queue and its two
-rolling windows of recent hits do, set up at `src/js/lib/limiter.js:11-20`, so two limiters would be
-two independent budgets. The same is true of the save-education preference and session synopsis
-map. This is why the graph is worth drawing as ownership. An import arrow from the view layer to the
-rate limiter would suggest a dependency on a service. What is actually there is a dependency on an
-object the view layer itself created and can throw away.
+**Changing the API base replaces the client and cache.** The replacement goes to the Hydrator and
+SynopsisRunner at `src/js/main.js:2076-2091`. In-flight synopsis work is cancelled and its memory
+cleared. The Store stays in place, as does the rate limiter: its budget belongs to the reader's
+connection, not the configured service.
 
-**The API client and its response cache are replaceable at runtime.** Saving a new API base builds
-a fresh pair and hands the replacement client to both the Hydrator and SynopsisRunner, at
-`src/js/main.js:2076-2091`. An in-flight synopsis run is cancelled and its tab-memory prose is
-cleared rather than carried across services. The rate limiter is deliberately not rebuilt, because
-the budget it tracks belongs to the reader's connection rather than to whichever base URL is
-configured. The Store is not replaced.
-
-**The client can build its own limiter and cache, and in this app never does.** `MarvelApi` falls
-back to constructing both when it is handed neither, at `src/js/api.js:68-69`. That fallback is for
-tests and for any future caller; the running app always passes its own, which is what keeps one
-budget across every request the page makes.
+**The app supplies one limiter and cache.** `MarvelApi` can construct its own at `src/js/api.js:68-69`,
+but that fallback is for tests and other callers. The app supplies them to keep one request budget.
 
 **Synopsis state is intentionally separate from saved metadata.** `SessionSynopsis` is a tab-memory
 map and `SynopsisRunner` is a cancellable fetch owner. Neither writes through the Store or the
 response cache. The three independent refusal points are recorded at `src/js/synopsis.js:8-15`:
 normalization drops prose, API cache writes strip it, and the request uses `no-store`.
 
-**One library module belongs only to the build-time graph.** `src/js/lib/curated.js` parses the
-curated-list manifest for the vendoring script at `scripts/vendor-orders.mjs:31` and the Comic Book
-Herald packet-authoring script at `scripts/author-cbh-packet.mjs:6`. Both run in Node, never in the
-browser. The same Node-only boundary contains `scripts/lib/chapter-orders.mjs`: one noncatalog
-source order can be validated and emitted as ordinary child payloads, catalog entries, a reading
-path and overlap evidence without teaching the browser a partition model. Every other module under
-`src/js/lib/` is reachable from the browser graph.
+**Curated authoring is Node-only.** `src/js/lib/curated.js` parses the manifest for
+`scripts/vendor-orders.mjs:31` and `scripts/author-cbh-packet.mjs:6`. These never run in the browser.
+The Node-only `scripts/lib/chapter-orders.mjs` turns a noncatalog source order into ordinary child
+payloads, catalog entries, a reading path, and overlap evidence. The browser needs no partition
+model. Every other module under `src/js/lib/` is browser-reachable.
 
 ## Routes and generated views
 
-The address after `#/` is application state, not decoration. The parser accepts only names in the
-route registry at `src/js/lib/route.js:12-27`. Publishing and custom Home-category routes are
-derived from the same definitions that generate those screens. Static panels and their navigation
-buttons remain separate markup, so adding one requires keeping that markup and the registry in
-step; route tests hold the shipped set together.
+The hash after `#/` holds navigation state. The parser accepts only registered routes at
+`src/js/lib/route.js:12-27`. Publishing and custom Home-category routes share definitions with their
+generated screens. Static panels and buttons use separate markup; keep that markup and the registry
+in sync when adding a panel.
 
 ```mermaid
 flowchart LR
@@ -159,19 +130,16 @@ panel from the same registry that made it routable. Issue addresses may also car
 or bundled-order context, which lets Back and the breadcrumb return to the surface that opened the
 details without guessing at browser history.
 
-The hash is load-bearing. A path route would ask the static server for a file it does not have, and
-a different origin would select a different browser storage bucket. The reasons are kept beside the
-parser at `src/js/lib/route.js:1-6`.
+Hash routing keeps the address on the same static file and storage origin. Path routes would request
+missing files; changing the origin would select different storage. See `src/js/lib/route.js:1-6`.
 
 ## How reading content reaches the browser
 
-Curated content and live metadata take different routes. They can meet transiently on Preview,
-issue details, and issue-focus results, but they enter saved reader data only through the Store.
-The catalog is built before release and carries the exact source and gap decisions already
-reviewed; browsing it does not need the metadata service. With the loopback server stopped, only
-same-origin resources the service worker has already cached are available, so an unvisited payload
-is not guaranteed offline. Live metadata is optional enrichment. Synopsis prose is a third route
-because it is shown without being kept.
+Curated content and live metadata can meet in Preview, issue details, and issue-focus results, but
+only the Store saves reader data. The catalog is built before release with reviewed sources and
+gaps; browsing it needs no metadata service. On desktop, stopping the server leaves only previously
+cached same-origin resources available, so unvisited content is not guaranteed offline. Live metadata
+is optional. Synopsis prose follows a separate, memory-only path.
 
 ```mermaid
 flowchart TD
@@ -210,11 +178,10 @@ flowchart TD
   end
 ```
 
-On a targeted run, the vendor reuses pinned payloads for skipped orders before deriving the complete
-catalog. It then atomically writes the output batch assembled by that invocation, including
-`catalog.json` and any generated overlap artifacts, at `scripts/vendor-orders.mjs:599-647`. At
-runtime the catalog is fetched once from the same origin and parsed at
-`src/js/main.js:1800-1811`, so browsing does not depend on the metadata service.
+Targeted vendoring reuses pinned payloads for skipped orders, derives the full catalog, then writes
+the complete output batch atomically, including `catalog.json` and generated overlap artifacts,
+at `scripts/vendor-orders.mjs:599-647`. Runtime loads and parses that same-origin catalog once at
+`src/js/main.js:1800-1811`, independently of the metadata service.
 
 Series and creator names are searched in vendored indexes. Selecting one then pages its issues from
 the API. API responses use `no-store`, and cache writes remove synopsis prose before IndexedDB sees
@@ -244,9 +211,7 @@ unread counts. Read status takes precedence without clearing stored intent. Memb
 merges only the removed member's captured choice, never another member's later intent or current
 global read timestamps.
 
-This is the loop that makes the app feel like an app, and it is worth following exactly once,
-because every ordinary change a reader makes takes the same path. A list rename, an import, a
-reordering and a background metadata fill all go through the same call.
+List edits, imports, reordering, and background metadata updates use the same Store transaction:
 
 ```mermaid
 sequenceDiagram
@@ -278,22 +243,17 @@ sequenceDiagram
     end
 ```
 
-The parts of that worth saying in words.
-
-**The transform is pure and the store is the only writer.** The button's handler at
-`src/js/views/reading.js:799-801` hands the store a function; the function itself, at
-`src/js/lib/model.js:658-660`, returns a new state and touches nothing. Everything that decides
-whether a write happened, whether it stuck, and what the screen shows next lives in one method,
+**The transform is pure; the Store writes.** The handler at `src/js/views/reading.js:799-801` passes
+a function to the Store. That transform returns new state without side effects at
+`src/js/lib/model.js:658-660`. The write, result, and notification are handled together at
 `src/js/storage.js:372-399`.
 
-**The repaint is synchronous, and it is inside the write.** By the time `update` returns, the
-change callback has already run and the screen already shows the result. That is why the
-announcement can be gated on the outcome: `src/js/main.js:294-296` speaks only if the write
-actually stuck, so a screen reader never hears "marked read" for a row that has already reverted.
+**The repaint is synchronous.** Before `update` returns, its callback has repainted the result.
+Announcements at `src/js/main.js:294-296` depend on save success, so a screen reader does not hear
+"marked read" after a rollback.
 
-**A failed write repaints too.** The rollback path calls the same callback with the previous state,
-so the row goes back to how it was and the reason appears in a notice. A change that was not saved
-must never be left on screen looking saved.
+**Failed writes repaint too.** The callback receives the previous state and failure reason.
+The UI restores the row and shows a notice rather than making an unsaved change look saved.
 
 **Refreshing shared state does not mean rebuilding every view.** The callback runs the shared
 refresh fan-out at `src/js/main.js:2508-2530`, including the rail, reading view, Home, Library hub
@@ -306,16 +266,12 @@ Focus is captured before a rebuild and restored by identity afterwards, at
 committed by moving nodes rather than replacing the container, at
 `src/js/views/reading.js:40-48`.
 
-**Background work uses the same door.** Hydration writes each fetched issue through the same
-`update` call, at `src/js/hydrate.js:59`, so a metadata fill arriving while the reader is reading
-repaints through exactly the path drawn above. No ordinary change reaches the state except through
-`update`, but it is not the only thing that can set the state, and a guard added inside it would
-not cover the rest. Boot reads the state in, at `src/js/storage.js:85-117`. Restoring a backup and
-starting fresh each replace the whole state rather than transforming it, and both appear in the
-next section. Restoring is the one that writes the key directly, at `src/js/storage.js:518-584`,
-which also puts it past the latch a failed read sets; the comment above the step that adopts a
-restored state, at `src/js/storage.js:647-655`, says that is deliberate, because a restore is a
-chosen overwrite.
+**Background updates use the same path.** Hydration calls `update` at `src/js/hydrate.js:59`.
+Not every state replacement goes through that method, though: boot loads state at
+`src/js/storage.js:85-117`, while restore and starting fresh replace it. Restore writes the key
+directly at `src/js/storage.js:518-584`, bypassing the failed-read latch because it is a chosen
+overwrite, as explained at `src/js/storage.js:647-655`. A guard inside `update` does not cover these
+replacement paths.
 
 **Long series and creator adds are pagewise transactions.** The API delivers each normalized page
 before it requests the next one, while still returning the complete array to callers that need it,
@@ -330,15 +286,12 @@ saved remains available after a reload.
 
 ## Where a reader's data lives
 
-This is the question the product promise turns on, and the answer is more than one key. The Store
-declares four names at `src/js/storage.js:11-14`, the controller owns settings, cache-cleanup and
-sidebar preferences at `src/js/main.js:63-65`, and save education owns one more at
-`src/js/lib/saveEducation.js:1`. Metadata responses live in IndexedDB, the offline app shell lives
-in the Cache API, and synopsis prose lives only in memory.
+The Store declares four key names at `src/js/storage.js:11-14`. Settings, cache-cleanup, and sidebar
+preferences are owned by the controller at `src/js/main.js:63-65`; save education owns another key
+at `src/js/lib/saveEducation.js:1`. Metadata uses IndexedDB, offline app files use the Cache API,
+and synopsis prose stays in memory.
 
-Two of the extra keys belong to restoring a backup, which is a path where nothing has gone wrong.
-One belongs to a failed read, which is a path where something has. Collapsing those into a single
-recovery story would hide the distinction the code is built on, so they are drawn apart.
+Backup staging and undo are separate from failed-read salvage. They serve different recovery paths:
 
 ```mermaid
 flowchart TD
@@ -396,13 +349,10 @@ Nine rows in all: eight fixed names, and one family whose suffix is the moment i
 belong outside the Store, which is why an enumeration taken from the storage module alone finds only
 the reader-data and recovery names.
 
-The two salvage rows are the only ones whose Cleared by column names a person choosing that copy in
-particular. Nothing in the app removes a salvage copy on its own, because no rule it could apply would
-know whether the reader still wants data the app itself could not read, so they are listed on the
-Backup and settings screen and removed one at a time by the reader. The copy belonging to an incident
-that is currently blocking saving is listed but not offered, because the banner is at that moment
-telling the reader to download it or start fresh and both need it; that offer returns once the block
-is resolved.
+Only the reader removes salvage copies, one at a time in Backup and settings. The app cannot decide
+that unreadable data is no longer wanted. A copy protecting an active saving block remains listed
+but cannot be removed: downloading or starting fresh still needs it. Removal becomes available after
+the block is resolved.
 
 The erase names itself in three rows, and that is a different kind of naming. It clears those keys
 wholesale rather than choosing between them, and only because its own dialog says everything this
@@ -415,24 +365,16 @@ filed as `BL-113` rather than settled here, because the copies are listed on the
 erase button, each with its own remove control, and so survive in plain sight, which is a different
 thing from the undo snapshot that survived behind a button claiming it had gone.
 
-Which copy that is gets asked of storage rather than of the tab doing the asking, at
-`src/js/storage.js:298-321`: a copy is protected when it holds exactly what the main slot holds. The
-flags recording that this tab is blocked belong to one `Store` instance, and a second tab open since
-before the data went bad has none of them set, so deriving it from them left that tab offering to
-remove the copy the first tab was relying on. The arrows into the main slot are what makes that
-serious: an unblocked tab keeps writing, so it would have overwritten the original moments after
-removing the only other record of it.
+Protection compares the copy with the main storage slot at `src/js/storage.js:298-321`, not with
+one tab's blocked flags. Another tab may have opened before the corruption and still consider
+itself writable; it must not be allowed to remove the copy protecting the unreadable data.
 
-Three things around the edges of that table.
-
-**The response cache is somewhere else on purpose.** Current cached metadata lives in IndexedDB
-database `mrt-cache-v2`, named at `src/js/cache.js:9-12`, so it cannot compete for quota with the
-reader's progress. Older code can keep writing only to the separate legacy `mrt-cache` database.
-Current code requests its deletion at startup and during manual clearing, but reports partial cleanup
-while an older tab keeps that deletion blocked. That separation is the reason the app is pinned to one origin: the comment at
-`src/js/cache.js:3-5` records that IndexedDB is restricted on `file://` origins and that
-`file://`, `localhost` and `127.0.0.1` are three separate storage buckets, and the server binds one
-of them at `server.mjs:21-23`.
+**Metadata has separate storage.** IndexedDB database `mrt-cache-v2`, at `src/js/cache.js:9-12`,
+keeps its quota separate from reading progress. Older code writes only to legacy `mrt-cache`.
+Startup and manual clearing request that database's deletion and report partial cleanup while an
+older tab blocks it. IndexedDB restrictions and the separate `file://`, `localhost`, and
+`127.0.0.1` storage buckets are documented at `src/js/cache.js:3-5`. The server fixes the origin at
+`server.mjs:21-23`.
 
 **The offline shell uses a different browser store for a different job.** Cache API cache
 `mrt-offline-v2` stores successful 200 responses to same-origin GET requests the worker handles,
@@ -448,13 +390,11 @@ dies with the tab. The API request uses `no-store`, the response cache strips th
 state normalization refuses it. The separate boundaries mean clearing metadata, exporting a backup,
 and reloading all agree that the prose was temporary.
 
-**The launch page writes nothing.** It reads the configured API base out of `mrt.settings` at
-`src/open.js:65-74` and refuses anything it is not allowed to call. Nothing about the reader's
-progress is touched in that tab.
+**The launch page writes nothing.** It reads and validates the API base from `mrt.settings` at
+`src/open.js:65-74`, without touching reading progress.
 
-**The fault harness writes keys of its own, and is not the app.** `src/dev-faults.js:5-6` declares
-its own backup and quota-filling names. They are listed here so a reader looking at their own
-storage can tell them apart, not because the tracker ever writes them.
+**The fault harness has separate keys.** Its backup and quota-filling keys at `src/dev-faults.js:5-6`
+are not written by the tracker.
 
 ### One thing the drawing found
 
@@ -490,12 +430,9 @@ it.
 
 ## What is intentionally centralized
 
-The application controller still owns route application, shared event orchestration, shared
-rendering and the long-lived objects in the first diagram. Constructed view modules own local
-painting, interaction wiring and transient view state. That is a description of the current
-implementation, not a proposal to preserve one file at any size. Active architecture work belongs
-in a repository Issue, where a change can state which contracts it keeps and which it deliberately
-replaces.
+The controller owns routes, shared events and rendering, and long-lived services. Constructed views
+own local rendering, interactions, and temporary state. Propose architecture changes in an Issue,
+stating which contracts remain and which change.
 
 The stable boundaries in this document are behavioral:
 
@@ -624,25 +561,21 @@ identity, cleanup, and remaining publication gates.
 
 ## The public project home is not an app entry point
 
-GitHub Pages serves a separate information artifact at the repository's project-site address. A
-deterministic builder copies one HTML file, one stylesheet and the two cover-off screenshots already
-owned by the README into an ignored staging directory. The deployment workflow uploads only that
-four-file allowlist. No file under `src`, no manifest, no worker and no launch page can enter it.
+GitHub Pages serves a separate information site. A deterministic builder copies approved HTML, CSS,
+and showcase images into ignored staging. Deployment uploads only that allowlist, never `src` files,
+a manifest, a worker, or a launch page.
 
-The information page has no script or form. Its navigation is ordinary links to the README, running
-guide, support policy, privacy policy, security policy, architecture, provenance, maintaining guide,
-contribution guide, governance, changelog, releases and issues. Those destinations remain the owners
-of their detail.
+The page has no script or form. Ordinary links lead to maintained documentation, releases, and issues,
+where the detailed guidance stays.
 
-The public question form is another GitHub-hosted project surface. The Page explains before linking
-that sign-in is required and the resulting Issue and replies are public. The tracker does not call
-either hosted surface. The form receives only what a visitor deliberately types, and neither
-surface can read storage belonging to `http://127.0.0.1:8787`.
+The question form is also hosted by GitHub. Before linking, the page explains that posting requires
+sign-in and makes the Issue and replies public. The tracker calls neither surface. The form receives
+only what a visitor types, and neither surface can read storage at `http://127.0.0.1:8787`.
 
 ```mermaid
 flowchart LR
-  source["pages source and two checked screenshots"] --> builder["allowlisted Pages builder"]
-  builder --> artifact["four-file deployment artifact"]
+  source["pages source and approved showcase images"] --> builder["allowlisted Pages builder"]
+  builder --> artifact["approved static deployment artifact"]
   artifact --> pages["GitHub Pages project home"]
   pages --> docs["maintained repository documents"]
   pages --> questions["public project-question Issue form"]

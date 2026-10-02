@@ -98,7 +98,7 @@ h3 {
 }
 
 h1 {
-  max-width: 22ch;
+  max-width: 16ch;
   margin-bottom: var(--space-5);
   font-size: clamp(2.25rem, 6vw, 4rem);
   letter-spacing: -0.035em;
@@ -247,6 +247,132 @@ code {
   color: var(--muted);
 }
 
+.overview {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: var(--space-6);
+  align-items: center;
+}
+
+.overview h1 {
+  font-size: clamp(2.25rem, 4.5vw, 3.25rem);
+}
+
+.feature-art {
+  width: 100%;
+  border-radius: var(--radius-1);
+}
+
+.platform-status {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.overview-boundary {
+  grid-column: 1 / -1;
+  max-width: none;
+  margin-bottom: 0;
+  color: var(--muted);
+}
+
+.android-intro,
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-6);
+}
+
+.android-intro {
+  gap: var(--space-7);
+}
+
+.android-intro .platform-status {
+  color: var(--accent);
+}
+
+.android-features {
+  display: grid;
+  align-content: start;
+  gap: var(--space-5);
+  margin: 0;
+  padding-left: var(--space-5);
+}
+
+.android-features li {
+  padding-left: var(--space-1);
+  color: var(--muted);
+}
+
+.android-features li > strong:first-child {
+  display: block;
+  margin-bottom: var(--space-1);
+  color: var(--text);
+}
+
+.phone-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-7);
+  max-width: 48rem;
+  margin-inline: auto;
+  margin-top: var(--space-6);
+}
+
+.phone-preview {
+  min-width: 0;
+  margin: 0;
+}
+
+.phone-preview img {
+  width: 100%;
+  border: 0.1rem solid var(--line);
+  border-radius: var(--radius-2);
+}
+
+.phone-preview figcaption {
+  margin-top: var(--space-4);
+  color: var(--muted);
+}
+
+.phone-preview figcaption strong,
+.phone-preview figcaption a,
+.demo figcaption a {
+  display: block;
+}
+
+.phone-preview figcaption strong {
+  margin-bottom: var(--space-1);
+  color: var(--text);
+}
+
+.phone-preview figcaption a,
+.demo figcaption a {
+  min-height: 2.75rem;
+  padding-block: var(--space-2);
+}
+
+.preview-note,
+.platform-note {
+  margin-top: var(--space-5);
+  margin-bottom: 0;
+  color: var(--muted);
+}
+
+.preview-note {
+  max-width: 70ch;
+  margin-inline: auto;
+}
+
+.feature-grid article {
+  padding-top: var(--space-4);
+  border-top: 0.1rem solid var(--line);
+}
+
+.feature-grid p {
+  margin-bottom: 0;
+  color: var(--muted);
+}
+
 .card-grid,
 .link-grid {
   display: grid;
@@ -319,14 +445,19 @@ code {
 
 .demo-grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--space-7);
   max-width: 60rem;
   margin-inline: auto;
 }
 
 .demo {
+  min-width: 0;
   margin: 0;
+}
+
+.platform-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .demo img {
@@ -432,6 +563,24 @@ code {
     gap: var(--space-5);
   }
 
+  .overview,
+  .android-intro,
+  .feature-grid,
+  .phone-gallery,
+  .demo-grid,
+  .platform-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .overview,
+  .android-intro {
+    gap: var(--space-5);
+  }
+
+  .phone-gallery {
+    max-width: 24rem;
+  }
+
   .section-nav li,
   .section-nav a {
     width: auto;
@@ -457,6 +606,8 @@ code {
   .section-nav a,
   .project-links a,
   .card,
+  .feature-grid article,
+  .phone-preview img,
   .demo,
   .demo img,
   .link-grid > a,

@@ -1,40 +1,34 @@
 # Running Recap Page
 
-Recap Page runs on your own computer and opens in a normal web browser. This guide covers the
-download, source setup, first run, safe upgrades, and the problems most likely to look like lost
-reading progress.
+Recap Page runs on your computer in a normal web browser.
 
 ## Take a reading list to another app
 
-Open **Export** on Reading and choose **Export personal checklist**, or use **Export personal
-checklist** in **Backup & settings**. Review the file preview, then choose **Download Markdown**.
+Open **Export** on Reading and choose **Export personal checklist**, or choose it in
+**Backup & settings**. Review the preview, then choose **Download Markdown**.
 
-The default file contains the list title and every comic in its saved reading order, with read
-checkboxes. Filtering the reading screen does not remove comics from the export.
-Deferred comics also keep their saved positions. Clear
-**Read checkboxes** if you want ordinary bullets instead.
+The file includes the list title and every comic in saved reading order, with read checkboxes.
+Filters do not remove comics from the export, and deferred comics keep their positions.
+Clear **Read checkboxes** for ordinary bullets instead.
 
-List descriptions, collected-edition headings, official comic links and personal notes are optional.
-**My list and issue notes** starts off every time, so a previous export cannot silently include
-private notes in the next one. Only known details are used; exporting does not look anything up
-or change your saved data.
+List descriptions, collected-edition headings, official comic links and personal notes are
+optional. **My list and issue notes** is off for each new export; including notes once does not
+include them next time. Export uses known details without looking anything up or changing saved
+data.
 
-This personal `.md` file includes read checkboxes by default.
-For an unread order with available source credit, use **Export order only** instead.
-Neither Markdown file is a complete backup.
-Use **Download JSON backup** when you need to restore your lists, notes, progress and other saved
-choices in Recap Page.
+For an unread order with available source credit, choose **Export order only**.
+Neither `.md` file is a complete backup. Use **Download JSON backup** to keep a restorable copy
+of lists, notes, progress and other saved choices in Recap Page.
 
 ## Choose how to run it
 
-All three routes open the same app at the same address. You can switch between them without moving or
-losing progress.
+All three routes use the same app and address. Switching between them does not move or lose progress.
 
 ### Microsoft Store
 
-[Open Recap Page in Microsoft Store](https://apps.microsoft.com/detail/9PDJ7XR9Q40Q). Microsoft Store
-is the primary Windows discovery and installation channel and delivers all updates for Store
-installations. The listing may not offer installation until its current certification completes.
+[Open Recap Page in Microsoft Store](https://apps.microsoft.com/detail/9PDJ7XR9Q40Q), the main place
+to find and install the Windows app. Store installations receive all updates through Microsoft
+Store. Installation may be unavailable until the current certification is complete.
 
 ### Standalone Windows archive
 
@@ -43,12 +37,12 @@ installations. The listing may not offer installation until its current certific
 2. Unzip it.
 3. Double-click **Start on Windows.cmd**.
 
-Everything needed to run the tracker is inside the archive. There is no installer and no account.
+The archive contains everything needed to run the tracker. No installer or account is needed.
 
 ### Run from source
 
-Install [Node.js](https://nodejs.org) version 20 or newer. Git is optional: you can either clone the
-repository or use GitHub's **Code**, **Download ZIP** option.
+Install [Node.js](https://nodejs.org) version 20 or newer. Clone the repository with Git, or choose
+**Code**, **Download ZIP** on GitHub without installing Git.
 
 To clone it:
 
@@ -67,34 +61,39 @@ You can also double-click **Start on Windows.cmd** on Windows or **Start on macO
 
 ## When Read opens the wrong comic
 
-Open the saved comic's **Issue Details**, then **Edit temporary reader link**. Paste the Marvel
-Unlimited reader address for that exact comic and review the normalized destination before choosing
-**Use temporarily**. This accepts http or https addresses on `read.marvel.com` with a root
-`/#/book/` reference of up to 12 digits, not comic information pages, other hosts or custom ports.
-Page position and extra query details are discarded. The app cannot verify the comic or subscription
-access, and applying the address does not open a reader tab.
+Open the saved comic's **Issue Details**, then **Edit temporary reader link**. Paste its exact
+Marvel Unlimited reader address. Review the normalized destination, then choose **Use temporarily**.
 
-Read uses this temporary address across all lists sharing that comic in the current tab. **Use
-original link** removes it. Reloading or closing the document clears it, as do actual saved-data
-replacement or loss of the saved comic reference. Returning through browser page history after
-leaving the document also starts without temporary links. Ordinary progress saves, including another
-tab's updates, do not clear a valid link. An uncertain saved-data outcome withdraws temporary links
-until the saved references can be trusted again; a failed replacement known to leave data unchanged
-does not. A changed comic while editing requires canceling and reopening that editor.
+Accepted addresses use http or https on `read.marvel.com` with a root `/#/book/` reference of up
+to 12 digits. Comic information pages, other hosts and custom ports are not accepted. Page
+position and extra query details are discarded. The app cannot verify the comic or subscription
+access. Applying the address does not open a reader tab.
 
-Nothing about this changes comic identity, availability checks, progress, notes, original metadata
-or backups. There is no permanent link database. Another tab does not inherit the link.
+Read uses the temporary address across lists sharing that comic in the current tab.
+**Use original link** removes it. Another tab does not inherit it.
 
-**Report details** is optional and separate. Review or edit the small comic/original/proposed-link
-summary, manually copy only what you want to share, and open the project's GitHub correction form.
-Opening it sends no report details; you review and submit on GitHub, which may require sign-in.
+Temporary links clear when you reload or close the document, replace saved data, or lose the
+comic's saved reference. Leaving the document and returning through browser history also clears
+them. Ordinary progress saves, including another tab's updates, keep valid links.
+
+An uncertain saved-data outcome withdraws links until the saved references can be trusted again.
+A failed replacement known to leave data unchanged keeps them. If the comic changes while you
+are editing, cancel and reopen the editor.
+
+Temporary links do not change comic identity, availability checks, progress, notes, original
+metadata or backups. There is no permanent link database.
+
+To report a correction, open the optional **Report details**. Review or edit the summary of the
+comic, original link and proposed link. Manually copy only what you want to share, then open the
+project's GitHub correction form. Opening it sends no report details. Review and submit on
+GitHub, which may require sign-in.
+
 Do not include private notes, lists, progress, credentials, local paths or logs. A report may help
-maintainers investigate a permanent fix, but does not itself correct Marvel data or prove access.
+maintainers find a permanent fix, but does not correct Marvel data or prove access.
 
 ## The first-run warning
 
 Windows or macOS may ask you to confirm the first run because the files came from the internet.
-That warning is expected.
 
 On Windows, choose **More info**, then **Run anyway**. On a Mac, if double-clicking does nothing or
 opens the file in a text editor, right-click it, choose **Open**, and confirm. If macOS reports
@@ -121,43 +120,41 @@ The browser normally opens automatically. If it does not, open this exact addres
 
 <http://127.0.0.1:8787/>
 
-Use Edge, Chrome, Firefox, or Safari. Do not use a preview panel inside an editor. Preview panels
-often block the reader tab that the **Read** button opens.
+Use Edge, Chrome, Firefox, or Safari, not an editor's preview panel. Preview panels often block
+the reader tab opened by **Read**.
 
-On a first run, Home asks where you want to start. You can preview the recommended modern-era setup
-guide, browse curated Reading Lists by story or publication age, or open Reading paths from Home or
-Browse to choose a complete journey. Each stop shows matching-list progress, another imported version
-when needed, or **Not added**. Add comics remains available even when live metadata has to wait.
+On first run, Home offers a preview of the recommended modern-era setup guide, curated Reading
+Lists by story or publication age, and complete Reading paths. Open Reading paths from Home or
+Browse. Each stop shows matching-list progress, another imported version when needed, or
+**Not added**. Add comics stays available even when live metadata has to wait.
 
 ## Install it as a browser app
 
-Edge and Chrome offer an install icon in the address bar. Safari calls the same feature **Add to
-Dock**. Installing gives Recap Page its own window and application icon without changing its
-storage.
+Use the install icon in Edge or Chrome's address bar, or **Add to Dock** in Safari.
+Recap Page gets its own window and app icon without changing its storage.
 
-After a successful first visit, an installed window can open while the server is stopped because
-the browser keeps the app shell. Saved lists, progress, and bundled content already cached by the
-worker remain available; a Reading List payload never requested before is not guaranteed to be
-there. Recap Page now checks its local app connection and explains how to restore it when an
-uncached Reading List needs the separate local copy.
+After a successful first visit, the installed window can open its cached app shell with the server
+stopped. Saved lists, progress and bundled content already cached by the worker remain available.
+A Reading List never requested before may be missing. Recap Page checks its local app connection
+and explains how to reconnect when an uncached Reading List needs the separate local copy.
 
-Leave the browser-installed window open. Start Recap Page with **Start on Windows.cmd**,
-**Start on macOS.command**, or the Microsoft Store installation. Return to the browser app
-and choose **Check again** in its notice, or open **Backup & settings**, **Local app connection**,
-and choose **Check connection**. Browser security does not allow the installed website to start
-that separate local program by itself.
+Leave the installed window open. Start Recap Page with **Start on Windows.cmd**,
+**Start on macOS.command**, or the Microsoft Store installation. Return to the window and choose
+**Check again** in its notice, or **Backup & settings**, **Local app connection**,
+**Check connection**. Browser security prevents the installed website from starting that separate
+local program itself.
 
 ## Stop and restart
 
-In the terminal window running the app, press **Ctrl+C**. This stops the local server, not the
-browser storage holding your progress.
+Press **Ctrl+C** in the app's terminal window. This stops the local server without removing
+progress from browser storage.
 
 To start again, use the same start file or return to the folder and run `npm start`.
 
 ## Always use the same address
 
-Your browser stores reading progress under the exact address in its address bar. A different
-hostname or port is a different storage bucket and starts empty.
+Your browser saves progress under the exact address in its address bar. A different hostname or
+port has separate storage and starts empty.
 
 These are not the same storage location:
 
@@ -167,69 +164,69 @@ http://localhost:8787/
 http://127.0.0.1:8788/
 ```
 
-Always return to <http://127.0.0.1:8787/>. If the tracker looks empty, check the address and browser
-profile before doing anything else. The original progress is normally still under the original
-address.
+Always use <http://127.0.0.1:8787/>. If the tracker looks empty, check the address and browser
+profile first. Progress is normally still at the original address.
 
-Progress is also separate by browser and browser profile. Opening Recap Page in Firefox does not
-show progress saved in Edge, and it does not remove the Edge copy.
+Each browser and profile also has separate storage. Opening Recap Page in Firefox does not show
+or remove progress saved in Edge.
 
 ## Defer a comic without marking it read
 
-Choose **Defer for later** on the next comic or in a row's actions to keep it unread while
-continuing past it in this Reading List only. Other lists keep their own choices. The comic stays
-in its original position, and **All** and **Unread** still include it.
+Choose **Defer for later** on the next comic or in a row's actions to continue past it without
+marking it read. This affects only this Reading List. The comic keeps its position and still
+appears in **All** and **Unread**.
 
 **Review deferred** on Home or Reading opens the full list with the **Deferred** filter selected.
-Choose **Resume in this list** to make a comic eligible again at its existing position. Reading
-progress always counts actual read comics; deferred unread comics are counted separately. When
-only deferred unread comics remain, **Nothing queued** replaces the finished-order message.
+Choose **Resume in this list** to return a comic to the queue at its existing position.
+Progress counts only read comics; deferred unread comics are counted separately. When only
+deferred unread comics remain, you see **Nothing queued**, not the finished-order message.
 
-Read markers remain shared across lists. Marking a deferred comic read does not erase its list's
-choice: marking it unread later makes that choice apply again. A read row with retained intent
-offers **Clear deferral** to remove that choice without changing its read status.
+Read markers are shared across lists. Marking a deferred comic read keeps its deferral choice,
+which applies again if you mark it unread. On a read row with a retained choice, **Clear deferral**
+removes it without changing read status.
 
-Duplicating a list copies its choices independently. A newly imported list starts without any
-deferrals. JSON backups preserve them, including retained choices on read comics.
+Duplicated lists have independent copies of these choices. Imported lists start without
+deferrals. JSON backups preserve deferrals, including choices retained on read comics.
 
 ## Undo an issue removal
 
-**Remove from list** takes an issue out immediately. **Undo remove** puts it back in the same
-position and collected edition without undoing later read progress, notes or availability choices.
-Other Reading Lists are not changed.
+**Remove from list** removes an issue immediately. **Undo remove** restores its position and
+collected edition without undoing later progress, notes or availability choices. Other Reading
+Lists are unchanged.
 
-Undo also restores that removed comic's deferral choice. Later choices for other comics and any
-global read changes are kept, even if the restored comic is now read.
+Undo also restores the comic's deferral choice. Later choices for other comics and global read
+changes are kept, even if the restored comic is now read.
 
-Only the most recently **successfully** removed issue can be put back this way. The offer has no
-countdown and stays in memory for this tab, not in backups. **Dismiss**, reloading the page or
-closing the tab ends it. A failed removal does not replace an earlier valid offer.
+Only the most recent **successfully** removed issue can be restored this way. The offer has no
+countdown. It stays in this tab's memory, not in backups. **Dismiss**, reloading or closing the
+tab ends it. A failed removal keeps any earlier valid offer.
 
-Navigation, filters, read progress, issue notes, renaming the list and editing its note keep the
-offer. Changing that list's issue order, membership or edition assignments ends it. Deleting or
-replacing the source list, adopting saved data from another tab, or reloading data during a restore
-also ends it; undoing a whole-list deletion does not bring the old issue-removal offer back.
-If a recovery leaves the saved data uncertain, the offer is withdrawn rather than risking the
-wrong list. A refused Undo shows **Try again** only while the original context is still valid.
+Navigation, filters, read progress, issue notes, list renaming and list notes keep the offer.
+Changing that list's issue order, membership or edition assignments ends it. So does deleting
+or replacing the source list, adopting another tab's saved data, or reloading data during restore.
+Undoing a whole-list deletion does not bring back the issue-removal offer.
+
+If recovery leaves saved data uncertain, the offer is withdrawn to avoid restoring into the
+wrong list. A refused Undo offers **Try again** only while the original context is valid.
 
 ## Upgrade safely
 
-Microsoft Store installations receive product updates only through Microsoft Store. Recap Page has
-no in-app route to another update channel.
+Microsoft Store installations update only through Microsoft Store. Recap Page has no in-app route
+to another update channel.
 
-For a standalone archive or source copy, download the replacement manually, stop the old copy, and
-start the new one at <http://127.0.0.1:8787/>. Progress carries over because it belongs to that
-browser address, not to the folder being replaced.
+For an archive or source copy, download the replacement manually, stop the old copy, and start
+the new one at <http://127.0.0.1:8787/>. Progress belongs to that browser address, not the replaced
+folder, so it carries over.
 
-Major versions mark a substantial new generation of the app and are also required when saved data
-changes in a way an older build cannot read. Release notes state whether progress remains
-compatible. Export a backup before upgrading.
+Major versions mark a substantial new generation of the app. They are also required for saved-data
+changes older builds cannot read. Check the release notes for progress compatibility, and export
+a backup before upgrading.
 
-The 3.0 candidate uses saved-data schema 3 for per-list deferrals, retaining the same browser
-address and storage key. It reads older backups without inventing deferral choices. After this
-build saves progress, older schema-2 builds refuse ordinary edits rather than silently dropping
-the new choices. Return to a compatible build to continue. **Start fresh** is a deliberate
-destructive recovery action, not a way to downgrade without losing progress.
+The 3.0 candidate uses saved-data schema 3 for per-list deferrals, with the same browser address
+and storage key. Older backups load without invented deferral choices. Once this build saves
+progress, older schema-2 builds refuse ordinary edits to avoid dropping the new choices. Return
+to a compatible build to continue. **Start fresh** deliberately discards data; it is not a way
+to downgrade without losing progress.
 
 ## Troubleshooting
 
@@ -237,8 +234,7 @@ destructive recovery action, not a way to downgrade without losing progress.
 
 First open <http://127.0.0.1:8787/>. Recap Page may already be running in another window.
 
-If another program owns the port, you can use a temporary alternative. Remember that the alternative
-address has separate browser storage.
+If another program owns the port, you can use a temporary alternative with separate browser storage.
 
 Windows PowerShell:
 
@@ -262,8 +258,7 @@ Then open <http://127.0.0.1:8788/>. Return to port 8787 to see progress stored t
 
 ### npm is not recognized or command not found
 
-Install Node.js from [nodejs.org](https://nodejs.org), close the terminal, and open a new one. Confirm
-the installation with:
+Install Node.js from [nodejs.org](https://nodejs.org), then close and reopen the terminal. Check with:
 
 ```text
 node --version
@@ -273,62 +268,63 @@ The version should begin with `v20` or a higher number.
 
 ### Double-clicking the start file does nothing useful
 
-Read the message in the start window before closing it. If the window disappears, open a terminal in
-the project folder and run `npm start` so the error remains visible. On a Mac, use the first-run
-steps above.
+Read the start window's message before closing it. If it disappears, open a terminal in the project
+folder and run `npm start` to keep the error visible. On a Mac, use the first-run steps above.
 
 ### The page is blank or nothing loads
 
-Check that the start window is still open and shows the running address. Type the complete address,
-including `http://`. A previously installed copy may show its cached shell while live covers and
-metadata remain unavailable until the local app connection is restored. If the shell opens, follow
-its connection notice or use **Backup & settings**, **Local app connection**. Your lists and reading
-progress stay in the browser while the connection is stopped.
+Check that the start window is open and shows the running address. Type the full address,
+including `http://`. An installed copy may show its cached shell while live covers and metadata
+remain unavailable until the local app connection returns. Follow the shell's connection notice,
+or open **Backup & settings**, **Local app connection**. Lists and progress stay in the browser
+while disconnected.
 
 ### The Read button does nothing
 
-Open Recap Page in a normal browser window rather than an editor preview. If it is already in a
-normal browser, allow pop-ups for the local address. Reading comics requires your own Marvel
-Unlimited subscription. Recap Page opens the official reader when a direct link is available and
-otherwise opens the issue's official page on marvel.com.
+Use a normal browser window, not an editor preview, and allow pop-ups for the local address.
+Reading comics requires your own Marvel Unlimited subscription. Recap Page opens the official
+reader when a direct link is available; otherwise it opens the issue's official page on marvel.com.
 
 ### Choosing when to see issue descriptions
 
-With **Hide descriptions until I reveal them** on (the default), **Fetch synopses** asks permission to fetch a Reading List's descriptions but does not reveal
-them. Use **Reveal description (may contain spoilers)** on Reading or Issue Details to see one,
-and **Hide description** to close it. When an individual description has not been fetched,
-Issue Details offers **Fetch and reveal description (may contain spoilers)** with confirmation.
-You can open the official reader without either action.
+**Hide descriptions until I reveal them** is on by default. **Fetch synopses** asks permission to
+fetch a Reading List's descriptions without revealing them. Use **Reveal description (may contain
+spoilers)** on Reading or Issue Details to see one, and **Hide description** to close it.
+For an unfetched description, Issue Details offers **Fetch and reveal description (may contain
+spoilers)** with confirmation. Neither action is needed to open the official reader.
 
-With hiding on, all issues start collapsed, including already-read and untracked issues. The last reveal or hide
-choice follows only that exact issue between views in the current tab. Changing its read flag
-does not change that choice or reveal the next issue. Reloading or saving the metadata-source
-setting clears descriptions and choices. Neither is saved in your lists or backups, and revealing
-never changes progress or notes. Titles, covers and cross-story references are not guaranteed to
-be spoiler-free.
+With hiding on, every issue starts collapsed, including read and untracked issues. Its last
+reveal or hide choice follows that exact issue between views in this tab. Changing its read flag
+does not change the choice or reveal the next issue.
 
-Turn description hiding off in **Backup & settings**, under **Personalization**, to display
-already-fetched descriptions without Reveal/Hide controls. Fetching still needs consent. An
-actual change resets individual reveal choices in both views but keeps fetched text; turning
-hiding back on starts collapsed again. Only the boolean preference is saved, separately from
-progress and backups. If it cannot be saved, a warning explains that it applies to this tab only.
+Reloading or saving the metadata-source setting clears descriptions and choices. Neither is saved
+in lists or backups. Revealing does not change progress or notes. Titles, covers and cross-story
+references may still contain spoilers.
+
+To show fetched descriptions without Reveal/Hide controls, turn hiding off in
+**Backup & settings**, under **Personalization**. Fetching still needs consent. Changing the
+setting resets individual choices in both views but keeps fetched text. Turning hiding back on
+starts collapsed again.
+
+Only the boolean preference is saved, separately from progress and backups. If saving fails, a
+warning says it applies to this tab only.
 
 ### Reviewing earlier comics
 
-Choose **Review earlier issues** on Home or Reading to start immediately before the next unread
-comic in the selected list's current order. **Earlier** and **Later** move through that earlier
-portion, one comic at a time. A completed list starts at its final comic. Empty lists and lists
-whose first comic is unread have no earlier candidate; **Open full Reading List** remains available.
+Choose **Review earlier issues** on Home or Reading to start just before the next unread comic
+in the selected list's current order. Move through the earlier portion with **Earlier** and
+**Later**, one comic at a time. A completed list starts at its final comic. Empty lists and lists
+whose first comic is unread have no earlier candidate; use **Open full Reading List** instead.
 
-Opening or moving the picker does not fetch or reveal descriptions. Open an exact comic's
-details to use the existing description controls, then go Back to the picker. With hiding off,
-Details can show text you already fetched. Return to Reading's **Read next issue** to continue
-the order; the reader button in Details opens the comic being inspected.
+The picker does not fetch or reveal descriptions. Open a comic's details for description
+controls, then go Back to the picker. With hiding off, Details can show text already fetched.
+Return to Reading's **Read next issue** to continue the order. The reader button in Details opens
+the comic you are inspecting.
 
-This is current order, not an inferred previous reading session. If the list or selected position
-changes, an invalid selection is withdrawn rather than replaced with another comic. Provider
-descriptions may be missing or insufficient to recap the story. The app does not generate a
-replacement, collect wiki summaries or guarantee an issue-specific spoiler cutoff.
+The picker follows current list order, not your previous reading session. If the list or position
+changes, an invalid selection is withdrawn, not replaced with another comic. Provider descriptions
+may be missing or insufficient to recap the story. The app does not generate replacements, collect
+wiki summaries or guarantee an issue-specific spoiler cutoff.
 
 ### Reading progress has disappeared
 
@@ -338,39 +334,38 @@ Check all three parts of the storage location:
 2. The port is `8787`.
 3. You are using the same browser and browser profile as before.
 
-Returning to the original address and profile restores the original view because the progress was
-never deleted.
+If you opened a different address or profile, return to the original one. That change does not
+delete the progress stored there.
 
 ## Export an order without your reading history
 
-Open **Export** on Reading and choose **Export order only**, or use the same action in
-**Backup & settings**, to download a local Markdown
-file for someone else. The confirmation explains what is included before downloading: the list
-name, ordered issue titles, official links and section labels. Every checkbox starts unread.
-Notes, descriptions, read timestamps and availability overrides are excluded, and your saved
-reading data is unchanged. Nothing is uploaded.
+Open **Export** on Reading and choose **Export order only**, or choose it in **Backup & settings**,
+to download a local Markdown file for someone else. Before downloading, review the confirmation:
+the file includes the list name, ordered issue titles, official links and section labels. Every
+checkbox starts unread. Notes, descriptions, read timestamps and availability overrides are
+excluded. Saved reading data is unchanged, and Recap Page does not upload the file.
 
-An exact matching entry in the already-loaded catalog supplies available source credits and its
-source link. Export does not fetch the catalog; when attribution is unavailable, the file says so
-rather than inventing a credit. Manual or unresolved comics without a supported link remain plain
-checklist rows. Import shows those rows for deliberate resolution rather than guessing an identity.
-An empty list can be exported, but importing a file with no issues does not create a list.
+An exact match in the already-loaded catalog supplies available source credits and its source
+link. Export does not fetch the catalog. Missing attribution is stated, not invented.
+Manual or unresolved comics without a supported link stay as plain checklist rows. Import asks
+you to resolve those rows rather than guessing identities. You can export an empty list, but
+importing a file with no issues does not create one.
 
 **Export personal checklist** opens a preview with read checkboxes by default and notes available
-only when explicitly selected. Notes do not re-import from either Markdown format.
-**Download JSON backup** is the lossless reader-data backup, including
-notes and progress; use it to protect your saved data rather than sharing it as an order.
+only when selected. Notes do not re-import from either Markdown format.
+**Download JSON backup** preserves all reader data, including notes and progress. Use it to
+protect saved data, not to share a reading order.
 
 ## Getting help
 
-[The support guide](../SUPPORT.md) explains what to include in a report and which problems belong to
-Marvel or the metadata service. A suspected security problem must follow
-[the security policy](../SECURITY.md) and must not be opened as a public issue.
+Use [the support guide](../SUPPORT.md) to report a problem or find help from Marvel or the metadata
+service. For a suspected security problem, follow [the security policy](../SECURITY.md).
+Do not open a public issue.
 
 ## Microsoft Store package status
 
-Recap Page is not available from the Microsoft Store yet. The current public Windows download
-remains the ZIP described at the start of this guide.
+Recap Page is not available from the Microsoft Store yet. The public Windows download is still
+the ZIP.
 
 An earlier x64 MSIX proof installed, launched from Start, started the same local server, and opened
 the same browser address. The signed install preserved existing browser-profile progress and visible
@@ -378,16 +373,16 @@ busy-port guidance through an update from `2.0.0.0` to `2.0.0.1`. The first x64/
 submission then failed certification because its visible launch console could be closed with the
 server attached. A cached browser shell remained, but uncached bundled data could no longer load.
 
-The corrected launcher starts the server independently in the background and closes its launch
-console after the exact package generation answers a health check. Closing the browser does not stop
-that server. Starting Recap Page again reuses the matching server and opens the same address.
-Updating or uninstalling the package ends its background process. If browser opening fails, the
-launch window keeps the exact address visible so it can be opened manually.
+The corrected launcher starts an independent background server. Its launch console closes once
+the exact package generation answers a health check. Closing the browser leaves the server running.
+Starting Recap Page again reuses the matching server and opens the same address. Updating or
+uninstalling the package ends its background process. If the browser fails to open, the launch
+window keeps the exact address visible for you to open manually.
 
 That corrected replacement was submitted and failed certification because the shared app still
 offered a GitHub ZIP as an update. The next replacement removes that route globally and adds final
 package inspection for Store-only updates. It has not yet been submitted, certified, or published.
 
-Installing or uninstalling the future package does not move or remove browser-owned progress. The
-same address and browser profile remain the storage location. See the
-[Microsoft Store package guide](MICROSOFT_STORE.md) for the maintainer proof status.
+Installing or uninstalling the future package does not move or remove progress. It stays in the
+same browser profile at the same address. See the [Microsoft Store package guide](MICROSOFT_STORE.md)
+for the maintainer proof status.

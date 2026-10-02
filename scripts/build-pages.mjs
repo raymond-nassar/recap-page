@@ -24,6 +24,18 @@ export const PAGE_SOURCES = Object.freeze([
     source: 'docs/screenshots/avengers-disassembled-reading-960.png',
     destination: 'assets/avengers-disassembled-reading-960.png',
   }),
+  Object.freeze({
+    source: 'pages/assets/android-feature-graphic.png',
+    destination: 'assets/android-feature-graphic.png',
+  }),
+  Object.freeze({
+    source: 'pages/assets/android-library-preview.png',
+    destination: 'assets/android-library-preview.png',
+  }),
+  Object.freeze({
+    source: 'pages/assets/android-reading-preview.png',
+    destination: 'assets/android-reading-preview.png',
+  }),
 ]);
 
 export const PAGE_OUTPUTS = Object.freeze(PAGE_SOURCES.map(({ destination }) => destination).sort());
@@ -127,7 +139,13 @@ export async function buildPages({
   const sourceRoot = resolve(root);
   const output = resolve(destination);
   const outputParent = dirname(output);
-  await requireExactEntries(join(sourceRoot, 'pages'), ['index.html', 'site.css']);
+  await requireExactEntries(join(sourceRoot, 'pages'), ['assets', 'index.html', 'site.css']);
+  await requireExactEntries(
+    join(sourceRoot, 'pages', 'assets'),
+    PAGE_SOURCES
+      .filter(({ source }) => source.startsWith('pages/assets/'))
+      .map(({ source }) => basename(source)),
+  );
   await requireExactEntries(
     join(sourceRoot, 'docs', 'screenshots'),
     PAGE_SOURCES

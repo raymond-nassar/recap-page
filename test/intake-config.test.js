@@ -111,7 +111,8 @@ test('blank issues stay enabled, because the security policy sends reporters thr
   // cannot use private reporting to open an issue asking for a channel and to put no detail in
   // it. Every form here asks for detail and says not to paste anything private, so with blank
   // issues off that instruction would have nowhere to land.
-  assert.match(security, /open an issue saying\s+only that you have a security report/);
+  assert.match(security, /open an issue asking how to send a private report/);
+  assert.match(security, /Put no details in it/);
   assert.match(issueConfig, /^blank_issues_enabled:\s*true\s*$/m);
 });
 

@@ -7,7 +7,7 @@
     <meta name="referrer" content="no-referrer" />
     <meta
       name="description"
-      content="The project home for Recap Page, a private reading companion for Marvel Unlimited."
+      content="Find your next Marvel comic and keep track of what you've read. Explore Recap Page for desktop and the Android app in development."
     />
     <title>Recap Page project home</title>
     <link
@@ -24,10 +24,10 @@
         <p class="site-name">Recap Page</p>
         <nav class="section-nav" aria-label="Page sections">
           <ul>
-            <li><a href="#demo">See the app</a></li>
+            <li><a href="#android">Android preview</a></li>
+            <li><a href="#features">Features</a></li>
             <li><a href="#getting-started">Get started</a></li>
-            <li><a href="#troubleshooting">Help</a></li>
-            <li><a href="#documentation">Documentation</a></li>
+            <li><a href="#documentation">Guides</a></li>
             <li><a href="#feedback">Feedback</a></li>
           </ul>
         </nav>
@@ -35,59 +35,194 @@
     </header>
 
     <main id="main">
-      <section id="overview" class="section shell" aria-labelledby="overview-title">
-        <h1 id="overview-title">Your Marvel reading companion</h1>
-        <p class="lede">
-          Follow a Marvel story across series, open the next unread comic, and keep your place.
+      <section id="overview" class="section shell overview" aria-labelledby="overview-title">
+        <div class="overview-copy">
+          <h1 id="overview-title">Keep your place in every story.</h1>
+          <p class="lede">
+            Find Marvel reading lists and keep track of what you've read.
+          </p>
+          <p class="platform-status">On desktop today. Android in development.</p>
+          <p class="action-row">
+            <a class="button" href="#getting-started">Get started</a>
+            <a href="#android">See the Android preview</a>
+          </p>
+        </div>
+        <img
+          class="feature-art"
+          src="./assets/android-feature-graphic.png"
+          width="1024"
+          height="500"
+          loading="eager"
+          fetchpriority="high"
+          alt="Recap Page! Browse. Choose. Read. Keep your place in every story. An illustrated checklist with a bookmark."
+        />
+        <p class="overview-boundary">
+          No Recap Page account. No automatic device sync or offline comic reading.
+          Comics and a Marvel Unlimited subscription aren't included.
         </p>
-        <p>
-          Runs locally on your desktop, not a native phone app. No Recap Page account.
-          No automatic device sync or offline comic reading. Comics and a separate Marvel Unlimited
-          subscription are not included.
-        </p>
+      </section>
+
+      <section id="android" class="section section-tinted" aria-labelledby="android-title">
+        <div class="shell">
+          <div class="android-intro">
+            <div class="section-heading">
+              <h2 id="android-title">Recap Page for Android</h2>
+              <p class="platform-status">Android in development</p>
+              <p>
+                No computer needed. Built-in lists and saved progress work offline.
+                Search and Marvel reading need an internet connection.
+              </p>
+              <p>
+                Not available on Google Play. The beta doesn't include all the features shown here.
+              </p>
+              <p class="action-row">
+                <a class="button" href="https://github.com/raymond-nassar/recap-page/blob/main/docs/ANDROID.md">
+                  About the Android app
+                </a>
+                <a href="https://github.com/raymond-nassar/recap-page/releases/tag/android-v3.0.1-beta.2">
+                  Try the beta
+                </a>
+              </p>
+            </div>
+            <ul class="android-features">
+              <li>
+                <strong>Made for touch.</strong>
+                Larger buttons, light and dark themes, compact filters, and easy-to-reach list options.
+                Press Back to close menus.
+              </li>
+              <li>
+                <strong>Read in Marvel Unlimited.</strong>
+                If a comic won't open, choose <strong>Open in browser</strong>.
+              </li>
+              <li>
+                <strong>Move between devices.</strong>
+                Desktop and Android save separately. Move progress with a JSON backup.
+                Restoring replaces the app's saved data.
+              </li>
+            </ul>
+          </div>
+          <div class="phone-gallery">
+            <figure class="phone-preview">
+              <img
+                src="./assets/android-library-preview.png"
+                width="1080"
+                height="1920"
+                loading="lazy"
+                alt="Android Library with fictional Lantern Harbor and Paper Moons lists, showing in-progress and not-started states"
+              />
+              <figcaption>
+                <strong>Your reading lists.</strong>
+                <a href="./assets/android-library-preview.png">Enlarge Library preview</a>
+              </figcaption>
+            </figure>
+            <figure class="phone-preview">
+              <img
+                src="./assets/android-reading-preview.png"
+                width="1080"
+                height="1920"
+                loading="lazy"
+                alt="Android reading view with a fictional next issue, unknown availability, Done, next, Defer for later, and Review earlier issues"
+              />
+              <figcaption>
+                <strong>Your next comic.</strong>
+                <a href="./assets/android-reading-preview.png">Enlarge reading preview</a>
+              </figcaption>
+            </figure>
+          </div>
+          <p class="preview-note">
+            Android previews made in a desktop browser, not on a phone.
+            Lists and progress are made up; cover art is off.
+          </p>
+        </div>
+      </section>
+
+      <section id="features" class="section shell" aria-labelledby="features-title">
+        <div class="section-heading">
+          <h2 id="features-title">Read your way</h2>
+          <p>On desktop and in the Android preview.</p>
+        </div>
+        <div class="feature-grid">
+          <article>
+            <h3>Explore Marvel</h3>
+            <p>
+              Explore Modern Timeline, Marvel Ages, Storylines, Character spotlights, creator guides,
+              and MCU Prep. Reading Paths track progress across longer stories.
+            </p>
+          </article>
+          <article>
+            <h3>Take a break</h3>
+            <p>
+              Defer for later skips a comic in one list without marking it read.
+              Return to deferred or earlier issues anytime.
+            </p>
+          </article>
+          <article>
+            <h3>Make your own lists</h3>
+            <p>
+              Search issues, series, and creators. Add comics by hand, write notes,
+              and hide descriptions until you're ready.
+            </p>
+          </article>
+          <article>
+            <h3>Check availability</h3>
+            <p>
+              See what's unknown, scheduled, or expected, and record your own available or unavailable
+              checks. Missing guide entries stay visible.
+            </p>
+          </article>
+          <article>
+            <h3>Back up or share</h3>
+            <p>
+              Save a JSON backup or preview a Markdown checklist. Share an order without notes,
+              reading history, or availability choices.
+            </p>
+          </article>
+          <article>
+            <h3>New guides</h3>
+            <p>
+              Try Iron Fist, Namor, Shang-Chi, Nova, Ms. Marvel, Hawkeye, Age of Apocalypse,
+              Onslaught, or Greg Pak's Hulk. All include source credits.
+            </p>
+          </article>
+        </div>
         <p class="action-row">
-          <a class="button" href="#getting-started">Get started</a>
-          <a href="https://github.com/raymond-nassar/recap-page#readme">
-            Read the overview
-          </a>
+          <a href="#demo">See how desktop works</a>
+          <a href="https://github.com/raymond-nassar/recap-page/blob/main/CHANGELOG.md">What's new</a>
         </p>
       </section>
 
       <section id="demo" class="section section-tinted" aria-labelledby="demo-title">
         <div class="shell">
           <div class="section-heading">
-            <h2 id="demo-title">Follow a story across series</h2>
-            <p>A walkthrough with made-up progress, not someone's reading history.</p>
+            <h2 id="demo-title">How it works on desktop</h2>
+            <p>An example with made-up progress.</p>
           </div>
           <ol class="walkthrough">
             <li>
-              <strong>Choose an order.</strong> In Browse, add
-              <strong>Civil War: An Avengers Reading List</strong>, compiled from
+              <strong>Choose a list in Browse.</strong> Add
+              <strong>Civil War: An Avengers Reading List</strong> from
               <a href="https://www.comicbookherald.com/where-do-i-start-with-avengers-trade-collections/">Comic Book Herald's guide</a>.
             </li>
             <li>
-              <strong>Find your next unread issue.</strong> In this example, the first six comics
-              are marked read. <strong>Civil War (2006) #7</strong> is next.
+              <strong>See what's next.</strong> With the first six comics marked read,
+              <strong>Civil War (2006) #7</strong> is next.
             </li>
             <li>
-              <strong>Choose Read.</strong> The official reader opens in a separate tab when a
-              link is available. A missing reader link falls back to an official issue page,
-              not guaranteed access.
+              <strong>Choose Read.</strong> Open the reader in a separate tab, or an official issue
+              page if no reader link is found. A link doesn't guarantee access.
             </li>
             <li>
-              <strong>Return and choose Done, next yourself.</strong>
-              <strong>New Avengers (2004) #21</strong> becomes next; reading is not detected automatically.
+              <strong>Mark it read.</strong> Return and choose <strong>Done, next</strong>.
+              <strong>New Avengers (2004) #21</strong> is next. Reading isn't detected automatically.
             </li>
             <li>
-              <strong>Stop and resume.</strong> Reopen this Reading List later, in the same browser
-              profile, to resume at that unread comic.
+              <strong>Come back anytime.</strong> Reopen the list in the same browser profile to resume.
             </li>
           </ol>
           <p>
-            Read markers are shared for the same issue across overlapping Reading Lists;
-            each list keeps its own order.
+            An issue marked read stays read across lists. Each list keeps its own order.
           </p>
-          <p>Sample views below, with cover art off.</p>
+          <p>Desktop views with cover art off.</p>
           <div class="demo-grid">
             <figure class="demo">
               <img
@@ -97,7 +232,10 @@
                 loading="lazy"
                 alt="Home with a recommended starting guide, Modern Timeline, Storylines, and Character spotlights"
               />
-              <figcaption>Choose where to start.</figcaption>
+              <figcaption>
+                Choose where to start.
+                <a href="./assets/home-960.png">Enlarge Home screenshot</a>
+              </figcaption>
             </figure>
             <figure class="demo">
               <img
@@ -108,7 +246,8 @@
                 alt="Avengers Disassembled showing the next issue, reading progress, and upcoming comics"
               />
               <figcaption>
-                Keep your next issue and reading progress in view.
+                See what to read next.
+                <a href="./assets/avengers-disassembled-reading-960.png">Enlarge reading screenshot</a>
               </figcaption>
             </figure>
           </div>
@@ -119,16 +258,23 @@
         <div class="section-heading">
           <h2 id="getting-started-title">Get started</h2>
         </div>
-        <div class="card-grid">
+        <div class="card-grid platform-grid">
           <article class="card route-card">
             <h3>Windows</h3>
-            <p>Install and get updates through the Store.</p>
+            <p>Install and update through Microsoft Store.</p>
             <a class="button" href="https://apps.microsoft.com/detail/9PDJ7XR9Q40Q">
               Open Microsoft Store
             </a>
           </article>
           <article class="card route-card">
-            <h3>Standalone archive</h3>
+            <h3>Android</h3>
+            <p>Android 8 or later, with an up-to-date Android System WebView.</p>
+            <a href="https://github.com/raymond-nassar/recap-page/blob/main/docs/ANDROID_BETA.md">
+              Set up the Android beta
+            </a>
+          </article>
+          <article class="card route-card">
+            <h3>Windows download</h3>
             <p>Unzip, then run <strong>Start on Windows.cmd</strong>.</p>
             <a
               href="https://github.com/raymond-nassar/recap-page/releases/latest/download/marvel-reading-tracker-windows.zip"
@@ -137,24 +283,28 @@
             </a>
           </article>
           <article class="card route-card">
-            <h3>From source</h3>
+            <h3>Run from source</h3>
             <p>Requires Node.js 20 or newer.</p>
             <a href="https://github.com/raymond-nassar/recap-page/blob/main/docs/RUNNING.md">
-              Follow the setup guide
+              Source setup guide
             </a>
           </article>
         </div>
         <aside class="origin-warning" aria-labelledby="origin-warning-title">
-          <h3 id="origin-warning-title">Keep your progress in the same place</h3>
+          <h3 id="origin-warning-title">Keep your desktop progress</h3>
           <p><code>http://127.0.0.1:8787/</code></p>
           <p>
-            Use the same browser profile and this exact address. A different hostname or port
-            uses separate browser storage and looks like a fresh app.
+            Keep using this address and the same browser profile.
+            A different address, port, or profile won't show your saved progress.
           </p>
         </aside>
         <p class="action-row">
-          <a class="button" href="http://127.0.0.1:8787/">Open the local app</a>
-          <span>Already installed and running?</span>
+          <a class="button" href="http://127.0.0.1:8787/">Open Recap Page</a>
+          <span>Already running?</span>
+        </p>
+        <p class="platform-note">
+          Save and check a backup before switching Android apps. The beta and future official app
+          save separately. Uninstalling deletes the app's data.
         </p>
       </section>
 
@@ -166,21 +316,28 @@
           <div class="route-list">
             <a
               class="route"
+              href="https://github.com/raymond-nassar/recap-page/blob/main/docs/ANDROID_BETA.md#send-back-a-short-report"
+            >
+              <strong>Android beta help</strong>
+              <span>Tell us what went wrong.</span>
+            </a>
+            <a
+              class="route"
               href="https://github.com/raymond-nassar/recap-page/blob/main/docs/RUNNING.md#troubleshooting"
             >
-              <strong>Open troubleshooting</strong>
-              <span>Startup, blank pages, reader links, or missing progress.</span>
+              <strong>Fix a problem</strong>
+              <span>Startup, reader links, or missing progress.</span>
             </a>
             <a
               class="route"
               href="https://github.com/raymond-nassar/recap-page/blob/main/SUPPORT.md"
             >
-              <strong>Ask for support</strong>
-              <span>What to include in a help request.</span>
+              <strong>Get support</strong>
+              <span>Where to ask for help.</span>
             </a>
             <a class="route" href="#project-questions">
-              <strong>Ask about the project</strong>
-              <span>How it works and why decisions were made.</span>
+              <strong>Ask a question</strong>
+              <span>About Recap Page and how it works.</span>
             </a>
           </div>
         </div>
@@ -188,38 +345,44 @@
 
       <section id="documentation" class="section shell" aria-labelledby="documentation-title">
         <div class="section-heading">
-          <h2 id="documentation-title">Documentation</h2>
+          <h2 id="documentation-title">Learn more</h2>
         </div>
         <div class="link-grid">
+          <a href="https://github.com/raymond-nassar/recap-page/blob/main/docs/ANDROID.md">
+            <strong>Android app</strong><span>What we're building.</span>
+          </a>
+          <a href="https://github.com/raymond-nassar/recap-page#readme">
+            <strong>Overview</strong><span>Start here.</span>
+          </a>
           <a href="https://github.com/raymond-nassar/recap-page/blob/main/docs/RUNNING.md">
-            <strong>Running</strong><span>Setup and upgrades.</span>
+            <strong>Setup</strong><span>Install and update.</span>
           </a>
           <a href="https://github.com/raymond-nassar/recap-page/blob/main/docs/ARCHITECTURE.md">
-            <strong>Architecture</strong><span>How the app works.</span>
+            <strong>How it works</strong><span>App design.</span>
           </a>
           <a href="https://github.com/raymond-nassar/recap-page/blob/main/docs/DATA_PROVENANCE.md">
-            <strong>Data sources</strong><span>Origins and permissions.</span>
+            <strong>Data sources</strong><span>Lists and comic details.</span>
           </a>
           <a href="https://github.com/raymond-nassar/recap-page/blob/main/PRIVACY.md">
-            <strong>Privacy</strong><span>Storage and network requests.</span>
+            <strong>Privacy</strong><span>Your data and privacy.</span>
           </a>
           <a href="https://github.com/raymond-nassar/recap-page/blob/main/SECURITY.md">
-            <strong>Security</strong><span>Private reporting.</span>
+            <strong>Security</strong><span>Report privately.</span>
           </a>
           <a href="https://github.com/raymond-nassar/recap-page/blob/main/docs/MAINTAINING.md">
-            <strong>Maintaining</strong><span>Data, releases, and this site.</span>
+            <strong>For maintainers</strong><span>Data and releases.</span>
           </a>
           <a href="https://github.com/raymond-nassar/recap-page/blob/main/CONTRIBUTING.md">
-            <strong>Contributing</strong><span>Help improve the app.</span>
+            <strong>Contribute</strong><span>Ways to help.</span>
           </a>
           <a href="https://github.com/raymond-nassar/recap-page/blob/main/GOVERNANCE.md">
-            <strong>Governance</strong><span>How decisions are made.</span>
+            <strong>Project decisions</strong><span>How they're made.</span>
           </a>
           <a href="https://github.com/raymond-nassar/recap-page/blob/main/CHANGELOG.md">
-            <strong>Changelog</strong><span>What's new.</span>
+            <strong>What's new</strong><span>Recent changes.</span>
           </a>
           <a href="https://github.com/raymond-nassar/recap-page/blob/main/docs/WHY_A_BROWSER_APP.md">
-            <strong>Why a browser app</strong><span>The platform choice.</span>
+            <strong>Why a browser app</strong><span>Platform choices.</span>
           </a>
         </div>
       </section>
@@ -227,20 +390,16 @@
       <section id="project-questions" class="section section-tinted" aria-labelledby="project-questions-title">
         <div class="shell split">
           <div class="section-heading">
-            <h2 id="project-questions-title">Ask about the project</h2>
-            <p>
-              Get a human answer from the maintainer. Name the documentation you checked and what
-              remains unclear.
-            </p>
+            <h2 id="project-questions-title">Questions about Recap Page?</h2>
           </div>
           <aside class="disclosure" aria-labelledby="question-disclosure-title">
             <h3 id="question-disclosure-title">Before you post</h3>
             <p>
-              GitHub sign-in is required. Your username, question, and replies are public.
-              GitHub hosts and processes this content; Recap Page sends nothing automatically.
+              Sign in to GitHub to post. Your username, question, and replies are public.
+              GitHub hosts and processes posts. Recap Page sends nothing automatically.
             </p>
             <p>
-              Do not include reading progress, lists, notes, backups, personal information,
+              Don't post reading progress, lists, notes, backups, personal information,
               attachments, or vulnerability details.
             </p>
             <p class="action-row">
@@ -248,7 +407,7 @@
                 class="button"
                 href="https://github.com/raymond-nassar/recap-page/issues/new?template=project-question.yml"
               >
-                Ask a public question
+                Ask a question
               </a>
             </p>
           </aside>
@@ -267,11 +426,11 @@
             <strong>Suggest an improvement</strong><span>What would help you read?</span>
           </a>
           <a href="https://github.com/raymond-nassar/recap-page/issues/new?template=data-order.yml">
-            <strong>Correct reading data</strong><span>An issue, detail, or order is wrong.</span>
+            <strong>Correct a reading list</strong><span>An issue, detail, or order is wrong.</span>
           </a>
           <a class="security-route" href="https://github.com/raymond-nassar/recap-page/blob/main/SECURITY.md">
             <strong>Report a security problem</strong>
-            <span>Privately, never in a public issue or pull request.</span>
+            <span>Report privately, not in a public post.</span>
           </a>
         </div>
       </section>
@@ -282,9 +441,9 @@
             <h2 id="source-history-title">Project links</h2>
           </div>
           <div class="project-links">
-            <a href="https://github.com/raymond-nassar/recap-page">Source repository</a>
-            <a href="https://github.com/raymond-nassar/recap-page/issues">Issue history</a>
-            <a href="https://github.com/raymond-nassar/recap-page/commits/main">Commit history</a>
+            <a href="https://github.com/raymond-nassar/recap-page">Source code</a>
+            <a href="https://github.com/raymond-nassar/recap-page/issues">Issues</a>
+            <a href="https://github.com/raymond-nassar/recap-page/commits/main">Commits</a>
             <a href="https://github.com/raymond-nassar/recap-page/releases">Releases</a>
           </div>
         </div>
@@ -294,8 +453,8 @@
     <footer class="footer">
       <div class="shell">
         <p class="hosting-note">
-          GitHub hosts this site and receives web request information, including your IP address.
-          This site cannot access your reading data. The app runs only on your computer.
+          GitHub hosts this site and receives request details, including your IP address.
+          This site can't access your saved reading data.
         </p>
         <p>
           Unofficial fan project. Not affiliated with or endorsed by Marvel Entertainment.

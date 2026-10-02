@@ -1,34 +1,33 @@
 # Recap Page Android beta: what to try
 
-Thanks for helping test Recap Page on Android. It follows reading lists and keeps your place;
-it does not include comics or replace Marvel Unlimited. This is an early sideloaded prototype,
-not a Google Play release. You do not need a Marvel subscription to test most of the app.
+Recap Page follows reading lists and keeps your place. It does not include comics or replace
+Marvel Unlimited. This early sideloaded prototype is not a Google Play release.
+Most checks do not need a Marvel subscription.
 
 ## Before you start
 
-- Use the APK supplied by the project maintainer, not an APK from an unrelated download site.
-  Android 8 or newer and an up-to-date Android System WebView are required.
-- Treat this as a test installation. Start with a throwaway reading list and made-up notes.
-  Do not rely on it as the only copy of reading progress you care about.
-- If you already use this prototype, export a JSON backup before updating. Differently signed
-  test builds may require uninstalling the old one, which removes its saved data.
-- Android may ask whether this source is allowed to install apps. Only allow the source if you
-  trust the supplied file. Do not disable Play Protect or other security protections to install
-  it; report any blocked-install message instead.
-- Only sign in to your account in the official Marvel app or website. Never send us passwords,
-  account details, subscription receipts or your backup file.
+- Use the maintainer's APK, not one from an unrelated download site. You need Android 8 or newer
+  and an up-to-date Android System WebView.
+- Start with a throwaway reading list and made-up notes. Do not use this test installation as
+  your only copy of progress you care about.
+- Export a JSON backup before updating an existing prototype. Differently signed test builds
+  may require uninstalling the old one, which removes its saved data.
+- If Android asks to allow installation from this source, agree only if you trust the supplied
+  file. Do not disable Play Protect or other security protections. Report blocked-install messages.
+- Sign in only in the official Marvel app or website. Never send us passwords, account details,
+  subscription receipts or your backup file.
 
-The future official app is planned as a separate installation; it is not an update for this
-debug beta, and no new package is authorized by that preparation. When an official build is
-approved, keep the prototype and a checked local JSON backup until you have deliberately restored
-and verified the progress in the new app. Restore replaces destination reading data, not merges
-it; device-specific settings must be reapplied. Do not uninstall or clear either app if the
-transfer is uncertain. See [the future transfer guidance](ANDROID.md#future-prototype-to-official-transfer).
+The planned official app is a separate installation, not an update to this debug beta. That
+preparation does not authorize a new package. Once an official build is approved, keep the
+prototype and a checked local JSON backup until you have restored and verified progress in the
+new app. Restore replaces destination reading data; it does not merge. Reapply device-specific
+settings. If transfer is uncertain, do not uninstall or clear either app. See
+[the future transfer guidance](ANDROID.md#future-prototype-to-official-transfer).
 
 ## Main checks
 
-Try the checks that fit your phone and available time. Passing everything is not required to
-send useful feedback. Stop if you see lost progress or an unexpected destructive action.
+Choose checks that fit your phone and time. You can send useful feedback without passing them
+all. Stop if progress is lost or an unexpected destructive action occurs.
 
 | Try this | What should happen |
 |---|---|
@@ -45,32 +44,31 @@ send useful feedback. Stop if you see lost progress or an unexpected destructive
 | **Check Back.** Open Navigation and press Back. Open a note or confirmation dialog and press Back without saving or confirming. | Back closes the open navigation or dialog before leaving that screen. Cancelled edits or destructive actions do not happen. |
 | **Go offline briefly.** Turn on airplane mode, reopen Recap Page and open your test list. Restore your connection afterwards. | Saved progress and bundled lists remain usable. Live search, fresh cover art and Marvel reading may be unavailable; the app must not lose your data. |
 
-If Marvel Unlimited is installed, leave Android's normal link settings as they are for the first
-attempt. Tell us if you have already changed **Open supported links** for Marvel. Do not force
-a different default just to make the test pass. The useful finding is what actually happens.
+For the first attempt with Marvel Unlimited installed, leave Android's normal link settings
+unchanged. Tell us if you already changed **Open supported links** for Marvel. Do not change a
+default to make the test pass; report what happens.
 
 ## Backup check
 
-Do this only with throwaway data. If you have imported real progress, export and safely keep a
-separate backup first; skip the restore step if you are unsure.
+Use throwaway data only. If you imported real progress, export and safely keep a separate backup
+first. Skip restore if you are unsure.
 
 1. In **Backup & settings**, export a JSON backup to **Downloads** or another on-device folder.
-   Wait for the saved confirmation and check that the file exists in your Files app. A cloud
-   folder may upload the file through that provider, so choose local storage for this test.
+   Wait for the saved confirmation and check the file exists in your Files app. Choose local storage;
+   a cloud folder may upload the file through its provider.
 2. Start another export, then cancel the Android file picker. Recap Page should report
-   cancellation, not success, and your reading progress should remain unchanged.
-3. Change one read marker in your throwaway list, then restore the file from step 1.
-   The original saved marker should return. Restoring replaces the app's reading data;
-   it does not merge two sets of progress.
-4. If **Undo last restore** is offered, try it. It should return to the state immediately before
-   the restore, without losing the list.
+   cancellation, not success, without changing progress.
+3. Change one read marker in the throwaway list, then restore the file from step 1.
+   The saved marker should return. Restore replaces the app's reading data; it does not merge.
+4. If offered, try **Undo last restore**. It should return to the state just before restore
+   without losing the list.
 
 ## Send back a short report
 
-Reply where the maintainer shared this test, or use the project's issue tracker. One problem per
-report is easiest to follow. A short report that says everything worked is useful too.
+Reply where the maintainer shared the test, or use the project's issue tracker. Report one
+problem at a time. If everything worked, say so.
 
-Copy this:
+Include:
 
 ```text
 Phone model:
@@ -89,13 +87,13 @@ Does it happen every time?
 Checks that worked:
 ```
 
-For a layout problem, include your orientation and whether Android text/display size is enlarged.
-For a link problem, the comic title and issue number are enough. You can optionally include your
-browser and Android System WebView versions if you know them.
+For layout problems, include orientation and whether Android text/display size is enlarged.
+For link problems, the comic title and issue number are enough. Browser and Android System WebView
+versions are optional if you know them.
 
-A screenshot or short recording of **Recap Page only**, using made-up data, can help. Crop out
-notifications, account information and personal notes. Do not include comic pages, Marvel login
-screens, passwords or full backup files.
+You can attach a screenshot or short recording of **Recap Page only**, with made-up data.
+Crop out notifications, account information and personal notes. Do not include comic pages,
+Marvel login screens, passwords or full backup files.
 
-The automated emulator checks already cover several basic flows. Your phone is especially useful
-for real Marvel-app handoff, touch comfort, device-specific file pickers and everyday interruptions.
+Automated emulator checks cover several basic flows. Use your phone to check real Marvel-app
+handoff, touch comfort, device-specific file pickers and everyday interruptions.
