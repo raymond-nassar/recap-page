@@ -934,7 +934,9 @@ async function certificationFunctionality(architecture, source) {
         () => document.querySelector('#api-status')?.textContent
           === 'API unreachable. Lists and progress still work',
       );
-      await setRoute(external, '#/add-search');
+      await external.$eval('.ri[data-view="add"]', (button) => button.click());
+      await external.waitForFunction(() => !document.querySelector('#view-add').hidden);
+      await external.$eval('.search-hub-card[data-view="add-search"]', (button) => button.click());
       await external.$eval('#search-q', (field) => { field.value = 'Secret Wars'; });
       await external.$eval('#form-search', (form) => form.requestSubmit());
       await external.waitForFunction(
