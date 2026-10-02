@@ -61,8 +61,8 @@ with cover art off](docs/screenshots/avengers-disassembled-reading-960.png)
 ### Your data stays with you
 
 There is no account and no analytics or tracking. Saved reading data is not uploaded automatically.
-Lists, progress, notes, settings, overrides, and custom entries stay on your device. You can export them to a
-destination you choose; see the [privacy policy](PRIVACY.md) for details.
+Lists, progress, notes, settings, overrides, and custom entries stay on your device.
+You can export reading data, but not device settings. See the [privacy policy](PRIVACY.md) for details.
 
 Some features make direct requests:
 

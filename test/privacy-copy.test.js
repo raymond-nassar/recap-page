@@ -169,6 +169,13 @@ test('every surface that makes the privacy claim keeps the promises and names th
   }
 });
 
+test('README distinguishes reading-data exports from device settings', () => {
+  const privacy = between(
+    read('README.md'), '### Your data stays with you', '## Run it on your computer',
+  );
+  assert.match(privacy, /export reading data, but not device settings/i);
+});
+
 // The absolute itself, in the forms it has actually been written in here. "Nothing is uploaded"
 // was on two screens while the README described the two downloads on the same subject, and
 // "no server sees your reading progress" claims something the code cannot promise: hydration is
