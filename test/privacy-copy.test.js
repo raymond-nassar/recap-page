@@ -94,12 +94,11 @@ function claimSites() {
   ];
 }
 
-// Kept, and stated as kept. Each is a promise the code actually honours: no account exists, no
-// analytics or tracking is loaded, and neither read state nor notes is ever sent.
+// Routine service requests must stay separate from deliberate backup exports.
 const PROMISES = [
   ['there is no account', /no account/i],
   ['there is no analytics or tracking', /no analytics|analytics or tracking|tracking of any kind/i],
-  ['progress is never sent', /progress[^.]*never sent|never sent[^.]*progress/i],
+  ['saved reading data is not uploaded automatically', /progress[^.]*never sent|never sent[^.]*progress|saved reading data is not uploaded automatically/i],
 ];
 
 // Made, and stated as made. A surface that lists the promises and omits these is the absolute
@@ -119,8 +118,8 @@ const PROMISES = [
 // reads as complete and omits the largest item is the defect this whole item exists to undo, so
 // the clause is held by a rule rather than left as prose somebody can quietly drop.
 const REQUESTS = [
-  ['metadata is fetched', /(?:sends|asks|downloads)[^.]*(?:metadata API|comics database)/i],
-  ['the app contacts the API on startup', /(?:starts|opening (?:the app|it))[^.]*reachable/i],
+  ['metadata is fetched', /(?:sends?|asks|downloads)[^.]*(?:metadata API|comics database)/i],
+  ['the app contacts the API on startup', /(?:starts|startup|opening (?:the app|it))[^.]*reachable/i],
   ['covers are fetched from Marvel', /cover[^.]*Marvel'?s? (?:own )?image servers/i],
   [
     'adding a series or a creator fetches every issue',
@@ -132,11 +131,11 @@ const REQUESTS = [
   ],
   [
     'reader launch names both Marvel destinations',
-    /(?:pressing (?:\*\*)?Read(?:\*\*)?|opening an issue)[\s\S]{0,300}(?:Marvel Unlimited|Marvel's reader)[\s\S]{0,300}marvel\.com/i,
+    /(?:(?:pressing\s+)?(?:\*\*)?\bRead\b(?:\*\*)?\s+opens|opening an issue)[\s\S]{0,300}(?:Marvel Unlimited|Marvel's reader)[\s\S]{0,300}marvel\.com/i,
   ],
   [
     'the requests disclose which issues',
-    /(?:sees?|reveals?|discloses?)[^.]*(?:which issues|issues you are looking at|issue numbers)/i,
+    /(?:sees?|reveals?|discloses?)[^.]*(?:which issues|issues you are looking at|issue numbers|issue or search details)/i,
   ],
   // Added with BL-150, which put the first request to a host that is not Marvel and not the
   // metadata service anywhere in the app. A surface that enumerates the requests and omits an
@@ -146,11 +145,11 @@ const REQUESTS = [
   // what Constraint 3 would allow.
   [
     'the hand-entry lookup sends the typed title to the Marvel Fandom wiki',
-    /sends?[^.;]*(?:title|typed)[^.;]*Marvel Fandom wiki/i,
+    /sends?[^.;]*(?:title|typed)[^.;]*Marvel Fandom wiki|Look up on Marvel Fandom[^.;]*sends?[^.;]*title[^.;]*that wiki/i,
   ],
   [
     'that lookup happens only when the reader asks for it',
-    /only (?:when|if) you press/i,
+    /only\s+(?:when|if)\s+you\s+(?:press|choose)/i,
   ],
 ];
 
@@ -168,6 +167,13 @@ test('every surface that makes the privacy claim keeps the promises and names th
       `${where} still describes the retired GitHub update request`,
     );
   }
+});
+
+test('README distinguishes reading-data exports from device settings', () => {
+  const privacy = between(
+    read('README.md'), '### Your data stays with you', '## Run it on your computer',
+  );
+  assert.match(privacy, /export reading data, but not device settings/i);
 });
 
 // The absolute itself, in the forms it has actually been written in here. "Nothing is uploaded"

@@ -1,135 +1,123 @@
 # Recap Page privacy policy
 
-Last updated: 2026-09-29
+Last updated: 2026-10-01
 
-Recap Page is a local reading companion. There is no account, advertising, analytics, behavioral
-tracking, or telemetry. Reading progress, lists, notes, settings, availability overrides, and
-custom entries are stored on your device. There is no automatic upload or cross-device sync of
-that saved state. An explicit export gives the chosen file destination the data in that export.
+Recap Page keeps your reading progress, lists, notes, settings, availability choices, and custom
+entries on your device. There is no account, advertising, analytics, behavioral tracking, or
+telemetry. Saved data is not uploaded or synced automatically. If you export it, the destination
+you choose receives that file's contents.
 
 ## Data stored on the device
 
-On desktop, Recap Page stores durable reader data in browser storage for the exact origin
-`http://127.0.0.1:8787`. It also uses browser-managed IndexedDB and cache storage for disposable
-metadata and the offline app shell.
+On desktop, reading data stays in browser storage at `http://127.0.0.1:8787`.
+Browser-managed IndexedDB and cache storage hold cached metadata and offline app files.
 
-The Windows package does not move this data into package storage. Stopping, updating, uninstalling,
-or reinstalling the package does not remove browser-owned state. Another hostname, port, browser, or
-browser profile has separate storage. Clearing site data for the exact origin removes that profile's
-copy.
+The Windows package does not own this storage. Stopping, updating, uninstalling, or reinstalling it
+does not remove browser-owned state. Another hostname, port, browser, or profile has separate
+storage. Clearing site data for this address removes that profile's copy.
 
-On Android, reader data lives in the app's private WebView storage, separate from your desktop
-browser even though the displayed origin is also `http://127.0.0.1:8787`. This is an intercepted
-address for bundled app assets, not a listening server. Android does not use the desktop
-service-worker shell; the offline app files are in the APK. Disposable metadata uses IndexedDB.
-Clearing Android app data or uninstalling removes the app's private state. Platform backup and
-device transfer of app data are disabled by the package configuration. Export and independently
-keep a backup before clearing data, uninstalling, or changing to a package that cannot update
-the installed app.
+On Android, data stays in private WebView storage, separate from your desktop browser. The displayed
+address is also `http://127.0.0.1:8787`, but it opens bundled app files, not a listening server.
+Android does not use the desktop service-worker shell; offline files are bundled in the APK and
+cached metadata uses IndexedDB.
 
-Saved reading state has no automatic expiry. Cached metadata can include issue-search text in
-request keys; expiry limits reuse, not guaranteed deletion at that instant.
+Clearing Android app data or uninstalling removes its saved data. Platform backup and device
+transfer are disabled. Export a backup and keep it outside the app before clearing data,
+uninstalling, or switching to a package that cannot update the installed copy.
+
+Saved reading data has no automatic expiry. Metadata cache keys can include issue-search text.
+Cache expiry limits reuse; it does not guarantee immediate deletion.
 
 ## Export and import
 
-You can export a JSON backup from **Backup & settings**, or export a list in the formats offered
-by the app. Exports can contain reading progress and notes. On desktop the browser creates the
-download. On Android, native import and export use a document picker: a selected provider supplies
-the import file or receives the export's filename and contents. Both pickers request a local-only
-provider; this is not a guarantee against that provider's own sync or retention.
+Export a JSON backup from **Backup & settings**, or export a list in an offered format. Files can
+contain progress and notes. Desktop uses a browser download. Android uses a document picker: the
+selected file provider supplies an import or receives the export's filename and contents. Both
+pickers request a local-only provider; this is not a guarantee against its own sync or retention.
 
-Choose a destination you trust and keep backups outside the app. Recap Page does not automatically
-upload backups, but an explicit save transfers the chosen content to that destination. Previously
-exported files, and any partial documents a failed save leaves with a provider, must be managed
-there separately.
+Choose a destination you trust and keep backups outside the app. Backups are not uploaded
+automatically, but saving transfers the chosen content to that destination. Manage previously
+exported files and any partial documents left by a failed save at the destination.
 
 ## Direct network requests
 
-Recap Page makes these direct requests when the related feature is used:
+These features make direct requests:
 
-- On startup, it asks the configured comics metadata service whether it is reachable.
-- Issue searches and imported-title matching send search text to that service.
+- Startup checks whether the configured comics metadata service is reachable.
+- Issue searches and imported-title matching send it search text.
 - Series and creator name searches use bundled indexes locally. Fetching the issues for a
   selected series or creator sends their IDs to the metadata service.
 - Issue detail and reader-link lookups send the issue identity to that service.
-- In the Android prototype, opening an issue also sends its digital ID to
-  `bifrost.marvel.com` to resolve a Marvel Unlimited app link. This request omits credentials
-  and referrers, bypasses the HTTP cache, and is not saved in reading state. Marvel can see the
-  digital ID and network address. The launcher retains an **Open in browser** alternative.
+- Opening an issue in the Android prototype also sends its digital ID to `bifrost.marvel.com`
+  for a Marvel Unlimited app link. The request has no credentials or referrer, bypasses the HTTP
+  cache, and is not saved in reading state. Marvel sees the digital ID and network address.
+  **Open in browser** remains available.
 - Cover images load from Marvel's image host when cover art is enabled. It is on by default and
   can be switched off.
 - **Read** opens Marvel Unlimited when a direct reader link is known, or opens the issue page on
   marvel.com when no reader link can be resolved.
-- The optional hand-entry lookup sends the title you entered to the Marvel Fandom wiki only after
-  you press its lookup button.
+- The optional hand-entry lookup sends your title to the Marvel Fandom wiki only after you press
+  the lookup button.
 
-The receiving service can observe the request, network address, and issue or search information
-needed to answer it. Recap Page does not send your saved lists, notes, read markers, settings, or
-backup files to those services.
+Each service can see the request, your network address, and the issue or search details it needs.
+Recap Page does not send those services your saved lists, notes, read markers, settings, or backups.
 
-Recipient retention is not established by this policy. A `no-store` request controls HTTP caching;
-it is not a promise of deletion from a recipient's logs or systems.
+This policy does not establish how long recipients keep request data. A `no-store` request controls
+HTTP caching, not deletion from their logs or systems.
 
 ## Comic images and content
 
-Recap Page stores cover URLs only. It never hosts, proxies, downloads into project storage, or
-uploads comic image bytes. The browser may keep an ordinary web cache when it displays a cover from
-Marvel's image host.
+Recap Page stores cover URLs only. It never hosts, proxies, saves to project storage, or uploads
+comic image bytes. Your browser may cache covers it displays from Marvel's image host.
 
-Recap Page contains no comic pages and does not bypass Marvel Unlimited. Reading requires your own
-subscription and happens on Marvel's service.
+Comics are not included. Reading happens on Marvel's service and needs your own subscription.
+Recap Page does not bypass Marvel Unlimited.
 
 ## Windows package permissions
 
-The Microsoft Store package declares `runFullTrust` so its bundled Node supervisor can start the
-local server and open your configured default browser. The package binds only to
-`127.0.0.1:8787`. It does not listen on the network, request elevation during ordinary use, add an
-account, or add telemetry.
+The Microsoft Store package declares `runFullTrust` to start its local server and open your default
+browser through its bundled Node supervisor. It binds only to `127.0.0.1:8787` and requests no
+administrator privileges during ordinary use. It adds no account or telemetry.
 
-Microsoft Store packaging and update delivery do not change the browser storage boundary described
-above. Recap Page does not contact an external software update service. Store package updates are
-delivered only through Microsoft Store.
+Packaging and updates do not change where browser data is saved. Recap Page does not contact an
+external software update service. Store updates come only through Microsoft Store.
 
 ## Control and deletion
 
-In **Backup & settings**, **Erase all local data** clears active reading data, including lists,
-progress, notes, availability overrides and custom entries, when the save succeeds. Settings and
-sidebar preferences remain. Removal of pre-restore and staging copies is attempted after a
-successful erase, but storage failures can leave copies behind. The app reports a retained
-pre-restore copy behind **Undo last restore**.
+In **Backup & settings**, **Erase all local data** clears lists, progress, notes, availability
+overrides, and custom entries when the save succeeds. Settings and sidebar preferences remain.
+Removal of pre-restore and staging copies is attempted afterwards; storage failures can leave copies
+behind. The app reports a retained pre-restore copy through **Undo last restore**.
 
-Salvage copies kept after a failed read are not removed by that erase. They have their own removal
-controls under **Copies kept after a failed read**; removal is refused while a copy still protects
-active unreadable data. Cache cleanup is also requested during erase, but that does not confirm
-every cache was cleared. **Clear cached metadata** is a separate control that reports cleanup
-failures.
+Salvage copies kept after a failed read are not removed. Remove them separately under
+**Copies kept after a failed read**; a copy cannot be removed while it protects active unreadable
+data. Erase also requests cache cleanup, but does not confirm every cache was cleared.
+**Clear cached metadata** separately reports cleanup failures.
 
-Browser controls can clear the desktop origin's storage and caches. Uninstalling the Windows
-package leaves that browser-owned data in place. Android clear-app-data or uninstall removes
-private app storage instead. None of these actions recalls previously exported files, deletes
-copies retained by a selected document provider, or removes a remote recipient's logs. Export a
-backup first if you want to keep your reading data.
+Use browser controls to clear desktop storage and caches; uninstalling the Windows package leaves
+them in place. On Android, clearing app data or uninstalling removes private app storage. These
+actions do not remove exported files, provider-held copies, or a recipient's logs. Back up first if you
+want to keep your reading data.
 
 ## Public project information and questions
 
-The [project home](https://raymond-nassar.github.io/recap-page/) is an information page hosted by
-GitHub Pages. It is not the tracker. It contains no script, form, analytics or telemetry and cannot
-read the browser storage under `http://127.0.0.1:8787`. GitHub documents that Pages logs a visitor's
-IP address for security purposes in [What is GitHub Pages?](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages),
-retrieved 2026-09-02. GitHub's privacy statement applies to GitHub's handling of those requests.
+The [project home](https://raymond-nassar.github.io/recap-page/) is a GitHub Pages information site,
+not the tracker. It has no script, form, analytics, or telemetry and cannot read storage at
+`http://127.0.0.1:8787`. GitHub logs visitors' IP addresses for security, as documented in
+[What is GitHub Pages?](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages),
+retrieved 2026-09-02. GitHub's privacy statement covers those requests.
 
-The home can send you, only when you choose its link, to a public GitHub question form framed by
-maintained project documents. You need a GitHub account and must sign in. Your username, question,
-and every reply are public, and GitHub hosts and processes that content under its privacy statement.
+Choosing the home's question link opens a public GitHub form about the project documentation.
+Posting requires GitHub sign-in. Your username, question, and replies are public; GitHub hosts and
+processes them under its privacy statement.
 
-Recap Page sends nothing to the form automatically. The form asks which maintained source you
-checked and tells you not to include reading progress, lists, notes, backups, personal information,
-attachments or vulnerability details. Removing the form can stop new questions through that route,
-but cannot recall an Issue, reply, notification or copy that already exists.
+Recap Page sends nothing to the form automatically. It asks which documentation you checked.
+Do not include reading progress, lists, notes, backups, personal information, attachments, or
+vulnerability details. Removing the form can stop new questions through that route, but cannot
+recall an Issue, reply, notification, or existing copy.
 
-The Android About screen's **Privacy policy** link opens the public policy on GitHub in your
-browser only when selected. GitHub receives that page request, not your saved reading data, and
-its privacy statement applies to the request.
+The Android About screen opens **Privacy policy** on GitHub in your browser only when selected.
+GitHub receives the page request, not your saved reading data. Its privacy statement applies.
 
 ## Contact and security
 

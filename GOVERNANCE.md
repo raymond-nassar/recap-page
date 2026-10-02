@@ -1,79 +1,59 @@
 # Governance
 
-Who decides what, and how. This project has one maintainer, so the interesting question is not who
-holds the authority but whether the reasoning behind a decision can be inspected afterwards. That
-is what this document is for.
+How this project plans work, makes decisions, and ships releases.
 
 ## The maintainer
 
 [@raymond-nassar](https://github.com/raymond-nassar) is the sole maintainer and the only person
 with write access. Every decision below is theirs unless it says otherwise.
 
-There is no committee, no vote and no tie to break. Writing that down plainly is more useful than
-describing a process that would have one participant.
+There is no committee or voting process.
 
 ## Roadmap
 
-Everything under consideration lives in a repository Issue and appears in the
-[planning Project](https://github.com/users/raymond-nassar/projects/1). The Issue owns scope,
-acceptance criteria, dependencies and discussion. Its open or closed state owns whether the work is
-active or completed. The Project owns readiness, priority, work type, epic and scoring fields; its
-built-in status is the planning view rather than a second completion record.
+Proposed work belongs in a repository Issue and the
+[planning Project](https://github.com/users/raymond-nassar/projects/1). The Issue records scope,
+acceptance criteria, dependencies and discussion. Its open or closed state shows whether work is
+active or completed. The Project tracks readiness, priority, work type, epic and scoring fields.
+Its built-in status is a planning view, not a second completion record.
 
-Rank is computed rather than chosen. Each item carries a value, a time criticality, a risk or
-opportunity score and a size, and the ratio of the first three to the last is its WSJF value. The
-frozen [historical backlog](PRODUCT_BACKLOG.md) preserves the original rationale, delivered items
-and dropped decisions without remaining an active ledger.
+Rank uses WSJF: value, time criticality, and risk or opportunity scores, summed and divided by size.
+The frozen [historical backlog](PRODUCT_BACKLOG.md) preserves the original rationale, delivered
+items, and declined ideas. It is not an active work list.
 
-Three things follow from ranking this way, and all three are deliberate:
+- **Large ideas may wait.** Smaller items can rank higher even when the larger work is valuable.
+- **Order can change.** Scores are revised as estimates improve.
+- **Declined ideas stay visible.** Close the Issue with a reason rather than deleting it.
 
-- **A good idea can sit for a long time.** Rank is about the ratio, not about merit, so a valuable
-  item that is also large will wait behind several small ones.
-- **Order is not a promise.** The numbers get revisited when what they were estimating turns out to
-  be wrong, and an item can move down as easily as up.
-- **A declined item stays visible.** Its Issue is closed with the reason rather than deleted, so
-  the argument survives and does not have to be had again from scratch.
-
-Each Issue also records its constraint check against the standing product constraints, which are
-the things this project will not trade away. The [contributing guide](CONTRIBUTING.md) lists those
-constraints in the form a contributor needs.
+Each Issue records a check against the standing product constraints in
+the [contributing guide](CONTRIBUTING.md).
 
 ## What ships, and when
 
-Work ordinarily lands as one pull request per item. The maintainer made one explicit exception on
-2026-08-22 for the remaining UX simplification work, combining BL-193 through BL-198 and BL-202 with the
-owner-directed My Library and Search grouping in one delivery. The exception is recorded in those
-items and does not replace the default. The gates that have to pass are listed in
-[the contributing guide](CONTRIBUTING.md) and enforced by CI, and the maintainer does not merge
-past a red one.
+Use one pull request per item unless the maintainer explicitly combines a delivery. On 2026-08-22,
+the maintainer combined the remaining UX simplification work (BL-193 through BL-198 and BL-202) with the
+owner-directed My Library and Search grouping in one delivery. That exception does not change the
+default. All gates in [the contributing guide](CONTRIBUTING.md) must pass before merging.
 
-Every change of substance keeps its implementation record on the Issue timeline and linked pull
-request. User-visible behavior and release-relevant maintainer changes also get an entry in
-[the changelog](CHANGELOG.md). Internal execution records, editorial-only maintenance, and agent or
-contributor instruction changes do not need one unless they alter release-relevant maintainer
-behavior. A change that lands without a record required by these rules is treated as a defect.
+Keep the implementation record on the Issue timeline and linked pull request. User-visible behavior
+and release-relevant maintainer changes also need [a changelog entry](CHANGELOG.md). Internal records,
+editorial-only maintenance, and agent or contributor instructions need no entry unless they change
+release-relevant maintainer behavior. A missing required record is a defect.
 
-Findings from a review are routed rather than looped: what is material to the change in hand gets
-fixed, and the rest becomes a repository Issue. This stops a single item spiralling through review
-rounds chasing work that belongs to a later one. It is not a licence to ship a known material
-defect, and reporting a review clean while one is open would be the failure this rule exists to
-avoid.
+Fix review findings that matter to the current change. File the rest as repository Issues.
+Do not report a clean review while a material finding remains open.
 
 ## Releases
 
-Versions follow the rule set out in [`src/js/lib/version.js`](src/js/lib/version.js). A major bump
-marks a substantial new product generation: a coherent change in what the app enables or how a
-reader experiences it, not merely a count of unrelated additions. A major bump is also mandatory
-when stored data changes in a way an older build cannot read. The second rule protects progress
-that lives only in the reader's browser; it is a lower bound on major releases, not their only
-purpose.
+Follow [`src/js/lib/version.js`](src/js/lib/version.js). A major version marks a substantial new
+product generation, not a collection of unrelated additions. It is also required when saved data
+changes in a way an older build cannot read.
 
-The maintainer decides when to cut one. The mechanics are in
-[Cutting a release](docs/MAINTAINING.md#cutting-a-release). CI owns the deterministic repository
-gates. Release preparation separately exercises the live metadata contract, installed-browser
-journeys, upgrade compatibility, Windows package, and remote publication surface. Those checks
-depend on a network, installed software, local Git history, or the remote repository, so they do
-not pretend to be ordinary CI coverage.
+The maintainer chooses when to release; see
+[Cutting a release](docs/MAINTAINING.md#cutting-a-release). CI runs the deterministic repository
+gates. Release checks separately cover live metadata, installed-browser journeys, upgrade
+compatibility, Windows packages, and remote publication. They need a network, installed software,
+local Git history, or the remote repository and are not ordinary CI coverage.
 
 [Coordinated versions and independent releases](docs/RELEASING.md) defines platform build identity,
 Android code reservations, source-pinned artifact records and the delivered release matrix.
@@ -82,25 +62,17 @@ approval and may publish on a different date.
 
 ## Moderation
 
-[The code of conduct](CODE_OF_CONDUCT.md) sets the standard and describes what happens when someone
-falls short of it. Enforcement is the maintainer's, with one exception that matters: a concern
-about the maintainer goes to GitHub rather than to them, through the route named in that document.
-A person cannot judge a complaint about themselves, and a governance document that did not say so
-would be worth less than the paper it is not printed on.
+The maintainer enforces [the code of conduct](CODE_OF_CONDUCT.md). Concerns about the maintainer
+go to GitHub through the route in that document: a person cannot judge a complaint about themselves.
 
 ## Changing this
 
-Anyone may propose a change to any of these documents in the usual way, as an issue and then a pull
-request. The maintainer decides. Where a change would alter one of the standing product
-constraints, the bar is deliberately much higher, because those exist precisely so that settled
-arguments stay settled: expect to be asked for evidence that the reasoning behind the constraint
-was wrong, rather than for an argument that the new thing would be nice to have.
+Anyone may propose a change through an issue and pull request. The maintainer decides.
+Changing a standing product constraint requires evidence that its reasoning is wrong, not just
+that a new feature would be useful.
 
 ## If the maintainer stops
 
-Worth stating before it is needed rather than after. There is no succession plan, no organisation
-behind this and no second person with access. If the project is abandoned, it is abandoned with the
-code under a permissive licence and the reasoning for every decision written down, which is the
-most a single-maintainer project can honestly offer. [The license](LICENSE) covers what this
-repository authors, and [the data provenance record](docs/DATA_PROVENANCE.md) sets out what it does
-not, which is what anyone picking it up would need to know first.
+There is no succession plan, backing organisation, or second maintainer. If work stops, the code
+and decision records remain available. Anyone taking it on should read
+[the license](LICENSE) and [data provenance](docs/DATA_PROVENANCE.md) to understand what can be reused.

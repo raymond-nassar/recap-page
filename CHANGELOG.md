@@ -13,6 +13,14 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Show the Android app and current features on the project home
+
+The project home now introduces Android development with the supplied Recap Page artwork and
+cover-free phone-layout previews. It highlights shared discovery, deferral, notes and export
+features, keeps desktop setup and help available, and distinguishes current development from the
+earlier beta. The previews use fictional progress and are not native-device screenshots or a
+Google Play release announcement. The apps and saved reading data are unchanged.
+
 ### Prepare verified Android App Bundle candidates
 
 Adds a manual build-and-validation path with protected upload-key signing and same-bundle native

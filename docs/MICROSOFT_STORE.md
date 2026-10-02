@@ -1,7 +1,7 @@
 # Microsoft Store package and certification proof
 
-This document owns the current Windows MSIX packaging and Microsoft Store delivery status for
-Recap Page. It describes local package evidence, not a published Store release.
+Windows packaging and certification evidence for Recap Page. These results describe the recorded
+package candidates, not a published Store release.
 
 ## Current status
 

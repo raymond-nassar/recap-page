@@ -1,17 +1,13 @@
 # Data provenance and the licence boundary
 
-This repository ships an MIT licence and a tree of committed data. Those are two different
-things, and until BL-099 the data described itself in a way that blurred them: one field named
-`sourceLicense` held, for ten of twelve reading orders, a sentence about where the order came
-from rather than any grant of anything.
+The MIT licence covers this project's own work, not every data file in the repository.
+This inventory records each file's source, copied fields, and stated permissions.
+`sourceOrigin` records attribution; `sourceLicense` records a licence grant, not a description of
+where the data came from.
 
-This document is the inventory that field was standing in for. It records, for every committed
-data file, where it came from, which fields were copied, and what the upstream actually states.
-
-**It draws no legal conclusion, and it is not legal advice.** Whether the tree as a whole may be
-redistributed is an open question recorded at the end, and it is what held this repository
-unpublished until 2026-08-16. What else would have to change on the day that question is answered is
-collected in [the publication runbook](PUBLICATION_RUNBOOK.md).
+**This is not legal advice or a legal conclusion.** Redistribution of the complete data tree remains
+an open question. The repository was published on 2026-08-16 with that risk accepted, not resolved;
+see [the publication runbook](PUBLICATION_RUNBOOK.md).
 
 ## Modern Marvel continuity intake
 
@@ -259,21 +255,15 @@ identities and order only; no source commentary, branding, images, or layout is 
 
 ## What the MIT licence covers
 
-[`LICENSE`](../LICENSE) is a grant made by this repository's copyright holder over the material
-this repository authors. That is the application source under `src/js/`, the build and check
-scripts under `scripts/`, the tests, the styles and the documents.
+[`LICENSE`](../LICENSE) covers work authored here: application code under `src/js/`, build and check
+scripts under `scripts/`, tests, styles, and documents.
 
-A grant reaches only what the grantor holds. It says nothing about material this repository did
-not author, and it cannot: nobody can license out what is not theirs. So the MIT text does not
-reach the issue metadata described below, and the presence of a licence file at the root is not
-a statement that everything beneath it is covered by it.
+It does not grant rights to third-party issue metadata. A licence at the repository root does not
+mean every file is covered.
 
-The reading orders under [`src/data/orders/`](../src/data/orders) are the case that same rule does
-not settle, and this document does not settle it either. What was made here is a selection and an
-arrangement: which issues to include, in what sequence, cut into which sections. What those files
-name is Marvel's, issue by issue. Whether a selection of that kind is this repository's to license
-is the fourth of the open questions at the end of this document, so it is left there rather than
-answered here by assertion.
+For reading orders under [`src/data/orders/`](../src/data/orders), the selection, sequence, and
+sections were assembled here, but the comics are Marvel's. Whether that arrangement is this
+project's to license remains an open question below.
 
 ## The chain the metadata came down
 
@@ -454,9 +444,8 @@ test written to guard the removal inherited exactly the same blind spot. Both no
 
 ### Everything else
 
-Source, scripts, tests, styles and documents are authored here and are what the MIT grant is
-about. The design mockups above are the one exception inside a directory that otherwise holds only
-authored work, which is why they are named separately rather than left to this sentence.
+Source, scripts, tests, styles, and documents are authored here and covered by MIT. The mockup data
+above is listed separately because it is third-party material outside the usual data directory.
 
 ## What each field means now
 
@@ -468,11 +457,8 @@ authored work, which is why they are named separately rather than left to this s
 | `sourceSection` | A visible heading that distinguishes several guides on one exact page. Absent for an ordinary whole-page source |
 | `spotlightKind` | An editorial classification required only for character runs. `best-of` and `complete-guide` make distinct, reviewable claims about a guide's scope; `other` records that neither claim is accurate. It is authored here and is never copied or inferred from an upstream field |
 
-The validator in [`src/js/lib/curated.js`](../src/js/lib/curated.js) enforces the shape rather
-than a list of known identifiers: a licence is an SPDX expression and a sentence is not, which
-refuses all ten of the old prose values by construction rather than by anyone remembering to
-check. The shape test is the point. An enumeration of permitted identifiers would be one more
-list somebody has to keep complete.
+The validator in [`src/js/lib/curated.js`](../src/js/lib/curated.js) requires an SPDX expression
+instead of descriptive prose. It validates the format, not a hand-maintained list of licence names.
 
 The current Character Spotlight shelf has 70 readings across 69 stories. Seven readings are
 explicit Best of selections, 38 are complete guides, and twenty-five are `other`. The two X-Men

@@ -1,28 +1,20 @@
 # Support
 
-Where to take a question, a problem or a report, and which of them belong somewhere other than
-here.
+Get help using Recap Page, report a problem, or suggest a change.
 
 ## Start with the troubleshooting section
 
-Most problems people hit are one of five, and all five are answered in
-[the troubleshooting guide](docs/RUNNING.md#troubleshooting): the port is already in use, Node.js is
-not installed, the page is blank, the read button appears to do nothing, and reading progress has
-apparently disappeared.
+The [troubleshooting guide](docs/RUNNING.md#troubleshooting) covers startup, Node.js, blank pages,
+reader links, and missing progress.
 
-The last one is worth calling out because it is the most alarming and the least serious. Progress
-is filed by your browser under the exact address you were using, port and hostname included, so
-opening the app at a different address shows an empty tracker. Nothing has been deleted. Going back
-to the original address brings it all back. [Always open the same
-address](docs/RUNNING.md#always-use-the-same-address) explains why, and it is the single most useful
-thing to know about this app.
-
-Progress is also per browser and per profile. Opening the app in a browser you have not used with
-it before will show it empty, and your other browser is untouched.
+If progress looks missing, check the browser, profile, and address first. Each hostname and port
+has separate storage. Opening another address or profile does not delete the original data.
+[Return to the same address](docs/RUNNING.md#always-use-the-same-address) and browser profile you
+used before.
 
 ## Asking a question or reporting a problem
 
-Open an issue on this repository. What helps most, in rough order:
+Open a repository issue and include:
 
 - What you did, what happened, and what you expected instead.
 - Whether any reading progress you had saved was affected.
@@ -30,69 +22,55 @@ Open an issue on this repository. What helps most, in rough order:
 - Your browser and its version.
 - Anything red in the browser's developer console.
 
-There is no other maintainer channel. There is no mailing list, maintainer chat or forum, and this
-project is worked on in bursts, so a reply may take a while.
+Repository issues are the only general support channel. There is no mailing list, chat, or forum.
+This is a single-maintainer project, so replies may take a while.
 
 ## Asking a public project question
 
-The [project home](https://raymond-nassar.github.io/recap-page/) links to a dedicated public question
-form for questions about how Recap Page works or why a documented project decision was made. Read the
-maintained source first and name it in the form so the remaining question has public context.
+Use the question form linked from the
+[project home](https://raymond-nassar.github.io/recap-page/) to ask how the app works or about a
+documented decision. The form asks which project documentation you checked and what remains unclear.
 
-Opening the form requires GitHub sign-in and creates a public Issue, so your username, question and
-replies are public and GitHub hosts that content. Recap Page sends nothing to it automatically. Do
-not paste reading progress, lists, notes, backups, personal information, attachments or suspected
-vulnerability details. Use the routes above or below when you need support or private security.
+Sign in to GitHub to post. Submitting creates a public Issue: your username, question, and replies
+are public, and GitHub hosts that content. Recap Page sends nothing automatically. Do not include
+reading progress, lists, notes, backups, personal information, attachments, or vulnerability details.
+Use the support route above for help with a problem, or the private security route below.
 
 ## A suspected security problem never goes in an issue
 
-Read [the security policy](SECURITY.md) instead. It explains how to report privately and what
-counts as a vulnerability in an app with no hosted backend and no accounts. The short version is
-that anything which silently loses or corrupts saved reading progress is treated as a security
-issue, and that a public report is a disclosure you cannot take back.
+Follow the [security policy](SECURITY.md) to report privately, even if you're unsure it is a
+vulnerability. Silent loss or corruption of reading progress is a security issue here.
+A public disclosure cannot be taken back.
 
 ## Things that are somebody else's to fix
 
-**Marvel's own services.** The Marvel Unlimited reader, `read.marvel.com`, `marvel.com`, your
-subscription, and whether a particular comic is in the service at all. This app links out to those
-and holds none of them, so it cannot affect them and cannot fix them. Take it to Marvel.
+**Marvel's services.** Contact Marvel about the reader, `read.marvel.com`, `marvel.com`,
+subscriptions, or whether a comic is available. Recap Page links to those services but cannot fix them.
 
-**The metadata database.** Covers, titles, publication dates and creator credits come from a
-community project, the Marvel Metadata API, described in
-[Data provenance](docs/DATA_PROVENANCE.md). Its availability, its correctness and its rate limits
-are not this project's to fix. Two things are worth separating before you report anything about it:
+**The metadata database.** Covers, titles, publication dates, and creator credits come from the
+community-run Marvel Metadata API; see [Data provenance](docs/DATA_PROVENANCE.md).
+Recap Page cannot fix its outages, rate limits, or incorrect source data.
 
-- **An outage** looks like details failing to fill in while the app itself keeps working. That is
-  deliberate: the app is written to degrade rather than break when the database is unreachable, and
-  it shows a pending state rather than pretending. Waiting is usually the answer. If you want to
-  check whether the app or the database is at fault from a source checkout, run `npm run contract`,
-  which asks the live API directly and reports what it got. The packaged Windows download does not
-  include this maintainer diagnostic.
-- **Wrong or missing information for a specific issue**, where the database itself has it right, is
-  worth reporting here, because that means this project copied it across wrongly.
+- **If the service is down**, the app keeps working and shows pending details. Try again later.
+  From a source checkout, `npm run contract` checks the live API directly. This diagnostic is not
+  included in the Windows download.
+- **If the database is right but Recap Page is wrong**, report it here.
 
-The database can be self-hosted and the address the app uses is a setting, so if you run your own
-mirror you can point the app at it.
+You can point the app at your own self-hosted metadata mirror in settings.
 
-**Comics published after 2025.** The bundled metadata snapshot ends there, so a later comic starts
-without bundled details or a cover. That is a documented boundary, not a defect. The manual entry
-form can look up factual details on Marvel Fandom when you ask it to and can preserve a pasted
-Marvel Unlimited reader link. Report a problem when one of those explicit routes loses or changes
-what you supplied; the absence of a newer comic from the bundled snapshot is working as intended.
+**Comics published after 2025.** The bundled snapshot ends in 2025, so newer comics start without
+bundled details or a cover. Add them by hand, use the optional Marvel Fandom lookup, or paste a
+Marvel Unlimited reader link. Missing newer comics are expected; losing or changing details you
+supplied is a problem worth reporting.
 
 ## Asking for a change
 
-[The planning Project](https://github.com/users/raymond-nassar/projects/1) lists active work and
-links each item to the Issue that owns its reasoning, so it is worth a look before asking: the thing
-you want may be on it already.
-
-[The contributing guide](CONTRIBUTING.md) sets out what this project will decline whatever the
-merits, which is a short list and a firm one. Reading it first saves everybody a round trip.
+Check [the planning Project](https://github.com/users/raymond-nassar/projects/1) for existing work,
+then read [the contributing guide](CONTRIBUTING.md) for the project's constraints before proposing
+a change.
 
 ## Which version you have
 
-**About this app** shows two numbers: the app version and the format of your saved data. Both are
-worth quoting in any report, because without them a report is about an unidentifiable copy of the
-app. A major version marks a substantial new product generation and is also required when saved
-data changes in a way an older build cannot read. Release notes state whether progress remains
-compatible. [The changelog](CHANGELOG.md) records what changed in each version.
+Include the app version and saved-data format shown in **About this app** when reporting a problem.
+Major versions mark a new product generation or a saved-data change older builds cannot read.
+[The changelog](CHANGELOG.md) explains each release and its compatibility.

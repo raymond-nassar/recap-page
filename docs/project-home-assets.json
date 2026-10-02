@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Informational project-home artwork and Android development previews, not a Google Play submission.",
+  "capturedOn": "2026-10-02",
+  "featureArtwork": {
+    "file": "pages/assets/android-feature-graphic.png",
+    "source": "Owner-supplied Recap Page feature graphic requested for this project-home update.",
+    "width": 1024,
+    "height": 500,
+    "sha256": "c79a879ff95d7d9bef82176c452d56852497000dc20acc9380be8d0bfd8eaeb6"
+  },
+  "androidPreviews": {
+    "command": "npm run play:assets",
+    "sourceRevision": "41de63aec8d67b040cb66dddce69a46458899ef1",
+    "sourceTree": "26436d863a7f6e1c6899285b48aff4435f41d275",
+    "sourceDirty": false,
+    "androidManifestSha256": "e245d64eaf8e44f53b851edd6258147fb5c7e365c7d60fcadd6ba3274484551a",
+    "renderer": {
+      "name": "Microsoft Edge",
+      "version": "Edg/154.0.4258.37",
+      "method": "Desktop Edge rendering generated Android web assets with an emulated phone viewport.",
+      "viewport": {
+        "width": 360,
+        "height": 640,
+        "deviceScaleFactor": 3
+      },
+      "nativeDevice": null,
+      "nativeBridge": false
+    },
+    "data": {
+      "method": "Wholly fictional negative-ID issue records, synthetic progress, empty catalog, covers off, no notes.",
+      "sha256": "107cdf5fb7fb8eb34143ffc8c56b3713a37d9940b97d4c31bd1604fa7ac57eb0"
+    },
+    "network": "Every page request fulfilled locally from an allowlist or aborted; no request continued to the network.",
+    "releaseAcceptance": false,
+    "playListingApproval": false,
+    "files": [
+      {
+        "file": "pages/assets/android-library-preview.png",
+        "captureFile": "01-library-preview.png",
+        "route": "#/library",
+        "scrollTarget": "top",
+        "width": 1080,
+        "height": 1920,
+        "bytes": 124568,
+        "sha256": "4d4bbee7ad5f168d9a78c58f8d1b2ed01dee1aeb6ab1ee3afa470fdd37735c82"
+      },
+      {
+        "file": "pages/assets/android-reading-preview.png",
+        "captureFile": "02-reading-preview.png",
+        "route": "#/read/play-lantern",
+        "scrollTarget": "#hero",
+        "width": 1080,
+        "height": 1920,
+        "bytes": 241177,
+        "sha256": "034cf5b4c2e3a558a27093a2145da9664648b2974ac585a24a8481d77e7a91c4"
+      }
+    ]
+  }
+}

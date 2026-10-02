@@ -12330,10 +12330,14 @@ const SCENARIOS = [
         await page.waitForFunction(() => location.hash === '#main');
         t.check('the skip link reaches the main content', true);
 
-        await page.$eval('#demo', (section) => section.scrollIntoView({ block: 'start' }));
+        for (const selector of ['.phone-gallery', '#demo']) {
+          await page.$eval(selector, (section) => section.scrollIntoView({ block: 'start' }));
+        }
         await page.waitForFunction(() => (
           [...document.images].every((image) => (
-            image.complete && image.naturalWidth === 960 && image.naturalHeight === 900
+            image.complete
+            && image.naturalWidth === Number(image.getAttribute('width'))
+            && image.naturalHeight === Number(image.getAttribute('height'))
           ))
         ));
         const desktop = await page.evaluate(() => ({
@@ -12341,6 +12345,8 @@ const SCENARIOS = [
           overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
           regions: [
             'overview',
+            'android',
+            'features',
             'demo',
             'getting-started',
             'troubleshooting',
@@ -12364,25 +12370,51 @@ const SCENARIOS = [
             displayedWidth: image.getBoundingClientRect().width,
           })),
           demoColumns: getComputedStyle(document.querySelector('.demo-grid')).gridTemplateColumns,
+          phoneColumns: getComputedStyle(document.querySelector('.phone-gallery')).gridTemplateColumns,
         }));
         t.check('desktop renders every project-home region without horizontal overflow',
           desktop.width === 1280
           && desktop.overflow <= 1
-          && desktop.regions.length === 8
+          && desktop.regions.length === 10
           && desktop.navigation.length === 5
           && desktop.navigation.every((item) => item.visible),
           JSON.stringify(desktop));
-        t.check('both canonical product images load at their checked dimensions',
-          desktop.images.length === 2
-          && desktop.images.every((image) => (
-            image.complete && image.width === 960 && image.height === 900
-            && image.displayedWidth >= 900
+        t.check('the supplied artwork and both phone previews load alongside the desktop samples',
+          desktop.images.length === 5
+          && desktop.images[0].complete
+          && desktop.images[0].width === 1024 && desktop.images[0].height === 500
+          && desktop.images.slice(1, 3).every((image) => (
+            image.complete && image.width === 1080 && image.height === 1920
+            && image.displayedWidth >= 320
           ))
-          && desktop.demoColumns.split(' ').length === 1,
+          && desktop.images.slice(3).every((image) => (
+            image.complete && image.width === 960 && image.height === 900
+            && image.displayedWidth >= 400
+          ))
+          && desktop.demoColumns.split(' ').length === 2
+          && desktop.phoneColumns.split(' ').length === 2,
           JSON.stringify(desktop.images));
         t.check('the information page loads no web resource or active project service',
           webRequests.length === 0,
           webRequests.join(' / '));
+
+        await page.$eval('.section-nav a[href="#android"]', (link) => link.focus());
+        await page.keyboard.press('Enter');
+        await page.waitForFunction(() => location.hash === '#android');
+        const android = await page.$eval('#android', (section) => ({
+          copy: section.innerText.replace(/\s+/g, ' '),
+          previews: [...section.querySelectorAll('figcaption a')].map((link) => ({
+            href: link.getAttribute('href'),
+            height: link.getBoundingClientRect().height,
+          })),
+        }));
+        t.check('Android navigation explains development status and offers usable full-size previews',
+          /Not available on Google Play/.test(android.copy)
+          && /The beta doesn't include all the features shown here/.test(android.copy)
+          && /previews made in a desktop browser, not on a phone/.test(android.copy)
+          && android.previews.length === 2
+          && android.previews.every((link) => link.href.startsWith('./assets/') && link.height >= 44),
+          JSON.stringify(android));
 
         await page.$eval('.section-nav a[href="#documentation"]', (link) => link.focus());
         await page.keyboard.press('Enter');
@@ -12392,7 +12424,7 @@ const SCENARIOS = [
           links: section.querySelectorAll('a').length,
         }));
         t.check('keyboard section navigation reaches the maintained-document routes',
-          documentation.visible && documentation.links === 10,
+          documentation.visible && documentation.links === 12,
           JSON.stringify(documentation));
 
         await page.setViewport({ width: 320, height: 900 });
@@ -12401,6 +12433,9 @@ const SCENARIOS = [
           width: innerWidth,
           overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
           splitColumns: getComputedStyle(document.querySelector('.split')).gridTemplateColumns,
+          phoneColumns: getComputedStyle(document.querySelector('.phone-gallery')).gridTemplateColumns,
+          phoneWidths: [...document.querySelectorAll('.phone-preview img')]
+            .map((image) => image.getBoundingClientRect().width),
           navigation: [...document.querySelectorAll('.section-nav a')].map((link) => {
             const box = link.getBoundingClientRect();
             return {
@@ -12417,6 +12452,8 @@ const SCENARIOS = [
           narrow.width === 320
           && narrow.overflow <= 1
           && narrow.splitColumns.split(' ').length === 1
+          && narrow.phoneColumns.split(' ').length === 1
+          && narrow.phoneWidths.every((width) => width >= 280 && width <= 296)
           && narrow.clipped.length === 0,
           JSON.stringify(narrow));
         t.check('every primary route remains visible and touch-sized at the narrow layout',
