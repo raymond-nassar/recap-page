@@ -43,6 +43,9 @@ Read the README, [architecture guide](docs/ARCHITECTURE.md), and
 [maintainer guide](docs/MAINTAINING.md) before changing code. The maintainer guide covers checks,
 pinned actions, curated lists, and releases.
 
+Follow [release bookkeeping](GOVERNANCE.md#release-bookkeeping) when preparing a feature PR or
+a final version release PR.
+
 ## How a change is judged
 
 Three rules do most of the work.
