@@ -13,6 +13,22 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Build personal Reading Lists from comic searches
+
+Issue, series, and creator searches now show selectable comics instead of immediately adding them
+to the active list. A single matching creator or series opens its comics directly. Filter the results,
+select individual comics or every loaded match, and combine selections across all three searches.
+
+Create a named Reading List by default, or deliberately choose an existing list. Saving happens only
+when you choose the final action. Cancelled or interrupted searches keep clearly marked partial
+results to choose from. A failed save keeps your selection available to retry.
+
+Existing saved lists, progress, notes, availability checks, and deferrals are unchanged. The saved-data
+and backup formats stay compatible; paste import and manual entry keep their existing behavior.
+
+Search screens keep the save action prominent and move optional guidance and repeated issue details
+to hover and keyboard-focus tooltips. Success, errors and incomplete-result warnings remain visible.
+
 ### Put reading actions first and disclose secondary choices
 
 All versions replace **Inspect issue** with **About this comic**. Comic details put Read

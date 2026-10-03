@@ -42,7 +42,8 @@ with cover art off](docs/screenshots/avengers-disassembled-reading-960.png)
 
 - **Explore Marvel.** Browse events, eras, characters, modern continuity runs, and MCU Prep.
 - **See what's next.** Keep the current comic, next issue, part labels, and progress in view.
-- **Make your own lists.** Choose issues, mark them read or unread, write notes, and add custom comics.
+- **Make your own lists.** Select comics from issue, series, and creator searches, then save them
+  to a named Reading List. Mark issues read or unread, write notes, and add custom comics.
 - **Read at your own pace.** Defer a comic in one list without marking it read. Revisit deferred or
   earlier issues, and reveal descriptions when you're ready.
 - **Follow Reading Paths.** From Home or Browse, see each stop's progress from the matching list,
@@ -56,6 +57,22 @@ with cover art off](docs/screenshots/avengers-disassembled-reading-960.png)
   reading history, or availability overrides.
 - **Choose your browser.** Use Edge, Chrome, Firefox, or Safari, or install Recap Page as a browser app.
 
+### Build a list from search
+
+In **Add comics**, search by issue title, series, or creator. A single matching series or creator
+opens its comics; when several names match, choose **Browse comics** beside the one you want.
+Searching and browsing never add comics to your saved lists.
+
+Select individual comics, or filter the results and use **Select all** to select every loaded
+match, including those beyond the first visible rows. Your selection stays with you across the
+three searches and while you inspect an issue. Title searches show up to 50 matches; narrow the
+search if you need a different comic.
+
+Give the new list a name and choose **Create Reading List**, or explicitly choose an existing
+destination and use **Add to Reading List**. Existing lists keep their order and skip duplicate
+comics. If loading stops, you can select from the clearly marked partial results or search again.
+Unfinished selections are not saved across a reload; the browser warns before you leave with one.
+
 ## Privacy
 
 ### Your data stays with you
@@ -68,7 +85,8 @@ Some features make direct requests:
 
 - Startup checks whether the comics database is reachable.
 - Issue searches send the words you type to the comics database and fetch matching details.
-- Series and creator name searches use bundled indexes. Adding a series or creator requests every issue.
+- Series and creator name searches use bundled indexes. Browsing a series or creator requests its
+  comics from the database. Selecting comics and choosing where to save them stays on your device.
 - Cover images load from Marvel's own image servers unless cover art is switched off in **Backup & settings**.
 - **Read** opens Marvel Unlimited if the reader link is known. Otherwise the new tab asks the
   comics database for that link, falling back to the issue page on marvel.com.
