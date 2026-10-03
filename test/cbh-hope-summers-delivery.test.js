@@ -219,13 +219,13 @@ test('Hope Summers keeps the approved publication-time library relationships', a
   const regenerated = await buildReportForMapping(
     `scripts/data/cbh-mappings/${id}.json`,
     [],
-    { excludedOrderIds: ['x-23-reading-order', 'ms-marvel-kamala-khan-reading-order', 'marvel-zombies-reading-order', 'hawkeye-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order', 'nova-reading-order', 'ultimate-spider-man-reading-order', 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide', 'shang-chi-master-of-kung-fu-reading-order', 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order', 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order', 'namor-sub-mariner-reading-order', 'iron-fist-reading-order'] },
+    { excludedOrderIds: ['mcu-prep-thunderbolts', 'x-23-reading-order', 'ms-marvel-kamala-khan-reading-order', 'marvel-zombies-reading-order', 'hawkeye-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order', 'nova-reading-order', 'ultimate-spider-man-reading-order', 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide', 'shang-chi-master-of-kung-fu-reading-order', 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order', 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order', 'namor-sub-mariner-reading-order', 'iron-fist-reading-order'] },
   );
   const expectedOrderIds = manifest.lists
     .filter((row) => row.id !== 'shang-chi-master-of-kung-fu-reading-order' && row.id !== 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order' && row.id !== 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order' && row.id !== id && row.id !== 'nova-reading-order' && row.id !== 'ultimate-spider-man-reading-order' && row.id !== 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide' && row.id !== 'x-23-reading-order' && row.id !== 'ms-marvel-kamala-khan-reading-order'
       && row.id !== 'marvel-zombies-reading-order'
       && row.id !== 'hawkeye-reading-order' && row.id !== 'silk-cindy-moon-reading-order'
-      && row.id !== 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order').filter((row) => row.id !== 'namor-sub-mariner-reading-order' && row.id !== 'iron-fist-reading-order')
+      && row.id !== 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order').filter((row) => row.id !== 'namor-sub-mariner-reading-order' && row.id !== 'iron-fist-reading-order' && row.id !== 'mcu-prep-thunderbolts')
 
     .map((row) => row.id);
   const expectedNonNone = new Map([
