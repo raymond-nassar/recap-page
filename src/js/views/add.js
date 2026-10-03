@@ -4,6 +4,7 @@ import {
   heldCount,
   MAX_NAME,
   markRead,
+  mergeIssueMetadata,
   normalizeIssue,
   setActive,
 } from '../lib/model.js';
@@ -19,6 +20,7 @@ import { DEFAULT_LIST_NAME } from '../lib/library.js';
 import { compareIssues } from '../lib/sort.js';
 import { updatedLabel } from '../lib/catalog.js';
 import { formatRoute } from '../lib/route.js';
+import { uiIcon } from '../lib/uiIcon.js';
 
 const NAME_SEARCH_LIMIT = 40;
 const ISSUE_SEARCH_LIMIT = 50;
@@ -48,8 +50,11 @@ export function mergeSearchSelection(state, items, { listId = null, name = '' } 
     next = createList(next, { name: listName });
     listId = next.listOrder[next.listOrder.length - 1];
   }
-  const issues = [...new Map(normalized.map((item) => [item.issueId, item])).values()]
-    .sort(compareIssues);
+  const unique = new Map();
+  for (const issue of normalized) {
+    unique.set(issue.issueId, mergeIssueMetadata(unique.get(issue.issueId), issue));
+  }
+  const issues = [...unique.values()].sort(compareIssues);
   const merged = addIssuesToList(next, listId, issues);
   return {
     ...merged,
@@ -143,7 +148,7 @@ export class ComicSearchRunner {
         if (!issue || issue.issueId <= 0) {
           throw new TypeError('The comics database returned a comic without a valid issue ID. Search again.');
         }
-        run.issues.set(issue.issueId, issue);
+        run.issues.set(issue.issueId, mergeIssueMetadata(run.issues.get(issue.issueId), issue));
       }
       run.received = progress.loaded != null && Number.isFinite(Number(progress.loaded))
         ? Number(progress.loaded)
@@ -251,6 +256,12 @@ export function createAddView({
     for (const config of searches) config.builder?.report.replaceChildren();
   }
 
+  function selectComics(items) {
+    for (const item of items) {
+      selected.set(item.issueId, mergeIssueMetadata(selected.get(item.issueId), item));
+    }
+  }
+
   function refreshBuilders() {
     const state = getState();
     const destinations = state.listOrder
@@ -261,7 +272,14 @@ export function createAddView({
     for (const config of searches) {
       const builder = config.builder;
       if (!builder) continue;
-      builder.host.hidden = !config.hasResults && selected.size === 0;
+      for (const link of builder.report.querySelectorAll('a[data-saved-list]')) {
+        if (!Object.hasOwn(state.lists, link.dataset.savedList)) {
+          const focused = link === document.activeElement;
+          link.remove();
+          if (focused) builder.report.focus({ preventScroll: true });
+        }
+      }
+      builder.host.hidden = !config.hasResults && selected.size === 0 && builder.report.childElementCount === 0;
       builder.count.textContent = `${comics(selected.size)} selected`;
       builder.clear.disabled = selected.size === 0 || saving;
       builder.save.disabled = selected.size === 0 || saving || missing;
@@ -317,7 +335,6 @@ export function createAddView({
     selected.clear();
     destinationId = result.listId;
     nameEdited = false;
-    refreshBuilders();
     const message = creating
       ? `Created “${result.listName}” with ${comics(result.added)}.`
       : `Added ${comics(result.added)} to “${result.listName}”${result.skipped ? `; ${comics(result.skipped)} already in that list` : ''}.`;
@@ -326,7 +343,9 @@ export function createAddView({
       class: 'btn btn-g',
       href: formatRoute({ view: 'read', listId: result.listId }),
       text: 'View Reading List',
+      dataset: { savedList: result.listId },
     }));
+    refreshBuilders();
     builder.report.focus({ preventScroll: true });
     if (result.added > 0) hydrate(result.listId);
   }
@@ -338,13 +357,17 @@ export function createAddView({
       type: 'text', id: `${prefix}-list-name`, name: 'list-name',
       maxlength: MAX_NAME, autocomplete: 'off', value: draftName,
     });
-    const nameRow = el('div', { class: 'stack' }, [
-      el('label', { for: `${prefix}-list-name`, text: 'Name for the new Reading List' }),
+    const nameRow = el('div', { class: 'stack comic-list-name' }, [
+      el('label', { for: `${prefix}-list-name`, text: 'List name' }),
       name,
     ]);
     const selectionCount = el('p', { class: 'comic-selection-count' });
     const save = el('button', { type: 'submit', class: 'btn', disabled: true }, 'Create Reading List');
-    const clear = el('button', { type: 'button', class: 'btn btn-g', disabled: true }, 'Clear selection');
+    const clearHelp = 'Clear this draft without changing saved Reading Lists.';
+    const clear = el('button', {
+      type: 'button', class: 'btn btn-g has-tooltip', disabled: true,
+      'data-tooltip': clearHelp, 'aria-describedby': `${prefix}-clear-help`,
+    }, 'Clear selection');
     const missing = el('p', {
       class: 'notice notice-warn', hidden: true,
       text: 'That Reading List no longer exists. Choose another list.',
@@ -357,6 +380,7 @@ export function createAddView({
       missing,
       nameRow,
       el('div', { class: 'field-row' }, [save, clear]),
+      el('span', { class: 'visually-hidden', id: `${prefix}-clear-help`, text: clearHelp }),
     ]);
     const host = el('section', {
       class: 'comic-builder', hidden: true, 'aria-labelledby': `${prefix}-selection-h`,
@@ -440,9 +464,16 @@ export function createAddView({
       el('label', { for: `${config.prefix}-comic-filter`, text: 'Filter these comics' }),
       filter,
     ]));
-    const selectAll = el('button', { type: 'button', class: 'btn btn-g', dataset: { act: 'select-all' } });
-    const shownCount = el('span', { class: 'rail-hint' });
-    box.append(el('div', { class: 'field-row comic-result-tools' }, [selectAll, shownCount]));
+    const selectAllHelp = 'Select every loaded comic matching this filter, including those not shown.';
+    const selectAll = el('button', {
+      type: 'button', class: 'btn btn-g has-tooltip',
+      dataset: { act: 'select-all', tooltip: selectAllHelp },
+      'aria-describedby': `${config.prefix}-select-all-help`,
+    });
+    box.append(
+      el('div', { class: 'field-row comic-result-tools' }, [selectAll]),
+      el('span', { class: 'visually-hidden', id: `${config.prefix}-select-all-help`, text: selectAllHelp }),
+    );
     const rows = el('div', { class: 'comic-results' });
     const more = el('button', { type: 'button', class: 'btn btn-g', dataset: { act: 'more-comics' } });
     box.append(rows, more);
@@ -461,25 +492,33 @@ export function createAddView({
         });
         checkbox.checked = selected.has(item.issueId);
         checkbox.addEventListener('change', () => {
-          if (checkbox.checked) selected.set(item.issueId, item);
+          if (checkbox.checked) selectComics([item]);
           else selected.delete(item.issueId);
           clearSelectionReports();
           refreshBuilders();
           announce(`${comics(selected.size)} selected.`);
         });
+        const metadata = [
+          item.seriesName && !item.title.includes(item.seriesName) ? item.seriesName : null,
+          item.onSale ? `Released ${ymd(item.onSale)}` : null,
+        ].filter(Boolean).join(' · ');
+        const metadataId = `${config.prefix}-comic-meta-${item.issueId}`;
+        const title = issueFocusAnchor(item, {
+          surface: 'search',
+          control: config.prefix,
+          className: 'result-title result-title-link',
+          children: item.title,
+        });
+        if (metadata) {
+          title.classList.add('has-tooltip');
+          title.dataset.tooltip = metadata;
+          title.setAttribute('aria-describedby', metadataId);
+        }
         rows.append(el('div', { class: 'result comic-choice' }, [
           el('label', { class: 'comic-select' }, [checkbox]),
           el('div', { class: 'result-main' }, [
-            issueFocusAnchor(item, {
-              surface: 'search',
-              control: config.prefix,
-              className: 'result-title result-title-link',
-              children: item.title,
-            }),
-            el('div', {
-              class: 'result-meta',
-              text: `${item.seriesName ?? ''}${item.onSale ? ` · ${ymd(item.onSale)}` : ''}`,
-            }),
+            title,
+            ...(metadata ? [el('span', { id: metadataId, class: 'visually-hidden', text: metadata })] : []),
           ]),
           el('span', {
             class: 'pill-held', text: 'Already in your library',
@@ -490,7 +529,6 @@ export function createAddView({
       if (!matches.length) rows.append(el('p', { class: 'rail-hint', text: 'No comics match this filter.' }));
       selectAll.disabled = matches.length === 0;
       selectAll.textContent = `Select all ${comics(matches.length)}`;
-      shownCount.textContent = `Showing ${count(visible.length)} of ${comics(matches.length)}`;
       more.hidden = visible.length >= matches.length;
       more.textContent = `Show ${count(Math.min(RESULT_BATCH_SIZE, matches.length - visible.length))} more`;
       refreshBuilders();
@@ -501,7 +539,7 @@ export function createAddView({
       announce(`${comics(matches.length)} match this filter.`);
     });
     selectAll.addEventListener('click', () => {
-      for (const item of matches) selected.set(item.issueId, item);
+      selectComics(matches);
       clearSelectionReports();
       refreshBuilders();
       announce(`${comics(selected.size)} selected.`);
@@ -578,14 +616,18 @@ export function createAddView({
         const summary = matched > items.length
           ? `Showing the ${items.length} closest matches of ${count(matched)}. Narrow your search to see the rest.`
           : `${count(matched)} ${matched === 1 ? 'match' : 'matches'}.`;
-        box.append(el('p', { class: 'rail-hint', text: summary }));
-        box.append(el('details', { class: 'setting-more search-index-note' }, [
-          el('summary', { text: 'About these results' }),
-          el('p', {
-            class: 'rail-hint',
-            text: `Filtered on this device from an index of ${count(total)} ${many}${snapshot(generatedAt)}.`,
-          }),
-        ]));
+        const indexHelp = `Filtered on this device from an index of ${count(total)} ${many}${snapshot(generatedAt)}.`;
+        box.append(
+          el('div', { class: 'field-row' }, [
+            el('p', { class: 'rail-hint', text: summary }),
+            el('button', {
+              type: 'button', class: 'btn btn-g btn-icon has-tooltip',
+              'aria-label': 'About these results',
+              'data-tooltip': indexHelp, 'aria-describedby': `${config.prefix}-index-help`,
+            }, [uiIcon('info')]),
+          ]),
+          el('span', { id: `${config.prefix}-index-help`, class: 'visually-hidden', text: indexHelp }),
+        );
         announce(summary);
         for (const item of items) {
           box.append(el('div', { class: 'result' }, [

@@ -248,7 +248,7 @@ sequenceDiagram
 
 **The transform is pure; the Store writes.** The handler at `src/js/views/reading.js:799-801` passes
 a function to the Store. That transform returns new state without side effects at
-`src/js/lib/model.js:658-660`. The write, result, and notification are handled together at
+`src/js/lib/model.js:662-664`. The write, result, and notification are handled together at
 `src/js/storage.js:372-399`.
 
 **The repaint is synchronous.** Before `update` returns, its callback has repainted the result.
@@ -279,18 +279,18 @@ replacement paths.
 **Comic searches preview first and save once.** The API delivers each normalized page before it
 requests the next one, at `src/js/api.js:193-230`. Each search owns a read-only run that accumulates
 comics in memory, rejects invalid issue identities, and reports incomplete loads against the API's
-total, at `src/js/views/add.js:88-180`. Cancellation retires the run before aborting its request;
+total, at `src/js/views/add.js:93-185`. Cancellation retires the run before aborting its request;
 late responses cannot replace a newer preview. Received partial results remain selectable, with
 an explicit stopped or failed notice. When a focused Cancel action disappears, its search field
-receives focus, at `src/js/views/add.js:517-541`.
+receives focus, at `src/js/views/add.js:555-579`.
 
 The shared selection survives searches and issue-detail navigation, but not a document reload.
 A named new list is the default destination. The explicit save composes creation, selected membership,
-and activation in one Store update, at `src/js/views/add.js:27-61` and `src/js/views/add.js:63-86`.
+and activation in one Store update, at `src/js/views/add.js:29-66` and `src/js/views/add.js:68-91`.
 An existing destination keeps its prior order, skips duplicate membership, and retains shared progress.
 A refused write leaves the selection and intended destination intact; only a successful addition
-starts hydration, at `src/js/views/add.js:290-332`. The browser warns before leaving with an unsaved
-selection, at `src/js/views/add.js:973-977`. Paste import and manual entry keep their existing paths.
+starts hydration, at `src/js/views/add.js:308-351`. The browser warns before leaving with an unsaved
+selection, at `src/js/views/add.js:1015-1019`. Paste import and manual entry keep their existing paths.
 
 ## Where a reader's data lives
 

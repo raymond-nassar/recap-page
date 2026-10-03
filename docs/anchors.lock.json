@@ -1559,8 +1559,8 @@
     "fp": "2e19500d63dda59d",
     "head": "this.store.update((s) => upsertIssue(s, { ...full, hydrated: true }));"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/lib/model.js:658-660|0": {
-    "anchor": "src/js/lib/model.js:658-660",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/lib/model.js:662-664|0": {
+    "anchor": "src/js/lib/model.js:662-664",
     "fp": "d3c89ab1f16d81ee",
     "head": "export function toggleRead(state, issueId) {"
   },
@@ -1594,35 +1594,35 @@
     "fp": "7240fa3b501276f5",
     "head": "load() {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:27-61|0": {
-    "anchor": "src/js/views/add.js:27-61",
-    "fp": "5445f13154fe620b",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:1015-1019|0": {
+    "anchor": "src/js/views/add.js:1015-1019",
+    "fp": "685f975f82d16d65",
+    "head": "globalThis.addEventListener('beforeunload', (event) => {"
+  },
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:29-66|0": {
+    "anchor": "src/js/views/add.js:29-66",
+    "fp": "25b24212ed6208de",
     "head": "export function mergeSearchSelection(state, items, { listId = null, name = '' } = {}) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:290-332|0": {
-    "anchor": "src/js/views/add.js:290-332",
-    "fp": "0d756265a90d95f7",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:308-351|0": {
+    "anchor": "src/js/views/add.js:308-351",
+    "fp": "2a36cd330c02d6ce",
     "head": "function saveSelected(config) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:517-541|0": {
-    "anchor": "src/js/views/add.js:517-541",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:555-579|0": {
+    "anchor": "src/js/views/add.js:555-579",
     "fp": "e144bb5aecf41505",
     "head": "for (const config of searches) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:63-86|0": {
-    "anchor": "src/js/views/add.js:63-86",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:68-91|0": {
+    "anchor": "src/js/views/add.js:68-91",
     "fp": "2f677131e0096b88",
     "head": "export function persistSearchSelection(readerStore, items, destination = {}, onSaved = () => null) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:88-180|0": {
-    "anchor": "src/js/views/add.js:88-180",
-    "fp": "b705b59a54719d91",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:93-185|0": {
+    "anchor": "src/js/views/add.js:93-185",
+    "fp": "b2df7c6a7a91153d",
     "head": "export class ComicSearchRunner {"
-  },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:973-977|0": {
-    "anchor": "src/js/views/add.js:973-977",
-    "fp": "685f975f82d16d65",
-    "head": "globalThis.addEventListener('beforeunload', (event) => {"
   },
   "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:40-48|0": {
     "anchor": "src/js/views/reading.js:40-48",
@@ -1994,13 +1994,13 @@
     "fp": "e9a1e74dee2c791e",
     "head": "// The publication gate answered a question that only gets asked once, and it was asked on"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:4552-4563|0": {
-    "anchor": "CHANGELOG.md:4552-4563",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:4555-4566|0": {
+    "anchor": "CHANGELOG.md:4555-4566",
     "fp": "7ebb6ef43a1f1241",
     "head": "- **The project now watches its own development tooling for known security problems, and says how"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:4565-4575|0": {
-    "anchor": "CHANGELOG.md:4565-4575",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:4568-4578|0": {
+    "anchor": "CHANGELOG.md:4568-4578",
     "fp": "c37eedd88ad1c81c",
     "head": "- **The project now has a published security policy, which names a private route for reporting a"
   },
@@ -2119,8 +2119,8 @@
     "fp": "3d856d97acb5205e",
     "head": "<fieldset class=\"filters\" id=\"progress-scope\">"
   },
-  "docs/UX_STUDY.md|job-stories|src/js/lib/model.js:1052-1083|0": {
-    "anchor": "src/js/lib/model.js:1052-1083",
+  "docs/UX_STUDY.md|job-stories|src/js/lib/model.js:1056-1087|0": {
+    "anchor": "src/js/lib/model.js:1056-1087",
     "fp": "b7f45dbb792851ff",
     "head": "export function validateBackup(raw) {"
   },
@@ -2184,8 +2184,8 @@
     "fp": "8b3c07e445e71673",
     "head": "<!-- Shown only when saved data could not be read. Saving stays paused until the"
   },
-  "docs/UX_STUDY.md|step-1-heuristic-evaluation#5|src/js/lib/model.js:891-969|0": {
-    "anchor": "src/js/lib/model.js:891-969",
+  "docs/UX_STUDY.md|step-1-heuristic-evaluation#5|src/js/lib/model.js:895-973|0": {
+    "anchor": "src/js/lib/model.js:895-973",
     "fp": "2d9a8098c22a7405",
     "head": "const version = Number(raw.schemaVersion ?? 1);"
   },
@@ -6159,9 +6159,9 @@
     "fp": "307982fb4a5a2d23",
     "head": "this.onProgress(this.status('running'));"
   },
-  "test/passive-announce.test.js|preamble|src/js/views/add.js:324-331|0": {
-    "anchor": "src/js/views/add.js:324-331",
-    "fp": "8e5f85e56f8a31a9",
+  "test/passive-announce.test.js|preamble|src/js/views/add.js:341-350|0": {
+    "anchor": "src/js/views/add.js:341-350",
+    "fp": "ab21e79435cdec8a",
     "head": "notify(report, withSaveEducation(message, result.transition), result.added ? 'ok' : 'warn');"
   },
   "test/shipped-copy.test.js|preamble|server.mjs:20|0": {

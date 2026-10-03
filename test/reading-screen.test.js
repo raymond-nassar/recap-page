@@ -88,7 +88,7 @@ test('icon-only controls expose their meaning on hover and keyboard focus', () =
 
   for (const id of ['form-search', 'form-series', 'form-creator']) {
     const form = html.match(new RegExp(`<form id="${id}"[\\s\\S]*?<\\/form>`))?.[0] ?? '';
-    assert.match(form, /class="btn btn-icon has-tooltip"/, `${id} has no styled tooltip`);
+    assert.match(form, /class="btn btn-g btn-icon has-tooltip"/, `${id} has no styled secondary tooltip`);
     assert.match(form, /data-tooltip="[^"]+"/, `${id} has no visual tooltip text`);
     assert.doesNotMatch(form, /\btitle="/, `${id} still relies on a native title`);
   }

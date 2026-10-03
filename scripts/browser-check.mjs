@@ -8862,6 +8862,172 @@ const SCENARIOS = [
     },
   },
   {
+    id: 'comic-search-regressions',
+    title: 'overlapping selections retain metadata and cross-route saves expose accessible feedback',
+    async run(page, t) {
+      let seed = createList(createEmptyState(), { id: 'existing', name: 'Existing Reading List' });
+      seed = addIssuesToList(seed, 'existing', [ORDER.items[0]]).state;
+      await page.evaluateOnNewDocument((initial) => {
+        window.__mrtComicSearch = true;
+        window.__mrtComicSearchReview = true;
+        if (!localStorage.getItem('mrt.state.v2')) localStorage.setItem('mrt.state.v2', JSON.stringify(initial));
+        localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
+      }, seed);
+      await open(page, '/#/add-search');
+      await page.waitForSelector('#search-selection-form', { timeout: 15000 });
+      const setField = async (selector, value, event = 'input') => page.$eval(
+        selector,
+        (input, text, type) => {
+          input.value = text;
+          input.dispatchEvent(new Event(type, { bubbles: true }));
+        },
+        value,
+        event,
+      );
+      for (const [view, prefix] of [
+        ['add-search', 'search'], ['add-creator', 'creator'], ['add-series', 'series'],
+      ]) {
+        await click(page, `[data-view="${view}"]`);
+        const selector = `#form-${prefix} button[type="submit"]`;
+        await page.focus(selector);
+        await page.waitForFunction(() => document.querySelector('#action-tip')?.hidden === false);
+        const button = await page.$(selector);
+        const accessible = await page.accessibility.snapshot({ root: button, interestingOnly: false });
+        await button.dispose();
+        const guidance = await page.$eval(selector, (control) => ({
+          tip: control.dataset.tooltip,
+          description: document.getElementById(control.getAttribute('aria-describedby'))?.textContent,
+          secondary: control.classList.contains('btn-g'),
+          paragraphs: control.closest('.add-page').querySelectorAll('.comic-search-hint').length,
+        }));
+        t.check(`${prefix}: focus guidance is supplementary, accessible and visually quiet`,
+          /Select comics/.test(guidance.tip) && accessible?.description === guidance.tip
+            && guidance.description === guidance.tip && guidance.secondary && guidance.paragraphs === 0,
+          JSON.stringify({ guidance, accessible }));
+        await page.keyboard.press('Escape');
+        await page.focus(`#${prefix}-q`);
+        await page.mouse.move(0, 0);
+        await page.hover(selector);
+        const hover = await page.$eval('#action-tip', (tip) => ({ visible: !tip.hidden, text: tip.textContent }));
+        t.check(`${prefix}: the same guidance is available on hover`,
+          hover.visible && hover.text === guidance.tip && /Select comics/.test(hover.text), JSON.stringify(hover));
+      }
+
+      await click(page, '[data-view="add-search"]');
+      await setField('#search-q', 'Fixture');
+      await click(page, '#form-search button[type="submit"]');
+      await page.waitForSelector('#search-results input[data-comic-id="97601"]', { timeout: 15000 });
+      await page.focus('#search-results a[data-issue-id="97601"]');
+      const title = await page.$('#search-results a[data-issue-id="97601"]');
+      const titleAccessible = await page.accessibility.snapshot({ root: title, interestingOnly: false });
+      await title.dispose();
+      t.check('result metadata is accessible without a repeated visible subtitle',
+        /Released/.test(titleAccessible?.description ?? '')
+          && await page.$$eval('#search-results .result-meta', (nodes) => nodes.length === 0),
+        JSON.stringify(titleAccessible));
+      await click(page, '#search-results input[data-comic-id="97601"]');
+      await click(page, '[data-view="add-creator"]');
+      await setField('#creator-q', 'Brubaker');
+      await click(page, '#form-creator button[type="submit"]');
+      await page.waitForSelector('#creator-results [data-act="select-all"]', { timeout: 15000 });
+      await click(page, '#creator-results [data-act="select-all"]');
+      t.check('overlapping bulk results form one deduplicated draft',
+        await page.$eval('#creator-selection-form .comic-selection-count', (node) => node.textContent) === '240 comics selected');
+
+      await click(page, '[data-view="add-series"]');
+      t.check('an unsearched route can save the shared draft',
+        await page.$$eval('#series-results input[data-comic-id]', (nodes) => nodes.length === 0)
+          && await page.$eval('#series-selection-form button[type="submit"]', (button) => !button.disabled));
+      await setField('#series-list-name', 'Overlapping picks');
+      await click(page, '#series-selection-form button[type="submit"]');
+      await page.waitForFunction(() => document.querySelector('#series-selection-report')?.textContent.includes('Created'));
+      const saved = await readState(page);
+      const listId = saved.active;
+      t.check('bulk selection preserves richer unsaved issue metadata',
+        saved.issues[97601].mu === '2026-03-03' && saved.issues[97601].digitalId === 797601
+          && saved.issues[97601].hydrated === true, JSON.stringify(saved.issues[97601]));
+      const success = await page.$eval('#series-selection-report', (report) => ({
+        visible: report.checkVisibility(),
+        focused: document.activeElement === report,
+        href: report.querySelector('a')?.getAttribute('href'),
+        linkVisible: report.querySelector('a')?.checkVisibility(),
+      }));
+      t.check('the cross-route success and destination link stay visible',
+        success.visible && success.linkVisible && success.href === `#/read/${listId}`, JSON.stringify(success));
+      t.check('cross-route saving focuses visible feedback', success.focused, JSON.stringify(success));
+
+      const refresh = await page.evaluate(async () => {
+        const { Store } = await import('./js/storage.js');
+        const { createList: makeList } = await import('./js/lib/model.js');
+        const before = localStorage.getItem('mrt.state.v2');
+        const writer = new Store();
+        writer.load();
+        writer.update((state) => makeList(state, { id: 'refresh-proof', name: 'Another tab' }));
+        dispatchEvent(new StorageEvent('storage', {
+          key: 'mrt.state.v2', oldValue: before, newValue: localStorage.getItem('mrt.state.v2'), storageArea: localStorage,
+        }));
+        return writer.lastUpdateOk;
+      });
+      await page.waitForSelector('#series-destination option[value="refresh-proof"]', { timeout: 15000 });
+      t.check('a later Store refresh retains the cross-route success',
+        refresh && await page.$eval('#series-selection-report', (report) => report.checkVisibility()
+          && report.querySelector('a')?.checkVisibility()));
+      await page.focus('#series-selection-report a');
+      const deleted = await page.evaluate(async (id) => {
+        const { Store } = await import('./js/storage.js');
+        const { deleteList } = await import('./js/lib/model.js');
+        const before = localStorage.getItem('mrt.state.v2');
+        const writer = new Store();
+        writer.load();
+        writer.update((state) => deleteList(state, id));
+        dispatchEvent(new StorageEvent('storage', {
+          key: 'mrt.state.v2', oldValue: before, newValue: localStorage.getItem('mrt.state.v2'), storageArea: localStorage,
+        }));
+        return writer.lastUpdateOk;
+      }, listId);
+      await page.waitForFunction((id) => (
+        document.querySelector(`#series-destination option[value="${id}"]`)?.disabled === true
+      ), { timeout: 15000 }, listId);
+      t.check('a deleted destination withdraws its offer without losing focus',
+        deleted && await page.$eval('#series-selection-report', (report) => !report.querySelector('a')
+          && document.activeElement === report));
+
+      await click(page, '[data-view="add-search"]');
+      await click(page, '#search-results input[data-comic-id="97601"]');
+      await setField('#search-destination', 'existing', 'change');
+      const nameVisibility = await page.$eval('#search-list-name', (input) => ({
+        hidden: input.parentElement.hidden,
+        display: getComputedStyle(input.parentElement).display,
+        visible: input.checkVisibility(),
+      }));
+      t.check('an existing destination removes the unused name field from layout',
+        nameVisibility.hidden && nameVisibility.display === 'none' && !nameVisibility.visible,
+        JSON.stringify(nameVisibility));
+      await page.focus('#search-destination');
+      await page.keyboard.press('Tab');
+      t.check('keyboard navigation skips the unused name field',
+        await page.evaluate(() => document.activeElement === document.querySelector('#search-selection-form button[type="submit"]')));
+
+      await click(page, '[data-view="add-creator"]');
+      await setField('#creator-q', 'Hickman');
+      await click(page, '#form-creator button[type="submit"]');
+      const infoSelector = '#creator-results button[aria-label="About these results"]';
+      await page.waitForSelector(infoSelector, { timeout: 15000 });
+      await page.focus(infoSelector);
+      const indexHelp = await page.$eval(infoSelector, (button) => ({
+        icon: button.querySelector('svg') instanceof SVGSVGElement,
+        description: document.getElementById(button.getAttribute('aria-describedby'))?.textContent,
+        tip: document.querySelector('#action-tip').textContent,
+        visible: !document.querySelector('#action-tip').hidden,
+        disclosure: Boolean(document.querySelector('#creator-results details')),
+      }));
+      t.check('ambiguous creator choices retain index context in an accessible info tooltip',
+        indexHelp.icon && indexHelp.visible && indexHelp.tip === indexHelp.description
+          && /index of 3 creators/.test(indexHelp.tip) && !indexHelp.disclosure,
+        JSON.stringify(indexHelp));
+    },
+  },
+  {
     id: 'long-add-cancellation',
     title: 'comic previews stop cleanly and partial results require an explicit save',
     async run(page, t) {
@@ -13660,13 +13826,15 @@ async function preparePage(page, origin, mutation) {
           id: 97601, title: 'Search Fixture (2026) #1', issueNumber: '1',
           seriesId: 97600, seriesName: 'Search Fixture (2026)',
           onSaleDate: '2026-01-03', digitalId: 797601,
+          ...(window.__mrtComicSearchReview ? { unlimitedDate: '2026-03-03' } : {}),
         };
         if (comicSearch && requestUrl.pathname.endsWith('/creators/367/issues')) {
           const offset = Number(requestUrl.searchParams.get('offset') ?? 0);
           const limit = Number(requestUrl.searchParams.get('limit') ?? 200);
-          const items = Array.from({ length: 239 }, (_, index) => creatorComic(index + 1))
-            .slice(offset, offset + limit);
-          return Promise.resolve(json({ items, total: 239, has_next: offset + items.length < 239 }));
+          const comics = Array.from({ length: 239 }, (_, index) => creatorComic(index + 1));
+          if (window.__mrtComicSearchReview) comics.push({ ...searchComic, unlimitedDate: null });
+          const items = comics.slice(offset, offset + limit);
+          return Promise.resolve(json({ items, total: comics.length, has_next: offset + items.length < comics.length }));
         }
         if (comicSearch && requestUrl.pathname.endsWith('/series/19462/issues')) {
           return Promise.resolve(json({

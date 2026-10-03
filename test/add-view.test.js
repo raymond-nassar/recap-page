@@ -7,7 +7,9 @@ import { fileURLToPath } from 'node:url';
 import {
   ADD_VIEWS, LEGACY_VIEW_ALIASES, VIEWS, formatRoute, parseRoute,
 } from '../src/js/lib/route.js';
-import { addIssuesToList, createEmptyState, createList } from '../src/js/lib/model.js';
+import {
+  addIssuesToList, createEmptyState, createList, normalizeIssue,
+} from '../src/js/lib/model.js';
 import {
   ComicSearchRunner, createAddView, mergeSearchSelection, persistSearchSelection,
 } from '../src/js/views/add.js';
@@ -136,6 +138,25 @@ test('selected duplicates keep shared progress, notes, overrides and richer save
   assert.deepEqual({ added: result.added, skipped: result.skipped }, { added: 1, skipped: 1 });
 });
 
+test('unsaved duplicate selections retain richer metadata in either input order', () => {
+  const rich = {
+    ...issue(1),
+    seriesName: 'Shared series',
+    digitalId: 42,
+    mu: '2026-02-01',
+    pageCount: 32,
+    creators: [{ name: 'A creator', role: 'writer' }],
+    hydrated: true,
+  };
+  const sparse = { issueId: 1, title: rich.title, hydrated: false };
+  for (const items of [[rich, sparse], [sparse, rich]]) {
+    const result = mergeSearchSelection(createEmptyState(), items, { name: 'Shared picks' });
+    assert.deepEqual(result.state.issues[1], normalizeIssue(rich));
+    assert.deepEqual(result.state.lists[result.listId].itemIds, [1]);
+    assert.deepEqual({ added: result.added, skipped: result.skipped }, { added: 1, skipped: 0 });
+  }
+});
+
 test('invalid selections, names and deleted destinations never create a fallback list', () => {
   const { state } = listState([90]);
   for (const [items, destination, error] of [
@@ -258,6 +279,19 @@ test('a comic preview completes with deduplicated chronological results, without
   assert.equal(result.total, 3, 'an older name-index count overruled the API');
   assert.equal(runner.savePage, undefined);
   assert.deepEqual(statuses.map((status) => status.phase), ['running', 'running', 'complete']);
+});
+
+test('duplicate preview pages retain richer metadata before selection', async () => {
+  const rich = { ...issue(1), mu: '2026-02-01', digitalId: 42, hydrated: true };
+  const runner = new ComicSearchRunner({
+    load: async (_item, { onPage }) => {
+      await onPage([rich], { loaded: 1, total: 2 });
+      await onPage([{ issueId: 1, title: rich.title, hydrated: false }], { loaded: 2, total: 2 });
+    },
+  });
+  const result = await runner.start({ name: 'Repeated comic' });
+  assert.equal(result.phase, 'complete');
+  assert.deepEqual(result.items, [normalizeIssue(rich)]);
 });
 
 test('cancel retires immediately and stale preview work cannot mutate its replacement', async () => {
@@ -462,7 +496,9 @@ test('only paste and manual entry imply an active destination before an explicit
       );
     } else {
       assert.doesNotMatch(source, /\badd-target\b/, `${view} still implies an automatic destination`);
-      assert.match(source, /comic-search-hint/);
+      assert.doesNotMatch(source, /comic-search-hint/);
+      assert.match(source, /aria-describedby="(?:search|series|creator)-help"/);
+      assert.match(source, /class="visually-hidden">Select comics/);
     }
   }
   assert.match(add, /Adding to: \$\{target\.name\}/, 'the compact destination no longer names the current list');
@@ -473,21 +509,22 @@ test('only paste and manual entry imply an active destination before an explicit
   );
 });
 
-test('the five Add pages keep exactly five primary buttons between them', () => {
+test('the five Add pages reserve primary styling for paste and manual saves', () => {
   const worded = allPages.match(/class="btn"/g) ?? [];
-  const iconOnly = allPages.match(/class="btn btn-icon[^"]*"/g) ?? [];
-  assert.equal(worded.length + iconOnly.length, 5);
-  assert.equal(iconOnly.length, 3, 'the three search submits are the icon-only ones');
+  const searches = allPages.match(/class="btn btn-g btn-icon[^"]*"/g) ?? [];
+  assert.equal(worded.length, 2);
+  assert.equal(searches.length, 3, 'the three search submits are secondary icon-only controls');
 });
 
-test('every icon-only primary button carries a name and a tooltip', () => {
-  const buttons = allPages.match(/<button[^>]*class="btn btn-icon[^"]*"[^>]*>/g) ?? [];
+test('every icon-only search button carries a name, tooltip and accessible description', () => {
+  const buttons = allPages.match(/<button[^>]*class="btn btn-g btn-icon[^"]*"[^>]*>/g) ?? [];
   assert.equal(buttons.length, 3);
   for (const button of buttons) {
     assert.match(button, /class="[^"]*\bhas-tooltip\b/, `no tooltip hook on ${button}`);
     assert.match(button, /data-tooltip="[^"]+"/, `no tooltip on ${button}`);
     assert.doesNotMatch(button, /\btitle="/, `native title remains on ${button}`);
     assert.match(button, /aria-label="[^"]+"/, `no accessible name on ${button}`);
+    assert.match(button, /aria-describedby="[^"]+"/, `no accessible description on ${button}`);
   }
 });
 
@@ -525,7 +562,7 @@ test('every repeated Add view row action keeps the paired grey secondary classes
   const sites = [
     [
       'select-all comics button',
-      /const selectAll = el\('button', \{ type: 'button', class: 'btn btn-g'/,
+      /const selectAll = el\('button', \{\s*type: 'button', class: 'btn btn-g(?: [^']*)?'/,
     ],
     [
       'show-more comics button',

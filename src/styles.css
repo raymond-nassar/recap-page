@@ -1285,7 +1285,7 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: 6px; padding: 
   color: var(--muted); font-size: var(--t-caption); padding: var(--space-4) var(--space-1) var(--space-4);
   border-bottom: 1px solid var(--line);
 }
-.comic-search-hint { margin: 0 0 var(--space-5); }
+.comic-builder .comic-list-name[hidden] { display: none; }
 .comic-builder { margin: var(--space-6) 0; border-block: 1px solid var(--line); }
 .comic-builder > h2 { margin: var(--space-5) 0 var(--space-4); }
 .comic-builder > form { padding: 0 0 var(--space-5); }

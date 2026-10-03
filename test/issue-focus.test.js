@@ -256,7 +256,8 @@ test('every issue-bearing surface uses the shared focus route while retaining re
   const search = add.slice(searchStart, searchEnd);
   assert.match(search, /surface: 'search'/);
   assert.match(search, /checkbox\.addEventListener\('change'/);
-  assert.match(search, /selected\.set\(item\.issueId, item\)/);
+  assert.match(search, /if \(checkbox\.checked\) selectComics\(\[item\]\)/);
+  assert.match(add, /selected\.set\(item\.issueId, mergeIssueMetadata\(selected\.get\(item\.issueId\), item\)\)/);
   assert.doesNotMatch(search, /saveSelection\(/);
   assert.match(add, /result = saveSelection\(\[\.\.\.selected\.values\(\)\]/);
 

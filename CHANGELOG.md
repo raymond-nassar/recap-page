@@ -26,6 +26,9 @@ results to choose from. A failed save keeps your selection available to retry.
 Existing saved lists, progress, notes, availability checks, and deferrals are unchanged. The saved-data
 and backup formats stay compatible; paste import and manual entry keep their existing behavior.
 
+Search screens keep the save action prominent and move optional guidance and repeated issue details
+to hover and keyboard-focus tooltips. Success, errors and incomplete-result warnings remain visible.
+
 ### Simplify Home and the Android phone header
 
 On phone-sized Android screens, the app name and full icon appear only in the top bar.

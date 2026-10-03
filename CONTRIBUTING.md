@@ -78,6 +78,21 @@ the change matters and what a reader will notice, including when nothing changes
 file names, identifiers, commands, or backlog IDs; describe what those things do instead.
 Give the reason before the mechanism. Keep the technical sections after this summary.
 
+## Interface design
+
+Apply this rule across the entire app: make the action clear and keep the screen quiet.
+Use concise labels and a prominent primary action for the task. Give secondary actions less
+visual weight, and avoid explanatory paragraphs after controls or repeated information.
+
+Put supplementary guidance in concise tooltips available on both hover and keyboard focus.
+Connect nonredundant descriptions to their controls for screen readers. Keep required labels,
+meaningful status, errors, save confirmation and safety warnings visible; tooltips do not replace
+essential information or system feedback.
+
+Follow Fluent's [button guidance](https://fluent2.microsoft.design/components/web/react/core/button/usage)
+and [tooltip guidance](https://fluent2.microsoft.design/components/web/react/core/tooltip/usage),
+checked on 2026-10-03. This is an app-wide standard, not a convention limited to Add comics.
+
 ## The checks
 
 ```
