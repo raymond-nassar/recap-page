@@ -180,8 +180,8 @@ function channel() {
   };
 }
 
-// This is addToActive: it confirms the add, then starts the hydrator, whose start() reports
-// 'running' before its first await. `src/js/views/add.js:421-424` and `src/js/hydrate.js:50`.
+// Saving a comic selection confirms the save, then starts the hydrator, whose start() reports
+// 'running' before its first await. `src/js/views/add.js:342-351` and `src/js/hydrate.js:50`.
 test('a confirmation and the hydration start raised together are both heard', () => {
   const c = channel();
   c.announce('Added 20 issues to Reading.');
