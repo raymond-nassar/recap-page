@@ -84,8 +84,8 @@ test('Iron Fist uses an actual current-library relationship review and unchanged
     readJson('src/data/curated-lists.json'),
     readFile(`src/data/orders/${id}.md`),
   ]);
-  const peers = manifest.lists.filter((entry) => entry.id !== id);
-  const live = await buildReportForMapping(mappingPath, [], { excludedOrderIds: [] });
+  const peers = manifest.lists.filter((entry) => entry.id !== 'mcu-prep-eternals' && (entry.id !== id));
+  const live = await buildReportForMapping(mappingPath, [], { excludedOrderIds: ['mcu-prep-eternals'] });
   assert.deepEqual(report, live);
   assert.equal(report.comparisonCount, peers.length);
   assert.doesNotThrow(() => validateReportDigest(report));
@@ -181,8 +181,8 @@ test('Iron Fist pinned payload and catalog retain all 414 original slots, cover 
   assert.deepEqual([listed.count, listed.placeholderCount, listed.coverIssueId], [414, 38, 10201]);
   assert.deepEqual([listed.type, listed.depth, listed.spotlightKind, listed.timeline],
     ['character-run', 'partial', 'other', null]);
-  assert.equal(manifest.lists.length, 203);
-  assert.equal(catalog.lists.length, 280);
+  assert.equal(manifest.lists.length, 204);
+  assert.equal(catalog.lists.length, 281);
   assert.equal(catalog.lists.filter((entry) => entry.type === 'character-run').length, 70);
   assert.equal(catalog.lists.filter((entry) => entry.type === 'character-run'
     && entry.id !== id).length, 69);

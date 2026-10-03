@@ -13,6 +13,14 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Add the owner-selected Eternals MCU Prep list
+
+MCU Prep now includes Eternals through Home and Browse. Its 24 original comics preserve
+the three requested collection groups: Jack Kirby's first volume, Neil Gaiman and
+John Romita Jr.'s miniseries, and Kieron Gillen and Esad Ribic's Only Death Is Eternal.
+Preview, import and Reading List keep that order. The Kirby and Gillen picks stop at
+their first-volume boundaries; existing guides and saved reading data are unchanged.
+
 ### Put reading actions first and disclose secondary choices
 
 All versions replace **Inspect issue** with **About this comic**. Comic details put Read

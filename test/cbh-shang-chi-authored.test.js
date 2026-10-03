@@ -91,11 +91,11 @@ test('Shang-Chi requires its renewed independent relationship approval against a
     '76f81c9a189e88b98556ba1a7c0564531675380a82428480117abd49599a6f5f');
   assert.equal(mapping.reviewStatus, 'approved');
   assert.deepEqual(mapping.approvedManifest, packet.proposedManifest);
-  const published = manifest.lists.filter((entry) => entry.id !== id
+  const published = manifest.lists.filter((entry) => entry.id !== 'mcu-prep-eternals' && (entry.id !== id
     && entry.id !== 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order'
     && entry.id !== 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order'
     && entry.id !== 'namor-sub-mariner-reading-order'
-    && entry.id !== 'iron-fist-reading-order');
+    && entry.id !== 'iron-fist-reading-order'));
   assert.equal(published.length, 198);
   const orders = await Promise.all(published.map(async (entry) => ({
     id: entry.id,
@@ -172,7 +172,7 @@ test('Shang-Chi authored checklist and complete browser vector preserve every se
     repeat.sourcePosition, repeat.canonicalSourcePosition,
   ]), [[12, 10], [207, 31], [208, 97], [209, 98]]);
   const position = manifest.lists.findIndex((entry) => entry.id === id);
-  assert.equal(manifest.lists.length, 203);
+  assert.equal(manifest.lists.length, 204);
   assert.equal(manifest.lists[position - 1].id, 'doctor-octopus-otto-octavius-reading-order');
   assert.equal(manifest.lists[position + 1].id, 'thunderbolts-reading-order');
   assert.deepEqual(manifest.lists[position], packet.proposedManifest);
@@ -215,7 +215,7 @@ test('Shang-Chi vendored payload preserves exact original IDs, eight gaps and it
   assert.deepEqual([card.type, card.depth, card.spotlightKind, card.timeline],
     ['character-run', 'partial', 'other', null]);
   assert.equal(card.sourceLicense, null);
-  assert.equal(catalog.lists.length, 280);
+  assert.equal(catalog.lists.length, 281);
   const parsedCatalog = parseCatalog(catalog);
   assert.equal(shelfKey({ lists: [card] }), 'spotlights');
   for (const query of ['Shang-Chi', 'Master of Kung Fu', 'Ten Rings']) {

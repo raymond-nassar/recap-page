@@ -271,7 +271,8 @@ test('Far From Home binds the exact source, exclusions, overlap, and catalog rol
   assert.deepEqual(
     HOME_CATEGORIES.find(({ key }) => key === 'marvel-on-screen')
       .select(groupCatalog(catalog.lists))
-      .map((story) => story.lists[0].id),
+      .map((story) => story.lists[0].id)
+      .filter((id) => MCU_SELECTED_IDS.includes(id)),
     MCU_SELECTED_IDS,
   );
   assert.equal(catalog.paths.some(({ steps }) => steps.includes(record.id)), false);
@@ -396,7 +397,7 @@ test('approved evidence reaches six payloads, cards, and one MCU Prep group', as
       .map((entry) => entry.id),
     MCU_SELECTED_IDS,
   );
-  assert.equal(catalog.lists.length, 280);
+  assert.equal(catalog.lists.length, 281);
 
   assert.deepEqual(
     inventory.records.filter((record) => record.centralDisposition === 'selected')
@@ -439,13 +440,14 @@ test('approved evidence reaches six payloads, cards, and one MCU Prep group', as
   const stories = groupCatalog(catalog.lists);
   const screen = availableHomeCategories(stories)
     .find((category) => category.key === 'marvel-on-screen');
-  assert.equal(screen.count, 6);
+  assert.equal(screen.count, 7);
   const screenDefinition = HOME_CATEGORIES.find((category) => (
     category.key === 'marvel-on-screen'
   ));
   assert.equal(screenDefinition.heading, 'MCU Prep');
   assert.deepEqual(
-    screenDefinition.select(stories).map((story) => story.lists[0].id),
+    screenDefinition.select(stories).map((story) => story.lists[0].id)
+      .filter((id) => MCU_SELECTED_IDS.includes(id)),
     MCU_SELECTED_IDS,
   );
   assert.deepEqual(

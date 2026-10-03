@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-30T04:55:50.710Z",
+  "generatedAt": "2026-10-03T17:50:15.766Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -2724,6 +2724,45 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-26T05:16:35.956Z"
+    },
+    {
+      "id": "mcu-prep-eternals",
+      "file": "mcu_prep_eternals.json",
+      "name": "Eternals",
+      "description": "Three owner-selected Eternals collections: Jack Kirby's first volume, Neil Gaiman and John Romita Jr.'s miniseries, then Kieron Gillen and Esad Ribic's first volume. Original issues only.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "count": 24,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 3,
+      "characters": [
+        "Eternals"
+      ],
+      "keywords": [
+        "MCU Prep",
+        "Eternals",
+        "Jack Kirby",
+        "Neil Gaiman",
+        "John Romita Jr.",
+        "Kieron Gillen",
+        "Esad Ribic",
+        "Only Death Is Eternal"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 8799,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/5c2fa8f171638",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/684",
+      "sourceOrigin": "Compiled for this project",
+      "sourceLicense": null,
+      "updatedAt": "2026-10-03T17:50:15.766Z"
     },
     {
       "id": "agents-of-atlas-reading-order",

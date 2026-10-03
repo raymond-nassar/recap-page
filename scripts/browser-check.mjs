@@ -3153,6 +3153,9 @@ const SCENARIOS = [
     async run(page, t) {
       const browserErrors = [];
       const externalRequests = [];
+      const expectedScreenNames = ACTUAL_CATALOG.lists
+        .filter((entry) => entry.type === 'screen-companion')
+        .map((entry) => entry.name);
       const expectedTitles = [
         'The Amazing Spider-Man (1963) #66', 'The Amazing Spider-Man (1963) #67',
         'Peter Parker, the Spectacular Spider-Man (1976) #50',
@@ -3184,14 +3187,11 @@ const SCENARIOS = [
         path: Boolean(document.querySelector(`${selector} .result-path`)),
         orientation: Boolean(document.querySelector('#marvel-on-screen-results .shelf-orientation')),
       }), cardSelector);
-      t.check('actual MCU Prep discovers Far From Home once in six-guide source order',
+      t.check('actual MCU Prep discovers Far From Home once in catalog MCU order',
         screen.hash === '#/marvel-on-screen'
-        && screen.count === '6 Reading Lists'
+        && screen.count === `${expectedScreenNames.length} Reading Lists`
         && screen.cards === 1
-        && screen.titles.join('|') === [
-          'Doctor Strange: Multiverse of Madness', 'Spider-Man: No Way Home',
-          'Marvel Multiverse', 'Marvel What If?', 'WandaVision', 'Spider-Man: Far From Home',
-        ].join('|'),
+        && screen.titles.join('|') === expectedScreenNames.join('|'),
         JSON.stringify(screen));
       t.check('Far From Home has no reading-path or first-stop orientation',
         !screen.path && !screen.orientation, JSON.stringify(screen));
@@ -15198,6 +15198,9 @@ SCENARIOS.push({
 SCENARIOS.push((await import('./browser-onslaught.mjs')).onslaughtActualData);
 SCENARIOS.push((await import('./browser-namor.mjs')).namorActualData);
 SCENARIOS.push((await import('./browser-iron-fist.mjs')).ironFistActualData);
+const { eternalsActualData, eternalsCollectionMutation } = await import('./browser-mcu-prep-eternals.mjs');
+SCENARIOS.push(eternalsActualData);
+MUTATIONS.push(eternalsCollectionMutation);
 
 // Without this an unexpected throw leaves an unhandled rejection, which Node reports as a bare
 // stack and exits 1 on. Exit 1 is this check's word for "an assertion failed", so an internal
