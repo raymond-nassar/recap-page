@@ -1,0 +1,783 @@
+{
+  "schemaVersion": 1,
+  "id": "mcu-prep-shang-chi-and-the-legend-of-the-ten-rings",
+  "name": "Shang-Chi and the Legend of the Ten Rings",
+  "scopeIssue": "https://github.com/raymond-nassar/recap-page/issues/683",
+  "compilationInput": {
+    "kind": "owner-selected-excerpt",
+    "url": "https://github.com/raymond-nassar/recap-page/issues/683#issuecomment-5971742989",
+    "receivedAt": "2026-10-03"
+  },
+  "externalSource": {
+    "url": "https://www.comicbookherald.com/shang-chi-master-of-kung-fu-reading-order/",
+    "section": "Latest Additions:",
+    "verifiedAt": "2026-10-03",
+    "boundary": "Only the seven owner-selected blocks in their supplied order, not the complete character guide or entire Latest Additions section.",
+    "verification": "Current public HTML page matches the owner excerpt. The WordPress API returned HTTP 403 and was not bypassed; no WordPress identity is asserted."
+  },
+  "sourceFraming": {
+    "status": "approved",
+    "decisionUrl": "https://github.com/raymond-nassar/recap-page/issues/683#issuecomment-5971836654",
+    "sourcePageRole": "The owner record defines the compilation boundary; it is not the original Comic Book Herald article.",
+    "upstreamRole": "Comic Book Herald supplies the selected factual collection identities and order, credited separately with its real page and visible heading.",
+    "sourceOrigin": "Compiled for this project from the owner's selected Comic Book Herald excerpt",
+    "sourceLicense": null
+  },
+  "blocks": [
+    {
+      "position": 1,
+      "printedTitle": "Agents of Atlas",
+      "title": "Agents of Atlas",
+      "printedCollects": "Agents of Atlas (2019) #1 to #5",
+      "retailReference": "https://www.amazon.com/dp/1302920111",
+      "issueIds": [
+        77001,
+        77002,
+        77003,
+        77004,
+        77005
+      ],
+      "trackingHeading": "Agents of Atlas (2019) #1-5"
+    },
+    {
+      "position": 2,
+      "printedTitle": "Sword Master by Greg Pak Vol. 1: War of the Ancients",
+      "title": "Sword Master by Greg Pak Vol. 1: War of the Ancients",
+      "printedCollects": "Sword Master (2019) #1 to #6",
+      "retailReference": "https://www.amazon.com/dp/1302919482",
+      "issueIds": [
+        77665,
+        78431,
+        78932,
+        82435,
+        83235,
+        83520
+      ],
+      "trackingHeading": "Sword Master (2019) #1-6 (collection selects material; progress is whole-issue)"
+    },
+    {
+      "position": 3,
+      "printedTitle": "Shang-Chi by Greg Luen Yang Vol. 1: Brothers & Sisters",
+      "title": "Shang-Chi by Gene Luen Yang Vol. 1: Brothers & Sisters",
+      "printedCollects": "Shang-Chi (2020) #1 to #5",
+      "retailReference": "https://www.amazon.com/gp/product/B08R1BGH19",
+      "issueIds": [
+        84410,
+        84411,
+        84412,
+        84413,
+        84414
+      ],
+      "trackingHeading": "Shang-Chi (2020) #1-5"
+    },
+    {
+      "position": 4,
+      "printedTitle": "The Legend of Shang-Chi",
+      "title": "The Legend of Shang-Chi",
+      "printedCollects": null,
+      "retailReference": "https://www.amazon.com/gp/product/B08LF168DJ",
+      "issueIds": [
+        92003
+      ],
+      "trackingHeading": null
+    },
+    {
+      "position": 5,
+      "printedTitle": "Shang-Chi by Yang and Ruan Vol. 2: Shang-Chi vs. The Marvel Universe",
+      "title": "Shang-Chi by Yang and Ruan Vol. 2: Shang-Chi vs. The Marvel Universe",
+      "printedCollects": "Shang-Chi (2021) #1 to #6",
+      "retailReference": "https://www.amazon.com/gp/product/B09JL8WJ9F",
+      "issueIds": [
+        93327,
+        93328,
+        93329,
+        93330,
+        93331,
+        93332
+      ],
+      "trackingHeading": "Shang-Chi (2021) #1-6"
+    },
+    {
+      "position": 6,
+      "printedTitle": "Shang-Chi by Yang and Ruan Vol. 3: Family of Origin",
+      "title": "Shang-Chi by Yang and Ruan Vol. 3: Family of Origin",
+      "printedCollects": "Shang-Chi (2021) #7 to #12, Marvel’s Voices: Identity (2021) #1 (Shang-Chi story)",
+      "retailReference": "https://www.amazon.com/gp/product/B09XPCZD7N",
+      "issueIds": [
+        93333,
+        93334,
+        93335,
+        93336,
+        98696,
+        98697,
+        95679
+      ],
+      "trackingHeading": "Shang-Chi (2021) #7-12; Marvel's Voices: Identity (2021) #1 (Shang-Chi story only; progress is whole-issue)"
+    },
+    {
+      "position": 7,
+      "printedTitle": "Shang-Chi & The Ten Rings",
+      "title": "Shang-Chi & The Ten Rings",
+      "printedCollects": "Shang-Chi & The Ten Rings #1 to #6, Shang-Chi: Master of the Ten Rings #1",
+      "retailReference": "https://www.amazon.com/gp/product/B0BSVNTB1T",
+      "issueIds": [
+        103519,
+        103520,
+        103521,
+        103522,
+        103523,
+        103524,
+        103637
+      ],
+      "trackingHeading": "Shang-Chi and the Ten Rings (2022) #1-6; Shang-Chi: Master of the Ten Rings (2023) #1"
+    }
+  ],
+  "blocksSha256": "9cf192f4f2230534d3b87b94d3461931276e026bb4ee775e2634ea0f4146df3b",
+  "occurrences": [
+    {
+      "sourcePosition": 1,
+      "blockPosition": 1,
+      "issueId": 77001,
+      "title": "Agents of Atlas (2019) #1",
+      "number": "1",
+      "seriesId": 27624,
+      "seriesYear": 2019,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77001/agents_of_atlas_2019_1",
+      "collectedIn": "Agents of Atlas (2019) #1-5"
+    },
+    {
+      "sourcePosition": 2,
+      "blockPosition": 1,
+      "issueId": 77002,
+      "title": "Agents of Atlas (2019) #2",
+      "number": "2",
+      "seriesId": 27624,
+      "seriesYear": 2019,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77002/agents_of_atlas_2019_2",
+      "collectedIn": "Agents of Atlas (2019) #1-5"
+    },
+    {
+      "sourcePosition": 3,
+      "blockPosition": 1,
+      "issueId": 77003,
+      "title": "Agents of Atlas (2019) #3",
+      "number": "3",
+      "seriesId": 27624,
+      "seriesYear": 2019,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77003/agents_of_atlas_2019_3",
+      "collectedIn": "Agents of Atlas (2019) #1-5"
+    },
+    {
+      "sourcePosition": 4,
+      "blockPosition": 1,
+      "issueId": 77004,
+      "title": "Agents of Atlas (2019) #4",
+      "number": "4",
+      "seriesId": 27624,
+      "seriesYear": 2019,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77004/agents_of_atlas_2019_4",
+      "collectedIn": "Agents of Atlas (2019) #1-5"
+    },
+    {
+      "sourcePosition": 5,
+      "blockPosition": 1,
+      "issueId": 77005,
+      "title": "Agents of Atlas (2019) #5",
+      "number": "5",
+      "seriesId": 27624,
+      "seriesYear": 2019,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77005/agents_of_atlas_2019_5",
+      "collectedIn": "Agents of Atlas (2019) #1-5"
+    },
+    {
+      "sourcePosition": 6,
+      "blockPosition": 2,
+      "issueId": 77665,
+      "title": "Sword Master (2019) #1",
+      "number": "1",
+      "seriesId": 27779,
+      "seriesYear": 2019,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/77665/sword_master_2019_1",
+      "collectedIn": "Sword Master (2019) #1-6 (collection selects material; progress is whole-issue)"
+    },
+    {
+      "sourcePosition": 7,
+      "blockPosition": 2,
+      "issueId": 78431,
+      "title": "Sword Master (2019) #2",
+      "number": "2",
+      "seriesId": 27779,
+      "seriesYear": 2019,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/78431/sword_master_2019_2",
+      "collectedIn": "Sword Master (2019) #1-6 (collection selects material; progress is whole-issue)"
+    },
+    {
+      "sourcePosition": 8,
+      "blockPosition": 2,
+      "issueId": 78932,
+      "title": "Sword Master (2019) #3",
+      "number": "3",
+      "seriesId": 27779,
+      "seriesYear": 2019,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/78932/sword_master_2019_3",
+      "collectedIn": "Sword Master (2019) #1-6 (collection selects material; progress is whole-issue)"
+    },
+    {
+      "sourcePosition": 9,
+      "blockPosition": 2,
+      "issueId": 82435,
+      "title": "Sword Master (2019) #4",
+      "number": "4",
+      "seriesId": 27779,
+      "seriesYear": 2019,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/82435/sword_master_2019_4",
+      "collectedIn": "Sword Master (2019) #1-6 (collection selects material; progress is whole-issue)"
+    },
+    {
+      "sourcePosition": 10,
+      "blockPosition": 2,
+      "issueId": 83235,
+      "title": "Sword Master (2019) #5",
+      "number": "5",
+      "seriesId": 27779,
+      "seriesYear": 2019,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/83235/sword_master_2019_5",
+      "collectedIn": "Sword Master (2019) #1-6 (collection selects material; progress is whole-issue)"
+    },
+    {
+      "sourcePosition": 11,
+      "blockPosition": 2,
+      "issueId": 83520,
+      "title": "Sword Master (2019) #6",
+      "number": "6",
+      "seriesId": 27779,
+      "seriesYear": 2019,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/83520/sword_master_2019_6",
+      "collectedIn": "Sword Master (2019) #1-6 (collection selects material; progress is whole-issue)"
+    },
+    {
+      "sourcePosition": 12,
+      "blockPosition": 3,
+      "issueId": 84410,
+      "title": "Shang-Chi (2020) #1",
+      "number": "1",
+      "seriesId": 29714,
+      "seriesYear": 2020,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/84410/shang-chi_2020_1",
+      "collectedIn": "Shang-Chi (2020) #1-5"
+    },
+    {
+      "sourcePosition": 13,
+      "blockPosition": 3,
+      "issueId": 84411,
+      "title": "Shang-Chi (2020) #2",
+      "number": "2",
+      "seriesId": 29714,
+      "seriesYear": 2020,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/84411/shang-chi_2020_2",
+      "collectedIn": "Shang-Chi (2020) #1-5"
+    },
+    {
+      "sourcePosition": 14,
+      "blockPosition": 3,
+      "issueId": 84412,
+      "title": "Shang-Chi (2020) #3",
+      "number": "3",
+      "seriesId": 29714,
+      "seriesYear": 2020,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/84412/shang-chi_2020_3",
+      "collectedIn": "Shang-Chi (2020) #1-5"
+    },
+    {
+      "sourcePosition": 15,
+      "blockPosition": 3,
+      "issueId": 84413,
+      "title": "Shang-Chi (2020) #4",
+      "number": "4",
+      "seriesId": 29714,
+      "seriesYear": 2020,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/84413/shang-chi_2020_4",
+      "collectedIn": "Shang-Chi (2020) #1-5"
+    },
+    {
+      "sourcePosition": 16,
+      "blockPosition": 3,
+      "issueId": 84414,
+      "title": "Shang-Chi (2020) #5",
+      "number": "5",
+      "seriesId": 29714,
+      "seriesYear": 2020,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/84414/shang-chi_2020_5",
+      "collectedIn": "Shang-Chi (2020) #1-5"
+    },
+    {
+      "sourcePosition": 17,
+      "blockPosition": 4,
+      "issueId": 92003,
+      "title": "The Legend Of Shang-Chi (2021) #1",
+      "number": "1",
+      "seriesId": 31455,
+      "seriesYear": 2021,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/92003/the_legend_of_shang-chi_2021_1",
+      "collectedIn": null
+    },
+    {
+      "sourcePosition": 18,
+      "blockPosition": 5,
+      "issueId": 93327,
+      "title": "Shang-Chi (2021) #1",
+      "number": "1",
+      "seriesId": 31902,
+      "seriesYear": 2021,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/93327/shang-chi_2021_1",
+      "collectedIn": "Shang-Chi (2021) #1-6"
+    },
+    {
+      "sourcePosition": 19,
+      "blockPosition": 5,
+      "issueId": 93328,
+      "title": "Shang-Chi (2021) #2",
+      "number": "2",
+      "seriesId": 31902,
+      "seriesYear": 2021,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/93328/shang-chi_2021_2",
+      "collectedIn": "Shang-Chi (2021) #1-6"
+    },
+    {
+      "sourcePosition": 20,
+      "blockPosition": 5,
+      "issueId": 93329,
+      "title": "Shang-Chi (2021) #3",
+      "number": "3",
+      "seriesId": 31902,
+      "seriesYear": 2021,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/93329/shang-chi_2021_3",
+      "collectedIn": "Shang-Chi (2021) #1-6"
+    },
+    {
+      "sourcePosition": 21,
+      "blockPosition": 5,
+      "issueId": 93330,
+      "title": "Shang-Chi (2021) #4",
+      "number": "4",
+      "seriesId": 31902,
+      "seriesYear": 2021,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/93330/shang-chi_2021_4",
+      "collectedIn": "Shang-Chi (2021) #1-6"
+    },
+    {
+      "sourcePosition": 22,
+      "blockPosition": 5,
+      "issueId": 93331,
+      "title": "Shang-Chi (2021) #5",
+      "number": "5",
+      "seriesId": 31902,
+      "seriesYear": 2021,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/93331/shang-chi_2021_5",
+      "collectedIn": "Shang-Chi (2021) #1-6"
+    },
+    {
+      "sourcePosition": 23,
+      "blockPosition": 5,
+      "issueId": 93332,
+      "title": "Shang-Chi (2021) #6",
+      "number": "6",
+      "seriesId": 31902,
+      "seriesYear": 2021,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/93332/shang-chi_2021_6",
+      "collectedIn": "Shang-Chi (2021) #1-6"
+    },
+    {
+      "sourcePosition": 24,
+      "blockPosition": 6,
+      "issueId": 93333,
+      "title": "Shang-Chi (2021) #7",
+      "number": "7",
+      "seriesId": 31902,
+      "seriesYear": 2021,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/93333/shang-chi_2021_7",
+      "collectedIn": "Shang-Chi (2021) #7-12; Marvel's Voices: Identity (2021) #1 (Shang-Chi story only; progress is whole-issue)"
+    },
+    {
+      "sourcePosition": 25,
+      "blockPosition": 6,
+      "issueId": 93334,
+      "title": "Shang-Chi (2021) #8",
+      "number": "8",
+      "seriesId": 31902,
+      "seriesYear": 2021,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/93334/shang-chi_2021_8",
+      "collectedIn": "Shang-Chi (2021) #7-12; Marvel's Voices: Identity (2021) #1 (Shang-Chi story only; progress is whole-issue)"
+    },
+    {
+      "sourcePosition": 26,
+      "blockPosition": 6,
+      "issueId": 93335,
+      "title": "Shang-Chi (2021) #9",
+      "number": "9",
+      "seriesId": 31902,
+      "seriesYear": 2021,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/93335/shang-chi_2021_9",
+      "collectedIn": "Shang-Chi (2021) #7-12; Marvel's Voices: Identity (2021) #1 (Shang-Chi story only; progress is whole-issue)"
+    },
+    {
+      "sourcePosition": 27,
+      "blockPosition": 6,
+      "issueId": 93336,
+      "title": "Shang-Chi (2021) #10",
+      "number": "10",
+      "seriesId": 31902,
+      "seriesYear": 2021,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/93336/shang-chi_2021_10",
+      "collectedIn": "Shang-Chi (2021) #7-12; Marvel's Voices: Identity (2021) #1 (Shang-Chi story only; progress is whole-issue)"
+    },
+    {
+      "sourcePosition": 28,
+      "blockPosition": 6,
+      "issueId": 98696,
+      "title": "Shang-Chi (2021) #11",
+      "number": "11",
+      "seriesId": 31902,
+      "seriesYear": 2021,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/98696/shang-chi_2021_11",
+      "collectedIn": "Shang-Chi (2021) #7-12; Marvel's Voices: Identity (2021) #1 (Shang-Chi story only; progress is whole-issue)"
+    },
+    {
+      "sourcePosition": 29,
+      "blockPosition": 6,
+      "issueId": 98697,
+      "title": "Shang-Chi (2021) #12",
+      "number": "12",
+      "seriesId": 31902,
+      "seriesYear": 2021,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/98697/shang-chi_2021_12",
+      "collectedIn": "Shang-Chi (2021) #7-12; Marvel's Voices: Identity (2021) #1 (Shang-Chi story only; progress is whole-issue)"
+    },
+    {
+      "sourcePosition": 30,
+      "blockPosition": 6,
+      "issueId": 95679,
+      "title": "Marvel's Voices: Identity (2021) #1",
+      "number": "1",
+      "seriesId": 32837,
+      "seriesYear": 2021,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/95679/marvels_voices_identity_2021_1",
+      "collectedIn": "Shang-Chi (2021) #7-12; Marvel's Voices: Identity (2021) #1 (Shang-Chi story only; progress is whole-issue)"
+    },
+    {
+      "sourcePosition": 31,
+      "blockPosition": 7,
+      "issueId": 103519,
+      "title": "Shang-Chi and the Ten Rings (2022) #1",
+      "number": "1",
+      "seriesId": 35631,
+      "seriesYear": 2022,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/103519/shang-chi_and_the_ten_rings_2022_1",
+      "collectedIn": "Shang-Chi and the Ten Rings (2022) #1-6; Shang-Chi: Master of the Ten Rings (2023) #1"
+    },
+    {
+      "sourcePosition": 32,
+      "blockPosition": 7,
+      "issueId": 103520,
+      "title": "Shang-Chi and the Ten Rings (2022) #2",
+      "number": "2",
+      "seriesId": 35631,
+      "seriesYear": 2022,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/103520/shang-chi_and_the_ten_rings_2022_2",
+      "collectedIn": "Shang-Chi and the Ten Rings (2022) #1-6; Shang-Chi: Master of the Ten Rings (2023) #1"
+    },
+    {
+      "sourcePosition": 33,
+      "blockPosition": 7,
+      "issueId": 103521,
+      "title": "Shang-Chi and the Ten Rings (2022) #3",
+      "number": "3",
+      "seriesId": 35631,
+      "seriesYear": 2022,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/103521/shang-chi_and_the_ten_rings_2022_3",
+      "collectedIn": "Shang-Chi and the Ten Rings (2022) #1-6; Shang-Chi: Master of the Ten Rings (2023) #1"
+    },
+    {
+      "sourcePosition": 34,
+      "blockPosition": 7,
+      "issueId": 103522,
+      "title": "Shang-Chi and the Ten Rings (2022) #4",
+      "number": "4",
+      "seriesId": 35631,
+      "seriesYear": 2022,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/103522/shang-chi_and_the_ten_rings_2022_4",
+      "collectedIn": "Shang-Chi and the Ten Rings (2022) #1-6; Shang-Chi: Master of the Ten Rings (2023) #1"
+    },
+    {
+      "sourcePosition": 35,
+      "blockPosition": 7,
+      "issueId": 103523,
+      "title": "Shang-Chi and the Ten Rings (2022) #5",
+      "number": "5",
+      "seriesId": 35631,
+      "seriesYear": 2022,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/103523/shang-chi_and_the_ten_rings_2022_5",
+      "collectedIn": "Shang-Chi and the Ten Rings (2022) #1-6; Shang-Chi: Master of the Ten Rings (2023) #1"
+    },
+    {
+      "sourcePosition": 36,
+      "blockPosition": 7,
+      "issueId": 103524,
+      "title": "Shang-Chi and the Ten Rings (2022) #6",
+      "number": "6",
+      "seriesId": 35631,
+      "seriesYear": 2022,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/103524/shang-chi_and_the_ten_rings_2022_6",
+      "collectedIn": "Shang-Chi and the Ten Rings (2022) #1-6; Shang-Chi: Master of the Ten Rings (2023) #1"
+    },
+    {
+      "sourcePosition": 37,
+      "blockPosition": 7,
+      "issueId": 103637,
+      "title": "Shang-Chi: Master Of The Ten Rings (2023) #1",
+      "number": "1",
+      "seriesId": 35648,
+      "seriesYear": 2023,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/103637/shang-chi_master_of_the_ten_rings_2023_1",
+      "collectedIn": "Shang-Chi and the Ten Rings (2022) #1-6; Shang-Chi: Master of the Ten Rings (2023) #1"
+    }
+  ],
+  "vectorSha256": "dab499207c58cf3c00a00e4b7fc1b33b45442501a54ab5469cabaa8f759776c2",
+  "excludedSourceReferences": [
+    {
+      "title": "King in Black: Atlantis Attacks",
+      "originalIssues": "Atlantis Attacks (2020) #1-5",
+      "reason": "Not selected in the owner-approved excerpt; not a provider metadata gap."
+    }
+  ],
+  "supersededOutline": [
+    {
+      "position": 1,
+      "title": "Shang-Chi: Brothers & Sisters",
+      "status": "superseded",
+      "note": "The original outline was replaced as a whole. The same five comics are now independently selected at replacement block 3."
+    },
+    {
+      "position": 2,
+      "title": "Master of Kung Fu Epic Collection: Weapon of the Soul",
+      "status": "superseded"
+    },
+    {
+      "position": 3,
+      "title": "The Mandarin",
+      "claimedYear": 2020,
+      "claimedCreators": [
+        "Ryan North",
+        "Dalibor Talajić"
+      ],
+      "status": "superseded",
+      "note": "The old claimed one-shot identity was unresolved. It is historical, not a current selection, substitution or metadata gap."
+    }
+  ],
+  "supersessionDecision": "https://github.com/raymond-nassar/recap-page/issues/683#issuecomment-5971736713",
+  "storySelection": {
+    "blockPosition": 6,
+    "issueId": 95679,
+    "selectedMaterial": "Shang-Chi story only",
+    "trackerProgressUnit": "original issue"
+  },
+  "bibliographicQualifications": [
+    {
+      "blockPosition": 2,
+      "qualification": "The linked Greg Pak collection describes material from Sword Master (2019) #1-6. The owner explicitly selects those six originals; progress remains whole-issue.",
+      "evidenceUrl": "https://www.abebooks.com/9781302919481/Sword-Master-Vol-Ancients-Pak-1302919482/plp",
+      "retrievedAt": "2026-10-03"
+    },
+    {
+      "blockPosition": 3,
+      "printedCreator": "Greg Luen Yang",
+      "normalizedCreator": "Gene Luen Yang",
+      "providerCreatorName": "Gene Yang",
+      "evidenceUrl": "https://marvel.emreparker.com/v1/issues/84410",
+      "retrievedAt": "2026-10-03",
+      "qualification": "Correct the bibliographic typo without changing Shang-Chi (2020) #1-5."
+    },
+    {
+      "blockPosition": 4,
+      "qualification": "The unnumbered linked title is the standalone The Legend Of Shang-Chi (2021) #1, issue 92003, series 31455, by Alyssa Wong and Andie Tong. It is source selection 4, not a seventh collected edition; collection metadata remains null.",
+      "evidenceUrl": "https://marvel.emreparker.com/v1/issues/92003",
+      "retrievedAt": "2026-10-03"
+    },
+    {
+      "blockPosition": 6,
+      "qualification": "The anthology is Marvel's Voices: Identity (2021) #1, issue 95679, series 32837. Only its Shang-Chi story is selected; no story-level progress is introduced.",
+      "evidenceUrl": "https://marvel.emreparker.com/v1/issues/95679",
+      "retrievedAt": "2026-10-03"
+    },
+    {
+      "blockPosition": 7,
+      "qualification": "The provider title is Shang-Chi and the Ten Rings (2022), series 35631. Preserve its original #1-6, followed by Shang-Chi: Master Of The Ten Rings (2023) #1, issue 103637, series 35648.",
+      "evidenceUrls": [
+        "https://marvel.emreparker.com/v1/issues/103519",
+        "https://marvel.emreparker.com/v1/issues/103637"
+      ],
+      "retrievedAt": "2026-10-03"
+    }
+  ],
+  "identityEvidence": {
+    "method": "The owner excerpt defines selection and order. The current CBH page and independently pinned character-guide originals corroborate those factual references; direct provider checks establish missing one-shot identities and years. Targeted live vendoring must independently reproduce the exact selected vector.",
+    "pinnedCorroboration": "src/data/shang_chi_master_of_kung_fu_reading_order.json",
+    "directLiveChecks": [
+      {
+        "issueId": 84410,
+        "endpoint": "https://marvel.emreparker.com/v1/issues/84410",
+        "checkedAt": "2026-10-03",
+        "status": 200
+      },
+      {
+        "issueId": 92003,
+        "endpoint": "https://marvel.emreparker.com/v1/issues/92003",
+        "checkedAt": "2026-10-03",
+        "status": 200
+      },
+      {
+        "issueId": 95679,
+        "endpoint": "https://marvel.emreparker.com/v1/issues/95679",
+        "checkedAt": "2026-10-03",
+        "status": 200
+      },
+      {
+        "issueId": 103519,
+        "endpoint": "https://marvel.emreparker.com/v1/issues/103519",
+        "checkedAt": "2026-10-03",
+        "status": 200
+      },
+      {
+        "issueId": 103637,
+        "endpoint": "https://marvel.emreparker.com/v1/issues/103637",
+        "checkedAt": "2026-10-03",
+        "status": 200
+      }
+    ],
+    "liveVendoring": {
+      "command": "npm run vendor -- --only=mcu-prep-shang-chi-and-the-legend-of-the-ten-rings",
+      "generatedAt": "2026-10-03T18:48:28.130Z",
+      "selectedOriginals": 37,
+      "placeholders": 0,
+      "unresolved": 0,
+      "missingDigitalIds": 0,
+      "missingCoverUrls": 0,
+      "exactVectorVerified": true
+    }
+  },
+  "metadataGaps": [],
+  "unresolvedSelections": [],
+  "relationshipReview": {
+    "status": "approved",
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-6.1 Sol (gpt-6.1-sol), MCU Prep coordinator",
+    "reviewedAt": "2026-10-03",
+    "decisionUrl": "https://github.com/raymond-nassar/recap-page/issues/683#issuecomment-5972405708",
+    "priorDecisionUrl": "https://github.com/raymond-nassar/recap-page/issues/683#issuecomment-5971938428",
+    "blocksSha256": "9cf192f4f2230534d3b87b94d3461931276e026bb4ee775e2634ea0f4146df3b",
+    "vectorSha256": "dab499207c58cf3c00a00e4b7fc1b33b45442501a54ab5469cabaa8f759776c2",
+    "libraryDigest": "1182e46200002371e27802be483afba0f99275203990dd91a21de1bbda77c1fc",
+    "reportDigest": "6edaf4166bd8cbe31959466943f947fba86fd4861c970d3d5a4cc06727006d43",
+    "approvedRelationships": [
+      {
+        "orderId": "agents-of-atlas-reading-order",
+        "relationship": "partial",
+        "sharedIds": [
+          "77001",
+          "77002",
+          "77003",
+          "77004",
+          "77005"
+        ]
+      },
+      {
+        "orderId": "iron-man-reading-order",
+        "relationship": "partial",
+        "sharedIds": [
+          "93327",
+          "93328",
+          "93329",
+          "93330",
+          "93331",
+          "93332"
+        ]
+      },
+      {
+        "orderId": "shang-chi-master-of-kung-fu-reading-order",
+        "relationship": "candidate-subset",
+        "sharedIds": [
+          "77001",
+          "77002",
+          "77003",
+          "77004",
+          "77005",
+          "77665",
+          "78431",
+          "78932",
+          "82435",
+          "83235",
+          "83520",
+          "84410",
+          "84411",
+          "84412",
+          "84413",
+          "84414",
+          "92003",
+          "93327",
+          "93328",
+          "93329",
+          "93330",
+          "93331",
+          "93332",
+          "93333",
+          "93334",
+          "93335",
+          "93336",
+          "98696",
+          "98697",
+          "95679",
+          "103519",
+          "103520",
+          "103521",
+          "103522",
+          "103523",
+          "103524",
+          "103637"
+        ]
+      },
+      {
+        "orderId": "silk-cindy-moon-reading-order",
+        "relationship": "partial",
+        "sharedIds": [
+          "77001",
+          "77002",
+          "77003",
+          "77004"
+        ]
+      }
+    ],
+    "rationale": "The explicitly owner-selected MCU Prep compilation is a bounded companion rather than a replacement for the larger character guides. Retain every source-required shared original. There is no exact duplicate among all 281 measured peers."
+  },
+  "publication": {
+    "type": "screen-companion",
+    "depth": "selected",
+    "timeline": null,
+    "beginner": false,
+    "sourceFile": "mcu-prep-shang-chi-and-the-legend-of-the-ten-rings.md",
+    "out": "mcu_prep_shang_chi_and_the_legend_of_the_ten_rings.json",
+    "count": 37,
+    "coverIssueId": 84410,
+    "claimBoundary": "MCU Prep is the owner-requested discovery classification. No direct film-inspiration, availability or story-level completion claim is made."
+  },
+  "collectionMetadataCorrection": {
+    "decisionUrl": "https://github.com/raymond-nassar/recap-page/issues/683#issuecomment-5972333151",
+    "blockPosition": 4,
+    "issueId": 92003,
+    "sourceSelectionCount": 7,
+    "collectionCount": 6,
+    "collectedIn": null,
+    "priorBlocksSha256": "c8938cff8b2296d2952dc4aa561a4eadbdfed0b204600efb4c37480fabc8bb33",
+    "note": "The existing level-1 reset ends the preceding edition. Individual issues is a derived display boundary only, never stored collection metadata."
+  },
+  "permissionBoundary": "Only factual identities, collection titles, issue ranges, source order, qualifications and links are retained. No external narrative, branding, layout, artwork or comic image bytes are copied. No license grant is asserted."
+}

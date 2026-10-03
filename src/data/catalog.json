@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-30T04:55:50.710Z",
+  "generatedAt": "2026-10-03T18:48:28.130Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -2724,6 +2724,48 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-26T05:16:35.956Z"
+    },
+    {
+      "id": "mcu-prep-shang-chi-and-the-legend-of-the-ten-rings",
+      "file": "mcu_prep_shang_chi_and_the_legend_of_the_ten_rings.json",
+      "name": "Shang-Chi and the Legend of the Ten Rings",
+      "description": "An owner-selected modern Shang-Chi companion, from Agents of Atlas and Sword Master through Brothers & Sisters and the Ten Rings. Anthology selections are qualified; completion is tracked per issue.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "count": 37,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 6,
+      "characters": [
+        "Shang-Chi",
+        "Agents of Atlas",
+        "Sword Master"
+      ],
+      "keywords": [
+        "Shang-Chi",
+        "Legend of the Ten Rings",
+        "MCU Prep",
+        "Brothers & Sisters",
+        "Five Weapons Society",
+        "Family of Origin",
+        "Gene Luen Yang",
+        "Alyssa Wong",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 84410,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/a0/5f735c7849c7f",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/683#issuecomment-5971742989",
+      "sourceOrigin": "Compiled for this project from the owner's selected Comic Book Herald excerpt",
+      "sourceLicense": null,
+      "updatedAt": "2026-10-03T18:48:28.130Z"
     },
     {
       "id": "agents-of-atlas-reading-order",

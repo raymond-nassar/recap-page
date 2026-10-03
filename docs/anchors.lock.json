@@ -1889,18 +1889,33 @@
     "fp": "4719c3efca63cca9",
     "head": "async function networkThenCache(event) {"
   },
+  "docs/DATA_PROVENANCE.md|owner-selected-shang-chi-compilation|scripts/data/mcu-prep-source-ledgers/mcu-prep-shang-chi-and-the-legend-of-the-ten-rings.json:578-583|0": {
+    "anchor": "scripts/data/mcu-prep-source-ledgers/mcu-prep-shang-chi-and-the-legend-of-the-ten-rings.json:578-583",
+    "fp": "54a68790222300f3",
+    "head": "\"storySelection\": {"
+  },
+  "docs/DATA_PROVENANCE.md|owner-selected-shang-chi-compilation|scripts/data/mcu-prep-source-ledgers/mcu-prep-shang-chi-and-the-legend-of-the-ten-rings.json:6-24|0": {
+    "anchor": "scripts/data/mcu-prep-source-ledgers/mcu-prep-shang-chi-and-the-legend-of-the-ten-rings.json:6-24",
+    "fp": "9cf7b5fbcffd4ebc",
+    "head": "\"compilationInput\": {"
+  },
+  "docs/DATA_PROVENANCE.md|owner-selected-shang-chi-compilation|scripts/data/mcu-prep-source-ledgers/mcu-prep-shang-chi-and-the-legend-of-the-ten-rings.json:761-769|0": {
+    "anchor": "scripts/data/mcu-prep-source-ledgers/mcu-prep-shang-chi-and-the-legend-of-the-ten-rings.json:761-769",
+    "fp": "774b51510e6a6dac",
+    "head": "\"publication\": {"
+  },
   "docs/DATA_PROVENANCE.md|reading-path-provenance|scripts/data/marvel-knights-to-planet-x-lists.json:28-40|0": {
     "anchor": "scripts/data/marvel-knights-to-planet-x-lists.json:28-40",
     "fp": "ff9ba71742d8b8c0",
     "head": "\"chapterCount\": 78,"
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:10747-10872|0": {
-    "anchor": "src/data/catalog.json:10747-10872",
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:10789-10914|0": {
+    "anchor": "src/data/catalog.json:10789-10914",
     "fp": "a679899453ea002c",
     "head": "\"paths\": ["
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/curated-lists.json:6749-6788|0": {
-    "anchor": "src/data/curated-lists.json:6749-6788",
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/curated-lists.json:6784-6823|0": {
+    "anchor": "src/data/curated-lists.json:6784-6823",
     "fp": "1b133fe2f7d008e4",
     "head": "\"paths\": ["
   },
@@ -1984,13 +1999,13 @@
     "fp": "e9a1e74dee2c791e",
     "head": "// The publication gate answered a question that only gets asked once, and it was asked on"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:4555-4566|0": {
-    "anchor": "CHANGELOG.md:4555-4566",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:4562-4573|0": {
+    "anchor": "CHANGELOG.md:4562-4573",
     "fp": "7ebb6ef43a1f1241",
     "head": "- **The project now watches its own development tooling for known security problems, and says how"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:4568-4578|0": {
-    "anchor": "CHANGELOG.md:4568-4578",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:4575-4585|0": {
+    "anchor": "CHANGELOG.md:4575-4585",
     "fp": "c37eedd88ad1c81c",
     "head": "- **The project now has a published security policy, which names a private route for reporting a"
   },

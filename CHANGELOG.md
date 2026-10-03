@@ -13,6 +13,13 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Add the Shang-Chi MCU Prep companion
+
+MCU Prep now includes **Shang-Chi and the Legend of the Ten Rings**, with 37 original comics
+in the owner's seven selected blocks: six collected editions and a standalone one-shot.
+The Shang-Chi-story-only anthology selection retains its whole-issue progress limit.
+Existing saved reading data and availability distinctions are unchanged.
+
 ### Put reading actions first and disclose secondary choices
 
 All versions replace **Inspect issue** with **About this comic**. Comic details put Read

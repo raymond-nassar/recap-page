@@ -126,6 +126,7 @@ export default [
       'scripts/browser-ultimate-spider-man.mjs',
       'scripts/browser-greg-pak-hulk.mjs',
       'scripts/browser-shang-chi.mjs',
+      'scripts/browser-mcu-prep-shang-chi.mjs',
       'scripts/browser-age-of-apocalypse.mjs',
       'scripts/browser-onslaught.mjs',
       'scripts/browser-namor.mjs',

@@ -580,8 +580,15 @@ only in the subsets named by its authored `spotlightKind`.
 For an MCU Prep addition, keep `type` as `screen-companion`, `depth` as `selected`,
 `timeline` as `null`, and `beginner` as `false`. Confirm the shared Home and Browse gateways expose
 MCU Prep only when populated, and that its generated child page contains every selected card
-once in inventory priority order at desktop and narrow widths. Do not add a fourth canonical shelf or
+once in catalog order at desktop and narrow widths. Do not add a fourth canonical shelf or
 a Character Spotlight classification; Storylines remains the canonical shelf.
+
+An owner-selected excerpt uses the existing local `sourceFile` compilation path. Link the exact
+owner input in `sourcePage`, explicitly credit its factual upstream in `sourceOrigin`, and retain
+the real upstream page, visible heading, selected blocks and omissions in the authored checklist
+and factual source ledger. Do not assign an upstream heading to a GitHub input record, fabricate
+a provider identity, or extend a frozen inventory merely to represent the compilation. Keep
+`sourceLicense` null without an actual license grant and review all original-issue overlaps.
 
 ## Create reading paths and collected-edition groups
 
