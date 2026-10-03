@@ -13,16 +13,6 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
-### Add the owner's Moon Knight MCU Prep selection
-
-MCU Prep includes the owner's three first-volume Moon Knight selections: Warren Ellis's
-From the Dead, Jeff Lemire's Lunatic, and Jed MacKay's The Midnight Mission. The Reading List
-keeps their 17 original comics in selection order, with a heading for each collection.
-
-The complete Moon Knight guide remains available separately. Importing the shortlist keeps
-existing read progress, notes and Unlimited overrides for shared comics. Saved-data formats
-and reader launching are unchanged.
-
 ### Put reading actions first and disclose secondary choices
 
 All versions replace **Inspect issue** with **About this comic**. Comic details put Read
