@@ -3141,14 +3141,12 @@ const SCENARIOS = [
         path: Boolean(document.querySelector(`${selector} .result-path`)),
         orientation: Boolean(document.querySelector('#marvel-on-screen-results .shelf-orientation')),
       }), cardSelector);
-      t.check('actual MCU Prep discovers Far From Home once with the legacy six-guide prefix',
+      t.check('actual MCU Prep discovers Far From Home once in current catalog order',
         screen.hash === '#/marvel-on-screen'
         && screen.count === `${ACTUAL_CATALOG.lists.filter(({ type }) => type === 'screen-companion').length} Reading Lists`
         && screen.cards === 1
-        && screen.titles.slice(0, 6).join('|') === [
-          'Doctor Strange: Multiverse of Madness', 'Spider-Man: No Way Home',
-          'Marvel Multiverse', 'Marvel What If?', 'WandaVision', 'Spider-Man: Far From Home',
-        ].join('|'),
+        && screen.titles.join('|') === ACTUAL_CATALOG.lists
+          .filter(({ type }) => type === 'screen-companion').map(({ name }) => name).join('|'),
         JSON.stringify(screen));
       t.check('Far From Home has no reading-path or first-stop orientation',
         !screen.path && !screen.orientation, JSON.stringify(screen));
