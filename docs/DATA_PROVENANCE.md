@@ -30,7 +30,7 @@ identity is the page and section together without inventing a fragment or DOM id
 `sourceLicense` stays `null` for every published order, and the full attribution remains recorded
 in `sourceOrigin` as `Compiled for this project from Comic Book Herald's guide`. Cards show the
 linked website name and snapshot date without a disclosure; Preview shows the full attribution
-and `sourceSection`, with the exact source URL unchanged. The persistent footer also credits
+and `sourceSection`, with the exact source URL unchanged. About credits
 Comic Book Herald, Comic Book Reading Orders, and the upstream emreparker/marvel-comics repository.
 
 ## MCU Prep companion intake
@@ -752,7 +752,7 @@ The first is that displaying a description and shipping a copy of one are differ
 those terms rather than two degrees of one act. Using Content inside an App is what the licence is
 for, on a condition the attribution page states plainly: "You must attribute Marvel as the source
 of data whenever you display any results from the Marvel Comics API". The app now names both the
-Marvel origin and its actual route at `src/index.html:1058`. Redistributing Content outside an App, and sublicensing it onward, are the
+Marvel origin and its actual route in About at `src/index.html:978-982`. Redistributing Content outside an App, and sublicensing it onward, are the
 two things sections 4 and 5 name. An MIT grant is a sublicence to everyone who receives a copy, and
 offers them "sublicense, and/or sell".
 

@@ -8,10 +8,9 @@ App launch, or selecting the brand lockup in the sidebar.
 2. One line distinguishes **Browse curated Reading Lists** from **Add individual issues or your own
    list**.
 3. **Browse Reading Lists** opens the Browse hub, and **Add comics** opens the Add hub without
-   requiring the narrow Navigation menu. Both actions are available before the optional
-   recommendation resolves; the category tiles remain available below.
-4. When its bundled Reading List resolves, a compact callout offers **Setup to Modern Timeline** as
-   the recommended preparation path. Its action opens Preview without adding or changing progress.
+   requiring the narrow Navigation menu or waiting for catalog load. The category tiles remain
+   available below.
+4. Setup recommendation cards stay on the dedicated browsing pages rather than Home.
 5. Three large path tiles appear when their shelves contain published Reading Lists:
    - **Modern Timeline** with the compact label **Browse by year**
    - **Storylines** with the compact label **Browse complete arcs**
@@ -40,7 +39,6 @@ App launch, or selecting the brand lockup in the sidebar.
   Marvel Ages gateway when the reader entered through it.
 - A category with no matching published content is not rendered.
 - A directly opened empty Marvel Ages gateway names the empty state rather than inventing categories.
-- The recommended-start action opens Preview from Home without changing the URL or local state.
 - Modern Timeline uses 1998 as this app's chosen boundary, not as an official Marvel editorial-era
   claim. Marvel Knights to Planet X opens the sequence in 1998, then Avengers Disassembled resumes it
   in 2004. Its 148 Reading Lists appear as 144 grouped normal story cards.
@@ -57,8 +55,8 @@ App launch, or selecting the brand lockup in the sidebar.
   be shown, the position is reported as unavailable because the missing entry's place is unknown.
 - Events outside that guided sequence remain available through Marvel Ages and existing direct
   addresses.
-- Preview's existing Add control can complete the first add from Home. Failures target the Home
-  gateway, while the existing success announcement remains unchanged. A separate follow-on owns
+- Preview's existing Add control can complete the first add on the chosen browse page. Failures
+  target that page, while the existing success announcement remains unchanged. A separate follow-on owns
   any expanded first-save explanation.
 - Home has no breadcrumb because it has no route ancestors. Routed destinations reached from Home
   show their stable hierarchy, while Preview remains a dialog with no breadcrumb.
@@ -83,8 +81,8 @@ App launch, or selecting the brand lockup in the sidebar.
 - [ ] Every tile is at least 44px high and has a visible keyboard focus indicator
 - [ ] Category meaning does not depend on colour or icon alone
 - [ ] Empty and load-failure states remain named in text
-- [ ] The first-run question and recommendation use ordered `h2` and `h3` headings
-- [ ] Closing recommended Preview returns focus to its Home button
+- [ ] The first-run question is an `h2`, followed by Browse and Add actions
+- [ ] Closing Setup Preview returns focus to its action on the originating browse page
 - [ ] Home and Preview contain no breadcrumb trail
 - [ ] Exactly one current story carries visible **You are here** text before its heading and
       `aria-current="step"` on its card

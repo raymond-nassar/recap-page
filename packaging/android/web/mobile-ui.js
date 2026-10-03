@@ -1,6 +1,14 @@
 export function wireMobileUi() {
   const root = document.documentElement;
   const narrow = window.matchMedia('(max-width: 880px)');
+  const homeHeading = document.querySelector('#home-h');
+  const homeTagline = document.querySelector('.home-action');
+  const homeName = homeHeading.textContent;
+  function updateHomeHeading() {
+    homeHeading.textContent = narrow.matches ? homeTagline.textContent : homeName;
+  }
+  updateHomeHeading();
+  narrow.addEventListener('change', updateHomeHeading);
   document.addEventListener('pointerdown', () => root.classList.remove('android-keyboard'), true);
   document.addEventListener('keydown', (event) => {
     if (!['Shift', 'Control', 'Alt', 'Meta'].includes(event.key)) root.classList.add('android-keyboard');

@@ -33,6 +33,7 @@ let root = resolve(ANDROID_ASSET_DIR);
 const mime = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.json': 'application/json', '.svg': 'image/svg+xml', '.png': 'image/png', '.webmanifest': 'application/manifest+json' };
 const noStyle = process.argv.includes('--without-mobile-style');
 const mobileUi = process.argv.includes('--only=mobile-ui');
+const phoneHeader = process.argv.includes('--only=phone-header');
 const launcherOnly = process.argv.includes('--only=launcher');
 const seriesReadability = process.argv.includes('--only=series-readability');
 const noteReadability = process.argv.includes('--only=note-readability');
@@ -1903,6 +1904,7 @@ async function alignmentGeometry(page, selectors) {
 
 async function alignmentCheck(page, profile) {
   const { id } = profile;
+  const compactHome = !profile.desktop && profile.width <= 880;
   const snapshots = {};
   const baseline = alignmentBaseline ? null
     : JSON.parse(await readFile(join(process.env.MRT_ALIGNMENT_BASELINE, `${id}.json`), 'utf8'));
@@ -1949,12 +1951,14 @@ async function alignmentCheck(page, profile) {
   } else {
     check(await page.$eval('#btn-home-add', (node) => !!node.getClientRects().length), `${id}: current fresh Home actions`);
   }
-  const home = await record('home', ['#view-home > .head', '.home-lockup', '#home-h', '.home-action',
+  const home = await record('home', ['#view-home > .head', '.home-lockup', '#home-h', ...(compactHome ? [] : ['.home-action']),
     '#home-categories', '.brand[data-view="home"]']);
-  const [head, lockup, logo, tagline] = home.nodes;
+  const [head, lockup, logo] = home.nodes;
   const gutters = { left: lockup.box.left - head.content.left, right: head.content.right - lockup.box.right };
   const centerError = Math.abs((lockup.box.left + lockup.box.right - head.content.left - head.content.right) / 2);
-  check(logo.text === 'RECAP PAGE!' && tagline.text === 'Browse. Choose. Read.', `${id}: exact masthead copy`);
+  check(compactHome ? logo.text === 'Browse. Choose. Read.'
+    : logo.text === 'RECAP PAGE!' && home.nodes.find((node) => node.selector === '.home-action').text === 'Browse. Choose. Read.',
+  `${id}: exact Home heading copy for the platform`);
   check(home.body === `${(profile.desktop ? 14 : 16) * (profile.textScale || 1)}px`, `${id}: retained body scale`);
   check(Math.abs(parseFloat(logo.font) - profile.logoBase * (profile.textScale || 1)) < 0.1,
     `${id}: effective logo font grows with text stress`);
@@ -2041,20 +2045,61 @@ async function alignmentCheck(page, profile) {
   console.log(`ALIGNMENT ${id}: center error ${centerError}; gutters ${JSON.stringify(gutters)}; ${Object.keys(snapshots).length} states`);
 }
 
-async function mobileLayout(page, label, narrow) {
-  await page.waitForSelector('#home-recommended:not([hidden])');
+async function phoneHeaderCheck(page, label, viewport) {
+  const narrow = viewport.width <= 880;
+  const before = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
   if (narrow) {
-    const home = await page.evaluate(() => {
-      const card = document.querySelector('#home-recommended').getBoundingClientRect();
-      const copy = document.querySelector('#home-recommended .grow').getBoundingClientRect();
-      const button = document.querySelector('#btn-home-recommended').getBoundingClientRect();
-      return { fullWidth: copy.width >= card.width * .8, stacked: button.top >= copy.bottom };
-    });
-    check(home.fullWidth && home.stacked, `${label}: recommendation copy uses card width, action below copy`);
+    await page.focus('#btn-rail-toggle');
+    await page.keyboard.press('Enter');
+    await page.waitForFunction(() => !document.querySelector('#sidebar-panel').hidden);
+    check(await page.$eval('#btn-rail-toggle', (node) => node.getAttribute('aria-expanded') === 'true'),
+      `${label}: icon-only navigation opens its panel`);
+    await page.keyboard.press('Escape');
+    await page.waitForFunction(() => document.querySelector('#sidebar-panel').hidden);
+    check(await page.$eval('#btn-rail-toggle', (node) => node.getAttribute('aria-expanded') === 'false'
+      && document.activeElement === node), `${label}: Escape closes navigation and retains focus`);
   }
-  await measure(page, `${label} recommended Home`);
+  await page.focus('.app-footer [data-view="about"]');
+  await page.keyboard.press('Enter');
+  await page.waitForSelector('#view-about:not([hidden])');
+  check(await page.$$eval('#view-about a', (links) => [
+    'https://www.comicbookherald.com/',
+    'https://comicbookreadingorders.com/',
+    'https://github.com/emreparker/marvel-comics',
+  ].every((href) => links.some((link) => link.href === href && link.checkVisibility()
+    && link.target === '_blank' && link.rel === 'noopener noreferrer'))),
+  `${label}: the compact footer opens About with every source credit visible`);
+  await page.focus('.brand[data-view="home"]');
+  await page.keyboard.press('Enter');
+  await page.waitForSelector('#view-home:not([hidden])');
+  check(await page.$eval('#home-h', (node) => {
+    const bounds = node.getBoundingClientRect();
+    return document.activeElement === node && bounds.width > 1 && bounds.height > 1
+      && getComputedStyle(node).outlineStyle !== 'none';
+  }), `${label}: Home returns to a visible heading with keyboard focus`);
+  check(await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === before,
+    `${label}: header navigation leaves saved reading data unchanged`);
+  if (!viewport.desktop && narrow) {
+    await page.setViewport({ width: 1280, height: 900, isMobile: true, hasTouch: true });
+    await page.waitForFunction(() => document.querySelector('#home-h').textContent === 'RECAP PAGE!');
+    check(await page.$eval('.home-action', (node) => !!node.getClientRects().length),
+      `${label}: widening restores the original Home masthead and tagline`);
+    await page.setViewport({ width: viewport.width, height: viewport.height, isMobile: true, hasTouch: true });
+    await page.waitForFunction(() => document.querySelector('#home-h').textContent === 'Browse. Choose. Read.');
+    check(await page.$eval('.home-action', (node) => !node.getClientRects().length),
+      `${label}: narrowing restores one visible tagline heading`);
+  }
+}
+
+async function mobileLayout(page, label, narrow) {
+  await page.waitForSelector('#home-first-run:not([hidden]) #btn-home-browse');
+  check(await page.$eval('#home-first-run', (region) => (
+    !region.querySelector('#home-recommended')
+      && region.querySelectorAll('button').length === 2
+  )), `${label}: Home contains only the Browse and Add starting choices`);
+  await measure(page, `${label} focused Home`);
   await screenshot(page, label, 'home');
-  await click(page, '#btn-rail-toggle');
+  if (narrow) await click(page, '#btn-rail-toggle');
   await page.tap('#sidebar-panel [data-view="browse"]');
   await page.waitForSelector('#view-browse:not([hidden])');
   const focus = await page.$eval('#browse-h', (heading) => ({
@@ -2227,6 +2272,17 @@ try {
   browser = await puppeteer.launch({ executablePath: edge, headless: !process.env.MRT_HEADED, args: ['--no-first-run', '--no-default-browser-check'] });
   let viewports = [{ width: 360, height: 800 }, { width: 412, height: 915 }, { width: 800, height: 360 }];
   if (mobileUi) viewports.push({ width: 360, height: 800, textScale: 1.3 }, { width: 1280, height: 900 });
+  if (phoneHeader) viewports = [
+    { width: 320, height: 740, textScale: 2, theme: 'light' },
+    { width: 360, height: 800, theme: 'light' },
+    { width: 390, height: 844, theme: 'light' },
+    { width: 412, height: 915, theme: 'dark' },
+    { width: 800, height: 360, theme: 'light' },
+    { width: 880, height: 900, theme: 'light' },
+    { width: 881, height: 900, theme: 'light' },
+    { width: 1280, height: 900, desktop: true, theme: 'light' },
+    { width: 390, height: 844, desktop: true, theme: 'light' },
+  ];
   if (seriesReadability) viewports = [
     { width: 320, height: 740 },
     { width: 360, height: 800 },
@@ -2294,7 +2350,7 @@ try {
     if (readingComposition) await readingFixtures(page, viewport);
     if (alignment) await alignmentFixtures(page, viewport);
     if (categoryReadability || marvelAgesTarget || catalogReadability || spotlightControls) await categoryFixtures(page);
-    if (spotlightControls) {
+    if (spotlightControls || phoneHeader) {
       await page.evaluateOnNewDocument((theme) => {
         localStorage.setItem('mrt.settings', JSON.stringify({ covers: false, theme }));
       }, viewport.theme || 'light');
@@ -2330,7 +2386,7 @@ try {
           });
         }
         if (request.url().endsWith('/data/catalog.json')) {
-          return request.respond({ status: 200, contentType: 'application/json', body: JSON.stringify(mobileUi || categoryReadability || marvelAgesTarget || catalogReadability || spotlightControls || alignment ? catalog : { ...catalog, lists: [orderEntry] }) });
+          return request.respond({ status: 200, contentType: 'application/json', body: JSON.stringify(mobileUi || phoneHeader || categoryReadability || marvelAgesTarget || catalogReadability || spotlightControls || alignment ? catalog : { ...catalog, lists: [orderEntry] }) });
         }
         return request.continue();
       }
@@ -2361,7 +2417,7 @@ try {
           data: 'recap:connect:v1', origin: '', source: null, ports: [channel.port2],
         }));
       });
-    }, readingComposition, spotlightControls || alignment);
+    }, readingComposition, spotlightControls || alignment || phoneHeader);
     await page.goto(origin, { waitUntil: 'networkidle0' });
     if (alignment) viewport.logoBase = await page.$eval('#home-h', (node) => parseFloat(getComputedStyle(node).fontSize));
     if (spotlightCase === 'geometry') await spotlightGeometryCheckpoint(page, 'unscaled postboot');
@@ -2378,6 +2434,78 @@ try {
     }
     if (spotlightCase === 'geometry') await spotlightGeometryCheckpoint(page, 'after existing text scaling');
     const label = `${viewport.width}x${viewport.height}${viewport.textScale ? ` ${viewport.textScale * 100}% text` : ''}`;
+    const navigationToggle = await page.$eval('#btn-rail-toggle', (node) => {
+      const { width, height } = node.getBoundingClientRect();
+      return {
+        labelVisible: !!node.querySelector('.rail-toggle-label').getClientRects().length,
+        iconVisible: !!node.querySelector('svg').getClientRects().length,
+        name: node.getAttribute('aria-label'), controls: node.getAttribute('aria-controls'),
+        width, height,
+      };
+    });
+    check(navigationToggle.labelVisible === (!!viewport.desktop && viewport.width <= 880),
+      `${label}: Android navigation is icon-only; desktop label visibility is unchanged`);
+    check(navigationToggle.iconVisible && navigationToggle.controls === 'sidebar-panel'
+      && (viewport.width <= 880 ? navigationToggle.name === 'Navigation'
+        : /^(Expand|Collapse) sidebar$/.test(navigationToggle.name))
+      && (viewport.desktop || (navigationToggle.width >= 48 && navigationToggle.height >= 48)),
+    `${label}: navigation retains its icon, accessible name, controlled panel and touch target`);
+    const compactHome = !viewport.desktop && viewport.width <= 880;
+    const homeBranding = await page.evaluate(() => {
+      const heading = document.querySelector('#home-h');
+      const tagline = document.querySelector('.home-action');
+      const brand = document.querySelector('.brand[data-view="home"]');
+      const mark = brand.querySelector('.mark');
+      const bounds = mark.getBoundingClientRect();
+      return {
+        heading: heading.textContent, transform: getComputedStyle(heading).transform,
+        taglineDisplay: getComputedStyle(tagline).display,
+        marker: getComputedStyle(brand, '::before').content,
+        iconLoaded: mark.complete && mark.naturalWidth > 0 && mark.naturalHeight > 0,
+        iconWidth: bounds.width, iconHeight: bounds.height,
+      };
+    });
+    check(homeBranding.heading === (compactHome ? 'Browse. Choose. Read.' : 'RECAP PAGE!')
+      && (compactHome ? homeBranding.taglineDisplay === 'none' && homeBranding.transform === 'none'
+        : homeBranding.taglineDisplay !== 'none'),
+    `${label}: compact Android keeps top-only branding and one tagline; other mastheads are unchanged`);
+    check(homeBranding.iconLoaded && homeBranding.iconWidth === 28 && homeBranding.iconHeight === 28,
+      `${label}: the full app icon remains visible`);
+    check(!compactHome || homeBranding.marker === 'none',
+      `${label}: the compact brand has no stray selected-page stripe`);
+    if (phoneHeader) {
+      const sharedCopy = await page.evaluate(() => {
+        const footer = document.querySelector('.app-footer');
+        return {
+          recommendation: !!document.querySelector('#home-recommended'),
+          startActions: [...document.querySelectorAll('#home-first-run button')]
+            .map((button) => button.textContent.trim()),
+          footer: footer.textContent.replace(/\s+/g, ' ').trim(),
+          expectedFooter: `Unofficial fan project. Metadata and links only. \u00a9 ${new Date().getFullYear()} MARVEL`,
+          footerHeight: footer.getBoundingClientRect().height,
+          aboutAction: !!footer.querySelector('button[data-view="about"]'),
+        };
+      });
+      check(!sharedCopy.recommendation
+        && JSON.stringify(sharedCopy.startActions) === JSON.stringify(['Browse Reading Lists', 'Add comics']),
+      `${label}: every platform keeps Home focused on Browse and Add without a Setup recommendation`);
+      check(sharedCopy.footer === sharedCopy.expectedFooter && sharedCopy.aboutAction,
+        `${label}: every platform keeps only the requested footer text and its About action`);
+      if (!viewport.desktop && !viewport.textScale && viewport.width >= 360 && viewport.width <= 412) {
+        check(sharedCopy.footerHeight <= 90,
+          `${label}: the compact footer is at most 90px tall (${sharedCopy.footerHeight})`);
+      }
+      if (failures.length > failuresBefore) {
+        await context.close();
+        break;
+      }
+      if (!viewport.desktop) await measure(page, `${label} phone header`);
+      await phoneHeaderCheck(page, label, viewport);
+      check(errors.length === 0, `${label}: page errors ${errors.join('; ')}`);
+      console.log(`CHECKED ${label}${viewport.desktop ? ' desktop' : ''}: phone header and Home branding`);
+      await context.close();
+      continue;
+    }
     if (alignment) {
       if (alignmentMutation) {
         await page.evaluate(() => {

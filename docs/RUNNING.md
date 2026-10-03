@@ -123,8 +123,9 @@ The browser normally opens automatically. If it does not, open this exact addres
 Use Edge, Chrome, Firefox, or Safari, not an editor's preview panel. Preview panels often block
 the reader tab opened by **Read**.
 
-On first run, Home offers a preview of the recommended modern-era setup guide, curated Reading
-Lists by story or publication age, and complete Reading paths. Open Reading paths from Home or
+On first run, Home offers Browse and Add, curated Reading Lists by story or publication age,
+and complete Reading paths. The optional Setup guide appears on Modern Timeline, not Home.
+Open Reading paths from Home or
 Browse. Each stop shows matching-list progress, another imported version when needed, or
 **Not added**. Add comics stays available even when live metadata has to wait.
 

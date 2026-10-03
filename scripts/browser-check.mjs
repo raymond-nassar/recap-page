@@ -598,13 +598,15 @@ const MUTATIONS = [
     },
   },
   {
-    id: 'home-recommendation-cramped',
+    id: 'home-setup-recommendation-returned',
     breaks: 'home-first-run-wayfinding',
-    why: 'the recommendation explanation shrinks back beside its wide Preview action',
+    why: 'Home repeats the contextual Setup recommendation before a reading direction is chosen',
     script: () => {
       addEventListener('load', () => {
-        const sheet = [...document.styleSheets].find((entry) => entry.href?.endsWith('styles.css'));
-        sheet.insertRule('#home-recommended .grow { flex: 1 1 0px !important; }', sheet.cssRules.length);
+        const recommendation = document.createElement('div');
+        recommendation.id = 'home-recommended';
+        recommendation.textContent = 'Setup to Modern Timeline';
+        document.querySelector('#home-first-run').append(recommendation);
       });
     },
   },
@@ -4475,34 +4477,31 @@ const SCENARIOS = [
     title: 'empty Home makes the first useful reading path obvious',
     async run(page, t) {
       await open(page, '/');
-      await page.waitForSelector('#home-first-run:not([hidden]) #btn-home-recommended', { timeout: 15000 });
+      await page.waitForSelector('#home-first-run:not([hidden]) #btn-home-browse', { timeout: 15000 });
       const initial = await page.evaluate(() => ({
         question: document.querySelector('#home-first-run-h')?.textContent.trim() ?? null,
         distinction: document.querySelector('.home-first-run-copy')?.textContent.trim() ?? null,
-        recommendation: document.querySelector('#home-recommended-h')?.textContent.trim() ?? null,
-        recommendationHidden: document.querySelector('#home-recommended')?.hidden ?? null,
+        recommendation: !!document.querySelector('#home-recommended'),
+        startActions: [...document.querySelectorAll('#home-first-run button')]
+          .map((button) => button.textContent.trim()),
       }));
       t.check('clean Home asks one visible question and distinguishes curated Browse from Add',
         initial.question === 'Where do you want to start?'
         && initial.distinction === 'Browse curated Reading Lists. Add individual issues or your own list.'
-        && initial.recommendation === 'Recommended start: Setup to Modern Timeline'
-        && initial.recommendationHidden === false,
+        && !initial.recommendation
+        && JSON.stringify(initial.startActions) === JSON.stringify(['Browse Reading Lists', 'Add comics']),
         JSON.stringify(initial));
 
       await page.setViewport({ width: 390, height: 844 });
       const intermediate = await page.evaluate(() => {
         const browse = document.querySelector('#btn-home-browse');
         const add = document.querySelector('#btn-home-add');
-        const copy = document.querySelector('#home-recommended .grow');
-        const preview = document.querySelector('#btn-home-recommended');
         const bounds = (node) => node?.getBoundingClientRect();
         return {
           browse: bounds(browse)?.toJSON() ?? null,
           add: bounds(add)?.toJSON() ?? null,
           browseName: browse?.textContent.trim(),
           addName: add?.textContent.trim(),
-          copyWidth: Math.round(bounds(copy)?.width ?? 0),
-          previewHeight: Math.round(bounds(preview)?.height ?? 0),
           pageOverflow: document.documentElement.scrollWidth > innerWidth,
           regionOverflow: document.querySelector('#home-first-run').scrollWidth
             > document.querySelector('#home-first-run').clientWidth,
@@ -4516,9 +4515,8 @@ const SCENARIOS = [
           && rect.top >= 0 && rect.bottom <= 844 && rect.left >= 0 && rect.right <= 390
           && rect.height >= 44) && intermediate.homeCurrent === 'page',
         JSON.stringify(intermediate));
-      t.check('at 390 pixels recommendation copy stays readable without horizontal overflow',
-        intermediate.copyWidth >= 240 && intermediate.previewHeight >= 44
-        && !intermediate.pageOverflow && !intermediate.regionOverflow,
+      t.check('at 390 pixels first-run choices stay readable without horizontal overflow',
+        !intermediate.pageOverflow && !intermediate.regionOverflow,
         JSON.stringify(intermediate));
 
       await page.focus('#btn-home-browse');
@@ -4625,7 +4623,7 @@ const SCENARIOS = [
       t.check('first-run actions stay 44 pixels high and unclipped at desktop width',
         await page.evaluate(() => {
           const controls = [...document.querySelectorAll('#home-first-run button')];
-          return controls.length === 3 && document.documentElement.scrollWidth <= innerWidth
+          return controls.length === 2 && document.documentElement.scrollWidth <= innerWidth
             && controls.every((button) => {
               const rect = button.getBoundingClientRect();
               return rect.height >= 44 && rect.left >= 0 && rect.right <= innerWidth;
@@ -4650,30 +4648,11 @@ const SCENARIOS = [
         && document.activeElement?.id === 'home-h');
       t.check('a primary category uses real history and Back returns focus to Home', true);
 
-      const before = await page.evaluate(() => ({
-        hash: location.hash,
-        state: localStorage.getItem('mrt.state.v2'),
-      }));
-      await page.evaluate(() => {
-        const button = document.querySelector('#btn-home-recommended');
-        button.focus();
-        button.click();
-      });
-      await page.waitForFunction(() => document.querySelector('#preview')?.open
-        && document.querySelector('#preview-h')?.textContent.trim() === 'Setup to Modern Timeline');
-      await click(page, '#preview-close');
-      await page.waitForFunction(() => !document.querySelector('#preview')?.open);
-      const after = await page.evaluate(() => ({
-        hash: location.hash,
-        state: localStorage.getItem('mrt.state.v2'),
-        focus: document.activeElement?.id ?? null,
-      }));
-      t.check('recommended Preview opens and closes without changing state, history, or focus',
-        after.hash === before.hash && after.state === before.state
-        && after.focus === 'btn-home-recommended',
-        JSON.stringify({ before, after }));
-
-      await click(page, '#btn-home-recommended');
+      await click(page, '#btn-home-browse');
+      await page.waitForSelector('#view-browse:not([hidden])');
+      await click(page, '#view-browse [data-category="timeline"]');
+      await page.waitForSelector('#catalog-results [data-act="preview"]');
+      await click(page, '#catalog-results [data-act="preview"]');
       await page.waitForSelector('#preview[open]');
       await click(page, '#preview-add [data-act="main"]');
       await page.waitForFunction(() => {
@@ -4682,6 +4661,8 @@ const SCENARIOS = [
       });
       await click(page, '#preview-close');
       await page.waitForFunction(() => !document.querySelector('#preview')?.open);
+      await click(page, '.brand[data-view="home"]');
+      await page.waitForSelector('#view-home:not([hidden])');
       const populated = await page.evaluate(() => {
         const firstRun = document.querySelector('#home-first-run');
         const continued = document.querySelector('#home-continue');
@@ -4694,7 +4675,7 @@ const SCENARIOS = [
           order: [continued, yours, categories].map((node) => Math.round(node.getBoundingClientRect().top)),
         };
       });
-      t.check('adding from Home restores returning-reader priority',
+      t.check('adding through Browse restores returning-reader priority on Home',
         populated.firstRunHidden && !populated.continueHidden && !populated.yoursHidden
         && populated.order[0] < populated.order[1] && populated.order[1] < populated.order[2],
         JSON.stringify(populated));
@@ -4723,10 +4704,9 @@ const SCENARIOS = [
         window.__mrtBlockExternal = true;
       });
       await open(page, '/?catalog=actual#/home');
-      await page.waitForSelector('#home-first-run:not([hidden]) #btn-home-recommended', { timeout: 15000 });
+      await page.waitForSelector('#home-primary-paths [data-category="timeline"]', { timeout: 15000 });
       const home = await page.evaluate(() => ({
-        recommendation: document.querySelector('#home-recommended-h')?.textContent.trim() ?? '',
-        context: document.querySelector('#home-recommended p')?.textContent.trim() ?? '',
+        recommendation: !!document.querySelector('#home-recommended'),
         homeCount: document.querySelector(
           '#home-primary-paths [data-category="timeline"] .home-path-count',
         )?.textContent.trim() ?? '',
@@ -4737,53 +4717,13 @@ const SCENARIOS = [
         '#view-browse [data-primary-paths] [data-category="timeline"] .home-path-count',
         (node) => node.textContent.trim(),
       );
-      t.check('Home recommends the setup guide and both gateways count 148 Reading Lists',
-        home.recommendation === 'Recommended start: Setup to Modern Timeline'
-        && home.context.startsWith('New to Marvel?')
-        && home.context.includes('historical context on the characters and events ahead')
-        && home.context.includes('Setup is optional; you can enter the Modern Timeline directly.')
+      t.check('Home omits Setup guidance and both gateways count 148 Reading Lists',
+        !home.recommendation
         && home.homeCount === '148 Reading Lists'
         && browseCount === '148 Reading Lists',
         JSON.stringify({ ...home, browseCount }));
       await open(page, '/?catalog=actual#/home');
-      await page.waitForSelector('#home-first-run:not([hidden]) #btn-home-recommended', { timeout: 15000 });
-
-      const beforeHomePreview = await page.evaluate(() => ({
-        href: location.href,
-        history: history.length,
-        state: localStorage.getItem('mrt.state.v2'),
-      }));
-      await page.focus('#btn-home-recommended');
-      await page.keyboard.press('Enter');
-      await page.waitForFunction(() => document.querySelector('#preview')?.open
-        && document.querySelector('#preview-h')?.textContent.trim() === 'Setup to Modern Timeline');
-      await page.waitForSelector('#preview .preview-issue-link');
-      const setupPreview = await page.evaluate(() => ({
-        meta: document.querySelector('#preview-meta')?.textContent ?? '',
-        source: document.querySelector('#preview-source')?.textContent ?? '',
-        issues: document.querySelectorAll('#preview .preview-issue-link').length,
-      }));
-      t.check('Setup preview retains its issue count, reading commitment, source and issue list',
-        setupPreview.meta.includes('21 issues') && setupPreview.meta.includes('about 7 hours')
-        && setupPreview.source.includes('Compiled for this project')
-        && setupPreview.issues === 21,
-        JSON.stringify(setupPreview));
-      await click(page, '#preview-close');
-      await page.waitForFunction(() => !document.querySelector('#preview')?.open
-        && document.activeElement?.id === 'btn-home-recommended');
-      const afterHomePreview = await page.evaluate(() => ({
-        href: location.href,
-        history: history.length,
-        state: localStorage.getItem('mrt.state.v2'),
-        focus: document.activeElement?.id ?? '',
-      }));
-      t.check('the Home setup action uses Preview without changing history, state, or return focus',
-        afterHomePreview.href === beforeHomePreview.href
-        && afterHomePreview.history === beforeHomePreview.history
-        && afterHomePreview.state === beforeHomePreview.state
-        && afterHomePreview.focus === 'btn-home-recommended',
-        JSON.stringify({ beforeHomePreview, afterHomePreview }));
-
+      await page.waitForSelector('#home-primary-paths [data-category="timeline"]', { timeout: 15000 });
       await page.focus('#home-primary-paths [data-category="timeline"]');
       await page.keyboard.press('Enter');
       await page.waitForSelector('#modern-timeline-feature .catalog-card', { timeout: 15000 });
@@ -4852,7 +4792,8 @@ const SCENARIOS = [
       });
       t.check('Modern Timeline shows the existing setup guide as one shared rich card',
         timeline.featureHeading === 'Setup to Modern Timeline'
-        && timeline.featureCopy.startsWith(home.context)
+        && timeline.featureCopy.startsWith('New to Marvel? Explore earlier stories for historical context on the characters and events ahead.')
+        && timeline.featureCopy.includes('Setup is optional; you can enter the Modern Timeline directly.')
         && timeline.featureCopy.includes('This app chooses 1998 as the start of its Modern Timeline.')
         && timeline.featureCopy.includes('It is not an official Marvel editorial-era boundary.')
         && timeline.featureIdentity === 'setup-to-modern-timeline'
@@ -4917,6 +4858,17 @@ const SCENARIOS = [
       await page.keyboard.press('Enter');
       await page.waitForFunction(() => document.querySelector('#preview')?.open
         && document.querySelector('#preview-h')?.textContent.trim() === 'Setup to Modern Timeline');
+      await page.waitForSelector('#preview .preview-issue-link');
+      const setupPreview = await page.evaluate(() => ({
+        meta: document.querySelector('#preview-meta')?.textContent ?? '',
+        source: document.querySelector('#preview-source')?.textContent ?? '',
+        issues: document.querySelectorAll('#preview .preview-issue-link').length,
+      }));
+      t.check('Setup preview retains its issue count, reading commitment, source and issue list',
+        setupPreview.meta.includes('21 issues') && setupPreview.meta.includes('about 7 hours')
+        && setupPreview.source.includes('Compiled for this project')
+        && setupPreview.issues === 21,
+        JSON.stringify(setupPreview));
       await click(page, '#preview-close');
       await page.waitForFunction(() => !document.querySelector('#preview')?.open
         && document.activeElement?.dataset.act === 'preview'

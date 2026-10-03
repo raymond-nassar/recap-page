@@ -1634,8 +1634,8 @@
     "fp": "211be8f2af0b1be0",
     "head": "function renderAll() {"
   },
-  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:3039-3071|0": {
-    "anchor": "src/js/main.js:3039-3071",
+  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:3035-3067|0": {
+    "anchor": "src/js/main.js:3035-3067",
     "fp": "68405df558b78554",
     "head": "const catalogView = createCatalogView({"
   },
@@ -1689,13 +1689,13 @@
     "fp": "18ed5c8096987666",
     "head": "if (event.key === STATE_KEY) {"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3022-3126|0": {
-    "anchor": "src/js/main.js:3022-3126",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3018-3122|0": {
+    "anchor": "src/js/main.js:3018-3122",
     "fp": "7740ace9c9892372",
     "head": "const catalogPresentation = createCatalogPresentation({"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3128-3179|0": {
-    "anchor": "src/js/main.js:3128-3179",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3124-3175|0": {
+    "anchor": "src/js/main.js:3124-3175",
     "fp": "b946d5bb90431e4d",
     "head": "const readingPathsView = createReadingPathsView({"
   },
@@ -1919,10 +1919,10 @@
     "fp": "b79dcc7a949b3231",
     "head": "export function synopsisFallback(issue, sessionEntry = null, noSynopsisMarker = undefined) {"
   },
-  "docs/DATA_PROVENANCE.md|what-the-first-hand-s-own-terms-said|src/index.html:1058|0": {
-    "anchor": "src/index.html:1058",
-    "fp": "cd4793f475d06ae8",
-    "head": "<span>Marvel metadata via marvel.emreparker.com. <span data-marvel-copyright>© MARVEL</span></span>"
+  "docs/DATA_PROVENANCE.md|what-the-first-hand-s-own-terms-said|src/index.html:978-982|0": {
+    "anchor": "src/index.html:978-982",
+    "fp": "7d02dbb6fdec4082",
+    "head": "Issue, series, and creator metadata comes from the community"
   },
   "docs/PUBLICATION_RUNBOOK.md|before-anything-is-flipped|docs/DATA_PROVENANCE.md:8-9|0": {
     "anchor": "docs/DATA_PROVENANCE.md:8-9",
@@ -1984,13 +1984,13 @@
     "fp": "e9a1e74dee2c791e",
     "head": "// The publication gate answered a question that only gets asked once, and it was asked on"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:4527-4538|0": {
-    "anchor": "CHANGELOG.md:4527-4538",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:4539-4550|0": {
+    "anchor": "CHANGELOG.md:4539-4550",
     "fp": "7ebb6ef43a1f1241",
     "head": "- **The project now watches its own development tooling for known security problems, and says how"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:4540-4550|0": {
-    "anchor": "CHANGELOG.md:4540-4550",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:4552-4562|0": {
+    "anchor": "CHANGELOG.md:4552-4562",
     "fp": "c37eedd88ad1c81c",
     "head": "- **The project now has a published security policy, which names a private route for reporting a"
   },
@@ -2194,8 +2194,8 @@
     "fp": "5c83ad7d477a49de",
     "head": "function wire(key) {"
   },
-  "docs/UX_STUDY.md|sweep-result|src/styles.css:1747-1749|0": {
-    "anchor": "src/styles.css:1747-1749",
+  "docs/UX_STUDY.md|sweep-result|src/styles.css:1746-1748|0": {
+    "anchor": "src/styles.css:1746-1748",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2214,8 +2214,8 @@
     "fp": "3cbc7d76b21e95fa",
     "head": "// Generated from src/data/hickman_full.json - real issues and real covers. The synopses this"
   },
-  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:1747-1749|0": {
-    "anchor": "src/styles.css:1747-1749",
+  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:1746-1748|0": {
+    "anchor": "src/styles.css:1746-1748",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2334,8 +2334,8 @@
     "fp": "53b9bb8e0988cf2b",
     "head": "color-scheme: dark;"
   },
-  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:1747-1749|0": {
-    "anchor": "src/styles.css:1747-1749",
+  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:1746-1748|0": {
+    "anchor": "src/styles.css:1746-1748",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -6044,13 +6044,13 @@
     "fp": "3a90f9bd69dfcf96",
     "head": "el('span', { class: 'yours-count', text: count }),"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:1782|0": {
-    "anchor": "src/styles.css:1782",
+  "scripts/check-palette.mjs|preamble|src/styles.css:1781|0": {
+    "anchor": "src/styles.css:1781",
     "fp": "3a5c838f7187d084",
     "head": "background: color-mix(in srgb, var(--warn) 12%, var(--panel));"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:1806|0": {
-    "anchor": "src/styles.css:1806",
+  "scripts/check-palette.mjs|preamble|src/styles.css:1805|0": {
+    "anchor": "src/styles.css:1805",
     "fp": "1eef54d530f1e5d5",
     "head": ".blocked .btn-g { border-color: var(--muted); }"
   },

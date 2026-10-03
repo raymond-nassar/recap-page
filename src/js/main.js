@@ -18,7 +18,7 @@ import {
   availablePublishingCategories, isPublishingCategoryLeaf, publishingAgeGroups, publishingCategoryStories,
   timelineYears,
   catalogListShelf, CATALOG_SHELVES, PUBLISHING_CATEGORIES,
-  modernTimelineFeaturedList, modernTimelineFeaturedCard,
+  modernTimelineFeaturedCard,
 } from './lib/catalog.js';
 import { Store, KEY as STATE_KEY } from './storage.js';
 import { MarvelApi, DEFAULT_BASE } from './api.js';
@@ -2935,8 +2935,6 @@ const homeView = createHomeView({
     yoursSection: $('#home-yours'),
     yoursList: $('#home-yours-list'),
     firstRun: $('#home-first-run'),
-    recommendation: $('#home-recommended'),
-    recommendationButton: $('#btn-home-recommended'),
     gateways: [...document.querySelectorAll('[data-category-gateway]')],
     copyrights: [...document.querySelectorAll('[data-marvel-copyright]')],
   }),
@@ -2967,7 +2965,6 @@ const homeView = createHomeView({
   onNavigateHub: (destination) => showView(destination, { push: true }),
   onOpen: () => showView('read', { push: true }),
   onRead: openInReader,
-  openPreview: (list, story) => previewView.open(list, story),
   onReview: () => {
     showView('read', { push: true });
     readingView.openReview();
@@ -2975,7 +2972,6 @@ const homeView = createHomeView({
   onReviewDeferred: () => readingView.openDeferred(),
   paintCover,
   paintCoverUrl,
-  recommendedList: modernTimelineFeaturedList,
   renderSavedLists: (section, results) => savedLists.render(section, results),
   seriesOnly,
   shortTitle,

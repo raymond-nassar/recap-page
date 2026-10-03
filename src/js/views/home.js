@@ -31,10 +31,8 @@ export function createHomeView({
   onRead,
   onReview,
   onReviewDeferred,
-  openPreview,
   paintCover,
   paintCoverUrl,
-  recommendedList,
   readerPresentation = (issue) => ({ launchable: isLaunchable(issue), temporary: false }),
   renderSavedLists,
   seriesOnly,
@@ -58,26 +56,6 @@ export function createHomeView({
   function ensureFirstRun() {
     const current = elements();
     if (current.firstRun) return current.firstRun;
-    const recommendation = el('div', {
-      id: 'home-recommended',
-      class: 'notice notice-act',
-      hidden: true,
-    }, [
-      el('div', { class: 'grow' }, [
-        el('h3', {
-          id: 'home-recommended-h',
-          text: 'Recommended start: Setup to Modern Timeline',
-        }),
-        el('p', {
-          text: 'New to Marvel? Explore earlier stories for historical context on the characters and events ahead. Setup is optional; you can enter the Modern Timeline directly.',
-        }),
-      ]),
-      el('button', {
-        type: 'button',
-        id: 'btn-home-recommended',
-        class: 'btn btn-g',
-      }, 'Preview this Reading List'),
-    ]);
     const section = el('section', {
       id: 'home-first-run',
       class: 'sec',
@@ -106,7 +84,6 @@ export function createHomeView({
           onclick: () => onNavigateHub('add'),
         }, 'Add comics'),
       ]),
-      recommendation,
     ]);
     current.categoriesRoot.prepend(section);
     return section;
@@ -235,11 +212,6 @@ export function createHomeView({
     }
 
     nodes = elements();
-    if (nodes.recommendation) {
-      const list = recommendedList(catalog.lists);
-      nodes.recommendation.hidden = !list;
-      if (list) nodes.recommendationButton.onclick = () => openPreview(list);
-    }
     if (catalog.dropped) onCatalogDropped(catalog.dropped);
 
     const categories = categoriesForCatalog(catalog);

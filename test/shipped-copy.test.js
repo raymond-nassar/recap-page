@@ -56,26 +56,30 @@ test('current shipped identity and short attribution use Recap Page', () => {
   assert.match(html, /<h1 id="order-name">Recap Page<\/h1>/);
   assert.equal(manifest.name, 'Recap Page');
   assert.equal(manifest.short_name, 'Recap');
-  assert.equal([...html.matchAll(/Marvel metadata via marvel\.emreparker\.com\./g)].length, 3);
+  assert.equal([...html.matchAll(/Marvel metadata via marvel\.emreparker\.com\./g)].length, 2);
   assert.match(
     html,
-    /<footer class="app-footer">[\s\S]*Unofficial fan project\. Metadata and links only\.[\s\S]*Read the full disclaimers[\s\S]*Marvel metadata via marvel\.emreparker\.com\./,
+    /<footer class="app-footer">\s*<button[^>]*data-view="about"[^>]*>[\s\S]*Unofficial fan project\. Metadata and links only\.[\s\S]*data-marvel-copyright/,
   );
   assert.match(main, /download\('recap-page-backup\.json'/);
   assert.match(reading, /textContent = 'Recap Page'/);
 });
 
-test('the persistent footer links to the external reading-list curators', () => {
+test('the compact footer opens About with every external source credit retained', () => {
   const html = readFileSync(join(SHIPPED, 'index.html'), 'utf8');
   const footer = html.match(/<footer class="app-footer">([\s\S]*?)<\/footer>/)?.[1];
   assert.ok(footer);
-  assert.match(footer, /Reading List sources:/);
+  assert.equal(footer.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim(),
+    'Unofficial fan project. Metadata and links only. \u00a9 MARVEL');
+  assert.match(footer, /aria-description="Read full disclaimers and credits"/);
+  assert.doesNotMatch(footer, /https:\/\//);
+  const about = html.slice(html.indexOf('id="view-about"'), html.indexOf('<footer class="app-footer">'));
   for (const [href, label] of [
     ['https://www.comicbookherald.com/', 'Comic Book Herald'],
     ['https://comicbookreadingorders.com/', 'Comic Book Reading Orders'],
     ['https://github.com/emreparker/marvel-comics', 'emreparker/marvel-comics'],
   ]) {
-    assert.ok(footer.includes(`<a href="${href}" target="_blank" rel="noopener noreferrer">${label}</a>`), label);
+    assert.ok(about.includes(`<a href="${href}" target="_blank" rel="noopener noreferrer">${label}</a>`), label);
   }
 });
 

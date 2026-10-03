@@ -33,7 +33,14 @@ download comics or provide offline comic reading.
 
 ### Phone navigation and controls
 
-On narrow Android screens, the recommended-start button sits below the full-width text.
+On narrow Android screens, the menu button shows only its icon and keeps its **Navigation**
+screen-reader name and 48px minimum touch target. The top bar is the only app branding, with
+the full app icon and no selected-page stripe. Home keeps **Browse. Choose. Read.** as its
+visible, focusable heading instead of repeating the large logo.
+
+Home offers **Browse Reading Lists** and **Add comics**, without a Setup recommendation.
+The existing Setup guide remains on Modern Timeline and the other browse pages.
+
 The link above a page title opens its immediate parent, such as **Browse** or **Library**.
 It replaces the full breadcrumb trail and current title. Android Back follows your history;
 the parent link goes to its named destination.
@@ -49,7 +56,7 @@ reading-filter history are unchanged.
 
 Touch navigation keeps screen-reader heading focus without a focus rectangle. Keyboard focus
 stays visible. Wider Android windows keep inline list actions and the full breadcrumb trail.
-The desktop app and saved data are unchanged.
+These phone navigation controls do not change desktop layout or saved data.
 
 ### Marvel Unlimited app links
 
@@ -549,7 +556,7 @@ somebody performs them on a physical device:
 - [ ] Back cancels a dialog, closes navigation, follows reading history, then leaves the app.
 - [ ] Check portrait and landscape, light and dark themes, larger system fonts, display cutouts,
   gesture and three-button navigation, and fields near the bottom with the keyboard open.
-- [ ] Recheck the Galaxy S26 reports: full-width Home recommendation, compact parent links,
+- [ ] Recheck the Galaxy S26 reports: focused Home starting choices, compact parent links,
   no heading rectangle after touch navigation, scrollable filters, and List options with working
   editors, exports, cancellation and Back.
 - [ ] Confirm the installed package's backup/transfer exclusions and document-provider behavior.
