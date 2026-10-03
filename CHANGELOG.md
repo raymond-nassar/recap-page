@@ -13,14 +13,6 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
-### Add the owner-selected Daredevil companion
-
-MCU Prep now includes **MCU Prep: Daredevil: Born Again**, with 37 original comics in six
-collection groups. The owner's five selections are preserved, including both Bendis's Out and
-Brubaker's first volume at the third position. Born Again contains the seven-issue story arc,
-and the two Zdarsky collections use the correct 2019 series. Existing guides, saved progress,
-notes and reader behavior are unchanged.
-
 ### Put reading actions first and disclose secondary choices
 
 All versions replace **Inspect issue** with **About this comic**. Comic details put Read

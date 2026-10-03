@@ -59,7 +59,6 @@ The separate owner-authored Daredevil companion does not change that fourteen-so
 inventory or its six published selections. Its owner credit, five supplied positions and
 approved six-collection expansion are recorded under
 [Owner-authored MCU Prep: Daredevil: Born Again](#owner-authored-mcu-prep-daredevil-born-again).
-Together they provide seven MCU Prep cards.
 
 ## Character Spotlight partial-release intake
 
