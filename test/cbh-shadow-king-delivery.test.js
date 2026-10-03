@@ -70,7 +70,7 @@ test('Shadow King keeps the frozen packet, mapping and full report aligned', asy
   const regenerated = await buildReportForMapping(`scripts/data/cbh-mappings/${id}.json`, [], {
     ...await historicalAgathaLibrarySnapshot(),
     excludedOrderIds: [
-      'thunderbolts-reading-order',
+      'mcu-prep-thunderbolts', 'thunderbolts-reading-order',
       'nebula-reading-order',
       'hope-summers-reading-order',
 
@@ -88,7 +88,7 @@ test('Shadow King keeps the frozen packet, mapping and full report aligned', asy
 
         'x-23-reading-order', 'ms-marvel-kamala-khan-reading-order', 'marvel-zombies-reading-order', 'hawkeye-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order',
 
-      ].includes(row.id)).filter((row) => row.id !== 'namor-sub-mariner-reading-order' && row.id !== 'iron-fist-reading-order')
+      ].includes(row.id)).filter((row) => row.id !== 'namor-sub-mariner-reading-order' && row.id !== 'iron-fist-reading-order' && row.id !== 'mcu-prep-thunderbolts')
     .map((row) => row.id);
 
   assert.deepEqual(regenerated, report);
