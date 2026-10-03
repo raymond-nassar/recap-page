@@ -73,3 +73,68 @@ test('Preview rejects an older issue response after a newer selection opens', as
   assert.equal(nodes.heading.textContent, 'List two');
   assert.equal(nodes.source.children[0].textContent, 'Source of two');
 });
+
+test('Preview separates individual issues after an edition without changing original order', async () => {
+  const nodes = {
+    add: node(),
+    body: node(),
+    close: node(),
+    description: node(),
+    dialog: node(),
+    heading: node(),
+    meta: node(),
+    paths: node(),
+    source: node(),
+  };
+  const items = [
+    { issueId: 1, title: 'First individual issue' },
+    { issueId: 2, title: 'First collected issue', collectedIn: 'Edition One' },
+    { issueId: 3, title: 'Later individual issue' },
+    { issueId: 4, title: 'Later collected issue', collectedIn: 'Edition One' },
+  ];
+  let requestedItems = items;
+  const focused = [];
+  const view = createPreviewView({
+    captureFocus: () => null,
+    el: element,
+    elements: () => nodes,
+    isInLibrary: () => null,
+    issueFocusAnchor: (entry) => {
+      focused.push(entry.issueId);
+      return node();
+    },
+    loadOrder: async () => ({ items: requestedItems }),
+    onAdd: async () => null,
+    onClose: async () => {},
+    onIssueLoadFailure: async (failure) => { throw failure.error; },
+    onOpen: () => {},
+    presentation: {
+      attributionLine: () => null,
+      markOwnedPaths: () => {},
+      pathChooser: () => node(),
+    },
+    restoreFocus: () => {},
+  });
+
+  await view.open({ ...list('mixed'), count: 4, file: 'mixed.json' });
+
+  const rows = nodes.body.children[0].children;
+  assert.deepEqual(rows.filter((entry) => entry.class === 'preview-group')
+    .map((entry) => entry.children[0].text),
+  ['Edition One', 'Individual issues', 'Edition One']);
+  assert.deepEqual(focused, [1, 2, 3, 4]);
+  assert.notEqual(rows[0].class, 'preview-group', 'leading individual issues keep their existing presentation');
+  assert.deepEqual(items.map((entry) => entry.collectedIn ?? null),
+    [null, 'Edition One', null, 'Edition One']);
+
+  requestedItems = items.map(({ issueId, title }) => ({ issueId, title }));
+  await view.open({ ...list('individual'), count: 4, file: 'individual.json' });
+  assert.equal(nodes.body.children[0].children
+    .filter((entry) => entry.class === 'preview-group').length, 0);
+
+  requestedItems = items.map((entry) => ({ ...entry, collectedIn: 'Edition One' }));
+  await view.open({ ...list('collected'), count: 4, file: 'collected.json' });
+  assert.deepEqual(nodes.body.children[0].children
+    .filter((entry) => entry.class === 'preview-group')
+    .map((entry) => entry.children[0].text), ['Edition One']);
+});
