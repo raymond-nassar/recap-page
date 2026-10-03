@@ -1702,6 +1702,7 @@ async function readingSemantics(page) {
     const state = JSON.parse(localStorage.getItem(key));
     return Object.keys(state.read).length === 4 && Object.hasOwn(state.read, 43534);
   }, KEY), 'M01: Done marks exactly the current issue');
+  await click(page, '#hero-more-actions > summary');
   await click(page, '#btn-hero-defer');
   await page.waitForFunction(() => document.querySelector('#hero-title')?.textContent === 'Avengers (2012) #6');
   check(await page.evaluate((key, list) => {

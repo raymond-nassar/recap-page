@@ -107,6 +107,7 @@ export const readableMarkdownExport = {
 
     await page.$eval('[data-view="data"]', (node) => node.click());
     await page.waitForSelector('#view-data:not([hidden])');
+    await page.$eval('#backup-export-options > summary', (node) => node.click());
     await open('#btn-export-md-2');
     t.check('Backup and settings uses the same default output and does not remember private-note inclusion',
       await preview() === expected

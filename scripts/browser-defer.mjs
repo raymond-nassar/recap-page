@@ -72,6 +72,7 @@ export const deferNext = {
   async run(page, t) {
     await setup(page);
     const before = await saved(page);
+    await click(page, '#hero-more-actions > summary');
     await click(page, '#btn-hero-defer');
     t.check('Defer advances the hero without reading or reordering either list',
       await page.$eval('#hero-title', (e) => e.textContent.endsWith('#2'))
@@ -201,6 +202,7 @@ export const deferPersistence = {
         return set.call(this, key, value);
       };
     });
+    await click(page, '#hero-more-actions > summary');
     await click(page, '#btn-hero-defer');
     t.check('Refused Defer leaves canonical bytes and the current hero unchanged',
       await raw(page) === before && await page.$eval('#hero-title', (e) => e.textContent.endsWith('#3')));

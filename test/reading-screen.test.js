@@ -55,17 +55,20 @@ test('the hero offers one dominant action, and the way out of the app is a link'
   // Three controls of near-equal weight is the same as none, and the issue page is not an action
   // the app performs. Its element is still an anchor either way; this is about what it looks like.
   const hero = html.match(/<section class="hero" id="hero"[\s\S]*?\n {14}<\/section>/)[0];
-  const cta = hero.match(/<div class="cta">[\s\S]*?<\/div>/)[0];
+  const cta = hero.match(/<div class="cta" id="hero-primary-actions">[\s\S]*?<\/div>/)[0];
   assert.match(cta, /class="btn btn-lg[^"]*" id="btn-hero-read"/);
-  assert.match(cta, /class="btn btn-g" id="btn-hero-inspect"/);
   assert.match(cta, /class="btn btn-g[^"]*" id="btn-hero-done"/);
-  assert.match(cta, /class="btn btn-link" id="btn-hero-info"/);
+  assert.doesNotMatch(cta, /id="btn-hero-(inspect|defer|info)"/);
+  assert.match(hero, /class="btn btn-link" id="btn-hero-inspect">About this comic/);
+  const secondary = hero.match(/<details[^>]*id="hero-more-actions"[\s\S]*?<\/details>/)[0];
+  assert.match(secondary, /class="btn btn-link" id="btn-hero-info"/);
+  assert.match(secondary, /id="btn-hero-defer"/);
   assert.equal((cta.match(/btn-lg/g) || []).length, 1, 'more than one call to action carries the dominant treatment');
 });
 
 test('reading shortcuts stay discoverable without permanent keycap clutter', () => {
   const hero = html.match(/<section class="hero" id="hero"[\s\S]*?\n {14}<\/section>/)[0];
-  const cta = hero.match(/<div class="cta">[\s\S]*?<\/div>/)[0];
+  const cta = hero.match(/<div class="cta" id="hero-primary-actions">[\s\S]*?<\/div>/)[0];
   assert.doesNotMatch(cta, /<kbd>/, 'a shortcut keycap is still always visible on a reading action');
   for (const [id, key, ariaKey] of [['btn-hero-read', 'Enter', 'Enter'], ['btn-hero-done', 'D', 'd']]) {
     const button = cta.match(new RegExp(`<button[^>]*id="${id}"[^>]*>`))?.[0] ?? '';

@@ -38,9 +38,12 @@ export function createReaderLinkView({
   }
 
   function focusEdit() {
-    const node = elements().edit;
-    if (node.isConnected && !node.hidden && !node.disabled && !elements().root.hidden) node.focus();
-    else focusFallback();
+    const nodes = elements();
+    const node = nodes.edit;
+    if (node.isConnected && !node.hidden && !node.disabled && !nodes.root.hidden) {
+      if (nodes.help.open && node.getClientRects().length) node.focus();
+      else nodes.heading.focus();
+    } else focusFallback();
   }
 
   function error(message) {
@@ -77,6 +80,10 @@ export function createReaderLinkView({
     nodes.edit.disabled = !eligible;
     nodes.revert.hidden = !eligible || current === null;
     nodes.reportToggle.disabled = !eligible;
+    nodes.temporary.hidden = !eligible || current === null;
+    nodes.temporary.textContent = nodes.temporary.hidden
+      ? ''
+      : `Using a temporary reader link. ${TEMPORARY_LINK_LIFETIME} This does not verify comic identity or access.`;
     nodes.summary.textContent = eligible
       ? `Original: ${originalReaderDescription(issue)}. ${current === null
         ? 'Using the original link.'
@@ -91,7 +98,8 @@ export function createReaderLinkView({
       nodes.reportStatus.textContent = 'These report details describe an earlier context. Review them or regenerate from the current comic.';
     }
     nodes.regenerate.disabled = !eligible;
-    if (ownedFocus && (active.disabled || !active.getClientRects().length)) focusEdit();
+    if (ownedFocus && (active.disabled || (!nodes.help.open && active !== nodes.heading)
+      || !active.getClientRects().length)) focusEdit();
   }
 
   function cancel({ focus = true } = {}) {
@@ -117,6 +125,7 @@ export function createReaderLinkView({
     if (id !== issueId || nextSource !== source) {
       issueId = id;
       source = nextSource;
+      elements().help.open = false;
       elements().status.textContent = '';
       cancel({ focus: false });
       hideReport();
@@ -133,6 +142,7 @@ export function createReaderLinkView({
     }
     draft = { ...context(issue), stale: false };
     const nodes = elements();
+    nodes.help.open = true;
     const current = links.get(getState(), issueId);
     nodes.input.value = current === null ? '' : readerUrl(current);
     nodes.form.hidden = false;
@@ -229,6 +239,7 @@ export function createReaderLinkView({
   function leave() {
     cancel({ focus: false });
     hideReport();
+    elements().help.open = false;
     issueId = null;
     refresh();
   }
@@ -258,6 +269,7 @@ export function createReaderLinkView({
     nodes.regenerate.textContent = 'Regenerate report details';
     nodes.form.hidden = true;
     nodes.reportPanel.hidden = true;
+    nodes.help.open = false;
     const listen = (node, type, handler) => {
       node.addEventListener(type, handler);
       listeners.push(() => node.removeEventListener(type, handler));
