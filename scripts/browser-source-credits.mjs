@@ -18,7 +18,7 @@ const orders = Object.fromEntries(lists.map((list) => [
 
 export const sourceCredits = {
   id: 'source-credits',
-  title: 'reading-list sources are visible on cards, in Preview and in the footer',
+  title: 'reading-list sources are visible on cards, in Preview and in About',
   async run(page, t) {
     await page.evaluateOnNewDocument((fixtureLists, fixtureOrders) => {
       localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
@@ -71,21 +71,37 @@ export const sourceCredits = {
     await page.waitForSelector('#catalog-results .catalog-card');
     for (const width of [1280, 640, 360]) {
       await page.setViewport({ width, height: 900 });
+      t.check(`${width}px: card source remains visible without horizontal clipping`,
+        await page.$eval('#catalog-results .result-source a', (node) => {
+          const box = node.getBoundingClientRect();
+          return box.left >= 0 && box.right <= innerWidth && node.checkVisibility();
+        }));
+      await page.$eval('.app-footer [data-view="about"]', (button) => button.click());
+      await page.waitForSelector('#view-about:not([hidden])');
       const layout = await page.evaluate(() => {
         const footer = document.querySelector('.app-footer');
-        const links = [...footer.querySelectorAll('a')];
-        const cardLink = document.querySelector('#catalog-results .result-source a');
+        const about = document.querySelector('#view-about');
+        const links = [
+          'https://www.comicbookherald.com/',
+          'https://comicbookreadingorders.com/',
+          'https://github.com/emreparker/marvel-comics',
+        ].map((href) => [...about.querySelectorAll('a')].find((link) => link.href === href)).filter(Boolean);
         const fits = (node) => {
           const box = node.getBoundingClientRect();
           return box.left >= 0 && box.right <= innerWidth && node.checkVisibility();
         };
         return {
           links: links.map((link) => ({ text: link.textContent, href: link.href, target: link.target, rel: link.rel })),
-          fits: links.length === 3 && [...links, cardLink].every(fits),
+          text: footer.textContent.replace(/\s+/g, ' ').trim(),
+          expected: `Unofficial fan project. Metadata and links only. \u00a9 ${new Date().getFullYear()} MARVEL`,
+          fits: links.length === 3 && links.every(fits),
           overflow: document.documentElement.scrollWidth > innerWidth,
         };
       });
-      t.check(`${width}px: footer credits all external curators with safe links`,
+      t.check(`${width}px: footer has only the short attribution and opens About`,
+        layout.text === layout.expected && await page.$eval('#about-h', (node) => document.activeElement === node),
+        JSON.stringify(layout));
+      t.check(`${width}px: About credits all external providers with safe links`,
         JSON.stringify(layout.links.map(({ text, href }) => [text, href])) === JSON.stringify([
           ['Comic Book Herald', 'https://www.comicbookherald.com/'],
           ['Comic Book Reading Orders', 'https://comicbookreadingorders.com/'],
@@ -94,6 +110,8 @@ export const sourceCredits = {
         JSON.stringify(layout.links));
       t.check(`${width}px: source links wrap without horizontal overflow`,
         layout.fits && !layout.overflow, JSON.stringify(layout));
+      await page.evaluate(() => { location.hash = '#/catalog'; });
+      await page.waitForSelector('#catalog-results .catalog-card', { visible: true });
     }
   },
 };

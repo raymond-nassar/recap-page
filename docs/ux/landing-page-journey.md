@@ -12,17 +12,16 @@
 **Thinking**: "How do I want to get into this?"
 
 **Target experience**: One question distinguishes curated Browse from custom or manual Add. Three
-large choices establish the reading modes without a wall of individual cards, and an optional
-Setup to Modern Timeline callout offers the preparation path for this app's Modern Timeline.
+large category choices establish the reading modes without a wall of individual cards.
+Home has no Setup recommendation or Preview action.
 
 ## Stage 2: Orientation
-**Doing**: Chooses Modern Timeline, Storylines or Character spotlights, or previews the recommended
-setup path.
+**Doing**: Chooses Modern Timeline, Storylines or Character spotlights.
 
 **Thinking**: "I know whether I want chronology, a complete arc or a character."
 
-**Target experience**: Compact labels distinguish the paths. The recommendation opens existing
-Preview rather than adding anything or replacing the other ways to browse.
+**Target experience**: Compact labels distinguish the paths. Choosing Modern Timeline reveals its
+existing optional Setup guide rather than recommending an item before a direction is chosen.
 
 ## Stage 3: Evaluation
 **Doing**: Compares Reading Lists on the selected browse screen.
@@ -35,13 +34,13 @@ count. Search, filters, cover-led cards, scope and preview details remain off Ho
 remain reachable through Marvel Ages and direct addresses.
 
 ## Stage 4: Commitment
-**Doing**: Adds a Reading List from its preview, including Preview opened from Home.
+**Doing**: Adds a Reading List from its preview on the chosen browse page.
 
 **Thinking**: "Did that work, and what should I read first?"
 
 **Target experience**: The existing announcement confirms the action, the list appears in My
 Library, and the reading screen names the next issue. A separate follow-on owns any expanded
-first-save explanation, including the Home-originated path.
+first-save explanation.
 
 ## Stage 5: Return
 **Doing**: Reopens the app days later.

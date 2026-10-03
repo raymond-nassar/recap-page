@@ -125,9 +125,16 @@ body:has(#android-list-sheet[open], #android-spotlight-sheet[open]) { overflow: 
   .shell, .shell.railed { min-height: 100dvh; }
   .rail-header { gap: var(--space-4); }
   .rail-toggle { flex-shrink: 0; }
+  .rail-toggle-label { display: none; }
+  .brand[aria-current]::before { content: none; }
   #view-home > .head { display: flex; align-items: flex-start; justify-content: center; }
   .home-lockup { min-width: 0; }
-  .home-brand { overflow-wrap: normal; font-size: var(--t-title-lg); }
+  #view-home .home-brand {
+    margin: 0; color: var(--text); font-family: inherit; font-size: var(--t-subtitle);
+    font-weight: 800; letter-spacing: .08em; line-height: 1.5; overflow-wrap: normal;
+    text-transform: none; transform: none; -webkit-text-stroke: 0; text-shadow: none;
+  }
+  #view-home .home-action { display: none; }
   .wrap { padding: var(--space-6) var(--space-6) var(--space-9); }
   .hero-in { padding: var(--space-6); gap: var(--space-6); }
   .hero-in .art, .chero-in .art { max-width: 112px; }
@@ -138,9 +145,6 @@ body:has(#android-list-sheet[open], #android-spotlight-sheet[open]) { overflow: 
   .ract .mini-label { display: inline; }
   .setting { padding-right: var(--space-6); }
   .setting > .setting-ctl { position: static; transform: none; margin-top: var(--space-5); max-width: 100%; }
-  #home-recommended { flex-direction: column; align-items: stretch; }
-  #home-recommended .grow { flex: 0 1 auto; min-width: 0; }
-  #btn-home-recommended { justify-content: center; }
   .android-mobile-ui #android-list-options { display: inline-flex; margin-bottom: var(--space-6); }
   .android-mobile-ui .list-tools { display: none; }
   .breadcrumb li:not(:nth-last-child(2)) { display: none; }

@@ -1483,7 +1483,6 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: 6px; padding: 
 .notice-act button {
   min-height: 44px; padding-inline: var(--space-6); display: inline-flex; align-items: center;
 }
-#home-recommended .grow { flex: 1 1 19rem; min-width: 0; }
 
 /* Dismiss is the lesser of the two when a notice carries both, so it reads as secondary by losing
    its outline until it is pointed at or focused. The colour is left alone deliberately: dimming
@@ -1501,7 +1500,7 @@ progress { accent-color: var(--accent); height: 6px; }
   display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-2);
 }
 .wrap > footer.app-footer { max-width: none; }
-.footer-sources { flex-basis: 100%; overflow-wrap: anywhere; }
+.app-footer > .linkish { font-size: var(--t-caption); line-height: 1.5; text-align: left; }
 
 /* The footer states the bare minimum on every screen; the full disclaimers live in About,
    one click away, so they are never more than a link from wherever the reader is. */

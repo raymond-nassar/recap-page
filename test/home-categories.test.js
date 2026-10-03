@@ -186,6 +186,7 @@ test('empty Home creates one labelled first-run region without changing Browse',
   assert.match(body, /id: 'home-first-run'[\s\S]*'aria-labelledby': 'home-first-run-h'/);
   assert.match(body, /el\('h2', \{[\s\S]*id: 'home-first-run-h',[\s\S]*text: 'Where do you want to start\?'/);
   assert.match(body, /Browse curated Reading Lists\. Add individual issues or your own list\./);
+  assert.doesNotMatch(body, /home-recommended|Preview this Reading List|Setup to Modern Timeline/);
   assert.match(body, /current\.categoriesRoot\.prepend\(section\)/);
   assert.doesNotMatch(markup.slice(markup.indexOf('id="view-browse"')), /home-first-run/);
 });
@@ -198,13 +199,12 @@ test('first-run guidance follows the same local populated state as Home', () => 
   assert.match(body, /firstRun\.hidden = populated;/);
 });
 
-test('the recommended start resolves after catalog load and only opens Preview', () => {
-  const start = homeSource.indexOf('if (nodes.recommendation)');
-  const body = homeSource.slice(start, homeSource.indexOf('if (catalog.dropped)', start));
-  assert.notEqual(start, -1, 'the recommended-start catalog resolution is missing');
-  assert.match(body, /recommendedList\(catalog\.lists\)/);
-  assert.match(body, /nodes\.recommendationButton\.onclick = \(\) => openPreview\(list\)/);
-  assert.doesNotMatch(body, /importCurated|setActive|showView|location\.hash|localStorage/);
+test('Home leaves Setup recommendations and Preview actions to the browse pages', () => {
+  assert.doesNotMatch(homeSource, /recommendedList|openPreview|nodes\.recommendation/);
+  const start = source.indexOf('const homeView = createHomeView');
+  const body = source.slice(start, source.indexOf('const libraryView', start));
+  assert.notEqual(start, -1, 'the Home view binding is missing');
+  assert.doesNotMatch(body, /recommendationButton|recommendedList:|openPreview:/);
 });
 
 test('Home and Browse use concise action headings for both discovery tiers', () => {

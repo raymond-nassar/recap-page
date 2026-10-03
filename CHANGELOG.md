@@ -13,6 +13,18 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Simplify Home and the Android phone header
+
+On phone-sized Android screens, the app name and full icon appear only in the top bar.
+Home keeps its tagline without repeating the large logo. The menu button is icon-only,
+and the stray selected-page stripe is gone. The menu keeps its screen-reader name and
+48px minimum touch target. Desktop branding and saved reading data are unchanged.
+
+All versions keep Home focused on Browse and Add. Setup guidance stays on the existing
+Modern Timeline and other browse pages. The short fan-project and copyright footer opens
+About for the full disclaimers and existing source credits. Its copyright year still updates
+automatically. Reading List previews and saved data are unchanged.
+
 ### Show the Android app and current features on the project home
 
 The project home now introduces Android development with the supplied Recap Page artwork and

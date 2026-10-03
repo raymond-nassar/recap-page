@@ -25,8 +25,8 @@ anything new, so I do not have to remember which issue was next.
 - Let readers choose a Modern period from Marvel Ages or open Modern Age as one aggregate.
 - Use 1998 as this app's chosen Modern Timeline boundary without presenting it as an official Marvel
   editorial era.
-- Offer Setup to Modern Timeline as the recommended preparation path, opening existing Preview
-  without adding it automatically.
+- Offer Setup to Modern Timeline on its contextual browse pages rather than Home, opening existing
+  Preview without adding it automatically.
 - Feature that same Reading List above the guided normal timeline cards without duplicating or
   counting it. Keep Marvel Knights to Planet X as the 1998 opening before the sequence resumes with
   Avengers Disassembled in 2004, while other events remain discoverable through Marvel Ages and

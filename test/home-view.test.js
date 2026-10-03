@@ -125,7 +125,6 @@ function harness({
     failures: [],
     navigate: [],
     open: 0,
-    preview: [],
     read: [],
     saved: [],
     warnings: [],
@@ -167,8 +166,6 @@ function harness({
     elements: () => ({
       ...nodes,
       firstRun: findById(categoriesRoot, 'home-first-run'),
-      recommendation: findById(categoriesRoot, 'home-recommended'),
-      recommendationButton: findById(categoriesRoot, 'btn-home-recommended'),
     }),
     getActiveListId: () => 'a',
     getState: () => state,
@@ -185,10 +182,8 @@ function harness({
     onReviewDeferred: () => calls.navigate.push('deferred'),
     onRead: (...args) => calls.read.push(args),
     readerPresentation,
-    openPreview: (entry) => calls.preview.push(entry.id),
     paintCover: (...args) => calls.covers.push(args),
     paintCoverUrl: (...args) => calls.coverFallbacks.push(args),
-    recommendedList: () => catalog.lists[0],
     renderSavedLists: (...args) => calls.saved.push(args),
     seriesOnly: (name) => name.replace(/\s+\(.*/, ''),
     shortTitle: (name) => name,
@@ -216,7 +211,7 @@ test('510 Home distinguishes deferred work from completion and exposes a separat
   assert.equal(h.nodes.continueDeferred.hidden, true);
 });
 
-test('Home view owns first-run, saved-list, recommendation, and shared gateway presentation', async () => {
+test('Home view owns focused first-run choices, saved lists, and shared gateways', async () => {
   const h = harness();
   h.view.render();
   await new Promise((resolve) => setImmediate(resolve));
@@ -241,13 +236,14 @@ test('Home view owns first-run, saved-list, recommendation, and shared gateway p
   tile.onclick();
   assert.deepEqual(h.calls.navigate, ['catalog']);
 
-  const recommended = findById(firstRun, 'home-recommended');
-  assert.equal(recommended.hidden, false);
-  findById(firstRun, 'btn-home-recommended').onclick();
-  assert.deepEqual(h.calls.preview, ['recommended']);
+  assert.equal(findById(firstRun, 'home-recommended'), null);
+  assert.equal(findById(firstRun, 'btn-home-recommended'), null);
+  findById(firstRun, 'btn-home-browse').onclick();
+  findById(firstRun, 'btn-home-add').onclick();
+  assert.deepEqual(h.calls.navigate, ['catalog', 'browse', 'add']);
 });
 
-test('first-run Home offers Browse and Add before the optional recommendation resolves', () => {
+test('first-run Home offers only Browse and Add without waiting for catalog load', () => {
   const h = harness({ catalogLoader: () => new Promise(() => {}) });
   const before = structuredClone(h.state);
   h.view.render();
@@ -255,13 +251,12 @@ test('first-run Home offers Browse and Add before the optional recommendation re
   const browse = findById(firstRun, 'btn-home-browse');
   const add = findById(firstRun, 'btn-home-add');
   assert.equal(firstRun.hidden, false);
-  assert.equal(findById(firstRun, 'home-recommended').hidden, true);
+  assert.equal(findById(firstRun, 'home-recommended'), null);
   assert.equal(browse.children[0], 'Browse Reading Lists');
   assert.equal(add.children[0], 'Add comics');
   browse.onclick();
   add.onclick();
   assert.deepEqual(h.calls.navigate, ['browse', 'add']);
-  assert.deepEqual(h.calls.preview, []);
   assert.deepEqual(h.state, before);
   h.state.listOrder.push('a');
   h.state.lists.a = { id: 'a', name: 'Alpha order', itemIds: [] };
@@ -316,15 +311,11 @@ test('Home view paints populated Continue details and accessible actions', () =>
   assert.equal(h.calls.covers.length, 1);
 });
 
-test('446 Setup offers consistent optional historical context without gating direct entry', async () => {
+test('446 Setup stays on contextual browse pages without gating direct entry from Home', async () => {
   const h = harness();
   h.view.render();
   await new Promise((resolve) => setImmediate(resolve));
-  const recommendation = findById(h.nodes.categoriesRoot, 'home-recommended');
-  const homeCopy = recommendation.children[0].children[1].textContent;
-  assert.match(homeCopy, /^New to Marvel\? .*historical context.*characters and events/);
-  assert.match(homeCopy, /optional; you can enter the Modern Timeline directly\./);
-  assert.equal(recommendation.hidden, false);
+  assert.equal(findById(h.nodes.categoriesRoot, 'home-recommended'), null);
   const timeline = h.nodes.gateways[0].nodes.primary.children[0].children[0];
   timeline.onclick();
   assert.deepEqual(h.calls.navigate, ['catalog']);
@@ -354,7 +345,6 @@ test('446 Setup offers consistent optional historical context without gating dir
     assert.match(copy, /^New to Marvel\? .*historical context.*characters and events/);
     assert.match(copy, /optional;/);
     if (surface === 'catalog') {
-      assert.ok(copy.startsWith(homeCopy));
       assert.match(copy, /1998.*not an official Marvel editorial-era boundary/);
     } else {
       assert.match(copy, /you can enter this age directly\./);
