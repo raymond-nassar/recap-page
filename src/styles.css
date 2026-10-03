@@ -1300,6 +1300,29 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: 6px; padding: 
   color: var(--muted); font-size: var(--t-caption); padding: var(--space-4) var(--space-1) var(--space-4);
   border-bottom: 1px solid var(--line);
 }
+.comic-builder .comic-list-name[hidden] { display: none; }
+.comic-builder { margin: var(--space-6) 0; border-block: 1px solid var(--line); }
+.comic-builder > h2 { margin: var(--space-5) 0 var(--space-4); }
+.comic-builder > form { padding: 0 0 var(--space-5); }
+.comic-builder select {
+  width: 100%; min-width: 0; min-height: 44px; padding: var(--space-4) var(--space-5);
+  border: 1px solid var(--line-2); border-radius: 8px;
+  background: var(--card-2); color: var(--text); cursor: pointer;
+}
+.comic-builder select:hover { border-color: var(--accent-text); }
+.comic-builder input[type="text"] { width: 100%; min-height: 44px; }
+.comic-selection-count { margin: 0; color: var(--dim); font-variant-numeric: tabular-nums; }
+.comic-results-heading { overflow-wrap: anywhere; }
+.comic-result-tools { justify-content: space-between; }
+.comic-results { display: grid; gap: var(--space-3); }
+.comic-choice { flex-wrap: wrap; content-visibility: auto; contain-intrinsic-size: auto 80px; }
+.comic-choice .result-title, .comic-choice .result-meta { overflow-wrap: anywhere; }
+.comic-choice .pill-held { max-width: 100%; white-space: normal; }
+.comic-select {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 44px; min-height: 44px; flex: none; cursor: pointer;
+}
+.comic-select input { width: 24px; height: 24px; margin: 0; accent-color: var(--accent); }
 
 /* The heading over one stretch of the shelf. It used to be a bold line in the same column as the
    rows, at the same size as a row title, so scrolling a 46-row screen gave no felt boundary between

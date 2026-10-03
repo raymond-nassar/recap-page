@@ -113,7 +113,7 @@ const PROMISES = [
 // The series and creator row was added in round fifteen. All three surfaces enumerated the
 // requests and left this one out, and two of them said in the same breath that "searching the
 // catalog, series or creators is answered from files already on this machine", which is true of
-// the search and not of the add that follows it. Adding a series pages the metadata API to
+// the search and not of the browsing that follows it. Browsing a series pages the metadata API to
 // completion, up to sixty requests, and is the longest run the app makes. An enumeration that
 // reads as complete and omits the largest item is the defect this whole item exists to undo, so
 // the clause is held by a rule rather than left as prose somebody can quietly drop.
@@ -122,8 +122,8 @@ const REQUESTS = [
   ['the app contacts the API on startup', /(?:starts|startup|opening (?:the app|it))[^.]*reachable/i],
   ['covers are fetched from Marvel', /cover[^.]*Marvel'?s? (?:own )?image servers/i],
   [
-    'adding a series or a creator fetches every issue',
-    /adding[^.;]*(?:series|creator)[^.;]*(?:asks|sends|requests)[^.;]*every issue/i,
+    'browsing a series or a creator fetches its comics',
+    /browsing[^.;]*(?:series|creator)[^.;]*(?:asks|sends|requests)[^.;]*(?:issues|comics)/i,
   ],
   [
     'opening a reader resolves a missing reader link',
