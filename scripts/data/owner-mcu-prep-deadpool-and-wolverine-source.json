@@ -1,0 +1,264 @@
+{
+  "schemaVersion": 1,
+  "id": "mcu-prep-deadpool-and-wolverine",
+  "sourceProvider": "owner-authored",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/680",
+  "sourceRetrievedAt": "2026-10-03",
+  "sourceBoundary": "The five owner-selected collections, in their supplied order. Expand only the verified original comics listed for each selection. Weapon X means the Barry Windsor-Smith serial, not a later deluxe edition's bonus stories. Deadpool Classic means the single delegated Vol. 1 choice, not the Epic Collection or Suicide Kings.",
+  "selectionCount": 5,
+  "expandedIssueCount": 43,
+  "publishedIssueCount": 43,
+  "gapCount": 0,
+  "selections": [
+    {
+      "position": 1,
+      "originalTitle": "Wolverine: Weapon X (Barry Windsor-Smith)",
+      "originalPurpose": "The modern, definitive retelling of how Logan became a weapon. Dark, body-horror origin that still underpins every version of the character.",
+      "collectionTitle": "Wolverine: Weapon X",
+      "editionIsbn": "9780785137269",
+      "creditedCreators": [
+        "Barry Windsor-Smith"
+      ],
+      "sourcePositions": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+      "contents": [
+        {
+          "seriesTitle": "Marvel Comics Presents",
+          "seriesYear": 1988,
+          "seriesId": 2039,
+          "issueNumbers": ["72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84"],
+          "issueIds": [10155, 10156, 10157, 10158, 10159, 10160, 10161, 10162, 10164, 10165, 10166, 10167, 10168]
+        }
+      ],
+      "expansionNote": "The collection reprints the Weapon X serial from these thirteen anthology issues. The checklist opens the original whole comics, which also contain unrelated anthology stories. Uncanny X-Men #205 and material from Wolverine #166 in the later Deluxe Edition are not added.",
+      "evidence": [
+        {
+          "url": "https://www.penguinrandomhouse.com/books/724092/wolverine-weapon-x-deluxe-edition-by-barry-windsor-smith/",
+          "retrievedAt": "2026-10-03",
+          "supports": "Barry Windsor-Smith creator credit and Marvel Comics Presents (1988) #72-84 serial boundary; separately identifies later deluxe bonus material."
+        },
+        {
+          "url": "https://www.abebooks.com/9780785137269/Wolverine-Weapon-X-Barry-Windsor-Smith-0785137262/plp",
+          "retrievedAt": "2026-10-03",
+          "supports": "Identity of the standard Weapon X paperback, not the later Deluxe Edition."
+        },
+        {
+          "url": "https://marvel.emreparker.com/v1/series/2039/issues?limit=100&offset=0",
+          "retrievedAt": "2026-10-03",
+          "supports": "Exact original identities for #75-84 in series 2039."
+        },
+        {
+          "url": "https://marvel.emreparker.com/v1/series/2039/issues?limit=100&offset=100",
+          "retrievedAt": "2026-10-03",
+          "supports": "Exact original identities for #72-74 in series 2039."
+        }
+      ]
+    },
+    {
+      "position": 2,
+      "originalTitle": "Deadpool by Daniel Way Vol. 1: Dead Presidents",
+      "originalPurpose": "The go-to modern origin/tone-setter for Wade: fourth-wall jokes, mercenary chaos, and the Weapon X connection.",
+      "collectionTitle": "Deadpool Vol. 1: Dead Presidents",
+      "editionIsbn": "9780785166801",
+      "creditedCreators": [
+        "Gerry Duggan",
+        "Brian Posehn",
+        "Tony Moore"
+      ],
+      "sourcePositions": [14, 15, 16, 17, 18, 19],
+      "contents": [
+        {
+          "seriesTitle": "Deadpool",
+          "seriesYear": 2012,
+          "seriesId": 16542,
+          "issueNumbers": ["1", "2", "3", "4", "5", "6"],
+          "issueIds": [43797, 43801, 44870, 46038, 46040, 46042]
+        }
+      ],
+      "reconciliation": {
+        "kind": "owner-approved-bibliographic-correction",
+        "conflict": "The owner supplied Daniel Way's name and the Dead Presidents subtitle together. Dead Presidents is by Gerry Duggan and Brian Posehn. Daniel Way's Complete Collection Vol. 1 contains different comics.",
+        "decision": "Retain Dead Presidents and its six Deadpool (2012) issues; correct the creator credit. Do not add or substitute the Daniel Way collection.",
+        "authorityIdentity": "raymond-nassar",
+        "decisionUrl": "https://github.com/raymond-nassar/recap-page/issues/680#issuecomment-5971701868",
+        "decidedAt": "2026-10-03",
+        "rejectedAlternative": {
+          "collectionTitle": "Deadpool by Daniel Way: The Complete Collection Vol. 1",
+          "contents": "Wolverine: Origins #21-25; Deadpool (2008) #1-12; Thunderbolts #130-131; Deadpool Saga.",
+          "evidenceUrl": "https://www.reedcomics.com/deadpool-by-daniel-way-complete-collection-volume-1-graphic-novel",
+          "retrievedAt": "2026-10-03"
+        }
+      },
+      "expansionNote": "Six original issues in numerical order. This is an opening story arc of the 2012 series, not a newly verified Deadpool origin or a substitute for Daniel Way's run.",
+      "evidence": [
+        {
+          "url": "https://www.barnesandnoble.com/w/deadpool-volume-1-brian-posehn/1114032987",
+          "retrievedAt": "2026-10-03",
+          "supports": "Dead Presidents collects Deadpool (2012) #1-6."
+        },
+        {
+          "url": "https://www.abebooks.com/9780785166801/Deadpool-Vol-1-Dead-Presidents-0785166807/plp",
+          "retrievedAt": "2026-10-03",
+          "supports": "The named edition and corrected Gerry Duggan/Brian Posehn creator identity."
+        },
+        {
+          "url": "https://marvel.emreparker.com/v1/series/16542/issues?limit=100&offset=0",
+          "retrievedAt": "2026-10-03",
+          "supports": "Exact original identities, series year, and order for #1-6."
+        }
+      ]
+    },
+    {
+      "position": 3,
+      "originalTitle": "Astonishing X-Men: Gifted (Whedon/Cassaday)",
+      "originalPurpose": "A modern-classic X-Men arc with Logan in top form on a team, good context for his team-guy side before the film's isolation.",
+      "collectionTitle": "Astonishing X-Men: Gifted",
+      "editionIsbn": "9780785115311",
+      "creditedCreators": [
+        "Joss Whedon",
+        "John Cassaday"
+      ],
+      "sourcePositions": [20, 21, 22, 23, 24, 25],
+      "contents": [
+        {
+          "seriesTitle": "Astonishing X-Men",
+          "seriesYear": 2004,
+          "seriesId": 744,
+          "issueNumbers": ["1", "2", "3", "4", "5", "6"],
+          "issueIds": [660, 723, 531, 1808, 843, 927]
+        }
+      ],
+      "expansionNote": "The first six original issues of the 2004 series, not a collected-edition ID or the entire Whedon/Cassaday run.",
+      "evidence": [
+        {
+          "url": "https://www.abebooks.com/9780785115311/Astonishing-Men-Gifted-Joss-Whedon-0785115310/plp",
+          "retrievedAt": "2026-10-03",
+          "supports": "The Gifted collection contains the first six Astonishing X-Men issues and credits Whedon and Cassaday; the review identifies Wolverine in the team context."
+        }
+      ]
+    },
+    {
+      "position": 4,
+      "originalTitle": "Wolverine: Old Man Logan (Mark Millar/Steve McNiven)",
+      "originalPurpose": "The aged, retired-hero future-Logan concept the film's costume and attitude directly nod to.",
+      "collectionTitle": "Wolverine: Old Man Logan",
+      "editionIsbn": "9780785131724",
+      "creditedCreators": [
+        "Mark Millar",
+        "Steve McNiven"
+      ],
+      "sourcePositions": [26, 27, 28, 29, 30, 31, 32, 33],
+      "contents": [
+        {
+          "seriesTitle": "Wolverine",
+          "seriesYear": 2003,
+          "seriesId": 632,
+          "issueNumbers": ["66", "67", "68", "69", "70", "71", "72"],
+          "issueIds": [21330, 21508, 21710, 22475, 22876, 23744, 23934]
+        },
+        {
+          "seriesTitle": "Wolverine: Old Man Logan Giant-Size",
+          "seriesYear": 2009,
+          "seriesId": 8622,
+          "issueNumbers": ["1"],
+          "issueIds": [27129]
+        }
+      ],
+      "expansionNote": "The original Millar/McNiven arc followed by its 2009 Giant-Size finale, not the 2015 Old Man Logan series.",
+      "evidence": [
+        {
+          "url": "https://www.penguinrandomhouse.com/books/692801/wolverine-old-man-logan-by-mark-millar/",
+          "retrievedAt": "2026-10-03",
+          "supports": "Wolverine (2003) #66-72 plus Wolverine: Old Man Logan Giant-Size, and the retired future-Logan setting."
+        },
+        {
+          "url": "https://www.abebooks.com/9780785131724/Wolverine-Old-Man-Logan-Mark-0785131728/plp",
+          "retrievedAt": "2026-10-03",
+          "supports": "The standard Millar/McNiven collection identity."
+        }
+      ]
+    },
+    {
+      "position": 5,
+      "originalTitle": "Deadpool Classic: Circle Chase / Suicide Kings-era one-shots (pick a single volume)",
+      "originalPurpose": "Classic Wade/Logan antagonism for the they've-always-half-hated-each-other dynamic.",
+      "collectionTitle": "Deadpool Classic Vol. 1",
+      "editionIsbn": "9780785131243",
+      "creditedCreators": [
+        "Fabian Nicieza",
+        "Rob Liefeld",
+        "Mark Waid",
+        "Joe Madureira",
+        "Ian Churchill",
+        "Joe Kelly",
+        "Ed McGuinness"
+      ],
+      "sourcePositions": [34, 35, 36, 37, 38, 39, 40, 41, 42, 43],
+      "contents": [
+        {
+          "seriesTitle": "New Mutants",
+          "seriesYear": 1983,
+          "seriesId": 2055,
+          "issueNumbers": ["98"],
+          "issueIds": [10441]
+        },
+        {
+          "seriesTitle": "Deadpool: The Circle Chase",
+          "seriesYear": 1993,
+          "seriesId": 2003,
+          "issueNumbers": ["1", "2", "3", "4"],
+          "issueIds": [8453, 8454, 8455, 8456]
+        },
+        {
+          "seriesTitle": "Deadpool",
+          "seriesYear": 1994,
+          "seriesId": 2004,
+          "issueNumbers": ["1", "2", "3", "4"],
+          "issueIds": [8457, 8458, 8459, 8460]
+        },
+        {
+          "seriesTitle": "Deadpool",
+          "seriesYear": 1997,
+          "seriesId": 2005,
+          "issueNumbers": ["1"],
+          "issueIds": [8462]
+        }
+      ],
+      "reconciliation": {
+        "kind": "owner-delegated-single-volume-selection",
+        "decision": "Choose Deadpool Classic Vol. 1, which contains the named Circle Chase miniseries and early Deadpool comics. Do not combine it with Suicide Kings, other Classic volumes, or the expanded Epic Collection.",
+        "authorityIdentity": "raymond-nassar delegated selection to the list author",
+        "decisionUrl": "https://github.com/raymond-nassar/recap-page/issues/680#issuecomment-5971687703",
+        "decidedAt": "2026-10-03"
+      },
+      "expansionNote": "Ten originals in the verified collection sequence: New Mutants #98, Circle Chase #1-4, the 1994 Deadpool miniseries #1-4, then Deadpool (1997) #1. This is early Deadpool material; no unverified Wolverine encounter is asserted.",
+      "evidence": [
+        {
+          "url": "https://crushingkrisis.com/definitive-guide-to-collecting-x-men-as-graphic-novels/definitive-deadpool-collecting-guide-reading-order/",
+          "retrievedAt": "2026-10-03",
+          "supports": "The exact ten-original Classic Vol. 1 contents and collection sequence; distinguishes the different Classic Vol. 14: Suicide Kings and Epic Collection."
+        },
+        {
+          "url": "https://www.abebooks.com/9780785131243/Deadpool-Classic-Volume-1-Fabian-0785131248/plp",
+          "retrievedAt": "2026-10-03",
+          "supports": "The standard Deadpool Classic Vol. 1 identity and early Deadpool guest-character context."
+        }
+      ]
+    }
+  ],
+  "claimPolicy": {
+    "originalPurposes": "The originalPurpose fields preserve the owner's proposed rationale, not newly verified adaptation or roster evidence.",
+    "publishedCopy": "Names the verified selections and original comics only. No definitive-origin, direct film-inspiration, costume-inspiration, or Wade/Logan antagonism claim is published.",
+    "attribution": "The owner chose the five selections. External sources support collection facts only; Comic Book Herald did not author this selection."
+  },
+  "sourceGaps": [],
+  "repeatedSourceReferences": [],
+  "excludedSourceReferences": [
+    "Bonus material from later Weapon X deluxe editions",
+    "Deadpool by Daniel Way: The Complete Collection Vol. 1, rejected by the owner for selection 2",
+    "The remainder of the Whedon/Cassaday Astonishing X-Men run",
+    "The 2015 Old Man Logan series",
+    "Deadpool Classic Vol. 14: Suicide Kings and other unselected volumes",
+    "The expanded Deadpool Epic Collection: The Circle Chase",
+    "Unverified film-inspiration and Wolverine-antagonism claims"
+  ]
+}

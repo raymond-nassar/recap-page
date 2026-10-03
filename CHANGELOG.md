@@ -13,6 +13,14 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Add the owner-selected Deadpool & Wolverine companion
+
+MCU Prep now includes a five-part Deadpool & Wolverine Reading List with 43 original comics,
+from Weapon X through early Deadpool stories. The Dead Presidents creator credit is corrected
+with the owner's approval, and the selected Classic volume stays separate from Suicide Kings.
+Preview and import retain the verified collection order. Existing progress, notes, availability
+choices, reader launch, and saved-data formats are unchanged.
+
 ### Put reading actions first and disclose secondary choices
 
 All versions replace **Inspect issue** with **About this comic**. Comic details put Read

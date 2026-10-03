@@ -2276,6 +2276,40 @@
       "coverIssueId": 4801
     },
     {
+      "id": "mcu-prep-deadpool-and-wolverine",
+      "name": "MCU Prep: Deadpool & Wolverine",
+      "description": "An owner-selected path through Weapon X, Dead Presidents, Gifted, Old Man Logan, and Deadpool Classic Vol. 1, expanded into 43 original comics in the supplied order.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "mcu-prep-deadpool-and-wolverine.md",
+      "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/680",
+      "sourceOrigin": "Compiled for this project from the owner's selections",
+      "sourceLicense": null,
+      "out": "mcu_prep_deadpool_and_wolverine.json",
+      "characters": [
+        "Deadpool",
+        "Wolverine",
+        "X-Men"
+      ],
+      "keywords": [
+        "Deadpool & Wolverine",
+        "Wade Wilson",
+        "Logan",
+        "Weapon X",
+        "Dead Presidents",
+        "Gifted",
+        "Old Man Logan",
+        "Circle Chase"
+      ],
+      "expect": 43,
+      "timeline": null,
+      "coverIssueId": 10155
+    },
+    {
       "id": "white-tiger-ava-ayala",
       "name": "White Tiger: Ava Ayala",
       "description": "Ava Ayala's White Tiger path from Avengers Academy through Marvel's Voices: Community, following the source's character-only cuts through broader collections.",

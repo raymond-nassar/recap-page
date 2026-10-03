@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-30T04:55:50.710Z",
+  "generatedAt": "2026-10-03T17:48:37.886Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -2767,6 +2767,47 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-26T09:49:42.158Z"
+    },
+    {
+      "id": "mcu-prep-deadpool-and-wolverine",
+      "file": "mcu_prep_deadpool_and_wolverine.json",
+      "name": "MCU Prep: Deadpool & Wolverine",
+      "description": "An owner-selected path through Weapon X, Dead Presidents, Gifted, Old Man Logan, and Deadpool Classic Vol. 1, expanded into 43 original comics in the supplied order.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "count": 43,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 5,
+      "characters": [
+        "Deadpool",
+        "Wolverine",
+        "X-Men"
+      ],
+      "keywords": [
+        "Deadpool & Wolverine",
+        "Wade Wilson",
+        "Logan",
+        "Weapon X",
+        "Dead Presidents",
+        "Gifted",
+        "Old Man Logan",
+        "Circle Chase"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 10155,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/a0/66c64d8f69e7c",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/680",
+      "sourceOrigin": "Compiled for this project from the owner's selections",
+      "sourceLicense": null,
+      "updatedAt": "2026-10-03T17:48:37.886Z"
     },
     {
       "id": "white-tiger-ava-ayala",

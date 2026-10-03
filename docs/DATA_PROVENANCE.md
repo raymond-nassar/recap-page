@@ -35,7 +35,7 @@ Comic Book Herald, Comic Book Reading Orders, and the upstream emreparker/marvel
 
 ## MCU Prep companion intake
 
-The MCU Prep program is another build-time Comic Book Herald lane, kept separate from the
+The Comic Book Herald MCU Prep lane is build-time only, kept separate from the
 modern continuity and Character Spotlight inventories because its fourteen sources are movie and
 streaming companion picks rather than events or single-character guides. Its maintained inventory
 records one canonical WordPress identity, current content and issue-bearing digests, explicit source
@@ -53,7 +53,7 @@ declined recommendations remain named exclusions. The two Marvel Multiverse issu
 approved candidate-subsets of both Claremont paths, and five Far From Home rows are centrally
 approved as a partial overlap with the existing Spider-Man best-of path. Neither relationship is an
 exact duplicate. No source commentary, branding, layout, movie imagery, or comic image bytes are
-copied.
+copied. [Owner-authored companions](#owner-authored-mcu-prep-companions) have a separate evidence lane.
 
 ## Character Spotlight partial-release intake
 
@@ -452,7 +452,7 @@ above is listed separately because it is third-party material outside the usual 
 | Field | Holds |
 |---|---|
 | `sourceOrigin` | Prose. Where the order came from and who compiled it. Always present. This is what the catalog shows a reader, because it is the credit that is owed |
-| `sourceLicense` | An SPDX expression, or `null`. Only a licence actually conveyed with the vendored order. `null` on all 281 pinned reading-order payloads today |
+| `sourceLicense` | An SPDX expression, or `null`. Only a licence actually conveyed with the vendored order. `null` on all 282 pinned reading-order payloads today |
 | `sourcePage` | A link a reader can follow to the upstream, when there is one |
 | `sourceSection` | A visible heading that distinguishes several guides on one exact page. Absent for an ordinary whole-page source |
 | `spotlightKind` | An editorial classification required only for character runs. `best-of` and `complete-guide` make distinct, reviewable claims about a guide's scope; `other` records that neither claim is accurate. It is authored here and is never copied or inferred from an upstream field |
@@ -923,10 +923,10 @@ the book id out of an address the reader pastes.
 
 The generated catalog currently publishes three independent Reading Paths with 100 stops: two
 authored paths with 10 and 12 stops from the curated manifest at
-`src/data/curated-lists.json:6749-6788`, plus the 78-stop Marvel Knights to Planet X path generated
+`src/data/curated-lists.json:6783-6822`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all three at
-`src/data/catalog.json:10747-10872`.
+`src/data/catalog.json:10788-10913`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -1734,3 +1734,38 @@ Operation: Zero Tolerance, retaining the distinct 1996 Heroes Reborn Iron Man #6
 Only factual provider details, including issue identities, creator credits and cover URLs,
 are retained; the source's editorial prose, comic image bytes and inferred reader
 availability are not copied.
+
+## Owner-authored MCU Prep companions
+
+**MCU Prep: Deadpool & Wolverine** follows the owner's five selections in
+[Issue #680](https://github.com/raymond-nassar/recap-page/issues/680), not the full Comic Book Herald
+Deadpool or Wolverine guides. The separate
+[source ledger](../scripts/data/owner-mcu-prep-deadpool-and-wolverine-source.json) preserves the
+original wording, checked collection facts, exact expansion order, and the owner's approved
+correction of the Dead Presidents creator credit to Gerry Duggan and Brian Posehn.
+
+The sequence contains 43 original comics: thirteen Marvel Comics Presents (1988) issues #72-84
+for the Barry Windsor-Smith Weapon X serial, six Deadpool (2012) issues #1-6 for Dead Presidents,
+six Astonishing X-Men (2004) issues #1-6 for Gifted, Wolverine (2003) #66-72 and the 2009
+Giant-Size finale for Old Man Logan, and ten early Deadpool originals from Classic Vol. 1.
+The last volume is the delegated single-volume choice, not an expanded Epic Collection or a
+mixture with Suicide Kings.
+
+Weapon X supplies story segments from anthology comics; the app opens their original whole issues.
+Later deluxe extras are excluded. The owner's proposed film-inspiration and Wade/Logan antagonism
+claims remain unverified and are not published as facts. External pages supply bibliography only,
+not the selection, source narrative, artwork, or a licence to redistribute Marvel's metadata.
+The card credits the owner-authored selection and keeps `sourceLicense: null`.
+
+All 43 issue-detail lookups returned observed HTTP 200 responses, leaving no provider gaps.
+The complete-library report compares 281 peers, including generated chapters and the noncatalog
+parent: seven partial relationships and 274 with no overlap, with no exact or subset duplicate.
+The [central model disposition](https://github.com/raymond-nassar/recap-page/issues/680#issuecomment-5971938455)
+and [portable evidence binding](https://github.com/raymond-nassar/recap-page/issues/680#issuecomment-5972044298),
+recorded on 2026-10-03, preserve every shared original and the distinct owner-selected companion.
+
+All five positions and every expanded comic remain represented in the source ledger, frozen packet,
+exact mapping, checklist, and generated payload. Provider gaps, if introduced by a later refresh,
+must retain their exact source positions and failed lookups and receive a separately assigned
+gap-bundle Issue linked from the guide and delivery PR. They are not permission to substitute an
+identity or recast a bibliographic conflict as missing provider metadata.
