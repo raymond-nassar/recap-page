@@ -20,7 +20,7 @@ const mappingsDir = path.join(root, 'scripts', 'data', 'cbh-mappings');
 const overlapsDir = path.join(root, 'scripts', 'data', 'cbh-overlaps');
 const sharedXMenPage = 'https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/x-men-events-from-messiah-complex-to-avengers-vs-x-men-2007-to-2012/';
 const laterReviewedIds = new Set([
-  'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order',
+  'mcu-prep-thunderbolts', 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order',
   'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide',
   'x-23-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order',
   'mephisto-reading-order',
@@ -33,7 +33,7 @@ const laterReviewedIds = new Set([
   'x-men-utopia',
   'guardians-of-the-galaxy-reading-order',
   'inhumans-reading-order',
-  'iron-fist-reading-order',
+  'iron-fist-reading-order', 'mcu-prep-eternals',
 ]);
 
 const EXPECTED_COUNTS = Object.freeze({
@@ -127,7 +127,7 @@ test('batch three preserves the approved source queue and independently verified
     manifest.lists.length - THIRD_PACKET_IDS.length,
   );
   assert.ok(manifest.lists.length >= 66);
-  assert.equal(catalog.lists.length, 281);
+  assert.equal(catalog.lists.length, 282);
 
 
   const sorted = sortCatalog(parseCatalog(catalog).lists);

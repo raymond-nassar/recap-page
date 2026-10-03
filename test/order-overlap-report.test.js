@@ -143,6 +143,8 @@ test('buildReportForMapping regenerates shipped reports without duplicate self o
   assert.equal(report.comparisonCount, 137);
   assert.equal(new Set(comparedIds).size, 137);
   assert.equal(comparedIds.includes('secret-war'), false);
+  assert.equal(comparedIds.includes('mcu-prep-thunderbolts'), false);
+  assert.equal(comparedIds.includes('mcu-prep-eternals'), false);
   assert.equal(comparedIds.filter((id) => id === 'spider-man-the-other').length, 1);
 });
 

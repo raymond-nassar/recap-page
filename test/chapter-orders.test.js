@@ -167,7 +167,7 @@ test('the generated catalog replaces the parent with every child and the owner-o
   ));
   assert.equal(manifestRaw.lists.length, 204);
   assert.equal(raw.lists.length, 281);
-  assert.equal(catalog.lists.length, 281);
+  assert.equal(catalog.lists.length, 282);
 
   assert.equal(catalog.lists.some((entry) => entry.id === parentId), false);
   assert.equal(children.length, 78);

@@ -22,26 +22,27 @@ export const OWNER_SOURCE_PROVIDER = Object.freeze({
   requireSourceProvider: true,
 });
 
-export async function buildEternalsOverlap(mapping) {
+export async function buildEternalsOverlap(mapping, { excludedOrderIds = [] } = {}) {
   if (mapping.id !== id) throw new Error('The Eternals report requires its own mapping');
   validateMappingDigest(mapping);
   validateResolvedMapping(mapping.rows);
+  const excluded = new Set([id, ...excludedOrderIds]);
   const source = await loadLibrarySnapshot();
   const catalog = JSON.parse(await readFile(path.join(root, 'src', 'data', 'catalog.json'), 'utf8'));
-  const visible = await Promise.all(catalog.lists.filter((entry) => entry.id !== id)
+  const visible = await Promise.all(catalog.lists.filter((entry) => !excluded.has(entry.id))
     .map(async (entry) => ({
       orderId: entry.id,
       issueIds: issueIdsFromValue(JSON.parse(
         await readFile(path.join(root, 'src', 'data', entry.file), 'utf8'),
       )),
     })));
-  const byId = new Map(source.orders.filter((entry) => entry.orderId !== id)
+  const byId = new Map(source.orders.filter((entry) => !excluded.has(entry.orderId))
     .map((entry) => [entry.orderId, entry]));
   for (const entry of visible) byId.set(entry.orderId, entry);
   const orders = [...byId.values()].sort((left, right) => left.orderId.localeCompare(right.orderId));
   const manifest = {
     ...source.manifest,
-    lists: source.lists.filter((entry) => entry.id !== id),
+    lists: source.lists.filter((entry) => !excluded.has(entry.id)),
   };
   const report = {
     candidateId: id,

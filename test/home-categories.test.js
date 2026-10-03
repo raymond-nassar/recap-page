@@ -149,7 +149,7 @@ test('Marvel Ages hides when empty and shares one count derivation with its scre
   assert.deepEqual(availableHomeCategories([], [MARVEL_AGES_CATEGORY]), []);
 });
 
-test('MCU Prep keeps the six CBH companions followed by the owner Eternals selection on the stable route', () => {
+test('MCU Prep keeps the six CBH companions before the owner selections on the stable route', () => {
   const category = HOME_CATEGORIES.find(({ key }) => key === 'marvel-on-screen');
   assert.ok(category, 'MCU Prep is not declared');
   assert.equal(category.heading, 'MCU Prep');
@@ -162,6 +162,7 @@ test('MCU Prep keeps the six CBH companions followed by the owner Eternals selec
       'marvel-what-if',
       'wandavision',
       'spider-man-far-from-home',
+      'mcu-prep-thunderbolts',
       'mcu-prep-eternals',
     ],
   );

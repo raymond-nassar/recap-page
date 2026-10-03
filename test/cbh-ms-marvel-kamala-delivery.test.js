@@ -269,12 +269,12 @@ test('Kamala publishes the exact generated checklist, 187 issues, five honest ga
 
 test('Kamala relationship receipt covers every member of the current library', async () => {
   const current = await buildReportForMapping(mappingPath, [], {
-    excludedOrderIds: ['nova-reading-order', 'ultimate-spider-man-reading-order', 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide', 'shang-chi-master-of-kung-fu-reading-order', 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order', 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order', 'namor-sub-mariner-reading-order', 'iron-fist-reading-order', 'mcu-prep-eternals'],
+    excludedOrderIds: ['mcu-prep-thunderbolts', 'nova-reading-order', 'ultimate-spider-man-reading-order', 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide', 'shang-chi-master-of-kung-fu-reading-order', 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order', 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order', 'namor-sub-mariner-reading-order', 'iron-fist-reading-order', 'mcu-prep-eternals'],
   });
   const manifest = await readJson('src/data/curated-lists.json');
   const expectedOrderIds = manifest.lists.filter((entry) =>
     entry.id !== 'shang-chi-master-of-kung-fu-reading-order' && entry.id !== 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order' && entry.id !== 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order' && entry.id !== id && entry.id !== 'nova-reading-order'
-    && entry.id !== 'ultimate-spider-man-reading-order' && entry.id !== 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide').filter((row) => row.id !== 'namor-sub-mariner-reading-order' && row.id !== 'iron-fist-reading-order' && row.id !== 'mcu-prep-eternals').map((entry) => entry.id);
+    && entry.id !== 'ultimate-spider-man-reading-order' && entry.id !== 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide').filter((row) => row.id !== 'namor-sub-mariner-reading-order' && row.id !== 'iron-fist-reading-order' && row.id !== 'mcu-prep-eternals' && row.id !== 'mcu-prep-thunderbolts').map((entry) => entry.id);
   assert.deepEqual(current, report);
   assert.equal(report.comparisonCount, 194);
   assert.equal(report.comparisonCount, expectedOrderIds.length);

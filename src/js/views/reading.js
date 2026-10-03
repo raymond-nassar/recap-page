@@ -747,13 +747,13 @@ export function createReadingView({
         if (hasEditions && runIndex !== shownRun) {
           shownRun = runIndex;
           const run = runs[runIndex];
-          if (run.name) {
-            const headKey = `${run.name}|${run.read}|${run.total}`;
+          if (run.name || runIndex > 0) {
+            const headKey = `${run.name || 'Individual issues'}|${run.read}|${run.total}`;
             const cachedHead = rowCache.get(`heading:${runIndex}`);
             if (cachedHead && cachedHead.key === headKey) desired.push(cachedHead.node);
             else {
               const head = el('li', { class: `row-group${run.read === run.total ? ' is-done' : ''}` }, [
-                el('h3', { class: 'rg-name', text: run.name }),
+                el('h3', { class: 'rg-name', text: run.name || 'Individual issues' }),
                 el('span', { class: 'rg-count', text: `${run.read} of ${run.total} read` }),
                 el('progress', { value: String(run.read), max: String(run.total), 'aria-hidden': 'true' }),
               ]);

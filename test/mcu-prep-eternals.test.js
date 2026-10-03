@@ -162,7 +162,7 @@ test('Eternals uses the existing owner-attributed MCU Prep gateway and Storyline
   assert.ok(!spotlights.select(stories).some((story) => story.lists.some((list) => list.id === id)));
 });
 
-test('Eternals binds human Thanos-overlap approval to the complete source and visible-child library', async () => {
+test('Eternals preserves its frozen human approval and rechecks the complete current library', async () => {
   const { packet, mapping, report } = await evidence();
   const [manifest, catalog, current] = await Promise.all([
     readJson('src/data/curated-lists.json'), readJson('src/data/catalog.json'),
@@ -170,15 +170,27 @@ test('Eternals binds human Thanos-overlap approval to the complete source and vi
   ]);
   const expectedPeerIds = [...new Set([...manifest.lists, ...catalog.lists]
     .map((entry) => entry.id).filter((peerId) => peerId !== id))].sort();
-  assert.deepEqual(report.comparisons.map((entry) => entry.orderId).sort(), expectedPeerIds);
-  assert.equal(report.comparisonCount, expectedPeerIds.length);
-  assert.deepEqual(current, report);
+  assert.deepEqual(current.comparisons.map((entry) => entry.orderId).sort(), expectedPeerIds);
+  assert.equal(current.comparisonCount, expectedPeerIds.length);
+  const publicationPeers = new Set(report.comparisons.map((entry) => entry.orderId));
+  const historical = await buildEternalsOverlap(mapping, {
+    excludedOrderIds: expectedPeerIds.filter((peerId) => !publicationPeers.has(peerId)),
+  });
+  assert.deepEqual(historical, report);
   assert.doesNotThrow(() => assertApprovedRelationshipReview({
     packet, mapping, report,
-    currentLibraryDigest: current.libraryDigest,
-    expectedOrderIds: expectedPeerIds,
+    currentLibraryDigest: historical.libraryDigest,
+    expectedOrderIds: [...publicationPeers],
     packetValidation: { provider: OWNER_SOURCE_PROVIDER },
   }));
+  assert.deepEqual(current.comparisons.filter((entry) => entry.relationship !== 'none'),
+    report.comparisons.filter((entry) => entry.relationship !== 'none'),
+    'A new or changed nonempty relationship does not inherit the frozen approval');
+  for (const entry of current.comparisons.filter((comparison) => !publicationPeers.has(comparison.orderId))) {
+    assert.equal(entry.relationship, 'none');
+    assert.equal(entry.sharedCount, 0);
+    assert.deepEqual(entry.sharedIds, []);
+  }
   assert.deepEqual(report.comparisons.filter((entry) => entry.relationship !== 'none')
     .map(({ orderId, relationship, sharedIds }) => [orderId, relationship, sharedIds]),
   [['thanos-reading-order', 'partial', vectors[2].map(String)]]);

@@ -19,7 +19,7 @@ const dataDir = path.join(root, 'src', 'data');
 const mappingsDir = path.join(root, 'scripts', 'data', 'cbh-mappings');
 const overlapsDir = path.join(root, 'scripts', 'data', 'cbh-overlaps');
 const laterReviewedIds = new Set([
-  'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order',
+  'mcu-prep-thunderbolts', 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order',
   'nova-reading-order',
   'ultimate-spider-man-reading-order',
   'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide',
@@ -48,7 +48,7 @@ const laterReviewedIds = new Set([
   'moon-knight-reading-order',
   'guardians-of-the-galaxy-reading-order',
   'inhumans-reading-order',
-  'iron-fist-reading-order',
+  'iron-fist-reading-order', 'mcu-prep-eternals',
 ]);
 const marvelNowPage = 'https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-now-checklist/';
 const xMenPage = 'https://www.comicbookherald.com/question-of-the-week-ok-what-the-heck-is-the-right-order-for-x-men-events/';
@@ -131,7 +131,7 @@ test('batch four preserves source order and independently verified shelf chronol
     manifest.lists.length - FOURTH_PACKET_IDS.length,
   );
   assert.ok(manifest.lists.length >= 66);
-  assert.equal(catalog.lists.length, 281);
+  assert.equal(catalog.lists.length, 282);
 
 
   const sorted = sortCatalog(parseCatalog(catalog).lists);
