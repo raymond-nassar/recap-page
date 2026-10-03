@@ -20,6 +20,9 @@ import {
   addIssuesToList, createEmptyState, createList, markRead, setDeferred, setIssueNote,
 } from '../src/js/lib/model.js';
 import { Store } from '../src/js/storage.js';
+import {
+  assertCurrentLibraryExtension, libraryVectorDigest,
+} from './helpers/owner-mcu-library-extension.mjs';
 
 const id = 'mcu-prep-deadpool-and-wolverine';
 const stem = `owner-${id}`;
@@ -60,6 +63,22 @@ async function loadEvidence() {
   ]);
   return { sourceText, source: JSON.parse(sourceText), packet, mapping, report,
     manifest, catalog, payload, parsed: parseChecklist(markdown) };
+}
+
+async function loadCompleteLibrary(manifest, catalog) {
+  const catalogIds = new Set(catalog.lists.map((entry) => entry.id));
+  const completeManifest = {
+    lists: [
+      ...catalog.lists.map((entry) => ({ ...entry, out: entry.file })),
+      ...manifest.lists.filter((entry) => !catalogIds.has(entry.id)),
+    ],
+    paths: catalog.paths,
+  };
+  const orders = await Promise.all(completeManifest.lists.map(async (entry) => ({
+    id: entry.id,
+    issueIds: (await readJson(`../src/data/${entry.out}`)).items.map((item) => String(item.issueId)),
+  })));
+  return { completeManifest, orders, catalogIds };
 }
 
 test('owner provenance preserves all five selections and the authorized title reconciliation', async () => {
@@ -158,13 +177,13 @@ test('owner evidence reuses the frozen packet and mapping contracts without CBH 
   assert.doesNotMatch(entry.description, /[\u2013\u2014]|film.+inspir|costume|antagonism/i);
 });
 
-test('MCU Prep discovery contains the owner companion once after the six unchanged CBH guides', async () => {
+test('MCU Prep discovery preserves six CBH guides and the published Thunderbolts companion before this guide', async () => {
   const { manifest, catalog: raw } = await loadEvidence();
   const catalog = parseCatalog(raw);
   const entry = manifest.lists.find((list) => list.id === id);
   const card = catalog.lists.find((list) => list.id === id);
-  assert.equal(manifest.lists.length, 204);
-  assert.equal(catalog.lists.length, 281);
+  assert.equal(manifest.lists.length, 205);
+  assert.equal(catalog.lists.length, 282);
   assert.equal(manifest.lists.filter((list) => list.id === id).length, 1);
   assert.equal(catalog.lists.filter((list) => list.id === id).length, 1);
   for (const value of [entry, card]) {
@@ -182,45 +201,68 @@ test('MCU Prep discovery contains the owner companion once after the six unchang
   assert.equal(category.route, 'marvel-on-screen');
   assert.deepEqual(category.select(stories).map((story) => story.lists[0].id), [
     'doctor-strange-multiverse-of-madness', 'spider-man-no-way-home', 'marvel-multiverse',
-    'marvel-what-if', 'wandavision', 'spider-man-far-from-home', id,
+    'marvel-what-if', 'wandavision', 'spider-man-far-from-home', 'mcu-prep-thunderbolts', id,
   ]);
-  assert.equal(availableHomeCategories(stories).find((item) => item.key === category.key).count, 7);
+  assert.equal(availableHomeCategories(stories).find((item) => item.key === category.key).count, 8);
   assert.ok(catalog.paths.every((readingPath) => !readingPath.steps.includes(id)));
 });
 
 test('approved relationships cover the complete library including generated children and noncatalog parents', async () => {
   const { packet, mapping, report, manifest, catalog } = await loadEvidence();
-  const catalogIds = new Set(catalog.lists.map((entry) => entry.id));
-  const completeManifest = {
-    lists: [
-      ...catalog.lists.map((entry) => ({ ...entry, out: entry.file })),
-      ...manifest.lists.filter((entry) => !catalogIds.has(entry.id)),
-    ],
-    paths: catalog.paths,
-  };
-  const orders = await Promise.all(completeManifest.lists.map(async (entry) => ({
-    id: entry.id,
-    issueIds: (await readJson(`../src/data/${entry.out}`)).items.map((item) => String(item.issueId)),
-  })));
+  const extension = await readJson(`../scripts/data/${stem}-current-library-extension.json`);
+  const { completeManifest, orders, catalogIds } = await loadCompleteLibrary(manifest, catalog);
   const expectedPeers = orders.filter((entry) => entry.id !== id);
-  const expected = buildComparisonReport({ candidateIds: expectedVector.map(String), orders: expectedPeers });
-  assert.deepEqual(report.comparisons, expected.comparisons);
-  assert.equal(report.comparisonCount, expectedPeers.length);
+  const { current, laterIds } = assertCurrentLibraryExtension({
+    extension, candidateId: id, candidateIds: expectedVector, orders,
+    originalReport: report, originalApprovalDigest: mapping.relationshipReview.approvalDigest,
+  });
+  assert.equal(extension.publishedBase, '9fafd33654e6022c4c2f0145af647f3b07a70a22');
+  assert.deepEqual(laterIds, ['mcu-prep-thunderbolts']);
+  assert.equal(current.comparisonCount, expectedPeers.length);
+  assert.equal(current.comparisonCount, 282);
   assert.ok(expectedPeers.length >= catalog.lists.length - 1);
   assert.ok(expectedPeers.some((entry) => !manifest.lists.some((item) => item.id === entry.id)));
   assert.ok(expectedPeers.some((entry) => !catalogIds.has(entry.id)));
-  assert.ok(report.comparisons.every((comparison) => comparison.relationship !== 'exact'));
-  const libraryDigest = libraryDigestExcludingOrders({ manifest: completeManifest, orderIssueIds: orders }, [id]);
+  assert.ok(current.comparisons.every((comparison) => comparison.relationship !== 'exact'));
+  const reviewedPeers = expectedPeers.filter((entry) => !laterIds.includes(entry.id));
+  const reviewed = buildComparisonReport({ candidateIds: expectedVector.map(String), orders: reviewedPeers });
+  assert.deepEqual(report.comparisons, reviewed.comparisons);
+  const libraryDigest = libraryDigestExcludingOrders(
+    { manifest: completeManifest, orderIssueIds: orders }, [id, ...laterIds],
+  );
   assert.doesNotThrow(() => validateReportDigest(report));
   assert.doesNotThrow(() => assertApprovedRelationshipReview({
     packet, mapping, report, currentLibraryDigest: libraryDigest,
-    expectedOrderIds: expectedPeers.map((entry) => entry.id), packetValidation: { provider },
+    expectedOrderIds: reviewedPeers.map((entry) => entry.id), packetValidation: { provider },
   }));
   for (const comparison of report.comparisons.filter((item) => item.relationship !== 'none')) {
     const disposition = mapping.relationshipReview.dispositions.find((item) => item.orderId === comparison.orderId);
     assert.ok(['human', 'stronger-model'].includes(disposition.authorityType));
     assert.match(disposition.rationale, /owner-selected.+companion/i);
   }
+});
+
+test('later peer relationships require review even when fresh extension hashes are internally consistent', async () => {
+  const { mapping, report, manifest, catalog } = await loadEvidence();
+  const { orders } = await loadCompleteLibrary(manifest, catalog);
+  const mutated = structuredClone(orders);
+  const peer = mutated.find((entry) => entry.id === 'mcu-prep-thunderbolts');
+  peer.issueIds[0] = String(expectedVector[0]);
+  const extension = await readJson(`../scripts/data/${stem}-current-library-extension.json`);
+  const added = extension.extensions.find((entry) => entry.candidateId === id);
+  added.laterComparisons = buildComparisonReport({
+    candidateIds: expectedVector, orders: [peer],
+  }).comparisons;
+  assert.equal(added.laterComparisons[0].relationship, 'partial');
+  added.laterIssueVectorDigests[peer.id] = digestCanonicalJson(peer.issueIds);
+  extension.libraryVectorDigest = libraryVectorDigest(mutated);
+  const unsigned = { ...extension };
+  delete unsigned.extensionDigest;
+  extension.extensionDigest = digestCanonicalJson(unsigned);
+  assert.throws(() => assertCurrentLibraryExtension({
+    extension, candidateId: id, candidateIds: expectedVector, orders: mutated,
+    originalReport: report, originalApprovalDigest: mapping.relationshipReview.approvalDigest,
+  }), /meaningful relationships require bounded review/);
 });
 
 test('normal import and repeat import preserve saved progress, notes, overrides and existing lists', async () => {

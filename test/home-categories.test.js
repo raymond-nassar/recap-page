@@ -58,7 +58,7 @@ test('the current gateway offers three primary modes and three secondary gateway
   }
   assert.equal(categories.find(({ key }) => key === 'timeline').count, 148);
   assert.equal(categories.find(({ key }) => key === 'marvel-ages').count, 204);
-  assert.equal(categories.find(({ key }) => key === 'marvel-on-screen').count, 7);
+  assert.equal(categories.find(({ key }) => key === 'marvel-on-screen').count, 8);
   assert.equal(categories.find(({ key }) => key === 'reading-paths').count, 3);
 });
 
@@ -149,7 +149,7 @@ test('Marvel Ages hides when empty and shares one count derivation with its scre
   assert.deepEqual(availableHomeCategories([], [MARVEL_AGES_CATEGORY]), []);
 });
 
-test('MCU Prep keeps six CBH guides followed by the owner companion on the stable route', () => {
+test('MCU Prep keeps six CBH guides followed by both owner companions on the stable route', () => {
   const category = HOME_CATEGORIES.find(({ key }) => key === 'marvel-on-screen');
   assert.ok(category, 'MCU Prep is not declared');
   assert.equal(category.heading, 'MCU Prep');
@@ -162,6 +162,7 @@ test('MCU Prep keeps six CBH guides followed by the owner companion on the stabl
       'marvel-what-if',
       'wandavision',
       'spider-man-far-from-home',
+      'mcu-prep-thunderbolts',
       'mcu-prep-deadpool-and-wolverine',
     ],
   );

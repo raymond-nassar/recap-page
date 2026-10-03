@@ -3141,14 +3141,14 @@ const SCENARIOS = [
         path: Boolean(document.querySelector(`${selector} .result-path`)),
         orientation: Boolean(document.querySelector('#marvel-on-screen-results .shelf-orientation')),
       }), cardSelector);
-      t.check('actual MCU Prep keeps six CBH guides followed by the owner companion',
+      t.check('actual MCU Prep keeps six CBH guides followed by both owner companions',
         screen.hash === '#/marvel-on-screen'
-        && screen.count === '7 Reading Lists'
+        && screen.count === '8 Reading Lists'
         && screen.cards === 1
         && screen.titles.join('|') === [
           'Doctor Strange: Multiverse of Madness', 'Spider-Man: No Way Home',
           'Marvel Multiverse', 'Marvel What If?', 'WandaVision', 'Spider-Man: Far From Home',
-          'MCU Prep: Deadpool & Wolverine',
+          'MCU Prep: Thunderbolts*', 'MCU Prep: Deadpool & Wolverine',
         ].join('|'),
         JSON.stringify(screen));
       t.check('Far From Home has no reading-path or first-stop orientation',

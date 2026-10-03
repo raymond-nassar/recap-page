@@ -198,7 +198,7 @@ test('Infinity Saga admission and relationship review stay current under Across 
     .relationship, 'none');
   assert.equal(report.comparisonCount, 191);
   const current = await buildReportForMapping(mappingPath, [], {
-    excludedOrderIds: ['hawkeye-reading-order', 'marvel-zombies-reading-order',
+    excludedOrderIds: ['mcu-prep-thunderbolts', 'hawkeye-reading-order', 'marvel-zombies-reading-order',
       'ms-marvel-kamala-khan-reading-order', 'nova-reading-order', 'ultimate-spider-man-reading-order', 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide',
       'shang-chi-master-of-kung-fu-reading-order', 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order', 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order', 'namor-sub-mariner-reading-order', 'iron-fist-reading-order', 'mcu-prep-deadpool-and-wolverine'],
   });
@@ -212,7 +212,7 @@ test('Infinity Saga admission and relationship review stay current under Across 
       && row.id !== 'shang-chi-master-of-kung-fu-reading-order' && row.id !== 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order' && row.id !== 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order'
       && row.id !== 'marvel-zombies-reading-order'
       && row.id !== 'ms-marvel-kamala-khan-reading-order'
-      && row.id !== 'nova-reading-order' && row.id !== 'ultimate-spider-man-reading-order' && row.id !== 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide').filter((row) => row.id !== 'namor-sub-mariner-reading-order' && row.id !== 'iron-fist-reading-order' && row.id !== 'mcu-prep-deadpool-and-wolverine').map((row) => row.id),
+      && row.id !== 'nova-reading-order' && row.id !== 'ultimate-spider-man-reading-order' && row.id !== 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide').filter((row) => row.id !== 'namor-sub-mariner-reading-order' && row.id !== 'iron-fist-reading-order' && row.id !== 'mcu-prep-deadpool-and-wolverine' && row.id !== 'mcu-prep-thunderbolts').map((row) => row.id),
   }));
 });
 
@@ -226,7 +226,7 @@ test('Infinity Saga authoring rejects a pending in-memory mapping', () => {
       && row.id !== 'shang-chi-master-of-kung-fu-reading-order' && row.id !== 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order' && row.id !== 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order'
       && row.id !== 'marvel-zombies-reading-order'
       && row.id !== 'ms-marvel-kamala-khan-reading-order'
-      && row.id !== 'nova-reading-order' && row.id !== 'ultimate-spider-man-reading-order' && row.id !== 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide').filter((row) => row.id !== 'namor-sub-mariner-reading-order' && row.id !== 'iron-fist-reading-order' && row.id !== 'mcu-prep-deadpool-and-wolverine').map((row) => row.id),
+      && row.id !== 'nova-reading-order' && row.id !== 'ultimate-spider-man-reading-order' && row.id !== 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide').filter((row) => row.id !== 'namor-sub-mariner-reading-order' && row.id !== 'iron-fist-reading-order' && row.id !== 'mcu-prep-deadpool-and-wolverine' && row.id !== 'mcu-prep-thunderbolts').map((row) => row.id),
   }), /not approved/);
 });
 

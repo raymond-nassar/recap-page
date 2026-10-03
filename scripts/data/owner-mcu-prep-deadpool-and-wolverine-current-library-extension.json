@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "evidenceKind": "derived-current-library-extension",
+  "publishedBase": "9fafd33654e6022c4c2f0145af647f3b07a70a22",
+  "libraryOrderCount": 283,
+  "libraryVectorDigest": "d386b3a1e09df584cf8497f8bbbbc7483e472627a23e47f51e56c031e10716cc",
+  "extensions": [
+    {
+      "candidateId": "mcu-prep-deadpool-and-wolverine",
+      "packetDigest": "b8ba5a15e2cd4af7489bd07e651c95781891167819f597609fb18f6a11342c4a",
+      "mappingDigest": "b53945188fac107148b0030ca650e76dbb1e05e8cd28979f626eed6d50c220f0",
+      "originalReportDigest": "8ddfb7282f531e1aa00caf1b06511baae6221c8274fc9318b5f164124c6c8db7",
+      "originalApprovalDigest": "c3df54162ab31342a0d84d473d2f84ef2211c3b9d456f89f15b59f86a3378aad",
+      "originalPeerCount": 281,
+      "currentPeerCount": 282,
+      "laterIssueVectorDigests": {
+        "mcu-prep-thunderbolts": "13e85ecc4c013f1780fc953778ae28ba75214d63218974612a1caeeee332e024"
+      },
+      "laterComparisons": [
+        {
+          "orderId": "mcu-prep-thunderbolts",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        }
+      ]
+    },
+    {
+      "candidateId": "mcu-prep-thunderbolts",
+      "mappingDigest": "13e85ecc4c013f1780fc953778ae28ba75214d63218974612a1caeeee332e024",
+      "originalReportDigest": "e6a6947212fec7b4cd0e35d7495c021c942db54476b631a068a6971b93a29d59",
+      "originalApprovalDigest": "90f0e513e945ec78310a73e10b325a32677e2298a1db4186c5fc15e72787ae58",
+      "originalPeerCount": 281,
+      "currentPeerCount": 282,
+      "laterIssueVectorDigests": {
+        "mcu-prep-deadpool-and-wolverine": "3d7a4aef9e83cf42165fab907c4f4dd98e1d4a769e9f9ef0f955034fb58fda9b"
+      },
+      "laterComparisons": [
+        {
+          "orderId": "mcu-prep-deadpool-and-wolverine",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        }
+      ]
+    }
+  ],
+  "extensionDigest": "57680d87d0d8219850172dd6eea06a9f94a7fdfb9eeb66dc4381d56bd0f8606d"
+}

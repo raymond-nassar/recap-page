@@ -156,7 +156,7 @@ test('Greg Pak maps every selected original exactly once without expanding the o
 test('Greg Pak relationship review is current, real and not inherited by a pending clone', async () => {
   const library = await loadLibrarySnapshot();
   const current = await buildReportForMapping(`scripts/data/cbh-mappings/${id}.json`, [], {
-    excludedOrderIds: ['shang-chi-master-of-kung-fu-reading-order',
+    excludedOrderIds: ['mcu-prep-thunderbolts', 'shang-chi-master-of-kung-fu-reading-order',
       'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order',
       'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order',
       'namor-sub-mariner-reading-order', 'iron-fist-reading-order', 'mcu-prep-deadpool-and-wolverine'],
@@ -166,7 +166,7 @@ test('Greg Pak relationship review is current, real and not inherited by a pendi
       && entry.id !== 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order'
       && entry.id !== 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order'
       && entry.id !== 'namor-sub-mariner-reading-order'
-      && entry.id !== 'iron-fist-reading-order' && entry.id !== 'mcu-prep-deadpool-and-wolverine')
+      && entry.id !== 'iron-fist-reading-order' && entry.id !== 'mcu-prep-deadpool-and-wolverine' && entry.id !== 'mcu-prep-thunderbolts')
     .map((entry) => entry.id);
   assert.deepEqual(current, report);
   assert.equal(report.comparisonCount, 197);
@@ -219,7 +219,7 @@ test('Greg Pak publishes the exact 107-row creator route without replacing Plane
   assert.equal(originalPlanetHulk.items.length, 15);
   assert.deepEqual(originalPlanetHulk.items.map((item) => item.issueId),
     report.comparisons.find((row) => row.orderId === 'planet-hulk').sharedIds.map(Number));
-  assert.equal(manifest.lists.length, 204);
+  assert.equal(manifest.lists.length, 205);
   assert.deepEqual(parseManifest(manifest).errors, []);
   const position = manifest.lists.findIndex((entry) => entry.id === id);
   assert.equal(manifest.lists[position - 1].id, 'planet-hulk');
