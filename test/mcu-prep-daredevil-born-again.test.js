@@ -124,7 +124,7 @@ test('owner Daredevil packet and mapping bind the exact identity and collection 
   assert.deepEqual(mapping.sourceGaps ?? [], []);
 });
 
-test('owner Daredevil approvals cover every reviewed visible order and the retained parent', async () => {
+test('owner Daredevil frozen approvals remain valid across the complete current library', async () => {
   const { ledger, packet, mapping, report } = await evidence();
   const [catalog, manifest] = await Promise.all([
     json('src/data/catalog.json'), json('src/data/curated-lists.json'),
@@ -175,6 +175,22 @@ test('owner Daredevil approvals cover every reviewed visible order and the retai
     .filter((disposition) => disposition.relationship !== 'none')
     .every((disposition) => disposition.authorityType === 'human'
       && disposition.authorityIdentity === 'raymond-nassar'));
+  const reviewed = new Set(entries.map((entry) => entry.id));
+  const later = catalog.lists.filter((entry) => entry.id !== id && !reviewed.has(entry.id));
+  assert.deepEqual(later.map((entry) => entry.id), ['mcu-prep-thunderbolts']);
+  assert.deepEqual(manifest.lists.filter((entry) => entry.catalog === false)
+    .map((entry) => entry.id), retained.map((entry) => entry.id));
+  const laterOrders = await Promise.all(later.map(async (entry) => ({
+    orderId: entry.id,
+    issueIds: issueIdsFromValue(await json(`src/data/${entry.file}`)),
+  })));
+  const current = buildComparisonReport({ candidateIds: expectedIds, orders: [...orders, ...laterOrders] });
+  assert.equal(current.comparisonCount, 282);
+  assert.equal(current.comparisons.filter((entry) => entry.relationship === 'none').length, 278);
+  assert.deepEqual(current.comparisons.filter((entry) => entry.relationship !== 'none'),
+    report.comparisons.filter((entry) => entry.relationship !== 'none'));
+  assert.deepEqual(current.comparisons.filter((entry) => entry.orderId === later[0].id)
+    .map((entry) => [entry.relationship, entry.sharedIds]), [['none', []]]);
 });
 
 test('owner Daredevil checklist and pinned payload publish all 37 originals in six parts', async () => {
@@ -235,7 +251,7 @@ test('owner Daredevil remains one owner-credited MCU Prep card outside Character
   const selected = category.select(groupCatalog(catalog.lists)).map((story) => story.lists[0].id);
   assert.deepEqual(selected, [
     'doctor-strange-multiverse-of-madness', 'spider-man-no-way-home', 'marvel-multiverse',
-    'marvel-what-if', 'wandavision', 'spider-man-far-from-home', id,
+    'marvel-what-if', 'wandavision', 'spider-man-far-from-home', 'mcu-prep-thunderbolts', id,
   ]);
   assert.equal(shelfLists(catalog.lists, 'spotlights').some((card) => card.id === id), false);
   assert.equal(catalog.paths.some((readingPath) => readingPath.steps.includes(id)), false);

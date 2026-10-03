@@ -193,7 +193,7 @@ test('Agatha historical replay refuses to guess a missing insertion anchor', () 
 test('Agatha relationship approval covers every source order present at review', async () => {
   const current = await buildReportForMapping(mappingPath, [], {
     excludedOrderIds: [
-      'thunderbolts-reading-order',
+      'mcu-prep-thunderbolts', 'thunderbolts-reading-order',
       'nebula-reading-order',
       'hope-summers-reading-order',
 
@@ -202,7 +202,7 @@ test('Agatha relationship approval covers every source order present at review',
     ],
   });
   const expectedOrderIds = manifest.lists
-    .filter((entry) => entry.id !== 'shang-chi-master-of-kung-fu-reading-order' && entry.id !== 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order' && entry.id !== 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order' && entry.id !== id && entry.id !== 'nova-reading-order' && entry.id !== 'ultimate-spider-man-reading-order' && entry.id !== 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide' && entry.id !== 'iron-fist-reading-order' && entry.id !== 'mcu-prep-daredevil-born-again'
+    .filter((entry) => entry.id !== 'shang-chi-master-of-kung-fu-reading-order' && entry.id !== 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order' && entry.id !== 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order' && entry.id !== id && entry.id !== 'nova-reading-order' && entry.id !== 'ultimate-spider-man-reading-order' && entry.id !== 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide' && entry.id !== 'iron-fist-reading-order' && entry.id !== 'mcu-prep-daredevil-born-again' && entry.id !== 'mcu-prep-thunderbolts'
       && ![
         'thunderbolts-reading-order',
         'nebula-reading-order',

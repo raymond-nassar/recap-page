@@ -135,7 +135,7 @@ export const CBH_LATER_ORDER_IDS = Object.freeze([
   'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order',
   'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order',
   'namor-sub-mariner-reading-order',
-  'iron-fist-reading-order', 'mcu-prep-daredevil-born-again',
+  'iron-fist-reading-order', 'mcu-prep-thunderbolts', 'mcu-prep-daredevil-born-again',
 ]);
 export const CBRO_PACKET_REVIEW = 'MRT-003 central CBRO source review';
 export const CBRO_SELECTED_IDS = Object.freeze([

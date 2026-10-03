@@ -1333,3 +1333,47 @@ test('444 whole-list Undo cannot resurrect a removed-issue offer and a new view 
     } finally { reloaded.restore(); }
   } finally { h.restore(); }
 });
+
+test('renderRows separates individual issues after an edition without changing saved metadata', () => {
+  let state = createList(createEmptyState(), { id: 'mixed', name: 'Mixed originals' });
+  state = addIssuesToList(state, 'mixed', [
+    issue(1, 'First individual issue'),
+    issue(2, 'First collected issue', { collectedIn: 'Edition One' }),
+    issue(3, 'Later individual issue'),
+    issue(4, 'Later collected issue', { collectedIn: 'Edition One' }),
+  ]).state;
+  const h = harness({ state, fullOpen: true });
+  try {
+    const original = JSON.stringify(h.state());
+    h.view.renderRows();
+    const headings = () => h.nodes.rows.childNodes
+      .filter((entry) => entry.classList.contains('row-group'));
+    assert.deepEqual(headings().map((entry) => entry.childNodes[0].textContent),
+      ['Edition One', 'Individual issues', 'Edition One']);
+    assert.equal(h.nodes.rows.childNodes[0].classList.contains('row'), true,
+      'leading individual issues keep their existing presentation');
+    const individual = headings()[1];
+    assert.equal(individual.childNodes[1].textContent, '0 of 1 read');
+    h.view.renderRows();
+    assert.equal(headings()[1], individual, 'the individual-issue boundary is cached like an edition boundary');
+    assert.equal(JSON.stringify(h.state()), original);
+  } finally {
+    h.restore();
+  }
+  for (const [edition, expected] of [[null, []], ['Edition One', ['Edition One']]]) {
+    let grouped = createList(createEmptyState(), { id: 'uniform', name: 'Uniform originals' });
+    grouped = addIssuesToList(grouped, 'uniform', [
+      issue(1, 'Issue One', { collectedIn: edition }),
+      issue(2, 'Issue Two', { collectedIn: edition }),
+    ]).state;
+    const uniform = harness({ state: grouped, fullOpen: true });
+    try {
+      uniform.view.renderRows();
+      assert.deepEqual(uniform.nodes.rows.childNodes
+        .filter((entry) => entry.classList.contains('row-group'))
+        .map((entry) => entry.childNodes[0].textContent), expected);
+    } finally {
+      uniform.restore();
+    }
+  }
+});

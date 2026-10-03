@@ -1,0 +1,144 @@
+{
+  "schemaVersion": 1,
+  "id": "mcu-prep-thunderbolts",
+  "title": "MCU Prep: Thunderbolts*",
+  "selectionAuthority": "owner-authored-outline",
+  "intakeUrl": "https://github.com/raymond-nassar/recap-page/issues/682",
+  "retrievedAt": "2026-10-03",
+  "relationshipApprovalUrl": "https://github.com/raymond-nassar/recap-page/issues/682#issuecomment-5971795529",
+  "renderingScopeApprovalUrl": "https://github.com/raymond-nassar/recap-page/issues/682#issuecomment-5972199443",
+  "inputRationale": "The film's team-of-damaged-assets concept comes straight from the Thunderbolts' comic origin as villains posing as heroes, updated with the film's specific roster (Yelena, Bucky, Red Guardian, Ghost, Taskmaster).",
+  "rationaleAssessment": "The original villains posing as heroes premise informs this owner-selected companion. Shipped copy does not assert a direct adaptation or that any selected comic uses the film's exact roster.",
+  "expansionPolicy": "Preserve the five owner selections in input order. Within each collection, expand the cited contents listing in its stated order and ascending issue order within each range. This is not a verified physical table of contents or a new chronological order. Preserve missing originals at their exact expanded source positions in this ledger; publish only exactly resolved original issue IDs.",
+  "permissionBoundary": "The owner chose this companion. External pages support factual bibliography only and are not credited with its selection. Only issue identities, collection contents, credits and other factual metadata are retained. No external narrative, comic image bytes or availability promises are copied.",
+  "sourceSelectionCount": 5,
+  "sourceOccurrenceCount": 35,
+  "publishedIssueCount": 34,
+  "gapCount": 1,
+  "selections": [
+    {
+      "position": 1,
+      "originalSelection": "Thunderbolts Classic Vol. 1 (Kurt Busiek/Mark Bagley): the original premise of villains reinventing themselves as heroes; the foundational trust-no-one concept.",
+      "resolvedTitle": "Thunderbolts Classic Vol. 1",
+      "collectedIn": "Thunderbolts Classic Vol. 1",
+      "sourcePositions": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      "evidenceKeys": ["classic-contents"],
+      "assessment": "The contents listing names Thunderbolts (1997) #1-5 and #-1, Incredible Hulk (1968) #449, Tales of the Marvel Universe #1, Spider-Man Team-Up #7 and Thunderbolts Annual '97. Preserve that listing order rather than silently moving Hulk before the named Thunderbolts range. The provider labels Hulk's series 1962 and Tales 1996; these factual identity aliases do not change the selected originals."
+    },
+    {
+      "position": 2,
+      "originalSelection": "Black Widow by Kelly Thompson Vol. 1: The Ties That Bind: modern, movie-aligned take on Yelena Belova as a lead, not a sidekick.",
+      "resolvedTitle": "Black Widow by Kelly Thompson Vol. 1: The Ties That Bind",
+      "collectedIn": "Black Widow by Kelly Thompson Vol. 1: The Ties That Bind",
+      "sourcePositions": [11, 12, 13, 14, 15],
+      "evidenceKeys": ["black-widow-contents", "black-widow-focus"],
+      "assessment": "Keep the selected collection, Black Widow (2020) #1-5. Natasha Romanoff is the protagonist; do not repeat the input's Yelena-as-lead or movie-alignment claims. Yelena belongs to Natasha's supporting circle rather than turning this into an unrequested Yelena solo collection."
+    },
+    {
+      "position": 3,
+      "originalSelection": "Captain America: The Winter Soldier (Ed Brubaker/Steve Epting): the modern reimagining of Bucky Barnes as the brainwashed Winter Soldier, core to his arc on the team.",
+      "resolvedTitle": "Captain America: Winter Soldier Ultimate Collection",
+      "collectedIn": "Captain America: Winter Soldier Ultimate Collection",
+      "isbn": "9780785143413",
+      "sourcePositions": [16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28],
+      "evidenceKeys": ["winter-soldier-contents", "winter-soldier-edition"],
+      "ownerDecisionUrl": "https://github.com/raymond-nassar/recap-page/issues/682#issuecomment-5971692441",
+      "assessment": "The owner explicitly approved the Ultimate Collection: Captain America (2004) #1-9 and #11-14, thirteen original issues. Exclude the House of M #10 tie-in, Book One-only truncation and the rest of Brubaker's run. Bibliographies using the 2005 cover-date year refer to provider series 832, Captain America (2004 - 2011)."
+    },
+    {
+      "position": 4,
+      "originalSelection": "Thunderbolts by Jim Zub Vol. 1: Life Sentences: recent run with Bucky, Red Guardian, Ghost, and Taskmaster on the roster, closely mirroring the film's team.",
+      "resolvedTitle": "Thunderbolts Vol. 1: There Is No High Road",
+      "collectedIn": "Thunderbolts Vol. 1: There Is No High Road",
+      "sourcePositions": [29, 30, 31, 32, 33, 34],
+      "evidenceKeys": ["zub-contents", "zub-roster"],
+      "ownerDecisionUrl": "https://github.com/raymond-nassar/recap-page/issues/682#issuecomment-5971667297",
+      "assessment": "The owner approved Jim Zub's actual first collection, Thunderbolts (2016) #1-6, with corrected roster copy. Bucky leads this team; do not claim a Red Guardian/Ghost/Taskmaster roster or a literal film match. Thunderbolts: Life Sentences names a separate 2001 one-shot, not this volume. The rejected title conflation is a resolved bibliography decision, not a provider gap."
+    },
+    {
+      "position": 5,
+      "originalSelection": "Hawkeye: Red Vendetta/Occupy Avengers era one-shot featuring Taskmaster or U.S.Agent (pick a short Taskmaster/Agent spotlight issue): quick characterization boost for the rounder roster.",
+      "resolvedTitle": "Taskmaster (2020) #1",
+      "selectionKind": "single-issue-spotlight",
+      "collectionTitle": null,
+      "collectedIn": null,
+      "sourcePositions": [35],
+      "evidenceKeys": ["taskmaster-spotlight", "taskmaster-provider", "hawkeye-title-check", "occupy-avengers-series"],
+      "selectionDecision": "Exercise the owner's explicit permission to choose exactly one short Taskmaster or U.S.Agent spotlight: Taskmaster (2020) #1, issue 78850, series 28068, 32 pages. This is a miniseries opener, not a fabricated titled one-shot, a complete miniseries or the film's particular Taskmaster incarnation.",
+      "assessment": "No exact Hawkeye: Red Vendetta publication identity was verified; the configured title search returned zero records. Occupy Avengers is a real nine-issue 2016 series, but a matching Taskmaster/U.S.Agent spotlight one-shot was not established. Those imprecise input hints are not provider gaps and do not authorize importing that series. The one original spotlight issue is uncollected and must not be advertised as a fifth collected edition."
+    }
+  ],
+  "rows": [
+    { "sourcePosition": 1, "selection": 1, "reference": "Thunderbolts (1997) #1", "seriesId": 2296, "issueId": 15311, "status": "resolved" },
+    { "sourcePosition": 2, "selection": 1, "reference": "Thunderbolts (1997) #2", "seriesId": 2296, "issueId": 15322, "status": "resolved" },
+    { "sourcePosition": 3, "selection": 1, "reference": "Thunderbolts (1997) #3", "seriesId": 2296, "issueId": 15333, "status": "resolved" },
+    { "sourcePosition": 4, "selection": 1, "reference": "Thunderbolts (1997) #4", "seriesId": 2296, "issueId": 15344, "status": "resolved" },
+    { "sourcePosition": 5, "selection": 1, "reference": "Thunderbolts (1997) #5", "seriesId": 2296, "issueId": 15355, "status": "resolved" },
+    { "sourcePosition": 6, "selection": 1, "reference": "Thunderbolts (1997) #-1", "seriesId": 2296, "issueId": null, "status": "provider-gap" },
+    { "sourcePosition": 7, "selection": 1, "reference": "Incredible Hulk (1968) #449", "seriesId": 2021, "issueId": 9260, "status": "resolved" },
+    { "sourcePosition": 8, "selection": 1, "reference": "Tales of the Marvel Universe #1", "seriesId": 18155, "issueId": 48062, "status": "resolved" },
+    { "sourcePosition": 9, "selection": 1, "reference": "Spider-Man Team-Up (1995) #7", "seriesId": 18154, "issueId": 48061, "status": "resolved" },
+    { "sourcePosition": 10, "selection": 1, "reference": "Thunderbolts Annual '97", "seriesId": 18156, "issueId": 48063, "status": "resolved" },
+    { "sourcePosition": 11, "selection": 2, "reference": "Black Widow (2020) #1", "seriesId": 29700, "issueId": 84365, "status": "resolved" },
+    { "sourcePosition": 12, "selection": 2, "reference": "Black Widow (2020) #2", "seriesId": 29700, "issueId": 84366, "status": "resolved" },
+    { "sourcePosition": 13, "selection": 2, "reference": "Black Widow (2020) #3", "seriesId": 29700, "issueId": 84367, "status": "resolved" },
+    { "sourcePosition": 14, "selection": 2, "reference": "Black Widow (2020) #4", "seriesId": 29700, "issueId": 84368, "status": "resolved" },
+    { "sourcePosition": 15, "selection": 2, "reference": "Black Widow (2020) #5", "seriesId": 29700, "issueId": 84369, "status": "resolved" },
+    { "sourcePosition": 16, "selection": 3, "reference": "Captain America (2004) #1", "seriesId": 832, "issueId": 91, "status": "resolved" },
+    { "sourcePosition": 17, "selection": 3, "reference": "Captain America (2004) #2", "seriesId": 832, "issueId": 1492, "status": "resolved" },
+    { "sourcePosition": 18, "selection": 3, "reference": "Captain America (2004) #3", "seriesId": 832, "issueId": 1579, "status": "resolved" },
+    { "sourcePosition": 19, "selection": 3, "reference": "Captain America (2004) #4", "seriesId": 832, "issueId": 1668, "status": "resolved" },
+    { "sourcePosition": 20, "selection": 3, "reference": "Captain America (2004) #5", "seriesId": 832, "issueId": 1764, "status": "resolved" },
+    { "sourcePosition": 21, "selection": 3, "reference": "Captain America (2004) #6", "seriesId": 832, "issueId": 1870, "status": "resolved" },
+    { "sourcePosition": 22, "selection": 3, "reference": "Captain America (2004) #7", "seriesId": 832, "issueId": 1978, "status": "resolved" },
+    { "sourcePosition": 23, "selection": 3, "reference": "Captain America (2004) #8", "seriesId": 832, "issueId": 2190, "status": "resolved" },
+    { "sourcePosition": 24, "selection": 3, "reference": "Captain America (2004) #9", "seriesId": 832, "issueId": 2308, "status": "resolved" },
+    { "sourcePosition": 25, "selection": 3, "reference": "Captain America (2004) #11", "seriesId": 832, "issueId": 2421, "status": "resolved" },
+    { "sourcePosition": 26, "selection": 3, "reference": "Captain America (2004) #12", "seriesId": 832, "issueId": 2422, "status": "resolved" },
+    { "sourcePosition": 27, "selection": 3, "reference": "Captain America (2004) #13", "seriesId": 832, "issueId": 3084, "status": "resolved" },
+    { "sourcePosition": 28, "selection": 3, "reference": "Captain America (2004) #14", "seriesId": 832, "issueId": 3188, "status": "resolved" },
+    { "sourcePosition": 29, "selection": 4, "reference": "Thunderbolts (2016) #1", "seriesId": 20884, "issueId": 57233, "status": "resolved" },
+    { "sourcePosition": 30, "selection": 4, "reference": "Thunderbolts (2016) #2", "seriesId": 20884, "issueId": 57236, "status": "resolved" },
+    { "sourcePosition": 31, "selection": 4, "reference": "Thunderbolts (2016) #3", "seriesId": 20884, "issueId": 57238, "status": "resolved" },
+    { "sourcePosition": 32, "selection": 4, "reference": "Thunderbolts (2016) #4", "seriesId": 20884, "issueId": 57239, "status": "resolved" },
+    { "sourcePosition": 33, "selection": 4, "reference": "Thunderbolts (2016) #5", "seriesId": 20884, "issueId": 57240, "status": "resolved" },
+    { "sourcePosition": 34, "selection": 4, "reference": "Thunderbolts (2016) #6", "seriesId": 20884, "issueId": 57241, "status": "resolved" },
+    { "sourcePosition": 35, "selection": 5, "reference": "Taskmaster (2020) #1", "seriesId": 28068, "issueId": 78850, "status": "resolved" }
+  ],
+  "providerAliases": [
+    { "issueId": 9260, "providerTitle": "Incredible Hulk (1962) #449", "providerSeriesName": "Incredible Hulk (1962 - 1999)", "explanation": "The collection bibliography's 1968 numbering-era label resolves to the provider's continuous 1962 series." },
+    { "issueId": 48062, "providerTitle": "Tales of the Marvel Universe (1996) #1", "providerSeriesName": "Tales of the Marvel Universe (1996)", "explanation": "The provider labels the selected one-shot with its 1996 series year; the selected publication is not substituted." },
+    { "issueId": 48063, "providerTitle": "THUNDERBOLTS ANNUAL 1 (1997) #1", "providerSeriesName": "THUNDERBOLTS ANNUAL 1 (1997)", "explanation": "Thunderbolts Annual '97 resolves to this provider-normalized original annual title." }
+  ],
+  "gaps": [
+    {
+      "sourcePosition": 6,
+      "reference": "Thunderbolts (1997) #-1",
+      "issueUrl": "https://github.com/raymond-nassar/recap-page/issues/687",
+      "relatedGuideGapUrl": "https://github.com/raymond-nassar/recap-page/issues/558",
+      "checkedAt": "2026-10-03",
+      "failedLookups": [
+        { "url": "https://marvel.emreparker.com/v1/series/2296/issues?limit=200&offset=0", "returnedRecords": 83, "result": "No issueNumber -1 or exact #-1 title." },
+        { "url": "https://marvel.emreparker.com/v1/search/issues?q=Thunderbolts%201997%20-1&limit=100", "returnedRecords": 84, "result": "No issueNumber -1 or exact #-1 title." }
+      ],
+      "rejectedRelabelings": [
+        { "issueId": 15311, "url": "https://marvel.emreparker.com/v1/issues/15311", "title": "Thunderbolts (1997) #1", "issueNumber": "1", "onSaleDate": "1997-04-01T00:00:00+0000", "digitalId": 3162 },
+        { "issueId": 62424, "url": "https://marvel.emreparker.com/v1/issues/62424", "title": "Thunderbolts (1997) #1", "issueNumber": "1", "onSaleDate": "1997-07-01T00:00:00+0000", "digitalId": 43367 }
+      ],
+      "resolutionBoundary": "An exact original identity remains missing. A differing date or digital ID does not authorize relabeling a #1 record as #-1. There is no fabricated issue ID, collection ID, replacement or shipped placeholder."
+    }
+  ],
+  "evidence": [
+    { "key": "classic-contents", "url": "https://www.comicbookherald.com/the-thunderbolts-reading-order/", "retrievedAt": "2026-10-03", "supports": "Factual Thunderbolts Classic Vol. 1 contents listing, not this owner's selection or physical table-of-contents order." },
+    { "key": "black-widow-contents", "url": "https://books.google.com/books/about/Black_Widow_By_Kelly_Thompson_Vol_1.html?id=0BEUEAAAQBAJ", "retrievedAt": "2026-10-03", "supports": "Black Widow (2020) #1-5 and Kelly Thompson/Elena Casagrande credits; Natasha-focused collection." },
+    { "key": "black-widow-focus", "url": "https://comicbookroundup.com/comic-books/reviews/marvel-comics/black-widow-(2020)/5", "retrievedAt": "2026-10-03", "supports": "The first five-issue arc centers on Natasha; no Yelena-as-sole-lead adaptation claim." },
+    { "key": "winter-soldier-contents", "url": "https://en.wikipedia.org/wiki/Captain_America_(vol._5)", "retrievedAt": "2026-10-03", "supports": "Winter Soldier Ultimate Collection includes #1-9 and #11-14, not #10." },
+    { "key": "winter-soldier-edition", "url": "https://www.abebooks.com/9780785143413/Captain-America-Vol-Winter-Soldier-0785143416/plp", "retrievedAt": "2026-10-03", "supports": "Ultimate Collection edition and ISBN 9780785143413." },
+    { "key": "zub-contents", "url": "https://www.thriftbooks.com/w/thunderbolts-vol-1-there-is-no-high-road_jim-zub/11600478/", "retrievedAt": "2026-10-03", "supports": "Jim Zub's first collection is There Is No High Road, Thunderbolts (2016) #1-6." },
+    { "key": "zub-roster", "url": "https://www.cbr.com/thunderbolts-1/", "retrievedAt": "2026-10-03", "supports": "Bucky leads a largely returning original Thunderbolts lineup with Kobik; do not assert the input's film-matching roster." },
+    { "key": "taskmaster-spotlight", "url": "https://comicbookroundup.com/comic-books/reviews/marvel-comics/taskmaster-(2020)/1", "retrievedAt": "2026-10-03", "supports": "Taskmaster (2020) #1 is a Taskmaster-focused first issue, not a separately titled one-shot." },
+    { "key": "taskmaster-provider", "url": "https://marvel.emreparker.com/v1/issues/78850", "retrievedAt": "2026-10-03", "supports": "Exact original Taskmaster (2020) #1, series 28068, on sale 2020-11-11, 32 pages." },
+    { "key": "hawkeye-title-check", "url": "https://marvel.emreparker.com/v1/search/issues?q=Hawkeye%20Red%20Vendetta&limit=100", "retrievedAt": "2026-10-03", "returnedRecords": 0, "supports": "No configured-provider match for the input's Hawkeye Red Vendetta hint; not a global nonexistence claim." },
+    { "key": "occupy-avengers-series", "url": "https://marvel.emreparker.com/v1/series/22649/issues?limit=100&offset=0", "retrievedAt": "2026-10-03", "returnedRecords": 9, "supports": "Occupy Avengers is a real 2016 series, not a verified titled Taskmaster/U.S.Agent spotlight one-shot." }
+  ]
+}

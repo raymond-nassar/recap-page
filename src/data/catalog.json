@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-03T17:48:05.373Z",
+  "generatedAt": "2026-10-03T18:45:49.066Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -2724,6 +2724,49 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-26T05:16:35.956Z"
+    },
+    {
+      "id": "mcu-prep-thunderbolts",
+      "file": "mcu_prep_thunderbolts.json",
+      "name": "MCU Prep: Thunderbolts*",
+      "description": "34 resolved originals; Thunderbolts (1997) #-1 remains a documented provider gap. Owner-selected prep from four collections and one Taskmaster spotlight, following the original team, Natasha and Yelena, Bucky's Winter Soldier story and his later Thunderbolts team.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "count": 34,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 4,
+      "characters": [
+        "Thunderbolts",
+        "Black Widow",
+        "Yelena Belova",
+        "Winter Soldier",
+        "Captain America",
+        "Taskmaster"
+      ],
+      "keywords": [
+        "MCU Prep",
+        "Thunderbolts*",
+        "Thunderbolts Classic",
+        "The Ties That Bind",
+        "Winter Soldier",
+        "There Is No High Road",
+        "Taskmaster"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 15311,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/5c1283fd8139e",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/682",
+      "sourceOrigin": "Compiled by hand for this project from the owner-authored outline in GitHub issue #682",
+      "sourceLicense": null,
+      "updatedAt": "2026-10-03T18:45:49.066Z"
     },
     {
       "id": "agents-of-atlas-reading-order",

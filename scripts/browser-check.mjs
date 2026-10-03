@@ -3150,13 +3150,14 @@ const SCENARIOS = [
         path: Boolean(document.querySelector(`${selector} .result-path`)),
         orientation: Boolean(document.querySelector('#marvel-on-screen-results .shelf-orientation')),
       }), cardSelector);
-      t.check('actual MCU Prep preserves Far From Home before the owner-authored companion',
+      t.check('actual MCU Prep keeps the six-guide order before both owner companions',
         screen.hash === '#/marvel-on-screen'
-        && screen.count === '7 Reading Lists'
+        && screen.count === '8 Reading Lists'
         && screen.cards === 1
         && screen.titles.join('|') === [
           'Doctor Strange: Multiverse of Madness', 'Spider-Man: No Way Home',
           'Marvel Multiverse', 'Marvel What If?', 'WandaVision', 'Spider-Man: Far From Home',
+          'MCU Prep: Thunderbolts*',
           'MCU Prep: Daredevil: Born Again',
         ].join('|'),
         JSON.stringify(screen));
@@ -13511,10 +13512,10 @@ SCENARIOS.push({
         title: node.querySelector('.home-path-title')?.textContent.trim(),
         count: node.querySelector('.home-path-count')?.textContent.trim(),
       }));
-      t.check(`${width}px: Home exposes the populated seven-list MCU Prep gateway`,
-        home.visible && home.title === 'MCU Prep' && home.count === '7 Reading Lists',
+      t.check(`${width}px: Home exposes the populated eight-list MCU Prep gateway`,
+        home.visible && home.title === 'MCU Prep' && home.count === '8 Reading Lists',
         JSON.stringify(home));
-      if (!home.visible || home.count !== '7 Reading Lists') return;
+      if (!home.visible || home.count !== '8 Reading Lists') return;
       await click(page, homeSelector);
       const cardSelector = `#marvel-on-screen-results [data-story="list:${id}"]`;
       const homeHash = formatRoute({ view: 'marvel-on-screen', listId: before.active });
@@ -13545,12 +13546,13 @@ SCENARIOS.push({
           path: Boolean(selected?.querySelector('.result-path')),
         };
       }, `[data-story="list:${id}"]`);
-      t.check(`${width}px: Browse keeps six earlier companions and appends the owner selection`,
-        browse.title === 'Browse MCU Prep' && browse.count === '7 Reading Lists'
-        && browse.cards === 7 && browse.selectedCount === 1
+      t.check(`${width}px: Browse keeps seven earlier companions and appends the owner selection`,
+        browse.title === 'Browse MCU Prep' && browse.count === '8 Reading Lists'
+        && browse.cards === 8 && browse.selectedCount === 1
         && browse.titles.join('|') === [
           'Doctor Strange: Multiverse of Madness', 'Spider-Man: No Way Home',
           'Marvel Multiverse', 'Marvel What If?', 'WandaVision', 'Spider-Man: Far From Home',
+          'MCU Prep: Thunderbolts*',
           'MCU Prep: Daredevil: Born Again',
         ].join('|'), JSON.stringify(browse));
       t.check(`${width}px: MCU Prep has no new shelf, timeline, path or horizontal overflow`,

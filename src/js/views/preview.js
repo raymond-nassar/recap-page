@@ -111,10 +111,10 @@ export function createPreviewView({
       let shown = null;
       const rows = [];
       order.items.forEach((item, index) => {
-        const edition = typeof item.collectedIn === 'string' ? item.collectedIn : null;
-        if (edition && edition !== shown) {
+        const edition = typeof item.collectedIn === 'string' ? item.collectedIn || null : null;
+        if (edition !== shown) {
           shown = edition;
-          rows.push(el('li', { class: 'preview-group' }, [el('h4', { text: edition })]));
+          rows.push(el('li', { class: 'preview-group' }, [el('h4', { text: edition || 'Individual issues' })]));
         }
         rows.push(el('li', {}, [
           el('span', { class: 'pn', text: String(index + 1) }),
