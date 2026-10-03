@@ -261,7 +261,8 @@ try {
       const before = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
       await page.$eval('#search-q', (node) => { node.value = 'Reader-first no-match fixture'; });
       await click(page, '#form-search button');
-      await page.waitForSelector('#search-results .notice-act button');
+      await page.waitForFunction(() => [...document.querySelectorAll('#search-results .notice-act button')]
+        .some((node) => node.textContent === 'Add an issue by hand'));
       await click(page, '#search-results .notice-act button');
       await page.waitForSelector('#view-add-manual:not([hidden])');
       check(await page.$eval('#view-add-manual .add-target', (node) => node.textContent.includes('House of M')),

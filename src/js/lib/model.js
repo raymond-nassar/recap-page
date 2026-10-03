@@ -271,11 +271,15 @@ export function coverUrl(issue, variant = 'portrait_uncanny') {
   return c ? `${c.path}/${variant}.${c.ext}` : null;
 }
 
+export function mergeIssueMetadata(previous, issue) {
+  return previous ? { ...previous, ...stripNulls(issue), hydrated: issue.hydrated || previous.hydrated } : issue;
+}
+
 export function upsertIssue(state, input) {
   const issue = normalizeIssue(input);
   if (!issue) return state;
   const prev = state.issues[issue.issueId];
-  const merged = prev ? { ...prev, ...stripNulls(issue), hydrated: issue.hydrated || prev.hydrated } : issue;
+  const merged = mergeIssueMetadata(prev, issue);
   return { ...state, issues: { ...state.issues, [issue.issueId]: merged } };
 }
 

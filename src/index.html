@@ -670,12 +670,12 @@
             <div class="head"><div class="head-left"><h1 id="add-search-h">Search issues</h1></div></div>
 
             <section class="card card-static addpri add-page">
-              <p class="add-destination add-target"></p>
+              <p id="search-help" class="visually-hidden">Select comics, then create a Reading List or choose one to add to. Searching changes no saved lists.</p>
               <form id="form-search" class="stack">
                 <label for="search-q">Search issue titles</label>
                 <div class="field-row">
-                  <input type="search" id="search-q" placeholder="e.g. Secret Wars" autocomplete="off" />
-                  <button type="submit" class="btn btn-icon has-tooltip" data-tooltip="Search issues" aria-label="Search issue titles"><svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#search"/></svg></button>
+                  <input type="search" id="search-q" name="issue-query" placeholder="e.g. Secret Wars…" autocomplete="off" aria-describedby="search-help" />
+                  <button type="submit" class="btn btn-g btn-icon has-tooltip" data-tooltip="Select comics, then create a Reading List or choose one to add to. Searching changes no saved lists." aria-label="Search issue titles" aria-describedby="search-help"><svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#search"/></svg></button>
                 </div>
               </form>
               <!--
@@ -728,12 +728,12 @@
           <section id="view-add-series" class="view" hidden aria-labelledby="add-series-h">
             <div class="head"><div class="head-left"><h1 id="add-series-h">Find a series</h1></div></div>
             <section class="card card-static addpri add-page" id="sec-series">
-                <p class="add-destination add-target"></p>
+                <p id="series-help" class="visually-hidden">Select comics, then create a Reading List or choose one to add to. Searching changes no saved lists.</p>
                 <form id="form-series" class="stack">
                   <label for="series-q">Find a series</label>
                   <div class="field-row">
-                    <input type="search" id="series-q" placeholder="e.g. New Avengers (2013)" autocomplete="off" />
-                    <button type="submit" class="btn btn-icon has-tooltip" data-tooltip="Search series" aria-label="Find a series"><svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#search"/></svg></button>
+                    <input type="search" id="series-q" name="series-query" placeholder="e.g. New Avengers (2013)…" autocomplete="off" aria-describedby="series-help" />
+                    <button type="submit" class="btn btn-g btn-icon has-tooltip" data-tooltip="Select comics, then create a Reading List or choose one to add to. Searching changes no saved lists." aria-label="Find a series" aria-describedby="series-help"><svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#search"/></svg></button>
                   </div>
                 </form>
                 <div id="series-results" class="results"></div>
@@ -743,12 +743,12 @@
           <section id="view-add-creator" class="view" hidden aria-labelledby="add-creator-h">
             <div class="head"><div class="head-left"><h1 id="add-creator-h">Browse a creator</h1></div></div>
             <section class="card card-static addpri add-page" id="sec-creator">
-                <p class="add-destination add-target"></p>
+                <p id="creator-help" class="visually-hidden">Select comics, then create a Reading List or choose one to add to. Searching changes no saved lists.</p>
                 <form id="form-creator" class="stack">
                   <label for="creator-q">Find a creator</label>
                   <div class="field-row">
-                    <input type="search" id="creator-q" placeholder="e.g. Hickman" autocomplete="off" />
-                    <button type="submit" class="btn btn-icon has-tooltip" data-tooltip="Search creators" aria-label="Find a creator"><svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#search"/></svg></button>
+                    <input type="search" id="creator-q" name="creator-query" placeholder="e.g. Brubaker…" autocomplete="off" aria-describedby="creator-help" />
+                    <button type="submit" class="btn btn-g btn-icon has-tooltip" data-tooltip="Select comics, then create a Reading List or choose one to add to. Searching changes no saved lists." aria-label="Find a creator" aria-describedby="creator-help"><svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#search"/></svg></button>
                   </div>
                 </form>
                 <div id="creator-results" class="results"></div>
@@ -1062,9 +1062,9 @@
                   screen. Opening the app asks the metadata API named above whether it is reachable,
                   which is what the status pill reports. Searching for issues sends what you typed,
                   and so does asking an imported line to find its own match; searching the catalog,
-                  series or creators is answered from files already on this machine, but adding a
-                  whole series or a creator's issues then asks the metadata API for every issue it
-                  lists, which is the longest run of requests the app makes. Filling in details sends
+                  series or creators is answered from files already on this machine, but browsing a
+                  series or a creator's comics then asks the metadata API for the issues it
+                  lists. Selecting comics and choosing a list stays on this device. Filling in details sends
                   every issue number still missing them, across every list you keep, starting with
                   the one you are about to read. Cover art is
                   requested from Marvel's image servers as it appears, so those servers see which
