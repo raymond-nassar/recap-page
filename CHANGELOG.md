@@ -13,6 +13,17 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Add MCU Prep: Thunderbolts*
+
+Adds the owner's five-selection companion to MCU Prep on Home and Browse, with 34 original
+comics from four collections and one Taskmaster spotlight issue. The Winter Soldier selection
+uses the approved Ultimate Collection, and Jim Zub's selection uses There Is No High Road.
+Thunderbolts (1997) #-1 remains an explicit source gap with separate follow-up work rather than
+being replaced or given a made-up identity. Saved reading progress, availability distinctions
+and reader launch behaviour are unchanged.
+The standalone spotlight is visibly separate from the four collected editions in Preview and
+the Reading List, without being counted as another book.
+
 ### Put reading actions first and disclose secondary choices
 
 All versions replace **Inspect issue** with **About this comic**. Comic details put Read
