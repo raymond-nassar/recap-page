@@ -6716,6 +6716,43 @@
       "coverIssueId": 61713
     },
     {
+      "id": "mcu-prep-daredevil-born-again",
+      "name": "MCU Prep: Daredevil: Born Again",
+      "description": "An owner-selected Daredevil companion: The Man Without Fear, Born Again, Out, Brubaker's first volume, and the first two Zdarsky volumes.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "mcu-prep-daredevil-born-again.md",
+      "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/681",
+      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceLicense": null,
+      "out": "mcu_prep_daredevil_born_again.json",
+      "characters": [
+        "Daredevil",
+        "Kingpin",
+        "Matt Murdock"
+      ],
+      "keywords": [
+        "MCU Prep",
+        "Daredevil: Born Again",
+        "The Man Without Fear",
+        "Out",
+        "The Devil Inside and Out",
+        "Know Fear",
+        "No Devils, Only God",
+        "Frank Miller",
+        "Brian Michael Bendis",
+        "Ed Brubaker",
+        "Chip Zdarsky"
+      ],
+      "expect": 37,
+      "timeline": null,
+      "coverIssueId": 20750
+    },
+    {
       "id": "inhumans-vs-x-men",
       "name": "Inhumans vs. X-Men",
       "description": "Twenty chapters alternating the seven-part event with X-Men, Inhumans, and Mercs for Money tie-ins.",

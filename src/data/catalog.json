@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-30T04:55:50.710Z",
+  "generatedAt": "2026-10-03T17:48:05.373Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -10705,6 +10705,50 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-21T09:58:39.876Z"
+    },
+    {
+      "id": "mcu-prep-daredevil-born-again",
+      "file": "mcu_prep_daredevil_born_again.json",
+      "name": "MCU Prep: Daredevil: Born Again",
+      "description": "An owner-selected Daredevil companion: The Man Without Fear, Born Again, Out, Brubaker's first volume, and the first two Zdarsky volumes.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "count": 37,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 6,
+      "characters": [
+        "Daredevil",
+        "Kingpin",
+        "Matt Murdock"
+      ],
+      "keywords": [
+        "MCU Prep",
+        "Daredevil: Born Again",
+        "The Man Without Fear",
+        "Out",
+        "The Devil Inside and Out",
+        "Know Fear",
+        "No Devils, Only God",
+        "Frank Miller",
+        "Brian Michael Bendis",
+        "Ed Brubaker",
+        "Chip Zdarsky"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 20750,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/4bb866d34e627",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/681",
+      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceLicense": null,
+      "updatedAt": "2026-10-03T17:48:05.373Z"
     },
     {
       "id": "inhumans-vs-x-men",
