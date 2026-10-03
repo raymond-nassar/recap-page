@@ -13,13 +13,21 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
-### Add the owner-selected Eternals MCU Prep list
+### Build personal Reading Lists from comic searches
 
-MCU Prep now includes Eternals through Home and Browse. Its 24 original comics preserve
-the three requested collection groups: Jack Kirby's first volume, Neil Gaiman and
-John Romita Jr.'s miniseries, and Kieron Gillen and Esad Ribic's Only Death Is Eternal.
-Preview, import and Reading List keep that order. The Kirby and Gillen picks stop at
-their first-volume boundaries; existing guides and saved reading data are unchanged.
+Issue, series, and creator searches now show selectable comics instead of immediately adding them
+to the active list. A single matching creator or series opens its comics directly. Filter the results,
+select individual comics or every loaded match, and combine selections across all three searches.
+
+Create a named Reading List by default, or deliberately choose an existing list. Saving happens only
+when you choose the final action. Cancelled or interrupted searches keep clearly marked partial
+results to choose from. A failed save keeps your selection available to retry.
+
+Existing saved lists, progress, notes, availability checks, and deferrals are unchanged. The saved-data
+and backup formats stay compatible; paste import and manual entry keep their existing behavior.
+
+Search screens keep the save action prominent and move optional guidance and repeated issue details
+to hover and keyboard-focus tooltips. Success, errors and incomplete-result warnings remain visible.
 
 ### Put reading actions first and disclose secondary choices
 

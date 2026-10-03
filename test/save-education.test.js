@@ -138,7 +138,7 @@ test('an unreadable preference is never overwritten with a lower state', () => {
 });
 
 test('every approved list path records only its final cumulative operation result', () => {
-  for (const symbol of ['addToActive', 'doImport', 'unresolvedRow', 'doManual']) {
+  for (const symbol of ['saveSelected', 'doImport', 'unresolvedRow', 'doManual']) {
     const start = ADD.indexOf(`function ${symbol}(`);
     assert.notEqual(start, -1, `expected ${symbol} to remain a named integration boundary`);
   }
@@ -148,13 +148,13 @@ test('every approved list path records only its final cumulative operation resul
   assert.equal(
     [...MAIN.matchAll(/recordNonEmptyListSave\(/g)].length
       + [...ADD.matchAll(/onNonEmptyListSave\(/g)].length,
-    7,
-    'one definition and the add, import, two unresolved, manual, and curated paths must be explicit',
+    6,
+    'one definition and the import, two unresolved, manual, and curated paths must be explicit',
   );
   assert.match(
     MAIN,
-    /persistLongAddPage\([\s\S]*?store,[\s\S]*?items,[\s\S]*?context,[\s\S]*?recordNonEmptyListSave/,
-    'the long-add page path no longer records its completed cumulative result',
+    /persistSearchSelection\([\s\S]*?store,[\s\S]*?items,[\s\S]*?destination,[\s\S]*?recordNonEmptyListSave/,
+    'the selection save no longer records its completed durable result',
   );
   assert.doesNotMatch(ADD, /const listId = ensureList\(/);
   assert.match(ADD, /if \(!setupOk \|\| !operation\.ok\)/);
