@@ -17,6 +17,14 @@ Delete this comment and write here.
 <!--
 One major feature per pull request. If you found something else worth doing, add it to the
 project's list of planned improvements rather than to this branch.
+
+Follow [release bookkeeping](https://github.com/raymond-nassar/recap-page/blob/main/GOVERNANCE.md#release-bookkeeping).
+For feature PRs, include complete proposed user-facing release-note text and saved-data
+compatibility information here; link this record from the Issue. If no release note is needed,
+say why. Explain the correctness, provenance or gate reason for each required shared feature edit.
+
+For final version release PRs, identify the merged feature records assembled and verified
+alongside existing Unreleased notes, and link the finalized version record.
 -->
 
 ## Evidence

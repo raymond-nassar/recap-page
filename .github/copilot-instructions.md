@@ -464,13 +464,14 @@ later. Refusals are a backstop, not a design.
   `## In plain English`.** It goes first, above every section written for a reader who already knows
   the codebase. The owner reviews these to decide whether a change is right, and asked for them
   because the technical sections were making that harder rather than easier.
-- Update `CHANGELOG.md` under `## Unreleased` only for user-visible behavior or a release-relevant
-  maintainer change. Internal execution records and editorial-only maintenance do not need an entry.
+- Follow [release bookkeeping](../GOVERNANCE.md#release-bookkeeping): feature PRs retain proposed
+  release notes and saved-data compatibility; final version release PRs own the changelog and
+  coordinated application version bumps. Keep required feature integration and evidence timely.
 - Do not edit `PRODUCT_BACKLOG.md`; it is a frozen historical snapshot. Active scope, acceptance
   criteria, readiness, priority and delivery state belong in the repository Issue, planning Project
   and linked pull request, as `GOVERNANCE.md` defines.
 - Agent and contributor instructions change how work is done, not the product. They need neither a
-  Project update nor a changelog entry unless they alter release-relevant maintainer behavior.
+  Project update nor release notes unless they alter release-relevant maintainer behavior.
 
 Plain English means a specific thing here, not a shortened copy of the technical summary:
 
