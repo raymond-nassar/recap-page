@@ -13,16 +13,21 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
-### Add MCU Prep: Thunderbolts*
+### Build personal Reading Lists from comic searches
 
-Adds the owner's five-selection companion to MCU Prep on Home and Browse, with 34 original
-comics from four collections and one Taskmaster spotlight issue. The Winter Soldier selection
-uses the approved Ultimate Collection, and Jim Zub's selection uses There Is No High Road.
-Thunderbolts (1997) #-1 remains an explicit source gap with separate follow-up work rather than
-being replaced or given a made-up identity. Saved reading progress, availability distinctions
-and reader launch behaviour are unchanged.
-The standalone spotlight is visibly separate from the four collected editions in Preview and
-the Reading List, without being counted as another book.
+Issue, series, and creator searches now show selectable comics instead of immediately adding them
+to the active list. A single matching creator or series opens its comics directly. Filter the results,
+select individual comics or every loaded match, and combine selections across all three searches.
+
+Create a named Reading List by default, or deliberately choose an existing list. Saving happens only
+when you choose the final action. Cancelled or interrupted searches keep clearly marked partial
+results to choose from. A failed save keeps your selection available to retry.
+
+Existing saved lists, progress, notes, availability checks, and deferrals are unchanged. The saved-data
+and backup formats stay compatible; paste import and manual entry keep their existing behavior.
+
+Search screens keep the save action prominent and move optional guidance and repeated issue details
+to hover and keyboard-focus tooltips. Success, errors and incomplete-result warnings remain visible.
 
 ### Put reading actions first and disclose secondary choices
 

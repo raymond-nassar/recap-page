@@ -90,18 +90,28 @@ test('search results precede a closed alternatives group with every existing des
 
 test('an empty search offers deliberate manual entry through navigation without adding or fetching', () => {
   const start = add.indexOf('  function renderResults(');
-  const end = add.indexOf('\n  async function addSeries(', start);
+  const end = add.indexOf('\n  for (const config of searches)', start);
   assert.ok(start >= 0 && end > start);
   const notices = [];
   const navigation = [];
   const context = {
-    $: () => ({ replaceChildren() {} }),
+    $: () => ({ replaceChildren() {}, append() {} }),
+    el: () => ({}),
+    announce() {},
+    refreshBuilders() {},
+    selected: new Map(),
+    nameEdited: false,
+    destinationId: '',
+    MAX_NAME: 100,
     notify: (...args) => notices.push(args),
     showView: (...args) => navigation.push(args),
   };
   runInNewContext(`${add.slice(start, end)}\nthis.render = renderResults;`, context);
-  context.render('#search-results', [], () => '');
+  context.render({ kind: 'issue', results: '#search-results' }, {
+    items: [], phase: 'complete', item: { name: 'No match' },
+  });
   assert.equal(navigation.length, 0, 'An empty result must not navigate automatically');
+  assert.equal(notices.length, 1, 'An empty completed search must offer the manual-entry notice');
   const [target, message, kind, , action] = notices.at(-1);
   assert.equal(target, '#search-results');
   assert.equal(kind, 'warn');
