@@ -151,7 +151,7 @@ test('Shang-Chi MCU Prep reaches the existing gateway and Storylines without a n
   const screen = HOME_CATEGORIES.find((row) => row.key === 'marvel-on-screen');
   assert.equal(screen.heading, 'MCU Prep');
   assert.deepEqual(screen.select(groupCatalog(catalog.lists)).map((story) => story.lists[0].id),
-    [...MCU_SELECTED_IDS, id]);
+    [...MCU_SELECTED_IDS, id, 'mcu-prep-thunderbolts']);
   assert.equal(catalog.lists.filter((row) => row.id === id).length, 1);
   assert.equal(manifest.lists.filter((row) => row.id === id).length, 1);
   assert.equal(card.source, input);
@@ -165,7 +165,7 @@ test('Shang-Chi MCU Prep reaches the existing gateway and Storylines without a n
   assert.equal(catalog.paths.some((row) => row.steps.includes(id)), false);
 });
 
-test('Shang-Chi MCU Prep retains all 281 historical source and generated-child comparisons', async () => {
+test('Shang-Chi MCU Prep retains historical comparisons and covers the complete current library', async () => {
   const sourceIds = new Set(report.coverage.sourceOrderIds);
   const childIds = new Set(report.coverage.generatedChildIds);
   const sourceEntries = manifest.lists.filter((row) => sourceIds.has(row.id));
@@ -198,6 +198,27 @@ test('Shang-Chi MCU Prep retains all 281 historical source and generated-child c
   ]);
   assert.equal(report.comparisons.filter((row) => row.relationship === 'none').length, 277);
   assert.equal(report.comparisons.some((row) => row.relationship === 'exact'), false);
+  const currentSourceIds = new Set(manifest.lists.map((row) => row.id));
+  const currentEntries = [
+    ...manifest.lists.filter((row) => row.id !== id),
+    ...rawCatalog.lists.filter((row) => !currentSourceIds.has(row.id)),
+  ];
+  const currentOrders = await Promise.all(currentEntries.map(async (row) => ({
+    id: row.id,
+    issueIds: issueIdsFromValue(await readJson(path.join('src', 'data', row.out ?? row.file))),
+  })));
+  const current = buildComparisonReport({ candidateIds: fixture.issueIds, orders: currentOrders });
+  assert.equal(current.comparisonCount, 282);
+  assert.doesNotThrow(() => assertComparisonCoverage(current, {
+    candidateId: id,
+    candidateCount: 37,
+    expectedOrderIds: currentEntries.map((row) => row.id),
+  }));
+  assert.deepEqual(current.comparisons.filter((row) => row.orderId !== 'mcu-prep-thunderbolts'),
+    report.comparisons);
+  assert.deepEqual(current.comparisons.find((row) => row.orderId === 'mcu-prep-thunderbolts')?.sharedIds, []);
+  assert.equal(current.comparisons.find((row) => row.orderId === 'mcu-prep-thunderbolts')?.relationship,
+    'none');
   assert.equal(ledger.relationshipReview.status, 'approved');
   assert.equal(ledger.relationshipReview.authorityType, 'stronger-model');
   assert.equal(ledger.relationshipReview.authorityIdentity,

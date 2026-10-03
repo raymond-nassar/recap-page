@@ -3141,14 +3141,15 @@ const SCENARIOS = [
         path: Boolean(document.querySelector(`${selector} .result-path`)),
         orientation: Boolean(document.querySelector('#marvel-on-screen-results .shelf-orientation')),
       }), cardSelector);
-      t.check('actual MCU Prep discovers Far From Home once alongside the owner-selected companion',
+      t.check('actual MCU Prep discovers Far From Home once alongside both owner-selected companions',
         screen.hash === '#/marvel-on-screen'
-        && screen.count === '7 Reading Lists'
+        && screen.count === '8 Reading Lists'
         && screen.cards === 1
         && screen.titles.join('|') === [
           'Doctor Strange: Multiverse of Madness', 'Spider-Man: No Way Home',
           'Marvel Multiverse', 'Marvel What If?', 'WandaVision', 'Spider-Man: Far From Home',
           'Shang-Chi and the Legend of the Ten Rings',
+          'MCU Prep: Thunderbolts*',
         ].join('|'),
         JSON.stringify(screen));
       t.check('Far From Home has no reading-path or first-stop orientation',

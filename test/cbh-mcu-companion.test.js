@@ -272,7 +272,7 @@ test('Far From Home binds the exact source, exclusions, overlap, and catalog rol
     HOME_CATEGORIES.find(({ key }) => key === 'marvel-on-screen')
       .select(groupCatalog(catalog.lists))
       .map((story) => story.lists[0].id),
-    [...MCU_SELECTED_IDS, 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings'],
+    [...MCU_SELECTED_IDS, 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts'],
   );
   assert.equal(catalog.paths.some(({ steps }) => steps.includes(record.id)), false);
   assert.equal(pathPlacements(catalog.paths, catalog.lists).has(`list:${record.id}`), false);
@@ -396,7 +396,7 @@ test('historical approved evidence reaches its six payloads and cards within MCU
       .map((entry) => entry.id),
     MCU_SELECTED_IDS,
   );
-  assert.equal(catalog.lists.length, 281);
+  assert.equal(catalog.lists.length, 282);
 
   assert.deepEqual(
     inventory.records.filter((record) => record.centralDisposition === 'selected')
@@ -446,7 +446,7 @@ test('historical approved evidence reaches its six payloads and cards within MCU
   assert.equal(screenDefinition.heading, 'MCU Prep');
   assert.deepEqual(
     screenDefinition.select(stories).map((story) => story.lists[0].id),
-    [...MCU_SELECTED_IDS, 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings'],
+    [...MCU_SELECTED_IDS, 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts'],
   );
   assert.deepEqual(
     shelfLists(catalog.lists, 'spotlights').length,

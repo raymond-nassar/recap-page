@@ -149,7 +149,7 @@ test('Marvel Ages hides when empty and shares one count derivation with its scre
   assert.deepEqual(availableHomeCategories([], [MARVEL_AGES_CATEGORY]), []);
 });
 
-test('MCU Prep keeps seven screen companions in catalog order on the stable route', () => {
+test('MCU Prep keeps eight screen companions in catalog order on the stable route', () => {
   const category = HOME_CATEGORIES.find(({ key }) => key === 'marvel-on-screen');
   assert.ok(category, 'MCU Prep is not declared');
   assert.equal(category.heading, 'MCU Prep');
@@ -163,6 +163,7 @@ test('MCU Prep keeps seven screen companions in catalog order on the stable rout
       'wandavision',
       'spider-man-far-from-home',
       'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings',
+      'mcu-prep-thunderbolts',
     ],
   );
   assert.equal(category.route, 'marvel-on-screen');
