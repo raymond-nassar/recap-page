@@ -229,7 +229,7 @@ test('an issue route branches before list adoption and never calls setActive', (
   assert.doesNotMatch(branch, /setActive|store\.update/);
 });
 
-test('every issue-bearing surface uses the shared focus route without replacing Read or Add', () => {
+test('every issue-bearing surface uses the shared focus route while retaining reading and selection actions', () => {
   const reading = read('src/js/views/reading.js');
   const add = read('src/js/views/add.js');
   const previewView = read('src/js/views/preview.js');
@@ -249,9 +249,16 @@ test('every issue-bearing surface uses the shared focus route without replacing 
   assert.match(rows, /control: 'title'/);
   assert.match(rows, /launch\(item, e\)/);
 
-  const search = add.slice(add.indexOf('function renderResults'), add.indexOf('async function addSeries'));
+  const searchStart = add.indexOf('function renderResults');
+  const searchEnd = add.indexOf('  for (const config of searches)', searchStart);
+  assert.notEqual(searchStart, -1);
+  assert.ok(searchEnd > searchStart);
+  const search = add.slice(searchStart, searchEnd);
   assert.match(search, /surface: 'search'/);
-  assert.match(search, /btn\.addEventListener\('click'/);
+  assert.match(search, /checkbox\.addEventListener\('change'/);
+  assert.match(search, /selected\.set\(item\.issueId, item\)/);
+  assert.doesNotMatch(search, /saveSelection\(/);
+  assert.match(add, /result = saveSelection\(\[\.\.\.selected\.values\(\)\]/);
 
   const library = read('src/js/views/library.js');
   assert.match(library, /view\.value === 'library-read'/);

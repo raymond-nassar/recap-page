@@ -9,7 +9,7 @@ source can be reviewed alongside the prose.
 ## The three entry points
 
 The desktop source has three pages at one origin, each loading one module: the tracker at
-`src/index.html:1136`, the reader launch tab at `src/open.html:19`, and the development-only fault
+`src/index.html:1137`, the reader launch tab at `src/open.html:19`, and the development-only fault
 harness at `src/dev-faults.html:135`.
 
 The tracker entry calls `boot()` and registers the offline worker at `src/js/app.js:12-24`.
@@ -160,7 +160,9 @@ flowchart TD
     indexes["vendored series and creator indexes"] --> add["local name search"]
     add --> api["Marvel metadata API"]
     api --> responseCache["IndexedDB response cache, synopsis stripped"]
-    api --> addWriter["pagewise series and creator add"]
+    api --> comicResults["read-only comic search results"]
+    comicResults --> selected["in-memory selection"]
+    selected -->|"explicit save"| addWriter["atomic list creation and selected merge"]
     addWriter --> store
     api --> hydrator["Hydrator"]
     hydrator --> store
@@ -183,11 +185,12 @@ the complete output batch atomically, including `catalog.json` and generated ove
 at `scripts/vendor-orders.mjs:599-647`. Runtime loads and parses that same-origin catalog once at
 `src/js/main.js:1800-1811`, independently of the metadata service.
 
-Series and creator names are searched in vendored indexes. Selecting one then pages its issues from
-the API. API responses use `no-store`, and cache writes remove synopsis prose before IndexedDB sees
-them, at `src/js/api.js:81-120`. Hydration sends normalized factual metadata through the same Store
-boundary as a reader edit; synopsis requests instead end in the tab-memory map and disappear when
-the tab closes.
+Series and creator names are searched in vendored indexes. Browsing a matching name pages its comics
+from the API into a read-only preview. Issue, series, and creator results share an in-memory selection;
+only an explicit save creates or fills the chosen Reading List. API responses use `no-store`, and
+cache writes remove synopsis prose before IndexedDB sees them, at `src/js/api.js:81-120`. Hydration
+sends normalized factual metadata through the same Store boundary as a reader edit; synopsis requests
+instead end in the tab-memory map and disappear when the tab closes.
 
 A Read press opens the same-origin launch page synchronously so popup permission is not lost,
 at `src/js/reader.js:82-105`. A known digital ID redirects straight to Marvel Unlimited.
@@ -273,16 +276,21 @@ directly at `src/js/storage.js:518-584`, bypassing the failed-read latch because
 overwrite, as explained at `src/js/storage.js:647-655`. A guard inside `update` does not cover these
 replacement paths.
 
-**Long series and creator adds are pagewise transactions.** The API delivers each normalized page
-before it requests the next one, while still returning the complete array to callers that need it,
-at `src/js/api.js:193-230`. The view gives each form its own run owner, at
-`src/js/views/add.js:63-162`. The first nonempty page creates and fills its list inside one Store
-update, and every later completed page uses the same boundary, at `src/js/views/add.js:22-61` and
-`src/js/views/add.js:164-190`. Cancelling retires that owner before aborting its request, so a response
-that arrives late cannot write into a replacement run. The active notice carries the Cancel action;
-when that action disappears while focused, the matching search field receives focus, at
-`src/js/views/add.js:287-319`. A stop before the first page creates no list, while every page already
-saved remains available after a reload.
+**Comic searches preview first and save once.** The API delivers each normalized page before it
+requests the next one, at `src/js/api.js:193-230`. Each search owns a read-only run that accumulates
+comics in memory, rejects invalid issue identities, and reports incomplete loads against the API's
+total, at `src/js/views/add.js:88-180`. Cancellation retires the run before aborting its request;
+late responses cannot replace a newer preview. Received partial results remain selectable, with
+an explicit stopped or failed notice. When a focused Cancel action disappears, its search field
+receives focus, at `src/js/views/add.js:517-541`.
+
+The shared selection survives searches and issue-detail navigation, but not a document reload.
+A named new list is the default destination. The explicit save composes creation, selected membership,
+and activation in one Store update, at `src/js/views/add.js:27-61` and `src/js/views/add.js:63-86`.
+An existing destination keeps its prior order, skips duplicate membership, and retains shared progress.
+A refused write leaves the selection and intended destination intact; only a successful addition
+starts hydration, at `src/js/views/add.js:290-332`. The browser warns before leaving with an unsaved
+selection, at `src/js/views/add.js:973-977`. Paste import and manual entry keep their existing paths.
 
 ## Where a reader's data lives
 

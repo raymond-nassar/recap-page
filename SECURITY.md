@@ -91,8 +91,8 @@ If the report is declined, you may publish immediately and quote the reasoning.
 Consider these safeguards when preparing a report:
 
 - There are no accounts or hosted reading-data services, and no analytics, tracking, or telemetry. On startup, the app
-  asks the comics database whether it is reachable. Issue searches send the words you type; adding
-  a selected series or creator requests every issue in that run. Details requests name the comic,
+  asks the comics database whether it is reachable. Issue searches send the words you type; browsing
+  a selected series or creator requests the comics it lists. Details requests name the comic,
   and covers load from Marvel's own image servers. Those services see which issues you request;
   the reachability check names none. Pressing **Read** opens Marvel Unlimited when a reader link
   is known. Otherwise the launch tab asks the metadata service for that link and falls back to the

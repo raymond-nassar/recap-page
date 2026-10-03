@@ -54,7 +54,7 @@ import { createCatalogPresentation } from './views/shared/catalog-presentation.j
 import { createCatalogView } from './views/catalog.js';
 import { createPreviewView } from './views/preview.js';
 import { createReadingPathsView } from './views/reading-paths.js';
-import { createAddView, persistLongAddPage } from './views/add.js';
+import { createAddView, persistSearchSelection } from './views/add.js';
 import { createDataView, eraseOutcome } from './views/data.js';
 import { createRecoveryView } from './views/recovery.js';
 import { wireTooltips } from './lib/tooltips.js';
@@ -2715,10 +2715,10 @@ const addView = createAddView({
   notify,
   onNonEmptyListSave: recordNonEmptyListSave,
   reportBundledLoadFailure,
-  saveLongAddPage: (items, context) => persistLongAddPage(
+  saveSelection: (items, destination) => persistSearchSelection(
     store,
     items,
-    context,
+    destination,
     recordNonEmptyListSave,
   ),
   search: {

@@ -2,7 +2,9 @@ import {
   addIssuesToList,
   createList,
   heldCount,
+  MAX_NAME,
   markRead,
+  normalizeIssue,
   setActive,
 } from '../lib/model.js';
 import {
@@ -16,54 +18,76 @@ import {
 import { DEFAULT_LIST_NAME } from '../lib/library.js';
 import { compareIssues } from '../lib/sort.js';
 import { updatedLabel } from '../lib/catalog.js';
+import { formatRoute } from '../lib/route.js';
 
 const NAME_SEARCH_LIMIT = 40;
+const ISSUE_SEARCH_LIMIT = 50;
+const RESULT_BATCH_SIZE = 50;
 
-export function mergeLongAddPage(state, context, issues) {
-  let { listId, insertAt } = context;
-  const { ownedIds = [] } = context;
+export function mergeSearchSelection(state, items, { listId = null, name = '' } = {}) {
+  const unchanged = {
+    state, listId, listName: null, added: 0, skipped: 0,
+  };
+  if (!Array.isArray(items) || !items.length) {
+    return { ...unchanged, error: 'Select at least one comic first.' };
+  }
+  const normalized = items.map(normalizeIssue);
+  if (normalized.some((item) => !item || item.issueId <= 0)) {
+    return { ...unchanged, error: 'A selected comic has no valid issue ID. Search again before saving.' };
+  }
+  if (listId && !Object.hasOwn(state.lists, listId)) {
+    return { ...unchanged, error: 'That Reading List no longer exists. Choose another list.' };
+  }
+  const listName = String(name).trim();
+  if (!listId && (!listName || listName.length > MAX_NAME)) {
+    return { ...unchanged, error: `Name the new Reading List using 1 to ${MAX_NAME} characters.` };
+  }
+
   let next = state;
   if (!listId) {
-    next = createList(next, { name: DEFAULT_LIST_NAME });
+    next = createList(next, { name: listName });
     listId = next.listOrder[next.listOrder.length - 1];
-    next = setActive(next, listId);
-    insertAt = 0;
   }
-  const list = next.lists[listId];
-  if (!list) return { state, added: 0, skipped: 0, context, missing: true };
-
-  const before = new Set(list.itemIds);
+  const issues = [...new Map(normalized.map((item) => [item.issueId, item])).values()]
+    .sort(compareIssues);
   const merged = addIssuesToList(next, listId, issues);
-  const mergedList = merged.state.lists[listId];
-  const fresh = mergedList.itemIds.filter((id) => !before.has(id));
-  const present = new Set(mergedList.itemIds);
-  const nextOwned = [...new Set([...ownedIds, ...fresh])].filter((id) => present.has(id));
-  const owned = new Set(nextOwned);
-  const stable = mergedList.itemIds.filter((id) => !owned.has(id));
-  const at = Math.max(0, Math.min(Number(insertAt) || 0, stable.length));
-  nextOwned.sort((a, b) => compareIssues(merged.state.issues[a], merged.state.issues[b]));
-
   return {
-    state: {
-      ...merged.state,
-      lists: Object.assign(Object.create(null), merged.state.lists, {
-        [listId]: {
-          ...mergedList,
-          itemIds: stable.slice(0, at).concat(nextOwned, stable.slice(at)),
-        },
-      }),
-    },
-    added: merged.added,
-    skipped: merged.skipped,
-    context: { ...context, listId, insertAt, ownedIds: nextOwned },
-    missing: false,
+    ...merged,
+    state: setActive(merged.state, listId),
+    listId,
+    listName: merged.state.lists[listId].name,
+    error: null,
   };
 }
 
-export class LongAddRunner {
-  constructor({ load, savePage, onStatus = () => {} } = {}) {
+export function persistSearchSelection(readerStore, items, destination = {}, onSaved = () => null) {
+  let merged;
+  readerStore.update((state) => {
+    merged = mergeSearchSelection(state, items, destination);
+    return merged.state;
+  });
+  if (merged.error || !readerStore.lastUpdateOk) {
+    return {
+      ok: false,
+      state: readerStore.state,
+      listId: destination.listId ?? null,
+      added: 0,
+      skipped: 0,
+      error: merged.error || readerStore.lastError,
+    };
+  }
+  return {
+    ...merged,
+    ok: true,
+    transition: merged.added > 0
+      ? onSaved({ ok: true, added: merged.added, listId: merged.listId })
+      : null,
+  };
+}
+
+export class ComicSearchRunner {
+  constructor({ load, onStatus = () => {} } = {}) {
     this.load = load;
-    this.savePage = savePage;
     this.onStatus = onStatus;
     this.current = null;
   }
@@ -76,13 +100,9 @@ export class LongAddRunner {
     return {
       phase,
       item: run.item,
-      context: run.context,
+      items: [...run.issues.values()].sort(compareIssues),
       received: run.received,
-      persisted: run.persisted,
       total: run.total,
-      pages: run.pages,
-      added: run.added,
-      skipped: run.skipped,
       error,
       running: phase === 'running',
     };
@@ -99,18 +119,15 @@ export class LongAddRunner {
     return status;
   }
 
-  async start(item, context = {}) {
-    if (this.current) return this.status(this.current, 'running');
+  async start(item) {
+    this.cancel();
     const run = {
       item,
-      context,
       controller: new AbortController(),
+      issues: new Map(),
       received: 0,
-      persisted: 0,
-      total: Number(item?.issueCount) || null,
+      total: null,
       pages: 0,
-      added: 0,
-      skipped: 0,
       terminal: null,
     };
     this.current = run;
@@ -118,30 +135,31 @@ export class LongAddRunner {
     if (this.current !== run) return run.terminal;
 
     const { signal } = run.controller;
+    const receive = (items, progress = {}) => {
+      if (signal.aborted || this.current !== run) return;
+      if (!Array.isArray(items)) throw new TypeError('The comics database returned an invalid result. Search again.');
+      for (const input of items) {
+        const issue = normalizeIssue(input);
+        if (!issue || issue.issueId <= 0) {
+          throw new TypeError('The comics database returned a comic without a valid issue ID. Search again.');
+        }
+        run.issues.set(issue.issueId, issue);
+      }
+      run.received = progress.loaded != null && Number.isFinite(Number(progress.loaded))
+        ? Number(progress.loaded)
+        : run.received + items.length;
+      if (progress.total != null && Number.isFinite(Number(progress.total))) run.total = Number(progress.total);
+      run.pages += 1;
+      this.onStatus(this.status(run, 'running'));
+    };
     try {
-      await this.load(item, {
-        signal,
-        onPage: (items, progress = {}) => {
-          if (signal.aborted || this.current !== run) return;
-          run.received = Number.isFinite(Number(progress.loaded))
-            ? Number(progress.loaded)
-            : run.received + items.length;
-          run.total = progress.total == null ? run.total : Number(progress.total);
-          const saved = this.savePage(items, run.context);
-          if (signal.aborted || this.current !== run) return;
-          if (!saved?.ok) {
-            const error = new Error(saved?.error || 'That page could not be saved.');
-            error.name = 'SaveError';
-            throw error;
-          }
-          run.context = saved.context ?? run.context;
-          run.persisted += Number(saved.persisted ?? items.length);
-          run.pages += 1;
-          run.added += Number(saved.added) || 0;
-          run.skipped += Number(saved.skipped) || 0;
-          this.onStatus(this.status(run, 'running'));
-        },
-      });
+      const items = await this.load(item, { signal, onPage: receive });
+      if (this.current !== run) return run.terminal;
+      if (!run.pages) receive(items, { total: items?.length });
+      if (this.current !== run) return run.terminal;
+      if (run.total != null && run.received < run.total) {
+        throw new Error('The comics database stopped before every comic loaded. Search again to load the rest.');
+      }
     } catch (error) {
       if (this.current !== run) return run.terminal;
       this.current = null;
@@ -159,68 +177,6 @@ export class LongAddRunner {
     this.onStatus(status);
     return status;
   }
-}
-
-export function persistLongAddPage(readerStore, items, context, onSaved = () => null) {
-  if (!items.length) return { ok: true, added: 0, skipped: 0, persisted: 0, context };
-  let merged;
-  readerStore.update((state) => {
-    merged = mergeLongAddPage(state, context, items);
-    return merged.state;
-  });
-  if (merged.missing) {
-    return {
-      ok: false,
-      error: 'The destination list no longer exists. No later pages were added.',
-      context,
-    };
-  }
-  if (!readerStore.lastUpdateOk) {
-    return { ok: false, error: readerStore.lastError, context };
-  }
-  const transition = context.transition
-    ?? onSaved({ ok: true, added: merged.added, listId: merged.context.listId });
-  return {
-    ok: true,
-    added: merged.added,
-    skipped: merged.skipped,
-    persisted: merged.added + merged.skipped,
-    context: { ...merged.context, transition },
-  };
-}
-
-export function longAddStatusLine(status, { name, kind }, friendly = (error) => error?.message ?? String(error)) {
-  const total = status.total ? ` of ${status.total}` : '';
-  const savedIssues = `${status.persisted}${total} issue${status.total || status.persisted !== 1 ? 's' : ''}`;
-  if (status.phase === 'running') {
-    if (!status.received) {
-      return kind === 'creator'
-        ? `Loading issues credited to ${name}\u2026`
-        : `Loading all issues of ${name}\u2026`;
-    }
-    return `${name}: ${savedIssues} saved so far.`;
-  }
-  if (status.phase === 'cancelled') {
-    if (!status.persisted) return `${name}: stopped before the first page was saved.`;
-    return `${name}: stopped after ${savedIssues} ${status.total || status.persisted !== 1 ? 'were' : 'was'} saved. `
-      + `${status.added} added${status.skipped ? `, ${status.skipped} skipped as duplicates` : ''}.`;
-  }
-  if (status.phase === 'failed') {
-    const kept = status.persisted
-      ? `${savedIssues} ${status.total || status.persisted !== 1 ? 'were' : 'was'} saved.`
-      : 'No completed page was saved.';
-    const unsaved = status.received > status.persisted
-      ? ` ${status.received - status.persisted} received issue${status.received - status.persisted === 1 ? '' : 's'} could not be saved.`
-      : '';
-    return `${name}: loading failed. ${kept}${unsaved} ${friendly(status.error)}`;
-  }
-  const duplicate = status.skipped
-    ? `, ${status.skipped} ${kind === 'creator' ? 'duplicates' : 'skipped as duplicates'}`
-    : '';
-  const ending = `${name}: ${status.added} ${kind === 'series' ? `issue${status.added === 1 ? '' : 's'} ` : ''}added${duplicate}.`;
-  return kind === 'creator'
-    ? `${ending} Creator records omit Unlimited dates, so availability shows as unknown until details are fetched.`
-    : ending;
 }
 
 export function stageChecklistEntry(entry) {
@@ -254,7 +210,7 @@ export function createAddView({
   notify,
   onNonEmptyListSave,
   reportBundledLoadFailure,
-  saveLongAddPage,
+  saveSelection,
   search,
   updateState,
   warmNameIndex,
@@ -262,94 +218,357 @@ export function createAddView({
   ymd,
 }) {
   let manualMatch = null;
-  let longAddHydration = Promise.resolve();
+  const selected = new Map();
+  let destinationId = '';
+  let draftName = DEFAULT_LIST_NAME;
+  let nameEdited = false;
+  let saving = false;
+  const searches = [
+    {
+      prefix: 'search', kind: 'issue', input: '#search-q', form: '#form-search', results: '#search-results',
+      load: (item, options) => search.issues(item.name, { ...options, limit: ISSUE_SEARCH_LIMIT }),
+    },
+    {
+      prefix: 'series', kind: 'series', input: '#series-q', form: '#form-series', results: '#series-results',
+      runSearch: search.series,
+      load: (item, options) => search.seriesIssues(item.id, options),
+    },
+    {
+      prefix: 'creator', kind: 'creator', input: '#creator-q', form: '#form-creator', results: '#creator-results',
+      runSearch: search.creators,
+      load: (item, options) => search.creatorIssues(item.id, options),
+    },
+  ];
 
   const count = (number) => Number(number ?? 0).toLocaleString();
+  const comics = (number) => `${count(number)} comic${number === 1 ? '' : 's'}`;
   const snapshot = (generatedAt) => {
     const when = updatedLabel({ updatedAt: generatedAt });
     return when ? `, taken ${when}` : '';
   };
 
-  function longAddContext() {
-    const listId = getActiveListId();
-    return {
-      listId,
-      insertAt: listId ? (getState().lists[listId]?.itemIds.length ?? 0) : 0,
-      ownedIds: [],
-      transition: null,
+  function clearSelectionReports() {
+    for (const config of searches) config.builder?.report.replaceChildren();
+  }
+
+  function refreshBuilders() {
+    const state = getState();
+    const destinations = state.listOrder
+      .filter((id) => Object.hasOwn(state.lists, id))
+      .map((id) => [id, state.lists[id].name]);
+    const missing = Boolean(destinationId && !Object.hasOwn(state.lists, destinationId));
+    const optionsKey = JSON.stringify([destinations, destinationId, missing]);
+    for (const config of searches) {
+      const builder = config.builder;
+      if (!builder) continue;
+      builder.host.hidden = !config.hasResults && selected.size === 0;
+      builder.count.textContent = `${comics(selected.size)} selected`;
+      builder.clear.disabled = selected.size === 0 || saving;
+      builder.save.disabled = selected.size === 0 || saving || missing;
+      builder.save.textContent = destinationId ? 'Add to Reading List' : 'Create Reading List';
+      builder.nameRow.hidden = Boolean(destinationId);
+      if (builder.name.value !== draftName) builder.name.value = draftName;
+      builder.missing.hidden = !missing;
+      if (builder.optionsKey !== optionsKey) {
+        builder.destination.replaceChildren(
+          el('option', { value: '', text: 'Create a new Reading List' }),
+          ...destinations.map(([id, name]) => el('option', { value: id, text: name })),
+          ...(missing ? [el('option', { value: destinationId, disabled: true, text: 'List no longer exists' })] : []),
+        );
+        builder.optionsKey = optionsKey;
+      }
+      builder.destination.value = destinationId;
+    }
+    for (const input of document.querySelectorAll('input[data-comic-id]')) {
+      input.checked = selected.has(Number(input.dataset.comicId));
+    }
+    for (const badge of document.querySelectorAll('[data-held-issue]')) {
+      badge.hidden = heldCount(state, [{ issueId: Number(badge.dataset.heldIssue) }]) === 0;
+    }
+  }
+
+  function saveSelected(config) {
+    if (saving) return;
+    const { builder } = config;
+    const report = `#${config.prefix}-selection-report`;
+    if (!selected.size) {
+      notify(report, 'Select at least one comic first.', 'warn');
+      return;
+    }
+    if (!destinationId && (!draftName.trim() || draftName.trim().length > MAX_NAME)) {
+      notify(report, `Name the new Reading List using 1 to ${MAX_NAME} characters.`, 'warn');
+      builder.name.focus();
+      return;
+    }
+    const creating = !destinationId;
+    saving = true;
+    refreshBuilders();
+    let result;
+    try {
+      result = saveSelection([...selected.values()], { listId: destinationId || null, name: draftName });
+    } finally {
+      saving = false;
+      refreshBuilders();
+    }
+    if (!result.ok) {
+      notify(report, `Nothing was saved. Your selected comics are still here. ${result.error}`, 'error');
+      return;
+    }
+    selected.clear();
+    destinationId = result.listId;
+    nameEdited = false;
+    refreshBuilders();
+    const message = creating
+      ? `Created “${result.listName}” with ${comics(result.added)}.`
+      : `Added ${comics(result.added)} to “${result.listName}”${result.skipped ? `; ${comics(result.skipped)} already in that list` : ''}.`;
+    notify(report, withSaveEducation(message, result.transition), result.added ? 'ok' : 'warn');
+    builder.report.append(el('a', {
+      class: 'btn btn-g',
+      href: formatRoute({ view: 'read', listId: result.listId }),
+      text: 'View Reading List',
+    }));
+    builder.report.focus({ preventScroll: true });
+    if (result.added > 0) hydrate(result.listId);
+  }
+
+  function createBuilder(config) {
+    const prefix = config.prefix;
+    const destination = el('select', { id: `${prefix}-destination`, name: 'destination' });
+    const name = el('input', {
+      type: 'text', id: `${prefix}-list-name`, name: 'list-name',
+      maxlength: MAX_NAME, autocomplete: 'off', value: draftName,
+    });
+    const nameRow = el('div', { class: 'stack' }, [
+      el('label', { for: `${prefix}-list-name`, text: 'Name for the new Reading List' }),
+      name,
+    ]);
+    const selectionCount = el('p', { class: 'comic-selection-count' });
+    const save = el('button', { type: 'submit', class: 'btn', disabled: true }, 'Create Reading List');
+    const clear = el('button', { type: 'button', class: 'btn btn-g', disabled: true }, 'Clear selection');
+    const missing = el('p', {
+      class: 'notice notice-warn', hidden: true,
+      text: 'That Reading List no longer exists. Choose another list.',
+    });
+    const report = el('div', { id: `${prefix}-selection-report`, class: 'results', tabindex: -1 });
+    const form = el('form', { class: 'stack', id: `${prefix}-selection-form` }, [
+      selectionCount,
+      el('label', { for: `${prefix}-destination`, text: 'Save to' }),
+      destination,
+      missing,
+      nameRow,
+      el('div', { class: 'field-row' }, [save, clear]),
+    ]);
+    const host = el('section', {
+      class: 'comic-builder', hidden: true, 'aria-labelledby': `${prefix}-selection-h`,
+    }, [
+      el('h2', { id: `${prefix}-selection-h`, text: 'Build a Reading List' }),
+      form,
+      report,
+    ]);
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      saveSelected(config);
+    });
+    destination.addEventListener('change', () => {
+      destinationId = destination.value;
+      clearSelectionReports();
+      refreshBuilders();
+    });
+    name.addEventListener('input', () => {
+      draftName = name.value;
+      nameEdited = true;
+      clearSelectionReports();
+      refreshBuilders();
+    });
+    clear.addEventListener('click', () => {
+      selected.clear();
+      clearSelectionReports();
+      refreshBuilders();
+      $(config.input).focus({ preventScroll: true });
+      announce('Selection cleared. Saved Reading Lists are unchanged.');
+    });
+    $(config.results).before(host);
+    config.builder = {
+      host, destination, name, nameRow, count: selectionCount, save, clear, missing, report,
     };
   }
 
-  function queueLongAddHydration(listId) {
-    longAddHydration = longAddHydration.then(() => hydrate(listId));
-  }
-
-  function renderLongAddStatus(config, runner, status) {
+  function renderResults(config, status) {
     const box = $(config.results);
-    const focusedCancel = box?.querySelector('.notice-act button') === document.activeElement;
-    const running = status.phase === 'running';
-    const message = running
-      ? longAddStatusLine(status, { ...config, name: status.item.name }, friendly)
-      : withSaveEducation(
-        longAddStatusLine(status, { ...config, name: status.item.name }, friendly),
-        status.context?.transition,
-      );
-    notify(
-      config.results,
-      message,
-      running ? 'busy' : status.phase === 'failed' ? 'error' : status.phase === 'cancelled' ? 'warn' : 'ok',
-      config.results,
-      running ? { label: `Cancel ${config.kind} import`, onClick: () => runner.cancel() } : null,
-    );
-    if (running && focusedCancel) {
-      box.querySelector('.notice-act button')?.focus({ preventScroll: true });
-    } else if (!running && focusedCancel) {
-      $(config.input)?.focus({ preventScroll: true });
+    const items = status.items;
+    config.hasResults = items.length > 0;
+    if (!selected.size && !nameEdited && !destinationId) draftName = status.item.name.slice(0, MAX_NAME);
+    box.replaceChildren();
+    const heading = config.kind === 'creator'
+      ? `Comics credited to ${status.item.name}`
+      : config.kind === 'series' ? `Comics in ${status.item.name}` : `Comics matching “${status.item.name}”`;
+    box.append(el('h2', { class: 'comic-results-heading', text: heading }));
+    if (status.phase !== 'complete') {
+      const partial = status.total != null
+        ? `${comics(items.length)} of ${count(status.total)}`
+        : comics(items.length);
+      const message = status.phase === 'cancelled'
+        ? `Stopped loading. ${partial} loaded. Nothing was added to your lists.`
+        : `Could not load all the comics. ${partial} loaded. ${friendly(status.error)}`;
+      box.append(el('p', {
+        class: `notice notice-${status.phase === 'failed' ? 'error' : 'warn'}`,
+        text: `${message} Search again to load the rest, or choose from the comics below.`,
+      }));
+      announce(message);
     }
-    if (!running && status.added > 0 && status.context?.listId) {
-      queueLongAddHydration(status.context.listId);
+    if (!items.length) {
+      box.append(el('p', { class: 'rail-hint', text: 'No comics to show. Try a different search.' }));
+      refreshBuilders();
+      if (status.phase === 'complete') announce('No comics matched. Try a different search.');
+      return;
     }
-  }
 
-  function createLongAddRunner(config) {
-    const runner = new LongAddRunner({
-      load: (item, options) => config.load(item.id, options),
-      savePage: saveLongAddPage,
-      onStatus: (status) => renderLongAddStatus(config, runner, status),
+    const summary = `${comics(items.length)}, ${count(heldCount(getState(), items))} already in your library.`;
+    box.append(el('p', { class: 'res-head', text: summary }));
+    if (status.phase === 'complete') announce(summary);
+    if (config.kind === 'issue' && items.length === ISSUE_SEARCH_LIMIT) {
+      box.append(el('p', {
+        class: 'rail-hint',
+        text: `Issue search shows up to ${ISSUE_SEARCH_LIMIT} matches. Narrow your search if you need a different comic.`,
+      }));
+    }
+    const filter = el('input', {
+      type: 'search', id: `${config.prefix}-comic-filter`, name: 'comic-filter',
+      placeholder: 'Series or issue title…', autocomplete: 'off',
     });
-    return runner;
+    box.append(el('div', { class: 'stack' }, [
+      el('label', { for: `${config.prefix}-comic-filter`, text: 'Filter these comics' }),
+      filter,
+    ]));
+    const selectAll = el('button', { type: 'button', class: 'btn btn-g', dataset: { act: 'select-all' } });
+    const shownCount = el('span', { class: 'rail-hint' });
+    box.append(el('div', { class: 'field-row comic-result-tools' }, [selectAll, shownCount]));
+    const rows = el('div', { class: 'comic-results' });
+    const more = el('button', { type: 'button', class: 'btn btn-g', dataset: { act: 'more-comics' } });
+    box.append(rows, more);
+    let shown = RESULT_BATCH_SIZE;
+    let matches = items;
+
+    function renderRows() {
+      const query = filter.value.trim().toLocaleLowerCase();
+      matches = items.filter((item) => `${item.title} ${item.seriesName ?? ''}`.toLocaleLowerCase().includes(query));
+      rows.replaceChildren();
+      const visible = matches.slice(0, shown);
+      for (const item of visible) {
+        const checkbox = el('input', {
+          type: 'checkbox', name: 'comics', 'aria-label': `Select ${item.title}`,
+          dataset: { comicId: String(item.issueId) },
+        });
+        checkbox.checked = selected.has(item.issueId);
+        checkbox.addEventListener('change', () => {
+          if (checkbox.checked) selected.set(item.issueId, item);
+          else selected.delete(item.issueId);
+          clearSelectionReports();
+          refreshBuilders();
+          announce(`${comics(selected.size)} selected.`);
+        });
+        rows.append(el('div', { class: 'result comic-choice' }, [
+          el('label', { class: 'comic-select' }, [checkbox]),
+          el('div', { class: 'result-main' }, [
+            issueFocusAnchor(item, {
+              surface: 'search',
+              control: config.prefix,
+              className: 'result-title result-title-link',
+              children: item.title,
+            }),
+            el('div', {
+              class: 'result-meta',
+              text: `${item.seriesName ?? ''}${item.onSale ? ` · ${ymd(item.onSale)}` : ''}`,
+            }),
+          ]),
+          el('span', {
+            class: 'pill-held', text: 'Already in your library',
+            dataset: { heldIssue: String(item.issueId) },
+          }),
+        ]));
+      }
+      if (!matches.length) rows.append(el('p', { class: 'rail-hint', text: 'No comics match this filter.' }));
+      selectAll.disabled = matches.length === 0;
+      selectAll.textContent = `Select all ${comics(matches.length)}`;
+      shownCount.textContent = `Showing ${count(visible.length)} of ${comics(matches.length)}`;
+      more.hidden = visible.length >= matches.length;
+      more.textContent = `Show ${count(Math.min(RESULT_BATCH_SIZE, matches.length - visible.length))} more`;
+      refreshBuilders();
+    }
+    filter.addEventListener('input', () => {
+      shown = RESULT_BATCH_SIZE;
+      renderRows();
+      announce(`${comics(matches.length)} match this filter.`);
+    });
+    selectAll.addEventListener('click', () => {
+      for (const item of matches) selected.set(item.issueId, item);
+      clearSelectionReports();
+      refreshBuilders();
+      announce(`${comics(selected.size)} selected.`);
+    });
+    more.addEventListener('click', () => {
+      shown += RESULT_BATCH_SIZE;
+      renderRows();
+      if (more.hidden) filter.focus({ preventScroll: true });
+    });
+    renderRows();
   }
 
-  const seriesAddRunner = createLongAddRunner({
-    kind: 'series',
-    input: '#series-q',
-    results: '#series-results',
-    load: search.seriesIssues,
-  });
-  const creatorAddRunner = createLongAddRunner({
-    kind: 'creator',
-    input: '#creator-q',
-    results: '#creator-results',
-    load: search.creatorIssues,
-  });
+  for (const config of searches) {
+    config.epoch = 0;
+    config.runner = new ComicSearchRunner({
+      load: config.load,
+      onStatus: (status) => {
+        const box = $(config.results);
+        const focusedCancel = box.querySelector('.notice-act button') === document.activeElement;
+        if (status.running) {
+          const loaded = status.total == null
+            ? comics(status.received)
+            : `${comics(status.received)} of ${count(status.total)}`;
+          notify(
+            config.results,
+            status.received ? `Loading ${status.item.name}: ${loaded} loaded…` : `Loading comics for ${status.item.name}…`,
+            'busy',
+            config.results,
+            { label: `Cancel ${config.kind} search`, onClick: () => config.runner.cancel() },
+          );
+          if (focusedCancel) box.querySelector('.notice-act button')?.focus({ preventScroll: true });
+        } else {
+          renderResults(config, status);
+          if (focusedCancel) $(config.input).focus({ preventScroll: true });
+        }
+      },
+    });
+  }
 
-  function wireNameSearch({
-    section, form, input, results, kind, many, btnClass, runSearch, onAdd, active,
-  }) {
+  function beginSearch(config) {
+    config.epoch += 1;
+    config.runner.cancel();
+    config.hasResults = false;
+    refreshBuilders();
+    return config.epoch;
+  }
+
+  function wireNameSearch(config) {
+    const {
+      form, input, results, kind, runSearch,
+    } = config;
+    const many = kind === 'series' ? 'series' : 'creators';
     $(form).addEventListener('submit', async (event) => {
       event.preventDefault();
-      if (active?.()) {
-        $(results).querySelector('.notice-act button')?.focus({ preventScroll: true });
-        announce(`Cancel the current ${kind === 'series' ? 'series' : 'creator'} import before searching again.`);
-        return;
-      }
       const query = $(input).value.trim();
       if (!query) return;
+      const epoch = beginSearch(config);
       notify(results, 'Searching…', 'busy');
       try {
         const {
           items, matched, total, generatedAt,
         } = await runSearch(query, { limit: NAME_SEARCH_LIMIT });
+        if (config.epoch !== epoch) return;
+        if (matched === 1 && items.length === 1) {
+          void config.runner.start(items[0]);
+          return;
+        }
         const box = $(results);
         box.replaceChildren();
         if (!items.length) {
@@ -376,20 +595,21 @@ export function createAddView({
             ]),
             el('button', {
               type: 'button',
-              class: btnClass,
-              'aria-label': `Add all issues of ${item.name}`,
-              onclick: () => onAdd(item),
-            }, 'Add all issues'),
+              class: 'btn btn-g',
+              'aria-label': `Browse comics ${kind === 'creator' ? 'by' : 'in'} ${item.name}`,
+              onclick: () => { void config.runner.start(item); },
+            }, 'Browse comics'),
           ]));
         }
       } catch (error) {
+        if (config.epoch !== epoch) return;
         await reportBundledLoadFailure({
           report: results,
           failure: friendly(error),
           key: `${kind}-index-load`,
           subject: `${kind === 'series' ? 'series' : 'creator'} search`,
           retry: () => $(form).requestSubmit(),
-          isCurrent: () => $(section).closest('.view')?.hidden === false,
+          isCurrent: () => config.epoch === epoch && $(form).closest('.view')?.hidden === false,
         });
       }
     });
@@ -400,79 +620,6 @@ export function createAddView({
     return target
       ? `Adding to: ${target.name}`
       : `Adding to: new ${DEFAULT_LIST_NAME}`;
-  }
-
-  function addToActive(issues, message, { sort = false } = {}) {
-    const setup = ensureList(DEFAULT_LIST_NAME);
-    const id = setup.listId;
-    if (!setup.ok) return { added: 0, skipped: 0, ok: false, listName: null };
-    let added = 0;
-    let skipped = 0;
-    const result = updateState((state) => {
-      const merged = addIssuesToList(state, id, issues, { sort });
-      added = merged.added;
-      skipped = merged.skipped;
-      return merged.state;
-    });
-    if (!result.ok) return { added: 0, skipped: 0, ok: false, listName: null };
-    const listName = getState().lists[id]?.name ?? 'your list';
-    const transition = onNonEmptyListSave({ ok: true, added, listId: id });
-    announce(withSaveEducation(
-      `${message} ${added} added${skipped ? `, ${skipped} already in the list` : ''}.`,
-      transition,
-    ));
-    if (added > 0) hydrate(id);
-    return {
-      added, skipped, ok: true, listName,
-    };
-  }
-
-  function renderResults(selector, items, metaFn) {
-    const box = $(selector);
-    box.replaceChildren();
-    if (!items.length) {
-      notify(selector, 'Nothing matched that search.', 'warn');
-      return;
-    }
-    const held = heldCount(getState(), items);
-    const summary = `${count(items.length)} ${items.length === 1 ? 'result' : 'results'}, ${count(held)} already in your library.`;
-    box.append(el('div', { class: 'res-head', text: summary }));
-    announce(summary);
-    for (const item of items) {
-      const btn = el('button', { type: 'button', class: 'btn btn-g' }, 'Add');
-      btn.addEventListener('click', () => {
-        const result = addToActive([item], `Added ${item.title}.`);
-        if (!result.ok) {
-          btn.textContent = 'Could not add';
-          return;
-        }
-        btn.disabled = true;
-        btn.classList.add('btn-added');
-        btn.textContent = result.added ? `Added to ${result.listName}` : 'Already in that list';
-      });
-      box.append(el('div', { class: 'result' }, [
-        el('div', { class: 'result-main' }, [
-          issueFocusAnchor(item, {
-            surface: 'search',
-            className: 'result-title result-title-link',
-            children: item.title,
-          }),
-          el('div', { class: 'result-meta', text: metaFn(item) }),
-        ]),
-        ...(heldCount(getState(), [item])
-          ? [el('span', { class: 'pill-held', text: 'Already in your library' })]
-          : []),
-        btn,
-      ]));
-    }
-  }
-
-  async function addSeries(series) {
-    return seriesAddRunner.start(series, longAddContext());
-  }
-
-  async function addCreator(creator) {
-    return creatorAddRunner.start(creator, longAddContext());
   }
 
   function unresolvedRow(entry, listId) {
@@ -808,45 +955,25 @@ export function createAddView({
   }
 
   function wire() {
-    $('#form-search').addEventListener('submit', async (event) => {
-      event.preventDefault();
-      const query = $('#search-q').value.trim();
-      if (!query) return;
-      notify('#search-results', 'Searching…', 'busy');
-      try {
-        const items = await search.issues(query, { limit: 50 });
-        renderResults(
-          '#search-results',
-          items,
-          (item) => `${item.seriesName ?? ''}${item.onSale ? ` · ${ymd(item.onSale)}` : ''}`,
-        );
-      } catch (error) {
-        notify('#search-results', friendly(error), 'error');
+    for (const config of searches) {
+      createBuilder(config);
+      if (config.kind === 'issue') {
+        $(config.form).addEventListener('submit', (event) => {
+          event.preventDefault();
+          const query = $(config.input).value.trim();
+          if (!query) return;
+          beginSearch(config);
+          void config.runner.start({ name: query });
+        });
+      } else {
+        wireNameSearch(config);
       }
-    });
-    wireNameSearch({
-      section: '#sec-series',
-      form: '#form-series',
-      input: '#series-q',
-      results: '#series-results',
-      kind: 'series',
-      many: 'series',
-      btnClass: 'btn btn-g',
-      runSearch: search.series,
-      onAdd: addSeries,
-      active: () => seriesAddRunner.active,
-    });
-    wireNameSearch({
-      section: '#sec-creator',
-      form: '#form-creator',
-      input: '#creator-q',
-      results: '#creator-results',
-      kind: 'creators',
-      many: 'creators',
-      btnClass: 'btn btn-g',
-      runSearch: search.creators,
-      onAdd: addCreator,
-      active: () => creatorAddRunner.active,
+    }
+    refreshBuilders();
+    globalThis.addEventListener('beforeunload', (event) => {
+      if (!selected.size) return;
+      event.preventDefault();
+      event.returnValue = '';
     });
     $('#form-import').addEventListener('submit', (event) => { event.preventDefault(); doImport(); });
     $('#form-manual').addEventListener('submit', (event) => { event.preventDefault(); doManual(); });
@@ -871,6 +998,7 @@ export function createAddView({
   function renderDestination() {
     const text = addDestination();
     for (const target of document.querySelectorAll('.add-target')) target.textContent = text;
+    refreshBuilders();
   }
 
   return { enter, renderDestination, wire };

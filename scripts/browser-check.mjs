@@ -43,6 +43,7 @@ import {
   shelfSections,
 } from '../src/js/lib/catalog.js';
 import { readerIssueId } from '../src/js/lib/markdown.js';
+import { addIssuesToList, createEmptyState, createList } from '../src/js/lib/model.js';
 
 // Exit 2 rather than 1 for a missing prerequisite. A failed assertion and an uninstalled browser
 // driver are different answers to different questions, and a caller that cannot tell them apart
@@ -1158,9 +1159,9 @@ const MUTATIONS = [
     id: 'local-name-diagnosis-off',
     breaks: 'local-server-recovery',
     why: 'creator and series index rejection falls back to the generic fetch error after the local server stops',
-    rewriteMain: (source) => source.replace(
-      / {4}\} catch \(err\) \{\r?\n {6}await reportBundledLoadFailure\(\{\r?\n {8}report: results,\r?\n {8}failure: friendly\(err\),\r?\n {8}key: `\$\{kind\}-index-load`,\r?\n {8}subject: `\$\{kind === 'series' \? 'series' : 'creator'\} search`,\r?\n {8}retry: \(\) => \$\(form\)\.requestSubmit\(\),\r?\n {8}isCurrent: \(\) => \$\(section\)\.closest\('\.view'\)\?\.hidden === false,\r?\n {6}\}\);\r?\n {4}\}/,
-      "    } catch (err) {\n      notify(results, friendly(err), 'error');\n    }",
+    rewriteAdd: (source) => source.replace(
+      / {8}await reportBundledLoadFailure\(\{[\s\S]*?\r?\n {8}\}\);/,
+      "        notify(results, friendly(error), 'error');",
     ),
   },
   {
@@ -1617,79 +1618,35 @@ const MUTATIONS = [
     },
   },
   {
-    id: 'long-add-page-delivery-off',
-    breaks: 'long-add-cancellation',
-    why: 'completed pages never reach the durable Add runner, so partial retention and progress disappear',
-    rewriteApi: (source) => source.replace(
-      '      await onPage?.(items, progress);',
-      '',
+    id: 'comic-search-forgets-selection',
+    breaks: 'comic-search-builder',
+    why: 'a new search discards comics chosen from an earlier search instead of building one selection',
+    rewriteAdd: (source) => source.replace(
+      '  function beginSearch(config) {',
+      '  function beginSearch(config) {\n    selected.clear();',
     ),
   },
   {
-    id: 'long-add-ordering-off',
-    breaks: 'long-add-cancellation',
-    why: 'completed pages keep provider order instead of the chronological order a completed add used',
-    rewriteMain: (source) => source.replace(
-      '  nextOwned.sort((a, b) => compareIssues(merged.state.issues[a], merged.state.issues[b]));',
-      '',
+    id: 'comic-search-split-save',
+    breaks: 'comic-search-builder',
+    why: 'a separate empty-list write leaves a phantom list when saving the selected comics fails',
+    rewriteAdd: (source) => source.replace(
+      / {2}let merged;\r?\n {2}readerStore.update\(\(state\) => \{/,
+      '  if (!destination.listId) readerStore.update((state) => createList(state, { name: destination.name }));\n'
+      + '  let merged;\n  readerStore.update((state) => {',
     ),
   },
   {
-    id: 'long-add-cancel-name-off',
+    id: 'comic-search-stale-guard-off',
     breaks: 'long-add-cancellation',
-    why: 'the active Cancel action loses the form-specific name that identifies what it stops',
-    rewriteMain: (source) => source.replace(
-      'running ? { label: `Cancel ${config.kind} import`, onClick: () => runner.cancel() } : null,',
-      "running ? { label: 'Stop', onClick: () => runner.cancel() } : null,",
-    ),
-  },
-  {
-    id: 'long-add-active-search-guard-off',
-    breaks: 'long-add-cancellation',
-    why: 'submitting another search hides the only Cancel action while the original import still runs',
-    rewriteMain: (source) => source.replace(
-      / {4}if \(active\?\.\(\)\) \{\r?\n {6}\$\(results\)\.querySelector\('\.notice-act button'\)\?\.focus\(\{ preventScroll: true \}\);\r?\n {6}announce\(`Cancel the current \$\{kind === 'series' \? 'series' : 'creator'\} import before searching again\.`\);\r?\n {6}return;\r?\n {4}\}\r?\n/,
-      '',
-    ),
-  },
-  {
-    id: 'long-add-focus-return-off',
-    breaks: 'long-add-cancellation',
-    why: 'removing a focused Cancel action drops focus instead of returning it to the matching query',
-    rewriteMain: (source) => source.replace(
-      '    $(config.input)?.focus({ preventScroll: true });',
-      '',
-    ),
-  },
-  {
-    id: 'long-add-immediate-retirement-off',
-    breaks: 'long-add-cancellation',
-    why: 'Cancel leaves the old run owning the form until its transport settles, so restart is blocked',
-    rewriteMain: (source) => source.replace(
-      / {4}this\.current = null;\r?\n {4}run\.controller\.abort\(\);/,
-      '    run.controller.abort();',
-    ),
-  },
-  {
-    id: 'long-add-stale-guard-off',
-    breaks: 'long-add-cancellation',
-    why: 'a late page from the cancelled series can be saved into the replacement run',
-    rewriteMain: (source) => source.replace(
-      '          if (signal.aborted || this.current !== run) return;',
+    why: 'a late page from the cancelled series replaces the newer comic preview',
+    rewriteAdd: (source) => source.replace(
+      '      if (signal.aborted || this.current !== run) return;',
       '',
     ),
     rewriteApi: (source) => source.replace(
       / {6}if \(signal\?\.aborted\) throw abortError\(\);\r?\n {6}await onPage\?\.\(items, progress\);/,
       '      await onPage?.(items, progress);',
-    ),
-  },
-  {
-    id: 'long-add-failure-status-off',
-    breaks: 'long-add-cancellation',
-    why: 'a failed creator request is reported as stopped rather than failed',
-    rewriteMain: (source) => source.replace(
-      '    return `${name}: loading failed. ${kept}${unsaved} ${friendly(status.error)}`;',
-      '    return `${name}: stopped. ${kept}${unsaved} ${friendly(status.error)}`;',
     ),
   },
   {
@@ -6526,8 +6483,10 @@ const SCENARIOS = [
           card: section.querySelector('.add-page > .add-destination')?.textContent.trim() ?? null,
         })));
       }
-      t.check('each Add page names its destination once inside the working card',
-        destinations.every((entry) => entry.header === null && entry.card?.startsWith('Adding to:')),
+      t.check('only paste and manual entry name an active destination before a deliberate save',
+        destinations.every((entry) => entry.header === null
+          && (['view-add-import', 'view-add-manual'].includes(entry.view)
+            ? entry.card?.startsWith('Adding to:') : entry.card === null)),
         JSON.stringify(destinations));
       const manual = await page.$eval('#view-add-manual', (section) => ({
         action: section.querySelector('#btn-manual-lookup')?.textContent.trim(),
@@ -8696,25 +8655,221 @@ const SCENARIOS = [
     },
   },
   {
+    id: 'comic-search-builder',
+    title: 'search previews build one explicit selection without changing unrelated Reading Lists',
+    async run(page, t) {
+      const browserErrors = [];
+      page.on('pageerror', (error) => browserErrors.push(error.message));
+      let seed = createList(createEmptyState(), { id: 'existing', name: 'Doom reading order', note: 'Keep the list note' });
+      seed = addIssuesToList(seed, 'existing', [ORDER.items[2], ORDER.items[0]]).state;
+      seed.read[900001] = 1234;
+      seed.notes[900001] = 'Keep the issue note';
+      seed.overrides[900003] = 'unavailable';
+      seed.lists.existing.deferredIssueIds = [900003];
+      await page.evaluateOnNewDocument((initial) => {
+        window.__mrtComicSearch = true;
+        window.__mrtSelectionWrites = 0;
+        if (!localStorage.getItem('mrt.state.v2')) localStorage.setItem('mrt.state.v2', JSON.stringify(initial));
+        localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
+        const realSet = Storage.prototype.setItem;
+        Storage.prototype.setItem = function (key, value) {
+          if (key === 'mrt.state.v2') {
+            window.__mrtSelectionWrites += 1;
+            if (window.__mrtRejectSelection && Object.values(JSON.parse(value).lists).some((list) => (
+              list.name === 'Brubaker and friends' && list.itemIds.length > 0
+            ))) throw new DOMException('Fixture full storage', 'QuotaExceededError');
+          }
+          return realSet.call(this, key, value);
+        };
+      }, seed);
+      await open(page, '/#/add-creator');
+      const before = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      const query = async (prefix, value) => {
+        await page.$eval(`#${prefix}-q`, (input, text) => { input.value = text; }, value);
+        await click(page, `#form-${prefix === 'search' ? 'search' : prefix} button[type="submit"]`);
+        try {
+          await page.waitForSelector(`#${prefix}-results input[data-comic-id]`, { timeout: 15000 });
+        } catch (error) {
+          const report = await page.$eval(`#${prefix}-results`, (node) => node.textContent);
+          t.check(`${prefix} search exposes selectable results`, false, JSON.stringify({ report, browserErrors }));
+          throw error;
+        }
+      };
+      const setField = async (selector, value, event = 'input') => page.$eval(
+        selector,
+        (input, text, type) => {
+          input.value = text;
+          input.dispatchEvent(new Event(type, { bubbles: true }));
+        },
+        value,
+        event,
+      );
+      const selectedCount = async (prefix) => page.$eval(
+        `#${prefix}-selection-form .comic-selection-count`,
+        (node) => node.textContent,
+      );
+
+      await query('creator', 'Brubaker');
+      const preview = await page.evaluate(() => ({
+        heading: document.querySelector('#creator-results h2')?.textContent,
+        rows: document.querySelectorAll('#creator-results input[data-comic-id]').length,
+        all: document.querySelector('#creator-results [data-act="select-all"]')?.textContent,
+        destination: document.querySelector('#creator-destination')?.value,
+        name: document.querySelector('#creator-list-name')?.value,
+        saveDisabled: document.querySelector('#creator-selection-form button[type="submit"]')?.disabled,
+        details: window.__mrtIssueRequests ?? 0,
+        stored: localStorage.getItem('mrt.state.v2'),
+      }));
+      t.check('a unique Brubaker match opens 239 selectable comics, not an import message',
+        preview.heading === 'Comics credited to Ed Brubaker' && preview.rows === 50
+          && preview.all === 'Select all 239 comics',
+        JSON.stringify(preview));
+      t.check('creator browsing leaves saved data byte-identical and fetches no issue details',
+        preview.stored === before && preview.details === 0, JSON.stringify({ details: preview.details }));
+      t.check('creating a named list is the default, not the unrelated active Doom list',
+        preview.destination === '' && preview.name === 'Ed Brubaker' && preview.saveDisabled,
+        JSON.stringify(preview));
+      await click(page, '#creator-results [data-act="select-all"]');
+      t.check('Select all includes comics beyond the first rendered batch',
+        await selectedCount('creator') === '239 comics selected', await selectedCount('creator'));
+      await click(page, '#creator-selection-form button[type="button"]');
+      await setField('#creator-comic-filter', 'Selection Fixture');
+      await click(page, '#creator-results [data-act="select-all"]');
+      t.check('filtering supports a smaller deliberate selection',
+        await selectedCount('creator') === '2 comics selected', await selectedCount('creator'));
+
+      await click(page, '[data-view="add-series"]');
+      await query('series', 'House of M (2015)');
+      await click(page, '#series-results input[data-comic-id="97201"]');
+      t.check('series browsing extends the same selection',
+        await selectedCount('series') === '3 comics selected', await selectedCount('series'));
+      await click(page, '[data-view="add-search"]');
+      await query('search', 'Fixture');
+      await page.focus('#search-results input[data-comic-id="97601"]');
+      const checkbox = await page.$('#search-results input[data-comic-id="97601"]');
+      const checkboxA11y = await page.accessibility.snapshot({ root: checkbox, interestingOnly: false });
+      await checkbox.dispose();
+      await page.keyboard.press('Space');
+      t.check('issue search extends the selection with a labelled keyboard-operable checkbox',
+        checkboxA11y?.name === 'Select Search Fixture (2026) #1'
+          && await selectedCount('search') === '4 comics selected',
+        JSON.stringify(checkboxA11y));
+      const stillUntouched = await page.evaluate(() => ({
+        stored: localStorage.getItem('mrt.state.v2'),
+        warns: (() => {
+          const event = new Event('beforeunload', { cancelable: true });
+          dispatchEvent(event);
+          return event.defaultPrevented;
+        })(),
+      }));
+      t.check('selection alone writes nothing and warns before leaving the document',
+        stillUntouched.stored === before && stillUntouched.warns, JSON.stringify({ warns: stillUntouched.warns }));
+
+      await click(page, '#search-results a[data-issue-id="97601"]');
+      await page.waitForSelector('#view-issue:not([hidden])');
+      await page.goBack();
+      await page.waitForFunction(() => document.activeElement?.dataset.issueId === '97601');
+      t.check('issue inspection and Back retain the draft and restore the exact title',
+        await selectedCount('search') === '4 comics selected'
+          && await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === before);
+
+      for (const [width, zoom] of [[320, 1], [640, 2]]) {
+        await page.setViewport({ width, height: 900 });
+        await page.evaluate((scale) => { document.documentElement.style.zoom = String(scale); }, zoom);
+        const layout = await page.evaluate(() => ({
+          overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
+          target: [...document.querySelectorAll('#search-results .comic-select')].every((label) => {
+            const rect = label.getBoundingClientRect();
+            return rect.width >= 44 && rect.height >= 44;
+          }),
+          control: document.querySelector('#search-destination').getBoundingClientRect().width > 0,
+        }));
+        t.check(`${width}px at ${zoom * 100}%: selection controls fit with 44px checkbox targets`,
+          !layout.overflow && layout.target && layout.control, JSON.stringify(layout));
+      }
+      await page.setViewport({ width: 1280, height: 900 });
+      await page.evaluate(() => { document.documentElement.style.zoom = ''; });
+
+      await setField('#search-list-name', '   ');
+      await click(page, '#search-selection-form button[type="submit"]');
+      t.check('an empty name is reported inline without saving or losing the selection',
+        await page.$eval('#search-selection-report', (node) => node.textContent.includes('Name the new Reading List'))
+          && await selectedCount('search') === '4 comics selected'
+          && await page.evaluate(() => document.activeElement?.id) === 'search-list-name'
+          && await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === before);
+      await setField('#search-list-name', 'Brubaker and friends');
+      await page.evaluate(() => { window.__mrtRejectSelection = true; });
+      await click(page, '#search-selection-form button[type="submit"]');
+      const refused = await page.evaluate(() => ({
+        stored: localStorage.getItem('mrt.state.v2'),
+        writes: window.__mrtSelectionWrites,
+        selection: document.querySelector('#search-selection-form .comic-selection-count').textContent,
+        name: document.querySelector('#search-list-name').value,
+        message: document.querySelector('#search-selection-report').textContent,
+      }));
+      t.check('a quota refusal is one atomic write, without a phantom list or lost selection',
+        refused.stored === before && refused.writes === 1 && refused.selection === '4 comics selected'
+          && refused.name === 'Brubaker and friends' && refused.message.includes('Nothing was saved'),
+        JSON.stringify(refused));
+
+      await page.evaluate(() => { window.__mrtRejectSelection = false; });
+      await click(page, '#search-selection-form button[type="submit"]');
+      await page.waitForFunction(() => document.querySelector('#search-selection-report').textContent.includes('Created'));
+      const created = await readState(page);
+      const newId = created.active;
+      t.check('explicit creation saves only the four selected comics in publication order',
+        created.listOrder.length === 2 && created.lists[newId].name === 'Brubaker and friends'
+          && JSON.stringify(created.lists[newId].itemIds) === JSON.stringify([978001, 978002, 97601, 97201]),
+        JSON.stringify(created.lists[newId]));
+      t.check('creation leaves the old list, progress, notes, overrides and deferrals untouched',
+        JSON.stringify(created.lists.existing) === JSON.stringify(seed.lists.existing)
+          && JSON.stringify(created.read) === JSON.stringify(seed.read)
+          && JSON.stringify(created.notes) === JSON.stringify(seed.notes)
+          && JSON.stringify(created.overrides) === JSON.stringify(seed.overrides),
+        JSON.stringify(created.lists.existing));
+      t.check('results remain browsable and the success report links to the saved Reading List',
+        await page.$eval('#search-selection-report a', (link, id) => link.textContent === 'View Reading List'
+          && link.getAttribute('href') === `#/read/${id}`, newId)
+          && await page.$$eval('#search-results input[data-comic-id]', (nodes) => nodes.length === 2)
+          && await selectedCount('search') === '0 comics selected');
+      t.check('saving clears the unsaved-draft warning and does not infer availability',
+        await page.evaluate(() => {
+          const event = new Event('beforeunload', { cancelable: true });
+          dispatchEvent(event);
+          return !event.defaultPrevented;
+        }) && created.issues[978001].mu === null && created.issues[978002].mu === null);
+
+      await page.reload({ waitUntil: 'networkidle0' });
+      const reloaded = await readState(page);
+      t.check('the new Reading List and its exact membership survive reload',
+        reloaded.active === newId
+          && JSON.stringify(reloaded.lists[newId].itemIds) === JSON.stringify([978001, 978002, 97601, 97201]));
+      await query('search', 'Fixture');
+      await click(page, '#search-results [data-act="select-all"]');
+      await setField('#search-destination', 'existing', 'change');
+      await click(page, '#search-selection-form button[type="submit"]');
+      const appended = await readState(page);
+      t.check('an explicitly chosen existing list keeps its prior order and skips duplicates',
+        JSON.stringify(appended.lists.existing.itemIds) === JSON.stringify([900003, 900001, 97601])
+          && appended.listOrder.length === 2
+          && JSON.stringify(appended.lists[newId].itemIds) === JSON.stringify(reloaded.lists[newId].itemIds)
+          && await page.$eval('#search-selection-report', (node) => node.textContent.includes('1 comic already in that list')),
+        JSON.stringify(appended.lists.existing));
+      t.check('the existing-list save preserves shared read history and notes',
+        appended.read[900001] === 1234 && appended.notes[900001] === 'Keep the issue note'
+          && appended.overrides[900003] === 'unavailable'
+          && JSON.stringify(appended.lists.existing.deferredIssueIds) === '[900003]');
+    },
+  },
+  {
     id: 'long-add-cancellation',
-    title: 'series and creator loads stop cleanly without stale work crossing runs',
+    title: 'comic previews stop cleanly and partial results require an explicit save',
     async run(page, t) {
       await open(page, '/?long-add=1#/add-series');
 
-      const searchAndAdd = async (form, input, results, query, label) => {
+      const searchAndBrowse = async (form, input, query) => {
         await page.$eval(input, (node, value) => { node.value = value; }, query);
         await click(page, `${form} button[type="submit"]`);
-        const button = `${results} button[aria-label="${label}"]`;
-        try {
-          await page.waitForSelector(button, { visible: true, timeout: 15000 });
-        } catch (error) {
-          const detail = await page.evaluate((selector) => ({
-            result: document.querySelector(selector)?.textContent ?? '',
-            fetches: window.__mrtLongAdd?.fetches ?? [],
-          }), results);
-          throw new Error(`${error.message}: ${JSON.stringify(detail)}`, { cause: error });
-        }
-        await click(page, button);
       };
       const storedIds = async () => {
         const state = await readState(page);
@@ -8722,34 +8877,19 @@ const SCENARIOS = [
         return list?.itemIds ?? [];
       };
 
-      await searchAndAdd(
+      await searchAndBrowse(
         '#form-series',
         '#series-q',
-        '#series-results',
         'House of M (2005)',
-        'Add all issues of House of M (2005)',
       );
       await page.waitForFunction(
-        () => (document.querySelector('#series-results .grow')?.textContent ?? '').includes('2 of 4 issues saved so far'),
+        () => (document.querySelector('#series-results .grow')?.textContent ?? '').includes('2 comics of 4 loaded'),
         { timeout: 15000 },
       );
       await page.waitForFunction(
         () => window.__mrtLongAdd.requests.some((request) => request === 'series:855:2'),
         { timeout: 15000 },
       );
-      await page.$eval('#series-q', (node) => { node.value = 'House of M (2015)'; });
-      await click(page, '#form-series button[type="submit"]');
-      const activeSearch = await page.evaluate(() => ({
-        text: document.querySelector('#series-results .grow')?.textContent ?? '',
-        cancel: document.querySelector('#series-results .notice-act button')?.textContent ?? null,
-        focus: document.activeElement?.textContent?.trim() ?? '',
-      }));
-      t.check('searching again cannot hide the active import or its Cancel action',
-        /2 of 4 issues saved so far/.test(activeSearch.text)
-          && activeSearch.cancel === 'Cancel series import'
-          && activeSearch.focus === 'Cancel series import',
-        JSON.stringify(activeSearch));
-
       const seriesCancel = '#series-results .notice-act button';
       const seriesCancelNode = await page.$(seriesCancel);
       const seriesCancelA11y = await page.accessibility.snapshot({
@@ -8758,47 +8898,49 @@ const SCENARIOS = [
       });
       await seriesCancelNode.dispose();
       t.check('the active series run exposes one visible Cancel action with its full accessible name',
-        seriesCancelA11y?.name === 'Cancel series import'
+        seriesCancelA11y?.name === 'Cancel series search'
           && await page.$$eval(seriesCancel, (nodes) => nodes.filter((node) => !node.hidden).length) === 1,
         JSON.stringify(seriesCancelA11y));
 
-      const partialIds = await storedIds();
-      t.check('the first complete series page is already durable in chronological order',
-        JSON.stringify(partialIds) === JSON.stringify([97101, 97102]), JSON.stringify(partialIds));
+      t.check('receiving a complete page does not create a list or save any comics',
+        await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === null);
 
       await page.focus(seriesCancel);
       await click(page, seriesCancel);
       const stoppedSeries = await page.evaluate(() => ({
-        text: document.querySelector('#series-results .grow')?.textContent ?? '',
+        text: document.querySelector('#series-results')?.textContent ?? '',
         cancel: document.querySelector('#series-results .notice-act button')?.textContent ?? null,
         focus: document.activeElement?.id ?? null,
       }));
       t.check('series cancellation is immediate, distinct, and returns focus',
-        /stopped after 2 of 4 issues were saved/.test(stoppedSeries.text)
+        /Stopped loading\. 2 comics of 4 loaded/.test(stoppedSeries.text)
           && stoppedSeries.cancel === null && stoppedSeries.focus === 'series-q',
         JSON.stringify(stoppedSeries));
 
-      await searchAndAdd(
+      t.check('cancellation exposes only the loaded comics as a partial selectable preview',
+        await page.$$eval('#series-results input[data-comic-id]', (nodes) => (
+          JSON.stringify(nodes.map((node) => Number(node.dataset.comicId))) === '[97101,97102]'
+        )) && await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === null);
+      await click(page, '#series-results input[data-comic-id="97101"]');
+      await searchAndBrowse(
         '#form-series',
         '#series-q',
-        '#series-results',
         'House of M (2015)',
-        'Add all issues of House of M (2015)',
       );
       await page.waitForSelector(seriesCancel, { visible: true, timeout: 15000 });
       await page.focus(seriesCancel);
       await page.waitForFunction(
-        () => (document.querySelector('#series-results .grow')?.textContent ?? '').includes('House of M (2015): 1 issue added.'),
+        () => document.querySelector('#series-results input[data-comic-id="97201"]') != null,
         { timeout: 15000 },
       );
       const replacement = await page.evaluate(() => ({
-        text: document.querySelector('#series-results .grow')?.textContent ?? '',
+        text: document.querySelector('#series-results')?.textContent ?? '',
         cancel: document.querySelector('#series-results .notice-act button')?.textContent ?? null,
         focus: document.activeElement?.id ?? null,
       }));
       t.check('normal completion removes Cancel, reports completion, and restores focused control',
         replacement.cancel === null && replacement.focus === 'series-q'
-          && /1 issue added/.test(replacement.text),
+          && /Comics in House of M \(2015\)/.test(replacement.text),
         JSON.stringify(replacement));
 
       await page.waitForFunction(
@@ -8806,20 +8948,30 @@ const SCENARIOS = [
         { timeout: 15000 },
       );
       const afterStale = await storedIds();
-      const afterStaleStatus = await page.$eval('#series-results .grow', (node) => node.textContent);
+      const afterStaleStatus = await page.$eval('#series-results', (node) => node.textContent);
       t.check('the cancelled run settling late cannot cross into the replacement',
-        JSON.stringify(afterStale) === JSON.stringify([97101, 97102, 97201])
+        JSON.stringify(afterStale) === '[]'
           && /House of M \(2015\)/.test(afterStaleStatus),
         JSON.stringify({ ids: afterStale, status: afterStaleStatus }));
 
+      await click(page, '#series-results input[data-comic-id="97201"]');
+      await page.$eval('#series-list-name', (input) => {
+        input.value = 'Mixed search picks';
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+      });
+      await click(page, '#series-selection-form button[type="submit"]');
+      t.check('only an explicit save commits selected partial and complete results',
+        JSON.stringify(await storedIds()) === '[97101,97201]', JSON.stringify(await storedIds()));
+      await page.waitForFunction(() => {
+        const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+        return state.issues[97101]?.hydrated && state.issues[97201]?.hydrated;
+      });
       await page.evaluate(() => { location.hash = '#/add-creator'; });
       await page.waitForSelector('#view-add-creator:not([hidden])', { timeout: 15000 });
-      await searchAndAdd(
+      await searchAndBrowse(
         '#form-creator',
         '#creator-q',
-        '#creator-results',
         'Jonathan Hickman',
-        'Add all issues of Jonathan Hickman',
       );
       const creatorCancel = '#creator-results .notice-act button';
       await page.waitForSelector(creatorCancel, { visible: true, timeout: 15000 });
@@ -8830,29 +8982,27 @@ const SCENARIOS = [
       });
       await creatorCancelNode.dispose();
       t.check('the active creator run exposes its own visible and accessible Cancel action',
-        creatorCancelA11y?.name === 'Cancel creator import', JSON.stringify(creatorCancelA11y));
+        creatorCancelA11y?.name === 'Cancel creator search', JSON.stringify(creatorCancelA11y));
 
       const beforeZero = await storedIds();
       await page.focus(creatorCancel);
       await click(page, creatorCancel);
       const afterZero = await storedIds();
       const zero = await page.evaluate(() => ({
-        text: document.querySelector('#creator-results .grow')?.textContent ?? '',
+        text: document.querySelector('#creator-results')?.textContent ?? '',
         cancel: document.querySelector('#creator-results .notice-act button')?.textContent ?? null,
         focus: document.activeElement?.id ?? null,
       }));
       t.check('zero-page creator cancellation saves nothing and returns focus',
-        /stopped before the first page was saved/.test(zero.text)
+        /Stopped loading\. 0 comics loaded/.test(zero.text)
           && zero.cancel === null && zero.focus === 'creator-q'
           && JSON.stringify(afterZero) === JSON.stringify(beforeZero),
         JSON.stringify({ zero, beforeZero }));
 
-      await searchAndAdd(
+      await searchAndBrowse(
         '#form-creator',
         '#creator-q',
-        '#creator-results',
         'Rye Hickman',
-        'Add all issues of Rye Hickman',
       );
       await page.waitForSelector(creatorCancel, { visible: true, timeout: 15000 });
       await page.focus(creatorCancel);
@@ -8861,20 +9011,22 @@ const SCENARIOS = [
         { timeout: 15000 },
       );
       const failedCreator = await page.evaluate(() => ({
-        text: document.querySelector('#creator-results .grow')?.textContent ?? '',
+        text: document.querySelector('#creator-results')?.textContent ?? '',
         cancel: document.querySelector('#creator-results .notice-act button')?.textContent ?? null,
         focus: document.activeElement?.id ?? null,
       }));
       const finalIds = await storedIds();
-      t.check('creator failure stays distinct and keeps its completed page',
-        /loading failed/.test(failedCreator.text)
-          && /1 of 3 issues were saved/.test(failedCreator.text)
+      t.check('creator failure exposes a partial preview without silently saving its page',
+        /Could not load all the comics/.test(failedCreator.text)
+          && /1 comic of 3 loaded/.test(failedCreator.text)
           && failedCreator.cancel === null && failedCreator.focus === 'creator-q'
-          && finalIds.includes(97401),
+          && JSON.stringify(finalIds) === '[97101,97201]',
         JSON.stringify({ failedCreator, finalIds }));
-      t.check('all cancellation paths retain exactly the intended issues',
-        JSON.stringify(finalIds) === JSON.stringify([97101, 97102, 97201, 97401]),
-        JSON.stringify(finalIds));
+      await click(page, '#creator-results input[data-comic-id="97401"]');
+      await click(page, '#creator-selection-form button[type="submit"]');
+      const savedPartial = await storedIds();
+      t.check('a deliberately saved failed-search selection appends only its chosen comic',
+        JSON.stringify(savedPartial) === '[97101,97201,97401]', JSON.stringify(savedPartial));
     },
   },
   {
@@ -13266,6 +13418,7 @@ async function preparePage(page, origin, mutation) {
   for (const [path, rewrite] of [
     ['/dev-faults.js', mutation?.rewriteFaults],
     ['/js/main.js', mutation?.rewriteMain],
+    ['/js/views/add.js', mutation?.rewriteAdd],
     ['/js/views/catalog.js', mutation?.rewriteCatalogView],
     ['/js/views/reading.js', mutation?.rewriteReading],
     ['/js/views/library.js', mutation?.rewriteLibrary],
@@ -13377,6 +13530,7 @@ async function preparePage(page, origin, mutation) {
           );
         }
         const longAdd = new URL(location.href).searchParams.get('long-add') === '1';
+        const comicSearch = window.__mrtComicSearch === true;
         if (longAdd && !window.__mrtLongAdd) {
           window.__mrtLongAdd = { requests: [], settled: [], fetches: [] };
         }
@@ -13436,6 +13590,17 @@ async function preparePage(page, origin, mutation) {
           return Promise.resolve(json(selectedOrder));
         }
         if (url.endsWith('data/creators-index.json')) {
+          if (comicSearch || longAdd) {
+            return Promise.resolve(json({
+              generatedAt: '2026-01-01T00:00:00.000Z',
+              total: 3,
+              items: [
+                { id: 367, name: 'Ed Brubaker', issueCount: 239 },
+                { id: 11743, name: 'Jonathan Hickman', issueCount: 2 },
+                { id: 14264, name: 'Rye Hickman', issueCount: 3 },
+              ],
+            }));
+          }
           const controlled = localRequest(
             'creator',
             () => json({
@@ -13447,6 +13612,16 @@ async function preparePage(page, origin, mutation) {
           if (controlled) return controlled;
         }
         if (url.endsWith('data/series-index.json')) {
+          if (comicSearch || longAdd) {
+            return Promise.resolve(json({
+              generatedAt: '2026-01-01T00:00:00.000Z',
+              total: 2,
+              items: [
+                { id: 855, name: 'House of M (2005)', issueCount: 4 },
+                { id: 19462, name: 'House of M (2015)', issueCount: 1 },
+              ],
+            }));
+          }
           const controlled = localRequest(
             'series',
             () => json({
@@ -13468,6 +13643,49 @@ async function preparePage(page, origin, mutation) {
         if (url === retiredUpdateApiUrl) {
           window.__mrtUpdateRequests = (window.__mrtUpdateRequests ?? 0) + 1;
           return Promise.resolve(json({ tag_name: 'v9.9.9' }));
+        }
+        const creatorComic = (number) => {
+          const seriesName = number <= 2 ? 'Selection Fixture (2000)' : 'Other Fixture (2000)';
+          return {
+            id: 978000 + number,
+            title: `${seriesName} #${number}`,
+            issueNumber: String(number),
+            seriesId: number <= 2 ? 40000 : 40001,
+            seriesName,
+            onSaleDate: new Date(Date.UTC(2000, 0, number)).toISOString(),
+            digitalId: 800000 + number,
+          };
+        };
+        const searchComic = {
+          id: 97601, title: 'Search Fixture (2026) #1', issueNumber: '1',
+          seriesId: 97600, seriesName: 'Search Fixture (2026)',
+          onSaleDate: '2026-01-03', digitalId: 797601,
+        };
+        if (comicSearch && requestUrl.pathname.endsWith('/creators/367/issues')) {
+          const offset = Number(requestUrl.searchParams.get('offset') ?? 0);
+          const limit = Number(requestUrl.searchParams.get('limit') ?? 200);
+          const items = Array.from({ length: 239 }, (_, index) => creatorComic(index + 1))
+            .slice(offset, offset + limit);
+          return Promise.resolve(json({ items, total: 239, has_next: offset + items.length < 239 }));
+        }
+        if (comicSearch && requestUrl.pathname.endsWith('/series/19462/issues')) {
+          return Promise.resolve(json({
+            items: [{
+              id: 97201, title: 'House of M (2015) #1', issueNumber: '1',
+              seriesId: 19462, seriesName: 'House of M (2015)',
+              onSaleDate: '2026-01-05', digitalId: 797201,
+            }],
+            total: 1,
+            has_next: false,
+          }));
+        }
+        if (comicSearch && requestUrl.pathname.endsWith('/search/issues')) {
+          const held = order.items[0];
+          return Promise.resolve(json({
+            items: [searchComic, {
+              ...held, id: held.issueId, onSaleDate: held.onSale, unlimitedDate: held.mu,
+            }],
+          }));
         }
         const longAddPath = /\/(series|creators)\/(\d+)\/issues$/.exec(requestUrl.pathname);
         if (longAdd && longAddPath) {
@@ -13597,6 +13815,20 @@ async function preparePage(page, origin, mutation) {
               url,
             },
           ];
+        }
+        if (issuePath && (comicSearch || longAdd)) {
+          const id = Number(issuePath[1]);
+          if (id >= 978001 && id <= 978239) return Promise.resolve(json(creatorComic(id - 978000)));
+          if (id === 97601) return Promise.resolve(json(searchComic));
+          if (id >= 97101 && id <= 97401) {
+            const seriesName = id < 97200 ? 'House of M (2005)'
+              : id < 97300 ? 'House of M (2015)' : id < 97400 ? 'Jonathan Hickman' : 'Rye Hickman';
+            return Promise.resolve(json({
+              id, title: `${seriesName} #${id}`, digitalId: 700000 + id,
+              seriesId: 855, seriesName,
+              onSaleDate: `2026-01-${String(id < 97200 ? id - 97100 : id < 97300 ? 5 : id < 97400 ? 6 : 7).padStart(2, '0')}`,
+            }));
+          }
         }
         const issue = window.__mrtSynopsis ? issuePath : null;
         if (issue) {

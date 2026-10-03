@@ -9,7 +9,7 @@ import {
 } from '../src/js/lib/route.js';
 import { addIssuesToList, createEmptyState, createList } from '../src/js/lib/model.js';
 import {
-  createAddView, LongAddRunner, longAddStatusLine, mergeLongAddPage, persistLongAddPage,
+  ComicSearchRunner, createAddView, mergeSearchSelection, persistSearchSelection,
 } from '../src/js/views/add.js';
 import { KEY, Store } from '../src/js/storage.js';
 
@@ -82,25 +82,88 @@ function listState(ids = []) {
   return { state, listId };
 }
 
-test('pagewise long adds preserve existing order and sort only issues owned by the run', () => {
+test('saving a selection preserves existing order and sorts only the selected comics', () => {
   const { state: initial, listId } = listState([90, 91]);
-  let context = { listId, insertAt: 2, ownedIds: [] };
+  const result = mergeSearchSelection(initial, [
+    issue(4), issue(2), issue(3), issue(1), issue(2),
+  ], { listId });
 
-  const first = mergeLongAddPage(initial, context, [issue(4), issue(2)]);
-  context = first.context;
-  const second = mergeLongAddPage(first.state, context, [issue(3), issue(1), issue(2)]);
-
-  assert.deepEqual(second.state.lists[listId].itemIds, [90, 91, 1, 2, 3, 4]);
-  assert.deepEqual(second.context.ownedIds, [1, 2, 3, 4]);
+  assert.deepEqual(result.state.lists[listId].itemIds, [90, 91, 1, 2, 3, 4]);
+  assert.equal(result.state.listOrder.length, 1);
   assert.deepEqual(
-    { firstAdded: first.added, secondAdded: second.added, secondSkipped: second.skipped },
-    { firstAdded: 2, secondAdded: 2, secondSkipped: 1 },
+    { added: result.added, skipped: result.skipped },
+    { added: 4, skipped: 0 },
   );
 });
 
-test('a refused first page rolls list creation and the page back together', () => {
+test('a named new Reading List does not use or alter the active list', () => {
+  const { state, listId } = listState([90]);
+  const result = mergeSearchSelection(state, [issue(2), issue(1)], { name: '  Brubaker picks  ' });
+
+  assert.equal(result.error, null);
+  assert.notEqual(result.listId, listId);
+  assert.equal(result.listName, 'Brubaker picks');
+  assert.equal(result.state.active, result.listId);
+  assert.deepEqual(result.state.lists[result.listId].itemIds, [1, 2]);
+  assert.strictEqual(result.state.lists[listId], state.lists[listId]);
+  assert.equal(result.state.issues[1].mu, null);
+});
+
+test('selected duplicates keep shared progress, notes, overrides and richer saved metadata', () => {
+  const { state: initial, listId } = listState([90, 91, 2]);
+  const state = {
+    ...initial,
+    issues: {
+      ...initial.issues,
+      2: { ...initial.issues[2], digitalId: 42, mu: '2026-02-01', hydrated: true },
+    },
+    read: { 2: 1234 },
+    notes: { 2: 'Keep this note' },
+    overrides: { 2: 'unavailable' },
+    lists: Object.assign(Object.create(null), initial.lists, {
+      [listId]: { ...initial.lists[listId], deferredIssueIds: [90], collectedIn: { 90: 'A book' } },
+    }),
+  };
+  const result = mergeSearchSelection(state, [issue(2), issue(1)], { listId });
+
+  assert.deepEqual(result.state.lists[listId].itemIds, [90, 91, 2, 1]);
+  assert.deepEqual(result.state.lists[listId].deferredIssueIds, [90]);
+  assert.deepEqual(result.state.lists[listId].collectedIn, { 90: 'A book' });
+  for (const key of ['read', 'notes', 'overrides']) assert.strictEqual(result.state[key], state[key]);
+  assert.equal(result.state.issues[2].digitalId, 42);
+  assert.equal(result.state.issues[2].mu, '2026-02-01');
+  assert.equal(result.state.issues[2].hydrated, true);
+  assert.deepEqual({ added: result.added, skipped: result.skipped }, { added: 1, skipped: 1 });
+});
+
+test('invalid selections, names and deleted destinations never create a fallback list', () => {
+  const { state } = listState([90]);
+  for (const [items, destination, error] of [
+    [[], { name: 'Empty' }, /Select at least/],
+    [[{ issueId: 0 }], { name: 'Invalid' }, /valid issue ID/],
+    [[issue(1)], { name: '  ' }, /Name the new/],
+    [[issue(1)], { name: 'x'.repeat(201) }, /200 characters/],
+    [[issue(1)], { listId: 'deleted', name: 'Do not create this' }, /no longer exists/],
+    [[issue(1)], { listId: '__proto__' }, /no longer exists/],
+  ]) {
+    const result = mergeSearchSelection(state, items, destination);
+    assert.strictEqual(result.state, state);
+    assert.equal(result.added, 0);
+    assert.match(result.error, error);
+  }
+});
+
+test('a real destination named like an object prototype remains selectable', () => {
+  const state = createList(createEmptyState(), { id: '__proto__', name: 'A restored list' });
+  const result = mergeSearchSelection(state, [issue(1)], { listId: '__proto__' });
+  assert.equal(result.error, null);
+  assert.deepEqual(result.state.lists.__proto__.itemIds, [1]);
+});
+
+test('a refused selection rolls new-list creation and comics back in one write', () => {
   const saved = new Map();
   let writes = 0;
+  let education = 0;
   const storage = {
     getItem: (key) => saved.get(key) ?? null,
     setItem(key, value) {
@@ -118,68 +181,102 @@ test('a refused first page rolls list creation and the page back together', () =
   const store = new Store({ storage });
   store.load();
 
-  const result = persistLongAddPage(
+  const result = persistSearchSelection(
     store,
     [issue(1)],
-    { listId: null, insertAt: 0, ownedIds: [], transition: null },
+    { name: 'Brubaker picks' },
+    () => { education += 1; },
   );
 
-  assert.equal(writes, 1, 'first-page setup and merge were split across writes');
-  assert.equal(store.state.listOrder.length, 0, 'a failed first page left an empty list behind');
-  assert.equal(saved.has(KEY), false, 'a failed first page left an empty list on disk');
+  assert.equal(writes, 1, 'list creation and selected membership were split across writes');
+  assert.equal(store.state.listOrder.length, 0, 'a refused save left an empty list behind');
+  assert.equal(saved.has(KEY), false, 'a refused save changed the saved reading data');
   assert.equal(result.ok, false);
-  assert.equal(result.context.listId, null, 'failed setup escaped into the run context');
+  assert.equal(result.listId, null, 'a phantom new destination escaped after refusal');
+  assert.equal(education, 0, 'a failed save consumed save education');
+  assert.equal(result.added, 0);
+  assert.match(result.error, /full|storage/i);
 });
 
-test('a long add completes with persisted-page counts distinct from received counts', async () => {
+test('a successful selection records education only after its one durable write', () => {
+  const saved = new Map();
+  let writes = 0;
+  const store = new Store({ storage: {
+    getItem: (key) => saved.get(key) ?? null,
+    setItem: (key, value) => { writes += 1; saved.set(key, value); },
+  } });
+  store.load();
+  const result = persistSearchSelection(store, [issue(2), issue(1)], { name: 'My comics' }, (status) => {
+    const onDisk = JSON.parse(saved.get(KEY));
+    assert.deepEqual(onDisk.lists[status.listId].itemIds, [1, 2]);
+    assert.equal(status.added, 2);
+    return 'recorded';
+  });
+  assert.equal(writes, 1);
+  assert.equal(result.ok, true);
+  assert.equal(result.transition, 'recorded');
+});
+
+test('a stale tab refuses its selection and adopts the other tab without a phantom list', () => {
+  const saved = new Map();
+  const storage = {
+    getItem: (key) => saved.get(key) ?? null,
+    setItem: (key, value) => saved.set(key, value),
+  };
+  const stale = new Store({ storage });
+  const current = new Store({ storage });
+  stale.load();
+  current.load();
+  const other = persistSearchSelection(current, [issue(1)], { name: 'Other tab' });
+  let education = 0;
+  const refused = persistSearchSelection(stale, [issue(2)], { name: 'Not saved' }, () => { education += 1; });
+
+  assert.equal(refused.ok, false);
+  assert.equal(refused.added, 0);
+  assert.equal(education, 0);
+  assert.deepEqual(stale.state.listOrder, [other.listId]);
+  assert.equal(stale.state.issues[2], undefined);
+  assert.equal(JSON.parse(saved.get(KEY)).lists[other.listId].name, 'Other tab');
+});
+
+test('a comic preview completes with deduplicated chronological results, without a writer', async () => {
   const api = controlledPages();
-  const saved = [];
   const statuses = [];
-  const runner = new LongAddRunner({
+  const runner = new ComicSearchRunner({
     load: api.load,
-    savePage(items, context) {
-      saved.push(items.map((item) => item.issueId));
-      return { ok: true, added: items.length, skipped: 0, context };
-    },
     onStatus: (status) => statuses.push(status),
   });
 
-  const pending = runner.start({ id: 1, name: 'Complete', issueCount: 2 });
-  await api.runs[0].page([issue(2), issue(1)], 2);
+  const pending = runner.start({ id: 1, name: 'Complete', issueCount: 999 });
+  await api.runs[0].page([issue(2), issue(1), issue(2)], 3);
   api.runs[0].finish();
   const result = await pending;
 
-  assert.deepEqual(saved, [[2, 1]]);
   assert.equal(result.phase, 'complete');
-  assert.deepEqual(
-    { received: result.received, persisted: result.persisted, pages: result.pages, added: result.added },
-    { received: 2, persisted: 2, pages: 1, added: 2 },
-  );
+  assert.deepEqual(result.items.map((item) => item.issueId), [1, 2]);
+  assert.equal(result.received, 3);
+  assert.equal(result.total, 3, 'an older name-index count overruled the API');
+  assert.equal(runner.savePage, undefined);
   assert.deepEqual(statuses.map((status) => status.phase), ['running', 'running', 'complete']);
 });
 
-test('cancel retires immediately and stale work cannot mutate or tear down its replacement', async () => {
+test('cancel retires immediately and stale preview work cannot mutate its replacement', async () => {
   const api = controlledPages();
-  const saved = [];
   const statuses = [];
-  const runner = new LongAddRunner({
+  const runner = new ComicSearchRunner({
     load: api.load,
-    savePage(items, context) {
-      saved.push({ run: context.run, ids: items.map((item) => item.issueId) });
-      return { ok: true, added: items.length, skipped: 0, context };
-    },
     onStatus: (status) => statuses.push(status),
   });
 
-  const first = runner.start({ id: 1, name: 'First', issueCount: 3 }, { run: 'first' });
+  const first = runner.start({ id: 1, name: 'First', issueCount: 3 });
   await api.runs[0].page([issue(1)], 3);
   const cancelled = runner.cancel();
 
   assert.equal(cancelled.phase, 'cancelled');
-  assert.equal(cancelled.persisted, 1);
+  assert.deepEqual(cancelled.items.map((item) => item.issueId), [1]);
   assert.equal(runner.active, false, 'Cancel waited for the old transport to settle');
 
-  const second = runner.start({ id: 2, name: 'Second', issueCount: 1 }, { run: 'second' });
+  const second = runner.start({ id: 2, name: 'Second', issueCount: 1 });
   assert.equal(runner.active, true, 'the replacement did not start immediately');
   const replacement = runner.current;
 
@@ -192,22 +289,16 @@ test('cancel retires immediately and stale work cannot mutate or tear down its r
   api.runs[1].finish();
   const completed = await second;
 
-  assert.deepEqual(saved, [
-    { run: 'first', ids: [1] },
-    { run: 'second', ids: [9] },
-  ]);
+  assert.deepEqual(completed.items.map((item) => item.issueId), [9]);
   assert.equal(completed.phase, 'complete');
   assert.equal(statuses.at(-1).item.name, 'Second', 'old status replaced the new run');
 });
 
-test('zero-page cancellation and failures remain distinct terminal outcomes', async () => {
+test('zero-page cancellation and partial failures remain distinct read-only previews', async () => {
   const zeroApi = controlledPages();
   const zeroStatuses = [];
-  const zero = new LongAddRunner({
+  const zero = new ComicSearchRunner({
     load: zeroApi.load,
-    savePage() {
-      assert.fail('zero-page cancellation attempted a save');
-    },
     onStatus: (status) => zeroStatuses.push(status),
   });
   const zeroPending = zero.start({ id: 1, name: 'Zero' });
@@ -216,16 +307,13 @@ test('zero-page cancellation and failures remain distinct terminal outcomes', as
   const cancelled = await zeroPending;
 
   assert.equal(cancelled.phase, 'cancelled');
-  assert.equal(cancelled.persisted, 0);
+  assert.deepEqual(cancelled.items, []);
   assert.equal(zeroStatuses.at(-1).phase, 'cancelled');
 
   const failedApi = controlledPages();
   const failedStatuses = [];
-  const failed = new LongAddRunner({
+  const failed = new ComicSearchRunner({
     load: failedApi.load,
-    savePage(items, context) {
-      return { ok: true, added: items.length, skipped: 0, context };
-    },
     onStatus: (status) => failedStatuses.push(status),
   });
   const failedPending = failed.start({ id: 2, name: 'Failed' });
@@ -234,65 +322,45 @@ test('zero-page cancellation and failures remain distinct terminal outcomes', as
   const failure = await failedPending;
 
   assert.equal(failure.phase, 'failed');
-  assert.equal(failure.persisted, 1);
+  assert.deepEqual(failure.items.map((item) => item.issueId), [2]);
   assert.equal(failedStatuses.at(-1).phase, 'failed');
 });
 
-test('a refused page write fails without counting that page as persisted', async () => {
-  const statuses = [];
-  const runner = new LongAddRunner({
+test('a provider that stops short cannot label a partial preview complete', async () => {
+  const runner = new ComicSearchRunner({
     load: async (_item, { onPage }) => {
       await onPage([issue(1)], { loaded: 1, total: 2 });
     },
-    savePage: () => ({ ok: false, error: 'Browser storage is full.' }),
-    onStatus: (status) => statuses.push(status),
   });
 
   const result = await runner.start({ id: 1, name: 'No room' });
 
   assert.equal(result.phase, 'failed');
-  assert.equal(result.error.name, 'SaveError');
   assert.equal(result.received, 1);
-  assert.equal(result.persisted, 0);
-  assert.equal(result.pages, 0);
-  assert.equal(statuses.at(-1).phase, 'failed');
+  assert.deepEqual(result.items.map((item) => item.issueId), [1]);
+  assert.match(result.error.message, /before every comic loaded/);
 });
 
-test('long-add status keeps cancellation, failure, and completion distinct', () => {
-  const base = {
-    item: { name: 'Fixture' },
-    context: {},
-    received: 2,
-    persisted: 2,
-    total: 4,
-    pages: 1,
-    added: 2,
-    skipped: 0,
-  };
-
-  assert.equal(
-    longAddStatusLine({ ...base, phase: 'cancelled' }, { name: 'Fixture', kind: 'series' }),
-    'Fixture: stopped after 2 of 4 issues were saved. 2 added.',
-  );
-  assert.match(
-    longAddStatusLine(
-      { ...base, phase: 'failed', error: new TypeError('offline') },
-      { name: 'Fixture', kind: 'series' },
-    ),
-    /^Fixture: loading failed\./,
-  );
-  assert.equal(
-    longAddStatusLine({ ...base, phase: 'complete' }, { name: 'Fixture', kind: 'series' }),
-    'Fixture: 2 issues added.',
-  );
+test('plain issue searches use the same preview normalization and refuse invalid IDs', async () => {
+  const runner = new ComicSearchRunner({ load: async () => [issue(2), issue(1)] });
+  const result = await runner.start({ name: 'Issues' });
+  assert.equal(result.phase, 'complete');
+  assert.deepEqual(result.items.map((item) => item.issueId), [1, 2]);
+  const invalid = new ComicSearchRunner({ load: async () => [{ issueId: 0 }] });
+  const failed = await invalid.start({ name: 'Invalid' });
+  assert.equal(failed.phase, 'failed');
+  assert.match(failed.error.message, /valid issue ID/);
 });
 
-test('series and creator long adds use independent runners and active Cancel actions', () => {
-  assert.match(add, /const seriesAddRunner = createLongAddRunner\(\{[\s\S]*?kind: 'series'[\s\S]*?input: '#series-q'/);
-  assert.match(add, /const creatorAddRunner = createLongAddRunner\(\{[\s\S]*?kind: 'creator'[\s\S]*?input: '#creator-q'/);
-  assert.match(add, /running \? \{ label: `Cancel \$\{config\.kind\} import`, onClick: \(\) => runner\.cancel\(\) \} : null/);
-  assert.match(add, /else if \(!running && focusedCancel\) \{\s*\$\(config\.input\)\?\.focus\(\{ preventScroll: true \}\);/);
-  assert.match(add, /if \(active\?\.\(\)\) \{[\s\S]*?Cancel the current \$\{kind === 'series' \? 'series' : 'creator'\} import before searching again\./);
+test('all search surfaces share selection controls rather than immediate Add actions', () => {
+  assert.match(add, /const selected = new Map\(\)/);
+  assert.match(add, /config\.runner = new ComicSearchRunner/);
+  assert.match(add, /label: `Cancel \$\{config\.kind\} search`/);
+  assert.match(add, /if \(focusedCancel\) \$\(config\.input\)\.focus/);
+  assert.match(add, /if \(config\.epoch !== epoch\) return/);
+  assert.match(add, /matched === 1 && items\.length === 1/);
+  assert.match(add, /beforeunload/);
+  assert.doesNotMatch(add, /savePage|onAdd|addToActive|LongAddRunner|Add all issues/);
 });
 
 test('the Add hub groups five routes with five dedicated pages', () => {
@@ -308,11 +376,11 @@ test('the Add hub groups five routes with five dedicated pages', () => {
   assert.match(hub, /<h1 id="add-h">Add comics<\/h1>/);
 });
 
-test('the destination rename does not alter Add action labels', () => {
+test('search uses selection while manual and curated Add labels stay intact', () => {
   assert.match(catalogPresentation, /const CATALOG_ADD = '\+ Add to library'/);
   assert.match(allPages, />Add issue<\/button>/);
-  assert.match(add, /\}, 'Add all issues'\)/);
-  assert.match(add, /\}, 'Add'\);/);
+  assert.match(add, /\}, 'Browse comics'\)/);
+  assert.match(add, /textContent = `Select all \$\{comics\(matches\.length\)\}`/);
 });
 
 test('the Add address opens the hub while old child addresses stay valid', () => {
@@ -383,14 +451,19 @@ test('the manual lookup names Marvel Fandom and keeps its privacy detail behind 
   );
 });
 
-test('each Add destination sits inside its working card instead of the page header', () => {
+test('only paste and manual entry imply an active destination before an explicit save', () => {
   for (const [view, source] of pages) {
     assert.doesNotMatch(source, /<div class="sub add-target">/, `${view} still repeats its destination in the header`);
-    assert.match(
-      source,
-      /<section class="card card-static addpri add-page"[^>]*>\s*<p class="add-destination add-target"><\/p>/,
-      `${view} has no compact destination inside its working card`,
-    );
+    if (view === 'add-import' || view === 'add-manual') {
+      assert.match(
+        source,
+        /<section class="card card-static addpri add-page"[^>]*>\s*<p class="add-destination add-target"><\/p>/,
+        `${view} lost its existing destination`,
+      );
+    } else {
+      assert.doesNotMatch(source, /\badd-target\b/, `${view} still implies an automatic destination`);
+      assert.match(source, /comic-search-hint/);
+    }
   }
   assert.match(add, /Adding to: \$\{target\.name\}/, 'the compact destination no longer names the current list');
   assert.doesNotMatch(
@@ -451,16 +524,16 @@ test('every repeated Add view row action keeps the paired grey secondary classes
   // looking plausibly styled in a code review.
   const sites = [
     [
-      'renderResults row Add button',
-      /function renderResults[\s\S]*?const btn = el\('button', \{ type: 'button', class: 'btn btn-g' \}, 'Add'\);/,
+      'select-all comics button',
+      /const selectAll = el\('button', \{ type: 'button', class: 'btn btn-g'/,
     ],
     [
-      'series wireNameSearch button class',
-      /wireNameSearch\(\{[\s\S]*?section: '#sec-series'[\s\S]*?btnClass: 'btn btn-g'/,
+      'show-more comics button',
+      /const more = el\('button', \{ type: 'button', class: 'btn btn-g'/,
     ],
     [
-      'creator wireNameSearch button class',
-      /wireNameSearch\(\{[\s\S]*?section: '#sec-creator'[\s\S]*?btnClass: 'btn btn-g'/,
+      'creator and series Browse comics button',
+      /function wireNameSearch[\s\S]*?class: 'btn btn-g'[\s\S]*?\}, 'Browse comics'\)/,
     ],
     [
       'unresolvedRow This one button',
