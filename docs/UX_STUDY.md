@@ -52,7 +52,7 @@ Evaluated against all ten of Nielsen's usability heuristics, named by their stan
 | 2 | Match between the system and the real world | 1 | Strong. Labels are written in reader language, and availability wording hedges rather than promises. `src/js/views/reading.js:33-38` |
 | 3 | User control and freedom | 3 | Restoring a backup could be undone, deleting a list could not. Closed by BL-035. UX-H-003 |
 | 4 | Consistency and standards | 3 | Two different error and prompt systems run side by side. UX-H-002 |
-| 5 | Error prevention | 1 | Strong. Unreadable saved data pauses writing rather than overwriting, and a future schema is refused. `src/index.html:118-133`, `src/js/lib/model.js:891-969` |
+| 5 | Error prevention | 1 | Strong. Unreadable saved data pauses writing rather than overwriting, and a future schema is refused. `src/index.html:118-133`, `src/js/lib/model.js:895-973` |
 | 6 | Recognition rather than recall | 2 | The one keyboard shortcut the interface advertises is documented only at the point of use. UX-H-004 |
 | 7 | Flexibility and efficiency of use | 2 | Only two shortcuts exist and one silently stops working. UX-D-003 |
 | 8 | Aesthetic and minimalist design | 1 | Restrained by design, though each row carries six controls that are hidden until hover. UX-A-005 |
@@ -219,7 +219,7 @@ Not applicable, with reason:
 * 1.4.2 Audio Control, not applicable, for the same reason.
 * 2.2.2 Pause, Stop, Hide, not applicable, because the only moving element is a progress ring
   transition that already respects reduced motion. Evidence: `src/styles.css:701`,
-  `src/styles.css:1763-1765`.
+  `src/styles.css:1786-1788`.
 * 3.3.8 Accessible Authentication (Minimum), not applicable, because there is no authentication of
   any kind. Evidence: `absent: password|login|signin|oauth|token, grep across src/`.
 * 3.3.7 Redundant Entry, not applicable, because no flow asks for the same information twice.
@@ -442,7 +442,7 @@ emulated light preference the computed body background stays `rgb(15, 17, 21)` a
 taken under light and dark preference are byte-identical, so the reader's system preference has no
 effect at all. Forced colours and reduced motion are both handled, which shows the gap is a missing
 theme rather than a general disregard for user preferences. Evidence for that contrast:
-`src/styles.css:1763-1765`.
+`src/styles.css:1786-1788`.
 Recommendation: derive the palette from tokens and add a light theme behind `prefers-color-scheme`
 with a manual override, reusing the existing forced-colors work as the model
 Backlog item: BL-032
@@ -725,7 +725,7 @@ Backlog item: BL-028
 reduce, with a screenshot captured for each. The light and dark screenshots are byte-identical,
 which is the measurement behind UX-A-008. Reduced motion is genuinely honoured: the progress ring
 transition computes to `none` under the reduce preference. Evidence:
-`docs/ux-artifacts/live-inspection.json`, `src/styles.css:701`, `src/styles.css:1763-1765`.
+`docs/ux-artifacts/live-inspection.json`, `src/styles.css:701`, `src/styles.css:1786-1788`.
 
 ## Step 5: Information architecture and generative artifacts
 
@@ -843,7 +843,7 @@ sentence frames rather than quotations. Nobody said these words.
   I stopped, so I can resume without scrolling to find the boundary. Traced to
   `src/js/views/progress.js:48-103`.
 * When my browser storage is cleared or I move machines, I want my progress back from a file I
-  control, so I can keep my history without an account. Traced to `src/js/lib/model.js:1052-1083`.
+  control, so I can keep my history without an account. Traced to `src/js/lib/model.js:1056-1087`.
 * When I follow one crossover, I want its progress counted for that list alone, so I can see how
   far through this story I am rather than a total across everything I have ever imported.
   Hypothesis, and the gap behind existing story 4.2. Traced to `src/index.html:512-514`.
