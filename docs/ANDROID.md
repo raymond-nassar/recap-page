@@ -40,6 +40,8 @@ visible, focusable heading instead of repeating the large logo.
 
 Home offers **Browse Reading Lists** and **Add comics**, without a Setup recommendation.
 The existing Setup guide remains on Modern Timeline and the other browse pages.
+Its short introduction keeps the guide optional; **About this starting point** opens the full
+historical explanation.
 
 The link above a page title opens its immediate parent, such as **Browse** or **Library**.
 It replaces the full breadcrumb trail and current title. Android Back follows your history;
@@ -49,6 +51,18 @@ On a Reading List, open **List options** to rename, edit notes, duplicate, expor
 or delete. Export choices expand inside the bottom sheet. Choosing an action closes the sheet
 before opening its editor or confirmation. **Close**, Android Back, Escape or a tap outside
 dismisses the sheet without taking action.
+
+Read and **Done, next** stay together. **About this comic** opens reader-focused details with Read
+near the title, useful comic information and optional, spoiler-protected story summaries.
+**More comic actions** contains deferral and the external comic page.
+**Trouble opening this comic?** contains the full Unlimited status and reader-link help, rather than
+putting availability in the main comic details. An active temporary-link warning stays
+visible outside that disclosure, and editing still requires a matching saved comic.
+
+Add leads with search and series, with other methods under **More ways to add**. An empty search
+offers **Add an issue by hand** directly. Settings put **Download backup** and restore first,
+with optional exports under **Checklist and sharing options** and metadata configuration under
+**Advanced**. Recovery copies, undo and error reports remain available.
 
 Swipe the single row of compact filter chips sideways to reach more choices. Keyboard focus scrolls its choice
 into view. The selected chip is underlined as well as colored. Filter meanings, counts and

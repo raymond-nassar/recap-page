@@ -217,6 +217,7 @@ export function createAddView({
   reportBundledLoadFailure,
   saveSelection,
   search,
+  showView,
   updateState,
   warmNameIndex,
   withSaveEducation,
@@ -441,9 +442,15 @@ export function createAddView({
       announce(message);
     }
     if (!items.length) {
-      box.append(el('p', { class: 'rail-hint', text: 'No comics to show. Try a different search.' }));
+      if (status.phase === 'complete') {
+        notify(config.results, 'Nothing matched that search. You can add the comic by hand.', 'warn', config.results, {
+          label: 'Add an issue by hand',
+          onClick: () => showView('add-manual', { push: true }),
+        });
+      } else {
+        box.append(el('p', { class: 'rail-hint', text: 'No comics to show. Try a different search.' }));
+      }
       refreshBuilders();
-      if (status.phase === 'complete') announce('No comics matched. Try a different search.');
       return;
     }
 

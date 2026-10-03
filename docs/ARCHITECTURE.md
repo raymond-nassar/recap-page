@@ -9,7 +9,7 @@ source can be reviewed alongside the prose.
 ## The three entry points
 
 The desktop source has three pages at one origin, each loading one module: the tracker at
-`src/index.html:1137`, the reader launch tab at `src/open.html:19`, and the development-only fault
+`src/index.html:1179`, the reader launch tab at `src/open.html:19`, and the development-only fault
 harness at `src/dev-faults.html:135`.
 
 The tracker entry calls `boot()` and registers the offline worker at `src/js/app.js:12-24`.
@@ -282,15 +282,15 @@ comics in memory, rejects invalid issue identities, and reports incomplete loads
 total, at `src/js/views/add.js:93-185`. Cancellation retires the run before aborting its request;
 late responses cannot replace a newer preview. Received partial results remain selectable, with
 an explicit stopped or failed notice. When a focused Cancel action disappears, its search field
-receives focus, at `src/js/views/add.js:555-579`.
+receives focus, at `src/js/views/add.js:562-586`.
 
 The shared selection survives searches and issue-detail navigation, but not a document reload.
 A named new list is the default destination. The explicit save composes creation, selected membership,
 and activation in one Store update, at `src/js/views/add.js:29-66` and `src/js/views/add.js:68-91`.
 An existing destination keeps its prior order, skips duplicate membership, and retains shared progress.
 A refused write leaves the selection and intended destination intact; only a successful addition
-starts hydration, at `src/js/views/add.js:308-351`. The browser warns before leaving with an unsaved
-selection, at `src/js/views/add.js:1015-1019`. Paste import and manual entry keep their existing paths.
+starts hydration, at `src/js/views/add.js:309-352`. The browser warns before leaving with an unsaved
+selection, at `src/js/views/add.js:1022-1026`. Paste import and manual entry keep their existing paths.
 
 ## Where a reader's data lives
 
@@ -473,7 +473,7 @@ paths remains a separate stop in each sequence.
 Home and Browse render the same gateway descriptor from the resolved catalog and both open one
 Reading paths view. The controller constructs that view with catalog loading, Store reads, route
 intent and history effects rather than giving it those concrete owners, at
-`src/js/main.js:3124-3175`. The selected id lives only in the validated `path` query of the hash
+`src/js/main.js:3127-3178`. The selected id lives only in the validated `path` query of the hash
 route, not in saved reader state, as enforced at `src/js/lib/route.js:160-195`.
 
 The view owns the resolved paths, selected structure, selector identity and async generation. It
@@ -499,7 +499,7 @@ Catalog shelves, Preview and generated publishing pages share one constructed pr
 contract for cards, path choice, source disclosure and path links. That internal module owns the
 choice without importing the controller or another concrete view, while the controller injects
 navigation, imports, Store effects and publishing-page orchestration at
-`src/js/main.js:3018-3122`.
+`src/js/main.js:3021-3125`.
 
 ## Modern Timeline position is a Store projection
 
@@ -520,7 +520,7 @@ The shared presentation contract removes the previous positional state and paint
 current label, hidden message, completion state or unavailable message at
 `src/js/views/shared/catalog-presentation.js:278-328`. Only a visible current story receives
 `aria-current="step"`. The controller injects live state and current-view knowledge at
-`src/js/main.js:3035-3067`, while the existing Store-driven render path calls the position-only
+`src/js/main.js:3038-3070`, while the existing Store-driven render path calls the position-only
 refresh at `src/js/main.js:2508-2530`. That refresh leaves cards, controls, focus, scroll and
 transient path choice intact across same-tab and cross-tab state changes.
 

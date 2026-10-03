@@ -1710,13 +1710,13 @@ function openInReader(issue, event, source) {
 
 export function synopsisDisclaimer({ reveal = false } = {}) {
   return {
-    title: reveal ? 'Fetch and reveal this description?' : 'Fetch synopses from the community metadata service?',
+    title: reveal ? 'Load this story summary?' : 'Fetch synopses from the community metadata service?',
     body: "Marvel's synopses come from an unaffiliated community service, "
       + 'and stay in this tab until reload. '
       + (reveal
-        ? 'This description may contain spoilers and fetching it uses your request allowance.'
+        ? 'This story summary may contain spoilers and loading it uses your request allowance.'
         : 'Fetching a whole Reading List takes a few minutes and uses your request allowance.'),
-    confirmLabel: reveal ? 'Fetch and reveal' : 'Fetch synopses',
+    confirmLabel: reveal ? 'Load and show summary' : 'Fetch synopses',
   };
 }
 
@@ -2728,6 +2728,7 @@ const addView = createAddView({
     series: (query, options) => api.searchSeries(query, options),
     seriesIssues: (id, options) => api.seriesIssues(id, options),
   },
+  showView,
   updateState: (updater) => {
     const state = store.update(updater);
     return { ok: store.lastUpdateOk, state };
@@ -2800,6 +2801,7 @@ const readerLinkView = createReaderLinkView({
     'root', 'summary', 'edit', 'form', 'label', 'input', 'preview', 'error',
     'apply', 'cancel', 'revert', 'status', 'reportToggle', 'reportPanel',
     'reportText', 'reportStatus', 'regenerate', 'reportLink', 'reportDisclosure',
+    'help', 'heading', 'temporary',
   ].map((key) => [key, $(`#reader-link-${key}`)])),
   getState: () => store.state,
   links: temporaryReaderLinks,
@@ -2821,6 +2823,7 @@ const issueView = createIssueView({
       : null,
   }),
   elements: () => ({
+    availability: $('#issue-focus-availability'),
     background: $('#issue-focus-bg'),
     byline: $('#issue-focus-by'),
     cancelSynopsis: $('#btn-cancel-issue-synopsis'),

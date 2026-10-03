@@ -103,5 +103,5 @@ test('447 typed session entries distinguish plot prose from identical English fa
   assert.equal(description.textContent, fallback);
   assert.equal(description.hidden, false);
   assert.equal(button['aria-expanded'], 'true');
-  assert.match(button['aria-label'], /Hide description: Synthetic issue/);
+  assert.match(button['aria-label'], /Hide story summary: Synthetic issue/);
 });

@@ -29,6 +29,22 @@ and backup formats stay compatible; paste import and manual entry keep their exi
 Search screens keep the save action prominent and move optional guidance and repeated issue details
 to hover and keyboard-focus tooltips. Success, errors and incomplete-result warnings remain visible.
 
+### Put reading actions first and disclose secondary choices
+
+All versions replace **Inspect issue** with **About this comic**. Comic details put Read
+near the title and keep story summaries spoiler-protected. Reader-link troubleshooting starts
+closed and contains the comic's Unlimited status, while an active temporary-link warning stays
+visible. Reading keeps Read and **Done, next** together, moves infrequent comic actions into
+**More comic actions**, and offers
+**Browse Reading Lists** when a list is complete.
+
+Add leads with search and series, keeps other methods available on request, and offers manual
+entry when a search finds nothing. Modern Timeline keeps its optional Setup guide with a shorter
+introduction and expandable historical context. Settings put backup and restore before optional
+exports and advanced metadata configuration. Phone layouts keep large targets and wrapping
+controls. Availability distinctions, reader-link validation, spoiler consent, recovery safeguards
+and saved-data formats are unchanged.
+
 ### Simplify Home and the Android phone header
 
 On phone-sized Android screens, the app name and full icon appear only in the top bar.

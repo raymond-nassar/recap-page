@@ -107,7 +107,10 @@ export function createIssueView({
     paintBackground(nodes.background, issue);
     nodes.byline.textContent = presentation.byline;
     paintDescription(issue);
-    nodes.facts.replaceChildren(...presentation.facts.map((item) => (
+    nodes.facts.replaceChildren(...presentation.facts.filter((item) => item.key !== 'In Unlimited').map((item) => (
+      fact(item.key, item.value, item.className)
+    )));
+    nodes.availability.replaceChildren(...presentation.facts.filter((item) => item.key === 'In Unlimited').map((item) => (
       fact(item.key, item.value, item.className)
     )));
     nodes.note.textContent = context?.note ?? '';

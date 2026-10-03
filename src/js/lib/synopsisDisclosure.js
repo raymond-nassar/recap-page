@@ -25,7 +25,7 @@ export function renderSynopsisDescription({ button, description, issue, entry, f
   const hiding = disclosure.hiding();
   const expanded = prose && (!hiding || disclosure.isRevealed(issue.issueId));
   button.hidden = !prose || !hiding;
-  button.textContent = expanded ? 'Hide description' : 'Reveal description (may contain spoilers)';
+  button.textContent = expanded ? 'Hide story summary' : 'Show story summary (may contain spoilers)';
   button.setAttribute('aria-expanded', String(expanded));
   button.setAttribute('aria-controls', description.id);
   button.setAttribute('aria-label', labelledName(button.textContent, issue.title));

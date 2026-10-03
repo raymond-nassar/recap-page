@@ -817,7 +817,7 @@ export function createReadingView({
             surface: 'full-order',
             control: 'cover',
             className: 'thumb row-focus-cover',
-            tabIndex: '-1', ariaLabel: `Inspect ${item.title}`,
+            tabIndex: '-1', ariaLabel: `About this comic: ${item.title}`,
             children: [img, fb],
           }),
           el('div', { class: 'row-info' }, [

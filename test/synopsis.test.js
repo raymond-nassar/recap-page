@@ -1240,8 +1240,8 @@ test('synopsis consent stays within two short sentences for list and issue fetch
     if (reveal) {
       assert.match(body, /may contain spoilers/);
       assert.doesNotMatch(body, /whole Reading List|few minutes/);
-      assert.equal(title, 'Fetch and reveal this description?');
-      assert.equal(confirmLabel, 'Fetch and reveal');
+      assert.equal(title, 'Load this story summary?');
+      assert.equal(confirmLabel, 'Load and show summary');
     } else {
       assert.match(body, /whole Reading List takes a few minutes/);
       assert.equal(title, 'Fetch synopses from the community metadata service?');
