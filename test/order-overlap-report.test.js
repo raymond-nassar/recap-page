@@ -144,6 +144,14 @@ test('buildReportForMapping regenerates shipped reports without duplicate self o
   assert.equal(new Set(comparedIds).size, 137);
   assert.equal(comparedIds.includes('secret-war'), false);
   assert.equal(comparedIds.filter((id) => id === 'spider-man-the-other').length, 1);
+  assert.equal(comparedIds.includes('spider-man-no-way-home-owner-selected'), false);
+  const full = await buildReportForMapping(
+    path.join(mappingsDir, 'secret-war.json'),
+    [path.join(mappingsDir, 'spider-man-the-other.json')],
+    { excludedOrderIds: [] },
+  );
+  assert.equal(full.comparisons.filter((comparison) =>
+    comparison.orderId === 'spider-man-no-way-home-owner-selected').length, 1);
 });
 
 test('fresh overlap reports bind the complete library, mapping, peers, and factual comparisons', async () => {

@@ -13,6 +13,14 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Add the owner's No Way Home reading selection
+
+MCU Prep adds a separate **Spider-Man: No Way Home (Owner selections)** companion with
+18 original comics in three standard collections: Ultimate Spider-Man's first volume,
+the main Spider-Verse chapters, and Big Time. Preview and Reading keep the collection
+headings and the owner's order. The existing 17-comic companion, its attribution and
+saved reading progress are unchanged.
+
 ### Put reading actions first and disclose secondary choices
 
 All versions replace **Inspect issue** with **About this comic**. Comic details put Read

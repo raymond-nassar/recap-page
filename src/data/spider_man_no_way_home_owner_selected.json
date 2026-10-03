@@ -1,0 +1,624 @@
+{
+  "id": "spider-man-no-way-home-owner-selected",
+  "name": "Spider-Man: No Way Home (Owner selections)",
+  "description": "The owner's three-volume selection: an Ultimate origin, the main Spider-Verse chapters, and the four-issue Big Time arc, expanded into 18 original comics in that order.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/686",
+  "sourceOrigin": "Compiled for this project from the owner's selections",
+  "sourceLicense": null,
+  "generatedAt": "2026-10-03T17:55:25.078Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 18,
+  "collections": 3,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 4372,
+      "title": "Ultimate Spider-Man (2000) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/4372/ultimate_spider-man_2000_1",
+      "seriesId": 466,
+      "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+      "onSale": "2000-09-06T00:00:00+0000",
+      "mu": "2000-09-06T00:00:00+0000",
+      "digitalId": 2679,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/519b7e7eb534a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Jemas",
+          "role": "writer"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Ultimate Spider-Man Vol. 1: Power and Responsibility"
+    },
+    {
+      "issueId": 14846,
+      "title": "Ultimate Spider-Man (2000) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/14846/ultimate_spider-man_2000_2",
+      "seriesId": 466,
+      "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+      "onSale": "2000-10-04T00:00:00+0000",
+      "mu": "2000-10-04T00:00:00+0000",
+      "digitalId": 3076,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/40/4bc46aa7c3fd7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Jemas",
+          "role": "writer"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Ultimate Spider-Man Vol. 1: Power and Responsibility"
+    },
+    {
+      "issueId": 14857,
+      "title": "Ultimate Spider-Man (2000) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/14857/ultimate_spider-man_2000_3",
+      "seriesId": 466,
+      "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+      "onSale": "2000-11-01T00:00:00+0000",
+      "mu": "2000-11-01T00:00:00+0000",
+      "digitalId": 3549,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/591dee26519af",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Jemas",
+          "role": "writer"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Ultimate Spider-Man Vol. 1: Power and Responsibility"
+    },
+    {
+      "issueId": 14868,
+      "title": "Ultimate Spider-Man (2000) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/14868/ultimate_spider-man_2000_4",
+      "seriesId": 466,
+      "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+      "onSale": "2000-12-06T00:00:00+0000",
+      "mu": "2000-12-06T00:00:00+0000",
+      "digitalId": 3550,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/591def0726c7c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dan Panosian",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Jemas",
+          "role": "writer"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Ultimate Spider-Man Vol. 1: Power and Responsibility"
+    },
+    {
+      "issueId": 14879,
+      "title": "Ultimate Spider-Man (2000) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/14879/ultimate_spider-man_2000_5",
+      "seriesId": 466,
+      "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+      "onSale": "2001-01-03T00:00:00+0000",
+      "mu": "2001-01-03T00:00:00+0000",
+      "digitalId": 3551,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/20/591def950b586",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Jemas",
+          "role": "writer"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Ultimate Spider-Man Vol. 1: Power and Responsibility"
+    },
+    {
+      "issueId": 14890,
+      "title": "Ultimate Spider-Man (2000) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/14890/ultimate_spider-man_2000_6",
+      "seriesId": 466,
+      "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+      "onSale": "2001-02-07T00:00:00+0000",
+      "mu": "2001-02-07T00:00:00+0000",
+      "digitalId": 3250,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/591df0828fb1c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Jemas",
+          "role": "writer"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Ultimate Spider-Man Vol. 1: Power and Responsibility"
+    },
+    {
+      "issueId": 14901,
+      "title": "Ultimate Spider-Man (2000) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/14901/ultimate_spider-man_2000_7",
+      "seriesId": 466,
+      "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+      "onSale": "2001-03-07T00:00:00+0000",
+      "mu": "2001-03-07T00:00:00+0000",
+      "digitalId": 3077,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/591df1a138732",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Jemas",
+          "role": "writer"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Ultimate Spider-Man Vol. 1: Power and Responsibility"
+    },
+    {
+      "issueId": 45808,
+      "title": "The Amazing Spider-Man (2014) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/45808/the_amazing_spider-man_2014_9",
+      "seriesId": 17285,
+      "seriesName": "The Amazing Spider-Man (2014 - 2015)",
+      "onSale": "2014-11-05T00:00:00+0000",
+      "mu": "2015-05-04T00:00:00+0000",
+      "digitalId": 35347,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/10/544018036c563",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Olivier Coipel",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Amazing Spider-Man Vol. 3: Spider-Verse"
+    },
+    {
+      "issueId": 45809,
+      "title": "The Amazing Spider-Man (2014) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/45809/the_amazing_spider-man_2014_10",
+      "seriesId": 17285,
+      "seriesName": "The Amazing Spider-Man (2014 - 2015)",
+      "onSale": "2014-11-19T00:00:00+0000",
+      "mu": "2015-05-11T00:00:00+0000",
+      "digitalId": 35346,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/546220a7a879a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Olivier Coipel",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Amazing Spider-Man Vol. 3: Spider-Verse"
+    },
+    {
+      "issueId": 45810,
+      "title": "The Amazing Spider-Man (2014) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/45810/the_amazing_spider-man_2014_11",
+      "seriesId": 17285,
+      "seriesName": "The Amazing Spider-Man (2014 - 2015)",
+      "onSale": "2014-12-10T00:00:00+0000",
+      "mu": "2015-06-01T00:00:00+0000",
+      "digitalId": 35762,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/5481e4efac784",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Olivier Coipel",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Amazing Spider-Man Vol. 3: Spider-Verse"
+    },
+    {
+      "issueId": 45811,
+      "title": "The Amazing Spider-Man (2014) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/45811/the_amazing_spider-man_2014_12",
+      "seriesId": 17285,
+      "seriesName": "The Amazing Spider-Man (2014 - 2015)",
+      "onSale": "2015-01-07T00:00:00+0000",
+      "mu": "2015-07-06T00:00:00+0000",
+      "digitalId": 35764,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/f0/54a17618be321",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Olivier Coipel",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Amazing Spider-Man Vol. 3: Spider-Verse"
+    },
+    {
+      "issueId": 50350,
+      "title": "The Amazing Spider-Man (2014) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/50350/the_amazing_spider-man_2014_13",
+      "seriesId": 17285,
+      "seriesName": "The Amazing Spider-Man (2014 - 2015)",
+      "onSale": "2015-01-21T00:00:00+0000",
+      "mu": "2015-07-20T00:00:00+0000",
+      "digitalId": 35765,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/03/54b431983083b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Olivier Coipel",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Amazing Spider-Man Vol. 3: Spider-Verse"
+    },
+    {
+      "issueId": 51320,
+      "title": "The Amazing Spider-Man (2014) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/51320/the_amazing_spider-man_2014_14",
+      "seriesId": 17285,
+      "seriesName": "The Amazing Spider-Man (2014 - 2015)",
+      "onSale": "2015-02-11T00:00:00+0000",
+      "mu": "2015-08-03T00:00:00+0000",
+      "digitalId": 36588,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/54cbf2d706709",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Giuseppe Camuncoli",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Amazing Spider-Man Vol. 3: Spider-Verse"
+    },
+    {
+      "issueId": 51324,
+      "title": "The Amazing Spider-Man (2014) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/51324/the_amazing_spider-man_2014_15",
+      "seriesId": 17285,
+      "seriesName": "The Amazing Spider-Man (2014 - 2015)",
+      "onSale": "2015-02-25T00:00:00+0000",
+      "mu": "2015-08-17T00:00:00+0000",
+      "digitalId": 36717,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/54e36dc309b16",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Giuseppe Camuncoli",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Amazing Spider-Man Vol. 3: Spider-Verse"
+    },
+    {
+      "issueId": 34135,
+      "title": "Amazing Spider-Man (1999) #648",
+      "number": "648",
+      "url": "https://www.marvel.com/comics/issue/34135/amazing_spider-man_1999_648",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2010-11-10T00:00:00+0000",
+      "mu": "2011-10-18T09:28:00+0000",
+      "digitalId": 17486,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/03/5813b47f01394",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 56,
+      "creators": [
+        {
+          "name": "Carlos Cuevas",
+          "role": "cover artist"
+        },
+        {
+          "name": "Clayton Henry",
+          "role": "penciler"
+        },
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        },
+        {
+          "name": "Paul Tobin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Spider-Man: Big Time"
+    },
+    {
+      "issueId": 30324,
+      "title": "Amazing Spider-Man (1999) #649",
+      "number": "649",
+      "url": "https://www.marvel.com/comics/issue/30324/amazing_spider-man_1999_649",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2010-11-24T00:00:00+0000",
+      "mu": "2011-10-18T09:29:30+0000",
+      "digitalId": 17904,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/50/58173f1742f1a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Carlos Cuevas",
+          "role": "cover artist"
+        },
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Spider-Man: Big Time"
+    },
+    {
+      "issueId": 30325,
+      "title": "Amazing Spider-Man (1999) #650",
+      "number": "650",
+      "url": "https://www.marvel.com/comics/issue/30325/amazing_spider-man_1999_650",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2010-12-15T00:00:00+0000",
+      "mu": "2011-10-18T09:32:16+0000",
+      "digitalId": 18441,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/30/5817407379f4e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Carlos Cuevas",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joseph M. Damon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Neil Edwards",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Spider-Man: Big Time"
+    },
+    {
+      "issueId": 30326,
+      "title": "Amazing Spider-Man (1999) #651",
+      "number": "651",
+      "url": "https://www.marvel.com/comics/issue/30326/amazing_spider-man_1999_651",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2011-01-12T00:00:00+0000",
+      "mu": "2013-04-08T00:00:00+0000",
+      "digitalId": 18853,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/10/4e9746f71c165",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Carlos Cuevas",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joseph M. Damon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stefano Caselli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Spider-Man: Big Time"
+    }
+  ]
+}
