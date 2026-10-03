@@ -5,7 +5,7 @@ Recap Page runs on your computer in a normal web browser.
 ## Take a reading list to another app
 
 Open **Export** on Reading and choose **Export personal checklist**, or choose it in
-**Backup & settings**. Review the preview, then choose **Download Markdown**.
+**Backup & settings**, under **Checklist and sharing options**. Review the preview, then choose **Download Markdown**.
 
 The file includes the list title and every comic in saved reading order, with read checkboxes.
 Filters do not remove comics from the export, and deferred comics keep their positions.
@@ -286,13 +286,34 @@ Use a normal browser window, not an editor preview, and allow pop-ups for the lo
 Reading comics requires your own Marvel Unlimited subscription. Recap Page opens the official
 reader when a direct link is available; otherwise it opens the issue's official page on marvel.com.
 
-### Choosing when to see issue descriptions
+### Comic details and reading actions
 
-**Hide descriptions until I reveal them** is on by default. **Fetch synopses** asks permission to
-fetch a Reading List's descriptions without revealing them. Use **Reveal description (may contain
-spoilers)** on Reading or Issue Details to see one, and **Hide description** to close it.
-For an unfetched description, Issue Details offers **Fetch and reveal description (may contain
-spoilers)** with confirmation. Neither action is needed to open the official reader.
+Reading keeps **Read** and **Done, next** together. **About this comic** opens its details without
+marking it read. **More comic actions** contains **Defer for later** and the external issue-page
+link. A completed list offers **Browse Reading Lists**; deferred comics retain their separate
+review and resume actions.
+
+Comic details put **Read** near the title. Creator information, dates and any saved note remain
+in the main view. **Trouble opening this comic?** contains the full Unlimited availability status,
+temporary-link editor and optional correction-report tools. A temporary-link warning stays visible near Read even when help
+is closed. A reader link still does not establish availability or subscription access.
+
+Add starts with **Search issues** and **Find a series**. **More ways to add** contains creator,
+paste and manual-entry choices. Search keeps its alternatives in **Other ways to find comics**,
+and an empty result offers **Add an issue by hand** directly.
+
+Under **Backup & settings**, **Download backup** and **Restore from a backup** come first.
+**Checklist and sharing options** contains the optional Markdown exports and their differences.
+The metadata-source form is under **Advanced**, inside **Metadata source**. Restore, undo,
+recovery copies and error reports are not hidden by these disclosures.
+
+### Choosing when to see story summaries
+
+**Hide story summaries until I reveal them** is on by default. **Fetch synopses** asks permission to
+fetch a Reading List's descriptions without revealing them. Use **Show story summary (may contain
+spoilers)** on Reading or Issue Details to see one, and **Hide story summary** to close it.
+For an unfetched description, Issue Details offers the same **Show story summary** action with
+confirmation before loading and revealing it. Neither action is needed to open the official reader.
 
 With hiding on, every issue starts collapsed, including read and untracked issues. Its last
 reveal or hide choice follows that exact issue between views in this tab. Changing its read flag
@@ -340,7 +361,8 @@ delete the progress stored there.
 
 ## Export an order without your reading history
 
-Open **Export** on Reading and choose **Export order only**, or choose it in **Backup & settings**,
+Open **Export** on Reading and choose **Export order only**, or choose it in **Backup & settings**
+under **Checklist and sharing options**,
 to download a local Markdown file for someone else. Before downloading, review the confirmation:
 the file includes the list name, ordered issue titles, official links and section labels. Every
 checkbox starts unread. Notes, descriptions, read timestamps and availability overrides are

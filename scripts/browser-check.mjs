@@ -1795,12 +1795,18 @@ const SCENARIOS = [
       };
       const focusIssue = (id) => go(`#/issue/${id}`, '#issue-focus-card:not([hidden])');
       const reading = () => go('#/read/fixture', '#view-read:not([hidden])');
+      const openHelp = async () => {
+        if (!await page.$eval('#reader-link-help', (node) => node.open)) {
+          await click(page, '#reader-link-heading');
+        }
+      };
       const paste = async (value) => page.$eval('#reader-link-input', (input, text) => {
         input.value = text;
         input.dispatchEvent(new Event('input', { bubbles: true }));
       }, value);
       const use = async (id, book) => {
         await focusIssue(id);
+        await openHelp();
         await click(page, '#reader-link-edit');
         await paste(`https://read.marvel.com/#/book/${book}`);
         await click(page, '#reader-link-apply');
@@ -1822,6 +1828,7 @@ const SCENARIOS = [
       t.check('manual comic without an original reference has editor but no Read', await page.$eval(
         '#btn-issue-read', (node) => node.hidden,
       ) && await page.$eval('#reader-link-edit', (node) => !node.disabled));
+      await openHelp();
       await click(page, '#reader-link-edit');
       t.check('explicit Edit renders the editor only', await rendered('#reader-link-form') && await closed('#reader-link-reportPanel'));
       await paste('https://wrong.example/reader/44');
@@ -1882,6 +1889,7 @@ const SCENARIOS = [
         new URL(window.__link453.opens.at(-1)[0]).searchParams.get('d') === '55'
       )));
       await focusIssue(-8);
+      await openHelp();
       await click(page, '#reader-link-edit');
       await paste('https://read.marvel.com/#/book/66');
       await page.keyboard.press('Escape');
@@ -1957,7 +1965,7 @@ const SCENARIOS = [
       }));
       t.check('forced colors retains a visible editor boundary when active', await page.evaluate(() => (
         !matchMedia('(forced-colors: active)').matches
-        || getComputedStyle(document.querySelector('#reader-link-root')).borderTopStyle !== 'none'
+        || getComputedStyle(document.querySelector('#reader-link-help')).borderTopStyle !== 'none'
       )));
       await page.setViewport({ width: 1280, height: 900 });
       await page.reload({ waitUntil: 'load' });
@@ -1986,6 +1994,7 @@ const SCENARIOS = [
       await restore(backup);
       await use(-8, 44);
       await go('#/data', '#view-data:not([hidden])');
+      await click(page, '#metadata-settings > summary');
       await page.focus('#api-base');
       await page.waitForSelector('#list-nav .ri');
       await page.evaluate(() => {
@@ -5999,7 +6008,7 @@ const SCENARIOS = [
       const zoom = await page.$eval('#modern-timeline-feature', (feature) => {
         const button = feature.querySelector('[data-act="import"]');
         const buttonRect = button.getBoundingClientRect();
-        const copy = feature.querySelector('.setup-guide-context p:last-child');
+        const copy = feature.querySelector('.setup-guide-context > p:not(.eyebrow)');
         return {
           scale: visualViewport.scale,
           active: document.activeElement === button,
@@ -6872,6 +6881,7 @@ const SCENARIOS = [
           'add-search', 'add-series', 'add-creator', 'add-import', 'add-manual',
         ]),
         JSON.stringify(addChoices));
+      await click(page, '#add-other-methods > summary');
       await click(page, '#view-add [data-view="add-manual"]');
       const addChild = await page.evaluate(() => ({
         hash: location.hash,
@@ -7991,7 +8001,7 @@ const SCENARIOS = [
       //
       // checkVisibility() with no argument answers a narrower question than it looks like it does:
       // it defaults every option off and so returns true for both `visibility: hidden` and
-      // `opacity: 0`. The second is not hypothetical here. `src/styles.css:1035` hides the row
+      // `opacity: 0`. The second is not hypothetical here. `src/styles.css:1042` hides the row
       // actions with exactly `opacity: 0`, so it is this stylesheet's established way of putting a
       // control out of reach, and the defaults are blind to it. Measured in the same Edge this
       // drives: with the two buttons faded that way both rows passed while nothing sat under the
@@ -8165,7 +8175,7 @@ const SCENARIOS = [
           return document.querySelector('#hero-desc').textContent.startsWith('Synthetic plot 447')
             && button.getAttribute('aria-expanded') === 'true'
             && button.getAttribute('aria-controls') === 'hero-desc'
-            && button.getAttribute('aria-label').includes('Hide description')
+            && button.getAttribute('aria-label').includes('Hide story summary')
             && button === document.activeElement && rect.width > 0 && rect.height > 0
             && style.outlineStyle !== 'none' && parseFloat(style.outlineWidth) > 0
             && window.__disclosure447.opens.length === 1;
@@ -9897,8 +9907,8 @@ const SCENARIOS = [
       const beforePreference = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
       t.check('the switch is labelled and describes its local-only boundary',
         await page.$eval('#opt-reading-shortcut', (input) => input.labels[0].textContent.includes('Enable D')
-          && input.getAttribute('aria-describedby') === 'reading-shortcut-help')
-        && await page.$eval('#reading-shortcut-help', (help) => help.textContent.includes('separately from reading progress and backups')));
+          && input.getAttribute('aria-describedby') === 'reading-shortcut-help reading-shortcut-storage-help')
+        && await page.$eval('#reading-shortcut-storage-help', (help) => help.textContent.includes('separately from reading progress and backups')));
       await click(page, '#opt-reading-shortcut');
       t.check('off removes shortcut metadata and changes the reference without touching progress',
         disabled(await presentation())
@@ -10049,6 +10059,7 @@ const SCENARIOS = [
       t.check('the empty-state action opens the existing Add comics hub with heading focus',
         await page.$eval('#add-h', (heading) => heading === document.activeElement)
         && (await readState(page)).active === listId);
+      await click(page, '#add-other-methods > summary');
       await click(page, '#view-add [data-view="add-manual"]');
       const destination = await page.$eval('#view-add-manual .add-target', (node) => node.textContent);
       t.check('the existing add form names the intended saved list', destination.includes('Empty list 441'), destination);
@@ -10093,7 +10104,8 @@ const SCENARIOS = [
         completed.completed && !completed.empty && !completed.hero
         && completed.ring === 'All read' && completed.count === 'All read'
         && completed.focused === 'all-read-h'
-        && await page.$eval('#all-read-h', (node) => node.textContent === 'That is the whole order, read.'),
+        && await page.$eval('#all-read-h', (node) => node.textContent === 'Reading List complete')
+        && await page.$eval('#all-read [data-view="browse"]', (node) => node.checkVisibility()),
         JSON.stringify(completed));
       const completedState = await readState(page);
       await click(page, '.brand[data-view="home"]');
@@ -11765,6 +11777,8 @@ const SCENARIOS = [
       t.check('Ctrl+\\ from a panel descendant closes Navigation and rescues focus', ctrlClose.hidden && ctrlClose.focus === 'btn-rail-toggle', JSON.stringify(ctrlClose));
 
       await activateByKeyboard('#sidebar-panel .ri[data-view="add"]', 'view-add');
+      await page.focus('#add-other-methods > summary');
+      await page.keyboard.press('Enter');
       await page.$eval('#view-add [data-view="add-manual"]', (button) => button.focus());
       await page.keyboard.press('Enter');
       await page.waitForSelector('#manual-title', { timeout: 15000 });

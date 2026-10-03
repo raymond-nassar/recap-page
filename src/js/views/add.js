@@ -256,6 +256,7 @@ export function createAddView({
   reportBundledLoadFailure,
   saveLongAddPage,
   search,
+  showView,
   updateState,
   warmNameIndex,
   withSaveEducation,
@@ -431,7 +432,10 @@ export function createAddView({
     const box = $(selector);
     box.replaceChildren();
     if (!items.length) {
-      notify(selector, 'Nothing matched that search.', 'warn');
+      notify(selector, 'Nothing matched that search. You can add the comic by hand.', 'warn', selector, {
+        label: 'Add an issue by hand',
+        onClick: () => showView('add-manual', { push: true }),
+      });
       return;
     }
     const held = heldCount(getState(), items);

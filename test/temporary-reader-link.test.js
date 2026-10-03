@@ -43,7 +43,10 @@ function node(id, ownerDocument) {
     value: '',
     textContent: '',
     focus() { ownerDocument.activeElement = this; },
-    getClientRects() { return this.hidden || this.parent?.getClientRects().length === 0 ? [] : [{}]; },
+    getClientRects() {
+      return this.hidden || this.parent?.getClientRects().length === 0
+        || (this.parent?.disclosure && !this.parent.open && this !== this.parent.heading) ? [] : [{}];
+    },
     contains(target) { return this === target || this.children.some((child) => child.contains(target)); },
     setAttribute(key, value) { attributes.set(key, String(value)); },
     getAttribute(key) { return attributes.get(key) ?? null; },
@@ -74,12 +77,17 @@ function harness() {
     'root', 'summary', 'edit', 'form', 'label', 'input', 'preview', 'error',
     'apply', 'cancel', 'revert', 'status', 'reportToggle', 'reportPanel',
     'reportText', 'reportStatus', 'regenerate', 'reportLink', 'reportDisclosure',
+    'help', 'heading', 'temporary',
   ].map((key) => [key, node(`test-${key}`, doc)]));
+  nodes.help.disclosure = true;
+  nodes.help.open = false;
+  nodes.help.heading = nodes.heading;
   nodes.form.children = [nodes.input, nodes.apply, nodes.cancel];
   nodes.reportPanel.children = [nodes.reportText, nodes.regenerate, nodes.reportLink];
-  nodes.root.children = Object.values(nodes).filter((entry) => entry !== nodes.root
+  nodes.help.children = Object.values(nodes).filter((entry) => ![nodes.root, nodes.help, nodes.temporary].includes(entry)
     && !nodes.form.children.includes(entry) && !nodes.reportPanel.children.includes(entry));
-  for (const parent of [nodes.root, nodes.form, nodes.reportPanel]) {
+  nodes.root.children = [nodes.help];
+  for (const parent of [nodes.root, nodes.help, nodes.form, nodes.reportPanel]) {
     for (const child of parent.children) child.parent = parent;
   }
   const links = createTemporaryReaderLinks();
@@ -373,4 +381,73 @@ test('injected reader form reconciles outcomes without discarding unrelated temp
   assert.equal(h.nodes.edit.disabled, true);
   h.nodes.edit.fire('click');
   assert.match(h.messages.at(-1), /matching saved comic/);
+});
+
+test('reader help starts closed and keeps an active temporary link visible outside its disclosure', () => {
+  const h = harness();
+  const before = structuredClone(h.state());
+  assert.equal(h.nodes.help.open, false);
+  assert.equal(h.nodes.temporary.hidden, true);
+  h.nodes.edit.fire('click');
+  assert.equal(h.nodes.help.open, true, 'Explicit editing makes its controls visible');
+  h.paste('https://read.marvel.com/#/book/22');
+  h.nodes.form.fire('submit');
+  h.nodes.help.open = false;
+  h.nodes.heading.focus();
+  h.view.refresh();
+  assert.equal(h.nodes.edit.getClientRects().length, 0);
+  assert.equal(h.nodes.temporary.hidden, false);
+  assert.equal(h.nodes.temporary.getClientRects().length, 1);
+  assert.match(h.nodes.temporary.textContent, /temporary reader link/i);
+  assert.match(h.nodes.temporary.textContent, /reload|close/i);
+  assert.match(h.nodes.temporary.textContent, /does not verify.*identity or access/i);
+  assert.doesNotMatch(h.nodes.temporary.textContent, /https?:\/\//);
+  assert.deepEqual(h.state(), before);
+  h.nodes.help.open = true;
+  h.nodes.revert.fire('click');
+  assert.equal(h.nodes.temporary.hidden, true);
+});
+
+test('changing comic context closes reader help and withdraws stale drafts without losing unrelated links', () => {
+  const h = harness();
+  h.links.use(h.state(), 7, 'https://read.marvel.com/#/book/22');
+  h.nodes.edit.fire('click');
+  h.paste('https://read.marvel.com/#/book/33');
+  h.view.show(-8);
+  assert.equal(h.nodes.help.open, false);
+  assert.equal(h.nodes.form.hidden, true);
+  assert.equal(h.nodes.input.value, '');
+  assert.equal(h.nodes.temporary.hidden, true);
+  assert.equal(h.doc.activeElement, h.nodes.heading);
+  assert.equal(h.links.get(h.state(), 7), 22);
+  h.view.leave();
+  assert.equal(h.nodes.help.open, false);
+  assert.equal(h.nodes.temporary.hidden, true);
+  h.view.show(7);
+  assert.equal(h.nodes.help.open, false);
+  assert.equal(h.nodes.temporary.hidden, false);
+  h.replace({ ...h.state(), issues: {} });
+  h.view.refresh();
+  assert.equal(h.nodes.temporary.hidden, true);
+  assert.equal(h.nodes.edit.disabled, true);
+});
+
+test('reader refresh restores focus to visible help rather than a control inside closed details', () => {
+  const h = harness();
+  h.nodes.edit.fire('click');
+  assert.equal(h.doc.activeElement, h.nodes.input);
+  h.nodes.help.open = false;
+  h.view.refresh();
+  assert.equal(h.doc.activeElement, h.nodes.heading);
+  assert.equal(h.nodes.heading.getClientRects().length, 1);
+  assert.equal(h.nodes.input.getClientRects().length, 0);
+});
+
+test('native details layout boxes do not keep focus in a closed reader editor', () => {
+  const h = harness();
+  h.nodes.edit.fire('click');
+  h.nodes.help.open = false;
+  h.nodes.input.getClientRects = () => [{}];
+  h.view.refresh();
+  assert.equal(h.doc.activeElement.id, h.nodes.heading.id);
 });

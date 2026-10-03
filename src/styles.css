@@ -18,14 +18,11 @@
    Colours that are the same in both themes stay in the shared block. Only what genuinely
    differs is restated, so the light theme is 25 declarations rather than a second palette. */
 
-.reader-link { min-width: 0; border: 1px solid var(--line); border-radius: var(--r); padding: var(--space-6); }
+.reader-link { min-width: 0; margin-top: var(--space-6); }
 .reader-link p, .reader-link button, .reader-link a { overflow-wrap: anywhere; }
 .reader-link input, .reader-link textarea { width: 100%; min-width: 0; box-sizing: border-box; }
 .reader-link .cta { flex-wrap: wrap; }
 #reader-link-root[hidden], #reader-link-form[hidden], #reader-link-reportPanel[hidden] { display: none; }
-@media (forced-colors: active) {
-  .reader-link { border-color: CanvasText; }
-}
 
 :root {
   --r: 14px;
@@ -779,6 +776,16 @@ body.nocovers .fallback, .fallback.show { display: flex; }
 }
 .issue-focus .hero-body { align-self: center; }
 .issue-focus .hero-body > .byline:first-child { margin-top: var(--space-2); }
+.issue-reading-controls { grid-column: 1 / -1; }
+.issue-reading-controls .issue-focus-note { margin: var(--space-5) 0 0; }
+@media (max-width: 700px) {
+  .issue-focus .hero-in { gap: var(--space-6); }
+  .issue-focus .art { max-width: 96px; }
+  .issue-focus .fallback { aspect-ratio: auto; min-height: 144px; gap: var(--space-3); }
+  .issue-focus .fallback .fs { font-size: var(--t-caption); overflow-wrap: anywhere; }
+  .issue-focus .fallback .fn { font-size: var(--t-title-lg); }
+  .issue-reading-controls .btn { min-height: 48px; width: 100%; justify-content: center; }
+}
 .byline { color: var(--dim); margin: 0 0 var(--space-6); font-size: var(--t-body); }
 .desc { color: var(--dim); font-size: var(--t-body); margin: 0 0 var(--space-6); max-width: 58ch; }
 
@@ -1259,6 +1266,11 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: 6px; padding: 
 }
 .field-disclosure > .stack { padding: var(--space-2) 0 var(--space-5); }
 .field-disclosure > .rail-hint { margin: 0; padding: 0 0 var(--space-5); max-width: 62ch; }
+.action-disclosure > summary { min-height: 48px; gap: var(--space-4); }
+#view-data .action-disclosure > summary > h3 { margin: 0; font: inherit; }
+.action-disclosure > summary::after { content: "›"; margin-left: auto; font-size: var(--t-body-lg); }
+.action-disclosure[open] > summary::after { transform: rotate(90deg); }
+.action-disclosure > .search-hub-grid { padding-bottom: var(--space-5); }
 .progress-method { margin: 0 0 var(--space-6); }
 .library-sort {
   margin: 0 0 var(--space-5); color: var(--muted); font-size: var(--t-caption); font-weight: 600;
@@ -1276,6 +1288,9 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: 6px; padding: 
 .search-hub-other { margin-top: var(--space-7); }
 .library-tools { margin-top: var(--space-9); }
 .add-hub-grid { max-width: 48rem; }
+.add-other-methods, .search-alternatives { max-width: 48rem; margin-top: var(--space-6); }
+.search-alternatives .search-hub { margin-top: var(--space-5); }
+.search-alternatives .search-hub:last-child { margin-bottom: var(--space-5); }
 @media (max-width: 560px) {
   .search-hub-grid { grid-template-columns: 1fr; }
 }
@@ -1306,6 +1321,8 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: 6px; padding: 
 .setup-guide-feature { margin-top: var(--space-5); }
 .setup-guide-context { margin: 0 0 var(--space-5); max-width: 72ch; }
 .setup-guide-context p { margin: var(--space-2) 0 0; }
+.setup-guide-about { margin-top: var(--space-4); }
+.setup-guide-about > p { margin: 0; padding-bottom: var(--space-5); }
 .setup-guide-feature .setup-guide-grid { max-width: 48rem; }
 
 .timeline-flow {
@@ -1830,6 +1847,23 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
    job. The Unlimited button grows, `Done, next` stays a ghost because it is an action, and the
    issue page becomes a link because that is what it is: a way out of the app. */
 .hero .cta { gap: var(--space-5); align-items: center; }
+.reading-comic-actions { display: flex; align-items: flex-start; flex-wrap: wrap; gap: var(--space-5); margin: var(--space-4) 0 var(--space-5); }
+.comic-options { flex: 1 1 12rem; border: 0; }
+.comic-options > .cta { padding-bottom: var(--space-4); }
+@media (max-width: 700px) {
+  #hero .hero-in { display: flow-root; padding: var(--space-6); }
+  #hero .hero-in > .art { float: left; width: 96px; margin: 0 var(--space-5) var(--space-4) 0; }
+  #hero .art .fallback { padding: var(--space-4); overflow-wrap: anywhere; }
+  #hero .cta, #hero-facts, #hero-desc, .reading-comic-actions { clear: both; }
+  #hero-facts { gap: var(--space-4) var(--space-5); margin: var(--space-5) 0 var(--space-4); }
+  #hero-primary-actions > .btn { min-height: 48px; width: 100%; justify-content: center; }
+  .reading-comic-actions > .btn { min-height: 48px; }
+  #view-data .setting-more > summary { min-height: 48px; box-sizing: border-box; }
+  #form-search .btn-icon, #form-series .btn-icon, #form-creator .btn-icon { min-width: 48px; min-height: 48px; }
+  #form-search, #form-catalog-search { grid-template-columns: minmax(0, 1fr); }
+  #form-search .field-row, #form-catalog-search .field-row { min-width: 0; }
+  #catalog-filters { min-width: 0; max-width: 100%; }
+}
 .btn-lg { padding: var(--space-5) var(--space-8); font-size: var(--t-body-lg); font-weight: 700; border-radius: 12px; }
 .btn-link {
   background: none; color: var(--blue); border-color: transparent; font-weight: 600;

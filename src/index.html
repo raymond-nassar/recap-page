@@ -293,24 +293,29 @@
                          out. -->
                     <h2 id="hero-title">Nothing up next</h2>
                     <p class="byline" id="hero-by"></p>
-                    <button type="button" class="btn btn-g" id="btn-hero-description" aria-controls="hero-desc" aria-expanded="false" hidden>Reveal description (may contain spoilers)</button>
-                    <p class="desc" id="hero-desc"></p>
-                    <dl class="facts" id="hero-facts"></dl>
-                    <div class="cta">
+                    <div class="cta" id="hero-primary-actions">
                       <button type="button" class="btn btn-lg has-tooltip" id="btn-hero-read" data-tooltip="Keyboard shortcut: Enter" aria-keyshortcuts="Enter">
                         Open in Marvel Unlimited
-                      </button>
-                      <button type="button" class="btn btn-g" id="btn-hero-inspect">
-                        Inspect issue
                       </button>
                       <button type="button" class="btn btn-g has-tooltip" id="btn-hero-done" data-tooltip="Keyboard shortcut: D" aria-keyshortcuts="d">
                         Done, next
                       </button>
-                      <button type="button" class="btn btn-g" id="btn-hero-defer">Defer for later</button>
-                      <a class="btn btn-link" id="btn-hero-info" target="_blank" rel="noopener noreferrer">
-                        Issue page ↗
-                      </a>
                     </div>
+                    <dl class="facts" id="hero-facts"></dl>
+                    <div class="reading-comic-actions">
+                      <button type="button" class="btn btn-link" id="btn-hero-inspect">About this comic</button>
+                      <details class="field-disclosure action-disclosure comic-options" id="hero-more-actions">
+                        <summary>More comic actions</summary>
+                        <div class="cta">
+                          <button type="button" class="btn btn-g" id="btn-hero-defer">Defer for later</button>
+                          <a class="btn btn-link" id="btn-hero-info" target="_blank" rel="noopener noreferrer">
+                            Issue page ↗
+                          </a>
+                        </div>
+                      </details>
+                    </div>
+                    <button type="button" class="btn btn-g" id="btn-hero-description" aria-controls="hero-desc" aria-expanded="false" hidden>Show story summary (may contain spoilers)</button>
+                    <p class="desc" id="hero-desc"></p>
                   </div>
                 </div>
               </section>
@@ -323,8 +328,9 @@
 
               <div id="all-read" class="empty-state" hidden>
                 <div class="empty-glyph" aria-hidden="true">✓</div>
-                <h2 id="all-read-h" tabindex="-1">That is the whole order, read.</h2>
-                <p>Every issue in this list is ticked off. Pick another order, or start a new list.</p>
+                <h2 id="all-read-h" tabindex="-1">Reading List complete</h2>
+                <p>Every issue in this list is marked read.</p>
+                <button type="button" class="btn" data-view="browse">Browse Reading Lists</button>
               </div>
 
               <section id="all-deferred" class="empty-state" hidden aria-labelledby="all-deferred-h">
@@ -383,7 +389,7 @@
           <section id="view-issue" class="view view-wide" hidden aria-labelledby="issue-focus-h">
             <div class="head">
               <div class="head-left">
-                <p class="eyebrow">Issue details</p>
+                <p class="eyebrow">About this comic</p>
                 <h1 id="issue-focus-h">Issue details</h1>
                 <p class="sub" id="issue-focus-context"></p>
               </div>
@@ -394,6 +400,14 @@
               <div class="hero-bg" id="issue-focus-bg" aria-hidden="true"></div>
               <div class="hero-fade" aria-hidden="true"></div>
               <div class="hero-in">
+                <div class="issue-reading-controls">
+                  <div class="cta">
+                    <button type="button" class="btn btn-lg" id="btn-issue-read">
+                      Open in Marvel Unlimited
+                    </button>
+                  </div>
+                  <p id="reader-link-temporary" class="issue-focus-note" hidden></p>
+                </div>
                 <div class="art">
                   <img id="issue-focus-img" alt="" />
                   <div class="fallback cover-fallback" id="issue-focus-fb" aria-hidden="true">
@@ -403,53 +417,55 @@
                 </div>
                 <div class="hero-body">
                   <p class="byline" id="issue-focus-by"></p>
-                  <button type="button" class="btn btn-g" id="btn-issue-description" aria-controls="issue-focus-desc" aria-expanded="false" hidden>Reveal description (may contain spoilers)</button>
+                  <button type="button" class="btn btn-g" id="btn-issue-description" aria-controls="issue-focus-desc" aria-expanded="false" hidden>Show story summary (may contain spoilers)</button>
                   <p class="desc" id="issue-focus-desc"></p>
                   <dl class="facts" id="issue-focus-facts"></dl>
                   <p class="issue-focus-note" id="issue-focus-note" hidden></p>
-                  <section id="reader-link-root" class="reader-link stack" aria-labelledby="reader-link-heading" hidden>
-                    <h2 id="reader-link-heading">Wrong reader link?</h2>
-                    <p id="reader-link-summary" class="rail-hint"></p>
-                    <div class="cta">
-                      <button type="button" class="btn btn-g" id="reader-link-edit">Edit temporary reader link</button>
-                      <button type="button" class="btn btn-g" id="reader-link-revert" hidden>Use original link</button>
-                    </div>
-                    <form id="reader-link-form" class="stack" hidden>
-                      <label id="reader-link-label" for="reader-link-input">Marvel Unlimited reader address</label>
-                      <input id="reader-link-input" type="url" autocomplete="off" spellcheck="false" />
-                      <p class="rail-hint">Use only a link for this exact comic. Paste an http or https address on read.marvel.com with a /#/book/ numeric reference (up to 12 digits). Comic information pages, other hosts and custom ports are not accepted.</p>
-                      <p id="reader-link-preview" class="rail-hint"></p>
-                      <p id="reader-link-error" class="report"></p>
-                      <div class="cta">
-                        <button id="reader-link-apply" type="submit" class="btn">Use temporarily</button>
-                        <button id="reader-link-cancel" type="button" class="btn btn-g">Cancel</button>
-                      </div>
-                    </form>
-                    <p id="reader-link-status" class="rail-hint"></p>
-                    <button id="reader-link-reportToggle" type="button" class="btn btn-g">Report details</button>
-                    <div id="reader-link-reportPanel" class="stack" hidden>
-                      <p id="reader-link-reportStatus" class="rail-hint"></p>
-                      <textarea id="reader-link-reportText" rows="8" spellcheck="false"></textarea>
-                      <button id="reader-link-regenerate" type="button" class="btn btn-g">Regenerate report details</button>
-                      <p id="reader-link-reportDisclosure" class="rail-hint"></p>
-                      <a id="reader-link-reportLink" class="btn btn-g" href="https://github.com/raymond-nassar/recap-page/issues/new?template=data-order.yml" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">Open GitHub correction form (new tab)</a>
-                    </div>
-                  </section>
                   <p class="rail-hint" id="issue-synopsis-status" role="status" hidden></p>
                   <div class="cta">
-                    <button type="button" class="btn btn-lg" id="btn-issue-read">
-                      Open in Marvel Unlimited
-                    </button>
                     <button type="button" class="btn btn-g" id="btn-issue-synopsis">
-                      Fetch and reveal description (may contain spoilers)
+                      Show story summary (may contain spoilers)
                     </button>
                     <button type="button" class="btn btn-g" id="btn-cancel-issue-synopsis" hidden>
-                      Stop synopsis
+                      Stop loading summary
                     </button>
                     <a class="btn btn-link" id="btn-issue-info" target="_blank" rel="noopener noreferrer">
                       Issue page ↗
                     </a>
                   </div>
+                  <section id="reader-link-root" class="reader-link" aria-labelledby="reader-link-heading" hidden>
+                    <details class="field-disclosure action-disclosure" id="reader-link-help">
+                      <summary id="reader-link-heading">Trouble opening this comic?</summary>
+                      <div class="stack">
+                        <dl class="facts" id="issue-focus-availability"></dl>
+                        <p id="reader-link-summary" class="rail-hint"></p>
+                        <div class="cta">
+                          <button type="button" class="btn btn-g" id="reader-link-edit">Edit temporary reader link</button>
+                          <button type="button" class="btn btn-g" id="reader-link-revert" hidden>Use original link</button>
+                        </div>
+                        <form id="reader-link-form" class="stack" hidden>
+                          <label id="reader-link-label" for="reader-link-input">Marvel Unlimited reader address</label>
+                          <input id="reader-link-input" type="url" autocomplete="off" spellcheck="false" />
+                          <p class="rail-hint">Use only a link for this exact comic. Paste an http or https address on read.marvel.com with a /#/book/ numeric reference (up to 12 digits). Comic information pages, other hosts and custom ports are not accepted.</p>
+                          <p id="reader-link-preview" class="rail-hint"></p>
+                          <p id="reader-link-error" class="report"></p>
+                          <div class="cta">
+                            <button id="reader-link-apply" type="submit" class="btn">Use temporarily</button>
+                            <button id="reader-link-cancel" type="button" class="btn btn-g">Cancel</button>
+                          </div>
+                        </form>
+                        <p id="reader-link-status" class="rail-hint"></p>
+                        <button id="reader-link-reportToggle" type="button" class="btn btn-g">Report details</button>
+                        <div id="reader-link-reportPanel" class="stack" hidden>
+                          <p id="reader-link-reportStatus" class="rail-hint"></p>
+                          <textarea id="reader-link-reportText" rows="8" spellcheck="false"></textarea>
+                          <button id="reader-link-regenerate" type="button" class="btn btn-g">Regenerate report details</button>
+                          <p id="reader-link-reportDisclosure" class="rail-hint"></p>
+                          <a id="reader-link-reportLink" class="btn btn-g" href="https://github.com/raymond-nassar/recap-page/issues/new?template=data-order.yml" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">Open GitHub correction form (new tab)</a>
+                        </div>
+                      </div>
+                    </details>
+                  </section>
                 </div>
               </div>
             </section>
@@ -625,23 +641,28 @@
           <!-- ---------------------------------------- add hub -->
           <section id="view-add" class="view" hidden aria-labelledby="add-h">
             <div class="head"><div class="head-left"><h1 id="add-h">Add comics</h1></div></div>
-            <div class="search-hub-grid add-hub-grid">
+            <div class="search-hub-grid add-hub-grid" id="add-primary-methods">
               <button type="button" class="search-hub-card" data-view="add-search">
                 <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#search"/></svg><span>Search issues</span>
               </button>
               <button type="button" class="search-hub-card" data-view="add-series">
                 <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#books"/></svg><span>Find a series</span>
               </button>
-              <button type="button" class="search-hub-card" data-view="add-creator">
-                <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#person"/></svg><span>Browse a creator</span>
-              </button>
-              <button type="button" class="search-hub-card" data-view="add-import">
-                <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#paste"/></svg><span>Paste a Reading List</span>
-              </button>
-              <button type="button" class="search-hub-card" data-view="add-manual">
-                <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#issue-add"/></svg><span>Add an issue by hand</span>
-              </button>
             </div>
+            <details class="field-disclosure action-disclosure add-other-methods" id="add-other-methods">
+              <summary>More ways to add</summary>
+              <div class="search-hub-grid">
+                <button type="button" class="search-hub-card" data-view="add-creator">
+                  <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#person"/></svg><span>Browse a creator</span>
+                </button>
+                <button type="button" class="search-hub-card" data-view="add-import">
+                  <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#paste"/></svg><span>Paste a Reading List</span>
+                </button>
+                <button type="button" class="search-hub-card" data-view="add-manual">
+                  <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#issue-add"/></svg><span>Add an issue by hand</span>
+                </button>
+              </div>
+            </details>
           </section>
 
           <!-- ---------------------------------------- add child views -->
@@ -665,40 +686,43 @@
               -->
               <div id="search-results" class="results"></div>
             </section>
-            <section class="search-hub" aria-labelledby="search-browse-h">
-              <h2 id="search-browse-h">Browse by</h2>
-              <div class="search-hub-grid">
-                <button type="button" class="search-hub-card" data-view="add-series">
-                  <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#books"/></svg>
-                  <span>Series</span>
-                </button>
-                <button type="button" class="search-hub-card" data-view="add-creator">
-                  <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#person"/></svg>
-                  <span>Creators</span>
-                </button>
-                <button type="button" class="search-hub-card" data-view="spotlights">
-                  <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#characters"/></svg>
-                  <span>Characters</span>
-                </button>
-                <button type="button" class="search-hub-card" data-view="catalog">
-                  <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#guide"/></svg>
-                  <span>Reading guides</span>
-                </button>
-              </div>
-            </section>
-            <section class="search-hub search-hub-other" aria-labelledby="search-other-h">
-              <h2 id="search-other-h">Other ways to add</h2>
-              <div class="search-hub-grid">
-                <button type="button" class="search-hub-card" data-view="add-import">
-                  <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#paste"/></svg>
-                  <span>Paste a Reading List</span>
-                </button>
-                <button type="button" class="search-hub-card" data-view="add-manual">
-                  <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#issue-add"/></svg>
-                  <span>Add an issue by hand</span>
-                </button>
-              </div>
-            </section>
+            <details class="field-disclosure action-disclosure search-alternatives" id="search-alternatives">
+              <summary>Other ways to find comics</summary>
+              <section class="search-hub" aria-labelledby="search-browse-h">
+                <h2 id="search-browse-h">Browse by</h2>
+                <div class="search-hub-grid">
+                  <button type="button" class="search-hub-card" data-view="add-series">
+                    <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#books"/></svg>
+                    <span>Series</span>
+                  </button>
+                  <button type="button" class="search-hub-card" data-view="add-creator">
+                    <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#person"/></svg>
+                    <span>Creators</span>
+                  </button>
+                  <button type="button" class="search-hub-card" data-view="spotlights">
+                    <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#characters"/></svg>
+                    <span>Characters</span>
+                  </button>
+                  <button type="button" class="search-hub-card" data-view="catalog">
+                    <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#guide"/></svg>
+                    <span>Reading guides</span>
+                  </button>
+                </div>
+              </section>
+              <section class="search-hub search-hub-other" aria-labelledby="search-other-h">
+                <h2 id="search-other-h">Other ways to add</h2>
+                <div class="search-hub-grid">
+                  <button type="button" class="search-hub-card" data-view="add-import">
+                    <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#paste"/></svg>
+                    <span>Paste a Reading List</span>
+                  </button>
+                  <button type="button" class="search-hub-card" data-view="add-manual">
+                    <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#issue-add"/></svg>
+                    <span>Add an issue by hand</span>
+                  </button>
+                </div>
+              </section>
+            </details>
           </section>
 
           <section id="view-add-series" class="view" hidden aria-labelledby="add-series-h">
@@ -800,13 +824,10 @@
               <h2>Data safety</h2>
               <div class="card card-static addpri">
                 <h3>Backup and restore</h3>
-                <p class="rail-hint">Export regularly. Clearing site data for this address erases your progress.</p>
+                <p class="rail-hint">Back up regularly. Clearing site data for this address erases your progress.</p>
                 <div class="field-row">
-                  <button type="button" id="btn-export-json" class="btn">Download JSON backup</button>
-                  <button type="button" id="btn-export-md-2" class="btn btn-g">Export personal checklist</button>
-                  <button type="button" id="btn-export-order-2" class="btn btn-g" aria-describedby="export-order-hint">Export order only</button>
+                  <button type="button" id="btn-export-json" class="btn">Download backup</button>
                 </div>
-                <p class="rail-hint" id="export-order-hint">Order-only Markdown excludes notes, descriptions, reading progress and availability overrides. Personal Markdown includes notes and read checkboxes, but notes do not re-import. JSON is the lossless reader-data backup.</p>
 
                 <h4>Restore from a backup</h4>
                 <p class="rail-hint">A snapshot of your current data is kept, so a restore can be undone once.</p>
@@ -815,6 +836,16 @@
                   <button type="button" id="btn-undo-restore" class="btn btn-g" hidden>Undo last restore</button>
                 </div>
                 <div id="restore-report" class="results"></div>
+                <details class="field-disclosure action-disclosure" id="backup-export-options">
+                  <summary>Checklist and sharing options</summary>
+                  <div class="stack">
+                    <div class="field-row">
+                      <button type="button" id="btn-export-md-2" class="btn btn-g">Export personal checklist</button>
+                      <button type="button" id="btn-export-order-2" class="btn btn-g" aria-describedby="export-order-hint">Export order only</button>
+                    </div>
+                    <p class="rail-hint" id="export-order-hint">Order-only Markdown excludes notes, descriptions, reading progress and availability overrides. Personal Markdown includes notes and read checkboxes, but notes do not re-import. JSON is the lossless reader-data backup.</p>
+                  </div>
+                </details>
               </div>
 
               <div class="card card-static setting">
@@ -838,11 +869,14 @@
               <h2>Personalization</h2>
               <div class="card card-static setting">
                 <h3>Reading shortcut</h3>
-                <label class="checkbox setting-ctl"><input type="checkbox" id="opt-reading-shortcut" aria-describedby="reading-shortcut-help" /> Enable D to mark read and move next</label>
+                <label class="checkbox setting-ctl"><input type="checkbox" id="opt-reading-shortcut" aria-describedby="reading-shortcut-help reading-shortcut-storage-help" /> Enable D to mark read and move next</label>
                 <p id="reading-shortcut-help" class="rail-hint setting-desc">
-                  Turn this off to avoid marking an issue read by pressing D. Done, next still works.
-                  Your choice is kept in this browser, separately from reading progress and backups.
+                  Turn this off to avoid marking an issue read by pressing D.
                 </p>
+                <details class="setting-more">
+                  <summary>About this preference</summary>
+                  <p class="rail-hint" id="reading-shortcut-storage-help">Done, next still works. Your choice is kept in this browser, separately from reading progress and backups.</p>
+                </details>
                 <div id="reading-shortcut-report" class="results"></div>
               </div>
 
@@ -878,14 +912,20 @@
                 </details>
               </div>
               <div class="card card-static setting">
-                <h3>Description hiding</h3>
-                <label class="checkbox setting-ctl"><input type="checkbox" id="opt-description-hiding" aria-describedby="description-hiding-help" /> Hide descriptions until I reveal them</label>
+                <h3>Story summaries</h3>
+                <label class="checkbox setting-ctl"><input type="checkbox" id="opt-description-hiding" aria-describedby="description-hiding-help" /> Hide story summaries until I reveal them</label>
                 <p id="description-hiding-help" class="rail-hint setting-desc">
-                  On by default. Turn off to show already-fetched descriptions without Reveal and Hide controls.
-                  Fetching still asks permission. This does not identify spoilers or filter titles and covers.
-                  Changing this choice resets individual reveal choices, not fetched text.
-                  The preference is saved in this browser, separately from progress and backups.
+                  On by default. Loading a summary still asks permission. Titles and covers may contain spoilers.
                 </p>
+                <details class="setting-more">
+                  <summary>What this choice changes</summary>
+                  <p class="rail-hint">
+                    Turn off to show already-fetched summaries without Show and Hide controls.
+                    This does not identify spoilers or filter titles and covers.
+                    Changing this choice resets individual reveal choices, not fetched text.
+                    The preference is saved in this browser, separately from progress and backups.
+                  </p>
+                </details>
                 <div id="description-hiding-report" class="results"></div>
               </div>
             </section>
@@ -912,27 +952,30 @@
                 <div id="local-connection-report" class="results"></div>
               </div>
 
-              <div class="card card-static">
-                <h3>Metadata source</h3>
-                <form id="form-settings" class="stack">
-                  <label for="api-base">Metadata API base URL</label>
-                  <input type="url" id="api-base" />
-                  <button type="submit" class="btn btn-g">Save API URL</button>
-                </form>
-                <details class="setting-more">
-                  <summary>Why this can be changed</summary>
-                  <p class="rail-hint">
-                    The default is the community API this was built against. If it disappears the
-                    upstream is self-hostable, so you can point this at your own copy.
-                  </p>
-                </details>
-                <div id="api-report" class="results"></div>
-              </div>
-
             </section>
 
             <section class="setgroup">
               <h2>Advanced</h2>
+              <div class="card card-static">
+                <details class="field-disclosure action-disclosure" id="metadata-settings">
+                  <summary><h3>Metadata source</h3></summary>
+                  <div class="stack">
+                    <form id="form-settings" class="stack">
+                      <label for="api-base">Metadata API base URL</label>
+                      <input type="url" id="api-base" />
+                      <button type="submit" class="btn btn-g">Save API URL</button>
+                    </form>
+                    <details class="setting-more">
+                      <summary>Why this can be changed</summary>
+                      <p class="rail-hint">
+                        The default is the community API this was built against. If it disappears the
+                        upstream is self-hostable, so you can point this at your own copy.
+                      </p>
+                    </details>
+                  </div>
+                </details>
+                <div id="api-report" class="results"></div>
+              </div>
               <div class="card card-static setting">
                 <h3>Cached metadata</h3>
                 <p id="cache-usage" class="rail-hint setting-desc">Checking cache size…</p>

@@ -116,6 +116,7 @@ export const orderOnlyExport = {
     await page.waitForSelector('#view-data:not([hidden])');
     await activateExport(page, '#btn-export-json');
     const backupBefore = JSON.parse(await downloaded(page, 2));
+    await click(page, '#backup-export-options > summary');
     await click(page, '#btn-export-order-2');
     await page.waitForSelector('#ask[open]');
     await activateExport(page, '#ask-ok');

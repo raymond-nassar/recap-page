@@ -30,6 +30,7 @@ function harness({
   readerPresentation, onReaderContext,
 } = {}) {
   const nodes = {
+    availability: node(),
     background: node(),
     byline: node(),
     cancelSynopsis: node(),
@@ -115,6 +116,28 @@ function issue(issueId = 42) {
     hydrated: true,
   };
 }
+
+test('comic availability stays intact in troubleshooting instead of the main facts', async () => {
+  const variants = [
+    { unlimitedDate: null, override: null },
+    { unlimitedDate: '2999-01-01', override: null },
+    { unlimitedDate: '2020-01-01', override: null },
+    { unlimitedDate: null, override: 'available' },
+    { unlimitedDate: null, override: 'unavailable' },
+  ];
+  const labels = [];
+  for (const { unlimitedDate, override } of variants) {
+    const saved = { ...issue(), unlimitedDate };
+    const state = { issues: { 42: saved }, lists: {}, read: {}, notes: {}, overrides: override ? { 42: override } : {} };
+    const h = harness({ state });
+    await h.view.render({ issueId: 42, context: null });
+    assert.equal(h.nodes.availability.children?.length, 1);
+    assert.equal(h.nodes.availability.children[0].key, 'In Unlimited');
+    assert.ok(h.nodes.facts.children.every((item) => item.key !== 'In Unlimited'));
+    labels.push(h.nodes.availability.children[0].value);
+  }
+  assert.equal(new Set(labels).size, 5, 'The five availability meanings must remain distinct');
+});
 
 test('510 issue details report only saved-list deferral and refresh retained intent without restricting Read', async () => {
   const state = {
@@ -303,7 +326,7 @@ test('447 Issue Details hides fetched prose until explicit reveal and retains on
   assert.equal(h.nodes.disclosure.hidden, false);
   assert.equal(h.nodes.synopsis.hidden, true, 'held prose needs no duplicate fetch consent');
   assert.equal(h.nodes.disclosure.attributes['aria-controls'], 'issue-focus-desc');
-  assert.match(h.nodes.disclosure.attributes['aria-label'], /Reveal description.*may contain spoilers.*Issue title/);
+  assert.match(h.nodes.disclosure.attributes['aria-label'], /Show story summary.*may contain spoilers.*Issue title/);
   h.nodes.disclosure.focus();
   h.nodes.disclosure.listeners.click();
   assert.equal(h.nodes.description.textContent, 'Synthetic description 42.');

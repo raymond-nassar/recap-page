@@ -341,7 +341,12 @@ test('446 Setup stays on contextual browse pages without gating direct entry fro
   });
   for (const surface of ['catalog', 'age-marvel-knights-heroes-return']) {
     presentation.ensureSetupGuideFeature([list], surface, (lists) => lists[0]);
-    const copy = feature.children[0].children[1].textContent;
+    const intro = feature.children[0].children[1].textContent;
+    assert.match(intro, /^An optional guide to earlier stories\..*directly\./);
+    const help = feature.children[0].children[2];
+    assert.notEqual(help.open, true);
+    assert.equal(help.children[0].textContent, 'About this starting point');
+    const copy = help.children[1].textContent;
     assert.match(copy, /^New to Marvel\? .*historical context.*characters and events/);
     assert.match(copy, /optional;/);
     if (surface === 'catalog') {

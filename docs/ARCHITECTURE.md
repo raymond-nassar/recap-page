@@ -9,7 +9,7 @@ source can be reviewed alongside the prose.
 ## The three entry points
 
 The desktop source has three pages at one origin, each loading one module: the tracker at
-`src/index.html:1136`, the reader launch tab at `src/open.html:19`, and the development-only fault
+`src/index.html:1179`, the reader launch tab at `src/open.html:19`, and the development-only fault
 harness at `src/dev-faults.html:135`.
 
 The tracker entry calls `boot()` and registers the offline worker at `src/js/app.js:12-24`.
@@ -281,7 +281,7 @@ update, and every later completed page uses the same boundary, at `src/js/views/
 `src/js/views/add.js:164-190`. Cancelling retires that owner before aborting its request, so a response
 that arrives late cannot write into a replacement run. The active notice carries the Cancel action;
 when that action disappears while focused, the matching search field receives focus, at
-`src/js/views/add.js:287-319`. A stop before the first page creates no list, while every page already
+`src/js/views/add.js:288-320`. A stop before the first page creates no list, while every page already
 saved remains available after a reload.
 
 ## Where a reader's data lives
@@ -465,7 +465,7 @@ paths remains a separate stop in each sequence.
 Home and Browse render the same gateway descriptor from the resolved catalog and both open one
 Reading paths view. The controller constructs that view with catalog loading, Store reads, route
 intent and history effects rather than giving it those concrete owners, at
-`src/js/main.js:3124-3175`. The selected id lives only in the validated `path` query of the hash
+`src/js/main.js:3127-3178`. The selected id lives only in the validated `path` query of the hash
 route, not in saved reader state, as enforced at `src/js/lib/route.js:160-195`.
 
 The view owns the resolved paths, selected structure, selector identity and async generation. It
@@ -491,7 +491,7 @@ Catalog shelves, Preview and generated publishing pages share one constructed pr
 contract for cards, path choice, source disclosure and path links. That internal module owns the
 choice without importing the controller or another concrete view, while the controller injects
 navigation, imports, Store effects and publishing-page orchestration at
-`src/js/main.js:3018-3122`.
+`src/js/main.js:3021-3125`.
 
 ## Modern Timeline position is a Store projection
 
@@ -512,7 +512,7 @@ The shared presentation contract removes the previous positional state and paint
 current label, hidden message, completion state or unavailable message at
 `src/js/views/shared/catalog-presentation.js:278-328`. Only a visible current story receives
 `aria-current="step"`. The controller injects live state and current-view knowledge at
-`src/js/main.js:3035-3067`, while the existing Store-driven render path calls the position-only
+`src/js/main.js:3038-3070`, while the existing Store-driven render path calls the position-only
 refresh at `src/js/main.js:2508-2530`. That refresh leaves cards, controls, focus, scroll and
 transient path choice intact across same-tab and cross-tab state changes.
 
