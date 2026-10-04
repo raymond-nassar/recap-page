@@ -88,7 +88,7 @@ Agents of Atlas, Iron Man and Silk. The frozen comparison covers all 203 earlier
 orders and 78 visible generated children, including the hidden partition parent. Shared
 originals stay in the owner-selected companion. It keeps the existing MCU Prep gateway and
 Storylines shelf, with no new classification, runtime dependency or saved-data format.
-The gateway now contains nine companions with 196 exact rows; the historical inventory's
+The gateway now contains twelve companions with 299 exact rows; the historical inventory's
 six guides and 107 rows remain unchanged.
 
 ### Owner-authored Thunderbolts* companion
