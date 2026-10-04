@@ -178,13 +178,13 @@ test('owner evidence reuses the frozen packet and mapping contracts without CBH 
   assert.doesNotMatch(entry.description, /[\u2013\u2014]|film.+inspir|costume|antagonism/i);
 });
 
-test('MCU Prep discovery preserves six CBH guides and the five active owner companions', async () => {
+test('MCU Prep discovery preserves six CBH guides and the six active owner companions', async () => {
   const { manifest, catalog: raw } = await loadEvidence();
   const catalog = parseCatalog(raw);
   const entry = manifest.lists.find((list) => list.id === id);
   const card = catalog.lists.find((list) => list.id === id);
-  assert.equal(manifest.lists.length, 208);
-  assert.equal(catalog.lists.length, 285);
+  assert.equal(manifest.lists.length, 209);
+  assert.equal(catalog.lists.length, 286);
   assert.equal(manifest.lists.filter((list) => list.id === id).length, 1);
   assert.equal(catalog.lists.filter((list) => list.id === id).length, 1);
   for (const value of [entry, card]) {
@@ -202,10 +202,11 @@ test('MCU Prep discovery preserves six CBH guides and the five active owner comp
   assert.equal(category.route, 'marvel-on-screen');
   assert.deepEqual(category.select(stories).map((story) => story.lists[0].id), [
     'doctor-strange-multiverse-of-madness', 'spider-man-no-way-home', 'marvel-multiverse',
-    'marvel-what-if', 'wandavision', 'spider-man-far-from-home', 'mcu-prep-thunderbolts',
+    'marvel-what-if', 'wandavision', 'spider-man-far-from-home',
+    'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts',
     'mcu-prep-moon-knight', 'mcu-prep-eternals', id, 'mcu-prep-daredevil-born-again',
   ]);
-  assert.equal(availableHomeCategories(stories).find((item) => item.key === category.key).count, 11);
+  assert.equal(availableHomeCategories(stories).find((item) => item.key === category.key).count, 12);
   assert.ok(catalog.paths.every((readingPath) => !readingPath.steps.includes(id)));
 });
 
@@ -214,7 +215,7 @@ test('approved relationships cover the complete library including generated chil
   const extension = await readJson(`../scripts/data/${stem}-current-library-extension.json`);
   const { completeManifest, orders, catalogIds } = await loadCompleteLibrary(manifest, catalog);
   const expectedPeers = orders.filter((entry) => entry.id !== id);
-  assert.equal(orders.length, 286);
+  assert.equal(orders.length, 287);
   assert.equal(orders.some((entry) => entry.id === 'spider-man-no-way-home-owner-selected'), false);
   const recordedOrders = await recordedOwnerMcuLibrary({ orders, extension, candidateId: id, originalReport: report });
   const { current: recorded, laterIds } = assertCurrentLibraryExtension({
@@ -228,7 +229,8 @@ test('approved relationships cover the complete library including generated chil
     expectedPeers.map((entry) => entry.id).sort());
   const addedPeerIds = expectedPeers.filter((entry) => !recordedPeerIds.has(entry.id))
     .map((entry) => entry.id);
-  assert.deepEqual(addedPeerIds, ['mcu-prep-moon-knight', 'mcu-prep-daredevil-born-again']);
+  assert.deepEqual(addedPeerIds, ['mcu-prep-shang-chi-and-the-legend-of-the-ten-rings',
+    'mcu-prep-moon-knight', 'mcu-prep-daredevil-born-again']);
   assert.deepEqual(recorded.comparisons.filter((entry) => !activePeerIds.has(entry.orderId))
     .map((entry) => entry.orderId), ['spider-man-no-way-home-owner-selected']);
   assert.deepEqual(current.comparisons.filter((entry) => recordedPeerIds.has(entry.orderId)),
@@ -245,7 +247,7 @@ test('approved relationships cover the complete library including generated chil
   ]);
   assert.equal(recorded.comparisonCount, 284);
   assert.equal(current.comparisonCount, expectedPeers.length);
-  assert.equal(current.comparisonCount, 285);
+  assert.equal(current.comparisonCount, 286);
   assert.deepEqual(current.comparisons.map((entry) => entry.orderId),
     expectedPeers.map((entry) => entry.id).sort((left, right) => left.localeCompare(right)));
   assert.ok(expectedPeers.length >= catalog.lists.length - 1);

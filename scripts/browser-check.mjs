@@ -13510,10 +13510,10 @@ SCENARIOS.push({
         title: node.querySelector('.home-path-title')?.textContent.trim(),
         count: node.querySelector('.home-path-count')?.textContent.trim(),
       }));
-      t.check(`${width}px: Home exposes the populated eleven-list MCU Prep gateway`,
-        home.visible && home.title === 'MCU Prep' && home.count === '11 Reading Lists',
+      t.check(`${width}px: Home exposes the populated twelve-list MCU Prep gateway`,
+        home.visible && home.title === 'MCU Prep' && home.count === '12 Reading Lists',
         JSON.stringify(home));
-      if (!home.visible || home.count !== '11 Reading Lists') return;
+      if (!home.visible || home.count !== '12 Reading Lists') return;
       await click(page, homeSelector);
       const cardSelector = `#marvel-on-screen-results [data-story="list:${id}"]`;
       const homeHash = formatRoute({ view: 'marvel-on-screen', listId: before.active });
@@ -13544,12 +13544,13 @@ SCENARIOS.push({
           path: Boolean(selected?.querySelector('.result-path')),
         };
       }, `[data-story="list:${id}"]`);
-      t.check(`${width}px: Browse keeps all eleven companions in the integrated catalog order`,
-        browse.title === 'Browse MCU Prep' && browse.count === '11 Reading Lists'
-        && browse.cards === 11 && browse.selectedCount === 1
+      t.check(`${width}px: Browse keeps all twelve companions in the integrated catalog order`,
+        browse.title === 'Browse MCU Prep' && browse.count === '12 Reading Lists'
+        && browse.cards === 12 && browse.selectedCount === 1
         && browse.titles.join('|') === [
           'Doctor Strange: Multiverse of Madness', 'Spider-Man: No Way Home',
           'Marvel Multiverse', 'Marvel What If?', 'WandaVision', 'Spider-Man: Far From Home',
+          'Shang-Chi and the Legend of the Ten Rings',
           'MCU Prep: Thunderbolts*',
           'Moon Knight: MCU Prep',
           'Eternals',
@@ -15818,6 +15819,7 @@ SCENARIOS.push({
 SCENARIOS.push((await import('./browser-ultimate-spider-man.mjs')).ultimateSpiderManActualData);
 SCENARIOS.push((await import('./browser-greg-pak-hulk.mjs')).gregPakHulkActualData);
 SCENARIOS.push((await import('./browser-shang-chi.mjs')).shangChiActualData);
+SCENARIOS.push((await import('./browser-mcu-prep-shang-chi.mjs')).mcuPrepShangChiActualData);
 SCENARIOS.push({
   id: 'age-of-apocalypse-actual-data',
   title: 'Age of Apocalypse actual data preview, import, reload and source positions',

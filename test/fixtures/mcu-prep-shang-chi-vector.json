@@ -1,0 +1,36 @@
+{
+  "id": "mcu-prep-shang-chi-and-the-legend-of-the-ten-rings",
+  "name": "Shang-Chi and the Legend of the Ten Rings",
+  "issueCount": 37,
+  "collectionCount": 6,
+  "blockCounts": [5, 6, 5, 1, 6, 7, 7],
+  "issueIds": [
+    77001, 77002, 77003, 77004, 77005,
+    77665, 78431, 78932, 82435, 83235, 83520,
+    84410, 84411, 84412, 84413, 84414,
+    92003,
+    93327, 93328, 93329, 93330, 93331, 93332,
+    93333, 93334, 93335, 93336, 98696, 98697, 95679,
+    103519, 103520, 103521, 103522, 103523, 103524, 103637
+  ],
+  "series": [
+    { "title": "Agents of Atlas", "year": 2019, "id": 27624, "first": 1, "last": 5 },
+    { "title": "Sword Master", "year": 2019, "id": 27779, "first": 1, "last": 6 },
+    { "title": "Shang-Chi", "year": 2020, "id": 29714, "first": 1, "last": 5 },
+    { "title": "The Legend Of Shang-Chi", "year": 2021, "id": 31455, "first": 1, "last": 1 },
+    { "title": "Shang-Chi", "year": 2021, "id": 31902, "first": 1, "last": 12 },
+    { "title": "Marvel's Voices: Identity", "year": 2021, "id": 32837, "first": 1, "last": 1 },
+    { "title": "Shang-Chi and the Ten Rings", "year": 2022, "id": 35631, "first": 1, "last": 6 },
+    { "title": "Shang-Chi: Master Of The Ten Rings", "year": 2023, "id": 35648, "first": 1, "last": 1 }
+  ],
+  "collectedInByBlock": [
+    "Agents of Atlas (2019) #1-5",
+    "Sword Master (2019) #1-6 (collection selects material; progress is whole-issue)",
+    "Shang-Chi (2020) #1-5",
+    null,
+    "Shang-Chi (2021) #1-6",
+    "Shang-Chi (2021) #7-12; Marvel's Voices: Identity (2021) #1 (Shang-Chi story only; progress is whole-issue)",
+    "Shang-Chi and the Ten Rings (2022) #1-6; Shang-Chi: Master of the Ten Rings (2023) #1"
+  ],
+  "vectorSha256": "dab499207c58cf3c00a00e4b7fc1b33b45442501a54ab5469cabaa8f759776c2"
+}

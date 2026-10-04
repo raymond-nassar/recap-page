@@ -11,7 +11,7 @@ const groups = [...new Set(expected.map((row) => row.section))];
 const screenTitles = [
   'Doctor Strange: Multiverse of Madness', 'Spider-Man: No Way Home',
   'Marvel Multiverse', 'Marvel What If?', 'WandaVision', 'Spider-Man: Far From Home',
-  'MCU Prep: Thunderbolts*', name, 'Eternals',
+  'Shang-Chi and the Legend of the Ten Rings', 'MCU Prep: Thunderbolts*', name, 'Eternals',
   'MCU Prep: Deadpool & Wolverine', 'MCU Prep: Daredevil: Born Again',
 ];
 const priorId = 'prior-moon-knight';
@@ -146,8 +146,8 @@ export const moonKnightActualData = {
         const tile = await page.$eval(target, (node) => ({
           text: node.textContent.trim(), name: node.getAttribute('aria-label'),
         }));
-        t.check(`${label}: MCU Prep is a visible eleven-list gateway`,
-          tile.text.includes('MCU Prep') && tile.name.includes('11 Reading Lists'), JSON.stringify(tile));
+        t.check(`${label}: MCU Prep is a visible twelve-list gateway`,
+          tile.text.includes('MCU Prep') && tile.name.includes('12 Reading Lists'), JSON.stringify(tile));
         await click(page, target);
         await page.waitForSelector(card);
         const actual = await page.$eval(card, (node) => ({

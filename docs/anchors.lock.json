@@ -1899,18 +1899,33 @@
     "fp": "4719c3efca63cca9",
     "head": "async function networkThenCache(event) {"
   },
+  "docs/DATA_PROVENANCE.md|owner-selected-shang-chi-compilation|scripts/data/mcu-prep-source-ledgers/mcu-prep-shang-chi-and-the-legend-of-the-ten-rings.json:578-583|0": {
+    "anchor": "scripts/data/mcu-prep-source-ledgers/mcu-prep-shang-chi-and-the-legend-of-the-ten-rings.json:578-583",
+    "fp": "54a68790222300f3",
+    "head": "\"storySelection\": {"
+  },
+  "docs/DATA_PROVENANCE.md|owner-selected-shang-chi-compilation|scripts/data/mcu-prep-source-ledgers/mcu-prep-shang-chi-and-the-legend-of-the-ten-rings.json:6-24|0": {
+    "anchor": "scripts/data/mcu-prep-source-ledgers/mcu-prep-shang-chi-and-the-legend-of-the-ten-rings.json:6-24",
+    "fp": "9cf7b5fbcffd4ebc",
+    "head": "\"compilationInput\": {"
+  },
+  "docs/DATA_PROVENANCE.md|owner-selected-shang-chi-compilation|scripts/data/mcu-prep-source-ledgers/mcu-prep-shang-chi-and-the-legend-of-the-ten-rings.json:761-769|0": {
+    "anchor": "scripts/data/mcu-prep-source-ledgers/mcu-prep-shang-chi-and-the-legend-of-the-ten-rings.json:761-769",
+    "fp": "774b51510e6a6dac",
+    "head": "\"publication\": {"
+  },
   "docs/DATA_PROVENANCE.md|reading-path-provenance|scripts/data/marvel-knights-to-planet-x-lists.json:28-40|0": {
     "anchor": "scripts/data/marvel-knights-to-planet-x-lists.json:28-40",
     "fp": "ff9ba71742d8b8c0",
     "head": "\"chapterCount\": 78,"
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:10954-11079|0": {
-    "anchor": "src/data/catalog.json:10954-11079",
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:10996-11121|0": {
+    "anchor": "src/data/catalog.json:10996-11121",
     "fp": "a679899453ea002c",
     "head": "\"paths\": ["
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/curated-lists.json:6921-6960|0": {
-    "anchor": "src/data/curated-lists.json:6921-6960",
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/curated-lists.json:6956-6995|0": {
+    "anchor": "src/data/curated-lists.json:6956-6995",
     "fp": "1b133fe2f7d008e4",
     "head": "\"paths\": ["
   },

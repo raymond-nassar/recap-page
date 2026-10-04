@@ -141,7 +141,7 @@ test('Namor exact original vector, eight gaps and five backward references conse
 test('Namor independent approval covers every peer in its publication snapshot', async () => {
   const library = await loadLibrarySnapshot();
   const current = await buildReportForMapping(`scripts/data/cbh-mappings/${id}.json`, [], {
-    excludedOrderIds: ['iron-fist-reading-order', 'mcu-prep-thunderbolts', 'spider-man-no-way-home-owner-selected', 'mcu-prep-daredevil-born-again', 'mcu-prep-moon-knight', 'mcu-prep-deadpool-and-wolverine', 'mcu-prep-eternals'],
+    excludedOrderIds: ['iron-fist-reading-order', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts', 'spider-man-no-way-home-owner-selected', 'mcu-prep-daredevil-born-again', 'mcu-prep-moon-knight', 'mcu-prep-deadpool-and-wolverine', 'mcu-prep-eternals'],
   });
   assert.deepEqual(current, report);
   assert.equal(report.comparisonCount, 201);
@@ -169,7 +169,7 @@ test('Namor independent approval covers every peer in its publication snapshot',
   assert.doesNotThrow(() => assertApprovedRelationshipReview({
     packet, mapping, report, currentLibraryDigest: current.libraryDigest,
     expectedOrderIds: library.lists.filter((row) =>
-      row.id !== id && row.id !== 'iron-fist-reading-order' && row.id !== 'mcu-prep-daredevil-born-again' && row.id !== 'mcu-prep-moon-knight' && row.id !== 'mcu-prep-deadpool-and-wolverine' && row.id !== 'mcu-prep-eternals' && row.id !== 'spider-man-no-way-home-owner-selected' && row.id !== 'mcu-prep-thunderbolts').map((row) => row.id),
+      row.id !== id && row.id !== 'iron-fist-reading-order' && row.id !== 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings' && row.id !== 'mcu-prep-daredevil-born-again' && row.id !== 'mcu-prep-moon-knight' && row.id !== 'mcu-prep-deadpool-and-wolverine' && row.id !== 'mcu-prep-eternals' && row.id !== 'spider-man-no-way-home-owner-selected' && row.id !== 'mcu-prep-thunderbolts').map((row) => row.id),
   }));
   const ironFist = await readJson('src/data/iron_fist_reading_order.json');
   const shared = new Set(ironFist.items.filter((row) => row.issueId > 0).map((row) => row.issueId));

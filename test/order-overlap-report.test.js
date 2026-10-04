@@ -138,6 +138,7 @@ test('buildReportForMapping regenerates shipped reports without duplicate self o
   const report = await buildReportForMapping(mappingPath, peerPaths);
   const comparedIds = report.comparisons.map((comparison) => comparison.orderId);
   const laterOwnerIds = [
+    'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings',
     'mcu-prep-thunderbolts', 'mcu-prep-daredevil-born-again', 'mcu-prep-moon-knight', 'mcu-prep-eternals',
     'mcu-prep-deadpool-and-wolverine', 'spider-man-no-way-home-owner-selected',
   ];

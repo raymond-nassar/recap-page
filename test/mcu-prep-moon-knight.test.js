@@ -19,7 +19,7 @@ import { loadLibrarySnapshot } from '../scripts/report-order-overlap.mjs';
 const root = fileURLToPath(new URL('..', import.meta.url));
 const id = 'mcu-prep-moon-knight';
 const laterIds = [
-  'mcu-prep-thunderbolts', 'mcu-prep-eternals',
+  'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts', 'mcu-prep-eternals',
   'mcu-prep-deadpool-and-wolverine', 'mcu-prep-daredevil-born-again',
 ];
 const expectedSelections = [
@@ -56,7 +56,7 @@ const expectedGroups = expectedSelections.map((selection) => `${selection.title}
 const expectedScreenIds = [
   'doctor-strange-multiverse-of-madness', 'spider-man-no-way-home', 'marvel-multiverse',
   'marvel-what-if', 'wandavision', 'spider-man-far-from-home',
-  'mcu-prep-thunderbolts', id, 'mcu-prep-eternals',
+  'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts', id, 'mcu-prep-eternals',
   'mcu-prep-deadpool-and-wolverine', 'mcu-prep-daredevil-born-again',
 ];
 const sourceOrigin = 'Selected by the owner for MCU Prep; expanded into original issues for this project';

@@ -583,6 +583,13 @@ MCU Prep only when populated, and that its generated child page contains every s
 once in manifest order at desktop and narrow widths. Do not add a fourth canonical shelf or
 a Character Spotlight classification; Storylines remains the canonical shelf.
 
+An owner-selected excerpt uses the existing local `sourceFile` compilation path. Link the exact
+owner input in `sourcePage`, explicitly credit its factual upstream in `sourceOrigin`, and retain
+the real upstream page, visible heading, selected blocks and omissions in the authored checklist
+and factual source ledger. Do not assign an upstream heading to a GitHub input record, fabricate
+a provider identity, or extend a frozen inventory merely to represent the compilation. Keep
+`sourceLicense` null without an actual license grant and review all original-issue overlaps.
+
 Owner-authored MCU Prep selections keep owner credit and an ordered selection ledger in
 `scripts/data/owner-selections/`, not the fixed Comic Book Herald inventory. Preserve every supplied
 position and record any approved collection expansion on its intake Issue. The Daredevil example
