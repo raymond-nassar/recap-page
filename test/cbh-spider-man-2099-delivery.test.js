@@ -15,7 +15,6 @@ import { historicalAgathaLibrarySnapshot } from './helpers/agatha-historical-lib
 import { parseChecklist } from '../src/js/lib/markdown.js';
 import {
   buildHistoricalReadingChoiceReport as buildReportForMapping,
-  historicalReadingChoiceManifest,
 } from './helpers/reading-choice-history.mjs';
 
 const id = 'spider-man-2099-reading-order';
