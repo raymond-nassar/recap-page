@@ -18,8 +18,10 @@ browser constant. Follow the existing major/minor/patch compatibility policy.
 | Substantial new product generation, or data an older build cannot read | Major | State compatibility explicitly for each affected platform and require backup/upgrade evidence. |
 | Rebuild with unchanged source, or promotion of existing bytes | No product bump | A new Android build consumes a new code. Promotion reuses exactly the same artifact, code, source and hash. |
 
-Collect changes under Unreleased until selecting a release; do not bump for every merge.
-Keep platform-specific fixes in shared history, not permanent platform branches.
+Apply [release bookkeeping](../GOVERNANCE.md#release-bookkeeping): collect complete feature records
+in PR descriptions and linked Issues, then assemble the changelog in the final version release PR.
+Do not bump the application version for every merge. Keep platform-specific fixes in shared history,
+not permanent platform branches.
 
 On Windows, product `x.y.z` becomes Store `x.y.z.0`. Reserve `.1` for the installed-upgrade proof
 package; it must never enter the Store bundle. The first three components must fit Windows limits.

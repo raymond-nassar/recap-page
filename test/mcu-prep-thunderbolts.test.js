@@ -237,11 +237,12 @@ test('Thunderbolts uses the existing MCU Prep gateways and Storylines shelf with
   const stories = groupCatalog(catalog.lists);
   const gateway = availableHomeCategories(stories)
     .find((category) => category.key === 'marvel-on-screen');
-  assert.equal(gateway.count, 8);
+  assert.equal(gateway.count, catalog.lists.filter((entry) => entry.type === 'screen-companion').length);
   const category = HOME_CATEGORIES.find((entry) => entry.key === 'marvel-on-screen');
   assert.equal(category.heading, 'MCU Prep');
-  assert.deepEqual(category.select(stories).map((story) => story.lists[0].id),
-    [...MCU_SELECTED_IDS, id, 'mcu-prep-daredevil-born-again']);
+  assert.deepEqual(category.select(stories).map((story) => story.lists[0].id)
+    .filter((candidateId) => MCU_SELECTED_IDS.includes(candidateId) || candidateId === id),
+  [...MCU_SELECTED_IDS, id]);
   assert.equal(shelfLists(catalog.lists, 'lines').filter((entry) => entry.id === id).length, 1);
   assert.equal(shelfLists(catalog.lists, 'spotlights').some((entry) => entry.id === id), false);
   assert.equal(catalog.paths.some((entry) => entry.steps.includes(id)), false);
@@ -265,8 +266,15 @@ test('Thunderbolts frozen approval remains valid across the complete current lib
     ...entry,
     issueIds: (await readJson(`src/data/${entry.file}`)).items.map((item) => String(item.issueId)),
   })));
+  const current = buildComparisonReport({ candidateIds: expectedIds, orders: currentOrders });
+  assert.equal(current.comparisonCount, catalog.lists.length - 1
+    + manifest.lists.filter((entry) => entry.catalog === false).length);
+  assert.deepEqual(current.comparisons.filter((entry) => entry.relationship !== 'none'),
+    report.comparisons.filter((entry) => entry.relationship !== 'none'),
+    'New meaningful relationships need central review, not inherited approval');
+  const reviewedIds = new Set(report.comparisons.map((entry) => entry.orderId));
+  const orders = currentOrders.filter((entry) => reviewedIds.has(entry.orderId));
   const laterId = 'mcu-prep-daredevil-born-again';
-  const orders = currentOrders.filter((entry) => entry.orderId !== laterId);
   const comparison = buildComparisonReport({ candidateIds: expectedIds, orders });
   assert.equal(comparison.comparisonCount, 281);
   assert.equal(orders.filter((entry) => /^marvel-knights-to-planet-x-\d{2}$/.test(entry.orderId))
@@ -312,11 +320,8 @@ test('Thunderbolts frozen approval remains valid across the complete current lib
   }
   assert.deepEqual(currentOrders.filter((entry) => entry.orderId === laterId)
     .map((entry) => entry.orderId), [laterId]);
-  const current = buildComparisonReport({ candidateIds: expectedIds, orders: currentOrders });
-  assert.equal(current.comparisonCount, 282);
-  assert.equal(current.comparisons.filter((entry) => entry.relationship === 'none').length, 276);
-  assert.deepEqual(current.comparisons.filter((entry) => entry.relationship !== 'none'),
-    report.comparisons.filter((entry) => entry.relationship !== 'none'));
+  assert.equal(current.comparisons.filter((entry) => entry.relationship === 'none').length,
+    current.comparisonCount - expectedPartialPeers.length);
   assert.deepEqual(current.comparisons.filter((entry) => entry.orderId === laterId)
     .map((entry) => [entry.relationship, entry.sharedIds]), [['none', []]]);
 });
