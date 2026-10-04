@@ -397,7 +397,7 @@ test('approved CBH evidence reaches six payloads within the shared MCU Prep grou
     MCU_SELECTED_IDS,
   );
   assert.equal(catalog.lists.filter(({ id }) => MCU_SELECTED_IDS.includes(id)).length, 6);
-  assert.equal(catalog.lists.length, 285);
+  assert.equal(catalog.lists.length, 284);
 
   assert.deepEqual(
     inventory.records.filter((record) => record.centralDisposition === 'selected')

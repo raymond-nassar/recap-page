@@ -9,7 +9,7 @@ import {
   mappingDigestFor,
   validateReportDigest,
 } from '../scripts/lib/cbh-inventory.mjs';
-import { buildReportForMapping, reportArgs } from '../scripts/report-order-overlap.mjs';
+import { buildReportForMapping, loadLibrarySnapshot, reportArgs } from '../scripts/report-order-overlap.mjs';
 
 test('the full-library switch keeps peer paths while disabling later-order exclusions', () => {
   assert.deepEqual(reportArgs(['peer.json', '--include-later']), {
@@ -161,9 +161,14 @@ test('buildReportForMapping regenerates shipped reports without duplicate self o
   const expectedIds = manifest.lists.map((entry) => entry.id).filter((id) => id !== 'secret-war');
   assert.equal(current.comparisonCount, expectedIds.length);
   assert.deepEqual([...currentIds].sort(), [...expectedIds].sort());
-  for (const laterId of laterOwnerIds) {
+  for (const laterId of laterOwnerIds.filter((id) => id !== 'spider-man-no-way-home-owner-selected')) {
     assert.equal(current.comparisons.filter((comparison) => comparison.orderId === laterId).length, 1);
   }
+  assert.equal(current.comparisons.some((comparison) => comparison.orderId === 'spider-man-no-way-home-owner-selected'), false);
+  const library = await loadLibrarySnapshot();
+  assert.deepEqual(current.comparisons.map((comparison) => comparison.orderId),
+    library.orders.filter((order) => order.orderId !== 'secret-war')
+      .map((order) => order.orderId).sort((left, right) => left.localeCompare(right)));
 });
 
 test('fresh overlap reports bind the complete library, mapping, peers, and factual comparisons', async () => {

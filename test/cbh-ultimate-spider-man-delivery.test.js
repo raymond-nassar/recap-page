@@ -340,7 +340,7 @@ test('Ultimate Spider-Man named checklist reproduces approved groups and 351 ori
   assert.equal(card.collections, 47);
   assert.equal(card.coverIssueId, 4372);
   assert.equal(card.source, packet.sourceUrl);
-  assert.equal(manifest.lists.length, 208);
+  assert.equal(manifest.lists.length, 207);
   const position = manifest.lists.findIndex((entry) => entry.id === id);
   assert.equal(manifest.lists[position + 1].id, 'venom-reading-order');
   assert.deepEqual(manifest.lists[position], mapping.approvedManifest);

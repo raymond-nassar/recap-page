@@ -178,8 +178,7 @@ test('owner Daredevil frozen approvals remain valid across the complete current 
   const reviewed = new Set(entries.map((entry) => entry.id));
   const later = catalog.lists.filter((entry) => entry.id !== id && !reviewed.has(entry.id));
   assert.deepEqual(later.map((entry) => entry.id),
-    ['mcu-prep-thunderbolts', 'mcu-prep-eternals', 'mcu-prep-deadpool-and-wolverine',
-      'spider-man-no-way-home-owner-selected']);
+    ['mcu-prep-thunderbolts', 'mcu-prep-eternals', 'mcu-prep-deadpool-and-wolverine']);
   assert.deepEqual(manifest.lists.filter((entry) => entry.catalog === false)
     .map((entry) => entry.id), retained.map((entry) => entry.id));
   const laterOrders = await Promise.all(later.map(async (entry) => ({
@@ -187,8 +186,12 @@ test('owner Daredevil frozen approvals remain valid across the complete current 
     issueIds: issueIdsFromValue(await json(`src/data/${entry.file}`)),
   })));
   const current = buildComparisonReport({ candidateIds: expectedIds, orders: [...orders, ...laterOrders] });
-  assert.equal(current.comparisonCount, 285);
-  assert.equal(current.comparisons.filter((entry) => entry.relationship === 'none').length, 281);
+  assert.equal(current.comparisonCount, 284);
+  const activePeerIds = [...new Set([...manifest.lists, ...catalog.lists].map((entry) => entry.id))]
+    .filter((peerId) => peerId !== id).sort();
+  assert.deepEqual(current.comparisons.map((entry) => entry.orderId).sort(), activePeerIds);
+  assert.equal(activePeerIds.includes('spider-man-no-way-home-owner-selected'), false);
+  assert.equal(current.comparisons.filter((entry) => entry.relationship === 'none').length, 280);
   assert.deepEqual(current.comparisons.filter((entry) => entry.relationship !== 'none'),
     report.comparisons.filter((entry) => entry.relationship !== 'none'));
   assert.deepEqual(current.comparisons.filter((entry) => later.some((peer) => peer.id === entry.orderId))
@@ -255,7 +258,6 @@ test('owner Daredevil remains one owner-credited MCU Prep card outside Character
     'doctor-strange-multiverse-of-madness', 'spider-man-no-way-home', 'marvel-multiverse',
     'marvel-what-if', 'wandavision', 'spider-man-far-from-home', 'mcu-prep-thunderbolts',
     'mcu-prep-eternals', 'mcu-prep-deadpool-and-wolverine', id,
-    'spider-man-no-way-home-owner-selected',
   ]);
   assert.equal(shelfLists(catalog.lists, 'spotlights').some((card) => card.id === id), false);
   assert.equal(catalog.paths.some((readingPath) => readingPath.steps.includes(id)), false);

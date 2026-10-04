@@ -2093,7 +2093,6 @@ test('the Punisher guide preserves its full source ledger through publication', 
   assert.equal(mapping.approvedSourceCount, 857);
   assert.equal(report.candidateCount, 544);
   assert.equal(report.comparisonCount, 158);
-  assert.equal(report.comparisonCount, manifest.lists.length - 50);
 
   assert.deepEqual(regeneratedReport, report);
   assert.doesNotThrow(() => assertApprovedRelationshipReview({
@@ -4659,7 +4658,7 @@ test('the first character batch stays exact through evidence, catalog, and gener
 
   const allBatchIds = evidence.flatMap((item) => item.mapping.rows.map((row) => String(row.selectedIssueId)));
   assert.equal(new Set(allBatchIds).size, 81);
-  assert.equal(catalog.lists.length, 285);
+  assert.equal(catalog.lists.length, 284);
   const characterRuns = catalog.lists.filter((entry) => entry.type === 'character-run');
   assert.equal(characterRuns.length, 70);
   assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 69);
@@ -5009,7 +5008,7 @@ test('X-Force publishes the exact settled source and bounded complete-library re
   assert.equal(mapping.candidateMetadata.length, 285);
   assert.deepEqual(mapping.sourceGapResolutions, packet.sourceGapResolutions);
   assert.equal(report.candidateCount, 285);
-  assert.equal(report.comparisonCount, manifest.lists.length - 43);
+  assert.equal(report.comparisonCount, 165);
 
   assert.deepEqual(
     report.comparisons
