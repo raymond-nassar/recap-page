@@ -39,11 +39,11 @@ baseline = { ...baseline, overrides: { [house.items[1].issueId]: 'unavailable' }
 assert.equal(house.items.length, 20);
 assert.equal(expected.length, 43);
 assert.equal(expectedGroups.length, 5);
-assert.equal(expectedTitles.length, 10);
+assert.equal(expectedTitles.length, 12);
 assert.deepEqual(payload.items.map((item) => item.issueId), expected.map((item) => item.issueId));
-assert.deepEqual(expectedTitles.slice(-4), [
-  'MCU Prep: Thunderbolts*', 'Eternals', 'MCU Prep: Deadpool & Wolverine',
-  'Spider-Man: No Way Home (Owner selections)',
+assert.deepEqual(expectedTitles.slice(-6), [
+  'Shang-Chi and the Legend of the Ten Rings', 'MCU Prep: Thunderbolts*', 'Moon Knight: MCU Prep', 'Eternals',
+  'MCU Prep: Deadpool & Wolverine', 'MCU Prep: Daredevil: Born Again',
 ]);
 
 async function click(page, selector) {
@@ -111,8 +111,9 @@ export const deadpoolWolverineActualData = {
       await click(page, '.brand[data-view="home"]');
       const homeGateway = '#view-home [data-category="marvel-on-screen"]';
       await page.waitForSelector(homeGateway, { visible: true });
-      t.check(`${label} Home exposes MCU Prep with all ten companions`,
-        await page.$eval(homeGateway, (node) => node.textContent.includes('10 Reading Lists')));
+      t.check(`${label} Home exposes MCU Prep with all current companions`,
+        await page.$eval(homeGateway, (node, count) => node.textContent.includes(`${count} Reading Lists`),
+          expectedTitles.length));
       await click(page, homeGateway);
       await page.waitForSelector('#marvel-on-screen-results .catalog-card');
       const homeTitles = await page.$$eval('#marvel-on-screen-results .catalog-card-title',
@@ -123,8 +124,9 @@ export const deadpoolWolverineActualData = {
       await click(page, '.ri[data-view="browse"]');
       const browseGateway = '#view-browse [data-category="marvel-on-screen"]';
       await page.waitForSelector(browseGateway, { visible: true });
-      t.check(`${label} Browse exposes the same ten-companion gateway`,
-        await page.$eval(browseGateway, (node) => node.textContent.includes('10 Reading Lists')));
+      t.check(`${label} Browse exposes the same current-companion gateway`,
+        await page.$eval(browseGateway, (node, count) => node.textContent.includes(`${count} Reading Lists`),
+          expectedTitles.length));
       await click(page, browseGateway);
       const selector = `#marvel-on-screen-results [data-story="list:${id}"]`;
       await page.waitForSelector(selector);

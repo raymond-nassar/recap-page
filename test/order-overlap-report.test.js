@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdirSync, mkdtempSync, writeFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
 import { fileURLToPath } from 'node:url';
@@ -9,7 +9,7 @@ import {
   mappingDigestFor,
   validateReportDigest,
 } from '../scripts/lib/cbh-inventory.mjs';
-import { buildReportForMapping, reportArgs } from '../scripts/report-order-overlap.mjs';
+import { buildReportForMapping, loadLibrarySnapshot, reportArgs } from '../scripts/report-order-overlap.mjs';
 
 test('the full-library switch keeps peer paths while disabling later-order exclusions', () => {
   assert.deepEqual(reportArgs(['peer.json', '--include-later']), {
@@ -133,13 +133,15 @@ test('buildReportForMapping rejects unresolved mappings before writing a report'
 
 test('buildReportForMapping regenerates shipped reports without duplicate self or peer comparisons', async () => {
   const mappingsDir = path.join(root, 'scripts', 'data', 'cbh-mappings');
-  const report = await buildReportForMapping(
-    path.join(mappingsDir, 'secret-war.json'),
-    [path.join(mappingsDir, 'spider-man-the-other.json')],
-  );
+  const mappingPath = path.join(mappingsDir, 'secret-war.json');
+  const peerPaths = [path.join(mappingsDir, 'spider-man-the-other.json')];
+  const report = await buildReportForMapping(mappingPath, peerPaths);
   const comparedIds = report.comparisons.map((comparison) => comparison.orderId);
-  const laterOwnerIds = ['mcu-prep-deadpool-and-wolverine', 'mcu-prep-thunderbolts',
-    'spider-man-no-way-home-owner-selected', 'mcu-prep-eternals'];
+  const laterOwnerIds = [
+    'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings',
+    'mcu-prep-thunderbolts', 'mcu-prep-daredevil-born-again', 'mcu-prep-moon-knight', 'mcu-prep-eternals',
+    'mcu-prep-deadpool-and-wolverine', 'spider-man-no-way-home-owner-selected',
+  ];
 
   assert.equal(report.candidateCount, 5);
   assert.equal(report.comparisonCount, 137);
@@ -149,14 +151,24 @@ test('buildReportForMapping regenerates shipped reports without duplicate self o
   for (const laterId of laterOwnerIds) {
     assert.equal(comparedIds.includes(laterId), false);
   }
-  const full = await buildReportForMapping(
+  const current = await buildReportForMapping(
     path.join(mappingsDir, 'secret-war.json'),
     [path.join(mappingsDir, 'spider-man-the-other.json')],
     { excludedOrderIds: [] },
   );
-  for (const laterId of laterOwnerIds) {
-    assert.equal(full.comparisons.filter((comparison) => comparison.orderId === laterId).length, 1);
+  const manifest = JSON.parse(readFileSync(path.join(root, 'src', 'data', 'curated-lists.json'), 'utf8'));
+  const currentIds = current.comparisons.map((comparison) => comparison.orderId);
+  const expectedIds = manifest.lists.map((entry) => entry.id).filter((id) => id !== 'secret-war');
+  assert.equal(current.comparisonCount, expectedIds.length);
+  assert.deepEqual([...currentIds].sort(), [...expectedIds].sort());
+  for (const laterId of laterOwnerIds.filter((id) => id !== 'spider-man-no-way-home-owner-selected')) {
+    assert.equal(current.comparisons.filter((comparison) => comparison.orderId === laterId).length, 1);
   }
+  assert.equal(current.comparisons.some((comparison) => comparison.orderId === 'spider-man-no-way-home-owner-selected'), false);
+  const library = await loadLibrarySnapshot();
+  assert.deepEqual(current.comparisons.map((comparison) => comparison.orderId),
+    library.orders.filter((order) => order.orderId !== 'secret-war')
+      .map((order) => order.orderId).sort((left, right) => left.localeCompare(right)));
 });
 
 test('fresh overlap reports bind the complete library, mapping, peers, and factual comparisons', async () => {
