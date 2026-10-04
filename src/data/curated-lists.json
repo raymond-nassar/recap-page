@@ -6780,6 +6780,41 @@
       "expect": 20,
       "timeline": 2016,
       "coverIssueId": 61594
+    },
+    {
+      "id": "spider-man-no-way-home-owner-selected",
+      "name": "Spider-Man: No Way Home (Owner selections)",
+      "description": "The owner's three-volume selection: an Ultimate origin, the main Spider-Verse chapters, and the four-issue Big Time arc, expanded into 18 original comics in that order.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "spider-man-no-way-home-owner-selected.md",
+      "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/686",
+      "sourceOrigin": "Compiled for this project from the owner's selections",
+      "sourceLicense": null,
+      "out": "spider_man_no_way_home_owner_selected.json",
+      "characters": [
+        "Spider-Man",
+        "Peter Parker",
+        "Hobgoblin"
+      ],
+      "keywords": [
+        "MCU Prep",
+        "Spider-Man: No Way Home",
+        "Owner selections",
+        "Ultimate Spider-Man",
+        "Power and Responsibility",
+        "Spider-Verse",
+        "Big Time",
+        "Brian Michael Bendis",
+        "Dan Slott"
+      ],
+      "expect": 18,
+      "timeline": null,
+      "coverIssueId": 4372
     }
   ],
   "paths": [

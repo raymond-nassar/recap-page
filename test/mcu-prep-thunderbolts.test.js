@@ -237,17 +237,18 @@ test('Thunderbolts uses the existing MCU Prep gateways and Storylines shelf with
   const stories = groupCatalog(catalog.lists);
   const gateway = availableHomeCategories(stories)
     .find((category) => category.key === 'marvel-on-screen');
-  assert.equal(gateway.count, 7);
+  assert.equal(gateway.count, catalog.lists.filter((entry) => entry.type === 'screen-companion').length);
   const category = HOME_CATEGORIES.find((entry) => entry.key === 'marvel-on-screen');
   assert.equal(category.heading, 'MCU Prep');
-  assert.deepEqual(category.select(stories).map((story) => story.lists[0].id),
-    [...MCU_SELECTED_IDS, id]);
+  assert.deepEqual(category.select(stories).map((story) => story.lists[0].id)
+    .filter((candidateId) => MCU_SELECTED_IDS.includes(candidateId) || candidateId === id),
+  [...MCU_SELECTED_IDS, id]);
   assert.equal(shelfLists(catalog.lists, 'lines').filter((entry) => entry.id === id).length, 1);
   assert.equal(shelfLists(catalog.lists, 'spotlights').some((entry) => entry.id === id), false);
   assert.equal(catalog.paths.some((entry) => entry.steps.includes(id)), false);
 });
 
-test('Thunderbolts relationship approval covers the complete visible and hidden library', async () => {
+test('Thunderbolts keeps its frozen approval and checks the complete current library', async () => {
   const [manifest, catalog, report] = await Promise.all([
     readJson('src/data/curated-lists.json'),
     readJson('src/data/catalog.json'),
@@ -265,20 +266,30 @@ test('Thunderbolts relationship approval covers the complete visible and hidden 
     ...entry,
     issueIds: (await readJson(`src/data/${entry.file}`)).items.map((item) => String(item.issueId)),
   })));
-  const comparison = buildComparisonReport({ candidateIds: expectedIds, orders });
+  const currentComparison = buildComparisonReport({ candidateIds: expectedIds, orders });
+  assert.equal(currentComparison.comparisonCount, catalog.lists.length - 1
+    + manifest.lists.filter((entry) => entry.catalog === false).length);
+  assert.deepEqual(
+    currentComparison.comparisons.filter((entry) => entry.relationship !== 'none'),
+    report.comparisons.filter((entry) => entry.relationship !== 'none'),
+    'New meaningful relationships need central review, not inherited approval',
+  );
+  const reviewedIds = new Set(report.comparisons.map((entry) => entry.orderId));
+  const reviewedOrders = orders.filter((entry) => reviewedIds.has(entry.orderId));
+  const comparison = buildComparisonReport({ candidateIds: expectedIds, orders: reviewedOrders });
   assert.equal(comparison.comparisonCount, 281);
   assert.equal(orders.filter((entry) => /^marvel-knights-to-planet-x-\d{2}$/.test(entry.orderId))
     .length, 78);
   assert.ok(orders.some((entry) => entry.orderId === 'marvel-knights-to-planet-x'));
   assert.equal(report.candidateId, id);
   assert.equal(report.mappingDigest, digestCanonicalJson(expectedIds.map(String)));
-  assert.equal(report.libraryDigest, digestCanonicalJson(orders));
+  assert.equal(report.libraryDigest, digestCanonicalJson(reviewedOrders));
   assert.deepEqual(report.sourceCounts, { selections: 5, occurrences: 35, resolved: 34, gaps: 1 });
   assert.deepEqual(report.comparisons, comparison.comparisons);
   assert.doesNotThrow(() => assertComparisonCoverage(report, {
     candidateId: id,
     candidateCount: 34,
-    expectedOrderIds: orders.map((entry) => entry.orderId),
+    expectedOrderIds: reviewedOrders.map((entry) => entry.orderId),
   }));
   assert.doesNotThrow(() => validateReportDigest(report));
   assert.deepEqual(report.comparisons.filter((entry) => entry.relationship === 'partial')

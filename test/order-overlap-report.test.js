@@ -138,12 +138,24 @@ test('buildReportForMapping regenerates shipped reports without duplicate self o
     [path.join(mappingsDir, 'spider-man-the-other.json')],
   );
   const comparedIds = report.comparisons.map((comparison) => comparison.orderId);
+  const laterOwnerIds = ['mcu-prep-thunderbolts', 'spider-man-no-way-home-owner-selected'];
 
   assert.equal(report.candidateCount, 5);
-  assert.equal(report.comparisonCount, 138);
-  assert.equal(new Set(comparedIds).size, 138);
+  assert.equal(report.comparisonCount, 137);
+  assert.equal(new Set(comparedIds).size, 137);
   assert.equal(comparedIds.includes('secret-war'), false);
   assert.equal(comparedIds.filter((id) => id === 'spider-man-the-other').length, 1);
+  for (const laterId of laterOwnerIds) {
+    assert.equal(comparedIds.includes(laterId), false);
+  }
+  const full = await buildReportForMapping(
+    path.join(mappingsDir, 'secret-war.json'),
+    [path.join(mappingsDir, 'spider-man-the-other.json')],
+    { excludedOrderIds: [] },
+  );
+  for (const laterId of laterOwnerIds) {
+    assert.equal(full.comparisons.filter((comparison) => comparison.orderId === laterId).length, 1);
+  }
 });
 
 test('fresh overlap reports bind the complete library, mapping, peers, and factual comparisons', async () => {

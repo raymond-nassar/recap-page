@@ -129,11 +129,11 @@ test('AoA relationship report is rebuilt from every peer at its review', async (
     .filter((orderId) => orderId !== id
       && orderId !== 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order'
       && orderId !== 'namor-sub-mariner-reading-order'
-      && orderId !== 'iron-fist-reading-order' && orderId !== 'mcu-prep-thunderbolts')
+      && orderId !== 'iron-fist-reading-order' && orderId !== 'mcu-prep-thunderbolts' && orderId !== 'spider-man-no-way-home-owner-selected')
     .sort((left, right) => left.localeCompare(right));
   const live = await buildReportForMapping(
     `scripts/data/cbh-mappings/${id}.json`, [],
-    { excludedOrderIds: ['mcu-prep-thunderbolts', 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order',
+    { excludedOrderIds: ['mcu-prep-thunderbolts', 'spider-man-no-way-home-owner-selected', 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order',
       'namor-sub-mariner-reading-order', 'iron-fist-reading-order'] },
   );
   assert.equal(expectedOrderIds.length, 199);
@@ -202,7 +202,7 @@ test('AoA published checklist preserves 262 positions under factual section head
   assert.ok(all.every((item) => !item.section || item.section.length <= MAX_COLLECTION));
   const chosen = parsed.entries.find((entry) => entry.sourceKey === '275');
   assert.match(chosen.section, /Older-edition companion: The Chosen/);
-  assert.equal(manifest.lists.length, 204);
+  assert.equal(manifest.lists.length, 205);
   assert.equal(manifest.lists[manifest.lists.findIndex((entry) => entry.id === id) + 1].id,
     'xmen-claremont');
   assert.deepEqual(manifest.lists.find((entry) => entry.id === id), packet.proposedManifest);
