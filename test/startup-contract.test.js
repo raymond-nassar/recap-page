@@ -130,9 +130,11 @@ test('typed host samples require native view literal emptiness and both qualifie
 test('creation receipts and capture bindings reject stale or inconsistent source evidence', (t) => {
   t.diagnostic(`creation-runtime=${process.version}`);
   const expected = { commit: binding.commit, tree: binding.tree, proofInputDigest: binding.proofInputDigest, sources: [] };
-  const tap = '# tests 93\n# pass 93\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n';
+  const tap = '# tests 94\n# pass 94\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n';
   const receipt = creationReceipt({ ...expected, tap, exitCode: 0, nodeVersion: 'v24.19.0' });
   assert.equal(validateCreationReceipt(receipt, expected), receipt);
+  assert.equal(receipt.tests, 94);
+  assert.equal(receipt.passed, 94);
   for (const change of [{ commit: '0'.repeat(40) }, { tree: '0'.repeat(40) },
     { proofInputDigest: '0'.repeat(64) }, { sources: ['missing'] }, { skipped: 1 }]) {
     assert.throws(() => validateCreationReceipt({ ...receipt, ...change }, expected));
