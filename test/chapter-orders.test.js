@@ -165,8 +165,8 @@ test('the generated catalog replaces the parent with every child and the owner-o
   const children = catalog.lists.filter((entry) => (
     chapterOrdinal(parentId, ledger.chapterCount, entry.id) !== null
   ));
-  assert.equal(manifestRaw.lists.length, 204);
-  assert.equal(raw.lists.length, 281);
+  assert.equal(manifestRaw.lists.length, 205);
+  assert.equal(raw.lists.length, 282);
   assert.equal(catalog.lists.length, 282);
 
   assert.equal(catalog.lists.some((entry) => entry.id === parentId), false);

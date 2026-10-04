@@ -339,14 +339,14 @@ orders: **null means nobody granted anything for this file, not that the file is
 ### Reading orders, pinned
 
 Two hundred and eighty-three pinned reading-order payloads sit under
-[`src/data/`](../src/data): 281 visible catalog files and one noncatalog partition parent. They hold
-30,853 issue records covering 19,268 distinct tracked identities. The visible files hold 30,366 of those records;
+[`src/data/`](../src/data): 282 visible catalog files and one noncatalog partition parent. They hold
+30,877 issue records covering 19,286 distinct tracked identities. The visible files hold 30,390 of those records;
 the extra 487 are the retained Marvel Knights to Planet X parent whose ordinary children partition
 the same vector. Records use these fields:
 `issueId`, `title`,
 `number`, `url`, `seriesId`, `seriesName`, `onSale`, `mu`, `digitalId`, `pageCount`, a `cover`
-object of `path` and `ext`, and `creators` of `name` and `role`. Across all 282 payloads, 25,975
-records carry a cover URL and 24,408 carry creator credits.
+object of `path` and `ext`, and `creators` of `name` and `role`. Across all 283 payloads, 25,999
+records carry a cover URL and 24,432 carry creator credits.
 
 `description` was the field to look at hardest and is now empty. The others are facts about a
 publication: which issue, in which series, on what date. A description was Marvel's own prose
