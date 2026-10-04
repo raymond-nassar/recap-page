@@ -4,7 +4,7 @@ import { readFileSync, existsSync } from 'node:fs';
 import { posix } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-// These six documents are almost entirely claims about the rest of the repository: which checks
+// These documents are almost entirely claims about the rest of the repository: which checks
 // run, which scripts exist, where to read about something, and which record owns a decision.
 // Every one of those goes stale silently. A link to a heading that has been renamed still
 // renders as a link, a gate added to CI does not announce itself in the guide that lists the
@@ -23,6 +23,9 @@ const documents = [
   'GOVERNANCE.md',
   'docs/RUNNING.md',
   'docs/MAINTAINING.md',
+  'docs/RELEASING.md',
+  '.github/copilot-instructions.md',
+  '.github/PULL_REQUEST_TEMPLATE.md',
 ];
 const text = Object.fromEntries(documents.map((name) => [name, read(name)]));
 // Collapsed copies, for the assertions on whole sentences. These documents are hard wrapped, so
@@ -35,8 +38,10 @@ const pkg = JSON.parse(read('package.json'));
 const workflow = read('.github/workflows/ci.yml');
 const browserRunner = read('scripts/browser-check.mjs');
 const upgradeRunner = read('scripts/upgrade-check.mjs');
-const copilotInstructions = read('.github/copilot-instructions.md').replace(/\s+/g, ' ');
+const copilotInstructions = flat['.github/copilot-instructions.md'];
 const paletteRunner = read('scripts/check-palette.mjs').replace(/\s+/g, ' ');
+const releaseBookkeeping = /## Release bookkeeping\n([\s\S]*?)(?=\n## |$)/
+  .exec(text['GOVERNANCE.md'].replace(/\r\n/g, '\n'))?.[1].replace(/\s+/g, ' ') ?? '';
 
 // Every check the workflow actually runs, read out of its run steps rather than out of its prose,
 // which mentions checks it deliberately does not run.
@@ -205,6 +210,80 @@ test('active workflow instructions route future work through Issues, not the his
   assert.doesNotMatch(governance, /Anything a reader or a maintainer would notice/);
   assert.match(paletteRunner, /Issue that owns the correction/);
   assert.doesNotMatch(paletteRunner, /BL-065 backlog block/);
+});
+
+test('release bookkeeping assigns final records without deferring required feature work', () => {
+  assert.ok(releaseBookkeeping, 'governance has no authoritative release-bookkeeping section');
+  assert.match(
+    releaseBookkeeping,
+    /final version release PRs own `CHANGELOG\.md`, coordinated application version bumps, release summaries and optional project-wide prose or count rollups/,
+  );
+  assert.match(
+    releaseBookkeeping,
+    /Feature PRs do not edit the changelog, create release summaries or bump the application version/,
+  );
+  assert.match(
+    releaseBookkeeping,
+    /complete proposed user-facing release note and saved-data compatibility information in the feature PR description/,
+  );
+  assert.match(releaseBookkeeping, /link the PR's record from the Issue/);
+  assert.match(releaseBookkeeping, /saved data is unchanged.*older builds or backups.*migration or backup steps/);
+  assert.match(releaseBookkeeping, /Do not create a shared pending-notes file/);
+  assert.match(releaseBookkeeping, /assembles and verifies the release-note and compatibility records of merged changes/);
+  assert.match(releaseBookkeeping, /already-existing `Unreleased` notes without dropping or duplicating either source/);
+  assert.match(releaseBookkeeping, /preserve released history, and write the final version record once/);
+  assert.match(releaseBookkeeping, /Resolve missing or conflicting records before finalizing/);
+  assert.match(releaseBookkeeping, /do not.*treat an unmerged proposal as delivered/);
+  assert.match(
+    releaseBookkeeping,
+    /Required shared edits stay in the feature PR: runtime catalog or manifest registration, needed generated indexes, source and provenance records, safety documentation, tests and evidence-anchor or re-aim repairs/,
+  );
+  assert.match(releaseBookkeeping, /Documentation about actual behavior or sources stays timely/);
+  assert.match(
+    releaseBookkeeping,
+    /Counts and summaries that an existing gate requires to be accurate must be corrected before the feature merges; they are not optional rollups/,
+  );
+  assert.match(releaseBookkeeping, /Do not weaken gates or defer functional integration/);
+  assert.match(releaseBookkeeping, /Dependency manifest and lockfile changes needed by a feature are allowed/);
+  assert.match(releaseBookkeeping, /application release versions, not dependency updates/);
+  assert.match(releaseBookkeeping, /does not refactor catalog architecture or change platform release, signing, Android code reservation or publication approval requirements/);
+});
+
+test('maintained workflow surfaces agree on release bookkeeping', () => {
+  const targets = {
+    'CONTRIBUTING.md': 'GOVERNANCE.md#release-bookkeeping',
+    '.github/copilot-instructions.md': '../GOVERNANCE.md#release-bookkeeping',
+    'docs/RELEASING.md': '../GOVERNANCE.md#release-bookkeeping',
+    'docs/MAINTAINING.md': '../GOVERNANCE.md#release-bookkeeping',
+    '.github/PULL_REQUEST_TEMPLATE.md': 'https://github.com/raymond-nassar/recap-page/blob/main/GOVERNANCE.md#release-bookkeeping',
+  };
+  for (const [name, target] of Object.entries(targets)) {
+    assert.ok(flat[name].includes(`(${target})`), `${name} does not link to the authoritative policy`);
+  }
+  assert.match(flat['GOVERNANCE.md'], /\[release bookkeeping\]\(#release-bookkeeping\)/);
+  assert.doesNotMatch(flat['GOVERNANCE.md'], /changes also need \[a changelog entry\]/);
+  assert.doesNotMatch(copilotInstructions, /Update `CHANGELOG\.md` under `## Unreleased`/);
+  assert.doesNotMatch(copilotInstructions, /nor a changelog entry unless/);
+  assert.doesNotMatch(flat['docs/RELEASING.md'], /Collect changes under Unreleased until selecting a release/);
+  assert.doesNotMatch(flat['docs/MAINTAINING.md'], /Move current changelog entries under a version heading/);
+  assert.match(flat['docs/MAINTAINING.md'], /assemble and verify the merged feature records, combining them with existing Unreleased notes without omissions or duplicates/);
+});
+
+test('the pull request template retains feature release records and release assembly evidence', () => {
+  const template = flat['.github/PULL_REQUEST_TEMPLATE.md'];
+  assert.match(template, /For feature PRs, include complete proposed user-facing release-note text and saved-data compatibility information here; link this record from the Issue/);
+  assert.match(template, /If no release note is needed, say why/);
+  assert.match(template, /correctness, provenance or gate reason for each required shared feature edit/);
+  assert.match(template, /For final version release PRs, identify the merged feature records assembled and verified alongside existing Unreleased notes/);
+  assert.match(template, /link the finalized version record/);
+  assert.deepEqual(
+    [...text['.github/PULL_REQUEST_TEMPLATE.md'].matchAll(/^## (.+)\r?$/gm)].map((match) => match[1]),
+    ['In plain English', 'What changed', 'Evidence', 'Verified', 'Provenance', 'Follow-ups'],
+  );
+  const gateRows = [...template.matchAll(/\| `(npm (?:test|run [\w:-]+))` \|/g)]
+    .map((match) => match[1]);
+  const required = [...checksInCi()].map((check) => check === 'test' ? 'npm test' : `npm run ${check}`);
+  assert.deepEqual(gateRows.sort(), [...required, 'npm run contract'].sort());
 });
 
 test('feature implementation instructions bound multiplicative validation work', () => {

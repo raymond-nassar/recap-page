@@ -35,13 +35,45 @@ the maintainer combined the remaining UX simplification work (BL-193 through BL-
 owner-directed My Library and Search grouping in one delivery. That exception does not change the
 default. All gates in [the contributing guide](CONTRIBUTING.md) must pass before merging.
 
-Keep the implementation record on the Issue timeline and linked pull request. User-visible behavior
-and release-relevant maintainer changes also need [a changelog entry](CHANGELOG.md). Internal records,
-editorial-only maintenance, and agent or contributor instructions need no entry unless they change
-release-relevant maintainer behavior. A missing required record is a defect.
+Keep the implementation record on the Issue timeline and linked pull request. Follow
+[release bookkeeping](#release-bookkeeping) for release-note records and final version changes.
+A missing required record is a defect.
 
 Fix review findings that matter to the current change. File the rest as repository Issues.
 Do not report a clean review while a material finding remains open.
+
+## Release bookkeeping
+
+To avoid conflicts between independent changes, final version release PRs own `CHANGELOG.md`,
+coordinated application version bumps, release summaries and optional project-wide prose or count
+rollups. Feature PRs do not edit the changelog, create release summaries or bump the application
+version.
+
+User-visible behavior and release-relevant maintainer changes still need a complete proposed
+user-facing release note and saved-data compatibility information in the feature PR description.
+Keep that record in the linked Issue too, or link the PR's record from the Issue. State whether
+saved data is unchanged, any effects on older builds or backups, and any required migration or
+backup steps. Internal records, editorial-only maintenance, and agent or contributor instructions
+need no release note unless they change release-relevant maintainer behavior. Do not create a
+shared pending-notes file.
+
+A final version release PR assembles and verifies the release-note and compatibility records of
+merged changes. Combine them with already-existing `Unreleased` notes without dropping or
+duplicating either source, preserve released history, and write the final version record once.
+Resolve missing or conflicting records before finalizing; do not reconstruct approved wording
+from memory or treat an unmerged proposal as delivered.
+
+Required shared edits stay in the feature PR: runtime catalog or manifest registration, needed
+generated indexes, source and provenance records, safety documentation, tests and evidence-anchor
+or re-aim repairs. Documentation about actual behavior or sources stays timely. Counts and summaries
+that an existing gate requires to be accurate must be corrected before the feature merges; they
+are not optional rollups. Do not weaken gates or defer functional integration to reduce conflicts.
+Dependency manifest and lockfile changes needed by a feature are allowed; the version-bump rule
+covers coordinated application release versions, not dependency updates.
+
+This boundary does not refactor catalog architecture or change platform release, signing, Android
+code reservation or publication approval requirements in
+[the coordinated release policy](docs/RELEASING.md).
 
 ## Releases
 
