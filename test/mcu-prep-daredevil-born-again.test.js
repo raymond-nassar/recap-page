@@ -14,9 +14,12 @@ import {
 import { buildComparisonReport, issueIdsFromValue } from '../scripts/lib/cbh-overlap.mjs';
 import { parseChecklist } from '../src/js/lib/markdown.js';
 import {
-  HOME_CATEGORIES, groupCatalog, parseCatalog, shelfLists,
+  HOME_CATEGORIES, catalogEntries, parseCatalog, shelfLists,
 } from '../src/js/lib/catalog.js';
 import { parseManifest } from '../src/js/lib/curated.js';
+import {
+  historicalReadingChoiceCatalogEntry, historicalReadingChoiceIssueIds,
+} from './helpers/reading-choice-history.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const id = 'mcu-prep-daredevil-born-again';
@@ -140,11 +143,16 @@ test('owner Daredevil frozen approvals remain valid across the complete current 
     assert.ok(entry, `reviewed retained order ${orderId} is missing`);
     return entry;
   });
-  const entries = [...visible, ...retained];
-  const orders = await Promise.all(entries.map(async (entry) => ({
+  const entries = [...visible.map((entry) => ({
+    ...historicalReadingChoiceCatalogEntry(entry), out: entry.file,
+  })), ...retained];
+  const currentReviewedOrders = await Promise.all(entries.map(async (entry) => ({
     orderId: entry.id,
     issueIds: issueIdsFromValue(await json(`src/data/${entry.out}`)),
   })));
+  const orders = currentReviewedOrders.map((order) => ({
+    ...order, issueIds: historicalReadingChoiceIssueIds(order.orderId, order.issueIds),
+  }));
   const currentLibraryDigest = libraryDigestFor(
     { lists: entries, paths: ledger.libraryReview.paths },
     orders.map((order) => ({ id: order.orderId, issueIds: order.issueIds })),
@@ -179,20 +187,20 @@ test('owner Daredevil frozen approvals remain valid across the complete current 
   const later = catalog.lists.filter((entry) => entry.id !== id && !reviewed.has(entry.id));
   assert.deepEqual(later.map((entry) => entry.id),
     ['mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts', 'mcu-prep-moon-knight',
-      'mcu-prep-eternals', 'mcu-prep-deadpool-and-wolverine']);
+      'mcu-prep-eternals', 'mcu-prep-deadpool-and-wolverine', 'avengers-doomsday-secret-wars']);
   assert.deepEqual(manifest.lists.filter((entry) => entry.catalog === false)
     .map((entry) => entry.id), retained.map((entry) => entry.id));
   const laterOrders = await Promise.all(later.map(async (entry) => ({
     orderId: entry.id,
     issueIds: issueIdsFromValue(await json(`src/data/${entry.file}`)),
   })));
-  const current = buildComparisonReport({ candidateIds: expectedIds, orders: [...orders, ...laterOrders] });
-  assert.equal(current.comparisonCount, 286);
+  const current = buildComparisonReport({ candidateIds: expectedIds, orders: [...currentReviewedOrders, ...laterOrders] });
+  assert.equal(current.comparisonCount, 287);
   const activePeerIds = [...new Set([...manifest.lists, ...catalog.lists].map((entry) => entry.id))]
     .filter((peerId) => peerId !== id).sort();
   assert.deepEqual(current.comparisons.map((entry) => entry.orderId).sort(), activePeerIds);
   assert.equal(activePeerIds.includes('spider-man-no-way-home-owner-selected'), false);
-  assert.equal(current.comparisons.filter((entry) => entry.relationship === 'none').length, 282);
+  assert.equal(current.comparisons.filter((entry) => entry.relationship === 'none').length, 283);
   assert.deepEqual(current.comparisons.filter((entry) => entry.relationship !== 'none'),
     report.comparisons.filter((entry) => entry.relationship !== 'none'));
   assert.deepEqual(current.comparisons.filter((entry) => later.some((peer) => peer.id === entry.orderId))
@@ -254,14 +262,9 @@ test('owner Daredevil remains one owner-credited MCU Prep card outside Character
   }
   assert.equal(cards[0].count, 37);
   const category = HOME_CATEGORIES.find((candidate) => candidate.key === 'marvel-on-screen');
-  const selected = category.select(groupCatalog(catalog.lists)).map((story) => story.lists[0].id);
-  assert.deepEqual(selected, [
-    'doctor-strange-multiverse-of-madness', 'spider-man-no-way-home', 'marvel-multiverse',
-    'marvel-what-if', 'wandavision', 'spider-man-far-from-home',
-    'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts',
-    'mcu-prep-moon-knight',
-    'mcu-prep-eternals', 'mcu-prep-deadpool-and-wolverine', id,
-  ]);
+  const selected = category.select(catalogEntries(catalog.lists)).map((story) => story.lists[0].id);
+  assert.deepEqual(selected, catalog.lists.filter((card) => card.type === 'screen-companion')
+    .map((card) => card.id));
   assert.equal(shelfLists(catalog.lists, 'spotlights').some((card) => card.id === id), false);
   assert.equal(catalog.paths.some((readingPath) => readingPath.steps.includes(id)), false);
 });

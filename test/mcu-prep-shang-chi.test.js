@@ -7,9 +7,12 @@ import { assertComparisonCoverage } from '../scripts/author-cbh-packet.mjs';
 import { digestCanonicalJson, libraryDigestFor, reportDigestFor, validateSourceIdentities } from '../scripts/lib/cbh-inventory.mjs';
 import { validateMcuCompanionInventory } from '../scripts/lib/cbh-mcu-companion.mjs';
 import { buildComparisonReport, issueIdsFromValue } from '../scripts/lib/cbh-overlap.mjs';
-import { groupCatalog, HOME_CATEGORIES, parseCatalog, shelfKey } from '../src/js/lib/catalog.js';
+import { catalogEntries, HOME_CATEGORIES, parseCatalog, shelfKey } from '../src/js/lib/catalog.js';
 import { parseManifest } from '../src/js/lib/curated.js';
 import { parseChecklist } from '../src/js/lib/markdown.js';
+import {
+  historicalReadingChoiceIssueIds, historicalReadingChoiceManifest,
+} from './helpers/reading-choice-history.mjs';
 
 const readJson = async (file) => JSON.parse(await readFile(file, 'utf8'));
 const fixture = await readJson('test/fixtures/mcu-prep-shang-chi-vector.json');
@@ -150,7 +153,7 @@ test('Shang-Chi MCU Prep reaches the existing gateway and Storylines without a n
   assert.equal(shelfKey({ lists: [card] }), 'lines');
   const screen = HOME_CATEGORIES.find((row) => row.key === 'marvel-on-screen');
   assert.equal(screen.heading, 'MCU Prep');
-  assert.deepEqual(screen.select(groupCatalog(catalog.lists))
+  assert.deepEqual(screen.select(catalogEntries(catalog.lists))
     .flatMap((story) => story.lists.map((row) => row.id)),
   catalog.lists.filter((row) => row.type === 'screen-companion').map((row) => row.id));
   assert.equal(catalog.lists.filter((row) => row.id === id).length, 1);
@@ -169,7 +172,7 @@ test('Shang-Chi MCU Prep reaches the existing gateway and Storylines without a n
 test('Shang-Chi MCU Prep retains historical comparisons and covers the complete current library', async () => {
   const sourceIds = new Set(report.coverage.sourceOrderIds);
   const childIds = new Set(report.coverage.generatedChildIds);
-  const sourceEntries = manifest.lists.filter((row) => sourceIds.has(row.id));
+  const sourceEntries = historicalReadingChoiceManifest(manifest).lists.filter((row) => sourceIds.has(row.id));
   const childEntries = rawCatalog.lists.filter((row) => childIds.has(row.id));
   assert.equal(sourceEntries.length, 203);
   assert.equal(childEntries.length, 78);
@@ -179,7 +182,8 @@ test('Shang-Chi MCU Prep retains historical comparisons and covers the complete 
   const entries = [...sourceEntries, ...childEntries];
   const orders = await Promise.all(entries.map(async (row) => ({
     id: row.id,
-    issueIds: issueIdsFromValue(await readJson(path.join('src', 'data', row.out ?? row.file))),
+    issueIds: historicalReadingChoiceIssueIds(row.id,
+      issueIdsFromValue(await readJson(path.join('src', 'data', row.out ?? row.file)))),
   })));
   const baselineManifest = { ...manifest, lists: entries };
   const digest = libraryDigestFor(baselineManifest, orders);
@@ -209,7 +213,7 @@ test('Shang-Chi MCU Prep retains historical comparisons and covers the complete 
     issueIds: issueIdsFromValue(await readJson(path.join('src', 'data', row.out ?? row.file))),
   })));
   const current = buildComparisonReport({ candidateIds: fixture.issueIds, orders: currentOrders });
-  assert.equal(current.comparisonCount, 286);
+  assert.equal(current.comparisonCount, 287);
   assert.equal(current.comparisonCount, currentEntries.length);
   assert.doesNotThrow(() => assertComparisonCoverage(current, {
     candidateId: id,
@@ -224,7 +228,7 @@ test('Shang-Chi MCU Prep retains historical comparisons and covers the complete 
     row.orderId === 'spider-man-no-way-home-owner-selected'), false);
   for (const laterId of [
     'mcu-prep-thunderbolts', 'mcu-prep-moon-knight', 'mcu-prep-eternals',
-    'mcu-prep-deadpool-and-wolverine', 'mcu-prep-daredevil-born-again',
+    'mcu-prep-deadpool-and-wolverine', 'mcu-prep-daredevil-born-again', 'avengers-doomsday-secret-wars',
   ]) {
     const comparison = current.comparisons.find((row) => row.orderId === laterId);
     assert.deepEqual(comparison?.sharedIds, []);

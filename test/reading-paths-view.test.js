@@ -128,7 +128,8 @@ test('stop actions inspect unowned stories and follow refreshed exact or sibling
   const [single, grouped] = fixture.actions();
   assert.equal(single.textContent, 'Preview');
   assert.equal(single['aria-label'], 'Preview: single');
-  assert.equal(grouped.textContent, 'Choose reading option');
+  assert.equal(grouped.textContent, 'Preview');
+  assert.equal(grouped['aria-label'], 'Preview: exact');
   grouped.onclick();
   assert.equal(fixture.opened[0].progress, null);
   assert.deepEqual(fixture.opened[0].stop.lists.map(({ id }) => id), ['main', 'exact']);
@@ -160,7 +161,7 @@ test('stop actions inspect unowned stories and follow refreshed exact or sibling
 
   fixture.setState({ lists: {}, listOrder: [], read: {} });
   fixture.view.refreshProgress();
-  assert.equal(grouped.textContent, 'Choose reading option');
+  assert.equal(grouped.textContent, 'Preview');
 });
 
 test('return focus resolves the original stop only after the selected path is rendered', async () => {

@@ -8,9 +8,13 @@ import { assertApprovedRelationshipReview, buildMarkdown } from '../scripts/auth
 import {
   assertMappingMatchesPacketOccurrences, validateFrozenPacket, validateMappingDigest, validateReportDigest,
 } from '../scripts/lib/cbh-inventory.mjs';
-import { buildReportForMapping } from '../scripts/report-order-overlap.mjs';
+
 import { parseCatalog, searchCatalog } from '../src/js/lib/catalog.js';
 import { parseChecklist } from '../src/js/lib/markdown.js';
+import {
+  buildHistoricalReadingChoiceReport as buildReportForMapping,
+  historicalReadingChoiceManifest,
+} from './helpers/reading-choice-history.mjs';
 
 const id = 'nebula-reading-order';
 const sourceUrl = 'https://www.comicbookherald.com/nebula-reading-order/';
@@ -137,7 +141,7 @@ test('Nebula keeps the 2014 Guardians original, numbered prose and late source p
 
 test('Nebula approved relationship report preserves all 187 reviewed orders', async () => {
   const manifest = await readJson('src/data/curated-lists.json');
-  const expectedOrderIds = manifest.lists
+  const expectedOrderIds = historicalReadingChoiceManifest(manifest).lists
     .filter((row) => row.id !== 'shang-chi-master-of-kung-fu-reading-order' && row.id !== 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order' && row.id !== 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order' && row.id !== id && row.id !== 'nova-reading-order' && row.id !== 'ultimate-spider-man-reading-order' && row.id !== 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide' && row.id !== 'hope-summers-reading-order'
       && row.id !== 'x-23-reading-order' && row.id !== 'ms-marvel-kamala-khan-reading-order' && row.id !== 'marvel-zombies-reading-order'
       && row.id !== 'hawkeye-reading-order'

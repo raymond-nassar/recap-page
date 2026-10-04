@@ -10,6 +10,7 @@ import {
   validateReportDigest,
 } from '../scripts/lib/cbh-inventory.mjs';
 import { buildReportForMapping, loadLibrarySnapshot, reportArgs } from '../scripts/report-order-overlap.mjs';
+import { buildHistoricalReadingChoiceReport } from './helpers/reading-choice-history.mjs';
 
 test('the full-library switch keeps peer paths while disabling later-order exclusions', () => {
   assert.deepEqual(reportArgs(['peer.json', '--include-later']), {
@@ -131,11 +132,11 @@ test('buildReportForMapping rejects unresolved mappings before writing a report'
   assert.ok(report.comparisons.length > 0);
 });
 
-test('buildReportForMapping regenerates shipped reports without duplicate self or peer comparisons', async () => {
+test('buildReportForMapping separates the shipped historical cohort from complete current coverage', async () => {
   const mappingsDir = path.join(root, 'scripts', 'data', 'cbh-mappings');
   const mappingPath = path.join(mappingsDir, 'secret-war.json');
   const peerPaths = [path.join(mappingsDir, 'spider-man-the-other.json')];
-  const report = await buildReportForMapping(mappingPath, peerPaths);
+  const report = await buildHistoricalReadingChoiceReport(mappingPath, peerPaths);
   const comparedIds = report.comparisons.map((comparison) => comparison.orderId);
   const laterOwnerIds = [
     'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings',
@@ -146,6 +147,7 @@ test('buildReportForMapping regenerates shipped reports without duplicate self o
   assert.equal(report.candidateCount, 5);
   assert.equal(report.comparisonCount, 137);
   assert.equal(new Set(comparedIds).size, 137);
+  assert.equal(comparedIds.includes('avengers-doomsday-secret-wars'), false);
   assert.equal(comparedIds.includes('secret-war'), false);
   assert.equal(comparedIds.filter((id) => id === 'spider-man-the-other').length, 1);
   for (const laterId of laterOwnerIds) {
@@ -161,6 +163,7 @@ test('buildReportForMapping regenerates shipped reports without duplicate self o
   const expectedIds = manifest.lists.map((entry) => entry.id).filter((id) => id !== 'secret-war');
   assert.equal(current.comparisonCount, expectedIds.length);
   assert.deepEqual([...currentIds].sort(), [...expectedIds].sort());
+  assert.equal(currentIds.filter((id) => id === 'avengers-doomsday-secret-wars').length, 1);
   for (const laterId of laterOwnerIds.filter((id) => id !== 'spider-man-no-way-home-owner-selected')) {
     assert.equal(current.comparisons.filter((comparison) => comparison.orderId === laterId).length, 1);
   }

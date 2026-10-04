@@ -99,7 +99,7 @@ export default [
   },
   {
     // The server, the build scripts and the tests run in Node.
-    files: ['server.mjs', 'scripts/**/*.mjs', 'test/**/*.js', 'packaging/windows/**/*.mjs'],
+    files: ['server.mjs', 'scripts/**/*.mjs', 'test/**/*.{js,mjs}', 'packaging/windows/**/*.mjs'],
     languageOptions: { globals: globals.node },
   },
   {
@@ -120,6 +120,7 @@ export default [
       'scripts/browser-reader-first.mjs',
       'scripts/browser-defer.mjs',
       'scripts/browser-preview-scroll-452.mjs',
+      'scripts/browser-reading-list-choices.mjs',
       'scripts/browser-source-credits.mjs',
       'scripts/browser-markdown-export.mjs',
       'scripts/browser-order-export.mjs',

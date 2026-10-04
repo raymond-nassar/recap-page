@@ -6,6 +6,7 @@ import { after } from 'node:test';
 import { fileURLToPath } from 'node:url';
 import { issueIdsFromValue } from '../../scripts/lib/cbh-overlap.mjs';
 import { loadLibrarySnapshot } from '../../scripts/report-order-overlap.mjs';
+import { historicalReadingChoiceIssueIds, historicalReadingChoiceManifest } from './reading-choice-history.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 const fixturePath = path.join(root, 'test', 'fixtures', 'agatha-historical-library.json');
@@ -43,7 +44,9 @@ export async function historicalAgathaLibrarySnapshot() {
   if (!cachedSnapshotPromise) {
     cachedSnapshotPromise = (async () => {
       const fixture = JSON.parse(await readFile(fixturePath, 'utf8'));
-      const liveManifest = JSON.parse(await readFile(path.join(root, 'src', 'data', 'curated-lists.json'), 'utf8'));
+      const liveManifest = historicalReadingChoiceManifest(
+        JSON.parse(await readFile(path.join(root, 'src', 'data', 'curated-lists.json'), 'utf8')),
+      );
       const agathaEntry = liveManifest.lists.find((entry) => entry.id === fixture.manifestEntry.id);
       if (!agathaEntry) {
         throw new Error(`Missing live manifest entry for ${fixture.manifestEntry.id}`);
@@ -80,7 +83,7 @@ export async function historicalAgathaLibrarySnapshot() {
           return [out, { issueIds: fixture.issueIds }];
         }
         const sourcePayload = JSON.parse(await readFile(path.join(root, 'src', 'data', out), 'utf8'));
-        return [out, { issueIds: issueIdsFromValue(sourcePayload) }];
+        return [out, { issueIds: historicalReadingChoiceIssueIds(entry.id, issueIdsFromValue(sourcePayload)) }];
       }));
 
       await writeFile(path.join(tempDir, 'manifest.json'), `${JSON.stringify(manifest, null, 2)}\n`, 'utf8');
