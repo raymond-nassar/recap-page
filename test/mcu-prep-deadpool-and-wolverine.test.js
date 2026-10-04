@@ -177,13 +177,13 @@ test('owner evidence reuses the frozen packet and mapping contracts without CBH 
   assert.doesNotMatch(entry.description, /[\u2013\u2014]|film.+inspir|costume|antagonism/i);
 });
 
-test('MCU Prep discovery preserves six CBH guides and the published Thunderbolts companion before this guide', async () => {
+test('MCU Prep discovery preserves six CBH guides and all three distinct owner companions', async () => {
   const { manifest, catalog: raw } = await loadEvidence();
   const catalog = parseCatalog(raw);
   const entry = manifest.lists.find((list) => list.id === id);
   const card = catalog.lists.find((list) => list.id === id);
-  assert.equal(manifest.lists.length, 205);
-  assert.equal(catalog.lists.length, 282);
+  assert.equal(manifest.lists.length, 206);
+  assert.equal(catalog.lists.length, 283);
   assert.equal(manifest.lists.filter((list) => list.id === id).length, 1);
   assert.equal(catalog.lists.filter((list) => list.id === id).length, 1);
   for (const value of [entry, card]) {
@@ -202,8 +202,9 @@ test('MCU Prep discovery preserves six CBH guides and the published Thunderbolts
   assert.deepEqual(category.select(stories).map((story) => story.lists[0].id), [
     'doctor-strange-multiverse-of-madness', 'spider-man-no-way-home', 'marvel-multiverse',
     'marvel-what-if', 'wandavision', 'spider-man-far-from-home', 'mcu-prep-thunderbolts', id,
+    'spider-man-no-way-home-owner-selected',
   ]);
-  assert.equal(availableHomeCategories(stories).find((item) => item.key === category.key).count, 8);
+  assert.equal(availableHomeCategories(stories).find((item) => item.key === category.key).count, 9);
   assert.ok(catalog.paths.every((readingPath) => !readingPath.steps.includes(id)));
 });
 
@@ -216,10 +217,10 @@ test('approved relationships cover the complete library including generated chil
     extension, candidateId: id, candidateIds: expectedVector, orders,
     originalReport: report, originalApprovalDigest: mapping.relationshipReview.approvalDigest,
   });
-  assert.equal(extension.publishedBase, '9fafd33654e6022c4c2f0145af647f3b07a70a22');
-  assert.deepEqual(laterIds, ['mcu-prep-thunderbolts']);
+  assert.equal(extension.publishedBase, '355f71a67fe2945bce928ff15a6cf22331cf3b0d');
+  assert.deepEqual(laterIds, ['mcu-prep-thunderbolts', 'spider-man-no-way-home-owner-selected']);
   assert.equal(current.comparisonCount, expectedPeers.length);
-  assert.equal(current.comparisonCount, 282);
+  assert.equal(current.comparisonCount, 283);
   assert.ok(expectedPeers.length >= catalog.lists.length - 1);
   assert.ok(expectedPeers.some((entry) => !manifest.lists.some((item) => item.id === entry.id)));
   assert.ok(expectedPeers.some((entry) => !catalogIds.has(entry.id)));
@@ -251,7 +252,8 @@ test('later peer relationships require review even when fresh extension hashes a
   const extension = await readJson(`../scripts/data/${stem}-current-library-extension.json`);
   const added = extension.extensions.find((entry) => entry.candidateId === id);
   added.laterComparisons = buildComparisonReport({
-    candidateIds: expectedVector, orders: [peer],
+    candidateIds: expectedVector,
+    orders: mutated.filter((entry) => Object.hasOwn(added.laterIssueVectorDigests, entry.id)),
   }).comparisons;
   assert.equal(added.laterComparisons[0].relationship, 'partial');
   added.laterIssueVectorDigests[peer.id] = digestCanonicalJson(peer.issueIds);
