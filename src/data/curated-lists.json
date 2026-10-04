@@ -2240,6 +2240,41 @@
       "coverIssueId": 74028
     },
     {
+      "id": "mcu-prep-shang-chi-and-the-legend-of-the-ten-rings",
+      "name": "Shang-Chi and the Legend of the Ten Rings",
+      "description": "An owner-selected modern Shang-Chi companion, from Agents of Atlas and Sword Master through Brothers & Sisters and the Ten Rings. Anthology selections are qualified; completion is tracked per issue.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "mcu-prep-shang-chi-and-the-legend-of-the-ten-rings.md",
+      "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/683#issuecomment-5971742989",
+      "sourceOrigin": "Compiled for this project from the owner's selected Comic Book Herald excerpt",
+      "sourceLicense": null,
+      "out": "mcu_prep_shang_chi_and_the_legend_of_the_ten_rings.json",
+      "characters": [
+        "Shang-Chi",
+        "Agents of Atlas",
+        "Sword Master"
+      ],
+      "keywords": [
+        "Shang-Chi",
+        "Legend of the Ten Rings",
+        "MCU Prep",
+        "Brothers & Sisters",
+        "Five Weapons Society",
+        "Family of Origin",
+        "Gene Luen Yang",
+        "Alyssa Wong",
+        "Comic Book Herald"
+      ],
+      "expect": 37,
+      "timeline": null,
+      "coverIssueId": 84410
+    },
+    {
       "id": "mcu-prep-thunderbolts",
       "name": "MCU Prep: Thunderbolts*",
       "description": "34 resolved originals; Thunderbolts (1997) #-1 remains a documented provider gap. Owner-selected prep from four collections and one Taskmaster spotlight, following the original team, Natasha and Yelena, Bucky's Winter Soldier story and his later Thunderbolts team.",

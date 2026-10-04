@@ -269,6 +269,11 @@ test('Thunderbolts keeps its frozen approval and checks the complete current lib
   const currentComparison = buildComparisonReport({ candidateIds: expectedIds, orders });
   assert.equal(currentComparison.comparisonCount, catalog.lists.length - 1
     + manifest.lists.filter((entry) => entry.catalog === false).length);
+  assert.doesNotThrow(() => assertComparisonCoverage(currentComparison, {
+    candidateId: id,
+    candidateCount: 34,
+    expectedOrderIds: orders.map((entry) => entry.orderId),
+  }));
   assert.deepEqual(
     currentComparison.comparisons.filter((entry) => entry.relationship !== 'none'),
     report.comparisons.filter((entry) => entry.relationship !== 'none'),

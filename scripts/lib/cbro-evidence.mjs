@@ -136,6 +136,7 @@ export const CBH_LATER_ORDER_IDS = Object.freeze([
   'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order',
   'namor-sub-mariner-reading-order',
   'iron-fist-reading-order',
+  'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings',
   'mcu-prep-thunderbolts',
   'spider-man-no-way-home-owner-selected',
 ]);

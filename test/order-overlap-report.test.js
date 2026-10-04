@@ -9,7 +9,7 @@ import {
   mappingDigestFor,
   validateReportDigest,
 } from '../scripts/lib/cbh-inventory.mjs';
-import { buildReportForMapping, reportArgs } from '../scripts/report-order-overlap.mjs';
+import { buildReportForMapping, loadLibrarySnapshot, reportArgs } from '../scripts/report-order-overlap.mjs';
 
 test('the full-library switch keeps peer paths while disabling later-order exclusions', () => {
   assert.deepEqual(reportArgs(['peer.json', '--include-later']), {
@@ -133,28 +133,32 @@ test('buildReportForMapping rejects unresolved mappings before writing a report'
 
 test('buildReportForMapping regenerates shipped reports without duplicate self or peer comparisons', async () => {
   const mappingsDir = path.join(root, 'scripts', 'data', 'cbh-mappings');
-  const report = await buildReportForMapping(
-    path.join(mappingsDir, 'secret-war.json'),
-    [path.join(mappingsDir, 'spider-man-the-other.json')],
-  );
+  const mappingPath = path.join(mappingsDir, 'secret-war.json');
+  const peerPaths = [path.join(mappingsDir, 'spider-man-the-other.json')];
+  const report = await buildReportForMapping(mappingPath, peerPaths);
   const comparedIds = report.comparisons.map((comparison) => comparison.orderId);
-  const laterOwnerIds = ['mcu-prep-thunderbolts', 'spider-man-no-way-home-owner-selected'];
+  const laterOwnerIds = [
+    'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings',
+    'mcu-prep-thunderbolts',
+    'spider-man-no-way-home-owner-selected',
+  ];
 
   assert.equal(report.candidateCount, 5);
   assert.equal(report.comparisonCount, 137);
   assert.equal(new Set(comparedIds).size, 137);
   assert.equal(comparedIds.includes('secret-war'), false);
   assert.equal(comparedIds.filter((id) => id === 'spider-man-the-other').length, 1);
-  for (const laterId of laterOwnerIds) {
-    assert.equal(comparedIds.includes(laterId), false);
-  }
-  const full = await buildReportForMapping(
-    path.join(mappingsDir, 'secret-war.json'),
-    [path.join(mappingsDir, 'spider-man-the-other.json')],
-    { excludedOrderIds: [] },
-  );
-  for (const laterId of laterOwnerIds) {
-    assert.equal(full.comparisons.filter((comparison) => comparison.orderId === laterId).length, 1);
+  for (const id of laterOwnerIds) assert.equal(comparedIds.includes(id), false);
+
+  const current = await buildReportForMapping(mappingPath, peerPaths, { excludedOrderIds: [] });
+  const library = await loadLibrarySnapshot();
+  const currentIds = current.comparisons.map((comparison) => comparison.orderId);
+  const expectedIds = library.orders.map((order) => order.orderId)
+    .filter((id) => id !== 'secret-war');
+  assert.equal(current.comparisonCount, expectedIds.length);
+  assert.deepEqual([...currentIds].sort(), [...expectedIds].sort());
+  for (const id of laterOwnerIds) {
+    assert.equal(currentIds.filter((comparedId) => comparedId === id).length, 1);
   }
 });
 

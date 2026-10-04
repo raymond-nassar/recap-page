@@ -1,0 +1,1263 @@
+{
+  "id": "mcu-prep-shang-chi-and-the-legend-of-the-ten-rings",
+  "name": "Shang-Chi and the Legend of the Ten Rings",
+  "description": "An owner-selected modern Shang-Chi companion, from Agents of Atlas and Sword Master through Brothers & Sisters and the Ten Rings. Anthology selections are qualified; completion is tracked per issue.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/683#issuecomment-5971742989",
+  "sourceOrigin": "Compiled for this project from the owner's selected Comic Book Herald excerpt",
+  "sourceLicense": null,
+  "generatedAt": "2026-10-03T18:48:28.130Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 37,
+  "collections": 6,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 77001,
+      "title": "Agents of Atlas (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/77001/agents_of_atlas_2019_1",
+      "seriesId": 27624,
+      "seriesName": "Agents of Atlas (2019)",
+      "onSale": "2019-08-07T00:00:00+0000",
+      "mu": "2020-02-10T00:00:00+0000",
+      "digitalId": 52306,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/5d404ebed84b5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Jason Paz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlo Pagulayan",
+          "role": "penciler"
+        },
+        {
+          "name": "Jung-Geun Yoon",
+          "role": "penciler"
+        },
+        {
+          "name": "Nico Leon",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        },
+        {
+          "name": "Jeff Parker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Agents of Atlas (2019) #1-5"
+    },
+    {
+      "issueId": 77002,
+      "title": "Agents of Atlas (2019) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/77002/agents_of_atlas_2019_2",
+      "seriesId": 27624,
+      "seriesName": "Agents of Atlas (2019)",
+      "onSale": "2019-09-04T00:00:00+0000",
+      "mu": "2020-03-09T00:00:00+0000",
+      "digitalId": 52477,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/d0/5d63e45be9e6a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Pop Mhan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jung-Geun Yoon",
+          "role": "penciler"
+        },
+        {
+          "name": "Nico Leon",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Agents of Atlas (2019) #1-5"
+    },
+    {
+      "issueId": 77003,
+      "title": "Agents of Atlas (2019) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/77003/agents_of_atlas_2019_3",
+      "seriesId": 27624,
+      "seriesName": "Agents of Atlas (2019)",
+      "onSale": "2019-10-23T00:00:00+0000",
+      "mu": "2020-04-27T00:00:00+0000",
+      "digitalId": 51835,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/5da783de279d0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jung-Geun Yoon",
+          "role": "penciler"
+        },
+        {
+          "name": "Nico Leon",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Agents of Atlas (2019) #1-5"
+    },
+    {
+      "issueId": 77004,
+      "title": "Agents of Atlas (2019) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/77004/agents_of_atlas_2019_4",
+      "seriesId": 27624,
+      "seriesName": "Agents of Atlas (2019)",
+      "onSale": "2019-11-13T00:00:00+0000",
+      "mu": "2020-05-18T00:00:00+0000",
+      "digitalId": 51836,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/5dc0929b7db34",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Pop Mhan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jung-Geun Yoon",
+          "role": "penciler"
+        },
+        {
+          "name": "Nico Leon",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Agents of Atlas (2019) #1-5"
+    },
+    {
+      "issueId": 77005,
+      "title": "Agents of Atlas (2019) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/77005/agents_of_atlas_2019_5",
+      "seriesId": 27624,
+      "seriesName": "Agents of Atlas (2019)",
+      "onSale": "2019-12-18T00:00:00+0000",
+      "mu": "2020-06-22T00:00:00+0000",
+      "digitalId": 53206,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/50/5defb295f03da",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jung-Geun Yoon",
+          "role": "penciler"
+        },
+        {
+          "name": "Nico Leon",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Agents of Atlas (2019) #1-5"
+    },
+    {
+      "issueId": 77665,
+      "title": "Sword Master (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/77665/sword_master_2019_1",
+      "seriesId": 27779,
+      "seriesName": "Sword Master (2019 - 2020)",
+      "onSale": "2019-07-24T00:00:00+0000",
+      "mu": "2020-01-27T00:00:00+0000",
+      "digitalId": 52063,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/5d35b74c77501",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Ario Anindito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Sword Master (2019) #1-6 (collection selects material; progress is whole-issue)"
+    },
+    {
+      "issueId": 78431,
+      "title": "Sword Master (2019) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/78431/sword_master_2019_2",
+      "seriesId": 27779,
+      "seriesName": "Sword Master (2019 - 2020)",
+      "onSale": "2019-08-14T00:00:00+0000",
+      "mu": "2020-02-17T00:00:00+0000",
+      "digitalId": 52435,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/5d4c2c089ee94",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Ario Anindito",
+          "role": "cover artist"
+        },
+        {
+          "name": "G Gunji",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Sword Master (2019) #1-6 (collection selects material; progress is whole-issue)"
+    },
+    {
+      "issueId": 78932,
+      "title": "Sword Master (2019) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/78932/sword_master_2019_3",
+      "seriesId": 27779,
+      "seriesName": "Sword Master (2019 - 2020)",
+      "onSale": "2019-09-11T00:00:00+0000",
+      "mu": "2020-03-16T00:00:00+0000",
+      "digitalId": 52597,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/b0/5d700ea3a491b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Ario Anindito",
+          "role": "cover artist"
+        },
+        {
+          "name": "G Gunji",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Sword Master (2019) #1-6 (collection selects material; progress is whole-issue)"
+    },
+    {
+      "issueId": 82435,
+      "title": "Sword Master (2019) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/82435/sword_master_2019_4",
+      "seriesId": 27779,
+      "seriesName": "Sword Master (2019 - 2020)",
+      "onSale": "2019-10-02T00:00:00+0000",
+      "mu": "2020-04-06T00:00:00+0000",
+      "digitalId": 52907,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/a0/5d8e0fdb6b86a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Ario Anindito",
+          "role": "cover artist"
+        },
+        {
+          "name": "G Gunji",
+          "role": "penciler"
+        },
+        {
+          "name": "Fonda Lee",
+          "role": "writer"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Sword Master (2019) #1-6 (collection selects material; progress is whole-issue)"
+    },
+    {
+      "issueId": 83235,
+      "title": "Sword Master (2019) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/83235/sword_master_2019_5",
+      "seriesId": 27779,
+      "seriesName": "Sword Master (2019 - 2020)",
+      "onSale": "2019-11-06T00:00:00+0000",
+      "mu": "2020-05-11T00:00:00+0000",
+      "digitalId": 53073,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/30/5db841b5bfbf3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Ario Anindito",
+          "role": "cover artist"
+        },
+        {
+          "name": "G Gunji",
+          "role": "penciler"
+        },
+        {
+          "name": "Fonda Lee",
+          "role": "writer"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Sword Master (2019) #1-6 (collection selects material; progress is whole-issue)"
+    },
+    {
+      "issueId": 83520,
+      "title": "Sword Master (2019) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/83520/sword_master_2019_6",
+      "seriesId": 27779,
+      "seriesName": "Sword Master (2019 - 2020)",
+      "onSale": "2019-12-04T00:00:00+0000",
+      "mu": "2020-06-08T00:00:00+0000",
+      "digitalId": 53299,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/10/5ddc12db7dff0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Ario Anindito",
+          "role": "cover artist"
+        },
+        {
+          "name": "G Gunji",
+          "role": "penciler"
+        },
+        {
+          "name": "Fonda Lee",
+          "role": "writer"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Sword Master (2019) #1-6 (collection selects material; progress is whole-issue)"
+    },
+    {
+      "issueId": 84410,
+      "title": "Shang-Chi (2020) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/84410/shang-chi_2020_1",
+      "seriesId": 29714,
+      "seriesName": "Shang-Chi (2020 - 2021)",
+      "onSale": "2020-09-30T00:00:00+0000",
+      "mu": "2021-01-04T00:00:00+0000",
+      "digitalId": 55115,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/a0/5f735c7849c7f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Philip Tan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dike Ruan",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Cheung",
+          "role": "penciler"
+        },
+        {
+          "name": "Gene Yang",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Shang-Chi (2020) #1-5"
+    },
+    {
+      "issueId": 84411,
+      "title": "Shang-Chi (2020) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/84411/shang-chi_2020_2",
+      "seriesId": 29714,
+      "seriesName": "Shang-Chi (2020 - 2021)",
+      "onSale": "2020-10-28T00:00:00+0000",
+      "mu": "2021-02-01T00:00:00+0000",
+      "digitalId": 55561,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/d0/601967f0d1211",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dike Ruan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Philip Tan",
+          "role": "penciler"
+        },
+        {
+          "name": "Gene Yang",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Shang-Chi (2020) #1-5"
+    },
+    {
+      "issueId": 84412,
+      "title": "Shang-Chi (2020) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/84412/shang-chi_2020_3",
+      "seriesId": 29714,
+      "seriesName": "Shang-Chi (2020 - 2021)",
+      "onSale": "2020-11-25T00:00:00+0000",
+      "mu": "2021-03-01T00:00:00+0000",
+      "digitalId": 55700,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/601afd5a97225",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dike Ruan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Philip Tan",
+          "role": "penciler"
+        },
+        {
+          "name": "Gene Yang",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Shang-Chi (2020) #1-5"
+    },
+    {
+      "issueId": 84413,
+      "title": "Shang-Chi (2020) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/84413/shang-chi_2020_4",
+      "seriesId": 29714,
+      "seriesName": "Shang-Chi (2020 - 2021)",
+      "onSale": "2020-12-30T00:00:00+0000",
+      "mu": "2021-04-05T00:00:00+0000",
+      "digitalId": 55825,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/5fda7d9e581e2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dike Ruan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bernard Chang",
+          "role": "penciler"
+        },
+        {
+          "name": "Philip Tan",
+          "role": "penciler"
+        },
+        {
+          "name": "Gene Yang",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Shang-Chi (2020) #1-5"
+    },
+    {
+      "issueId": 84414,
+      "title": "Shang-Chi (2020) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/84414/shang-chi_2020_5",
+      "seriesId": 29714,
+      "seriesName": "Shang-Chi (2020 - 2021)",
+      "onSale": "2021-01-27T00:00:00+0000",
+      "mu": "2021-05-03T00:00:00+0000",
+      "digitalId": 56041,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/6009ea196b56e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dike Ruan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marcus to",
+          "role": "penciler"
+        },
+        {
+          "name": "Philip Tan",
+          "role": "penciler"
+        },
+        {
+          "name": "Gene Yang",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Shang-Chi (2020) #1-5"
+    },
+    {
+      "issueId": 92003,
+      "title": "The Legend Of Shang-Chi (2021) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/92003/the_legend_of_shang-chi_2021_1",
+      "seriesId": 31455,
+      "seriesName": "The Legend Of Shang-Chi (2021)",
+      "onSale": "2021-02-03T00:00:00+0000",
+      "mu": "2021-05-10T00:00:00+0000",
+      "digitalId": 56050,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/10/6009e1cf54a3e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andie Tong",
+          "role": "penciler"
+        },
+        {
+          "name": "Alyssa Wong",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 93327,
+      "title": "Shang-Chi (2021) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/93327/shang-chi_2021_1",
+      "seriesId": 31902,
+      "seriesName": "Shang-Chi (2021 - 2022)",
+      "onSale": "2021-05-19T00:00:00+0000",
+      "mu": "2021-08-23T00:00:00+0000",
+      "digitalId": 56816,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/f0/60afe31b76cae",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dike Ruan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Gene Yang",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Shang-Chi (2021) #1-6"
+    },
+    {
+      "issueId": 93328,
+      "title": "Shang-Chi (2021) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/93328/shang-chi_2021_2",
+      "seriesId": 31902,
+      "seriesName": "Shang-Chi (2021 - 2022)",
+      "onSale": "2021-06-30T00:00:00+0000",
+      "mu": "2021-10-04T00:00:00+0000",
+      "digitalId": 56987,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/609ee2a089b7d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dike Ruan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Gene Yang",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Shang-Chi (2021) #1-6"
+    },
+    {
+      "issueId": 93329,
+      "title": "Shang-Chi (2021) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/93329/shang-chi_2021_3",
+      "seriesId": 31902,
+      "seriesName": "Shang-Chi (2021 - 2022)",
+      "onSale": "2021-07-28T00:00:00+0000",
+      "mu": "2021-11-01T00:00:00+0000",
+      "digitalId": 57063,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/60fad3278685f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dike Ruan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Gene Yang",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Shang-Chi (2021) #1-6"
+    },
+    {
+      "issueId": 93330,
+      "title": "Shang-Chi (2021) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/93330/shang-chi_2021_4",
+      "seriesId": 31902,
+      "seriesName": "Shang-Chi (2021 - 2022)",
+      "onSale": "2021-09-08T00:00:00+0000",
+      "mu": "2021-12-13T00:00:00+0000",
+      "digitalId": 57680,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/10/614260c6e8adb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dike Ruan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Gene Yang",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Shang-Chi (2021) #1-6"
+    },
+    {
+      "issueId": 93331,
+      "title": "Shang-Chi (2021) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/93331/shang-chi_2021_5",
+      "seriesId": 31902,
+      "seriesName": "Shang-Chi (2021 - 2022)",
+      "onSale": "2021-10-13T00:00:00+0000",
+      "mu": "2022-01-17T00:00:00+0000",
+      "digitalId": 57802,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/6160b671cb3ff",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dike Ruan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Gene Yang",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Shang-Chi (2021) #1-6"
+    },
+    {
+      "issueId": 93332,
+      "title": "Shang-Chi (2021) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/93332/shang-chi_2021_6",
+      "seriesId": 31902,
+      "seriesName": "Shang-Chi (2021 - 2022)",
+      "onSale": "2021-11-17T00:00:00+0000",
+      "mu": "2022-02-21T00:00:00+0000",
+      "digitalId": 57922,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/6214fa8b81645",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dike Ruan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Gene Yang",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Shang-Chi (2021) #1-6"
+    },
+    {
+      "issueId": 93333,
+      "title": "Shang-Chi (2021) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/93333/shang-chi_2021_7",
+      "seriesId": 31902,
+      "seriesName": "Shang-Chi (2021 - 2022)",
+      "onSale": "2022-01-05T00:00:00+0000",
+      "mu": "2022-04-11T00:00:00+0000",
+      "digitalId": 58193,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/00/61d4c4fa11be9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dike Ruan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Gene Yang",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Shang-Chi (2021) #7-12; Marvel's Voices: Identity (2021) #1 (Shang-Chi story only; progress is whole-issue)"
+    },
+    {
+      "issueId": 93334,
+      "title": "Shang-Chi (2021) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/93334/shang-chi_2021_8",
+      "seriesId": 31902,
+      "seriesName": "Shang-Chi (2021 - 2022)",
+      "onSale": "2022-02-02T00:00:00+0000",
+      "mu": "2022-05-09T00:00:00+0000",
+      "digitalId": 58538,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/30/61f98e63004b0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dike Ruan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Gene Yang",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Shang-Chi (2021) #7-12; Marvel's Voices: Identity (2021) #1 (Shang-Chi story only; progress is whole-issue)"
+    },
+    {
+      "issueId": 93335,
+      "title": "Shang-Chi (2021) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/93335/shang-chi_2021_9",
+      "seriesId": 31902,
+      "seriesName": "Shang-Chi (2021 - 2022)",
+      "onSale": "2022-02-23T00:00:00+0000",
+      "mu": "2022-05-30T00:00:00+0000",
+      "digitalId": 58642,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/62017952a1efd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Marcus to",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Gene Yang",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Shang-Chi (2021) #7-12; Marvel's Voices: Identity (2021) #1 (Shang-Chi story only; progress is whole-issue)"
+    },
+    {
+      "issueId": 93336,
+      "title": "Shang-Chi (2021) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/93336/shang-chi_2021_10",
+      "seriesId": 31902,
+      "seriesName": "Shang-Chi (2021 - 2022)",
+      "onSale": "2022-03-23T00:00:00+0000",
+      "mu": "2022-06-27T00:00:00+0000",
+      "digitalId": 58827,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/61f01a01778fe",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Marcus to",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Gene Yang",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Shang-Chi (2021) #7-12; Marvel's Voices: Identity (2021) #1 (Shang-Chi story only; progress is whole-issue)"
+    },
+    {
+      "issueId": 98696,
+      "title": "Shang-Chi (2021) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/98696/shang-chi_2021_11",
+      "seriesId": 31902,
+      "seriesName": "Shang-Chi (2021 - 2022)",
+      "onSale": "2022-04-20T00:00:00+0000",
+      "mu": "2022-07-25T00:00:00+0000",
+      "digitalId": 59158,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/6259cb69af4f0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Leinil Francis Yu",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marcus to",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gene Yang",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Shang-Chi (2021) #7-12; Marvel's Voices: Identity (2021) #1 (Shang-Chi story only; progress is whole-issue)"
+    },
+    {
+      "issueId": 98697,
+      "title": "Shang-Chi (2021) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/98697/shang-chi_2021_12",
+      "seriesId": 31902,
+      "seriesName": "Shang-Chi (2021 - 2022)",
+      "onSale": "2022-05-11T00:00:00+0000",
+      "mu": "2022-08-15T00:00:00+0000",
+      "digitalId": 59369,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/00/62753516c399d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Leinil Francis Yu",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marcus to",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gene Yang",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Shang-Chi (2021) #7-12; Marvel's Voices: Identity (2021) #1 (Shang-Chi story only; progress is whole-issue)"
+    },
+    {
+      "issueId": 95679,
+      "title": "Marvel's Voices: Identity (2021) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/95679/marvels_voices_identity_2021_1",
+      "seriesId": 32837,
+      "seriesName": "Marvel's Voices: Identity (2021)",
+      "onSale": "2021-08-25T00:00:00+0000",
+      "mu": "2021-11-29T00:00:00+0000",
+      "digitalId": 57182,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/60e5e2b87419f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 56,
+      "creators": [
+        {
+          "name": "Jason Loo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marcus to",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mashal Ahmed",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Cheung",
+          "role": "penciler"
+        },
+        {
+          "name": "Whilce Portacio",
+          "role": "penciler"
+        },
+        {
+          "name": "Alyssa Wong",
+          "role": "writer"
+        },
+        {
+          "name": "Christina Strain",
+          "role": "writer"
+        },
+        {
+          "name": "Gene Yang",
+          "role": "writer"
+        },
+        {
+          "name": "Greg Pak",
+          "role": "writer"
+        },
+        {
+          "name": "Maurene Goo",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Shang-Chi (2021) #7-12; Marvel's Voices: Identity (2021) #1 (Shang-Chi story only; progress is whole-issue)"
+    },
+    {
+      "issueId": 103519,
+      "title": "Shang-Chi and the Ten Rings (2022) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/103519/shang-chi_and_the_ten_rings_2022_1",
+      "seriesId": 35631,
+      "seriesName": "Shang-Chi and the Ten Rings (2022 - 2023)",
+      "onSale": "2022-07-20T00:00:00+0000",
+      "mu": "2022-10-24T00:00:00+0000",
+      "digitalId": 60014,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/d0/62dab30bf09ed",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Marcus to",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dike Ruan",
+          "role": "penciler"
+        },
+        {
+          "name": "Gene Yang",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Shang-Chi and the Ten Rings (2022) #1-6; Shang-Chi: Master of the Ten Rings (2023) #1"
+    },
+    {
+      "issueId": 103520,
+      "title": "Shang-Chi and the Ten Rings (2022) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/103520/shang-chi_and_the_ten_rings_2022_2",
+      "seriesId": 35631,
+      "seriesName": "Shang-Chi and the Ten Rings (2022 - 2023)",
+      "onSale": "2022-08-24T00:00:00+0000",
+      "mu": "2022-11-28T00:00:00+0000",
+      "digitalId": 60206,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/03/6305074e546b1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Marcus to",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dike Ruan",
+          "role": "penciler"
+        },
+        {
+          "name": "Gene Yang",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Shang-Chi and the Ten Rings (2022) #1-6; Shang-Chi: Master of the Ten Rings (2023) #1"
+    },
+    {
+      "issueId": 103521,
+      "title": "Shang-Chi and the Ten Rings (2022) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/103521/shang-chi_and_the_ten_rings_2022_3",
+      "seriesId": 35631,
+      "seriesName": "Shang-Chi and the Ten Rings (2022 - 2023)",
+      "onSale": "2022-09-28T00:00:00+0000",
+      "mu": "2023-01-02T00:00:00+0000",
+      "digitalId": 60353,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/90/631b3526bd895",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Marcus to",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dike Ruan",
+          "role": "penciler"
+        },
+        {
+          "name": "Gene Yang",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Shang-Chi and the Ten Rings (2022) #1-6; Shang-Chi: Master of the Ten Rings (2023) #1"
+    },
+    {
+      "issueId": 103522,
+      "title": "Shang-Chi and the Ten Rings (2022) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/103522/shang-chi_and_the_ten_rings_2022_4",
+      "seriesId": 35631,
+      "seriesName": "Shang-Chi and the Ten Rings (2022 - 2023)",
+      "onSale": "2022-10-19T00:00:00+0000",
+      "mu": "2023-01-23T00:00:00+0000",
+      "digitalId": 60582,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/a0/634f648596d39",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Marcus to",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dike Ruan",
+          "role": "penciler"
+        },
+        {
+          "name": "Gene Yang",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Shang-Chi and the Ten Rings (2022) #1-6; Shang-Chi: Master of the Ten Rings (2023) #1"
+    },
+    {
+      "issueId": 103523,
+      "title": "Shang-Chi and the Ten Rings (2022) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/103523/shang-chi_and_the_ten_rings_2022_5",
+      "seriesId": 35631,
+      "seriesName": "Shang-Chi and the Ten Rings (2022 - 2023)",
+      "onSale": "2022-11-16T00:00:00+0000",
+      "mu": "2023-02-20T00:00:00+0000",
+      "digitalId": 60763,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/30/6372559ceee74",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Marcus to",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dike Ruan",
+          "role": "penciler"
+        },
+        {
+          "name": "Gene Yang",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Shang-Chi and the Ten Rings (2022) #1-6; Shang-Chi: Master of the Ten Rings (2023) #1"
+    },
+    {
+      "issueId": 103524,
+      "title": "Shang-Chi and the Ten Rings (2022) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/103524/shang-chi_and_the_ten_rings_2022_6",
+      "seriesId": 35631,
+      "seriesName": "Shang-Chi and the Ten Rings (2022 - 2023)",
+      "onSale": "2022-12-28T00:00:00+0000",
+      "mu": "2022-12-28T00:00:00+0000",
+      "digitalId": 61072,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/639a7a3b9729c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Marcus to",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dike Ruan",
+          "role": "penciler"
+        },
+        {
+          "name": "Gene Yang",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Shang-Chi and the Ten Rings (2022) #1-6; Shang-Chi: Master of the Ten Rings (2023) #1"
+    },
+    {
+      "issueId": 103637,
+      "title": "Shang-Chi: Master Of The Ten Rings (2023) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/103637/shang-chi_master_of_the_ten_rings_2023_1",
+      "seriesId": 35648,
+      "seriesName": "Shang-Chi: Master Of The Ten Rings (2023)",
+      "onSale": "2023-01-04T00:00:00+0000",
+      "mu": "2022-12-16T00:00:00+0000",
+      "digitalId": 61241,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/63b477fe118c7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Michael Yg",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Cheung",
+          "role": "penciler"
+        },
+        {
+          "name": "Gene Yang",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Shang-Chi and the Ten Rings (2022) #1-6; Shang-Chi: Master of the Ten Rings (2023) #1"
+    }
+  ]
+}

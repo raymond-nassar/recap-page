@@ -15588,6 +15588,7 @@ SCENARIOS.push({
 SCENARIOS.push((await import('./browser-ultimate-spider-man.mjs')).ultimateSpiderManActualData);
 SCENARIOS.push((await import('./browser-greg-pak-hulk.mjs')).gregPakHulkActualData);
 SCENARIOS.push((await import('./browser-shang-chi.mjs')).shangChiActualData);
+SCENARIOS.push((await import('./browser-mcu-prep-shang-chi.mjs')).mcuPrepShangChiActualData);
 SCENARIOS.push({
   id: 'age-of-apocalypse-actual-data',
   title: 'Age of Apocalypse actual data preview, import, reload and source positions',
