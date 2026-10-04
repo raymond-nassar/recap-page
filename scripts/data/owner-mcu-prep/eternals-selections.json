@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "id": "mcu-prep-eternals",
+  "owner": "raymond-nassar",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/684",
+  "sourceRetrievedAt": "2026-10-03",
+  "selectionCount": 3,
+  "boundaryApproval": {
+    "authorityType": "human",
+    "authorityIdentity": "raymond-nassar",
+    "reviewedAt": "2026-10-03T17:45:22Z",
+    "decisionUrl": "https://github.com/raymond-nassar/recap-page/issues/684#issuecomment-5971795544",
+    "rationale": "The owner expressly approved the bounded 24-original vector and retained Eternals (2021) #1-6 in both this list and the existing Thanos guide. This approval was relayed by the MCU Prep coordinator and does not authorize changed candidate vectors or new relationships."
+  },
+  "sourceSelections": [
+    {
+      "position": 1,
+      "suppliedTitle": "Eternals by Jack Kirby Vol. 1",
+      "suppliedRationale": "The original cosmic concept: Celestials, Deviants and the Eternals' long secret history on Earth.",
+      "collectionTitle": "Eternals by Jack Kirby Vol. 1",
+      "creators": ["Jack Kirby"],
+      "edition": {
+        "title": "Eternals By Jack Kirby Vol. 1",
+        "isbn": "9781302494339",
+        "format": "Digital edition",
+        "evidence": [
+          {
+            "url": "https://books.google.com/books/about/Eternals_By_Jack_Kirby_Vol_1.html?id=v8lcDgAAQBAJ",
+            "retrievedAt": "2026-10-03",
+            "basis": "Bibliographic description explicitly collects Eternals (1976) #1-11; the table of contents enumerates those eleven originals and ends at issue 11."
+          }
+        ]
+      },
+      "seriesTitle": "Eternals",
+      "seriesYear": 1976,
+      "seriesId": 2017,
+      "issueNumbers": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"],
+      "originalIssueIds": [8799, 8810, 8811, 8812, 8813, 8814, 8815, 8816, 8817, 8800, 8801],
+      "expandedSourcePositions": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+      "metadataEvidence": {
+        "url": "https://marvel.emreparker.com/v1/series/2017/issues?limit=100",
+        "retrievedAt": "2026-10-03",
+        "apiSeriesName": "Eternals (1976 - 1978)"
+      },
+      "boundary": "The named first volume only. Eternals (1976) #12-19 and Eternals Annual (1977) #1 are outside this selection."
+    },
+    {
+      "position": 2,
+      "suppliedTitle": "Eternals (Neil Gaiman/John Romita Jr.)",
+      "suppliedRationale": "The modern, moodier reimagining closest in tone to the film's mystery-driven reveal.",
+      "collectionTitle": "Eternals by Neil Gaiman and John Romita Jr.",
+      "creators": ["Neil Gaiman", "John Romita Jr."],
+      "edition": {
+        "title": "Eternals By Gaiman & Romita Jr.",
+        "isbn": "9781302935191",
+        "format": "Digital edition",
+        "evidence": [
+          {
+            "url": "https://books.google.com/books/about/Eternals_By_Gaiman_Romita_Jr.html?id=frABEAAAQBAJ",
+            "retrievedAt": "2026-10-03",
+            "basis": "Bibliographic description identifies Gaiman and Romita Jr. and explicitly collects Eternals (2006) #1-7."
+          },
+          {
+            "url": "https://www.abebooks.com/9781302925185/ETERNALS-NEIL-GAIMAN-ROMITA-JR-1302925180/plp",
+            "retrievedAt": "2026-10-03",
+            "basis": "A separate printing, ISBN 9781302925185, independently identifies the same Eternals (2006) #1-7 boundary. Its publication date is not assigned to the digital edition."
+          }
+        ]
+      },
+      "seriesTitle": "Eternals",
+      "seriesYear": 2006,
+      "seriesId": 1058,
+      "issueNumbers": ["1", "2", "3", "4", "5", "6", "7"],
+      "originalIssueIds": [4311, 4466, 4785, 5073, 5226, 5523, 5894],
+      "expandedSourcePositions": [12, 13, 14, 15, 16, 17, 18],
+      "metadataEvidence": {
+        "url": "https://marvel.emreparker.com/v1/series/1058/issues?limit=100",
+        "retrievedAt": "2026-10-03",
+        "apiSeriesName": "Eternals (2006 - 2007)"
+      },
+      "boundary": "The seven-issue 2006 miniseries only."
+    },
+    {
+      "position": 3,
+      "suppliedTitle": "Eternals by Kieron Gillen Vol. 1: To Die Is Glorious",
+      "suppliedRationale": "The recent run, with updated Celestial lore released alongside the film.",
+      "collectionTitle": "Eternals Vol. 1: Only Death Is Eternal",
+      "creators": ["Kieron Gillen", "Esad Ribic"],
+      "edition": {
+        "title": "Eternals Vol. 1: Only Death Is Eternal",
+        "isbn": "9781302925475",
+        "format": "Paperback",
+        "evidence": [
+          {
+            "url": "https://www.abebooks.com/9781302925475/ETERNALS-VOL-ONLY-DEATH-ETERNAL-1302925474/plp",
+            "retrievedAt": "2026-10-03",
+            "basis": "Bibliographic record names the first volume, its ISBN and Esad Ribic, and explicitly collects Eternals (2021) #1-6."
+          }
+        ]
+      },
+      "approvedCorrection": {
+        "suppliedSubtitle": "To Die Is Glorious",
+        "approvedSubtitle": "Only Death Is Eternal",
+        "authorityIdentity": "raymond-nassar",
+        "approvedAt": "2026-10-03",
+        "decisionUrl": "https://github.com/raymond-nassar/recap-page/issues/684#issuecomment-5971757650",
+        "decision": "The owner explicitly selected Kieron Gillen and Esad Ribic's verified first volume and Eternals (2021) #1-6 after being shown the subtitle conflict."
+      },
+      "seriesTitle": "Eternals",
+      "seriesYear": 2021,
+      "seriesId": 30146,
+      "issueNumbers": ["1", "2", "3", "4", "5", "6"],
+      "originalIssueIds": [85560, 85561, 85562, 85563, 85564, 85565],
+      "expandedSourcePositions": [19, 20, 21, 22, 23, 24],
+      "metadataEvidence": {
+        "url": "https://marvel.emreparker.com/v1/series/30146/issues?limit=100",
+        "retrievedAt": "2026-10-03",
+        "apiSeriesName": "Eternals (2021 - Present)"
+      },
+      "boundary": "The verified first volume only, not the complete Gillen run, later volumes or one-shots."
+    }
+  ],
+  "adaptationFraming": {
+    "status": "Unverified owner framing, retained as intake provenance rather than shipped recommendation claims.",
+    "notUsedInPublishedCopy": [
+      "Closest in tone to the film's mystery-driven reveal.",
+      "Updated Celestial lore released alongside the film."
+    ]
+  },
+  "metadataGaps": []
+}

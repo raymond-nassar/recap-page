@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdirSync, mkdtempSync, writeFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
 import { fileURLToPath } from 'node:url';
@@ -139,8 +139,8 @@ test('buildReportForMapping regenerates shipped reports without duplicate self o
   const comparedIds = report.comparisons.map((comparison) => comparison.orderId);
   const laterOwnerIds = [
     'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings',
-    'mcu-prep-thunderbolts',
-    'spider-man-no-way-home-owner-selected',
+    'mcu-prep-thunderbolts', 'mcu-prep-daredevil-born-again', 'mcu-prep-moon-knight', 'mcu-prep-eternals',
+    'mcu-prep-deadpool-and-wolverine', 'spider-man-no-way-home-owner-selected',
   ];
 
   assert.equal(report.candidateCount, 5);
@@ -148,18 +148,27 @@ test('buildReportForMapping regenerates shipped reports without duplicate self o
   assert.equal(new Set(comparedIds).size, 137);
   assert.equal(comparedIds.includes('secret-war'), false);
   assert.equal(comparedIds.filter((id) => id === 'spider-man-the-other').length, 1);
-  for (const id of laterOwnerIds) assert.equal(comparedIds.includes(id), false);
-
-  const current = await buildReportForMapping(mappingPath, peerPaths, { excludedOrderIds: [] });
-  const library = await loadLibrarySnapshot();
+  for (const laterId of laterOwnerIds) {
+    assert.equal(comparedIds.includes(laterId), false);
+  }
+  const current = await buildReportForMapping(
+    path.join(mappingsDir, 'secret-war.json'),
+    [path.join(mappingsDir, 'spider-man-the-other.json')],
+    { excludedOrderIds: [] },
+  );
+  const manifest = JSON.parse(readFileSync(path.join(root, 'src', 'data', 'curated-lists.json'), 'utf8'));
   const currentIds = current.comparisons.map((comparison) => comparison.orderId);
-  const expectedIds = library.orders.map((order) => order.orderId)
-    .filter((id) => id !== 'secret-war');
+  const expectedIds = manifest.lists.map((entry) => entry.id).filter((id) => id !== 'secret-war');
   assert.equal(current.comparisonCount, expectedIds.length);
   assert.deepEqual([...currentIds].sort(), [...expectedIds].sort());
-  for (const id of laterOwnerIds) {
-    assert.equal(currentIds.filter((comparedId) => comparedId === id).length, 1);
+  for (const laterId of laterOwnerIds.filter((id) => id !== 'spider-man-no-way-home-owner-selected')) {
+    assert.equal(current.comparisons.filter((comparison) => comparison.orderId === laterId).length, 1);
   }
+  assert.equal(current.comparisons.some((comparison) => comparison.orderId === 'spider-man-no-way-home-owner-selected'), false);
+  const library = await loadLibrarySnapshot();
+  assert.deepEqual(current.comparisons.map((comparison) => comparison.orderId),
+    library.orders.filter((order) => order.orderId !== 'secret-war')
+      .map((order) => order.orderId).sort((left, right) => left.localeCompare(right)));
 });
 
 test('fresh overlap reports bind the complete library, mapping, peers, and factual comparisons', async () => {

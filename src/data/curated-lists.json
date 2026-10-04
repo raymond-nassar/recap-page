@@ -2311,6 +2311,71 @@
       "coverIssueId": 15311
     },
     {
+      "id": "mcu-prep-moon-knight",
+      "name": "Moon Knight: MCU Prep",
+      "description": "The owner's three first-volume Moon Knight selections, expanded into 17 original issues from 2014, 2016 and 2021, in selection order.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "mcu-prep-moon-knight.md",
+      "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/685",
+      "sourceOrigin": "Selected by the owner for MCU Prep; expanded into original issues for this project",
+      "sourceLicense": null,
+      "out": "mcu_prep_moon_knight.json",
+      "characters": [
+        "Moon Knight",
+        "Marc Spector"
+      ],
+      "keywords": [
+        "MCU Prep",
+        "Moon Knight",
+        "Warren Ellis",
+        "Jeff Lemire",
+        "Jed MacKay",
+        "From the Dead",
+        "Lunatic",
+        "The Midnight Mission"
+      ],
+      "expect": 17,
+      "timeline": null,
+      "coverIssueId": 49077
+    },
+    {
+      "id": "mcu-prep-eternals",
+      "name": "Eternals",
+      "description": "Three owner-selected Eternals collections: Jack Kirby's first volume, Neil Gaiman and John Romita Jr.'s miniseries, then Kieron Gillen and Esad Ribic's first volume. Original issues only.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "mcu-prep-eternals.md",
+      "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/684",
+      "sourceOrigin": "Compiled for this project",
+      "sourceLicense": null,
+      "out": "mcu_prep_eternals.json",
+      "characters": [
+        "Eternals"
+      ],
+      "keywords": [
+        "MCU Prep",
+        "Eternals",
+        "Jack Kirby",
+        "Neil Gaiman",
+        "John Romita Jr.",
+        "Kieron Gillen",
+        "Esad Ribic",
+        "Only Death Is Eternal"
+      ],
+      "expect": 24,
+      "timeline": null,
+      "coverIssueId": 8799
+    },
+    {
       "id": "agents-of-atlas-reading-order",
       "name": "Agents of Atlas",
       "description": "Agents of Atlas from the 1950s background reading through Jeff Parker, Fear Itself, and the New Agents of Atlas.",
@@ -2345,6 +2410,40 @@
       "expect": 80,
       "timeline": null,
       "coverIssueId": 4801
+    },
+    {
+      "id": "mcu-prep-deadpool-and-wolverine",
+      "name": "MCU Prep: Deadpool & Wolverine",
+      "description": "An owner-selected path through Weapon X, Dead Presidents, Gifted, Old Man Logan, and Deadpool Classic Vol. 1, expanded into 43 original comics in the supplied order.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "mcu-prep-deadpool-and-wolverine.md",
+      "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/680",
+      "sourceOrigin": "Compiled for this project from the owner's selections",
+      "sourceLicense": null,
+      "out": "mcu_prep_deadpool_and_wolverine.json",
+      "characters": [
+        "Deadpool",
+        "Wolverine",
+        "X-Men"
+      ],
+      "keywords": [
+        "Deadpool & Wolverine",
+        "Wade Wilson",
+        "Logan",
+        "Weapon X",
+        "Dead Presidents",
+        "Gifted",
+        "Old Man Logan",
+        "Circle Chase"
+      ],
+      "expect": 43,
+      "timeline": null,
+      "coverIssueId": 10155
     },
     {
       "id": "white-tiger-ava-ayala",
@@ -6787,6 +6886,43 @@
       "coverIssueId": 61713
     },
     {
+      "id": "mcu-prep-daredevil-born-again",
+      "name": "MCU Prep: Daredevil: Born Again",
+      "description": "An owner-selected Daredevil companion: The Man Without Fear, Born Again, Out, Brubaker's first volume, and the first two Zdarsky volumes.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "mcu-prep-daredevil-born-again.md",
+      "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/681",
+      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceLicense": null,
+      "out": "mcu_prep_daredevil_born_again.json",
+      "characters": [
+        "Daredevil",
+        "Kingpin",
+        "Matt Murdock"
+      ],
+      "keywords": [
+        "MCU Prep",
+        "Daredevil: Born Again",
+        "The Man Without Fear",
+        "Out",
+        "The Devil Inside and Out",
+        "Know Fear",
+        "No Devils, Only God",
+        "Frank Miller",
+        "Brian Michael Bendis",
+        "Ed Brubaker",
+        "Chip Zdarsky"
+      ],
+      "expect": 37,
+      "timeline": null,
+      "coverIssueId": 20750
+    },
+    {
       "id": "inhumans-vs-x-men",
       "name": "Inhumans vs. X-Men",
       "description": "Twenty chapters alternating the seven-part event with X-Men, Inhumans, and Mercs for Money tie-ins.",
@@ -6815,41 +6951,6 @@
       "expect": 20,
       "timeline": 2016,
       "coverIssueId": 61594
-    },
-    {
-      "id": "spider-man-no-way-home-owner-selected",
-      "name": "Spider-Man: No Way Home (Owner selections)",
-      "description": "The owner's three-volume selection: an Ultimate origin, the main Spider-Verse chapters, and the four-issue Big Time arc, expanded into 18 original comics in that order.",
-      "type": "screen-companion",
-      "depth": "selected",
-      "beginner": false,
-      "group": null,
-      "groupName": null,
-      "variant": null,
-      "sourceFile": "spider-man-no-way-home-owner-selected.md",
-      "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/686",
-      "sourceOrigin": "Compiled for this project from the owner's selections",
-      "sourceLicense": null,
-      "out": "spider_man_no_way_home_owner_selected.json",
-      "characters": [
-        "Spider-Man",
-        "Peter Parker",
-        "Hobgoblin"
-      ],
-      "keywords": [
-        "MCU Prep",
-        "Spider-Man: No Way Home",
-        "Owner selections",
-        "Ultimate Spider-Man",
-        "Power and Responsibility",
-        "Spider-Verse",
-        "Big Time",
-        "Brian Michael Bendis",
-        "Dan Slott"
-      ],
-      "expect": 18,
-      "timeline": null,
-      "coverIssueId": 4372
     }
   ],
   "paths": [

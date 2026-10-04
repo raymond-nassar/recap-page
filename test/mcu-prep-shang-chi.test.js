@@ -209,6 +209,7 @@ test('Shang-Chi MCU Prep retains historical comparisons and covers the complete 
     issueIds: issueIdsFromValue(await readJson(path.join('src', 'data', row.out ?? row.file))),
   })));
   const current = buildComparisonReport({ candidateIds: fixture.issueIds, orders: currentOrders });
+  assert.equal(current.comparisonCount, 286);
   assert.equal(current.comparisonCount, currentEntries.length);
   assert.doesNotThrow(() => assertComparisonCoverage(current, {
     candidateId: id,
@@ -219,7 +220,12 @@ test('Shang-Chi MCU Prep retains historical comparisons and covers the complete 
   assert.deepEqual(current.comparisons.filter((row) => reviewedIds.has(row.orderId)), report.comparisons);
   assert.deepEqual(current.comparisons.filter((row) => row.relationship !== 'none'), shared,
     'New meaningful relationships need central review, not inherited approval');
-  for (const laterId of ['mcu-prep-thunderbolts', 'spider-man-no-way-home-owner-selected']) {
+  assert.equal(current.comparisons.some((row) =>
+    row.orderId === 'spider-man-no-way-home-owner-selected'), false);
+  for (const laterId of [
+    'mcu-prep-thunderbolts', 'mcu-prep-moon-knight', 'mcu-prep-eternals',
+    'mcu-prep-deadpool-and-wolverine', 'mcu-prep-daredevil-born-again',
+  ]) {
     const comparison = current.comparisons.find((row) => row.orderId === laterId);
     assert.deepEqual(comparison?.sharedIds, []);
     assert.equal(comparison?.relationship, 'none');

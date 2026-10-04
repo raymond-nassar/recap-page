@@ -1,0 +1,1016 @@
+{
+  "id": "mcu-prep-daredevil-born-again",
+  "name": "MCU Prep: Daredevil: Born Again",
+  "description": "An owner-selected Daredevil companion: The Man Without Fear, Born Again, Out, Brubaker's first volume, and the first two Zdarsky volumes.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/681",
+  "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+  "sourceLicense": null,
+  "generatedAt": "2026-10-03T17:48:05.373Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 37,
+  "collections": 6,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 20750,
+      "title": "Daredevil: The Man Without Fear (1993) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/20750/daredevil_the_man_without_fear_1993_1",
+      "seriesId": 3897,
+      "seriesName": "Daredevil: The Man Without Fear (1993)",
+      "onSale": "1993-10-01T00:00:00+0000",
+      "mu": "1993-10-01T00:00:00+0000",
+      "digitalId": 8109,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/4bb866d34e627",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Frank Miller",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "1. The Man Without Fear"
+    },
+    {
+      "issueId": 20751,
+      "title": "Daredevil: The Man Without Fear (1993) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/20751/daredevil_the_man_without_fear_1993_2",
+      "seriesId": 3897,
+      "seriesName": "Daredevil: The Man Without Fear (1993)",
+      "onSale": "1993-11-01T00:00:00+0000",
+      "mu": "1993-11-01T00:00:00+0000",
+      "digitalId": 8110,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/4bb866c4dd556",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Frank Miller",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "1. The Man Without Fear"
+    },
+    {
+      "issueId": 20752,
+      "title": "Daredevil: The Man Without Fear (1993) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/20752/daredevil_the_man_without_fear_1993_3",
+      "seriesId": 3897,
+      "seriesName": "Daredevil: The Man Without Fear (1993)",
+      "onSale": "1993-12-01T00:00:00+0000",
+      "mu": "1993-12-01T00:00:00+0000",
+      "digitalId": 8111,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/40/4bb864f78e9e1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Frank Miller",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "1. The Man Without Fear"
+    },
+    {
+      "issueId": 20753,
+      "title": "Daredevil: The Man Without Fear (1993) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/20753/daredevil_the_man_without_fear_1993_4",
+      "seriesId": 3897,
+      "seriesName": "Daredevil: The Man Without Fear (1993)",
+      "onSale": "1994-01-01T00:00:00+0000",
+      "mu": "1994-01-01T00:00:00+0000",
+      "digitalId": 8112,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/60/4bb864cfb3e3e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Frank Miller",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "1. The Man Without Fear"
+    },
+    {
+      "issueId": 20754,
+      "title": "Daredevil: The Man Without Fear (1993) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/20754/daredevil_the_man_without_fear_1993_5",
+      "seriesId": 3897,
+      "seriesName": "Daredevil: The Man Without Fear (1993)",
+      "onSale": "1994-02-01T00:00:00+0000",
+      "mu": "1994-02-01T00:00:00+0000",
+      "digitalId": 8113,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/40/4bb86394dbcca",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Frank Miller",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "1. The Man Without Fear"
+    },
+    {
+      "issueId": 8215,
+      "title": "Daredevil (1964) #227",
+      "number": "227",
+      "url": "https://www.marvel.com/comics/issue/8215/daredevil_1964_227",
+      "seriesId": 2002,
+      "seriesName": "Daredevil (1964 - 1998)",
+      "onSale": "1986-02-01T00:00:00+0000",
+      "mu": "1986-02-01T00:00:00+0000",
+      "digitalId": 610,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/a0/5b4f5ddbaa5b0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "David Mazzucchelli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Frank Miller",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "2. Born Again"
+    },
+    {
+      "issueId": 8216,
+      "title": "Daredevil (1964) #228",
+      "number": "228",
+      "url": "https://www.marvel.com/comics/issue/8216/daredevil_1964_228",
+      "seriesId": 2002,
+      "seriesName": "Daredevil (1964 - 1998)",
+      "onSale": "1986-03-01T00:00:00+0000",
+      "mu": "1986-03-01T00:00:00+0000",
+      "digitalId": 611,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/10/5b4f6a9f94309",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "David Mazzucchelli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Frank Miller",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "2. Born Again"
+    },
+    {
+      "issueId": 8217,
+      "title": "Daredevil (1964) #229",
+      "number": "229",
+      "url": "https://www.marvel.com/comics/issue/8217/daredevil_1964_229",
+      "seriesId": 2002,
+      "seriesName": "Daredevil (1964 - 1998)",
+      "onSale": "1986-04-01T00:00:00+0000",
+      "mu": "1986-04-01T00:00:00+0000",
+      "digitalId": 612,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/40/5b4f88f9d8a3c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "David Mazzucchelli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Frank Miller",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "2. Born Again"
+    },
+    {
+      "issueId": 8219,
+      "title": "Daredevil (1964) #230",
+      "number": "230",
+      "url": "https://www.marvel.com/comics/issue/8219/daredevil_1964_230",
+      "seriesId": 2002,
+      "seriesName": "Daredevil (1964 - 1998)",
+      "onSale": "1986-05-01T00:00:00+0000",
+      "mu": "1986-05-01T00:00:00+0000",
+      "digitalId": 613,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/5b4f918732cb5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "David Mazzucchelli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Frank Miller",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "2. Born Again"
+    },
+    {
+      "issueId": 8220,
+      "title": "Daredevil (1964) #231",
+      "number": "231",
+      "url": "https://www.marvel.com/comics/issue/8220/daredevil_1964_231",
+      "seriesId": 2002,
+      "seriesName": "Daredevil (1964 - 1998)",
+      "onSale": "1986-06-01T00:00:00+0000",
+      "mu": "1986-06-01T00:00:00+0000",
+      "digitalId": 615,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/f0/5b4f9af44717f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "David Mazzucchelli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Frank Miller",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "2. Born Again"
+    },
+    {
+      "issueId": 8221,
+      "title": "Daredevil (1964) #232",
+      "number": "232",
+      "url": "https://www.marvel.com/comics/issue/8221/daredevil_1964_232",
+      "seriesId": 2002,
+      "seriesName": "Daredevil (1964 - 1998)",
+      "onSale": "1986-07-01T00:00:00+0000",
+      "mu": "1986-07-01T00:00:00+0000",
+      "digitalId": 619,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/5b508b52cff26",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "David Mazzucchelli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Frank Miller",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "2. Born Again"
+    },
+    {
+      "issueId": 8222,
+      "title": "Daredevil (1964) #233",
+      "number": "233",
+      "url": "https://www.marvel.com/comics/issue/8222/daredevil_1964_233",
+      "seriesId": 2002,
+      "seriesName": "Daredevil (1964 - 1998)",
+      "onSale": "1986-08-01T00:00:00+0000",
+      "mu": "1986-08-01T00:00:00+0000",
+      "digitalId": 620,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/5b50997a18a3e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "David Mazzucchelli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Frank Miller",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "2. Born Again"
+    },
+    {
+      "issueId": 15634,
+      "title": "Daredevil (1998) #32",
+      "number": "32",
+      "url": "https://www.marvel.com/comics/issue/15634/daredevil_1998_32",
+      "seriesId": 449,
+      "seriesName": "Daredevil (1998 - 2011)",
+      "onSale": "2002-06-01T00:00:00+0000",
+      "mu": "2008-04-21T00:00:00+0000",
+      "digitalId": 5606,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/4bb7b822b926b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [],
+      "collectedIn": "3a. Out"
+    },
+    {
+      "issueId": 15635,
+      "title": "Daredevil (1998) #33",
+      "number": "33",
+      "url": "https://www.marvel.com/comics/issue/15635/daredevil_1998_33",
+      "seriesId": 449,
+      "seriesName": "Daredevil (1998 - 2011)",
+      "onSale": "2002-07-01T00:00:00+0000",
+      "mu": "2008-05-05T00:00:00+0000",
+      "digitalId": 5607,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/5727a1af23991",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 44,
+      "creators": [],
+      "collectedIn": "3a. Out"
+    },
+    {
+      "issueId": 15636,
+      "title": "Daredevil (1998) #34",
+      "number": "34",
+      "url": "https://www.marvel.com/comics/issue/15636/daredevil_1998_34",
+      "seriesId": 449,
+      "seriesName": "Daredevil (1998 - 2011)",
+      "onSale": "2002-08-01T00:00:00+0000",
+      "mu": "2008-06-02T00:00:00+0000",
+      "digitalId": 5608,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/a0/514ca5a023952",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [],
+      "collectedIn": "3a. Out"
+    },
+    {
+      "issueId": 15637,
+      "title": "Daredevil (1998) #35",
+      "number": "35",
+      "url": "https://www.marvel.com/comics/issue/15637/daredevil_1998_35",
+      "seriesId": 449,
+      "seriesName": "Daredevil (1998 - 2011)",
+      "onSale": "2002-09-01T00:00:00+0000",
+      "mu": "2008-06-09T00:00:00+0000",
+      "digitalId": 5609,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/5727abc79900f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [],
+      "collectedIn": "3a. Out"
+    },
+    {
+      "issueId": 15638,
+      "title": "Daredevil (1998) #36",
+      "number": "36",
+      "url": "https://www.marvel.com/comics/issue/15638/daredevil_1998_36",
+      "seriesId": 449,
+      "seriesName": "Daredevil (1998 - 2011)",
+      "onSale": "2002-10-01T00:00:00+0000",
+      "mu": "2008-06-16T00:00:00+0000",
+      "digitalId": 5610,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/00/5727b39e2f546",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [],
+      "collectedIn": "3a. Out"
+    },
+    {
+      "issueId": 15639,
+      "title": "Daredevil (1998) #37",
+      "number": "37",
+      "url": "https://www.marvel.com/comics/issue/15639/daredevil_1998_37",
+      "seriesId": 449,
+      "seriesName": "Daredevil (1998 - 2011)",
+      "onSale": "2002-11-01T00:00:00+0000",
+      "mu": "2008-06-30T00:00:00+0000",
+      "digitalId": 5611,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/5728aedf11726",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [],
+      "collectedIn": "3a. Out"
+    },
+    {
+      "issueId": 15640,
+      "title": "Daredevil (1998) #38",
+      "number": "38",
+      "url": "https://www.marvel.com/comics/issue/15640/daredevil_1998_38",
+      "seriesId": 449,
+      "seriesName": "Daredevil (1998 - 2011)",
+      "onSale": "2002-12-01T00:00:00+0000",
+      "mu": "2002-12-01T00:00:00+0000",
+      "digitalId": 5612,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/03/57277078333dd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Manuel Gutierrez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "3a. Out"
+    },
+    {
+      "issueId": 15641,
+      "title": "Daredevil (1998) #39",
+      "number": "39",
+      "url": "https://www.marvel.com/comics/issue/15641/daredevil_1998_39",
+      "seriesId": 449,
+      "seriesName": "Daredevil (1998 - 2011)",
+      "onSale": "2003-01-01T00:00:00+0000",
+      "mu": "2003-01-01T00:00:00+0000",
+      "digitalId": 5613,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/c0/572772023def9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Manuel Gutierrez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "3a. Out"
+    },
+    {
+      "issueId": 15643,
+      "title": "Daredevil (1998) #40",
+      "number": "40",
+      "url": "https://www.marvel.com/comics/issue/15643/daredevil_1998_40",
+      "seriesId": 449,
+      "seriesName": "Daredevil (1998 - 2011)",
+      "onSale": "2003-02-01T00:00:00+0000",
+      "mu": "2003-02-01T00:00:00+0000",
+      "digitalId": 5615,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/90/572772f074360",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Rachel Dodson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Terry Dodson",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "3a. Out"
+    },
+    {
+      "issueId": 3482,
+      "title": "Daredevil (1998) #82",
+      "number": "82",
+      "url": "https://www.marvel.com/comics/issue/3482/daredevil_1998_82",
+      "seriesId": 449,
+      "seriesName": "Daredevil (1998 - 2011)",
+      "onSale": "2006-02-15T00:00:00+0000",
+      "mu": "2006-02-15T00:00:00+0000",
+      "digitalId": 1140,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/10/4d250ded85b05",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [],
+      "collectedIn": "3b. The Devil Inside and Out Vol. 1"
+    },
+    {
+      "issueId": 3946,
+      "title": "Daredevil (1998) #83",
+      "number": "83",
+      "url": "https://www.marvel.com/comics/issue/3946/daredevil_1998_83",
+      "seriesId": 449,
+      "seriesName": "Daredevil (1998 - 2011)",
+      "onSale": "2006-03-22T00:00:00+0000",
+      "mu": "2006-03-22T00:00:00+0000",
+      "digitalId": 5650,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/572d0d4677b4a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "3b. The Devil Inside and Out Vol. 1"
+    },
+    {
+      "issueId": 4070,
+      "title": "Daredevil (1998) #84",
+      "number": "84",
+      "url": "https://www.marvel.com/comics/issue/4070/daredevil_1998_84",
+      "seriesId": 449,
+      "seriesName": "Daredevil (1998 - 2011)",
+      "onSale": "2006-04-19T00:00:00+0000",
+      "mu": "2006-04-19T00:00:00+0000",
+      "digitalId": 5651,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/572d0ff0b338e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "3b. The Devil Inside and Out Vol. 1"
+    },
+    {
+      "issueId": 4183,
+      "title": "Daredevil (1998) #85",
+      "number": "85",
+      "url": "https://www.marvel.com/comics/issue/4183/daredevil_1998_85",
+      "seriesId": 449,
+      "seriesName": "Daredevil (1998 - 2011)",
+      "onSale": "2006-05-24T00:00:00+0000",
+      "mu": "2006-05-24T00:00:00+0000",
+      "digitalId": 5652,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/e0/4d24e8acaadb6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "3b. The Devil Inside and Out Vol. 1"
+    },
+    {
+      "issueId": 4284,
+      "title": "Daredevil (1998) #86",
+      "number": "86",
+      "url": "https://www.marvel.com/comics/issue/4284/daredevil_1998_86",
+      "seriesId": 449,
+      "seriesName": "Daredevil (1998 - 2011)",
+      "onSale": "2006-06-28T00:00:00+0000",
+      "mu": "2006-06-28T00:00:00+0000",
+      "digitalId": 5653,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/b0/572d102cedd23",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "3b. The Devil Inside and Out Vol. 1"
+    },
+    {
+      "issueId": 4439,
+      "title": "Daredevil (1998) #87",
+      "number": "87",
+      "url": "https://www.marvel.com/comics/issue/4439/daredevil_1998_87",
+      "seriesId": 449,
+      "seriesName": "Daredevil (1998 - 2011)",
+      "onSale": "2006-07-26T00:00:00+0000",
+      "mu": "2006-07-26T00:00:00+0000",
+      "digitalId": 5654,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/c0/4bb6abe28cd0d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "3b. The Devil Inside and Out Vol. 1"
+    },
+    {
+      "issueId": 71553,
+      "title": "Daredevil (2019) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/71553/daredevil_2019_1",
+      "seriesId": 26080,
+      "seriesName": "Daredevil (2019 - 2021)",
+      "onSale": "2019-02-06T00:00:00+0000",
+      "mu": "2019-08-12T00:00:00+0000",
+      "digitalId": 50573,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/6124f59e91d1d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Marco Checchetto",
+          "role": "cover artist"
+        },
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "4. Know Fear"
+    },
+    {
+      "issueId": 71556,
+      "title": "Daredevil (2019) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/71556/daredevil_2019_2",
+      "seriesId": 26080,
+      "seriesName": "Daredevil (2019 - 2021)",
+      "onSale": "2019-02-27T00:00:00+0000",
+      "mu": "2019-09-02T00:00:00+0000",
+      "digitalId": 50574,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/60/5c6dda69ad541",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Marco Checchetto",
+          "role": "cover artist"
+        },
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "4. Know Fear"
+    },
+    {
+      "issueId": 71559,
+      "title": "Daredevil (2019) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/71559/daredevil_2019_3",
+      "seriesId": 26080,
+      "seriesName": "Daredevil (2019 - 2021)",
+      "onSale": "2019-03-27T00:00:00+0000",
+      "mu": "2019-09-30T00:00:00+0000",
+      "digitalId": 50972,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/00/5c93f63ea5c95",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Marco Checchetto",
+          "role": "cover artist"
+        },
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "4. Know Fear"
+    },
+    {
+      "issueId": 71561,
+      "title": "Daredevil (2019) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/71561/daredevil_2019_4",
+      "seriesId": 26080,
+      "seriesName": "Daredevil (2019 - 2021)",
+      "onSale": "2019-04-17T00:00:00+0000",
+      "mu": "2019-10-21T00:00:00+0000",
+      "digitalId": 51149,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/50/5cacf6fd9305a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Marco Checchetto",
+          "role": "cover artist"
+        },
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "4. Know Fear"
+    },
+    {
+      "issueId": 71563,
+      "title": "Daredevil (2019) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/71563/daredevil_2019_5",
+      "seriesId": 26080,
+      "seriesName": "Daredevil (2019 - 2021)",
+      "onSale": "2019-05-15T00:00:00+0000",
+      "mu": "2019-11-18T00:00:00+0000",
+      "digitalId": 51420,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/5cd44eb9813b6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Marco Checchetto",
+          "role": "cover artist"
+        },
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "4. Know Fear"
+    },
+    {
+      "issueId": 71565,
+      "title": "Daredevil (2019) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/71565/daredevil_2019_6",
+      "seriesId": 26080,
+      "seriesName": "Daredevil (2019 - 2021)",
+      "onSale": "2019-05-29T00:00:00+0000",
+      "mu": "2019-12-02T00:00:00+0000",
+      "digitalId": 51421,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/e0/5ce4017b98584",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jay Leisten",
+          "role": "cover artist"
+        },
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Lalit Kumar",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "5. No Devils, Only God"
+    },
+    {
+      "issueId": 71566,
+      "title": "Daredevil (2019) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/71566/daredevil_2019_7",
+      "seriesId": 26080,
+      "seriesName": "Daredevil (2019 - 2021)",
+      "onSale": "2019-06-19T00:00:00+0000",
+      "mu": "2019-12-23T00:00:00+0000",
+      "digitalId": 51750,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/f0/5d0130a885fda",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jay Leisten",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "penciler"
+        },
+        {
+          "name": "Lalit Kumar",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "5. No Devils, Only God"
+    },
+    {
+      "issueId": 71567,
+      "title": "Daredevil (2019) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/71567/daredevil_2019_8",
+      "seriesId": 26080,
+      "seriesName": "Daredevil (2019 - 2021)",
+      "onSale": "2019-07-17T00:00:00+0000",
+      "mu": "2020-01-20T00:00:00+0000",
+      "digitalId": 51952,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/5d25ef0b38167",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jay Leisten",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "penciler"
+        },
+        {
+          "name": "Lalit Kumar",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "5. No Devils, Only God"
+    },
+    {
+      "issueId": 71568,
+      "title": "Daredevil (2019) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/71568/daredevil_2019_9",
+      "seriesId": 26080,
+      "seriesName": "Daredevil (2019 - 2021)",
+      "onSale": "2019-08-07T00:00:00+0000",
+      "mu": "2020-02-10T00:00:00+0000",
+      "digitalId": 52311,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/c0/5d404f1ecf005",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jay Leisten",
+          "role": "cover artist"
+        },
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Lalit Kumar",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "5. No Devils, Only God"
+    },
+    {
+      "issueId": 71569,
+      "title": "Daredevil (2019) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/71569/daredevil_2019_10",
+      "seriesId": 26080,
+      "seriesName": "Daredevil (2019 - 2021)",
+      "onSale": "2019-08-21T00:00:00+0000",
+      "mu": "2020-02-24T00:00:00+0000",
+      "digitalId": 52371,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/60/5d54226c99c98",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jorge Fornes",
+          "role": "cover artist"
+        },
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Chip Zdarsky",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "5. No Devils, Only God"
+    }
+  ]
+}
