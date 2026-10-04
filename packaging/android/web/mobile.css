@@ -13,6 +13,7 @@ body :is(button, .btn, select, summary, .checkbox, .fp > span, .path > span) {
 }
 body .row-actions-toggle, body .row-actions .mini { min-height: 48px; }
 #marvel-ages-modern-all { min-height: 48px; }
+body #view-home #home-updates :is(button, summary) { min-height: 48px; min-width: 48px; }
 body :is(button, .btn, select, input, textarea) { font-size: var(--t-body); }
 body :is(button, .btn, summary) { overflow-wrap: anywhere; white-space: normal; }
 body :is(input[type="text"], input[type="search"], input[type="url"], input[type="file"]) {
@@ -127,8 +128,11 @@ body:has(#android-list-sheet[open], #android-spotlight-sheet[open]) { overflow: 
   .rail-toggle { flex-shrink: 0; }
   .rail-toggle-label { display: none; }
   .brand[aria-current]::before { content: none; }
-  #view-home > .head { display: flex; align-items: flex-start; justify-content: center; }
-  .home-lockup { min-width: 0; }
+  #view-home > .head { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: center; gap: var(--space-4); }
+  .home-lockup { min-width: 0; width: 100%; flex: 1 0 100%; }
+  body #view-home #home-updates { margin-left: auto; }
+  body #view-home #home-updates[open] { width: 100%; }
+  body #view-home #home-updates-panel { position: static; width: 100%; }
   #view-home .home-brand {
     margin: 0; color: var(--text); font-family: inherit; font-size: var(--t-subtitle);
     font-weight: 800; letter-spacing: .08em; line-height: 1.5; overflow-wrap: normal;

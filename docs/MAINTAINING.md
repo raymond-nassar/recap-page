@@ -789,7 +789,34 @@ Update the canonical application version and its synchronized release files toge
 npm version <major|minor|patch> --no-git-tag-version
 ```
 
-The npm version lifecycle also updates the browser version constant. The MSIX packer derives Store
+The npm version lifecycle updates the browser version constant and generates/stages the bundled
+Home highlights from the finalized record. Its first level-three section is the reader summary;
+the title may vary. Start it with a top-level unordered bullet block, using indented continuations
+when needed, before compatibility prose or technical sections. An explicitly empty first section
+allows list-only highlights, or no highlights when no Reading Lists were added. Do not maintain a
+second announcement list or edit the generated module.
+
+Commit functional catalog changes before the version command. Generation compares the exact
+selected product-version catalog with the next older finalized product version, preserving ordered
+new IDs without interpreting provider gaps or timestamps. Exact stable tags are preferred; an
+Android-only version without a desktop tag resolves its unique finalized first-parent introduction.
+Full Git history is required. Ambiguous, missing, draft or dirty functional inputs fail rather than
+generating guessed content. Prepare this before sealing release source or package artifacts.
+
+Check the recorded content without rewriting or ingesting later Unreleased catalog additions:
+
+```text
+npm run home-updates:check
+```
+
+For a same-release reader-copy correction, update its existing record and run
+`npm run home-updates -- --recorded`, then the read-only check. The batch identity stays the same.
+Recorded checking and regeneration survive permitted squash merges using durable product
+boundaries and semantic catalog digests, not discarded preparation commits. Initial adoption used
+`npm run home-updates -- --bootstrap=v3.1.0` against that release and its exact predecessor,
+without a version bump or later Unreleased content.
+
+The MSIX packer derives Store
 revision `.0` and proof-only revision `.1` from it; do not maintain package versions separately.
 Confirm package metadata, lock file and browser constant agree, and the stored-data schema is
 correct. Use a major version for a substantial new product generation or data an older build cannot

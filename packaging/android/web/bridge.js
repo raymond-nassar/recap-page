@@ -5,6 +5,22 @@ const TYPES = new Map([
   ['text/plain', '.txt'],
 ]);
 
+export function createAndroidBackHandler({ document, isNarrow, closeHomeUpdates }) {
+  return () => {
+    const dialog = document.querySelector('dialog[open]');
+    if (dialog) {
+      if (dialog.dispatchEvent(new Event('cancel', { cancelable: true }))) dialog.close('');
+      return true;
+    }
+    const toggle = document.querySelector('#btn-rail-toggle');
+    if (isNarrow() && toggle && !toggle.hidden && toggle.getAttribute('aria-expanded') === 'true') {
+      toggle.click();
+      return true;
+    }
+    return closeHomeUpdates({ restoreFocus: true }) === true;
+  };
+}
+
 export function validateExport({ filename, type, text }) {
   if (typeof filename !== 'string' || filename.length > 180
     || !/^[a-zA-Z0-9][a-zA-Z0-9._-]*$/.test(filename)

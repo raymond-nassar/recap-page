@@ -3,7 +3,9 @@ import assert from 'node:assert/strict';
 import { mkdtemp, readFile, readdir, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { createAndroidBridge, validateExport } from '../packaging/android/web/bridge.js';
+import { createAndroidBackHandler, createAndroidBridge, validateExport } from '../packaging/android/web/bridge.js';
+import { createHash } from 'node:crypto';
+import { homeUpdatesContent } from '../src/js/lib/homeUpdatesContent.js';
 import { saveDownload, setDownloadHandler, browserDownload } from '../src/js/lib/download.js';
 import { prepareAndroid } from '../scripts/prepare-android.mjs';
 
@@ -177,6 +179,73 @@ test('Android Back reports page handling with the native request identity', () =
   f.connect();
   f.port.reply({ v: 1, kind: 'back', id: 'native-back-7' });
   assert.deepEqual(f.port.sent, [{ v: 1, kind: 'back-result', id: 'native-back-7', handled: true }]);
+});
+
+test('Android Back preserves dialog and visible narrow-menu priority before synchronous Home news', () => {
+  let dialog;
+  let menu = false;
+  let narrow = true;
+  let hidden = false;
+  let news = true;
+  const calls = [];
+  const toggle = {
+    get hidden() { return hidden; },
+    getAttribute: () => String(menu),
+    click: () => { calls.push('menu'); menu = false; },
+  };
+  const back = createAndroidBackHandler({
+    document: { querySelector: (selector) => selector === 'dialog[open]' ? dialog : toggle },
+    isNarrow: () => narrow,
+    closeHomeUpdates: (options) => { assert.deepEqual(options, { restoreFocus: true }); calls.push('news'); return news; },
+  });
+  dialog = { dispatchEvent: (event) => { assert.equal(event.type, 'cancel'); return true; }, close: () => calls.push('dialog') };
+  menu = true;
+  assert.equal(back(), true);
+  assert.deepEqual(calls, ['dialog']);
+  dialog = { dispatchEvent: () => false, close: () => assert.fail('cancel was prevented') };
+  assert.equal(back(), true);
+  dialog = null;
+  assert.equal(back(), true);
+  assert.deepEqual(calls, ['dialog', 'menu']);
+  assert.equal(back(), true);
+  assert.equal(calls.at(-1), 'news');
+  menu = true;
+  hidden = true;
+  news = false;
+  assert.equal(back(), false);
+  hidden = false;
+  narrow = false;
+  assert.equal(back(), false);
+});
+
+test('Android preparation copies and evaluates the immutable highlights with exact manifest digests', async () => {
+  const scratch = await mkdtemp(join(tmpdir(), 'recap-android-news-'));
+  try {
+    const { directory, manifest } = await prepareAndroid(join(scratch, 'recap'));
+    for (const parts of [
+      ['js', 'lib', 'homeUpdatesContent.js'],
+      ['js', 'lib', 'homeUpdatesSeen.js'],
+      ['js', 'views', 'home-updates.js'],
+    ]) {
+      const source = await readFile(join('src', ...parts));
+      const bytes = await readFile(join(directory, ...parts));
+      assert.deepEqual(bytes, source);
+      const entry = manifest.files.find((item) => item.path === parts.join('/'));
+      assert.ok(entry);
+      assert.equal(entry.sha256, createHash('sha256').update(source).digest('hex'));
+      assert.equal(entry.sourceSha256, entry.sha256);
+      if (parts.at(-1) === 'homeUpdatesContent.js') {
+        const output = await import(`data:text/javascript;base64,${bytes.toString('base64')}`);
+        assert.deepEqual(output.homeUpdatesContent, homeUpdatesContent);
+        if (output.homeUpdatesContent.batch) {
+          assert.ok(Object.isFrozen(output.homeUpdatesContent.batch));
+          assert.ok(Object.isFrozen(output.homeUpdatesContent.batch.listIds));
+        } else assert.equal(output.homeUpdatesContent.batch, null);
+      }
+    }
+  } finally {
+    await rm(scratch, { recursive: true, force: true });
+  }
 });
 
 test('shared downloads require explicit completion before returning success', async () => {

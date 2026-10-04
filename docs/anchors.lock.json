@@ -1534,8 +1534,8 @@
     "fp": "552b51210b97e50b",
     "head": "async get(path, { signal, cache = true, attempt = 0 } = {}) {"
   },
-  "docs/ARCHITECTURE.md|how-reading-content-reaches-the-browser|src/js/main.js:1800-1811|0": {
-    "anchor": "src/js/main.js:1800-1811",
+  "docs/ARCHITECTURE.md|how-reading-content-reaches-the-browser|src/js/main.js:1805-1816|0": {
+    "anchor": "src/js/main.js:1805-1816",
     "fp": "208b4ffd9a71268a",
     "head": "function loadCatalog() {"
   },
@@ -1564,13 +1564,13 @@
     "fp": "d3c89ab1f16d81ee",
     "head": "export function toggleRead(state, issueId) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:2508-2530|0": {
-    "anchor": "src/js/main.js:2508-2530",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:2513-2535|0": {
+    "anchor": "src/js/main.js:2513-2535",
     "fp": "211be8f2af0b1be0",
     "head": "function renderAll() {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:294-296|0": {
-    "anchor": "src/js/main.js:294-296",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:298-300|0": {
+    "anchor": "src/js/main.js:298-300",
     "fp": "b70cf478e0e33507",
     "head": "function announceIfSaved(msg) {"
   },
@@ -1639,13 +1639,13 @@
     "fp": "962c8048b2876981",
     "head": "onclick: () => {"
   },
-  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:2508-2530|0": {
-    "anchor": "src/js/main.js:2508-2530",
+  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:2513-2535|0": {
+    "anchor": "src/js/main.js:2513-2535",
     "fp": "211be8f2af0b1be0",
     "head": "function renderAll() {"
   },
-  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:3038-3070|0": {
-    "anchor": "src/js/main.js:3038-3070",
+  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:3069-3101|0": {
+    "anchor": "src/js/main.js:3069-3101",
     "fp": "68405df558b78554",
     "head": "const catalogView = createCatalogView({"
   },
@@ -1694,18 +1694,18 @@
     "fp": "9e182e3c330f02d7",
     "head": "const FULL_KEY = 'full'; const PATH_KEY = 'path'; const PATH_TOKEN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:120-144|0": {
-    "anchor": "src/js/main.js:120-144",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:124-148|0": {
+    "anchor": "src/js/main.js:124-148",
     "fp": "18ed5c8096987666",
     "head": "if (event.key === STATE_KEY) {"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3021-3125|0": {
-    "anchor": "src/js/main.js:3021-3125",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3052-3156|0": {
+    "anchor": "src/js/main.js:3052-3156",
     "fp": "7740ace9c9892372",
     "head": "const catalogPresentation = createCatalogPresentation({"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3127-3178|0": {
-    "anchor": "src/js/main.js:3127-3178",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3158-3209|0": {
+    "anchor": "src/js/main.js:3158-3209",
     "fp": "b946d5bb90431e4d",
     "head": "const readingPathsView = createReadingPathsView({"
   },
@@ -1759,14 +1759,14 @@
     "fp": "ba2f2ef80f02d08a",
     "head": "export class RateLimiter {"
   },
-  "docs/ARCHITECTURE.md|the-module-graph-drawn-as-ownership|src/js/main.js:2076-2091|0": {
-    "anchor": "src/js/main.js:2076-2091",
+  "docs/ARCHITECTURE.md|the-module-graph-drawn-as-ownership|src/js/main.js:2081-2096|0": {
+    "anchor": "src/js/main.js:2081-2096",
     "fp": "a233f0b54817b074",
     "head": "cache = new ResponseCache({ baseUrl: value });"
   },
-  "docs/ARCHITECTURE.md|the-module-graph-drawn-as-ownership|src/js/main.js:78-101|0": {
-    "anchor": "src/js/main.js:78-101",
-    "fp": "16c4e7267df2bef8",
+  "docs/ARCHITECTURE.md|the-module-graph-drawn-as-ownership|src/js/main.js:81-105|0": {
+    "anchor": "src/js/main.js:81-105",
+    "fp": "c5c0369fc9137b60",
     "head": "const settings = loadSettings();"
   },
   "docs/ARCHITECTURE.md|the-module-graph-drawn-as-ownership|src/js/synopsis.js:8-15|0": {
@@ -1779,8 +1779,8 @@
     "fp": "0c6537943c08c527",
     "head": "<script type=\"module\" src=\"./dev-faults.js\"></script>"
   },
-  "docs/ARCHITECTURE.md|the-three-entry-points|src/index.html:1179|0": {
-    "anchor": "src/index.html:1179",
+  "docs/ARCHITECTURE.md|the-three-entry-points|src/index.html:1193|0": {
+    "anchor": "src/index.html:1193",
     "fp": "9f74c3a9fa356fa2",
     "head": "<script type=\"module\" src=\"./js/app.js\"></script>"
   },
@@ -1794,8 +1794,8 @@
     "fp": "2c436fb3c32130cb",
     "head": "<script type=\"module\" src=\"./open.js\"></script>"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-cache-purge-v1|src/js/main.js:621-639|0": {
-    "anchor": "src/js/main.js:621-639",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-cache-purge-v1|src/js/main.js:625-643|0": {
+    "anchor": "src/js/main.js:625-643",
     "fp": "5f15902e5826b2b6",
     "head": "export async function writeCachePurgeMark("
   },
@@ -1804,8 +1804,8 @@
     "fp": "34a63c10ee7c6918",
     "head": "export function createSaveEducation({ storage } = {}) {"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-settings|src/js/main.js:652-663|0": {
-    "anchor": "src/js/main.js:652-663",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-settings|src/js/main.js:656-667|0": {
+    "anchor": "src/js/main.js:656-667",
     "fp": "d04eedd9cd784a4a",
     "head": "const serialized = JSON.stringify({"
   },
@@ -1834,8 +1834,8 @@
     "fp": "3b87d88ca5723d1d",
     "head": "this.storage.setItem(KEY, JSON.stringify({ [WRITE_TOKEN]: token, ...exportBackup(state) }));"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#sidebar-collapsed|src/js/main.js:1124-1131|0": {
-    "anchor": "src/js/main.js:1124-1131",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#sidebar-collapsed|src/js/main.js:1128-1135|0": {
+    "anchor": "src/js/main.js:1128-1135",
     "fp": "ac2e0db17077fe22",
     "head": "function setRailed(next, { announceIt = false, persist = false } = {}) {"
   },
@@ -1864,8 +1864,8 @@
     "fp": "610c96e2c8507a76",
     "head": "export const SAVE_EDUCATION_KEY = 'mrt.saveEducation.v1';"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|src/js/main.js:63-65|0": {
-    "anchor": "src/js/main.js:63-65",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|src/js/main.js:66-68|0": {
+    "anchor": "src/js/main.js:66-68",
     "fp": "b150c9694bbc2e50",
     "head": "const SETTINGS_KEY = 'mrt.settings';"
   },
@@ -1929,8 +1929,8 @@
     "fp": "b79dcc7a949b3231",
     "head": "export function synopsisFallback(issue, sessionEntry = null, noSynopsisMarker = undefined) {"
   },
-  "docs/DATA_PROVENANCE.md|what-the-first-hand-s-own-terms-said|src/index.html:1021-1025|0": {
-    "anchor": "src/index.html:1021-1025",
+  "docs/DATA_PROVENANCE.md|what-the-first-hand-s-own-terms-said|src/index.html:1035-1039|0": {
+    "anchor": "src/index.html:1035-1039",
     "fp": "7d02dbb6fdec4082",
     "head": "Issue, series, and creator metadata comes from the community"
   },
@@ -2059,8 +2059,8 @@
     "fp": "ff29af84034caf13",
     "head": "test('blank issues stay enabled, because the security policy sends reporters through one', () => {"
   },
-  "docs/UX_STUDY.md|as-is-journey-map#checking-progress|src/index.html:512-514|0": {
-    "anchor": "src/index.html:512-514",
+  "docs/UX_STUDY.md|as-is-journey-map#checking-progress|src/index.html:526-528|0": {
+    "anchor": "src/index.html:526-528",
     "fp": "ab300ebb4156bcfc",
     "head": "<div class=\"head\"><div class=\"head-left\"><h1 id=\"progress-h\">Progress by series</h1></div></div>"
   },
@@ -2074,8 +2074,8 @@
     "fp": "40b8e4c7235d6233",
     "head": "<nav id=\"sidebar-nav\" aria-label=\"Main\">"
   },
-  "docs/UX_STUDY.md|information-architecture-review|src/index.html:475-508|0": {
-    "anchor": "src/index.html:475-508",
+  "docs/UX_STUDY.md|information-architecture-review|src/index.html:489-522|0": {
+    "anchor": "src/index.html:489-522",
     "fp": "fd069560bcd47f29",
     "head": "<section id=\"view-library\" class=\"view\" hidden aria-labelledby=\"library-h\">"
   },
@@ -2089,8 +2089,8 @@
     "fp": "04e7dad5cb1fc423",
     "head": "export function breadcrumbHierarchy({"
   },
-  "docs/UX_STUDY.md|information-architecture-review|src/js/main.js:1497-1536|0": {
-    "anchor": "src/js/main.js:1497-1536",
+  "docs/UX_STUDY.md|information-architecture-review|src/js/main.js:1502-1541|0": {
+    "anchor": "src/js/main.js:1502-1541",
     "fp": "eb6ee0584d0f630d",
     "head": "function renderBreadcrumbs() {"
   },
@@ -2099,23 +2099,23 @@
     "fp": "72dca1e12f8ee5ee",
     "head": "test('one shared breadcrumb renderer covers routed views but never Home or dialogs', () => {"
   },
-  "docs/UX_STUDY.md|job-stories|src/index.html:276-321|0": {
-    "anchor": "src/index.html:276-321",
+  "docs/UX_STUDY.md|job-stories|src/index.html:290-335|0": {
+    "anchor": "src/index.html:290-335",
     "fp": "7d7aa5af2b2a9350",
     "head": "<section class=\"hero\" id=\"hero\" aria-labelledby=\"hero-title\">"
   },
-  "docs/UX_STUDY.md|job-stories|src/index.html:300-301|0": {
-    "anchor": "src/index.html:300-301",
+  "docs/UX_STUDY.md|job-stories|src/index.html:314-315|0": {
+    "anchor": "src/index.html:314-315",
     "fp": "67edc8d71d895b29",
     "head": "<button type=\"button\" class=\"btn btn-g has-tooltip\" id=\"btn-hero-done\" data-tooltip=\"Keyboard shortc"
   },
-  "docs/UX_STUDY.md|job-stories|src/index.html:512-514|0": {
-    "anchor": "src/index.html:512-514",
+  "docs/UX_STUDY.md|job-stories|src/index.html:526-528|0": {
+    "anchor": "src/index.html:526-528",
     "fp": "ab300ebb4156bcfc",
     "head": "<div class=\"head\"><div class=\"head-left\"><h1 id=\"progress-h\">Progress by series</h1></div></div>"
   },
-  "docs/UX_STUDY.md|job-stories|src/index.html:513-517|0": {
-    "anchor": "src/index.html:513-517",
+  "docs/UX_STUDY.md|job-stories|src/index.html:527-531|0": {
+    "anchor": "src/index.html:527-531",
     "fp": "3d856d97acb5205e",
     "head": "<fieldset class=\"filters\" id=\"progress-scope\">"
   },
@@ -2154,8 +2154,8 @@
     "fp": "3383e9c2fa49b423",
     "head": "Repository Constraint 3 forbids accounts, cloud services, analytics and telemetry, because the"
   },
-  "docs/UX_STUDY.md|proto-persona#reading-style|src/index.html:276-321|0": {
-    "anchor": "src/index.html:276-321",
+  "docs/UX_STUDY.md|proto-persona#reading-style|src/index.html:290-335|0": {
+    "anchor": "src/index.html:290-335",
     "fp": "7d7aa5af2b2a9350",
     "head": "<section class=\"hero\" id=\"hero\" aria-labelledby=\"hero-title\">"
   },
@@ -2194,8 +2194,8 @@
     "fp": "8b3c07e445e71673",
     "head": "<!-- Shown only when saved data could not be read. Saving stays paused until the"
   },
-  "docs/UX_STUDY.md|sweep-result|src/index.html:539-544|0": {
-    "anchor": "src/index.html:539-544",
+  "docs/UX_STUDY.md|sweep-result|src/index.html:553-558|0": {
+    "anchor": "src/index.html:553-558",
     "fp": "6806030100fd3d44",
     "head": "<!-- ---------------------------------------- catalog view -->"
   },
@@ -2204,8 +2204,8 @@
     "fp": "5c83ad7d477a49de",
     "head": "function wire(key) {"
   },
-  "docs/UX_STUDY.md|sweep-result|src/styles.css:1786-1788|0": {
-    "anchor": "src/styles.css:1786-1788",
+  "docs/UX_STUDY.md|sweep-result|src/styles.css:1825-1827|0": {
+    "anchor": "src/styles.css:1825-1827",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2224,8 +2224,8 @@
     "fp": "3cbc7d76b21e95fa",
     "head": "// Generated from src/data/hickman_full.json - real issues and real covers. The synopses this"
   },
-  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:1786-1788|0": {
-    "anchor": "src/styles.css:1786-1788",
+  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:1825-1827|0": {
+    "anchor": "src/styles.css:1825-1827",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2234,8 +2234,8 @@
     "fp": "c05f099c43c67496",
     "head": "#ring-arc { transition: stroke-dashoffset .35s ease; }"
   },
-  "docs/UX_STUDY.md|ux-a-001-the-primary-call-to-action-and-the-acce|src/index.html:300-301|0": {
-    "anchor": "src/index.html:300-301",
+  "docs/UX_STUDY.md|ux-a-001-the-primary-call-to-action-and-the-acce|src/index.html:314-315|0": {
+    "anchor": "src/index.html:314-315",
     "fp": "67edc8d71d895b29",
     "head": "<button type=\"button\" class=\"btn btn-g has-tooltip\" id=\"btn-hero-done\" data-tooltip=\"Keyboard shortc"
   },
@@ -2264,8 +2264,8 @@
     "fp": "6ba162a32bf16415",
     "head": ".row.is-read img { opacity: .5; }"
   },
-  "docs/UX_STUDY.md|ux-a-003-hero-text-contrast-is-undeterminable-be|src/index.html:276-321|0": {
-    "anchor": "src/index.html:276-321",
+  "docs/UX_STUDY.md|ux-a-003-hero-text-contrast-is-undeterminable-be|src/index.html:290-335|0": {
+    "anchor": "src/index.html:290-335",
     "fp": "7d7aa5af2b2a9350",
     "head": "<section class=\"hero\" id=\"hero\" aria-labelledby=\"hero-title\">"
   },
@@ -2304,28 +2304,28 @@
     "fp": "59235d10bc8a1e1c",
     "head": "<div id=\"announcer\" class=\"visually-hidden\" role=\"status\" aria-live=\"polite\" aria-atomic=\"true\"></di"
   },
-  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/index.html:687|0": {
-    "anchor": "src/index.html:687",
+  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/index.html:701|0": {
+    "anchor": "src/index.html:701",
     "fp": "7a1f8a1e2c6321e7",
     "head": "<div id=\"search-results\" class=\"results\"></div>"
   },
-  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/js/main.js:363-376|0": {
-    "anchor": "src/js/main.js:363-376",
+  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/js/main.js:367-380|0": {
+    "anchor": "src/js/main.js:367-380",
     "fp": "d21a7a81a8feb563",
     "head": "// A message goes down exactly one channel. Writing into a container that is itself a live"
   },
-  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/js/main.js:369-376|0": {
-    "anchor": "src/js/main.js:369-376",
+  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/js/main.js:373-380|0": {
+    "anchor": "src/js/main.js:373-380",
     "fp": "c8ff28f8e2ea386d",
     "head": "function isLive(node) {"
   },
-  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/js/main.js:512-537|0": {
-    "anchor": "src/js/main.js:512-537",
+  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/js/main.js:516-541|0": {
+    "anchor": "src/js/main.js:516-541",
     "fp": "192110749958f5f4",
     "head": "function notify(sel, msg, kind = 'ok', key = sel, action = null, dismiss = null) {"
   },
-  "docs/UX_STUDY.md|ux-a-007-the-first-run-dom-ships-an-empty-headin|src/index.html:276-321|0": {
-    "anchor": "src/index.html:276-321",
+  "docs/UX_STUDY.md|ux-a-007-the-first-run-dom-ships-an-empty-headin|src/index.html:290-335|0": {
+    "anchor": "src/index.html:290-335",
     "fp": "7d7aa5af2b2a9350",
     "head": "<section class=\"hero\" id=\"hero\" aria-labelledby=\"hero-title\">"
   },
@@ -2334,8 +2334,8 @@
     "fp": "d6bff9bff14b0b12",
     "head": "<meta name=\"color-scheme\" content=\"dark light\" />"
   },
-  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/js/main.js:1461-1463|0": {
-    "anchor": "src/js/main.js:1461-1463",
+  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/js/main.js:1466-1468|0": {
+    "anchor": "src/js/main.js:1466-1468",
     "fp": "49408e8173086b6e",
     "head": "for (const btn of document.querySelectorAll('.ri[data-view]')) {"
   },
@@ -2344,8 +2344,8 @@
     "fp": "53b9bb8e0988cf2b",
     "head": "color-scheme: dark;"
   },
-  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:1786-1788|0": {
-    "anchor": "src/styles.css:1786-1788",
+  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:1825-1827|0": {
+    "anchor": "src/styles.css:1825-1827",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2369,8 +2369,8 @@
     "fp": "87a8f4102a4a1266",
     "head": "@media (max-width: 880px) {"
   },
-  "docs/UX_STUDY.md|ux-d-003-the-advertised-keyboard-shortcut-stops-|src/index.html:300-301|0": {
-    "anchor": "src/index.html:300-301",
+  "docs/UX_STUDY.md|ux-d-003-the-advertised-keyboard-shortcut-stops-|src/index.html:314-315|0": {
+    "anchor": "src/index.html:314-315",
     "fp": "67edc8d71d895b29",
     "head": "<button type=\"button\" class=\"btn btn-g has-tooltip\" id=\"btn-hero-done\" data-tooltip=\"Keyboard shortc"
   },
@@ -2384,13 +2384,13 @@
     "fp": "2b7209286c1d66d5",
     "head": "function wireShortcuts() {"
   },
-  "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:2508-2530|0": {
-    "anchor": "src/js/main.js:2508-2530",
+  "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:2513-2535|0": {
+    "anchor": "src/js/main.js:2513-2535",
     "fp": "211be8f2af0b1be0",
     "head": "function renderAll() {"
   },
-  "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:87-93|0": {
-    "anchor": "src/js/main.js:87-93",
+  "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:90-96|0": {
+    "anchor": "src/js/main.js:90-96",
     "fp": "83f6821e890300f6",
     "head": "const store = new Store({"
   },
@@ -2399,13 +2399,13 @@
     "fp": "db818e7343a867ed",
     "head": "function open({ title, body, confirmLabel, prefill = null, inputLabel = '', multiline = false }) {"
   },
-  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/main.js:1856|0": {
-    "anchor": "src/js/main.js:1856",
+  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/main.js:1861|0": {
+    "anchor": "src/js/main.js:1861",
     "fp": "8ab27e651ace604e",
     "head": "notify(report, `${order.name} could not be saved, so nothing was imported.`, 'error', importKey);"
   },
-  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/main.js:512-537|0": {
-    "anchor": "src/js/main.js:512-537",
+  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/main.js:516-541|0": {
+    "anchor": "src/js/main.js:516-541",
     "fp": "192110749958f5f4",
     "head": "function notify(sel, msg, kind = 'ok', key = sel, action = null, dismiss = null) {"
   },
@@ -2429,13 +2429,13 @@
     "fp": "209e6471be991453",
     "head": "$('#btn-delete-list').addEventListener('click', async () => {"
   },
-  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:1038-1049|0": {
-    "anchor": "src/index.html:1038-1049",
+  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:1052-1063|0": {
+    "anchor": "src/index.html:1052-1063",
     "fp": "f88e018be4221bed",
     "head": "<h3>Keyboard shortcuts</h3>"
   },
-  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:300-301|0": {
-    "anchor": "src/index.html:300-301",
+  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:314-315|0": {
+    "anchor": "src/index.html:314-315",
     "fp": "67edc8d71d895b29",
     "head": "<button type=\"button\" class=\"btn btn-g has-tooltip\" id=\"btn-hero-done\" data-tooltip=\"Keyboard shortc"
   },
@@ -2444,9 +2444,9 @@
     "fp": "2b7209286c1d66d5",
     "head": "function wireShortcuts() {"
   },
-  "docs/UX_STUDY.md|ux-i-001-no-application-state-is-addressable|src/js/main.js:1437-1494|0": {
-    "anchor": "src/js/main.js:1437-1494",
-    "fp": "43beacec04961b9e",
+  "docs/UX_STUDY.md|ux-i-001-no-application-state-is-addressable|src/js/main.js:1441-1499|0": {
+    "anchor": "src/js/main.js:1441-1499",
+    "fp": "c9ba97bfe5f0e00c",
     "head": "function showView(next, { focus = true, push = false } = {}) {"
   },
   "docs/UX_STUDY.md|ux-i-002-the-filter-selection-resets-on-every-re|src/js/lib/readingFilters.js:25-51|0": {
@@ -2464,8 +2464,8 @@
     "fp": "4b2c34e3e004c761",
     "head": "<h3>Library</h3>"
   },
-  "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/index.html:475-508|0": {
-    "anchor": "src/index.html:475-508",
+  "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/index.html:489-522|0": {
+    "anchor": "src/index.html:489-522",
     "fp": "fd069560bcd47f29",
     "head": "<section id=\"view-library\" class=\"view\" hidden aria-labelledby=\"library-h\">"
   },
@@ -6034,8 +6034,8 @@
     "fp": "36abce5861d613b7",
     "head": "// A file git could not read is not a file that read clean. Read from the index enumerated by"
   },
-  "scripts/check-palette.mjs|preamble|src/js/main.js:1648|0": {
-    "anchor": "src/js/main.js:1648",
+  "scripts/check-palette.mjs|preamble|src/js/main.js:1653|0": {
+    "anchor": "src/js/main.js:1653",
     "fp": "b16e0bda4cf16693",
     "head": "el('span', { class: 'n', text: `${read} / ${total}` }),"
   },
@@ -6054,13 +6054,13 @@
     "fp": "3a90f9bd69dfcf96",
     "head": "el('span', { class: 'yours-count', text: count }),"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:1821|0": {
-    "anchor": "src/styles.css:1821",
+  "scripts/check-palette.mjs|preamble|src/styles.css:1860|0": {
+    "anchor": "src/styles.css:1860",
     "fp": "3a5c838f7187d084",
     "head": "background: color-mix(in srgb, var(--warn) 12%, var(--panel));"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:1845|0": {
-    "anchor": "src/styles.css:1845",
+  "scripts/check-palette.mjs|preamble|src/styles.css:1884|0": {
+    "anchor": "src/styles.css:1884",
     "fp": "1eef54d530f1e5d5",
     "head": ".blocked .btn-g { border-color: var(--muted); }"
   },
@@ -6099,8 +6099,8 @@
     "fp": "66318b8a9bc87d06",
     "head": ".row.is-read .cb { background: var(--teal); border-color: var(--teal); }"
   },
-  "SECURITY.md|about-the-app|package.json:52-56|0": {
-    "anchor": "package.json:52-56",
+  "SECURITY.md|about-the-app|package.json:54-58|0": {
+    "anchor": "package.json:54-58",
     "fp": "2cfacf17c11b3f1b",
     "head": "\"devDependencies\": {"
   },
@@ -6144,8 +6144,8 @@
     "fp": "8455b6473b281f3f",
     "head": "// Removes one copy, at the reader's explicit request. Nothing else in this module removes one:"
   },
-  "src/styles.css|preamble|src/js/main.js:915-922|0": {
-    "anchor": "src/js/main.js:915-922",
+  "src/styles.css|preamble|src/js/main.js:919-926|0": {
+    "anchor": "src/js/main.js:919-926",
     "fp": "3545013deeb0c474",
     "head": "function fallbackHue(issue, fallbackName = '') {"
   },
