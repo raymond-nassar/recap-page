@@ -1,0 +1,4057 @@
+{
+  "id": "mcu-prep-deadpool-and-wolverine",
+  "inventoryId": "mcu-prep-deadpool-and-wolverine",
+  "packetDigest": "b8ba5a15e2cd4af7489bd07e651c95781891167819f597609fb18f6a11342c4a",
+  "sourceProvider": "owner-authored",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/680",
+  "sourceRetrievedAt": "2026-10-03",
+  "sourceContentSha256": "6b4a1dd3d6bccae70bfc03bd765d9c48229e1cee813cf5b871d7a57de20f26b8",
+  "sourceRetrievalStatus": "retrieved",
+  "approvedSourceCount": 43,
+  "excludedSourceReferences": [
+    "Bonus material from later Weapon X deluxe editions",
+    "Deadpool by Daniel Way: The Complete Collection Vol. 1, rejected by the owner for selection 2",
+    "The remainder of the Whedon/Cassaday Astonishing X-Men run",
+    "The 2015 Old Man Logan series",
+    "Deadpool Classic Vol. 14: Suicide Kings and other unselected volumes",
+    "The expanded Deadpool Epic Collection: The Circle Chase",
+    "Unverified film-inspiration and Wolverine-antagonism claims"
+  ],
+  "proposedManifest": {
+    "id": "mcu-prep-deadpool-and-wolverine",
+    "name": "MCU Prep: Deadpool & Wolverine",
+    "description": "An owner-selected path through Weapon X, Dead Presidents, Gifted, Old Man Logan, and Deadpool Classic Vol. 1, expanded into 43 original comics in the supplied order.",
+    "type": "screen-companion",
+    "depth": "selected",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "mcu-prep-deadpool-and-wolverine.md",
+    "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/680",
+    "sourceOrigin": "Compiled for this project from the owner's selections",
+    "sourceLicense": null,
+    "out": "mcu_prep_deadpool_and_wolverine.json",
+    "characters": [
+      "Deadpool",
+      "Wolverine",
+      "X-Men"
+    ],
+    "keywords": [
+      "Deadpool & Wolverine",
+      "Wade Wilson",
+      "Logan",
+      "Weapon X",
+      "Dead Presidents",
+      "Gifted",
+      "Old Man Logan",
+      "Circle Chase"
+    ],
+    "expect": 43,
+    "timeline": null,
+    "coverIssueId": 10155
+  },
+  "candidateMetadata": [
+    {
+      "id": 10155,
+      "title": "Marvel Comics Presents (1988) #72",
+      "issueNumber": "72",
+      "seriesId": 2039,
+      "seriesName": "Marvel Comics Presents (1988 - 1995)",
+      "detailUrl": "https://www.marvel.com/comics/issue/10155/marvel_comics_presents_1988_72",
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/10155",
+        "status": 200,
+        "urlSha256": "66b4b1ebdd7b853fd2bc4349f1332abf9a51ce95c6b3dd4ba2c3e518600fc22d",
+        "bodySha256": "fd8e942d89285307a74348ce815c1b873c1ffdb828d8a5350b9db9f80468fba3",
+        "fetchedAt": "2026-10-03T17:42:28.898Z"
+      }
+    },
+    {
+      "id": 10156,
+      "title": "Marvel Comics Presents (1988) #73",
+      "issueNumber": "73",
+      "seriesId": 2039,
+      "seriesName": "Marvel Comics Presents (1988 - 1995)",
+      "detailUrl": "https://www.marvel.com/comics/issue/10156/marvel_comics_presents_1988_73",
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/10156",
+        "status": 200,
+        "urlSha256": "d4c41f18b08065c6d8f0a5f01812b1207e8a72963c559eef0457e8d9124c57fe",
+        "bodySha256": "b154d46e37dadb98db20004fe1f815efaed893d9c731e0c0b0cbf0e008039fc4",
+        "fetchedAt": "2026-10-03T17:42:29.064Z"
+      }
+    },
+    {
+      "id": 10157,
+      "title": "Marvel Comics Presents (1988) #74",
+      "issueNumber": "74",
+      "seriesId": 2039,
+      "seriesName": "Marvel Comics Presents (1988 - 1995)",
+      "detailUrl": "https://www.marvel.com/comics/issue/10157/marvel_comics_presents_1988_74",
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/10157",
+        "status": 200,
+        "urlSha256": "bf56ff14acda406d080d37bb111485920683a60dcc7a3a3960b80686bc16cf86",
+        "bodySha256": "d6f472558e415d6fcb1c24961c252cbcaf97a2fb11e0c8b067d36718d0fbfa37",
+        "fetchedAt": "2026-10-03T17:42:29.244Z"
+      }
+    },
+    {
+      "id": 10158,
+      "title": "Marvel Comics Presents (1988) #75",
+      "issueNumber": "75",
+      "seriesId": 2039,
+      "seriesName": "Marvel Comics Presents (1988 - 1995)",
+      "detailUrl": "https://www.marvel.com/comics/issue/10158/marvel_comics_presents_1988_75",
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/10158",
+        "status": 200,
+        "urlSha256": "1c93551f44c64f8faed9b5f6fcf6feea5292330f06a3ee10b8a4e35f1c957a68",
+        "bodySha256": "2e34b0d51b05728ec35c13550c41a04386591ddbb51048640974a5dda1d727d0",
+        "fetchedAt": "2026-10-03T17:42:29.406Z"
+      }
+    },
+    {
+      "id": 10159,
+      "title": "Marvel Comics Presents (1988) #76",
+      "issueNumber": "76",
+      "seriesId": 2039,
+      "seriesName": "Marvel Comics Presents (1988 - 1995)",
+      "detailUrl": "https://www.marvel.com/comics/issue/10159/marvel_comics_presents_1988_76",
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/10159",
+        "status": 200,
+        "urlSha256": "e70928becabc8f9a48e26c68fa3e0e216d4ae8f0e217012f74d58dd6fc02c05f",
+        "bodySha256": "0cdc916b2b8b1b355558736a581a827ed63c04d102596f2dccf614067becebbf",
+        "fetchedAt": "2026-10-03T17:42:29.565Z"
+      }
+    },
+    {
+      "id": 10160,
+      "title": "Marvel Comics Presents (1988) #77",
+      "issueNumber": "77",
+      "seriesId": 2039,
+      "seriesName": "Marvel Comics Presents (1988 - 1995)",
+      "detailUrl": "https://www.marvel.com/comics/issue/10160/marvel_comics_presents_1988_77",
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/10160",
+        "status": 200,
+        "urlSha256": "6b61832279d0cbe3bcdb787c8382d68d03191037d68bbc4c8d463e0a2c77a2de",
+        "bodySha256": "2926ac932981ede281722e479d9594585197e8a16069c7376d6c05ef82738490",
+        "fetchedAt": "2026-10-03T17:42:38.712Z"
+      }
+    },
+    {
+      "id": 10161,
+      "title": "Marvel Comics Presents (1988) #78",
+      "issueNumber": "78",
+      "seriesId": 2039,
+      "seriesName": "Marvel Comics Presents (1988 - 1995)",
+      "detailUrl": "https://www.marvel.com/comics/issue/10161/marvel_comics_presents_1988_78",
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/10161",
+        "status": 200,
+        "urlSha256": "3e2a2c61e06fa97ff3d2c8aa5f935d3cb9514b49f153be2792a5f98e515a6490",
+        "bodySha256": "5418c3cccc0ffa439e23edecb0506b68b7b0bd913ee3ddfab75db5fce29e24eb",
+        "fetchedAt": "2026-10-03T17:42:39.109Z"
+      }
+    },
+    {
+      "id": 10162,
+      "title": "Marvel Comics Presents (1988) #79",
+      "issueNumber": "79",
+      "seriesId": 2039,
+      "seriesName": "Marvel Comics Presents (1988 - 1995)",
+      "detailUrl": "https://www.marvel.com/comics/issue/10162/marvel_comics_presents_1988_79",
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/10162",
+        "status": 200,
+        "urlSha256": "2e373591afa7b18e8144e0cab684370d71e0b650894011a332367d5aa3a2d6a9",
+        "bodySha256": "77dedc65a34eb81ba2df9efdb32e4308973bc0faf20843481284ea6291ac184b",
+        "fetchedAt": "2026-10-03T17:42:39.275Z"
+      }
+    },
+    {
+      "id": 10164,
+      "title": "Marvel Comics Presents (1988) #80",
+      "issueNumber": "80",
+      "seriesId": 2039,
+      "seriesName": "Marvel Comics Presents (1988 - 1995)",
+      "detailUrl": "https://www.marvel.com/comics/issue/10164/marvel_comics_presents_1988_80",
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/10164",
+        "status": 200,
+        "urlSha256": "e9f2ab350e73e877ea4815d382479c41df15497a7a55779805424fa4549db795",
+        "bodySha256": "abe17779f1923ad52c91b2f8df45494dd41df901699add52e7c3cde630b36325",
+        "fetchedAt": "2026-10-03T17:42:39.466Z"
+      }
+    },
+    {
+      "id": 10165,
+      "title": "Marvel Comics Presents (1988) #81",
+      "issueNumber": "81",
+      "seriesId": 2039,
+      "seriesName": "Marvel Comics Presents (1988 - 1995)",
+      "detailUrl": "https://www.marvel.com/comics/issue/10165/marvel_comics_presents_1988_81",
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/10165",
+        "status": 200,
+        "urlSha256": "f22eb692c348b637134c8e8fd62d1f9f222da5f0be0b41c0ec5a31a073c3904c",
+        "bodySha256": "6f6f0076bcf74fc69522449e0b4c0dee05781b17f644315fa16d5a379b746cc7",
+        "fetchedAt": "2026-10-03T17:42:39.659Z"
+      }
+    },
+    {
+      "id": 10166,
+      "title": "Marvel Comics Presents (1988) #82",
+      "issueNumber": "82",
+      "seriesId": 2039,
+      "seriesName": "Marvel Comics Presents (1988 - 1995)",
+      "detailUrl": "https://www.marvel.com/comics/issue/10166/marvel_comics_presents_1988_82",
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/10166",
+        "status": 200,
+        "urlSha256": "a50ecc5d8fd63257bd01a9c63b073d9db7b22bc0d8b0a3725f9588f2e5fb779b",
+        "bodySha256": "e723afb50d262e6160ae1e3d5ab776accf1214997f891131537cc4b3e3f71785",
+        "fetchedAt": "2026-10-03T17:43:28.789Z"
+      }
+    },
+    {
+      "id": 10167,
+      "title": "Marvel Comics Presents (1988) #83",
+      "issueNumber": "83",
+      "seriesId": 2039,
+      "seriesName": "Marvel Comics Presents (1988 - 1995)",
+      "detailUrl": "https://www.marvel.com/comics/issue/10167/marvel_comics_presents_1988_83",
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/10167",
+        "status": 200,
+        "urlSha256": "cf629241186d9f198c6b8fb1ccd65d80f1becbcba7c8d61502454d115225dba0",
+        "bodySha256": "6a4f0ed94654ad60b80835d0c464c71937bd43d1f54e160cd9eb79ddf97ade96",
+        "fetchedAt": "2026-10-03T17:43:29.090Z"
+      }
+    },
+    {
+      "id": 10168,
+      "title": "Marvel Comics Presents (1988) #84",
+      "issueNumber": "84",
+      "seriesId": 2039,
+      "seriesName": "Marvel Comics Presents (1988 - 1995)",
+      "detailUrl": "https://www.marvel.com/comics/issue/10168/marvel_comics_presents_1988_84",
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/10168",
+        "status": 200,
+        "urlSha256": "d0d479095894933d1ac78542644e79646f2fb101af6dbadcd1f82e8ddbd62aba",
+        "bodySha256": "430592f0f858594cbe25bdabbaffd5b5c22aa5991d33b03d1d1438daefc1d296",
+        "fetchedAt": "2026-10-03T17:43:29.266Z"
+      }
+    },
+    {
+      "id": 43797,
+      "title": "Deadpool (2012) #1",
+      "issueNumber": "1",
+      "seriesId": 16542,
+      "seriesName": "Deadpool (2012 - 2015)",
+      "detailUrl": "https://www.marvel.com/comics/issue/43797/deadpool_2012_1",
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/43797",
+        "status": 200,
+        "urlSha256": "17e9c2ee003f6ec097054be554f3a7401f55018561b5b0f6ed6bae25014e1a6c",
+        "bodySha256": "d7a10a8c9e6318e3331d9e57d67363f84c46bb978ac52a17a706a63a6db9da2c",
+        "fetchedAt": "2026-10-03T17:43:29.443Z"
+      }
+    },
+    {
+      "id": 43801,
+      "title": "Deadpool (2012) #2",
+      "issueNumber": "2",
+      "seriesId": 16542,
+      "seriesName": "Deadpool (2012 - 2015)",
+      "detailUrl": "https://www.marvel.com/comics/issue/43801/deadpool_2012_2",
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/43801",
+        "status": 200,
+        "urlSha256": "af587b769cf051783c9de594d89f2a0935683aa83e649363883f7d05bf3545d5",
+        "bodySha256": "084d624013888333f448802f40dd05935d5970d47780178c5af35971b98c7409",
+        "fetchedAt": "2026-10-03T17:43:29.628Z"
+      }
+    },
+    {
+      "id": 44870,
+      "title": "Deadpool (2012) #3",
+      "issueNumber": "3",
+      "seriesId": 16542,
+      "seriesName": "Deadpool (2012 - 2015)",
+      "detailUrl": "https://www.marvel.com/comics/issue/44870/deadpool_2012_3",
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/44870",
+        "status": 200,
+        "urlSha256": "aa7813b2d9e3d2eb4dee723537d7969acb650bb7acadec8b1b7f76302ff582a1",
+        "bodySha256": "f79a8d0f81cd85886937e5d4dad0c1ab21dd2f1895f24762e800f930ab9bdac3",
+        "fetchedAt": "2026-10-03T17:43:38.759Z"
+      }
+    },
+    {
+      "id": 46038,
+      "title": "Deadpool (2012) #4",
+      "issueNumber": "4",
+      "seriesId": 16542,
+      "seriesName": "Deadpool (2012 - 2015)",
+      "detailUrl": "https://www.marvel.com/comics/issue/46038/deadpool_2012_4",
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/46038",
+        "status": 200,
+        "urlSha256": "43ed61d2c1c8ea30c5273b525807e1fd77b98045f969cce641249b13a79e4377",
+        "bodySha256": "9ccdb18c95db47d9248ac665034949ba154ece69f89a81222c47bb988810f403",
+        "fetchedAt": "2026-10-03T17:43:39.097Z"
+      }
+    },
+    {
+      "id": 46040,
+      "title": "Deadpool (2012) #5",
+      "issueNumber": "5",
+      "seriesId": 16542,
+      "seriesName": "Deadpool (2012 - 2015)",
+      "detailUrl": "https://www.marvel.com/comics/issue/46040/deadpool_2012_5",
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/46040",
+        "status": 200,
+        "urlSha256": "aaf6787c5097eba9ab9f252cb3a9c2a7b38dfc2020cd8d953a8fab15cf451294",
+        "bodySha256": "00ac33020b1caf89bac1a23480ea7925451a78454c9c6bf937d7c910d22584a1",
+        "fetchedAt": "2026-10-03T17:43:39.296Z"
+      }
+    },
+    {
+      "id": 46042,
+      "title": "Deadpool (2012) #6",
+      "issueNumber": "6",
+      "seriesId": 16542,
+      "seriesName": "Deadpool (2012 - 2015)",
+      "detailUrl": "https://www.marvel.com/comics/issue/46042/deadpool_2012_6",
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/46042",
+        "status": 200,
+        "urlSha256": "3d440382d1865ce34eb965d02082315a811fcca1dd480c979cd9329b67d02648",
+        "bodySha256": "cbf377fa0e816727d07fae3600823976f5242b6b71210ac20e3728ecbcfbcd4b",
+        "fetchedAt": "2026-10-03T17:43:39.455Z"
+      }
+    },
+    {
+      "id": 660,
+      "title": "Astonishing X-Men (2004) #1",
+      "issueNumber": "1",
+      "seriesId": 744,
+      "seriesName": "Astonishing X-Men (2004 - 2013)",
+      "detailUrl": "https://www.marvel.com/comics/issue/660/astonishing_x-men_2004_1",
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/660",
+        "status": 200,
+        "urlSha256": "78d728ee61044fc2f62dc9578755c6ee7f160695d2846a00308827428c7d9118",
+        "bodySha256": "34e2ee702eb4f8792a173ce59a1c89b4480fba432a9088d17b7770ff7539e556",
+        "fetchedAt": "2026-10-03T17:43:39.670Z"
+      }
+    },
+    {
+      "id": 723,
+      "title": "Astonishing X-Men (2004) #2",
+      "issueNumber": "2",
+      "seriesId": 744,
+      "seriesName": "Astonishing X-Men (2004 - 2013)",
+      "detailUrl": "https://www.marvel.com/comics/issue/723/astonishing_x-men_2004_2",
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/723",
+        "status": 200,
+        "urlSha256": "a0b611cd236142bbd4f11558e099e48e79c18ddc43e6de087cd5649c2b0c6257",
+        "bodySha256": "2599d59784fde82b3823a055cac39de03734a39591f4cfbd26553e9f30978ba5",
+        "fetchedAt": "2026-10-03T17:44:28.756Z"
+      }
+    },
+    {
+      "id": 531,
+      "title": "Astonishing X-Men (2004) #3",
+      "issueNumber": "3",
+      "seriesId": 744,
+      "seriesName": "Astonishing X-Men (2004 - 2013)",
+      "detailUrl": "https://www.marvel.com/comics/issue/531/astonishing_x-men_2004_3",
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/531",
+        "status": 200,
+        "urlSha256": "7761c7df882ff558f42ef9098429c626ad9b57ebf430cecdc330a37046c36494",
+        "bodySha256": "f0f99ddf0070758adb7dbbdee9c350f768ca4fdf1fc24a64481da9cf131e3d50",
+        "fetchedAt": "2026-10-03T17:44:29.069Z"
+      }
+    },
+    {
+      "id": 1808,
+      "title": "Astonishing X-Men (2004) #4",
+      "issueNumber": "4",
+      "seriesId": 744,
+      "seriesName": "Astonishing X-Men (2004 - 2013)",
+      "detailUrl": "https://www.marvel.com/comics/issue/1808/astonishing_x-men_2004_4",
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/1808",
+        "status": 200,
+        "urlSha256": "aee63990011b58e5f66656d36870b856dfd6af415318abf7200bfc8376ad141c",
+        "bodySha256": "6524bc0d965cf4db44babf780b4f6fc95fcc7813723615b0a8d35b077913d9b5",
+        "fetchedAt": "2026-10-03T17:44:29.266Z"
+      }
+    },
+    {
+      "id": 843,
+      "title": "Astonishing X-Men (2004) #5",
+      "issueNumber": "5",
+      "seriesId": 744,
+      "seriesName": "Astonishing X-Men (2004 - 2013)",
+      "detailUrl": "https://www.marvel.com/comics/issue/843/astonishing_x-men_2004_5",
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/843",
+        "status": 200,
+        "urlSha256": "635847bfce431953dfbbce612c03cdde19298a1aa961d2666a938a332aac87c8",
+        "bodySha256": "155ae40171f3912beeba6206559187cbf46e754ef12838b9bc4af46d2deb1b07",
+        "fetchedAt": "2026-10-03T17:44:29.442Z"
+      }
+    },
+    {
+      "id": 927,
+      "title": "Astonishing X-Men (2004) #6",
+      "issueNumber": "6",
+      "seriesId": 744,
+      "seriesName": "Astonishing X-Men (2004 - 2013)",
+      "detailUrl": "https://www.marvel.com/comics/issue/927/astonishing_x-men_2004_6",
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/927",
+        "status": 200,
+        "urlSha256": "9cce47eaefd955ed1517ae251017335e6a9d345a0a81c032cec99314af424eec",
+        "bodySha256": "929bd026d785e13d4ab03a49c8cd493c1b8f6b4806aa057e27c6f3e671b0258b",
+        "fetchedAt": "2026-10-03T17:44:29.621Z"
+      }
+    },
+    {
+      "id": 21330,
+      "title": "Wolverine (2003) #66",
+      "issueNumber": "66",
+      "seriesId": 632,
+      "seriesName": "Wolverine (2003 - 2009)",
+      "detailUrl": "https://www.marvel.com/comics/issue/21330/wolverine_2003_66",
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/21330",
+        "status": 200,
+        "urlSha256": "77206ad8fa332c583de7c484c14a8e35c8bf7580efe4ae34ed4cb1706e2d8888",
+        "bodySha256": "810d8dcd7485f0eff6dfb424567fec6d1ecbe0aedf789854f1c7de8ad8cef2be",
+        "fetchedAt": "2026-10-03T17:44:38.726Z"
+      }
+    },
+    {
+      "id": 21508,
+      "title": "Wolverine (2003) #67",
+      "issueNumber": "67",
+      "seriesId": 632,
+      "seriesName": "Wolverine (2003 - 2009)",
+      "detailUrl": "https://www.marvel.com/comics/issue/21508/wolverine_2003_67",
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/21508",
+        "status": 200,
+        "urlSha256": "8209511593c6dc520bb4d00fb52df84dc2f8389c20bcc3ea4d2f9cc6b1b103ba",
+        "bodySha256": "beed026202c2de65f8ad4e0e09802a49422e72904bf3dab9b04d231c120648aa",
+        "fetchedAt": "2026-10-03T17:44:39.074Z"
+      }
+    },
+    {
+      "id": 21710,
+      "title": "Wolverine (2003) #68",
+      "issueNumber": "68",
+      "seriesId": 632,
+      "seriesName": "Wolverine (2003 - 2009)",
+      "detailUrl": "https://www.marvel.com/comics/issue/21710/wolverine_2003_68",
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/21710",
+        "status": 200,
+        "urlSha256": "1951830b8a8df2ae3fac6375dcc24e2b14aabd4a6fa840480ae8524bd5c67372",
+        "bodySha256": "ffd33f79087ba0ac1192faa23af832f014943883850730e33b13c6b12c65c199",
+        "fetchedAt": "2026-10-03T17:44:39.311Z"
+      }
+    },
+    {
+      "id": 22475,
+      "title": "Wolverine (2003) #69",
+      "issueNumber": "69",
+      "seriesId": 632,
+      "seriesName": "Wolverine (2003 - 2009)",
+      "detailUrl": "https://www.marvel.com/comics/issue/22475/wolverine_2003_69",
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/22475",
+        "status": 200,
+        "urlSha256": "262cda884faa6f954b83072cd48fbd73b19dc0a93c5f8f79b0fb73e885791021",
+        "bodySha256": "9549fbad2e4eb898c65c5acec68068a5207d82ea5b9e799c55a9deea95ce5894",
+        "fetchedAt": "2026-10-03T17:44:39.498Z"
+      }
+    },
+    {
+      "id": 22876,
+      "title": "Wolverine (2003) #70",
+      "issueNumber": "70",
+      "seriesId": 632,
+      "seriesName": "Wolverine (2003 - 2009)",
+      "detailUrl": "https://www.marvel.com/comics/issue/22876/wolverine_2003_70",
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/22876",
+        "status": 200,
+        "urlSha256": "b80bc104fbeec2695befb858689f984f9d81943abf80dc8c1279a7bf9b71ecf0",
+        "bodySha256": "ceb718eae4fc86d0a3bbfb58c07d683ed09a0504c80fcd3a7afa0ab03d54d547",
+        "fetchedAt": "2026-10-03T17:44:39.679Z"
+      }
+    },
+    {
+      "id": 23744,
+      "title": "Wolverine (2003) #71",
+      "issueNumber": "71",
+      "seriesId": 632,
+      "seriesName": "Wolverine (2003 - 2009)",
+      "detailUrl": "https://www.marvel.com/comics/issue/23744/wolverine_2003_71",
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/23744",
+        "status": 200,
+        "urlSha256": "d4e0961473cddbb63c0447685b5249bb0dbcd6b94adae00c0d410ce6c8cc2735",
+        "bodySha256": "570ee6dc3ee21a3568ec5b075c4b3eab1afd96b64aa1d4849803480d4ce2c1b6",
+        "fetchedAt": "2026-10-03T17:45:28.738Z"
+      }
+    },
+    {
+      "id": 23934,
+      "title": "Wolverine (2003) #72",
+      "issueNumber": "72",
+      "seriesId": 632,
+      "seriesName": "Wolverine (2003 - 2009)",
+      "detailUrl": "https://www.marvel.com/comics/issue/23934/wolverine_2003_72",
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/23934",
+        "status": 200,
+        "urlSha256": "2a6a1c1d5f64a7e8b06babcb18196f740bcf1abcc91878906c4001b6625d4686",
+        "bodySha256": "700a03e14036ca6984c4b60e108f13fad1f84a772d4c1aa60b2e4994d1e77799",
+        "fetchedAt": "2026-10-03T17:45:29.071Z"
+      }
+    },
+    {
+      "id": 27129,
+      "title": "Wolverine: Old Man Logan Giant-Size (2009) #1",
+      "issueNumber": "1",
+      "seriesId": 8622,
+      "seriesName": "Wolverine: Old Man Logan Giant-Size (2009)",
+      "detailUrl": "https://www.marvel.com/comics/issue/27129/wolverine_old_man_logan_giant-size_2009_1",
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/27129",
+        "status": 200,
+        "urlSha256": "53e1217a83690f7fe744f79bbc1fce2d23f30f9bf6c86fdb6a7d86c568161b8b",
+        "bodySha256": "10bea5dd9edf73a0ac83ad18ee840972bc258e8b116b6e4fbf47cea8176bdf54",
+        "fetchedAt": "2026-10-03T17:45:29.305Z"
+      }
+    },
+    {
+      "id": 10441,
+      "title": "New Mutants (1983) #98",
+      "issueNumber": "98",
+      "seriesId": 2055,
+      "seriesName": "New Mutants (1983 - 1991)",
+      "detailUrl": "https://www.marvel.com/comics/issue/10441/new_mutants_1983_98",
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/10441",
+        "status": 200,
+        "urlSha256": "917699370b1e41e808bdedcdbaa3e6b2f7970cfaca5bfd960d646f3fafbb6426",
+        "bodySha256": "680abe7048c00026f0eda19b96b0cba60ff43fc8b2ea4a506d3da57aaf8051e1",
+        "fetchedAt": "2026-10-03T17:45:29.536Z"
+      }
+    },
+    {
+      "id": 8453,
+      "title": "Deadpool: The Circle Chase (1993) #1",
+      "issueNumber": "1",
+      "seriesId": 2003,
+      "seriesName": "Deadpool: The Circle Chase (1993)",
+      "detailUrl": "https://www.marvel.com/comics/issue/8453/deadpool_the_circle_chase_1993_1",
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/8453",
+        "status": 200,
+        "urlSha256": "7fe08fc54b22358e4ff54159b4857d3a031afb7e25d25b7bcf1996edf86dd965",
+        "bodySha256": "01d6a315b15b704dcb06c885a2060c1fb0ce323b02dc2739ab3bed20f25333e1",
+        "fetchedAt": "2026-10-03T17:45:29.739Z"
+      }
+    },
+    {
+      "id": 8454,
+      "title": "Deadpool: The Circle Chase (1993) #2",
+      "issueNumber": "2",
+      "seriesId": 2003,
+      "seriesName": "Deadpool: The Circle Chase (1993)",
+      "detailUrl": "https://www.marvel.com/comics/issue/8454/deadpool_the_circle_chase_1993_2",
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/8454",
+        "status": 200,
+        "urlSha256": "de4589e40785d0a74202d89826eba22f8000951b70d801596f33825d02600a3e",
+        "bodySha256": "b6a20a45f9ef7cce36c7c2108a20f875f4e6f2013f11828649ad6b55b40dba1a",
+        "fetchedAt": "2026-10-03T17:45:38.849Z"
+      }
+    },
+    {
+      "id": 8455,
+      "title": "Deadpool: The Circle Chase (1993) #3",
+      "issueNumber": "3",
+      "seriesId": 2003,
+      "seriesName": "Deadpool: The Circle Chase (1993)",
+      "detailUrl": "https://www.marvel.com/comics/issue/8455/deadpool_the_circle_chase_1993_3",
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/8455",
+        "status": 200,
+        "urlSha256": "b0e78c765b27c96011bc68d83e05054c2a7e07b89d139d50658a43141df709b9",
+        "bodySha256": "9722a165ef7447a708b934845546a927010adcebe901211f0341b1b330cd59a5",
+        "fetchedAt": "2026-10-03T17:45:39.125Z"
+      }
+    },
+    {
+      "id": 8456,
+      "title": "Deadpool: The Circle Chase (1993) #4",
+      "issueNumber": "4",
+      "seriesId": 2003,
+      "seriesName": "Deadpool: The Circle Chase (1993)",
+      "detailUrl": "https://www.marvel.com/comics/issue/8456/deadpool_the_circle_chase_1993_4",
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/8456",
+        "status": 200,
+        "urlSha256": "bccd721743f6058e6c31ab715af1e61c5bffc6060bcf959ad908bb897fb12902",
+        "bodySha256": "bec6e6927d50e2ac32227d8890c5cd38e13a49811a6d9945220ac96597b75d2c",
+        "fetchedAt": "2026-10-03T17:45:39.319Z"
+      }
+    },
+    {
+      "id": 8457,
+      "title": "Deadpool (1994) #1",
+      "issueNumber": "1",
+      "seriesId": 2004,
+      "seriesName": "Deadpool (1994)",
+      "detailUrl": "https://www.marvel.com/comics/issue/8457/deadpool_1994_1",
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/8457",
+        "status": 200,
+        "urlSha256": "b35b902ee67ec66f470b26f1e06e4fed13cc57cfea6192b0f483ea3165965f31",
+        "bodySha256": "5313d43c90b160289062ad5a9a3f23cb35876a3c42dbeb0c67a0349febb2408d",
+        "fetchedAt": "2026-10-03T17:45:39.518Z"
+      }
+    },
+    {
+      "id": 8458,
+      "title": "Deadpool (1994) #2",
+      "issueNumber": "2",
+      "seriesId": 2004,
+      "seriesName": "Deadpool (1994)",
+      "detailUrl": "https://www.marvel.com/comics/issue/8458/deadpool_1994_2",
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/8458",
+        "status": 200,
+        "urlSha256": "8794e42d02236e564de5da3cc64f0ccc2499f16db3fa15fc3cb05eda7f690272",
+        "bodySha256": "7a6d393c95aeafd73de4d0138de925b330da0bff294b9456eab945ac36b2332e",
+        "fetchedAt": "2026-10-03T17:45:39.719Z"
+      }
+    },
+    {
+      "id": 8459,
+      "title": "Deadpool (1994) #3",
+      "issueNumber": "3",
+      "seriesId": 2004,
+      "seriesName": "Deadpool (1994)",
+      "detailUrl": "https://www.marvel.com/comics/issue/8459/deadpool_1994_3",
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/8459",
+        "status": 200,
+        "urlSha256": "ade27823b34d71fede7729a09561b81b800994a56c9e5051d06f3f0fdc93ad20",
+        "bodySha256": "6f7ee642efca0cb1baa9671414a14d077b59235194f8e6819fb788b057df068b",
+        "fetchedAt": "2026-10-03T17:46:28.771Z"
+      }
+    },
+    {
+      "id": 8460,
+      "title": "Deadpool (1994) #4",
+      "issueNumber": "4",
+      "seriesId": 2004,
+      "seriesName": "Deadpool (1994)",
+      "detailUrl": "https://www.marvel.com/comics/issue/8460/deadpool_1994_4",
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/8460",
+        "status": 200,
+        "urlSha256": "294c284cf44fdad8c03046671552cf5ac5052c26af031975c7663dc3268332a9",
+        "bodySha256": "26a8186a5a27867551d8cde5253c3cb6a393d91712423fd6cd34a0bc03509f03",
+        "fetchedAt": "2026-10-03T17:46:29.081Z"
+      }
+    },
+    {
+      "id": 8462,
+      "title": "Deadpool (1997) #1",
+      "issueNumber": "1",
+      "seriesId": 2005,
+      "seriesName": "Deadpool (1997 - 2002)",
+      "detailUrl": "https://www.marvel.com/comics/issue/8462/deadpool_1997_1",
+      "lookup": {
+        "url": "https://marvel.emreparker.com/v1/issues/8462",
+        "status": 200,
+        "urlSha256": "fe68392498a4f6e921e3a901903c9b0209ba8f9145bf950c7158de0ee304aff4",
+        "bodySha256": "4f93a0a5304cbb494b5b673e9958652ccd08d0c50870a254bf788221f044d8e4",
+        "fetchedAt": "2026-10-03T17:46:29.282Z"
+      }
+    }
+  ],
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "selectionPosition": 1,
+      "collectionTitle": "Wolverine: Weapon X",
+      "sourceIssueReference": "Marvel Comics Presents (1988) #72",
+      "sourceRangeReference": "Wolverine: Weapon X",
+      "normalizedSeriesTitle": "Marvel Comics Presents",
+      "seriesYear": 1988,
+      "issueNumber": "72",
+      "seriesId": 2039,
+      "candidateIssueId": 10155,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 10155,
+      "resolvedIssueTitle": "Marvel Comics Presents (1988) #72",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10155/marvel_comics_presents_1988_72",
+      "resolutionReason": "Live issue response matches the original series ID, starting year, and exact issue number."
+    },
+    {
+      "sourcePosition": 2,
+      "selectionPosition": 1,
+      "collectionTitle": "Wolverine: Weapon X",
+      "sourceIssueReference": "Marvel Comics Presents (1988) #73",
+      "sourceRangeReference": "Wolverine: Weapon X",
+      "normalizedSeriesTitle": "Marvel Comics Presents",
+      "seriesYear": 1988,
+      "issueNumber": "73",
+      "seriesId": 2039,
+      "candidateIssueId": 10156,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 10156,
+      "resolvedIssueTitle": "Marvel Comics Presents (1988) #73",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10156/marvel_comics_presents_1988_73",
+      "resolutionReason": "Live issue response matches the original series ID, starting year, and exact issue number."
+    },
+    {
+      "sourcePosition": 3,
+      "selectionPosition": 1,
+      "collectionTitle": "Wolverine: Weapon X",
+      "sourceIssueReference": "Marvel Comics Presents (1988) #74",
+      "sourceRangeReference": "Wolverine: Weapon X",
+      "normalizedSeriesTitle": "Marvel Comics Presents",
+      "seriesYear": 1988,
+      "issueNumber": "74",
+      "seriesId": 2039,
+      "candidateIssueId": 10157,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 10157,
+      "resolvedIssueTitle": "Marvel Comics Presents (1988) #74",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10157/marvel_comics_presents_1988_74",
+      "resolutionReason": "Live issue response matches the original series ID, starting year, and exact issue number."
+    },
+    {
+      "sourcePosition": 4,
+      "selectionPosition": 1,
+      "collectionTitle": "Wolverine: Weapon X",
+      "sourceIssueReference": "Marvel Comics Presents (1988) #75",
+      "sourceRangeReference": "Wolverine: Weapon X",
+      "normalizedSeriesTitle": "Marvel Comics Presents",
+      "seriesYear": 1988,
+      "issueNumber": "75",
+      "seriesId": 2039,
+      "candidateIssueId": 10158,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 10158,
+      "resolvedIssueTitle": "Marvel Comics Presents (1988) #75",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10158/marvel_comics_presents_1988_75",
+      "resolutionReason": "Live issue response matches the original series ID, starting year, and exact issue number."
+    },
+    {
+      "sourcePosition": 5,
+      "selectionPosition": 1,
+      "collectionTitle": "Wolverine: Weapon X",
+      "sourceIssueReference": "Marvel Comics Presents (1988) #76",
+      "sourceRangeReference": "Wolverine: Weapon X",
+      "normalizedSeriesTitle": "Marvel Comics Presents",
+      "seriesYear": 1988,
+      "issueNumber": "76",
+      "seriesId": 2039,
+      "candidateIssueId": 10159,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 10159,
+      "resolvedIssueTitle": "Marvel Comics Presents (1988) #76",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10159/marvel_comics_presents_1988_76",
+      "resolutionReason": "Live issue response matches the original series ID, starting year, and exact issue number."
+    },
+    {
+      "sourcePosition": 6,
+      "selectionPosition": 1,
+      "collectionTitle": "Wolverine: Weapon X",
+      "sourceIssueReference": "Marvel Comics Presents (1988) #77",
+      "sourceRangeReference": "Wolverine: Weapon X",
+      "normalizedSeriesTitle": "Marvel Comics Presents",
+      "seriesYear": 1988,
+      "issueNumber": "77",
+      "seriesId": 2039,
+      "candidateIssueId": 10160,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 10160,
+      "resolvedIssueTitle": "Marvel Comics Presents (1988) #77",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10160/marvel_comics_presents_1988_77",
+      "resolutionReason": "Live issue response matches the original series ID, starting year, and exact issue number."
+    },
+    {
+      "sourcePosition": 7,
+      "selectionPosition": 1,
+      "collectionTitle": "Wolverine: Weapon X",
+      "sourceIssueReference": "Marvel Comics Presents (1988) #78",
+      "sourceRangeReference": "Wolverine: Weapon X",
+      "normalizedSeriesTitle": "Marvel Comics Presents",
+      "seriesYear": 1988,
+      "issueNumber": "78",
+      "seriesId": 2039,
+      "candidateIssueId": 10161,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 10161,
+      "resolvedIssueTitle": "Marvel Comics Presents (1988) #78",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10161/marvel_comics_presents_1988_78",
+      "resolutionReason": "Live issue response matches the original series ID, starting year, and exact issue number."
+    },
+    {
+      "sourcePosition": 8,
+      "selectionPosition": 1,
+      "collectionTitle": "Wolverine: Weapon X",
+      "sourceIssueReference": "Marvel Comics Presents (1988) #79",
+      "sourceRangeReference": "Wolverine: Weapon X",
+      "normalizedSeriesTitle": "Marvel Comics Presents",
+      "seriesYear": 1988,
+      "issueNumber": "79",
+      "seriesId": 2039,
+      "candidateIssueId": 10162,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 10162,
+      "resolvedIssueTitle": "Marvel Comics Presents (1988) #79",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10162/marvel_comics_presents_1988_79",
+      "resolutionReason": "Live issue response matches the original series ID, starting year, and exact issue number."
+    },
+    {
+      "sourcePosition": 9,
+      "selectionPosition": 1,
+      "collectionTitle": "Wolverine: Weapon X",
+      "sourceIssueReference": "Marvel Comics Presents (1988) #80",
+      "sourceRangeReference": "Wolverine: Weapon X",
+      "normalizedSeriesTitle": "Marvel Comics Presents",
+      "seriesYear": 1988,
+      "issueNumber": "80",
+      "seriesId": 2039,
+      "candidateIssueId": 10164,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 10164,
+      "resolvedIssueTitle": "Marvel Comics Presents (1988) #80",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10164/marvel_comics_presents_1988_80",
+      "resolutionReason": "Live issue response matches the original series ID, starting year, and exact issue number."
+    },
+    {
+      "sourcePosition": 10,
+      "selectionPosition": 1,
+      "collectionTitle": "Wolverine: Weapon X",
+      "sourceIssueReference": "Marvel Comics Presents (1988) #81",
+      "sourceRangeReference": "Wolverine: Weapon X",
+      "normalizedSeriesTitle": "Marvel Comics Presents",
+      "seriesYear": 1988,
+      "issueNumber": "81",
+      "seriesId": 2039,
+      "candidateIssueId": 10165,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 10165,
+      "resolvedIssueTitle": "Marvel Comics Presents (1988) #81",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10165/marvel_comics_presents_1988_81",
+      "resolutionReason": "Live issue response matches the original series ID, starting year, and exact issue number."
+    },
+    {
+      "sourcePosition": 11,
+      "selectionPosition": 1,
+      "collectionTitle": "Wolverine: Weapon X",
+      "sourceIssueReference": "Marvel Comics Presents (1988) #82",
+      "sourceRangeReference": "Wolverine: Weapon X",
+      "normalizedSeriesTitle": "Marvel Comics Presents",
+      "seriesYear": 1988,
+      "issueNumber": "82",
+      "seriesId": 2039,
+      "candidateIssueId": 10166,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 10166,
+      "resolvedIssueTitle": "Marvel Comics Presents (1988) #82",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10166/marvel_comics_presents_1988_82",
+      "resolutionReason": "Live issue response matches the original series ID, starting year, and exact issue number."
+    },
+    {
+      "sourcePosition": 12,
+      "selectionPosition": 1,
+      "collectionTitle": "Wolverine: Weapon X",
+      "sourceIssueReference": "Marvel Comics Presents (1988) #83",
+      "sourceRangeReference": "Wolverine: Weapon X",
+      "normalizedSeriesTitle": "Marvel Comics Presents",
+      "seriesYear": 1988,
+      "issueNumber": "83",
+      "seriesId": 2039,
+      "candidateIssueId": 10167,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 10167,
+      "resolvedIssueTitle": "Marvel Comics Presents (1988) #83",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10167/marvel_comics_presents_1988_83",
+      "resolutionReason": "Live issue response matches the original series ID, starting year, and exact issue number."
+    },
+    {
+      "sourcePosition": 13,
+      "selectionPosition": 1,
+      "collectionTitle": "Wolverine: Weapon X",
+      "sourceIssueReference": "Marvel Comics Presents (1988) #84",
+      "sourceRangeReference": "Wolverine: Weapon X",
+      "normalizedSeriesTitle": "Marvel Comics Presents",
+      "seriesYear": 1988,
+      "issueNumber": "84",
+      "seriesId": 2039,
+      "candidateIssueId": 10168,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 10168,
+      "resolvedIssueTitle": "Marvel Comics Presents (1988) #84",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10168/marvel_comics_presents_1988_84",
+      "resolutionReason": "Live issue response matches the original series ID, starting year, and exact issue number."
+    },
+    {
+      "sourcePosition": 14,
+      "selectionPosition": 2,
+      "collectionTitle": "Deadpool Vol. 1: Dead Presidents",
+      "sourceIssueReference": "Deadpool (2012) #1",
+      "sourceRangeReference": "Deadpool Vol. 1: Dead Presidents",
+      "normalizedSeriesTitle": "Deadpool",
+      "seriesYear": 2012,
+      "issueNumber": "1",
+      "seriesId": 16542,
+      "candidateIssueId": 43797,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 43797,
+      "resolvedIssueTitle": "Deadpool (2012) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/43797/deadpool_2012_1",
+      "resolutionReason": "Live issue response matches the original series ID, starting year, and exact issue number."
+    },
+    {
+      "sourcePosition": 15,
+      "selectionPosition": 2,
+      "collectionTitle": "Deadpool Vol. 1: Dead Presidents",
+      "sourceIssueReference": "Deadpool (2012) #2",
+      "sourceRangeReference": "Deadpool Vol. 1: Dead Presidents",
+      "normalizedSeriesTitle": "Deadpool",
+      "seriesYear": 2012,
+      "issueNumber": "2",
+      "seriesId": 16542,
+      "candidateIssueId": 43801,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 43801,
+      "resolvedIssueTitle": "Deadpool (2012) #2",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/43801/deadpool_2012_2",
+      "resolutionReason": "Live issue response matches the original series ID, starting year, and exact issue number."
+    },
+    {
+      "sourcePosition": 16,
+      "selectionPosition": 2,
+      "collectionTitle": "Deadpool Vol. 1: Dead Presidents",
+      "sourceIssueReference": "Deadpool (2012) #3",
+      "sourceRangeReference": "Deadpool Vol. 1: Dead Presidents",
+      "normalizedSeriesTitle": "Deadpool",
+      "seriesYear": 2012,
+      "issueNumber": "3",
+      "seriesId": 16542,
+      "candidateIssueId": 44870,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 44870,
+      "resolvedIssueTitle": "Deadpool (2012) #3",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/44870/deadpool_2012_3",
+      "resolutionReason": "Live issue response matches the original series ID, starting year, and exact issue number."
+    },
+    {
+      "sourcePosition": 17,
+      "selectionPosition": 2,
+      "collectionTitle": "Deadpool Vol. 1: Dead Presidents",
+      "sourceIssueReference": "Deadpool (2012) #4",
+      "sourceRangeReference": "Deadpool Vol. 1: Dead Presidents",
+      "normalizedSeriesTitle": "Deadpool",
+      "seriesYear": 2012,
+      "issueNumber": "4",
+      "seriesId": 16542,
+      "candidateIssueId": 46038,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 46038,
+      "resolvedIssueTitle": "Deadpool (2012) #4",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/46038/deadpool_2012_4",
+      "resolutionReason": "Live issue response matches the original series ID, starting year, and exact issue number."
+    },
+    {
+      "sourcePosition": 18,
+      "selectionPosition": 2,
+      "collectionTitle": "Deadpool Vol. 1: Dead Presidents",
+      "sourceIssueReference": "Deadpool (2012) #5",
+      "sourceRangeReference": "Deadpool Vol. 1: Dead Presidents",
+      "normalizedSeriesTitle": "Deadpool",
+      "seriesYear": 2012,
+      "issueNumber": "5",
+      "seriesId": 16542,
+      "candidateIssueId": 46040,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 46040,
+      "resolvedIssueTitle": "Deadpool (2012) #5",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/46040/deadpool_2012_5",
+      "resolutionReason": "Live issue response matches the original series ID, starting year, and exact issue number."
+    },
+    {
+      "sourcePosition": 19,
+      "selectionPosition": 2,
+      "collectionTitle": "Deadpool Vol. 1: Dead Presidents",
+      "sourceIssueReference": "Deadpool (2012) #6",
+      "sourceRangeReference": "Deadpool Vol. 1: Dead Presidents",
+      "normalizedSeriesTitle": "Deadpool",
+      "seriesYear": 2012,
+      "issueNumber": "6",
+      "seriesId": 16542,
+      "candidateIssueId": 46042,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 46042,
+      "resolvedIssueTitle": "Deadpool (2012) #6",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/46042/deadpool_2012_6",
+      "resolutionReason": "Live issue response matches the original series ID, starting year, and exact issue number."
+    },
+    {
+      "sourcePosition": 20,
+      "selectionPosition": 3,
+      "collectionTitle": "Astonishing X-Men: Gifted",
+      "sourceIssueReference": "Astonishing X-Men (2004) #1",
+      "sourceRangeReference": "Astonishing X-Men: Gifted",
+      "normalizedSeriesTitle": "Astonishing X-Men",
+      "seriesYear": 2004,
+      "issueNumber": "1",
+      "seriesId": 744,
+      "candidateIssueId": 660,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 660,
+      "resolvedIssueTitle": "Astonishing X-Men (2004) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/660/astonishing_x-men_2004_1",
+      "resolutionReason": "Live issue response matches the original series ID, starting year, and exact issue number."
+    },
+    {
+      "sourcePosition": 21,
+      "selectionPosition": 3,
+      "collectionTitle": "Astonishing X-Men: Gifted",
+      "sourceIssueReference": "Astonishing X-Men (2004) #2",
+      "sourceRangeReference": "Astonishing X-Men: Gifted",
+      "normalizedSeriesTitle": "Astonishing X-Men",
+      "seriesYear": 2004,
+      "issueNumber": "2",
+      "seriesId": 744,
+      "candidateIssueId": 723,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 723,
+      "resolvedIssueTitle": "Astonishing X-Men (2004) #2",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/723/astonishing_x-men_2004_2",
+      "resolutionReason": "Live issue response matches the original series ID, starting year, and exact issue number."
+    },
+    {
+      "sourcePosition": 22,
+      "selectionPosition": 3,
+      "collectionTitle": "Astonishing X-Men: Gifted",
+      "sourceIssueReference": "Astonishing X-Men (2004) #3",
+      "sourceRangeReference": "Astonishing X-Men: Gifted",
+      "normalizedSeriesTitle": "Astonishing X-Men",
+      "seriesYear": 2004,
+      "issueNumber": "3",
+      "seriesId": 744,
+      "candidateIssueId": 531,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 531,
+      "resolvedIssueTitle": "Astonishing X-Men (2004) #3",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/531/astonishing_x-men_2004_3",
+      "resolutionReason": "Live issue response matches the original series ID, starting year, and exact issue number."
+    },
+    {
+      "sourcePosition": 23,
+      "selectionPosition": 3,
+      "collectionTitle": "Astonishing X-Men: Gifted",
+      "sourceIssueReference": "Astonishing X-Men (2004) #4",
+      "sourceRangeReference": "Astonishing X-Men: Gifted",
+      "normalizedSeriesTitle": "Astonishing X-Men",
+      "seriesYear": 2004,
+      "issueNumber": "4",
+      "seriesId": 744,
+      "candidateIssueId": 1808,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 1808,
+      "resolvedIssueTitle": "Astonishing X-Men (2004) #4",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/1808/astonishing_x-men_2004_4",
+      "resolutionReason": "Live issue response matches the original series ID, starting year, and exact issue number."
+    },
+    {
+      "sourcePosition": 24,
+      "selectionPosition": 3,
+      "collectionTitle": "Astonishing X-Men: Gifted",
+      "sourceIssueReference": "Astonishing X-Men (2004) #5",
+      "sourceRangeReference": "Astonishing X-Men: Gifted",
+      "normalizedSeriesTitle": "Astonishing X-Men",
+      "seriesYear": 2004,
+      "issueNumber": "5",
+      "seriesId": 744,
+      "candidateIssueId": 843,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 843,
+      "resolvedIssueTitle": "Astonishing X-Men (2004) #5",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/843/astonishing_x-men_2004_5",
+      "resolutionReason": "Live issue response matches the original series ID, starting year, and exact issue number."
+    },
+    {
+      "sourcePosition": 25,
+      "selectionPosition": 3,
+      "collectionTitle": "Astonishing X-Men: Gifted",
+      "sourceIssueReference": "Astonishing X-Men (2004) #6",
+      "sourceRangeReference": "Astonishing X-Men: Gifted",
+      "normalizedSeriesTitle": "Astonishing X-Men",
+      "seriesYear": 2004,
+      "issueNumber": "6",
+      "seriesId": 744,
+      "candidateIssueId": 927,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 927,
+      "resolvedIssueTitle": "Astonishing X-Men (2004) #6",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/927/astonishing_x-men_2004_6",
+      "resolutionReason": "Live issue response matches the original series ID, starting year, and exact issue number."
+    },
+    {
+      "sourcePosition": 26,
+      "selectionPosition": 4,
+      "collectionTitle": "Wolverine: Old Man Logan",
+      "sourceIssueReference": "Wolverine (2003) #66",
+      "sourceRangeReference": "Wolverine: Old Man Logan",
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2003,
+      "issueNumber": "66",
+      "seriesId": 632,
+      "candidateIssueId": 21330,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 21330,
+      "resolvedIssueTitle": "Wolverine (2003) #66",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/21330/wolverine_2003_66",
+      "resolutionReason": "Live issue response matches the original series ID, starting year, and exact issue number."
+    },
+    {
+      "sourcePosition": 27,
+      "selectionPosition": 4,
+      "collectionTitle": "Wolverine: Old Man Logan",
+      "sourceIssueReference": "Wolverine (2003) #67",
+      "sourceRangeReference": "Wolverine: Old Man Logan",
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2003,
+      "issueNumber": "67",
+      "seriesId": 632,
+      "candidateIssueId": 21508,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 21508,
+      "resolvedIssueTitle": "Wolverine (2003) #67",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/21508/wolverine_2003_67",
+      "resolutionReason": "Live issue response matches the original series ID, starting year, and exact issue number."
+    },
+    {
+      "sourcePosition": 28,
+      "selectionPosition": 4,
+      "collectionTitle": "Wolverine: Old Man Logan",
+      "sourceIssueReference": "Wolverine (2003) #68",
+      "sourceRangeReference": "Wolverine: Old Man Logan",
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2003,
+      "issueNumber": "68",
+      "seriesId": 632,
+      "candidateIssueId": 21710,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 21710,
+      "resolvedIssueTitle": "Wolverine (2003) #68",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/21710/wolverine_2003_68",
+      "resolutionReason": "Live issue response matches the original series ID, starting year, and exact issue number."
+    },
+    {
+      "sourcePosition": 29,
+      "selectionPosition": 4,
+      "collectionTitle": "Wolverine: Old Man Logan",
+      "sourceIssueReference": "Wolverine (2003) #69",
+      "sourceRangeReference": "Wolverine: Old Man Logan",
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2003,
+      "issueNumber": "69",
+      "seriesId": 632,
+      "candidateIssueId": 22475,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 22475,
+      "resolvedIssueTitle": "Wolverine (2003) #69",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/22475/wolverine_2003_69",
+      "resolutionReason": "Live issue response matches the original series ID, starting year, and exact issue number."
+    },
+    {
+      "sourcePosition": 30,
+      "selectionPosition": 4,
+      "collectionTitle": "Wolverine: Old Man Logan",
+      "sourceIssueReference": "Wolverine (2003) #70",
+      "sourceRangeReference": "Wolverine: Old Man Logan",
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2003,
+      "issueNumber": "70",
+      "seriesId": 632,
+      "candidateIssueId": 22876,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 22876,
+      "resolvedIssueTitle": "Wolverine (2003) #70",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/22876/wolverine_2003_70",
+      "resolutionReason": "Live issue response matches the original series ID, starting year, and exact issue number."
+    },
+    {
+      "sourcePosition": 31,
+      "selectionPosition": 4,
+      "collectionTitle": "Wolverine: Old Man Logan",
+      "sourceIssueReference": "Wolverine (2003) #71",
+      "sourceRangeReference": "Wolverine: Old Man Logan",
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2003,
+      "issueNumber": "71",
+      "seriesId": 632,
+      "candidateIssueId": 23744,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 23744,
+      "resolvedIssueTitle": "Wolverine (2003) #71",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/23744/wolverine_2003_71",
+      "resolutionReason": "Live issue response matches the original series ID, starting year, and exact issue number."
+    },
+    {
+      "sourcePosition": 32,
+      "selectionPosition": 4,
+      "collectionTitle": "Wolverine: Old Man Logan",
+      "sourceIssueReference": "Wolverine (2003) #72",
+      "sourceRangeReference": "Wolverine: Old Man Logan",
+      "normalizedSeriesTitle": "Wolverine",
+      "seriesYear": 2003,
+      "issueNumber": "72",
+      "seriesId": 632,
+      "candidateIssueId": 23934,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 23934,
+      "resolvedIssueTitle": "Wolverine (2003) #72",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/23934/wolverine_2003_72",
+      "resolutionReason": "Live issue response matches the original series ID, starting year, and exact issue number."
+    },
+    {
+      "sourcePosition": 33,
+      "selectionPosition": 4,
+      "collectionTitle": "Wolverine: Old Man Logan",
+      "sourceIssueReference": "Wolverine: Old Man Logan Giant-Size (2009) #1",
+      "sourceRangeReference": "Wolverine: Old Man Logan",
+      "normalizedSeriesTitle": "Wolverine: Old Man Logan Giant-Size",
+      "seriesYear": 2009,
+      "issueNumber": "1",
+      "seriesId": 8622,
+      "candidateIssueId": 27129,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 27129,
+      "resolvedIssueTitle": "Wolverine: Old Man Logan Giant-Size (2009) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/27129/wolverine_old_man_logan_giant-size_2009_1",
+      "resolutionReason": "Live issue response matches the original series ID, starting year, and exact issue number."
+    },
+    {
+      "sourcePosition": 34,
+      "selectionPosition": 5,
+      "collectionTitle": "Deadpool Classic Vol. 1",
+      "sourceIssueReference": "New Mutants (1983) #98",
+      "sourceRangeReference": "Deadpool Classic Vol. 1",
+      "normalizedSeriesTitle": "New Mutants",
+      "seriesYear": 1983,
+      "issueNumber": "98",
+      "seriesId": 2055,
+      "candidateIssueId": 10441,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 10441,
+      "resolvedIssueTitle": "New Mutants (1983) #98",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/10441/new_mutants_1983_98",
+      "resolutionReason": "Live issue response matches the original series ID, starting year, and exact issue number."
+    },
+    {
+      "sourcePosition": 35,
+      "selectionPosition": 5,
+      "collectionTitle": "Deadpool Classic Vol. 1",
+      "sourceIssueReference": "Deadpool: The Circle Chase (1993) #1",
+      "sourceRangeReference": "Deadpool Classic Vol. 1",
+      "normalizedSeriesTitle": "Deadpool: The Circle Chase",
+      "seriesYear": 1993,
+      "issueNumber": "1",
+      "seriesId": 2003,
+      "candidateIssueId": 8453,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 8453,
+      "resolvedIssueTitle": "Deadpool: The Circle Chase (1993) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8453/deadpool_the_circle_chase_1993_1",
+      "resolutionReason": "Live issue response matches the original series ID, starting year, and exact issue number."
+    },
+    {
+      "sourcePosition": 36,
+      "selectionPosition": 5,
+      "collectionTitle": "Deadpool Classic Vol. 1",
+      "sourceIssueReference": "Deadpool: The Circle Chase (1993) #2",
+      "sourceRangeReference": "Deadpool Classic Vol. 1",
+      "normalizedSeriesTitle": "Deadpool: The Circle Chase",
+      "seriesYear": 1993,
+      "issueNumber": "2",
+      "seriesId": 2003,
+      "candidateIssueId": 8454,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 8454,
+      "resolvedIssueTitle": "Deadpool: The Circle Chase (1993) #2",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8454/deadpool_the_circle_chase_1993_2",
+      "resolutionReason": "Live issue response matches the original series ID, starting year, and exact issue number."
+    },
+    {
+      "sourcePosition": 37,
+      "selectionPosition": 5,
+      "collectionTitle": "Deadpool Classic Vol. 1",
+      "sourceIssueReference": "Deadpool: The Circle Chase (1993) #3",
+      "sourceRangeReference": "Deadpool Classic Vol. 1",
+      "normalizedSeriesTitle": "Deadpool: The Circle Chase",
+      "seriesYear": 1993,
+      "issueNumber": "3",
+      "seriesId": 2003,
+      "candidateIssueId": 8455,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 8455,
+      "resolvedIssueTitle": "Deadpool: The Circle Chase (1993) #3",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8455/deadpool_the_circle_chase_1993_3",
+      "resolutionReason": "Live issue response matches the original series ID, starting year, and exact issue number."
+    },
+    {
+      "sourcePosition": 38,
+      "selectionPosition": 5,
+      "collectionTitle": "Deadpool Classic Vol. 1",
+      "sourceIssueReference": "Deadpool: The Circle Chase (1993) #4",
+      "sourceRangeReference": "Deadpool Classic Vol. 1",
+      "normalizedSeriesTitle": "Deadpool: The Circle Chase",
+      "seriesYear": 1993,
+      "issueNumber": "4",
+      "seriesId": 2003,
+      "candidateIssueId": 8456,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 8456,
+      "resolvedIssueTitle": "Deadpool: The Circle Chase (1993) #4",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8456/deadpool_the_circle_chase_1993_4",
+      "resolutionReason": "Live issue response matches the original series ID, starting year, and exact issue number."
+    },
+    {
+      "sourcePosition": 39,
+      "selectionPosition": 5,
+      "collectionTitle": "Deadpool Classic Vol. 1",
+      "sourceIssueReference": "Deadpool (1994) #1",
+      "sourceRangeReference": "Deadpool Classic Vol. 1",
+      "normalizedSeriesTitle": "Deadpool",
+      "seriesYear": 1994,
+      "issueNumber": "1",
+      "seriesId": 2004,
+      "candidateIssueId": 8457,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 8457,
+      "resolvedIssueTitle": "Deadpool (1994) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8457/deadpool_1994_1",
+      "resolutionReason": "Live issue response matches the original series ID, starting year, and exact issue number."
+    },
+    {
+      "sourcePosition": 40,
+      "selectionPosition": 5,
+      "collectionTitle": "Deadpool Classic Vol. 1",
+      "sourceIssueReference": "Deadpool (1994) #2",
+      "sourceRangeReference": "Deadpool Classic Vol. 1",
+      "normalizedSeriesTitle": "Deadpool",
+      "seriesYear": 1994,
+      "issueNumber": "2",
+      "seriesId": 2004,
+      "candidateIssueId": 8458,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 8458,
+      "resolvedIssueTitle": "Deadpool (1994) #2",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8458/deadpool_1994_2",
+      "resolutionReason": "Live issue response matches the original series ID, starting year, and exact issue number."
+    },
+    {
+      "sourcePosition": 41,
+      "selectionPosition": 5,
+      "collectionTitle": "Deadpool Classic Vol. 1",
+      "sourceIssueReference": "Deadpool (1994) #3",
+      "sourceRangeReference": "Deadpool Classic Vol. 1",
+      "normalizedSeriesTitle": "Deadpool",
+      "seriesYear": 1994,
+      "issueNumber": "3",
+      "seriesId": 2004,
+      "candidateIssueId": 8459,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 8459,
+      "resolvedIssueTitle": "Deadpool (1994) #3",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8459/deadpool_1994_3",
+      "resolutionReason": "Live issue response matches the original series ID, starting year, and exact issue number."
+    },
+    {
+      "sourcePosition": 42,
+      "selectionPosition": 5,
+      "collectionTitle": "Deadpool Classic Vol. 1",
+      "sourceIssueReference": "Deadpool (1994) #4",
+      "sourceRangeReference": "Deadpool Classic Vol. 1",
+      "normalizedSeriesTitle": "Deadpool",
+      "seriesYear": 1994,
+      "issueNumber": "4",
+      "seriesId": 2004,
+      "candidateIssueId": 8460,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 8460,
+      "resolvedIssueTitle": "Deadpool (1994) #4",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8460/deadpool_1994_4",
+      "resolutionReason": "Live issue response matches the original series ID, starting year, and exact issue number."
+    },
+    {
+      "sourcePosition": 43,
+      "selectionPosition": 5,
+      "collectionTitle": "Deadpool Classic Vol. 1",
+      "sourceIssueReference": "Deadpool (1997) #1",
+      "sourceRangeReference": "Deadpool Classic Vol. 1",
+      "normalizedSeriesTitle": "Deadpool",
+      "seriesYear": 1997,
+      "issueNumber": "1",
+      "seriesId": 2005,
+      "candidateIssueId": 8462,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "selectedIssueId": 8462,
+      "resolvedIssueTitle": "Deadpool (1997) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8462/deadpool_1997_1",
+      "resolutionReason": "Live issue response matches the original series ID, starting year, and exact issue number."
+    }
+  ],
+  "reviewStatus": "approved",
+  "packetReview": "Verified factual collection boundaries against the linked sources and exact original identities against live provider responses. The owner selected Dead Presidents over Daniel Way in Issue 680, comment 5971701868; the delegated fifth selection is Classic Vol. 1. Preserve five positions, anthology qualification, rejected alternatives, and nonpublished adaptation claims in the separate source ledger.",
+  "mappingDigest": "b53945188fac107148b0030ca650e76dbb1e05e8cd28979f626eed6d50c220f0",
+  "approvedManifest": {
+    "id": "mcu-prep-deadpool-and-wolverine",
+    "name": "MCU Prep: Deadpool & Wolverine",
+    "description": "An owner-selected path through Weapon X, Dead Presidents, Gifted, Old Man Logan, and Deadpool Classic Vol. 1, expanded into 43 original comics in the supplied order.",
+    "type": "screen-companion",
+    "depth": "selected",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "mcu-prep-deadpool-and-wolverine.md",
+    "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/680",
+    "sourceOrigin": "Compiled for this project from the owner's selections",
+    "sourceLicense": null,
+    "out": "mcu_prep_deadpool_and_wolverine.json",
+    "characters": [
+      "Deadpool",
+      "Wolverine",
+      "X-Men"
+    ],
+    "keywords": [
+      "Deadpool & Wolverine",
+      "Wade Wilson",
+      "Logan",
+      "Weapon X",
+      "Dead Presidents",
+      "Gifted",
+      "Old Man Logan",
+      "Circle Chase"
+    ],
+    "expect": 43,
+    "timeline": null,
+    "coverIssueId": 10155
+  },
+  "relationshipReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-6.1 Sol (gpt-6.1-sol), MCU Prep coordinator",
+    "rationale": "Independent central model approval retains this distinct owner-selected five-selection screen companion and every source-required shared original, without changing existing guides. The exact 43-original candidate is not an exact or subset duplicate. Factual disposition: https://github.com/raymond-nassar/recap-page/issues/680#issuecomment-5971938455. LF-normalized packet, mapping, and report binding: https://github.com/raymond-nassar/recap-page/issues/680#issuecomment-5972044298.",
+    "reviewedAt": "2026-10-03T18:13:06Z",
+    "packetDigest": "b8ba5a15e2cd4af7489bd07e651c95781891167819f597609fb18f6a11342c4a",
+    "mappingDigest": "b53945188fac107148b0030ca650e76dbb1e05e8cd28979f626eed6d50c220f0",
+    "reportDigest": "8ddfb7282f531e1aa00caf1b06511baae6221c8274fc9318b5f164124c6c8db7",
+    "libraryDigest": "e331ed45937c5cac28049bc1a8dd8d5726db6422e6e3b3b074e54921a8a73778",
+    "peerDigests": {},
+    "dispositions": [
+      {
+        "orderId": "abomination-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "absolute-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "adam-warlock-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "agatha-harkness-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "age-of-x-man",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "agents-of-atlas-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "all-new-all-different-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "annihilation-conquest",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "ant-man-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "apocalypse-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "atlantis-attacks",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "avengers-defenders-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "avengers-disassembled",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "avengers-enemy-within",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "axis",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "best-ultron-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "black-panther-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "black-widow-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "bloodties",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "captain-america-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "captain-america-reading-order-modern-marvel-era",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "captain-marvel-ms-marvel-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "chaos-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "childs-play",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "civil-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "civil-war-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "civil-war-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "clone-conspiracy",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "contest-of-champions",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "damnation",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "daredevil-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "dark-phoenix-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "dark-reign-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "dark-web",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "days-of-future-past",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "days-of-future-present",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "dead-mans-hand",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "deadpool-best-of",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6.1 Sol (gpt-6.1-sol), MCU Prep coordinator",
+        "rationale": "Independent central model approval retains this distinct owner-selected five-selection screen companion and every source-required shared original, without changing existing guides. The exact 43-original candidate is not an exact or subset duplicate. Factual disposition: https://github.com/raymond-nassar/recap-page/issues/680#issuecomment-5971938455. LF-normalized packet, mapping, and report binding: https://github.com/raymond-nassar/recap-page/issues/680#issuecomment-5972044298.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "death-of-doctor-strange",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "devils-reign",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "doctor-doom-primer",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "doctor-octopus-otto-octavius-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "doctor-strange-multiverse-of-madness",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "doctor-strange-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "donny-cates-marvel-universe-reading-order-2017",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "doomwar",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "eighth-day",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "emma-frost-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6.1 Sol (gpt-6.1-sol), MCU Prep coordinator",
+        "rationale": "Independent central model approval retains this distinct owner-selected five-selection screen companion and every source-required shared original, without changing existing guides. The exact 43-original candidate is not an exact or subset duplicate. Factual disposition: https://github.com/raymond-nassar/recap-page/issues/680#issuecomment-5971938455. LF-normalized packet, mapping, and report binding: https://github.com/raymond-nassar/recap-page/issues/680#issuecomment-5972044298.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "essential-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "evolutionary-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "falcon-sam-wilson-captain-america-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "fall-house-x-rise-powers-x",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "fall-of-the-mutants",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "fantastic-four-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "fatal-attractions",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "generations",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "groot-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "guardians-of-the-galaxy-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "hawkeye-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6.1 Sol (gpt-6.1-sol), MCU Prep coordinator",
+        "rationale": "Independent central model approval retains this distinct owner-selected five-selection screen companion and every source-required shared original, without changing existing guides. The exact 43-original candidate is not an exact or subset duplicate. Factual disposition: https://github.com/raymond-nassar/recap-page/issues/680#issuecomment-5971938455. LF-normalized packet, mapping, and report binding: https://github.com/raymond-nassar/recap-page/issues/680#issuecomment-5972044298.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "heroes-reborn-2021",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "heroic-age-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "hickman-full",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "hickman-minimal",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "hickman-x-men",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "hope-summers-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "house-of-m",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "house-of-m-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "hunt-for-wolverine",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "hunt-for-xavier",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "inferno",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "infinite-destinies",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "infinity-countdown-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "inhumans-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "inhumans-vs-x-men",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "iron-fist-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "iron-man-2020",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "iron-man-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "judgment-day",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "king-in-black",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "kravens-last-hunt",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "kree-skrull-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "last-annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "loki-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "magneto-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "magneto-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-2099",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-fresh-start-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-01",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-02",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-03",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-04",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-05",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-06",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-07",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-08",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-09",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-10",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-11",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-12",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-13",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-14",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-15",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-16",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-17",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-18",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-19",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-20",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-21",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-22",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-23",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-24",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-25",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-26",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-27",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-28",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-29",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-30",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-31",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-32",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-33",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-34",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-35",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-36",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-37",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-38",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-39",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-40",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-41",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-42",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-43",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-44",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-45",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-46",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-47",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-48",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-49",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-50",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-51",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-52",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-53",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-54",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-55",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-56",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-57",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-58",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-59",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-60",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-61",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-62",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-63",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-64",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-65",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-66",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-67",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-68",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-69",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-70",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-71",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-72",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-73",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-74",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-75",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-76",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-77",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x-78",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-multiverse",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-super-heroes-secret-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-what-if",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvel-zombies-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvels-best-phoenix-comics",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "marvels-infinity-saga-gauntlet-wars-crusade-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "maximum-security",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "mephisto-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "messiah-complex",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "messiah-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "midnight-massacre",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "miles-morales-spider-man-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "minimum-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "modern-x-men-fast-track",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6.1 Sol (gpt-6.1-sol), MCU Prep coordinator",
+        "rationale": "Independent central model approval retains this distinct owner-selected five-selection screen companion and every source-required shared original, without changing existing guides. The exact 43-original candidate is not an exact or subset duplicate. Factual disposition: https://github.com/raymond-nassar/recap-page/issues/680#issuecomment-5971938455. LF-normalized packet, mapping, and report binding: https://github.com/raymond-nassar/recap-page/issues/680#issuecomment-5972044298.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "monsters-unleashed",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "moon-knight-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "ms-marvel-kamala-khan-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "muir-island-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "mutant-massacre",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "mys-tech-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "namor-sub-mariner-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "nebula-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "necrosha",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "new-ultimate-universe",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "new-ultimate-universe-trades",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "nick-fury-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6.1 Sol (gpt-6.1-sol), MCU Prep coordinator",
+        "rationale": "Independent central model approval retains this distinct owner-selected five-selection screen companion and every source-required shared original, without changing existing guides. The exact 43-original candidate is not an exact or subset duplicate. Factual disposition: https://github.com/raymond-nassar/recap-page/issues/680#issuecomment-5971938455. LF-normalized packet, mapping, and report binding: https://github.com/raymond-nassar/recap-page/issues/680#issuecomment-5972044298.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "nova-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "operation-galactic-storm",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "operation-zero-tolerance",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "original-clone-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "phalanx-covenant",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "phalanx-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "phoenix-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "planet-hulk",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "planet-hulk-reading-order-and-greg-pak-hulk-comics-guide",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "punisher-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "question-of-the-week-do-you-have-a-hulk-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "reckoning-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "reed-richards-and-sue-storms-wedding",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "revolutionary-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "rise-of-the-midnight-sons",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "rocket-raccoon-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "runaways-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "scarlet-witch-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "second-coming",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "secret-invasion",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "secret-invasion-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "secret-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "secret-wars-ii",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "setup-to-modern-timeline",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "shadow-king-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "shadowland",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "shang-chi-master-of-kung-fu-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "silent-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "silk-cindy-moon-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "silver-surfer-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "sins-of-sinister",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "spider-geddon",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "spider-gwen-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "spider-island",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "spider-man-2099-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "spider-man-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "spider-man-far-from-home",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "spider-man-identity-crisis",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "spider-man-no-way-home",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "spider-man-the-other",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "spider-verse",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "star-lord-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "thanos-imperative",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "thanos-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "thanos-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "the-defenders-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "the-night-gwen-stacy-died",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "the-vision-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "thor-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "thunderbolts-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "time-and-time-again",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "ultimate-marvel-intro",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "ultimate-spider-man-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "venom-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "venomverse",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "wandavision",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "war-of-kings",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "war-of-the-realms",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "white-tiger-ava-ayala",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "winter-soldier-bucky-barnes-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "wolverine-goes-to-hell",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "wolverine-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6.1 Sol (gpt-6.1-sol), MCU Prep coordinator",
+        "rationale": "Independent central model approval retains this distinct owner-selected five-selection screen companion and every source-required shared original, without changing existing guides. The exact 43-original candidate is not an exact or subset duplicate. Factual disposition: https://github.com/raymond-nassar/recap-page/issues/680#issuecomment-5971938455. LF-normalized packet, mapping, and report binding: https://github.com/raymond-nassar/recap-page/issues/680#issuecomment-5972044298.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "world-war-hulk-aftersmash",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "wraith-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "x-23-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "x-cutioners-song",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "x-force-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-6.1 Sol (gpt-6.1-sol), MCU Prep coordinator",
+        "rationale": "Independent central model approval retains this distinct owner-selected five-selection screen companion and every source-required shared original, without changing existing guides. The exact 43-original candidate is not an exact or subset duplicate. Factual disposition: https://github.com/raymond-nassar/recap-page/issues/680#issuecomment-5971938455. LF-normalized packet, mapping, and report binding: https://github.com/raymond-nassar/recap-page/issues/680#issuecomment-5972044298.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "x-men-age-of-x",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "x-men-battle-of-the-atom",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "x-men-curse-of-the-mutants",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "x-men-divided-we-stand",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "x-men-extermination",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "x-men-inferno",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "x-men-manifest-destiny",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "x-men-nation-x",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "x-men-regenesis",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "x-men-schism",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "x-men-trial-of-jean-grey",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "x-men-utopia",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "x-of-swords",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "x-termination",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "x-tinction-agenda",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "xmen-claremont",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "xmen-claremont-complete",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      },
+      {
+        "orderId": "young-avengers-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "Existing no-overlap publication policy",
+        "rationale": "No shared original issue exists in the complete-library comparison.",
+        "reviewedAt": "2026-10-03T18:13:06Z"
+      }
+    ],
+    "approvalDigest": "c3df54162ab31342a0d84d473d2f84ef2211c3b9d456f89f15b59f86a3378aad"
+  }
+}

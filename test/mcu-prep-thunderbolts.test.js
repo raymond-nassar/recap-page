@@ -30,6 +30,7 @@ import {
   markRead,
   SCHEMA_VERSION,
 } from '../src/js/lib/model.js';
+import { assertCurrentLibraryExtension } from './helpers/owner-mcu-library-extension.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const id = 'mcu-prep-thunderbolts';
@@ -253,10 +254,11 @@ test('Thunderbolts uses the existing MCU Prep gateways and Storylines shelf with
 });
 
 test('Thunderbolts preserves frozen approval and rechecks the complete current visible and hidden library', async () => {
-  const [manifest, catalog, report] = await Promise.all([
+  const [manifest, catalog, report, payload] = await Promise.all([
     readJson('src/data/curated-lists.json'),
     readJson('src/data/catalog.json'),
     readJson(`scripts/data/${id}-overlaps.json`),
+    readJson(payloadFile),
   ]);
   const descriptors = [
     ...catalog.lists.filter((entry) => entry.id !== id).map((entry) => ({
@@ -283,6 +285,18 @@ test('Thunderbolts preserves frozen approval and rechecks the complete current v
   assert.equal(orders.filter((entry) => /^marvel-knights-to-planet-x-\d{2}$/.test(entry.orderId))
     .length, 78);
   assert.ok(orders.some((entry) => entry.orderId === 'marvel-knights-to-planet-x'));
+  const extension = await readJson(
+    'scripts/data/owner-mcu-prep-deadpool-and-wolverine-current-library-extension.json',
+  );
+  const { current: extensionComparison, laterIds } = assertCurrentLibraryExtension({
+    extension, candidateId: id, candidateIds: expectedIds,
+    orders: [...currentOrders, { orderId: id, issueIds: payload.items.map((item) => String(item.issueId)) }],
+    originalReport: report, originalApprovalDigest: report.relationshipReview.approvalDigest,
+  });
+  assert.deepEqual(laterIds, [
+    'mcu-prep-deadpool-and-wolverine', 'mcu-prep-eternals', 'spider-man-no-way-home-owner-selected',
+  ]);
+  assert.deepEqual({ candidateId: id, ...extensionComparison }, current);
   assert.equal(report.candidateId, id);
   assert.equal(report.mappingDigest, digestCanonicalJson(expectedIds.map(String)));
   assert.equal(report.libraryDigest, digestCanonicalJson(orders));

@@ -15600,6 +15600,7 @@ SCENARIOS.push((await import('./browser-namor.mjs')).namorActualData);
 SCENARIOS.push((await import('./browser-iron-fist.mjs')).ironFistActualData);
 SCENARIOS.push((await import('./browser-owner-no-way-home.mjs')).ownerNoWayHomeActualData);
 MUTATIONS.push((await import('./browser-owner-no-way-home.mjs')).ownerNoWayHomeHiddenMutation);
+SCENARIOS.push((await import('./browser-mcu-prep-deadpool-and-wolverine.mjs')).deadpoolWolverineActualData);
 const { eternalsActualData, eternalsCollectionMutation } = await import('./browser-mcu-prep-eternals.mjs');
 SCENARIOS.push(eternalsActualData);
 MUTATIONS.push(eternalsCollectionMutation);

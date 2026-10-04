@@ -138,7 +138,8 @@ test('buildReportForMapping regenerates shipped reports without duplicate self o
     [path.join(mappingsDir, 'spider-man-the-other.json')],
   );
   const comparedIds = report.comparisons.map((comparison) => comparison.orderId);
-  const laterOwnerIds = ['mcu-prep-thunderbolts', 'spider-man-no-way-home-owner-selected', 'mcu-prep-eternals'];
+  const laterOwnerIds = ['mcu-prep-deadpool-and-wolverine', 'mcu-prep-thunderbolts',
+    'spider-man-no-way-home-owner-selected', 'mcu-prep-eternals'];
 
   assert.equal(report.candidateCount, 5);
   assert.equal(report.comparisonCount, 137);

@@ -1904,13 +1904,13 @@
     "fp": "ff9ba71742d8b8c0",
     "head": "\"chapterCount\": 78,"
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:10871-10996|0": {
-    "anchor": "src/data/catalog.json:10871-10996",
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:10912-11037|0": {
+    "anchor": "src/data/catalog.json:10912-11037",
     "fp": "a679899453ea002c",
     "head": "\"paths\": ["
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/curated-lists.json:6852-6891|0": {
-    "anchor": "src/data/curated-lists.json:6852-6891",
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/curated-lists.json:6886-6925|0": {
+    "anchor": "src/data/curated-lists.json:6886-6925",
     "fp": "1b133fe2f7d008e4",
     "head": "\"paths\": ["
   },
