@@ -130,6 +130,7 @@ export default [
       'scripts/browser-onslaught.mjs',
       'scripts/browser-namor.mjs',
       'scripts/browser-iron-fist.mjs',
+      'scripts/browser-mcu-prep-deadpool-and-wolverine.mjs',
       'scripts/browser-mcu-prep-eternals.mjs',
       'scripts/browser-owner-no-way-home.mjs',
       'scripts/capture-store-assets.mjs',

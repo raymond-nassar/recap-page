@@ -30,6 +30,7 @@ import {
   markRead,
   SCHEMA_VERSION,
 } from '../src/js/lib/model.js';
+import { assertCurrentLibraryExtension } from './helpers/owner-mcu-library-extension.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const id = 'mcu-prep-thunderbolts';
@@ -253,10 +254,11 @@ test('Thunderbolts uses the existing MCU Prep gateways and Storylines shelf with
 });
 
 test('Thunderbolts preserves frozen approval and rechecks the complete current visible and hidden library', async () => {
-  const [manifest, catalog, report] = await Promise.all([
+  const [manifest, catalog, report, payload] = await Promise.all([
     readJson('src/data/curated-lists.json'),
     readJson('src/data/catalog.json'),
     readJson(`scripts/data/${id}-overlaps.json`),
+    readJson(payloadFile),
   ]);
   const descriptors = [
     ...catalog.lists.filter((entry) => entry.id !== id).map((entry) => ({
@@ -279,13 +281,36 @@ test('Thunderbolts preserves frozen approval and rechecks the complete current v
   const publicationPeers = new Set(report.comparisons.map((entry) => entry.orderId));
   const orders = currentOrders.filter((entry) => publicationPeers.has(entry.orderId));
   const laterIds = [
-    'mcu-prep-daredevil-born-again', 'mcu-prep-eternals', 'spider-man-no-way-home-owner-selected',
+    'mcu-prep-daredevil-born-again', 'mcu-prep-deadpool-and-wolverine',
+    'mcu-prep-eternals', 'spider-man-no-way-home-owner-selected',
   ];
   const comparison = buildComparisonReport({ candidateIds: expectedIds, orders });
   assert.equal(comparison.comparisonCount, 281);
   assert.equal(orders.filter((entry) => /^marvel-knights-to-planet-x-\d{2}$/.test(entry.orderId))
     .length, 78);
   assert.ok(orders.some((entry) => entry.orderId === 'marvel-knights-to-planet-x'));
+  const extension = await readJson(
+    'scripts/data/owner-mcu-prep-deadpool-and-wolverine-current-library-extension.json',
+  );
+  const extensionEntry = extension.extensions.find((entry) => entry.candidateId === id);
+  const recordedPeerIds = new Set([
+    ...publicationPeers, ...extensionEntry.laterComparisons.map((entry) => entry.orderId),
+  ]);
+  const { current: extensionComparison, laterIds: extensionLaterIds } = assertCurrentLibraryExtension({
+    extension, candidateId: id, candidateIds: expectedIds,
+    orders: [
+      ...currentOrders.filter((entry) => recordedPeerIds.has(entry.orderId)),
+      { orderId: id, issueIds: payload.items.map((item) => String(item.issueId)) },
+    ],
+    originalReport: report, originalApprovalDigest: report.relationshipReview.approvalDigest,
+  });
+  assert.deepEqual(extensionLaterIds, [
+    'mcu-prep-deadpool-and-wolverine', 'mcu-prep-eternals', 'spider-man-no-way-home-owner-selected',
+  ]);
+  assert.deepEqual(currentOrders.filter((entry) => !recordedPeerIds.has(entry.orderId))
+    .map((entry) => entry.orderId), ['mcu-prep-daredevil-born-again']);
+  assert.deepEqual(extensionComparison.comparisons,
+    current.comparisons.filter((entry) => recordedPeerIds.has(entry.orderId)));
   assert.equal(report.candidateId, id);
   assert.equal(report.mappingDigest, digestCanonicalJson(expectedIds.map(String)));
   assert.equal(report.libraryDigest, digestCanonicalJson(orders));

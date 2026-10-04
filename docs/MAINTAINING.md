@@ -580,7 +580,7 @@ only in the subsets named by its authored `spotlightKind`.
 For an MCU Prep addition, keep `type` as `screen-companion`, `depth` as `selected`,
 `timeline` as `null`, and `beginner` as `false`. Confirm the shared Home and Browse gateways expose
 MCU Prep only when populated, and that its generated child page contains every selected card
-once in inventory priority order at desktop and narrow widths. Do not add a fourth canonical shelf or
+once in manifest order at desktop and narrow widths. Do not add a fourth canonical shelf or
 a Character Spotlight classification; Storylines remains the canonical shelf.
 
 Owner-authored MCU Prep selections keep owner credit and an ordered selection ledger in
