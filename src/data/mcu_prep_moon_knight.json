@@ -1,0 +1,528 @@
+{
+  "id": "mcu-prep-moon-knight",
+  "name": "Moon Knight: MCU Prep",
+  "description": "The owner's three first-volume Moon Knight selections, expanded into 17 original issues from 2014, 2016 and 2021, in selection order.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/685",
+  "sourceOrigin": "Selected by the owner for MCU Prep; expanded into original issues for this project",
+  "sourceLicense": null,
+  "generatedAt": "2026-10-03T17:56:36.689Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 17,
+  "collections": 3,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 49077,
+      "title": "Moon Knight (2014) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/49077/moon_knight_2014_1",
+      "seriesId": 18467,
+      "seriesName": "Moon Knight (2014 - 2015)",
+      "onSale": "2014-03-05T00:00:00+0000",
+      "mu": "2014-09-01T00:00:00+0000",
+      "digitalId": 33332,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/80/530e4d1b02751",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Declan Shalvey",
+          "role": "penciler"
+        },
+        {
+          "name": "Warren Ellis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Moon Knight Vol. 1: From the Dead (Warren Ellis)"
+    },
+    {
+      "issueId": 49078,
+      "title": "Moon Knight (2014) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/49078/moon_knight_2014_2",
+      "seriesId": 18467,
+      "seriesName": "Moon Knight (2014 - 2015)",
+      "onSale": "2014-04-02T00:00:00+0000",
+      "mu": "2014-10-06T00:00:00+0000",
+      "digitalId": 33482,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/533475ade25bc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Declan Shalvey",
+          "role": "penciler"
+        },
+        {
+          "name": "Warren Ellis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Moon Knight Vol. 1: From the Dead (Warren Ellis)"
+    },
+    {
+      "issueId": 49079,
+      "title": "Moon Knight (2014) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/49079/moon_knight_2014_3",
+      "seriesId": 18467,
+      "seriesName": "Moon Knight (2014 - 2015)",
+      "onSale": "2014-05-07T00:00:00+0000",
+      "mu": "2014-11-03T00:00:00+0000",
+      "digitalId": 33770,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/e0/5363df2322ad4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Declan Shalvey",
+          "role": "penciler"
+        },
+        {
+          "name": "Warren Ellis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Moon Knight Vol. 1: From the Dead (Warren Ellis)"
+    },
+    {
+      "issueId": 49080,
+      "title": "Moon Knight (2014) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/49080/moon_knight_2014_4",
+      "seriesId": 18467,
+      "seriesName": "Moon Knight (2014 - 2015)",
+      "onSale": "2014-06-04T00:00:00+0000",
+      "mu": "2014-12-01T00:00:00+0000",
+      "digitalId": 33832,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/60/5388ddb538e86",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Declan Shalvey",
+          "role": "penciler"
+        },
+        {
+          "name": "Warren Ellis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Moon Knight Vol. 1: From the Dead (Warren Ellis)"
+    },
+    {
+      "issueId": 49081,
+      "title": "Moon Knight (2014) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/49081/moon_knight_2014_5",
+      "seriesId": 18467,
+      "seriesName": "Moon Knight (2014 - 2015)",
+      "onSale": "2014-07-02T00:00:00+0000",
+      "mu": "2015-01-05T00:00:00+0000",
+      "digitalId": 34108,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/e0/53ac5aa85ca8a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Declan Shalvey",
+          "role": "penciler"
+        },
+        {
+          "name": "Warren Ellis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Moon Knight Vol. 1: From the Dead (Warren Ellis)"
+    },
+    {
+      "issueId": 49082,
+      "title": "Moon Knight (2014) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/49082/moon_knight_2014_6",
+      "seriesId": 18467,
+      "seriesName": "Moon Knight (2014 - 2015)",
+      "onSale": "2014-08-06T00:00:00+0000",
+      "mu": "2015-02-02T00:00:00+0000",
+      "digitalId": 34547,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/53d6a97dbd9e3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Declan Shalvey",
+          "role": "penciler"
+        },
+        {
+          "name": "Jordie Bellaire",
+          "role": "penciler"
+        },
+        {
+          "name": "Warren Ellis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Moon Knight Vol. 1: From the Dead (Warren Ellis)"
+    },
+    {
+      "issueId": 55575,
+      "title": "Moon Knight (2016) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/55575/moon_knight_2016_1",
+      "seriesId": 20488,
+      "seriesName": "Moon Knight (2016 - 2018)",
+      "onSale": "2016-04-13T00:00:00+0000",
+      "mu": "2016-10-10T00:00:00+0000",
+      "digitalId": 41685,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/00/56faec5e45891",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Greg Smallwood",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Lemire",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Moon Knight Vol. 1: Lunatic (Jeff Lemire)"
+    },
+    {
+      "issueId": 55577,
+      "title": "Moon Knight (2016) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/55577/moon_knight_2016_2",
+      "seriesId": 20488,
+      "seriesName": "Moon Knight (2016 - 2018)",
+      "onSale": "2016-05-04T00:00:00+0000",
+      "mu": "2016-11-07T00:00:00+0000",
+      "digitalId": 41524,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/20/571e7837a870f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Greg Smallwood",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Lemire",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Moon Knight Vol. 1: Lunatic (Jeff Lemire)"
+    },
+    {
+      "issueId": 55579,
+      "title": "Moon Knight (2016) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/55579/moon_knight_2016_3",
+      "seriesId": 20488,
+      "seriesName": "Moon Knight (2016 - 2018)",
+      "onSale": "2016-06-01T00:00:00+0000",
+      "mu": "2016-12-05T00:00:00+0000",
+      "digitalId": 41748,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/5744b7d17cbbd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Greg Smallwood",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Lemire",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Moon Knight Vol. 1: Lunatic (Jeff Lemire)"
+    },
+    {
+      "issueId": 55580,
+      "title": "Moon Knight (2016) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/55580/moon_knight_2016_4",
+      "seriesId": 20488,
+      "seriesName": "Moon Knight (2016 - 2018)",
+      "onSale": "2016-07-06T00:00:00+0000",
+      "mu": "2017-01-09T00:00:00+0000",
+      "digitalId": 42052,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/d0/576afc7e17af5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Greg Smallwood",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Lemire",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Moon Knight Vol. 1: Lunatic (Jeff Lemire)"
+    },
+    {
+      "issueId": 55581,
+      "title": "Moon Knight (2016) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/55581/moon_knight_2016_5",
+      "seriesId": 20488,
+      "seriesName": "Moon Knight (2016 - 2018)",
+      "onSale": "2016-08-03T00:00:00+0000",
+      "mu": "2017-02-06T00:00:00+0000",
+      "digitalId": 42271,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/40/57967911b8426",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Francesco Francavilla",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Smallwood",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Lemire",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Moon Knight Vol. 1: Lunatic (Jeff Lemire)"
+    },
+    {
+      "issueId": 93848,
+      "title": "Moon Knight (2021) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/93848/moon_knight_2021_1",
+      "seriesId": 32071,
+      "seriesName": "Moon Knight (2021 - Present)",
+      "onSale": "2021-07-21T00:00:00+0000",
+      "mu": "2021-10-25T00:00:00+0000",
+      "digitalId": 57056,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/60fad37c08826",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Alessandro Cappuccio",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Mcniven",
+          "role": "penciler"
+        },
+        {
+          "name": "Jed Mackay",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Moon Knight Vol. 1: The Midnight Mission (Jed MacKay)"
+    },
+    {
+      "issueId": 93849,
+      "title": "Moon Knight (2021) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/93849/moon_knight_2021_2",
+      "seriesId": 32071,
+      "seriesName": "Moon Knight (2021 - Present)",
+      "onSale": "2021-08-18T00:00:00+0000",
+      "mu": "2021-11-22T00:00:00+0000",
+      "digitalId": 57186,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/90/614b3b8a3c50b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alessandro Cappuccio",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Mcniven",
+          "role": "penciler"
+        },
+        {
+          "name": "Jed Mackay",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Moon Knight Vol. 1: The Midnight Mission (Jed MacKay)"
+    },
+    {
+      "issueId": 93850,
+      "title": "Moon Knight (2021) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/93850/moon_knight_2021_3",
+      "seriesId": 32071,
+      "seriesName": "Moon Knight (2021 - Present)",
+      "onSale": "2021-09-22T00:00:00+0000",
+      "mu": "2021-12-27T00:00:00+0000",
+      "digitalId": 57674,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/10/614260dc633c7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alessandro Cappuccio",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Mcniven",
+          "role": "penciler"
+        },
+        {
+          "name": "Jed Mackay",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Moon Knight Vol. 1: The Midnight Mission (Jed MacKay)"
+    },
+    {
+      "issueId": 93851,
+      "title": "Moon Knight (2021) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/93851/moon_knight_2021_4",
+      "seriesId": 32071,
+      "seriesName": "Moon Knight (2021 - Present)",
+      "onSale": "2021-10-27T00:00:00+0000",
+      "mu": "2022-01-31T00:00:00+0000",
+      "digitalId": 57795,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/a0/6169ef401d546",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alessandro Cappuccio",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Mcniven",
+          "role": "penciler"
+        },
+        {
+          "name": "Jed Mackay",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Moon Knight Vol. 1: The Midnight Mission (Jed MacKay)"
+    },
+    {
+      "issueId": 93852,
+      "title": "Moon Knight (2021) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/93852/moon_knight_2021_5",
+      "seriesId": 32071,
+      "seriesName": "Moon Knight (2021 - Present)",
+      "onSale": "2021-11-17T00:00:00+0000",
+      "mu": "2022-02-21T00:00:00+0000",
+      "digitalId": 57917,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/6151f8dbc7604",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alessandro Cappuccio",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Mcniven",
+          "role": "penciler"
+        },
+        {
+          "name": "Jed Mackay",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Moon Knight Vol. 1: The Midnight Mission (Jed MacKay)"
+    },
+    {
+      "issueId": 93853,
+      "title": "Moon Knight (2021) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/93853/moon_knight_2021_6",
+      "seriesId": 32071,
+      "seriesName": "Moon Knight (2021 - Present)",
+      "onSale": "2021-12-22T00:00:00+0000",
+      "mu": "2022-03-28T00:00:00+0000",
+      "digitalId": 58188,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/a0/61ae1ea27f20d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alessandro Cappuccio",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rafael Fonteriz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Carlos Pacheco",
+          "role": "penciler"
+        },
+        {
+          "name": "Jed Mackay",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Moon Knight Vol. 1: The Midnight Mission (Jed MacKay)"
+    }
+  ]
+}

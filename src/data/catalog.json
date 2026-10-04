@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-03T18:45:49.066Z",
+  "generatedAt": "2026-10-03T18:48:28.130Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -2726,6 +2726,48 @@
       "updatedAt": "2026-08-26T05:16:35.956Z"
     },
     {
+      "id": "mcu-prep-shang-chi-and-the-legend-of-the-ten-rings",
+      "file": "mcu_prep_shang_chi_and_the_legend_of_the_ten_rings.json",
+      "name": "Shang-Chi and the Legend of the Ten Rings",
+      "description": "An owner-selected modern Shang-Chi companion, from Agents of Atlas and Sword Master through Brothers & Sisters and the Ten Rings. Anthology selections are qualified; completion is tracked per issue.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "count": 37,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 6,
+      "characters": [
+        "Shang-Chi",
+        "Agents of Atlas",
+        "Sword Master"
+      ],
+      "keywords": [
+        "Shang-Chi",
+        "Legend of the Ten Rings",
+        "MCU Prep",
+        "Brothers & Sisters",
+        "Five Weapons Society",
+        "Family of Origin",
+        "Gene Luen Yang",
+        "Alyssa Wong",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 84410,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/a0/5f735c7849c7f",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/683#issuecomment-5971742989",
+      "sourceOrigin": "Compiled for this project from the owner's selected Comic Book Herald excerpt",
+      "sourceLicense": null,
+      "updatedAt": "2026-10-03T18:48:28.130Z"
+    },
+    {
       "id": "mcu-prep-thunderbolts",
       "file": "mcu_prep_thunderbolts.json",
       "name": "MCU Prep: Thunderbolts*",
@@ -2767,6 +2809,46 @@
       "sourceOrigin": "Compiled by hand for this project from the owner-authored outline in GitHub issue #682",
       "sourceLicense": null,
       "updatedAt": "2026-10-03T18:45:49.066Z"
+    },
+    {
+      "id": "mcu-prep-moon-knight",
+      "file": "mcu_prep_moon_knight.json",
+      "name": "Moon Knight: MCU Prep",
+      "description": "The owner's three first-volume Moon Knight selections, expanded into 17 original issues from 2014, 2016 and 2021, in selection order.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "count": 17,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 3,
+      "characters": [
+        "Moon Knight",
+        "Marc Spector"
+      ],
+      "keywords": [
+        "MCU Prep",
+        "Moon Knight",
+        "Warren Ellis",
+        "Jeff Lemire",
+        "Jed MacKay",
+        "From the Dead",
+        "Lunatic",
+        "The Midnight Mission"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 49077,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/80/530e4d1b02751",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/685",
+      "sourceOrigin": "Selected by the owner for MCU Prep; expanded into original issues for this project",
+      "sourceLicense": null,
+      "updatedAt": "2026-10-03T17:56:36.689Z"
     },
     {
       "id": "mcu-prep-eternals",
@@ -2849,6 +2931,47 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-26T09:49:42.158Z"
+    },
+    {
+      "id": "mcu-prep-deadpool-and-wolverine",
+      "file": "mcu_prep_deadpool_and_wolverine.json",
+      "name": "MCU Prep: Deadpool & Wolverine",
+      "description": "An owner-selected path through Weapon X, Dead Presidents, Gifted, Old Man Logan, and Deadpool Classic Vol. 1, expanded into 43 original comics in the supplied order.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "count": 43,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 5,
+      "characters": [
+        "Deadpool",
+        "Wolverine",
+        "X-Men"
+      ],
+      "keywords": [
+        "Deadpool & Wolverine",
+        "Wade Wilson",
+        "Logan",
+        "Weapon X",
+        "Dead Presidents",
+        "Gifted",
+        "Old Man Logan",
+        "Circle Chase"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 10155,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/a0/66c64d8f69e7c",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/680",
+      "sourceOrigin": "Compiled for this project from the owner's selections",
+      "sourceLicense": null,
+      "updatedAt": "2026-10-03T17:48:37.886Z"
     },
     {
       "id": "white-tiger-ava-ayala",
@@ -10789,6 +10912,50 @@
       "updatedAt": "2026-08-21T09:58:39.876Z"
     },
     {
+      "id": "mcu-prep-daredevil-born-again",
+      "file": "mcu_prep_daredevil_born_again.json",
+      "name": "MCU Prep: Daredevil: Born Again",
+      "description": "An owner-selected Daredevil companion: The Man Without Fear, Born Again, Out, Brubaker's first volume, and the first two Zdarsky volumes.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "count": 37,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 6,
+      "characters": [
+        "Daredevil",
+        "Kingpin",
+        "Matt Murdock"
+      ],
+      "keywords": [
+        "MCU Prep",
+        "Daredevil: Born Again",
+        "The Man Without Fear",
+        "Out",
+        "The Devil Inside and Out",
+        "Know Fear",
+        "No Devils, Only God",
+        "Frank Miller",
+        "Brian Michael Bendis",
+        "Ed Brubaker",
+        "Chip Zdarsky"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 20750,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/4bb866d34e627",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/681",
+      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceLicense": null,
+      "updatedAt": "2026-10-03T17:48:05.373Z"
+    },
+    {
       "id": "inhumans-vs-x-men",
       "file": "inhumans_vs_x_men.json",
       "name": "Inhumans vs. X-Men",
@@ -10824,48 +10991,6 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-21T12:53:39.465Z"
-    },
-    {
-      "id": "spider-man-no-way-home-owner-selected",
-      "file": "spider_man_no_way_home_owner_selected.json",
-      "name": "Spider-Man: No Way Home (Owner selections)",
-      "description": "The owner's three-volume selection: an Ultimate origin, the main Spider-Verse chapters, and the four-issue Big Time arc, expanded into 18 original comics in that order.",
-      "type": "screen-companion",
-      "depth": "selected",
-      "count": 18,
-      "placeholderCount": 0,
-      "emptyRecordCount": 0,
-      "collections": 3,
-      "characters": [
-        "Spider-Man",
-        "Peter Parker",
-        "Hobgoblin"
-      ],
-      "keywords": [
-        "MCU Prep",
-        "Spider-Man: No Way Home",
-        "Owner selections",
-        "Ultimate Spider-Man",
-        "Power and Responsibility",
-        "Spider-Verse",
-        "Big Time",
-        "Brian Michael Bendis",
-        "Dan Slott"
-      ],
-      "group": null,
-      "groupName": null,
-      "variant": null,
-      "beginner": false,
-      "timeline": null,
-      "coverIssueId": 4372,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/519b7e7eb534a",
-        "ext": "jpg"
-      },
-      "source": "https://github.com/raymond-nassar/recap-page/issues/686",
-      "sourceOrigin": "Compiled for this project from the owner's selections",
-      "sourceLicense": null,
-      "updatedAt": "2026-10-03T17:55:25.078Z"
     }
   ],
   "paths": [

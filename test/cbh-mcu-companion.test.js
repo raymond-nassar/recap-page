@@ -383,7 +383,7 @@ test('an exact relationship remains unapprovable', async () => {
   }), /no approval path/i);
 });
 
-test('approved evidence reaches six payloads, cards, and one MCU Prep group', async () => {
+test('approved CBH evidence reaches six payloads within the shared MCU Prep group', async () => {
   const { inventory, entries } = await loadEvidence();
   const manifest = await readJson('src/data/curated-lists.json');
   const catalog = parseCatalog(await readJson('src/data/catalog.json'));
@@ -397,7 +397,7 @@ test('approved evidence reaches six payloads, cards, and one MCU Prep group', as
     MCU_SELECTED_IDS,
   );
   assert.equal(catalog.lists.filter(({ id }) => MCU_SELECTED_IDS.includes(id)).length, 6);
-  assert.equal(catalog.lists.length, 283);
+  assert.equal(catalog.lists.length, 286);
 
   assert.deepEqual(
     inventory.records.filter((record) => record.centralDisposition === 'selected')

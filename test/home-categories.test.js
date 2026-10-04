@@ -58,7 +58,7 @@ test('the current gateway offers three primary modes and three secondary gateway
   }
   assert.equal(categories.find(({ key }) => key === 'timeline').count, 148);
   assert.equal(categories.find(({ key }) => key === 'marvel-ages').count, 204);
-  assert.equal(categories.find(({ key }) => key === 'marvel-on-screen').count, 9);
+  assert.equal(categories.find(({ key }) => key === 'marvel-on-screen').count, 12);
   assert.equal(categories.find(({ key }) => key === 'reading-paths').count, 3);
 });
 
@@ -154,7 +154,7 @@ test('MCU Prep keeps the six CBH companions before owner companions on the stabl
   assert.ok(category, 'MCU Prep is not declared');
   assert.equal(category.heading, 'MCU Prep');
   assert.deepEqual(
-    category.select(stories).map((story) => story.lists[0].id).slice(0, 6),
+    category.select(stories).map((story) => story.lists[0].id),
     [
       'doctor-strange-multiverse-of-madness',
       'spider-man-no-way-home',
@@ -162,6 +162,12 @@ test('MCU Prep keeps the six CBH companions before owner companions on the stabl
       'marvel-what-if',
       'wandavision',
       'spider-man-far-from-home',
+      'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings',
+      'mcu-prep-thunderbolts',
+      'mcu-prep-moon-knight',
+      'mcu-prep-eternals',
+      'mcu-prep-deadpool-and-wolverine',
+      'mcu-prep-daredevil-born-again',
     ],
   );
   assert.equal(category.route, 'marvel-on-screen');
