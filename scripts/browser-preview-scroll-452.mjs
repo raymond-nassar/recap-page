@@ -7,21 +7,19 @@ const orders = Object.fromEntries(lists.map((list) => [
 ]));
 const selectedId = 'civil-war-avengers';
 const selected = lists.find((list) => list.id === selectedId);
-const radio = `#preview-paths input[data-key="${selectedId}"]`;
-const opener = '#catalog-results [data-story="civil-war"] [data-act="preview"]';
+const opener = `#catalog-results [data-story="list:${selectedId}"] [data-act="preview"]`;
 
-async function stationaryRadio(page) {
+async function stationaryControl(page) {
   return page.evaluate(async () => {
     const target = document.activeElement;
-    if (!target.matches('#preview-paths input')) throw new Error('Expected a focused Preview radio');
+    if (!target.matches('#preview a, #preview button')) throw new Error('Expected a focused Preview control');
     const box = (element) => {
       const r = element.getBoundingClientRect();
       return [r.left, r.top, r.right, r.bottom];
     };
     const sample = () => {
       const dialog = document.querySelector('#preview');
-      const visual = target.nextElementSibling;
-      const style = getComputedStyle(visual);
+      const style = getComputedStyle(target);
       const ring = parseFloat(style.outlineWidth) + parseFloat(style.outlineOffset);
       const r = box(dialog);
       const clip = [
@@ -29,11 +27,11 @@ async function stationaryRadio(page) {
         Math.min(innerWidth, r[0] + dialog.clientLeft + dialog.clientWidth),
         Math.min(innerHeight, r[1] + dialog.clientTop + dialog.clientHeight),
       ];
-      const v = box(visual);
+      const v = box(target);
       return {
-        same: document.activeElement === target, key: target.dataset.key, checked: target.checked,
+        same: document.activeElement === target,
         focusVisible: target.matches(':focus-visible'), native: box(target),
-        label: box(target.closest('label')), visual: v, clip, ring,
+        visual: v, clip, ring,
         outlineWidth: style.outlineWidth, outlineOffset: style.outlineOffset,
         scroll: [dialog.scrollTop, document.querySelector('#preview-body').scrollTop],
         visible: v[0] - ring >= clip[0] && v[1] - ring >= clip[1]
@@ -85,23 +83,23 @@ async function openPreview(page) {
 async function closePreview(page, t, name, escape) {
   if (!escape) await page.focus('#preview-close');
   await page.keyboard.press(escape ? 'Escape' : 'Enter');
-  await page.waitForFunction(() => {
-    const current = document.querySelector('#catalog-results [data-story="civil-war"] [data-act="preview"]');
+  await page.waitForFunction((selector) => {
+    const current = document.querySelector(selector);
     return !document.querySelector('#preview').open && current?.isConnected
       && current.checkVisibility() && document.activeElement === current;
-  });
-  const returned = await page.evaluate(async () => {
+  }, {}, opener);
+  const returned = await page.evaluate(async (selector) => {
     for (let n = 0; n < 8; n += 1) await new Promise(requestAnimationFrame);
-    const current = document.querySelector('#catalog-results [data-story="civil-war"] [data-act="preview"]');
+    const current = document.querySelector(selector);
     return !document.querySelector('#preview').open && current?.isConnected
       && current.checkVisibility() && document.activeElement === current;
-  });
+  }, opener);
   t.check(`${name}: ${escape ? 'Escape' : 'Close'} returns to the connected semantic opener`, returned);
 }
 
 export const previewScroll452 = {
   id: 'preview-scroll-452',
-  title: 'Preview native radio focus reveals the entire option and its outline',
+  title: 'explicit-list Preview keeps controls visible and restores its semantic opener',
   async run(page, t) {
     await page.evaluateOnNewDocument((fixtureLists, fixtureOrders) => {
       const params = new URL(location.href).searchParams;
@@ -133,7 +131,7 @@ export const previewScroll452 = {
       { name: 'enlarged-loaded', width: 640, height: 450, scale: 2, mode: 'loaded', forced: true },
       { name: 'enlarged-pending', width: 640, height: 450, scale: 2, mode: 'pending', forced: true },
       { name: 'enlarged-failure', width: 640, height: 450, scale: 2, mode: 'failure', forced: true },
-      { name: 'wrapped-option', width: 360, height: 600, scale: 1, mode: 'loaded' },
+      { name: 'narrow-title', width: 360, height: 600, scale: 1, mode: 'loaded' },
       { name: 'standard', width: 1280, height: 900, scale: 1, mode: 'loaded' },
       { name: 'narrow-dark', width: 800, height: 600, scale: 1, mode: 'loaded' },
     ]) {
@@ -145,11 +143,9 @@ export const previewScroll452 = {
       const theme = cfg.name === 'narrow-dark' ? 'dark' : 'light';
       await page.goto(`${page.__origin}/?preview452=${cfg.mode}&theme=${theme}#/catalog`, { waitUntil: 'load' });
       await openPreview(page);
-      await page.focus('#preview-paths input:checked');
-      for (let n = 0; n < lists.length; n += 1) {
-        if (await page.$eval(radio, (e) => e.checked)) break;
-        await page.keyboard.press('ArrowRight');
-      }
+      t.check(`${cfg.name}: the named card opens only its own Preview without variant radios`,
+        await page.$eval('#preview-h', (heading) => heading.textContent) === selected.name
+        && await page.$eval('#preview-paths', (paths) => paths.hidden && paths.children.length === 0));
       if (cfg.mode === 'loaded') {
         await page.waitForFunction((count) => document.querySelectorAll('#preview-body .preview-issue-link').length === count,
           {}, selected.count);
@@ -159,43 +155,14 @@ export const previewScroll452 = {
       }
       await page.focus('#preview-close');
       await page.keyboard.press('Tab');
-      t.check(`${cfg.name}: Source precedes the selected option`,
+      t.check(`${cfg.name}: Source precedes the issue list or Add action`,
         await page.evaluate(() => document.activeElement.matches('#preview-source a')));
       await page.keyboard.press('Tab');
-      const stationary = await stationaryRadio(page);
-      t.check(`${cfg.name}: stationary selected Preview radio shows its full label and focus outline`,
+      const stationary = await stationaryControl(page);
+      t.check(`${cfg.name}: the next Preview control settles with its full focus outline visible`,
         stationary.settled && stationary.last.same && stationary.last.focusVisible
-        && stationary.last.key === selectedId && stationary.last.checked && stationary.last.visible,
+        && stationary.last.visible,
         JSON.stringify(stationary));
-      const geometry = await page.$eval(radio, (input) => {
-        const label = input.closest('label');
-        const r = input.getBoundingClientRect();
-        const l = label.getBoundingClientRect();
-        const hit = document.elementFromPoint(l.left + l.width / 2, l.top + l.height / 2);
-        const style = getComputedStyle(input.nextElementSibling);
-        return {
-          contained: r.left >= l.left && r.top >= l.top && r.right <= l.right && r.bottom <= l.bottom,
-          sameSize: Math.abs(r.width - l.width) < 1 && Math.abs(r.height - l.height) < 1,
-          ownsHit: label.contains(hit),
-          wrapped: input.nextElementSibling.clientHeight - parseFloat(style.paddingTop)
-            - parseFloat(style.paddingBottom) > parseFloat(style.lineHeight) + 1,
-        };
-      });
-      t.check(`${cfg.name}: native target fits its own label without stealing a neighbor`,
-        geometry.contained && geometry.sameSize && geometry.ownsHit, JSON.stringify(geometry));
-      if (cfg.name === 'wrapped-option') t.check('the actual Avengers option wraps', geometry.wrapped, JSON.stringify(geometry));
-      await page.keyboard.press('ArrowLeft');
-      await page.keyboard.press('Space');
-      t.check(`${cfg.name}: native ArrowLeft and Space select the adjacent option`,
-        await page.$eval('#preview-paths input:checked', (e) => e.dataset.key === 'civil-war'));
-      await page.$eval(radio, (e) => e.closest('label').scrollIntoView({ block: 'center' }));
-      const pointer = await page.$eval(radio, (e) => {
-        const r = e.closest('label').getBoundingClientRect();
-        return { x: r.left + r.width / 2, y: r.top + r.height / 2 };
-      });
-      await page.mouse.click(pointer.x, pointer.y);
-      t.check(`${cfg.name}: real pointer click selects the full label`,
-        await page.$eval(radio, (e) => e.checked));
       if (cfg.mode === 'failure') {
         await closePreview(page, t, cfg.name, false);
         continue;
@@ -208,7 +175,6 @@ export const previewScroll452 = {
       await page.waitForFunction((count) => document.querySelectorAll('#preview-body .preview-issue-link').length === count,
         {}, selected.count);
       await page.focus('#preview-close');
-      await page.keyboard.press('Tab');
       await page.keyboard.press('Tab');
       await page.keyboard.press('Tab');
       await checkFocusedControl(page, t, `${cfg.name}: first issue boundary focus`);

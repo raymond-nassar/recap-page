@@ -10,9 +10,12 @@ import {
   validateReportDigest,
 } from '../scripts/lib/cbh-inventory.mjs';
 import { buildMarkdown } from '../scripts/author-cbh-packet.mjs';
-import { buildReportForMapping } from '../scripts/report-order-overlap.mjs';
+
 import { historicalAgathaLibrarySnapshot } from './helpers/agatha-historical-library.mjs';
 import { parseChecklist } from '../src/js/lib/markdown.js';
+import {
+  buildHistoricalReadingChoiceReport as buildReportForMapping,
+} from './helpers/reading-choice-history.mjs';
 
 const id = 'mephisto-reading-order';
 const readJson = async (file) => JSON.parse(await readFile(file, 'utf8'));

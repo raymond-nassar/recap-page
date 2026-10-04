@@ -80,7 +80,7 @@ test('Modern Timeline position covers unavailable, empty, movement, and completi
   );
   assert.deepEqual(
     modernTimelinePosition(empty, stories),
-    { kind: 'current', storyKey: 'first', storyName: 'first', completed: 0, total: 2 },
+    { kind: 'current', storyKey: 'list:first', storyName: 'first', completed: 0, total: 2 },
   );
 
   const partial = savedState([
@@ -88,7 +88,7 @@ test('Modern Timeline position covers unavailable, empty, movement, and completi
   ], [1]);
   assert.deepEqual(
     modernTimelinePosition(partial, stories),
-    { kind: 'current', storyKey: 'first', storyName: 'first', completed: 0, total: 2 },
+    { kind: 'current', storyKey: 'list:first', storyName: 'first', completed: 0, total: 2 },
   );
 
   const advanced = savedState([
@@ -96,13 +96,13 @@ test('Modern Timeline position covers unavailable, empty, movement, and completi
   ], [1, 2]);
   assert.deepEqual(
     modernTimelinePosition(advanced, stories),
-    { kind: 'current', storyKey: 'second', storyName: 'second', completed: 1, total: 2 },
+    { kind: 'current', storyKey: 'list:second', storyName: 'second', completed: 1, total: 2 },
   );
 
   advanced.read = { 2: 1 };
   assert.deepEqual(
     modernTimelinePosition(advanced, stories),
-    { kind: 'current', storyKey: 'first', storyName: 'first', completed: 0, total: 2 },
+    { kind: 'current', storyKey: 'list:first', storyName: 'first', completed: 0, total: 2 },
   );
 
   const complete = savedState([
@@ -117,7 +117,7 @@ test('Modern Timeline position covers unavailable, empty, movement, and completi
   const zeroItems = savedState([
     { id: 'saved-first', catalogId: 'first', itemIds: [] },
   ]);
-  assert.equal(modernTimelinePosition(zeroItems, stories).storyKey, 'first');
+  assert.equal(modernTimelinePosition(zeroItems, stories).storyKey, 'list:first');
 });
 
 test('Modern Timeline position uses the shallowest owned path and first saved catalog identity', () => {
@@ -129,19 +129,19 @@ test('Modern Timeline position uses the shallowest owned path and first saved ca
   const deepOnly = savedState([
     { id: 'deep', catalogId: 'complete', itemIds: [1, 2] },
   ], [1, 2]);
-  assert.equal(modernTimelinePosition(deepOnly, grouped).storyKey, 'after');
+  assert.equal(modernTimelinePosition(deepOnly, grouped).storyKey, 'list:after');
 
   const shallowActive = savedState([
     { id: 'deep', catalogId: 'complete', itemIds: [1, 2] },
     { id: 'shallow', catalogId: 'essential', itemIds: [1, 3] },
   ], [1, 2]);
-  assert.equal(modernTimelinePosition(shallowActive, grouped).storyKey, 'grouped');
+  assert.equal(modernTimelinePosition(shallowActive, grouped).storyKey, 'list:essential');
 
   const firstSavedWins = savedState([
     { id: 'first-copy', catalogId: 'essential', itemIds: [4, 5] },
     { id: 'second-copy', catalogId: 'essential', itemIds: [6] },
   ], [6]);
-  assert.equal(modernTimelinePosition(firstSavedWins, grouped).storyKey, 'grouped');
+  assert.equal(modernTimelinePosition(firstSavedWins, grouped).storyKey, 'list:essential');
 
   const before = JSON.stringify(shallowActive);
   modernTimelinePosition(shallowActive, grouped);

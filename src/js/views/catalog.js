@@ -1,7 +1,8 @@
 import {
   CATALOG_SHELVES,
+  catalogEntries,
+  catalogEntryKey,
   catalogFacets,
-  countStories,
   decadeSections,
   defaultPath,
   eraSections,
@@ -47,8 +48,8 @@ export function modernTimelinePosition(state, stories, { dropped = 0 } = {}) {
     if (!saved) {
       return {
         kind: 'current',
-        storyKey: story?.key ?? null,
-        storyName: story?.name ?? list?.name ?? 'Reading List',
+        storyKey: list ? catalogEntryKey(list) : story?.key ?? null,
+        storyName: list?.name ?? story?.name ?? 'Reading List',
         completed,
         total,
       };
@@ -57,8 +58,8 @@ export function modernTimelinePosition(state, stories, { dropped = 0 } = {}) {
     if (completionState(progress.read, progress.total) !== 'done') {
       return {
         kind: 'current',
-        storyKey: story?.key ?? null,
-        storyName: story?.name ?? list?.name ?? saved.name ?? 'Reading List',
+        storyKey: catalogEntryKey(list),
+        storyName: list.name ?? story?.name ?? saved.name ?? 'Reading List',
         completed,
         total,
       };
@@ -293,7 +294,7 @@ export function createCatalogView({
       return;
     }
 
-    const searchable = countStories(mine) > FILTER_THRESHOLD;
+    const searchable = mine.length > FILTER_THRESHOLD;
     nodes.search.hidden = !searchable;
     if (!searchable && state.query) {
       state.query = '';
@@ -331,13 +332,19 @@ export function createCatalogView({
     }
 
     const stories = key === 'spotlights'
-      ? sortSpotlightStories(groupCatalog(shown), state.sort)
-      : groupCatalog(shown);
+      ? sortSpotlightStories(catalogEntries(shown), state.sort)
+      : catalogEntries(shown);
     const placements = pathPlacements(catalog.paths, catalog.lists);
     const firstStops = visibleFirstStopGuides(stories, placements, presentation.chosenPath);
     if (firstStops.length) {
-      const directions = firstStops.map(({ guide, placement }, index) => (
-        `${index === 0 ? 'Start' : 'start'} ${placement.pathName} with ${guide.name}`
+      const startsByPath = new Map();
+      for (const { guide, placement } of firstStops) {
+        const start = startsByPath.get(placement.pathId) ?? { name: placement.pathName, guides: [] };
+        start.guides.push(guide.name);
+        startsByPath.set(placement.pathId, start);
+      }
+      const directions = [...startsByPath.values()].map(({ name, guides }, index) => (
+        `${index === 0 ? 'Start' : 'start'} ${name} with ${guides.join(' or ')}`
       ));
       nodes.results.append(el('p', {
         class: 'rail-hint shelf-orientation',
@@ -366,7 +373,7 @@ export function createCatalogView({
         if (grouped) nodes.results.append(presentation.shelfSectionHead(section, { blurb: false }));
         const grid = el('div', { class: 'catalog-grid' });
         for (const story of section.stories) {
-          grid.append(presentation.catalogCard(story, placements.get(story.key), {
+          grid.append(presentation.catalogCard(story, placements.get(story.groupKey), {
             surface: key,
             level: grouped ? 'h3' : 'h2',
           }));

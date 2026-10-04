@@ -13,7 +13,7 @@ import { chooseMarkdownExport } from './views/markdown-export.js';
 import { serializeReadingOrder } from './lib/markdown.js';
 import { DEFAULT_LIST_NAME, LIBRARY_VIEWS } from './lib/library.js';
 import {
-  parseCatalog, groupCatalog,
+  parseCatalog, catalogEntries,
   pathPlacements, resolveReadingPaths, availableHomeCategories, HOME_CATEGORIES,
   availablePublishingCategories, isPublishingCategoryLeaf, publishingAgeGroups, publishingCategoryStories,
   timelineYears,
@@ -1579,10 +1579,7 @@ async function restoreIssueFocusOpener(sourceView) {
     try {
       const catalog = await loadCatalog();
       const list = catalog.lists.find((entry) => entry.id === opener.contextId);
-      const story = sourceView === 'reading-paths'
-        ? readingPathsView.selected()?.stops.find((stop) => stop.lists.some((entry) => entry.id === list?.id))
-        : null;
-      if (list && view === sourceView) await previewView.open(list, story);
+      if (list && view === sourceView) await previewView.open(list);
     } catch {
       focusViewHeading(sourceView);
       return;
@@ -2443,7 +2440,7 @@ async function renderPublishingCategory(route) {
     return;
   }
 
-  const allStories = groupCatalog(catalog.lists);
+  const allStories = catalogEntries(catalog.lists);
   if (category.kind === 'publishing-index') {
     renderPublishingIndex(category, allStories);
     return;
@@ -2479,7 +2476,7 @@ async function renderPublishingCategory(route) {
   }
 
   const placements = pathPlacements(catalog.paths, catalog.lists);
-  const localStoryKeys = new Set(stories.map((story) => story.key));
+  const localStoryKeys = new Set(stories.map((story) => story.groupKey));
   if (isPublishingCategoryLeaf(category)) {
     const years = timelineYears(stories);
     catalogPresentation.renderTimelineSections(box, [{
@@ -2496,7 +2493,7 @@ async function renderPublishingCategory(route) {
   }
   const grid = el('div', { class: 'catalog-grid publishing-grid' });
   for (const story of stories) {
-    grid.append(catalogPresentation.catalogCard(story, placements.get(story.key), {
+    grid.append(catalogPresentation.catalogCard(story, placements.get(story.groupKey), {
       surface: route, report: `#${route}-report`, localStoryKeys, level: 'h2',
     }));
   }
@@ -2911,7 +2908,7 @@ const savedLists = createSavedListsPresenter({
 
 const homeView = createHomeView({
   categoriesForCatalog: (catalog) => availableHomeCategories(
-    groupCatalog(catalog.lists),
+    catalogEntries(catalog.lists),
     HOME_CATEGORIES,
     resolveReadingPaths(catalog.paths, catalog.lists),
   ),
@@ -3026,7 +3023,7 @@ const catalogPresentation = createCatalogPresentation({
   onAdd: (list, button, report) => importCurated(list, button, { report }),
   onGoToStop: goToStop,
   onOpen: openSavedCatalogList,
-  onPreview: (list, story) => previewView.open(list, story),
+  onPreview: (list) => previewView.open(list),
   pathHref: (stop) => formatRoute({
     view: stop.shelf,
     sort: stop.shelf === 'spotlights' ? catalogView.sort() : null,
@@ -3091,9 +3088,9 @@ const previewView = createPreviewView({
     navigate: false,
     report: '#preview-report',
   }),
-  onClose: async (chose) => {
+  onClose: async (closedList) => {
     placeNotices();
-    if (!chose || (!CATALOG_SHELVES.some((shelf) => shelf.key === view)
+    if (!closedList || (!CATALOG_SHELVES.some((shelf) => shelf.key === view)
       && !generatedCategoryByRoute.has(view))) return;
     const root = $(`#view-${view}`);
     const held = captureFocus(root);
@@ -3168,7 +3165,7 @@ const readingPathsView = createReadingPathsView({
         '#reading-paths-report',
       );
     } else {
-      void previewView.open(catalogPresentation.chosenPath(stop), stop);
+      void previewView.open(stop.lists.find((list) => list.id === stop.stepId));
     }
   },
   onSelectedPath: (pathId) => {

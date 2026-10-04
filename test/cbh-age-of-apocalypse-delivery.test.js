@@ -11,11 +11,15 @@ import {
   validateReportDigest,
 } from '../scripts/lib/cbh-inventory.mjs';
 import { assertApprovedRelationshipReview, buildMarkdown, selectedIssueIds } from '../scripts/author-cbh-packet.mjs';
-import { buildReportForMapping } from '../scripts/report-order-overlap.mjs';
+
 import { placeholderId } from '../scripts/lib/placeholder-id.mjs';
 import { parseCatalog, searchCatalog, shelfKey } from '../src/js/lib/catalog.js';
 import { parseChecklist } from '../src/js/lib/markdown.js';
 import { countOrderGaps, MAX_COLLECTION } from '../src/js/lib/model.js';
+import {
+  buildHistoricalReadingChoiceReport as buildReportForMapping,
+  historicalReadingChoiceManifest,
+} from './helpers/reading-choice-history.mjs';
 
 const id = 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order';
 const source = 'https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/age-of-apocalypse-reading-order/';
@@ -125,7 +129,7 @@ test('AoA exact-ID vector retains 246 distinct originals and all 16 qualified qu
 
 test('AoA relationship report is rebuilt from every peer at its review', async () => {
   const manifest = await readJson('src/data/curated-lists.json');
-  const expectedOrderIds = manifest.lists.map((item) => item.id)
+  const expectedOrderIds = historicalReadingChoiceManifest(manifest).lists.map((item) => item.id)
     .filter((orderId) => orderId !== id
       && orderId !== 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order'
       && orderId !== 'namor-sub-mariner-reading-order'
@@ -203,7 +207,7 @@ test('AoA published checklist preserves 262 positions under factual section head
   assert.ok(all.every((item) => !item.section || item.section.length <= MAX_COLLECTION));
   const chosen = parsed.entries.find((entry) => entry.sourceKey === '275');
   assert.match(chosen.section, /Older-edition companion: The Chosen/);
-  assert.equal(manifest.lists.length, 209);
+  assert.equal(manifest.lists.length, 210);
   assert.equal(manifest.lists[manifest.lists.findIndex((entry) => entry.id === id) + 1].id,
     'xmen-claremont');
   assert.deepEqual(manifest.lists.find((entry) => entry.id === id), packet.proposedManifest);

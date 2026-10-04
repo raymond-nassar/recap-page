@@ -3,7 +3,6 @@ import {
   collectionsLabel,
   depthLabel,
   readingTimeLabel,
-  variantLabel,
 } from '../lib/catalog.js';
 import { labelledName } from '../lib/accname.js';
 
@@ -26,7 +25,6 @@ export function createPreviewView({
   const justAdded = new Set();
   let loadToken = null;
   let previewList = null;
-  let previewStory = null;
 
   function addButton(list) {
     const inLibrary = isInLibrary(list.id);
@@ -54,7 +52,6 @@ export function createPreviewView({
     const nodes = elements();
     if (!previewList || !nodes.dialog.open) return;
     nodes.add.replaceChildren(addButton(previewList));
-    presentation.markOwnedPaths(nodes.paths, previewStory);
   }
 
   function returnFocus(held) {
@@ -86,9 +83,8 @@ export function createPreviewView({
   function paint(list) {
     const nodes = elements();
     previewList = list;
-    nodes.heading.textContent = previewStory ? previewStory.name : list.name;
+    nodes.heading.textContent = list.name;
     nodes.meta.textContent = [
-      previewStory ? variantLabel(list) : null,
       `${list.count} issue${list.count === 1 ? '' : 's'}`,
       ...catalogGapLabels(list),
       collectionsLabel(list),
@@ -138,15 +134,10 @@ export function createPreviewView({
     }
   }
 
-  async function open(list, story = null) {
+  async function open(list) {
     const nodes = elements();
-    previewStory = story && story.lists.length > 1 ? story : null;
-    nodes.paths.replaceChildren(...(previewStory
-      ? [presentation.pathChooser(previewStory, 'preview', (next) => {
-        paint(next);
-        void loadIssues(next);
-      })]
-      : []));
+    nodes.paths.replaceChildren();
+    nodes.paths.hidden = true;
     paint(list);
     nodes.dialog.showModal();
     await loadIssues(list);
@@ -159,10 +150,9 @@ export function createPreviewView({
       if (event.target === nodes.dialog) nodes.dialog.close();
     });
     nodes.dialog.addEventListener('close', async () => {
-      const chose = previewStory;
+      const closedList = previewList;
       previewList = null;
-      previewStory = null;
-      await onClose(chose);
+      await onClose(closedList);
     });
   }
 

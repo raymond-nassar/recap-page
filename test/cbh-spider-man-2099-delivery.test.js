@@ -10,9 +10,13 @@ import {
   validateReportDigest,
 } from '../scripts/lib/cbh-inventory.mjs';
 import { buildMarkdown } from '../scripts/author-cbh-packet.mjs';
-import { buildReportForMapping } from '../scripts/report-order-overlap.mjs';
+
 import { historicalAgathaLibrarySnapshot } from './helpers/agatha-historical-library.mjs';
 import { parseChecklist } from '../src/js/lib/markdown.js';
+import {
+  buildHistoricalReadingChoiceReport as buildReportForMapping,
+  historicalReadingChoiceManifest,
+} from './helpers/reading-choice-history.mjs';
 
 const id = 'spider-man-2099-reading-order';
 const readJson = async (file) => JSON.parse(await readFile(file, 'utf8'));

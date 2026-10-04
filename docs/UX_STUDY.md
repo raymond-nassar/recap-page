@@ -67,7 +67,7 @@ Severity: 2, single-rater estimate
 Rationale: occurs on the single most repeated action in the product, persists for the life of the
 list, and grows with list length, but degrades speed rather than blocking the task
 Confidence: Measured
-Evidence: `docs/ux-artifacts/render-cost.json`, `src/js/main.js:87-93`, `src/js/main.js:2508-2530`
+Evidence: `docs/ux-artifacts/render-cost.json`, `src/js/main.js:87-93`, `src/js/main.js:2505-2527`
 Source: live UI framing, reacted to the store wiring while reading `src/js/main.js`
 Impact: marking one issue read rebuilds the rail, all 219 rows and the progress block, which is
 4,485 DOM nodes and 1,533 row controls, at a median of 21.9 ms synchronous and 75.7 ms to paint,
@@ -86,7 +86,7 @@ Severity: 3, single-rater estimate
 Rationale: affects several primary flows, is permanent rather than transient, and splits the
 product's voice in two at exactly the moments a reader is deciding something
 Confidence: Observed
-Evidence: `src/js/main.js:1856`, `src/js/views/reading.js:347-355`, `src/js/views/reading.js:372-386`, against
+Evidence: `src/js/main.js:1853`, `src/js/views/reading.js:347-355`, `src/js/views/reading.js:372-386`, against
 `src/js/main.js:512-537`
 Source: heuristic 4 sweep, code-only framing
 Impact: the application has a careful in-page notice system with live regions, and then reports
@@ -252,7 +252,7 @@ Notable passes, recorded because a reader would reasonably expect them to fail:
 * 3.2.2 On Input passes, overturning a tool result. HTML_CodeSniffer flagged `#form-catalog-search`
   under H32.2 for having no submit button on both scanned surfaces. The form is search-as-you-type
   and calls `preventDefault` on submit, results update in place, and no change of context occurs,
-  so the criterion is met. Evidence: `src/index.html:539-544`, `src/js/views/catalog.js:409-438`.
+  so the criterion is met. Evidence: `src/index.html:539-544`, `src/js/views/catalog.js:416-445`.
 
 #### UX-A-001: The primary call to action and the accent text fall below 4.5:1
 
@@ -836,7 +836,7 @@ sentence frames rather than quotations. Nobody said these words.
   `src/index.html:276-321` and `src/index.html:300-301`.
 * When I open a crossover I have never read, I want to know how much reading I am committing to
   before I import it, so I can pick the essential path or the complete path deliberately. Traced to
-  `src/js/views/preview.js:141-153`.
+  `src/js/views/preview.js:83-96`.
 * When an issue has no metadata yet, I want the app to say so plainly, so I can tell a pending
   lookup apart from a comic that does not exist. Traced to `src/js/views/reading.js:839-840`.
 * When I have read half of a long order across several sittings, I want to come back and see where

@@ -15,10 +15,14 @@ import {
   buildMarkdown,
   selectedIssueIds,
 } from '../scripts/author-cbh-packet.mjs';
-import { buildReportForMapping, loadLibrarySnapshot } from '../scripts/report-order-overlap.mjs';
+
 import { parseCatalog, searchCatalog, shelfKey } from '../src/js/lib/catalog.js';
 import { parseManifest } from '../src/js/lib/curated.js';
 import { parseChecklist } from '../src/js/lib/markdown.js';
+import {
+  buildHistoricalReadingChoiceReport as buildReportForMapping,
+  loadHistoricalReadingChoiceLibrary as loadLibrarySnapshot,
+} from './helpers/reading-choice-history.mjs';
 
 const id = 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide';
 const sourceUrl = `https://www.comicbookherald.com/${id}/`;
@@ -219,7 +223,7 @@ test('Greg Pak publishes the exact 107-row creator route without replacing Plane
   assert.equal(originalPlanetHulk.items.length, 15);
   assert.deepEqual(originalPlanetHulk.items.map((item) => item.issueId),
     report.comparisons.find((row) => row.orderId === 'planet-hulk').sharedIds.map(Number));
-  assert.equal(manifest.lists.length, 209);
+  assert.equal(manifest.lists.length, 210);
   assert.deepEqual(parseManifest(manifest).errors, []);
   const position = manifest.lists.findIndex((entry) => entry.id === id);
   assert.equal(manifest.lists[position - 1].id, 'planet-hulk');

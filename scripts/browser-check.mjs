@@ -39,7 +39,7 @@ import {
 } from '../src/js/lib/localServer.js';
 import { DEFAULT_BASE } from '../src/js/api.js';
 import {
-  availablePublishingCategories, decadeSections, eraSections, groupCatalog, publishingAgeGroups,
+  availablePublishingCategories, catalogEntries, decadeSections, eraSections, publishingAgeGroups,
   shelfSections,
 } from '../src/js/lib/catalog.js';
 import { readerIssueId } from '../src/js/lib/markdown.js';
@@ -283,14 +283,11 @@ const shelfEntry = (id, name, extra = {}) => ({
   ...extra,
 });
 
-// Thirty-four entries make thirty-two stories. Three event stories sit on one path, while two
-// storylines each cross to another browse screen. The thirteen Character Spotlight stories put
+// Thirty-six entries make thirty-four logical stories. Four event choices share three path stops,
+// while two storylines each cross to another browse screen. Fourteen Character Spotlight choices put
 // that shelf over its search threshold, the ten extra events do the same for Timeline, and five
 // screen companions populate MCU Prep.
-// The third stop is a story read two ways, which is the case the shelf and the path disagree about
-// most easily: the
-// path step names one reading, the shelf draws one row for the story, and the stop has to be
-// named the way the row is or it points at something not on screen.
+// The third stop offers two explicit guides that share one logical placement and saved progress.
 //
 // The character fixture freezes the five Best of and two complete-guide baseline that introduced the
 // filter behavior. Current catalog totals are checked separately against the real bundled data. The
@@ -367,8 +364,7 @@ const CATALOG = {
       name: 'The Fixture Path',
       description: 'A fixture path used only by the browser check.',
       sourceOrigin: 'Fixture',
-      // The last step names the *short* reading on purpose, so a row that echoed the step rather
-      // than resolving it to the story would read "Third Stop: The Short Way" and be caught.
+      // The authored short guide controls the unowned stop action; its saved sibling stays equivalent.
       steps: ['browser-check', 'browser-check-two', 'browser-check-three-short'],
     },
     {
@@ -470,14 +466,14 @@ const SPARSE_PUBLISHING_CATALOG = {
 };
 
 const FIXTURE_SHELVES = new Map(
-  shelfSections(groupCatalog(CATALOG.lists)).map((shelf) => [shelf.key, shelf.stories]),
+  shelfSections(catalogEntries(CATALOG.lists)).map((shelf) => [shelf.key, shelf.stories]),
 );
 const FIXTURE_TIMELINE_SECTIONS = eraSections(FIXTURE_SHELVES.get('catalog'));
 const FIXTURE_STORYLINE_SECTIONS = decadeSections(FIXTURE_SHELVES.get('lines'));
-const FIXTURE_PUBLISHING_GROUPS = publishingAgeGroups(groupCatalog(PUBLISHING_CATALOG.lists));
-const FIXTURE_PUBLISHING_AGES = availablePublishingCategories(groupCatalog(PUBLISHING_CATALOG.lists));
+const FIXTURE_PUBLISHING_GROUPS = publishingAgeGroups(catalogEntries(PUBLISHING_CATALOG.lists));
+const FIXTURE_PUBLISHING_AGES = availablePublishingCategories(catalogEntries(PUBLISHING_CATALOG.lists));
 const FIXTURE_MODERN_PERIODS = availablePublishingCategories(
-  groupCatalog(PUBLISHING_CATALOG.lists),
+  catalogEntries(PUBLISHING_CATALOG.lists),
   'modern',
 );
 const IMPORT_BUTTON = `#catalog-results button[aria-label="Add to library: ${CATALOG.lists[0].name}"]`;
@@ -2260,13 +2256,15 @@ const SCENARIOS = [
       // The acceptance criterion, read off the page rather than off the model. A route whose steps
       // straddle a heading is a route the heading is telling the reader not to follow.
       let head = null;
-      const mainPathTitles = new Set(['Browser Check Order', 'Second Stop', 'Third Stop']);
+      const mainPathTitles = new Set([
+        'Browser Check Order', 'Second Stop', 'Third Stop: The Long Way', 'Third Stop: The Short Way',
+      ]);
       const under = new Map();
       for (const x of shelf) {
         if (x.kind === 'head') head = x.heading;
         else if (x.step && mainPathTitles.has(x.title)) under.set(x.title, head);
       }
-      t.check('every stop of the path is on the shelf', under.size === 3, JSON.stringify([...under]));
+      t.check('all four guides for the three path stops are on the shelf', under.size === 4, JSON.stringify([...under]));
       t.check('and every one of them sits under the same era',
         [...under.values()].every((h) => h === expectedTimelineHeading), JSON.stringify([...under]));
 
@@ -2385,9 +2383,9 @@ const SCENARIOS = [
       await openBrowseCategory(page, 'character-spotlights');
       await page.waitForSelector('#spotlights-results .catalog-card', { timeout: 15000 });
       const spotlights = await readShelf('#spotlights-results');
-      t.check('Character spotlights holds every character story without a redundant group heading',
+      t.check('Character spotlights holds every named guide without a redundant group heading',
         spotlights.filter((x) => x.kind === 'head').length === 0
-        && spotlights.filter((x) => x.kind === 'row').length === 13
+        && spotlights.filter((x) => x.kind === 'row').length === 14
         && spotlights.some((x) => x.kind === 'row' && x.title === 'Off The Path'),
         JSON.stringify(spotlights));
       t.check('spotlight cards sit directly under the view heading',
@@ -2401,7 +2399,7 @@ const SCENARIOS = [
     async run(page, t) {
       await open(page, '/');
       await click(page, '[data-view="spotlights"]');
-      await page.waitForFunction(() => document.querySelectorAll('#spotlights-results .catalog-card').length === 13);
+      await page.waitForFunction(() => document.querySelectorAll('#spotlights-results .catalog-card').length === 14);
 
       const cardTitles = () => page.$$eval(
         '#spotlights-results .catalog-card-title',
@@ -2433,7 +2431,8 @@ const SCENARIOS = [
       const currentTitles = [
         'Off The Path',
         'Essential Avengers',
-        'X-Men',
+        'X-Men Spine',
+        'X-Men Complete',
         'Phoenix',
         'Captain America',
         'Spider-Man',
@@ -2452,7 +2451,8 @@ const SCENARIOS = [
         'Scarlet Witch',
         'Phoenix',
         'Essential Avengers',
-        'X-Men',
+        'X-Men Spine',
+        'X-Men Complete',
         'Off The Path',
         'White Tiger',
         'Phalanx',
@@ -3278,7 +3278,7 @@ const SCENARIOS = [
       };
       t.check('desktop All, Complete, and Best of counts classify Adam exactly once',
         desktop.all.readings === 70 && desktop.all.stories === 69
-        && desktop.all.cards === 69 && desktop.all.adamCards === 1
+        && desktop.all.cards === 70 && desktop.all.adamCards === 1
         && desktop.complete.readings === 38 && desktop.complete.stories === 38
         && desktop.complete.cards === 38 && desktop.complete.adamCards === 1
         && desktop.bestOf.readings === 7 && desktop.bestOf.stories === 7
@@ -3294,7 +3294,7 @@ const SCENARIOS = [
       };
       t.check('narrow All, Complete, and Best of counts preserve Adam without horizontal overflow',
         narrow.all.readings === 70 && narrow.all.stories === 69
-        && narrow.all.cards === 69 && narrow.all.adamCards === 1
+        && narrow.all.cards === 70 && narrow.all.adamCards === 1
         && narrow.complete.readings === 38 && narrow.complete.stories === 38
         && narrow.complete.cards === 38 && narrow.complete.adamCards === 1
         && narrow.bestOf.readings === 7 && narrow.bestOf.stories === 7
@@ -4793,8 +4793,8 @@ const SCENARIOS = [
         && timeline.oldPlainAction === false
         && timeline.setupCards === 1,
         JSON.stringify(timeline));
-      t.check('148 selected lists render as 144 cards beginning with the owner chapters',
-        timeline.cards === 144
+      t.check('148 selected lists render as 148 distinct cards beginning with the owner chapters',
+        timeline.cards === 148
         && timeline.chapterCards === 78
         && JSON.stringify(timeline.firstCards) === JSON.stringify([
           { title: 'Daredevil & Black Widow Opening Sequence', year: 1998 },
@@ -4920,7 +4920,7 @@ const SCENARIOS = [
         emptyMarkers: document.querySelectorAll('#catalog-results .timeline-year-marker.is-empty').length,
       }));
       await click(page, '#catalog-clear');
-      await page.waitForFunction(() => document.querySelectorAll('#catalog-results .catalog-card').length >= 144);
+      await page.waitForFunction(() => document.querySelectorAll('#catalog-results .catalog-card').length === 148);
       await page.$eval('#catalog-filters input:not([value="all"])', (input) => input.click());
       const filtered = await page.evaluate(() => ({
         featureVisible: Boolean(document.querySelector('#modern-timeline-feature')),
@@ -4937,7 +4937,7 @@ const SCENARIOS = [
         && filtered.emptyMarkers === 0,
         JSON.stringify({ searched, filtered }));
       await page.$eval('#catalog-filters input[value="all"]', (input) => input.click());
-      await page.waitForFunction(() => document.querySelectorAll('#catalog-results .catalog-card').length >= 144);
+      await page.waitForFunction(() => document.querySelectorAll('#catalog-results .catalog-card').length === 148);
 
       await page.setViewport({ width: 320, height: 900 });
       const denseYear = await page.evaluate(() => {
@@ -5041,7 +5041,7 @@ const SCENARIOS = [
         )),
         JSON.stringify(representativeResults));
       await click(page, '#catalog-clear');
-      await page.waitForFunction(() => document.querySelectorAll('#catalog-results .catalog-card').length >= 144);
+      await page.waitForFunction(() => document.querySelectorAll('#catalog-results .catalog-card').length === 148);
 
       const excluded = [
         ['spider-man-identity-crisis', 'Spider-Man: Identity Crisis'],
@@ -6279,7 +6279,7 @@ const SCENARIOS = [
         JSON.stringify(ageVertical));
 
       await page.evaluate(() => { window.__mrtMutation = 'import-fail'; });
-      await click(page, '#age-event-era-results [data-story="bc-third"] [data-act="import"]');
+      await click(page, '#age-event-era-results [data-story="list:browser-check-three-main"] [data-act="import"]');
       await page.waitForFunction(
         () => (document.querySelector('#age-event-era-report')?.textContent ?? '').trim().length > 0,
         { timeout: 15000 },
@@ -6319,19 +6319,22 @@ const SCENARIOS = [
         JSON.stringify(narrowAge));
       await page.setViewport({ width: 1280, height: 900 });
 
-      await click(page, '#age-event-era-results [data-story="bc-third"] [data-act="preview"]');
-      await page.waitForSelector('#preview[open] input[data-key="browser-check-three-short"]');
-      await click(page, '#preview input[data-key="browser-check-three-short"]');
+      await click(page, '#age-event-era-results [data-story="list:browser-check-three-short"] [data-act="preview"]');
+      await page.waitForSelector('#preview[open] .preview-issue-link');
+      t.check('an age-leaf Preview inspects the explicitly named short guide without a chooser',
+        await page.$eval('#preview-h', (heading) => heading.textContent) === 'Third Stop: The Short Way'
+        && await page.$eval('#preview-paths', (paths) => paths.hidden && paths.children.length === 0));
       await click(page, '#preview-close');
       await page.waitForFunction(() => !document.querySelector('#preview')?.open);
-      const repainted = await page.$eval(
-        '#age-event-era-results [data-story="bc-third"] [data-act="import"]',
-        (button) => button.getAttribute('aria-label'),
-      );
-      t.check('closing Preview repaints the chosen reading option on the age leaf',
-        repainted?.includes('Third Stop: The Short Way'), repainted);
+      const independent = await page.evaluate(() => ['main', 'short'].map((choice) => (
+        document.querySelector(`#age-event-era-results [data-story="list:browser-check-three-${choice}"] [data-act="import"]`)
+          ?.getAttribute('aria-label')
+      )));
+      t.check('closing Preview leaves both age-leaf guide actions independently named',
+        independent.join('|') === 'Add to library: Third Stop: The Long Way|Add to library: Third Stop: The Short Way',
+        JSON.stringify(independent));
 
-      await click(page, '#age-event-era-results [data-story="bc-third"] [data-act="import"]');
+      await click(page, '#age-event-era-results [data-story="list:browser-check-three-short"] [data-act="import"]');
       await page.waitForFunction(() => document.querySelector('#view-read')?.hidden === false);
       const imported = await page.$eval('#order-name', (heading) => heading.textContent.trim());
       t.check('Add from an age leaf imports through the existing catalog flow',
@@ -6339,7 +6342,7 @@ const SCENARIOS = [
 
       await open(page, '/#/age-event-era');
       await page.waitForSelector('#age-event-era-results .catalog-card', { timeout: 15000 });
-      await click(page, '#age-event-era-results [data-story="bc-third"] [data-act="preview"]');
+      await click(page, '#age-event-era-results [data-story="list:browser-check-three-short"] [data-act="preview"]');
       await page.waitForSelector('#preview[open]');
       await click(page, '#preview-add [data-act="main"]');
       await page.waitForFunction(() =>
@@ -6911,7 +6914,7 @@ const SCENARIOS = [
   },
   {
     id: 'catalog-gaps',
-    title: 'catalog cards and Preview disclose selected guide gaps',
+    title: 'independent catalog cards and Preview disclose their own guide gaps',
     async run(page, t) {
       const cardMeta = (title) => page.$$eval(
         '#catalog-results .catalog-card',
@@ -6928,7 +6931,8 @@ const SCENARIOS = [
       const zero = await cardMeta('Avengers Disassembled');
       const one = await cardMeta('Browser Check Order');
       const many = await cardMeta('Second Stop');
-      const selectedBefore = await cardMeta('Third Stop');
+      const shortBefore = await cardMeta('Third Stop: The Short Way');
+      const longBefore = await cardMeta('Third Stop: The Long Way');
       t.check(
         'cards omit zero and use truthful singular and plural gap labels',
         zero === '3 issues'
@@ -6937,22 +6941,25 @@ const SCENARIOS = [
         JSON.stringify({ zero, one, many }),
       );
       t.check(
-        'the grouped card starts with the selected essential guide disclosure',
-        selectedBefore === '3 issues · 1 issue has no Marvel Unlimited link yet and cannot be opened',
-        selectedBefore,
+        'each guide card shows its own essential or complete gap disclosure',
+        shortBefore === '3 issues · 1 issue has no Marvel Unlimited link yet and cannot be opened'
+          && longBefore === '3 issues · 2 issues have no details, covers, or Unlimited links',
+        JSON.stringify({ shortBefore, longBefore }),
       );
 
-      await click(page, '#catalog-results [data-story="bc-third"] [data-act="preview"]');
+      await click(page, '#catalog-results [data-story="list:browser-check-three-short"] [data-act="preview"]');
       await page.waitForSelector('#preview[open]');
       const previewBefore = await page.$eval('#preview-meta', (node) => node.textContent.trim());
-      await click(page, '#preview-paths input[data-key="browser-check-three-main"]');
+      await click(page, '#preview-close');
+      await page.waitForFunction(() => !document.querySelector('#preview')?.open);
+      await click(page, '#catalog-results [data-story="list:browser-check-three-main"] [data-act="preview"]');
       await page.waitForFunction(() => (
-        document.querySelector('#preview-meta')?.textContent
+        document.querySelector('#preview')?.open && document.querySelector('#preview-meta')?.textContent
           .includes('2 issues have no details, covers, or Unlimited links')
       ));
       const previewAfter = await page.$eval('#preview-meta', (node) => node.textContent.trim());
       t.check(
-        'Preview repaints from singular placeholder disclosure to plural empty-record disclosure',
+        'each explicitly opened Preview shows its own singular or plural disclosure',
         previewBefore.includes('1 issue has no Marvel Unlimited link yet and cannot be opened')
           && !previewBefore.includes('no details')
           && previewAfter.includes('2 issues have no details, covers, or Unlimited links')
@@ -6962,17 +6969,12 @@ const SCENARIOS = [
 
       await click(page, '#preview-close');
       await page.waitForFunction(() => !document.querySelector('#preview')?.open);
-      await page.waitForFunction(() => (
-        [...document.querySelectorAll('#catalog-results .catalog-card')]
-          .find((card) => card.querySelector('.catalog-card-title')?.textContent.trim() === 'Third Stop')
-          ?.querySelector('.catalog-card-meta')?.textContent
-          .includes('2 issues have no details, covers, or Unlimited links')
-      ));
-      const selectedAfter = await cardMeta('Third Stop');
+      const shortAfter = await cardMeta('Third Stop: The Short Way');
+      const longAfter = await cardMeta('Third Stop: The Long Way');
       t.check(
-        'closing Preview repaints the originating card with the chosen guide disclosure',
-        selectedAfter === '3 issues · 2 issues have no details, covers, or Unlimited links',
-        selectedAfter,
+        'closing Preview cannot change the other guide card or its gap disclosure',
+        shortAfter === shortBefore && longAfter === longBefore,
+        JSON.stringify({ shortAfter, longAfter }),
       );
 
       await page.setViewport({ width: 390, height: 844 });
@@ -7002,9 +7004,9 @@ const SCENARIOS = [
   },
   {
     id: 'first-stop-orientation',
-    title: 'the visible shelf names the selected guide at its first stop',
+    title: 'the visible shelf names independent first-stop guides as alternatives',
     async run(page, t) {
-      const text = 'Start The Fixture Path with Browser Check Order.';
+      const alternatives = 'Start The Fixture Path with Browser Check Order or Browser Check Order: Complete.';
       const multiple = 'Start The Fixture Path with Browser Check Order; start Parallel Fixture Path with Parallel First Stop.';
       const readOrientation = () => page.evaluate(() => {
         const orientation = document.querySelector('#catalog-results .shelf-orientation');
@@ -7102,22 +7104,21 @@ const SCENARIOS = [
         '#spotlights-results .shelf-orientation',
         (orientation) => orientation.textContent.trim(),
       );
-      t.check('the sentence follows the moved first stop to its visible shelf', moved === text, moved);
+      t.check('the sentence follows both moved alternatives to their visible shelf', moved === alternatives, moved);
 
-      await click(page, '#spotlights-results [data-story="bc-first"] [data-act="preview"]');
+      await click(page, '#spotlights-results [data-story="list:browser-check-complete"] [data-act="preview"]');
       await page.waitForSelector('#preview[open]');
-      await click(page, '#preview-paths input[data-key="browser-check-complete"]');
+      t.check('the Complete card directly previews its own guide without switching alternatives',
+        await page.$eval('#preview-h', (heading) => heading.textContent) === 'Browser Check Order: Complete'
+        && await page.$eval('#preview-paths', (paths) => paths.hidden && paths.children.length === 0));
       await click(page, '#preview-close');
-      await page.waitForFunction(() => (
-        document.querySelector('#spotlights-results .shelf-orientation')?.textContent
-          === 'Start The Fixture Path with Browser Check Order: Complete.'
-      ));
+      await page.waitForFunction(() => !document.querySelector('#preview')?.open);
       const selected = await page.$eval(
         '#spotlights-results .shelf-orientation',
         (orientation) => orientation.textContent.trim(),
       );
-      t.check('changing the selected guide updates the sentence',
-        selected === 'Start The Fixture Path with Browser Check Order: Complete.',
+      t.check('closing a guide Preview retains both first-stop alternatives in the sentence',
+        selected === alternatives,
         selected);
     },
   },
@@ -7141,12 +7142,15 @@ const SCENARIOS = [
       const row = (name) => rows.find((r) => r.title === name);
       const first = row('Browser Check Order');
       const middle = row('Second Stop');
-      const last = row('Third Stop');
+      const long = row('Third Stop: The Long Way');
+      const last = row('Third Stop: The Short Way');
 
-      t.check('the shelf draws one card per event story, not one per reading',
+      t.check('the shelf draws one independently named card per event guide',
         rows.length === FIXTURE_SHELVES.get('catalog').length,
         `${rows.length} cards: ${rows.map((r) => r.title).join(' / ')}`);
-      t.check('a story read two ways is on the shelf under its own name', Boolean(last), rows.map((r) => r.title).join(' / '));
+      t.check('both alternatives share the same third-stop placement',
+        long?.pathSummary === 'Step 3/3' && last?.pathSummary === 'Step 3/3',
+        JSON.stringify({ long, last }));
 
       t.check('the first stop is badged so a reader can find it at a glance', first?.pathSummary === 'Start · 1/3', JSON.stringify(first));
       t.check('and still says how long the path is', first?.step?.includes('Step 1 of 3') === true, JSON.stringify(first));
@@ -7157,9 +7161,7 @@ const SCENARIOS = [
       // Deliberately absent. The shelf is sorted by year, so the previous stop is the row above,
       // and printing it made the longest thing on the line a copy of the line before it.
       t.check('and does not restate the stop above it', middle?.step?.includes('Browser Check Order') === false, JSON.stringify(middle?.step));
-      // The step named the short reading; the shelf row is the story. If the app echoed the step
-      // this would read "Next: Third Stop: The Short Way" and point at a row nobody can see.
-      t.check('and names the next stop by its story, not by one reading of it', middle?.step?.includes('Next: Third Stop') === true && !middle.step.includes('Short Way'), JSON.stringify(middle?.step));
+      t.check('and keeps the logical next-stop name shared by both alternatives', middle?.step?.includes('Next: Third Stop') === true && !middle.step.includes('Short Way'), JSON.stringify(middle?.step));
 
       t.check('the last stop says the path ends there', last?.step?.includes('Last stop') === true, JSON.stringify(last?.step));
       t.check('and is numbered last', last?.pathSummary === 'Step 3/3', JSON.stringify(last));
@@ -10962,24 +10964,20 @@ const SCENARIOS = [
 
       await page.focus(last);
       await page.keyboard.press('Enter');
-      await page.waitForSelector('#preview[open] input[data-key="browser-check-three-main"]');
-      await click(page, '#preview input[data-key="browser-check-three-main"]');
-      const complete = await page.$eval('#preview-meta', (node) => node.textContent);
-      const completeSource = await page.$eval('#preview-source', (node) => node.textContent);
-      await click(page, '#preview input[data-key="browser-check-three-short"]');
+      await page.waitForSelector('#preview[open] .preview-issue-link');
       const short = await page.evaluate(() => ({
+        title: document.querySelector('#preview-h').textContent,
         meta: document.querySelector('#preview-meta').textContent,
         source: document.querySelector('#preview-source').textContent,
-        selected: document.querySelector('#preview input:checked')?.dataset.key,
+        choices: document.querySelectorAll('#preview-paths input').length,
         add: document.querySelector('#preview-add button')?.dataset.key,
       }));
-      t.check('grouped stops retain both reading choices and choice-specific gap metadata',
-        complete.includes('2 issues have no details')
+      t.check('an unowned grouped stop directly previews its authored short guide and exact metadata',
+        short.title === 'Third Stop: The Short Way'
         && short.meta.includes('1 issue has no Marvel Unlimited link')
-        && completeSource.includes('Complete fixture source')
         && short.source.includes('Essential fixture source')
-        && short.selected === 'browser-check-three-short' && short.add === short.selected,
-        JSON.stringify({ complete, short }));
+        && short.choices === 0 && short.add === 'browser-check-three-short',
+        JSON.stringify(short));
       const shortIssue = '#preview[open] .preview-issue-link[data-context-id="browser-check-three-short"]';
       await page.waitForSelector(shortIssue, { visible: true, timeout: 15000 });
       await page.focus(shortIssue);
@@ -10991,17 +10989,18 @@ const SCENARIOS = [
       const returned = await page.evaluate(() => ({
         path: document.querySelector('#reading-path-select').value,
         choices: document.querySelectorAll('#preview-paths input').length,
-        selected: document.querySelector('#preview input:checked')?.dataset.key,
+        title: document.querySelector('#preview-h').textContent,
+        add: document.querySelector('#preview-add button')?.dataset.key,
         meta: document.querySelector('#preview-meta').textContent,
       }));
-      t.check('Back from preview issue details restores the path, chooser and selected reading',
-        returned.path === 'bc-path' && returned.choices === 2
-        && returned.selected === 'browser-check-three-short'
+      t.check('Back from preview issue details restores the path and exact authored guide without a chooser',
+        returned.path === 'bc-path' && returned.choices === 0
+        && returned.title === 'Third Stop: The Short Way' && returned.add === 'browser-check-three-short'
         && returned.meta.includes('1 issue has no Marvel Unlimited link'), JSON.stringify(returned));
       await page.keyboard.press('Escape');
       await page.waitForFunction((selector) => !document.querySelector('#preview').open
         && document.activeElement === document.querySelector(selector), {}, last);
-      t.check('inspection and reading-option changes neither import nor mark anything read',
+      t.check('inspecting either stop neither imports nor marks anything read',
         JSON.stringify(await readState(page)) === JSON.stringify(before));
 
       const library = fixtureReadingState();
@@ -11157,7 +11156,7 @@ const SCENARIOS = [
       t.check('a late earlier catalog continuation cannot overwrite the newer path route',
         lateRoute.hash === '#/reading-paths?path=spotlight-arrival'
         && lateRoute.selected === 'spotlight-arrival'
-        && lateRoute.titles.join('|') === 'Third Stop|Off The Path',
+        && lateRoute.titles.join('|') === 'Third Stop: The Long Way|Off The Path',
         JSON.stringify(lateRoute));
 
       await click(page, '.brand[data-view="home"]');
@@ -13463,6 +13462,14 @@ SCENARIOS.push({
         .map((number) => `Daredevil (1998) #${number}`),
       ...[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((number) => `Daredevil (2019) #${number}`),
     ];
+    const expectedScreenTitles = [
+      'Doctor Strange: Multiverse of Madness', 'Spider-Man: No Way Home',
+      'Marvel Multiverse', 'Marvel What If?', 'WandaVision', 'Spider-Man: Far From Home',
+      'Shang-Chi and the Legend of the Ten Rings', 'MCU Prep: Thunderbolts*',
+      'Moon Knight: MCU Prep', 'Eternals', 'MCU Prep: Deadpool & Wolverine',
+      'Avengers: Doomsday & Avengers: Secret Wars', 'MCU Prep: Daredevil: Born Again',
+    ];
+    const expectedScreenCount = `${expectedScreenTitles.length} Reading Lists`;
     const payload = JSON.parse(readFileSync(
       new URL('../src/data/mcu_prep_daredevil_born_again.json', import.meta.url), 'utf8',
     ));
@@ -13510,10 +13517,10 @@ SCENARIOS.push({
         title: node.querySelector('.home-path-title')?.textContent.trim(),
         count: node.querySelector('.home-path-count')?.textContent.trim(),
       }));
-      t.check(`${width}px: Home exposes the populated twelve-list MCU Prep gateway`,
-        home.visible && home.title === 'MCU Prep' && home.count === '12 Reading Lists',
+      t.check(`${width}px: Home exposes every independent MCU Prep reading choice`,
+        home.visible && home.title === 'MCU Prep' && home.count === expectedScreenCount,
         JSON.stringify(home));
-      if (!home.visible || home.count !== '12 Reading Lists') return;
+      if (!home.visible || home.count !== expectedScreenCount) return;
       await click(page, homeSelector);
       const cardSelector = `#marvel-on-screen-results [data-story="list:${id}"]`;
       const homeHash = formatRoute({ view: 'marvel-on-screen', listId: before.active });
@@ -13544,19 +13551,10 @@ SCENARIOS.push({
           path: Boolean(selected?.querySelector('.result-path')),
         };
       }, `[data-story="list:${id}"]`);
-      t.check(`${width}px: Browse keeps all twelve companions in the integrated catalog order`,
-        browse.title === 'Browse MCU Prep' && browse.count === '12 Reading Lists'
-        && browse.cards === 12 && browse.selectedCount === 1
-        && browse.titles.join('|') === [
-          'Doctor Strange: Multiverse of Madness', 'Spider-Man: No Way Home',
-          'Marvel Multiverse', 'Marvel What If?', 'WandaVision', 'Spider-Man: Far From Home',
-          'Shang-Chi and the Legend of the Ten Rings',
-          'MCU Prep: Thunderbolts*',
-          'Moon Knight: MCU Prep',
-          'Eternals',
-          'MCU Prep: Deadpool & Wolverine',
-          'MCU Prep: Daredevil: Born Again',
-        ].join('|'), JSON.stringify(browse));
+      t.check(`${width}px: Browse keeps every companion in the integrated catalog order`,
+        browse.title === 'Browse MCU Prep' && browse.count === expectedScreenCount
+        && browse.cards === expectedScreenTitles.length && browse.selectedCount === 1
+        && browse.titles.join('|') === expectedScreenTitles.join('|'), JSON.stringify(browse));
       t.check(`${width}px: MCU Prep has no new shelf, timeline, path or horizontal overflow`,
         !browse.orientation && !browse.path && browse.scrollWidth <= browse.viewport
         && (width === 390 ? browse.columns === 1 : browse.columns > 1),
@@ -15835,6 +15833,7 @@ SCENARIOS.push((await import('./browser-mcu-prep-deadpool-and-wolverine.mjs')).d
 const { eternalsActualData, eternalsCollectionMutation } = await import('./browser-mcu-prep-eternals.mjs');
 SCENARIOS.push(eternalsActualData);
 MUTATIONS.push(eternalsCollectionMutation);
+SCENARIOS.push((await import('./browser-reading-list-choices.mjs')).readingListChoices);
 
 // Without this an unexpected throw leaves an unhandled rejection, which Node reports as a bare
 // stack and exits 1 on. Exit 1 is this check's word for "an assertion failed", so an internal
