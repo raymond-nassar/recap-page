@@ -224,14 +224,14 @@ test('Ultimate Spider-Man binds every current library peer to its independent ap
       'shang-chi-master-of-kung-fu-reading-order',
       'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order',
       'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order', 'namor-sub-mariner-reading-order',
-      'iron-fist-reading-order', 'spider-man-no-way-home-owner-selected', 'mcu-prep-daredevil-born-again'],
+      'iron-fist-reading-order', 'spider-man-no-way-home-owner-selected', 'mcu-prep-daredevil-born-again', 'mcu-prep-eternals'],
   });
   const expectedOrderIds = library.lists.filter((entry) => entry.id !== id
     && entry.id !== 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide'
     && entry.id !== 'shang-chi-master-of-kung-fu-reading-order'
     && entry.id !== 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order'
     && entry.id !== 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order'
-    && entry.id !== 'namor-sub-mariner-reading-order' && entry.id !== 'iron-fist-reading-order' && entry.id !== 'mcu-prep-daredevil-born-again' && entry.id !== 'spider-man-no-way-home-owner-selected' && entry.id !== 'mcu-prep-thunderbolts')
+    && entry.id !== 'namor-sub-mariner-reading-order' && entry.id !== 'iron-fist-reading-order' && entry.id !== 'mcu-prep-daredevil-born-again' && entry.id !== 'mcu-prep-eternals' && entry.id !== 'spider-man-no-way-home-owner-selected' && entry.id !== 'mcu-prep-thunderbolts')
     .map((entry) => entry.id);
   assert.deepEqual(current, report);
   assert.equal(report.comparisonCount, 196);
@@ -340,7 +340,7 @@ test('Ultimate Spider-Man named checklist reproduces approved groups and 351 ori
   assert.equal(card.collections, 47);
   assert.equal(card.coverIssueId, 4372);
   assert.equal(card.source, packet.sourceUrl);
-  assert.equal(manifest.lists.length, 206);
+  assert.equal(manifest.lists.length, 207);
   const position = manifest.lists.findIndex((entry) => entry.id === id);
   assert.equal(manifest.lists[position + 1].id, 'venom-reading-order');
   assert.deepEqual(manifest.lists[position], mapping.approvedManifest);

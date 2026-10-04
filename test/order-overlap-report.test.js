@@ -139,7 +139,8 @@ test('buildReportForMapping regenerates shipped reports without duplicate self o
   );
   const comparedIds = report.comparisons.map((comparison) => comparison.orderId);
   const laterOwnerIds = [
-    'mcu-prep-thunderbolts', 'mcu-prep-daredevil-born-again', 'spider-man-no-way-home-owner-selected',
+    'mcu-prep-thunderbolts', 'mcu-prep-daredevil-born-again', 'mcu-prep-eternals',
+    'spider-man-no-way-home-owner-selected',
   ];
 
   assert.equal(report.candidateCount, 5);

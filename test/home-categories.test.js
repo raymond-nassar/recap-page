@@ -58,7 +58,7 @@ test('the current gateway offers three primary modes and three secondary gateway
   }
   assert.equal(categories.find(({ key }) => key === 'timeline').count, 148);
   assert.equal(categories.find(({ key }) => key === 'marvel-ages').count, 204);
-  assert.equal(categories.find(({ key }) => key === 'marvel-on-screen').count, 9);
+  assert.equal(categories.find(({ key }) => key === 'marvel-on-screen').count, 10);
   assert.equal(categories.find(({ key }) => key === 'reading-paths').count, 3);
 });
 
@@ -163,6 +163,7 @@ test('MCU Prep keeps the six CBH companions before owner companions on the stabl
       'wandavision',
       'spider-man-far-from-home',
       'mcu-prep-thunderbolts',
+      'mcu-prep-eternals',
       'mcu-prep-daredevil-born-again',
       'spider-man-no-way-home-owner-selected',
     ],
