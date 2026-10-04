@@ -202,7 +202,7 @@ test('AoA published checklist preserves 262 positions under factual section head
   assert.ok(all.every((item) => !item.section || item.section.length <= MAX_COLLECTION));
   const chosen = parsed.entries.find((entry) => entry.sourceKey === '275');
   assert.match(chosen.section, /Older-edition companion: The Chosen/);
-  assert.equal(manifest.lists.length, 205);
+  assert.equal(manifest.lists.length, 206);
   assert.equal(manifest.lists[manifest.lists.findIndex((entry) => entry.id === id) + 1].id,
     'xmen-claremont');
   assert.deepEqual(manifest.lists.find((entry) => entry.id === id), packet.proposedManifest);
