@@ -148,7 +148,7 @@
   --blue: #7fb3ff;
   --logo-fill: #7fb3ff;
   /* The placeholder shown where a cover has not loaded. The hue comes from the series name at
-     `src/js/main.js:915-922`; these pairs supply saturation and lightness where that local hue is
+     `src/js/main.js:953-960`; these pairs supply saturation and lightness where that local hue is
      consumed. Keeping the hue reference on the cover avoids resolving it before the cover exists. */
   --fallback-a: 42% 26%;
   --fallback-b: 38% 14%;
@@ -2134,4 +2134,30 @@ body.nocovers .mosaic-f, .mosaic-f.show { display: flex; }
 @media (forced-colors: active) {
   .review-earlier { border-color: CanvasText; background: Canvas; }
   .review-earlier [aria-disabled="true"] { color: GrayText; }
+}
+
+.completion-wrapup { margin-block: var(--space-6); overflow-wrap: anywhere; }
+.completion-mark { min-height: 44px; color: var(--accent-text); font-weight: 600; }
+.completion-wrapup.is-completed { border-color: var(--teal); }
+.completion-actions { flex-wrap: wrap; }
+.completion-actions .btn, .completion-enjoyment .btn { min-height: 44px; white-space: normal; }
+.completion-enjoyment { border: 0; margin: var(--space-6) 0 0; display: flex; flex-wrap: wrap; gap: var(--space-4); }
+.completion-enjoyment legend { color: var(--dim); margin-bottom: var(--space-4); }
+.completion-enjoyment button[aria-pressed="true"] { border-color: var(--teal); box-shadow: inset 0 0 0 1px var(--teal); }
+.completion-enjoyment button span { display: inline-flex; align-items: center; gap: var(--space-4); }
+.completion-recommendations { margin-top: var(--space-7); }
+.recommendation-grid { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: var(--space-6); }
+.recommendation-card { min-width: 0; padding: var(--space-6); border: 1px solid var(--line); border-radius: var(--r); background: var(--panel); }
+.recommendation-card h3 { margin-top: 0; overflow-wrap: anywhere; }
+.recommendation-reasons { padding-left: var(--space-7); color: var(--dim); }
+.recommendation-card .btn { white-space: normal; min-height: 44px; }
+.yours-detail { color: var(--dim); font-size: var(--t-caption); }
+.completion-filters { border: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-4); }
+.list-feedback { overflow-wrap: anywhere; max-height: 85vh; overflow-y: auto; }
+.list-feedback h2 { font-size: var(--t-subtitle); }
+#completion-history-controls { overflow-wrap: anywhere; }
+#restore-history-file { display: block; margin-block: var(--space-4); max-width: 100%; }
+@media (forced-colors: active) {
+  .completion-wrapup.is-completed, .recommendation-card { border-color: CanvasText; }
+  .completion-enjoyment button[aria-pressed="true"] { border-color: Highlight; outline: 2px solid Highlight; }
 }

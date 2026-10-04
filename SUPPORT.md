@@ -25,6 +25,23 @@ Open a repository issue and include:
 Repository issues are the only general support channel. There is no mailing list, chat, or forum.
 This is a single-maintainer project, so replies may take a while.
 
+## Reporting a reading-list correction
+
+For a missing comic, wrong order, or incorrect comic/link, choose **Report a list problem** on a
+completed list, then **Open feedback form**. The optional Microsoft Forms route works on desktop
+and Android without reader sign-in, a name or email. It opens outside the app; saved reading data
+and your thumb choice are not attached. Reporting does not require choosing **Did not enjoy**.
+
+Enter a public list/guide title or link, or **Custom list**, then the comic series/year/issue and
+the correction. Do not include private names, notes, progress, backups, credentials or personal
+information. Reports are reviewed privately with manual raw-dashboard cleanup within 30 days;
+no personal reply is promised because contact details are not collected. Microsoft processes the
+form visit and report; see [list-feedback privacy](PRIVACY.md#optional-reading-list-feedback).
+If the form is unavailable, try again later. General support still uses repository issues.
+
+Reading-data loss/corruption or a suspected vulnerability belongs in the
+[private security route](SECURITY.md), never this correction form or a public issue.
+
 ## Asking a public project question
 
 Use the question form linked from the

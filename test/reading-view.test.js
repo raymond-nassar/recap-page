@@ -386,6 +386,7 @@ function harness(overrides = {}) {
     isCurrent: overrides.isCurrent ?? (() => true),
     isHydrationActive: overrides.isHydrationActive ?? (() => false),
     isStateBlocked: () => readerStore?.blocked ?? false,
+    isCompleted: overrides.isCompleted,
     isSynopsisActive: overrides.isSynopsisActive ?? (() => false),
     issueFocusAnchor: (item, options) => element('a', {
       class: options.className,
@@ -460,6 +461,73 @@ function harness(overrides = {}) {
     restore() { delete globalThis.document; },
   };
 }
+
+test('completed lists suppress queued hero, shelf and continuation banners without hiding the full order', () => {
+  const state = setDeferred(seededState(), 'list-a', 3, true);
+  const h = harness({ state, isCompleted: () => true });
+  try {
+    const before = JSON.stringify(h.state());
+    h.view.render();
+    assert.equal(h.nodes.hero.hidden, true);
+    assert.equal(h.nodes.shelfSec.hidden, true);
+    assert.equal(h.nodes.allRead.hidden, true);
+    assert.equal(h.nodes['all-deferred'].hidden, true);
+    assert.equal(h.nodes.readingBody.hidden, false);
+    assert.equal(h.nodes.rows.childNodes.filter((entry) => entry.className.split(/\s+/).includes('row')).length, 3);
+    assert.equal(h.nodes.ringSub.textContent, '1 of 3 read. 1 deferred');
+    assert.equal(JSON.stringify(h.state()), before);
+  } finally { h.restore(); }
+});
+
+test('completed lists ignore hidden Enter and D shortcuts until explicitly reopened', () => {
+  let completed = true;
+  const h = harness({ isCompleted: () => completed });
+  try {
+    h.view.wire();
+    h.view.wireShortcuts();
+    globalThis.document.activeElement = h.nodes.orderName;
+    const before = JSON.stringify(h.state());
+    for (const key of ['Enter', 'd', 'D']) {
+      globalThis.document.listeners.keydown({ key, preventDefault() { throw new Error('Completed shortcut acted'); } });
+    }
+    assert.equal(h.calls.launch.length, 0);
+    assert.equal(JSON.stringify(h.state()), before);
+    completed = false;
+    globalThis.document.listeners.keydown({ key: 'Enter', preventDefault() {} });
+    assert.equal(h.calls.launch.length, 1);
+    globalThis.document.listeners.keydown({ key: 'd', preventDefault() {} });
+    assert.ok(h.state().read[2]);
+  } finally { h.restore(); }
+});
+
+test('completed direct hero actions are guarded while manual rows and honest library removal remain usable', async () => {
+  let confirmation;
+  const h = harness({
+    isCompleted: () => true,
+    askConfirm: async (options) => { confirmation = options; return false; },
+  });
+  try {
+    h.view.wire();
+    h.view.render();
+    const before = JSON.stringify(h.state());
+    for (const button of [h.nodes.btnHeroRead, h.nodes.btnHeroDone, h.nodes.btnHeroInspect, h.nodes['btn-hero-defer']]) {
+      button.fire('click', { preventDefault() {} });
+    }
+    assert.equal(h.calls.launch.length, 0);
+    assert.equal(h.calls.issueFocus.length, 0);
+    assert.equal(JSON.stringify(h.state()), before);
+    let manual;
+    walk(h.nodes.rows, (entry) => {
+      if (entry.dataset?.act === 'read' && Number(entry.dataset.key) === 2) manual = entry;
+    });
+    assert.ok(manual);
+    manual.fire('click');
+    assert.ok(h.state().read[2]);
+    await h.nodes.btnDeleteList.fire('click');
+    assert.equal(confirmation.confirmLabel, 'Remove from library');
+    assert.match(confirmation.body, /personal note and custom order.*read progress is kept.*Bundled Reading Lists are unchanged/);
+  } finally { h.restore(); }
+});
 
 test('reading view exports helpers and keeps forbidden dependencies out of the module', () => {
   assert.equal(typeof createReadingView, 'function');
@@ -884,7 +952,7 @@ test('delete keeps the chosen list buffered, ignores stale catalog ids, and clea
     assert.equal(Boolean(h.state().lists['list-a']), false);
     assert.equal(Boolean(h.state().lists['list-b']), true);
     const notice = h.calls.notify.at(-1);
-    assert.match(notice.msg, /Deleted List A/);
+    assert.match(notice.msg, /Removed List A from your library/);
 
     assert.equal(h.view.forgetDeletedFor('cat-b', 'List B'), null);
     notice.action.onClick();
@@ -917,7 +985,7 @@ test('undo delete stays inside the view through retry, dismiss, and controller i
 
     failed.action.onClick();
     assert.equal(Boolean(h.state().lists['list-a']), true);
-    assert.match(h.calls.announce.at(-1), /back in your sidebar/);
+    assert.match(h.calls.announce.at(-1), /back in your library/);
 
     await h.nodes.btnDeleteList.fire('click');
     const again = h.calls.notify.at(-1);

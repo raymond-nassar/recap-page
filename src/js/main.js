@@ -21,6 +21,9 @@ import {
   modernTimelineFeaturedCard,
 } from './lib/catalog.js';
 import { Store, KEY as STATE_KEY } from './storage.js';
+import { LIST_HISTORY_KEY, ListHistoryStore, eraseReaderAndHistory } from './lib/listHistory.js';
+import { createListRecommendationResolver } from './lib/listRecommendations.js';
+import { createCompletionView } from './views/completion.js';
 import { MarvelApi, DEFAULT_BASE } from './api.js';
 import { ResponseCache } from './cache.js';
 import { RateLimiter } from './lib/limiter.js';
@@ -92,6 +95,14 @@ const store = new Store({
   },
 });
 const saveEducation = createSaveEducation({ storage: globalThis.localStorage });
+const listHistory = new ListHistoryStore({
+  readerStore: store,
+  onChange: (_history, error) => {
+    renderAll();
+    readingPathsView.refreshProgress();
+    if (error) notify('#save-report', error, 'error');
+  },
+});
 const hydrator = new Hydrator({ api, store, onProgress: onHydrationStatus });
 // One store for the tab, deliberately module-level and deliberately not persisted. It is passed to
 // the runner rather than owned by it so the view can read a fetched synopsis without importing the
@@ -115,8 +126,13 @@ export function dispatchStorageEvent(
     education = saveEducation,
     renderEducation = renderSaveEducation,
     reconcileReader = readerStore === store ? (changed) => readerLinkView.reconcile({ changed, confirmed: changed !== null }) : () => {},
+    historyStore = readerStore === store ? listHistory : null,
   } = {},
 ) {
+  if (event.key === LIST_HISTORY_KEY) {
+    historyStore?.load();
+    return;
+  }
   if (event.key === STATE_KEY) {
     const sanitizeCurrent = () => {
       let changed = null;
@@ -145,6 +161,7 @@ export function dispatchStorageEvent(
     reconcileReader(adopted ? true : null);
     education.adopt(null);
     renderEducation();
+    historyStore?.load();
   }
 }
 
@@ -890,6 +907,27 @@ function activeListId() {
   return store.state.active;
 }
 
+function continuingListId() {
+  const ids = listHistory.activeIds(store.state);
+  return ids.includes(activeListId()) ? activeListId() : ids[0] ?? null;
+}
+
+function selectSavedList(id, report = '#save-report') {
+  if (!Object.hasOwn(store.state.lists, id ?? '')) {
+    notify(report, 'That Reading List is no longer saved.', 'error');
+    return false;
+  }
+  if (activeListId() === id) return true;
+  store.update((state) => setActive(state, id));
+  return store.lastUpdateOk;
+}
+
+function openSavedList(id) {
+  if (!selectSavedList(id)) return false;
+  showView('read', { push: true });
+  return true;
+}
+
 function ymd(v) {
   return v ? String(v).slice(0, 10) : '';
 }
@@ -1396,6 +1434,11 @@ function applyRoute(route, { focus, filterIfAbsent }) {
     issueRoute = null; if (route.view === 'reading-paths') requestedReadingPathId = route.pathId;
     if (route.listId && route.listId !== activeListId() && Object.hasOwn(store.state.lists, route.listId)) {
       store.update((s) => setActive(s, route.listId));
+      if (!store.lastUpdateOk) {
+        applyingRoute = false;
+        showView(view, { focus });
+        return;
+      }
     }
     if (route.view === 'spotlights') catalogView.setSort(route.sort);
     // Before showView, so the passive sync at the end of showView computes the address this route
@@ -1473,6 +1516,7 @@ function showView(next, { focus = true, push = false } = {}) {
   if (next === 'library') renderLibraryHub();
   if (next === 'browse') void homeView.renderGateways();
   if (next === 'read') readingView.renderHero();
+  completionView.render();
   readingView.renderReview();
   if (next === 'issue') void issueView.render(issueRoute);
   renderBreadcrumbs();
@@ -1540,7 +1584,7 @@ function railParentView(next) {
   if (next === 'browse' || HOME_CATEGORIES.some(({ route }) => route === next)
     || generatedCategoryByRoute.has(next)) return 'browse';
   if (next === 'add' || ADD_VIEWS.includes(next)) return 'add';
-  if (next === 'library' || next === 'progress' || LIBRARY_VIEWS.some(({ value }) => value === next)) return 'library';
+  if (next === 'library' || next === 'progress' || next === 'completed' || LIBRARY_VIEWS.some(({ value }) => value === next)) return 'library';
   return next;
 }
 
@@ -1627,19 +1671,19 @@ function renderRail() {
   // new view's heading afterwards and so is unaffected either way.
   preservingFocus(nav, () => {
     nav.replaceChildren();
-    const id = activeListId();
+    const id = continuingListId();
     const list = store.state.lists[id];
     if (list) {
       const { read, total } = listProgress(store.state, id);
       const pct = total ? (read / total) * 100 : 0;
-      const current = view === 'read';
+      const current = view === 'read' && activeListId() === id;
 
       nav.append(el('li', {}, el('button', {
         type: 'button',
         class: 'ri',
         'aria-current': current ? 'page' : null,
         dataset: { key: id, act: 'open', tip: ['Continue reading', `${list.name}:`, read, 'of', total, 'read'].join(' ') },
-        onclick: () => showView('read', { push: true }),
+        onclick: () => openSavedList(id),
       }, [
         el('span', { class: 'init', 'aria-hidden': true, text: (list.name || '?').trim().charAt(0) }),
         el('span', { class: 'lbl' }, [
@@ -2108,13 +2152,38 @@ const dataView = createDataView({
       notify('#cache-report', `Cached metadata could not be cleared (${err?.message ?? err}).`, 'error');
     }
   },
-  onErase: () => {
-    const { ok, snapshotKept } = store.eraseAll();
-    readerLinkView.reconcile({ changed: ok ? true : store.blocked ? null : false });
-    cache.clear();
-    // The undo buffer points at a list from the data that has just been erased, so putting it
-    // back would resurrect one list out of a tracker the reader asked to be emptied.
-    readingView.forgetDeleted();
+  eraseHistory: true,
+  onErase: async () => {
+    const result = await eraseReaderAndHistory(store, listHistory, {
+      onReaderErased: () => {
+        readerLinkView.reconcile({ changed: true });
+        readingView.forgetDeleted();
+      },
+    });
+    let cacheFailure = null;
+    let historyKept = result.historyKept;
+    let snapshotKept = result.snapshotKept;
+    let readerChanged = result.readerChanged;
+    if (result.readerErased === true) {
+      try {
+        if (await cache.clear() !== true) {
+          cacheFailure = 'Cached metadata could not be cleared. Try Clear cached metadata in Backup & settings.';
+        }
+      } catch (error) {
+        cacheFailure = `Cached metadata could not be cleared (${error.message}). Try Clear cached metadata in Backup & settings.`;
+      }
+      listHistory.load();
+      historyKept = listHistory.known ? listHistory.seenRaw !== null : null;
+      let snapshotReadable = true;
+      snapshotKept = store.hasPreRestoreSnapshot({ onError: () => { snapshotReadable = false; } });
+      if (!snapshotReadable) snapshotKept = null;
+      try {
+        readerChanged = store.storage.getItem(STATE_KEY) !== result.readerRaw;
+      } catch {
+        readerChanged = null;
+      }
+      if (readerChanged !== false) store.load();
+    }
     // The button's visibility belongs to recoveryView.render(), and the withdrawal happens after
     // the repaint the erase itself triggered, so the question is put again here rather than left
     // to whatever unrelated render comes next.
@@ -2122,10 +2191,19 @@ const dataView = createDataView({
     // Both outcomes move a row, in opposite directions: an erase that lands makes a live copy
     // removable, and an erase that is refused can create the first copy this browser has held.
     recoveryView.renderSalvage();
+    renderAll();
     // Asked of storage again rather than reused from what the dialog was built with: the dialog
     // sits open for as long as the reader leaves it, and another tab can take a copy or remove
     // one in that time.
-    announceIfSaved(eraseOutcome(snapshotKept, store.salvageCopies()));
+    if (!result.ok) {
+      notify('#save-report', result.error || 'The reading-data erase could not be confirmed. Completion history was kept.', 'error');
+      return;
+    }
+    const outcome = eraseOutcome(snapshotKept, store.salvageCopies(), {
+      historyKept, readerChanged, cacheFailure, currentFacts: true,
+    });
+    if (historyKept !== false || readerChanged !== false || snapshotKept === null || cacheFailure) notify('#save-report', outcome, 'warn');
+    else announce(outcome);
   },
 });
 
@@ -2367,8 +2445,8 @@ function ensurePublishingViews() {
 
 function renderLibraryHub() {
   const yours = $('#library-yours');
-  savedLists.render(yours, $('#library-yours-list'));
-  $('#library-empty').hidden = !yours.hidden;
+  savedLists.render(yours, $('#library-yours-list'), { ids: listHistory.activeIds(store.state) });
+  $('#library-empty').hidden = store.state.listOrder.length !== 0;
 }
 
 function renderPublishingIndex(category, allStories) {
@@ -2508,6 +2586,7 @@ async function renderPublishingCategory(route) {
 function renderAll() {
   renderRail();
   readingView.render();
+  completionView.render();
   homeView.render();
   renderLibraryHub();
   progressView.render();
@@ -2565,6 +2644,8 @@ export function boot() {
   readingPathsView.wire();
   previewView.wire();
   wireAsk();
+  completionView.wire();
+  listHistory.load();
   renderAll();
   // The address bar is now allowed to be written, but not before: renderAll has just run once, and
   // an ungated sync inside it would have overwritten the incoming hash before it was read.
@@ -2762,6 +2843,7 @@ const readingView = createReadingView({
   isCurrent: () => view === 'read',
   isHydrationActive: () => hydrator.active,
   isStateBlocked: () => store.blocked,
+  isCompleted: (state, id) => listHistory.isCompleted(state, id),
   isSynopsisActive: () => synopsisRunner.active,
   issueFocusAnchor,
   launch: openInReader,
@@ -2902,10 +2984,7 @@ const progressView = createProgressView({
 const savedLists = createSavedListsPresenter({
   el,
   getState: () => store.state,
-  openList: (id) => {
-    store.update((state) => setActive(state, id));
-    showView('read', { push: true });
-  },
+  openList: openSavedList,
   paintCover,
 });
 
@@ -2941,7 +3020,7 @@ const homeView = createHomeView({
     gateways: [...document.querySelectorAll('[data-category-gateway]')],
     copyrights: [...document.querySelectorAll('[data-marvel-copyright]')],
   }),
-  getActiveListId: activeListId,
+  getActiveListId: continuingListId,
   getState: () => store.state,
   hueOf,
   readerPresentation,
@@ -2966,16 +3045,19 @@ const homeView = createHomeView({
     if (category.route === 'reading-paths') void readingPathsView.render();
   },
   onNavigateHub: (destination) => showView(destination, { push: true }),
-  onOpen: () => showView('read', { push: true }),
-  onRead: openInReader,
-  onReview: () => {
-    showView('read', { push: true });
-    readingView.openReview();
+  onOpen: () => openSavedList(continuingListId()),
+  onRead: (issue, event, source) => {
+    if (selectSavedList(continuingListId())) openInReader(issue, event, source);
   },
-  onReviewDeferred: () => readingView.openDeferred(),
+  onReview: () => {
+    if (openSavedList(continuingListId())) readingView.openReview();
+  },
+  onReviewDeferred: () => {
+    if (selectSavedList(continuingListId())) readingView.openDeferred();
+  },
   paintCover,
   paintCoverUrl,
-  renderSavedLists: (section, results) => savedLists.render(section, results),
+  renderSavedLists: (section, results) => savedLists.render(section, results, { ids: listHistory.activeIds(store.state) }),
   seriesOnly,
   shortTitle,
   upNext,
@@ -3008,8 +3090,7 @@ const libraryView = createLibraryView({
 let requestedReadingPathId = null;
 
 function openSavedCatalogList(list, saved, report) {
-  store.update((state) => setActive(state, saved.id));
-  if (!store.lastUpdateOk) {
+  if (!selectSavedList(saved.id, report)) {
     notify(report, `${list.name} could not be opened because that selection could not be saved.`,
       'error', `open:${list.id}`);
     return;
@@ -3052,6 +3133,7 @@ const catalogView = createCatalogView({
   },
   getState: () => store.state,
   isCurrent: (key) => view === key,
+  isCompleted: (state, id) => listHistory.isCompleted(state, id),
   loadCatalog,
   notifyDropped: (key, count) => notify(
     `#${key}-report`,
@@ -3141,6 +3223,7 @@ const readingPathsView = createReadingPathsView({
   getRequestedPathId: () => requestedReadingPathId,
   getState: () => store.state,
   isCurrent: () => view === 'reading-paths',
+  isCompleted: (state, id) => listHistory.isCompleted(state, id),
   loadCatalog,
   onCanonicalPath: (pathId) => {
     requestedReadingPathId = pathId;
@@ -3175,6 +3258,70 @@ const readingPathsView = createReadingPathsView({
     requestedReadingPathId = pathId;
     syncHash({ push: true });
   },
+});
+
+const recommendationResolver = createListRecommendationResolver({ loadBundledOrder });
+const completionView = createCompletionView({
+  el,
+  elements: () => ({
+    readBody: $('#reading-body'),
+    listTools: $('#reading-body .list-tools'),
+    wrapup: $('#list-wrap-up'),
+    wrapupHeading: $('#list-wrap-up-h'),
+    status: $('#list-completion-status'),
+    complete: $('#btn-complete-list'),
+    reopen: $('#btn-reopen-list'),
+    collectionOpen: $('#btn-completed-lists'),
+    ratings: $('#list-enjoyment'),
+    up: $('#btn-enjoyed-list'),
+    down: $('#btn-disliked-list'),
+    icons: $('#enjoyed-list-content'),
+    downIcons: $('#disliked-list-content'),
+    feedbackGuide: $('#btn-list-feedback-guide'),
+    feedbackDialog: $('#list-feedback'),
+    feedbackClose: $('#list-feedback-close'),
+    feedbackLink: $('#list-feedback-link'),
+    privateFeedbackLink: $('#list-private-feedback-link'),
+    recommendations: $('#list-recommendations'),
+    suggestions: $('#list-suggestions'),
+    recommendationStatus: $('#list-recommendation-status'),
+    recommendationRetry: $('#btn-retry-recommendations'),
+    recommendationBrowse: $('#btn-recommendation-browse'),
+    collectionCount: $('#completed-count'),
+    collectionStatus: $('#completed-status'),
+    collectionSection: $('#completed-section'),
+    collectionResults: $('#completed-list'),
+    collectionFilters: document.querySelectorAll('input[name="completed-filter"]'),
+    home: $('#view-home'),
+    homeYours: $('#home-yours'),
+    library: $('#view-library'),
+    libraryYours: $('#library-yours'),
+    dataSafety: $('#view-data .setgroup'),
+    historyControls: $('#completion-history-controls'),
+    historyStatus: $('#history-status'),
+    historyExport: $('#btn-export-history'),
+    historyCopy: $('#btn-copy-history'),
+    historyRetry: $('#btn-retry-history'),
+    historyRestore: $('#restore-history-file'),
+  }),
+  getState: () => store.state,
+  getView: () => view,
+  getListId: activeListId,
+  history: listHistory,
+  renderSavedLists: (section, results, options) => savedLists.render(section, results, options),
+  openList: openSavedList,
+  showView,
+  loadCatalog,
+  resolveRecommendations: (options) => recommendationResolver.resolve(options),
+  previewRecommendation: (entry, suggestion, catalog) => {
+    void previewView.open(entry, groupCatalog(catalog.lists).find((story) => story.key === suggestion.storyKey));
+  },
+  askConfirm,
+  backupFileRefusal,
+  download,
+  notify,
+  announce,
+  focusCurrentView: () => focusViewHeading(view),
 });
 
 export function fallbackInitials(value) {

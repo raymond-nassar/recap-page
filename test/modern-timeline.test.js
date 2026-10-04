@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { modernTimelinePosition } from '../src/js/views/catalog.js';
 
 import {
   MODERN_TIMELINE_FEATURED_ID,
@@ -41,6 +42,35 @@ const list = (id, timeline, extra = {}) => ({
   type: 'event',
   timeline,
   ...extra,
+});
+
+test('intentional completion advances timeline positioning without changing actual partial comic progress', () => {
+  const sequence = [story('first', list('one', 2004)), story('second', list('two', 2005))];
+  const state = {
+    lists: { saved: { id: 'saved', catalogId: 'one', itemIds: [1, 2] } },
+    listOrder: ['saved'], read: { 1: 12345 },
+  };
+  const before = JSON.stringify(state);
+  assert.equal(modernTimelinePosition(state, sequence).storyKey, 'first');
+  const position = modernTimelinePosition(state, sequence, { isCompleted: (_state, id) => id === 'saved' });
+  assert.equal(position.storyKey, 'second');
+  assert.equal(position.completed, 1);
+  assert.equal(position.total, 2);
+  assert.equal(JSON.stringify(state), before);
+});
+
+test('explicit completion can finish saved empty stops while reopening restores default timeline positioning', () => {
+  const sequence = [story('first', list('one', 2004))];
+  const state = {
+    lists: { saved: { id: 'saved', catalogId: 'one', itemIds: [] } },
+    listOrder: ['saved'], read: {},
+  };
+  assert.equal(modernTimelinePosition(state, sequence).kind, 'current');
+  assert.deepEqual(modernTimelinePosition(state, sequence, { isCompleted: () => true }), {
+    kind: 'complete', completed: 1, total: 1,
+  });
+  assert.equal(modernTimelinePosition(state, sequence, { isCompleted: () => false }).kind, 'current');
+  assert.deepEqual(state.read, {});
 });
 
 test('the app-selected Modern Timeline opens in 1998 and resumes in 2004', () => {

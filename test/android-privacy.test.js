@@ -85,7 +85,7 @@ test('Android privacy preparation preserves desktop HTML, shared behavior and fi
   const details = (html) => yourData(html).match(/<details\b[\s\S]*?<\/details>/)?.[0];
   assert.ok(details(desktop));
   assert.equal(details(generated), details(desktop), 'Keep the existing request-by-request enumeration');
-  for (const path of ['js/main.js', 'js/storage.js', 'js/reader.js', 'js/lib/model.js', 'js/lib/download.js']) {
+  for (const path of ['js/main.js', 'js/storage.js', 'js/reader.js', 'js/lib/model.js', 'js/lib/download.js', 'js/views/completion.js']) {
     assert.deepEqual(await readFile(join(scratch, 'assets', path)), await readFile(join('src', path)), path);
   }
   const [activity, nativePolicy] = await Promise.all([
@@ -94,4 +94,19 @@ test('Android privacy preparation preserves desktop HTML, shared behavior and fi
   ]);
   assert.match(activity, /SRC_ANCHOR_TYPE[\s\S]*?isHttps\(hit\.getExtra\(\)\)[\s\S]*?openExternal\(hit\.getExtra\(\)\)/);
   assert.match(nativePolicy, /boolean isHttps\(String value\)/);
+});
+
+test('generated Android shares the approved private list-reporting instructions and protected responder link', () => {
+  const feedbackUrl = 'https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAMAAEys2uVUMkJLVFlNTUhaUFk0NERQQzYxT0xSSDAwVy4u';
+  const feedback = (html) => html.match(/<dialog\b[^>]*id="list-feedback"[^>]*>[\s\S]*?<\/dialog>/)?.[0];
+  assert.ok(feedback(desktop));
+  assert.equal(feedback(generated), feedback(desktop));
+  const link = feedback(generated).match(/<a\b[^>]*id="list-feedback-link"[^>]*>/)?.[0];
+  assert.ok(link?.includes(`href="${feedbackUrl}"`), 'generated Android must use the same approved responder');
+  assert.match(link, /target="_blank"/);
+  assert.match(link, /rel="noopener noreferrer"/);
+  assert.match(link, /referrerpolicy="no-referrer"/);
+  assert.match(prose(feedback(generated)), /No account, name or email required/);
+  assert.match(prose(feedback(generated)), /saved reading data and thumb choice are not attached/);
+  assert.doesNotMatch(feedback(generated), /GitHub requires|issues are public|<iframe|<script|<form\b/);
 });

@@ -50,6 +50,43 @@ function stateFixture() {
   return state;
 }
 
+test('saved-list selection scopes active cards and its progress summary without changing default data', () => {
+  const state = stateFixture();
+  const before = JSON.stringify(state);
+  const presenter = createSavedListsPresenter({
+    el: element, getState: () => state, openList: () => {}, paintCover: () => {},
+  });
+  const target = sectionFixture();
+  presenter.render(target.section, target.results, { ids: ['second'] });
+  assert.equal(target.results.children.length, 1);
+  assert.equal(target.head.note.textContent, '1 order · 1 not started');
+  assert.equal(target.results.children[0].children[0].children[1].props.text, 'Second list');
+  presenter.render(target.section, target.results, { ids: [] });
+  assert.equal(target.section.hidden, true);
+  assert.equal(JSON.stringify(state), before);
+});
+
+test('completed-list presentation overrides status and details without falsifying partial read or deferred counts', () => {
+  const state = stateFixture();
+  state.lists.first.deferredIssueIds = [2];
+  const presenter = createSavedListsPresenter({
+    el: element, getState: () => state, openList: () => {}, paintCover: () => {},
+  });
+  const target = sectionFixture();
+  presenter.render(target.section, target.results, {
+    ids: ['first'],
+    status: () => ({ text: 'Completed', className: 'badge-done' }),
+    detail: () => 'Enjoyed. Completed today',
+    summary: () => '1 completed list',
+  });
+  const button = target.results.children[0].children[0];
+  assert.equal(button.children[3].props.text, '1 / 2. 1 deferred');
+  assert.equal(button.children[4].props.text, 'Completed');
+  assert.equal(button.children[5].props.text, 'Enjoyed. Completed today');
+  assert.match(button.props['aria-label'], /1 deferred.*Completed.*Enjoyed/);
+  assert.equal(target.head.note.textContent, '1 completed list');
+});
+
 test('one saved-list presenter paints Home and Library and delegates opening', () => {
   let state = stateFixture();
   const opened = [];
@@ -92,8 +129,10 @@ test('shared saved lists never depend on Library and main composes both consumer
   const main = readFileSync(join(ROOT, 'src/js/main.js'), 'utf8');
   assert.doesNotMatch(shared, /views\/library|lib\/library/);
   assert.match(main, /const savedLists = createSavedListsPresenter\(\{/);
-  assert.match(main, /openList: \(id\) => \{[\s\S]*setActive\(state, id\)[\s\S]*showView\('read', \{ push: true \}\)/);
-  assert.match(main, /renderSavedLists: \(section, results\) => savedLists\.render\(section, results\)/);
+  assert.match(main, /openList: openSavedList/);
+  assert.match(main, /function selectSavedList[\s\S]*activeListId\(\) === id[\s\S]*setActive\(state, id\)[\s\S]*return store\.lastUpdateOk/);
+  assert.match(main, /function openSavedList[\s\S]*!selectSavedList\(id\)[\s\S]*showView\('read', \{ push: true \}\)/);
+  assert.match(main, /renderSavedLists: \(section, results\) => savedLists\.render\(section, results, \{ ids: listHistory\.activeIds\(store\.state\) \}\)/);
   assert.match(main, /const homeView = createHomeView\(\{/);
   assert.match(main, /function renderLibraryHub\([\s\S]*savedLists\.render\(/);
   assert.doesNotMatch(main, /savedLists\?\.(?:render)|if \(savedLists\)/);

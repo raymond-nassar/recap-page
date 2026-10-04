@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 
-import { createReadingPathsView } from '../src/js/views/reading-paths.js';
+import { createReadingPathsView, readingPathProgress } from '../src/js/views/reading-paths.js';
 
 function node(props = {}, children = []) {
   return {
@@ -84,7 +84,7 @@ test('Reading Paths preserves selector identity and rejects stale catalog loads'
   assert.equal(noticeClears, 2);
 });
 
-function actionFixture() {
+function actionFixture({ isCompleted } = {}) {
   let state = { lists: {}, listOrder: [], read: {} };
   const opened = [];
   const nodes = {
@@ -107,6 +107,7 @@ function actionFixture() {
   const view = createReadingPathsView({
     clearLoadNotice: () => {}, el: element, elements: () => nodes,
     getRequestedPathId: () => 'actions', getState: () => state, isCurrent: () => true,
+    isCompleted,
     loadCatalog: async () => ({
       lists: stops,
       paths: [{ ...path('actions'), steps: ['single', 'exact'] }],
@@ -121,6 +122,46 @@ function actionFixture() {
     actions: () => nodes.spine.querySelectorAll(),
   };
 }
+
+test('Reading Path completion preserves exact and sibling selection with truthful read and deferred counts', () => {
+  const state = {
+    lists: { saved: { id: 'saved', catalogId: 'single', name: 'Saved order', itemIds: [1, 2], deferredIssueIds: [2] } },
+    listOrder: ['saved'], read: { 1: 111 },
+  };
+  const stop = { stepId: 'single', lists: [list('single')] };
+  const before = JSON.stringify(state);
+  const progress = readingPathProgress(state, stop, { isCompleted: () => true });
+  assert.equal(progress.state, 'done');
+  assert.equal(progress.completed, true);
+  assert.equal(progress.match, 'exact');
+  assert.equal(progress.read, 1);
+  assert.equal(progress.total, 2);
+  assert.equal(progress.deferred, 1);
+  const alternate = readingPathProgress(state, { ...stop, stepId: 'alternate' }, { isCompleted: () => true });
+  assert.equal(alternate.match, 'sibling');
+  assert.equal(alternate.read, 1);
+  assert.equal(JSON.stringify(state), before);
+});
+
+test('Reading Path refresh presents explicit completion and reopens the same saved action without fake progress', async () => {
+  let completed = true;
+  const h = actionFixture({ isCompleted: () => completed });
+  const state = {
+    lists: { saved: { id: 'saved', catalogId: 'single', name: 'Saved', itemIds: [1, 2], deferredIssueIds: [2] } },
+    listOrder: ['saved'], read: { 1: 111 },
+  };
+  h.setState(state);
+  await h.view.render();
+  const action = h.actions()[0];
+  assert.match(h.nodes.progressOutputs()[0].textContent, /1 of 2.*1 deferred.*Marked as completed/);
+  completed = false;
+  h.view.refreshProgress();
+  assert.equal(h.actions()[0], action);
+  assert.doesNotMatch(h.nodes.progressOutputs()[0].textContent, /Marked as completed/);
+  action.onclick();
+  assert.equal(h.opened[0].progress.read, 1);
+  assert.equal(h.opened[0].progress.total, 2);
+});
 
 test('stop actions inspect unowned stories and follow refreshed exact or sibling saved progress', async () => {
   const fixture = actionFixture();
