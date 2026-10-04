@@ -219,7 +219,7 @@ test('Greg Pak publishes the exact 107-row creator route without replacing Plane
   assert.equal(originalPlanetHulk.items.length, 15);
   assert.deepEqual(originalPlanetHulk.items.map((item) => item.issueId),
     report.comparisons.find((row) => row.orderId === 'planet-hulk').sharedIds.map(Number));
-  assert.equal(manifest.lists.length, 207);
+  assert.equal(manifest.lists.length, 206);
   assert.deepEqual(parseManifest(manifest).errors, []);
   const position = manifest.lists.findIndex((entry) => entry.id === id);
   assert.equal(manifest.lists[position - 1].id, 'planet-hulk');

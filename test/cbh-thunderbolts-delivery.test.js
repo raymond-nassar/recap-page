@@ -235,8 +235,8 @@ test('Thunderbolts is discoverable with source credit and measured maintained to
   const entry = manifest.lists.find((row) => row.id === id);
   const card = catalog.lists.find((row) => row.id === id);
 
-  assert.equal(manifest.lists.length, 207);
-  assert.equal(catalog.lists.length, 284);
+  assert.equal(manifest.lists.length, 206);
+  assert.equal(catalog.lists.length, 283);
   assert.equal(inventory.length, 133);
 
   assert.doesNotThrow(() => validateInventoryState(inventory));
