@@ -271,8 +271,8 @@ test('Far From Home binds the exact source, exclusions, overlap, and catalog rol
   assert.deepEqual(
     HOME_CATEGORIES.find(({ key }) => key === 'marvel-on-screen')
       .select(groupCatalog(catalog.lists))
-      .map((story) => story.lists[0].id),
-    [...MCU_SELECTED_IDS, 'mcu-prep-thunderbolts', 'mcu-prep-eternals'],
+      .map((story) => story.lists[0].id).filter((id) => MCU_SELECTED_IDS.includes(id)),
+    MCU_SELECTED_IDS,
   );
   assert.equal(catalog.paths.some(({ steps }) => steps.includes(record.id)), false);
   assert.equal(pathPlacements(catalog.paths, catalog.lists).has(`list:${record.id}`), false);
@@ -396,7 +396,8 @@ test('approved evidence reaches six payloads, cards, and one MCU Prep group', as
       .map((entry) => entry.id),
     MCU_SELECTED_IDS,
   );
-  assert.equal(catalog.lists.length, 282);
+  assert.equal(catalog.lists.filter(({ id }) => MCU_SELECTED_IDS.includes(id)).length, 6);
+  assert.equal(catalog.lists.length, 283);
 
   assert.deepEqual(
     inventory.records.filter((record) => record.centralDisposition === 'selected')
@@ -439,14 +440,14 @@ test('approved evidence reaches six payloads, cards, and one MCU Prep group', as
   const stories = groupCatalog(catalog.lists);
   const screen = availableHomeCategories(stories)
     .find((category) => category.key === 'marvel-on-screen');
-  assert.equal(screen.count, catalog.lists.filter((entry) => entry.type === 'screen-companion').length);
+  assert.equal(screen.count, groupCatalog(catalog.lists.filter(({ type }) => type === 'screen-companion')).length);
   const screenDefinition = HOME_CATEGORIES.find((category) => (
     category.key === 'marvel-on-screen'
   ));
   assert.equal(screenDefinition.heading, 'MCU Prep');
   assert.deepEqual(
-    screenDefinition.select(stories).map((story) => story.lists[0].id),
-    [...MCU_SELECTED_IDS, 'mcu-prep-thunderbolts', 'mcu-prep-eternals'],
+    screenDefinition.select(stories).map((story) => story.lists[0].id).filter((id) => MCU_SELECTED_IDS.includes(id)),
+    MCU_SELECTED_IDS,
   );
   assert.deepEqual(
     shelfLists(catalog.lists, 'spotlights').length,

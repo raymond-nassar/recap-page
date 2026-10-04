@@ -1,0 +1,936 @@
+{
+  "id": "spider-man-no-way-home-owner-selected",
+  "sourceProvider": "owner-selected",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/686",
+  "sourceRetrievedAt": "2026-10-03",
+  "sourceContentSha256": "1be850234283be2fda744d4a8979d7700aab4d5b757e4b763faed7871a6925f2",
+  "sourceRetrievalStatus": "owner-outline-and-verified-collection-expansion",
+  "packetDigest": "7ace7b7df104993c65b7375234bd93f6fc0335c19a55fc7d61f70acc5cd2acfc",
+  "approvedSourceCount": 18,
+  "sourceOccurrenceCount": 3,
+  "sourceGaps": [],
+  "proposedManifest": {
+    "id": "spider-man-no-way-home-owner-selected",
+    "name": "Spider-Man: No Way Home (Owner selections)",
+    "description": "The owner's three-volume selection: an Ultimate origin, the main Spider-Verse chapters, and the four-issue Big Time arc, expanded into 18 original comics in that order.",
+    "type": "screen-companion",
+    "depth": "selected",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "spider-man-no-way-home-owner-selected.md",
+    "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/686",
+    "sourceOrigin": "Compiled for this project from the owner's selections",
+    "sourceLicense": null,
+    "out": "spider_man_no_way_home_owner_selected.json",
+    "characters": [
+      "Spider-Man",
+      "Peter Parker",
+      "Hobgoblin"
+    ],
+    "keywords": [
+      "MCU Prep",
+      "Spider-Man: No Way Home",
+      "Owner selections",
+      "Ultimate Spider-Man",
+      "Power and Responsibility",
+      "Spider-Verse",
+      "Big Time",
+      "Brian Michael Bendis",
+      "Dan Slott"
+    ],
+    "expect": 18,
+    "timeline": null,
+    "coverIssueId": 4372
+  },
+  "candidateMetadata": {
+    "resolvedOriginals": 18,
+    "detailRequests": 18,
+    "detailResponses200": 18,
+    "metadataGaps": [],
+    "unidentifiedSelections": []
+  },
+  "rows": [
+    {
+      "row": 1,
+      "sourcePosition": 1,
+      "sourceIssueReference": "Ultimate Spider-Man (2000) #1",
+      "normalizedSeriesTitle": "Ultimate Spider-Man",
+      "seriesYear": 2000,
+      "issueNumber": "1",
+      "collectionTitle": "Ultimate Spider-Man Vol. 1: Power and Responsibility",
+      "selectedIssueId": 4372,
+      "selectedSeriesId": 466,
+      "selectedTitle": "Ultimate Spider-Man (2000) #1",
+      "originalIssueUrl": "https://www.marvel.com/comics/issue/4372/ultimate_spider-man_2000_1",
+      "resolutionStatus": "exact",
+      "bundledWitnesses": [
+        "ultimate-spider-man-reading-order",
+        "ultimate-marvel-intro"
+      ],
+      "verifiedWriters": [
+        {
+          "name": "Bill Jemas",
+          "role": "writer"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "metadataEvidence": {
+        "position": 1,
+        "issueId": 4372,
+        "url": "https://marvel.emreparker.com/v1/issues/4372",
+        "urlSha256": "c12f9848b0eaf6a47896a4dad3d46bf510fef799eef6cdafcd9be938419e7192",
+        "status": 200,
+        "fetchedAt": "2026-10-03T17:36:46.878Z",
+        "bodySha256": "1cbeefd592d34e717016862c97989029f535fb5a19aad1438a43ed7f95c1946c",
+        "title": "Ultimate Spider-Man (2000) #1",
+        "seriesId": 466,
+        "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+        "number": "1",
+        "writers": [
+          {
+            "id": 210,
+            "name": "Bill Jemas",
+            "role": "writer"
+          },
+          {
+            "id": 24,
+            "name": "Brian Michael Bendis",
+            "role": "writer"
+          }
+        ]
+      }
+    },
+    {
+      "row": 2,
+      "sourcePosition": 1,
+      "sourceIssueReference": "Ultimate Spider-Man (2000) #2",
+      "normalizedSeriesTitle": "Ultimate Spider-Man",
+      "seriesYear": 2000,
+      "issueNumber": "2",
+      "collectionTitle": "Ultimate Spider-Man Vol. 1: Power and Responsibility",
+      "selectedIssueId": 14846,
+      "selectedSeriesId": 466,
+      "selectedTitle": "Ultimate Spider-Man (2000) #2",
+      "originalIssueUrl": "https://www.marvel.com/comics/issue/14846/ultimate_spider-man_2000_2",
+      "resolutionStatus": "exact",
+      "bundledWitnesses": [
+        "ultimate-spider-man-reading-order",
+        "ultimate-marvel-intro"
+      ],
+      "verifiedWriters": [
+        {
+          "name": "Bill Jemas",
+          "role": "writer"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "metadataEvidence": {
+        "position": 2,
+        "issueId": 14846,
+        "url": "https://marvel.emreparker.com/v1/issues/14846",
+        "urlSha256": "3cb37858ca064fda098df3fd877fad3317559afc832face9f36da2b00fea17ed",
+        "status": 200,
+        "fetchedAt": "2026-10-03T17:36:47.049Z",
+        "bodySha256": "6a5806392bdc4e5a1fa58e7db12e87ec5813d42f9dde0cb4907fa29684544df8",
+        "title": "Ultimate Spider-Man (2000) #2",
+        "seriesId": 466,
+        "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+        "number": "2",
+        "writers": [
+          {
+            "id": 210,
+            "name": "Bill Jemas",
+            "role": "writer"
+          },
+          {
+            "id": 24,
+            "name": "Brian Michael Bendis",
+            "role": "writer"
+          }
+        ]
+      }
+    },
+    {
+      "row": 3,
+      "sourcePosition": 1,
+      "sourceIssueReference": "Ultimate Spider-Man (2000) #3",
+      "normalizedSeriesTitle": "Ultimate Spider-Man",
+      "seriesYear": 2000,
+      "issueNumber": "3",
+      "collectionTitle": "Ultimate Spider-Man Vol. 1: Power and Responsibility",
+      "selectedIssueId": 14857,
+      "selectedSeriesId": 466,
+      "selectedTitle": "Ultimate Spider-Man (2000) #3",
+      "originalIssueUrl": "https://www.marvel.com/comics/issue/14857/ultimate_spider-man_2000_3",
+      "resolutionStatus": "exact",
+      "bundledWitnesses": [
+        "ultimate-spider-man-reading-order",
+        "ultimate-marvel-intro"
+      ],
+      "verifiedWriters": [
+        {
+          "name": "Bill Jemas",
+          "role": "writer"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "metadataEvidence": {
+        "position": 3,
+        "issueId": 14857,
+        "url": "https://marvel.emreparker.com/v1/issues/14857",
+        "urlSha256": "1175410bf80bf4f454dc80e40f01964274f873a393fdd15b48dfbc2e82ae5b80",
+        "status": 200,
+        "fetchedAt": "2026-10-03T17:36:47.239Z",
+        "bodySha256": "15bd5d106dea65359959db5bfb55048e236596d64c9bd6d0a25c179c0d606163",
+        "title": "Ultimate Spider-Man (2000) #3",
+        "seriesId": 466,
+        "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+        "number": "3",
+        "writers": [
+          {
+            "id": 210,
+            "name": "Bill Jemas",
+            "role": "writer"
+          },
+          {
+            "id": 24,
+            "name": "Brian Michael Bendis",
+            "role": "writer"
+          }
+        ]
+      }
+    },
+    {
+      "row": 4,
+      "sourcePosition": 1,
+      "sourceIssueReference": "Ultimate Spider-Man (2000) #4",
+      "normalizedSeriesTitle": "Ultimate Spider-Man",
+      "seriesYear": 2000,
+      "issueNumber": "4",
+      "collectionTitle": "Ultimate Spider-Man Vol. 1: Power and Responsibility",
+      "selectedIssueId": 14868,
+      "selectedSeriesId": 466,
+      "selectedTitle": "Ultimate Spider-Man (2000) #4",
+      "originalIssueUrl": "https://www.marvel.com/comics/issue/14868/ultimate_spider-man_2000_4",
+      "resolutionStatus": "exact",
+      "bundledWitnesses": [
+        "ultimate-spider-man-reading-order",
+        "ultimate-marvel-intro"
+      ],
+      "verifiedWriters": [
+        {
+          "name": "Bill Jemas",
+          "role": "writer"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "metadataEvidence": {
+        "position": 4,
+        "issueId": 14868,
+        "url": "https://marvel.emreparker.com/v1/issues/14868",
+        "urlSha256": "daf9be0c1553214774a52687099497d6ec36ecf677730981d1b790a87e5ad949",
+        "status": 200,
+        "fetchedAt": "2026-10-03T17:36:47.557Z",
+        "bodySha256": "c1568c4bf148e4f4d156586f615f0db0061bca752ff9068111fb22b99a44ca08",
+        "title": "Ultimate Spider-Man (2000) #4",
+        "seriesId": 466,
+        "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+        "number": "4",
+        "writers": [
+          {
+            "id": 210,
+            "name": "Bill Jemas",
+            "role": "writer"
+          },
+          {
+            "id": 24,
+            "name": "Brian Michael Bendis",
+            "role": "writer"
+          }
+        ]
+      }
+    },
+    {
+      "row": 5,
+      "sourcePosition": 1,
+      "sourceIssueReference": "Ultimate Spider-Man (2000) #5",
+      "normalizedSeriesTitle": "Ultimate Spider-Man",
+      "seriesYear": 2000,
+      "issueNumber": "5",
+      "collectionTitle": "Ultimate Spider-Man Vol. 1: Power and Responsibility",
+      "selectedIssueId": 14879,
+      "selectedSeriesId": 466,
+      "selectedTitle": "Ultimate Spider-Man (2000) #5",
+      "originalIssueUrl": "https://www.marvel.com/comics/issue/14879/ultimate_spider-man_2000_5",
+      "resolutionStatus": "exact",
+      "bundledWitnesses": [
+        "ultimate-spider-man-reading-order",
+        "ultimate-marvel-intro"
+      ],
+      "verifiedWriters": [
+        {
+          "name": "Bill Jemas",
+          "role": "writer"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "metadataEvidence": {
+        "position": 5,
+        "issueId": 14879,
+        "url": "https://marvel.emreparker.com/v1/issues/14879",
+        "urlSha256": "bdbcba4e6d62ad8b2804af348e20c089f732996f3a24df38d10ad82008bfa8e6",
+        "status": 200,
+        "fetchedAt": "2026-10-03T17:36:47.737Z",
+        "bodySha256": "972c1f56493d02f723e2608e79aaac73e104b3c8f3c27a6b23f77facc5caa699",
+        "title": "Ultimate Spider-Man (2000) #5",
+        "seriesId": 466,
+        "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+        "number": "5",
+        "writers": [
+          {
+            "id": 210,
+            "name": "Bill Jemas",
+            "role": "writer"
+          },
+          {
+            "id": 24,
+            "name": "Brian Michael Bendis",
+            "role": "writer"
+          }
+        ]
+      }
+    },
+    {
+      "row": 6,
+      "sourcePosition": 1,
+      "sourceIssueReference": "Ultimate Spider-Man (2000) #6",
+      "normalizedSeriesTitle": "Ultimate Spider-Man",
+      "seriesYear": 2000,
+      "issueNumber": "6",
+      "collectionTitle": "Ultimate Spider-Man Vol. 1: Power and Responsibility",
+      "selectedIssueId": 14890,
+      "selectedSeriesId": 466,
+      "selectedTitle": "Ultimate Spider-Man (2000) #6",
+      "originalIssueUrl": "https://www.marvel.com/comics/issue/14890/ultimate_spider-man_2000_6",
+      "resolutionStatus": "exact",
+      "bundledWitnesses": [
+        "ultimate-spider-man-reading-order",
+        "ultimate-marvel-intro"
+      ],
+      "verifiedWriters": [
+        {
+          "name": "Bill Jemas",
+          "role": "writer"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "metadataEvidence": {
+        "position": 6,
+        "issueId": 14890,
+        "url": "https://marvel.emreparker.com/v1/issues/14890",
+        "urlSha256": "2bb903cc70571c86918b50fe7ba85ed7f1f8e199f6762def8781d49525d0b322",
+        "status": 200,
+        "fetchedAt": "2026-10-03T17:38:22.848Z",
+        "bodySha256": "b7f39629e1af7f5c773628a02397b9d0c17f894402f27457dd336ea37364dbae",
+        "title": "Ultimate Spider-Man (2000) #6",
+        "seriesId": 466,
+        "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+        "number": "6",
+        "writers": [
+          {
+            "id": 210,
+            "name": "Bill Jemas",
+            "role": "writer"
+          },
+          {
+            "id": 24,
+            "name": "Brian Michael Bendis",
+            "role": "writer"
+          }
+        ]
+      }
+    },
+    {
+      "row": 7,
+      "sourcePosition": 1,
+      "sourceIssueReference": "Ultimate Spider-Man (2000) #7",
+      "normalizedSeriesTitle": "Ultimate Spider-Man",
+      "seriesYear": 2000,
+      "issueNumber": "7",
+      "collectionTitle": "Ultimate Spider-Man Vol. 1: Power and Responsibility",
+      "selectedIssueId": 14901,
+      "selectedSeriesId": 466,
+      "selectedTitle": "Ultimate Spider-Man (2000) #7",
+      "originalIssueUrl": "https://www.marvel.com/comics/issue/14901/ultimate_spider-man_2000_7",
+      "resolutionStatus": "exact",
+      "bundledWitnesses": [
+        "ultimate-spider-man-reading-order",
+        "ultimate-marvel-intro"
+      ],
+      "verifiedWriters": [
+        {
+          "name": "Bill Jemas",
+          "role": "writer"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "metadataEvidence": {
+        "position": 7,
+        "issueId": 14901,
+        "url": "https://marvel.emreparker.com/v1/issues/14901",
+        "urlSha256": "a8975e4524c0050fe1c240f7bfaa250c59b4f3f312a398c26fe50e665c93d9c7",
+        "status": 200,
+        "fetchedAt": "2026-10-03T17:38:23.019Z",
+        "bodySha256": "5fc16c6987945ad2d6f4a604fb1c7a8b56e8075bd6ae5d24c9d8a5b9414382e4",
+        "title": "Ultimate Spider-Man (2000) #7",
+        "seriesId": 466,
+        "seriesName": "Ultimate Spider-Man (2000 - 2009)",
+        "number": "7",
+        "writers": [
+          {
+            "id": 210,
+            "name": "Bill Jemas",
+            "role": "writer"
+          },
+          {
+            "id": 24,
+            "name": "Brian Michael Bendis",
+            "role": "writer"
+          }
+        ]
+      }
+    },
+    {
+      "row": 8,
+      "sourcePosition": 2,
+      "sourceIssueReference": "Amazing Spider-Man (2014) #9",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2014,
+      "issueNumber": "9",
+      "collectionTitle": "Amazing Spider-Man Vol. 3: Spider-Verse",
+      "selectedIssueId": 45808,
+      "selectedSeriesId": 17285,
+      "selectedTitle": "The Amazing Spider-Man (2014) #9",
+      "originalIssueUrl": "https://www.marvel.com/comics/issue/45808/the_amazing_spider-man_2014_9",
+      "resolutionStatus": "exact",
+      "bundledWitnesses": [
+        "doctor-octopus-otto-octavius-reading-order",
+        "spider-gwen-reading-order",
+        "miles-morales-spider-man-reading-order",
+        "amazing-spider-man-reading-order-modern-marvel-era",
+        "spider-verse"
+      ],
+      "verifiedWriters": [
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "metadataEvidence": {
+        "position": 8,
+        "issueId": 45808,
+        "url": "https://marvel.emreparker.com/v1/issues/45808",
+        "urlSha256": "57281b562ec72a414b1c767a8e7c1212b12c6277b447b13760f10e0b6aa71eef",
+        "status": 200,
+        "fetchedAt": "2026-10-03T17:38:23.217Z",
+        "bodySha256": "50d0f1fd7219847b67fcdb146c0529888255ff6338ee06fc2445ce4ff6933883",
+        "title": "The Amazing Spider-Man (2014) #9",
+        "seriesId": 17285,
+        "seriesName": "The Amazing Spider-Man (2014 - 2015)",
+        "number": "9",
+        "writers": [
+          {
+            "id": 12983,
+            "name": "Dan Slott",
+            "role": "writer"
+          }
+        ]
+      }
+    },
+    {
+      "row": 9,
+      "sourcePosition": 2,
+      "sourceIssueReference": "Amazing Spider-Man (2014) #10",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2014,
+      "issueNumber": "10",
+      "collectionTitle": "Amazing Spider-Man Vol. 3: Spider-Verse",
+      "selectedIssueId": 45809,
+      "selectedSeriesId": 17285,
+      "selectedTitle": "The Amazing Spider-Man (2014) #10",
+      "originalIssueUrl": "https://www.marvel.com/comics/issue/45809/the_amazing_spider-man_2014_10",
+      "resolutionStatus": "exact",
+      "bundledWitnesses": [
+        "doctor-octopus-otto-octavius-reading-order",
+        "spider-gwen-reading-order",
+        "miles-morales-spider-man-reading-order",
+        "amazing-spider-man-reading-order-modern-marvel-era",
+        "spider-verse"
+      ],
+      "verifiedWriters": [
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "metadataEvidence": {
+        "position": 9,
+        "issueId": 45809,
+        "url": "https://marvel.emreparker.com/v1/issues/45809",
+        "urlSha256": "3a32901e07b138fb7528a7f948d57ee9b5bf3501d1b1b226da1398b84f8926a2",
+        "status": 200,
+        "fetchedAt": "2026-10-03T17:38:23.399Z",
+        "bodySha256": "d7c17373bf42331e23e3fed373e4d9be839fbe3e96fbfdde51a598ad7f0ecb8f",
+        "title": "The Amazing Spider-Man (2014) #10",
+        "seriesId": 17285,
+        "seriesName": "The Amazing Spider-Man (2014 - 2015)",
+        "number": "10",
+        "writers": [
+          {
+            "id": 12983,
+            "name": "Dan Slott",
+            "role": "writer"
+          }
+        ]
+      }
+    },
+    {
+      "row": 10,
+      "sourcePosition": 2,
+      "sourceIssueReference": "Amazing Spider-Man (2014) #11",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2014,
+      "issueNumber": "11",
+      "collectionTitle": "Amazing Spider-Man Vol. 3: Spider-Verse",
+      "selectedIssueId": 45810,
+      "selectedSeriesId": 17285,
+      "selectedTitle": "The Amazing Spider-Man (2014) #11",
+      "originalIssueUrl": "https://www.marvel.com/comics/issue/45810/the_amazing_spider-man_2014_11",
+      "resolutionStatus": "exact",
+      "bundledWitnesses": [
+        "doctor-octopus-otto-octavius-reading-order",
+        "spider-gwen-reading-order",
+        "miles-morales-spider-man-reading-order",
+        "amazing-spider-man-reading-order-modern-marvel-era",
+        "spider-verse"
+      ],
+      "verifiedWriters": [
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "metadataEvidence": {
+        "position": 10,
+        "issueId": 45810,
+        "url": "https://marvel.emreparker.com/v1/issues/45810",
+        "urlSha256": "610d7e9209daed3ce36d884959dd685dbeb652c55b9d8528f4af9908eac361ef",
+        "status": 200,
+        "fetchedAt": "2026-10-03T17:38:23.582Z",
+        "bodySha256": "be083a1f573f23f30c284805124fa4af6116503e9431a7e481553a33cd189c96",
+        "title": "The Amazing Spider-Man (2014) #11",
+        "seriesId": 17285,
+        "seriesName": "The Amazing Spider-Man (2014 - 2015)",
+        "number": "11",
+        "writers": [
+          {
+            "id": 12983,
+            "name": "Dan Slott",
+            "role": "writer"
+          }
+        ]
+      }
+    },
+    {
+      "row": 11,
+      "sourcePosition": 2,
+      "sourceIssueReference": "Amazing Spider-Man (2014) #12",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2014,
+      "issueNumber": "12",
+      "collectionTitle": "Amazing Spider-Man Vol. 3: Spider-Verse",
+      "selectedIssueId": 45811,
+      "selectedSeriesId": 17285,
+      "selectedTitle": "The Amazing Spider-Man (2014) #12",
+      "originalIssueUrl": "https://www.marvel.com/comics/issue/45811/the_amazing_spider-man_2014_12",
+      "resolutionStatus": "exact",
+      "bundledWitnesses": [
+        "doctor-octopus-otto-octavius-reading-order",
+        "spider-gwen-reading-order",
+        "miles-morales-spider-man-reading-order",
+        "amazing-spider-man-reading-order-modern-marvel-era",
+        "spider-verse"
+      ],
+      "verifiedWriters": [
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "metadataEvidence": {
+        "position": 11,
+        "issueId": 45811,
+        "url": "https://marvel.emreparker.com/v1/issues/45811",
+        "urlSha256": "18a724e7957d3fd5bf27bb2ef7b935845dab5cc8b9acdf4b170f9189ab73128f",
+        "status": 200,
+        "fetchedAt": "2026-10-03T17:38:32.821Z",
+        "bodySha256": "4015416907666b17bddadfe9b84a09fdfeb38d3286b45d9e84076f0f5f76196a",
+        "title": "The Amazing Spider-Man (2014) #12",
+        "seriesId": 17285,
+        "seriesName": "The Amazing Spider-Man (2014 - 2015)",
+        "number": "12",
+        "writers": [
+          {
+            "id": 12983,
+            "name": "Dan Slott",
+            "role": "writer"
+          }
+        ]
+      }
+    },
+    {
+      "row": 12,
+      "sourcePosition": 2,
+      "sourceIssueReference": "Amazing Spider-Man (2014) #13",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2014,
+      "issueNumber": "13",
+      "collectionTitle": "Amazing Spider-Man Vol. 3: Spider-Verse",
+      "selectedIssueId": 50350,
+      "selectedSeriesId": 17285,
+      "selectedTitle": "The Amazing Spider-Man (2014) #13",
+      "originalIssueUrl": "https://www.marvel.com/comics/issue/50350/the_amazing_spider-man_2014_13",
+      "resolutionStatus": "exact",
+      "bundledWitnesses": [
+        "doctor-octopus-otto-octavius-reading-order",
+        "spider-gwen-reading-order",
+        "miles-morales-spider-man-reading-order",
+        "amazing-spider-man-reading-order-modern-marvel-era",
+        "spider-verse"
+      ],
+      "verifiedWriters": [
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "metadataEvidence": {
+        "position": 12,
+        "issueId": 50350,
+        "url": "https://marvel.emreparker.com/v1/issues/50350",
+        "urlSha256": "681348635668a73504605699492e19d8523356026fdf2e6a0f676a3710ed6e97",
+        "status": 200,
+        "fetchedAt": "2026-10-03T17:38:33.046Z",
+        "bodySha256": "582cf8cbab59ef95681e1c46882d436cc03feecd0f8ac36025072b99a7c97dcd",
+        "title": "The Amazing Spider-Man (2014) #13",
+        "seriesId": 17285,
+        "seriesName": "The Amazing Spider-Man (2014 - 2015)",
+        "number": "13",
+        "writers": [
+          {
+            "id": 12983,
+            "name": "Dan Slott",
+            "role": "writer"
+          }
+        ]
+      }
+    },
+    {
+      "row": 13,
+      "sourcePosition": 2,
+      "sourceIssueReference": "Amazing Spider-Man (2014) #14",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2014,
+      "issueNumber": "14",
+      "collectionTitle": "Amazing Spider-Man Vol. 3: Spider-Verse",
+      "selectedIssueId": 51320,
+      "selectedSeriesId": 17285,
+      "selectedTitle": "The Amazing Spider-Man (2014) #14",
+      "originalIssueUrl": "https://www.marvel.com/comics/issue/51320/the_amazing_spider-man_2014_14",
+      "resolutionStatus": "exact",
+      "bundledWitnesses": [
+        "doctor-octopus-otto-octavius-reading-order",
+        "spider-gwen-reading-order",
+        "miles-morales-spider-man-reading-order",
+        "amazing-spider-man-reading-order-modern-marvel-era",
+        "spider-verse"
+      ],
+      "verifiedWriters": [
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "metadataEvidence": {
+        "position": 13,
+        "issueId": 51320,
+        "url": "https://marvel.emreparker.com/v1/issues/51320",
+        "urlSha256": "25ef1dfc67a1850c9dfc0d36fde356a33f55316eb04d237fe9dc9f670a188320",
+        "status": 200,
+        "fetchedAt": "2026-10-03T17:38:33.218Z",
+        "bodySha256": "3baf5bb0e21e2b7ffb15e5826e86c42571dbd09ad0c212873c34cf58c9408373",
+        "title": "The Amazing Spider-Man (2014) #14",
+        "seriesId": 17285,
+        "seriesName": "The Amazing Spider-Man (2014 - 2015)",
+        "number": "14",
+        "writers": [
+          {
+            "id": 12983,
+            "name": "Dan Slott",
+            "role": "writer"
+          }
+        ]
+      }
+    },
+    {
+      "row": 14,
+      "sourcePosition": 2,
+      "sourceIssueReference": "Amazing Spider-Man (2014) #15",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2014,
+      "issueNumber": "15",
+      "collectionTitle": "Amazing Spider-Man Vol. 3: Spider-Verse",
+      "selectedIssueId": 51324,
+      "selectedSeriesId": 17285,
+      "selectedTitle": "The Amazing Spider-Man (2014) #15",
+      "originalIssueUrl": "https://www.marvel.com/comics/issue/51324/the_amazing_spider-man_2014_15",
+      "resolutionStatus": "exact",
+      "bundledWitnesses": [
+        "doctor-octopus-otto-octavius-reading-order",
+        "spider-gwen-reading-order",
+        "miles-morales-spider-man-reading-order",
+        "amazing-spider-man-reading-order-modern-marvel-era",
+        "spider-verse"
+      ],
+      "verifiedWriters": [
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "metadataEvidence": {
+        "position": 14,
+        "issueId": 51324,
+        "url": "https://marvel.emreparker.com/v1/issues/51324",
+        "urlSha256": "a9c9879123cf050ccfa7dd6595226b5f247b52542fadd1fbde3e20b32277829c",
+        "status": 200,
+        "fetchedAt": "2026-10-03T17:38:33.444Z",
+        "bodySha256": "8c6328244d98ddc48ff054119f3f1e77cfd823fb2c3ce447c6e44b3647668494",
+        "title": "The Amazing Spider-Man (2014) #15",
+        "seriesId": 17285,
+        "seriesName": "The Amazing Spider-Man (2014 - 2015)",
+        "number": "15",
+        "writers": [
+          {
+            "id": 12983,
+            "name": "Dan Slott",
+            "role": "writer"
+          }
+        ]
+      }
+    },
+    {
+      "row": 15,
+      "sourcePosition": 3,
+      "sourceIssueReference": "Amazing Spider-Man (1999) #648",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1999,
+      "issueNumber": "648",
+      "collectionTitle": "Spider-Man: Big Time",
+      "selectedIssueId": 34135,
+      "selectedSeriesId": 454,
+      "selectedTitle": "Amazing Spider-Man (1999) #648",
+      "originalIssueUrl": "https://www.marvel.com/comics/issue/34135/amazing_spider-man_1999_648",
+      "resolutionStatus": "exact",
+      "bundledWitnesses": [],
+      "verifiedWriters": [
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        },
+        {
+          "name": "Paul Tobin",
+          "role": "writer"
+        }
+      ],
+      "metadataEvidence": {
+        "position": 15,
+        "issueId": 34135,
+        "url": "https://marvel.emreparker.com/v1/issues/34135",
+        "urlSha256": "9f7a40a69ace4daba60835e25e15c0118347c8b6f8feb8efcfb7b4ba3db8fccb",
+        "status": 200,
+        "fetchedAt": "2026-10-03T17:38:33.636Z",
+        "bodySha256": "023b483785675665a272e9b900c3bf3fc1b5d551ff0f9708ad02c3978b598064",
+        "title": "Amazing Spider-Man (1999) #648",
+        "seriesId": 454,
+        "seriesName": "Amazing Spider-Man (1999 - 2013)",
+        "number": "648",
+        "writers": [
+          {
+            "id": 12983,
+            "name": "Dan Slott",
+            "role": "writer"
+          },
+          {
+            "id": 4983,
+            "name": "Paul Tobin",
+            "role": "writer"
+          }
+        ]
+      }
+    },
+    {
+      "row": 16,
+      "sourcePosition": 3,
+      "sourceIssueReference": "Amazing Spider-Man (1999) #649",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1999,
+      "issueNumber": "649",
+      "collectionTitle": "Spider-Man: Big Time",
+      "selectedIssueId": 30324,
+      "selectedSeriesId": 454,
+      "selectedTitle": "Amazing Spider-Man (1999) #649",
+      "originalIssueUrl": "https://www.marvel.com/comics/issue/30324/amazing_spider-man_1999_649",
+      "resolutionStatus": "exact",
+      "bundledWitnesses": [
+        "amazing-spider-man-reading-order-modern-marvel-era"
+      ],
+      "verifiedWriters": [
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "metadataEvidence": {
+        "position": 16,
+        "issueId": 30324,
+        "url": "https://marvel.emreparker.com/v1/issues/30324",
+        "urlSha256": "90b46e136f86c96692db679a30171df8f222436996f5ded8f16eecb93f53dd81",
+        "status": 200,
+        "fetchedAt": "2026-10-03T17:39:22.844Z",
+        "bodySha256": "9a30d26188040fb4aa4fa02d5530f9cd2939ce994d08a33f94f3f207bdd3ab07",
+        "title": "Amazing Spider-Man (1999) #649",
+        "seriesId": 454,
+        "seriesName": "Amazing Spider-Man (1999 - 2013)",
+        "number": "649",
+        "writers": [
+          {
+            "id": 12983,
+            "name": "Dan Slott",
+            "role": "writer"
+          }
+        ]
+      }
+    },
+    {
+      "row": 17,
+      "sourcePosition": 3,
+      "sourceIssueReference": "Amazing Spider-Man (1999) #650",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1999,
+      "issueNumber": "650",
+      "collectionTitle": "Spider-Man: Big Time",
+      "selectedIssueId": 30325,
+      "selectedSeriesId": 454,
+      "selectedTitle": "Amazing Spider-Man (1999) #650",
+      "originalIssueUrl": "https://www.marvel.com/comics/issue/30325/amazing_spider-man_1999_650",
+      "resolutionStatus": "exact",
+      "bundledWitnesses": [
+        "amazing-spider-man-reading-order-modern-marvel-era"
+      ],
+      "verifiedWriters": [
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "metadataEvidence": {
+        "position": 17,
+        "issueId": 30325,
+        "url": "https://marvel.emreparker.com/v1/issues/30325",
+        "urlSha256": "72668909dddea0b4fd659145f889a83a2b547d908e8143459f6154dddaad1a91",
+        "status": 200,
+        "fetchedAt": "2026-10-03T17:39:23.036Z",
+        "bodySha256": "9ce5313f405ea380a5550f43338243fc779ef77b1e7e5eff713a51d584a8c846",
+        "title": "Amazing Spider-Man (1999) #650",
+        "seriesId": 454,
+        "seriesName": "Amazing Spider-Man (1999 - 2013)",
+        "number": "650",
+        "writers": [
+          {
+            "id": 12983,
+            "name": "Dan Slott",
+            "role": "writer"
+          }
+        ]
+      }
+    },
+    {
+      "row": 18,
+      "sourcePosition": 3,
+      "sourceIssueReference": "Amazing Spider-Man (1999) #651",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1999,
+      "issueNumber": "651",
+      "collectionTitle": "Spider-Man: Big Time",
+      "selectedIssueId": 30326,
+      "selectedSeriesId": 454,
+      "selectedTitle": "Amazing Spider-Man (1999) #651",
+      "originalIssueUrl": "https://www.marvel.com/comics/issue/30326/amazing_spider-man_1999_651",
+      "resolutionStatus": "exact",
+      "bundledWitnesses": [
+        "amazing-spider-man-reading-order-modern-marvel-era"
+      ],
+      "verifiedWriters": [
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "metadataEvidence": {
+        "position": 18,
+        "issueId": 30326,
+        "url": "https://marvel.emreparker.com/v1/issues/30326",
+        "urlSha256": "b7637ed65e543b94bb9f0d6159a5c095da1f99bbc2164ff45184a82ffbc15d39",
+        "status": 200,
+        "fetchedAt": "2026-10-03T17:39:23.222Z",
+        "bodySha256": "d0562b052f7fef42a9e690c8d3b57242b003056345a5daa6ed28c2d509eeb428",
+        "title": "Amazing Spider-Man (1999) #651",
+        "seriesId": 454,
+        "seriesName": "Amazing Spider-Man (1999 - 2013)",
+        "number": "651",
+        "writers": [
+          {
+            "id": 12983,
+            "name": "Dan Slott",
+            "role": "writer"
+          }
+        ]
+      }
+    }
+  ],
+  "mappingDigest": "446fd4bca140b80beed361491559286b62d8e9efca9f8bbf65fb3164e3076865"
+}

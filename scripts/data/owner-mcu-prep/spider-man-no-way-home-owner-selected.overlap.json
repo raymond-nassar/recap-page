@@ -1,0 +1,4140 @@
+{
+  "candidateId": "spider-man-no-way-home-owner-selected",
+  "packetDigest": "7ace7b7df104993c65b7375234bd93f6fc0335c19a55fc7d61f70acc5cd2acfc",
+  "mappingDigest": "446fd4bca140b80beed361491559286b62d8e9efca9f8bbf65fb3164e3076865",
+  "libraryDigest": "36da5806ec83a0506feb675a95df321ae76f15823e85369ba7653291c0ff8560",
+  "peerDigests": {
+    "x-men-age-of-x": "ca23c1198c2927284b68793ced621faffb29f97e97d2484c49b99033cdb78319",
+    "x-men-schism": "c636c4ebbd9330307c50b7ccb4b2fb637a5e4b43d29e047b7fe6d945cf7fe686",
+    "spider-island": "6a63f41a9a3cfafafcfa3e76f5c788a4dc02a6e8aa1fa07cdacc2d56fcda594c",
+    "x-men-regenesis": "153c8e6a1ac824d4aa51f7b0e6be1411afe05f877d826e1aa1f93319c0a5d02d",
+    "hickman-minimal": "4dadc31cbe92cdae24c8cd6d9f864f558690114c2d249d188a0afba1f6bf22c7",
+    "hickman-full": "ee5b63fffc34eb8f35d0b946307b3938edab82ad5b5b4a6996316ea7c4388dcb",
+    "minimum-carnage": "c085d42b3dda1f3e68b58c0fc78933e77ec64e3ab649e042c4b82445f1c5218b",
+    "x-termination": "ddad62444d0744000a15ae903d6a37389759ab29f49e3c8cb46457eb521539d6",
+    "avengers-enemy-within": "baf2fe2c6fa957c1a34addfea15a8d5f4ebe5ef95500a7eba157bea377912dcc",
+    "x-men-battle-of-the-atom": "4c9ceb52376a481b02ca820fff1f97b28fab0a907744fb96aecba9bff4690ea2",
+    "revolutionary-war": "c7745469bf1d856ee90a75cadb0aa58b8b97aad6cfc39d490eccfd0514581848",
+    "x-men-trial-of-jean-grey": "5a5415c8dcb54f9cfbff4b688b9b4e62edf52a2f6bc64cd322acf9eba56a9558",
+    "monsters-unleashed": "451b974ae0a1bcbc2d3d22440a798a618f30cef9cfe1828be68c62fedd91d02e",
+    "venomverse": "6f2735e418adfcba0926c090c16cef3a37ebb3d9f2708c0a9b41a940e1baa8d8",
+    "generations": "de6738a5d00b033d16e6973683fc0d64871682ed3caaa812b2c5fc7466239e97",
+    "infinity-countdown-wars": "8f8a51da0d5502cabdb84642958f420f00d8eff8298b3efcf212cbc4eb6d3ea5",
+    "donny-cates-marvel-universe-reading-order-2017": "faf282551b97f1a6c93c75440fd1279243e6fa46e7d0324a05907228e27c4c3f",
+    "damnation": "cc27d9e4f25a5f8c6ebc795bd365ca149446528c4c23b497b3680e4631d67e1d",
+    "hunt-for-wolverine": "08af40c6450afa11dfd56103f5de7e1b237421e4ebdd4478c2654e1d56759805",
+    "spider-geddon": "f606d76e4912108e476fa327e0a48e89d707b097f6f3c33272a7a7c5ffe6110a",
+    "x-men-extermination": "38e3b4c6e1f1ad91df3d484947d5214a0abd90618f304556436bd91714743440",
+    "age-of-x-man": "bc09559727a459fbe5e3439df231a14e02a341495ee203564a5601208f3caeb2",
+    "war-of-the-realms": "dccc279d7bdeed4cd6e994a139ce88680b3d478efc96a6ddfa0d166bf05e511e",
+    "hickman-x-men": "f56a675d9bdc7b7c78012b5b39a401097b002a2c22588360315217d5401d3ed9",
+    "absolute-carnage": "96712092110fce3c5d49bb0a8085985f82d9f0cd8caebab0d161c7fe521914c6",
+    "iron-man-2020": "edf8b6f43df37b404191546792c5918752b40b1d35ffcaa965b23b566d73f072",
+    "heroes-reborn-2021": "8c2edfd11e78a9a9144ce41073c3b3edf2b8ca07d79368970aa3c3ad981cb521",
+    "infinite-destinies": "4cc733aceb2d9abe20907d5c502781f09ad7deea6cdd00bf682057b195341f3e",
+    "last-annihilation": "8cb4064faf9d493cb703158b57a3d3c9b58f035b2015dafdbb2d2aba4b46fbfa",
+    "death-of-doctor-strange": "7ba0d92c71f9f69618208667f163968a5775325552bc42f5258fa34294d1256b",
+    "x-men-inferno": "4ed9243f0810256c1765e78b22729069ee542ab255bc66b53c8fae9436bf4c05",
+    "devils-reign": "77407292825586e357a9e85b21d088fb4cff9a32d68c5da477c2096420ccf27e",
+    "new-ultimate-universe": "a698e353074457e3470e237771c4715685564a3ff0ad47ad4d7fd940346d0059",
+    "new-ultimate-universe-trades": "85d7226f0dd0df607c987fd2fb5af904a9c6fcac8659a47caece07061303c532",
+    "setup-to-modern-timeline": "b8a2f667d9bd2ead227b6297629523ca25e4a8f05be3c9dba8184434f001aad7",
+    "reckoning-war": "7714dc173065b6ba1c65980f4598090af34aaf7306602684d3084ce8aa806f51",
+    "judgment-day": "2766d5d0ff9327af6598a8f1de5c5df6aa76c2dfbf676303b43d63193994381e",
+    "dark-web": "13617cbc5158513e20a0da6ea2da7ed5197a35d9357bdb6e022cb720e5696e9b",
+    "sins-of-sinister": "19f3e22ab7dd9b3c0e906f6dbbe18321530f0d5a75dc4646336bae3d75929346",
+    "fall-house-x-rise-powers-x": "b7147ab43a16afddef5f9b0f6c4e24c697b642d946d46bced9bbeaac27e6a22e",
+    "marvel-zombies-reading-order": "377718a6d8f60107b7962eeebcfebddc56c6403a2c21030a8e75036e3fce6ea3",
+    "house-of-m": "3626786c06a98f10c175c8a2241c3139fdc8cfa52a37e248576f4c74aa893e50",
+    "house-of-m-essential": "75d28affda3004cb6b271edb67abf1b2f4f412fb9f3403c4c9316faa468df047",
+    "planet-hulk": "9930a7eaa1359132cecebc6e8fa99db47852f94e7f7d7e553c78f4fbff2419ca",
+    "planet-hulk-reading-order-and-greg-pak-hulk-comics-guide": "fcc2bec18d3d3adf97924fa546ae727cfba6a93aaf1de61c21f75281311e3f2d",
+    "civil-war": "8130d3e5f2a5a8f6d33f5f4b52f91dee9d98b49d323442ce5f942c41b01b4346",
+    "civil-war-essential": "3cb46eeaae72b538f3cf1ae3788b3ad7f1eb6c2abb656d2c57d6dd07591be75b",
+    "annihilation": "a8a563af836e09b3efb0c06f99013d47b995cc4c3bcff0119824330bb75bcf82",
+    "x-men-divided-we-stand": "722af52ca1e289c27446289ca057cf9bceeadfe281e6e637400f591d53114083",
+    "secret-invasion": "bbc4564697507a67c48da3aa2f95e63aa30434fc1a9f2b275590a13e713a02c2",
+    "secret-invasion-essential": "e94cacc5b823341ec8159228f3866e8e6d095949b236dbb35db1917821f68b72",
+    "x-of-swords": "cd42ce96ef2370032aa5863ad250560f8fcf754be5b840b10f7d473299b9ce43",
+    "king-in-black": "8d59b45ab1b7eb301775b9e6c2219c36cc039c3ff6bc20844e2326e6813a5721",
+    "the-vision-reading-order": "074a4883d53ff72035b514d0f99e69d957ad5fa1895c56eb68e425bef76c78b5",
+    "emma-frost-reading-order": "d52544acc09e16f15af12dd387d9ddffb0a7c8f837d77ac6406e0a6bc5f4a7bc",
+    "doctor-octopus-otto-octavius-reading-order": "8c964ced3e1da84f17049415f74998ebc638a68d777299c77b2aee075063020e",
+    "shang-chi-master-of-kung-fu-reading-order": "cfe09a2a7ce0158878e9a801c916a072c9450cf27508ed2828c58dbe58c8eac0",
+    "thunderbolts-reading-order": "941d20ec52dee0e19513df5f3862766ad653c190c566126814c7fb6ef68c3d9a",
+    "namor-sub-mariner-reading-order": "b7db576c15a94df9bdf17f7e5e72abcc97a2cee816be9bd99e730a003bff17b1",
+    "nebula-reading-order": "1c5b587443dcdd9e6e801ebb33234b75d8adf767aa35cf36645725f9d2105506",
+    "hawkeye-reading-order": "129b5935155555de9a3a11c13404a4596fe56c4202abfd5e8dff7a63b275b461",
+    "doctor-strange-multiverse-of-madness": "857a0ee75cdcacafd6108d433306d2d9393d8489c20f40e7e55a51c6a54a9e6e",
+    "spider-man-no-way-home": "c645fed01a7dfcbd38f1c99f428db20a5e6ec448c2746dcb72cabdf652207dfb",
+    "marvel-multiverse": "a090ad191a936b906dc32d03b563736427ed1e352f8a538b09f5fc981f0ea52b",
+    "marvel-what-if": "3481658b1a771fecfac109fbdd996a235f3f1a53d89c89164d97ba885156a512",
+    "wandavision": "6e248076bec86252b3d580bd21248e54f3296d7536366a478928c44c54fa7546",
+    "spider-man-far-from-home": "53a21ed9577beaa9436de70ce046072f390600ce10c895041ad6f047ee8bbe55",
+    "agents-of-atlas-reading-order": "33564de887cefde72f2818d60e477f91f76cfd1daad7f242aa5dcfb6e66c2a60",
+    "white-tiger-ava-ayala": "1db8743de50710a876f35a669dd67c638fd462b1e5c2a9eaf50e18dcb047f514",
+    "nova-reading-order": "e7e9918d284eaa050dc38c418fdf8a5acfaa131f4b3df2ac731ecc25d050a702",
+    "phalanx-reading-order": "ba60568ac1f097782a4ee66e3f560970b3c96fb2d967c97731a684a61d17fbf0",
+    "marvels-best-phoenix-comics": "37e3fc362badb91372c74d8aeb87a405bd6cc97749e1c3bc2d5b09c01865ae55",
+    "agatha-harkness-reading-order": "3464392a58f6d5b2791585ba41e4e0a8f8a9ab6cb2404a7a052ccbffb8487670",
+    "punisher-reading-order": "0e07fe06602aa7057320f7010093119a2462f006f1b2cd9013df84f6023d671a",
+    "rocket-raccoon-reading-order": "df2b7a0f4a468eb2c34c5e4217d4f48abb58b8c3cbffef507bf9e6a49e471ae8",
+    "best-ultron-reading-order": "3c4db1adb47c63e8ac18f04e6198fa0c0a7f2ef0c9d0ac76e831eaac197dd7b0",
+    "mephisto-reading-order": "6e3841bc20dd631ffa4792ffc1e10f7860082d2906ecc08c74a5d69e8301f515",
+    "spider-man-2099-reading-order": "0f3a88346fd230e78ce6c9243ec0065f00923308c4dd102607738207d54968a1",
+    "silver-surfer-reading-order": "25d4acb6a4fd9ea3a490a3831dbbed91c46bedbb525758acd5d35d94a240bee9",
+    "abomination-reading-order": "565deba8c536c780df9ba2bdb3a2382a207b126e631829499d10fd6f4c78b5fa",
+    "the-defenders-reading-order": "ce96cf2f93b7b661a418295204c265457eb91d9897be37ab5d9e1d37629f2cc8",
+    "runaways-reading-order": "d20e884571b835d2fdba281a264e0dac4fc69d33296aa389dc8a4c0e09e38a04",
+    "adam-warlock-reading-order": "2dbc63cdd910842c4e345ad03eb843f79b8f6c99a503496321e52dca6cedc1d4",
+    "black-panther-reading-order": "28bda7e1a0aa33c48cfc225556c2b267cff64c7a7de92e88ddffaba2682e697f",
+    "groot-reading-order": "e51f1fa19c81d06787739f214086800a5ec27f083b58b141c96001dec6516388",
+    "silk-cindy-moon-reading-order": "a66552cf829d645742ef4330c4a72fa6590a1a38b5c0c58c072e2daed2934dcf",
+    "spider-gwen-reading-order": "1f593ac57fd4cdfdce6515ffdfa89b53d42d66092d96d114b35a92ab6e076db5",
+    "star-lord-reading-order": "96898f194105585905a893035f1e97ecb2aed5bfcded9143710369a542d92ca3",
+    "iron-man-reading-order": "e9308177aa8d07b500a54701ad4e2d1362f525c6287473780294827cbd752809",
+    "modern-x-men-fast-track": "2d8d518584fd48a7779696a9270e92be409e445e3a3acd2558033e8d1b62464a",
+    "thanos-reading-order": "5e0dbcfb27043e230d2cc89f90e517523e2be7254f05db71e4d1aadef70f57b7",
+    "ant-man-reading-order": "3635c5143ec3281349808ce627de03deb6f5f0ed324f4ca9128e72d1da3e3aa3",
+    "winter-soldier-bucky-barnes-reading-order": "74fbccd0580ece71b840fbd4346e482c63cb84cb02dee47e9a3440f1d118201c",
+    "wolverine-reading-order": "5266de71a7d29c3d8450fd4825f35caf1022bdbb11d8b1f98a4ccb00a038e849",
+    "hope-summers-reading-order": "6c070b79b8e198d69613bf8fce5ba684af8cfc005949110cc23019deb23735b5",
+    "question-of-the-week-do-you-have-a-hulk-reading-order": "6ab1b69637389756604ebf957365e1431b5eaff4d3dd7f90c0b3de4fac48f43d",
+    "black-widow-reading-order": "0482d16bfb5597dc2e8d575f340b86f9423ff7d2f51a23378e734f97f85b5fa0",
+    "daredevil-reading-order": "3e00e4eed200d5c352b1f8fe46c1358f73b07b8d803fb295d02046f88ba7be12",
+    "iron-fist-reading-order": "95b9e1792a032224d1453adcbfdd60cb55dbd0a76a7b115b72236c3e07948a74",
+    "ultimate-spider-man-reading-order": "7bedb399a09dee4c52635a66dc4cb6f0aea97603276aba63ed7f43e6e30d8bfb",
+    "venom-reading-order": "50789776b237932ff097bfb13ff2a01640500e76dbecdcbd296bf2e8254cd74e",
+    "loki-reading-order": "06dba3e751cdeede9872009b39a23a44fae20a3682a0d848462bdc005fb53034",
+    "moon-knight-reading-order": "98541fefb115e2781bf35806ac811c666e168da6f8538d0702c20e31974757e1",
+    "guardians-of-the-galaxy-reading-order": "f81ae57e15d4e1644f3536841ff591c3048fd6c36098335f17ed369ec767ad0b",
+    "doctor-strange-reading-order": "6775665cc30a9af3e3ce7bfb28edfc7b7fb072fa90fe62a3395444a8f9f82e45",
+    "inhumans-reading-order": "da7f3ef95c87c7c74e725390af9edbbdb80179319a4195d6b5bb80133123e11b",
+    "young-avengers-reading-order": "b7899a53eda9a8b0dd955c7000e56b7bd822512dd4972ad980039518e89dceea",
+    "magneto-reading-order": "1358e16fa8e207027f060a90b447372b0d883582c640462410ce2b605bf23f96",
+    "the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order": "28d5b3254aceb5ff440437abf10c3a845bddebee532d61621819b8203ded809f",
+    "xmen-claremont": "5adbf2e12c0eac608eedc85dab0bb2b0bfcd78d00d53107cbe773bfa6637c69b",
+    "xmen-claremont-complete": "20a5ba29a735d2220c906a920409db505fd59472c6dcfa01277af48c066c4699",
+    "shadow-king-reading-order": "2dda64bc057f13b7a4fda5a33cc3f3619508e3bce0ca1a6c11695a2b4069e926",
+    "captain-marvel-ms-marvel-reading-order": "9467caff29231e8e0b9a86b018150d85dc5ffb2aab243973ac6f25fab0354b14",
+    "ms-marvel-kamala-khan-reading-order": "953ad35c8eee326c60874990fbf3b7bfc9a40757afa630822a570054103c6f3a",
+    "captain-america-best-of": "68524f32dc83833a98fd2aea82711bce0d221192b93a99adfdd140fce10c69a3",
+    "captain-america-reading-order-modern-marvel-era": "f510c955b7502f94fa8ce61b7609b524d757ced4dcb110608e88c66e175e6265",
+    "doctor-doom-primer": "8126266cc1059ff53ecb3cd7a79112c49e36a4518f84e48791685e2b362598bc",
+    "spider-man-best-of": "fd7811725af30251ec8e933a5970125380b2926d59b847ac091c916f12944d84",
+    "thor-best-of": "93e6b45acc8b431108cac4fdbbaf823c577295309ad2e0cb20bb4af5af79450a",
+    "deadpool-best-of": "3be7d043fc48b6a4718ab124327e4f6b384d9bb8c3d1ae356dddccecb94663ab",
+    "scarlet-witch-best-of": "8e19746eeb72415255d7f410c268939a9483c23537df6b2f37e8e3797d6b88a7",
+    "essential-avengers": "92511618d61afa93ffceb5ecd6f556d4f219f9a33db5ff7fe671dc13bcb9f839",
+    "x-force-reading-order": "916edb654c3d936514334fb8fd70d344da62b08389defa4388064ce4fe4f6adb",
+    "x-23-reading-order": "91cda52713ee0020269a4a2c269302d50f842fa1766609dfcf84c0a319604d04",
+    "muir-island-saga": "8336d5e306900c92f3fd57fe2df13115b94a70ea29cde227afbb5a9b0c432c0c",
+    "midnight-massacre": "f94860d37ef35eb8e517421682cf1e56a4bfb3d1a0641534354b4ad1dacfe657",
+    "bloodties": "905a3ddd1e989b7bd6d465a3e465662f148acf1e8c7262a93eaf64f0ed4f2afe",
+    "childs-play": "a73ee8b451623918f33e15f8214b3a145fd48c3ae6db97760beb4c287b9ef21a",
+    "eighth-day": "8a3c072a97cdd3cbbb66c6f875c90536e4e0b3e31ec7875f5debaf42af8b1674",
+    "reed-richards-and-sue-storms-wedding": "353900634d907b847b72112a4cf384b2ff84629f61f34491f18e6925245eddda",
+    "kree-skrull-war": "ddb562a2d5732a4790669bc772edf16db953f3479cd8b528ada9611ba5a81bd5",
+    "thanos-war": "332a15c138109021d168e8c315a658b695a107183476bf2d86da767b816fe444",
+    "the-night-gwen-stacy-died": "501761f6dd0c588cd8bd6f91633bd8493f3f34846b90a7a7aa0b096f29ffdef1",
+    "avengers-defenders-war": "390709e1a597d8fdcdda37c05fea759e6194ea9fee61de3b75d6506c5330edba",
+    "original-clone-saga": "617a14210c9956d5407056f9badd3df01156368c2465348de764586da2f57f5d",
+    "phoenix-saga": "487f4e7c574d789b63b5bf8997ca72826a70c21f799b913381045703d7bc1920",
+    "dark-phoenix-saga": "6f737a8a2212da058796457b6de8e93e70adf7aabb34914a1d0e2e047a09b777",
+    "days-of-future-past": "b3fad112223528c2a6477fbbf1aedb30b8de31a52112277c6d18048d6a1dbb2c",
+    "contest-of-champions": "e68eda6b30dcc17e9ba442c98c380e0f60243f27f4d17f3c76fa9d433a337129",
+    "marvel-super-heroes-secret-wars": "50d461f0279c6c2a3d1b22e3f6f8e1071e49271dfacf62934bebbb2d70041f4f",
+    "wraith-war": "77c45e57d17510bd5077252ee8435181b00faaae416e0f25445477927bd12d8e",
+    "secret-wars-ii": "6b160706600dd1d5a0b944e2cdc2d86d15891b361541e5b93cb0bd58faaa0d9b",
+    "mutant-massacre": "cd600bba51542dd7dacdcad06045807867a212f76ce1e27cff98f3adc2107a9d",
+    "fall-of-the-mutants": "83c83a147cef0741ac8aa8671ac5cc414632327adf69c632e3ea1bb7e63c86aa",
+    "kravens-last-hunt": "06451f161446e6539c8ad3e7ef5e2514e4737d73aebc84a2db746befbe0440f1",
+    "evolutionary-war": "ab73244b78c65858dc408eec2d7429dd6bc3c13e8234e082ee93e34e256b08be",
+    "inferno": "453ad85253906ab4c0022ce85f7eb737089a6f7e804f9a8511005177c70920c7",
+    "atlantis-attacks": "b49b973492467e946cf8a947bdf997e6abf436d745d832de85ec4d56cb7e8032",
+    "days-of-future-present": "61b01b82ddb2ad3b618a749de9ea4d54f0c535e68304ebc00f8cb270a043cc17",
+    "x-tinction-agenda": "f18cab66c3de290a2186d216c315becb93b79d9df93cae9128025efdd2af2ddb",
+    "marvels-infinity-saga-gauntlet-wars-crusade-reading-order": "09a76d5fde1c161f51db12630ce38e7393d56cb1a723b87099c60b33de65ad7e",
+    "operation-galactic-storm": "bed8969fbd98340b08af1f0ad776abe79e1df81bf5dc375f3151a6b52464ea11",
+    "dead-mans-hand": "37d129ceba4028a3747e4465632d19a13bb557d7ca09fb3cc9032609a96e2c08",
+    "rise-of-the-midnight-sons": "76447361e364fa24624233c6724d60eae7ab5925dbc016d857597f71f44715a7",
+    "x-cutioners-song": "3a435b6eb4b22ada9fc1427ef19133fb6ce912f8d6b6dff097f90c3af2b9ea22",
+    "mys-tech-wars": "2410439a804a817ce27a04481c997a30d3c8e44105047897a2fc8d8ef514fa3b",
+    "fatal-attractions": "4129edc00e9b532edce015079ae22a927d98e8f76f81e7196f6587d6828e2056",
+    "time-and-time-again": "03a148182c1742a31e40beae2301d5812d1c30b3f9fec20cf3e55093d903b004",
+    "phalanx-covenant": "7b8ba36a1f09e29688d8caebd72b1df1ad240cf9dec7872b441249597ae49bfe",
+    "the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order": "c5edb61dd30449599d65cb4391fccdc6ae1a1968e850b895645cd9b6581ab42c",
+    "operation-zero-tolerance": "9e078c5eab9622f65c20f65f7e62615dd79f08d0be81e5d447d4d309d0f4d77b",
+    "marvel-knights-to-planet-x-01": "c9b46d67160a2f2a0c9450ed5b165877dc1f0dadd53bc315eb50d28663df3d9f",
+    "marvel-knights-to-planet-x-02": "865d4b0424dfd1340d493ed5a245b092ae21aeab1025d8673e935329f0d5ba37",
+    "marvel-knights-to-planet-x-03": "3fa161135a84c89066b32c11607633364f125291287b6748190a46a0a349c19d",
+    "marvel-knights-to-planet-x-04": "22fbbcb46872994c4a6cbc1b3ebc736e888d905d17959061b3b8e67afed473eb",
+    "marvel-knights-to-planet-x-05": "f69e164658a19e2b3ba5909e5109cabf1e7f9955a0ee0fca3af67d8c50252305",
+    "marvel-knights-to-planet-x-06": "3258919d0764c97b84e7f9a70a6b259f01033b15d9333745d729bde9d6e5d234",
+    "marvel-knights-to-planet-x-07": "bd317739c722b07ca374c5a2f582bcf43f5e098159553e19a60562b1749f2258",
+    "marvel-knights-to-planet-x-08": "2e744bf1c54dac2e08403f179ff5e1cd4d9fadc20b42bb4f257344ae3be52a70",
+    "marvel-knights-to-planet-x-09": "f4a5ddae3874abdf684a7f0ba8ee144f86b311f69c5fac41589772f4bf25cf44",
+    "marvel-knights-to-planet-x-10": "5e8afc00a5e6522bfebbec3e573978523a5432a2748579dc1c2654f7bb1c6fa5",
+    "marvel-knights-to-planet-x-11": "e00370e8fc30d11ccb5d976c6e58d6e823ff1b511fdb6d2fb90ab38e084f514f",
+    "marvel-knights-to-planet-x-12": "d1ee7a02afb563af527313100b208f1b91933d5431e2b0d2f0168065186bfb4d",
+    "marvel-knights-to-planet-x-13": "a7942c10af51d59b7468267e7a06879d089b141aeb3bbf12a7f8b11080aefece",
+    "marvel-knights-to-planet-x-14": "88b460996aca93a99a74ad8c6404ff63a6275d73452c31fb39f6e88e9490a618",
+    "marvel-knights-to-planet-x-15": "558116ea1dc6ab531bb8f054893eb03f7b24c75e7bb16056e0d9f4679619ac3b",
+    "marvel-knights-to-planet-x-16": "db3ac86ceb1e6a5c002691bd525b14cec0d604daf6eb9686edd859138062eafe",
+    "marvel-knights-to-planet-x-17": "7d84c8ce5365300bb6267dfe0577abd9788c28e001aa86113196d301e8365d62",
+    "marvel-knights-to-planet-x-18": "f11c0dd484eb494b62ee42bddbb07619a776eaa96bc0de21dbbeadb4dad98707",
+    "marvel-knights-to-planet-x-19": "cc6fec3d3ef844147e74fa425253e21dfbdc4e9e7ab333d9960a50bcf973b306",
+    "marvel-knights-to-planet-x-20": "340973ead96e72d3ef11b1b22a3af08e7f28cedbde48d49266cdeee56d822bc3",
+    "marvel-knights-to-planet-x-21": "7285da3b60932df95171d644a1296790eec1f71d9956e83d319e7aca35e66d7d",
+    "marvel-knights-to-planet-x-22": "a3d85105da8c7c932e799ac2e6429fe5dfe212027c95325a5dbffffaf3fc266b",
+    "marvel-knights-to-planet-x-23": "559edeaa11ca07b049e315b1879dfaa15be2dccc68ec27ae687df8c24e2a6e63",
+    "marvel-knights-to-planet-x-24": "362d129d3d5199c7d3e3b43e18fcdb3753a99c03f1d4ceaf6cf0075a60a16942",
+    "marvel-knights-to-planet-x-25": "4cf5fa95f37912cba2a9d1f5df59abdafeccb8635e171f8fddfd23f95352a3fe",
+    "marvel-knights-to-planet-x-26": "3dabbb0d9c229888809dcc42a0da3cfc677761afa0d0623664d3564ee214493a",
+    "marvel-knights-to-planet-x-27": "f872bd6355a0cc0540024c45b4bd653791f3bd8ed167a0b7bde1f747372c779e",
+    "marvel-knights-to-planet-x-28": "e5e8ebe0276c6ffba6764648761654c284541e1558214aebcb7b74c79aaf0a66",
+    "marvel-knights-to-planet-x-29": "10d4df7d9df194c2f94eb5205153460e677fee04a4e7036737c9293636a0880c",
+    "marvel-knights-to-planet-x-30": "53b095478cb46b84ce1154fa331deccb51215c0b01002f36442e490221480b2b",
+    "marvel-knights-to-planet-x-31": "881638d05e32640ea9702f84fee6b9784b410d4684b83c8b15c202c85df2dd2a",
+    "marvel-knights-to-planet-x-32": "bb39deae9c39fe82fbcdeecf4fddc47c39ce278301061ab6b2c9d2c9a58351aa",
+    "marvel-knights-to-planet-x-33": "a4f257316a43286118375b56b5cefb343e48dfc1c82713349e872f0168e87550",
+    "marvel-knights-to-planet-x-34": "07c88c4c19c25a3f6acc5f8d4d614477836fd481320a5e03cfbb6435f0873f53",
+    "marvel-knights-to-planet-x-35": "fb457a50d5e3a70c986dac60967cb86446bb4d26f9313080ded0063e049a2603",
+    "marvel-knights-to-planet-x-36": "62239034ca4566c8dd330d3832f80bc599572f4e5b589daae9d3a5b45d4118f1",
+    "marvel-knights-to-planet-x-37": "74e46776551648400484cdc9cbfd00183f393eac97f6943daa5914344faf6e6c",
+    "marvel-knights-to-planet-x-38": "15713a9abf33e5bb36d78799ba9c73af5a55e0132f6a43db27b2ef57d0678d61",
+    "marvel-knights-to-planet-x-39": "8682469c823e951cf46b6d8e3ee27d39f0e81581757e0f9920f4e9cad329ebfc",
+    "marvel-knights-to-planet-x-40": "329976e9ef15c76d53473dcf08e111f6ca101072fecb7588e325a939f4268af2",
+    "marvel-knights-to-planet-x-41": "69048b7a9998030bb948113cdf7578db913c640b93a34fc9653928a3bd5028d2",
+    "marvel-knights-to-planet-x-42": "ee84ecc6b83994183c412109124c580bd1a0f38fda91c4a40b6aaeb9822dc4b2",
+    "marvel-knights-to-planet-x-43": "2fb41b3129d53de10e5c4cd60c691ba4143ff83dd218a34793cf8e4d0489a0b7",
+    "marvel-knights-to-planet-x-44": "4136238e1ce660c6a852f4ef3b801d9b73e206fe933e1041232fa6bf0235621c",
+    "marvel-knights-to-planet-x-45": "72ed715cd6c730e09623ba5c26745d6da91a43ab0eb396bc5e5580b5c1b11668",
+    "marvel-knights-to-planet-x-46": "60595d5a9c24183c789d74aa2addb1729f67beed69300357d98bb770b0f61832",
+    "marvel-knights-to-planet-x-47": "4ced0acc63ce07b132a4f9626a087783382a3344515bb3fe2faa29e12bd3cda1",
+    "marvel-knights-to-planet-x-48": "c65a8843cfe5df0c45c9d277cab9580a90d4ca959d74b607a90b3b372234ede7",
+    "marvel-knights-to-planet-x-49": "c2874dff8e00e3799826a6fbd3f8f700c8a815a65b256b98205570033e60631c",
+    "marvel-knights-to-planet-x-50": "9b5e237e22a3ce8d5b27cb8f711da527457832b399fd17d95e3752589a4a2660",
+    "marvel-knights-to-planet-x-51": "85f1b533c17c1e269d666d967a7494b7e4152d7b9243fd36f9a09293e080d7f2",
+    "marvel-knights-to-planet-x-52": "dccf0116ef7e7731b0967089d1c0578ff619203538bdfbeca89d0ee3c28ebb81",
+    "marvel-knights-to-planet-x-53": "9f88e2401442e269d6db14bb1c31a3eb268b3498ea19f1a05fd683ca4bc78988",
+    "marvel-knights-to-planet-x-54": "9f89da750634e0acb483b618e3d40a4dca6af2127d13ff574441a953cfd35414",
+    "marvel-knights-to-planet-x-55": "77d039655d5c71dd01c4fa5a004607f786fc6a06b220f84c096da207de7216a1",
+    "marvel-knights-to-planet-x-56": "ec16f00c23cc904c0693896786ff6ab41e6465d27632459528c5e4df35685918",
+    "marvel-knights-to-planet-x-57": "3563564756c1349c564de0a4b3dbc158fb1385b1b5b64a5c1a968fb687a1ccb5",
+    "marvel-knights-to-planet-x-58": "751369d23a23c00734c4d92d62170b5899ef0b2837b68a62e9c46e067caf38a1",
+    "marvel-knights-to-planet-x-59": "4c7b633ca8386463c2cd8f54d6395efd6042e030c2c9777789df34f42c71c698",
+    "marvel-knights-to-planet-x-60": "93bc84a1e00aac0c019cdf4b44db491f33af176d6d6f39899214fe82bf0c2553",
+    "marvel-knights-to-planet-x-61": "5d674a2bc43a38b9b0510e057708bccd06f5da302da847c724c198f7a5819753",
+    "marvel-knights-to-planet-x-62": "ef911dda09292b4ddca7600c154e56a3712ea3579acefbffb8f972d82d60bf05",
+    "marvel-knights-to-planet-x-63": "00d9d1a2ef1e0dd4985eef016004a8aa2605fa35d8cb5e58b1b0ffa4e6d45cc6",
+    "marvel-knights-to-planet-x-64": "a46aff9dcce5ffc6bcedacd659795ac0295e4003fd64a29687b307dfd26af827",
+    "marvel-knights-to-planet-x-65": "a9d9fbb296af55d60e66931e34fa450e5a9472dfc9346edc6cc3e5fb6ac824c6",
+    "marvel-knights-to-planet-x-66": "3cd2e556f3820dc6787d7622447df24994ac94fb7ca75bee8984bf349c74030c",
+    "marvel-knights-to-planet-x-67": "7f110a95288613db63bb00a7043003bfdc60056f15d07a5fcf79b11019ebefc5",
+    "marvel-knights-to-planet-x-68": "c46a36a2e8a3e7adba8294eb2a5bf7a248c8afd7d4501cadc55630364e15d587",
+    "marvel-knights-to-planet-x-69": "e3206d588f3b395e1d01f1979e60539c498acd795c79f24ce889f66eb1d16e26",
+    "marvel-knights-to-planet-x-70": "c8992aa80fcfcbb5e1947e6bf2061ac670d31667128c9e8be8d9127b68041293",
+    "marvel-knights-to-planet-x-71": "dece45a9287e8a9283ad3d0595b491b5213e5869ae0ff2cbb0f8c74e50f2cb99",
+    "marvel-knights-to-planet-x-72": "7d3777b915374de7637f344c7df79dd15dd48bd914d367b9e2851032b8a25687",
+    "marvel-knights-to-planet-x-73": "7d7660bafd890a3a45222172cd399bf4ebb132f8d879ba2eb5348ea4399ce790",
+    "marvel-knights-to-planet-x-74": "f9e28f77662c6783e2144a02cf4d9960e8f96671e6a25e319fa149dc07047f89",
+    "marvel-knights-to-planet-x-75": "28f216b915a559bc15dd53c17c5e4cf2359a726dccede355536cb2a9e47a397e",
+    "marvel-knights-to-planet-x-76": "842dae41e190bb8365f41aa19e9e574d9f367f4e5135ece9a9709202d36d96ed",
+    "marvel-knights-to-planet-x-77": "1857edc550728ba968b9844920de76635003357ee0a2ba240530b1f084ceba8c",
+    "marvel-knights-to-planet-x-78": "817db3c49c7a1d02fa8324415c601ff53d497027c7262119a030264fc53ca4fc",
+    "spider-man-identity-crisis": "0fb0f54c0cb27cff77b6d6572455675e66cdd95601f3c2e8fb194b15d7aee5a1",
+    "hunt-for-xavier": "aca6d5168e456aaa8422191992dbbfbcf451730c15a877654d1230d80ef90338",
+    "magneto-war": "66fafdcf7c9390d565dc1d9009ca40395347f7da8d3a5cf33f8c1b36f544742a",
+    "ultimate-marvel-intro": "dfacadeae2dcf9d0e77b0410dfbc2e1410222d699b4052440ef1c78e86e31162",
+    "marvel-2099": "652b39313c0b61906905f8d3f33e38c65ceb448c001fa60a4b62c7379e3468f4",
+    "maximum-security": "0e7773d9e7861160e548bc38d69d85ac59f9bf9db95006ffa7327c0f50aa530f",
+    "falcon-sam-wilson-captain-america-reading-order": "4a5e05b0479caea24c29bb89b64cc4de02e1da4df58f89f7e74850492202f17e",
+    "fantastic-four-reading-order": "6d241965cca6bdd88a0178c661f6e5db0306c246d9a00821c68adf2da47fc4c7",
+    "nick-fury-reading-order": "39bf7c4572a87656d1633efd238ecd768c99d712e2ed52d12d8efad38dbd7601",
+    "avengers-disassembled": "734a324381158370f0aecdf1770679c530b848bdf988963182d7c7b6e9a0b3d2",
+    "civil-war-avengers": "11e3c920816160dec57397adbdf61e8ebbfa9539abc63a65fc0ef5e499001897",
+    "x-men-manifest-destiny": "6e881cfca61196c94ec1fb724beb9f69b9e664767bb982808d60711aa684956f",
+    "dark-reign-avengers": "d128b009af69bba0ed9ac55a7aa95ac48ca15a8597db3113a716047c4bda5220",
+    "war-of-kings": "becd036120f024bd1c19ab470792efec6a81e0e1b66620ffd856bf643c7b4105",
+    "messiah-war": "c5c690875e1f52b88582b47df17e14827a13a68ff22fb7fc0f9f1aed3766d58d",
+    "x-men-utopia": "2dbac895e3e776e4ab379ec3bdef976c156fb74f46dcac1deb0b8d112677982a",
+    "x-men-nation-x": "d48ecabd6765a069009c37c75b93a116a39887f2ac66afb9b12dad01646f1fb1",
+    "necrosha": "3c5ccd356169cfbee1f53deb21591fbcdb3e3e9ef0296d8333a467538e27876d",
+    "doomwar": "e57ddaaeb9e5ccc31784849904a79eb6c36f1c103cea439316258483c22ed0a6",
+    "second-coming": "2d347cb8b828577036a37495750ca799169fefffd82a11d12947356c0b76de73",
+    "thanos-imperative": "13cfdfdfaaa8a094987459fc1c03e6032d5efc25705ddec57a88d97f0219c2ab",
+    "heroic-age-avengers": "19c107c43ec255fc33e92be5981d8efd1eb0822695616a594fdff5f1471f05a4",
+    "all-new-all-different-avengers": "c3c39c0ea6e0504cf66a6e7915809740f6080be9738838db34463aaf956e0452",
+    "marvel-fresh-start-avengers": "f44b6f7a63c234c4acfecbcdf3a4e50493dbcc3869c2f43624d2f9f589447bba",
+    "secret-war": "e53e8e28bcad12e0ec73b8ae726f4c60bb918c7b2c0b7d40bb9793bef08d8a3e",
+    "spider-man-the-other": "092bd6970e33662810924de8ee2a9943670bf30a24155dec257cb5a378e20a24",
+    "miles-morales-spider-man-reading-order": "cc27630d000b9a5e93b9646d77eaa0c3e1022b325dbaab9cf2fa49b77c15a762",
+    "amazing-spider-man-reading-order-modern-marvel-era": "9b53ac214dd5ba2a939b235d3dc635cb69523247871fec59a738ffbb32b234c2",
+    "silent-war": "3ca5dc9eec8a457f50f72b8a6c35a28fcd508986c66e6afba4b5f596b70fd429",
+    "annihilation-conquest": "f80806cca092ff5110a03b2050ba72500ed055c40521259ebd44208100e85cb7",
+    "messiah-complex": "be0a36b0167ff1a9c67a85c184337de8e483eb13bb8435413ee878d406f41960",
+    "world-war-hulk-aftersmash": "106b6accc8275aada8b17a4b44d35f38bf8a6e19e5a8f6fde2d2c557a8b2b014",
+    "x-men-curse-of-the-mutants": "117839bcf243d3a2bc67a20703507a1af9324e0208f23dfc165d84bbeab04db4",
+    "shadowland": "d4d90c8454e61b3e1a2e66d14e75591034d0696429ec99f3967397ac8c45ea84",
+    "wolverine-goes-to-hell": "5548aa196438911a693d8ca8f5d70848993fd331ce93cfe30907fff2ba650eb6",
+    "chaos-war": "056226c108d3dcb1734d770b26b9515b307b61aa56fff15cd724d74c82d4be4f",
+    "axis": "af33ea945f34e2962db7aa6e8b20e29f5f173933466e360f55999f7454aa35cd",
+    "spider-verse": "e35e308a765a51f632b44bf10c471f2fdb830043ca4da5c1915226d8609700fd",
+    "apocalypse-wars": "72d52baa3732b0f99dea2f6ade3fce132ef1be8ccfc8cbe258464e2d19dda702",
+    "clone-conspiracy": "2eeae34426d7e3ac46a75297980f67b456cad0ff79bb62cf3fb666e5912219ce",
+    "inhumans-vs-x-men": "ce788378c126bbda431777235d6707765cd0151d481257bffee1d0285e4efa5d"
+  },
+  "sourceCounts": {
+    "ownerSelectionPositions": 3,
+    "approvedOriginals": 18,
+    "resolvedOriginals": 18,
+    "metadataGaps": 0
+  },
+  "candidateCount": 18,
+  "comparisonCount": 280,
+  "comparisons": [
+    {
+      "orderId": "abomination-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "absolute-carnage",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "adam-warlock-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "agatha-harkness-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "age-of-x-man",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "agents-of-atlas-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "all-new-all-different-avengers",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
+      "sharedCount": 10,
+      "sharedIds": [
+        "45808",
+        "45809",
+        "45810",
+        "45811",
+        "50350",
+        "51320",
+        "51324",
+        "30324",
+        "30325",
+        "30326"
+      ],
+      "relationship": "partial"
+    },
+    {
+      "orderId": "annihilation",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "annihilation-conquest",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "ant-man-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "apocalypse-wars",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "atlantis-attacks",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "avengers-defenders-war",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "avengers-disassembled",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "avengers-enemy-within",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "axis",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "best-ultron-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "black-panther-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "black-widow-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "bloodties",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "captain-america-best-of",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "captain-america-reading-order-modern-marvel-era",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "captain-marvel-ms-marvel-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "chaos-war",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "childs-play",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "civil-war",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "civil-war-avengers",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "civil-war-essential",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "clone-conspiracy",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "contest-of-champions",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "damnation",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "daredevil-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "dark-phoenix-saga",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "dark-reign-avengers",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "dark-web",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "days-of-future-past",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "days-of-future-present",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "dead-mans-hand",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "deadpool-best-of",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "death-of-doctor-strange",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "devils-reign",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "doctor-doom-primer",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "doctor-octopus-otto-octavius-reading-order",
+      "sharedCount": 7,
+      "sharedIds": [
+        "45808",
+        "45809",
+        "45810",
+        "45811",
+        "50350",
+        "51320",
+        "51324"
+      ],
+      "relationship": "partial"
+    },
+    {
+      "orderId": "doctor-strange-multiverse-of-madness",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "doctor-strange-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "donny-cates-marvel-universe-reading-order-2017",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "doomwar",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "eighth-day",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "emma-frost-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "essential-avengers",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "evolutionary-war",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "falcon-sam-wilson-captain-america-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "fall-house-x-rise-powers-x",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "fall-of-the-mutants",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "fantastic-four-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "fatal-attractions",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "generations",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "groot-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "guardians-of-the-galaxy-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "hawkeye-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "heroes-reborn-2021",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "heroic-age-avengers",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "hickman-full",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "hickman-minimal",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "hickman-x-men",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "hope-summers-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "house-of-m",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "house-of-m-essential",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "hunt-for-wolverine",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "hunt-for-xavier",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "inferno",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "infinite-destinies",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "infinity-countdown-wars",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "inhumans-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "inhumans-vs-x-men",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "iron-fist-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "iron-man-2020",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "iron-man-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "judgment-day",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "king-in-black",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "kravens-last-hunt",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "kree-skrull-war",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "last-annihilation",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "loki-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "magneto-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "magneto-war",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-2099",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-fresh-start-avengers",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-01",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-02",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-03",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-04",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-05",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-06",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-07",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-08",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-09",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-10",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-11",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-12",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-13",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-14",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-15",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-16",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-17",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-18",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-19",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-20",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-21",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-22",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-23",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-24",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-25",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-26",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-27",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-28",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-29",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-30",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-31",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-32",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-33",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-34",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-35",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-36",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-37",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-38",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-39",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-40",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-41",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-42",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-43",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-44",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-45",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-46",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-47",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-48",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-49",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-50",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-51",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-52",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-53",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-54",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-55",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-56",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-57",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-58",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-59",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-60",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-61",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-62",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-63",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-64",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-65",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-66",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-67",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-68",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-69",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-70",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-71",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-72",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-73",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-74",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-75",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-76",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-77",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x-78",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-multiverse",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-super-heroes-secret-wars",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-what-if",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvel-zombies-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvels-best-phoenix-comics",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "marvels-infinity-saga-gauntlet-wars-crusade-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "maximum-security",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "mephisto-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "messiah-complex",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "messiah-war",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "midnight-massacre",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "miles-morales-spider-man-reading-order",
+      "sharedCount": 7,
+      "sharedIds": [
+        "45808",
+        "45809",
+        "45810",
+        "45811",
+        "50350",
+        "51320",
+        "51324"
+      ],
+      "relationship": "partial"
+    },
+    {
+      "orderId": "minimum-carnage",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "modern-x-men-fast-track",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "monsters-unleashed",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "moon-knight-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "ms-marvel-kamala-khan-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "muir-island-saga",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "mutant-massacre",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "mys-tech-wars",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "namor-sub-mariner-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "nebula-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "necrosha",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "new-ultimate-universe",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "new-ultimate-universe-trades",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "nick-fury-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "nova-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "operation-galactic-storm",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "operation-zero-tolerance",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "original-clone-saga",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "phalanx-covenant",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "phalanx-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "phoenix-saga",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "planet-hulk",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "planet-hulk-reading-order-and-greg-pak-hulk-comics-guide",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "punisher-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "question-of-the-week-do-you-have-a-hulk-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "reckoning-war",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "reed-richards-and-sue-storms-wedding",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "revolutionary-war",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "rise-of-the-midnight-sons",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "rocket-raccoon-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "runaways-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "scarlet-witch-best-of",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "second-coming",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "secret-invasion",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "secret-invasion-essential",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "secret-war",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "secret-wars-ii",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "setup-to-modern-timeline",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "shadow-king-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "shadowland",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "shang-chi-master-of-kung-fu-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "silent-war",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "silk-cindy-moon-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "silver-surfer-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "sins-of-sinister",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "spider-geddon",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "spider-gwen-reading-order",
+      "sharedCount": 7,
+      "sharedIds": [
+        "45808",
+        "45809",
+        "45810",
+        "45811",
+        "50350",
+        "51320",
+        "51324"
+      ],
+      "relationship": "partial"
+    },
+    {
+      "orderId": "spider-island",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "spider-man-2099-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "spider-man-best-of",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "spider-man-far-from-home",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "spider-man-identity-crisis",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "spider-man-no-way-home",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "spider-man-the-other",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "spider-verse",
+      "sharedCount": 7,
+      "sharedIds": [
+        "45808",
+        "45809",
+        "45810",
+        "45811",
+        "50350",
+        "51320",
+        "51324"
+      ],
+      "relationship": "partial"
+    },
+    {
+      "orderId": "star-lord-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "thanos-imperative",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "thanos-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "thanos-war",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "the-defenders-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "the-night-gwen-stacy-died",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "the-vision-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "thor-best-of",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "thunderbolts-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "time-and-time-again",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "ultimate-marvel-intro",
+      "sharedCount": 7,
+      "sharedIds": [
+        "4372",
+        "14846",
+        "14857",
+        "14868",
+        "14879",
+        "14890",
+        "14901"
+      ],
+      "relationship": "partial"
+    },
+    {
+      "orderId": "ultimate-spider-man-reading-order",
+      "sharedCount": 7,
+      "sharedIds": [
+        "4372",
+        "14846",
+        "14857",
+        "14868",
+        "14879",
+        "14890",
+        "14901"
+      ],
+      "relationship": "partial"
+    },
+    {
+      "orderId": "venom-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "venomverse",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "wandavision",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "war-of-kings",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "war-of-the-realms",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "white-tiger-ava-ayala",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "winter-soldier-bucky-barnes-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "wolverine-goes-to-hell",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "wolverine-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "world-war-hulk-aftersmash",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "wraith-war",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "x-23-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "x-cutioners-song",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "x-force-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "x-men-age-of-x",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "x-men-battle-of-the-atom",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "x-men-curse-of-the-mutants",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "x-men-divided-we-stand",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "x-men-extermination",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "x-men-inferno",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "x-men-manifest-destiny",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "x-men-nation-x",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "x-men-regenesis",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "x-men-schism",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "x-men-trial-of-jean-grey",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "x-men-utopia",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "x-of-swords",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "x-termination",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "x-tinction-agenda",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "xmen-claremont",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "xmen-claremont-complete",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "young-avengers-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    }
+  ],
+  "librarySnapshot": {
+    "head": "be875ecacc575899d01c3cbbec21cf2ba9440ae2",
+    "scope": "All visible catalog Reading Lists, including generated partition children",
+    "entries": [
+      {
+        "id": "x-men-age-of-x",
+        "file": "x_men_age_of_x.json",
+        "count": 11,
+        "vectorDigest": "ca23c1198c2927284b68793ced621faffb29f97e97d2484c49b99033cdb78319",
+        "payloadSha256": "86a711330b4d5e8c894b669a5b6165e21d99c0945a503fb9c90e80726350f047"
+      },
+      {
+        "id": "x-men-schism",
+        "file": "x_men_schism.json",
+        "count": 7,
+        "vectorDigest": "c636c4ebbd9330307c50b7ccb4b2fb637a5e4b43d29e047b7fe6d945cf7fe686",
+        "payloadSha256": "981bf6844e3ca8d405cfb672530aff31728e11cd999e2dbfdf102f5a6c0ffdd1"
+      },
+      {
+        "id": "spider-island",
+        "file": "spider_island.json",
+        "count": 13,
+        "vectorDigest": "6a63f41a9a3cfafafcfa3e76f5c788a4dc02a6e8aa1fa07cdacc2d56fcda594c",
+        "payloadSha256": "751d7ca2a367147d7bf6ea99db2115a7d65b52737bacaabb29d569321be45b40"
+      },
+      {
+        "id": "x-men-regenesis",
+        "file": "x_men_regenesis.json",
+        "count": 43,
+        "vectorDigest": "153c8e6a1ac824d4aa51f7b0e6be1411afe05f877d826e1aa1f93319c0a5d02d",
+        "payloadSha256": "3a18859dd68b8c47174cd2bb3265745bec01e368f73dec463592a3a89d421c06"
+      },
+      {
+        "id": "hickman-minimal",
+        "file": "hickman_minimal.json",
+        "count": 89,
+        "vectorDigest": "4dadc31cbe92cdae24c8cd6d9f864f558690114c2d249d188a0afba1f6bf22c7",
+        "payloadSha256": "eb67370edb49a7a121713a0492387e50ca6c7c8c379f2ba50762e56dc5c656c5"
+      },
+      {
+        "id": "hickman-full",
+        "file": "hickman_full.json",
+        "count": 219,
+        "vectorDigest": "ee5b63fffc34eb8f35d0b946307b3938edab82ad5b5b4a6996316ea7c4388dcb",
+        "payloadSha256": "20693a1f8b6e5dbd6df7137ce3c83d6e19a91eebb0ae17464ba646f60e73ea0f"
+      },
+      {
+        "id": "minimum-carnage",
+        "file": "minimum_carnage.json",
+        "count": 6,
+        "vectorDigest": "c085d42b3dda1f3e68b58c0fc78933e77ec64e3ab649e042c4b82445f1c5218b",
+        "payloadSha256": "6fb3b90a50869357e8d2f2ac253e093029e4b30ccb376f7a604b3ba99bf28b3e"
+      },
+      {
+        "id": "x-termination",
+        "file": "x_termination.json",
+        "count": 8,
+        "vectorDigest": "ddad62444d0744000a15ae903d6a37389759ab29f49e3c8cb46457eb521539d6",
+        "payloadSha256": "db392a4a7487686baf172ec2610b9158d303cf48cf2e973aabcd30f7983284e8"
+      },
+      {
+        "id": "avengers-enemy-within",
+        "file": "avengers_enemy_within.json",
+        "count": 5,
+        "vectorDigest": "baf2fe2c6fa957c1a34addfea15a8d5f4ebe5ef95500a7eba157bea377912dcc",
+        "payloadSha256": "fe65a62df44053138add40186c2db232cd38332c244ee7c1610cc3a871709ba2"
+      },
+      {
+        "id": "x-men-battle-of-the-atom",
+        "file": "x_men_battle_of_the_atom.json",
+        "count": 10,
+        "vectorDigest": "4c9ceb52376a481b02ca820fff1f97b28fab0a907744fb96aecba9bff4690ea2",
+        "payloadSha256": "dd3bd42b214f9d06059bccb9dc2e1c398b38ef7a1a8ec68c1b4054e74ccb7ba7"
+      },
+      {
+        "id": "revolutionary-war",
+        "file": "revolutionary_war.json",
+        "count": 8,
+        "vectorDigest": "c7745469bf1d856ee90a75cadb0aa58b8b97aad6cfc39d490eccfd0514581848",
+        "payloadSha256": "bf8abdf3907da424c8f5437461e4ef98cdfdee7013bafd381c9f127eb0c607a5"
+      },
+      {
+        "id": "x-men-trial-of-jean-grey",
+        "file": "x_men_trial_of_jean_grey.json",
+        "count": 6,
+        "vectorDigest": "5a5415c8dcb54f9cfbff4b688b9b4e62edf52a2f6bc64cd322acf9eba56a9558",
+        "payloadSha256": "d9260cd7313aeaed895dc6822ef43a6a345e1de92ca87ed9543f7e933ee8faf9"
+      },
+      {
+        "id": "monsters-unleashed",
+        "file": "monsters_unleashed.json",
+        "count": 13,
+        "vectorDigest": "451b974ae0a1bcbc2d3d22440a798a618f30cef9cfe1828be68c62fedd91d02e",
+        "payloadSha256": "3f62c02eda1bcf420f9e5276f0dfe0af31ecb43ae678db42a685e498bf224302"
+      },
+      {
+        "id": "venomverse",
+        "file": "venomverse.json",
+        "count": 11,
+        "vectorDigest": "6f2735e418adfcba0926c090c16cef3a37ebb3d9f2708c0a9b41a940e1baa8d8",
+        "payloadSha256": "88c99e945c0a0bc9713dbe34f3a02dd072e9e43d40a35e0ffdf59feb4c36d104"
+      },
+      {
+        "id": "generations",
+        "file": "generations.json",
+        "count": 10,
+        "vectorDigest": "de6738a5d00b033d16e6973683fc0d64871682ed3caaa812b2c5fc7466239e97",
+        "payloadSha256": "310387863f3d43a7618301a0fda4f5b10307c6e38b628a534a4af7379dab1c54"
+      },
+      {
+        "id": "infinity-countdown-wars",
+        "file": "infinity_countdown_wars.json",
+        "count": 46,
+        "vectorDigest": "8f8a51da0d5502cabdb84642958f420f00d8eff8298b3efcf212cbc4eb6d3ea5",
+        "payloadSha256": "ea9a219522cd903e3e85316afae4ef31693df17d0877f3d45e4d87f6061f7c78"
+      },
+      {
+        "id": "donny-cates-marvel-universe-reading-order-2017",
+        "file": "donny_cates_marvel_universe_reading_order_2017.json",
+        "count": 88,
+        "vectorDigest": "faf282551b97f1a6c93c75440fd1279243e6fa46e7d0324a05907228e27c4c3f",
+        "payloadSha256": "d3b64e99de3b54e9f8f846579ade6bbf30a66d5228645bfb3c93241d97f747a5"
+      },
+      {
+        "id": "damnation",
+        "file": "damnation.json",
+        "count": 15,
+        "vectorDigest": "cc27d9e4f25a5f8c6ebc795bd365ca149446528c4c23b497b3680e4631d67e1d",
+        "payloadSha256": "908a4b18797e44d3167891e3353e0940aa6bde78b0508e8d2848dd0b510cc5ff"
+      },
+      {
+        "id": "hunt-for-wolverine",
+        "file": "hunt_for_wolverine.json",
+        "count": 24,
+        "vectorDigest": "08af40c6450afa11dfd56103f5de7e1b237421e4ebdd4478c2654e1d56759805",
+        "payloadSha256": "4777b18740e4b80326bfc180e75d30402078d56b37e9252624f47806870d0f1b"
+      },
+      {
+        "id": "spider-geddon",
+        "file": "spider_geddon.json",
+        "count": 25,
+        "vectorDigest": "f606d76e4912108e476fa327e0a48e89d707b097f6f3c33272a7a7c5ffe6110a",
+        "payloadSha256": "f701614dee21f3a31f7ecc9f8ceca4085d4238d4f480533e9cdb6a6badb90a16"
+      },
+      {
+        "id": "x-men-extermination",
+        "file": "x_men_extermination.json",
+        "count": 9,
+        "vectorDigest": "38e3b4c6e1f1ad91df3d484947d5214a0abd90618f304556436bd91714743440",
+        "payloadSha256": "1f8c67b9089ac52efbaaa4623d1c27fd3f2c554fddd3a7bbc9e22fddb561584f"
+      },
+      {
+        "id": "age-of-x-man",
+        "file": "age_of_x_man.json",
+        "count": 32,
+        "vectorDigest": "bc09559727a459fbe5e3439df231a14e02a341495ee203564a5601208f3caeb2",
+        "payloadSha256": "fc5574f90f2c57c43b6b3e4a3b4a10ca7f6c0d8a71cf143752db06b9f94fe3e1"
+      },
+      {
+        "id": "war-of-the-realms",
+        "file": "war_of_the_realms.json",
+        "count": 66,
+        "vectorDigest": "dccc279d7bdeed4cd6e994a139ce88680b3d478efc96a6ddfa0d166bf05e511e",
+        "payloadSha256": "def144cd3d3e00bed2024bb2c5e18bb611d3d955d25cbeb9a4bd69b624b4d5c6"
+      },
+      {
+        "id": "hickman-x-men",
+        "file": "hickman_x_men.json",
+        "count": 54,
+        "vectorDigest": "f56a675d9bdc7b7c78012b5b39a401097b002a2c22588360315217d5401d3ed9",
+        "payloadSha256": "5bca72219d721e6e005c28d083369835aae0269f320a97cc55fde4454a059ccb"
+      },
+      {
+        "id": "absolute-carnage",
+        "file": "absolute_carnage.json",
+        "count": 31,
+        "vectorDigest": "96712092110fce3c5d49bb0a8085985f82d9f0cd8caebab0d161c7fe521914c6",
+        "payloadSha256": "746beac89a9c2dc52bddb7e71f60d9bdfefe13684b37dc38325db9490d43f679"
+      },
+      {
+        "id": "iron-man-2020",
+        "file": "iron_man_2020.json",
+        "count": 18,
+        "vectorDigest": "edf8b6f43df37b404191546792c5918752b40b1d35ffcaa965b23b566d73f072",
+        "payloadSha256": "08b7947e724712c7a486f7c283ee438cce8d8257a4ca21565ffb89da66d9bcdc"
+      },
+      {
+        "id": "heroes-reborn-2021",
+        "file": "heroes_reborn_2021.json",
+        "count": 18,
+        "vectorDigest": "8c2edfd11e78a9a9144ce41073c3b3edf2b8ca07d79368970aa3c3ad981cb521",
+        "payloadSha256": "4712bd00dba06362ada6eaf38b023aa6684cb9e1866cf19d992e4b21c99738cc"
+      },
+      {
+        "id": "infinite-destinies",
+        "file": "infinite_destinies.json",
+        "count": 10,
+        "vectorDigest": "4cc733aceb2d9abe20907d5c502781f09ad7deea6cdd00bf682057b195341f3e",
+        "payloadSha256": "5d1f17c50a39da8f05487289837401ed21410369bee70aa57e72b77d008e150c"
+      },
+      {
+        "id": "last-annihilation",
+        "file": "last_annihilation.json",
+        "count": 9,
+        "vectorDigest": "8cb4064faf9d493cb703158b57a3d3c9b58f035b2015dafdbb2d2aba4b46fbfa",
+        "payloadSha256": "49a527c1daf4be7f647c149f91eb7e19d44ec949546bfb99649164106bc21bdb"
+      },
+      {
+        "id": "death-of-doctor-strange",
+        "file": "death_of_doctor_strange.json",
+        "count": 12,
+        "vectorDigest": "7ba0d92c71f9f69618208667f163968a5775325552bc42f5258fa34294d1256b",
+        "payloadSha256": "1698cdf12e8b120bbf186512e757c1bc88f46b76873143f620c575087836fb92"
+      },
+      {
+        "id": "x-men-inferno",
+        "file": "x_men_inferno.json",
+        "count": 4,
+        "vectorDigest": "4ed9243f0810256c1765e78b22729069ee542ab255bc66b53c8fae9436bf4c05",
+        "payloadSha256": "c62c2c83175642c15cd0a9561eac51a93459d42860e88652658937eb64874589"
+      },
+      {
+        "id": "devils-reign",
+        "file": "devils_reign.json",
+        "count": 24,
+        "vectorDigest": "77407292825586e357a9e85b21d088fb4cff9a32d68c5da477c2096420ccf27e",
+        "payloadSha256": "59b9ee36a11b0f97d05042f62a25a152f83a5478da560beaa3148bafcda0af18"
+      },
+      {
+        "id": "new-ultimate-universe",
+        "file": "new_ultimate_universe.json",
+        "count": 138,
+        "vectorDigest": "a698e353074457e3470e237771c4715685564a3ff0ad47ad4d7fd940346d0059",
+        "payloadSha256": "d9005cf1171056723d8ee3d8f1d432455f40b8981bf207318d513e41036c51fb"
+      },
+      {
+        "id": "new-ultimate-universe-trades",
+        "file": "new_ultimate_universe_trades.json",
+        "count": 132,
+        "vectorDigest": "85d7226f0dd0df607c987fd2fb5af904a9c6fcac8659a47caece07061303c532",
+        "payloadSha256": "18d308c3e55dc8011f8eefc449a3efc4f228503a87c910a7620df1912e596359"
+      },
+      {
+        "id": "setup-to-modern-timeline",
+        "file": "setup_to_modern_timeline.json",
+        "count": 21,
+        "vectorDigest": "b8a2f667d9bd2ead227b6297629523ca25e4a8f05be3c9dba8184434f001aad7",
+        "payloadSha256": "8bb80f86cbc4a7fcab1f4fcd3296337195f3a232f230b90b47080769eee1a091"
+      },
+      {
+        "id": "reckoning-war",
+        "file": "reckoning_war.json",
+        "count": 6,
+        "vectorDigest": "7714dc173065b6ba1c65980f4598090af34aaf7306602684d3084ce8aa806f51",
+        "payloadSha256": "a9b4a360e1873b63c439e1c8a56741fedef1f86aff120594ff61d229dd52599f"
+      },
+      {
+        "id": "judgment-day",
+        "file": "judgment_day.json",
+        "count": 44,
+        "vectorDigest": "2766d5d0ff9327af6598a8f1de5c5df6aa76c2dfbf676303b43d63193994381e",
+        "payloadSha256": "2348b42511a477512c849e25dbc50a3085d4a79e6b555ccaab3650631c52b9d5"
+      },
+      {
+        "id": "dark-web",
+        "file": "dark_web.json",
+        "count": 22,
+        "vectorDigest": "13617cbc5158513e20a0da6ea2da7ed5197a35d9357bdb6e022cb720e5696e9b",
+        "payloadSha256": "a07703036b1797155bafa92a09052b2d08aea8e61b6c0fa61ded1aa17575e077"
+      },
+      {
+        "id": "sins-of-sinister",
+        "file": "sins_of_sinister.json",
+        "count": 13,
+        "vectorDigest": "19f3e22ab7dd9b3c0e906f6dbbe18321530f0d5a75dc4646336bae3d75929346",
+        "payloadSha256": "95fd042d6e0d56b2981eb16f6fe1e3f3d2d3469927d0159f0694357158437d6a"
+      },
+      {
+        "id": "fall-house-x-rise-powers-x",
+        "file": "fall_house_x_rise_powers_x.json",
+        "count": 34,
+        "vectorDigest": "b7147ab43a16afddef5f9b0f6c4e24c697b642d946d46bced9bbeaac27e6a22e",
+        "payloadSha256": "b3642655dd92d7aa736658b6a5772ffa5bf14e684992aab8659f4c89219bdf7f"
+      },
+      {
+        "id": "marvel-zombies-reading-order",
+        "file": "marvel_zombies_reading_order.json",
+        "count": 94,
+        "vectorDigest": "377718a6d8f60107b7962eeebcfebddc56c6403a2c21030a8e75036e3fce6ea3",
+        "payloadSha256": "ea1d593352c76e06f6095ff32642ac46ea3200a3425a9e3b19a0d4eac7900569"
+      },
+      {
+        "id": "house-of-m",
+        "file": "house_of_m.json",
+        "count": 20,
+        "vectorDigest": "3626786c06a98f10c175c8a2241c3139fdc8cfa52a37e248576f4c74aa893e50",
+        "payloadSha256": "7536bbd15e060709ef9e04cb6ac881725ddf9aea1e523dca9304f5b92aa89dcd"
+      },
+      {
+        "id": "house-of-m-essential",
+        "file": "house_of_m_essential.json",
+        "count": 8,
+        "vectorDigest": "75d28affda3004cb6b271edb67abf1b2f4f412fb9f3403c4c9316faa468df047",
+        "payloadSha256": "f6d117641a4a0f5606a8fcc7d191475e3b4caee139d591adc755c0c60c3da981"
+      },
+      {
+        "id": "planet-hulk",
+        "file": "planet_hulk.json",
+        "count": 15,
+        "vectorDigest": "9930a7eaa1359132cecebc6e8fa99db47852f94e7f7d7e553c78f4fbff2419ca",
+        "payloadSha256": "05a7cbd6b0f6d1e30c0adb94abf72431f1b5c29114c31607b4340a9ae1e19476"
+      },
+      {
+        "id": "planet-hulk-reading-order-and-greg-pak-hulk-comics-guide",
+        "file": "planet_hulk_reading_order_and_greg_pak_hulk_comics_guide.json",
+        "count": 107,
+        "vectorDigest": "fcc2bec18d3d3adf97924fa546ae727cfba6a93aaf1de61c21f75281311e3f2d",
+        "payloadSha256": "407ac625770a5e473f313494c025612f7fa941975407f756d6ac4e2f15e2f0b1"
+      },
+      {
+        "id": "civil-war",
+        "file": "civil_war.json",
+        "count": 31,
+        "vectorDigest": "8130d3e5f2a5a8f6d33f5f4b52f91dee9d98b49d323442ce5f942c41b01b4346",
+        "payloadSha256": "a0cf0c609309e038702d8bc37e07fd3c7e95ffe8ef98074e963421e00aba7a87"
+      },
+      {
+        "id": "civil-war-essential",
+        "file": "civil_war_essential.json",
+        "count": 7,
+        "vectorDigest": "3cb46eeaae72b538f3cf1ae3788b3ad7f1eb6c2abb656d2c57d6dd07591be75b",
+        "payloadSha256": "5fefc043261461a26bda71f8fc47792586613e90161c1ad4779f0fda82cca5a1"
+      },
+      {
+        "id": "annihilation",
+        "file": "annihilation.json",
+        "count": 25,
+        "vectorDigest": "a8a563af836e09b3efb0c06f99013d47b995cc4c3bcff0119824330bb75bcf82",
+        "payloadSha256": "fb961e994383e4eace6a021c1e9ee3b7ae26d8f0242222190825e71e7d3e1468"
+      },
+      {
+        "id": "x-men-divided-we-stand",
+        "file": "x_men_divided_we_stand.json",
+        "count": 48,
+        "vectorDigest": "722af52ca1e289c27446289ca057cf9bceeadfe281e6e637400f591d53114083",
+        "payloadSha256": "0d9a4f1adbdf96dc32161d9ca438c21f852056e2ad879bbdbdb38d78d59ce1a6"
+      },
+      {
+        "id": "secret-invasion",
+        "file": "secret_invasion.json",
+        "count": 36,
+        "vectorDigest": "bbc4564697507a67c48da3aa2f95e63aa30434fc1a9f2b275590a13e713a02c2",
+        "payloadSha256": "f35673be2af2715ac54e8499235317e9f167866967ab90fb928527007030ac69"
+      },
+      {
+        "id": "secret-invasion-essential",
+        "file": "secret_invasion_essential.json",
+        "count": 8,
+        "vectorDigest": "e94cacc5b823341ec8159228f3866e8e6d095949b236dbb35db1917821f68b72",
+        "payloadSha256": "708c68bc5f745d51ed13fe88ab773875fabc126ecf91f36b3998287d4395cc78"
+      },
+      {
+        "id": "x-of-swords",
+        "file": "x_of_swords.json",
+        "count": 25,
+        "vectorDigest": "cd42ce96ef2370032aa5863ad250560f8fcf754be5b840b10f7d473299b9ce43",
+        "payloadSha256": "e676e86c3496c842b367091a025d6ac3f2fc5281dc6ae55aa5dec6bfb9e6baf9"
+      },
+      {
+        "id": "king-in-black",
+        "file": "king_in_black.json",
+        "count": 38,
+        "vectorDigest": "8d59b45ab1b7eb301775b9e6c2219c36cc039c3ff6bc20844e2326e6813a5721",
+        "payloadSha256": "e32b9e682fe0e48e7597175e059185247e474e7a13541999888483e32814ac7a"
+      },
+      {
+        "id": "the-vision-reading-order",
+        "file": "the_vision_reading_order.json",
+        "count": 497,
+        "vectorDigest": "074a4883d53ff72035b514d0f99e69d957ad5fa1895c56eb68e425bef76c78b5",
+        "payloadSha256": "c394738aebc618036918b18644e99666d9b2e08c79cee6fd556939a7b14323c4"
+      },
+      {
+        "id": "emma-frost-reading-order",
+        "file": "emma_frost_reading_order.json",
+        "count": 793,
+        "vectorDigest": "d52544acc09e16f15af12dd387d9ddffb0a7c8f837d77ac6406e0a6bc5f4a7bc",
+        "payloadSha256": "099dfd45a4043bb25b63260c054f8342084d8b5949f456d311d8a4bbcb015f7d"
+      },
+      {
+        "id": "doctor-octopus-otto-octavius-reading-order",
+        "file": "doctor_octopus_otto_octavius_reading_order.json",
+        "count": 492,
+        "vectorDigest": "8c964ced3e1da84f17049415f74998ebc638a68d777299c77b2aee075063020e",
+        "payloadSha256": "c8ff85a879d89f5a3a0d51af50152f203e59b169ee6c0f8ed860e3c0b0e25ad3"
+      },
+      {
+        "id": "shang-chi-master-of-kung-fu-reading-order",
+        "file": "shang_chi_master_of_kung_fu_reading_order.json",
+        "count": 298,
+        "vectorDigest": "cfe09a2a7ce0158878e9a801c916a072c9450cf27508ed2828c58dbe58c8eac0",
+        "payloadSha256": "a94957203cf63307f4423017e57deba5fd075b074003d3953ade1a99ea4f2751"
+      },
+      {
+        "id": "thunderbolts-reading-order",
+        "file": "thunderbolts_reading_order.json",
+        "count": 258,
+        "vectorDigest": "941d20ec52dee0e19513df5f3862766ad653c190c566126814c7fb6ef68c3d9a",
+        "payloadSha256": "f856daa498612ec196d294caa2c36d1578f1014bd7a4c20288e6db373e12813d"
+      },
+      {
+        "id": "namor-sub-mariner-reading-order",
+        "file": "namor_sub_mariner_reading_order.json",
+        "count": 700,
+        "vectorDigest": "b7db576c15a94df9bdf17f7e5e72abcc97a2cee816be9bd99e730a003bff17b1",
+        "payloadSha256": "ce98297ad2fb673c8dc6bf47954147faeaa6b666539e831102b78c5f7140af2e"
+      },
+      {
+        "id": "nebula-reading-order",
+        "file": "nebula_reading_order.json",
+        "count": 69,
+        "vectorDigest": "1c5b587443dcdd9e6e801ebb33234b75d8adf767aa35cf36645725f9d2105506",
+        "payloadSha256": "456137d21bc883b2ced0a86e94acdccb3edeb2af2cfe1734eef9416af4e6ebd1"
+      },
+      {
+        "id": "hawkeye-reading-order",
+        "file": "hawkeye_reading_order.json",
+        "count": 663,
+        "vectorDigest": "129b5935155555de9a3a11c13404a4596fe56c4202abfd5e8dff7a63b275b461",
+        "payloadSha256": "129d02bf85b7aa058b0552a0ed3a5910bc5e6096b2430392a02706de9a481fb8"
+      },
+      {
+        "id": "doctor-strange-multiverse-of-madness",
+        "file": "doctor_strange_multiverse_of_madness.json",
+        "count": 17,
+        "vectorDigest": "857a0ee75cdcacafd6108d433306d2d9393d8489c20f40e7e55a51c6a54a9e6e",
+        "payloadSha256": "9854e2ad8710b56a6903007a0b33818e25c394faeef6e637a5de21f23200c46c"
+      },
+      {
+        "id": "spider-man-no-way-home",
+        "file": "spider_man_no_way_home.json",
+        "count": 17,
+        "vectorDigest": "c645fed01a7dfcbd38f1c99f428db20a5e6ec448c2746dcb72cabdf652207dfb",
+        "payloadSha256": "f0bc9a8278568ddd06dec8394a83bdba957c21622cb41582e78fc6fc4dc75c9a"
+      },
+      {
+        "id": "marvel-multiverse",
+        "file": "marvel_multiverse.json",
+        "count": 2,
+        "vectorDigest": "a090ad191a936b906dc32d03b563736427ed1e352f8a538b09f5fc981f0ea52b",
+        "payloadSha256": "656326e0a4de5c399bfc5886e405143895e7e9ba598c210e267fea18428887f3"
+      },
+      {
+        "id": "marvel-what-if",
+        "file": "marvel_what_if.json",
+        "count": 7,
+        "vectorDigest": "3481658b1a771fecfac109fbdd996a235f3f1a53d89c89164d97ba885156a512",
+        "payloadSha256": "18397254233719cfd33e540148287c1b9995e1430dd0bac9f64a25d8a151abe1"
+      },
+      {
+        "id": "wandavision",
+        "file": "wandavision.json",
+        "count": 56,
+        "vectorDigest": "6e248076bec86252b3d580bd21248e54f3296d7536366a478928c44c54fa7546",
+        "payloadSha256": "f6eb190f0aa80c51a3a69855e81b461dac7d44054ed8d1245c2950f61649f253"
+      },
+      {
+        "id": "spider-man-far-from-home",
+        "file": "spider_man_far_from_home.json",
+        "count": 8,
+        "vectorDigest": "53a21ed9577beaa9436de70ce046072f390600ce10c895041ad6f047ee8bbe55",
+        "payloadSha256": "bd796b7d4030b6e71348a46a11aed2eb83ba3e1711b05d5c79b2b5f42303f0bd"
+      },
+      {
+        "id": "agents-of-atlas-reading-order",
+        "file": "agents_of_atlas_reading_order.json",
+        "count": 80,
+        "vectorDigest": "33564de887cefde72f2818d60e477f91f76cfd1daad7f242aa5dcfb6e66c2a60",
+        "payloadSha256": "77927d57b78e926365a667af118620faa2ec41cdbd45b4480399c93909619ba7"
+      },
+      {
+        "id": "white-tiger-ava-ayala",
+        "file": "white_tiger_ava_ayala.json",
+        "count": 82,
+        "vectorDigest": "1db8743de50710a876f35a669dd67c638fd462b1e5c2a9eaf50e18dcb047f514",
+        "payloadSha256": "4014c52f4841a7bd0ef2d2126d81fac732d55777cc543ef44e44bd01c05ee8a4"
+      },
+      {
+        "id": "nova-reading-order",
+        "file": "nova_reading_order.json",
+        "count": 371,
+        "vectorDigest": "e7e9918d284eaa050dc38c418fdf8a5acfaa131f4b3df2ac731ecc25d050a702",
+        "payloadSha256": "f0afdf4827cf1478a5bddbc336c3cd7c37103cea08b77b62338ab61a0cb2c1f8"
+      },
+      {
+        "id": "phalanx-reading-order",
+        "file": "phalanx_reading_order.json",
+        "count": 28,
+        "vectorDigest": "ba60568ac1f097782a4ee66e3f560970b3c96fb2d967c97731a684a61d17fbf0",
+        "payloadSha256": "4aae198ecde78d752410e9928271eb1ca83beb219bd38ce81e4d0de429b84722"
+      },
+      {
+        "id": "marvels-best-phoenix-comics",
+        "file": "marvels_best_phoenix_comics.json",
+        "count": 53,
+        "vectorDigest": "37e3fc362badb91372c74d8aeb87a405bd6cc97749e1c3bc2d5b09c01865ae55",
+        "payloadSha256": "61b00bf4d43cc503b3d5713695e17e8968f51e5ffec764ba188af52652582197"
+      },
+      {
+        "id": "agatha-harkness-reading-order",
+        "file": "agatha_harkness_reading_order.json",
+        "count": 114,
+        "vectorDigest": "3464392a58f6d5b2791585ba41e4e0a8f8a9ab6cb2404a7a052ccbffb8487670",
+        "payloadSha256": "3ce9c37bb99b227cb1cfe76ea7ccf66ec802da694de2e0c02a1c97bd431a2c6f"
+      },
+      {
+        "id": "punisher-reading-order",
+        "file": "punisher_reading_order.json",
+        "count": 638,
+        "vectorDigest": "0e07fe06602aa7057320f7010093119a2462f006f1b2cd9013df84f6023d671a",
+        "payloadSha256": "f6d70a5b4048a1cf080556aad35eaf917f3ecfdbf8954ee7390b54572dae7151"
+      },
+      {
+        "id": "rocket-raccoon-reading-order",
+        "file": "rocket_raccoon_reading_order.json",
+        "count": 75,
+        "vectorDigest": "df2b7a0f4a468eb2c34c5e4217d4f48abb58b8c3cbffef507bf9e6a49e471ae8",
+        "payloadSha256": "e2ab20c886a9c234800409a19d7cf7252341793fb0f6e1e53af180e2b2154141"
+      },
+      {
+        "id": "best-ultron-reading-order",
+        "file": "best_ultron_reading_order.json",
+        "count": 91,
+        "vectorDigest": "3c4db1adb47c63e8ac18f04e6198fa0c0a7f2ef0c9d0ac76e831eaac197dd7b0",
+        "payloadSha256": "41b8fdf61df6167b12fd5500f868ce641437dc13469882e10708685bcb3ef8b4"
+      },
+      {
+        "id": "mephisto-reading-order",
+        "file": "mephisto_reading_order.json",
+        "count": 556,
+        "vectorDigest": "6e3841bc20dd631ffa4792ffc1e10f7860082d2906ecc08c74a5d69e8301f515",
+        "payloadSha256": "6e69e70b8ada37a9b28cffbce2b06402e904ca0e7b62cd691b0f225f6d8e02dc"
+      },
+      {
+        "id": "spider-man-2099-reading-order",
+        "file": "spider_man_2099_reading_order.json",
+        "count": 170,
+        "vectorDigest": "0f3a88346fd230e78ce6c9243ec0065f00923308c4dd102607738207d54968a1",
+        "payloadSha256": "5401701d98db0c28c22f080eafed5a970f6dcff2a7f18dbc33a7bcb87ba26593"
+      },
+      {
+        "id": "silver-surfer-reading-order",
+        "file": "silver_surfer_reading_order.json",
+        "count": 295,
+        "vectorDigest": "25d4acb6a4fd9ea3a490a3831dbbed91c46bedbb525758acd5d35d94a240bee9",
+        "payloadSha256": "638006bcc164b4014b9e0a326e701c774bb081cc90d319470bf131bf46100814"
+      },
+      {
+        "id": "abomination-reading-order",
+        "file": "abomination_reading_order.json",
+        "count": 127,
+        "vectorDigest": "565deba8c536c780df9ba2bdb3a2382a207b126e631829499d10fd6f4c78b5fa",
+        "payloadSha256": "e4c8dc4fccb9d0c4abe1d88686ccba2314000eb5d5b5d681c6ecb30ed8950b93"
+      },
+      {
+        "id": "the-defenders-reading-order",
+        "file": "the_defenders_reading_order.json",
+        "count": 259,
+        "vectorDigest": "ce96cf2f93b7b661a418295204c265457eb91d9897be37ab5d9e1d37629f2cc8",
+        "payloadSha256": "d3ddbd28a34f12e5bbf05b55891f823c6a0c2a3842baf61268e9c9ad486e1945"
+      },
+      {
+        "id": "runaways-reading-order",
+        "file": "runaways_reading_order.json",
+        "count": 114,
+        "vectorDigest": "d20e884571b835d2fdba281a264e0dac4fc69d33296aa389dc8a4c0e09e38a04",
+        "payloadSha256": "6edae39af802c389bba31e41bb3f457219d1ecb3849a248ec451f64c11193f7b"
+      },
+      {
+        "id": "adam-warlock-reading-order",
+        "file": "adam_warlock_reading_order.json",
+        "count": 225,
+        "vectorDigest": "2dbc63cdd910842c4e345ad03eb843f79b8f6c99a503496321e52dca6cedc1d4",
+        "payloadSha256": "6488744cd84c6d696837f0f09ecdae626118e710934fc5df45ce10ebe2a729c6"
+      },
+      {
+        "id": "black-panther-reading-order",
+        "file": "black_panther_reading_order.json",
+        "count": 364,
+        "vectorDigest": "28bda7e1a0aa33c48cfc225556c2b267cff64c7a7de92e88ddffaba2682e697f",
+        "payloadSha256": "1c06eaec3ea47352b5f43d4526daf91d6b370e14384ea8fe9be259e1b42e5102"
+      },
+      {
+        "id": "groot-reading-order",
+        "file": "groot_reading_order.json",
+        "count": 76,
+        "vectorDigest": "e51f1fa19c81d06787739f214086800a5ec27f083b58b141c96001dec6516388",
+        "payloadSha256": "36c2d38c53ca4565fa3d9a0765dda6c02a93aea887867e48768cd7cc588d24de"
+      },
+      {
+        "id": "silk-cindy-moon-reading-order",
+        "file": "silk_cindy_moon_reading_order.json",
+        "count": 74,
+        "vectorDigest": "a66552cf829d645742ef4330c4a72fa6590a1a38b5c0c58c072e2daed2934dcf",
+        "payloadSha256": "58108c10c1f72a397449f59f4f32d73db3242180be0e542a5fc867f37f42ea01"
+      },
+      {
+        "id": "spider-gwen-reading-order",
+        "file": "spider_gwen_reading_order.json",
+        "count": 127,
+        "vectorDigest": "1f593ac57fd4cdfdce6515ffdfa89b53d42d66092d96d114b35a92ab6e076db5",
+        "payloadSha256": "f3d977e8f44d869ea7f9fd63a57188dba81ebe2d26fe74f52b766648b1507134"
+      },
+      {
+        "id": "star-lord-reading-order",
+        "file": "star_lord_reading_order.json",
+        "count": 99,
+        "vectorDigest": "96898f194105585905a893035f1e97ecb2aed5bfcded9143710369a542d92ca3",
+        "payloadSha256": "92fc90a3032b7916f3ce4455110fa1c7606f1cb68606c3a55d205a4a6cfbeecd"
+      },
+      {
+        "id": "iron-man-reading-order",
+        "file": "iron_man_reading_order.json",
+        "count": 811,
+        "vectorDigest": "e9308177aa8d07b500a54701ad4e2d1362f525c6287473780294827cbd752809",
+        "payloadSha256": "a91b6e169b303ad0ce0f65b97b5a22f07f5eb54a00ab144e4e5d1de8cc5fea1b"
+      },
+      {
+        "id": "modern-x-men-fast-track",
+        "file": "modern_x_men_fast_track.json",
+        "count": 278,
+        "vectorDigest": "2d8d518584fd48a7779696a9270e92be409e445e3a3acd2558033e8d1b62464a",
+        "payloadSha256": "324071dc55f514c5d0cbeeb95fab5d4123396ae5f4c23c4eb1c5db649beb21be"
+      },
+      {
+        "id": "thanos-reading-order",
+        "file": "thanos_reading_order.json",
+        "count": 272,
+        "vectorDigest": "5e0dbcfb27043e230d2cc89f90e517523e2be7254f05db71e4d1aadef70f57b7",
+        "payloadSha256": "1b6ea5d57232f75b62bb0cf8247b81f044fcdae729dfdb370154708252833b91"
+      },
+      {
+        "id": "ant-man-reading-order",
+        "file": "ant_man_reading_order.json",
+        "count": 389,
+        "vectorDigest": "3635c5143ec3281349808ce627de03deb6f5f0ed324f4ca9128e72d1da3e3aa3",
+        "payloadSha256": "cafde9e982cf2d061e60da5efe2d103ee5bfb96129c6662e9b4b479a2980fdf2"
+      },
+      {
+        "id": "winter-soldier-bucky-barnes-reading-order",
+        "file": "winter_soldier_bucky_barnes_reading_order.json",
+        "count": 484,
+        "vectorDigest": "74fbccd0580ece71b840fbd4346e482c63cb84cb02dee47e9a3440f1d118201c",
+        "payloadSha256": "726d4b9ed513daa97038bf701f5dbada62a0dafa960cc997216d02b351a11124"
+      },
+      {
+        "id": "wolverine-reading-order",
+        "file": "wolverine_reading_order.json",
+        "count": 1207,
+        "vectorDigest": "5266de71a7d29c3d8450fd4825f35caf1022bdbb11d8b1f98a4ccb00a038e849",
+        "payloadSha256": "6c90f4803fd1f0e382161ee5bdd9f3c1f0b126369ddc2b31d0d799a871ae9cb8"
+      },
+      {
+        "id": "hope-summers-reading-order",
+        "file": "hope_summers_reading_order.json",
+        "count": 261,
+        "vectorDigest": "6c070b79b8e198d69613bf8fce5ba684af8cfc005949110cc23019deb23735b5",
+        "payloadSha256": "80f469f89c47fefe072936d83cd0ab3248e503a22f5025745c439469d34d7ecd"
+      },
+      {
+        "id": "question-of-the-week-do-you-have-a-hulk-reading-order",
+        "file": "question_of_the_week_do_you_have_a_hulk_reading_order.json",
+        "count": 1149,
+        "vectorDigest": "6ab1b69637389756604ebf957365e1431b5eaff4d3dd7f90c0b3de4fac48f43d",
+        "payloadSha256": "01a3a1541d2276ed5bb8f7a3ba6c2f6a4692238a99dd9d95f02fca797e784e21"
+      },
+      {
+        "id": "black-widow-reading-order",
+        "file": "black_widow_reading_order.json",
+        "count": 567,
+        "vectorDigest": "0482d16bfb5597dc2e8d575f340b86f9423ff7d2f51a23378e734f97f85b5fa0",
+        "payloadSha256": "3eb72e148f5868d6de5de19c745f45fa50b2cda3e8c446b610f911f008ffa4c2"
+      },
+      {
+        "id": "daredevil-reading-order",
+        "file": "daredevil_reading_order.json",
+        "count": 869,
+        "vectorDigest": "3e00e4eed200d5c352b1f8fe46c1358f73b07b8d803fb295d02046f88ba7be12",
+        "payloadSha256": "82c3899b0c75f637ea3bcf9c628f7cac72b5b5c7f8c4b2e2119e2df03267c4a8"
+      },
+      {
+        "id": "iron-fist-reading-order",
+        "file": "iron_fist_reading_order.json",
+        "count": 414,
+        "vectorDigest": "95b9e1792a032224d1453adcbfdd60cb55dbd0a76a7b115b72236c3e07948a74",
+        "payloadSha256": "85d2a3ed7c9f4e77277a1424dac979e47ec71bc29728df6a5d94bb09c16e143e"
+      },
+      {
+        "id": "ultimate-spider-man-reading-order",
+        "file": "ultimate_spider_man_reading_order.json",
+        "count": 352,
+        "vectorDigest": "7bedb399a09dee4c52635a66dc4cb6f0aea97603276aba63ed7f43e6e30d8bfb",
+        "payloadSha256": "819e1d25cc998377eb205d80143cc5e8766484a4f135d5de4e0c27dbad8782ec"
+      },
+      {
+        "id": "venom-reading-order",
+        "file": "venom_reading_order.json",
+        "count": 643,
+        "vectorDigest": "50789776b237932ff097bfb13ff2a01640500e76dbecdcbd296bf2e8254cd74e",
+        "payloadSha256": "ce23f28324776eb8e22778e6ced9ed276b2bdb94dac2272021d5587ddb05325b"
+      },
+      {
+        "id": "loki-reading-order",
+        "file": "loki_reading_order.json",
+        "count": 656,
+        "vectorDigest": "06dba3e751cdeede9872009b39a23a44fae20a3682a0d848462bdc005fb53034",
+        "payloadSha256": "e3f959b9c4511dbbe4c8a82aff4f5d06bee0e28fbc65730d547e015d1d87a327"
+      },
+      {
+        "id": "moon-knight-reading-order",
+        "file": "moon_knight_reading_order.json",
+        "count": 382,
+        "vectorDigest": "98541fefb115e2781bf35806ac811c666e168da6f8538d0702c20e31974757e1",
+        "payloadSha256": "0f417690a4131e5eaf68308ec61acd54ba36d2fadf7b6fdb7be2fcbe9d5b1a91"
+      },
+      {
+        "id": "guardians-of-the-galaxy-reading-order",
+        "file": "guardians_of_the_galaxy_reading_order.json",
+        "count": 312,
+        "vectorDigest": "f81ae57e15d4e1644f3536841ff591c3048fd6c36098335f17ed369ec767ad0b",
+        "payloadSha256": "ef813a6c8dcd64a96b7d3dff5055c8f5be2bd7a1880b3e296f7692efc62159e3"
+      },
+      {
+        "id": "doctor-strange-reading-order",
+        "file": "doctor_strange_reading_order.json",
+        "count": 734,
+        "vectorDigest": "6775665cc30a9af3e3ce7bfb28edfc7b7fb072fa90fe62a3395444a8f9f82e45",
+        "payloadSha256": "a33a7aa22b183caa6d9076dbeaefe74b990e618968950e4c492f3b64669b6304"
+      },
+      {
+        "id": "inhumans-reading-order",
+        "file": "inhumans_reading_order.json",
+        "count": 255,
+        "vectorDigest": "da7f3ef95c87c7c74e725390af9edbbdb80179319a4195d6b5bb80133123e11b",
+        "payloadSha256": "a8cd8541cfa82e29e3fa110359ae235bf38ab5afe820d86c469bb2b04ebe22db"
+      },
+      {
+        "id": "young-avengers-reading-order",
+        "file": "young_avengers_reading_order.json",
+        "count": 169,
+        "vectorDigest": "b7899a53eda9a8b0dd955c7000e56b7bd822512dd4972ad980039518e89dceea",
+        "payloadSha256": "edff921453271db53eaf80fb80661c5812dab36aa869f82feb111f842ec62985"
+      },
+      {
+        "id": "magneto-reading-order",
+        "file": "magneto_reading_order.json",
+        "count": 752,
+        "vectorDigest": "1358e16fa8e207027f060a90b447372b0d883582c640462410ce2b605bf23f96",
+        "payloadSha256": "df55703c5643486fb567cafd27258a6eb30c5b153baf6f029e6237a5ed4c8bb7"
+      },
+      {
+        "id": "the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order",
+        "file": "the_complete_marvel_reading_order_guide_age_of_apocalypse_reading_order.json",
+        "count": 262,
+        "vectorDigest": "28d5b3254aceb5ff440437abf10c3a845bddebee532d61621819b8203ded809f",
+        "payloadSha256": "d2b8296554a209182f7dcefd4ca0e0ee7c0fbc47ef6c98fd1d30bf98c1805b49"
+      },
+      {
+        "id": "xmen-claremont",
+        "file": "xmen_claremont.json",
+        "count": 318,
+        "vectorDigest": "5adbf2e12c0eac608eedc85dab0bb2b0bfcd78d00d53107cbe773bfa6637c69b",
+        "payloadSha256": "4b2bf5134914d5d4a52063e8f7be5e7c7935400a794ffad605600ba6edaa3153"
+      },
+      {
+        "id": "xmen-claremont-complete",
+        "file": "xmen_claremont_complete.json",
+        "count": 404,
+        "vectorDigest": "20a5ba29a735d2220c906a920409db505fd59472c6dcfa01277af48c066c4699",
+        "payloadSha256": "c9698041327ffa7e653a260e4ce1cf9ff89cbea0b09685e061034ecff7a65acd"
+      },
+      {
+        "id": "shadow-king-reading-order",
+        "file": "shadow_king_reading_order.json",
+        "count": 74,
+        "vectorDigest": "2dda64bc057f13b7a4fda5a33cc3f3619508e3bce0ca1a6c11695a2b4069e926",
+        "payloadSha256": "a8e6d7e2dba7584f1967dff143e035b8fb13b2e4fa9d5225662eac019429a04e"
+      },
+      {
+        "id": "captain-marvel-ms-marvel-reading-order",
+        "file": "captain_marvel_ms_marvel_reading_order.json",
+        "count": 527,
+        "vectorDigest": "9467caff29231e8e0b9a86b018150d85dc5ffb2aab243973ac6f25fab0354b14",
+        "payloadSha256": "5a8d00d75eae0f8ba73053bd1655b8f924af61d3609bada5e13f01e9c0fb463d"
+      },
+      {
+        "id": "ms-marvel-kamala-khan-reading-order",
+        "file": "ms_marvel_kamala_khan_reading_order.json",
+        "count": 192,
+        "vectorDigest": "953ad35c8eee326c60874990fbf3b7bfc9a40757afa630822a570054103c6f3a",
+        "payloadSha256": "ae73d1b9720361dc524e8b318d558979bab55e7affc21397de70c5a8e09b97a7"
+      },
+      {
+        "id": "captain-america-best-of",
+        "file": "captain_america_best_of.json",
+        "count": 114,
+        "vectorDigest": "68524f32dc83833a98fd2aea82711bce0d221192b93a99adfdd140fce10c69a3",
+        "payloadSha256": "b9d363138597fa47e16cb64f2d86b86470f013067028a22a82d708b8f0a4a854"
+      },
+      {
+        "id": "captain-america-reading-order-modern-marvel-era",
+        "file": "captain_america_reading_order_modern_marvel_era.json",
+        "count": 1,
+        "vectorDigest": "f510c955b7502f94fa8ce61b7609b524d757ced4dcb110608e88c66e175e6265",
+        "payloadSha256": "c4be8c2030711e747d13e48c5dad75d62f50a09f10d3efd2d3dd4f0ff40b9638"
+      },
+      {
+        "id": "doctor-doom-primer",
+        "file": "doctor_doom_primer.json",
+        "count": 104,
+        "vectorDigest": "8126266cc1059ff53ecb3cd7a79112c49e36a4518f84e48791685e2b362598bc",
+        "payloadSha256": "dcd6914bc6ba32f2ea0fbba1395aa1079f5849a94942b66ea336c933ae0053b0"
+      },
+      {
+        "id": "spider-man-best-of",
+        "file": "spider_man_best_of.json",
+        "count": 230,
+        "vectorDigest": "fd7811725af30251ec8e933a5970125380b2926d59b847ac091c916f12944d84",
+        "payloadSha256": "d4b0bec3268ccb1254529929fd7b95af512828c7f66c8f09ef6b4a29aac68d19"
+      },
+      {
+        "id": "thor-best-of",
+        "file": "thor_best_of.json",
+        "count": 131,
+        "vectorDigest": "93e6b45acc8b431108cac4fdbbaf823c577295309ad2e0cb20bb4af5af79450a",
+        "payloadSha256": "89e79ae5133c0b0b3e9f896e533821f26ee48bcae500f3538f5d17f76b20630a"
+      },
+      {
+        "id": "deadpool-best-of",
+        "file": "deadpool_best_of.json",
+        "count": 38,
+        "vectorDigest": "3be7d043fc48b6a4718ab124327e4f6b384d9bb8c3d1ae356dddccecb94663ab",
+        "payloadSha256": "220520e19363c26d8a405223da1bb3e582fd89ecc0141013bbde70b31e3459b8"
+      },
+      {
+        "id": "scarlet-witch-best-of",
+        "file": "scarlet_witch_best_of.json",
+        "count": 73,
+        "vectorDigest": "8e19746eeb72415255d7f410c268939a9483c23537df6b2f37e8e3797d6b88a7",
+        "payloadSha256": "55c56b21db7f2484dd924e2cf801f15cf963fb790eb24f6597aa84c2bad7ef03"
+      },
+      {
+        "id": "essential-avengers",
+        "file": "essential_avengers.json",
+        "count": 120,
+        "vectorDigest": "92511618d61afa93ffceb5ecd6f556d4f219f9a33db5ff7fe671dc13bcb9f839",
+        "payloadSha256": "68534f0c9bec5ad1223673826f39b253884e95e2da1d63fc291b43bc1d43a15d"
+      },
+      {
+        "id": "x-force-reading-order",
+        "file": "x_force_reading_order.json",
+        "count": 285,
+        "vectorDigest": "916edb654c3d936514334fb8fd70d344da62b08389defa4388064ce4fe4f6adb",
+        "payloadSha256": "7cbc5fa764e7485894ce78fa87b979e3ef7d139b10d515860db77ddfdcb5df21"
+      },
+      {
+        "id": "x-23-reading-order",
+        "file": "x_23_reading_order.json",
+        "count": 291,
+        "vectorDigest": "91cda52713ee0020269a4a2c269302d50f842fa1766609dfcf84c0a319604d04",
+        "payloadSha256": "e3bd1348741ad6bdeae63c1779281053498ed347a411a3f8b94b4db0e92c16be"
+      },
+      {
+        "id": "muir-island-saga",
+        "file": "muir_island_saga.json",
+        "count": 5,
+        "vectorDigest": "8336d5e306900c92f3fd57fe2df13115b94a70ea29cde227afbb5a9b0c432c0c",
+        "payloadSha256": "40db87e7aa5fa07706fd57147078f66c291059c750a751e48e99e0a0e48669f4"
+      },
+      {
+        "id": "midnight-massacre",
+        "file": "midnight_massacre.json",
+        "count": 5,
+        "vectorDigest": "f94860d37ef35eb8e517421682cf1e56a4bfb3d1a0641534354b4ad1dacfe657",
+        "payloadSha256": "277c2e02e9c0753d713017bf29c4746d8ce0cb0850d743911e11a0557d53a059"
+      },
+      {
+        "id": "bloodties",
+        "file": "bloodties.json",
+        "count": 5,
+        "vectorDigest": "905a3ddd1e989b7bd6d465a3e465662f148acf1e8c7262a93eaf64f0ed4f2afe",
+        "payloadSha256": "c7ca1e7f51b1b4b9bed14596364ff8d922c57b110a9cfc9c6558885d1df56e4c"
+      },
+      {
+        "id": "childs-play",
+        "file": "childs_play.json",
+        "count": 4,
+        "vectorDigest": "a73ee8b451623918f33e15f8214b3a145fd48c3ae6db97760beb4c287b9ef21a",
+        "payloadSha256": "ceefbed193b01a056a6de7956cfe0b1def971042f3e3197b1a9b34161f1576f6"
+      },
+      {
+        "id": "eighth-day",
+        "file": "eighth_day.json",
+        "count": 4,
+        "vectorDigest": "8a3c072a97cdd3cbbb66c6f875c90536e4e0b3e31ec7875f5debaf42af8b1674",
+        "payloadSha256": "d99ca298caedc7a1d13a9288f7935d961c909c362268435bf41d6f8de6cf211c"
+      },
+      {
+        "id": "reed-richards-and-sue-storms-wedding",
+        "file": "reed_richards_and_sue_storms_wedding.json",
+        "count": 1,
+        "vectorDigest": "353900634d907b847b72112a4cf384b2ff84629f61f34491f18e6925245eddda",
+        "payloadSha256": "838b375ae4be9818034f43fe91a372d7edebd552c78848e62b76f995930a77e2"
+      },
+      {
+        "id": "kree-skrull-war",
+        "file": "kree_skrull_war.json",
+        "count": 9,
+        "vectorDigest": "ddb562a2d5732a4790669bc772edf16db953f3479cd8b528ada9611ba5a81bd5",
+        "payloadSha256": "d9eccb2f06705c74e57fcfd0bd5aa36352859af3609d390ae2a55a973d429f0e"
+      },
+      {
+        "id": "thanos-war",
+        "file": "thanos_war.json",
+        "count": 12,
+        "vectorDigest": "332a15c138109021d168e8c315a658b695a107183476bf2d86da767b816fe444",
+        "payloadSha256": "3abdba4f985bba837a53596f8bb6a250c4bc041dc46b24a7722ae3fa9c0f1eb3"
+      },
+      {
+        "id": "the-night-gwen-stacy-died",
+        "file": "the_night_gwen_stacy_died.json",
+        "count": 2,
+        "vectorDigest": "501761f6dd0c588cd8bd6f91633bd8493f3f34846b90a7a7aa0b096f29ffdef1",
+        "payloadSha256": "8ede4a57d6ec581e46d08ebd284d9298c6a9b06f415260d1266fa4e168c22a65"
+      },
+      {
+        "id": "avengers-defenders-war",
+        "file": "avengers_defenders_war.json",
+        "count": 8,
+        "vectorDigest": "390709e1a597d8fdcdda37c05fea759e6194ea9fee61de3b75d6506c5330edba",
+        "payloadSha256": "bb15063f1f65d3b0096c6eeeecfa59b7dc6a6c8f146cae4632e9481434269f77"
+      },
+      {
+        "id": "original-clone-saga",
+        "file": "original_clone_saga.json",
+        "count": 13,
+        "vectorDigest": "617a14210c9956d5407056f9badd3df01156368c2465348de764586da2f57f5d",
+        "payloadSha256": "05d3039ebd90aaa381d46806b54cf5614a05c49db20df1f34ee8f9ff1f32636e"
+      },
+      {
+        "id": "phoenix-saga",
+        "file": "phoenix_saga.json",
+        "count": 8,
+        "vectorDigest": "487f4e7c574d789b63b5bf8997ca72826a70c21f799b913381045703d7bc1920",
+        "payloadSha256": "75bf5aacccf8967bb2d3424418e25601f9ab5899bd3bce2f4425534584e1f28d"
+      },
+      {
+        "id": "dark-phoenix-saga",
+        "file": "dark_phoenix_saga.json",
+        "count": 9,
+        "vectorDigest": "6f737a8a2212da058796457b6de8e93e70adf7aabb34914a1d0e2e047a09b777",
+        "payloadSha256": "7e5fbfd770ef662288dea084ec61cee75dac52c9e1966a8bc05a5ddf5fbdb745"
+      },
+      {
+        "id": "days-of-future-past",
+        "file": "days_of_future_past.json",
+        "count": 2,
+        "vectorDigest": "b3fad112223528c2a6477fbbf1aedb30b8de31a52112277c6d18048d6a1dbb2c",
+        "payloadSha256": "b76ae48481fe43b0ff47df6f88230dc0fb4d21bf9b4a436424420cb89b7b814d"
+      },
+      {
+        "id": "contest-of-champions",
+        "file": "contest_of_champions.json",
+        "count": 3,
+        "vectorDigest": "e68eda6b30dcc17e9ba442c98c380e0f60243f27f4d17f3c76fa9d433a337129",
+        "payloadSha256": "60537c512c3aa11b25504ee4b4c183876eadb4aa933873fd668f30746e243ffa"
+      },
+      {
+        "id": "marvel-super-heroes-secret-wars",
+        "file": "marvel_super_heroes_secret_wars.json",
+        "count": 12,
+        "vectorDigest": "50d461f0279c6c2a3d1b22e3f6f8e1071e49271dfacf62934bebbb2d70041f4f",
+        "payloadSha256": "32462ca90b0a3a65ecfa82de6b95f4362ee9f062f9c689512eafdb518d80b5ee"
+      },
+      {
+        "id": "wraith-war",
+        "file": "wraith_war.json",
+        "count": 7,
+        "vectorDigest": "77c45e57d17510bd5077252ee8435181b00faaae416e0f25445477927bd12d8e",
+        "payloadSha256": "c056d0574cb9d06f18b278f50db41d3aba81c180eeccf6aaf2dc3558cbe7d5a4"
+      },
+      {
+        "id": "secret-wars-ii",
+        "file": "secret_wars_ii.json",
+        "count": 40,
+        "vectorDigest": "6b160706600dd1d5a0b944e2cdc2d86d15891b361541e5b93cb0bd58faaa0d9b",
+        "payloadSha256": "d06f3a1b0cdcd6f973344e99930a6a207a15369e894d50a1de63ddf8bf22e688"
+      },
+      {
+        "id": "mutant-massacre",
+        "file": "mutant_massacre.json",
+        "count": 11,
+        "vectorDigest": "cd600bba51542dd7dacdcad06045807867a212f76ce1e27cff98f3adc2107a9d",
+        "payloadSha256": "109e7b15b955093cbe9f68ac18d1726e62924cc6c4b950926f6bf41a0571d8e9"
+      },
+      {
+        "id": "fall-of-the-mutants",
+        "file": "fall_of_the_mutants.json",
+        "count": 29,
+        "vectorDigest": "83c83a147cef0741ac8aa8671ac5cc414632327adf69c632e3ea1bb7e63c86aa",
+        "payloadSha256": "036fb28f3f76a10edc948d68049c34b0e9556bfeb977faeeb4f6d5efa3c36375"
+      },
+      {
+        "id": "kravens-last-hunt",
+        "file": "kravens_last_hunt.json",
+        "count": 7,
+        "vectorDigest": "06451f161446e6539c8ad3e7ef5e2514e4737d73aebc84a2db746befbe0440f1",
+        "payloadSha256": "0b4519412a2916d5681ddfa09ac0eea434f9e1bc2940f99636c1f2b1c80313f4"
+      },
+      {
+        "id": "evolutionary-war",
+        "file": "evolutionary_war.json",
+        "count": 11,
+        "vectorDigest": "ab73244b78c65858dc408eec2d7429dd6bc3c13e8234e082ee93e34e256b08be",
+        "payloadSha256": "08ff8f64f8850676bd007fd923883dae057075ea56362bb9d324b54cbdae2cf5"
+      },
+      {
+        "id": "inferno",
+        "file": "inferno.json",
+        "count": 39,
+        "vectorDigest": "453ad85253906ab4c0022ce85f7eb737089a6f7e804f9a8511005177c70920c7",
+        "payloadSha256": "e3e152955421dacd617b45fc04052afdfee44e3d44d0413eeb139d436cc0a9fd"
+      },
+      {
+        "id": "atlantis-attacks",
+        "file": "atlantis_attacks.json",
+        "count": 17,
+        "vectorDigest": "b49b973492467e946cf8a947bdf997e6abf436d745d832de85ec4d56cb7e8032",
+        "payloadSha256": "3cb0f528ce0135e8fa2610c77035e3897a9633f93df0f37757f3c87ca1d74ae6"
+      },
+      {
+        "id": "days-of-future-present",
+        "file": "days_of_future_present.json",
+        "count": 4,
+        "vectorDigest": "61b01b82ddb2ad3b618a749de9ea4d54f0c535e68304ebc00f8cb270a043cc17",
+        "payloadSha256": "4f27f393556db35ebdfa4eec1b34dd29e329ea67452f7a12865c4293e8abc8b7"
+      },
+      {
+        "id": "x-tinction-agenda",
+        "file": "x_tinction_agenda.json",
+        "count": 9,
+        "vectorDigest": "f18cab66c3de290a2186d216c315becb93b79d9df93cae9128025efdd2af2ddb",
+        "payloadSha256": "7d300e5954ad506f813198cb52ab81b37c096f8794ed8ebf0f9f8acf2eee71f1"
+      },
+      {
+        "id": "marvels-infinity-saga-gauntlet-wars-crusade-reading-order",
+        "file": "marvels_infinity_saga_gauntlet_wars_crusade_reading_order.json",
+        "count": 191,
+        "vectorDigest": "09a76d5fde1c161f51db12630ce38e7393d56cb1a723b87099c60b33de65ad7e",
+        "payloadSha256": "e6e0adec58c59636bb69743688f5c022a272015c7f6446e218db8de5e716e222"
+      },
+      {
+        "id": "operation-galactic-storm",
+        "file": "operation_galactic_storm.json",
+        "count": 22,
+        "vectorDigest": "bed8969fbd98340b08af1f0ad776abe79e1df81bf5dc375f3151a6b52464ea11",
+        "payloadSha256": "30656c3ac90a973bbaa55ac803d6a0d3ddc4bdd546974c8ea39840fa067f3247"
+      },
+      {
+        "id": "dead-mans-hand",
+        "file": "dead_mans_hand.json",
+        "count": 9,
+        "vectorDigest": "37d129ceba4028a3747e4465632d19a13bb557d7ca09fb3cc9032609a96e2c08",
+        "payloadSha256": "307d209dc7e10dfc108765d7ba536b5d49c047a660ff9132b5cb5cfb9fa77647"
+      },
+      {
+        "id": "rise-of-the-midnight-sons",
+        "file": "rise_of_the_midnight_sons.json",
+        "count": 6,
+        "vectorDigest": "76447361e364fa24624233c6724d60eae7ab5925dbc016d857597f71f44715a7",
+        "payloadSha256": "11c2394c321d8dbcc51e375cf36d7843feba715e674e1e82ff46863866113f64"
+      },
+      {
+        "id": "x-cutioners-song",
+        "file": "x_cutioners_song.json",
+        "count": 13,
+        "vectorDigest": "3a435b6eb4b22ada9fc1427ef19133fb6ce912f8d6b6dff097f90c3af2b9ea22",
+        "payloadSha256": "50ae5a935859c21617a70eccb7c7f0c3716ee0f38dd53e4a1f40decb3ff968e1"
+      },
+      {
+        "id": "mys-tech-wars",
+        "file": "mys_tech_wars.json",
+        "count": 4,
+        "vectorDigest": "2410439a804a817ce27a04481c997a30d3c8e44105047897a2fc8d8ef514fa3b",
+        "payloadSha256": "e4083ddbd2672dfa9bf9153018aa6fb5efcf862d8b7173cdfa648bcbc3dc2926"
+      },
+      {
+        "id": "fatal-attractions",
+        "file": "fatal_attractions.json",
+        "count": 6,
+        "vectorDigest": "4129edc00e9b532edce015079ae22a927d98e8f76f81e7196f6587d6828e2056",
+        "payloadSha256": "5ffe105699ec7d08dd4729dda479b9d030656e20736165bfffa12d7c68f63368"
+      },
+      {
+        "id": "time-and-time-again",
+        "file": "time_and_time_again.json",
+        "count": 8,
+        "vectorDigest": "03a148182c1742a31e40beae2301d5812d1c30b3f9fec20cf3e55093d903b004",
+        "payloadSha256": "ace055ee7c401b3e112cfc609cd6c713064188adadc90efe511b4777081dde6c"
+      },
+      {
+        "id": "phalanx-covenant",
+        "file": "phalanx_covenant.json",
+        "count": 9,
+        "vectorDigest": "7b8ba36a1f09e29688d8caebd72b1df1ad240cf9dec7872b441249597ae49bfe",
+        "payloadSha256": "01f5051466367b386a6ebedf8601793e2cd1d7ba972c810effd7a35ab022629f"
+      },
+      {
+        "id": "the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order",
+        "file": "the_complete_marvel_reading_order_guide_x_men_onslaught_reading_order.json",
+        "count": 74,
+        "vectorDigest": "c5edb61dd30449599d65cb4391fccdc6ae1a1968e850b895645cd9b6581ab42c",
+        "payloadSha256": "43b8f381a121ca83340d808201cb8c3d6e23f584829c910932b978da9603d82c"
+      },
+      {
+        "id": "operation-zero-tolerance",
+        "file": "operation_zero_tolerance.json",
+        "count": 20,
+        "vectorDigest": "9e078c5eab9622f65c20f65f7e62615dd79f08d0be81e5d447d4d309d0f4d77b",
+        "payloadSha256": "7c86e7feb7d14bb29e326cde57eaf14ca4b5e0ee3eb7a9f08ead2825cfbb85e4"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-01",
+        "file": "marvel_knights_to_planet_x_01.json",
+        "count": 21,
+        "vectorDigest": "c9b46d67160a2f2a0c9450ed5b165877dc1f0dadd53bc315eb50d28663df3d9f",
+        "payloadSha256": "48b46edd895d1f2910beb0f78855607f7994a784b4408ec7b6df9d2c5d174ff5"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-02",
+        "file": "marvel_knights_to_planet_x_02.json",
+        "count": 12,
+        "vectorDigest": "865d4b0424dfd1340d493ed5a245b092ae21aeab1025d8673e935329f0d5ba37",
+        "payloadSha256": "862a489d0c3beeb6962e21bad030b20563b60b19b8e4acad9f01c0dea9699bde"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-03",
+        "file": "marvel_knights_to_planet_x_03.json",
+        "count": 7,
+        "vectorDigest": "3fa161135a84c89066b32c11607633364f125291287b6748190a46a0a349c19d",
+        "payloadSha256": "8962e125f38ed6052903d3ade88b208cc7b1121e83d54eb90eff340cdf766492"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-04",
+        "file": "marvel_knights_to_planet_x_04.json",
+        "count": 4,
+        "vectorDigest": "22fbbcb46872994c4a6cbc1b3ebc736e888d905d17959061b3b8e67afed473eb",
+        "payloadSha256": "7a91aebbe481d29ec644ace59b674991094030af23f999e84cb30c437b4826e9"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-05",
+        "file": "marvel_knights_to_planet_x_05.json",
+        "count": 3,
+        "vectorDigest": "f69e164658a19e2b3ba5909e5109cabf1e7f9955a0ee0fca3af67d8c50252305",
+        "payloadSha256": "f31ffa0591c5f4c02863df4c2b7c49ee8f1a48d4b8a0b4a0eca8e73b49b4a27a"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-06",
+        "file": "marvel_knights_to_planet_x_06.json",
+        "count": 10,
+        "vectorDigest": "3258919d0764c97b84e7f9a70a6b259f01033b15d9333745d729bde9d6e5d234",
+        "payloadSha256": "243a83a0f4ddf4b88b5bf3fb7d0c0df76a6c762ac7a0052c94d677e10a3dfea9"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-07",
+        "file": "marvel_knights_to_planet_x_07.json",
+        "count": 7,
+        "vectorDigest": "bd317739c722b07ca374c5a2f582bcf43f5e098159553e19a60562b1749f2258",
+        "payloadSha256": "1254836b0a9bd6eef434bdbd6356d45fc9c3326619752f68daf1092f1ed230c4"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-08",
+        "file": "marvel_knights_to_planet_x_08.json",
+        "count": 4,
+        "vectorDigest": "2e744bf1c54dac2e08403f179ff5e1cd4d9fadc20b42bb4f257344ae3be52a70",
+        "payloadSha256": "0b83c62fcf9292aa5f66ee2eb017bd1b2a9c875a7fbe32d7192cfd42d9e287c9"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-09",
+        "file": "marvel_knights_to_planet_x_09.json",
+        "count": 4,
+        "vectorDigest": "f4a5ddae3874abdf684a7f0ba8ee144f86b311f69c5fac41589772f4bf25cf44",
+        "payloadSha256": "23d383d647a2cef57526bf5b5c839e254f6c36dc906672999cd9c411aa40bf49"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-10",
+        "file": "marvel_knights_to_planet_x_10.json",
+        "count": 6,
+        "vectorDigest": "5e8afc00a5e6522bfebbec3e573978523a5432a2748579dc1c2654f7bb1c6fa5",
+        "payloadSha256": "a70778bfd9db5e0bf2f5a6d3966639d7fef3f3e8feb0ce1a4cb0ffa85d457a01"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-11",
+        "file": "marvel_knights_to_planet_x_11.json",
+        "count": 4,
+        "vectorDigest": "e00370e8fc30d11ccb5d976c6e58d6e823ff1b511fdb6d2fb90ab38e084f514f",
+        "payloadSha256": "50bd771b08d886e0866aa5aef8156385e4217bae4008e5b605e18c87f34f8c6c"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-12",
+        "file": "marvel_knights_to_planet_x_12.json",
+        "count": 7,
+        "vectorDigest": "d1ee7a02afb563af527313100b208f1b91933d5431e2b0d2f0168065186bfb4d",
+        "payloadSha256": "0330efbd9f3e63f7a440d96def1d96362d765502d777fe15c8f886e1cd2a2fd0"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-13",
+        "file": "marvel_knights_to_planet_x_13.json",
+        "count": 5,
+        "vectorDigest": "a7942c10af51d59b7468267e7a06879d089b141aeb3bbf12a7f8b11080aefece",
+        "payloadSha256": "adb9db3be580bb908f8685eaa5975f20b2d9eb4244b14b0be1bb3b2d4921409f"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-14",
+        "file": "marvel_knights_to_planet_x_14.json",
+        "count": 6,
+        "vectorDigest": "88b460996aca93a99a74ad8c6404ff63a6275d73452c31fb39f6e88e9490a618",
+        "payloadSha256": "c66b69be6e86e808758b1268f832aa90ec5366416eb6280b5b52a9c798f47882"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-15",
+        "file": "marvel_knights_to_planet_x_15.json",
+        "count": 4,
+        "vectorDigest": "558116ea1dc6ab531bb8f054893eb03f7b24c75e7bb16056e0d9f4679619ac3b",
+        "payloadSha256": "d8b6010f05dfa4ecfa92718c20c54be48a8428618c9c9fa45d481282acb6d293"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-16",
+        "file": "marvel_knights_to_planet_x_16.json",
+        "count": 3,
+        "vectorDigest": "db3ac86ceb1e6a5c002691bd525b14cec0d604daf6eb9686edd859138062eafe",
+        "payloadSha256": "c9381a2c1e935d1cfe4a1cd69db8e5fbbd9babebd0574019c6a1d1d35ec21d77"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-17",
+        "file": "marvel_knights_to_planet_x_17.json",
+        "count": 6,
+        "vectorDigest": "7d84c8ce5365300bb6267dfe0577abd9788c28e001aa86113196d301e8365d62",
+        "payloadSha256": "4b76502e73b2e9692034046da2f3e6528d37794b23201d709726d4624d18de78"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-18",
+        "file": "marvel_knights_to_planet_x_18.json",
+        "count": 7,
+        "vectorDigest": "f11c0dd484eb494b62ee42bddbb07619a776eaa96bc0de21dbbeadb4dad98707",
+        "payloadSha256": "b8acb794599316b62aeacd6160eb0144e53b52cf2eab6e236676e4ff0b6d07c1"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-19",
+        "file": "marvel_knights_to_planet_x_19.json",
+        "count": 2,
+        "vectorDigest": "cc6fec3d3ef844147e74fa425253e21dfbdc4e9e7ab333d9960a50bcf973b306",
+        "payloadSha256": "6a23059cd4d2dfadcd3803c0539735c22cc5b318d53369cf1891a5989a8519e7"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-20",
+        "file": "marvel_knights_to_planet_x_20.json",
+        "count": 6,
+        "vectorDigest": "340973ead96e72d3ef11b1b22a3af08e7f28cedbde48d49266cdeee56d822bc3",
+        "payloadSha256": "86524e442e868c815ec70ee494701c67622ee5253a0945e8d148eb1e118be01f"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-21",
+        "file": "marvel_knights_to_planet_x_21.json",
+        "count": 3,
+        "vectorDigest": "7285da3b60932df95171d644a1296790eec1f71d9956e83d319e7aca35e66d7d",
+        "payloadSha256": "7c81d29c109e11200038d9e73e8b3d6ea10b57209364d8946875642539d1c464"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-22",
+        "file": "marvel_knights_to_planet_x_22.json",
+        "count": 7,
+        "vectorDigest": "a3d85105da8c7c932e799ac2e6429fe5dfe212027c95325a5dbffffaf3fc266b",
+        "payloadSha256": "030a8b20a414fec3391cc7de8b54a1a5d707ba606bf1a4918a18412abb927a86"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-23",
+        "file": "marvel_knights_to_planet_x_23.json",
+        "count": 9,
+        "vectorDigest": "559edeaa11ca07b049e315b1879dfaa15be2dccc68ec27ae687df8c24e2a6e63",
+        "payloadSha256": "0303842e8ef75ce1d43c4758c39e341b60347c28ca56992cc04e1735acaaaa04"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-24",
+        "file": "marvel_knights_to_planet_x_24.json",
+        "count": 6,
+        "vectorDigest": "362d129d3d5199c7d3e3b43e18fcdb3753a99c03f1d4ceaf6cf0075a60a16942",
+        "payloadSha256": "32d6bdaab1ee52428e28d8e18130c6e1b3341ab551089c062c99a54c014b4e9d"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-25",
+        "file": "marvel_knights_to_planet_x_25.json",
+        "count": 4,
+        "vectorDigest": "4cf5fa95f37912cba2a9d1f5df59abdafeccb8635e171f8fddfd23f95352a3fe",
+        "payloadSha256": "a2d27fe68ec6bfadf84700a91f4254f8011a4c960f5b6f6882bf9a1bea084cf6"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-26",
+        "file": "marvel_knights_to_planet_x_26.json",
+        "count": 9,
+        "vectorDigest": "3dabbb0d9c229888809dcc42a0da3cfc677761afa0d0623664d3564ee214493a",
+        "payloadSha256": "7bf9006721f47988bc694fcbfb753c232a2446e85aa00c4a0dfe52dca3399af9"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-27",
+        "file": "marvel_knights_to_planet_x_27.json",
+        "count": 8,
+        "vectorDigest": "f872bd6355a0cc0540024c45b4bd653791f3bd8ed167a0b7bde1f747372c779e",
+        "payloadSha256": "cb76e1b8786d1b5064221913692bb4c9a26cef21c27c23a98d9a2044919af366"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-28",
+        "file": "marvel_knights_to_planet_x_28.json",
+        "count": 4,
+        "vectorDigest": "e5e8ebe0276c6ffba6764648761654c284541e1558214aebcb7b74c79aaf0a66",
+        "payloadSha256": "01535eb68cb83726bab9015d67b57c3aa85d1eedc0d2f0dddcfccbbc4f2cf8fe"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-29",
+        "file": "marvel_knights_to_planet_x_29.json",
+        "count": 2,
+        "vectorDigest": "10d4df7d9df194c2f94eb5205153460e677fee04a4e7036737c9293636a0880c",
+        "payloadSha256": "d40a7498a9e7212dce291b58c3c1e45a3269d0ef6236198cb418e7f8f2ed1914"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-30",
+        "file": "marvel_knights_to_planet_x_30.json",
+        "count": 2,
+        "vectorDigest": "53b095478cb46b84ce1154fa331deccb51215c0b01002f36442e490221480b2b",
+        "payloadSha256": "7f3b4ed2a1eae2168f12d4737df4856c3b7ce352e52fe3f5bf34f150ec0d01fb"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-31",
+        "file": "marvel_knights_to_planet_x_31.json",
+        "count": 6,
+        "vectorDigest": "881638d05e32640ea9702f84fee6b9784b410d4684b83c8b15c202c85df2dd2a",
+        "payloadSha256": "a2ae2391df6cade39989a884a6dfdace53501945c3379b862c9ea0d900bdfcee"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-32",
+        "file": "marvel_knights_to_planet_x_32.json",
+        "count": 5,
+        "vectorDigest": "bb39deae9c39fe82fbcdeecf4fddc47c39ce278301061ab6b2c9d2c9a58351aa",
+        "payloadSha256": "b0706974e6f02c22ef4a4556a41aaf78c8eb6c531c5f2af541ccc51d7a8d15cf"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-33",
+        "file": "marvel_knights_to_planet_x_33.json",
+        "count": 6,
+        "vectorDigest": "a4f257316a43286118375b56b5cefb343e48dfc1c82713349e872f0168e87550",
+        "payloadSha256": "ba927b5e4ff74d40297e9178a99dcb6cb7602eeb3bdb78ba95565ad1e442a4b3"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-34",
+        "file": "marvel_knights_to_planet_x_34.json",
+        "count": 7,
+        "vectorDigest": "07c88c4c19c25a3f6acc5f8d4d614477836fd481320a5e03cfbb6435f0873f53",
+        "payloadSha256": "a616d393ef300f1fa652979fe7f0d05f40cfa035c44c5dd1903e552fe4f096a9"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-35",
+        "file": "marvel_knights_to_planet_x_35.json",
+        "count": 5,
+        "vectorDigest": "fb457a50d5e3a70c986dac60967cb86446bb4d26f9313080ded0063e049a2603",
+        "payloadSha256": "0dc032676a61a3696f98916abe511a5a41b4765665603676a3fc85e7ac3adc7c"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-36",
+        "file": "marvel_knights_to_planet_x_36.json",
+        "count": 5,
+        "vectorDigest": "62239034ca4566c8dd330d3832f80bc599572f4e5b589daae9d3a5b45d4118f1",
+        "payloadSha256": "c3c1cf5fc1a01ffe49c22ba82dc21e334bb9b9aab642c936a9525d668f352aa0"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-37",
+        "file": "marvel_knights_to_planet_x_37.json",
+        "count": 7,
+        "vectorDigest": "74e46776551648400484cdc9cbfd00183f393eac97f6943daa5914344faf6e6c",
+        "payloadSha256": "955dd534bffef48dd78801ab3fe6234ac0e5fbbe2938be3c1dc241d292a88a80"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-38",
+        "file": "marvel_knights_to_planet_x_38.json",
+        "count": 6,
+        "vectorDigest": "15713a9abf33e5bb36d78799ba9c73af5a55e0132f6a43db27b2ef57d0678d61",
+        "payloadSha256": "c627a332f580673803ca5b835af56ea58ac9b7a8fac1d1ed38b7eb6a2fd56243"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-39",
+        "file": "marvel_knights_to_planet_x_39.json",
+        "count": 7,
+        "vectorDigest": "8682469c823e951cf46b6d8e3ee27d39f0e81581757e0f9920f4e9cad329ebfc",
+        "payloadSha256": "7fdcd5a722f16664933bba807ea3915537052f32026a484f94b040746eae1923"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-40",
+        "file": "marvel_knights_to_planet_x_40.json",
+        "count": 5,
+        "vectorDigest": "329976e9ef15c76d53473dcf08e111f6ca101072fecb7588e325a939f4268af2",
+        "payloadSha256": "31737fbb10582265d7cc78ccb50497e0669b1457e680dc2262dff3d48bfe3c93"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-41",
+        "file": "marvel_knights_to_planet_x_41.json",
+        "count": 6,
+        "vectorDigest": "69048b7a9998030bb948113cdf7578db913c640b93a34fc9653928a3bd5028d2",
+        "payloadSha256": "841e4acf6096a51ad0a3e3bac8fc90623f7c4eca494fa61305da28ea564576a4"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-42",
+        "file": "marvel_knights_to_planet_x_42.json",
+        "count": 5,
+        "vectorDigest": "ee84ecc6b83994183c412109124c580bd1a0f38fda91c4a40b6aaeb9822dc4b2",
+        "payloadSha256": "c50ad8895e4c63b5bac37bfb21bea840f7c59ed6c5b827624ec31e6ab4534eea"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-43",
+        "file": "marvel_knights_to_planet_x_43.json",
+        "count": 5,
+        "vectorDigest": "2fb41b3129d53de10e5c4cd60c691ba4143ff83dd218a34793cf8e4d0489a0b7",
+        "payloadSha256": "7704ba75575308cabf03cb4244404ad9c67e115617a25b2409580a948df866ea"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-44",
+        "file": "marvel_knights_to_planet_x_44.json",
+        "count": 5,
+        "vectorDigest": "4136238e1ce660c6a852f4ef3b801d9b73e206fe933e1041232fa6bf0235621c",
+        "payloadSha256": "1ba4da6e86e134155a2ac2ed29ce4cb2fe5804f7e8d174bf7672d5eaf485de80"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-45",
+        "file": "marvel_knights_to_planet_x_45.json",
+        "count": 5,
+        "vectorDigest": "72ed715cd6c730e09623ba5c26745d6da91a43ab0eb396bc5e5580b5c1b11668",
+        "payloadSha256": "9bc4d8bb257edc1b5df4d57f00ab312336d84c53eeeb3bb68388ad075cd46f75"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-46",
+        "file": "marvel_knights_to_planet_x_46.json",
+        "count": 6,
+        "vectorDigest": "60595d5a9c24183c789d74aa2addb1729f67beed69300357d98bb770b0f61832",
+        "payloadSha256": "9eb25eabc2581dcc5cc3e1f094a1dd671b276199251bf026c7ebd27d2b7a0bc7"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-47",
+        "file": "marvel_knights_to_planet_x_47.json",
+        "count": 6,
+        "vectorDigest": "4ced0acc63ce07b132a4f9626a087783382a3344515bb3fe2faa29e12bd3cda1",
+        "payloadSha256": "8947788c16e42374af59cc63bab4c8567f3d0ba55f685b4a22ff5a21a2ed420f"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-48",
+        "file": "marvel_knights_to_planet_x_48.json",
+        "count": 7,
+        "vectorDigest": "c65a8843cfe5df0c45c9d277cab9580a90d4ca959d74b607a90b3b372234ede7",
+        "payloadSha256": "5805b6882a1f2501a7ba7ad3bea8f15e6a9f9726ab1c5a0674a72967a3461a63"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-49",
+        "file": "marvel_knights_to_planet_x_49.json",
+        "count": 7,
+        "vectorDigest": "c2874dff8e00e3799826a6fbd3f8f700c8a815a65b256b98205570033e60631c",
+        "payloadSha256": "177dd9feff70055ac986c4a705193fcf74115e5504c14be70e57f76eda7787b9"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-50",
+        "file": "marvel_knights_to_planet_x_50.json",
+        "count": 12,
+        "vectorDigest": "9b5e237e22a3ce8d5b27cb8f711da527457832b399fd17d95e3752589a4a2660",
+        "payloadSha256": "5de5817a929d269ea0a9156d71bc9cc84e097db55ae789ba40872efb1b66b026"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-51",
+        "file": "marvel_knights_to_planet_x_51.json",
+        "count": 7,
+        "vectorDigest": "85f1b533c17c1e269d666d967a7494b7e4152d7b9243fd36f9a09293e080d7f2",
+        "payloadSha256": "cf97725e858e7db22766329647f6798992a16b2ac5b19d55ae119a50f5dd60d2"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-52",
+        "file": "marvel_knights_to_planet_x_52.json",
+        "count": 4,
+        "vectorDigest": "dccf0116ef7e7731b0967089d1c0578ff619203538bdfbeca89d0ee3c28ebb81",
+        "payloadSha256": "9642c89712a6347c3d7106b14b7855f0c1668350f813a67461e68c8e782b08d3"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-53",
+        "file": "marvel_knights_to_planet_x_53.json",
+        "count": 5,
+        "vectorDigest": "9f88e2401442e269d6db14bb1c31a3eb268b3498ea19f1a05fd683ca4bc78988",
+        "payloadSha256": "a01f524f3f54b434ee3bec283ee72e580689cf1f36ca655916bf3adb882a865c"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-54",
+        "file": "marvel_knights_to_planet_x_54.json",
+        "count": 5,
+        "vectorDigest": "9f89da750634e0acb483b618e3d40a4dca6af2127d13ff574441a953cfd35414",
+        "payloadSha256": "c08bc374544157d51592e89d2eed9ce9fdc45f30d631eb0b7b4a33f33b0472c6"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-55",
+        "file": "marvel_knights_to_planet_x_55.json",
+        "count": 5,
+        "vectorDigest": "77d039655d5c71dd01c4fa5a004607f786fc6a06b220f84c096da207de7216a1",
+        "payloadSha256": "9b653e37804a8c972e91d5b91f8b562ed8c2e1b93d37c3f7da4bdef47377d117"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-56",
+        "file": "marvel_knights_to_planet_x_56.json",
+        "count": 5,
+        "vectorDigest": "ec16f00c23cc904c0693896786ff6ab41e6465d27632459528c5e4df35685918",
+        "payloadSha256": "b9cbfb4675dd434a847a009f773165783ef50bfc5ac446b3d85f5d29d474d058"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-57",
+        "file": "marvel_knights_to_planet_x_57.json",
+        "count": 6,
+        "vectorDigest": "3563564756c1349c564de0a4b3dbc158fb1385b1b5b64a5c1a968fb687a1ccb5",
+        "payloadSha256": "3798cb177fd49a6fffe185a11305e7b99549671a9df03e10ddbb8e9c7d8dcd8e"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-58",
+        "file": "marvel_knights_to_planet_x_58.json",
+        "count": 7,
+        "vectorDigest": "751369d23a23c00734c4d92d62170b5899ef0b2837b68a62e9c46e067caf38a1",
+        "payloadSha256": "d23124eacb23f547c28e99a5c5ed29172a8782c24045513a1a25ade2b6f14f89"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-59",
+        "file": "marvel_knights_to_planet_x_59.json",
+        "count": 5,
+        "vectorDigest": "4c7b633ca8386463c2cd8f54d6395efd6042e030c2c9777789df34f42c71c698",
+        "payloadSha256": "ce09d63452438d1a352ac5a4f39bb15c1e8f0e0257b97e861ec106c512f2b2d9"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-60",
+        "file": "marvel_knights_to_planet_x_60.json",
+        "count": 6,
+        "vectorDigest": "93bc84a1e00aac0c019cdf4b44db491f33af176d6d6f39899214fe82bf0c2553",
+        "payloadSha256": "0d557e52707b3f15b7437e548f10860c83c3cdf77f5e1c1722e42b2b69257499"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-61",
+        "file": "marvel_knights_to_planet_x_61.json",
+        "count": 6,
+        "vectorDigest": "5d674a2bc43a38b9b0510e057708bccd06f5da302da847c724c198f7a5819753",
+        "payloadSha256": "498116bd985e88769db54c3f3c105713ddb8fbcc802de749f140642f8b1c65a9"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-62",
+        "file": "marvel_knights_to_planet_x_62.json",
+        "count": 9,
+        "vectorDigest": "ef911dda09292b4ddca7600c154e56a3712ea3579acefbffb8f972d82d60bf05",
+        "payloadSha256": "08d4426808186e8bb244d18ee4c8a768e800db1d7b8fe7a9b03c0d3ea64047fa"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-63",
+        "file": "marvel_knights_to_planet_x_63.json",
+        "count": 5,
+        "vectorDigest": "00d9d1a2ef1e0dd4985eef016004a8aa2605fa35d8cb5e58b1b0ffa4e6d45cc6",
+        "payloadSha256": "05e4547196a70c3f354426d0b8642b19e7f8dfb86caf1dd34f70182aac857544"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-64",
+        "file": "marvel_knights_to_planet_x_64.json",
+        "count": 5,
+        "vectorDigest": "a46aff9dcce5ffc6bcedacd659795ac0295e4003fd64a29687b307dfd26af827",
+        "payloadSha256": "b2df8d049760ee367cf861b970306b890d83a1ff228dede46fef018c22d34ffa"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-65",
+        "file": "marvel_knights_to_planet_x_65.json",
+        "count": 6,
+        "vectorDigest": "a9d9fbb296af55d60e66931e34fa450e5a9472dfc9346edc6cc3e5fb6ac824c6",
+        "payloadSha256": "5a97f5801231e3ce6e87cf54c6f4df4fd9a4ab548b1e24f4fd392c67d14dee88"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-66",
+        "file": "marvel_knights_to_planet_x_66.json",
+        "count": 7,
+        "vectorDigest": "3cd2e556f3820dc6787d7622447df24994ac94fb7ca75bee8984bf349c74030c",
+        "payloadSha256": "8d2e171d6a07277721e15ddded1c769c5326df59a1fd49d8a3581346cac3cc18"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-67",
+        "file": "marvel_knights_to_planet_x_67.json",
+        "count": 7,
+        "vectorDigest": "7f110a95288613db63bb00a7043003bfdc60056f15d07a5fcf79b11019ebefc5",
+        "payloadSha256": "7647c66983658be526d96a9c1c372d3c9805329e95603f57f0b3086daf26be97"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-68",
+        "file": "marvel_knights_to_planet_x_68.json",
+        "count": 6,
+        "vectorDigest": "c46a36a2e8a3e7adba8294eb2a5bf7a248c8afd7d4501cadc55630364e15d587",
+        "payloadSha256": "d5c5115321a9b141fc60b930ac284a2c9e2fc81c0c40e3362d0bb0289b3580db"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-69",
+        "file": "marvel_knights_to_planet_x_69.json",
+        "count": 5,
+        "vectorDigest": "e3206d588f3b395e1d01f1979e60539c498acd795c79f24ce889f66eb1d16e26",
+        "payloadSha256": "9334d8df72dc53103e0e149efb19b4e17bf90e9d55a2bb0365b5ea1662baff19"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-70",
+        "file": "marvel_knights_to_planet_x_70.json",
+        "count": 5,
+        "vectorDigest": "c8992aa80fcfcbb5e1947e6bf2061ac670d31667128c9e8be8d9127b68041293",
+        "payloadSha256": "f5ec7ee8d03075dff7a185a80e3812c4259ec030a4a3c46716e37fbc592e8458"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-71",
+        "file": "marvel_knights_to_planet_x_71.json",
+        "count": 6,
+        "vectorDigest": "dece45a9287e8a9283ad3d0595b491b5213e5869ae0ff2cbb0f8c74e50f2cb99",
+        "payloadSha256": "c026ee3142bb482f4bb713c602dc28de76780e5f788bb8d0a15434f0d927b1fc"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-72",
+        "file": "marvel_knights_to_planet_x_72.json",
+        "count": 7,
+        "vectorDigest": "7d3777b915374de7637f344c7df79dd15dd48bd914d367b9e2851032b8a25687",
+        "payloadSha256": "a4cc34a49e0256514e67f30c8f85c5537b5ebd8444c26f52c80427d7efbce78c"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-73",
+        "file": "marvel_knights_to_planet_x_73.json",
+        "count": 7,
+        "vectorDigest": "7d7660bafd890a3a45222172cd399bf4ebb132f8d879ba2eb5348ea4399ce790",
+        "payloadSha256": "7021362c358568b729fa3dcf13bb22a674e80e9d4647483bb28c394318366be3"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-74",
+        "file": "marvel_knights_to_planet_x_74.json",
+        "count": 5,
+        "vectorDigest": "f9e28f77662c6783e2144a02cf4d9960e8f96671e6a25e319fa149dc07047f89",
+        "payloadSha256": "a85b069d3d57ff6ea0f3a9fbab070870cd680f7c79bcd69682f73f0acde0a602"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-75",
+        "file": "marvel_knights_to_planet_x_75.json",
+        "count": 6,
+        "vectorDigest": "28f216b915a559bc15dd53c17c5e4cf2359a726dccede355536cb2a9e47a397e",
+        "payloadSha256": "3fb74fab8fda67c757cf0755812d0d8d4f31a4bb9ab27ef183ef709f8090a05f"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-76",
+        "file": "marvel_knights_to_planet_x_76.json",
+        "count": 6,
+        "vectorDigest": "842dae41e190bb8365f41aa19e9e574d9f367f4e5135ece9a9709202d36d96ed",
+        "payloadSha256": "c40d9eeb288db6fe4346005bf49c6fd2e298eabce6bbfa12ecc74d5cd8204bb6"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-77",
+        "file": "marvel_knights_to_planet_x_77.json",
+        "count": 4,
+        "vectorDigest": "1857edc550728ba968b9844920de76635003357ee0a2ba240530b1f084ceba8c",
+        "payloadSha256": "954c0e5c6ae520185f22a405f0ce0c3f6b28e8aec50d965ebee7203ac22a0ed7"
+      },
+      {
+        "id": "marvel-knights-to-planet-x-78",
+        "file": "marvel_knights_to_planet_x_78.json",
+        "count": 25,
+        "vectorDigest": "817db3c49c7a1d02fa8324415c601ff53d497027c7262119a030264fc53ca4fc",
+        "payloadSha256": "955557129a3dfc7f2bd06e07d1c79a447a930a9660a5197cb75e691d1174ad44"
+      },
+      {
+        "id": "spider-man-identity-crisis",
+        "file": "spider_man_identity_crisis.json",
+        "count": 8,
+        "vectorDigest": "0fb0f54c0cb27cff77b6d6572455675e66cdd95601f3c2e8fb194b15d7aee5a1",
+        "payloadSha256": "2e2cb4ce46ff4888307c0231e164602ccc21198ff4caa20fdffa40663fe96f3a"
+      },
+      {
+        "id": "hunt-for-xavier",
+        "file": "hunt_for_xavier.json",
+        "count": 6,
+        "vectorDigest": "aca6d5168e456aaa8422191992dbbfbcf451730c15a877654d1230d80ef90338",
+        "payloadSha256": "52c5e57e35788a80b5b1680686454eb68f9f2062fdc471a0e3c1629e4ef53da2"
+      },
+      {
+        "id": "magneto-war",
+        "file": "magneto_war.json",
+        "count": 8,
+        "vectorDigest": "66fafdcf7c9390d565dc1d9009ca40395347f7da8d3a5cf33f8c1b36f544742a",
+        "payloadSha256": "f345166e23e4f55d4a83509b398f3c8c1aad32eacd65c93a1cf2bbfac57ab835"
+      },
+      {
+        "id": "ultimate-marvel-intro",
+        "file": "ultimate_marvel_intro.json",
+        "count": 121,
+        "vectorDigest": "dfacadeae2dcf9d0e77b0410dfbc2e1410222d699b4052440ef1c78e86e31162",
+        "payloadSha256": "91209d75e31fc18137a074243b4ef44f53ad78be5cd025024928851a6283f7f8"
+      },
+      {
+        "id": "marvel-2099",
+        "file": "marvel_2099.json",
+        "count": 172,
+        "vectorDigest": "652b39313c0b61906905f8d3f33e38c65ceb448c001fa60a4b62c7379e3468f4",
+        "payloadSha256": "7146075df93a5b25a062c98c1e3280321af3e0b370b4884e39615b1beb58b633"
+      },
+      {
+        "id": "maximum-security",
+        "file": "maximum_security.json",
+        "count": 28,
+        "vectorDigest": "0e7773d9e7861160e548bc38d69d85ac59f9bf9db95006ffa7327c0f50aa530f",
+        "payloadSha256": "4cc5923d5030c6567e94a49d434a6e269ee06b56d722bdf65927f89ee327513b"
+      },
+      {
+        "id": "falcon-sam-wilson-captain-america-reading-order",
+        "file": "falcon_sam_wilson_captain_america_reading_order.json",
+        "count": 494,
+        "vectorDigest": "4a5e05b0479caea24c29bb89b64cc4de02e1da4df58f89f7e74850492202f17e",
+        "payloadSha256": "22828a6dc913b0fc1b54121d543c74899bd867ddfcf2c411a1ac18c2ec5a3683"
+      },
+      {
+        "id": "fantastic-four-reading-order",
+        "file": "fantastic_four_reading_order.json",
+        "count": 973,
+        "vectorDigest": "6d241965cca6bdd88a0178c661f6e5db0306c246d9a00821c68adf2da47fc4c7",
+        "payloadSha256": "f7242b92c557606ae8f9898e5755bd19fff778e8a201c9cdea3e0ade77a9be4d"
+      },
+      {
+        "id": "nick-fury-reading-order",
+        "file": "nick_fury_reading_order.json",
+        "count": 269,
+        "vectorDigest": "39bf7c4572a87656d1633efd238ecd768c99d712e2ed52d12d8efad38dbd7601",
+        "payloadSha256": "defa6b6cea85feb3192603b23b79dca0ef74406ca5b31291524cda7edf97a1f5"
+      },
+      {
+        "id": "avengers-disassembled",
+        "file": "avengers_disassembled.json",
+        "count": 5,
+        "vectorDigest": "734a324381158370f0aecdf1770679c530b848bdf988963182d7c7b6e9a0b3d2",
+        "payloadSha256": "4152731ad5e9f04254b55e292344b3d8ba67c74220a200f794f67e6162b9c189"
+      },
+      {
+        "id": "civil-war-avengers",
+        "file": "civil_war_avengers.json",
+        "count": 83,
+        "vectorDigest": "11e3c920816160dec57397adbdf61e8ebbfa9539abc63a65fc0ef5e499001897",
+        "payloadSha256": "8afcef62e0185758454062ee48bac94c2ff187c636d8a500c4c35ce5b9c594c2"
+      },
+      {
+        "id": "x-men-manifest-destiny",
+        "file": "x_men_manifest_destiny.json",
+        "count": 19,
+        "vectorDigest": "6e881cfca61196c94ec1fb724beb9f69b9e664767bb982808d60711aa684956f",
+        "payloadSha256": "f2f77fbe0b940320f737aab6d045b07295b34603882f58f7c85e2de570b3deb9"
+      },
+      {
+        "id": "dark-reign-avengers",
+        "file": "dark_reign_avengers.json",
+        "count": 75,
+        "vectorDigest": "d128b009af69bba0ed9ac55a7aa95ac48ca15a8597db3113a716047c4bda5220",
+        "payloadSha256": "8d3c8d6cc3ae1187e771f078146190bd6b13a97f97eba37742dd2f5721fef4d8"
+      },
+      {
+        "id": "war-of-kings",
+        "file": "war_of_kings.json",
+        "count": 32,
+        "vectorDigest": "becd036120f024bd1c19ab470792efec6a81e0e1b66620ffd856bf643c7b4105",
+        "payloadSha256": "9ec221f6da0a23a1c0837593971da559e7a4f3a9c6216e7b13bf07835e82215b"
+      },
+      {
+        "id": "messiah-war",
+        "file": "messiah_war.json",
+        "count": 10,
+        "vectorDigest": "c5c690875e1f52b88582b47df17e14827a13a68ff22fb7fc0f9f1aed3766d58d",
+        "payloadSha256": "e3a3ba2abd6f7cd318850285a6cbea423aeb68964997e5b792ab74e7bbad3473"
+      },
+      {
+        "id": "x-men-utopia",
+        "file": "x_men_utopia.json",
+        "count": 14,
+        "vectorDigest": "2dbac895e3e776e4ab379ec3bdef976c156fb74f46dcac1deb0b8d112677982a",
+        "payloadSha256": "072e5df3e9b949110fcd5a78fd2394633e2e60e5ab5b07519d3125fd055c3af8"
+      },
+      {
+        "id": "x-men-nation-x",
+        "file": "x_men_nation_x.json",
+        "count": 20,
+        "vectorDigest": "d48ecabd6765a069009c37c75b93a116a39887f2ac66afb9b12dad01646f1fb1",
+        "payloadSha256": "57510629ac3b94cdf5df6a2daa2bfc05a635014e90ad80ebeab6204ee9b4b230"
+      },
+      {
+        "id": "necrosha",
+        "file": "necrosha.json",
+        "count": 14,
+        "vectorDigest": "3c5ccd356169cfbee1f53deb21591fbcdb3e3e9ef0296d8333a467538e27876d",
+        "payloadSha256": "887129827f11531cf2c4de6120b6860bd3b89ca38e130f82c9f07fe6dfb47716"
+      },
+      {
+        "id": "doomwar",
+        "file": "doomwar.json",
+        "count": 6,
+        "vectorDigest": "e57ddaaeb9e5ccc31784849904a79eb6c36f1c103cea439316258483c22ed0a6",
+        "payloadSha256": "aa6e5fc6149b4832a9684ce1bc587416823f5750b07eddbc4d0c0323adb173c4"
+      },
+      {
+        "id": "second-coming",
+        "file": "second_coming.json",
+        "count": 23,
+        "vectorDigest": "2d347cb8b828577036a37495750ca799169fefffd82a11d12947356c0b76de73",
+        "payloadSha256": "8e361b9fb82a6f04ec14299809b261f3c43875349b537c3f284c6f031de7ff47"
+      },
+      {
+        "id": "thanos-imperative",
+        "file": "thanos_imperative.json",
+        "count": 8,
+        "vectorDigest": "13cfdfdfaaa8a094987459fc1c03e6032d5efc25705ddec57a88d97f0219c2ab",
+        "payloadSha256": "25b761c07361bea596acbaa952834876c02a88a64357b7a2e5c740f8fd948d46"
+      },
+      {
+        "id": "heroic-age-avengers",
+        "file": "heroic_age_avengers.json",
+        "count": 92,
+        "vectorDigest": "19c107c43ec255fc33e92be5981d8efd1eb0822695616a594fdff5f1471f05a4",
+        "payloadSha256": "14d1d4842bf9311d3d2d6f7b7c86b2aa46444566fb8688ff71b07bc09c254566"
+      },
+      {
+        "id": "all-new-all-different-avengers",
+        "file": "all_new_all_different_avengers.json",
+        "count": 92,
+        "vectorDigest": "c3c39c0ea6e0504cf66a6e7915809740f6080be9738838db34463aaf956e0452",
+        "payloadSha256": "95f6ae967c2540b2eefb124fc5c5bebbeba873c9f10bb1b2fd46a175d1fb24ac"
+      },
+      {
+        "id": "marvel-fresh-start-avengers",
+        "file": "marvel_fresh_start_avengers.json",
+        "count": 59,
+        "vectorDigest": "f44b6f7a63c234c4acfecbcdf3a4e50493dbcc3869c2f43624d2f9f589447bba",
+        "payloadSha256": "75e73647d570cc5c12bcece09dc0fba84cce6ed02ab0fdb877aeffe020c5c362"
+      },
+      {
+        "id": "secret-war",
+        "file": "secret_war.json",
+        "count": 5,
+        "vectorDigest": "e53e8e28bcad12e0ec73b8ae726f4c60bb918c7b2c0b7d40bb9793bef08d8a3e",
+        "payloadSha256": "19a6dcdf1616d983edc64574215357e8c6d9a9f69280cf35523c9599030e5098"
+      },
+      {
+        "id": "spider-man-the-other",
+        "file": "spider_man_the_other.json",
+        "count": 12,
+        "vectorDigest": "092bd6970e33662810924de8ee2a9943670bf30a24155dec257cb5a378e20a24",
+        "payloadSha256": "0af41cb31f7e4020512fac08af18c16279d6235767182f190b018b64773155cc"
+      },
+      {
+        "id": "miles-morales-spider-man-reading-order",
+        "file": "miles_morales_spider_man_reading_order.json",
+        "count": 385,
+        "vectorDigest": "cc27630d000b9a5e93b9646d77eaa0c3e1022b325dbaab9cf2fa49b77c15a762",
+        "payloadSha256": "92567c7696861df1c6ec63b36920ece93793dd5bf90377bf1d52fd0d8a26bce0"
+      },
+      {
+        "id": "amazing-spider-man-reading-order-modern-marvel-era",
+        "file": "amazing_spider_man_reading_order_modern_marvel_era.json",
+        "count": 2041,
+        "vectorDigest": "9b53ac214dd5ba2a939b235d3dc635cb69523247871fec59a738ffbb32b234c2",
+        "payloadSha256": "e3d9ccb458743de6a55c6289c24f3c6a2fb9076cea14d5a91e796f71017bfb45"
+      },
+      {
+        "id": "silent-war",
+        "file": "silent_war.json",
+        "count": 6,
+        "vectorDigest": "3ca5dc9eec8a457f50f72b8a6c35a28fcd508986c66e6afba4b5f596b70fd429",
+        "payloadSha256": "5017adbcda9ad56ac57491f4f5d6a2855d6bce2332219579c7bb047ec4129f18"
+      },
+      {
+        "id": "annihilation-conquest",
+        "file": "annihilation_conquest.json",
+        "count": 29,
+        "vectorDigest": "f80806cca092ff5110a03b2050ba72500ed055c40521259ebd44208100e85cb7",
+        "payloadSha256": "5bb6b2ba8daaf0483674a0ca2f48b1ecb27ea180337d94adcfbfea10e83ff6dd"
+      },
+      {
+        "id": "messiah-complex",
+        "file": "messiah_complex.json",
+        "count": 13,
+        "vectorDigest": "be0a36b0167ff1a9c67a85c184337de8e483eb13bb8435413ee878d406f41960",
+        "payloadSha256": "1ca901b6b306a722359c8d6f298a258f750c91dd2628e3e594f7cbb117f6893d"
+      },
+      {
+        "id": "world-war-hulk-aftersmash",
+        "file": "world_war_hulk_aftersmash.json",
+        "count": 26,
+        "vectorDigest": "106b6accc8275aada8b17a4b44d35f38bf8a6e19e5a8f6fde2d2c557a8b2b014",
+        "payloadSha256": "890f6c2b051af3603a9d4affcf5f1b66b50e72380b6f7b3e4887dba6e2252baa"
+      },
+      {
+        "id": "x-men-curse-of-the-mutants",
+        "file": "x_men_curse_of_the_mutants.json",
+        "count": 18,
+        "vectorDigest": "117839bcf243d3a2bc67a20703507a1af9324e0208f23dfc165d84bbeab04db4",
+        "payloadSha256": "77d4f872fb9bd21337f1a633d24350dd7a73f934e98a42d09e182dbea82d0dba"
+      },
+      {
+        "id": "shadowland",
+        "file": "shadowland.json",
+        "count": 29,
+        "vectorDigest": "d4d90c8454e61b3e1a2e66d14e75591034d0696429ec99f3967397ac8c45ea84",
+        "payloadSha256": "436a415d1faff37a9af20261e2bb5b97fa19b4982370ce0b947ab7c211a5a5d8"
+      },
+      {
+        "id": "wolverine-goes-to-hell",
+        "file": "wolverine_goes_to_hell.json",
+        "count": 15,
+        "vectorDigest": "5548aa196438911a693d8ca8f5d70848993fd331ce93cfe30907fff2ba650eb6",
+        "payloadSha256": "338895c2236c6179feeb9fef465345e3559e96c13fbd4e2217b2c0a3bab2cb55"
+      },
+      {
+        "id": "chaos-war",
+        "file": "chaos_war.json",
+        "count": 19,
+        "vectorDigest": "056226c108d3dcb1734d770b26b9515b307b61aa56fff15cd724d74c82d4be4f",
+        "payloadSha256": "f186e050ebc6ba84faef0f1e4e8582f8e10b27d9cffbfe4839ccae29a3e67bf1"
+      },
+      {
+        "id": "axis",
+        "file": "axis.json",
+        "count": 55,
+        "vectorDigest": "af33ea945f34e2962db7aa6e8b20e29f5f173933466e360f55999f7454aa35cd",
+        "payloadSha256": "830a2478e0e4acfbcc83624b3a01b4f492b15786181bedb9b6987bf57798d2e2"
+      },
+      {
+        "id": "spider-verse",
+        "file": "spider_verse.json",
+        "count": 35,
+        "vectorDigest": "e35e308a765a51f632b44bf10c471f2fdb830043ca4da5c1915226d8609700fd",
+        "payloadSha256": "e18f1a589264ab87afa6c8c3345dfc8df7266bdaf83af5eb563b74d82ccc2b1b"
+      },
+      {
+        "id": "apocalypse-wars",
+        "file": "apocalypse_wars.json",
+        "count": 13,
+        "vectorDigest": "72d52baa3732b0f99dea2f6ade3fce132ef1be8ccfc8cbe258464e2d19dda702",
+        "payloadSha256": "23e30ec8e1acbdd6493529f6eac916a230f05ebeb3f6162f0f8788fe2b61ba9d"
+      },
+      {
+        "id": "clone-conspiracy",
+        "file": "clone_conspiracy.json",
+        "count": 24,
+        "vectorDigest": "2eeae34426d7e3ac46a75297980f67b456cad0ff79bb62cf3fb666e5912219ce",
+        "payloadSha256": "43b004d3f8eefdf84826652d0b1db3366de33eacf8443a75cb42db5a30950bb5"
+      },
+      {
+        "id": "inhumans-vs-x-men",
+        "file": "inhumans_vs_x_men.json",
+        "count": 20,
+        "vectorDigest": "ce788378c126bbda431777235d6707765cd0151d481257bffee1d0285e4efa5d",
+        "payloadSha256": "36a25305fb0bb0154bee2bcd3e341a0d4a20c1120f75af23f786f09a35f80a1e"
+      }
+    ]
+  },
+  "reportDigest": "a5f97c22866a2a4db8c2c3c5bb65f2641c32d58e3a805cf44a54a911fec5409c",
+  "relationshipReview": {
+    "authorityType": "human",
+    "authorityIdentity": "raymond-nassar",
+    "evidenceUrl": "https://github.com/raymond-nassar/recap-page/issues/686#issuecomment-5971795523",
+    "approvedAt": "2026-10-03T17:45:22Z",
+    "packetDigest": "7ace7b7df104993c65b7375234bd93f6fc0335c19a55fc7d61f70acc5cd2acfc",
+    "mappingDigest": "446fd4bca140b80beed361491559286b62d8e9efca9f8bbf65fb3164e3076865",
+    "reportDigest": "a5f97c22866a2a4db8c2c3c5bb65f2641c32d58e3a805cf44a54a911fec5409c",
+    "libraryDigest": "36da5806ec83a0506feb675a95df321ae76f15823e85369ba7653291c0ff8560",
+    "decision": "Retain the seven measured source-required partial overlaps in this separate owner-selected companion. No exact or subset duplicate and no changed vector or new relationship is approved.",
+    "approvals": [
+      {
+        "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
+        "sharedCount": 10,
+        "sharedIds": [
+          "45808",
+          "45809",
+          "45810",
+          "45811",
+          "50350",
+          "51320",
+          "51324",
+          "30324",
+          "30325",
+          "30326"
+        ],
+        "relationship": "partial",
+        "approved": true,
+        "disposition": "retain-source-required-originals",
+        "rationale": "The owner's three titles use the coordinator's bounded standard-edition disposition; the owner approves retaining shared originals in this distinct introduction, not replacing the broader character or event guide."
+      },
+      {
+        "orderId": "doctor-octopus-otto-octavius-reading-order",
+        "sharedCount": 7,
+        "sharedIds": [
+          "45808",
+          "45809",
+          "45810",
+          "45811",
+          "50350",
+          "51320",
+          "51324"
+        ],
+        "relationship": "partial",
+        "approved": true,
+        "disposition": "retain-source-required-originals",
+        "rationale": "The owner's three titles use the coordinator's bounded standard-edition disposition; the owner approves retaining shared originals in this distinct introduction, not replacing the broader character or event guide."
+      },
+      {
+        "orderId": "miles-morales-spider-man-reading-order",
+        "sharedCount": 7,
+        "sharedIds": [
+          "45808",
+          "45809",
+          "45810",
+          "45811",
+          "50350",
+          "51320",
+          "51324"
+        ],
+        "relationship": "partial",
+        "approved": true,
+        "disposition": "retain-source-required-originals",
+        "rationale": "The owner's three titles use the coordinator's bounded standard-edition disposition; the owner approves retaining shared originals in this distinct introduction, not replacing the broader character or event guide."
+      },
+      {
+        "orderId": "spider-gwen-reading-order",
+        "sharedCount": 7,
+        "sharedIds": [
+          "45808",
+          "45809",
+          "45810",
+          "45811",
+          "50350",
+          "51320",
+          "51324"
+        ],
+        "relationship": "partial",
+        "approved": true,
+        "disposition": "retain-source-required-originals",
+        "rationale": "The owner's three titles use the coordinator's bounded standard-edition disposition; the owner approves retaining shared originals in this distinct introduction, not replacing the broader character or event guide."
+      },
+      {
+        "orderId": "spider-verse",
+        "sharedCount": 7,
+        "sharedIds": [
+          "45808",
+          "45809",
+          "45810",
+          "45811",
+          "50350",
+          "51320",
+          "51324"
+        ],
+        "relationship": "partial",
+        "approved": true,
+        "disposition": "retain-source-required-originals",
+        "rationale": "The owner's three titles use the coordinator's bounded standard-edition disposition; the owner approves retaining shared originals in this distinct introduction, not replacing the broader character or event guide."
+      },
+      {
+        "orderId": "ultimate-marvel-intro",
+        "sharedCount": 7,
+        "sharedIds": [
+          "4372",
+          "14846",
+          "14857",
+          "14868",
+          "14879",
+          "14890",
+          "14901"
+        ],
+        "relationship": "partial",
+        "approved": true,
+        "disposition": "retain-source-required-originals",
+        "rationale": "The owner's three titles use the coordinator's bounded standard-edition disposition; the owner approves retaining shared originals in this distinct introduction, not replacing the broader character or event guide."
+      },
+      {
+        "orderId": "ultimate-spider-man-reading-order",
+        "sharedCount": 7,
+        "sharedIds": [
+          "4372",
+          "14846",
+          "14857",
+          "14868",
+          "14879",
+          "14890",
+          "14901"
+        ],
+        "relationship": "partial",
+        "approved": true,
+        "disposition": "retain-source-required-originals",
+        "rationale": "The owner's three titles use the coordinator's bounded standard-edition disposition; the owner approves retaining shared originals in this distinct introduction, not replacing the broader character or event guide."
+      }
+    ],
+    "approvalDigest": "bff8fcaf07ea991e0979dec44a6e32a096fd74e474554e71031140a6fba8a1ec"
+  }
+}
