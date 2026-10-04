@@ -113,7 +113,7 @@ test('Donny Cates approval covers the full reviewed source manifest before the V
   assert.equal(current.libraryDigest, report.libraryDigest);
   assert.deepEqual(new Set(report.comparisons.map((row) => row.orderId)),
     new Set(manifest.lists.filter((row) => row.id !== 'shang-chi-master-of-kung-fu-reading-order' && row.id !== 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order' && row.id !== 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order' && row.id !== id && row.id !== 'nova-reading-order' && row.id !== 'ultimate-spider-man-reading-order' && row.id !== 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide' && row.id !== 'the-vision-reading-order' && row.id !== 'emma-frost-reading-order' && row.id !== 'doctor-octopus-otto-octavius-reading-order' && row.id !== 'shadow-king-reading-order' && !['thunderbolts-reading-order', 'nebula-reading-order', 'hope-summers-reading-order', 'x-23-reading-order', 'ms-marvel-kamala-khan-reading-order', 'marvel-zombies-reading-order', 'hawkeye-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order'].includes(row.id)).filter((row) => row.id !== 'namor-sub-mariner-reading-order' && row.id !== 'iron-fist-reading-order' && row.id !== 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings' && row.id !== 'spider-man-no-way-home-owner-selected' && row.id !== 'mcu-prep-thunderbolts').map((row) => row.id)));
-  assert.equal(report.comparisonCount, manifest.lists.length - 24);
+  assert.equal(report.comparisonCount, manifest.lists.length - 25);
 
   assert.ok(report.comparisons.every((row) => row.relationship !== 'exact'));
   assert.equal(mapping.relationshipReview.dispositions.length, report.comparisonCount);

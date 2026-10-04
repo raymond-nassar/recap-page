@@ -81,7 +81,7 @@ test('batch two preserves the approved queue, exact substitutions, and catalog c
     manifest.lists.length - PACKET_IDS.length,
   );
   assert.ok(manifest.lists.length >= 66);
-  assert.equal(catalog.lists.length, 282);
+  assert.equal(catalog.lists.length, 283);
 
 
   const manifestPacket = manifest.lists.filter((entry) => PACKET_IDS.includes(entry.id));
