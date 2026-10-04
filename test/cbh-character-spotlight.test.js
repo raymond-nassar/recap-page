@@ -896,7 +896,7 @@ test('the character inventory preserves every central disposition, ships 59 char
     'miles-morales-spider-man-reading-order',
     'doctor-octopus-otto-octavius-reading-order',
     'thunderbolts-reading-order',
-    'silk-cindy-moon-reading-order', 'mcu-prep-eternals',
+    'silk-cindy-moon-reading-order',
   ]);
   assert.equal(shipped.find((record) => record.id === 'marvel-zombies-reading-order').guideType, 'era');
   const ready = inventory.find((record) => record.id === 'black-panther-reading-order');
