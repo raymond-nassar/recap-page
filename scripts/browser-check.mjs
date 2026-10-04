@@ -44,6 +44,7 @@ import {
 } from '../src/js/lib/catalog.js';
 import { readerIssueId } from '../src/js/lib/markdown.js';
 import { addIssuesToList, createEmptyState, createList } from '../src/js/lib/model.js';
+import { formatRoute } from '../src/js/lib/route.js';
 
 // Exit 2 rather than 1 for a missing prerequisite. A failed assertion and an uninstalled browser
 // driver are different answers to different questions, and a caller that cannot tell them apart
@@ -699,6 +700,14 @@ const MUTATIONS = [
     why: 'the actual catalog loses Adam Warlock, so its Complete-guide journey cannot begin',
     script: () => {
       window.__mrtMutation = 'adam-warlock-hidden';
+    },
+  },
+  {
+    id: 'daredevil-companion-misclassified',
+    breaks: 'mcu-prep-daredevil-actual-data',
+    why: 'the owner Daredevil card is an ordinary event instead of an MCU Prep companion',
+    script: () => {
+      window.__mrtMutation = 'daredevil-companion-misclassified';
     },
   },
   {
@@ -13431,6 +13440,216 @@ SCENARIOS.push({
   },
 });
 
+SCENARIOS.push({
+  id: 'mcu-prep-daredevil-actual-data',
+  title: 'the owner Daredevil companion preserves exact order, local progress and reader handoff',
+  async run(page, t) {
+    const id = 'mcu-prep-daredevil-born-again';
+    const expectedIds = [
+      20750, 20751, 20752, 20753, 20754,
+      8215, 8216, 8217, 8219, 8220, 8221, 8222,
+      15634, 15635, 15636, 15637, 15638, 15639, 15640, 15641, 15643,
+      3482, 3946, 4070, 4183, 4284, 4439,
+      71553, 71556, 71559, 71561, 71563, 71565, 71566, 71567, 71568, 71569,
+    ];
+    const expectedParts = [
+      '1. The Man Without Fear', '2. Born Again', '3a. Out',
+      '3b. The Devil Inside and Out Vol. 1', '4. Know Fear', '5. No Devils, Only God',
+    ];
+    const expectedTitles = [
+      ...[1, 2, 3, 4, 5].map((number) => `Daredevil: The Man Without Fear (1993) #${number}`),
+      ...[227, 228, 229, 230, 231, 232, 233].map((number) => `Daredevil (1964) #${number}`),
+      ...[32, 33, 34, 35, 36, 37, 38, 39, 40, 82, 83, 84, 85, 86, 87]
+        .map((number) => `Daredevil (1998) #${number}`),
+      ...[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((number) => `Daredevil (2019) #${number}`),
+    ];
+    const payload = JSON.parse(readFileSync(
+      new URL('../src/data/mcu_prep_daredevil_born_again.json', import.meta.url), 'utf8',
+    ));
+    const initial = fixtureReadingState();
+    initial.schemaVersion = 3;
+    initial.issues[20750] = { ...payload.items[0], source: 'curated' };
+    initial.lists.fixture.itemIds.push(20750);
+    initial.lists.fixture.collectedIn[20750] = 'Existing saved section';
+    initial.lists.fixture.note = 'Keep my existing list note';
+    initial.read[20750] = true;
+    initial.notes[20750] = 'Keep my earlier Daredevil note';
+    const browserErrors = [];
+    const externalRequests = [];
+    page.__denyExternal = true;
+    page.on('console', (message) => {
+      if (message.type() === 'error') browserErrors.push(message.text());
+    });
+    page.on('pageerror', (error) => browserErrors.push(error.message));
+    page.on('request', (request) => {
+      const url = new URL(request.url());
+      if (url.protocol.startsWith('http') && url.origin !== page.__origin) {
+        externalRequests.push(request.url());
+      }
+    });
+    await page.evaluateOnNewDocument((seed) => {
+      const width = new URL(location.href).searchParams.get('dd-width');
+      const key = `mrt.browser.daredevil.seed.${width}`;
+      if (!sessionStorage.getItem(key)) {
+        localStorage.setItem('mrt.state.v2', JSON.stringify(seed));
+        sessionStorage.setItem(key, '1');
+      }
+      localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
+      window.__mrtBlockExternal = true;
+    }, initial);
+
+    for (const { width, height } of [{ width: 1280, height: 900 }, { width: 390, height: 844 }]) {
+      await page.setViewport({ width, height });
+      const start = `/?catalog=actual&dd-width=${width}#/home`;
+      await open(page, start);
+      const homeSelector = '#view-home [data-category="marvel-on-screen"]';
+      await page.waitForSelector(homeSelector, { timeout: 15000 });
+      const before = await readState(page);
+      const home = await page.$eval(homeSelector, (node) => ({
+        visible: node.getBoundingClientRect().height > 0,
+        title: node.querySelector('.home-path-title')?.textContent.trim(),
+        count: node.querySelector('.home-path-count')?.textContent.trim(),
+      }));
+      t.check(`${width}px: Home exposes the populated ten-list MCU Prep gateway`,
+        home.visible && home.title === 'MCU Prep' && home.count === '10 Reading Lists',
+        JSON.stringify(home));
+      if (!home.visible || home.count !== '10 Reading Lists') return;
+      await click(page, homeSelector);
+      const cardSelector = `#marvel-on-screen-results [data-story="list:${id}"]`;
+      const homeHash = formatRoute({ view: 'marvel-on-screen', listId: before.active });
+      await page.waitForFunction((hash) => (
+        location.hash === hash && !document.querySelector('#view-marvel-on-screen').hidden
+      ), {}, homeHash);
+      await page.waitForSelector(cardSelector, { timeout: 15000 });
+      const homeCardCount = await page.$$eval(cardSelector, (cards) => cards.length);
+      t.check(`${width}px: Home reaches the generated child page with the new card once`,
+        homeCardCount === 1 && await page.evaluate((hash) => location.hash === hash, homeHash));
+
+      await openBrowseCategory(page, 'marvel-on-screen');
+      await page.waitForSelector(cardSelector, { timeout: 15000 });
+      const browse = await page.$eval('#marvel-on-screen-results', (results, selector) => {
+        const cards = [...results.querySelectorAll('.catalog-card')];
+        const selected = results.querySelector(selector);
+        return {
+          title: document.querySelector('#marvel-on-screen-h').textContent.trim(),
+          count: document.querySelector('#marvel-on-screen-count').textContent.trim(),
+          cards: cards.length,
+          selectedCount: results.querySelectorAll(selector).length,
+          selectedTitle: selected?.querySelector('.catalog-card-title')?.textContent.trim(),
+          titles: cards.map((card) => card.querySelector('.catalog-card-title').textContent.trim()),
+          columns: new Set(cards.map((card) => Math.round(card.getBoundingClientRect().left))).size,
+          viewport: innerWidth,
+          scrollWidth: document.documentElement.scrollWidth,
+          orientation: Boolean(results.querySelector('.timeline-flow, .shelf-orientation')),
+          path: Boolean(selected?.querySelector('.result-path')),
+        };
+      }, `[data-story="list:${id}"]`);
+      t.check(`${width}px: Browse keeps all ten companions in the integrated catalog order`,
+        browse.title === 'Browse MCU Prep' && browse.count === '10 Reading Lists'
+        && browse.cards === 10 && browse.selectedCount === 1
+        && browse.titles.join('|') === [
+          'Doctor Strange: Multiverse of Madness', 'Spider-Man: No Way Home',
+          'Marvel Multiverse', 'Marvel What If?', 'WandaVision', 'Spider-Man: Far From Home',
+          'MCU Prep: Thunderbolts*',
+          'Eternals',
+          'MCU Prep: Deadpool & Wolverine',
+          'MCU Prep: Daredevil: Born Again',
+        ].join('|'), JSON.stringify(browse));
+      t.check(`${width}px: MCU Prep has no new shelf, timeline, path or horizontal overflow`,
+        !browse.orientation && !browse.path && browse.scrollWidth <= browse.viewport
+        && (width === 390 ? browse.columns === 1 : browse.columns > 1),
+        JSON.stringify(browse));
+
+      await click(page, `${cardSelector} [data-act="preview"]`);
+      await page.waitForFunction(() => (
+        document.querySelectorAll('#preview[open] #preview-body .preview-issue-link').length === 37
+      ));
+      const previewTitles = await page.$$eval('#preview-body .preview-issue-link',
+        (links) => links.map((link) => link.textContent.trim()));
+      t.check(`${width}px: Preview presents all 37 exact titles in owner expansion order`,
+        JSON.stringify(previewTitles) === JSON.stringify(expectedTitles),
+        JSON.stringify(previewTitles));
+      t.check(`${width}px: Preview credits the owner rather than an external guide selection`,
+        await page.$eval('#preview', (dialog) => (
+          dialog.textContent.includes('Selected by raymond-nassar for MCU Prep')
+          && !dialog.textContent.includes("Compiled for this project from Comic Book Herald's guide")
+        )));
+      await click(page, '#preview-add [data-act="main"]');
+      await page.waitForFunction(() => (
+        document.querySelector('#preview-add [data-act="main"]')?.textContent.includes('In library')
+      ));
+      const imported = await readState(page);
+      const matches = Object.values(imported.lists).filter((list) => list.catalogId === id);
+      const list = matches[0];
+      t.check(`${width}px: import saves one 37-comic list without duplicating existing originals`,
+        matches.length === 1 && imported.listOrder.length === before.listOrder.length + 1
+        && JSON.stringify(list?.itemIds.map(Number)) === JSON.stringify(expectedIds),
+        JSON.stringify(matches));
+      t.check(`${width}px: import preserves existing progress, notes and the earlier saved list`,
+        JSON.stringify(imported.read) === JSON.stringify(before.read)
+        && JSON.stringify(imported.notes) === JSON.stringify(before.notes)
+        && JSON.stringify(imported.lists.fixture) === JSON.stringify(before.lists.fixture));
+      t.check(`${width}px: the saved list keeps all six original collection groups`,
+        JSON.stringify([...new Set(list.itemIds.map((issueId) => list.collectedIn[issueId]))])
+          === JSON.stringify(expectedParts), JSON.stringify(list.collectedIn));
+      await click(page, '#preview-add [data-act="main"]');
+      await page.waitForFunction(() => (
+        !document.querySelector('#view-read').hidden
+        && document.querySelector('#order-name').textContent.trim() === 'MCU Prep: Daredevil: Born Again'
+      ));
+      await openFullOrder(page);
+      const readingTitles = await page.$$eval('#rows .row .rt',
+        (rows) => rows.map((row) => row.textContent.trim()));
+      t.check(`${width}px: Open displays the 37 imported originals in their exact reading order`,
+        JSON.stringify(readingTitles) === JSON.stringify(expectedTitles), JSON.stringify(readingTitles));
+
+      const beforeRead = await readState(page);
+      await page.evaluate(() => {
+        window.__opened = [];
+        for (const issueId of [20751, 20752]) {
+          const button = document.querySelector(`button.mini[data-act="open"][data-key="${issueId}"]`);
+          if (!button) throw new Error(`missing Read button for ${issueId}`);
+          window.__dispatching = true;
+          button.click();
+          window.__dispatching = false;
+        }
+      });
+      const opened = await page.evaluate(() => window.__opened);
+      t.check(`${width}px: each Read opens a separate launcher synchronously without a lookup wait`,
+        opened.length === 2 && opened.every((call, index) => call.dispatching
+          && call.target === '_blank' && call.url.includes('/open.html?')
+          && call.features.includes('noopener')
+          && new URL(call.url, page.__origin).searchParams.get('d')
+            === String(payload.items[index + 1].digitalId)), JSON.stringify(opened));
+      const afterRead = await readState(page);
+      t.check(`${width}px: launching readers does not mark either unread comic read or alter notes`,
+        JSON.stringify(afterRead.read) === JSON.stringify(beforeRead.read)
+        && JSON.stringify(afterRead.notes) === JSON.stringify(beforeRead.notes));
+      await page.reload({ waitUntil: 'load' });
+      await page.waitForFunction(() => (
+        document.querySelector('#order-name').textContent.trim() === 'MCU Prep: Daredevil: Born Again'
+      ));
+      const reloaded = await readState(page);
+      const reloadedList = Object.values(reloaded.lists).find((candidate) => candidate.catalogId === id);
+      t.check(`${width}px: reload preserves the exact imported vector and all earlier progress`,
+        JSON.stringify(reloadedList.itemIds.map(Number)) === JSON.stringify(expectedIds)
+        && JSON.stringify(reloaded.read) === JSON.stringify(before.read)
+        && JSON.stringify(reloaded.notes) === JSON.stringify(before.notes)
+        && JSON.stringify(reloaded.lists.fixture) === JSON.stringify(before.lists.fixture));
+      const savedState = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      await click(page, '.brand[data-view="home"]');
+      await click(page, homeSelector);
+      await page.waitForSelector(cardSelector);
+      t.check(`${width}px: returning to MCU Prep preserves saved bytes and exposes Open, not Add`,
+        await page.$eval(`${cardSelector} button`, (button) => button.dataset.act === 'open')
+        && await page.evaluate((saved) => localStorage.getItem('mrt.state.v2') === saved, savedState));
+    }
+    t.check('the owner-selection journey makes no external requests and has no browser errors',
+      externalRequests.length === 0 && browserErrors.length === 0,
+      JSON.stringify({ externalRequests, browserErrors }));
+  },
+});
+
 async function open(page, path) {
   await page.goto(`${page.__origin}${path}`, { waitUntil: 'load' });
 }
@@ -13735,6 +13954,14 @@ async function preparePage(page, origin, mutation) {
             return Promise.resolve(json({
               ...selectedCatalog,
               lists: selectedCatalog.lists.filter((list) => list.id !== 'adam-warlock-reading-order'),
+            }));
+          }
+          if (window.__mrtMutation === 'daredevil-companion-misclassified') {
+            return Promise.resolve(json({
+              ...selectedCatalog,
+              lists: selectedCatalog.lists.map((list) => (
+                list.id === 'mcu-prep-daredevil-born-again' ? { ...list, type: 'event' } : list
+              )),
             }));
           }
           const controlled = localRequest(

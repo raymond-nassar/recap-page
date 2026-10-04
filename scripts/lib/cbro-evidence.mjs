@@ -138,6 +138,7 @@ export const CBH_LATER_ORDER_IDS = Object.freeze([
   'iron-fist-reading-order',
   'mcu-prep-deadpool-and-wolverine',
   'mcu-prep-thunderbolts',
+  'mcu-prep-daredevil-born-again',
   'spider-man-no-way-home-owner-selected',
   'mcu-prep-eternals',
 ]);
