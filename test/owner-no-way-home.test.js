@@ -24,14 +24,14 @@ import {
 } from '../src/js/lib/catalog.js';
 import { parseChecklist } from '../src/js/lib/markdown.js';
 import {
-  addIssuesToList,
-  createEmptyState,
-  createList,
+  exportBackup,
   isRead,
-  markRead,
+  listForCatalogId,
+  listItems,
   migrate,
-  setListNote,
 } from '../src/js/lib/model.js';
+import { Store, KEY } from '../src/js/storage.js';
+import { importedNoWayHomeFixture } from './helpers/owner-no-way-home-import.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const ownerId = 'spider-man-no-way-home-owner-selected';
@@ -64,19 +64,18 @@ async function readJson(...parts) {
   return JSON.parse(await readFile(path.join(root, ...parts), 'utf8'));
 }
 
-async function loadPublication() {
+async function loadArchive() {
   const manifest = await readJson('src', 'data', 'curated-lists.json');
   const catalog = parseCatalog(await readJson('src', 'data', 'catalog.json'));
-  const entry = manifest.lists.find(({ id }) => id === ownerId);
-  assert.ok(entry, 'The separately identified owner selection is missing from the manifest');
-  const card = catalog.lists.find(({ id }) => id === ownerId);
-  assert.ok(card, 'The separately identified owner selection is missing from the catalog');
+  const packet = await readJson('scripts', 'data', 'owner-mcu-prep', `${ownerId}.packet.json`);
+  const entry = packet.proposedManifest;
+  assert.equal(entry.id, ownerId);
   const payload = await readJson('src', 'data', entry.out);
-  return { manifest, catalog, entry, card, payload };
+  return { manifest, catalog, entry, payload };
 }
 
 test('owner No Way Home expands three standard collections to 18 ordered originals', async () => {
-  const { entry, card, payload } = await loadPublication();
+  const { entry, payload } = await loadArchive();
   const markdown = await readFile(path.join(root, 'src', 'data', 'orders', entry.sourceFile), 'utf8');
   const checklist = parseChecklist(markdown);
   assert.deepEqual(checklist.entries.map(({ issueId }) => issueId), expectedIds);
@@ -85,7 +84,7 @@ test('owner No Way Home expands three standard collections to 18 ordered origina
   assert.deepEqual(payload.unresolved, []);
   assert.equal(payload.placeholders, 0);
   assert.equal(entry.expect, 18);
-  assert.equal(card.count, 18);
+  assert.equal(payload.count, 18);
   assert.deepEqual(
     checklist.sourcePositions.map(({ ordinal, section, count }) => [ordinal, section, count]),
     expectedSections.map((section, index) => [index + 1, section, [7, 7, 4][index]]),
@@ -116,7 +115,7 @@ test('owner No Way Home expands three standard collections to 18 ordered origina
 });
 
 test('owner No Way Home keeps source authority and the existing companion identity distinct', async () => {
-  const { manifest, catalog, entry, card, payload } = await loadPublication();
+  const { manifest, catalog, entry, payload } = await loadArchive();
   const legacyEntry = manifest.lists.find(({ id }) => id === legacyId);
   const legacyCard = catalog.lists.find(({ id }) => id === legacyId);
   assert.ok(legacyEntry);
@@ -125,16 +124,26 @@ test('owner No Way Home keeps source authority and the existing companion identi
   assert.equal(legacyEntry.name, 'Spider-Man: No Way Home');
   assert.match(legacyEntry.sourceOrigin, /Comic Book Herald/);
   assert.equal(legacyCard.count, 17);
+  for (const [file, expected] of [
+    ['spider_man_no_way_home.json', '3adc2c9972ac801950183fdbaf08bb7de298f47b1ee3b8fe377c109a3161aae5'],
+    [path.join('orders', 'spider-man-no-way-home.md'), '5d4ecf1e085ed2480e778707315631d93c539c60de2ef2fbf08814609da1179b'],
+    ['spider_man_no_way_home_owner_selected.json', '7d6eadd3d92da6ae4048b3d5711f29803c4edfea2f7ec250f382817e1b7b937c'],
+    [path.join('orders', 'spider-man-no-way-home-owner-selected.md'), '03db2728489533d09ed73eaf9575c0cd4e5d5329aabf984039669a109ff72c44'],
+  ]) {
+    const text = await readFile(path.join(root, 'src', 'data', file), 'utf8');
+    assert.equal(createHash('sha256').update(text.replace(/\r\n/g, '\n')).digest('hex'),
+      expected, `${file}: frozen source changed`);
+  }
   const legacy = await readJson('src', 'data', legacyEntry.out);
   assert.deepEqual(legacy.items.map(({ issueId }) => issueId), expectedLegacyIds);
   assert.equal(compareIssueSets(expectedIds, expectedLegacyIds).relationship, 'none');
   assert.equal(entry.name, 'Spider-Man: No Way Home (Owner selections)');
   assert.equal(entry.sourcePage, 'https://github.com/raymond-nassar/recap-page/issues/686');
-  assert.equal(card.source, entry.sourcePage);
+  assert.equal(payload.source, entry.sourcePage);
   assert.match(entry.sourceOrigin, /owner/i);
   assert.doesNotMatch(entry.sourceOrigin, /Comic Book Herald/);
   assert.match(payload.sourceOrigin, /owner/i);
-  for (const published of [entry, card]) {
+  for (const published of [entry]) {
     assert.equal(published.type, 'screen-companion');
     assert.equal(published.depth, 'selected');
     assert.equal(published.timeline, null);
@@ -146,23 +155,28 @@ test('owner No Way Home keeps source authority and the existing companion identi
     assert.doesNotMatch(`${published.name} ${published.description}`, /[\u2013\u2014]/);
   }
   assert.equal(Object.hasOwn(entry, 'spotlightKind'), false);
-  assert.equal(card.spotlightKind, null);
 });
 
-test('owner No Way Home reaches MCU Prep and Storylines without an exact duplicate', async () => {
-  const { catalog, card, payload } = await loadPublication();
+test('owner No Way Home withdrawal leaves only the original guide in new discovery', async () => {
+  const { manifest, catalog, payload } = await loadArchive();
+  assert.equal(manifest.lists.some(({ id }) => id === ownerId), false);
+  assert.equal(catalog.lists.some(({ id }) => id === ownerId), false);
+  assert.equal(manifest.lists.filter(({ id }) => id === legacyId).length, 1);
+  assert.equal(catalog.lists.filter(({ id }) => id === legacyId).length, 1);
   const stories = groupCatalog(catalog.lists);
   const definition = HOME_CATEGORIES.find(({ key }) => key === 'marvel-on-screen');
   assert.equal(definition.heading, 'MCU Prep');
   assert.equal(definition.route, 'marvel-on-screen');
   const screenIds = definition.select(stories).flatMap(({ lists }) => lists.map(({ id }) => id));
-  assert.equal(screenIds.filter((id) => id === ownerId).length, 1);
+  assert.equal(screenIds.filter((id) => id === ownerId).length, 0);
   assert.equal(screenIds.filter((id) => id === legacyId).length, 1);
   assert.ok(availableHomeCategories(stories).some(({ key }) => key === 'marvel-on-screen'));
   assert.deepEqual(CATALOG_SHELVES.map(({ key }) => key), ['catalog', 'lines', 'spotlights']);
-  assert.ok(shelfLists(catalog.lists, 'lines').includes(card));
-  assert.ok(!shelfLists(catalog.lists, 'spotlights').includes(card));
-  assert.ok(!shelfLists(catalog.lists, 'catalog').includes(card));
+  for (const { key } of CATALOG_SHELVES) {
+    assert.equal(shelfLists(catalog.lists, key).some(({ id }) => id === ownerId), false);
+  }
+  assert.equal(shelfLists(catalog.lists, 'lines').filter(({ id }) => id === legacyId).length, 1);
+  assert.ok(!manifest.paths.some(({ steps }) => steps.includes(ownerId)));
   assert.ok(!catalog.paths.some(({ steps }) => steps.includes(ownerId)));
   const visibleOrders = await Promise.all(catalog.lists.map(async (peer) => ({
     orderId: peer.id,
@@ -178,61 +192,65 @@ test('owner No Way Home reaches MCU Prep and Storylines without an exact duplica
       peers.set(order.orderId, order);
     }
   }
-  const orders = [...peers.values()].filter(({ orderId }) => orderId !== ownerId);
+  assert.equal(peers.has(ownerId), false, 'Archived evidence must not become an active descriptor');
+  const orders = [...peers.values()];
   const report = buildComparisonReport({ candidateIds: payload.items.map(({ issueId }) => issueId), orders });
-  assert.equal(report.comparisonCount, peers.size - 1);
+  assert.equal(report.comparisonCount, peers.size);
+  assert.deepEqual(report.comparisons.map(({ orderId }) => orderId),
+    [...peers.keys()].sort((left, right) => left.localeCompare(right)));
   assert.equal(report.comparisons.filter(({ orderId }) => orderId === 'marvel-knights-to-planet-x').length, 1,
     'Complete-library review must include the retained hidden partition parent');
-  assert.deepEqual(report.comparisons.filter(({ relationship }) => relationship === 'exact'), []);
-  assert.deepEqual(
-    report.comparisons.filter(({ relationship }) => relationship !== 'none')
-      .map(({ orderId, relationship, sharedCount }) => [orderId, relationship, sharedCount]),
-    [...reviewedPartials].map(([id, sharedCount]) => [id, 'partial', sharedCount]),
-    'Any new meaningful relationship needs central review, not inherited approval',
-  );
-  for (const [id, sharedCount] of reviewedPartials) {
-    const comparison = report.comparisons.find(({ orderId }) => orderId === id);
-    assert.equal(comparison.relationship, 'partial');
-    assert.equal(comparison.sharedCount, sharedCount);
+});
+
+test('retired owner No Way Home imports survive reload without changing saved bytes or backups', async () => {
+  const { manifest, payload } = await loadArchive();
+  const legacyEntry = manifest.lists.find(({ id }) => id === legacyId);
+  const legacy = await readJson('src', 'data', legacyEntry.out);
+  const fixture = importedNoWayHomeFixture({ owner: payload, legacy });
+  const bytes = new Map(Object.entries(fixture.keys));
+  const storage = {
+    getItem: (key) => bytes.get(key) ?? null,
+    setItem: (key) => assert.fail(`Reload unexpectedly wrote ${key}`),
+    removeItem: (key) => assert.fail(`Reload unexpectedly removed ${key}`),
+  };
+  for (let reload = 0; reload < 2; reload += 1) {
+    const store = new Store({ storage });
+    const reloaded = store.load();
+    assert.equal(store.blocked, false);
+    assert.equal(bytes.get(KEY), fixture.raw);
+    assert.deepEqual(Object.fromEntries(bytes), fixture.keys);
+    assert.deepEqual(reloaded.lists, fixture.state.lists);
+    assert.deepEqual(reloaded.issues, fixture.state.issues);
+    assert.deepEqual(reloaded.listOrder, fixture.state.listOrder);
+    assert.equal(reloaded.active, 'retired-import');
+    assert.deepEqual(reloaded.read, fixture.state.read);
+    assert.deepEqual(reloaded.notes, fixture.state.notes);
+    assert.deepEqual(reloaded.overrides, fixture.state.overrides);
+    const saved = listForCatalogId(reloaded, ownerId);
+    assert.equal(saved.id, 'retired-import');
+    assert.deepEqual(saved.itemIds, expectedIds);
+    assert.deepEqual(
+      listItems(reloaded, saved.id).map(({ issueId, collectedIn }) => [issueId, collectedIn]),
+      payload.items.map(({ issueId, collectedIn }) => [issueId, collectedIn]),
+    );
+    assert.ok(isRead(reloaded, expectedLegacyIds[0]));
+    assert.ok(isRead(reloaded, expectedIds[0]));
+    assert.deepEqual({ ...exportBackup(reloaded), exportedAt: fixture.backup.exportedAt }, fixture.backup);
+    assert.deepEqual(migrate(fixture.backup).lists, reloaded.lists);
   }
 });
 
-test('owner No Way Home import retains both catalog identities, existing progress and collection order', async () => {
-  const { manifest, entry, payload } = await loadPublication();
-  const legacyEntry = manifest.lists.find(({ id }) => id === legacyId);
-  const legacy = await readJson('src', 'data', legacyEntry.out);
-  let state = createList(createEmptyState(), { id: 'existing', name: legacyEntry.name, catalogId: legacyId });
-  state = addIssuesToList(state, 'existing', legacy.items).state;
-  state = setListNote(state, 'existing', 'My existing reading notes');
-  state = markRead(state, expectedLegacyIds[0], true, 1700000000000);
-  state = markRead(state, expectedIds[0], true, 1700000000001);
-  const savedLegacy = structuredClone(state.lists.existing);
-  state = createList(state, { id: 'owner', name: entry.name, catalogId: ownerId });
-  const imported = addIssuesToList(state, 'owner', payload.items);
-  assert.equal(imported.added, 18);
-  assert.equal(imported.skipped, 0);
-  const reloaded = migrate(JSON.parse(JSON.stringify(imported.state)));
-  assert.deepEqual(reloaded.lists.existing, savedLegacy);
-  assert.equal(reloaded.lists.owner.catalogId, ownerId);
-  assert.deepEqual(reloaded.lists.owner.itemIds, expectedIds);
-  assert.ok(isRead(reloaded, expectedLegacyIds[0]));
-  assert.ok(isRead(reloaded, expectedIds[0]));
-  assert.deepEqual(
-    expectedIds.map((id) => reloaded.lists.owner.collectedIn[id]),
-    payload.items.map(({ collectedIn }) => collectedIn),
-  );
-});
-
 test('owner No Way Home provenance preserves every selection, exact lookup and edition boundary', async () => {
-  const { entry, payload } = await loadPublication();
+  const { entry, payload } = await loadArchive();
   const packet = await readJson('scripts', 'data', 'owner-mcu-prep', `${ownerId}.packet.json`);
   const mapping = await readJson('scripts', 'data', 'owner-mcu-prep', `${ownerId}.mapping.json`);
   assert.equal(packet.packetDigest, packetDigestFor(packet));
+  assert.equal(packet.packetDigest, '7ace7b7df104993c65b7375234bd93f6fc0335c19a55fc7d61f70acc5cd2acfc');
   assert.doesNotThrow(() => validateMappingDigest(mapping));
+  assert.equal(mapping.mappingDigest, '446fd4bca140b80beed361491559286b62d8e9efca9f8bbf65fb3164e3076865');
   assert.equal(mapping.packetDigest, packet.packetDigest);
   assert.equal(packet.sourceProvider, 'owner-selected');
   assert.equal(mapping.sourceProvider, packet.sourceProvider);
-  assert.deepEqual(packet.proposedManifest, entry);
   assert.deepEqual(mapping.proposedManifest, entry);
   assert.equal(packet.sourceOccurrenceCount, 3);
   assert.equal(packet.expandedOriginalCount, 18);
@@ -274,13 +292,16 @@ test('owner No Way Home provenance preserves every selection, exact lookup and e
   assert.equal(packet.selections[2].identityEvidence.issueId, 34135);
 });
 
-test('owner No Way Home human overlap approval binds the actual packet, mapping and full library', async () => {
-  const { catalog, payload } = await loadPublication();
+test('archived owner No Way Home approval binds the actual packet, mapping and exact original cohort', async () => {
+  const { catalog, payload } = await loadArchive();
   const packet = await readJson('scripts', 'data', 'owner-mcu-prep', `${ownerId}.packet.json`);
   const mapping = await readJson('scripts', 'data', 'owner-mcu-prep', `${ownerId}.mapping.json`);
   const report = await readJson('scripts', 'data', 'owner-mcu-prep', `${ownerId}.overlap.json`);
   assert.doesNotThrow(() => validateReportDigest(report));
   assert.doesNotThrow(() => validateApprovalDigest(report.relationshipReview, ownerId));
+  assert.equal(report.reportDigest, 'a5f97c22866a2a4db8c2c3c5bb65f2641c32d58e3a805cf44a54a911fec5409c');
+  assert.equal(report.relationshipReview.approvalDigest,
+    'bff8fcaf07ea991e0979dec44a6e32a096fd74e474554e71031140a6fba8a1ec');
   assert.equal(report.packetDigest, packet.packetDigest);
   assert.equal(report.mappingDigest, mapping.mappingDigest);
   assert.equal(report.libraryDigest, digestCanonicalJson(report.librarySnapshot));
@@ -308,6 +329,8 @@ test('owner No Way Home human overlap approval binds the actual packet, mapping 
   assert.deepEqual(report.comparisons.filter(({ relationship }) => /exact|subset/.test(relationship)), []);
   const partials = report.comparisons.filter(({ relationship }) => relationship === 'partial');
   assert.equal(partials.length, 7);
+  assert.deepEqual(partials.map(({ orderId, relationship, sharedCount }) => [orderId, relationship, sharedCount]),
+    [...reviewedPartials].map(([id, sharedCount]) => [id, 'partial', sharedCount]));
   assert.deepEqual(
     report.relationshipReview.approvals.map(({ orderId, relationship, sharedCount, sharedIds }) => (
       { orderId, relationship, sharedCount, sharedIds }

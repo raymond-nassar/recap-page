@@ -955,10 +955,10 @@ the book id out of an address the reader pastes.
 
 The generated catalog currently publishes three independent Reading Paths with 100 stops: two
 authored paths with 10 and 12 stops from the curated manifest at
-`src/data/curated-lists.json:6886-6925`, plus the 78-stop Marvel Knights to Planet X path generated
+`src/data/curated-lists.json:6851-6890`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all three at
-`src/data/catalog.json:10912-11037`.
+`src/data/catalog.json:10870-10995`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -1797,12 +1797,15 @@ and [portable evidence binding](https://github.com/raymond-nassar/recap-page/iss
 recorded on 2026-10-03, preserve every shared original and the distinct owner-selected companion.
 
 The [append-only current-library extension](../scripts/data/owner-mcu-prep-deadpool-and-wolverine-current-library-extension.json)
-also checks Thunderbolts*'s 34 originals and the separately identified No Way Home owner's
+records Thunderbolts*'s 34 originals and the separately identified No Way Home owner's
 18 originals, plus Eternals' 24 originals, against this guide's 43. None shares an original with this guide.
-The combined current comparison covers 284 peers, including generated
-children and the hidden parent, while both guides' original reports and approvals stay unchanged.
-The extension is derived completeness evidence, not a new human approval. Its executable gate
-rejects an unrecorded peer or any newly meaningful relationship instead of silently excluding it.
+Its frozen 285-order snapshot and 284-peer comparisons remain exact historical evidence,
+including the later-withdrawn No Way Home selection through its retained packet and payload.
+A separate unfiltered check covers the complete active library: 284 descriptors and 283 peers
+for each active candidate, including generated children and the hidden parent. Both guides'
+original reports, approvals and the extension remain unchanged. The recorded extension is not
+an active registry or a new human approval. Current coverage rejects missing peers and newly
+meaningful relationships instead of filtering them into the historical cohort.
 
 All five positions and every expanded comic remain represented in the source ledger, frozen packet,
 exact mapping, checklist, and generated payload. Provider gaps, if introduced by a later refresh,
@@ -1812,11 +1815,21 @@ identity or recast a bibliographic conflict as missing provider metadata.
 
 ## Owner-selected No Way Home companion
 
+**Withdrawn from new discovery.** The owner's direction in
+[Issue #706](https://github.com/raymond-nassar/recap-page/issues/706) removes only the newer
+**Spider-Man: No Way Home (Owner selections)** guide from the active source manifest and
+generated catalog. Home, Browse, Storylines and new catalog imports offer only the original
+No Way Home guide. Existing imported copies remain usable with their progress, notes,
+availability overrides, active selection, collection labels and backups unchanged.
+No saved-data migration, deletion or storage-schema change is involved.
+
 [Issue #686](https://github.com/raymond-nassar/recap-page/issues/686) owns the three-position
-outline and the separate **Spider-Man: No Way Home (Owner selections)** publication.
-Its stable ID is `spider-man-no-way-home-owner-selected`. It is an ungrouped MCU Prep
-screen companion at selected depth, with no timeline or beginner claim; Storylines remains
-its canonical shelf. The existing 17-original Comic Book Herald companion, its payload,
+outline and the archived publication delivered by
+[PR #693](https://github.com/raymond-nassar/recap-page/pull/693).
+Its retained source ID is `spider-man-no-way-home-owner-selected`. It was published as an
+ungrouped MCU Prep screen companion at selected depth, with no timeline or beginner claim.
+Its exact payload, checklist, source ledger, mapping and human receipt remain archived in place;
+they do not register a hidden or newly importable guide. The existing 17-original Comic Book Herald companion, its payload,
 source attribution and `spider-man-no-way-home` saved identity are unchanged. The two
 companions share no original comics.
 
@@ -1836,7 +1849,8 @@ metadata requests. All 18 detail responses succeeded with launch identities, cre
 and cover URLs: there are no metadata gaps or unidentified editions in this publication.
 Amazing Spider-Man #648 resolves to issue 34135 in series 454, independently of the nearby
 numeric IDs for #649-651. No collection ID, invented original, source narrative or image
-bytes are published. The three collection labels survive Preview, import and Reading.
+bytes are stored. The three collection labels remain in the retained payload and already
+imported Reading Lists.
 
 The [visible-library approval report](../scripts/data/owner-mcu-prep/spider-man-no-way-home-owner-selected.overlap.json)
 compares all 280 previously visible Reading Lists, including generated partition children:
@@ -1845,18 +1859,22 @@ seven partial relationships, 273 without shared originals, and no exact or subse
 retains the measured shared originals. The report binds that human authority to the packet,
 mapping, library and comparison digests. Standard-edition framing and separate ungrouped
 display are coordinator implementation dispositions, not a quoted user edition choice.
-Changed vectors or new relationships require renewed review; duplicate gates are unchanged.
+The exact original cohort still replays its approved relationships and duplicate checks.
+The [withdrawal authority boundary](https://github.com/raymond-nassar/recap-page/issues/706#issuecomment-5976145338),
+recorded on 2026-10-04, removes only the inactive selection's live-current relationship veto.
+It does not weaken any still-active guide's own relationship-approval gate or let its historical
+receipt approve a new relationship.
 
-The current-library contract separately unions every source-manifest payload with every
-visible catalog payload, excluding only this candidate. At this publication it checks
-282 peers: the same seven partial relationships and 275 without shared originals.
-The retained hidden Marvel Knights to Planet X parent contributes 487 originals and
-shares none with this selection. This complete-library check does not rewrite or
-extend the authority of the original 280-visible-peer approval receipt.
+The active-library contract still unions every current source-manifest payload with every
+visible catalog payload, including all generated children and the retained 487-original
+hidden Marvel Knights to Planet X parent. Withdrawal removes only this guide from that
+active union, not the archived 18-original vector from frozen approval evidence or later-peer
+historical replay. The original 280-visible-peer receipt is neither regenerated nor relabeled
+as current approval.
 
 The outline's direct-inspiration and returning-villain comparisons remain unverified owner
 motivation, not reader-facing adaptation facts. Selection authority is the owner, not Comic
-Book Herald, and the existing guide is not replaced. Browser proofs use a private installed-Edge
+Book Herald, and the existing guide is not replaced. Withdrawal browser proofs use a private installed-Edge
 profile and the existing harness's isolated ephemeral server from this worktree. They do not
 change the production `127.0.0.1:8787` origin or write to its saved reading progress.
 
