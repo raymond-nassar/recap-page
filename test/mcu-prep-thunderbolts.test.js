@@ -273,22 +273,22 @@ test('Thunderbolts frozen approval remains valid across the complete current lib
     report.comparisons.filter((entry) => entry.relationship !== 'none'),
     'New meaningful relationships need central review, not inherited approval');
   const reviewedIds = new Set(report.comparisons.map((entry) => entry.orderId));
-  const orders = currentOrders.filter((entry) => reviewedIds.has(entry.orderId));
-  const laterId = 'mcu-prep-daredevil-born-again';
-  const comparison = buildComparisonReport({ candidateIds: expectedIds, orders });
+  const reviewedOrders = currentOrders.filter((entry) => reviewedIds.has(entry.orderId));
+  const laterIds = ['mcu-prep-daredevil-born-again', 'spider-man-no-way-home-owner-selected'];
+  const comparison = buildComparisonReport({ candidateIds: expectedIds, orders: reviewedOrders });
   assert.equal(comparison.comparisonCount, 281);
-  assert.equal(orders.filter((entry) => /^marvel-knights-to-planet-x-\d{2}$/.test(entry.orderId))
+  assert.equal(reviewedOrders.filter((entry) => /^marvel-knights-to-planet-x-\d{2}$/.test(entry.orderId))
     .length, 78);
-  assert.ok(orders.some((entry) => entry.orderId === 'marvel-knights-to-planet-x'));
+  assert.ok(reviewedOrders.some((entry) => entry.orderId === 'marvel-knights-to-planet-x'));
   assert.equal(report.candidateId, id);
   assert.equal(report.mappingDigest, digestCanonicalJson(expectedIds.map(String)));
-  assert.equal(report.libraryDigest, digestCanonicalJson(orders));
+  assert.equal(report.libraryDigest, digestCanonicalJson(reviewedOrders));
   assert.deepEqual(report.sourceCounts, { selections: 5, occurrences: 35, resolved: 34, gaps: 1 });
   assert.deepEqual(report.comparisons, comparison.comparisons);
   assert.doesNotThrow(() => assertComparisonCoverage(report, {
     candidateId: id,
     candidateCount: 34,
-    expectedOrderIds: orders.map((entry) => entry.orderId),
+    expectedOrderIds: reviewedOrders.map((entry) => entry.orderId),
   }));
   assert.doesNotThrow(() => validateReportDigest(report));
   assert.deepEqual(report.comparisons.filter((entry) => entry.relationship === 'partial')
@@ -318,12 +318,12 @@ test('Thunderbolts frozen approval remains valid across the complete current lib
     assert.ok(disposition.authorityIdentity && disposition.rationale);
     assert.equal(disposition.reviewedAt, review.reviewedAt);
   }
-  assert.deepEqual(currentOrders.filter((entry) => entry.orderId === laterId)
-    .map((entry) => entry.orderId), [laterId]);
+  assert.deepEqual(currentOrders.filter((entry) => laterIds.includes(entry.orderId))
+    .map((entry) => entry.orderId), laterIds);
   assert.equal(current.comparisons.filter((entry) => entry.relationship === 'none').length,
     current.comparisonCount - expectedPartialPeers.length);
-  assert.deepEqual(current.comparisons.filter((entry) => entry.orderId === laterId)
-    .map((entry) => [entry.relationship, entry.sharedIds]), [['none', []]]);
+  assert.deepEqual(current.comparisons.filter((entry) => laterIds.includes(entry.orderId))
+    .map((entry) => [entry.relationship, entry.sharedIds]), [['none', []], ['none', []]]);
 });
 
 test('Thunderbolts import shares existing read progress without changing saved lists or schema', async () => {

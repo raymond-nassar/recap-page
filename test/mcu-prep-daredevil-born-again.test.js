@@ -177,7 +177,8 @@ test('owner Daredevil frozen approvals remain valid across the complete current 
       && disposition.authorityIdentity === 'raymond-nassar'));
   const reviewed = new Set(entries.map((entry) => entry.id));
   const later = catalog.lists.filter((entry) => entry.id !== id && !reviewed.has(entry.id));
-  assert.deepEqual(later.map((entry) => entry.id), ['mcu-prep-thunderbolts']);
+  assert.deepEqual(later.map((entry) => entry.id),
+    ['mcu-prep-thunderbolts', 'spider-man-no-way-home-owner-selected']);
   assert.deepEqual(manifest.lists.filter((entry) => entry.catalog === false)
     .map((entry) => entry.id), retained.map((entry) => entry.id));
   const laterOrders = await Promise.all(later.map(async (entry) => ({
@@ -185,12 +186,12 @@ test('owner Daredevil frozen approvals remain valid across the complete current 
     issueIds: issueIdsFromValue(await json(`src/data/${entry.file}`)),
   })));
   const current = buildComparisonReport({ candidateIds: expectedIds, orders: [...orders, ...laterOrders] });
-  assert.equal(current.comparisonCount, 282);
-  assert.equal(current.comparisons.filter((entry) => entry.relationship === 'none').length, 278);
+  assert.equal(current.comparisonCount, 283);
+  assert.equal(current.comparisons.filter((entry) => entry.relationship === 'none').length, 279);
   assert.deepEqual(current.comparisons.filter((entry) => entry.relationship !== 'none'),
     report.comparisons.filter((entry) => entry.relationship !== 'none'));
-  assert.deepEqual(current.comparisons.filter((entry) => entry.orderId === later[0].id)
-    .map((entry) => [entry.relationship, entry.sharedIds]), [['none', []]]);
+  assert.deepEqual(current.comparisons.filter((entry) => later.some((peer) => peer.id === entry.orderId))
+    .map((entry) => [entry.relationship, entry.sharedIds]), [['none', []], ['none', []]]);
 });
 
 test('owner Daredevil checklist and pinned payload publish all 37 originals in six parts', async () => {
@@ -252,6 +253,7 @@ test('owner Daredevil remains one owner-credited MCU Prep card outside Character
   assert.deepEqual(selected, [
     'doctor-strange-multiverse-of-madness', 'spider-man-no-way-home', 'marvel-multiverse',
     'marvel-what-if', 'wandavision', 'spider-man-far-from-home', 'mcu-prep-thunderbolts', id,
+    'spider-man-no-way-home-owner-selected',
   ]);
   assert.equal(shelfLists(catalog.lists, 'spotlights').some((card) => card.id === id), false);
   assert.equal(catalog.paths.some((readingPath) => readingPath.steps.includes(id)), false);
