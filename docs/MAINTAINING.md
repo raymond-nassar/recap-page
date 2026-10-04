@@ -580,8 +580,20 @@ only in the subsets named by its authored `spotlightKind`.
 For an MCU Prep addition, keep `type` as `screen-companion`, `depth` as `selected`,
 `timeline` as `null`, and `beginner` as `false`. Confirm the shared Home and Browse gateways expose
 MCU Prep only when populated, and that its generated child page contains every selected card
-once in inventory priority order at desktop and narrow widths. Do not add a fourth canonical shelf or
+once in manifest order at desktop and narrow widths. Do not add a fourth canonical shelf or
 a Character Spotlight classification; Storylines remains the canonical shelf.
+
+Owner-authored MCU Prep selections keep owner credit and an ordered selection ledger in
+`scripts/data/owner-selections/`, not the fixed Comic Book Herald inventory. Preserve every supplied
+position and record any approved collection expansion on its intake Issue. The Daredevil example
+uses the existing provider-configurable packet validator, exact mapping and complete-library overlap
+review under `scripts/data/owner-packets/`, `owner-mappings/` and `owner-overlaps/`. Its baseline names
+all visible orders, including generated chapters, plus retained noncatalog parents. The provenance
+record freezes that reviewed scope without rewriting it for future unrelated additions.
+Do not run the CBH-specific checklist author on an owner selection, because it supplies CBH credit.
+Use the ordinary local-checklist vendor with `--only` and verify the owner credit on the generated
+card. Provider gaps remain ordered provenance and get a separately assigned gap Issue; a collection
+identity conflict requires an owner decision rather than a neighboring substitution.
 
 ## Create reading paths and collected-edition groups
 

@@ -2809,6 +2809,45 @@
       "updatedAt": "2026-10-03T17:56:36.689Z"
     },
     {
+      "id": "mcu-prep-eternals",
+      "file": "mcu_prep_eternals.json",
+      "name": "Eternals",
+      "description": "Three owner-selected Eternals collections: Jack Kirby's first volume, Neil Gaiman and John Romita Jr.'s miniseries, then Kieron Gillen and Esad Ribic's first volume. Original issues only.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "count": 24,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 3,
+      "characters": [
+        "Eternals"
+      ],
+      "keywords": [
+        "MCU Prep",
+        "Eternals",
+        "Jack Kirby",
+        "Neil Gaiman",
+        "John Romita Jr.",
+        "Kieron Gillen",
+        "Esad Ribic",
+        "Only Death Is Eternal"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 8799,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/5c2fa8f171638",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/684",
+      "sourceOrigin": "Compiled for this project",
+      "sourceLicense": null,
+      "updatedAt": "2026-10-03T17:50:15.766Z"
+    },
+    {
       "id": "agents-of-atlas-reading-order",
       "file": "agents_of_atlas_reading_order.json",
       "name": "Agents of Atlas",
@@ -2850,6 +2889,47 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-26T09:49:42.158Z"
+    },
+    {
+      "id": "mcu-prep-deadpool-and-wolverine",
+      "file": "mcu_prep_deadpool_and_wolverine.json",
+      "name": "MCU Prep: Deadpool & Wolverine",
+      "description": "An owner-selected path through Weapon X, Dead Presidents, Gifted, Old Man Logan, and Deadpool Classic Vol. 1, expanded into 43 original comics in the supplied order.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "count": 43,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 5,
+      "characters": [
+        "Deadpool",
+        "Wolverine",
+        "X-Men"
+      ],
+      "keywords": [
+        "Deadpool & Wolverine",
+        "Wade Wilson",
+        "Logan",
+        "Weapon X",
+        "Dead Presidents",
+        "Gifted",
+        "Old Man Logan",
+        "Circle Chase"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 10155,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/a0/66c64d8f69e7c",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/680",
+      "sourceOrigin": "Compiled for this project from the owner's selections",
+      "sourceLicense": null,
+      "updatedAt": "2026-10-03T17:48:37.886Z"
     },
     {
       "id": "white-tiger-ava-ayala",
@@ -10790,6 +10870,50 @@
       "updatedAt": "2026-08-21T09:58:39.876Z"
     },
     {
+      "id": "mcu-prep-daredevil-born-again",
+      "file": "mcu_prep_daredevil_born_again.json",
+      "name": "MCU Prep: Daredevil: Born Again",
+      "description": "An owner-selected Daredevil companion: The Man Without Fear, Born Again, Out, Brubaker's first volume, and the first two Zdarsky volumes.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "count": 37,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 6,
+      "characters": [
+        "Daredevil",
+        "Kingpin",
+        "Matt Murdock"
+      ],
+      "keywords": [
+        "MCU Prep",
+        "Daredevil: Born Again",
+        "The Man Without Fear",
+        "Out",
+        "The Devil Inside and Out",
+        "Know Fear",
+        "No Devils, Only God",
+        "Frank Miller",
+        "Brian Michael Bendis",
+        "Ed Brubaker",
+        "Chip Zdarsky"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 20750,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/4bb866d34e627",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/681",
+      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceLicense": null,
+      "updatedAt": "2026-10-03T17:48:05.373Z"
+    },
+    {
       "id": "inhumans-vs-x-men",
       "file": "inhumans_vs_x_men.json",
       "name": "Inhumans vs. X-Men",
@@ -10825,48 +10949,6 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-21T12:53:39.465Z"
-    },
-    {
-      "id": "spider-man-no-way-home-owner-selected",
-      "file": "spider_man_no_way_home_owner_selected.json",
-      "name": "Spider-Man: No Way Home (Owner selections)",
-      "description": "The owner's three-volume selection: an Ultimate origin, the main Spider-Verse chapters, and the four-issue Big Time arc, expanded into 18 original comics in that order.",
-      "type": "screen-companion",
-      "depth": "selected",
-      "count": 18,
-      "placeholderCount": 0,
-      "emptyRecordCount": 0,
-      "collections": 3,
-      "characters": [
-        "Spider-Man",
-        "Peter Parker",
-        "Hobgoblin"
-      ],
-      "keywords": [
-        "MCU Prep",
-        "Spider-Man: No Way Home",
-        "Owner selections",
-        "Ultimate Spider-Man",
-        "Power and Responsibility",
-        "Spider-Verse",
-        "Big Time",
-        "Brian Michael Bendis",
-        "Dan Slott"
-      ],
-      "group": null,
-      "groupName": null,
-      "variant": null,
-      "beginner": false,
-      "timeline": null,
-      "coverIssueId": 4372,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/519b7e7eb534a",
-        "ext": "jpg"
-      },
-      "source": "https://github.com/raymond-nassar/recap-page/issues/686",
-      "sourceOrigin": "Compiled for this project from the owner's selections",
-      "sourceLicense": null,
-      "updatedAt": "2026-10-03T17:55:25.078Z"
     }
   ],
   "paths": [

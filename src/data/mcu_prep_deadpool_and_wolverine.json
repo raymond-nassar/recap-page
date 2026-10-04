@@ -1,0 +1,1640 @@
+{
+  "id": "mcu-prep-deadpool-and-wolverine",
+  "name": "MCU Prep: Deadpool & Wolverine",
+  "description": "An owner-selected path through Weapon X, Dead Presidents, Gifted, Old Man Logan, and Deadpool Classic Vol. 1, expanded into 43 original comics in the supplied order.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/680",
+  "sourceOrigin": "Compiled for this project from the owner's selections",
+  "sourceLicense": null,
+  "generatedAt": "2026-10-03T17:48:37.886Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 43,
+  "collections": 5,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 10155,
+      "title": "Marvel Comics Presents (1988) #72",
+      "number": "72",
+      "url": "https://www.marvel.com/comics/issue/10155/marvel_comics_presents_1988_72",
+      "seriesId": 2039,
+      "seriesName": "Marvel Comics Presents (1988 - 1995)",
+      "onSale": "1991-03-15T00:00:00+0000",
+      "mu": "1991-03-15T00:00:00+0000",
+      "digitalId": 3039,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/a0/66c64d8f69e7c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Chris Ivy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gary Martin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Mckenna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Barry Windsor-Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "Dwayne Turner",
+          "role": "penciler"
+        },
+        {
+          "name": "Javier Saltares",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Gulacy",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        },
+        {
+          "name": "Gerard Jones",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Wolverine: Weapon X"
+    },
+    {
+      "issueId": 10156,
+      "title": "Marvel Comics Presents (1988) #73",
+      "number": "73",
+      "url": "https://www.marvel.com/comics/issue/10156/marvel_comics_presents_1988_73",
+      "seriesId": 2039,
+      "seriesName": "Marvel Comics Presents (1988 - 1995)",
+      "onSale": "1991-03-30T00:00:00+0000",
+      "mu": "1991-03-30T00:00:00+0000",
+      "digitalId": 6378,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/90/66c64d8f6e88b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dave Cockrum",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gary Martin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Barry Windsor-Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Gulacy",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerard Jones",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Wolverine: Weapon X"
+    },
+    {
+      "issueId": 10157,
+      "title": "Marvel Comics Presents (1988) #74",
+      "number": "74",
+      "url": "https://www.marvel.com/comics/issue/10157/marvel_comics_presents_1988_74",
+      "seriesId": 2039,
+      "seriesName": "Marvel Comics Presents (1988 - 1995)",
+      "onSale": "1991-04-05T00:00:00+0000",
+      "mu": "1991-04-05T00:00:00+0000",
+      "digitalId": 6379,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/30/66c64d8f67d42",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Adkins",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gary Martin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Randy Emberlin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Barry Windsor-Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "Joe Staton",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Gulacy",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Mcdaniel",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerard Jones",
+          "role": "writer"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Wolverine: Weapon X"
+    },
+    {
+      "issueId": 10158,
+      "title": "Marvel Comics Presents (1988) #75",
+      "number": "75",
+      "url": "https://www.marvel.com/comics/issue/10158/marvel_comics_presents_1988_75",
+      "seriesId": 2039,
+      "seriesName": "Marvel Comics Presents (1988 - 1995)",
+      "onSale": "1991-04-30T00:00:00+0000",
+      "mu": "1991-04-30T00:00:00+0000",
+      "digitalId": 6380,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/b0/66c64d8f68386",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Chris Ivy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gary Martin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Barry Windsor-Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "Dave Cockrum",
+          "role": "penciler"
+        },
+        {
+          "name": "Gavin Curtis",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Gulacy",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerard Jones",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Wolverine: Weapon X"
+    },
+    {
+      "issueId": 10159,
+      "title": "Marvel Comics Presents (1988) #76",
+      "number": "76",
+      "url": "https://www.marvel.com/comics/issue/10159/marvel_comics_presents_1988_76",
+      "seriesId": 2039,
+      "seriesName": "Marvel Comics Presents (1988 - 1995)",
+      "onSale": "1991-05-15T00:00:00+0000",
+      "mu": "1991-05-15T00:00:00+0000",
+      "digitalId": 6381,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/a0/66c64d8f71598",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dave Cockrum",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gary Martin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Farmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Barry Windsor-Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Gulacy",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerard Jones",
+          "role": "writer"
+        },
+        {
+          "name": "Rob Campanella",
+          "role": "writer"
+        },
+        {
+          "name": "Simon Furman",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Wolverine: Weapon X"
+    },
+    {
+      "issueId": 10160,
+      "title": "Marvel Comics Presents (1988) #77",
+      "number": "77",
+      "url": "https://www.marvel.com/comics/issue/10160/marvel_comics_presents_1988_77",
+      "seriesId": 2039,
+      "seriesName": "Marvel Comics Presents (1988 - 1995)",
+      "onSale": "1991-06-05T00:00:00+0000",
+      "mu": "1991-06-05T00:00:00+0000",
+      "digitalId": 6382,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/f0/66c64db2041ec",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Nichols",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gary Martin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Rubinstein",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rob Campanella",
+          "role": "cover artist"
+        },
+        {
+          "name": "Barry Windsor-Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "Grant Miehm",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Gulacy",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Lyle",
+          "role": "penciler"
+        },
+        {
+          "name": "Doug Murray",
+          "role": "writer"
+        },
+        {
+          "name": "Gerard Jones",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Wolverine: Weapon X"
+    },
+    {
+      "issueId": 10161,
+      "title": "Marvel Comics Presents (1988) #78",
+      "number": "78",
+      "url": "https://www.marvel.com/comics/issue/10161/marvel_comics_presents_1988_78",
+      "seriesId": 2039,
+      "seriesName": "Marvel Comics Presents (1988 - 1995)",
+      "onSale": "1991-06-30T00:00:00+0000",
+      "mu": "1991-06-30T00:00:00+0000",
+      "digitalId": 6383,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/a0/66c64db2bd75f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Rubinstein",
+          "role": "cover artist"
+        },
+        {
+          "name": "Karl Story",
+          "role": "cover artist"
+        },
+        {
+          "name": "Barry Windsor-Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Stelfreeze",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Lyle",
+          "role": "penciler"
+        },
+        {
+          "name": "Doug Murray",
+          "role": "writer"
+        },
+        {
+          "name": "Dwight Jon Zimmerman",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Wolverine: Weapon X"
+    },
+    {
+      "issueId": 10162,
+      "title": "Marvel Comics Presents (1988) #79",
+      "number": "79",
+      "url": "https://www.marvel.com/comics/issue/10162/marvel_comics_presents_1988_79",
+      "seriesId": 2039,
+      "seriesName": "Marvel Comics Presents (1988 - 1995)",
+      "onSale": "1991-07-05T00:00:00+0000",
+      "mu": "1991-07-05T00:00:00+0000",
+      "digitalId": 6384,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/b0/66c64db2d5e5f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Rubinstein",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Byrne",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Mckenna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Barry Windsor-Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Geiger",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Lyle",
+          "role": "penciler"
+        },
+        {
+          "name": "Doug Murray",
+          "role": "writer"
+        },
+        {
+          "name": "Rob Campanella",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Wolverine: Weapon X"
+    },
+    {
+      "issueId": 10164,
+      "title": "Marvel Comics Presents (1988) #80",
+      "number": "80",
+      "url": "https://www.marvel.com/comics/issue/10164/marvel_comics_presents_1988_80",
+      "seriesId": 2039,
+      "seriesName": "Marvel Comics Presents (1988 - 1995)",
+      "onSale": "1991-07-30T00:00:00+0000",
+      "mu": "1991-07-30T00:00:00+0000",
+      "digitalId": 6386,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/20/66c64db33cfab",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Rosas",
+          "role": "cover artist"
+        },
+        {
+          "name": "Terry Austin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Barry Windsor-Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Ditko",
+          "role": "penciler"
+        },
+        {
+          "name": "Danny Fingeroth",
+          "role": "writer"
+        },
+        {
+          "name": "Jo Duffy",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Wolverine: Weapon X"
+    },
+    {
+      "issueId": 10165,
+      "title": "Marvel Comics Presents (1988) #81",
+      "number": "81",
+      "url": "https://www.marvel.com/comics/issue/10165/marvel_comics_presents_1988_81",
+      "seriesId": 2039,
+      "seriesName": "Marvel Comics Presents (1988 - 1995)",
+      "onSale": "1991-08-01T00:00:00+0000",
+      "mu": "1991-08-01T00:00:00+0000",
+      "digitalId": 6387,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/66c64db45a3d9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Hilary Barta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Terry Austin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Barry Windsor-Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "James Fry",
+          "role": "penciler"
+        },
+        {
+          "name": "Marshall Rogers",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Ditko",
+          "role": "penciler"
+        },
+        {
+          "name": "Dana Moreshead",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Wolverine: Weapon X"
+    },
+    {
+      "issueId": 10166,
+      "title": "Marvel Comics Presents (1988) #82",
+      "number": "82",
+      "url": "https://www.marvel.com/comics/issue/10166/marvel_comics_presents_1988_82",
+      "seriesId": 2039,
+      "seriesName": "Marvel Comics Presents (1988 - 1995)",
+      "onSale": "1991-08-15T00:00:00+0000",
+      "mu": "1991-08-15T00:00:00+0000",
+      "digitalId": 6388,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/66c64db4e6ca2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Brad Vancata",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jose Marzan Jr.",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dwayne Turner",
+          "role": "penciler"
+        },
+        {
+          "name": "Sal Velluto",
+          "role": "penciler"
+        },
+        {
+          "name": "Marcus Mclaurin",
+          "role": "writer"
+        },
+        {
+          "name": "Marie Javins",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Wolverine: Weapon X"
+    },
+    {
+      "issueId": 10167,
+      "title": "Marvel Comics Presents (1988) #83",
+      "number": "83",
+      "url": "https://www.marvel.com/comics/issue/10167/marvel_comics_presents_1988_83",
+      "seriesId": 2039,
+      "seriesName": "Marvel Comics Presents (1988 - 1995)",
+      "onSale": "1991-08-30T00:00:00+0000",
+      "mu": "1991-08-30T00:00:00+0000",
+      "digitalId": 6389,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/66c64dd9b913a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Donald Hudson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Erik Larsen",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jose Marzan Jr.",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dwayne Turner",
+          "role": "penciler"
+        },
+        {
+          "name": "John Stanisci",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Ditko",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        },
+        {
+          "name": "Marcus Mclaurin",
+          "role": "writer"
+        },
+        {
+          "name": "Marie Javins",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Wolverine: Weapon X"
+    },
+    {
+      "issueId": 10168,
+      "title": "Marvel Comics Presents (1988) #84",
+      "number": "84",
+      "url": "https://www.marvel.com/comics/issue/10168/marvel_comics_presents_1988_84",
+      "seriesId": 2039,
+      "seriesName": "Marvel Comics Presents (1988 - 1995)",
+      "onSale": "1991-09-05T00:00:00+0000",
+      "mu": "1991-09-05T00:00:00+0000",
+      "digitalId": 6390,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/66c64ddb28b06",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jose Marzan Jr.",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dwayne Turner",
+          "role": "penciler"
+        },
+        {
+          "name": "Marcus Mclaurin",
+          "role": "writer"
+        },
+        {
+          "name": "Marie Javins",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Wolverine: Weapon X"
+    },
+    {
+      "issueId": 43797,
+      "title": "Deadpool (2012) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/43797/deadpool_2012_1",
+      "seriesId": 16542,
+      "seriesName": "Deadpool (2012 - 2015)",
+      "onSale": "2012-11-07T00:00:00+0000",
+      "mu": "2013-05-13T00:00:00+0000",
+      "digitalId": 27963,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/c0/5164737b7c81e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Geoff Darrow",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Posehn",
+          "role": "writer"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Deadpool Vol. 1: Dead Presidents"
+    },
+    {
+      "issueId": 43801,
+      "title": "Deadpool (2012) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/43801/deadpool_2012_2",
+      "seriesId": 16542,
+      "seriesName": "Deadpool (2012 - 2015)",
+      "onSale": "2012-11-21T00:00:00+0000",
+      "mu": "2013-05-06T00:00:00+0000",
+      "digitalId": 28032,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/30/53516566598b5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Tony Moore",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Posehn",
+          "role": "writer"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Deadpool Vol. 1: Dead Presidents"
+    },
+    {
+      "issueId": 44870,
+      "title": "Deadpool (2012) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/44870/deadpool_2012_3",
+      "seriesId": 16542,
+      "seriesName": "Deadpool (2012 - 2015)",
+      "onSale": "2012-12-05T00:00:00+0000",
+      "mu": "2013-06-03T00:00:00+0000",
+      "digitalId": 28104,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/a0/5351659262b83",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Geoff Darrow",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Posehn",
+          "role": "writer"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Deadpool Vol. 1: Dead Presidents"
+    },
+    {
+      "issueId": 46038,
+      "title": "Deadpool (2012) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/46038/deadpool_2012_4",
+      "seriesId": 16542,
+      "seriesName": "Deadpool (2012 - 2015)",
+      "onSale": "2013-01-23T00:00:00+0000",
+      "mu": "2013-07-22T00:00:00+0000",
+      "digitalId": 28105,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/5351659d72aa4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Tony Moore",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Posehn",
+          "role": "writer"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Deadpool Vol. 1: Dead Presidents"
+    },
+    {
+      "issueId": 46040,
+      "title": "Deadpool (2012) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/46040/deadpool_2012_5",
+      "seriesId": 16542,
+      "seriesName": "Deadpool (2012 - 2015)",
+      "onSale": "2013-02-20T00:00:00+0000",
+      "mu": "2013-08-19T00:00:00+0000",
+      "digitalId": 28429,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/03/535165ac58339",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Geoff Darrow",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Posehn",
+          "role": "writer"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Deadpool Vol. 1: Dead Presidents"
+    },
+    {
+      "issueId": 46042,
+      "title": "Deadpool (2012) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/46042/deadpool_2012_6",
+      "seriesId": 16542,
+      "seriesName": "Deadpool (2012 - 2015)",
+      "onSale": "2013-03-20T00:00:00+0000",
+      "mu": "2013-09-16T00:00:00+0000",
+      "digitalId": 28792,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/a0/535165b560a0b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Brian Posehn",
+          "role": "writer"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Deadpool Vol. 1: Dead Presidents"
+    },
+    {
+      "issueId": 660,
+      "title": "Astonishing X-Men (2004) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/660/astonishing_x-men_2004_1",
+      "seriesId": 744,
+      "seriesName": "Astonishing X-Men (2004 - 2013)",
+      "onSale": "2004-05-26T00:00:00+0000",
+      "mu": "2004-05-26T00:00:00+0000",
+      "digitalId": 93,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/d0/58f6636798c27",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Cassaday",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joss Whedon",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Astonishing X-Men: Gifted"
+    },
+    {
+      "issueId": 723,
+      "title": "Astonishing X-Men (2004) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/723/astonishing_x-men_2004_2",
+      "seriesId": 744,
+      "seriesName": "Astonishing X-Men (2004 - 2013)",
+      "onSale": "2004-06-23T00:00:00+0000",
+      "mu": "2004-06-23T00:00:00+0000",
+      "digitalId": 3285,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/a0/58f664fc764c9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Cassaday",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joss Whedon",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Astonishing X-Men: Gifted"
+    },
+    {
+      "issueId": 531,
+      "title": "Astonishing X-Men (2004) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/531/astonishing_x-men_2004_3",
+      "seriesId": 744,
+      "seriesName": "Astonishing X-Men (2004 - 2013)",
+      "onSale": "2004-07-28T00:00:00+0000",
+      "mu": "2004-07-28T00:00:00+0000",
+      "digitalId": 3286,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/00/58f666296111f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Cassaday",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joss Whedon",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Astonishing X-Men: Gifted"
+    },
+    {
+      "issueId": 1808,
+      "title": "Astonishing X-Men (2004) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/1808/astonishing_x-men_2004_4",
+      "seriesId": 744,
+      "seriesName": "Astonishing X-Men (2004 - 2013)",
+      "onSale": "2004-08-25T00:00:00+0000",
+      "mu": "2004-08-25T00:00:00+0000",
+      "digitalId": 1451,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/e0/58f6680317542",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Cassaday",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joss Whedon",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Astonishing X-Men: Gifted"
+    },
+    {
+      "issueId": 843,
+      "title": "Astonishing X-Men (2004) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/843/astonishing_x-men_2004_5",
+      "seriesId": 744,
+      "seriesName": "Astonishing X-Men (2004 - 2013)",
+      "onSale": "2004-09-22T00:00:00+0000",
+      "mu": "2004-09-22T00:00:00+0000",
+      "digitalId": 3287,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/10/58f6692ab3385",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Cassaday",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joss Whedon",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Astonishing X-Men: Gifted"
+    },
+    {
+      "issueId": 927,
+      "title": "Astonishing X-Men (2004) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/927/astonishing_x-men_2004_6",
+      "seriesId": 744,
+      "seriesName": "Astonishing X-Men (2004 - 2013)",
+      "onSale": "2004-11-03T00:00:00+0000",
+      "mu": "2004-11-03T00:00:00+0000",
+      "digitalId": 3288,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/d0/51968134e1764",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Cassaday",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joss Whedon",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Astonishing X-Men: Gifted"
+    },
+    {
+      "issueId": 21330,
+      "title": "Wolverine (2003) #66",
+      "number": "66",
+      "url": "https://www.marvel.com/comics/issue/21330/wolverine_2003_66",
+      "seriesId": 632,
+      "seriesName": "Wolverine (2003 - 2009)",
+      "onSale": "2008-06-18T00:00:00+0000",
+      "mu": "2008-06-18T00:00:00+0000",
+      "digitalId": 11777,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/5899faf0241c2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dexter Vines",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Mcniven",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Wolverine: Old Man Logan"
+    },
+    {
+      "issueId": 21508,
+      "title": "Wolverine (2003) #67",
+      "number": "67",
+      "url": "https://www.marvel.com/comics/issue/21508/wolverine_2003_67",
+      "seriesId": 632,
+      "seriesName": "Wolverine (2003 - 2009)",
+      "onSale": "2008-07-30T00:00:00+0000",
+      "mu": "2008-07-30T00:00:00+0000",
+      "digitalId": 11778,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/70/58939f6aee3a9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dexter Vines",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Mcniven",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Wolverine: Old Man Logan"
+    },
+    {
+      "issueId": 21710,
+      "title": "Wolverine (2003) #68",
+      "number": "68",
+      "url": "https://www.marvel.com/comics/issue/21710/wolverine_2003_68",
+      "seriesId": 632,
+      "seriesName": "Wolverine (2003 - 2009)",
+      "onSale": "2008-08-27T00:00:00+0000",
+      "mu": "2008-08-27T00:00:00+0000",
+      "digitalId": 11779,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/c0/5893a0662f25f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dexter Vines",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Mcniven",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Wolverine: Old Man Logan"
+    },
+    {
+      "issueId": 22475,
+      "title": "Wolverine (2003) #69",
+      "number": "69",
+      "url": "https://www.marvel.com/comics/issue/22475/wolverine_2003_69",
+      "seriesId": 632,
+      "seriesName": "Wolverine (2003 - 2009)",
+      "onSale": "2008-11-12T00:00:00+0000",
+      "mu": "2008-11-12T00:00:00+0000",
+      "digitalId": 11780,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/5893a124b72fb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dexter Vines",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Mcniven",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Wolverine: Old Man Logan"
+    },
+    {
+      "issueId": 22876,
+      "title": "Wolverine (2003) #70",
+      "number": "70",
+      "url": "https://www.marvel.com/comics/issue/22876/wolverine_2003_70",
+      "seriesId": 632,
+      "seriesName": "Wolverine (2003 - 2009)",
+      "onSale": "2008-12-31T00:00:00+0000",
+      "mu": "2008-12-31T00:00:00+0000",
+      "digitalId": 11781,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/d0/5893a1e43d809",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dexter Vines",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Mcniven",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Wolverine: Old Man Logan"
+    },
+    {
+      "issueId": 23744,
+      "title": "Wolverine (2003) #71",
+      "number": "71",
+      "url": "https://www.marvel.com/comics/issue/23744/wolverine_2003_71",
+      "seriesId": 632,
+      "seriesName": "Wolverine (2003 - 2009)",
+      "onSale": "2009-03-18T00:00:00+0000",
+      "mu": "2009-03-18T00:00:00+0000",
+      "digitalId": 13159,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/f0/5893a2ccbb42b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dexter Vines",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Mcniven",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Wolverine: Old Man Logan"
+    },
+    {
+      "issueId": 23934,
+      "title": "Wolverine (2003) #72",
+      "number": "72",
+      "url": "https://www.marvel.com/comics/issue/23934/wolverine_2003_72",
+      "seriesId": 632,
+      "seriesName": "Wolverine (2003 - 2009)",
+      "onSale": "2009-05-27T00:00:00+0000",
+      "mu": "2009-05-27T00:00:00+0000",
+      "digitalId": 12513,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/03/5893a3d829215",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dexter Vines",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jay Leisten",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Mcniven",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Wolverine: Old Man Logan"
+    },
+    {
+      "issueId": 27129,
+      "title": "Wolverine: Old Man Logan Giant-Size (2009) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/27129/wolverine_old_man_logan_giant-size_2009_1",
+      "seriesId": 8622,
+      "seriesName": "Wolverine: Old Man Logan Giant-Size (2009)",
+      "onSale": "2009-09-23T00:00:00+0000",
+      "mu": "2009-10-06T00:00:00+0000",
+      "digitalId": 13483,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/a0/51964867c78fc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 64,
+      "creators": [
+        {
+          "name": "Dexter Vines",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Mcniven",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Millar",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Wolverine: Old Man Logan"
+    },
+    {
+      "issueId": 10441,
+      "title": "New Mutants (1983) #98",
+      "number": "98",
+      "url": "https://www.marvel.com/comics/issue/10441/new_mutants_1983_98",
+      "seriesId": 2055,
+      "seriesName": "New Mutants (1983 - 1991)",
+      "onSale": "1991-02-10T00:00:00+0000",
+      "mu": "2008-04-30T00:00:00+0000",
+      "digitalId": 10002,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/00/4c7d506d22f2b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Rob Liefeld",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Deadpool Classic Vol. 1"
+    },
+    {
+      "issueId": 8453,
+      "title": "Deadpool: The Circle Chase (1993) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/8453/deadpool_the_circle_chase_1993_1",
+      "seriesId": 2003,
+      "seriesName": "Deadpool: The Circle Chase (1993)",
+      "onSale": "1993-08-01T00:00:00+0000",
+      "mu": "1993-08-01T00:00:00+0000",
+      "digitalId": 10517,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/60/4bb621aeb18a2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Farmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Madureira",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Deadpool Classic Vol. 1"
+    },
+    {
+      "issueId": 8454,
+      "title": "Deadpool: The Circle Chase (1993) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/8454/deadpool_the_circle_chase_1993_2",
+      "seriesId": 2003,
+      "seriesName": "Deadpool: The Circle Chase (1993)",
+      "onSale": "1993-09-01T00:00:00+0000",
+      "mu": "1993-09-01T00:00:00+0000",
+      "digitalId": 10518,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/60/4bb620a5b05dd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Farmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Madureira",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Deadpool Classic Vol. 1"
+    },
+    {
+      "issueId": 8455,
+      "title": "Deadpool: The Circle Chase (1993) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/8455/deadpool_the_circle_chase_1993_3",
+      "seriesId": 2003,
+      "seriesName": "Deadpool: The Circle Chase (1993)",
+      "onSale": "1993-10-01T00:00:00+0000",
+      "mu": "1993-10-01T00:00:00+0000",
+      "digitalId": 10519,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/4bb61cf290946",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Harry Candelario",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Madureira",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Deadpool Classic Vol. 1"
+    },
+    {
+      "issueId": 8456,
+      "title": "Deadpool: The Circle Chase (1993) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/8456/deadpool_the_circle_chase_1993_4",
+      "seriesId": 2003,
+      "seriesName": "Deadpool: The Circle Chase (1993)",
+      "onSale": "1993-11-01T00:00:00+0000",
+      "mu": "1993-11-01T00:00:00+0000",
+      "digitalId": 10520,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/60/4bb61ced66c29",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Harry Candelario",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Madureira",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Deadpool Classic Vol. 1"
+    },
+    {
+      "issueId": 8457,
+      "title": "Deadpool (1994) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/8457/deadpool_1994_1",
+      "seriesId": 2004,
+      "seriesName": "Deadpool (1994)",
+      "onSale": "1994-08-01T00:00:00+0000",
+      "mu": "1994-08-01T00:00:00+0000",
+      "digitalId": 10501,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/b0/4bb6224caeea5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jason Minor",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ian Churchill",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Deadpool Classic Vol. 1"
+    },
+    {
+      "issueId": 8458,
+      "title": "Deadpool (1994) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/8458/deadpool_1994_2",
+      "seriesId": 2004,
+      "seriesName": "Deadpool (1994)",
+      "onSale": "1994-09-01T00:00:00+0000",
+      "mu": "1994-09-01T00:00:00+0000",
+      "digitalId": 10502,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/e0/4bb622477aa07",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Mcleod",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bud Larosa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jason Minor",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ian Churchill",
+          "role": "penciler"
+        },
+        {
+          "name": "Lee Weeks",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Deadpool Classic Vol. 1"
+    },
+    {
+      "issueId": 8459,
+      "title": "Deadpool (1994) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/8459/deadpool_1994_3",
+      "seriesId": 2004,
+      "seriesName": "Deadpool (1994)",
+      "onSale": "1994-10-01T00:00:00+0000",
+      "mu": "1994-10-01T00:00:00+0000",
+      "digitalId": 10503,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/30/4bb6209b91427",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bud Larosa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ian Churchill",
+          "role": "penciler"
+        },
+        {
+          "name": "Ken Lashley",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Deadpool Classic Vol. 1"
+    },
+    {
+      "issueId": 8460,
+      "title": "Deadpool (1994) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/8460/deadpool_1994_4",
+      "seriesId": 2004,
+      "seriesName": "Deadpool (1994)",
+      "onSale": "1994-11-01T00:00:00+0000",
+      "mu": "1994-11-01T00:00:00+0000",
+      "digitalId": 10504,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/4bb620963e744",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bud Larosa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Phil Moy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Wegrzyn",
+          "role": "cover artist"
+        },
+        {
+          "name": "W.C. Carani",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ian Churchill",
+          "role": "penciler"
+        },
+        {
+          "name": "Ken Lashley",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Deadpool Classic Vol. 1"
+    },
+    {
+      "issueId": 8462,
+      "title": "Deadpool (1997) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/8462/deadpool_1997_1",
+      "seriesId": 2005,
+      "seriesName": "Deadpool (1997 - 2002)",
+      "onSale": "1997-01-01T00:00:00+0000",
+      "mu": "1997-01-01T00:00:00+0000",
+      "digitalId": 10516,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/e0/4f20226fb8142",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Nathan Massengill",
+          "role": "cover artist"
+        },
+        {
+          "name": "Norman Lee",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Mcguinness",
+          "role": "penciler"
+        },
+        {
+          "name": "Joe Kelly",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Deadpool Classic Vol. 1"
+    }
+  ]
+}

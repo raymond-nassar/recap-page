@@ -165,9 +165,9 @@ test('the generated catalog replaces the parent with every child and the owner-o
   const children = catalog.lists.filter((entry) => (
     chapterOrdinal(parentId, ledger.chapterCount, entry.id) !== null
   ));
-  assert.equal(manifestRaw.lists.length, 206);
-  assert.equal(raw.lists.length, 283);
-  assert.equal(catalog.lists.length, 283);
+  assert.equal(manifestRaw.lists.length, 208);
+  assert.equal(raw.lists.length, 285);
+  assert.equal(catalog.lists.length, 285);
 
   assert.equal(catalog.lists.some((entry) => entry.id === parentId), false);
   assert.equal(children.length, 78);
@@ -225,7 +225,7 @@ test('the child overlap matrix is current, disjoint and aggregates to the parent
       pinned.internalChildOverlapCount,
       pinned.matrixSha256,
     ],
-    [82, 51, 22, 434, 0, 'd2c10c0025153e821e8551c2f26a94c3a7e3f1a1141ae9a11aa8695199547766'],
+    [83, 51, 23, 443, 0, '7abcb4e66838193c195604fe4098911c3f5ec785a63ec6b800625d11b61c2320'],
   );
 });
 

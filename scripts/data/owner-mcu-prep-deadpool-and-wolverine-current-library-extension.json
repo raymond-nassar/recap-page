@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "evidenceKind": "derived-current-library-extension",
+  "publishedBase": "7e18d3fc7c115de3afd6e38807e86b52c75cbf29",
+  "libraryOrderCount": 285,
+  "libraryVectorDigest": "231ec5104618c2c322cb8e06cead813cc083aee3ea6e3133779377ad1337d2b2",
+  "extensions": [
+    {
+      "candidateId": "mcu-prep-deadpool-and-wolverine",
+      "packetDigest": "b8ba5a15e2cd4af7489bd07e651c95781891167819f597609fb18f6a11342c4a",
+      "mappingDigest": "b53945188fac107148b0030ca650e76dbb1e05e8cd28979f626eed6d50c220f0",
+      "originalReportDigest": "8ddfb7282f531e1aa00caf1b06511baae6221c8274fc9318b5f164124c6c8db7",
+      "originalApprovalDigest": "c3df54162ab31342a0d84d473d2f84ef2211c3b9d456f89f15b59f86a3378aad",
+      "originalPeerCount": 281,
+      "currentPeerCount": 284,
+      "laterIssueVectorDigests": {
+        "mcu-prep-eternals": "f3646be6a6300d6777db4e2cd3fe4936266a8002273b13bb86a863beb3afb151",
+        "mcu-prep-thunderbolts": "13e85ecc4c013f1780fc953778ae28ba75214d63218974612a1caeeee332e024",
+        "spider-man-no-way-home-owner-selected": "1d17a84439d4f7b8a2e37a338fdd8ef481d9152d77b34965d975c03cd6aa093c"
+      },
+      "laterComparisons": [
+        {
+          "orderId": "mcu-prep-eternals",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-thunderbolts",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "spider-man-no-way-home-owner-selected",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        }
+      ]
+    },
+    {
+      "candidateId": "mcu-prep-thunderbolts",
+      "mappingDigest": "13e85ecc4c013f1780fc953778ae28ba75214d63218974612a1caeeee332e024",
+      "originalReportDigest": "e6a6947212fec7b4cd0e35d7495c021c942db54476b631a068a6971b93a29d59",
+      "originalApprovalDigest": "90f0e513e945ec78310a73e10b325a32677e2298a1db4186c5fc15e72787ae58",
+      "originalPeerCount": 281,
+      "currentPeerCount": 284,
+      "laterIssueVectorDigests": {
+        "mcu-prep-deadpool-and-wolverine": "3d7a4aef9e83cf42165fab907c4f4dd98e1d4a769e9f9ef0f955034fb58fda9b",
+        "mcu-prep-eternals": "f3646be6a6300d6777db4e2cd3fe4936266a8002273b13bb86a863beb3afb151",
+        "spider-man-no-way-home-owner-selected": "1d17a84439d4f7b8a2e37a338fdd8ef481d9152d77b34965d975c03cd6aa093c"
+      },
+      "laterComparisons": [
+        {
+          "orderId": "mcu-prep-deadpool-and-wolverine",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "mcu-prep-eternals",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        },
+        {
+          "orderId": "spider-man-no-way-home-owner-selected",
+          "sharedCount": 0,
+          "sharedIds": [],
+          "relationship": "none"
+        }
+      ]
+    }
+  ],
+  "extensionDigest": "fb006c59aee73627b629b43e3c82ee9066d723d23de3fcd548a9fe51a48a0916"
+}

@@ -30,6 +30,8 @@ import {
   markRead,
   SCHEMA_VERSION,
 } from '../src/js/lib/model.js';
+import { assertCurrentLibraryExtension } from './helpers/owner-mcu-library-extension.mjs';
+import { recordedOwnerMcuLibrary } from './helpers/recorded-owner-mcu-library.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const id = 'mcu-prep-thunderbolts';
@@ -237,22 +239,27 @@ test('Thunderbolts uses the existing MCU Prep gateways and Storylines shelf with
   const stories = groupCatalog(catalog.lists);
   const gateway = availableHomeCategories(stories)
     .find((category) => category.key === 'marvel-on-screen');
-  assert.equal(gateway.count, catalog.lists.filter((entry) => entry.type === 'screen-companion').length);
+  const currentCompanions = catalog.lists.filter((entry) => entry.type === 'screen-companion')
+    .map((entry) => entry.id);
+  assert.equal(gateway.count, currentCompanions.length);
   const category = HOME_CATEGORIES.find((entry) => entry.key === 'marvel-on-screen');
   assert.equal(category.heading, 'MCU Prep');
-  assert.deepEqual(category.select(stories).map((story) => story.lists[0].id)
-    .filter((candidateId) => MCU_SELECTED_IDS.includes(candidateId) || candidateId === id),
-  [...MCU_SELECTED_IDS, id]);
+  assert.deepEqual(category.select(stories).map((story) => story.lists[0].id),
+    currentCompanions);
+  assert.deepEqual(currentCompanions.filter((peerId) => MCU_SELECTED_IDS.includes(peerId)),
+    MCU_SELECTED_IDS);
+  assert.equal(currentCompanions.filter((peerId) => peerId === id).length, 1);
   assert.equal(shelfLists(catalog.lists, 'lines').filter((entry) => entry.id === id).length, 1);
   assert.equal(shelfLists(catalog.lists, 'spotlights').some((entry) => entry.id === id), false);
   assert.equal(catalog.paths.some((entry) => entry.steps.includes(id)), false);
 });
 
-test('Thunderbolts keeps its frozen approval and checks the complete current library', async () => {
-  const [manifest, catalog, report] = await Promise.all([
+test('Thunderbolts preserves frozen approval and rechecks the complete current visible and hidden library', async () => {
+  const [manifest, catalog, report, payload] = await Promise.all([
     readJson('src/data/curated-lists.json'),
     readJson('src/data/catalog.json'),
     readJson(`scripts/data/${id}-overlaps.json`),
+    readJson(payloadFile),
   ]);
   const descriptors = [
     ...catalog.lists.filter((entry) => entry.id !== id).map((entry) => ({
@@ -262,39 +269,75 @@ test('Thunderbolts keeps its frozen approval and checks the complete current lib
       orderId: entry.id, file: entry.out, descriptor: entry,
     })),
   ].sort((left, right) => left.orderId.localeCompare(right.orderId));
-  const orders = await Promise.all(descriptors.map(async (entry) => ({
+  const currentOrders = await Promise.all(descriptors.map(async (entry) => ({
     ...entry,
     issueIds: (await readJson(`src/data/${entry.file}`)).items.map((item) => String(item.issueId)),
   })));
-  const currentComparison = buildComparisonReport({ candidateIds: expectedIds, orders });
-  assert.equal(currentComparison.comparisonCount, catalog.lists.length - 1
-    + manifest.lists.filter((entry) => entry.catalog === false).length);
-  assert.deepEqual(
-    currentComparison.comparisons.filter((entry) => entry.relationship !== 'none'),
-    report.comparisons.filter((entry) => entry.relationship !== 'none'),
-    'New meaningful relationships need central review, not inherited approval',
-  );
-  const reviewedIds = new Set(report.comparisons.map((entry) => entry.orderId));
-  const reviewedOrders = orders.filter((entry) => reviewedIds.has(entry.orderId));
-  const comparison = buildComparisonReport({ candidateIds: expectedIds, orders: reviewedOrders });
+  const current = { candidateId: id, ...buildComparisonReport({ candidateIds: expectedIds, orders: currentOrders }) };
+  assert.equal(descriptors.length, 285);
+  assert.equal(descriptors.some((entry) => entry.orderId === 'spider-man-no-way-home-owner-selected'), false);
+  assert.doesNotThrow(() => assertComparisonCoverage(current, {
+    candidateId: id,
+    candidateCount: 34,
+    expectedOrderIds: descriptors.map((entry) => entry.orderId),
+  }));
+  const publicationPeers = new Set(report.comparisons.map((entry) => entry.orderId));
+  const orders = currentOrders.filter((entry) => publicationPeers.has(entry.orderId));
+  const laterIds = [
+    'mcu-prep-daredevil-born-again', 'mcu-prep-deadpool-and-wolverine',
+    'mcu-prep-eternals', 'mcu-prep-moon-knight',
+  ];
+  const comparison = buildComparisonReport({ candidateIds: expectedIds, orders });
   assert.equal(comparison.comparisonCount, 281);
   assert.equal(orders.filter((entry) => /^marvel-knights-to-planet-x-\d{2}$/.test(entry.orderId))
     .length, 78);
   assert.ok(orders.some((entry) => entry.orderId === 'marvel-knights-to-planet-x'));
+  const extension = await readJson(
+    'scripts/data/owner-mcu-prep-deadpool-and-wolverine-current-library-extension.json',
+  );
+  const recordedOrders = await recordedOwnerMcuLibrary({
+    orders: [...currentOrders, { orderId: id, issueIds: payload.items.map((item) => String(item.issueId)) }],
+    extension, candidateId: id, originalReport: report,
+  });
+  const { current: recorded, laterIds: extensionLaterIds } = assertCurrentLibraryExtension({
+    extension, candidateId: id, candidateIds: expectedIds,
+    orders: recordedOrders,
+    originalReport: report, originalApprovalDigest: report.relationshipReview.approvalDigest,
+  });
+  assert.deepEqual(extensionLaterIds, [
+    'mcu-prep-deadpool-and-wolverine', 'mcu-prep-eternals', 'spider-man-no-way-home-owner-selected',
+  ]);
+  const recordedPeerIds = new Set(recorded.comparisons.map((entry) => entry.orderId));
+  const activePeerIds = new Set(currentOrders.map((entry) => entry.orderId));
+  assert.deepEqual(currentOrders.filter((entry) => !recordedPeerIds.has(entry.orderId))
+    .map((entry) => entry.orderId), ['mcu-prep-daredevil-born-again', 'mcu-prep-moon-knight']);
+  assert.deepEqual(recorded.comparisons.filter((entry) => !activePeerIds.has(entry.orderId))
+    .map((entry) => entry.orderId), ['spider-man-no-way-home-owner-selected']);
+  assert.deepEqual(recorded.comparisons.filter((entry) => activePeerIds.has(entry.orderId)),
+    current.comparisons.filter((entry) => recordedPeerIds.has(entry.orderId)));
+  assert.equal(recorded.comparisonCount, 284);
   assert.equal(report.candidateId, id);
   assert.equal(report.mappingDigest, digestCanonicalJson(expectedIds.map(String)));
-  assert.equal(report.libraryDigest, digestCanonicalJson(reviewedOrders));
+  assert.equal(report.libraryDigest, digestCanonicalJson(orders));
   assert.deepEqual(report.sourceCounts, { selections: 5, occurrences: 35, resolved: 34, gaps: 1 });
   assert.deepEqual(report.comparisons, comparison.comparisons);
   assert.doesNotThrow(() => assertComparisonCoverage(report, {
     candidateId: id,
     candidateCount: 34,
-    expectedOrderIds: reviewedOrders.map((entry) => entry.orderId),
+    expectedOrderIds: orders.map((entry) => entry.orderId),
   }));
   assert.doesNotThrow(() => validateReportDigest(report));
   assert.deepEqual(report.comparisons.filter((entry) => entry.relationship === 'partial')
     .map((entry) => [entry.orderId, entry.sharedCount]), expectedPartialPeers);
   assert.equal(report.comparisons.filter((entry) => entry.relationship === 'none').length, 275);
+  assert.deepEqual(current.comparisons.filter((entry) => entry.relationship !== 'none'),
+    report.comparisons.filter((entry) => entry.relationship !== 'none'),
+    'A new or changed nonempty relationship does not inherit the frozen approval');
+  for (const entry of current.comparisons.filter((comparison) => !publicationPeers.has(comparison.orderId))) {
+    assert.equal(entry.relationship, 'none');
+    assert.equal(entry.sharedCount, 0);
+    assert.deepEqual(entry.sharedIds, []);
+  }
   assert.ok(report.comparisons.every((entry) => ['none', 'partial'].includes(entry.relationship)),
     'Exact duplicates and unapproved subsets have no publication path');
   const review = report.relationshipReview;
@@ -319,6 +362,12 @@ test('Thunderbolts keeps its frozen approval and checks the complete current lib
     assert.ok(disposition.authorityIdentity && disposition.rationale);
     assert.equal(disposition.reviewedAt, review.reviewedAt);
   }
+  assert.deepEqual(currentOrders.filter((entry) => laterIds.includes(entry.orderId))
+    .map((entry) => entry.orderId), laterIds);
+  assert.equal(current.comparisons.filter((entry) => entry.relationship === 'none').length,
+    current.comparisonCount - expectedPartialPeers.length);
+  assert.deepEqual(current.comparisons.filter((entry) => laterIds.includes(entry.orderId))
+    .map((entry) => [entry.relationship, entry.sharedIds]), laterIds.map(() => ['none', []]));
 });
 
 test('Thunderbolts import shares existing read progress without changing saved lists or schema', async () => {
