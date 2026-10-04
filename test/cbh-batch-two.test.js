@@ -289,8 +289,7 @@ test('batch two has no aggregate identity, source, sequence, or pre-publication 
     'ms-marvel-kamala-khan-reading-order',
     'shang-chi-master-of-kung-fu-reading-order',
     'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order',
-    'iron-fist-reading-order',
-    'spider-man-no-way-home-owner-selected',
+    'iron-fist-reading-order', 'spider-man-no-way-home-owner-selected', 'mcu-prep-moon-knight',
   ]);
   const packetRecords = [];
   const existingRecords = [];

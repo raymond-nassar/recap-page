@@ -48,7 +48,7 @@ const laterReviewedIds = new Set([
   'moon-knight-reading-order',
   'guardians-of-the-galaxy-reading-order',
   'inhumans-reading-order',
-  'iron-fist-reading-order',
+  'iron-fist-reading-order', 'mcu-prep-moon-knight',
 ]);
 const marvelNowPage = 'https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-now-checklist/';
 const xMenPage = 'https://www.comicbookherald.com/question-of-the-week-ok-what-the-heck-is-the-right-order-for-x-men-events/';

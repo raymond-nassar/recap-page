@@ -15598,6 +15598,7 @@ SCENARIOS.push((await import('./browser-namor.mjs')).namorActualData);
 SCENARIOS.push((await import('./browser-iron-fist.mjs')).ironFistActualData);
 SCENARIOS.push((await import('./browser-owner-no-way-home.mjs')).ownerNoWayHomeActualData);
 MUTATIONS.push((await import('./browser-owner-no-way-home.mjs')).ownerNoWayHomeHiddenMutation);
+SCENARIOS.push((await import('./browser-moon-knight.mjs')).moonKnightActualData);
 
 // Without this an unexpected throw leaves an unhandled rejection, which Node reports as a bare
 // stack and exits 1 on. Exit 1 is this check's word for "an assertion failed", so an internal

@@ -2769,6 +2769,46 @@
       "updatedAt": "2026-10-03T18:45:49.066Z"
     },
     {
+      "id": "mcu-prep-moon-knight",
+      "file": "mcu_prep_moon_knight.json",
+      "name": "Moon Knight: MCU Prep",
+      "description": "The owner's three first-volume Moon Knight selections, expanded into 17 original issues from 2014, 2016 and 2021, in selection order.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "count": 17,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 3,
+      "characters": [
+        "Moon Knight",
+        "Marc Spector"
+      ],
+      "keywords": [
+        "MCU Prep",
+        "Moon Knight",
+        "Warren Ellis",
+        "Jeff Lemire",
+        "Jed MacKay",
+        "From the Dead",
+        "Lunatic",
+        "The Midnight Mission"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 49077,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/80/530e4d1b02751",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/685",
+      "sourceOrigin": "Selected by the owner for MCU Prep; expanded into original issues for this project",
+      "sourceLicense": null,
+      "updatedAt": "2026-10-03T17:56:36.689Z"
+    },
+    {
       "id": "agents-of-atlas-reading-order",
       "file": "agents_of_atlas_reading_order.json",
       "name": "Agents of Atlas",

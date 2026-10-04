@@ -33,7 +33,7 @@ const laterReviewedIds = new Set([
   'x-men-utopia',
   'guardians-of-the-galaxy-reading-order',
   'inhumans-reading-order',
-  'iron-fist-reading-order',
+  'iron-fist-reading-order', 'mcu-prep-moon-knight',
 ]);
 
 const EXPECTED_COUNTS = Object.freeze({

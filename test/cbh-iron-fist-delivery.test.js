@@ -84,8 +84,8 @@ test('Iron Fist preserves its publication-time relationship review and unchanged
     readJson('src/data/curated-lists.json'),
     readFile(`src/data/orders/${id}.md`),
   ]);
-  const peers = manifest.lists.filter((entry) => entry.id !== id && entry.id !== 'mcu-prep-thunderbolts' && entry.id !== 'spider-man-no-way-home-owner-selected');
-  const live = await buildReportForMapping(mappingPath, [], { excludedOrderIds: ['mcu-prep-thunderbolts', 'spider-man-no-way-home-owner-selected'] });
+  const peers = manifest.lists.filter((entry) => entry.id !== id && entry.id !== 'mcu-prep-moon-knight' && entry.id !== 'spider-man-no-way-home-owner-selected' && entry.id !== 'mcu-prep-thunderbolts');
+  const live = await buildReportForMapping(mappingPath, [], { excludedOrderIds: ['mcu-prep-thunderbolts', 'spider-man-no-way-home-owner-selected', 'mcu-prep-moon-knight'] });
   assert.deepEqual(report, live);
   assert.equal(report.comparisonCount, peers.length);
   assert.doesNotThrow(() => validateReportDigest(report));
