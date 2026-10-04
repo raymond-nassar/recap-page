@@ -5,6 +5,7 @@ import { APP_VERSION } from '../src/js/lib/version.js';
 import {
   PROOF_UPDATE_VERSION, STORE_PACKAGE_VERSION, derivePackageVersions,
 } from '../scripts/pack-msix.mjs';
+import { generateHomeUpdates } from '../scripts/generate-home-updates.mjs';
 
 // The app has no build step, so the version the UI shows is a hand-written constant in
 // src/js/lib/version.js while the version npm and any release tag use lives in
@@ -17,6 +18,10 @@ const changelog = readFileSync(new URL('../CHANGELOG.md', import.meta.url), 'utf
 
 test('the version the UI reports matches package.json', () => {
   assert.equal(APP_VERSION, pkg.version);
+});
+
+test('bundled release highlights match their exact recorded product sources', () => {
+  assert.equal(generateHomeUpdates({ mode: 'recorded', check: true }).data.version, APP_VERSION);
 });
 
 test('the version is a plain three-part semantic version', () => {

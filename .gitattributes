@@ -28,3 +28,4 @@ scripts/data/cbh-overlaps/** linguist-generated=true
 scripts/data/cbro-overlaps/** linguist-generated=true
 src/data/catalog.json linguist-generated=true
 src/data/curated-lists.json linguist-generated=true
+src/js/lib/homeUpdatesContent.js text eol=lf linguist-generated=true

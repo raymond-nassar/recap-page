@@ -13,6 +13,8 @@ import { createEmptyState, createList, addIssuesToList, setIssueNote, markRead, 
 import { KEY } from '../src/js/storage.js';
 import { SAVE_EDUCATION_KEY, SAVE_EDUCATION_STATE } from '../src/js/lib/saveEducation.js';
 import { issuePresentation } from '../src/js/lib/issueFocus.js';
+import { homeUpdatesContent } from '../src/js/lib/homeUpdatesContent.js';
+import { HOME_UPDATES_SEEN_KEY } from '../src/js/lib/homeUpdatesSeen.js';
 import { availableHomeCategories, groupCatalog, HOME_CATEGORIES, publishingAgeGroups, resolveReadingPaths } from '../src/js/lib/catalog.js';
 import { parseRoute } from '../src/js/lib/route.js';
 import { catalogCardProfiles, catalogCardReadability } from './browser-android-catalog-cards.mjs';
@@ -22,6 +24,16 @@ import {
   sourceLabel, sourceLink, spotlightKindLabel, spotlightSortLabel,
 } from '../src/js/lib/catalog.js';
 
+const onlyArgs = process.argv.filter((arg) => arg === '--only' || arg.startsWith('--only='));
+const allowedModes = new Set([
+  'mobile-ui', 'phone-header', 'launcher', 'series-readability', 'note-readability', 'category-readability',
+  'marvel-ages-target', 'catalog-cards', 'alignment', 'reading-facts-ax', 'reading-composition', 'spotlight-controls', 'home-updates',
+]);
+if (onlyArgs.length > 1 || (onlyArgs.length && !allowedModes.has(onlyArgs[0].slice('--only='.length)))) {
+  throw new Error('Choose one exact supported Android --only selector; comma selections are not supported');
+}
+const homeUpdatesOnly = onlyArgs[0] === '--only=home-updates';
+if (homeUpdatesOnly && process.argv.includes('--without-mobile-style')) throw new Error('Home updates requires normal Android styles');
 const driver = process.env.MRT_PUPPETEER || join(homedir(), '.mrt-scratch', 'node_modules', 'puppeteer-core', 'lib', 'puppeteer', 'puppeteer-core.js');
 const edge = process.env.MRT_EDGE || 'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe';
 if (!existsSync(driver) || !existsSync(edge)) {
@@ -103,6 +115,105 @@ const server = createServer(async (req, res) => {
     res.writeHead(404).end('Not found');
   }
 });
+
+async function homeUpdatesCheck(page, label) {
+  await route(page, 'home');
+  const batch = homeUpdatesContent.batch;
+  const before = await page.evaluate((key) => ({
+    hash: location.hash,
+    entries: Object.fromEntries(Object.keys(localStorage).filter((name) => name !== key)
+      .sort().map((name) => [name, localStorage.getItem(name)])),
+  }), HOME_UPDATES_SEEN_KEY);
+  const initial = await page.evaluate(() => ({
+    open: document.querySelector('#home-updates').open,
+    new: !document.querySelector('#home-updates-new').hidden,
+    center: (() => {
+      const heading = document.querySelector('#home-h').getBoundingClientRect();
+      const head = document.querySelector('#view-home > .head').getBoundingClientRect();
+      return Math.abs(heading.x + heading.width / 2 - head.x - head.width / 2);
+    })(),
+  }));
+  check(!initial.open && initial.new === Boolean(batch) && initial.center <= 1,
+    `${label}: quiet news stays closed beside a full-width centered phone heading`);
+  await click(page, '#home-updates-toggle');
+  await page.waitForFunction(() => document.querySelector('#home-updates').open);
+  if (batch) {
+    await page.waitForFunction((key) => localStorage.getItem(key) !== null, {}, HOME_UPDATES_SEEN_KEY);
+    await page.waitForFunction(() => [...document.querySelectorAll('[data-home-updates-list]')].every((node) => !node.disabled));
+    for (const summary of await page.$$('#home-updates .home-updates-more > summary')) {
+      await summary.evaluate((node) => node.click());
+    }
+    const all = await page.evaluate(() => ({
+      features: [...(document.querySelector('[data-home-updates-section="features"]')?.querySelectorAll('li') ?? [])].map((node) => node.textContent),
+      ids: [...document.querySelectorAll('[data-home-updates-list]')].map((node) => node.dataset.homeUpdatesList),
+      new: document.querySelector('#home-updates-new').hidden,
+      bounds: (() => {
+        const panel = document.querySelector('#home-updates-panel');
+        const box = panel.getBoundingClientRect();
+        return { left: box.left, right: box.right, height: box.height, scroll: panel.scrollHeight > panel.clientHeight };
+      })(),
+      targets: [...document.querySelectorAll('#home-updates button, #home-updates summary')]
+        .filter((node) => node.getClientRects().length).map((node) => {
+          const box = node.getBoundingClientRect();
+          return { text: node.textContent.trim(), width: box.width, height: box.height };
+        }),
+    }));
+    check(JSON.stringify(all.features) === JSON.stringify(batch.features)
+        && JSON.stringify(all.ids) === JSON.stringify(batch.listIds) && all.new,
+    `${label}: More exposes every generated feature and exact guide while New clears`);
+    check(all.bounds.left >= -1 && all.bounds.right <= 391 && all.bounds.height <= 844 * .7 + 1
+        && (batch.features.length + batch.listIds.length < 10 || all.bounds.scroll)
+        && all.targets.every((target) => target.width >= 48 && target.height >= 48),
+    `${label}: the bounded panel wraps with internal scroll and every target at least 48px (${JSON.stringify(all)})`);
+    if (batch.listIds.length) {
+      const last = batch.listIds.at(-1);
+      await click(page, `[data-home-updates-list="${last}"]`);
+      await page.waitForFunction(() => document.querySelector('#preview').open);
+      const entry = catalog.lists.find((list) => list.id === last);
+      check(await page.$eval('#preview-h', (node) => node.textContent) === entry.name,
+        `${label}: the final guide opens existing Preview by its real catalog identity`);
+      await backDialog(page);
+      check(await page.evaluate(() => document.activeElement.id === 'home-updates-toggle'),
+        `${label}: Preview restores a visible summary, not its hidden panel child`);
+    }
+  } else {
+    check(await page.$eval('#home-updates-content', (node) => node.textContent.includes('No new highlights'))
+        && await page.evaluate((key) => localStorage.getItem(key) === null, HOME_UPDATES_SEEN_KEY),
+    `${label}: null highlights show their explicit empty state without acknowledgment`);
+  }
+  if (await page.$eval('#home-updates', (node) => node.open)) await click(page, '#home-updates-close');
+  await click(page, '#home-updates-toggle');
+  await click(page, '#home-updates-close');
+  check(await page.evaluate(() => document.activeElement.id === 'home-updates-toggle'),
+    `${label}: explicit Close restores the summary`);
+  await click(page, '#home-updates-toggle');
+  await page.evaluate(() => {
+    document.querySelector('#btn-rail-toggle').click();
+    document.querySelector('#preview').showModal();
+  });
+  async function back() {
+    const length = await page.evaluate(() => window.__androidTest.replies.length);
+    await page.evaluate(() => window.__androidTest.back());
+    await page.waitForFunction((count) => window.__androidTest.replies.length > count, {}, length);
+    return page.evaluate(() => window.__androidTest.replies.at(-1).handled);
+  }
+  check(await back() && await page.evaluate(() => !document.querySelector('#preview').open
+      && document.querySelector('#btn-rail-toggle').getAttribute('aria-expanded') === 'true'
+      && document.querySelector('#home-updates').open), `${label}: actual bridge Back consumes the dialog first`);
+  check(await back() && await page.evaluate(() => document.querySelector('#btn-rail-toggle').getAttribute('aria-expanded') === 'false'
+      && document.querySelector('#home-updates').open), `${label}: actual bridge Back consumes narrow navigation next`);
+  check(await back() && await page.evaluate(() => !document.querySelector('#home-updates').open
+      && document.activeElement.id === 'home-updates-toggle'), `${label}: actual bridge Back closes visible news synchronously`);
+  check(await back() === false, `${label}: no overlay remains, so native Back is unhandled`);
+  const after = await page.evaluate((key) => ({
+    hash: location.hash,
+    entries: Object.fromEntries(Object.keys(localStorage).filter((name) => name !== key)
+      .sort().map((name) => [name, localStorage.getItem(name)])),
+    overflow: document.documentElement.scrollWidth > innerWidth + 1,
+  }), HOME_UPDATES_SEEN_KEY);
+  check(JSON.stringify(after.entries) === JSON.stringify(before.entries) && after.hash === before.hash && !after.overflow,
+    `${label}: news preserves all other storage, route and page width`);
+}
 await new Promise((done) => server.listen(0, '127.0.0.1', done));
 const origin = `http://127.0.0.1:${server.address().port}`;
 const catalog = JSON.parse(await readFile(new URL('../src/data/catalog.json', import.meta.url)));
@@ -2327,6 +2438,13 @@ try {
     { width: 1280, height: 900, desktop: true },
   ];
   if (alignment) viewports = alignmentProfiles;
+  const newsProfiles = [
+    { width: 390, height: 844, theme: 'light', homeUpdates: true },
+    { width: 390, height: 844, theme: 'dark', homeUpdates: true },
+    { width: 390, height: 844, theme: 'light', textScale: 2, homeUpdates: true },
+  ];
+  if (homeUpdatesOnly) viewports = newsProfiles;
+  else if (!onlyArgs.length && !noStyle) viewports.push(...newsProfiles);
   const onlyCase = process.argv.find((arg) => arg.startsWith('--case='))?.slice('--case='.length);
   if ((catalogReadability || alignment) && onlyCase) viewports = viewports.filter((viewport) => onlyCase.split(',').includes(viewport.id));
   const onlyViewport = process.argv.find((arg) => arg.startsWith('--viewport='))?.slice('--viewport='.length);
@@ -2337,6 +2455,7 @@ try {
   if (placeholderAx) assert.deepEqual(viewports.map((profile) => profile.id), ['M11', 'M16'],
     'Placeholder AX proof requires exactly M11 and M16');
   for (const viewport of viewports) {
+    const homeUpdates = viewport.homeUpdates === true;
     const failuresBefore = failures.length;
     root = resolve(viewport.desktop ? 'src' : ANDROID_ASSET_DIR);
     const context = await browser.createBrowserContext();
@@ -2351,13 +2470,14 @@ try {
     if (readingComposition) await readingFixtures(page, viewport);
     if (alignment) await alignmentFixtures(page, viewport);
     if (categoryReadability || marvelAgesTarget || catalogReadability || spotlightControls) await categoryFixtures(page);
-    if (spotlightControls || phoneHeader) {
+    if (spotlightControls || phoneHeader || homeUpdates) {
       await page.evaluateOnNewDocument((theme) => {
         localStorage.setItem('mrt.settings', JSON.stringify({ covers: false, theme }));
       }, viewport.theme || 'light');
     }
     await page.setRequestInterception(true);
     page.on('request', (request) => {
+      if (homeUpdates && new URL(request.url()).origin !== origin) return request.abort();
       if ((readingComposition || placeholderAx) && request.resourceType() === 'image' && new URL(request.url()).host === 'i.annihil.us') {
         return request.respond({
           status: 200, contentType: 'image/svg+xml',
@@ -2387,7 +2507,7 @@ try {
           });
         }
         if (request.url().endsWith('/data/catalog.json')) {
-          return request.respond({ status: 200, contentType: 'application/json', body: JSON.stringify(mobileUi || phoneHeader || categoryReadability || marvelAgesTarget || catalogReadability || spotlightControls || alignment ? catalog : { ...catalog, lists: [orderEntry] }) });
+          return request.respond({ status: 200, contentType: 'application/json', body: JSON.stringify(mobileUi || phoneHeader || homeUpdates || categoryReadability || marvelAgesTarget || catalogReadability || spotlightControls || alignment ? catalog : { ...catalog, lists: [orderEntry] }) });
         }
         return request.continue();
       }
@@ -2418,7 +2538,7 @@ try {
           data: 'recap:connect:v1', origin: '', source: null, ports: [channel.port2],
         }));
       });
-    }, readingComposition, spotlightControls || alignment || phoneHeader);
+    }, readingComposition, spotlightControls || alignment || phoneHeader || homeUpdates);
     await page.goto(origin, { waitUntil: 'networkidle0' });
     if (alignment) viewport.logoBase = await page.$eval('#home-h', (node) => parseFloat(getComputedStyle(node).fontSize));
     if (spotlightCase === 'geometry') await spotlightGeometryCheckpoint(page, 'unscaled postboot');
@@ -2474,6 +2594,13 @@ try {
       `${label}: the full app icon remains visible`);
     check(!compactHome || homeBranding.marker === 'none',
       `${label}: the compact brand has no stray selected-page stripe`);
+    if (homeUpdates) {
+      await homeUpdatesCheck(page, `${label} ${viewport.theme}`);
+      check(errors.length === 0, `${label}: Home updates page errors ${errors.join('; ')}`);
+      console.log(`CHECKED ${label} ${viewport.theme}: Home updates layout and actual bridge Back`);
+      await context.close();
+      continue;
+    }
     if (phoneHeader) {
       const sharedCopy = await page.evaluate(() => {
         const footer = document.querySelector('.app-footer');

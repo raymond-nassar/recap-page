@@ -29,6 +29,29 @@ App launch, or selecting the brand lockup in the sidebar.
 3. **Explore** offers the same content-backed category gateway as State A.
 4. Marvel attribution remains at the end of the surface.
 
+## Optional Home Highlights
+
+Both Home states keep a quiet **What's new** entry beside the heading. Its native disclosure is
+closed on arrival, creates no route or history entry, and never interrupts reading. The compact
+panel describes improvements included in the running copy and exact newly added Reading Lists,
+not available app upgrades. Each section initially shows up to three rows; **More** exposes every
+remaining row within the bounded scrolling panel. A maintenance-only copy may explicitly have no
+new highlights.
+
+**New** clears on opening and is remembered on this device until a newer highlight batch arrives.
+Viewing is a preference outside reading backups; erasing or restoring reading data keeps it.
+Clearing actual app storage resets it. If remembering fails, the panel says New may return next
+visit while reading data stays unchanged. Version-release preparation supplies the content from
+the existing reader summary and catalog delta; no second handwritten announcement list is required.
+
+The summary, Close, Escape, outside pointer and leaving Home close the panel. Explicit Close or
+Escape restores summary focus; outside pointers and navigation do not. New-list actions reuse
+Preview without importing or changing progress, and Preview returns to the Home summary rather
+than a hidden panel child. Catalog failures name the affected entries and offer Retry.
+On Android the entry occupies its own phone-header row with 48px controls. Native Back consumes
+an open dialog first, then visible narrow navigation, then Home news. Browser-style checks do not
+replace installed-device touch, system-text, Back or private-profile acceptance.
+
 ## Transitions
 - The first-run Browse and Add actions use their existing hubs, create browser history entries,
   and move focus to the destination heading. Back returns to Home.

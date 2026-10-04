@@ -7,7 +7,11 @@ main branch but can use different release dates and channels.
 ## Choose the product version and platforms
 
 Keep the canonical product version in `package.json`. The npm version command synchronizes the
-browser constant. Follow the existing major/minor/patch compatibility policy.
+browser constant and generates bundled Home highlights from the finalized reader summary and exact
+new catalog IDs, as described in [release preparation](MAINTAINING.md#1-finalize-the-release-record).
+Highlights describe the running copy, not platform publication or an available upgrade. Their
+viewing preference does not alter the reading schema or backup shape. Follow the existing
+major/minor/patch compatibility policy.
 
 | Change | Product version | Delivery decision |
 |---|---|---|
