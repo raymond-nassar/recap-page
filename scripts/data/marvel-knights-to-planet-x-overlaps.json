@@ -1,12 +1,12 @@
 {
   "parentId": "marvel-knights-to-planet-x",
-  "generatedAt": "2026-09-30T04:55:50.710Z",
-  "pairCount": 82,
+  "generatedAt": "2026-10-03T18:45:49.066Z",
+  "pairCount": 83,
   "chapterCountWithOverlap": 51,
-  "existingListCount": 22,
-  "sharedOccurrenceCount": 434,
+  "existingListCount": 23,
+  "sharedOccurrenceCount": 443,
   "internalChildOverlapCount": 0,
-  "matrixSha256": "d2c10c0025153e821e8551c2f26a94c3a7e3f1a1141ae9a11aa8695199547766",
+  "matrixSha256": "7abcb4e66838193c195604fe4098911c3f5ec785a63ec6b800625d11b61c2320",
   "existingLists": [
     {
       "id": "amazing-spider-man-reading-order-modern-marvel-era",
@@ -50,6 +50,10 @@
     },
     {
       "id": "marvels-best-phoenix-comics",
+      "sharedCount": 9
+    },
+    {
+      "id": "mcu-prep-daredevil-born-again",
       "sharedCount": 9
     },
     {
@@ -457,6 +461,22 @@
       "existingListId": "iron-fist-reading-order",
       "sharedCount": 3,
       "sharedIssueIds": [
+        15640,
+        15641,
+        15643
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-26",
+      "existingListId": "mcu-prep-daredevil-born-again",
+      "sharedCount": 9,
+      "sharedIssueIds": [
+        15634,
+        15635,
+        15636,
+        15637,
+        15638,
+        15639,
         15640,
         15641,
         15643

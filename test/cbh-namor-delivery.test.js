@@ -141,7 +141,7 @@ test('Namor exact original vector, eight gaps and five backward references conse
 test('Namor independent approval covers every peer in its publication snapshot', async () => {
   const library = await loadLibrarySnapshot();
   const current = await buildReportForMapping(`scripts/data/cbh-mappings/${id}.json`, [], {
-    excludedOrderIds: ['mcu-prep-thunderbolts', 'iron-fist-reading-order'],
+    excludedOrderIds: ['iron-fist-reading-order', 'mcu-prep-thunderbolts', 'mcu-prep-daredevil-born-again'],
   });
   assert.deepEqual(current, report);
   assert.equal(report.comparisonCount, 201);
@@ -169,7 +169,7 @@ test('Namor independent approval covers every peer in its publication snapshot',
   assert.doesNotThrow(() => assertApprovedRelationshipReview({
     packet, mapping, report, currentLibraryDigest: current.libraryDigest,
     expectedOrderIds: library.lists.filter((row) =>
-      row.id !== id && row.id !== 'iron-fist-reading-order' && row.id !== 'mcu-prep-thunderbolts').map((row) => row.id),
+      row.id !== id && row.id !== 'iron-fist-reading-order' && row.id !== 'mcu-prep-daredevil-born-again' && row.id !== 'mcu-prep-thunderbolts').map((row) => row.id),
   }));
   const ironFist = await readJson('src/data/iron_fist_reading_order.json');
   const shared = new Set(ironFist.items.filter((row) => row.issueId > 0).map((row) => row.issueId));

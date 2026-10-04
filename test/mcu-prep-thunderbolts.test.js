@@ -237,17 +237,18 @@ test('Thunderbolts uses the existing MCU Prep gateways and Storylines shelf with
   const stories = groupCatalog(catalog.lists);
   const gateway = availableHomeCategories(stories)
     .find((category) => category.key === 'marvel-on-screen');
-  assert.equal(gateway.count, 7);
+  assert.equal(gateway.count, catalog.lists.filter((entry) => entry.type === 'screen-companion').length);
   const category = HOME_CATEGORIES.find((entry) => entry.key === 'marvel-on-screen');
   assert.equal(category.heading, 'MCU Prep');
-  assert.deepEqual(category.select(stories).map((story) => story.lists[0].id),
-    [...MCU_SELECTED_IDS, id]);
+  assert.deepEqual(category.select(stories).map((story) => story.lists[0].id)
+    .filter((candidateId) => MCU_SELECTED_IDS.includes(candidateId) || candidateId === id),
+  [...MCU_SELECTED_IDS, id]);
   assert.equal(shelfLists(catalog.lists, 'lines').filter((entry) => entry.id === id).length, 1);
   assert.equal(shelfLists(catalog.lists, 'spotlights').some((entry) => entry.id === id), false);
   assert.equal(catalog.paths.some((entry) => entry.steps.includes(id)), false);
 });
 
-test('Thunderbolts relationship approval covers the complete visible and hidden library', async () => {
+test('Thunderbolts frozen approval remains valid across the complete current library', async () => {
   const [manifest, catalog, report] = await Promise.all([
     readJson('src/data/curated-lists.json'),
     readJson('src/data/catalog.json'),
@@ -261,10 +262,19 @@ test('Thunderbolts relationship approval covers the complete visible and hidden 
       orderId: entry.id, file: entry.out, descriptor: entry,
     })),
   ].sort((left, right) => left.orderId.localeCompare(right.orderId));
-  const orders = await Promise.all(descriptors.map(async (entry) => ({
+  const currentOrders = await Promise.all(descriptors.map(async (entry) => ({
     ...entry,
     issueIds: (await readJson(`src/data/${entry.file}`)).items.map((item) => String(item.issueId)),
   })));
+  const current = buildComparisonReport({ candidateIds: expectedIds, orders: currentOrders });
+  assert.equal(current.comparisonCount, catalog.lists.length - 1
+    + manifest.lists.filter((entry) => entry.catalog === false).length);
+  assert.deepEqual(current.comparisons.filter((entry) => entry.relationship !== 'none'),
+    report.comparisons.filter((entry) => entry.relationship !== 'none'),
+    'New meaningful relationships need central review, not inherited approval');
+  const reviewedIds = new Set(report.comparisons.map((entry) => entry.orderId));
+  const orders = currentOrders.filter((entry) => reviewedIds.has(entry.orderId));
+  const laterId = 'mcu-prep-daredevil-born-again';
   const comparison = buildComparisonReport({ candidateIds: expectedIds, orders });
   assert.equal(comparison.comparisonCount, 281);
   assert.equal(orders.filter((entry) => /^marvel-knights-to-planet-x-\d{2}$/.test(entry.orderId))
@@ -308,6 +318,12 @@ test('Thunderbolts relationship approval covers the complete visible and hidden 
     assert.ok(disposition.authorityIdentity && disposition.rationale);
     assert.equal(disposition.reviewedAt, review.reviewedAt);
   }
+  assert.deepEqual(currentOrders.filter((entry) => entry.orderId === laterId)
+    .map((entry) => entry.orderId), [laterId]);
+  assert.equal(current.comparisons.filter((entry) => entry.relationship === 'none').length,
+    current.comparisonCount - expectedPartialPeers.length);
+  assert.deepEqual(current.comparisons.filter((entry) => entry.orderId === laterId)
+    .map((entry) => [entry.relationship, entry.sharedIds]), [['none', []]]);
 });
 
 test('Thunderbolts import shares existing read progress without changing saved lists or schema', async () => {

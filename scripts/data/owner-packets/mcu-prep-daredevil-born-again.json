@@ -1,0 +1,1403 @@
+{
+  "schemaVersion": 1,
+  "id": "mcu-prep-daredevil-born-again",
+  "inventoryId": "owner-issue-681:mcu-prep-daredevil-born-again",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/681",
+  "sourceRetrievedAt": "2026-10-03",
+  "sourceProvider": "owner-authored",
+  "sourceContentSha256": "63f2b7abb624c4a7414c8eac8a4f674aa7401c70fe4946743b19f9d0416188c4",
+  "sourceIssueBearingBlocksSha256": "b2a93c063e7fe9f2cb0173730ffc267dd58db2823fd8a58085b09624e240f49e",
+  "sourceBoundary": "The original five owner positions are preserved. The approved expansion makes six collection groups, with 37 distinct original comic identities. The original Out/Brubaker title and writer conflation is retained at position 3 and resolved only by the owner's explicit Include both decision. Born Again's seven-issue story boundary is not expanded by the contents of a different collected edition. Fisk was already mayor before Zdarsky's 2019 run. Neither Zdarsky selection is described as introducing his election. Adaptation and closest-to-the-show claims are not verified selection facts and are not copied into reader-facing descriptions. No third-party narrative, artwork, collection IDs, inferred neighboring issues, full creator runs or additional reading guides are selected.",
+  "excludedSourceReferences": [],
+  "canonicalSourcePositions": true,
+  "expectedCount": 37,
+  "proposedManifest": {
+    "id": "mcu-prep-daredevil-born-again",
+    "name": "MCU Prep: Daredevil: Born Again",
+    "description": "An owner-selected Daredevil companion: The Man Without Fear, Born Again, Out, Brubaker's first volume, and the first two Zdarsky volumes.",
+    "type": "screen-companion",
+    "depth": "selected",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "mcu-prep-daredevil-born-again.md",
+    "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/681",
+    "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+    "sourceLicense": null,
+    "out": "mcu_prep_daredevil_born_again.json",
+    "characters": [
+      "Daredevil",
+      "Kingpin",
+      "Matt Murdock"
+    ],
+    "keywords": [
+      "MCU Prep",
+      "Daredevil: Born Again",
+      "The Man Without Fear",
+      "Out",
+      "The Devil Inside and Out",
+      "Know Fear",
+      "No Devils, Only God",
+      "Frank Miller",
+      "Brian Michael Bendis",
+      "Ed Brubaker",
+      "Chip Zdarsky"
+    ],
+    "expect": 37,
+    "timeline": null,
+    "coverIssueId": 20750
+  },
+  "insertionAnchor": {
+    "beforeId": "inhumans-vs-x-men"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "Copilot bibliographic research under owner-approved scope",
+    "rationale": "Verified the original collection boundaries against distributor and specialist bibliographic records. The owner explicitly said Include both for source position 3; seven Born Again originals and the 2019 Zdarsky series are retained without edition extras or adaptation claims.",
+    "reviewedAt": "2026-10-03",
+    "evidenceUrl": "https://github.com/raymond-nassar/recap-page/issues/681#issuecomment-5971677967"
+  },
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "Daredevil: The Man Without Fear (1993) #1",
+      "sourceRangeReference": "1. The Man Without Fear",
+      "sourceGroup": "1. The Man Without Fear",
+      "sourceSelectionPosition": 1,
+      "sourceSuppliedTitle": "Daredevil: Man Without Fear",
+      "sourceCollectionPosition": 1,
+      "sourceCollectionIssuePosition": 1,
+      "sourceCollectionTitle": "Daredevil: The Man Without Fear",
+      "sourceEvidenceUrls": [
+        "https://prhcomics.com/book/?isbn=9780785134794"
+      ],
+      "normalizedSeriesTitle": "Daredevil: The Man Without Fear",
+      "seriesYear": 1993,
+      "seriesId": 3897,
+      "issueNumber": "1",
+      "candidateIssueId": 20750,
+      "manualSeriesSelectionApproved": false,
+      "candidates": [
+        {
+          "id": 20750,
+          "title": "Daredevil: The Man Without Fear",
+          "issueTitle": "Daredevil: The Man Without Fear (1993) #1",
+          "seriesTitle": "Daredevil: The Man Without Fear",
+          "apiSeriesName": "Daredevil: The Man Without Fear (1993)",
+          "seriesId": 3897,
+          "issueNumber": "1",
+          "seriesYear": 1993,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/20750/daredevil_the_man_without_fear_1993_1",
+          "onSaleDate": "1993-10-01T00:00:00+0000"
+        }
+      ]
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "Daredevil: The Man Without Fear (1993) #2",
+      "sourceRangeReference": "1. The Man Without Fear",
+      "sourceGroup": "1. The Man Without Fear",
+      "sourceSelectionPosition": 1,
+      "sourceSuppliedTitle": "Daredevil: Man Without Fear",
+      "sourceCollectionPosition": 1,
+      "sourceCollectionIssuePosition": 2,
+      "sourceCollectionTitle": "Daredevil: The Man Without Fear",
+      "sourceEvidenceUrls": [
+        "https://prhcomics.com/book/?isbn=9780785134794"
+      ],
+      "normalizedSeriesTitle": "Daredevil: The Man Without Fear",
+      "seriesYear": 1993,
+      "seriesId": 3897,
+      "issueNumber": "2",
+      "candidateIssueId": 20751,
+      "manualSeriesSelectionApproved": false,
+      "candidates": [
+        {
+          "id": 20751,
+          "title": "Daredevil: The Man Without Fear",
+          "issueTitle": "Daredevil: The Man Without Fear (1993) #2",
+          "seriesTitle": "Daredevil: The Man Without Fear",
+          "apiSeriesName": "Daredevil: The Man Without Fear (1993)",
+          "seriesId": 3897,
+          "issueNumber": "2",
+          "seriesYear": 1993,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/20751/daredevil_the_man_without_fear_1993_2",
+          "onSaleDate": "1993-11-01T00:00:00+0000"
+        }
+      ]
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "Daredevil: The Man Without Fear (1993) #3",
+      "sourceRangeReference": "1. The Man Without Fear",
+      "sourceGroup": "1. The Man Without Fear",
+      "sourceSelectionPosition": 1,
+      "sourceSuppliedTitle": "Daredevil: Man Without Fear",
+      "sourceCollectionPosition": 1,
+      "sourceCollectionIssuePosition": 3,
+      "sourceCollectionTitle": "Daredevil: The Man Without Fear",
+      "sourceEvidenceUrls": [
+        "https://prhcomics.com/book/?isbn=9780785134794"
+      ],
+      "normalizedSeriesTitle": "Daredevil: The Man Without Fear",
+      "seriesYear": 1993,
+      "seriesId": 3897,
+      "issueNumber": "3",
+      "candidateIssueId": 20752,
+      "manualSeriesSelectionApproved": false,
+      "candidates": [
+        {
+          "id": 20752,
+          "title": "Daredevil: The Man Without Fear",
+          "issueTitle": "Daredevil: The Man Without Fear (1993) #3",
+          "seriesTitle": "Daredevil: The Man Without Fear",
+          "apiSeriesName": "Daredevil: The Man Without Fear (1993)",
+          "seriesId": 3897,
+          "issueNumber": "3",
+          "seriesYear": 1993,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/20752/daredevil_the_man_without_fear_1993_3",
+          "onSaleDate": "1993-12-01T00:00:00+0000"
+        }
+      ]
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "Daredevil: The Man Without Fear (1993) #4",
+      "sourceRangeReference": "1. The Man Without Fear",
+      "sourceGroup": "1. The Man Without Fear",
+      "sourceSelectionPosition": 1,
+      "sourceSuppliedTitle": "Daredevil: Man Without Fear",
+      "sourceCollectionPosition": 1,
+      "sourceCollectionIssuePosition": 4,
+      "sourceCollectionTitle": "Daredevil: The Man Without Fear",
+      "sourceEvidenceUrls": [
+        "https://prhcomics.com/book/?isbn=9780785134794"
+      ],
+      "normalizedSeriesTitle": "Daredevil: The Man Without Fear",
+      "seriesYear": 1993,
+      "seriesId": 3897,
+      "issueNumber": "4",
+      "candidateIssueId": 20753,
+      "manualSeriesSelectionApproved": false,
+      "candidates": [
+        {
+          "id": 20753,
+          "title": "Daredevil: The Man Without Fear",
+          "issueTitle": "Daredevil: The Man Without Fear (1993) #4",
+          "seriesTitle": "Daredevil: The Man Without Fear",
+          "apiSeriesName": "Daredevil: The Man Without Fear (1993)",
+          "seriesId": 3897,
+          "issueNumber": "4",
+          "seriesYear": 1993,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/20753/daredevil_the_man_without_fear_1993_4",
+          "onSaleDate": "1994-01-01T00:00:00+0000"
+        }
+      ]
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "Daredevil: The Man Without Fear (1993) #5",
+      "sourceRangeReference": "1. The Man Without Fear",
+      "sourceGroup": "1. The Man Without Fear",
+      "sourceSelectionPosition": 1,
+      "sourceSuppliedTitle": "Daredevil: Man Without Fear",
+      "sourceCollectionPosition": 1,
+      "sourceCollectionIssuePosition": 5,
+      "sourceCollectionTitle": "Daredevil: The Man Without Fear",
+      "sourceEvidenceUrls": [
+        "https://prhcomics.com/book/?isbn=9780785134794"
+      ],
+      "normalizedSeriesTitle": "Daredevil: The Man Without Fear",
+      "seriesYear": 1993,
+      "seriesId": 3897,
+      "issueNumber": "5",
+      "candidateIssueId": 20754,
+      "manualSeriesSelectionApproved": false,
+      "candidates": [
+        {
+          "id": 20754,
+          "title": "Daredevil: The Man Without Fear",
+          "issueTitle": "Daredevil: The Man Without Fear (1993) #5",
+          "seriesTitle": "Daredevil: The Man Without Fear",
+          "apiSeriesName": "Daredevil: The Man Without Fear (1993)",
+          "seriesId": 3897,
+          "issueNumber": "5",
+          "seriesYear": 1993,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/20754/daredevil_the_man_without_fear_1993_5",
+          "onSaleDate": "1994-02-01T00:00:00+0000"
+        }
+      ]
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "Daredevil (1964) #227",
+      "sourceRangeReference": "2. Born Again",
+      "sourceGroup": "2. Born Again",
+      "sourceSelectionPosition": 2,
+      "sourceSuppliedTitle": "Daredevil: Born Again",
+      "sourceCollectionPosition": 1,
+      "sourceCollectionIssuePosition": 1,
+      "sourceCollectionTitle": "Daredevil: Born Again",
+      "sourceEvidenceUrls": [
+        "https://en.wikipedia.org/wiki/Born_Again_(comics)",
+        "https://aeindex.org/reviews/david-mazzucchellis-daredevil-born-again-artists-edition/"
+      ],
+      "normalizedSeriesTitle": "Daredevil",
+      "seriesYear": 1964,
+      "seriesId": 2002,
+      "issueNumber": "227",
+      "candidateIssueId": 8215,
+      "manualSeriesSelectionApproved": false,
+      "candidates": [
+        {
+          "id": 8215,
+          "title": "Daredevil",
+          "issueTitle": "Daredevil (1964) #227",
+          "seriesTitle": "Daredevil",
+          "apiSeriesName": "Daredevil (1964 - 1998)",
+          "seriesId": 2002,
+          "issueNumber": "227",
+          "seriesYear": 1964,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/8215/daredevil_1964_227",
+          "onSaleDate": "1986-02-01T00:00:00+0000"
+        }
+      ]
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "Daredevil (1964) #228",
+      "sourceRangeReference": "2. Born Again",
+      "sourceGroup": "2. Born Again",
+      "sourceSelectionPosition": 2,
+      "sourceSuppliedTitle": "Daredevil: Born Again",
+      "sourceCollectionPosition": 1,
+      "sourceCollectionIssuePosition": 2,
+      "sourceCollectionTitle": "Daredevil: Born Again",
+      "sourceEvidenceUrls": [
+        "https://en.wikipedia.org/wiki/Born_Again_(comics)",
+        "https://aeindex.org/reviews/david-mazzucchellis-daredevil-born-again-artists-edition/"
+      ],
+      "normalizedSeriesTitle": "Daredevil",
+      "seriesYear": 1964,
+      "seriesId": 2002,
+      "issueNumber": "228",
+      "candidateIssueId": 8216,
+      "manualSeriesSelectionApproved": false,
+      "candidates": [
+        {
+          "id": 8216,
+          "title": "Daredevil",
+          "issueTitle": "Daredevil (1964) #228",
+          "seriesTitle": "Daredevil",
+          "apiSeriesName": "Daredevil (1964 - 1998)",
+          "seriesId": 2002,
+          "issueNumber": "228",
+          "seriesYear": 1964,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/8216/daredevil_1964_228",
+          "onSaleDate": "1986-03-01T00:00:00+0000"
+        }
+      ]
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "Daredevil (1964) #229",
+      "sourceRangeReference": "2. Born Again",
+      "sourceGroup": "2. Born Again",
+      "sourceSelectionPosition": 2,
+      "sourceSuppliedTitle": "Daredevil: Born Again",
+      "sourceCollectionPosition": 1,
+      "sourceCollectionIssuePosition": 3,
+      "sourceCollectionTitle": "Daredevil: Born Again",
+      "sourceEvidenceUrls": [
+        "https://en.wikipedia.org/wiki/Born_Again_(comics)",
+        "https://aeindex.org/reviews/david-mazzucchellis-daredevil-born-again-artists-edition/"
+      ],
+      "normalizedSeriesTitle": "Daredevil",
+      "seriesYear": 1964,
+      "seriesId": 2002,
+      "issueNumber": "229",
+      "candidateIssueId": 8217,
+      "manualSeriesSelectionApproved": false,
+      "candidates": [
+        {
+          "id": 8217,
+          "title": "Daredevil",
+          "issueTitle": "Daredevil (1964) #229",
+          "seriesTitle": "Daredevil",
+          "apiSeriesName": "Daredevil (1964 - 1998)",
+          "seriesId": 2002,
+          "issueNumber": "229",
+          "seriesYear": 1964,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/8217/daredevil_1964_229",
+          "onSaleDate": "1986-04-01T00:00:00+0000"
+        }
+      ]
+    },
+    {
+      "sourcePosition": 9,
+      "sourceIssueReference": "Daredevil (1964) #230",
+      "sourceRangeReference": "2. Born Again",
+      "sourceGroup": "2. Born Again",
+      "sourceSelectionPosition": 2,
+      "sourceSuppliedTitle": "Daredevil: Born Again",
+      "sourceCollectionPosition": 1,
+      "sourceCollectionIssuePosition": 4,
+      "sourceCollectionTitle": "Daredevil: Born Again",
+      "sourceEvidenceUrls": [
+        "https://en.wikipedia.org/wiki/Born_Again_(comics)",
+        "https://aeindex.org/reviews/david-mazzucchellis-daredevil-born-again-artists-edition/"
+      ],
+      "normalizedSeriesTitle": "Daredevil",
+      "seriesYear": 1964,
+      "seriesId": 2002,
+      "issueNumber": "230",
+      "candidateIssueId": 8219,
+      "manualSeriesSelectionApproved": false,
+      "candidates": [
+        {
+          "id": 8219,
+          "title": "Daredevil",
+          "issueTitle": "Daredevil (1964) #230",
+          "seriesTitle": "Daredevil",
+          "apiSeriesName": "Daredevil (1964 - 1998)",
+          "seriesId": 2002,
+          "issueNumber": "230",
+          "seriesYear": 1964,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/8219/daredevil_1964_230",
+          "onSaleDate": "1986-05-01T00:00:00+0000"
+        }
+      ]
+    },
+    {
+      "sourcePosition": 10,
+      "sourceIssueReference": "Daredevil (1964) #231",
+      "sourceRangeReference": "2. Born Again",
+      "sourceGroup": "2. Born Again",
+      "sourceSelectionPosition": 2,
+      "sourceSuppliedTitle": "Daredevil: Born Again",
+      "sourceCollectionPosition": 1,
+      "sourceCollectionIssuePosition": 5,
+      "sourceCollectionTitle": "Daredevil: Born Again",
+      "sourceEvidenceUrls": [
+        "https://en.wikipedia.org/wiki/Born_Again_(comics)",
+        "https://aeindex.org/reviews/david-mazzucchellis-daredevil-born-again-artists-edition/"
+      ],
+      "normalizedSeriesTitle": "Daredevil",
+      "seriesYear": 1964,
+      "seriesId": 2002,
+      "issueNumber": "231",
+      "candidateIssueId": 8220,
+      "manualSeriesSelectionApproved": false,
+      "candidates": [
+        {
+          "id": 8220,
+          "title": "Daredevil",
+          "issueTitle": "Daredevil (1964) #231",
+          "seriesTitle": "Daredevil",
+          "apiSeriesName": "Daredevil (1964 - 1998)",
+          "seriesId": 2002,
+          "issueNumber": "231",
+          "seriesYear": 1964,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/8220/daredevil_1964_231",
+          "onSaleDate": "1986-06-01T00:00:00+0000"
+        }
+      ]
+    },
+    {
+      "sourcePosition": 11,
+      "sourceIssueReference": "Daredevil (1964) #232",
+      "sourceRangeReference": "2. Born Again",
+      "sourceGroup": "2. Born Again",
+      "sourceSelectionPosition": 2,
+      "sourceSuppliedTitle": "Daredevil: Born Again",
+      "sourceCollectionPosition": 1,
+      "sourceCollectionIssuePosition": 6,
+      "sourceCollectionTitle": "Daredevil: Born Again",
+      "sourceEvidenceUrls": [
+        "https://en.wikipedia.org/wiki/Born_Again_(comics)",
+        "https://aeindex.org/reviews/david-mazzucchellis-daredevil-born-again-artists-edition/"
+      ],
+      "normalizedSeriesTitle": "Daredevil",
+      "seriesYear": 1964,
+      "seriesId": 2002,
+      "issueNumber": "232",
+      "candidateIssueId": 8221,
+      "manualSeriesSelectionApproved": false,
+      "candidates": [
+        {
+          "id": 8221,
+          "title": "Daredevil",
+          "issueTitle": "Daredevil (1964) #232",
+          "seriesTitle": "Daredevil",
+          "apiSeriesName": "Daredevil (1964 - 1998)",
+          "seriesId": 2002,
+          "issueNumber": "232",
+          "seriesYear": 1964,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/8221/daredevil_1964_232",
+          "onSaleDate": "1986-07-01T00:00:00+0000"
+        }
+      ]
+    },
+    {
+      "sourcePosition": 12,
+      "sourceIssueReference": "Daredevil (1964) #233",
+      "sourceRangeReference": "2. Born Again",
+      "sourceGroup": "2. Born Again",
+      "sourceSelectionPosition": 2,
+      "sourceSuppliedTitle": "Daredevil: Born Again",
+      "sourceCollectionPosition": 1,
+      "sourceCollectionIssuePosition": 7,
+      "sourceCollectionTitle": "Daredevil: Born Again",
+      "sourceEvidenceUrls": [
+        "https://en.wikipedia.org/wiki/Born_Again_(comics)",
+        "https://aeindex.org/reviews/david-mazzucchellis-daredevil-born-again-artists-edition/"
+      ],
+      "normalizedSeriesTitle": "Daredevil",
+      "seriesYear": 1964,
+      "seriesId": 2002,
+      "issueNumber": "233",
+      "candidateIssueId": 8222,
+      "manualSeriesSelectionApproved": false,
+      "candidates": [
+        {
+          "id": 8222,
+          "title": "Daredevil",
+          "issueTitle": "Daredevil (1964) #233",
+          "seriesTitle": "Daredevil",
+          "apiSeriesName": "Daredevil (1964 - 1998)",
+          "seriesId": 2002,
+          "issueNumber": "233",
+          "seriesYear": 1964,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/8222/daredevil_1964_233",
+          "onSaleDate": "1986-08-01T00:00:00+0000"
+        }
+      ]
+    },
+    {
+      "sourcePosition": 13,
+      "sourceIssueReference": "Daredevil (1998) #32",
+      "sourceRangeReference": "3a. Out",
+      "sourceGroup": "3a. Out",
+      "sourceSelectionPosition": 3,
+      "sourceSuppliedTitle": "Daredevil by Ed Brubaker Vol. 1: Out",
+      "sourceCollectionPosition": 1,
+      "sourceCollectionIssuePosition": 1,
+      "sourceCollectionTitle": "Daredevil Vol. 5: Out",
+      "sourceEvidenceUrls": [
+        "https://www.manwithoutfear.com/daredevil-tradepaperbacks-and-graphic-novels.shtml"
+      ],
+      "normalizedSeriesTitle": "Daredevil",
+      "seriesYear": 1998,
+      "seriesId": 449,
+      "issueNumber": "32",
+      "candidateIssueId": 15634,
+      "manualSeriesSelectionApproved": false,
+      "candidates": [
+        {
+          "id": 15634,
+          "title": "Daredevil",
+          "issueTitle": "Daredevil (1998) #32",
+          "seriesTitle": "Daredevil",
+          "apiSeriesName": "Daredevil (1998 - 2011)",
+          "seriesId": 449,
+          "issueNumber": "32",
+          "seriesYear": 1998,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/15634/daredevil_1998_32",
+          "onSaleDate": "2002-06-01T00:00:00+0000"
+        }
+      ]
+    },
+    {
+      "sourcePosition": 14,
+      "sourceIssueReference": "Daredevil (1998) #33",
+      "sourceRangeReference": "3a. Out",
+      "sourceGroup": "3a. Out",
+      "sourceSelectionPosition": 3,
+      "sourceSuppliedTitle": "Daredevil by Ed Brubaker Vol. 1: Out",
+      "sourceCollectionPosition": 1,
+      "sourceCollectionIssuePosition": 2,
+      "sourceCollectionTitle": "Daredevil Vol. 5: Out",
+      "sourceEvidenceUrls": [
+        "https://www.manwithoutfear.com/daredevil-tradepaperbacks-and-graphic-novels.shtml"
+      ],
+      "normalizedSeriesTitle": "Daredevil",
+      "seriesYear": 1998,
+      "seriesId": 449,
+      "issueNumber": "33",
+      "candidateIssueId": 15635,
+      "manualSeriesSelectionApproved": false,
+      "candidates": [
+        {
+          "id": 15635,
+          "title": "Daredevil",
+          "issueTitle": "Daredevil (1998) #33",
+          "seriesTitle": "Daredevil",
+          "apiSeriesName": "Daredevil (1998 - 2011)",
+          "seriesId": 449,
+          "issueNumber": "33",
+          "seriesYear": 1998,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/15635/daredevil_1998_33",
+          "onSaleDate": "2002-07-01T00:00:00+0000"
+        }
+      ]
+    },
+    {
+      "sourcePosition": 15,
+      "sourceIssueReference": "Daredevil (1998) #34",
+      "sourceRangeReference": "3a. Out",
+      "sourceGroup": "3a. Out",
+      "sourceSelectionPosition": 3,
+      "sourceSuppliedTitle": "Daredevil by Ed Brubaker Vol. 1: Out",
+      "sourceCollectionPosition": 1,
+      "sourceCollectionIssuePosition": 3,
+      "sourceCollectionTitle": "Daredevil Vol. 5: Out",
+      "sourceEvidenceUrls": [
+        "https://www.manwithoutfear.com/daredevil-tradepaperbacks-and-graphic-novels.shtml"
+      ],
+      "normalizedSeriesTitle": "Daredevil",
+      "seriesYear": 1998,
+      "seriesId": 449,
+      "issueNumber": "34",
+      "candidateIssueId": 15636,
+      "manualSeriesSelectionApproved": false,
+      "candidates": [
+        {
+          "id": 15636,
+          "title": "Daredevil",
+          "issueTitle": "Daredevil (1998) #34",
+          "seriesTitle": "Daredevil",
+          "apiSeriesName": "Daredevil (1998 - 2011)",
+          "seriesId": 449,
+          "issueNumber": "34",
+          "seriesYear": 1998,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/15636/daredevil_1998_34",
+          "onSaleDate": "2002-08-01T00:00:00+0000"
+        }
+      ]
+    },
+    {
+      "sourcePosition": 16,
+      "sourceIssueReference": "Daredevil (1998) #35",
+      "sourceRangeReference": "3a. Out",
+      "sourceGroup": "3a. Out",
+      "sourceSelectionPosition": 3,
+      "sourceSuppliedTitle": "Daredevil by Ed Brubaker Vol. 1: Out",
+      "sourceCollectionPosition": 1,
+      "sourceCollectionIssuePosition": 4,
+      "sourceCollectionTitle": "Daredevil Vol. 5: Out",
+      "sourceEvidenceUrls": [
+        "https://www.manwithoutfear.com/daredevil-tradepaperbacks-and-graphic-novels.shtml"
+      ],
+      "normalizedSeriesTitle": "Daredevil",
+      "seriesYear": 1998,
+      "seriesId": 449,
+      "issueNumber": "35",
+      "candidateIssueId": 15637,
+      "manualSeriesSelectionApproved": false,
+      "candidates": [
+        {
+          "id": 15637,
+          "title": "Daredevil",
+          "issueTitle": "Daredevil (1998) #35",
+          "seriesTitle": "Daredevil",
+          "apiSeriesName": "Daredevil (1998 - 2011)",
+          "seriesId": 449,
+          "issueNumber": "35",
+          "seriesYear": 1998,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/15637/daredevil_1998_35",
+          "onSaleDate": "2002-09-01T00:00:00+0000"
+        }
+      ]
+    },
+    {
+      "sourcePosition": 17,
+      "sourceIssueReference": "Daredevil (1998) #36",
+      "sourceRangeReference": "3a. Out",
+      "sourceGroup": "3a. Out",
+      "sourceSelectionPosition": 3,
+      "sourceSuppliedTitle": "Daredevil by Ed Brubaker Vol. 1: Out",
+      "sourceCollectionPosition": 1,
+      "sourceCollectionIssuePosition": 5,
+      "sourceCollectionTitle": "Daredevil Vol. 5: Out",
+      "sourceEvidenceUrls": [
+        "https://www.manwithoutfear.com/daredevil-tradepaperbacks-and-graphic-novels.shtml"
+      ],
+      "normalizedSeriesTitle": "Daredevil",
+      "seriesYear": 1998,
+      "seriesId": 449,
+      "issueNumber": "36",
+      "candidateIssueId": 15638,
+      "manualSeriesSelectionApproved": false,
+      "candidates": [
+        {
+          "id": 15638,
+          "title": "Daredevil",
+          "issueTitle": "Daredevil (1998) #36",
+          "seriesTitle": "Daredevil",
+          "apiSeriesName": "Daredevil (1998 - 2011)",
+          "seriesId": 449,
+          "issueNumber": "36",
+          "seriesYear": 1998,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/15638/daredevil_1998_36",
+          "onSaleDate": "2002-10-01T00:00:00+0000"
+        }
+      ]
+    },
+    {
+      "sourcePosition": 18,
+      "sourceIssueReference": "Daredevil (1998) #37",
+      "sourceRangeReference": "3a. Out",
+      "sourceGroup": "3a. Out",
+      "sourceSelectionPosition": 3,
+      "sourceSuppliedTitle": "Daredevil by Ed Brubaker Vol. 1: Out",
+      "sourceCollectionPosition": 1,
+      "sourceCollectionIssuePosition": 6,
+      "sourceCollectionTitle": "Daredevil Vol. 5: Out",
+      "sourceEvidenceUrls": [
+        "https://www.manwithoutfear.com/daredevil-tradepaperbacks-and-graphic-novels.shtml"
+      ],
+      "normalizedSeriesTitle": "Daredevil",
+      "seriesYear": 1998,
+      "seriesId": 449,
+      "issueNumber": "37",
+      "candidateIssueId": 15639,
+      "manualSeriesSelectionApproved": false,
+      "candidates": [
+        {
+          "id": 15639,
+          "title": "Daredevil",
+          "issueTitle": "Daredevil (1998) #37",
+          "seriesTitle": "Daredevil",
+          "apiSeriesName": "Daredevil (1998 - 2011)",
+          "seriesId": 449,
+          "issueNumber": "37",
+          "seriesYear": 1998,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/15639/daredevil_1998_37",
+          "onSaleDate": "2002-11-01T00:00:00+0000"
+        }
+      ]
+    },
+    {
+      "sourcePosition": 19,
+      "sourceIssueReference": "Daredevil (1998) #38",
+      "sourceRangeReference": "3a. Out",
+      "sourceGroup": "3a. Out",
+      "sourceSelectionPosition": 3,
+      "sourceSuppliedTitle": "Daredevil by Ed Brubaker Vol. 1: Out",
+      "sourceCollectionPosition": 1,
+      "sourceCollectionIssuePosition": 7,
+      "sourceCollectionTitle": "Daredevil Vol. 5: Out",
+      "sourceEvidenceUrls": [
+        "https://www.manwithoutfear.com/daredevil-tradepaperbacks-and-graphic-novels.shtml"
+      ],
+      "normalizedSeriesTitle": "Daredevil",
+      "seriesYear": 1998,
+      "seriesId": 449,
+      "issueNumber": "38",
+      "candidateIssueId": 15640,
+      "manualSeriesSelectionApproved": false,
+      "candidates": [
+        {
+          "id": 15640,
+          "title": "Daredevil",
+          "issueTitle": "Daredevil (1998) #38",
+          "seriesTitle": "Daredevil",
+          "apiSeriesName": "Daredevil (1998 - 2011)",
+          "seriesId": 449,
+          "issueNumber": "38",
+          "seriesYear": 1998,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/15640/daredevil_1998_38",
+          "onSaleDate": "2002-12-01T00:00:00+0000"
+        }
+      ]
+    },
+    {
+      "sourcePosition": 20,
+      "sourceIssueReference": "Daredevil (1998) #39",
+      "sourceRangeReference": "3a. Out",
+      "sourceGroup": "3a. Out",
+      "sourceSelectionPosition": 3,
+      "sourceSuppliedTitle": "Daredevil by Ed Brubaker Vol. 1: Out",
+      "sourceCollectionPosition": 1,
+      "sourceCollectionIssuePosition": 8,
+      "sourceCollectionTitle": "Daredevil Vol. 5: Out",
+      "sourceEvidenceUrls": [
+        "https://www.manwithoutfear.com/daredevil-tradepaperbacks-and-graphic-novels.shtml"
+      ],
+      "normalizedSeriesTitle": "Daredevil",
+      "seriesYear": 1998,
+      "seriesId": 449,
+      "issueNumber": "39",
+      "candidateIssueId": 15641,
+      "manualSeriesSelectionApproved": false,
+      "candidates": [
+        {
+          "id": 15641,
+          "title": "Daredevil",
+          "issueTitle": "Daredevil (1998) #39",
+          "seriesTitle": "Daredevil",
+          "apiSeriesName": "Daredevil (1998 - 2011)",
+          "seriesId": 449,
+          "issueNumber": "39",
+          "seriesYear": 1998,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/15641/daredevil_1998_39",
+          "onSaleDate": "2003-01-01T00:00:00+0000"
+        }
+      ]
+    },
+    {
+      "sourcePosition": 21,
+      "sourceIssueReference": "Daredevil (1998) #40",
+      "sourceRangeReference": "3a. Out",
+      "sourceGroup": "3a. Out",
+      "sourceSelectionPosition": 3,
+      "sourceSuppliedTitle": "Daredevil by Ed Brubaker Vol. 1: Out",
+      "sourceCollectionPosition": 1,
+      "sourceCollectionIssuePosition": 9,
+      "sourceCollectionTitle": "Daredevil Vol. 5: Out",
+      "sourceEvidenceUrls": [
+        "https://www.manwithoutfear.com/daredevil-tradepaperbacks-and-graphic-novels.shtml"
+      ],
+      "normalizedSeriesTitle": "Daredevil",
+      "seriesYear": 1998,
+      "seriesId": 449,
+      "issueNumber": "40",
+      "candidateIssueId": 15643,
+      "manualSeriesSelectionApproved": false,
+      "candidates": [
+        {
+          "id": 15643,
+          "title": "Daredevil",
+          "issueTitle": "Daredevil (1998) #40",
+          "seriesTitle": "Daredevil",
+          "apiSeriesName": "Daredevil (1998 - 2011)",
+          "seriesId": 449,
+          "issueNumber": "40",
+          "seriesYear": 1998,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/15643/daredevil_1998_40",
+          "onSaleDate": "2003-02-01T00:00:00+0000"
+        }
+      ]
+    },
+    {
+      "sourcePosition": 22,
+      "sourceIssueReference": "Daredevil (1998) #82",
+      "sourceRangeReference": "3b. The Devil Inside and Out Vol. 1",
+      "sourceGroup": "3b. The Devil Inside and Out Vol. 1",
+      "sourceSelectionPosition": 3,
+      "sourceSuppliedTitle": "Daredevil by Ed Brubaker Vol. 1: Out",
+      "sourceCollectionPosition": 2,
+      "sourceCollectionIssuePosition": 1,
+      "sourceCollectionTitle": "Daredevil: The Devil Inside and Out Vol. 1",
+      "sourceEvidenceUrls": [
+        "https://www.manwithoutfear.com/daredevil-tradepaperbacks-and-graphic-novels.shtml"
+      ],
+      "normalizedSeriesTitle": "Daredevil",
+      "seriesYear": 1998,
+      "seriesId": 449,
+      "issueNumber": "82",
+      "candidateIssueId": 3482,
+      "manualSeriesSelectionApproved": false,
+      "candidates": [
+        {
+          "id": 3482,
+          "title": "Daredevil",
+          "issueTitle": "Daredevil (1998) #82",
+          "seriesTitle": "Daredevil",
+          "apiSeriesName": "Daredevil (1998 - 2011)",
+          "seriesId": 449,
+          "issueNumber": "82",
+          "seriesYear": 1998,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/3482/daredevil_1998_82",
+          "onSaleDate": "2006-02-15T00:00:00+0000"
+        }
+      ]
+    },
+    {
+      "sourcePosition": 23,
+      "sourceIssueReference": "Daredevil (1998) #83",
+      "sourceRangeReference": "3b. The Devil Inside and Out Vol. 1",
+      "sourceGroup": "3b. The Devil Inside and Out Vol. 1",
+      "sourceSelectionPosition": 3,
+      "sourceSuppliedTitle": "Daredevil by Ed Brubaker Vol. 1: Out",
+      "sourceCollectionPosition": 2,
+      "sourceCollectionIssuePosition": 2,
+      "sourceCollectionTitle": "Daredevil: The Devil Inside and Out Vol. 1",
+      "sourceEvidenceUrls": [
+        "https://www.manwithoutfear.com/daredevil-tradepaperbacks-and-graphic-novels.shtml"
+      ],
+      "normalizedSeriesTitle": "Daredevil",
+      "seriesYear": 1998,
+      "seriesId": 449,
+      "issueNumber": "83",
+      "candidateIssueId": 3946,
+      "manualSeriesSelectionApproved": false,
+      "candidates": [
+        {
+          "id": 3946,
+          "title": "Daredevil",
+          "issueTitle": "Daredevil (1998) #83",
+          "seriesTitle": "Daredevil",
+          "apiSeriesName": "Daredevil (1998 - 2011)",
+          "seriesId": 449,
+          "issueNumber": "83",
+          "seriesYear": 1998,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/3946/daredevil_1998_83",
+          "onSaleDate": "2006-03-22T00:00:00+0000"
+        }
+      ]
+    },
+    {
+      "sourcePosition": 24,
+      "sourceIssueReference": "Daredevil (1998) #84",
+      "sourceRangeReference": "3b. The Devil Inside and Out Vol. 1",
+      "sourceGroup": "3b. The Devil Inside and Out Vol. 1",
+      "sourceSelectionPosition": 3,
+      "sourceSuppliedTitle": "Daredevil by Ed Brubaker Vol. 1: Out",
+      "sourceCollectionPosition": 2,
+      "sourceCollectionIssuePosition": 3,
+      "sourceCollectionTitle": "Daredevil: The Devil Inside and Out Vol. 1",
+      "sourceEvidenceUrls": [
+        "https://www.manwithoutfear.com/daredevil-tradepaperbacks-and-graphic-novels.shtml"
+      ],
+      "normalizedSeriesTitle": "Daredevil",
+      "seriesYear": 1998,
+      "seriesId": 449,
+      "issueNumber": "84",
+      "candidateIssueId": 4070,
+      "manualSeriesSelectionApproved": false,
+      "candidates": [
+        {
+          "id": 4070,
+          "title": "Daredevil",
+          "issueTitle": "Daredevil (1998) #84",
+          "seriesTitle": "Daredevil",
+          "apiSeriesName": "Daredevil (1998 - 2011)",
+          "seriesId": 449,
+          "issueNumber": "84",
+          "seriesYear": 1998,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/4070/daredevil_1998_84",
+          "onSaleDate": "2006-04-19T00:00:00+0000"
+        }
+      ]
+    },
+    {
+      "sourcePosition": 25,
+      "sourceIssueReference": "Daredevil (1998) #85",
+      "sourceRangeReference": "3b. The Devil Inside and Out Vol. 1",
+      "sourceGroup": "3b. The Devil Inside and Out Vol. 1",
+      "sourceSelectionPosition": 3,
+      "sourceSuppliedTitle": "Daredevil by Ed Brubaker Vol. 1: Out",
+      "sourceCollectionPosition": 2,
+      "sourceCollectionIssuePosition": 4,
+      "sourceCollectionTitle": "Daredevil: The Devil Inside and Out Vol. 1",
+      "sourceEvidenceUrls": [
+        "https://www.manwithoutfear.com/daredevil-tradepaperbacks-and-graphic-novels.shtml"
+      ],
+      "normalizedSeriesTitle": "Daredevil",
+      "seriesYear": 1998,
+      "seriesId": 449,
+      "issueNumber": "85",
+      "candidateIssueId": 4183,
+      "manualSeriesSelectionApproved": false,
+      "candidates": [
+        {
+          "id": 4183,
+          "title": "Daredevil",
+          "issueTitle": "Daredevil (1998) #85",
+          "seriesTitle": "Daredevil",
+          "apiSeriesName": "Daredevil (1998 - 2011)",
+          "seriesId": 449,
+          "issueNumber": "85",
+          "seriesYear": 1998,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/4183/daredevil_1998_85",
+          "onSaleDate": "2006-05-24T00:00:00+0000"
+        }
+      ]
+    },
+    {
+      "sourcePosition": 26,
+      "sourceIssueReference": "Daredevil (1998) #86",
+      "sourceRangeReference": "3b. The Devil Inside and Out Vol. 1",
+      "sourceGroup": "3b. The Devil Inside and Out Vol. 1",
+      "sourceSelectionPosition": 3,
+      "sourceSuppliedTitle": "Daredevil by Ed Brubaker Vol. 1: Out",
+      "sourceCollectionPosition": 2,
+      "sourceCollectionIssuePosition": 5,
+      "sourceCollectionTitle": "Daredevil: The Devil Inside and Out Vol. 1",
+      "sourceEvidenceUrls": [
+        "https://www.manwithoutfear.com/daredevil-tradepaperbacks-and-graphic-novels.shtml"
+      ],
+      "normalizedSeriesTitle": "Daredevil",
+      "seriesYear": 1998,
+      "seriesId": 449,
+      "issueNumber": "86",
+      "candidateIssueId": 4284,
+      "manualSeriesSelectionApproved": false,
+      "candidates": [
+        {
+          "id": 4284,
+          "title": "Daredevil",
+          "issueTitle": "Daredevil (1998) #86",
+          "seriesTitle": "Daredevil",
+          "apiSeriesName": "Daredevil (1998 - 2011)",
+          "seriesId": 449,
+          "issueNumber": "86",
+          "seriesYear": 1998,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/4284/daredevil_1998_86",
+          "onSaleDate": "2006-06-28T00:00:00+0000"
+        }
+      ]
+    },
+    {
+      "sourcePosition": 27,
+      "sourceIssueReference": "Daredevil (1998) #87",
+      "sourceRangeReference": "3b. The Devil Inside and Out Vol. 1",
+      "sourceGroup": "3b. The Devil Inside and Out Vol. 1",
+      "sourceSelectionPosition": 3,
+      "sourceSuppliedTitle": "Daredevil by Ed Brubaker Vol. 1: Out",
+      "sourceCollectionPosition": 2,
+      "sourceCollectionIssuePosition": 6,
+      "sourceCollectionTitle": "Daredevil: The Devil Inside and Out Vol. 1",
+      "sourceEvidenceUrls": [
+        "https://www.manwithoutfear.com/daredevil-tradepaperbacks-and-graphic-novels.shtml"
+      ],
+      "normalizedSeriesTitle": "Daredevil",
+      "seriesYear": 1998,
+      "seriesId": 449,
+      "issueNumber": "87",
+      "candidateIssueId": 4439,
+      "manualSeriesSelectionApproved": false,
+      "candidates": [
+        {
+          "id": 4439,
+          "title": "Daredevil",
+          "issueTitle": "Daredevil (1998) #87",
+          "seriesTitle": "Daredevil",
+          "apiSeriesName": "Daredevil (1998 - 2011)",
+          "seriesId": 449,
+          "issueNumber": "87",
+          "seriesYear": 1998,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/4439/daredevil_1998_87",
+          "onSaleDate": "2006-07-26T00:00:00+0000"
+        }
+      ]
+    },
+    {
+      "sourcePosition": 28,
+      "sourceIssueReference": "Daredevil (2019) #1",
+      "sourceRangeReference": "4. Know Fear",
+      "sourceGroup": "4. Know Fear",
+      "sourceSelectionPosition": 4,
+      "sourceSuppliedTitle": "Daredevil by Chip Zdarsky Vol. 1: Know Fear",
+      "sourceCollectionPosition": 1,
+      "sourceCollectionIssuePosition": 1,
+      "sourceCollectionTitle": "Daredevil by Chip Zdarsky Vol. 1: Know Fear",
+      "sourceEvidenceUrls": [
+        "https://www.penguinrandomhouse.com/books/694088/daredevil-by-chip-zdarsky-vol-1-know-fear-by-chip-zdarsky/"
+      ],
+      "normalizedSeriesTitle": "Daredevil",
+      "seriesYear": 2019,
+      "seriesId": 26080,
+      "issueNumber": "1",
+      "candidateIssueId": 71553,
+      "manualSeriesSelectionApproved": false,
+      "candidates": [
+        {
+          "id": 71553,
+          "title": "Daredevil",
+          "issueTitle": "Daredevil (2019) #1",
+          "seriesTitle": "Daredevil",
+          "apiSeriesName": "Daredevil (2019 - 2021)",
+          "seriesId": 26080,
+          "issueNumber": "1",
+          "seriesYear": 2019,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/71553/daredevil_2019_1",
+          "onSaleDate": "2019-02-06T00:00:00+0000"
+        }
+      ]
+    },
+    {
+      "sourcePosition": 29,
+      "sourceIssueReference": "Daredevil (2019) #2",
+      "sourceRangeReference": "4. Know Fear",
+      "sourceGroup": "4. Know Fear",
+      "sourceSelectionPosition": 4,
+      "sourceSuppliedTitle": "Daredevil by Chip Zdarsky Vol. 1: Know Fear",
+      "sourceCollectionPosition": 1,
+      "sourceCollectionIssuePosition": 2,
+      "sourceCollectionTitle": "Daredevil by Chip Zdarsky Vol. 1: Know Fear",
+      "sourceEvidenceUrls": [
+        "https://www.penguinrandomhouse.com/books/694088/daredevil-by-chip-zdarsky-vol-1-know-fear-by-chip-zdarsky/"
+      ],
+      "normalizedSeriesTitle": "Daredevil",
+      "seriesYear": 2019,
+      "seriesId": 26080,
+      "issueNumber": "2",
+      "candidateIssueId": 71556,
+      "manualSeriesSelectionApproved": false,
+      "candidates": [
+        {
+          "id": 71556,
+          "title": "Daredevil",
+          "issueTitle": "Daredevil (2019) #2",
+          "seriesTitle": "Daredevil",
+          "apiSeriesName": "Daredevil (2019 - 2021)",
+          "seriesId": 26080,
+          "issueNumber": "2",
+          "seriesYear": 2019,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/71556/daredevil_2019_2",
+          "onSaleDate": "2019-02-27T00:00:00+0000"
+        }
+      ]
+    },
+    {
+      "sourcePosition": 30,
+      "sourceIssueReference": "Daredevil (2019) #3",
+      "sourceRangeReference": "4. Know Fear",
+      "sourceGroup": "4. Know Fear",
+      "sourceSelectionPosition": 4,
+      "sourceSuppliedTitle": "Daredevil by Chip Zdarsky Vol. 1: Know Fear",
+      "sourceCollectionPosition": 1,
+      "sourceCollectionIssuePosition": 3,
+      "sourceCollectionTitle": "Daredevil by Chip Zdarsky Vol. 1: Know Fear",
+      "sourceEvidenceUrls": [
+        "https://www.penguinrandomhouse.com/books/694088/daredevil-by-chip-zdarsky-vol-1-know-fear-by-chip-zdarsky/"
+      ],
+      "normalizedSeriesTitle": "Daredevil",
+      "seriesYear": 2019,
+      "seriesId": 26080,
+      "issueNumber": "3",
+      "candidateIssueId": 71559,
+      "manualSeriesSelectionApproved": false,
+      "candidates": [
+        {
+          "id": 71559,
+          "title": "Daredevil",
+          "issueTitle": "Daredevil (2019) #3",
+          "seriesTitle": "Daredevil",
+          "apiSeriesName": "Daredevil (2019 - 2021)",
+          "seriesId": 26080,
+          "issueNumber": "3",
+          "seriesYear": 2019,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/71559/daredevil_2019_3",
+          "onSaleDate": "2019-03-27T00:00:00+0000"
+        }
+      ]
+    },
+    {
+      "sourcePosition": 31,
+      "sourceIssueReference": "Daredevil (2019) #4",
+      "sourceRangeReference": "4. Know Fear",
+      "sourceGroup": "4. Know Fear",
+      "sourceSelectionPosition": 4,
+      "sourceSuppliedTitle": "Daredevil by Chip Zdarsky Vol. 1: Know Fear",
+      "sourceCollectionPosition": 1,
+      "sourceCollectionIssuePosition": 4,
+      "sourceCollectionTitle": "Daredevil by Chip Zdarsky Vol. 1: Know Fear",
+      "sourceEvidenceUrls": [
+        "https://www.penguinrandomhouse.com/books/694088/daredevil-by-chip-zdarsky-vol-1-know-fear-by-chip-zdarsky/"
+      ],
+      "normalizedSeriesTitle": "Daredevil",
+      "seriesYear": 2019,
+      "seriesId": 26080,
+      "issueNumber": "4",
+      "candidateIssueId": 71561,
+      "manualSeriesSelectionApproved": false,
+      "candidates": [
+        {
+          "id": 71561,
+          "title": "Daredevil",
+          "issueTitle": "Daredevil (2019) #4",
+          "seriesTitle": "Daredevil",
+          "apiSeriesName": "Daredevil (2019 - 2021)",
+          "seriesId": 26080,
+          "issueNumber": "4",
+          "seriesYear": 2019,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/71561/daredevil_2019_4",
+          "onSaleDate": "2019-04-17T00:00:00+0000"
+        }
+      ]
+    },
+    {
+      "sourcePosition": 32,
+      "sourceIssueReference": "Daredevil (2019) #5",
+      "sourceRangeReference": "4. Know Fear",
+      "sourceGroup": "4. Know Fear",
+      "sourceSelectionPosition": 4,
+      "sourceSuppliedTitle": "Daredevil by Chip Zdarsky Vol. 1: Know Fear",
+      "sourceCollectionPosition": 1,
+      "sourceCollectionIssuePosition": 5,
+      "sourceCollectionTitle": "Daredevil by Chip Zdarsky Vol. 1: Know Fear",
+      "sourceEvidenceUrls": [
+        "https://www.penguinrandomhouse.com/books/694088/daredevil-by-chip-zdarsky-vol-1-know-fear-by-chip-zdarsky/"
+      ],
+      "normalizedSeriesTitle": "Daredevil",
+      "seriesYear": 2019,
+      "seriesId": 26080,
+      "issueNumber": "5",
+      "candidateIssueId": 71563,
+      "manualSeriesSelectionApproved": false,
+      "candidates": [
+        {
+          "id": 71563,
+          "title": "Daredevil",
+          "issueTitle": "Daredevil (2019) #5",
+          "seriesTitle": "Daredevil",
+          "apiSeriesName": "Daredevil (2019 - 2021)",
+          "seriesId": 26080,
+          "issueNumber": "5",
+          "seriesYear": 2019,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/71563/daredevil_2019_5",
+          "onSaleDate": "2019-05-15T00:00:00+0000"
+        }
+      ]
+    },
+    {
+      "sourcePosition": 33,
+      "sourceIssueReference": "Daredevil (2019) #6",
+      "sourceRangeReference": "5. No Devils, Only God",
+      "sourceGroup": "5. No Devils, Only God",
+      "sourceSelectionPosition": 5,
+      "sourceSuppliedTitle": "Daredevil by Chip Zdarsky Vol. 2: No Devils, Only God",
+      "sourceCollectionPosition": 1,
+      "sourceCollectionIssuePosition": 1,
+      "sourceCollectionTitle": "Daredevil by Chip Zdarsky Vol. 2: No Devils, Only God",
+      "sourceEvidenceUrls": [
+        "https://www.penguinrandomhouse.com/books/694089/daredevil-by-chip-zdarsky-vol-2-no-devils-only-god-by-chip-zdarsky/"
+      ],
+      "normalizedSeriesTitle": "Daredevil",
+      "seriesYear": 2019,
+      "seriesId": 26080,
+      "issueNumber": "6",
+      "candidateIssueId": 71565,
+      "manualSeriesSelectionApproved": false,
+      "candidates": [
+        {
+          "id": 71565,
+          "title": "Daredevil",
+          "issueTitle": "Daredevil (2019) #6",
+          "seriesTitle": "Daredevil",
+          "apiSeriesName": "Daredevil (2019 - 2021)",
+          "seriesId": 26080,
+          "issueNumber": "6",
+          "seriesYear": 2019,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/71565/daredevil_2019_6",
+          "onSaleDate": "2019-05-29T00:00:00+0000"
+        }
+      ]
+    },
+    {
+      "sourcePosition": 34,
+      "sourceIssueReference": "Daredevil (2019) #7",
+      "sourceRangeReference": "5. No Devils, Only God",
+      "sourceGroup": "5. No Devils, Only God",
+      "sourceSelectionPosition": 5,
+      "sourceSuppliedTitle": "Daredevil by Chip Zdarsky Vol. 2: No Devils, Only God",
+      "sourceCollectionPosition": 1,
+      "sourceCollectionIssuePosition": 2,
+      "sourceCollectionTitle": "Daredevil by Chip Zdarsky Vol. 2: No Devils, Only God",
+      "sourceEvidenceUrls": [
+        "https://www.penguinrandomhouse.com/books/694089/daredevil-by-chip-zdarsky-vol-2-no-devils-only-god-by-chip-zdarsky/"
+      ],
+      "normalizedSeriesTitle": "Daredevil",
+      "seriesYear": 2019,
+      "seriesId": 26080,
+      "issueNumber": "7",
+      "candidateIssueId": 71566,
+      "manualSeriesSelectionApproved": false,
+      "candidates": [
+        {
+          "id": 71566,
+          "title": "Daredevil",
+          "issueTitle": "Daredevil (2019) #7",
+          "seriesTitle": "Daredevil",
+          "apiSeriesName": "Daredevil (2019 - 2021)",
+          "seriesId": 26080,
+          "issueNumber": "7",
+          "seriesYear": 2019,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/71566/daredevil_2019_7",
+          "onSaleDate": "2019-06-19T00:00:00+0000"
+        }
+      ]
+    },
+    {
+      "sourcePosition": 35,
+      "sourceIssueReference": "Daredevil (2019) #8",
+      "sourceRangeReference": "5. No Devils, Only God",
+      "sourceGroup": "5. No Devils, Only God",
+      "sourceSelectionPosition": 5,
+      "sourceSuppliedTitle": "Daredevil by Chip Zdarsky Vol. 2: No Devils, Only God",
+      "sourceCollectionPosition": 1,
+      "sourceCollectionIssuePosition": 3,
+      "sourceCollectionTitle": "Daredevil by Chip Zdarsky Vol. 2: No Devils, Only God",
+      "sourceEvidenceUrls": [
+        "https://www.penguinrandomhouse.com/books/694089/daredevil-by-chip-zdarsky-vol-2-no-devils-only-god-by-chip-zdarsky/"
+      ],
+      "normalizedSeriesTitle": "Daredevil",
+      "seriesYear": 2019,
+      "seriesId": 26080,
+      "issueNumber": "8",
+      "candidateIssueId": 71567,
+      "manualSeriesSelectionApproved": false,
+      "candidates": [
+        {
+          "id": 71567,
+          "title": "Daredevil",
+          "issueTitle": "Daredevil (2019) #8",
+          "seriesTitle": "Daredevil",
+          "apiSeriesName": "Daredevil (2019 - 2021)",
+          "seriesId": 26080,
+          "issueNumber": "8",
+          "seriesYear": 2019,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/71567/daredevil_2019_8",
+          "onSaleDate": "2019-07-17T00:00:00+0000"
+        }
+      ]
+    },
+    {
+      "sourcePosition": 36,
+      "sourceIssueReference": "Daredevil (2019) #9",
+      "sourceRangeReference": "5. No Devils, Only God",
+      "sourceGroup": "5. No Devils, Only God",
+      "sourceSelectionPosition": 5,
+      "sourceSuppliedTitle": "Daredevil by Chip Zdarsky Vol. 2: No Devils, Only God",
+      "sourceCollectionPosition": 1,
+      "sourceCollectionIssuePosition": 4,
+      "sourceCollectionTitle": "Daredevil by Chip Zdarsky Vol. 2: No Devils, Only God",
+      "sourceEvidenceUrls": [
+        "https://www.penguinrandomhouse.com/books/694089/daredevil-by-chip-zdarsky-vol-2-no-devils-only-god-by-chip-zdarsky/"
+      ],
+      "normalizedSeriesTitle": "Daredevil",
+      "seriesYear": 2019,
+      "seriesId": 26080,
+      "issueNumber": "9",
+      "candidateIssueId": 71568,
+      "manualSeriesSelectionApproved": false,
+      "candidates": [
+        {
+          "id": 71568,
+          "title": "Daredevil",
+          "issueTitle": "Daredevil (2019) #9",
+          "seriesTitle": "Daredevil",
+          "apiSeriesName": "Daredevil (2019 - 2021)",
+          "seriesId": 26080,
+          "issueNumber": "9",
+          "seriesYear": 2019,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/71568/daredevil_2019_9",
+          "onSaleDate": "2019-08-07T00:00:00+0000"
+        }
+      ]
+    },
+    {
+      "sourcePosition": 37,
+      "sourceIssueReference": "Daredevil (2019) #10",
+      "sourceRangeReference": "5. No Devils, Only God",
+      "sourceGroup": "5. No Devils, Only God",
+      "sourceSelectionPosition": 5,
+      "sourceSuppliedTitle": "Daredevil by Chip Zdarsky Vol. 2: No Devils, Only God",
+      "sourceCollectionPosition": 1,
+      "sourceCollectionIssuePosition": 5,
+      "sourceCollectionTitle": "Daredevil by Chip Zdarsky Vol. 2: No Devils, Only God",
+      "sourceEvidenceUrls": [
+        "https://www.penguinrandomhouse.com/books/694089/daredevil-by-chip-zdarsky-vol-2-no-devils-only-god-by-chip-zdarsky/"
+      ],
+      "normalizedSeriesTitle": "Daredevil",
+      "seriesYear": 2019,
+      "seriesId": 26080,
+      "issueNumber": "10",
+      "candidateIssueId": 71569,
+      "manualSeriesSelectionApproved": false,
+      "candidates": [
+        {
+          "id": 71569,
+          "title": "Daredevil",
+          "issueTitle": "Daredevil (2019) #10",
+          "seriesTitle": "Daredevil",
+          "apiSeriesName": "Daredevil (2019 - 2021)",
+          "seriesId": 26080,
+          "issueNumber": "10",
+          "seriesYear": 2019,
+          "manualSeriesSelection": false,
+          "manualSeriesSelectionApproved": false,
+          "detailUrl": "https://www.marvel.com/comics/issue/71569/daredevil_2019_10",
+          "onSaleDate": "2019-08-21T00:00:00+0000"
+        }
+      ]
+    }
+  ],
+  "packetDigest": "396a0068cb278d03c84a37a018585a5cc0ccebf8d7ac44a38d05cabf7ccea84e"
+}

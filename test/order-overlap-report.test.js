@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdirSync, mkdtempSync, writeFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
 import { fileURLToPath } from 'node:url';
@@ -140,10 +140,25 @@ test('buildReportForMapping regenerates shipped reports without duplicate self o
   const comparedIds = report.comparisons.map((comparison) => comparison.orderId);
 
   assert.equal(report.candidateCount, 5);
-  assert.equal(report.comparisonCount, 138);
-  assert.equal(new Set(comparedIds).size, 138);
+  assert.equal(report.comparisonCount, 137);
+  assert.equal(new Set(comparedIds).size, 137);
   assert.equal(comparedIds.includes('secret-war'), false);
   assert.equal(comparedIds.filter((id) => id === 'spider-man-the-other').length, 1);
+  assert.equal(comparedIds.includes('mcu-prep-thunderbolts'), false);
+  assert.equal(comparedIds.includes('mcu-prep-daredevil-born-again'), false);
+
+  const current = await buildReportForMapping(
+    path.join(mappingsDir, 'secret-war.json'),
+    [path.join(mappingsDir, 'spider-man-the-other.json')],
+    { excludedOrderIds: [] },
+  );
+  const manifest = JSON.parse(readFileSync(path.join(root, 'src', 'data', 'curated-lists.json'), 'utf8'));
+  const currentIds = current.comparisons.map((comparison) => comparison.orderId);
+  const expectedIds = manifest.lists.map((entry) => entry.id).filter((id) => id !== 'secret-war');
+  assert.equal(current.comparisonCount, expectedIds.length);
+  assert.deepEqual([...currentIds].sort(), [...expectedIds].sort());
+  assert.equal(currentIds.includes('mcu-prep-thunderbolts'), true);
+  assert.equal(currentIds.includes('mcu-prep-daredevil-born-again'), true);
 });
 
 test('fresh overlap reports bind the complete library, mapping, peers, and factual comparisons', async () => {

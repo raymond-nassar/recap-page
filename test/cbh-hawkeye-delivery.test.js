@@ -249,7 +249,7 @@ test('Hawkeye has a complete approved current-library relationship and shipped i
     && entry.id !== 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order' && entry.id !== 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order'
     && entry.id !== 'ms-marvel-kamala-khan-reading-order'
     && entry.id !== 'nova-reading-order' && entry.id !== 'ultimate-spider-man-reading-order' && entry.id !== 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide'
-    && entry.id !== 'namor-sub-mariner-reading-order' && entry.id !== 'iron-fist-reading-order' && entry.id !== 'mcu-prep-thunderbolts');
+    && entry.id !== 'namor-sub-mariner-reading-order' && entry.id !== 'iron-fist-reading-order' && entry.id !== 'mcu-prep-daredevil-born-again' && entry.id !== 'mcu-prep-thunderbolts');
   const orders = await Promise.all(existing.map(async (entry) => ({
     orderId: entry.id,
     issueIds: issueIdsFromValue(await readJson(`src/data/${entry.out}`)),

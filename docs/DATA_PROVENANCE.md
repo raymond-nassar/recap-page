@@ -55,6 +55,11 @@ approved as a partial overlap with the existing Spider-Man best-of path. Neither
 exact duplicate. No source commentary, branding, layout, movie imagery, or comic image bytes are
 copied.
 
+The separate owner-authored Daredevil companion does not change that fourteen-source CBH
+inventory or its six published selections. Its owner credit, five supplied positions and
+approved six-collection expansion are recorded under
+[Owner-authored MCU Prep: Daredevil: Born Again](#owner-authored-mcu-prep-daredevil-born-again).
+
 ### Owner-authored Thunderbolts* companion
 
 [MCU Prep: Thunderbolts*](https://github.com/raymond-nassar/recap-page/issues/682) is a separate
@@ -338,15 +343,15 @@ orders: **null means nobody granted anything for this file, not that the file is
 
 ### Reading orders, pinned
 
-Two hundred and eighty-two pinned reading-order payloads sit under
-[`src/data/`](../src/data): 281 visible catalog files and one noncatalog partition parent. They hold
-30,853 issue records covering 19,268 distinct tracked identities. The visible files hold 30,366 of those records;
+Two hundred and eighty-three pinned reading-order payloads sit under
+[`src/data/`](../src/data): 282 visible catalog files and one noncatalog partition parent. They hold
+30,890 issue records covering 19,268 distinct tracked identities. The visible files hold 30,403 of those records;
 the extra 487 are the retained Marvel Knights to Planet X parent whose ordinary children partition
 the same vector. Records use these fields:
 `issueId`, `title`,
 `number`, `url`, `seriesId`, `seriesName`, `onSale`, `mu`, `digitalId`, `pageCount`, a `cover`
-object of `path` and `ext`, and `creators` of `name` and `role`. Across all 282 payloads, 25,975
-records carry a cover URL and 24,408 carry creator credits.
+object of `path` and `ext`, and `creators` of `name` and `role`. Across all 283 payloads, 26,012
+records carry a cover URL and 24,433 carry creator credits.
 
 `description` was the field to look at hardest and is now empty. The others are facts about a
 publication: which issue, in which series, on what date. A description was Marvel's own prose
@@ -430,14 +435,16 @@ incidental property of the schema.
 | Compiled for this project from Comic Book Herald's guide | 148 | The guide's issue selection and sequence, re-expressed as local checklists. Every visible card links to the exact guide followed |
 | Compiled for this project from Comic Book Reading Orders | 39 | Factual issue identities and order from exact event pages or visible timeline sections. Every card links to the source followed |
 | Vendored from `emreparker/marvel-comics` | 2 | Nothing. The order is the upstream curator's; only the issue lookups were done here |
+| Selected by raymond-nassar for MCU Prep | 1 | The owner's five selections, expanded into six verified collection groups with an explicit approval for both books at position 3 |
 
-The 204 source orders generate 281 visible Reading Lists. Marvel Knights to Planet X is the only
+The 205 source orders generate 282 visible Reading Lists. Marvel Knights to Planet X is the only
 partition: its 99 quoted source positions and 487 metadata-complete issues remain in one hidden
 parent, while a checked ledger generates 78 ungrouped child payloads. Their separate 78-stop path
 preserves owner order when timeline years move backward, and their overlap matrix is regenerated
 against the current visible catalog rather than copied into historical reports. Its current
-report records 82 overlapping child-and-peer pairs across 22 visible peers, including one
-three-issue Iron Fist relationship, while preserving all earlier pairs.
+report records 83 overlapping child-and-peer pairs across 23 visible peers, including one
+three-issue Iron Fist relationship and one nine-issue Daredevil companion relationship,
+while preserving all earlier pairs.
 
 ### Series and creator indexes
 
@@ -450,10 +457,11 @@ selection here is not editorial, because it is simply all of them.
 
 ### Order checklists
 
-The 202 Markdown files in [`src/data/orders/`](../src/data/orders) are local source files.
+The 203 Markdown files in [`src/data/orders/`](../src/data/orders) are local source files.
 The two upstream Hickman checklists are fetched separately when vendored. The local sources
 comprise eight assembled from series metadata, 148 from reviewed Comic Book Herald selections,
-thirty-nine from reviewed Comic Book Reading Orders selections, and seven compiled by hand.
+thirty-nine from reviewed Comic Book Reading Orders selections, seven compiled by hand, and one
+owner-authored MCU Prep selection.
 Every file carries its own derivation trail. The 148 Comic Book Herald sources name that guide
 on their catalog cards and link to the exact page or section followed. Thirty-nine reference
 Comic Book Reading Orders and name it on their card.
@@ -484,7 +492,7 @@ above is listed separately because it is third-party material outside the usual 
 | Field | Holds |
 |---|---|
 | `sourceOrigin` | Prose. Where the order came from and who compiled it. Always present. This is what the catalog shows a reader, because it is the credit that is owed |
-| `sourceLicense` | An SPDX expression, or `null`. Only a licence actually conveyed with the vendored order. `null` on all 281 pinned reading-order payloads today |
+| `sourceLicense` | An SPDX expression, or `null`. Only a licence actually conveyed with the vendored order. `null` on all 283 pinned reading-order payloads today |
 | `sourcePage` | A link a reader can follow to the upstream, when there is one |
 | `sourceSection` | A visible heading that distinguishes several guides on one exact page. Absent for an ordinary whole-page source |
 | `spotlightKind` | An editorial classification required only for character runs. `best-of` and `complete-guide` make distinct, reviewable claims about a guide's scope; `other` records that neither claim is accurate. It is authored here and is never copied or inferred from an upstream field |
@@ -955,10 +963,10 @@ the book id out of an address the reader pastes.
 
 The generated catalog currently publishes three independent Reading Paths with 100 stops: two
 authored paths with 10 and 12 stops from the curated manifest at
-`src/data/curated-lists.json:6785-6824`, plus the 78-stop Marvel Knights to Planet X path generated
+`src/data/curated-lists.json:6822-6861`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all three at
-`src/data/catalog.json:10790-10915`.
+`src/data/catalog.json:10834-10959`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -1766,3 +1774,67 @@ Operation: Zero Tolerance, retaining the distinct 1996 Heroes Reborn Iron Man #6
 Only factual provider details, including issue identities, creator credits and cover URLs,
 are retained; the source's editorial prose, comic image bytes and inferred reader
 availability are not copied.
+
+## Owner-authored MCU Prep: Daredevil: Born Again
+
+[Issue #681](https://github.com/raymond-nassar/recap-page/issues/681) supplies the owner-authored
+selection, not a Comic Book Herald Daredevil guide. The original five positions remain in the
+[ordered owner ledger](../scripts/data/owner-selections/mcu-prep-daredevil-born-again.json).
+The title and creator conflict at position 3 was reported before an identity was chosen. The owner
+explicitly said
+[Include both](https://github.com/raymond-nassar/recap-page/issues/681#issuecomment-5971677967),
+so Bendis's earlier Out collection precedes Brubaker's first volume within that same source
+position. It is not a substitute for another selection or permission to publish either complete run.
+
+| Source position | Verified selection | Original comics | Count |
+|---|---|---|---|
+| 1 | Frank Miller's The Man Without Fear | Daredevil: The Man Without Fear (1993) #1-5 | 5 |
+| 2 | Frank Miller's Born Again story arc | Daredevil (1964) #227-233 | 7 |
+| 3a | Brian Michael Bendis's Out trade | Daredevil (1998) #32-40 | 9 |
+| 3b | Ed Brubaker's The Devil Inside and Out Vol. 1 | Daredevil (1998) #82-87 | 6 |
+| 4 | Chip Zdarsky's Know Fear | Daredevil (2019) #1-5 | 5 |
+| 5 | Chip Zdarsky's No Devils, Only God | Daredevil (2019) #6-10 | 5 |
+
+The bibliographic records were retrieved on 2026-10-03: the distributor record for
+[The Man Without Fear](https://prhcomics.com/book/?isbn=9780785134794),
+the [Born Again arc record](https://en.wikipedia.org/wiki/Born_Again_(comics)) and
+[seven-issue Artist's Edition review](https://aeindex.org/reviews/david-mazzucchellis-daredevil-born-again-artists-edition/),
+the specialist [trade collection index](https://www.manwithoutfear.com/daredevil-tradepaperbacks-and-graphic-novels.shtml),
+and distributor records for
+[Know Fear](https://www.penguinrandomhouse.com/books/694088/daredevil-by-chip-zdarsky-vol-1-know-fear-by-chip-zdarsky/)
+and [No Devils, Only God](https://www.penguinrandomhouse.com/books/694089/daredevil-by-chip-zdarsky-vol-2-no-devils-only-god-by-chip-zdarsky/).
+The last distributor record incorrectly prints 2018. Exact issue identities belong to series 26080,
+Daredevil (2019), so the typo does not select a different series. Born Again is the seven-issue
+namesake arc, not an edition with added #226 or #219. Out includes the trade's Trial of the Century
+issues #38-40. Fisk was already mayor before the selected Zdarsky issues, as the earlier
+[Mayor Fisk collection review](https://aiptcomics.com/2025/02/05/daredevil-mayor-fisk-tpb-review/)
+records; the selected books are not described as his first election or as verified screen adaptations.
+
+The [frozen owner packet](../scripts/data/owner-packets/mcu-prep-daredevil-born-again.json),
+[exact mapping](../scripts/data/owner-mappings/mcu-prep-daredevil-born-again.json) and
+[overlap report](../scripts/data/owner-overlaps/mcu-prep-daredevil-born-again.json) reuse the
+existing provider-configurable evidence and duplicate gates. All 280 earlier visible orders,
+including generated chapters, and the retained noncatalog parent were compared: 281 peers,
+four relationships and 277 without shared originals. Explicit
+[human owner approval](https://github.com/raymond-nassar/recap-page/issues/681#issuecomment-5971795512)
+retains all 37 shared comics with the complete Daredevil guide; nine with Iron Fist, #38-40 and
+#82-87 of the 1998 series; and nine #32-40 originals with both Marvel Knights to Planet X
+chapter 26 and its hidden parent. The companion contains that whole Out chapter but does not
+replace it. No exact duplicate is approved. Packet, mapping, report, library and approval digests
+bind those dispositions to the measured vector.
+
+The [checklist](../src/data/orders/mcu-prep-daredevil-born-again.md) and
+[generated payload](../src/data/mcu_prep_daredevil_born_again.json) publish 37 distinct original
+issues in six collection groups. The targeted vendor queried only those 37 exact originals.
+There were no unresolved identities or refused issue-detail lookups, and all 37 have provider
+reader IDs and cover URLs. Twenty-five records have creator credits; the twelve blank credit
+arrays stay blank and are identified in ordered metadata provenance, not filled by inference.
+No gap-bundle Issue is required for a failed identity or detail lookup in this publication.
+These metadata facts do not claim Marvel Unlimited availability.
+
+Selection credit is `Selected by raymond-nassar for MCU Prep`, and `sourceLicense` remains
+`null`. Only factual issue identities were reused from the retained Daredevil mapping; neither its
+external guide selection nor its narrative was reused. The fixed CBH companion inventory remains
+unchanged. The existing screen-companion surface keeps selected depth, no timeline year, and
+no beginner or Character Spotlight classification. Saved-state format, progress, notes and
+reader-launch behavior are unchanged. No comic image bytes or third-party synopsis prose are stored.
