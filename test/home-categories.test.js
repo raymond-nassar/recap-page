@@ -163,6 +163,7 @@ test('MCU Prep keeps the six CBH companions before owner companions on the stabl
       'wandavision',
       'spider-man-far-from-home',
       'mcu-prep-thunderbolts',
+      'mcu-prep-moon-knight',
       'mcu-prep-eternals',
       'mcu-prep-deadpool-and-wolverine',
       'mcu-prep-daredevil-born-again',

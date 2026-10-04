@@ -258,6 +258,7 @@ test('owner Daredevil remains one owner-credited MCU Prep card outside Character
   assert.deepEqual(selected, [
     'doctor-strange-multiverse-of-madness', 'spider-man-no-way-home', 'marvel-multiverse',
     'marvel-what-if', 'wandavision', 'spider-man-far-from-home', 'mcu-prep-thunderbolts',
+    'mcu-prep-moon-knight',
     'mcu-prep-eternals', 'mcu-prep-deadpool-and-wolverine', id,
   ]);
   assert.equal(shelfLists(catalog.lists, 'spotlights').some((card) => card.id === id), false);
