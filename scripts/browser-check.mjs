@@ -44,6 +44,8 @@ import {
 } from '../src/js/lib/catalog.js';
 import { readerIssueId } from '../src/js/lib/markdown.js';
 import { addIssuesToList, createEmptyState, createList } from '../src/js/lib/model.js';
+import { homeUpdatesContent } from '../src/js/lib/homeUpdatesContent.js';
+import { HOME_UPDATES_SEEN_KEY } from '../src/js/lib/homeUpdatesSeen.js';
 import { formatRoute } from '../src/js/lib/route.js';
 
 // Exit 2 rather than 1 for a missing prerequisite. A failed assertion and an uninstalled browser
@@ -1673,10 +1675,403 @@ const MUTATIONS = [
 
 // ------------------------------------------------------------------ scenarios
 
+async function homeUpdatesSnapshot(page) {
+  return page.evaluate((key) => ({
+    entries: Object.fromEntries(Object.keys(localStorage).filter((name) => name !== key)
+      .sort().map((name) => [name, localStorage.getItem(name)])),
+    save: {
+      text: document.querySelector('#save-report').textContent,
+      class: document.querySelector('#save-report').className,
+    },
+  }), HOME_UPDATES_SEEN_KEY);
+}
+
+async function openAllHomeUpdates(page, t, label) {
+  await click(page, '#home-updates-toggle');
+  await page.waitForFunction(() => document.querySelector('#home-updates').open);
+  const batch = homeUpdatesContent.batch;
+  if (!batch) {
+    t.check(`${label}: null highlights are explicit and do not acknowledge`,
+      await page.evaluate((key) => document.querySelector('#home-updates-content').textContent.includes('No new highlights')
+        && document.querySelector('#home-updates-new').hidden && localStorage.getItem(key) === null, HOME_UPDATES_SEEN_KEY));
+    return;
+  }
+  await page.waitForFunction((count) => {
+    const buttons = [...document.querySelectorAll('[data-home-updates-list]')];
+    return buttons.length === count && buttons.every((node) => !node.disabled);
+  }, {}, batch.listIds.length);
+  for (const summary of await page.$$('#home-updates .home-updates-more > summary')) {
+    await summary.evaluate((node) => { if (!node.parentElement.open) node.click(); });
+  }
+  const all = await page.evaluate(() => ({
+    features: [...document.querySelectorAll('[data-home-updates-section="features"] li')].map((node) => node.textContent),
+    lists: [...document.querySelectorAll('[data-home-updates-list]')].map((node) => ({
+      id: node.dataset.homeUpdatesList,
+      name: node.previousElementSibling.textContent,
+      label: node.getAttribute('aria-label'),
+    })),
+  }));
+  const expected = batch.listIds.map((id) => {
+    const entry = ACTUAL_CATALOG.lists.find((list) => list.id === id);
+    if (!entry) throw new Error(`Generated guide is missing from the real catalog: ${id}`);
+    return { id, name: entry.name, label: `Preview: ${entry.name}` };
+  });
+  t.check(`${label}: More exposes all literal features and every real catalog identity`,
+    JSON.stringify(all.features) === JSON.stringify(batch.features)
+      && JSON.stringify(all.lists) === JSON.stringify(expected), JSON.stringify(all));
+}
+
+async function checkOfflineHomeUpdates(browser, origin, t) {
+  const context = await browser.createBrowserContext();
+  let workerSession;
+  let pageSession;
+  try {
+    const page = await context.newPage();
+    const errors = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+    await page.setViewport({ width: 1280, height: 900 });
+    await page.setCacheEnabled(false);
+    await page.setBypassServiceWorker(false);
+    await page.setRequestInterception(true);
+    page.on('request', (request) => (
+      new URL(request.url()).origin === origin ? request.continue() : request.abort()
+    ));
+    await page.evaluateOnNewDocument((state, expectedOrigin) => {
+      if (location.origin !== expectedOrigin) return;
+      window.__newsDocument = crypto.randomUUID();
+      if (localStorage.getItem('browser.home-updates.initialized') !== null) return;
+      localStorage.setItem('browser.home-updates.initialized', '1');
+      localStorage.setItem('mrt.settings', JSON.stringify({ covers: false, theme: 'light' }));
+      localStorage.setItem('mrt.state.v2', state);
+      localStorage.setItem('mrt.state.restore.tmp', state);
+      localStorage.setItem('mrt.state.prerestore', state);
+      localStorage.setItem('mrt.state.salvage', 'offline recovery proof bytes');
+    }, JSON.stringify(createEmptyState()), origin);
+    console.log('HOME_UPDATES offline-stage=real-worker-control');
+    await page.goto(`${origin}/#/home`, { waitUntil: 'load' });
+    await page.waitForFunction(() => Boolean(navigator.serviceWorker.controller));
+    // A controlled arrival also caches the real catalog naturally, even if its first response
+    // arrived after the first-visit resource-timing snapshot. No fixture fetch or warming list.
+    await page.reload({ waitUntil: 'load' });
+    const required = ['/js/lib/homeUpdatesContent.js', '/js/lib/homeUpdatesSeen.js',
+      '/js/views/home-updates.js', '/data/catalog.json'];
+    console.log('HOME_UPDATES offline-stage=actual-cache');
+    await page.waitForFunction(async (paths) => {
+      const names = (await caches.keys()).filter((name) => name.startsWith('mrt-offline-'));
+      const stored = new Set();
+      for (const name of names) {
+        const cache = await caches.open(name);
+        for (const request of await cache.keys()) stored.add(new URL(request.url).pathname);
+      }
+      return navigator.serviceWorker.controller && paths.every((path) => stored.has(path));
+    }, {}, required);
+    t.check('real worker cached all three news modules and the actual catalog', true);
+    const before = await homeUpdatesSnapshot(page);
+    const documentId = await page.evaluate(() => window.__newsDocument);
+    const target = await browser.waitForTarget((candidate) => candidate.type() === 'service_worker'
+      && candidate.browserContext() === context && candidate.url() === `${origin}/sw.js`);
+    workerSession = await target.createCDPSession();
+    await workerSession.send('Network.enable');
+    await workerSession.send('Network.emulateNetworkConditions', {
+      offline: true, latency: 0, downloadThroughput: 0, uploadThroughput: 0,
+    });
+    await page.setOfflineMode(true);
+    const responses = new Map();
+    pageSession = await page.createCDPSession();
+    await pageSession.send('Network.enable');
+    await pageSession.send('Network.setCacheDisabled', { cacheDisabled: true });
+    pageSession.on('Network.responseReceived', ({ response }) => {
+      responses.set(new URL(response.url).pathname, response.fromServiceWorker === true);
+    });
+    console.log('HOME_UPDATES offline-stage=fresh-offline-document');
+    await page.goto('about:blank');
+    await page.goto(`${origin}/#/home`, { waitUntil: 'load' });
+    const currentDocument = await page.evaluate(() => ({
+      id: window.__newsDocument, closed: !document.querySelector('#home-updates').open,
+    }));
+    t.check('fresh offline arrival is a worker-served document with a quiet closed entry',
+      responses.get('/') === true && currentDocument.id !== documentId && currentDocument.closed,
+      JSON.stringify({ currentDocument, prior: documentId, responses: [...responses] }));
+    await openAllHomeUpdates(page, t, 'offline real content');
+    t.check('offline content and guide labels came from worker responses, not HTTP or fixture fetch',
+      required.every((path) => responses.get(path) === true), JSON.stringify([...responses]));
+    t.check('offline opening preserves reading, recovery, preferences and save feedback',
+      JSON.stringify(await homeUpdatesSnapshot(page)) === JSON.stringify(before));
+    t.check('real-worker offline content has no script errors', errors.length === 0, JSON.stringify(errors));
+  } catch (error) {
+    console.error('HOME_UPDATES real offline check failed:', error);
+    throw error;
+  } finally {
+    if (pageSession) await pageSession.detach();
+    if (workerSession) await workerSession.detach();
+    await context.close();
+  }
+}
+
 // Every scenario gets its own browser context, so its storage bucket is its own and the order
 // they run in cannot matter. A scenario that passed only because the one before it left the right
 // state behind is not evidence either.
 const SCENARIOS = [
+  {
+    id: 'home-updates',
+    title: 'Quiet Home highlights preserve reading, focus, layout and real-worker offline content',
+    async run(page, t) {
+      const errors = [];
+      page.on('pageerror', (error) => errors.push(error.message));
+      await page.evaluateOnNewDocument(() => { window.__mrtBlockExternal = true; });
+      await open(page, '/?catalog=actual#/home');
+      await page.waitForSelector('#home-first-run:not([hidden]) #btn-home-browse');
+      await page.waitForFunction(() => Number(localStorage.getItem('mrt.cache-purge.v1')) > 0);
+      const initial = await page.evaluate((key) => ({
+        open: document.querySelector('#home-updates').open,
+        new: !document.querySelector('#home-updates-new').hidden,
+        value: localStorage.getItem(key),
+      }), HOME_UPDATES_SEEN_KEY);
+      t.check('first-visit news is closed without a boot acknowledgment',
+        !initial.open && initial.new === Boolean(homeUpdatesContent.batch) && initial.value === null, JSON.stringify(initial));
+      const before = await homeUpdatesSnapshot(page);
+      const route = await page.evaluate(() => ({ hash: location.hash, history: history.length }));
+      await page.focus('#home-updates-toggle');
+      await page.keyboard.press('Tab');
+      await page.keyboard.down('Shift');
+      await page.keyboard.press('Tab');
+      await page.keyboard.up('Shift');
+      t.check('the summary is keyboard reachable with visible focus', await page.$eval('#home-updates-toggle', (node) => (
+        document.activeElement === node && node.matches(':focus-visible')
+        && getComputedStyle(node).outlineStyle !== 'none' && parseFloat(getComputedStyle(node).outlineWidth) > 0
+      )));
+      await page.keyboard.press('Enter');
+      await page.waitForFunction(() => document.querySelector('#home-updates').open);
+      t.check('keyboard opening adds no route or history', JSON.stringify(await page.evaluate(() => ({
+        hash: location.hash, history: history.length,
+      }))) === JSON.stringify(route));
+      await page.keyboard.press('Escape');
+      t.check('Escape closes and restores the summary', await page.evaluate(() => !document.querySelector('#home-updates').open
+        && document.activeElement.id === 'home-updates-toggle'));
+      t.check('first keyboard viewing preserves every other storage value and save feedback',
+        JSON.stringify(await homeUpdatesSnapshot(page)) === JSON.stringify(before));
+
+      for (const populated of [false, true]) {
+        if (populated) {
+          const created = createList(createEmptyState(), { name: 'Existing Reading List', id: 'news-fixture' });
+          const saved = addIssuesToList(created, 'news-fixture', ORDER.items).state;
+          await page.evaluate((state) => localStorage.setItem('mrt.state.v2', JSON.stringify(state)), saved);
+          await page.reload({ waitUntil: 'load' });
+          await page.waitForSelector('#home-continue:not([hidden])');
+        }
+        for (const [width, theme] of [[1280, 'light'], [1280, 'dark'], [390, 'light'], [390, 'dark']]) {
+          await page.setViewport({ width, height: width === 1280 ? 900 : 844 });
+          await page.evaluate((value) => document.documentElement.setAttribute('data-theme', value), theme);
+          const baseline = await homeUpdatesSnapshot(page);
+          const label = `${populated ? 'populated' : 'first-visit'} ${width}px ${theme}`;
+          t.check(`${label}: closed entry leaves the primary actions reachable`, await page.evaluate((hasLists) => {
+            const node = document.querySelector(hasLists ? '#home-continue' : '#home-first-run');
+            return !document.querySelector('#home-updates').open && !node.hidden
+              && [...node.querySelectorAll('button')].some((button) => button.getClientRects().length);
+          }, populated));
+          await openAllHomeUpdates(page, t, label);
+          const layout = await page.evaluate(() => {
+            const panel = document.querySelector('#home-updates-panel');
+            const box = panel.getBoundingClientRect();
+            const targets = [...document.querySelectorAll('#home-updates button, #home-updates summary')]
+              .filter((node) => node.getClientRects().length).map((node) => {
+                const bounds = node.getBoundingClientRect();
+                return { width: bounds.width, height: bounds.height };
+              });
+            return {
+              fits: box.left >= 0 && box.right <= innerWidth + 1 && box.height <= innerHeight * .7 + 1,
+              scroll: panel.scrollHeight > panel.clientHeight,
+              overflow: document.documentElement.scrollWidth > innerWidth + 1,
+              targets,
+            };
+          });
+          const size = (homeUpdatesContent.batch?.features.length ?? 0) + (homeUpdatesContent.batch?.listIds.length ?? 0);
+          t.check(`${label}: panel fits, scrolls when large and retains 44px controls`,
+            layout.fits && !layout.overflow && (size < 10 || layout.scroll)
+              && layout.targets.every((target) => target.width >= 44 && target.height >= 44), JSON.stringify(layout));
+          await click(page, '#home-updates-close');
+          t.check(`${label}: Close restores the summary without reading writes`,
+            await page.evaluate(() => document.activeElement.id === 'home-updates-toggle')
+              && JSON.stringify(await homeUpdatesSnapshot(page)) === JSON.stringify(baseline));
+        }
+      }
+      await page.setViewport({ width: 1280, height: 900 });
+      await openAllHomeUpdates(page, t, 'Preview reachability');
+      const last = homeUpdatesContent.batch?.listIds.at(-1);
+      if (last) {
+        const baseline = await homeUpdatesSnapshot(page);
+        await page.$eval(`[data-home-updates-list="${last}"]`, (node) => {
+          node.scrollIntoView({ block: 'nearest' });
+          node.click();
+        });
+        await page.waitForSelector('#preview[open]');
+        t.check('the final guide uses existing Preview and closes the nonmodal panel',
+          await page.$eval('#preview-h', (node) => node.textContent) === ACTUAL_CATALOG.lists.find((entry) => entry.id === last).name
+            && await page.$eval('#home-updates', (node) => !node.open));
+        await page.keyboard.press('Escape');
+        await page.waitForFunction(() => !document.querySelector('#preview').open);
+        t.check('Preview returns to a visible summary without adding or changing progress',
+          await page.$eval('#home-updates-toggle', (node) => {
+            const box = node.getBoundingClientRect();
+            return document.activeElement === node && box.top >= 0 && box.bottom <= innerHeight;
+          }) && JSON.stringify(await homeUpdatesSnapshot(page)) === JSON.stringify(baseline));
+      } else await click(page, '#home-updates-close');
+      await click(page, '#home-updates-toggle');
+      await page.focus('#btn-chero-open');
+      await page.$eval('#btn-chero-open', (node) => node.dispatchEvent(new PointerEvent('pointerdown', { bubbles: true })));
+      t.check('an outside pointer closes without stealing target focus',
+        await page.evaluate(() => !document.querySelector('#home-updates').open && document.activeElement.id === 'btn-chero-open'));
+      await click(page, '#home-updates-toggle');
+      await click(page, '.ri[data-view="browse"]');
+      await page.waitForSelector('#view-browse:not([hidden])');
+      t.check('leaving Home closes without pulling focus back into hidden Home',
+        await page.evaluate(() => !document.querySelector('#home-updates').open
+          && !document.querySelector('#view-home').contains(document.activeElement)));
+      await click(page, '.brand[data-view="home"]');
+      await page.waitForSelector('#view-home:not([hidden])');
+      t.check('returning Home stays closed', await page.$eval('#home-updates', (node) => !node.open));
+      t.check('Home news interaction has no script errors', errors.length === 0, JSON.stringify(errors));
+      await checkOfflineHomeUpdates(page.browser(), page.__origin, t);
+    },
+  },
+  {
+    id: 'home-updates-state',
+    title: 'Real tab viewing, deletion, queued locks and feature-local faults preserve reading state',
+    async run(page, t) {
+      await page.evaluateOnNewDocument(() => { window.__mrtBlockExternal = true; });
+      await open(page, '/?catalog=actual#/home');
+      await page.waitForFunction(() => Number(localStorage.getItem('mrt.cache-purge.v1')) > 0);
+      const batch = homeUpdatesContent.batch;
+      if (!batch) {
+        await openAllHomeUpdates(page, t, 'no viewing batch');
+        return;
+      }
+      const created = createList(createEmptyState(), { name: 'Existing reading data', id: 'news-state-fixture' });
+      const saved = addIssuesToList(created, 'news-state-fixture', ORDER.items).state;
+      await page.evaluate((state) => {
+        const raw = JSON.stringify({ ...state, writeToken: 'news-state-proof' });
+        localStorage.setItem('mrt.state.v2', raw);
+        localStorage.setItem('mrt.state.prerestore', raw);
+        localStorage.setItem('mrt.state.restore.tmp', raw);
+        localStorage.setItem('mrt.state.salvage', 'existing recovery proof bytes');
+      }, saved);
+      await page.reload({ waitUntil: 'load' });
+      await page.waitForSelector('#home-continue:not([hidden])');
+      t.check('the state fixture starts with valid populated reading data and its write token',
+        await page.evaluate(() => {
+          const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+          return state.lists['news-state-fixture'].itemIds.length === 3 && state.writeToken === 'news-state-proof';
+        }));
+      const before = await homeUpdatesSnapshot(page);
+      const context = page.browserContext();
+      const other = await context.newPage();
+      try {
+        other.__denyExternal = true;
+        await preparePage(other, page.__origin, null);
+        await other.evaluateOnNewDocument(() => { window.__mrtBlockExternal = true; });
+        await open(other, '/?catalog=actual#/home');
+        await click(page, '#home-updates-toggle');
+        await page.waitForFunction((key, id) => localStorage.getItem(key) === String(id), {}, HOME_UPDATES_SEEN_KEY, batch.id);
+        await other.waitForFunction(() => document.querySelector('#home-updates-new').hidden);
+        t.check('explicit viewing clears New in both actual tabs', await page.evaluate(() => document.querySelector('#home-updates-new').hidden));
+        await click(page, '#home-updates-close');
+        await page.reload({ waitUntil: 'load' });
+        t.check('viewing survives reload while the entry stays available and closed',
+          await page.evaluate(() => !document.querySelector('#home-updates').open && document.querySelector('#home-updates-new').hidden));
+        await other.evaluate((key, value) => localStorage.setItem(key, String(value)), HOME_UPDATES_SEEN_KEY, batch.id + 10);
+        await click(page, '#home-updates-toggle');
+        await page.waitForFunction(() => document.querySelector('#home-updates').open);
+        await page.evaluate((key) => navigator.locks.request(key, () => {}), HOME_UPDATES_SEEN_KEY);
+        t.check('an older running batch cannot lower a newer tab record',
+          await page.evaluate((key, id) => localStorage.getItem(key) === String(id + 10), HOME_UPDATES_SEEN_KEY, batch.id));
+        await click(page, '#home-updates-close');
+        await other.evaluate((key) => localStorage.removeItem(key), HOME_UPDATES_SEEN_KEY);
+        await page.waitForFunction(() => !document.querySelector('#home-updates-new').hidden);
+        t.check('actual key deletion restores New without automatically recreating storage',
+          await page.evaluate((key) => localStorage.getItem(key) === null && !document.querySelector('#home-updates').open, HOME_UPDATES_SEEN_KEY));
+        await other.evaluate((key, value) => localStorage.setItem(key, String(value)), HOME_UPDATES_SEEN_KEY, batch.id - 1);
+        await other.evaluate((key) => {
+          window.__newsLocked = false;
+          void navigator.locks.request(key, () => new Promise((resolve) => {
+            window.__newsLocked = true;
+            window.__releaseNewsLock = resolve;
+          }));
+        }, HOME_UPDATES_SEEN_KEY);
+        await other.waitForFunction(() => window.__newsLocked);
+        await click(page, '#home-updates-toggle');
+        await page.waitForFunction(() => document.querySelector('#home-updates-new').hidden);
+        await other.evaluate((key) => localStorage.removeItem(key), HOME_UPDATES_SEEN_KEY);
+        await page.waitForFunction(() => !document.querySelector('#home-updates-new').hidden
+          && document.querySelector('#home-updates-status').textContent.includes('Close and open again'));
+        await other.evaluate(() => window.__releaseNewsLock());
+        await other.evaluate((key) => navigator.locks.request(key, () => {}), HOME_UPDATES_SEEN_KEY);
+        t.check('a deletion retires the real queued acknowledgment without resurrection or reset reversal',
+          await page.evaluate((key) => localStorage.getItem(key) === null && !document.querySelector('#home-updates-new').hidden
+            && document.querySelector('#home-updates-status').textContent.includes('Close and open again'), HOME_UPDATES_SEEN_KEY));
+        await click(page, '#home-updates-close');
+        await click(page, '#home-updates-toggle');
+        await page.waitForFunction((key, id) => localStorage.getItem(key) === String(id), {}, HOME_UPDATES_SEEN_KEY, batch.id);
+        await click(page, '#home-updates-close');
+        await other.evaluate((key) => localStorage.setItem(key, 'malformed'), HOME_UPDATES_SEEN_KEY);
+        await page.reload({ waitUntil: 'load' });
+        t.check('malformed owned bytes are left alone at boot with New available',
+          await page.evaluate((key) => localStorage.getItem(key) === 'malformed' && !document.querySelector('#home-updates-new').hidden, HOME_UPDATES_SEEN_KEY));
+        await click(page, '#home-updates-toggle');
+        await page.waitForFunction((key, id) => localStorage.getItem(key) === String(id), {}, HOME_UPDATES_SEEN_KEY, batch.id);
+        t.check('only explicit viewing repairs the readable owned value', true);
+        await click(page, '#home-updates-close');
+
+        for (const fault of ['read', 'write', 'silent', 'lock']) {
+          await other.evaluate((key) => localStorage.removeItem(key), HOME_UPDATES_SEEN_KEY);
+          const faulty = await context.newPage();
+          try {
+            const errors = [];
+            faulty.on('pageerror', (error) => errors.push(error.message));
+            faulty.__denyExternal = true;
+            await preparePage(faulty, page.__origin, null);
+            await faulty.evaluateOnNewDocument((key, mode) => {
+              window.__mrtBlockExternal = true;
+              window.__newsWrites = [];
+              const read = Storage.prototype.getItem;
+              const write = Storage.prototype.setItem;
+              window.__newsRead = () => read.call(localStorage, key);
+              Storage.prototype.getItem = function (name) {
+                if (this === localStorage && name === key && mode === 'read') throw new Error('Owned viewing read refused');
+                return read.call(this, name);
+              };
+              Storage.prototype.setItem = function (name, value) {
+                if (this === localStorage && name === key) {
+                  window.__newsWrites.push(name);
+                  if (mode === 'write') throw new Error('Owned viewing write refused');
+                  if (mode === 'silent') return;
+                }
+                return write.call(this, name, value);
+              };
+              const request = navigator.locks.request.bind(navigator.locks);
+              navigator.locks.request = (name, ...args) => name === key && mode === 'lock'
+                ? Promise.reject(new Error('Owned viewing lock refused')) : request(name, ...args);
+            }, HOME_UPDATES_SEEN_KEY, fault);
+            await open(faulty, '/?catalog=actual#/home');
+            const baseline = await homeUpdatesSnapshot(faulty);
+            t.check(`${fault}: boot does not try to repair viewing`, await faulty.evaluate(() => window.__newsWrites.length === 0));
+            await click(faulty, '#home-updates-toggle');
+            await faulty.waitForFunction(() => document.querySelector('#home-updates-status').textContent.includes('New may return next visit'));
+            t.check(`${fault}: opening clears visit New but reports local non-success`,
+              await faulty.evaluate((mode) => document.querySelector('#home-updates-new').hidden
+                && window.__newsRead() === null && window.__newsWrites.length === (['write', 'silent'].includes(mode) ? 1 : 0), fault));
+            t.check(`${fault}: reading/recovery/preferences/save feedback are unchanged with no script error`,
+              JSON.stringify(await homeUpdatesSnapshot(faulty)) === JSON.stringify(baseline) && errors.length === 0, JSON.stringify(errors));
+          } finally {
+            await faulty.close();
+          }
+        }
+        t.check('real-tab viewing and deletion preserve all other storage and save feedback',
+          JSON.stringify(await homeUpdatesSnapshot(page)) === JSON.stringify(before));
+      } finally {
+        await other.close();
+      }
+    },
+  },
   {
     id: 'cover-art-settings',
     title: 'Settings alone controls cover art across Home and reading',

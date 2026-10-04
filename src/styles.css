@@ -148,7 +148,7 @@
   --blue: #7fb3ff;
   --logo-fill: #7fb3ff;
   /* The placeholder shown where a cover has not loaded. The hue comes from the series name at
-     `src/js/main.js:915-922`; these pairs supply saturation and lightness where that local hue is
+     `src/js/main.js:919-926`; these pairs supply saturation and lightness where that local hue is
      consumed. Keeping the hue reference on the cover avoids resolving it before the cover exists. */
   --fallback-a: 42% 26%;
   --fallback-b: 38% 14%;
@@ -1562,6 +1562,45 @@ progress { accent-color: var(--accent); height: 6px; }
 .home-action {
   margin: 0; color: var(--text); font-size: var(--t-subtitle); font-weight: 800;
   letter-spacing: .08em;
+}
+#home-updates {
+  grid-column: 3; align-self: center; justify-self: end; position: relative; min-width: 0;
+  color: var(--muted);
+}
+#home-updates-toggle, #home-updates .home-updates-more > summary {
+  cursor: pointer; min-width: 44px; min-height: 44px; padding: var(--space-5) var(--space-4);
+  border-radius: 6px; font-size: var(--t-body); color: var(--text);
+}
+#home-updates-toggle:hover, #home-updates .home-updates-more > summary:hover { background: var(--card-2); }
+#home-updates-new {
+  margin-left: var(--space-3); padding: var(--space-1) var(--space-3); border-radius: 4px;
+  font-size: var(--t-caption); font-weight: 600; color: var(--text); background: var(--card-2);
+}
+#home-updates-panel {
+  position: absolute; right: 0; top: 100%; z-index: 30; width: min(34rem, calc(100vw - 3rem));
+  max-height: min(32rem, 70vh); max-height: min(32rem, 70dvh); overflow-y: auto;
+  padding: var(--space-7); border: 1px solid var(--line-2); border-radius: 12px;
+  background: var(--card); color: var(--text); box-shadow: 0 12px 28px rgb(var(--shadow-rgb) / 22%);
+  overflow-wrap: anywhere;
+}
+.home-updates-head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-5); }
+#home-updates-title { margin: 0; font-size: var(--t-subtitle); }
+#home-updates :is(button, .home-updates-more > summary) { min-height: 44px; min-width: 44px; }
+#home-updates h3 { font-size: var(--t-body); margin: var(--space-7) 0 var(--space-4); }
+#home-updates ul { padding-left: var(--space-7); margin: 0; }
+#home-updates li + li { margin-top: var(--space-5); }
+.home-updates-copy, #home-updates-status { margin: var(--space-4) 0; color: var(--muted); }
+.home-updates-list { display: flex; align-items: center; justify-content: space-between; gap: var(--space-5); }
+.home-updates-list > span { min-width: 0; }
+.home-updates-list > button { flex-shrink: 0; }
+@media (max-width: 720px) {
+  #view-home > .head { grid-template-columns: minmax(0, 1fr); }
+  .home-lockup { grid-column: 1; }
+  #home-updates { grid-column: 1; }
+  #home-updates[open] { width: 100%; }
+  #home-updates-panel { position: static; width: 100%; }
+  #home-updates-toggle { width: max-content; max-width: 100%; margin-left: auto; }
+  .home-updates-list { flex-wrap: wrap; }
 }
 @media (forced-colors: active) {
   #view-home .home-brand { color: CanvasText; -webkit-text-stroke: 0; text-shadow: none; }

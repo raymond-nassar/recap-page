@@ -145,6 +145,20 @@
                 <h1 id="home-h" class="home-brand">RECAP PAGE!</h1>
                 <p class="home-action">Browse. Choose. Read.</p>
               </div>
+              <details id="home-updates">
+                <summary id="home-updates-toggle" aria-controls="home-updates-panel">
+                  What's new <span id="home-updates-new" aria-hidden="true" hidden>New</span>
+                </summary>
+                <section id="home-updates-panel" aria-labelledby="home-updates-title">
+                  <div class="home-updates-head">
+                    <h2 id="home-updates-title">What's new</h2>
+                    <button id="home-updates-close" class="btn btn-g" type="button">Close</button>
+                  </div>
+                  <div id="home-updates-content"></div>
+                  <p id="home-updates-status" role="status" aria-live="polite" hidden></p>
+                  <button id="home-updates-retry" class="btn btn-g" type="button" hidden>Retry catalog</button>
+                </section>
+              </details>
             </div>
 
             <!-- State B only: where the reader left off. -->

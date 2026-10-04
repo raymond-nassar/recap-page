@@ -50,6 +50,9 @@ import { createSavedListsPresenter } from './views/shared/saved-lists.js';
 import { createIssueView } from './views/issue.js';
 import { createReadingView, synopsisFallback } from './views/reading.js';
 import { createHomeView } from './views/home.js';
+import { homeUpdatesContent } from './lib/homeUpdatesContent.js';
+import { createHomeUpdatesSeen } from './lib/homeUpdatesSeen.js';
+import { createHomeUpdatesView } from './views/home-updates.js';
 import { createCatalogPresentation } from './views/shared/catalog-presentation.js';
 import { createCatalogView } from './views/catalog.js';
 import { createPreviewView } from './views/preview.js';
@@ -92,6 +95,7 @@ const store = new Store({
   },
 });
 const saveEducation = createSaveEducation({ storage: globalThis.localStorage });
+const homeUpdatesSeen = createHomeUpdatesSeen({ storage: store.storage, locks: globalThis.navigator?.locks });
 const hydrator = new Hydrator({ api, store, onProgress: onHydrationStatus });
 // One store for the tab, deliberately module-level and deliberately not persisted. It is passed to
 // the runner rather than owned by it so the view can read a fetched synopsis without importing the
@@ -1451,6 +1455,7 @@ function showView(next, { focus = true, push = false } = {}) {
   }
   setNarrowOpen(false, { rescueFocus: !focus });
 
+  if (next !== 'home') homeUpdatesView.close({ restoreFocus: false });
   view = next;
   addView.enter(next);
   for (const name of VIEWS) {
@@ -2562,6 +2567,7 @@ export function boot() {
   readingView.wire();
   for (const shelf of CATALOG_SHELVES) catalogView.wire(shelf.key);
   homeView.wire();
+  homeUpdatesView.wire();
   readingPathsView.wire();
   previewView.wire();
   wireAsk();
@@ -2980,6 +2986,31 @@ const homeView = createHomeView({
   shortTitle,
   upNext,
 });
+
+const homeUpdatesView = createHomeUpdatesView({
+  content: homeUpdatesContent,
+  seen: homeUpdatesSeen,
+  el,
+  elements: () => ({
+    home: $('#view-home'),
+    details: $('#home-updates'),
+    toggle: $('#home-updates-toggle'),
+    marker: $('#home-updates-new'),
+    content: $('#home-updates-content'),
+    close: $('#home-updates-close'),
+    status: $('#home-updates-status'),
+    retry: $('#home-updates-retry'),
+  }),
+  events: () => ({ document, window: globalThis }),
+  isCurrent: () => view === 'home',
+  isCovered: () => Boolean($('dialog[open]')) || (isNarrow && narrowOpen),
+  loadCatalog,
+  onPreview: (entry) => { void previewView.open(entry); },
+});
+
+export function closeHomeUpdatesPanel({ restoreFocus = true } = {}) {
+  return homeUpdatesView.close({ restoreFocus });
+}
 
 const libraryView = createLibraryView({
   el,
