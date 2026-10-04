@@ -439,7 +439,7 @@ test('historical approved evidence reaches its six payloads and cards within MCU
   const stories = groupCatalog(catalog.lists);
   const screen = availableHomeCategories(stories)
     .find((category) => category.key === 'marvel-on-screen');
-  assert.equal(screen.count, 7);
+  assert.equal(screen.count, 8);
   const screenDefinition = HOME_CATEGORIES.find((category) => (
     category.key === 'marvel-on-screen'
   ));
