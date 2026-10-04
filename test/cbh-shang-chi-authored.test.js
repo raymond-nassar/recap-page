@@ -95,7 +95,7 @@ test('Shang-Chi requires its renewed independent relationship approval against a
     && entry.id !== 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order'
     && entry.id !== 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order'
     && entry.id !== 'namor-sub-mariner-reading-order'
-    && entry.id !== 'iron-fist-reading-order' && entry.id !== 'mcu-prep-moon-knight' && entry.id !== 'mcu-prep-thunderbolts');
+    && entry.id !== 'iron-fist-reading-order' && entry.id !== 'mcu-prep-moon-knight' && entry.id !== 'spider-man-no-way-home-owner-selected' && entry.id !== 'mcu-prep-thunderbolts');
   assert.equal(published.length, 198);
   const orders = await Promise.all(published.map(async (entry) => ({
     id: entry.id,

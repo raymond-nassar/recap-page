@@ -137,14 +137,18 @@ test('buildReportForMapping regenerates shipped reports without duplicate self o
   const peerPaths = [path.join(mappingsDir, 'spider-man-the-other.json')];
   const report = await buildReportForMapping(mappingPath, peerPaths);
   const comparedIds = report.comparisons.map((comparison) => comparison.orderId);
+  const laterOwnerIds = [
+    'mcu-prep-thunderbolts', 'mcu-prep-moon-knight', 'spider-man-no-way-home-owner-selected',
+  ];
 
   assert.equal(report.candidateCount, 5);
   assert.equal(report.comparisonCount, 137);
   assert.equal(new Set(comparedIds).size, 137);
   assert.equal(comparedIds.includes('secret-war'), false);
   assert.equal(comparedIds.filter((id) => id === 'spider-man-the-other').length, 1);
-  assert.equal(comparedIds.includes('mcu-prep-thunderbolts'), false);
-  assert.equal(comparedIds.includes('mcu-prep-moon-knight'), false);
+  for (const laterId of laterOwnerIds) {
+    assert.equal(comparedIds.includes(laterId), false);
+  }
   const [current, library] = await Promise.all([
     buildReportForMapping(mappingPath, peerPaths, { excludedOrderIds: [] }),
     loadLibrarySnapshot(),
@@ -153,8 +157,9 @@ test('buildReportForMapping regenerates shipped reports without duplicate self o
     library.lists.filter((entry) => entry.id !== 'secret-war')
       .map((entry) => entry.id).sort((left, right) => left.localeCompare(right)));
   assert.equal(current.comparisonCount, library.lists.length - 1);
-  assert.ok(current.comparisons.some((entry) => entry.orderId === 'mcu-prep-thunderbolts'));
-  assert.ok(current.comparisons.some((entry) => entry.orderId === 'mcu-prep-moon-knight'));
+  for (const laterId of laterOwnerIds) {
+    assert.equal(current.comparisons.filter((comparison) => comparison.orderId === laterId).length, 1);
+  }
 });
 
 test('fresh overlap reports bind the complete library, mapping, peers, and factual comparisons', async () => {

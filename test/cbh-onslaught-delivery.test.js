@@ -142,7 +142,7 @@ test('Onslaught approved full-library report preserves all 200 peers at its publ
   const manifest = await readJson('src/data/curated-lists.json');
   const existing = manifest.lists.filter((entry) =>
     entry.id !== id && entry.id !== 'namor-sub-mariner-reading-order'
-      && entry.id !== 'iron-fist-reading-order' && entry.id !== 'mcu-prep-moon-knight' && entry.id !== 'mcu-prep-thunderbolts');
+      && entry.id !== 'iron-fist-reading-order' && entry.id !== 'mcu-prep-moon-knight' && entry.id !== 'spider-man-no-way-home-owner-selected' && entry.id !== 'mcu-prep-thunderbolts');
   assert.equal(existing.length, 200);
   const existingManifest = {
     ...manifest,
@@ -160,7 +160,7 @@ test('Onslaught approved full-library report preserves all 200 peers at its publ
   assert.equal(libraryDigest, '473bfe1e3e3247395973c2464b01fcbfafc858ed656417baf5cdf44ea5174903');
   assert.equal(report.reportDigest, '1ef070ad35dfd5507f78515c7465f988f0a3ded82fd416a3990ba81734d9b7bf');
   const rebuilt = await buildReportForMapping(`scripts/data/cbh-mappings/${id}.json`, [],
-    { excludedOrderIds: ['namor-sub-mariner-reading-order', 'iron-fist-reading-order', 'mcu-prep-thunderbolts', 'mcu-prep-moon-knight'] });
+    { excludedOrderIds: ['namor-sub-mariner-reading-order', 'iron-fist-reading-order', 'mcu-prep-thunderbolts', 'spider-man-no-way-home-owner-selected', 'mcu-prep-moon-knight'] });
   assert.deepEqual(rebuilt, report);
   assert.equal(mapping.reviewStatus, 'approved');
   assert.deepEqual(mapping.approvedManifest, packet.proposedManifest);
