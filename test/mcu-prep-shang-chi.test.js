@@ -5,7 +5,7 @@ import test from 'node:test';
 
 import { assertComparisonCoverage } from '../scripts/author-cbh-packet.mjs';
 import { digestCanonicalJson, libraryDigestFor, reportDigestFor, validateSourceIdentities } from '../scripts/lib/cbh-inventory.mjs';
-import { MCU_SELECTED_IDS, validateMcuCompanionInventory } from '../scripts/lib/cbh-mcu-companion.mjs';
+import { validateMcuCompanionInventory } from '../scripts/lib/cbh-mcu-companion.mjs';
 import { buildComparisonReport, issueIdsFromValue } from '../scripts/lib/cbh-overlap.mjs';
 import { groupCatalog, HOME_CATEGORIES, parseCatalog, shelfKey } from '../src/js/lib/catalog.js';
 import { parseManifest } from '../src/js/lib/curated.js';
@@ -150,8 +150,9 @@ test('Shang-Chi MCU Prep reaches the existing gateway and Storylines without a n
   assert.equal(shelfKey({ lists: [card] }), 'lines');
   const screen = HOME_CATEGORIES.find((row) => row.key === 'marvel-on-screen');
   assert.equal(screen.heading, 'MCU Prep');
-  assert.deepEqual(screen.select(groupCatalog(catalog.lists)).map((story) => story.lists[0].id),
-    [...MCU_SELECTED_IDS, id, 'mcu-prep-thunderbolts']);
+  assert.deepEqual(screen.select(groupCatalog(catalog.lists))
+    .flatMap((story) => story.lists.map((row) => row.id)),
+  catalog.lists.filter((row) => row.type === 'screen-companion').map((row) => row.id));
   assert.equal(catalog.lists.filter((row) => row.id === id).length, 1);
   assert.equal(manifest.lists.filter((row) => row.id === id).length, 1);
   assert.equal(card.source, input);
@@ -208,17 +209,21 @@ test('Shang-Chi MCU Prep retains historical comparisons and covers the complete 
     issueIds: issueIdsFromValue(await readJson(path.join('src', 'data', row.out ?? row.file))),
   })));
   const current = buildComparisonReport({ candidateIds: fixture.issueIds, orders: currentOrders });
-  assert.equal(current.comparisonCount, 282);
+  assert.equal(current.comparisonCount, currentEntries.length);
   assert.doesNotThrow(() => assertComparisonCoverage(current, {
     candidateId: id,
     candidateCount: 37,
     expectedOrderIds: currentEntries.map((row) => row.id),
   }));
-  assert.deepEqual(current.comparisons.filter((row) => row.orderId !== 'mcu-prep-thunderbolts'),
-    report.comparisons);
-  assert.deepEqual(current.comparisons.find((row) => row.orderId === 'mcu-prep-thunderbolts')?.sharedIds, []);
-  assert.equal(current.comparisons.find((row) => row.orderId === 'mcu-prep-thunderbolts')?.relationship,
-    'none');
+  const reviewedIds = new Set(report.comparisons.map((row) => row.orderId));
+  assert.deepEqual(current.comparisons.filter((row) => reviewedIds.has(row.orderId)), report.comparisons);
+  assert.deepEqual(current.comparisons.filter((row) => row.relationship !== 'none'), shared,
+    'New meaningful relationships need central review, not inherited approval');
+  for (const laterId of ['mcu-prep-thunderbolts', 'spider-man-no-way-home-owner-selected']) {
+    const comparison = current.comparisons.find((row) => row.orderId === laterId);
+    assert.deepEqual(comparison?.sharedIds, []);
+    assert.equal(comparison?.relationship, 'none');
+  }
   assert.equal(ledger.relationshipReview.status, 'approved');
   assert.equal(ledger.relationshipReview.authorityType, 'stronger-model');
   assert.equal(ledger.relationshipReview.authorityIdentity,

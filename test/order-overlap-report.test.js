@@ -137,16 +137,17 @@ test('buildReportForMapping regenerates shipped reports without duplicate self o
   const peerPaths = [path.join(mappingsDir, 'spider-man-the-other.json')];
   const report = await buildReportForMapping(mappingPath, peerPaths);
   const comparedIds = report.comparisons.map((comparison) => comparison.orderId);
+  const laterOwnerIds = [
+    'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings',
+    'mcu-prep-thunderbolts',
+    'spider-man-no-way-home-owner-selected',
+  ];
 
   assert.equal(report.candidateCount, 5);
   assert.equal(report.comparisonCount, 137);
   assert.equal(new Set(comparedIds).size, 137);
   assert.equal(comparedIds.includes('secret-war'), false);
   assert.equal(comparedIds.filter((id) => id === 'spider-man-the-other').length, 1);
-  const laterOwnerIds = [
-    'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings',
-    'mcu-prep-thunderbolts',
-  ];
   for (const id of laterOwnerIds) assert.equal(comparedIds.includes(id), false);
 
   const current = await buildReportForMapping(mappingPath, peerPaths, { excludedOrderIds: [] });

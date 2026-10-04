@@ -83,7 +83,7 @@ test('Marvel Zombies report covers the full current library with unchanged exact
   const current = await buildReportForMapping(mappingPath, [], {
     excludedOrderIds: ['ms-marvel-kamala-khan-reading-order', 'nova-reading-order', 'ultimate-spider-man-reading-order', 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide',
       'shang-chi-master-of-kung-fu-reading-order', 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order', 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order', 'namor-sub-mariner-reading-order', 'iron-fist-reading-order',
-      'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts'],
+      'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'spider-man-no-way-home-owner-selected', 'mcu-prep-thunderbolts'],
   });
   assert.deepEqual(report, current);
   assert.equal(report.sourceCounts.sourceOccurrenceCount, 95);

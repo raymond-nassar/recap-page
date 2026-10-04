@@ -290,7 +290,7 @@ test('batch two has no aggregate identity, source, sequence, or pre-publication 
     'shang-chi-master-of-kung-fu-reading-order',
     'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order',
     'iron-fist-reading-order',
-    'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings',
+    'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'spider-man-no-way-home-owner-selected',
   ]);
   const packetRecords = [];
   const existingRecords = [];

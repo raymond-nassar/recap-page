@@ -138,6 +138,7 @@ export const CBH_LATER_ORDER_IDS = Object.freeze([
   'iron-fist-reading-order',
   'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings',
   'mcu-prep-thunderbolts',
+  'spider-man-no-way-home-owner-selected',
 ]);
 export const CBRO_PACKET_REVIEW = 'MRT-003 central CBRO source review';
 export const CBRO_SELECTED_IDS = Object.freeze([

@@ -211,7 +211,7 @@ async function buildReportForMapping(mappingPath, peerPaths = [], options = {}) 
       'spider-man-2099-reading-order',
       'x-23-reading-order', 'ms-marvel-kamala-khan-reading-order', 'marvel-zombies-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order',
       'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order',
-      'iron-fist-reading-order', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings',
+      'iron-fist-reading-order', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'spider-man-no-way-home-owner-selected',
 
       ironManCandidateId,
       modernXMenCandidateId,
@@ -224,7 +224,7 @@ async function buildReportForMapping(mappingPath, peerPaths = [], options = {}) 
 async function buildCurrentReportForMapping(mappingPath, peerPaths = [], options = {}) {
   return buildRawReportForMapping(mappingPath, peerPaths, {
     ...options,
-    excludedOrderIds: [...(options.excludedOrderIds ?? CBH_LATER_ORDER_IDS), hawkeyeLaterId, 'ms-marvel-kamala-khan-reading-order', 'ultimate-spider-man-reading-order', 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide', 'shang-chi-master-of-kung-fu-reading-order', 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order', 'namor-sub-mariner-reading-order', 'iron-fist-reading-order', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts'],
+    excludedOrderIds: [...(options.excludedOrderIds ?? CBH_LATER_ORDER_IDS), hawkeyeLaterId, 'ms-marvel-kamala-khan-reading-order', 'ultimate-spider-man-reading-order', 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide', 'shang-chi-master-of-kung-fu-reading-order', 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order', 'namor-sub-mariner-reading-order', 'iron-fist-reading-order', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'spider-man-no-way-home-owner-selected', 'mcu-prep-thunderbolts'],
   });
 }
 
@@ -653,6 +653,7 @@ async function libraryDigestForScope(manifest, excludedIds, librarySnapshot = nu
   excluded.add('iron-fist-reading-order');
   excluded.add('mcu-prep-shang-chi-and-the-legend-of-the-ten-rings');
   excluded.add('mcu-prep-thunderbolts');
+  excluded.add('spider-man-no-way-home-owner-selected');
   const lists = sourceManifest.lists.filter((entry) => !excluded.has(entry.id));
   const paths = (sourceManifest.paths ?? []).filter((entry) => (
     !excluded.has(entry.id)
@@ -1049,7 +1050,7 @@ test('Adam Warlock publishes the settled source with one exact resolution and th
     .filter((id) => id !== 'ms-marvel-kamala-khan-reading-order' && id !== 'nova-reading-order'
       && id !== 'ultimate-spider-man-reading-order'
       && id !== 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide'
-      && id !== 'shang-chi-master-of-kung-fu-reading-order' && id !== 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order' && id !== 'namor-sub-mariner-reading-order' && id !== 'iron-fist-reading-order' && id !== 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings' && id !== 'mcu-prep-thunderbolts');
+      && id !== 'shang-chi-master-of-kung-fu-reading-order' && id !== 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order' && id !== 'namor-sub-mariner-reading-order' && id !== 'iron-fist-reading-order' && id !== 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings' && id !== 'spider-man-no-way-home-owner-selected' && id !== 'mcu-prep-thunderbolts');
 
   assert.doesNotThrow(() => validateFrozenPacket(packet));
   assert.doesNotThrow(() => validateMappingDigest(mapping));
@@ -2676,7 +2677,7 @@ test('Silver Surfer settles all four issue #304 gaps without losing source posit
      && id !== 'nova-reading-order'
      && id !== 'ultimate-spider-man-reading-order'
      && id !== 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide'
-     && id !== 'shang-chi-master-of-kung-fu-reading-order' && id !== 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order' && id !== 'namor-sub-mariner-reading-order' && id !== 'iron-fist-reading-order' && id !== 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings' && id !== 'mcu-prep-thunderbolts')
+     && id !== 'shang-chi-master-of-kung-fu-reading-order' && id !== 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order' && id !== 'namor-sub-mariner-reading-order' && id !== 'iron-fist-reading-order' && id !== 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings' && id !== 'spider-man-no-way-home-owner-selected' && id !== 'mcu-prep-thunderbolts')
     .sort();
   const historicalLibrary = await historicalAgathaLibrarySnapshot();
   const reviewedLibraryDigest = await libraryDigestForScope(
@@ -4319,7 +4320,7 @@ test('the frozen Star-Lord evidence stays complete, fresh, distinct, and exact',
     generated.items.map((item) => String(item.issueId)),
     mapping.rows.map((row) => String(row.selectedIssueId)),
   );
-  const starLordChronology = manifest.lists.filter((entry) => !['best-ultron-reading-order', 'miles-morales-spider-man-reading-order', 'spider-gwen-reading-order', 'spider-man-2099-reading-order', 'winter-soldier-bucky-barnes-reading-order', 'donny-cates-marvel-universe-reading-order-2017', 'falcon-sam-wilson-captain-america-reading-order', 'the-vision-reading-order', 'emma-frost-reading-order', 'doctor-octopus-otto-octavius-reading-order', 'shadow-king-reading-order', 'thunderbolts-reading-order', 'hope-summers-reading-order', 'x-23-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order', 'iron-fist-reading-order', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts'].includes(entry.id));
+  const starLordChronology = manifest.lists.filter((entry) => !['best-ultron-reading-order', 'miles-morales-spider-man-reading-order', 'spider-gwen-reading-order', 'spider-man-2099-reading-order', 'winter-soldier-bucky-barnes-reading-order', 'donny-cates-marvel-universe-reading-order-2017', 'falcon-sam-wilson-captain-america-reading-order', 'the-vision-reading-order', 'emma-frost-reading-order', 'doctor-octopus-otto-octavius-reading-order', 'shadow-king-reading-order', 'thunderbolts-reading-order', 'hope-summers-reading-order', 'x-23-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order', 'iron-fist-reading-order', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'spider-man-no-way-home-owner-selected', 'mcu-prep-thunderbolts'].includes(entry.id));
 
   const starLordIndex = starLordChronology.findIndex((entry) => entry.id === starLordCandidateId);
   assert.equal(starLordChronology[starLordIndex - 1].id, grootCandidateId);

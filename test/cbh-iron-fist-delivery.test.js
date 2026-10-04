@@ -78,15 +78,15 @@ test('Iron Fist conserves its approved source, original, gap and repeat identiti
   assert.doesNotThrow(() => assertMappingMatchesPacketOccurrences(packet, mapping));
 });
 
-test('Iron Fist retains its approved publication-library review and unchanged named checklist', async () => {
+test('Iron Fist preserves its publication-time relationship review and unchanged named checklist', async () => {
   const [report, manifest, markdownBytes] = await Promise.all([
     readJson(`scripts/data/cbh-overlaps/${id}.json`),
     readJson('src/data/curated-lists.json'),
     readFile(`src/data/orders/${id}.md`),
   ]);
   const peers = manifest.lists.filter((entry) => entry.id !== id
-    && entry.id !== 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings' && entry.id !== 'mcu-prep-thunderbolts');
-  const live = await buildReportForMapping(mappingPath, [], { excludedOrderIds: ['mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts'] });
+    && entry.id !== 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings' && entry.id !== 'spider-man-no-way-home-owner-selected' && entry.id !== 'mcu-prep-thunderbolts');
+  const live = await buildReportForMapping(mappingPath, [], { excludedOrderIds: ['mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'spider-man-no-way-home-owner-selected', 'mcu-prep-thunderbolts'] });
   assert.deepEqual(report, live);
   assert.equal(report.comparisonCount, peers.length);
   assert.doesNotThrow(() => validateReportDigest(report));

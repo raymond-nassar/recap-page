@@ -129,12 +129,12 @@ test('AoA relationship report is rebuilt from every peer at its review', async (
     .filter((orderId) => orderId !== id
       && orderId !== 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order'
       && orderId !== 'namor-sub-mariner-reading-order'
-      && orderId !== 'iron-fist-reading-order' && orderId !== 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings' && orderId !== 'mcu-prep-thunderbolts')
+      && orderId !== 'iron-fist-reading-order' && orderId !== 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings' && orderId !== 'spider-man-no-way-home-owner-selected' && orderId !== 'mcu-prep-thunderbolts')
     .sort((left, right) => left.localeCompare(right));
   const live = await buildReportForMapping(
     `scripts/data/cbh-mappings/${id}.json`, [],
     { excludedOrderIds: ['the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order',
-      'namor-sub-mariner-reading-order', 'iron-fist-reading-order', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts'] },
+      'namor-sub-mariner-reading-order', 'iron-fist-reading-order', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'spider-man-no-way-home-owner-selected', 'mcu-prep-thunderbolts'] },
   );
   assert.equal(expectedOrderIds.length, 199);
   assert.deepEqual(report.comparisons.map((item) => item.orderId), expectedOrderIds);

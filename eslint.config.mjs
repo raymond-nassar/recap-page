@@ -131,6 +131,7 @@ export default [
       'scripts/browser-onslaught.mjs',
       'scripts/browser-namor.mjs',
       'scripts/browser-iron-fist.mjs',
+      'scripts/browser-owner-no-way-home.mjs',
       'scripts/capture-store-assets.mjs',
       'scripts/capture-play-assets.mjs',
       'scripts/upgrade-check.mjs',

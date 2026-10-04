@@ -159,14 +159,14 @@ test('Greg Pak relationship review is current, real and not inherited by a pendi
     excludedOrderIds: ['mcu-prep-thunderbolts', 'shang-chi-master-of-kung-fu-reading-order',
       'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order',
       'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order',
-      'namor-sub-mariner-reading-order', 'iron-fist-reading-order', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings'],
+      'namor-sub-mariner-reading-order', 'iron-fist-reading-order', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'spider-man-no-way-home-owner-selected'],
   });
   const expectedOrderIds = library.lists.filter((entry) =>
     entry.id !== id && entry.id !== 'shang-chi-master-of-kung-fu-reading-order'
       && entry.id !== 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order'
       && entry.id !== 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order'
       && entry.id !== 'namor-sub-mariner-reading-order'
-      && entry.id !== 'iron-fist-reading-order' && entry.id !== 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings' && entry.id !== 'mcu-prep-thunderbolts')
+      && entry.id !== 'iron-fist-reading-order' && entry.id !== 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings' && entry.id !== 'spider-man-no-way-home-owner-selected' && entry.id !== 'mcu-prep-thunderbolts')
     .map((entry) => entry.id);
   assert.deepEqual(current, report);
   assert.equal(report.comparisonCount, 197);
