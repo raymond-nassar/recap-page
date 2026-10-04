@@ -397,7 +397,7 @@ test('approved evidence reaches six payloads, cards, and one MCU Prep group', as
     MCU_SELECTED_IDS,
   );
   assert.equal(catalog.lists.filter(({ id }) => MCU_SELECTED_IDS.includes(id)).length, 6);
-  assert.equal(catalog.lists.length, 282);
+  assert.equal(catalog.lists.length, 283);
 
   assert.deepEqual(
     inventory.records.filter((record) => record.centralDisposition === 'selected')
