@@ -85,11 +85,11 @@ test('Iron Fist retains its publication-time relationship review and unchanged n
     readFile(`src/data/orders/${id}.md`),
   ]);
   const peers = manifest.lists.filter((entry) => entry.id !== id
-    && entry.id !== 'mcu-prep-daredevil-born-again' && entry.id !== 'mcu-prep-thunderbolts'
+    && entry.id !== 'mcu-prep-daredevil-born-again' && entry.id !== 'mcu-prep-moon-knight' && entry.id !== 'mcu-prep-thunderbolts'
     && entry.id !== 'mcu-prep-deadpool-and-wolverine'
     && entry.id !== 'mcu-prep-eternals' && entry.id !== 'spider-man-no-way-home-owner-selected');
   const live = await buildReportForMapping(mappingPath, [], {
-    excludedOrderIds: ['mcu-prep-thunderbolts', 'mcu-prep-daredevil-born-again',
+    excludedOrderIds: ['mcu-prep-thunderbolts', 'mcu-prep-daredevil-born-again', 'mcu-prep-moon-knight',
       'mcu-prep-eternals', 'mcu-prep-deadpool-and-wolverine', 'spider-man-no-way-home-owner-selected'],
   });
   assert.deepEqual(report, live);
@@ -187,8 +187,8 @@ test('Iron Fist pinned payload and catalog retain all 414 original slots, cover 
   assert.deepEqual([listed.count, listed.placeholderCount, listed.coverIssueId], [414, 38, 10201]);
   assert.deepEqual([listed.type, listed.depth, listed.spotlightKind, listed.timeline],
     ['character-run', 'partial', 'other', null]);
-  assert.equal(manifest.lists.length, 207);
-  assert.equal(catalog.lists.length, 284);
+  assert.equal(manifest.lists.length, 208);
+  assert.equal(catalog.lists.length, 285);
   assert.equal(catalog.lists.filter((entry) => entry.type === 'character-run').length, 70);
   assert.equal(catalog.lists.filter((entry) => entry.type === 'character-run'
     && entry.id !== id).length, 69);

@@ -274,7 +274,7 @@ test('Thunderbolts preserves frozen approval and rechecks the complete current v
     issueIds: (await readJson(`src/data/${entry.file}`)).items.map((item) => String(item.issueId)),
   })));
   const current = { candidateId: id, ...buildComparisonReport({ candidateIds: expectedIds, orders: currentOrders }) };
-  assert.equal(descriptors.length, 284);
+  assert.equal(descriptors.length, 285);
   assert.equal(descriptors.some((entry) => entry.orderId === 'spider-man-no-way-home-owner-selected'), false);
   assert.doesNotThrow(() => assertComparisonCoverage(current, {
     candidateId: id,
@@ -285,7 +285,7 @@ test('Thunderbolts preserves frozen approval and rechecks the complete current v
   const orders = currentOrders.filter((entry) => publicationPeers.has(entry.orderId));
   const laterIds = [
     'mcu-prep-daredevil-born-again', 'mcu-prep-deadpool-and-wolverine',
-    'mcu-prep-eternals',
+    'mcu-prep-eternals', 'mcu-prep-moon-knight',
   ];
   const comparison = buildComparisonReport({ candidateIds: expectedIds, orders });
   assert.equal(comparison.comparisonCount, 281);
@@ -310,7 +310,7 @@ test('Thunderbolts preserves frozen approval and rechecks the complete current v
   const recordedPeerIds = new Set(recorded.comparisons.map((entry) => entry.orderId));
   const activePeerIds = new Set(currentOrders.map((entry) => entry.orderId));
   assert.deepEqual(currentOrders.filter((entry) => !recordedPeerIds.has(entry.orderId))
-    .map((entry) => entry.orderId), ['mcu-prep-daredevil-born-again']);
+    .map((entry) => entry.orderId), ['mcu-prep-daredevil-born-again', 'mcu-prep-moon-knight']);
   assert.deepEqual(recorded.comparisons.filter((entry) => !activePeerIds.has(entry.orderId))
     .map((entry) => entry.orderId), ['spider-man-no-way-home-owner-selected']);
   assert.deepEqual(recorded.comparisons.filter((entry) => activePeerIds.has(entry.orderId)),

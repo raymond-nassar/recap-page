@@ -1,0 +1,23 @@
+{
+  "id": "mcu-prep-moon-knight",
+  "name": "Moon Knight: MCU Prep",
+  "rows": [
+    { "position": 1, "issueId": 49077, "title": "Moon Knight (2014) #1", "section": "Moon Knight Vol. 1: From the Dead (Warren Ellis)" },
+    { "position": 2, "issueId": 49078, "title": "Moon Knight (2014) #2", "section": "Moon Knight Vol. 1: From the Dead (Warren Ellis)" },
+    { "position": 3, "issueId": 49079, "title": "Moon Knight (2014) #3", "section": "Moon Knight Vol. 1: From the Dead (Warren Ellis)" },
+    { "position": 4, "issueId": 49080, "title": "Moon Knight (2014) #4", "section": "Moon Knight Vol. 1: From the Dead (Warren Ellis)" },
+    { "position": 5, "issueId": 49081, "title": "Moon Knight (2014) #5", "section": "Moon Knight Vol. 1: From the Dead (Warren Ellis)" },
+    { "position": 6, "issueId": 49082, "title": "Moon Knight (2014) #6", "section": "Moon Knight Vol. 1: From the Dead (Warren Ellis)" },
+    { "position": 7, "issueId": 55575, "title": "Moon Knight (2016) #1", "section": "Moon Knight Vol. 1: Lunatic (Jeff Lemire)" },
+    { "position": 8, "issueId": 55577, "title": "Moon Knight (2016) #2", "section": "Moon Knight Vol. 1: Lunatic (Jeff Lemire)" },
+    { "position": 9, "issueId": 55579, "title": "Moon Knight (2016) #3", "section": "Moon Knight Vol. 1: Lunatic (Jeff Lemire)" },
+    { "position": 10, "issueId": 55580, "title": "Moon Knight (2016) #4", "section": "Moon Knight Vol. 1: Lunatic (Jeff Lemire)" },
+    { "position": 11, "issueId": 55581, "title": "Moon Knight (2016) #5", "section": "Moon Knight Vol. 1: Lunatic (Jeff Lemire)" },
+    { "position": 12, "issueId": 93848, "title": "Moon Knight (2021) #1", "section": "Moon Knight Vol. 1: The Midnight Mission (Jed MacKay)" },
+    { "position": 13, "issueId": 93849, "title": "Moon Knight (2021) #2", "section": "Moon Knight Vol. 1: The Midnight Mission (Jed MacKay)" },
+    { "position": 14, "issueId": 93850, "title": "Moon Knight (2021) #3", "section": "Moon Knight Vol. 1: The Midnight Mission (Jed MacKay)" },
+    { "position": 15, "issueId": 93851, "title": "Moon Knight (2021) #4", "section": "Moon Knight Vol. 1: The Midnight Mission (Jed MacKay)" },
+    { "position": 16, "issueId": 93852, "title": "Moon Knight (2021) #5", "section": "Moon Knight Vol. 1: The Midnight Mission (Jed MacKay)" },
+    { "position": 17, "issueId": 93853, "title": "Moon Knight (2021) #6", "section": "Moon Knight Vol. 1: The Midnight Mission (Jed MacKay)" }
+  ]
+}

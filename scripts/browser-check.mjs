@@ -13510,10 +13510,10 @@ SCENARIOS.push({
         title: node.querySelector('.home-path-title')?.textContent.trim(),
         count: node.querySelector('.home-path-count')?.textContent.trim(),
       }));
-      t.check(`${width}px: Home exposes the populated ten-list MCU Prep gateway`,
-        home.visible && home.title === 'MCU Prep' && home.count === '10 Reading Lists',
+      t.check(`${width}px: Home exposes the populated eleven-list MCU Prep gateway`,
+        home.visible && home.title === 'MCU Prep' && home.count === '11 Reading Lists',
         JSON.stringify(home));
-      if (!home.visible || home.count !== '10 Reading Lists') return;
+      if (!home.visible || home.count !== '11 Reading Lists') return;
       await click(page, homeSelector);
       const cardSelector = `#marvel-on-screen-results [data-story="list:${id}"]`;
       const homeHash = formatRoute({ view: 'marvel-on-screen', listId: before.active });
@@ -13544,13 +13544,14 @@ SCENARIOS.push({
           path: Boolean(selected?.querySelector('.result-path')),
         };
       }, `[data-story="list:${id}"]`);
-      t.check(`${width}px: Browse keeps all ten companions in the integrated catalog order`,
-        browse.title === 'Browse MCU Prep' && browse.count === '10 Reading Lists'
-        && browse.cards === 10 && browse.selectedCount === 1
+      t.check(`${width}px: Browse keeps all eleven companions in the integrated catalog order`,
+        browse.title === 'Browse MCU Prep' && browse.count === '11 Reading Lists'
+        && browse.cards === 11 && browse.selectedCount === 1
         && browse.titles.join('|') === [
           'Doctor Strange: Multiverse of Madness', 'Spider-Man: No Way Home',
           'Marvel Multiverse', 'Marvel What If?', 'WandaVision', 'Spider-Man: Far From Home',
           'MCU Prep: Thunderbolts*',
+          'Moon Knight: MCU Prep',
           'Eternals',
           'MCU Prep: Deadpool & Wolverine',
           'MCU Prep: Daredevil: Born Again',
@@ -15827,6 +15828,7 @@ SCENARIOS.push((await import('./browser-namor.mjs')).namorActualData);
 SCENARIOS.push((await import('./browser-iron-fist.mjs')).ironFistActualData);
 SCENARIOS.push((await import('./browser-owner-no-way-home.mjs')).ownerNoWayHomeActualData);
 MUTATIONS.push((await import('./browser-owner-no-way-home.mjs')).ownerNoWayHomeHiddenMutation);
+SCENARIOS.push((await import('./browser-moon-knight.mjs')).moonKnightActualData);
 SCENARIOS.push((await import('./browser-mcu-prep-deadpool-and-wolverine.mjs')).deadpoolWolverineActualData);
 const { eternalsActualData, eternalsCollectionMutation } = await import('./browser-mcu-prep-eternals.mjs');
 SCENARIOS.push(eternalsActualData);

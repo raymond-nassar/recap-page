@@ -133,13 +133,12 @@ test('buildReportForMapping rejects unresolved mappings before writing a report'
 
 test('buildReportForMapping regenerates shipped reports without duplicate self or peer comparisons', async () => {
   const mappingsDir = path.join(root, 'scripts', 'data', 'cbh-mappings');
-  const report = await buildReportForMapping(
-    path.join(mappingsDir, 'secret-war.json'),
-    [path.join(mappingsDir, 'spider-man-the-other.json')],
-  );
+  const mappingPath = path.join(mappingsDir, 'secret-war.json');
+  const peerPaths = [path.join(mappingsDir, 'spider-man-the-other.json')];
+  const report = await buildReportForMapping(mappingPath, peerPaths);
   const comparedIds = report.comparisons.map((comparison) => comparison.orderId);
   const laterOwnerIds = [
-    'mcu-prep-thunderbolts', 'mcu-prep-daredevil-born-again', 'mcu-prep-eternals',
+    'mcu-prep-thunderbolts', 'mcu-prep-daredevil-born-again', 'mcu-prep-moon-knight', 'mcu-prep-eternals',
     'mcu-prep-deadpool-and-wolverine', 'spider-man-no-way-home-owner-selected',
   ];
 

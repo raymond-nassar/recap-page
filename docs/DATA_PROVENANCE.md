@@ -85,12 +85,44 @@ rejected relabeling under the assigned [gap bundle](https://github.com/raymond-n
 It has no guessed replacement, collection ID or imported placeholder. The card names the
 omission, and the source ledger keeps it distinct from the 34 published comics. This is a
 provider-identity gap, not a judgment about Marvel Unlimited availability. The
-[complete-library relationship report](../scripts/data/mcu-prep-thunderbolts-overlaps.json)
+[publication-time complete-library relationship report](../scripts/data/mcu-prep-thunderbolts-overlaps.json)
 compares 280 existing visible lists, including all 78 generated children, and the hidden
 partition parent: six partial relationships and 275 without shared originals. Central
 dispositions are required; exact duplicates and unapproved subsets have no publication path.
-The existing MCU Prep gateways and Storylines shelf contain this seventh companion without
+The existing MCU Prep gateways and Storylines shelf contain this companion without
 adding a canonical shelf or classifying it as a Character Spotlight.
+
+### Owner-authored Moon Knight selection
+
+Moon Knight: MCU Prep is a separate owner-authored selection, not a selection from the full
+Comic Book Herald guide. Its three first volumes expand into 17 original comics in the owner's
+order: Warren Ellis's From the Dead, Moon Knight (2014) #1-6; Jeff Lemire's Lunatic,
+Moon Knight (2016) #1-5; and Jed MacKay's The Midnight Mission, Moon Knight (2021) #1-6.
+The owner approved the latter two subtitles because the supplied Resurrection War and Lockdown
+titles did not establish the named creators' first volumes.
+
+The [owner selection ledger](../scripts/data/owner-selections/mcu-prep-moon-knight.json)
+retains all three supplied positions and rationales, the approved corrections, fetched
+bibliography and retrieval dates, ordered expansion, and every provider lookup outcome.
+Owner descriptions of origins, adaptation, tone and ongoing status are not asserted as facts.
+The [frozen packet](../scripts/data/owner-packets/mcu-prep-moon-knight.json) and
+[exact mapping](../scripts/data/owner-mappings/mcu-prep-moon-knight.json) bind this evidence
+without changing the fourteen-source CBH intake or crediting CBH with the owner's selection.
+All 17 detail lookups resolved on 2026-10-03; there are no provider gaps or failed lookups.
+Cover URLs and factual metadata are retained, but comic image bytes and external narrative
+prose are not.
+
+The [publication-time source-order report](../scripts/data/cbh-overlaps/mcu-prep-moon-knight.json)
+covers all 203 other source orders, including the noncatalog partition parent. The separate
+[publication-time visible-library report](../scripts/data/owner-overlaps/mcu-prep-moon-knight-visible.json)
+covers all 280 other visible Reading Lists, including generated children. Each finds only the
+17-original candidate-subset of the complete Moon Knight guide.
+[Explicit owner approval](https://github.com/raymond-nassar/recap-page/issues/685#issuecomment-5971795527)
+keeps all shared originals and the broader guide unchanged, with the human authority bound
+to both report digests. Later sibling additions are checked separately for shared originals
+without rewriting either companion's approved publication-time reports. The card uses the
+existing MCU Prep discovery surface with `screen-companion`, `selected`, `timeline: null`
+and `beginner: false`, not Character Spotlight or a new canonical shelf.
 
 ## Character Spotlight partial-release intake
 
@@ -343,16 +375,16 @@ orders: **null means nobody granted anything for this file, not that the file is
 
 ### Reading orders, pinned
 
-Two hundred and eighty-six pinned reading-order payloads remain under
-[`src/data/`](../src/data): 284 active visible catalog files, one active noncatalog partition parent,
-and the retired 18-original owner-selected No Way Home payload. The 285 active files hold
-30,957 issue records covering 19,296 distinct tracked identities. The visible files hold 30,470 of those records;
+Two hundred and eighty-seven pinned reading-order payloads remain under
+[`src/data/`](../src/data): 285 active visible catalog files, one active noncatalog partition parent,
+and the retired 18-original owner-selected No Way Home payload. The 286 active files hold
+30,974 issue records covering 19,296 distinct tracked identities. The visible files hold 30,487 of those records;
 the extra 487 are the retained Marvel Knights to Planet X parent whose ordinary children partition
 the same vector. Records use these fields:
 `issueId`, `title`,
 `number`, `url`, `seriesId`, `seriesName`, `onSale`, `mu`, `digitalId`, `pageCount`, a `cover`
-object of `path` and `ext`, and `creators` of `name` and `role`. Across the 285 active payloads, 26,079
-records carry a cover URL and 24,500 carry creator credits. The retired payload remains byte-exact
+object of `path` and `ext`, and `creators` of `name` and `role`. Across the 286 active payloads, 26,096
+records carry a cover URL and 24,517 carry creator credits. The retired payload remains byte-exact
 but does not contribute to active discovery or this active census.
 
 `description` was the field to look at hardest and is now empty. The others are facts about a
@@ -437,9 +469,10 @@ incidental property of the schema.
 | Compiled for this project from Comic Book Herald's guide | 148 | The guide's issue selection and sequence, re-expressed as local checklists. Every visible card links to the exact guide followed |
 | Compiled for this project from Comic Book Reading Orders | 39 | Factual issue identities and order from exact event pages or visible timeline sections. Every card links to the source followed |
 | Vendored from `emreparker/marvel-comics` | 2 | Nothing. The order is the upstream curator's; only the issue lookups were done here |
+| Selected by the owner for MCU Prep; expanded into original issues for this project | 1 | Three owner-selected Moon Knight first volumes, expanded into verified original comics. The card links to the owner intake, and the selection ledger retains the approved title corrections |
 | Selected by raymond-nassar for MCU Prep | 1 | The owner's five selections, expanded into six verified collection groups with an explicit approval for both books at position 3 |
 
-The 207 active source orders generate 284 visible Reading Lists. Marvel Knights to Planet X is the only
+The 208 active source orders generate 285 visible Reading Lists. Marvel Knights to Planet X is the only
 partition: its 99 quoted source positions and 487 metadata-complete issues remain in one hidden
 parent, while a checked ledger generates 78 ungrouped child payloads. Their separate 78-stop path
 preserves owner order when timeline years move backward, and their overlap matrix is regenerated
@@ -459,12 +492,12 @@ selection here is not editorial, because it is simply all of them.
 
 ### Order checklists
 
-The 206 Markdown files retained in [`src/data/orders/`](../src/data/orders) contain 205 active
+The 207 Markdown files retained in [`src/data/orders/`](../src/data/orders) contain 206 active
 local source files and the retired owner-selected No Way Home checklist. The two upstream
 Hickman checklists are fetched separately when vendored. The active local sources
 comprise eight assembled from series metadata, 148 from reviewed Comic Book Herald selections,
-thirty-nine from reviewed Comic Book Reading Orders selections, nine compiled by hand, and one
-owner-authored MCU Prep selection.
+thirty-nine from reviewed Comic Book Reading Orders selections, nine compiled by hand, and two
+owner-authored MCU Prep selections.
 Every file carries its own derivation trail. The 148 Comic Book Herald sources name that guide
 on their catalog cards and link to the exact page or section followed. Thirty-nine reference
 Comic Book Reading Orders and name it on their card.
@@ -495,7 +528,7 @@ above is listed separately because it is third-party material outside the usual 
 | Field | Holds |
 |---|---|
 | `sourceOrigin` | Prose. Where the order came from and who compiled it. Always present. This is what the catalog shows a reader, because it is the credit that is owed |
-| `sourceLicense` | An SPDX expression, or `null`. Only a licence actually conveyed with the vendored order. `null` on all 286 pinned reading-order payloads today |
+| `sourceLicense` | An SPDX expression, or `null`. Only a licence actually conveyed with the vendored order. `null` on all 287 pinned reading-order payloads today |
 | `sourcePage` | A link a reader can follow to the upstream, when there is one |
 | `sourceSection` | A visible heading that distinguishes several guides on one exact page. Absent for an ordinary whole-page source |
 | `spotlightKind` | An editorial classification required only for character runs. `best-of` and `complete-guide` make distinct, reviewable claims about a guide's scope; `other` records that neither claim is accurate. It is authored here and is never copied or inferred from an upstream field |
@@ -966,10 +999,10 @@ the book id out of an address the reader pastes.
 
 The generated catalog currently publishes three independent Reading Paths with 100 stops: two
 authored paths with 10 and 12 stops from the curated manifest at
-`src/data/curated-lists.json:6888-6927`, plus the 78-stop Marvel Knights to Planet X path generated
+`src/data/curated-lists.json:6921-6960`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all three at
-`src/data/catalog.json:10914-11039`.
+`src/data/catalog.json:10954-11079`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
