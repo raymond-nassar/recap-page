@@ -777,8 +777,11 @@ merged commit on the default branch, never an unmerged branch commit.
 
 ### 1. Finalize the release record
 
-Move current changelog entries under a version heading. Lead release notes with what improves for
-readers and link to the full changelog.
+In the final version release PR, follow [release bookkeeping](../GOVERNANCE.md#release-bookkeeping):
+assemble and verify the merged feature records, combining them with existing Unreleased notes
+without omissions or duplicates. Finalize the changelog under the selected version heading, with
+saved-data compatibility and any necessary upgrade guidance. Lead release notes with what improves
+for readers and link to the full changelog.
 
 Update the canonical application version and its synchronized release files together:
 
