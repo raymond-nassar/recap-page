@@ -142,7 +142,7 @@ test('Doctor Octopus relationship approval regenerates against its reviewed sour
   const current = await buildReportForMapping(`scripts/data/cbh-mappings/${id}.json`, [], {
     ...await historicalAgathaLibrarySnapshot(),
     excludedOrderIds: [
-      'shadow-king-reading-order',
+      'mcu-prep-thunderbolts', 'shadow-king-reading-order',
       'thunderbolts-reading-order',
       'nebula-reading-order',
       'hope-summers-reading-order',
@@ -164,7 +164,7 @@ test('Doctor Octopus relationship approval regenerates against its reviewed sour
         'hawkeye-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order', 'marvel-zombies-reading-order',
 
       ].includes(row.id)
-  )).filter((row) => row.id !== 'namor-sub-mariner-reading-order' && row.id !== 'iron-fist-reading-order' && row.id !== 'mcu-prep-moon-knight').map((row) => row.id);
+  )).filter((row) => row.id !== 'namor-sub-mariner-reading-order' && row.id !== 'iron-fist-reading-order' && row.id !== 'mcu-prep-moon-knight' && row.id !== 'mcu-prep-thunderbolts').map((row) => row.id);
 
   assert.deepEqual(current, report);
   assert.equal(report.comparisonCount, 184);

@@ -197,7 +197,7 @@ async function buildReportForMapping(mappingPath, peerPaths = [], options = {}) 
   return buildCurrentReportForMapping(mappingPath, peerPaths, {
     ...options,
     excludedOrderIds: [
-      ...(options.excludedOrderIds ?? CBH_LATER_ORDER_IDS),
+      'mcu-prep-thunderbolts', ...(options.excludedOrderIds ?? CBH_LATER_ORDER_IDS),
       'nova-reading-order',
       'ultimate-spider-man-reading-order',
       'nebula-reading-order',
@@ -224,7 +224,7 @@ async function buildReportForMapping(mappingPath, peerPaths = [], options = {}) 
 async function buildCurrentReportForMapping(mappingPath, peerPaths = [], options = {}) {
   return buildRawReportForMapping(mappingPath, peerPaths, {
     ...options,
-    excludedOrderIds: [...(options.excludedOrderIds ?? CBH_LATER_ORDER_IDS), hawkeyeLaterId, 'ms-marvel-kamala-khan-reading-order', 'ultimate-spider-man-reading-order', 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide', 'shang-chi-master-of-kung-fu-reading-order', 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order', 'namor-sub-mariner-reading-order', 'iron-fist-reading-order', 'mcu-prep-moon-knight'],
+    excludedOrderIds: [...(options.excludedOrderIds ?? CBH_LATER_ORDER_IDS), hawkeyeLaterId, 'ms-marvel-kamala-khan-reading-order', 'ultimate-spider-man-reading-order', 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide', 'shang-chi-master-of-kung-fu-reading-order', 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order', 'namor-sub-mariner-reading-order', 'iron-fist-reading-order', 'mcu-prep-thunderbolts', 'mcu-prep-moon-knight'],
   });
 }
 
@@ -650,7 +650,7 @@ async function libraryDigestForScope(manifest, excludedIds, librarySnapshot = nu
   excluded.add('shang-chi-master-of-kung-fu-reading-order');
   excluded.add('the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order');
   excluded.add('namor-sub-mariner-reading-order');
-  excluded.add('iron-fist-reading-order'); excluded.add('mcu-prep-moon-knight');
+  excluded.add('iron-fist-reading-order'); excluded.add('mcu-prep-moon-knight'); excluded.add('mcu-prep-thunderbolts');
   const lists = sourceManifest.lists.filter((entry) => !excluded.has(entry.id));
   const paths = (sourceManifest.paths ?? []).filter((entry) => (
     !excluded.has(entry.id)
@@ -702,7 +702,7 @@ test('Agatha historical replay helper reproduces the saved Punisher report diges
     [],
     {
       excludedOrderIds: [
-        magnetoCandidateId,
+        'mcu-prep-thunderbolts', magnetoCandidateId,
         'loki-reading-order',
         'silver-surfer-reading-order',
         moonKnightCandidateId,
@@ -727,7 +727,7 @@ test('Agatha historical replay helper reproduces the saved Punisher report diges
     {
       ...historicalLibrary,
       excludedOrderIds: [
-        magnetoCandidateId,
+        'mcu-prep-thunderbolts', magnetoCandidateId,
         'loki-reading-order',
         'silver-surfer-reading-order',
         moonKnightCandidateId,
@@ -1033,7 +1033,7 @@ test('Adam Warlock publishes the settled source with one exact resolution and th
   const currentReport = await buildCurrentReportForMapping(
     path.join(root, 'scripts', 'data', 'cbh-mappings', `${id}.json`),
     [],
-    { excludedOrderIds: ['mephisto-reading-order', 'miles-morales-spider-man-reading-order', 'spider-gwen-reading-order', 'best-ultron-reading-order', 'winter-soldier-bucky-barnes-reading-order', 'spider-man-2099-reading-order', 'donny-cates-marvel-universe-reading-order-2017', 'falcon-sam-wilson-captain-america-reading-order', 'the-vision-reading-order', 'emma-frost-reading-order', 'doctor-octopus-otto-octavius-reading-order', 'shadow-king-reading-order', 'thunderbolts-reading-order', 'nebula-reading-order', 'hope-summers-reading-order', 'x-23-reading-order', 'marvel-zombies-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order', 'nova-reading-order', 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order', 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order'] },
+    { excludedOrderIds: ['mcu-prep-thunderbolts', 'mephisto-reading-order', 'miles-morales-spider-man-reading-order', 'spider-gwen-reading-order', 'best-ultron-reading-order', 'winter-soldier-bucky-barnes-reading-order', 'spider-man-2099-reading-order', 'donny-cates-marvel-universe-reading-order-2017', 'falcon-sam-wilson-captain-america-reading-order', 'the-vision-reading-order', 'emma-frost-reading-order', 'doctor-octopus-otto-octavius-reading-order', 'shadow-king-reading-order', 'thunderbolts-reading-order', 'nebula-reading-order', 'hope-summers-reading-order', 'x-23-reading-order', 'marvel-zombies-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order', 'nova-reading-order', 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order', 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order'] },
   );
   const expectedOrderIds = manifest.lists
     .filter((entry) => entry.id !== id && entry.id !== hawkeyeLaterId
@@ -1047,7 +1047,7 @@ test('Adam Warlock publishes the settled source with one exact resolution and th
     .filter((id) => id !== 'ms-marvel-kamala-khan-reading-order' && id !== 'nova-reading-order'
       && id !== 'ultimate-spider-man-reading-order'
       && id !== 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide'
-      && id !== 'shang-chi-master-of-kung-fu-reading-order' && id !== 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order' && id !== 'namor-sub-mariner-reading-order' && id !== 'iron-fist-reading-order' && id !== 'mcu-prep-moon-knight');
+      && id !== 'shang-chi-master-of-kung-fu-reading-order' && id !== 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order' && id !== 'namor-sub-mariner-reading-order' && id !== 'iron-fist-reading-order' && id !== 'mcu-prep-moon-knight' && id !== 'mcu-prep-thunderbolts');
 
   assert.doesNotThrow(() => validateFrozenPacket(packet));
   assert.doesNotThrow(() => validateMappingDigest(mapping));
@@ -1397,7 +1397,7 @@ test('Daredevil publishes the audited full-page guide without hiding provider ga
   const currentReport = await buildCurrentReportForMapping(
     path.join(root, 'scripts', 'data', 'cbh-mappings', `${id}.json`),
     [],
-    { excludedOrderIds: [...CBH_LATER_ORDER_IDS, 'nova-reading-order'] },
+    { excludedOrderIds: ['mcu-prep-thunderbolts', ...CBH_LATER_ORDER_IDS, 'nova-reading-order'] },
   );
   assert.deepEqual(currentReport, report);
   assert.doesNotThrow(() => assertApprovedRelationshipReview({
@@ -1458,7 +1458,7 @@ test('Black Widow settles issue 311 with exact identities and availability exclu
   const currentReport = await buildCurrentReportForMapping(
     path.join(root, 'scripts', 'data', 'cbh-mappings', `${id}.json`),
     [],
-    { excludedOrderIds: ['mephisto-reading-order', 'miles-morales-spider-man-reading-order', 'spider-gwen-reading-order', 'best-ultron-reading-order', 'winter-soldier-bucky-barnes-reading-order', 'spider-man-2099-reading-order', 'donny-cates-marvel-universe-reading-order-2017', 'falcon-sam-wilson-captain-america-reading-order', 'the-vision-reading-order', 'emma-frost-reading-order', 'doctor-octopus-otto-octavius-reading-order', 'shadow-king-reading-order', 'thunderbolts-reading-order', 'nebula-reading-order', 'hope-summers-reading-order', 'x-23-reading-order', 'marvel-zombies-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order', 'nova-reading-order', 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order'] },
+    { excludedOrderIds: ['mcu-prep-thunderbolts', 'mephisto-reading-order', 'miles-morales-spider-man-reading-order', 'spider-gwen-reading-order', 'best-ultron-reading-order', 'winter-soldier-bucky-barnes-reading-order', 'spider-man-2099-reading-order', 'donny-cates-marvel-universe-reading-order-2017', 'falcon-sam-wilson-captain-america-reading-order', 'the-vision-reading-order', 'emma-frost-reading-order', 'doctor-octopus-otto-octavius-reading-order', 'shadow-king-reading-order', 'thunderbolts-reading-order', 'nebula-reading-order', 'hope-summers-reading-order', 'x-23-reading-order', 'marvel-zombies-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order', 'nova-reading-order', 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order'] },
   );
   const expectedExact = new Map([
     [7, 6908],
@@ -1699,7 +1699,7 @@ test('Fantastic Four settles issue 324 with exact identities and availability ex
   const currentReport = await buildCurrentReportForMapping(
     path.join(root, 'scripts', 'data', 'cbh-mappings', `${id}.json`),
     [],
-    { excludedOrderIds: [...CBH_LATER_ORDER_IDS, 'nova-reading-order'] },
+    { excludedOrderIds: ['mcu-prep-thunderbolts', ...CBH_LATER_ORDER_IDS, 'nova-reading-order'] },
   );
 
   assert.doesNotThrow(() => validateFrozenPacket(packet, {
@@ -1912,7 +1912,7 @@ test('the Punisher guide preserves its full source ledger through publication', 
     {
       ...historicalLibrary,
       excludedOrderIds: [
-        magnetoCandidateId,
+        'mcu-prep-thunderbolts', magnetoCandidateId,
         'loki-reading-order',
         'silver-surfer-reading-order',
         moonKnightCandidateId,
@@ -2674,7 +2674,7 @@ test('Silver Surfer settles all four issue #304 gaps without losing source posit
      && id !== 'nova-reading-order'
      && id !== 'ultimate-spider-man-reading-order'
      && id !== 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide'
-     && id !== 'shang-chi-master-of-kung-fu-reading-order' && id !== 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order' && id !== 'namor-sub-mariner-reading-order' && id !== 'iron-fist-reading-order' && id !== 'mcu-prep-moon-knight')
+     && id !== 'shang-chi-master-of-kung-fu-reading-order' && id !== 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order' && id !== 'namor-sub-mariner-reading-order' && id !== 'iron-fist-reading-order' && id !== 'mcu-prep-moon-knight' && id !== 'mcu-prep-thunderbolts')
     .sort();
   const historicalLibrary = await historicalAgathaLibrarySnapshot();
   const reviewedLibraryDigest = await libraryDigestForScope(
@@ -2701,7 +2701,7 @@ test('Silver Surfer settles all four issue #304 gaps without losing source posit
     {
       ...historicalLibrary,
       excludedOrderIds: [
-        moonKnightCandidateId,
+        'mcu-prep-thunderbolts', moonKnightCandidateId,
         'the-defenders-reading-order',
         xForceCandidateId,
         'nick-fury-reading-order',
@@ -4317,7 +4317,7 @@ test('the frozen Star-Lord evidence stays complete, fresh, distinct, and exact',
     generated.items.map((item) => String(item.issueId)),
     mapping.rows.map((row) => String(row.selectedIssueId)),
   );
-  const starLordChronology = manifest.lists.filter((entry) => !['best-ultron-reading-order', 'miles-morales-spider-man-reading-order', 'spider-gwen-reading-order', 'spider-man-2099-reading-order', 'winter-soldier-bucky-barnes-reading-order', 'donny-cates-marvel-universe-reading-order-2017', 'falcon-sam-wilson-captain-america-reading-order', 'the-vision-reading-order', 'emma-frost-reading-order', 'doctor-octopus-otto-octavius-reading-order', 'shadow-king-reading-order', 'thunderbolts-reading-order', 'hope-summers-reading-order', 'x-23-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order', 'iron-fist-reading-order', 'mcu-prep-moon-knight'].includes(entry.id));
+  const starLordChronology = manifest.lists.filter((entry) => !['best-ultron-reading-order', 'miles-morales-spider-man-reading-order', 'spider-gwen-reading-order', 'spider-man-2099-reading-order', 'winter-soldier-bucky-barnes-reading-order', 'donny-cates-marvel-universe-reading-order-2017', 'falcon-sam-wilson-captain-america-reading-order', 'the-vision-reading-order', 'emma-frost-reading-order', 'doctor-octopus-otto-octavius-reading-order', 'shadow-king-reading-order', 'thunderbolts-reading-order', 'hope-summers-reading-order', 'x-23-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order', 'iron-fist-reading-order', 'mcu-prep-thunderbolts', 'mcu-prep-moon-knight'].includes(entry.id));
 
   const starLordIndex = starLordChronology.findIndex((entry) => entry.id === starLordCandidateId);
   assert.equal(starLordChronology[starLordIndex - 1].id, grootCandidateId);
@@ -4651,7 +4651,7 @@ test('the first character batch stays exact through evidence, catalog, and gener
 
   const allBatchIds = evidence.flatMap((item) => item.mapping.rows.map((row) => String(row.selectedIssueId)));
   assert.equal(new Set(allBatchIds).size, 81);
-  assert.equal(catalog.lists.length, 281);
+  assert.equal(catalog.lists.length, 282);
   const characterRuns = catalog.lists.filter((entry) => entry.type === 'character-run');
   assert.equal(characterRuns.length, 70);
   assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 69);
@@ -4776,7 +4776,7 @@ test('Magneto publishes the complete reviewed settlement while preserving positi
   const currentReport = await buildCurrentReportForMapping(
     path.join(root, `scripts/data/cbh-mappings/${magnetoCandidateId}.json`),
     [],
-    { excludedOrderIds: [...CBH_LATER_ORDER_IDS, 'nova-reading-order'] },
+    { excludedOrderIds: ['mcu-prep-thunderbolts', ...CBH_LATER_ORDER_IDS, 'nova-reading-order'] },
   );
   const reviewedLibraryDigest = currentReport.libraryDigest;
   const positions = [

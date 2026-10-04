@@ -9,7 +9,7 @@ import {
   mappingDigestFor,
   validateReportDigest,
 } from '../scripts/lib/cbh-inventory.mjs';
-import { buildReportForMapping, reportArgs } from '../scripts/report-order-overlap.mjs';
+import { buildReportForMapping, loadLibrarySnapshot, reportArgs } from '../scripts/report-order-overlap.mjs';
 
 test('the full-library switch keeps peer paths while disabling later-order exclusions', () => {
   assert.deepEqual(reportArgs(['peer.json', '--include-later']), {
@@ -133,10 +133,9 @@ test('buildReportForMapping rejects unresolved mappings before writing a report'
 
 test('buildReportForMapping regenerates shipped reports without duplicate self or peer comparisons', async () => {
   const mappingsDir = path.join(root, 'scripts', 'data', 'cbh-mappings');
-  const report = await buildReportForMapping(
-    path.join(mappingsDir, 'secret-war.json'),
-    [path.join(mappingsDir, 'spider-man-the-other.json')],
-  );
+  const mappingPath = path.join(mappingsDir, 'secret-war.json');
+  const peerPaths = [path.join(mappingsDir, 'spider-man-the-other.json')];
+  const report = await buildReportForMapping(mappingPath, peerPaths);
   const comparedIds = report.comparisons.map((comparison) => comparison.orderId);
 
   assert.equal(report.candidateCount, 5);
@@ -144,6 +143,18 @@ test('buildReportForMapping regenerates shipped reports without duplicate self o
   assert.equal(new Set(comparedIds).size, 137);
   assert.equal(comparedIds.includes('secret-war'), false);
   assert.equal(comparedIds.filter((id) => id === 'spider-man-the-other').length, 1);
+  assert.equal(comparedIds.includes('mcu-prep-thunderbolts'), false);
+  assert.equal(comparedIds.includes('mcu-prep-moon-knight'), false);
+  const [current, library] = await Promise.all([
+    buildReportForMapping(mappingPath, peerPaths, { excludedOrderIds: [] }),
+    loadLibrarySnapshot(),
+  ]);
+  assert.deepEqual(current.comparisons.map((entry) => entry.orderId),
+    library.lists.filter((entry) => entry.id !== 'secret-war')
+      .map((entry) => entry.id).sort((left, right) => left.localeCompare(right)));
+  assert.equal(current.comparisonCount, library.lists.length - 1);
+  assert.ok(current.comparisons.some((entry) => entry.orderId === 'mcu-prep-thunderbolts'));
+  assert.ok(current.comparisons.some((entry) => entry.orderId === 'mcu-prep-moon-knight'));
 });
 
 test('fresh overlap reports bind the complete library, mapping, peers, and factual comparisons', async () => {

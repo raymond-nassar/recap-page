@@ -2240,6 +2240,42 @@
       "coverIssueId": 74028
     },
     {
+      "id": "mcu-prep-thunderbolts",
+      "name": "MCU Prep: Thunderbolts*",
+      "description": "34 resolved originals; Thunderbolts (1997) #-1 remains a documented provider gap. Owner-selected prep from four collections and one Taskmaster spotlight, following the original team, Natasha and Yelena, Bucky's Winter Soldier story and his later Thunderbolts team.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "mcu-prep-thunderbolts.md",
+      "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/682",
+      "sourceOrigin": "Compiled by hand for this project from the owner-authored outline in GitHub issue #682",
+      "sourceLicense": null,
+      "out": "mcu_prep_thunderbolts.json",
+      "characters": [
+        "Thunderbolts",
+        "Black Widow",
+        "Yelena Belova",
+        "Winter Soldier",
+        "Captain America",
+        "Taskmaster"
+      ],
+      "keywords": [
+        "MCU Prep",
+        "Thunderbolts*",
+        "Thunderbolts Classic",
+        "The Ties That Bind",
+        "Winter Soldier",
+        "There Is No High Road",
+        "Taskmaster"
+      ],
+      "expect": 34,
+      "timeline": null,
+      "coverIssueId": 15311
+    },
+    {
       "id": "mcu-prep-moon-knight",
       "name": "Moon Knight: MCU Prep",
       "description": "The owner's three first-volume Moon Knight selections, expanded into 17 original issues from 2014, 2016 and 2021, in selection order.",

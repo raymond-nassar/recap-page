@@ -13,11 +13,12 @@ import {
   assertMappingMatchesPacketOccurrences, digestCanonicalJson, libraryDigestExcludingOrders,
   libraryDigestFor, validateFrozenPacket, validateMappingDigest, validateReportDigest,
 } from '../scripts/lib/cbh-inventory.mjs';
-import { issueIdsFromValue } from '../scripts/lib/cbh-overlap.mjs';
+import { buildComparisonReport, issueIdsFromValue } from '../scripts/lib/cbh-overlap.mjs';
 import { loadLibrarySnapshot } from '../scripts/report-order-overlap.mjs';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 const id = 'mcu-prep-moon-knight';
+const laterId = 'mcu-prep-thunderbolts';
 const expectedSelections = [
   {
     supplied: 'Moon Knight by Warren Ellis Vol. 1: From the Dead',
@@ -51,7 +52,7 @@ const expectedIssueIds = expectedSelections.flatMap((selection) => selection.iss
 const expectedGroups = expectedSelections.map((selection) => `${selection.title} (${selection.writer})`);
 const expectedScreenIds = [
   'doctor-strange-multiverse-of-madness', 'spider-man-no-way-home', 'marvel-multiverse',
-  'marvel-what-if', 'wandavision', 'spider-man-far-from-home', id,
+  'marvel-what-if', 'wandavision', 'spider-man-far-from-home', laterId, id,
 ];
 const sourceOrigin = 'Selected by the owner for MCU Prep; expanded into original issues for this project';
 const packetValidation = {
@@ -236,7 +237,7 @@ test('Moon Knight vendoring accounts for every original without disguising ident
   }
 });
 
-test('Moon Knight human overlap approval binds all source orders and every visible generated child', async () => {
+test('Moon Knight preserves human-approved snapshots and checks the complete current library', async () => {
   const ledger = await readJson('scripts', 'data', 'owner-selections', `${id}.json`);
   const packet = await readJson('scripts', 'data', 'owner-packets', `${id}.json`);
   const mapping = await readJson('scripts', 'data', 'owner-mappings', `${id}.json`);
@@ -248,7 +249,9 @@ test('Moon Knight human overlap approval binds all source orders and every visib
   const visibleOrders = await Promise.all(entries.map(async (entry) => ({
     id: entry.id, issueIds: issueIdsFromValue(await readJson('src', 'data', entry.file)).map(String),
   })));
-  const visibleDigest = libraryDigestFor({ lists: entries, paths: catalog.paths }, visibleOrders);
+  const visibleDigest = libraryDigestFor({
+    lists: entries.filter((entry) => entry.id !== laterId), paths: catalog.paths,
+  }, visibleOrders.filter((entry) => entry.id !== laterId));
   assert.deepEqual(ledger.sourceContentProjection, projectionFields);
   const projection = Object.fromEntries(projectionFields.map((field) => [field, ledger[field]]));
   assert.equal(packet.sourceContentSha256, digestCanonicalJson(projection));
@@ -262,13 +265,17 @@ test('Moon Knight human overlap approval binds all source orders and every visib
   const projections = [
     {
       report, review: mapping.relationshipReview,
-      currentLibraryDigest: libraryDigestExcludingOrders(library, [id]),
-      expectedOrderIds: library.lists.filter((entry) => entry.id !== id).map((entry) => entry.id),
+      currentLibraryDigest: libraryDigestExcludingOrders(library, [id, laterId]),
+      expectedOrderIds: library.lists.filter((entry) => entry.id !== id && entry.id !== laterId)
+        .map((entry) => entry.id),
+      currentOrders: library.orders.filter((order) => order.orderId !== id),
       count: 203,
     },
     {
       report: visibleReport, review: mapping.visibleRelationshipReview,
-      currentLibraryDigest: visibleDigest, expectedOrderIds: entries.map((entry) => entry.id),
+      currentLibraryDigest: visibleDigest,
+      expectedOrderIds: entries.filter((entry) => entry.id !== laterId).map((entry) => entry.id),
+      currentOrders: visibleOrders,
       count: 280,
     },
   ];
@@ -291,6 +298,14 @@ test('Moon Knight human overlap approval binds all source orders and every visib
     const subset = evidence.review.dispositions.find((row) => row.orderId === 'moon-knight-reading-order');
     assert.equal(subset.authorityType, 'human');
     assert.equal(subset.authorityIdentity, 'raymond-nassar');
+    const current = buildComparisonReport({
+      candidateIds: expectedIssueIds, orders: evidence.currentOrders,
+    });
+    assert.equal(current.comparisonCount, evidence.count + 1);
+    assert.deepEqual(current.comparisons, [
+      ...evidence.report.comparisons,
+      { orderId: laterId, sharedCount: 0, sharedIds: [], relationship: 'none' },
+    ].sort((left, right) => left.orderId.localeCompare(right.orderId)));
   }
   assert.ok(visibleReport.comparisons.some((row) => row.orderId === 'marvel-knights-to-planet-x-01'));
   assert.ok(!visibleReport.comparisons.some((row) => row.orderId === 'marvel-knights-to-planet-x'));
