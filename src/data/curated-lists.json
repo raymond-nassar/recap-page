@@ -2379,6 +2379,47 @@
       "coverIssueId": 8799
     },
     {
+      "id": "mcu-prep-fantastic-four-first-steps",
+      "name": "MCU Prep: The Fantastic Four: First Steps",
+      "description": "Five owner selections, expanded to 28 original comics: the first six Fantastic Four issues, the Galactus Trilogy, Imaginauts, Hickman's first volume and New Dawn. The Point One row opens the whole anthology; New Dawn selects its Silver Surfer story.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "mcu-prep-fantastic-four-first-steps.md",
+      "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/701",
+      "sourceOrigin": "Compiled for this project from the owner's selections",
+      "sourceLicense": null,
+      "out": "mcu_prep_fantastic_four_first_steps.json",
+      "characters": [
+        "Fantastic Four",
+        "Reed Richards",
+        "Sue Storm",
+        "Johnny Storm",
+        "Ben Grimm",
+        "Silver Surfer",
+        "Galactus"
+      ],
+      "keywords": [
+        "MCU Prep",
+        "The Fantastic Four: First Steps",
+        "Owner selections",
+        "Stan Lee",
+        "Jack Kirby",
+        "The Galactus Trilogy",
+        "Imaginauts",
+        "Mark Waid",
+        "Jonathan Hickman",
+        "Dan Slott",
+        "New Dawn"
+      ],
+      "expect": 28,
+      "timeline": null,
+      "coverIssueId": 12894
+    },
+    {
       "id": "agents-of-atlas-reading-order",
       "name": "Agents of Atlas",
       "description": "Agents of Atlas from the 1950s background reading through Jeff Parker, Fear Itself, and the New Agents of Atlas.",

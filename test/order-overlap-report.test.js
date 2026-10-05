@@ -140,7 +140,7 @@ test('buildReportForMapping separates the shipped historical cohort from complet
   const comparedIds = report.comparisons.map((comparison) => comparison.orderId);
   const laterOwnerIds = [
     'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings',
-    'mcu-prep-thunderbolts', 'mcu-prep-daredevil-born-again', 'mcu-prep-moon-knight', 'mcu-prep-eternals',
+    'mcu-prep-thunderbolts', 'mcu-prep-daredevil-born-again', 'mcu-prep-moon-knight', 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps',
     'mcu-prep-deadpool-and-wolverine', 'spider-man-no-way-home-owner-selected',
   ];
 
