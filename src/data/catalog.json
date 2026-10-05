@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-03T18:48:28.130Z",
+  "generatedAt": "2026-10-05T03:02:26.439Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -2891,6 +2891,54 @@
       "sourceOrigin": "Compiled for this project",
       "sourceLicense": null,
       "updatedAt": "2026-10-03T17:50:15.766Z"
+    },
+    {
+      "id": "mcu-prep-fantastic-four-first-steps",
+      "file": "mcu_prep_fantastic_four_first_steps.json",
+      "name": "MCU Prep: The Fantastic Four: First Steps",
+      "description": "Five owner selections, expanded to 28 original comics: the first six Fantastic Four issues, the Galactus Trilogy, Imaginauts, Hickman's first volume and New Dawn. The Point One row opens the whole anthology; New Dawn selects its Silver Surfer story.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "count": 28,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 5,
+      "characters": [
+        "Fantastic Four",
+        "Reed Richards",
+        "Sue Storm",
+        "Johnny Storm",
+        "Ben Grimm",
+        "Silver Surfer",
+        "Galactus"
+      ],
+      "keywords": [
+        "MCU Prep",
+        "The Fantastic Four: First Steps",
+        "Owner selections",
+        "Stan Lee",
+        "Jack Kirby",
+        "The Galactus Trilogy",
+        "Imaginauts",
+        "Mark Waid",
+        "Jonathan Hickman",
+        "Dan Slott",
+        "New Dawn"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 12894,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/519b7424af23c",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/701",
+      "sourceOrigin": "Compiled for this project from the owner's selections",
+      "sourceLicense": null,
+      "updatedAt": "2026-10-05T03:02:26.439Z"
     },
     {
       "id": "agents-of-atlas-reading-order",

@@ -136,6 +136,7 @@ export default [
       'scripts/browser-moon-knight.mjs',
       'scripts/browser-mcu-prep-deadpool-and-wolverine.mjs',
       'scripts/browser-mcu-prep-eternals.mjs',
+      'scripts/browser-mcu-prep-fantastic-four-first-steps.mjs',
       'scripts/browser-owner-no-way-home.mjs',
       'scripts/capture-store-assets.mjs',
       'scripts/capture-play-assets.mjs',
