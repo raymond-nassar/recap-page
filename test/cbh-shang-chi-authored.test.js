@@ -13,6 +13,10 @@ import { issueIdsFromValue } from '../scripts/lib/cbh-overlap.mjs';
 import { placeholderId } from '../scripts/lib/placeholder-id.mjs';
 import { parseCatalog, searchCatalog, shelfKey } from '../src/js/lib/catalog.js';
 import { parseChecklist } from '../src/js/lib/markdown.js';
+import {
+  historicalReadingChoiceManifest,
+  historicalReadingChoiceIssueIds,
+} from './helpers/reading-choice-history.mjs';
 
 const id = 'shang-chi-master-of-kung-fu-reading-order';
 const readJson = async (file) => JSON.parse(await readFile(file, 'utf8'));
@@ -91,15 +95,15 @@ test('Shang-Chi requires its renewed independent relationship approval against a
     '76f81c9a189e88b98556ba1a7c0564531675380a82428480117abd49599a6f5f');
   assert.equal(mapping.reviewStatus, 'approved');
   assert.deepEqual(mapping.approvedManifest, packet.proposedManifest);
-  const published = manifest.lists.filter((entry) => entry.id !== id
+  const published = historicalReadingChoiceManifest(manifest).lists.filter((entry) => entry.id !== id
     && entry.id !== 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order'
     && entry.id !== 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order'
     && entry.id !== 'namor-sub-mariner-reading-order'
-    && entry.id !== 'iron-fist-reading-order' && entry.id !== 'mcu-prep-deadpool-and-wolverine' && entry.id !== 'mcu-prep-eternals' && entry.id !== 'spider-man-no-way-home-owner-selected' && entry.id !== 'mcu-prep-thunderbolts');
+    && entry.id !== 'iron-fist-reading-order' && entry.id !== 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings' && entry.id !== 'mcu-prep-daredevil-born-again' && entry.id !== 'mcu-prep-moon-knight' && entry.id !== 'mcu-prep-deadpool-and-wolverine' && entry.id !== 'mcu-prep-eternals' && entry.id !== 'mcu-prep-fantastic-four-first-steps' && entry.id !== 'spider-man-no-way-home-owner-selected' && entry.id !== 'mcu-prep-thunderbolts');
   assert.equal(published.length, 198);
   const orders = await Promise.all(published.map(async (entry) => ({
     id: entry.id,
-    issueIds: issueIdsFromValue(await readJson(`src/data/${entry.out}`)).map(String),
+    issueIds: historicalReadingChoiceIssueIds(entry.id, issueIdsFromValue(await readJson(`src/data/${entry.out}`))).map(String),
   })));
   const peerDigest = libraryDigestFor({ ...manifest, lists: published }, orders);
   assert.equal(peerDigest, report.libraryDigest);
@@ -172,7 +176,7 @@ test('Shang-Chi authored checklist and complete browser vector preserve every se
     repeat.sourcePosition, repeat.canonicalSourcePosition,
   ]), [[12, 10], [207, 31], [208, 97], [209, 98]]);
   const position = manifest.lists.findIndex((entry) => entry.id === id);
-  assert.equal(manifest.lists.length, 207);
+  assert.equal(manifest.lists.length, 211);
   assert.equal(manifest.lists[position - 1].id, 'doctor-octopus-otto-octavius-reading-order');
   assert.equal(manifest.lists[position + 1].id, 'thunderbolts-reading-order');
   assert.deepEqual(manifest.lists[position], packet.proposedManifest);
@@ -215,7 +219,7 @@ test('Shang-Chi vendored payload preserves exact original IDs, eight gaps and it
   assert.deepEqual([card.type, card.depth, card.spotlightKind, card.timeline],
     ['character-run', 'partial', 'other', null]);
   assert.equal(card.sourceLicense, null);
-  assert.equal(catalog.lists.length, 284);
+  assert.equal(catalog.lists.length, 288);
   const parsedCatalog = parseCatalog(catalog);
   assert.equal(shelfKey({ lists: [card] }), 'spotlights');
   for (const query of ['Shang-Chi', 'Master of Kung Fu', 'Ten Rings']) {

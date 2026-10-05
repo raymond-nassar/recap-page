@@ -43,7 +43,9 @@
     "browser:prove": "node scripts/browser-check.mjs --prove",
     "upgrade": "node scripts/upgrade-check.mjs",
     "upgrade:prove": "node scripts/upgrade-check.mjs --prove",
-    "version": "node scripts/sync-version.mjs && git add src/js/lib/version.js",
+    "home-updates": "node scripts/generate-home-updates.mjs",
+    "home-updates:check": "node scripts/generate-home-updates.mjs --check --recorded",
+    "version": "node scripts/sync-version.mjs && node scripts/generate-home-updates.mjs --candidate && git add src/js/lib/version.js src/js/lib/homeUpdatesContent.js",
     "pages:build": "node scripts/build-pages.mjs"
   },
   "engines": {

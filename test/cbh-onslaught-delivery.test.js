@@ -9,11 +9,16 @@ import {
 } from '../scripts/lib/cbh-inventory.mjs';
 import { issueIdsFromValue } from '../scripts/lib/cbh-overlap.mjs';
 import { assertApprovedRelationshipReview, buildMarkdown } from '../scripts/author-cbh-packet.mjs';
-import { buildReportForMapping } from '../scripts/report-order-overlap.mjs';
+
 import { parseCatalog, searchCatalog, shelfKey } from '../src/js/lib/catalog.js';
 import { parseManifest } from '../src/js/lib/curated.js';
 import { parseChecklist } from '../src/js/lib/markdown.js';
 import { placeholderId } from '../scripts/lib/placeholder-id.mjs';
+import {
+  buildHistoricalReadingChoiceReport as buildReportForMapping,
+  historicalReadingChoiceManifest,
+  historicalReadingChoiceIssueIds,
+} from './helpers/reading-choice-history.mjs';
 
 const id = 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order';
 const sourceUrl = 'https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/x-men-onslaught-reading-order/';
@@ -140,9 +145,9 @@ test('Onslaught keeps original series, companions, both gaps and excerpt boundar
 
 test('Onslaught approved full-library report preserves all 200 peers at its publication', async () => {
   const manifest = await readJson('src/data/curated-lists.json');
-  const existing = manifest.lists.filter((entry) =>
+  const existing = historicalReadingChoiceManifest(manifest).lists.filter((entry) =>
     entry.id !== id && entry.id !== 'namor-sub-mariner-reading-order'
-      && entry.id !== 'iron-fist-reading-order' && entry.id !== 'mcu-prep-deadpool-and-wolverine' && entry.id !== 'mcu-prep-eternals' && entry.id !== 'spider-man-no-way-home-owner-selected' && entry.id !== 'mcu-prep-thunderbolts');
+      && entry.id !== 'iron-fist-reading-order' && entry.id !== 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings' && entry.id !== 'mcu-prep-daredevil-born-again' && entry.id !== 'mcu-prep-moon-knight' && entry.id !== 'mcu-prep-deadpool-and-wolverine' && entry.id !== 'mcu-prep-eternals' && entry.id !== 'mcu-prep-fantastic-four-first-steps' && entry.id !== 'spider-man-no-way-home-owner-selected' && entry.id !== 'mcu-prep-thunderbolts');
   assert.equal(existing.length, 200);
   const existingManifest = {
     ...manifest,
@@ -154,13 +159,13 @@ test('Onslaught approved full-library report preserves all 200 peers at its publ
   };
   const orderIssueIds = await Promise.all(existing.map(async (entry) => ({
     id: entry.id,
-    issueIds: issueIdsFromValue(await readJson(`src/data/${entry.out}`)).map(String),
+    issueIds: historicalReadingChoiceIssueIds(entry.id, issueIdsFromValue(await readJson(`src/data/${entry.out}`))).map(String),
   })));
   const libraryDigest = libraryDigestFor(existingManifest, orderIssueIds);
   assert.equal(libraryDigest, '473bfe1e3e3247395973c2464b01fcbfafc858ed656417baf5cdf44ea5174903');
   assert.equal(report.reportDigest, '1ef070ad35dfd5507f78515c7465f988f0a3ded82fd416a3990ba81734d9b7bf');
   const rebuilt = await buildReportForMapping(`scripts/data/cbh-mappings/${id}.json`, [],
-    { excludedOrderIds: ['namor-sub-mariner-reading-order', 'iron-fist-reading-order', 'mcu-prep-deadpool-and-wolverine', 'mcu-prep-eternals', 'spider-man-no-way-home-owner-selected', 'mcu-prep-thunderbolts'] });
+    { excludedOrderIds: ['namor-sub-mariner-reading-order', 'iron-fist-reading-order', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts', 'spider-man-no-way-home-owner-selected', 'mcu-prep-daredevil-born-again', 'mcu-prep-moon-knight', 'mcu-prep-deadpool-and-wolverine', 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps'] });
   assert.deepEqual(rebuilt, report);
   assert.equal(mapping.reviewStatus, 'approved');
   assert.deepEqual(mapping.approvedManifest, packet.proposedManifest);
@@ -229,7 +234,7 @@ test('Onslaught authoring preserves all 74 positions ahead of Operation: Zero To
     }
   }
   assert.deepEqual(parseManifest(manifest).errors, []);
-  assert.equal(manifest.lists.length, 207);
+  assert.equal(manifest.lists.length, 211);
   const position = manifest.lists.findIndex((entry) => entry.id === id);
   assert.equal(manifest.lists[position + 1].id, 'operation-zero-tolerance');
   assert.deepEqual(manifest.lists[position], packet.proposedManifest);
@@ -293,7 +298,7 @@ test('Onslaught publishes 72 exact original identities and two ordered unresolve
   assert.equal(payload.items[72].issueId, 23388);
   assert.equal(payload.items[73].issueId, 16337);
   const catalog = parseCatalog(catalogRaw);
-  assert.equal(catalog.lists.length, 284);
+  assert.equal(catalog.lists.length, 288);
   const card = catalog.lists.find((row) => row.id === id);
   assert.equal(card.count, 74);
   assert.equal(card.placeholderCount, 2);

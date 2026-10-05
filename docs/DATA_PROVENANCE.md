@@ -55,6 +55,42 @@ approved as a partial overlap with the existing Spider-Man best-of path. Neither
 exact duplicate. No source commentary, branding, layout, movie imagery, or comic image bytes are
 copied. [Owner-authored companions](#owner-authored-mcu-prep-companions) have a separate evidence lane.
 
+The separate owner-authored Daredevil companion does not change that fourteen-source CBH
+inventory or its six published selections. Its owner credit, five supplied positions and
+approved six-collection expansion are recorded under
+[Owner-authored MCU Prep: Daredevil: Born Again](#owner-authored-mcu-prep-daredevil-born-again).
+
+### Owner-selected Shang-Chi compilation
+
+**Shang-Chi and the Legend of the Ten Rings** adds 37 distinct original comics in seven
+owner-selected blocks. It uses the [owner's replacement excerpt](https://github.com/raymond-nassar/recap-page/issues/683#issuecomment-5971742989)
+as the compilation input, not another source in the fourteen-record CBH inventory.
+Its factual upstream is [Comic Book Herald's Shang-Chi guide](https://www.comicbookherald.com/shang-chi-master-of-kung-fu-reading-order/),
+under **Latest Additions:**, verified on 2026-10-03. The owner omitted the intervening
+Atlantis Attacks (2020) #1-5 recommendation, so this is neither the complete page nor the
+whole section. The source roles and credit are recorded at
+`scripts/data/mcu-prep-source-ledgers/mcu-prep-shang-chi-and-the-legend-of-the-ten-rings.json:6-24`.
+
+The local checklist expands only the selected originals, corrects the Gene Luen Yang
+credit and verifies the 2021 Legend one-shot, 2022 Ten Rings series and 2023 final one-shot.
+The seven selections contain six collected editions. Legend is selected as a standalone
+issue, with null collection metadata; a display boundary does not become a seventh edition.
+Marvel's Voices: Identity (2021) #1 selects the Shang-Chi story only, while completion
+remains per original issue, as recorded at
+`scripts/data/mcu-prep-source-ledgers/mcu-prep-shang-chi-and-the-legend-of-the-ten-rings.json:578-583`.
+The Sword Master collection's material-only qualification is also retained in its heading.
+All 37 originals resolved without a metadata gap. Publication metadata is recorded at
+`scripts/data/mcu-prep-source-ledgers/mcu-prep-shang-chi-and-the-legend-of-the-ten-rings.json:761-769`.
+
+The [corrected central relationship decision](https://github.com/raymond-nassar/recap-page/issues/683#issuecomment-5972405708)
+approves the 37-issue subset of the larger Shang-Chi guide and partial relationships with
+Agents of Atlas, Iron Man and Silk. The frozen comparison covers all 203 earlier source
+orders and 78 visible generated children, including the hidden partition parent. Shared
+originals stay in the owner-selected companion. It keeps the existing MCU Prep gateway and
+Storylines shelf, with no new classification, runtime dependency or saved-data format.
+The gateway now contains fourteen separately named choices with 396 exact rows, including
+the Secret Wars fast track. The historical inventory's six guides and 107 rows remain unchanged.
+
 ### Owner-authored Thunderbolts* companion
 
 [MCU Prep: Thunderbolts*](https://github.com/raymond-nassar/recap-page/issues/682) is a separate
@@ -80,12 +116,44 @@ rejected relabeling under the assigned [gap bundle](https://github.com/raymond-n
 It has no guessed replacement, collection ID or imported placeholder. The card names the
 omission, and the source ledger keeps it distinct from the 34 published comics. This is a
 provider-identity gap, not a judgment about Marvel Unlimited availability. The
-[complete-library relationship report](../scripts/data/mcu-prep-thunderbolts-overlaps.json)
+[publication-time complete-library relationship report](../scripts/data/mcu-prep-thunderbolts-overlaps.json)
 compares 280 existing visible lists, including all 78 generated children, and the hidden
 partition parent: six partial relationships and 275 without shared originals. Central
 dispositions are required; exact duplicates and unapproved subsets have no publication path.
-The existing MCU Prep gateways and Storylines shelf contain this seventh companion without
+The existing MCU Prep gateways and Storylines shelf contain this companion without
 adding a canonical shelf or classifying it as a Character Spotlight.
+
+### Owner-authored Moon Knight selection
+
+Moon Knight: MCU Prep is a separate owner-authored selection, not a selection from the full
+Comic Book Herald guide. Its three first volumes expand into 17 original comics in the owner's
+order: Warren Ellis's From the Dead, Moon Knight (2014) #1-6; Jeff Lemire's Lunatic,
+Moon Knight (2016) #1-5; and Jed MacKay's The Midnight Mission, Moon Knight (2021) #1-6.
+The owner approved the latter two subtitles because the supplied Resurrection War and Lockdown
+titles did not establish the named creators' first volumes.
+
+The [owner selection ledger](../scripts/data/owner-selections/mcu-prep-moon-knight.json)
+retains all three supplied positions and rationales, the approved corrections, fetched
+bibliography and retrieval dates, ordered expansion, and every provider lookup outcome.
+Owner descriptions of origins, adaptation, tone and ongoing status are not asserted as facts.
+The [frozen packet](../scripts/data/owner-packets/mcu-prep-moon-knight.json) and
+[exact mapping](../scripts/data/owner-mappings/mcu-prep-moon-knight.json) bind this evidence
+without changing the fourteen-source CBH intake or crediting CBH with the owner's selection.
+All 17 detail lookups resolved on 2026-10-03; there are no provider gaps or failed lookups.
+Cover URLs and factual metadata are retained, but comic image bytes and external narrative
+prose are not.
+
+The [publication-time source-order report](../scripts/data/cbh-overlaps/mcu-prep-moon-knight.json)
+covers all 203 other source orders, including the noncatalog partition parent. The separate
+[publication-time visible-library report](../scripts/data/owner-overlaps/mcu-prep-moon-knight-visible.json)
+covers all 280 other visible Reading Lists, including generated children. Each finds only the
+17-original candidate-subset of the complete Moon Knight guide.
+[Explicit owner approval](https://github.com/raymond-nassar/recap-page/issues/685#issuecomment-5971795527)
+keeps all shared originals and the broader guide unchanged, with the human authority bound
+to both report digests. Later sibling additions are checked separately for shared originals
+without rewriting either companion's approved publication-time reports. The card uses the
+existing MCU Prep discovery surface with `screen-companion`, `selected`, `timeline: null`
+and `beginner: false`, not Character Spotlight or a new canonical shelf.
 
 ## Character Spotlight partial-release intake
 
@@ -338,15 +406,17 @@ orders: **null means nobody granted anything for this file, not that the file is
 
 ### Reading orders, pinned
 
-Two hundred and eighty-five pinned reading-order payloads sit under
-[`src/data/`](../src/data): 284 visible catalog files and one noncatalog partition parent. They hold
-30,938 issue records covering 19,297 distinct tracked identities. The visible files hold 30,451 of those records;
+Two hundred and ninety pinned reading-order payloads remain under
+[`src/data/`](../src/data): 288 active visible catalog files, one active noncatalog partition parent,
+and the retired 18-original owner-selected No Way Home payload. The 289 active files hold
+31,088 issue records covering 19,310 distinct tracked identities. The visible files hold 30,601 of those records;
 the extra 487 are the retained Marvel Knights to Planet X parent whose ordinary children partition
 the same vector. Records use these fields:
 `issueId`, `title`,
 `number`, `url`, `seriesId`, `seriesName`, `onSale`, `mu`, `digitalId`, `pageCount`, a `cover`
-object of `path` and `ext`, and `creators` of `name` and `role`. Across all 285 payloads, 26,060
-records carry a cover URL and 24,493 carry creator credits.
+object of `path` and `ext`, and `creators` of `name` and `role`. Across the 289 active payloads, 26,210
+records carry a cover URL and 24,616 carry creator credits. The retired payload remains byte-exact
+but does not contribute to active discovery or this active census.
 
 `description` was the field to look at hardest and is now empty. The others are facts about a
 publication: which issue, in which series, on what date. A description was Marvel's own prose
@@ -426,18 +496,71 @@ incidental property of the schema.
 | Origin | Source orders | What was compiled here |
 |---|---|---|
 | Assembled from Marvel series metadata (publication order) | 8 | The selection of series, and the rule that branded series are in and unbranded crossover chapters are out. Generated by [`scripts/build-event-order.mjs`](../scripts/build-event-order.mjs), so the derivation is a script anyone can read and re-run |
-| Compiled for this project | 10 | The whole sequence, by hand. This includes the noncatalog Marvel Knights to Planet X partition parent and the separately attributed Thunderbolts*, Eternals, Deadpool & Wolverine and No Way Home owner selections. See the trail at the top of each file in [`src/data/orders/`](../src/data/orders) |
-| Compiled for this project from Comic Book Herald's guide | 148 | The guide's issue selection and sequence, re-expressed as local checklists. Every visible card links to the exact guide followed |
+| Compiled for this project | 10 | The whole sequence, by hand. This includes the noncatalog Marvel Knights to Planet X partition parent and the separately attributed Thunderbolts*, Eternals, Deadpool & Wolverine and Fantastic Four: First Steps owner selections. The retired No Way Home checklist remains archived but is not an active source order. See the trail at the top of each file in [`src/data/orders/`](../src/data/orders) |
+| Compiled for this project from Comic Book Herald's guide | 150 | The guide's issue selection and sequence, re-expressed as local checklists. Every visible card links to the exact guide followed |
+| Compiled for this project from the owner's selected Comic Book Herald excerpt | 1 | The owner's seven-block Shang-Chi selection, expanded to original issues. The card links to the exact owner input record; its authored source and factual ledger separately credit the verified CBH page and section |
 | Compiled for this project from Comic Book Reading Orders | 39 | Factual issue identities and order from exact event pages or visible timeline sections. Every card links to the source followed |
-| Vendored from `emreparker/marvel-comics` | 2 | Nothing. The order is the upstream curator's; only the issue lookups were done here |
+| Vendored from `emreparker/marvel-comics` | 1 | Nothing. The order is the upstream curator's; only the issue lookups were done here |
+| Selected by the owner for MCU Prep; expanded into original issues for this project | 1 | Three owner-selected Moon Knight first volumes, expanded into verified original comics. The card links to the owner intake, and the selection ledger retains the approved title corrections |
+| Selected by raymond-nassar for MCU Prep | 1 | The owner's five selections, expanded into six verified collection groups with an explicit approval for both books at position 3 |
 
-The 207 source orders generate 284 visible Reading Lists. Marvel Knights to Planet X is the only
+The 211 active source orders generate 288 visible Reading Lists. Marvel Knights to Planet X is the only
 partition: its 99 quoted source positions and 487 metadata-complete issues remain in one hidden
 parent, while a checked ledger generates 78 ungrouped child payloads. Their separate 78-stop path
 preserves owner order when timeline years move backward, and their overlap matrix is regenerated
 against the current visible catalog rather than copied into historical reports. Its current
-report records 82 overlapping child-and-peer pairs across 22 visible peers, including one
-three-issue Iron Fist relationship, while preserving all earlier pairs.
+report records 84 overlapping child-and-peer pairs across 24 visible peers, including one
+three-issue Iron Fist, nine-issue Daredevil and seven-issue Fantastic Four companion relationships,
+while preserving all earlier pairs.
+
+### Secret Wars fast track and MCU Prep
+
+The [Secret Wars Fast Track Trade Reading Order](https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/secret-wars-reading-order/#secretwars0)
+was checked on 2026-10-03 and rebuilt from the owner's exact ten-section selection. Its factual
+[local checklist](../src/data/orders/secret-wars-fast-track-trades.md) retains 69 original issue
+identities without adding the rest of Hickman's Avengers run or optional Avengers World issues.
+The MCU Prep list, **Avengers: Doomsday & Avengers: Secret Wars**, uses that same checklist and
+identical issue and trade-section vectors. It has its own catalog and saved-list identity, while
+read flags remain shared by original issue ID.
+
+| Trade-based section | Original issues selected |
+|---|---|
+| Original Secret Wars | Secret Wars (1984) #1-12 |
+| New Avengers Volume 1: Everything Dies | New Avengers (2013) #1-3 only, not the complete #1-6 collection |
+| Time Runs Out Volume 1 | Avengers (2012) #35-37 and New Avengers (2013) #24-25 |
+| Time Runs Out Volume 2 | Avengers #38-39 and New Avengers #26-28 |
+| Ultimate Enemy, Mystery and Doom | Four issues of each original 2010 miniseries |
+| Ultimate Comics Ultimates Volume 1 | Ultimate Comics Ultimates (2011) #1-6 |
+| Ultimate Comics Ultimates Volume 2 | Ultimate Comics Ultimates #7-12 |
+| Time Runs Out Volume 3 | Avengers #40-42 and New Avengers #29-30 |
+| Time Runs Out Volume 4 | Avengers #43-44 and New Avengers #31-33 |
+| Secret Wars (2015) | Free Comic Book Day 2015 Secret Wars #0 and Secret Wars #1-9 |
+
+Within each Time Runs Out volume, Avengers and New Avengers follow the
+[primary guide's issue-by-issue interleaving](https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/secret-wars-reading-order/#secretwars6).
+The four volume boundaries were independently checked against
+[Reading Orders' collection records](https://www.readingorders.com/reading-orders/time-runs-out/collected-editions);
+the [metadata mirror's Volume 3 record](https://marvel.emreparker.com/v1/issues/52271) also confirms
+Avengers #40-42 and New Avengers #29-30. The Ultimates boundaries are corroborated by the
+[collected-edition bibliography](https://www.goodreads.com/series/100872-ultimate-comics-the-ultimates-collected-editions)
+and its [Volume 2 entry](https://www.goodreads.com/en/book/show/13528706-ultimate-comics).
+
+Two source discrepancies are explicit rather than silently inherited. The fast-track prose puts
+Avengers #41 in volume 2, but it belongs to volume 3. The supplied trade sequence places the Ultimate
+detour after volume 2 and before volume 3, so it remains before #41. The fast-track endpoint still
+says #8, while the updated Secret Wars collection entry and the owner specify #9. Both published
+copies include the finale.
+
+The zero issue is the exact original
+[Free Comic Book Day 2015 record 52986](https://marvel.emreparker.com/v1/issues/52986), under provider
+series 19821. Its unusual provider title is not replaced with a guessed issue from the 2015 main
+series. The Ultimate primer originals are IDs 30206-30209, 30210-30213 and 30214-30217, verified
+against series 9196, 9957 and 9958 respectively. No source position is unresolved, and no source
+narrative or comic image bytes are committed.
+
+The stable fast-track catalog ID is retained, but its former 89-issue template is not written over
+any saved library copy. The complete saga is renamed without changing its 219 originals. Previously
+saved names, issue vectors, section maps and notes remain the reader's own snapshots.
 
 ### Series and creator indexes
 
@@ -450,10 +573,13 @@ selection here is not editorial, because it is simply all of them.
 
 ### Order checklists
 
-The 204 Markdown files in [`src/data/orders/`](../src/data/orders) are local source files.
-The two upstream Hickman checklists are fetched separately when vendored. The local sources
+The 208 Markdown files retained in [`src/data/orders/`](../src/data/orders) contain 207 active
+local source files and the retired owner-selected No Way Home checklist. The two upstream
+Hickman checklists are fetched separately when vendored. The active local sources
 comprise eight assembled from series metadata, 148 from reviewed Comic Book Herald selections,
-thirty-nine from reviewed Comic Book Reading Orders selections, and nine compiled by hand.
+thirty-nine from reviewed Comic Book Reading Orders selections, nine compiled by hand, and two
+owner-authored MCU Prep selections, plus one compiled from the owner's selected Comic Book Herald
+excerpt.
 Every file carries its own derivation trail. The 148 Comic Book Herald sources name that guide
 on their catalog cards and link to the exact page or section followed. Thirty-nine reference
 Comic Book Reading Orders and name it on their card.
@@ -484,7 +610,7 @@ above is listed separately because it is third-party material outside the usual 
 | Field | Holds |
 |---|---|
 | `sourceOrigin` | Prose. Where the order came from and who compiled it. Always present. This is what the catalog shows a reader, because it is the credit that is owed |
-| `sourceLicense` | An SPDX expression, or `null`. Only a licence actually conveyed with the vendored order. `null` on all 285 pinned reading-order payloads today |
+| `sourceLicense` | An SPDX expression, or `null`. Only a licence actually conveyed with the vendored order. `null` on all 288 pinned reading-order payloads today |
 | `sourcePage` | A link a reader can follow to the upstream, when there is one |
 | `sourceSection` | A visible heading that distinguishes several guides on one exact page. Absent for an ordinary whole-page source |
 | `spotlightKind` | An editorial classification required only for character runs. `best-of` and `complete-guide` make distinct, reviewable claims about a guide's scope; `other` records that neither claim is accurate. It is authored here and is never copied or inferred from an upstream field |
@@ -784,7 +910,7 @@ The first is that displaying a description and shipping a copy of one are differ
 those terms rather than two degrees of one act. Using Content inside an App is what the licence is
 for, on a condition the attribution page states plainly: "You must attribute Marvel as the source
 of data whenever you display any results from the Marvel Comics API". The app now names both the
-Marvel origin and its actual route in About at `src/index.html:1021-1025`. Redistributing Content outside an App, and sublicensing it onward, are the
+Marvel origin and its actual route in About at `src/index.html:1033-1037`. Redistributing Content outside an App, and sublicensing it onward, are the
 two things sections 4 and 5 name. An MIT grant is a sublicence to everyone who receives a copy, and
 offers them "sublicense, and/or sell".
 
@@ -829,7 +955,7 @@ app renders that state today rather than hypothetically. Those 675 do not render
 606 carry a series or digital id and get the sentence saying no synopsis is recorded, while 69 hold
 neither and get the sentence saying the snapshot has no record of the issue at all, which is the
 distinction drawn further up this document and worth keeping in view. The shared presentation
-reaches the interface in the reading hero at `src/js/views/reading.js:581` and the issue-details view at
+reaches the interface in the reading hero at `src/js/views/reading.js:588` and the issue-details view at
 `src/js/views/issue.js:95`. The function behind both already answers for the absence at
 `src/js/views/reading.js:79-87`, with a test asserting the sentence it returns. It is also reversible:
 the project this repository fetched from still serves the field,
@@ -955,10 +1081,10 @@ the book id out of an address the reader pastes.
 
 The generated catalog currently publishes three independent Reading Paths with 100 stops: two
 authored paths with 10 and 12 stops from the curated manifest at
-`src/data/curated-lists.json:6886-6925`, plus the 78-stop Marvel Knights to Planet X path generated
+`src/data/curated-lists.json:7041-7080`, plus the 78-stop Marvel Knights to Planet X path generated
 from its owner chapter ledger at
 `scripts/data/marvel-knights-to-planet-x-lists.json:28-40`. The generated result keeps all three at
-`src/data/catalog.json:10912-11037`.
+`src/data/catalog.json:11095-11220`.
 
 A path carries its own id, name, description, source statement and ordered Reading List ids. It
 does not copy issue rows, rewrite list identities, or enter saved reader state. The runtime resolves
@@ -1767,6 +1893,70 @@ Only factual provider details, including issue identities, creator credits and c
 are retained; the source's editorial prose, comic image bytes and inferred reader
 availability are not copied.
 
+## Owner-authored MCU Prep: Daredevil: Born Again
+
+[Issue #681](https://github.com/raymond-nassar/recap-page/issues/681) supplies the owner-authored
+selection, not a Comic Book Herald Daredevil guide. The original five positions remain in the
+[ordered owner ledger](../scripts/data/owner-selections/mcu-prep-daredevil-born-again.json).
+The title and creator conflict at position 3 was reported before an identity was chosen. The owner
+explicitly said
+[Include both](https://github.com/raymond-nassar/recap-page/issues/681#issuecomment-5971677967),
+so Bendis's earlier Out collection precedes Brubaker's first volume within that same source
+position. It is not a substitute for another selection or permission to publish either complete run.
+
+| Source position | Verified selection | Original comics | Count |
+|---|---|---|---|
+| 1 | Frank Miller's The Man Without Fear | Daredevil: The Man Without Fear (1993) #1-5 | 5 |
+| 2 | Frank Miller's Born Again story arc | Daredevil (1964) #227-233 | 7 |
+| 3a | Brian Michael Bendis's Out trade | Daredevil (1998) #32-40 | 9 |
+| 3b | Ed Brubaker's The Devil Inside and Out Vol. 1 | Daredevil (1998) #82-87 | 6 |
+| 4 | Chip Zdarsky's Know Fear | Daredevil (2019) #1-5 | 5 |
+| 5 | Chip Zdarsky's No Devils, Only God | Daredevil (2019) #6-10 | 5 |
+
+The bibliographic records were retrieved on 2026-10-03: the distributor record for
+[The Man Without Fear](https://prhcomics.com/book/?isbn=9780785134794),
+the [Born Again arc record](https://en.wikipedia.org/wiki/Born_Again_(comics)) and
+[seven-issue Artist's Edition review](https://aeindex.org/reviews/david-mazzucchellis-daredevil-born-again-artists-edition/),
+the specialist [trade collection index](https://www.manwithoutfear.com/daredevil-tradepaperbacks-and-graphic-novels.shtml),
+and distributor records for
+[Know Fear](https://www.penguinrandomhouse.com/books/694088/daredevil-by-chip-zdarsky-vol-1-know-fear-by-chip-zdarsky/)
+and [No Devils, Only God](https://www.penguinrandomhouse.com/books/694089/daredevil-by-chip-zdarsky-vol-2-no-devils-only-god-by-chip-zdarsky/).
+The last distributor record incorrectly prints 2018. Exact issue identities belong to series 26080,
+Daredevil (2019), so the typo does not select a different series. Born Again is the seven-issue
+namesake arc, not an edition with added #226 or #219. Out includes the trade's Trial of the Century
+issues #38-40. Fisk was already mayor before the selected Zdarsky issues, as the earlier
+[Mayor Fisk collection review](https://aiptcomics.com/2025/02/05/daredevil-mayor-fisk-tpb-review/)
+records; the selected books are not described as his first election or as verified screen adaptations.
+
+The [frozen owner packet](../scripts/data/owner-packets/mcu-prep-daredevil-born-again.json),
+[exact mapping](../scripts/data/owner-mappings/mcu-prep-daredevil-born-again.json) and
+[overlap report](../scripts/data/owner-overlaps/mcu-prep-daredevil-born-again.json) reuse the
+existing provider-configurable evidence and duplicate gates. All 280 earlier visible orders,
+including generated chapters, and the retained noncatalog parent were compared: 281 peers,
+four relationships and 277 without shared originals. Explicit
+[human owner approval](https://github.com/raymond-nassar/recap-page/issues/681#issuecomment-5971795512)
+retains all 37 shared comics with the complete Daredevil guide; nine with Iron Fist, #38-40 and
+#82-87 of the 1998 series; and nine #32-40 originals with both Marvel Knights to Planet X
+chapter 26 and its hidden parent. The companion contains that whole Out chapter but does not
+replace it. No exact duplicate is approved. Packet, mapping, report, library and approval digests
+bind those dispositions to the measured vector.
+
+The [checklist](../src/data/orders/mcu-prep-daredevil-born-again.md) and
+[generated payload](../src/data/mcu_prep_daredevil_born_again.json) publish 37 distinct original
+issues in six collection groups. The targeted vendor queried only those 37 exact originals.
+There were no unresolved identities or refused issue-detail lookups, and all 37 have provider
+reader IDs and cover URLs. Twenty-five records have creator credits; the twelve blank credit
+arrays stay blank and are identified in ordered metadata provenance, not filled by inference.
+No gap-bundle Issue is required for a failed identity or detail lookup in this publication.
+These metadata facts do not claim Marvel Unlimited availability.
+
+Selection credit is `Selected by raymond-nassar for MCU Prep`, and `sourceLicense` remains
+`null`. Only factual issue identities were reused from the retained Daredevil mapping; neither its
+external guide selection nor its narrative was reused. The fixed CBH companion inventory remains
+unchanged. The existing screen-companion surface keeps selected depth, no timeline year, and
+no beginner or Character Spotlight classification. Saved-state format, progress, notes and
+reader-launch behavior are unchanged. No comic image bytes or third-party synopsis prose are stored.
+
 ## Owner-authored MCU Prep companions
 
 **MCU Prep: Deadpool & Wolverine** follows the owner's five selections in
@@ -1797,12 +1987,17 @@ and [portable evidence binding](https://github.com/raymond-nassar/recap-page/iss
 recorded on 2026-10-03, preserve every shared original and the distinct owner-selected companion.
 
 The [append-only current-library extension](../scripts/data/owner-mcu-prep-deadpool-and-wolverine-current-library-extension.json)
-also checks Thunderbolts*'s 34 originals and the separately identified No Way Home owner's
+records Thunderbolts*'s 34 originals and the separately identified No Way Home owner's
 18 originals, plus Eternals' 24 originals, against this guide's 43. None shares an original with this guide.
-The combined current comparison covers 284 peers, including generated
-children and the hidden parent, while both guides' original reports and approvals stay unchanged.
-The extension is derived completeness evidence, not a new human approval. Its executable gate
-rejects an unrecorded peer or any newly meaningful relationship instead of silently excluding it.
+Its frozen 285-order snapshot and 284-peer comparisons remain exact historical evidence,
+including the later-withdrawn No Way Home selection through its retained packet and payload.
+A separate unfiltered check covers the complete active library: 285 descriptors and 284 peers
+for each active candidate, including generated children and the hidden parent. Both guides'
+original reports, approvals and the extension remain unchanged. The recorded extension is not
+an active registry or a new human approval. Current coverage rejects missing peers and newly
+meaningful relationships instead of filtering them into the historical cohort.
+The equal-sized historical and active cohorts have different membership: the active library
+contains the disjoint Daredevil companion instead of the retired No Way Home selection.
 
 All five positions and every expanded comic remain represented in the source ledger, frozen packet,
 exact mapping, checklist, and generated payload. Provider gaps, if introduced by a later refresh,
@@ -1812,11 +2007,21 @@ identity or recast a bibliographic conflict as missing provider metadata.
 
 ## Owner-selected No Way Home companion
 
+**Withdrawn from new discovery.** The owner's direction in
+[Issue #706](https://github.com/raymond-nassar/recap-page/issues/706) removes only the newer
+**Spider-Man: No Way Home (Owner selections)** guide from the active source manifest and
+generated catalog. Home, Browse, Storylines and new catalog imports offer only the original
+No Way Home guide. Existing imported copies remain usable with their progress, notes,
+availability overrides, active selection, collection labels and backups unchanged.
+No saved-data migration, deletion or storage-schema change is involved.
+
 [Issue #686](https://github.com/raymond-nassar/recap-page/issues/686) owns the three-position
-outline and the separate **Spider-Man: No Way Home (Owner selections)** publication.
-Its stable ID is `spider-man-no-way-home-owner-selected`. It is an ungrouped MCU Prep
-screen companion at selected depth, with no timeline or beginner claim; Storylines remains
-its canonical shelf. The existing 17-original Comic Book Herald companion, its payload,
+outline and the archived publication delivered by
+[PR #693](https://github.com/raymond-nassar/recap-page/pull/693).
+Its retained source ID is `spider-man-no-way-home-owner-selected`. It was published as an
+ungrouped MCU Prep screen companion at selected depth, with no timeline or beginner claim.
+Its exact payload, checklist, source ledger, mapping and human receipt remain archived in place;
+they do not register a hidden or newly importable guide. The existing 17-original Comic Book Herald companion, its payload,
 source attribution and `spider-man-no-way-home` saved identity are unchanged. The two
 companions share no original comics.
 
@@ -1836,7 +2041,8 @@ metadata requests. All 18 detail responses succeeded with launch identities, cre
 and cover URLs: there are no metadata gaps or unidentified editions in this publication.
 Amazing Spider-Man #648 resolves to issue 34135 in series 454, independently of the nearby
 numeric IDs for #649-651. No collection ID, invented original, source narrative or image
-bytes are published. The three collection labels survive Preview, import and Reading.
+bytes are stored. The three collection labels remain in the retained payload and already
+imported Reading Lists.
 
 The [visible-library approval report](../scripts/data/owner-mcu-prep/spider-man-no-way-home-owner-selected.overlap.json)
 compares all 280 previously visible Reading Lists, including generated partition children:
@@ -1845,18 +2051,22 @@ seven partial relationships, 273 without shared originals, and no exact or subse
 retains the measured shared originals. The report binds that human authority to the packet,
 mapping, library and comparison digests. Standard-edition framing and separate ungrouped
 display are coordinator implementation dispositions, not a quoted user edition choice.
-Changed vectors or new relationships require renewed review; duplicate gates are unchanged.
+The exact original cohort still replays its approved relationships and duplicate checks.
+The [withdrawal authority boundary](https://github.com/raymond-nassar/recap-page/issues/706#issuecomment-5976145338),
+recorded on 2026-10-04, removes only the inactive selection's live-current relationship veto.
+It does not weaken any still-active guide's own relationship-approval gate or let its historical
+receipt approve a new relationship.
 
-The current-library contract separately unions every source-manifest payload with every
-visible catalog payload, excluding only this candidate. At this publication it checks
-282 peers: the same seven partial relationships and 275 without shared originals.
-The retained hidden Marvel Knights to Planet X parent contributes 487 originals and
-shares none with this selection. This complete-library check does not rewrite or
-extend the authority of the original 280-visible-peer approval receipt.
+The active-library contract still unions every current source-manifest payload with every
+visible catalog payload, including all generated children and the retained 487-original
+hidden Marvel Knights to Planet X parent. Withdrawal removes only this guide from that
+active union, not the archived 18-original vector from frozen approval evidence or later-peer
+historical replay. The original 280-visible-peer receipt is neither regenerated nor relabeled
+as current approval.
 
 The outline's direct-inspiration and returning-villain comparisons remain unverified owner
 motivation, not reader-facing adaptation facts. Selection authority is the owner, not Comic
-Book Herald, and the existing guide is not replaced. Browser proofs use a private installed-Edge
+Book Herald, and the existing guide is not replaced. Withdrawal browser proofs use a private installed-Edge
 profile and the existing harness's isolated ephemeral server from this worktree. They do not
 change the production `127.0.0.1:8787` origin or write to its saved reading progress.
 
@@ -1889,7 +2099,7 @@ metadata gaps, placeholders or dropped source positions. The
 the source orders, hidden partition parent and visible generated children reviewed at publication.
 Its sole partial relationship is the six Eternals (2021) issues shared with Thanos, retained in both
 lists under [explicit owner approval](https://github.com/raymond-nassar/recap-page/issues/684#issuecomment-5971795544).
-The Eternals, Thunderbolts and No Way Home contracts replay their frozen publication receipts
+The still-active Eternals, Thunderbolts, Deadpool & Wolverine and Daredevil contracts replay their frozen publication receipts
 and recheck every current peer without historical exclusions. New peers must share no originals,
 and all earlier nonempty relationships must remain unchanged. Changed candidate vectors or
 new nonempty relationships need renewed review rather than carrying the old approval forward;
@@ -1900,3 +2110,54 @@ The list uses the existing MCU Prep Home/Browse gateway and Storylines shelf. It
 film-tone comparisons remain unverified intake wording, not shipped factual claims.
 Only factual metadata and cover URLs are pinned, with `sourceLicense: null`; no third-party
 editorial narrative or comic image bytes are copied, and saved reading data is unchanged.
+
+## Owner-authored MCU Prep: The Fantastic Four: First Steps
+
+[Issue #701](https://github.com/raymond-nassar/recap-page/issues/701) is the matching owner
+selection source. The earlier association with She-Hulk's Issue #699 is retained as a
+source mismatch, not a second authority. The
+[frozen packet](../scripts/data/owner-mcu-prep/mcu-prep-fantastic-four-first-steps.packet.json)
+and [exact mapping](../scripts/data/owner-mcu-prep/mcu-prep-fantastic-four-first-steps.mapping.json)
+retain the five owner positions, independent bibliography retrieved on 2026-10-03, canonical
+issue facts, original lookup timestamps and response hashes.
+
+| Owner position | Selected boundary | Original count |
+|---|---|---|
+| 1 | Fantastic Four (1961) #1-6, the owner's explicit excerpt rather than a broader Vol. 1 edition | 6 |
+| 2 | Fantastic Four (1961) #48-50, the named Galactus Trilogy | 3 |
+| 3 | Imaginauts, ISBN 9780785110637: Fantastic Four (1998) #56 and #60-66 | 8 |
+| 4 | Hickman's first volume, ISBN 9780785136880: Fantastic Four (1998) #570-574 | 5 |
+| 5 | New Dawn, ISBN 9780785188780: Silver Surfer (2014) #1-5, then whole All-New Marvel NOW! Point One (2014) #1 | 6 |
+
+The 28 originals appear exactly once in that order, with five collection headings and no
+provider identity gaps. Offline vendoring reused all 28 successful cached factual captures;
+no metadata or bibliography was refetched. Cover URLs and reader IDs exist for every row.
+The seven #60-66 rows retain empty provider creator arrays. The #56 cover-only credit is not
+promoted to a story credit, and unverified creator leads are not substituted. Director reporting
+supports selected influences, not a strict adaptation of all five books; the Hickman evidence
+concerns his broader work. The film's Shalla-Bal is not the comics' Norrin Radd, and New Dawn
+is described as 2014-era rather than recent. No Slott-specific film-source claim is verified.
+
+The [owner's enumeration ruling](https://github.com/raymond-nassar/recap-page/issues/701#issuecomment-5976175823)
+puts original 49846 last at expanded position 28. It is not physical table-of-contents
+verification or a separate private receipt. New Dawn selects the Surfer story, but the reader
+opens the whole anthology, including its Kamala segment. A guide-owned collection label
+states that qualification. There are no per-story IDs, global note edits or separate progress
+records for the same original, and no approval of an unpublished Ms. Marvel sibling is implied.
+
+The [publication-time relationship report](../scripts/data/owner-mcu-prep/mcu-prep-fantastic-four-first-steps.overlap.json)
+covers all 288 existing active peers: every visible list, all 78 generated chapters and the
+retained hidden parent. Actual model review approves seven partial intersections and the
+seven-original Imaginauts existing-subset, with 280 no-overlap dispositions and no exact
+duplicates. Every shared original remains in both reading contexts. The retired owner-selected
+No Way Home payload remains archived and excluded from active discovery; no frozen peer
+receipt is regenerated. The child overlap index adds only this guide's seven-original pair.
+
+The existing MCU Prep and Storylines surfaces gain one independent selected-depth companion,
+not a Character Spotlight or a new category. The fixed fourteen-source CBH inventory is
+unchanged. Attribution is the owner selection, with `sourceLicense: null`; no external narrative,
+comic image bytes or runtime dependency is introduced. Reader state, overrides, notes, original-ID
+progress, availability states and launch behavior are unchanged. Reader backups retain the
+new list through the existing format. Completion and enjoyment belong to the separate existing
+history store, remain untouched by importing this guide, and require their separate history backup
+for portability; they are not invented fields in a reader backup.

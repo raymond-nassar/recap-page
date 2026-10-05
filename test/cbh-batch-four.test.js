@@ -13,6 +13,10 @@ import {
 import { validateBatchNoDuplicates } from '../scripts/lib/cbh-inventory.mjs';
 import { parseCatalog, sortCatalog } from '../src/js/lib/catalog.js';
 import { parseChecklist } from '../src/js/lib/markdown.js';
+import {
+  historicalReadingChoiceManifest,
+  historicalReadingChoiceIssueIds,
+} from './helpers/reading-choice-history.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dataDir = path.join(root, 'src', 'data');
@@ -48,7 +52,7 @@ const laterReviewedIds = new Set([
   'moon-knight-reading-order',
   'guardians-of-the-galaxy-reading-order',
   'inhumans-reading-order',
-  'iron-fist-reading-order', 'mcu-prep-deadpool-and-wolverine', 'mcu-prep-eternals',
+  'iron-fist-reading-order', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-daredevil-born-again', 'mcu-prep-moon-knight', 'mcu-prep-deadpool-and-wolverine', 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps',
 ]);
 const marvelNowPage = 'https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-now-checklist/';
 const xMenPage = 'https://www.comicbookherald.com/question-of-the-week-ok-what-the-heck-is-the-right-order-for-x-men-events/';
@@ -131,7 +135,7 @@ test('batch four preserves source order and independently verified shelf chronol
     manifest.lists.length - FOURTH_PACKET_IDS.length,
   );
   assert.ok(manifest.lists.length >= 66);
-  assert.equal(catalog.lists.length, 284);
+  assert.equal(catalog.lists.length, 288);
 
 
   const sorted = sortCatalog(parseCatalog(catalog).lists);
@@ -266,13 +270,13 @@ test('batch four has no aggregate identity, source, sequence, or issue overlap',
   const packetRecords = [];
   const existingRecords = [];
 
-  for (const entry of manifest.lists) {
+  for (const entry of historicalReadingChoiceManifest(manifest).lists) {
     const payload = await readJson(path.join(dataDir, entry.out));
     const record = {
       id: entry.id,
       url: entry.sourcePage,
       sourceSection: entry.sourceSection,
-      selectedIssueIds: payload.items.map((item) => String(item.issueId)),
+      selectedIssueIds: historicalReadingChoiceIssueIds(entry.id, payload.items.map((item) => String(item.issueId))),
       catalogIds: [entry.id],
     };
     if (packetSet.has(entry.id)) packetRecords.push(record);
@@ -282,7 +286,7 @@ test('batch four has no aggregate identity, source, sequence, or issue overlap',
   assert.equal(packetRecords.length, 10);
   assert.equal(
     existingRecords.length,
-    manifest.lists.length - packetRecords.length - laterReviewedIds.size,
+    historicalReadingChoiceManifest(manifest).lists.length - packetRecords.length - laterReviewedIds.size,
   );
   assert.doesNotThrow(() => validateBatchNoDuplicates(packetRecords, existingRecords));
 

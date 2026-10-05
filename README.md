@@ -21,7 +21,7 @@ A link doesn't guarantee access. Recap Page cannot replace Marvel Unlimited or b
 
 An example with made-up progress:
 
-1. In **Browse**, add **Civil War: An Avengers Reading List** from
+1. In **Browse**, add **Civil War: Avengers and Aftermath Reading Order** from
    [Comic Book Herald's guide](https://www.comicbookherald.com/where-do-i-start-with-avengers-trade-collections/).
 2. With the first six comics marked read, **Civil War (2006) #7** is next.
 3. Choose **Read** to open the official reader where a link is available.
@@ -48,11 +48,14 @@ with cover art off](docs/screenshots/avengers-disassembled-reading-960.png)
   earlier issues, and reveal descriptions when you're ready.
 - **Follow Reading Paths.** From Home or Browse, see each stop's progress from the matching list,
   another imported version, or **Not added**.
+- **Keep finished lists.** Mark a list as completed, record whether you enjoyed it, and find it
+  again in **Completed lists** without losing notes or comic progress.
 - **Find comics.** Search curated lists in Browse, or issues, series, and creators in Add comics.
 - **Check availability.** Unknown, scheduled, and expected stay separate from your own available or
   unavailable checks.
 - **Back up your progress.** Restore a backup on this device or another. Android and desktop save
-  separately. Restoring replaces the app's saved data.
+  separately. Reading data and completion history have separate backups; each restore replaces
+  only that kind of data.
 - **Share an order.** Preview a personal Markdown checklist or export an order without notes,
   reading history, or availability overrides.
 - **Choose your browser.** Use Edge, Chrome, Firefox, or Safari, or install Recap Page as a browser app.
@@ -73,13 +76,46 @@ destination and use **Add to Reading List**. Existing lists keep their order and
 comics. If loading stops, you can select from the clearly marked partial results or search again.
 Unfinished selections are not saved across a reload; the browser warns before you leave with one.
 
+### Finish a reading list without removing it
+
+Choose **Mark as Completed** when you are finished, even if you skipped or deferred comics.
+The list keeps its order, notes, and actual reading progress. It leaves active reading shelves,
+but remains available under **Library > Completed lists**. **Reopen list** brings it back.
+Older saved lists receive the same completion confirmation and keyboard focus after their
+existing saved identity has been made stable.
+
+Thumb icons are optional and stay on your device. Hover over or focus one for its name.
+**Enjoyed** filters your completed collection;
+clicking a selected thumb clears that choice. **Did not enjoy** also opens instructions for
+reporting missing comics or a wrong order. **Report a list problem** opens the same instructions
+without changing your thumb choice. Desktop and Android use the same optional Microsoft Forms
+link, with no reader account, name or email required. Your saved data and thumb choice are not
+attached. Reports are reviewed privately; private data-loss or security concerns use the separate
+policy link. See [list-feedback privacy](PRIVACY.md#optional-reading-list-feedback).
+
+The wrap-up suggests later Reading Path or Modern Timeline stops, and lists with verified shared
+writers or later issues in the same series. Suggestions use bundled metadata, not an external
+recommendation service. A saved suggestion opens your existing copy; another opens Preview.
+When no relationship can be verified, browse for your next list instead.
+
+**Remove from library** is a separate action. It removes your saved copy, including its personal
+note and custom order, but keeps shared comic progress and the bundled reading-list definition.
+The existing **Undo removal** offer can put that copy back.
+
+Completion dates and enjoyment choices have their own export and restore controls in
+**Backup & settings**. Export both backups to carry both kinds of data to another device.
+Restoring reading data does not replace completion history; matching saved lists can reveal
+their retained history again.
+
 ## Privacy
 
 ### Your data stays with you
 
 There is no account and no analytics or tracking. Saved reading data is not uploaded automatically.
-Lists, progress, notes, settings, overrides, and custom entries stay on your device.
-You can export reading data, but not device settings. See the [privacy policy](PRIVACY.md) for details.
+Lists, progress, completion dates, enjoyment, notes, settings, overrides, and custom entries stay
+on your device. You can export reading data, but not device settings. Completion history has
+its own backup.
+See the [privacy policy](PRIVACY.md) for details.
 
 Some features make direct requests:
 
@@ -145,7 +181,8 @@ Microsoft Store installations receive product updates only through Microsoft Sto
 
 For a standalone archive or source copy:
 
-1. Export a backup from **Backup & settings**.
+1. Export a reading backup from **Backup & settings**, and a completion-history backup if you
+   want to keep completion dates and enjoyment choices too.
 2. Stop the old copy.
 3. Download the latest archive or source.
 4. Start the new copy at <http://127.0.0.1:8787/>.

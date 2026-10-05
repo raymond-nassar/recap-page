@@ -9,9 +9,13 @@ import {
   validateInventoryState,
   validateMappingDigest,
 } from '../scripts/lib/cbh-inventory.mjs';
-import { buildReportForMapping } from '../scripts/report-order-overlap.mjs';
+
 import { parseCatalog, searchCatalog } from '../src/js/lib/catalog.js';
 import { parseChecklist } from '../src/js/lib/markdown.js';
+import {
+  buildHistoricalReadingChoiceReport as buildReportForMapping,
+  historicalReadingChoiceManifest,
+} from './helpers/reading-choice-history.mjs';
 
 const id = 'thunderbolts-reading-order';
 const sourceUrl = 'https://www.comicbookherald.com/the-thunderbolts-reading-order/';
@@ -200,10 +204,10 @@ test('Thunderbolts approval covers all 186 source-manifest peers at its review',
   const current = await buildReportForMapping(
     `scripts/data/cbh-mappings/${id}.json`,
     [],
-    { excludedOrderIds: ['nebula-reading-order', 'hope-summers-reading-order', 'x-23-reading-order', 'ms-marvel-kamala-khan-reading-order', 'marvel-zombies-reading-order', 'hawkeye-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order', 'nova-reading-order', 'ultimate-spider-man-reading-order', 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide', 'shang-chi-master-of-kung-fu-reading-order', 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order', 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order', 'namor-sub-mariner-reading-order', 'iron-fist-reading-order', 'mcu-prep-deadpool-and-wolverine', 'mcu-prep-eternals', 'spider-man-no-way-home-owner-selected', 'mcu-prep-thunderbolts'] },
+    { excludedOrderIds: ['nebula-reading-order', 'hope-summers-reading-order', 'x-23-reading-order', 'ms-marvel-kamala-khan-reading-order', 'marvel-zombies-reading-order', 'hawkeye-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order', 'nova-reading-order', 'ultimate-spider-man-reading-order', 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide', 'shang-chi-master-of-kung-fu-reading-order', 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order', 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order', 'namor-sub-mariner-reading-order', 'iron-fist-reading-order', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts', 'spider-man-no-way-home-owner-selected', 'mcu-prep-daredevil-born-again', 'mcu-prep-moon-knight', 'mcu-prep-deadpool-and-wolverine', 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps'] },
   );
-  const expectedOrderIds = manifest.lists
-    .filter((row) => ![id, 'nebula-reading-order', 'hope-summers-reading-order', 'x-23-reading-order', 'ms-marvel-kamala-khan-reading-order', 'marvel-zombies-reading-order', 'hawkeye-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order', 'nova-reading-order', 'ultimate-spider-man-reading-order', 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide', 'shang-chi-master-of-kung-fu-reading-order', 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order', 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order'].includes(row.id)).filter((row) => row.id !== 'namor-sub-mariner-reading-order' && row.id !== 'iron-fist-reading-order' && row.id !== 'mcu-prep-deadpool-and-wolverine' && row.id !== 'mcu-prep-eternals' && row.id !== 'spider-man-no-way-home-owner-selected' && row.id !== 'mcu-prep-thunderbolts')
+  const expectedOrderIds = historicalReadingChoiceManifest(manifest).lists
+    .filter((row) => ![id, 'nebula-reading-order', 'hope-summers-reading-order', 'x-23-reading-order', 'ms-marvel-kamala-khan-reading-order', 'marvel-zombies-reading-order', 'hawkeye-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order', 'nova-reading-order', 'ultimate-spider-man-reading-order', 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide', 'shang-chi-master-of-kung-fu-reading-order', 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order', 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order'].includes(row.id)).filter((row) => row.id !== 'namor-sub-mariner-reading-order' && row.id !== 'iron-fist-reading-order' && row.id !== 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings' && row.id !== 'mcu-prep-daredevil-born-again' && row.id !== 'mcu-prep-moon-knight' && row.id !== 'mcu-prep-deadpool-and-wolverine' && row.id !== 'mcu-prep-eternals' && row.id !== 'mcu-prep-fantastic-four-first-steps' && row.id !== 'spider-man-no-way-home-owner-selected' && row.id !== 'mcu-prep-thunderbolts')
 
     .map((row) => row.id);
   assert.deepEqual(current, report);
@@ -235,8 +239,8 @@ test('Thunderbolts is discoverable with source credit and measured maintained to
   const entry = manifest.lists.find((row) => row.id === id);
   const card = catalog.lists.find((row) => row.id === id);
 
-  assert.equal(manifest.lists.length, 207);
-  assert.equal(catalog.lists.length, 284);
+  assert.equal(manifest.lists.length, 211);
+  assert.equal(catalog.lists.length, 288);
   assert.equal(inventory.length, 133);
 
   assert.doesNotThrow(() => validateInventoryState(inventory));

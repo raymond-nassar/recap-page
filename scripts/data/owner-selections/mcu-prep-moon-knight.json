@@ -1,0 +1,586 @@
+{
+  "schemaVersion": 1,
+  "id": "mcu-prep-moon-knight",
+  "sourceProvider": "owner-authored",
+  "sourceIssue": "https://github.com/raymond-nassar/recap-page/issues/685",
+  "sourceRetrievedAt": "2026-10-03",
+  "selectionOrigin": "The owner supplied these three selections in this order. Bibliographic sources establish edition contents, not selection authorship.",
+  "boundary": "Only the three supplied collection selections, expanded into their original individual comics after identity settlement.",
+  "identityDecision": {
+    "status": "approved",
+    "requestedThrough": "MCU prep lists coordinator",
+    "requestEvidence": "https://github.com/raymond-nassar/recap-page/issues/685#issuecomment-5971699431",
+    "decisionEvidence": "https://github.com/raymond-nassar/recap-page/issues/685#issuecomment-5971776857",
+    "approvedBy": "raymond-nassar",
+    "approvedChoice": "Use both verified first volumes: Lunatic and The Midnight Mission (Recommended)",
+    "decisionRelay": "The MCU Prep coordinator explicitly relayed the owner's selected choice on 2026-10-03.",
+    "approvedCorrections": [
+      {
+        "position": 2,
+        "suppliedSubtitle": "Resurrection War",
+        "approvedSubtitle": "Lunatic"
+      },
+      {
+        "position": 3,
+        "suppliedSubtitle": "Lockdown",
+        "approvedSubtitle": "The Midnight Mission"
+      }
+    ]
+  },
+  "relationshipDecision": {
+    "status": "approved",
+    "authorityType": "human",
+    "authorityIdentity": "raymond-nassar",
+    "evidence": "https://github.com/raymond-nassar/recap-page/issues/685#issuecomment-5971795527",
+    "reviewedAt": "2026-10-03T17:45:22Z",
+    "approvedRelationship": "candidate-subset",
+    "approvedOrderId": "moon-knight-reading-order",
+    "approvedSharedIssueCount": 17,
+    "rationale": "The separately owner-authored MCU Prep shortlist combines three first volumes for a different purpose from the complete character guide. All 17 shared originals stay selected; the existing guide is not replaced or altered. This approval does not cover exact duplicates or other shared-issue relationships."
+  },
+  "selections": [
+    {
+      "position": 1,
+      "suppliedTitle": "Moon Knight by Warren Ellis Vol. 1: From the Dead",
+      "suppliedRationale": "Modern reimagined origin leaning hard into psychological ambiguity, described as the closest tonal match to the show.",
+      "rationaleStatus": "Owner description, not a verified origin or adaptation claim.",
+      "identityStatus": "verified",
+      "verifiedEdition": {
+        "title": "Moon Knight Vol. 1: From the Dead",
+        "writer": "Warren Ellis",
+        "artist": "Declan Shalvey",
+        "volume": 1,
+        "paperbackIsbn": "9780785154082",
+        "originalSeriesTitle": "Moon Knight",
+        "originalSeriesYear": 2014,
+        "seriesId": 18467,
+        "issues": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "issueIds": [
+          49077,
+          49078,
+          49079,
+          49080,
+          49081,
+          49082
+        ]
+      },
+      "evidence": [
+        {
+          "url": "https://www.hoopladigital.com/comic/moon-knight-vol-1-from-the-dead-warren-ellis/12020848",
+          "retrievedAt": "2026-10-03",
+          "basis": "Fetched title and structured catalog fields identify Volume 1, Warren Ellis, Declan Shalvey, issues #1-6 and the Moon Knight (2014-2015) series."
+        },
+        {
+          "url": "https://www.abebooks.co.uk/9780785154082/Moon-Knight-Volume-Dead-Marvel-0785154086/plp",
+          "retrievedAt": "2026-10-03",
+          "basis": "Fetched catalog title identifies From the Dead, Warren Ellis, Volume 1 and paperback ISBN 9780785154082."
+        }
+      ]
+    },
+    {
+      "position": 2,
+      "suppliedTitle": "Moon Knight by Jeff Lemire Vol. 1: Resurrection War",
+      "suppliedRationale": "An alternate, equally fractured-identity take.",
+      "rationaleStatus": "Owner description, not an adaptation claim.",
+      "identityStatus": "owner-approved-title-correction",
+      "conflict": "The supplied writer and first-volume identity match Lunatic, not The Resurrection War.",
+      "verifiedEdition": {
+        "title": "Moon Knight Vol. 1: Lunatic",
+        "writer": "Jeff Lemire",
+        "artist": "Greg Smallwood",
+        "volume": 1,
+        "paperbackIsbn": "9780785199533",
+        "originalSeriesTitle": "Moon Knight",
+        "originalSeriesYear": 2016,
+        "seriesId": 20488,
+        "issues": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "issueIds": [
+          55575,
+          55577,
+          55579,
+          55580,
+          55581
+        ]
+      },
+      "evidence": [
+        {
+          "url": "https://www.barnesandnoble.com/w/moon-knight-vol-1-jeff-lemire/1123427710",
+          "retrievedAt": "2026-10-03",
+          "basis": "Fetched title and structured catalog identify Jeff Lemire, Vol. 1: Lunatic, paperback ISBN 9780785199533 and Moon Knight (2016) #1-5. Greg Smallwood is independently present in the exact original-issue metadata."
+        },
+        {
+          "url": "https://www.penguinrandomhouse.com/books/828637/moon-knight-epic-collection-the-resurrection-war-by-terry-kavanagh/",
+          "retrievedAt": "2026-10-03",
+          "basis": "Fetched distributor record names Terry Kavanagh, Doug Moench and Christopher Priest for a different Epic Collection. It does not identify a Jeff Lemire first volume."
+        }
+      ]
+    },
+    {
+      "position": 3,
+      "suppliedTitle": "Moon Knight by Jed MacKay Vol. 1: Lockdown",
+      "suppliedRationale": "The recent ongoing, leaning into Egyptian mythology and godhood.",
+      "rationaleStatus": "Owner description; no ongoing-status or adaptation assertion is inferred.",
+      "identityStatus": "owner-approved-title-correction",
+      "conflict": "The verified Jed MacKay first volume is The Midnight Mission. No exact edition identity for the supplied Lockdown subtitle was established.",
+      "verifiedEdition": {
+        "title": "Moon Knight Vol. 1: The Midnight Mission",
+        "writer": "Jed MacKay",
+        "volume": 1,
+        "paperbackIsbn": "9781302931100",
+        "originalSeriesTitle": "Moon Knight",
+        "originalSeriesYear": 2021,
+        "seriesId": 32071,
+        "issues": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "issueIds": [
+          93848,
+          93849,
+          93850,
+          93851,
+          93852,
+          93853
+        ]
+      },
+      "evidence": [
+        {
+          "url": "https://www.penguinrandomhouse.com/books/708990/moon-knight-vol-1-the-midnight-mission-by-jed-mackay/",
+          "retrievedAt": "2026-10-03",
+          "basis": "Fetched distributor title and structured catalog identify Jed MacKay, Vol. 1: The Midnight Mission, paperback ISBN 9781302931100 and Moon Knight (2021) #1-6."
+        },
+        {
+          "url": "https://www.penguinrandomhouse.com/books/724133/moon-knight-vol-3-halfway-to-sanity-by-jed-mackay/",
+          "retrievedAt": "2026-10-03",
+          "basis": "A search summary incorrectly called this edition Lockdown. The fetched distributor page instead identifies Vol. 3: Halfway To Sanity, ISBN 9781302947347, with #13-18 and Annual (2022) #1. It is not selected or substituted."
+        }
+      ]
+    }
+  ],
+  "metadataEvidence": {
+    "existingMapping": "scripts/data/cbh-mappings/moon-knight-reading-order.json",
+    "existingPayload": "src/data/moon_knight_reading_order.json",
+    "reuseBoundary": "Exact original issue IDs, metadata titles, numbers, series identities and official issue links only. The CBH selection boundary, collection labels and authorship are not reused.",
+    "checkedAt": "2026-10-03",
+    "liveSeriesChecks": [
+      {
+        "url": "https://marvel.emreparker.com/v1/issues/49077",
+        "status": 200,
+        "issueId": 49077,
+        "title": "Moon Knight (2014) #1",
+        "number": "1",
+        "seriesId": 18467
+      },
+      {
+        "url": "https://marvel.emreparker.com/v1/issues/55575",
+        "status": 200,
+        "issueId": 55575,
+        "title": "Moon Knight (2016) #1",
+        "number": "1",
+        "seriesId": 20488
+      },
+      {
+        "url": "https://marvel.emreparker.com/v1/issues/93848",
+        "status": 200,
+        "issueId": 93848,
+        "title": "Moon Knight (2021) #1",
+        "number": "1",
+        "seriesId": 32071
+      }
+    ],
+    "selectedListVendoring": "complete",
+    "vendorCommand": "npm run vendor -- --only=mcu-prep-moon-knight",
+    "vendoredAt": "2026-10-03T17:56:36.689Z",
+    "liveIssueChecks": [
+      {
+        "sourcePosition": 1,
+        "selectionPosition": 1,
+        "issueId": 49077,
+        "url": "https://marvel.emreparker.com/v1/issues/49077",
+        "outcome": "metadata-resolved",
+        "title": "Moon Knight (2014) #1",
+        "number": "1",
+        "seriesId": 18467
+      },
+      {
+        "sourcePosition": 2,
+        "selectionPosition": 1,
+        "issueId": 49078,
+        "url": "https://marvel.emreparker.com/v1/issues/49078",
+        "outcome": "metadata-resolved",
+        "title": "Moon Knight (2014) #2",
+        "number": "2",
+        "seriesId": 18467
+      },
+      {
+        "sourcePosition": 3,
+        "selectionPosition": 1,
+        "issueId": 49079,
+        "url": "https://marvel.emreparker.com/v1/issues/49079",
+        "outcome": "metadata-resolved",
+        "title": "Moon Knight (2014) #3",
+        "number": "3",
+        "seriesId": 18467
+      },
+      {
+        "sourcePosition": 4,
+        "selectionPosition": 1,
+        "issueId": 49080,
+        "url": "https://marvel.emreparker.com/v1/issues/49080",
+        "outcome": "metadata-resolved",
+        "title": "Moon Knight (2014) #4",
+        "number": "4",
+        "seriesId": 18467
+      },
+      {
+        "sourcePosition": 5,
+        "selectionPosition": 1,
+        "issueId": 49081,
+        "url": "https://marvel.emreparker.com/v1/issues/49081",
+        "outcome": "metadata-resolved",
+        "title": "Moon Knight (2014) #5",
+        "number": "5",
+        "seriesId": 18467
+      },
+      {
+        "sourcePosition": 6,
+        "selectionPosition": 1,
+        "issueId": 49082,
+        "url": "https://marvel.emreparker.com/v1/issues/49082",
+        "outcome": "metadata-resolved",
+        "title": "Moon Knight (2014) #6",
+        "number": "6",
+        "seriesId": 18467
+      },
+      {
+        "sourcePosition": 7,
+        "selectionPosition": 2,
+        "issueId": 55575,
+        "url": "https://marvel.emreparker.com/v1/issues/55575",
+        "outcome": "metadata-resolved",
+        "title": "Moon Knight (2016) #1",
+        "number": "1",
+        "seriesId": 20488
+      },
+      {
+        "sourcePosition": 8,
+        "selectionPosition": 2,
+        "issueId": 55577,
+        "url": "https://marvel.emreparker.com/v1/issues/55577",
+        "outcome": "metadata-resolved",
+        "title": "Moon Knight (2016) #2",
+        "number": "2",
+        "seriesId": 20488
+      },
+      {
+        "sourcePosition": 9,
+        "selectionPosition": 2,
+        "issueId": 55579,
+        "url": "https://marvel.emreparker.com/v1/issues/55579",
+        "outcome": "metadata-resolved",
+        "title": "Moon Knight (2016) #3",
+        "number": "3",
+        "seriesId": 20488
+      },
+      {
+        "sourcePosition": 10,
+        "selectionPosition": 2,
+        "issueId": 55580,
+        "url": "https://marvel.emreparker.com/v1/issues/55580",
+        "outcome": "metadata-resolved",
+        "title": "Moon Knight (2016) #4",
+        "number": "4",
+        "seriesId": 20488
+      },
+      {
+        "sourcePosition": 11,
+        "selectionPosition": 2,
+        "issueId": 55581,
+        "url": "https://marvel.emreparker.com/v1/issues/55581",
+        "outcome": "metadata-resolved",
+        "title": "Moon Knight (2016) #5",
+        "number": "5",
+        "seriesId": 20488
+      },
+      {
+        "sourcePosition": 12,
+        "selectionPosition": 3,
+        "issueId": 93848,
+        "url": "https://marvel.emreparker.com/v1/issues/93848",
+        "outcome": "metadata-resolved",
+        "title": "Moon Knight (2021) #1",
+        "number": "1",
+        "seriesId": 32071
+      },
+      {
+        "sourcePosition": 13,
+        "selectionPosition": 3,
+        "issueId": 93849,
+        "url": "https://marvel.emreparker.com/v1/issues/93849",
+        "outcome": "metadata-resolved",
+        "title": "Moon Knight (2021) #2",
+        "number": "2",
+        "seriesId": 32071
+      },
+      {
+        "sourcePosition": 14,
+        "selectionPosition": 3,
+        "issueId": 93850,
+        "url": "https://marvel.emreparker.com/v1/issues/93850",
+        "outcome": "metadata-resolved",
+        "title": "Moon Knight (2021) #3",
+        "number": "3",
+        "seriesId": 32071
+      },
+      {
+        "sourcePosition": 15,
+        "selectionPosition": 3,
+        "issueId": 93851,
+        "url": "https://marvel.emreparker.com/v1/issues/93851",
+        "outcome": "metadata-resolved",
+        "title": "Moon Knight (2021) #4",
+        "number": "4",
+        "seriesId": 32071
+      },
+      {
+        "sourcePosition": 16,
+        "selectionPosition": 3,
+        "issueId": 93852,
+        "url": "https://marvel.emreparker.com/v1/issues/93852",
+        "outcome": "metadata-resolved",
+        "title": "Moon Knight (2021) #5",
+        "number": "5",
+        "seriesId": 32071
+      },
+      {
+        "sourcePosition": 17,
+        "selectionPosition": 3,
+        "issueId": 93853,
+        "url": "https://marvel.emreparker.com/v1/issues/93853",
+        "outcome": "metadata-resolved",
+        "title": "Moon Knight (2021) #6",
+        "number": "6",
+        "seriesId": 32071
+      }
+    ]
+  },
+  "sourceGaps": [],
+  "failedProviderLookups": [],
+  "publicationPolicy": "A bibliographic identity conflict is not a provider gap. After identity settlement, publish exactly resolved originals and retain every exact provider gap and failed lookup at its ordered source position, with a separately assigned tracking issue.",
+  "sourceContentProjection": [
+    "schemaVersion",
+    "id",
+    "sourceProvider",
+    "sourceIssue",
+    "sourceRetrievedAt",
+    "selectionOrigin",
+    "boundary",
+    "identityDecision",
+    "selections"
+  ],
+  "sourceContentSha256": "d95989fda556dbf12b273da4a676cbe6681df0855ff081f4d8648b988017c6bd",
+  "expandedRows": [
+    {
+      "sourcePosition": 1,
+      "selectionPosition": 1,
+      "issueId": 49077,
+      "originalTitle": "Moon Knight (2014) #1",
+      "originalSeriesYear": 2014,
+      "originalIssueNumber": "1",
+      "collection": "Moon Knight Vol. 1: From the Dead (Warren Ellis)",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/49077/moon_knight_2014_1"
+    },
+    {
+      "sourcePosition": 2,
+      "selectionPosition": 1,
+      "issueId": 49078,
+      "originalTitle": "Moon Knight (2014) #2",
+      "originalSeriesYear": 2014,
+      "originalIssueNumber": "2",
+      "collection": "Moon Knight Vol. 1: From the Dead (Warren Ellis)",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/49078/moon_knight_2014_2"
+    },
+    {
+      "sourcePosition": 3,
+      "selectionPosition": 1,
+      "issueId": 49079,
+      "originalTitle": "Moon Knight (2014) #3",
+      "originalSeriesYear": 2014,
+      "originalIssueNumber": "3",
+      "collection": "Moon Knight Vol. 1: From the Dead (Warren Ellis)",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/49079/moon_knight_2014_3"
+    },
+    {
+      "sourcePosition": 4,
+      "selectionPosition": 1,
+      "issueId": 49080,
+      "originalTitle": "Moon Knight (2014) #4",
+      "originalSeriesYear": 2014,
+      "originalIssueNumber": "4",
+      "collection": "Moon Knight Vol. 1: From the Dead (Warren Ellis)",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/49080/moon_knight_2014_4"
+    },
+    {
+      "sourcePosition": 5,
+      "selectionPosition": 1,
+      "issueId": 49081,
+      "originalTitle": "Moon Knight (2014) #5",
+      "originalSeriesYear": 2014,
+      "originalIssueNumber": "5",
+      "collection": "Moon Knight Vol. 1: From the Dead (Warren Ellis)",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/49081/moon_knight_2014_5"
+    },
+    {
+      "sourcePosition": 6,
+      "selectionPosition": 1,
+      "issueId": 49082,
+      "originalTitle": "Moon Knight (2014) #6",
+      "originalSeriesYear": 2014,
+      "originalIssueNumber": "6",
+      "collection": "Moon Knight Vol. 1: From the Dead (Warren Ellis)",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/49082/moon_knight_2014_6"
+    },
+    {
+      "sourcePosition": 7,
+      "selectionPosition": 2,
+      "issueId": 55575,
+      "originalTitle": "Moon Knight (2016) #1",
+      "originalSeriesYear": 2016,
+      "originalIssueNumber": "1",
+      "collection": "Moon Knight Vol. 1: Lunatic (Jeff Lemire)",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55575/moon_knight_2016_1"
+    },
+    {
+      "sourcePosition": 8,
+      "selectionPosition": 2,
+      "issueId": 55577,
+      "originalTitle": "Moon Knight (2016) #2",
+      "originalSeriesYear": 2016,
+      "originalIssueNumber": "2",
+      "collection": "Moon Knight Vol. 1: Lunatic (Jeff Lemire)",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55577/moon_knight_2016_2"
+    },
+    {
+      "sourcePosition": 9,
+      "selectionPosition": 2,
+      "issueId": 55579,
+      "originalTitle": "Moon Knight (2016) #3",
+      "originalSeriesYear": 2016,
+      "originalIssueNumber": "3",
+      "collection": "Moon Knight Vol. 1: Lunatic (Jeff Lemire)",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55579/moon_knight_2016_3"
+    },
+    {
+      "sourcePosition": 10,
+      "selectionPosition": 2,
+      "issueId": 55580,
+      "originalTitle": "Moon Knight (2016) #4",
+      "originalSeriesYear": 2016,
+      "originalIssueNumber": "4",
+      "collection": "Moon Knight Vol. 1: Lunatic (Jeff Lemire)",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55580/moon_knight_2016_4"
+    },
+    {
+      "sourcePosition": 11,
+      "selectionPosition": 2,
+      "issueId": 55581,
+      "originalTitle": "Moon Knight (2016) #5",
+      "originalSeriesYear": 2016,
+      "originalIssueNumber": "5",
+      "collection": "Moon Knight Vol. 1: Lunatic (Jeff Lemire)",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55581/moon_knight_2016_5"
+    },
+    {
+      "sourcePosition": 12,
+      "selectionPosition": 3,
+      "issueId": 93848,
+      "originalTitle": "Moon Knight (2021) #1",
+      "originalSeriesYear": 2021,
+      "originalIssueNumber": "1",
+      "collection": "Moon Knight Vol. 1: The Midnight Mission (Jed MacKay)",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/93848/moon_knight_2021_1"
+    },
+    {
+      "sourcePosition": 13,
+      "selectionPosition": 3,
+      "issueId": 93849,
+      "originalTitle": "Moon Knight (2021) #2",
+      "originalSeriesYear": 2021,
+      "originalIssueNumber": "2",
+      "collection": "Moon Knight Vol. 1: The Midnight Mission (Jed MacKay)",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/93849/moon_knight_2021_2"
+    },
+    {
+      "sourcePosition": 14,
+      "selectionPosition": 3,
+      "issueId": 93850,
+      "originalTitle": "Moon Knight (2021) #3",
+      "originalSeriesYear": 2021,
+      "originalIssueNumber": "3",
+      "collection": "Moon Knight Vol. 1: The Midnight Mission (Jed MacKay)",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/93850/moon_knight_2021_3"
+    },
+    {
+      "sourcePosition": 15,
+      "selectionPosition": 3,
+      "issueId": 93851,
+      "originalTitle": "Moon Knight (2021) #4",
+      "originalSeriesYear": 2021,
+      "originalIssueNumber": "4",
+      "collection": "Moon Knight Vol. 1: The Midnight Mission (Jed MacKay)",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/93851/moon_knight_2021_4"
+    },
+    {
+      "sourcePosition": 16,
+      "selectionPosition": 3,
+      "issueId": 93852,
+      "originalTitle": "Moon Knight (2021) #5",
+      "originalSeriesYear": 2021,
+      "originalIssueNumber": "5",
+      "collection": "Moon Knight Vol. 1: The Midnight Mission (Jed MacKay)",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/93852/moon_knight_2021_5"
+    },
+    {
+      "sourcePosition": 17,
+      "selectionPosition": 3,
+      "issueId": 93853,
+      "originalTitle": "Moon Knight (2021) #6",
+      "originalSeriesYear": 2021,
+      "originalIssueNumber": "6",
+      "collection": "Moon Knight Vol. 1: The Midnight Mission (Jed MacKay)",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/93853/moon_knight_2021_6"
+    }
+  ],
+  "relationshipReports": {
+    "sourceOrders": {
+      "file": "scripts/data/cbh-overlaps/mcu-prep-moon-knight.json",
+      "otherSourceOrderCount": 203,
+      "reportDigest": "d0981bdc24d6b4f2a4da533c9cf5574224607fb8d5418a5f2aa3d3c1c9c8ec06",
+      "libraryDigest": "180692ebbd591bdc6c1d69f691279ee7f07caf8d7e93da779b53bc690dc94212"
+    },
+    "visibleCatalog": {
+      "file": "scripts/data/owner-overlaps/mcu-prep-moon-knight-visible.json",
+      "otherVisibleOrderCount": 280,
+      "reportDigest": "cf297b2a34e281d076f282173bd8562b2244154780de4352c54fc24c98acd1d0",
+      "libraryDigest": "97932c258a9f7797b4316a3bcc50b59a5edc588f74d21e2ca40aefeaee3ba7a5",
+      "includesGeneratedChildren": true
+    }
+  }
+}

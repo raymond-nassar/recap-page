@@ -107,6 +107,7 @@ export function createReadingView({
   isCurrent,
   isHydrationActive,
   isStateBlocked,
+  isCompleted = () => false,
   isSynopsisActive,
   issueFocusAnchor,
   launch: launchSaved,
@@ -374,9 +375,9 @@ export function createReadingView({
       const list = getState().lists[id];
       if (!list) return;
       const yes = await askConfirm({
-        title: `Delete "${list.name}"?`,
-        body: 'Your read progress is kept, and only the list is removed. This can be undone.',
-        confirmLabel: 'Delete list',
+        title: `Remove "${list.name}" from your library?`,
+        body: 'This removes your library copy, its personal note and custom order. Comic read progress is kept. Bundled Reading Lists are unchanged. You can undo this removal during this session.',
+        confirmLabel: 'Remove from library',
       });
       if (!yes) return;
       const deleted = { list, index: getState().listOrder.indexOf(id), wasActive: getState().active === id };
@@ -409,6 +410,7 @@ export function createReadingView({
     $('#btn-synopsis').addEventListener('click', onStartSynopsis);
     $('#btn-cancel-synopsis').addEventListener('click', onCancelSynopsis);
     $('#btn-hero-description').addEventListener('click', () => {
+      if (isCompleted(getState(), activeListId())) return;
       const issue = upNext(getState(), activeListId());
       if (!issue) return;
       synopsisDisclosure.toggle(issue.issueId);
@@ -416,10 +418,12 @@ export function createReadingView({
     });
 
     $('#btn-hero-read').addEventListener('click', (e) => {
+      if (isCompleted(getState(), activeListId())) return;
       const issue = upNext(getState(), activeListId());
       if (issue) launch(issue, e);
     });
     $('#btn-hero-inspect').addEventListener('click', () => {
+      if (isCompleted(getState(), activeListId())) return;
       const issue = upNext(getState(), activeListId());
       const listId = activeListId();
       if (issue && listId) {
@@ -434,6 +438,7 @@ export function createReadingView({
     $('#btn-hero-done').addEventListener('click', () => markCurrentRead());
     $('#btn-hero-defer').addEventListener('click', () => {
       const id = activeListId();
+      if (isCompleted(getState(), id)) return;
       const issue = upNext(getState(), id);
       if (issue) changeDeferral(id, issue.issueId, true, { hero: true });
     });
@@ -444,8 +449,8 @@ export function createReadingView({
   // and its offer. A failed restore uses "Give up" because the buffer may be the only copy left.
   function offerUndoDelete(deleted) {
     lastDeleted = deleted;
-    notify('#app-report', `Deleted ${deleted.list.name}. Reading progress was kept.`, 'ok', UNDO_DELETE, {
-      label: 'Undo delete',
+    notify('#app-report', `Removed ${deleted.list.name} from your library. Reading progress was kept.`, 'ok', UNDO_DELETE, {
+      label: 'Undo removal',
       onClick: undoDelete,
     }, dismissUndoDelete);
   }
@@ -459,7 +464,7 @@ export function createReadingView({
     if (!catalogId || lastDeleted?.list?.catalogId !== catalogId) return null;
     const { name } = lastDeleted.list;
     forgetDeleted();
-    const mine = name === orderName ? 'The copy you deleted' : `Your copy, ${name},`;
+    const mine = name === orderName ? 'The copy you removed' : `Your copy, ${name},`;
     const msg = `${orderName} is back from the catalog. ${mine} with any changes you had made to it, cannot be put back now.`;
     notify('#app-report', msg, 'ok', UNDO_DELETE, null, dismissUndoDelete);
     return msg;
@@ -473,7 +478,7 @@ export function createReadingView({
     const blocker = getState().lists[list.id] ?? listForCatalogId(getState(), list.catalogId);
     if (blocker) {
       forgetDeleted();
-      notify('#app-report', `${list.name} was not put back: ${blocker.name} is in your sidebar already.`, 'ok', UNDO_DELETE, null, dismissUndoDelete);
+      notify('#app-report', `${list.name} was not put back: ${blocker.name} is in your library already.`, 'ok', UNDO_DELETE, null, dismissUndoDelete);
       return;
     }
     const { ok } = updateState((state) => restoreList(state, list, { index, active: wasActive }));
@@ -486,10 +491,11 @@ export function createReadingView({
     }
     forgetDeleted();
     if (wasActive) showView('read');
-    announce(`${list.name} is back in your sidebar, in the position it had.`);
+    announce(`${list.name} is back in your library, in the position it had.`);
   }
 
   function markCurrentRead() {
+    if (isCompleted(getState(), activeListId())) return;
     const issue = upNext(getState(), activeListId());
     if (!issue) return;
     const wasRead = isRead(getState(), issue.issueId);
@@ -556,14 +562,15 @@ export function createReadingView({
 
   function renderHero() {
     const id = activeListId();
-    const issue = upNext(getState(), id);
-    const empty = getState().lists[id]?.itemIds.length === 0;
+    const completed = isCompleted(getState(), id);
+    const issue = completed ? null : upNext(getState(), id);
+    const empty = !completed && getState().lists[id]?.itemIds.length === 0;
     const { read, total, deferred } = listReadingProgress(getState(), id);
 
     $('#hero').hidden = !issue;
     $('#reading-empty').hidden = !empty;
-    $('#all-read').hidden = total === 0 || read !== total;
-    $('#all-deferred').hidden = !!issue || deferred === 0;
+    $('#all-read').hidden = completed || total === 0 || read !== total;
+    $('#all-deferred').hidden = completed || !!issue || deferred === 0;
     $('#all-deferred-count').textContent = `${deferred} unread issue${deferred === 1 ? ' is' : 's are'} deferred in this Reading List.`;
     $('#shelf-sec').hidden = !issue;
     if (!issue) {
@@ -624,7 +631,7 @@ export function createReadingView({
 
   function refreshHeroReader(issue = upNext(getState(), activeListId())) {
     const reader = readerPresentation(issue, 'saved');
-    $('#btn-hero-read').hidden = !reader.launchable;
+    $('#btn-hero-read').hidden = isCompleted(getState(), activeListId()) || !reader.launchable;
     $('#btn-hero-read').textContent = reader.temporary ? 'Read with temporary link' : 'Open in Marvel Unlimited';
   }
 
@@ -638,7 +645,7 @@ export function createReadingView({
     const id = activeListId();
     const shelf = $('#shelf');
 
-    const queued = new Set(queuedIssueIds(getState(), id).slice(1, SHELF_SIZE + 1));
+    const queued = new Set(isCompleted(getState(), id) ? [] : queuedIssueIds(getState(), id).slice(1, SHELF_SIZE + 1));
     const upcoming = listItems(getState(), id).filter((item) => queued.has(item.issueId));
     $('#shelf-sec').hidden = upcoming.length === 0;
     $('#shelf-note').textContent = `${upcoming.length} ${upcoming.length === 1 ? 'issue' : 'issues'}`;
@@ -683,7 +690,7 @@ export function createReadingView({
             'aria-label': readName,
             dataset: { key: item.issueId, act: 'open' },
             hidden: !readerPresentation(item, 'saved').launchable,
-            onclick: (e) => launch(item, e),
+            onclick: (e) => { if (activeListId() === id && !isCompleted(getState(), id)) launch(item, e); },
           }, readerPresentation(item, 'saved').temporary ? 'Read with temporary link' : 'Read'),
         ]));
       }
@@ -714,7 +721,7 @@ export function createReadingView({
       if (!$('#full').open) { rowsPending = true; return; }
       rowsPending = false; writeOrderStrip($('#full'), all, filter);
 
-      const currentId = upNext(getState(), id)?.issueId ?? null;
+      const currentId = isCompleted(getState(), id) ? null : upNext(getState(), id)?.issueId ?? null;
       // Read the local day once so every row in this pass is judged against one cacheable value.
       const today = localDayString();
       const items = all.filter((item) => matchesReadingFilter(filter, item));
@@ -1024,6 +1031,7 @@ export function createReadingView({
       const target = document.activeElement;
       if (!shortcutAllowed(target, e.key)) return;
       if (!getState().lists[activeListId()]) return;
+      if (isCompleted(getState(), activeListId())) return;
 
       if (e.key === 'Enter') {
         const issue = upNext(getState(), activeListId());

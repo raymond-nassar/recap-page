@@ -23,7 +23,7 @@ import {
 import { parseChecklist } from '../src/js/lib/markdown.js';
 import {
   availableHomeCategories,
-  groupCatalog,
+  catalogEntries,
   HOME_CATEGORIES,
   parseCatalog,
   pathPlacements,
@@ -270,7 +270,7 @@ test('Far From Home binds the exact source, exclusions, overlap, and catalog rol
   );
   assert.deepEqual(
     HOME_CATEGORIES.find(({ key }) => key === 'marvel-on-screen')
-      .select(groupCatalog(catalog.lists))
+      .select(catalogEntries(catalog.lists))
       .map((story) => story.lists[0].id).filter((id) => MCU_SELECTED_IDS.includes(id)),
     MCU_SELECTED_IDS,
   );
@@ -383,7 +383,7 @@ test('an exact relationship remains unapprovable', async () => {
   }), /no approval path/i);
 });
 
-test('six approved CBH payloads share MCU Prep with both separate owner companions', async () => {
+test('approved CBH evidence reaches six payloads within the shared MCU Prep group', async () => {
   const { inventory, entries } = await loadEvidence();
   const manifest = await readJson('src/data/curated-lists.json');
   const catalog = parseCatalog(await readJson('src/data/catalog.json'));
@@ -397,7 +397,7 @@ test('six approved CBH payloads share MCU Prep with both separate owner companio
     MCU_SELECTED_IDS,
   );
   assert.equal(catalog.lists.filter(({ id }) => MCU_SELECTED_IDS.includes(id)).length, 6);
-  assert.equal(catalog.lists.length, 284);
+  assert.equal(catalog.lists.length, 288);
 
   assert.deepEqual(
     inventory.records.filter((record) => record.centralDisposition === 'selected')
@@ -437,14 +437,17 @@ test('six approved CBH payloads share MCU Prep with both separate owner companio
     assert.doesNotMatch(manifestEntry.description, /[\u2013\u2014]/);
   }
 
-  const stories = groupCatalog(catalog.lists);
+  const stories = catalogEntries(catalog.lists);
   const screen = availableHomeCategories(stories)
     .find((category) => category.key === 'marvel-on-screen');
-  assert.equal(screen.count, groupCatalog(catalog.lists.filter(({ type }) => type === 'screen-companion')).length);
+  assert.equal(screen.count, catalog.lists.filter(({ type }) => type === 'screen-companion').length);
+  assert.equal(screen.count, 14);
   const screenDefinition = HOME_CATEGORIES.find((category) => (
     category.key === 'marvel-on-screen'
   ));
   assert.equal(screenDefinition.heading, 'MCU Prep');
+  assert.deepEqual(screenDefinition.select(stories).map((story) => story.lists[0].id),
+    catalog.lists.filter(({ type }) => type === 'screen-companion').map(({ id }) => id));
   assert.deepEqual(
     screenDefinition.select(stories).map((story) => story.lists[0].id).filter((id) => MCU_SELECTED_IDS.includes(id)),
     MCU_SELECTED_IDS,

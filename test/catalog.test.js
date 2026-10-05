@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import {
   parseCatalog as parseCatalogRaw, typeLabel, depthLabel, depthHint, catalogCategories, filterByCategory,
-  searchCatalog, groupCatalog, variantLabel, defaultPath, pickPath,
+  searchCatalog, groupCatalog, catalogEntries, storyYear, variantLabel, defaultPath, pickPath,
   sourceLink, sourceLabel, sourceLicense, updatedLabel,
   safeOrderFile, LIST_TYPES, READING_DEPTHS, UNCATEGORIZED,
   catalogFacets, filterByFacet, facetLabel, isShortOrder, catalogCoverUrl,
@@ -167,7 +167,7 @@ test('the bundled catalog is valid and its counts match the vendored orders', as
   const url = new URL('../src/data/catalog.json', import.meta.url);
   const { lists, dropped } = parseCatalogRaw(JSON.parse(await readFile(url, 'utf8')));
   assert.equal(dropped, 0);
-  assert.equal(lists.length, 284);
+  assert.equal(lists.length, 288);
 
   let placeholders = 0;
   let emptyRecords = 0;
@@ -219,14 +219,13 @@ test('the bundled catalog is valid and its counts match the vendored orders', as
       bothEntries,
     },
     {
-      complete: 29073,
+      complete: 29223,
       placeholders: 1149,
       emptyRecords: 229,
-      total: 30451,
+      total: 30601,
       placeholderEntries: 28,
       emptyEntries: 23,
       bothEntries: 8,
-
     },
   );
 });
@@ -686,15 +685,12 @@ test('the bundled Civil War story offers all three of its reading paths', async 
   );
 });
 
-// The shelf shows one card per story, so a chip promising "Events (8)" that opens onto six cards
-// is the chip lying about what it will do. Counting is the only thing that changes: the filter
-// itself still works on paths, because a path is what actually gets imported.
-test('a facet counts the stories it will show, not the reading paths inside them', () => {
+test('a facet counts every independently visible reading choice', () => {
   const facets = catalogFacets(paths);
-  assert.equal(facets.find((f) => f.key === 'all').count, 1, 'three paths through one story are one card');
+  assert.equal(facets.find((f) => f.key === 'all').count, 3);
 });
 
-test('a facet still counts two separate stories separately', () => {
+test('a facet counts grouped and ungrouped choices independently', () => {
   const { lists } = parseCatalog({
     lists: [
       { id: 'a1', file: 'a1.json', name: 'A one', count: 1, group: 'a' },
@@ -702,7 +698,7 @@ test('a facet still counts two separate stories separately', () => {
       { id: 'b1', file: 'b1.json', name: 'B one', count: 3 },
     ],
   });
-  assert.equal(catalogFacets(lists).find((f) => f.key === 'all').count, 2);
+  assert.equal(catalogFacets(lists).find((f) => f.key === 'all').count, 3);
 });
 
 test('an order in no group counts as its own story', () => {
@@ -720,9 +716,7 @@ test('counting stories tolerates nothing to count', () => {
   assert.equal(countStories(undefined), 0);
 });
 
-// A type chip counts the stories left after its own filter runs, so the number it shows is the
-// number of cards pressing it produces.
-test('a type facet counts the stories that survive that filter alone', () => {
+test('a type facet counts the individually visible choices that survive its filter', () => {
   const { lists } = parseCatalog({
     lists: [
       { id: 'e1', file: 'e1.json', name: 'E one', count: 1, type: 'event', group: 'e' },
@@ -731,7 +725,7 @@ test('a type facet counts the stories that survive that filter alone', () => {
     ],
   });
   const facets = catalogFacets(lists);
-  assert.equal(facets.find((f) => f.key === 'type:event').count, 1);
+  assert.equal(facets.find((f) => f.key === 'type:event').count, 2);
   assert.equal(facets.find((f) => f.key === 'type:era').count, 1);
 });
 
@@ -913,18 +907,19 @@ test('the shipped catalog carries manifest timelines and generated partition yea
   }
 });
 
-// A group is one decision presented once. Giving its members different years would scatter them
-// across the shelf, and the heading would then sit at the earliest of them with the rest adrift.
-test('every reading path through one story starts in the same year', async () => {
-  const manifest = JSON.parse(await readFile(new URL('../src/data/curated-lists.json', import.meta.url), 'utf8'));
-  const byGroup = new Map();
-  for (const list of manifest.lists) {
-    if (!list.group) continue;
-    const seen = byGroup.get(list.group);
-    if (seen === undefined) byGroup.set(list.group, list.timeline ?? null);
-    else assert.equal(list.timeline ?? null, seen, `${list.id} starts in a different year from the rest of ${list.group}`);
+test('independent choices retain their own years while logical stops retain their earliest dated year', async () => {
+  const { lists } = parseCatalog(JSON.parse(await readFile(new URL('../src/data/catalog.json', import.meta.url), 'utf8')));
+  const entries = catalogEntries(lists);
+  assert.equal(entries.length, lists.length);
+  for (const entry of entries) {
+    assert.equal(storyYear(entry), entry.lists[0].timeline, entry.key);
   }
-  assert.ok(byGroup.size >= 1, 'the manifest has at least one grouped story');
+  for (const story of groupCatalog(lists)) {
+    const years = story.lists.map((list) => list.timeline).filter(Number.isInteger);
+    assert.equal(storyYear(story), years.length ? Math.min(...years) : null, story.key);
+  }
+  const hickman = entries.filter(({ groupKey }) => groupKey === 'hickman-secret-wars');
+  assert.deepEqual(hickman.map(storyYear), [2012, 2012, null]);
 });
 
 // ------------------------------------------------------------------ shelf sections

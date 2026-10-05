@@ -583,6 +583,25 @@ MCU Prep only when populated, and that its generated child page contains every s
 once in manifest order at desktop and narrow widths. Do not add a fourth canonical shelf or
 a Character Spotlight classification; Storylines remains the canonical shelf.
 
+An owner-selected excerpt uses the existing local `sourceFile` compilation path. Link the exact
+owner input in `sourcePage`, explicitly credit its factual upstream in `sourceOrigin`, and retain
+the real upstream page, visible heading, selected blocks and omissions in the authored checklist
+and factual source ledger. Do not assign an upstream heading to a GitHub input record, fabricate
+a provider identity, or extend a frozen inventory merely to represent the compilation. Keep
+`sourceLicense` null without an actual license grant and review all original-issue overlaps.
+
+Owner-authored MCU Prep selections keep owner credit and an ordered selection ledger in
+`scripts/data/owner-selections/`, not the fixed Comic Book Herald inventory. Preserve every supplied
+position and record any approved collection expansion on its intake Issue. The Daredevil example
+uses the existing provider-configurable packet validator, exact mapping and complete-library overlap
+review under `scripts/data/owner-packets/`, `owner-mappings/` and `owner-overlaps/`. Its baseline names
+all visible orders, including generated chapters, plus retained noncatalog parents. The provenance
+record freezes that reviewed scope without rewriting it for future unrelated additions.
+Do not run the CBH-specific checklist author on an owner selection, because it supplies CBH credit.
+Use the ordinary local-checklist vendor with `--only` and verify the owner credit on the generated
+card. Provider gaps remain ordered provenance and get a separately assigned gap Issue; a collection
+identity conflict requires an owner decision rather than a neighboring substitution.
+
 ## Create reading paths and collected-edition groups
 
 A reading path names a sequence of existing order IDs. Put an authored path in the `paths` array
@@ -789,7 +808,34 @@ Update the canonical application version and its synchronized release files toge
 npm version <major|minor|patch> --no-git-tag-version
 ```
 
-The npm version lifecycle also updates the browser version constant. The MSIX packer derives Store
+The npm version lifecycle updates the browser version constant and generates/stages the bundled
+Home highlights from the finalized record. Its first level-three section is the reader summary;
+the title may vary. Start it with a top-level unordered bullet block, using indented continuations
+when needed, before compatibility prose or technical sections. An explicitly empty first section
+allows list-only highlights, or no highlights when no Reading Lists were added. Do not maintain a
+second announcement list or edit the generated module.
+
+Commit functional catalog changes before the version command. Generation compares the exact
+selected product-version catalog with the next older finalized product version, preserving ordered
+new IDs without interpreting provider gaps or timestamps. Exact stable tags are preferred; an
+Android-only version without a desktop tag resolves its unique finalized first-parent introduction.
+Full Git history is required. Ambiguous, missing, draft or dirty functional inputs fail rather than
+generating guessed content. Prepare this before sealing release source or package artifacts.
+
+Check the recorded content without rewriting or ingesting later Unreleased catalog additions:
+
+```text
+npm run home-updates:check
+```
+
+For a same-release reader-copy correction, update its existing record and run
+`npm run home-updates -- --recorded`, then the read-only check. The batch identity stays the same.
+Recorded checking and regeneration survive permitted squash merges using durable product
+boundaries and semantic catalog digests, not discarded preparation commits. Initial adoption used
+`npm run home-updates -- --bootstrap=v3.1.0` against that release and its exact predecessor,
+without a version bump or later Unreleased content.
+
+The MSIX packer derives Store
 revision `.0` and proof-only revision `.1` from it; do not maintain package versions separately.
 Confirm package metadata, lock file and browser constant agree, and the stored-data schema is
 correct. Use a major version for a substantial new product generation or data an older build cannot

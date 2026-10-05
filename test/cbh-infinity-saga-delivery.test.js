@@ -11,11 +11,15 @@ import {
   validateMappingDigest,
   validateReportDigest,
 } from '../scripts/lib/cbh-inventory.mjs';
-import { buildReportForMapping } from '../scripts/report-order-overlap.mjs';
+
 import {
   catalogListShelf, decadeSections, groupCatalog, modernTimelineLists, parseCatalog, shelfStories,
 } from '../src/js/lib/catalog.js';
 import { parseChecklist } from '../src/js/lib/markdown.js';
+import {
+  buildHistoricalReadingChoiceReport as buildReportForMapping,
+  historicalReadingChoiceManifest,
+} from './helpers/reading-choice-history.mjs';
 
 const id = 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order';
 const mappingPath = `scripts/data/cbh-mappings/${id}.json`;
@@ -200,19 +204,19 @@ test('Infinity Saga admission and relationship review stay current under Across 
   const current = await buildReportForMapping(mappingPath, [], {
     excludedOrderIds: ['mcu-prep-thunderbolts', 'hawkeye-reading-order', 'marvel-zombies-reading-order',
       'ms-marvel-kamala-khan-reading-order', 'nova-reading-order', 'ultimate-spider-man-reading-order', 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide',
-      'shang-chi-master-of-kung-fu-reading-order', 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order', 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order', 'namor-sub-mariner-reading-order', 'iron-fist-reading-order', 'mcu-prep-deadpool-and-wolverine', 'mcu-prep-eternals', 'spider-man-no-way-home-owner-selected'],
+      'shang-chi-master-of-kung-fu-reading-order', 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order', 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order', 'namor-sub-mariner-reading-order', 'iron-fist-reading-order', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'spider-man-no-way-home-owner-selected', 'mcu-prep-daredevil-born-again', 'mcu-prep-moon-knight', 'mcu-prep-deadpool-and-wolverine', 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps'],
   });
   assert.deepEqual(current, report);
   assert.equal(mapping.relationshipReview?.approvalDigest,
     'd7b650a9cef9cc080cc3eb27e86a51a4b82696090a095223c750ff269d3e11ab');
   assert.doesNotThrow(() => assertApprovedRelationshipReview({
     packet, mapping, report, currentLibraryDigest: current.libraryDigest,
-    expectedOrderIds: manifest.lists.filter((row) =>
+    expectedOrderIds: historicalReadingChoiceManifest(manifest).lists.filter((row) =>
       row.id !== id && row.id !== 'hawkeye-reading-order'
       && row.id !== 'shang-chi-master-of-kung-fu-reading-order' && row.id !== 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order' && row.id !== 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order'
       && row.id !== 'marvel-zombies-reading-order'
       && row.id !== 'ms-marvel-kamala-khan-reading-order'
-      && row.id !== 'nova-reading-order' && row.id !== 'ultimate-spider-man-reading-order' && row.id !== 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide').filter((row) => row.id !== 'namor-sub-mariner-reading-order' && row.id !== 'iron-fist-reading-order' && row.id !== 'mcu-prep-deadpool-and-wolverine' && row.id !== 'mcu-prep-eternals' && row.id !== 'spider-man-no-way-home-owner-selected' && row.id !== 'mcu-prep-thunderbolts').map((row) => row.id),
+      && row.id !== 'nova-reading-order' && row.id !== 'ultimate-spider-man-reading-order' && row.id !== 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide').filter((row) => row.id !== 'namor-sub-mariner-reading-order' && row.id !== 'iron-fist-reading-order' && row.id !== 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings' && row.id !== 'mcu-prep-daredevil-born-again' && row.id !== 'mcu-prep-moon-knight' && row.id !== 'mcu-prep-deadpool-and-wolverine' && row.id !== 'mcu-prep-eternals' && row.id !== 'mcu-prep-fantastic-four-first-steps' && row.id !== 'spider-man-no-way-home-owner-selected' && row.id !== 'mcu-prep-thunderbolts').map((row) => row.id),
   }));
 });
 
@@ -221,12 +225,12 @@ test('Infinity Saga authoring rejects a pending in-memory mapping', () => {
   assert.throws(() => buildMarkdown(pending), /not approved/);
   assert.throws(() => assertApprovedRelationshipReview({
     packet, mapping: pending, report, currentLibraryDigest: report.libraryDigest,
-    expectedOrderIds: manifest.lists.filter((row) =>
+    expectedOrderIds: historicalReadingChoiceManifest(manifest).lists.filter((row) =>
       row.id !== id && row.id !== 'hawkeye-reading-order'
       && row.id !== 'shang-chi-master-of-kung-fu-reading-order' && row.id !== 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order' && row.id !== 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order'
       && row.id !== 'marvel-zombies-reading-order'
       && row.id !== 'ms-marvel-kamala-khan-reading-order'
-      && row.id !== 'nova-reading-order' && row.id !== 'ultimate-spider-man-reading-order' && row.id !== 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide').filter((row) => row.id !== 'namor-sub-mariner-reading-order' && row.id !== 'iron-fist-reading-order' && row.id !== 'mcu-prep-deadpool-and-wolverine' && row.id !== 'mcu-prep-eternals' && row.id !== 'spider-man-no-way-home-owner-selected' && row.id !== 'mcu-prep-thunderbolts').map((row) => row.id),
+      && row.id !== 'nova-reading-order' && row.id !== 'ultimate-spider-man-reading-order' && row.id !== 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide').filter((row) => row.id !== 'namor-sub-mariner-reading-order' && row.id !== 'iron-fist-reading-order' && row.id !== 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings' && row.id !== 'mcu-prep-daredevil-born-again' && row.id !== 'mcu-prep-moon-knight' && row.id !== 'mcu-prep-deadpool-and-wolverine' && row.id !== 'mcu-prep-eternals' && row.id !== 'mcu-prep-fantastic-four-first-steps' && row.id !== 'spider-man-no-way-home-owner-selected' && row.id !== 'mcu-prep-thunderbolts').map((row) => row.id),
   }), /not approved/);
 });
 

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-03T18:45:49.066Z",
+  "generatedAt": "2026-10-05T03:02:26.439Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -158,14 +158,14 @@
     {
       "id": "hickman-minimal",
       "file": "hickman_minimal.json",
-      "name": "Hickman to Secret Wars: minimal",
-      "description": "The essential spine of Jonathan Hickman's Avengers run through Secret Wars (2015).",
+      "name": "Secret Wars Fast Track Trade Reading Order",
+      "description": "A ten-section trade-based route to Secret Wars (2015), with the original Secret Wars and Ultimate Reed Richards background. Follows Comic Book Herald's fast track, including only New Avengers #1-3, interleaved Avengers and New Avengers in Time Runs Out, and Secret Wars #0-9.",
       "type": "creator-run",
       "depth": "essential",
-      "count": 89,
+      "count": 69,
       "placeholderCount": 0,
       "emptyRecordCount": 0,
-      "collections": 0,
+      "collections": 10,
       "characters": [
         "Avengers",
         "Illuminati",
@@ -179,29 +179,32 @@
         "Jonathan Hickman",
         "Secret Wars",
         "New Avengers",
-        "Infinity",
+        "trade reading order",
+        "Ultimate Doomsday",
+        "Ultimate Comics Ultimates",
         "Time Runs Out",
         "incursions"
       ],
       "group": "hickman-secret-wars",
       "groupName": "Hickman to Secret Wars",
-      "variant": "Essential reading",
+      "variant": "Fast track by trade",
       "beginner": false,
       "timeline": 2012,
-      "coverIssueId": 43528,
+      "coverIssueId": 10580,
       "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/00/51646f8d43394",
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/51dee6dd91671",
         "ext": "jpg"
       },
-      "source": "https://github.com/emreparker/marvel-comics/blob/main/data/hickman_minimal.md",
-      "sourceOrigin": "Vendored from emreparker/marvel-comics",
+      "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/secret-wars-reading-order/#secretwars0",
+      "sourceSection": "0) Secret Wars Fast Track Trade Reading Order",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
-      "updatedAt": "2026-08-04T06:14:48.695Z"
+      "updatedAt": "2026-10-03T17:58:30.018Z"
     },
     {
       "id": "hickman-full",
       "file": "hickman_full.json",
-      "name": "Hickman to Secret Wars: full",
+      "name": "Complete Hickman Saga to Secret Wars",
       "description": "The complete Hickman saga including tie-ins, ending with Secret Wars (2015).",
       "type": "creator-run",
       "depth": "complete",
@@ -1246,7 +1249,7 @@
     {
       "id": "new-ultimate-universe",
       "file": "new_ultimate_universe.json",
-      "name": "The New Ultimate Universe",
+      "name": "New Ultimate Universe: Single-Issue Reading Order",
       "description": "Jonathan Hickman's rebuilt Ultimate line in publication-adjacent order, from Ultimate Invasion (2023) through Ultimate Impact: Reborn.",
       "type": "era",
       "depth": "essential",
@@ -1289,7 +1292,7 @@
     {
       "id": "new-ultimate-universe-trades",
       "file": "new_ultimate_universe_trades.json",
-      "name": "The New Ultimate Universe: Collected Editions",
+      "name": "New Ultimate Universe: Collected Edition Reading Order",
       "description": "The same line read the way it is collected, one section per trade paperback, for readers who buy the books rather than the single issues. Each section is a volume you can buy, and it tracks its own progress. Reading is shared with the issue-by-issue order, so an issue ticked in one is ticked in the other. The volume line-up follows Comic Book Herald's collected-edition guide and is not derived from Marvel metadata, which carries no collection records for this era. Six issues Marvel has not collected are left out: the 2024 Free Comic Book Day issue and the five-part Ultimate Impact: Reborn.",
       "type": "era",
       "depth": "essential",
@@ -1604,7 +1607,7 @@
     {
       "id": "house-of-m",
       "file": "house_of_m.json",
-      "name": "House of M",
+      "name": "House of M: Main Series and Branded Tie-Ins",
       "description": "Wanda Maximoff rewrites the world in Marvel's 2005 event, in publication order: the eight-issue main series, its branded tie-in mini-series, and the Decimation epilogue. Assembled from Marvel series metadata, so it covers the series Marvel branded with the event name and not the House of M chapters published in unbranded ongoing titles such as Wolverine #33-35.",
       "type": "event",
       "depth": "complete",
@@ -1651,7 +1654,7 @@
     {
       "id": "house-of-m-essential",
       "file": "house_of_m_essential.json",
-      "name": "House of M: main series",
+      "name": "House of M: Main Series Only",
       "description": "Wanda Maximoff rewrites the world in Marvel's 2005 event: the eight-issue main series on its own, without the branded tie-in mini-series or the Decimation epilogue. Derived from the complete order by keeping only the main series, which is where that order already begins.",
       "type": "event",
       "depth": "essential",
@@ -1779,7 +1782,7 @@
     {
       "id": "civil-war",
       "file": "civil_war.json",
-      "name": "Civil War",
+      "name": "Civil War: Main Series and Branded Tie-Ins",
       "description": "Marvel's 2006 superhuman registration war in publication order: the seven-issue main series plus every mini-series and one-shot Marvel branded with the Civil War name, from Front Line through The Confession. Assembled from Marvel series metadata, so it does not include the crossover chapters published in unbranded ongoing titles such as Amazing Spider-Man #529-538.",
       "type": "event",
       "depth": "complete",
@@ -1827,7 +1830,7 @@
     {
       "id": "civil-war-essential",
       "file": "civil_war_essential.json",
-      "name": "Civil War: main series",
+      "name": "Civil War: Main Series Only",
       "description": "Marvel's 2006 superhuman registration war: the seven-issue main series on its own, without the mini-series and one-shots branded with the Civil War name. Derived from the complete order by keeping only the main series, which is where that order already begins.",
       "type": "event",
       "depth": "essential",
@@ -1961,7 +1964,7 @@
     {
       "id": "secret-invasion",
       "file": "secret_invasion.json",
-      "name": "Secret Invasion",
+      "name": "Secret Invasion: Main Series and Branded Tie-Ins",
       "description": "The Skrull infiltration of 2008 in publication order: the eight-issue main series plus every mini-series and one-shot Marvel branded with the Secret Invasion name, ending with Dark Reign. Assembled from Marvel series metadata, so it does not include the crossover chapters published in unbranded ongoing titles such as New Avengers and Mighty Avengers.",
       "type": "event",
       "depth": "complete",
@@ -2011,7 +2014,7 @@
     {
       "id": "secret-invasion-essential",
       "file": "secret_invasion_essential.json",
-      "name": "Secret Invasion: main series",
+      "name": "Secret Invasion: Main Series Only",
       "description": "The Skrull infiltration of 2008: the eight-issue main series on its own, without the mini-series and one-shots branded with the Secret Invasion name. Derived from the complete order by keeping only the main series, which is where that order already begins.",
       "type": "event",
       "depth": "essential",
@@ -2726,6 +2729,48 @@
       "updatedAt": "2026-08-26T05:16:35.956Z"
     },
     {
+      "id": "mcu-prep-shang-chi-and-the-legend-of-the-ten-rings",
+      "file": "mcu_prep_shang_chi_and_the_legend_of_the_ten_rings.json",
+      "name": "Shang-Chi and the Legend of the Ten Rings",
+      "description": "An owner-selected modern Shang-Chi companion, from Agents of Atlas and Sword Master through Brothers & Sisters and the Ten Rings. Anthology selections are qualified; completion is tracked per issue.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "count": 37,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 6,
+      "characters": [
+        "Shang-Chi",
+        "Agents of Atlas",
+        "Sword Master"
+      ],
+      "keywords": [
+        "Shang-Chi",
+        "Legend of the Ten Rings",
+        "MCU Prep",
+        "Brothers & Sisters",
+        "Five Weapons Society",
+        "Family of Origin",
+        "Gene Luen Yang",
+        "Alyssa Wong",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 84410,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/a0/5f735c7849c7f",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/683#issuecomment-5971742989",
+      "sourceOrigin": "Compiled for this project from the owner's selected Comic Book Herald excerpt",
+      "sourceLicense": null,
+      "updatedAt": "2026-10-03T18:48:28.130Z"
+    },
+    {
       "id": "mcu-prep-thunderbolts",
       "file": "mcu_prep_thunderbolts.json",
       "name": "MCU Prep: Thunderbolts*",
@@ -2769,6 +2814,46 @@
       "updatedAt": "2026-10-03T18:45:49.066Z"
     },
     {
+      "id": "mcu-prep-moon-knight",
+      "file": "mcu_prep_moon_knight.json",
+      "name": "Moon Knight: MCU Prep",
+      "description": "The owner's three first-volume Moon Knight selections, expanded into 17 original issues from 2014, 2016 and 2021, in selection order.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "count": 17,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 3,
+      "characters": [
+        "Moon Knight",
+        "Marc Spector"
+      ],
+      "keywords": [
+        "MCU Prep",
+        "Moon Knight",
+        "Warren Ellis",
+        "Jeff Lemire",
+        "Jed MacKay",
+        "From the Dead",
+        "Lunatic",
+        "The Midnight Mission"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 49077,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/80/530e4d1b02751",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/685",
+      "sourceOrigin": "Selected by the owner for MCU Prep; expanded into original issues for this project",
+      "sourceLicense": null,
+      "updatedAt": "2026-10-03T17:56:36.689Z"
+    },
+    {
       "id": "mcu-prep-eternals",
       "file": "mcu_prep_eternals.json",
       "name": "Eternals",
@@ -2806,6 +2891,54 @@
       "sourceOrigin": "Compiled for this project",
       "sourceLicense": null,
       "updatedAt": "2026-10-03T17:50:15.766Z"
+    },
+    {
+      "id": "mcu-prep-fantastic-four-first-steps",
+      "file": "mcu_prep_fantastic_four_first_steps.json",
+      "name": "MCU Prep: The Fantastic Four: First Steps",
+      "description": "Five owner selections, expanded to 28 original comics: the first six Fantastic Four issues, the Galactus Trilogy, Imaginauts, Hickman's first volume and New Dawn. The Point One row opens the whole anthology; New Dawn selects its Silver Surfer story.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "count": 28,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 5,
+      "characters": [
+        "Fantastic Four",
+        "Reed Richards",
+        "Sue Storm",
+        "Johnny Storm",
+        "Ben Grimm",
+        "Silver Surfer",
+        "Galactus"
+      ],
+      "keywords": [
+        "MCU Prep",
+        "The Fantastic Four: First Steps",
+        "Owner selections",
+        "Stan Lee",
+        "Jack Kirby",
+        "The Galactus Trilogy",
+        "Imaginauts",
+        "Mark Waid",
+        "Jonathan Hickman",
+        "Dan Slott",
+        "New Dawn"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 12894,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/519b7424af23c",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/701",
+      "sourceOrigin": "Compiled for this project from the owner's selections",
+      "sourceLicense": null,
+      "updatedAt": "2026-10-05T03:02:26.439Z"
     },
     {
       "id": "agents-of-atlas-reading-order",
@@ -4574,7 +4707,7 @@
     {
       "id": "xmen-claremont",
       "file": "xmen_claremont.json",
-      "name": "X-Men: Silver Age to Claremont",
+      "name": "X-Men Core Reading Order: Silver Age to Claremont",
       "description": "The X-Men from their 1963 debut to the year after the Mutant Massacre, in one order: the Lee and Kirby run, Giant-Size X-Men and the Claremont and Cockrum relaunch, the Phoenix, Dark Phoenix and Brood sagas, Days of Future Past, God Loves Man Kills, and the arrival of the New Mutants and X-Factor. Compiled by hand from a reader's outline of Comic Book Herald's guides, read as a reference and re-expressed here, so the order is not derived from Marvel metadata and cannot be checked against it. The Mutant Massacre is read in the crossover's own interleaved order. X-Men #67-93 are left out because all 27 are reprints of issues this order already carries and Marvel holds no metadata for the reprint years. The outline ran out partway through X-Factor's second year, so this stops at X-Factor #23 and reaches neither Fall of the Mutants nor Inferno.",
       "type": "character-run",
       "depth": "essential",
@@ -4627,8 +4760,8 @@
     {
       "id": "xmen-claremont-complete",
       "file": "xmen_claremont_complete.json",
-      "name": "X-Men: Silver Age to Claremont, with the optional reading",
-      "description": "The same order as the spine beside it, plus the two sections the outline marked optional. Compiled by hand from the same reader's outline of Comic Book Herald's guides. The Silver Age add-ons are the guest appearances that carried the X-Men through the years their own title was running reprints, scattered across Amazing Adventures, Spider-Man, the Hulk, the Avengers, Captain America, the Defenders and Giant-Size Fantastic Four. The modern retellings revisit the same years from the outside: The Hidden Years, Grand Design, Season One and the whole of First Class. X-Men Annual #1 and #2 are listed without a link, because Marvel's metadata carries that series only from #3.",
+      "name": "X-Men Expanded Reading Order: Silver Age to Claremont",
+      "description": "The expanded Silver Age-to-Claremont route adds the two sections the outline marked optional to the core reading order. Compiled by hand from the same reader's outline of Comic Book Herald's guides. The Silver Age add-ons are the guest appearances that carried the X-Men through the years their own title was running reprints, scattered across Amazing Adventures, Spider-Man, the Hulk, the Avengers, Captain America, the Defenders and Giant-Size Fantastic Four. The modern retellings revisit the same years from the outside: The Hidden Years, Grand Design, Season One and the whole of First Class. X-Men Annual #1 and #2 are listed without a link, because Marvel's metadata carries that series only from #3.",
       "type": "character-run",
       "depth": "complete",
       "spotlightKind": "other",
@@ -9646,7 +9779,7 @@
     {
       "id": "civil-war-avengers",
       "file": "civil_war_avengers.json",
-      "name": "Civil War: An Avengers Reading List",
+      "name": "Civil War: Avengers and Aftermath Reading Order",
       "description": "The Avengers path through Civil War and out the other side, compiled by hand from a reader's outline of Comic Book Herald's guide to Avengers trade collections. It pairs the seven-issue event with the New Avengers issues that run alongside it, the Young Avengers and Runaways tie-in, and Warren Ellis and Mike Deodato's Thunderbolts, which is not an Avengers title but is what makes Dark Avengers make sense later. It then follows the split into Mighty Avengers, the Initiative, Avengers/Invaders and the Illuminati.",
       "type": "event",
       "depth": "complete",
@@ -9688,6 +9821,54 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-17T04:10:56.797Z"
+    },
+    {
+      "id": "avengers-doomsday-secret-wars",
+      "file": "avengers_doomsday_secret_wars.json",
+      "name": "Avengers: Doomsday & Avengers: Secret Wars",
+      "description": "The Secret Wars fast track, presented as comics background for Avengers: Doomsday and Avengers: Secret Wars. Uses the same ten trade-based sections and shared issue read progress, with its own saved Reading List.",
+      "type": "screen-companion",
+      "depth": "essential",
+      "count": 69,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 10,
+      "characters": [
+        "Avengers",
+        "Illuminati",
+        "Black Panther",
+        "Iron Man",
+        "Namor",
+        "Reed Richards",
+        "Doctor Doom"
+      ],
+      "keywords": [
+        "Avengers Doomsday",
+        "Avengers Secret Wars",
+        "MCU Prep",
+        "Jonathan Hickman",
+        "trade reading order",
+        "Time Runs Out",
+        "Ultimate Doomsday",
+        "Ultimate Comics Ultimates",
+        "incursions",
+        "Comic Book Herald"
+      ],
+      "group": "hickman-secret-wars",
+      "groupName": "Hickman to Secret Wars",
+      "variant": "MCU Prep fast track",
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 52447,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/70/5cb736a3cdd49",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/secret-wars-reading-order/#secretwars0",
+      "sourceSection": "0) Secret Wars Fast Track Trade Reading Order",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-10-03T17:58:30.018Z"
     },
     {
       "id": "x-men-manifest-destiny",
@@ -10830,6 +11011,50 @@
       "updatedAt": "2026-08-21T09:58:39.876Z"
     },
     {
+      "id": "mcu-prep-daredevil-born-again",
+      "file": "mcu_prep_daredevil_born_again.json",
+      "name": "MCU Prep: Daredevil: Born Again",
+      "description": "An owner-selected Daredevil companion: The Man Without Fear, Born Again, Out, Brubaker's first volume, and the first two Zdarsky volumes.",
+      "type": "screen-companion",
+      "depth": "selected",
+      "count": 37,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 6,
+      "characters": [
+        "Daredevil",
+        "Kingpin",
+        "Matt Murdock"
+      ],
+      "keywords": [
+        "MCU Prep",
+        "Daredevil: Born Again",
+        "The Man Without Fear",
+        "Out",
+        "The Devil Inside and Out",
+        "Know Fear",
+        "No Devils, Only God",
+        "Frank Miller",
+        "Brian Michael Bendis",
+        "Ed Brubaker",
+        "Chip Zdarsky"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 20750,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/4bb866d34e627",
+        "ext": "jpg"
+      },
+      "source": "https://github.com/raymond-nassar/recap-page/issues/681",
+      "sourceOrigin": "Selected by raymond-nassar for MCU Prep",
+      "sourceLicense": null,
+      "updatedAt": "2026-10-03T17:48:05.373Z"
+    },
+    {
       "id": "inhumans-vs-x-men",
       "file": "inhumans_vs_x_men.json",
       "name": "Inhumans vs. X-Men",
@@ -10865,48 +11090,6 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-21T12:53:39.465Z"
-    },
-    {
-      "id": "spider-man-no-way-home-owner-selected",
-      "file": "spider_man_no_way_home_owner_selected.json",
-      "name": "Spider-Man: No Way Home (Owner selections)",
-      "description": "The owner's three-volume selection: an Ultimate origin, the main Spider-Verse chapters, and the four-issue Big Time arc, expanded into 18 original comics in that order.",
-      "type": "screen-companion",
-      "depth": "selected",
-      "count": 18,
-      "placeholderCount": 0,
-      "emptyRecordCount": 0,
-      "collections": 3,
-      "characters": [
-        "Spider-Man",
-        "Peter Parker",
-        "Hobgoblin"
-      ],
-      "keywords": [
-        "MCU Prep",
-        "Spider-Man: No Way Home",
-        "Owner selections",
-        "Ultimate Spider-Man",
-        "Power and Responsibility",
-        "Spider-Verse",
-        "Big Time",
-        "Brian Michael Bendis",
-        "Dan Slott"
-      ],
-      "group": null,
-      "groupName": null,
-      "variant": null,
-      "beginner": false,
-      "timeline": null,
-      "coverIssueId": 4372,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/519b7e7eb534a",
-        "ext": "jpg"
-      },
-      "source": "https://github.com/raymond-nassar/recap-page/issues/686",
-      "sourceOrigin": "Compiled for this project from the owner's selections",
-      "sourceLicense": null,
-      "updatedAt": "2026-10-03T17:55:25.078Z"
     }
   ],
   "paths": [

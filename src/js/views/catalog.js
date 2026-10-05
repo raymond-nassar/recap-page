@@ -1,7 +1,8 @@
 import {
   CATALOG_SHELVES,
+  catalogEntries,
+  catalogEntryKey,
   catalogFacets,
-  countStories,
   decadeSections,
   defaultPath,
   eraSections,
@@ -23,7 +24,7 @@ import { completionState, listProgress } from '../lib/model.js';
 
 const FILTER_THRESHOLD = 12;
 
-export function modernTimelinePosition(state, stories, { dropped = 0 } = {}) {
+export function modernTimelinePosition(state, stories, { dropped = 0, isCompleted = () => false } = {}) {
   if (Number.isInteger(dropped) && dropped > 0) return { kind: 'unavailable', dropped };
 
   const ordered = Array.isArray(stories) ? stories : [];
@@ -47,18 +48,18 @@ export function modernTimelinePosition(state, stories, { dropped = 0 } = {}) {
     if (!saved) {
       return {
         kind: 'current',
-        storyKey: story?.key ?? null,
-        storyName: story?.name ?? list?.name ?? 'Reading List',
+        storyKey: list ? catalogEntryKey(list) : story?.key ?? null,
+        storyName: list?.name ?? story?.name ?? 'Reading List',
         completed,
         total,
       };
     }
     const progress = listProgress(state, saved.id);
-    if (completionState(progress.read, progress.total) !== 'done') {
+    if (!isCompleted(state, saved.id) && completionState(progress.read, progress.total) !== 'done') {
       return {
         kind: 'current',
-        storyKey: story?.key ?? null,
-        storyName: story?.name ?? list?.name ?? saved.name ?? 'Reading List',
+        storyKey: catalogEntryKey(list),
+        storyName: list.name ?? story?.name ?? saved.name ?? 'Reading List',
         completed,
         total,
       };
@@ -75,6 +76,7 @@ export function createCatalogView({
   elements,
   getState = () => ({ listOrder: [], lists: {}, read: {} }),
   isCurrent = () => true,
+  isCompleted = () => false,
   loadCatalog,
   notifyDropped,
   onLoadFailure,
@@ -136,6 +138,7 @@ export function createCatalogView({
   function paintTimelineContext(context, { announceChange = false } = {}) {
     const position = modernTimelinePosition(getState(), context.stories, {
       dropped: context.dropped,
+      isCompleted,
     });
     const signature = timelineSignature(position, context);
     const message = timelinePositionMessage(position, context);
@@ -228,9 +231,10 @@ export function createCatalogView({
     for (const radio of elements.spotlightSorts()) radio.checked = radio.value === checked;
   }
 
-  async function render(key) {
+  async function render(key, { isCurrent: isRequestCurrent = () => true } = {}) {
     const generation = (generationByShelf.get(key) ?? 0) + 1;
     generationByShelf.set(key, generation);
+    const current = () => generation === generationByShelf.get(key) && isCurrent(key) && isRequestCurrent();
     if (key === 'catalog') {
       timelineContext = null;
       timelinePendingGeneration = generation;
@@ -247,7 +251,7 @@ export function createCatalogView({
     try {
       catalog = await loadCatalog();
     } catch (error) {
-      if (generation !== generationByShelf.get(key)) return;
+      if (!current()) return;
       if (key === 'catalog') {
         timelineContext = null;
         timelinePendingGeneration = null;
@@ -260,11 +264,11 @@ export function createCatalogView({
         error,
         key,
         retry: () => render(key),
-        isCurrent: () => generation === generationByShelf.get(key),
+        isCurrent: current,
       });
       return;
     }
-    if (generation !== generationByShelf.get(key)) return;
+    if (!current()) return;
 
     if (catalog.dropped) notifyDropped(key, catalog.dropped);
     if (key === 'catalog') {
@@ -293,7 +297,7 @@ export function createCatalogView({
       return;
     }
 
-    const searchable = countStories(mine) > FILTER_THRESHOLD;
+    const searchable = mine.length > FILTER_THRESHOLD;
     nodes.search.hidden = !searchable;
     if (!searchable && state.query) {
       state.query = '';
@@ -331,13 +335,19 @@ export function createCatalogView({
     }
 
     const stories = key === 'spotlights'
-      ? sortSpotlightStories(groupCatalog(shown), state.sort)
-      : groupCatalog(shown);
+      ? sortSpotlightStories(catalogEntries(shown), state.sort)
+      : catalogEntries(shown);
     const placements = pathPlacements(catalog.paths, catalog.lists);
     const firstStops = visibleFirstStopGuides(stories, placements, presentation.chosenPath);
     if (firstStops.length) {
-      const directions = firstStops.map(({ guide, placement }, index) => (
-        `${index === 0 ? 'Start' : 'start'} ${placement.pathName} with ${guide.name}`
+      const startsByPath = new Map();
+      for (const { guide, placement } of firstStops) {
+        const start = startsByPath.get(placement.pathId) ?? { name: placement.pathName, guides: [] };
+        start.guides.push(guide.name);
+        startsByPath.set(placement.pathId, start);
+      }
+      const directions = [...startsByPath.values()].map(({ name, guides }, index) => (
+        `${index === 0 ? 'Start' : 'start'} ${name} with ${guides.join(' or ')}`
       ));
       nodes.results.append(el('p', {
         class: 'rail-hint shelf-orientation',
@@ -366,7 +376,7 @@ export function createCatalogView({
         if (grouped) nodes.results.append(presentation.shelfSectionHead(section, { blurb: false }));
         const grid = el('div', { class: 'catalog-grid' });
         for (const story of section.stories) {
-          grid.append(presentation.catalogCard(story, placements.get(story.key), {
+          grid.append(presentation.catalogCard(story, placements.get(story.groupKey), {
             surface: key,
             level: grouped ? 'h3' : 'h2',
           }));

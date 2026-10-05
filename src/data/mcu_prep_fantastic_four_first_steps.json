@@ -1,0 +1,825 @@
+{
+  "id": "mcu-prep-fantastic-four-first-steps",
+  "name": "MCU Prep: The Fantastic Four: First Steps",
+  "description": "Five owner selections, expanded to 28 original comics: the first six Fantastic Four issues, the Galactus Trilogy, Imaginauts, Hickman's first volume and New Dawn. The Point One row opens the whole anthology; New Dawn selects its Silver Surfer story.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/701",
+  "sourceOrigin": "Compiled for this project from the owner's selections",
+  "sourceLicense": null,
+  "generatedAt": "2026-10-05T03:02:26.439Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 28,
+  "collections": 5,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 12894,
+      "title": "Fantastic Four (1961) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/12894/fantastic_four_1961_1",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1961-11-01T00:00:00+0000",
+      "mu": "1961-11-01T00:00:00+0000",
+      "digitalId": 91,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/519b7424af23c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jack Kirby",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Fantastic Four (1961) #1-6"
+    },
+    {
+      "issueId": 13005,
+      "title": "Fantastic Four (1961) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/13005/fantastic_four_1961_2",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1962-01-01T00:00:00+0000",
+      "mu": "1962-01-01T00:00:00+0000",
+      "digitalId": 3326,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/d0/536d72ee76127",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jack Kirby",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Fantastic Four (1961) #1-6"
+    },
+    {
+      "issueId": 13116,
+      "title": "Fantastic Four (1961) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/13116/fantastic_four_1961_3",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1962-03-01T00:00:00+0000",
+      "mu": "1962-03-01T00:00:00+0000",
+      "digitalId": 3328,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/536d726cd5114",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sol Brodsky",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jack Kirby",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Fantastic Four (1961) #1-6"
+    },
+    {
+      "issueId": 13227,
+      "title": "Fantastic Four (1961) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/13227/fantastic_four_1961_4",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1962-05-01T00:00:00+0000",
+      "mu": "1962-05-01T00:00:00+0000",
+      "digitalId": 3330,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/536d717b9e4ba",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sol Brodsky",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jack Kirby",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Fantastic Four (1961) #1-6"
+    },
+    {
+      "issueId": 13255,
+      "title": "Fantastic Four (1961) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/13255/fantastic_four_1961_5",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1962-07-01T00:00:00+0000",
+      "mu": "1962-07-01T00:00:00+0000",
+      "digitalId": 3332,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/03/5aa8298921154",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jack Kirby",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Fantastic Four (1961) #1-6"
+    },
+    {
+      "issueId": 13266,
+      "title": "Fantastic Four (1961) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/13266/fantastic_four_1961_6",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1962-09-01T00:00:00+0000",
+      "mu": "1962-09-01T00:00:00+0000",
+      "digitalId": 3333,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/e0/536d70426aa5a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dick Ayers",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jack Kirby",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Fantastic Four (1961) #1-6"
+    },
+    {
+      "issueId": 13253,
+      "title": "Fantastic Four (1961) #48",
+      "number": "48",
+      "url": "https://www.marvel.com/comics/issue/13253/fantastic_four_1961_48",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1966-03-01T00:00:00+0000",
+      "mu": "1966-03-01T00:00:00+0000",
+      "digitalId": 3345,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/00/51b63a4ad8ba9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jack Kirby",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Fantastic Four: The Galactus Trilogy"
+    },
+    {
+      "issueId": 13254,
+      "title": "Fantastic Four (1961) #49",
+      "number": "49",
+      "url": "https://www.marvel.com/comics/issue/13254/fantastic_four_1961_49",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1966-04-01T00:00:00+0000",
+      "mu": "1966-04-01T00:00:00+0000",
+      "digitalId": 3346,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/b0/51b63ab07931b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jack Kirby",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Fantastic Four: The Galactus Trilogy"
+    },
+    {
+      "issueId": 13256,
+      "title": "Fantastic Four (1961) #50",
+      "number": "50",
+      "url": "https://www.marvel.com/comics/issue/13256/fantastic_four_1961_50",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1966-05-01T00:00:00+0000",
+      "mu": "1966-05-01T00:00:00+0000",
+      "digitalId": 3347,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/10/51b63a42069de",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jack Kirby",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Fantastic Four: The Galactus Trilogy"
+    },
+    {
+      "issueId": 15578,
+      "title": "Fantastic Four (1998) #56",
+      "number": "56",
+      "url": "https://www.marvel.com/comics/issue/15578/fantastic_four_1998_56",
+      "seriesId": 421,
+      "seriesName": "Fantastic Four (1998 - 2012)",
+      "onSale": "2002-08-01T00:00:00+0000",
+      "mu": "2002-08-01T00:00:00+0000",
+      "digitalId": 4705,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/c0/5ab12aba754d8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Gabriele Dell'otto",
+          "role": "penciler (cover)"
+        }
+      ],
+      "collectedIn": "Fantastic Four Vol. 1: Imaginauts"
+    },
+    {
+      "issueId": 15583,
+      "title": "Fantastic Four (1998) #60",
+      "number": "60",
+      "url": "https://www.marvel.com/comics/issue/15583/fantastic_four_1998_60",
+      "seriesId": 421,
+      "seriesName": "Fantastic Four (1998 - 2012)",
+      "onSale": "2002-10-01T00:00:00+0000",
+      "mu": "2002-10-01T00:00:00+0000",
+      "digitalId": 669,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/e0/5ab3fb7c14461",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Fantastic Four Vol. 1: Imaginauts"
+    },
+    {
+      "issueId": 15584,
+      "title": "Fantastic Four (1998) #61",
+      "number": "61",
+      "url": "https://www.marvel.com/comics/issue/15584/fantastic_four_1998_61",
+      "seriesId": 421,
+      "seriesName": "Fantastic Four (1998 - 2012)",
+      "onSale": "2002-11-01T00:00:00+0000",
+      "mu": "2002-11-01T00:00:00+0000",
+      "digitalId": 4707,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/00/5acf77e44e6e5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Fantastic Four Vol. 1: Imaginauts"
+    },
+    {
+      "issueId": 15585,
+      "title": "Fantastic Four (1998) #62",
+      "number": "62",
+      "url": "https://www.marvel.com/comics/issue/15585/fantastic_four_1998_62",
+      "seriesId": 421,
+      "seriesName": "Fantastic Four (1998 - 2012)",
+      "onSale": "2002-12-01T00:00:00+0000",
+      "mu": "2002-12-01T00:00:00+0000",
+      "digitalId": 4708,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/50/5acf7eebbe4c4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Fantastic Four Vol. 1: Imaginauts"
+    },
+    {
+      "issueId": 15586,
+      "title": "Fantastic Four (1998) #63",
+      "number": "63",
+      "url": "https://www.marvel.com/comics/issue/15586/fantastic_four_1998_63",
+      "seriesId": 421,
+      "seriesName": "Fantastic Four (1998 - 2012)",
+      "onSale": "2003-01-01T00:00:00+0000",
+      "mu": "2003-01-01T00:00:00+0000",
+      "digitalId": 849,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/80/5acf83b688c0b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Fantastic Four Vol. 1: Imaginauts"
+    },
+    {
+      "issueId": 15587,
+      "title": "Fantastic Four (1998) #64",
+      "number": "64",
+      "url": "https://www.marvel.com/comics/issue/15587/fantastic_four_1998_64",
+      "seriesId": 421,
+      "seriesName": "Fantastic Four (1998 - 2012)",
+      "onSale": "2003-02-01T00:00:00+0000",
+      "mu": "2003-02-01T00:00:00+0000",
+      "digitalId": 844,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/c0/4bc331a7c1186",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Fantastic Four Vol. 1: Imaginauts"
+    },
+    {
+      "issueId": 15588,
+      "title": "Fantastic Four (1998) #65",
+      "number": "65",
+      "url": "https://www.marvel.com/comics/issue/15588/fantastic_four_1998_65",
+      "seriesId": 421,
+      "seriesName": "Fantastic Four (1998 - 2012)",
+      "onSale": "2003-03-01T00:00:00+0000",
+      "mu": "2003-03-01T00:00:00+0000",
+      "digitalId": 4711,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/10/4bc37b3c714a8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Fantastic Four Vol. 1: Imaginauts"
+    },
+    {
+      "issueId": 15589,
+      "title": "Fantastic Four (1998) #66",
+      "number": "66",
+      "url": "https://www.marvel.com/comics/issue/15589/fantastic_four_1998_66",
+      "seriesId": 421,
+      "seriesName": "Fantastic Four (1998 - 2012)",
+      "onSale": "2003-04-01T00:00:00+0000",
+      "mu": "2003-04-01T00:00:00+0000",
+      "digitalId": 4712,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/40/4bc37b41cde9d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Fantastic Four Vol. 1: Imaginauts"
+    },
+    {
+      "issueId": 25182,
+      "title": "Fantastic Four (1998) #570",
+      "number": "570",
+      "url": "https://www.marvel.com/comics/issue/25182/fantastic_four_1998_570",
+      "seriesId": 421,
+      "seriesName": "Fantastic Four (1998 - 2012)",
+      "onSale": "2009-08-26T00:00:00+0000",
+      "mu": "2009-08-26T00:00:00+0000",
+      "digitalId": 13541,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/51db29bc24a98",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mark Farmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alan Davis",
+          "role": "penciler"
+        },
+        {
+          "name": "Dale Eaglesham",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Fantastic Four by Jonathan Hickman Vol. 1"
+    },
+    {
+      "issueId": 25183,
+      "title": "Fantastic Four (1998) #571",
+      "number": "571",
+      "url": "https://www.marvel.com/comics/issue/25183/fantastic_four_1998_571",
+      "seriesId": 421,
+      "seriesName": "Fantastic Four (1998 - 2012)",
+      "onSale": "2009-09-23T00:00:00+0000",
+      "mu": "2009-11-03T00:00:00+0000",
+      "digitalId": 13542,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/51db29b943d55",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mark Farmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alan Davis",
+          "role": "penciler"
+        },
+        {
+          "name": "Dale Eaglesham",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Fantastic Four by Jonathan Hickman Vol. 1"
+    },
+    {
+      "issueId": 25184,
+      "title": "Fantastic Four (1998) #572",
+      "number": "572",
+      "url": "https://www.marvel.com/comics/issue/25184/fantastic_four_1998_572",
+      "seriesId": 421,
+      "seriesName": "Fantastic Four (1998 - 2012)",
+      "onSale": "2009-10-28T00:00:00+0000",
+      "mu": "2010-04-29T15:40:37+0000",
+      "digitalId": 14456,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/51db29a95ec69",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mark Farmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alan Davis",
+          "role": "penciler"
+        },
+        {
+          "name": "Dale Eaglesham",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Fantastic Four by Jonathan Hickman Vol. 1"
+    },
+    {
+      "issueId": 25185,
+      "title": "Fantastic Four (1998) #573",
+      "number": "573",
+      "url": "https://www.marvel.com/comics/issue/25185/fantastic_four_1998_573",
+      "seriesId": 421,
+      "seriesName": "Fantastic Four (1998 - 2012)",
+      "onSale": "2009-11-25T00:00:00+0000",
+      "mu": "2010-10-28T14:51:27+0000",
+      "digitalId": 14457,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/90/51db29a7d1d00",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrew Currie",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alan Davis",
+          "role": "penciler"
+        },
+        {
+          "name": "Dale Eaglesham",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Fantastic Four by Jonathan Hickman Vol. 1"
+    },
+    {
+      "issueId": 25186,
+      "title": "Fantastic Four (1998) #574",
+      "number": "574",
+      "url": "https://www.marvel.com/comics/issue/25186/fantastic_four_1998_574",
+      "seriesId": 421,
+      "seriesName": "Fantastic Four (1998 - 2012)",
+      "onSale": "2009-12-23T00:00:00+0000",
+      "mu": "2010-04-29T15:42:21+0000",
+      "digitalId": 14458,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/10/5ad8ac8ad8131",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrew Currie",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alan Davis",
+          "role": "penciler"
+        },
+        {
+          "name": "Neil Edwards",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Fantastic Four by Jonathan Hickman Vol. 1"
+    },
+    {
+      "issueId": 48328,
+      "title": "Silver Surfer (2014) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/48328/silver_surfer_2014_1",
+      "seriesId": 18310,
+      "seriesName": "Silver Surfer (2014 - 2015)",
+      "onSale": "2014-03-26T00:00:00+0000",
+      "mu": "2014-03-26T00:00:00+0000",
+      "digitalId": 33457,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/40/53286d4a5deac",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Michael Allred",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Silver Surfer Vol. 1: New Dawn (whole Point One anthology; Silver Surfer material)"
+    },
+    {
+      "issueId": 48329,
+      "title": "Silver Surfer (2014) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/48329/silver_surfer_2014_2",
+      "seriesId": 18310,
+      "seriesName": "Silver Surfer (2014 - 2015)",
+      "onSale": "2014-04-30T00:00:00+0000",
+      "mu": "2014-10-27T00:00:00+0000",
+      "digitalId": 33573,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/53581dc319b2e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Allred",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Silver Surfer Vol. 1: New Dawn (whole Point One anthology; Silver Surfer material)"
+    },
+    {
+      "issueId": 48330,
+      "title": "Silver Surfer (2014) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/48330/silver_surfer_2014_3",
+      "seriesId": 18310,
+      "seriesName": "Silver Surfer (2014 - 2015)",
+      "onSale": "2014-06-18T00:00:00+0000",
+      "mu": "2014-12-22T00:00:00+0000",
+      "digitalId": 33955,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/03/539602521c77a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Allred",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Silver Surfer Vol. 1: New Dawn (whole Point One anthology; Silver Surfer material)"
+    },
+    {
+      "issueId": 48331,
+      "title": "Silver Surfer (2014) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/48331/silver_surfer_2014_4",
+      "seriesId": 18310,
+      "seriesName": "Silver Surfer (2014 - 2015)",
+      "onSale": "2014-07-16T00:00:00+0000",
+      "mu": "2015-01-19T00:00:00+0000",
+      "digitalId": 33885,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/10/53bebc5c7ab55",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Allred",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Silver Surfer Vol. 1: New Dawn (whole Point One anthology; Silver Surfer material)"
+    },
+    {
+      "issueId": 48332,
+      "title": "Silver Surfer (2014) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/48332/silver_surfer_2014_5",
+      "seriesId": 18310,
+      "seriesName": "Silver Surfer (2014 - 2015)",
+      "onSale": "2014-08-27T00:00:00+0000",
+      "mu": "2015-02-23T00:00:00+0000",
+      "digitalId": 34175,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/53f7b1182fe75",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Allred",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Silver Surfer Vol. 1: New Dawn (whole Point One anthology; Silver Surfer material)"
+    },
+    {
+      "issueId": 49846,
+      "title": "ALL-NEW MARVEL NOW! POINT ONE 1 (2014) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/49846/all-new_marvel_now_point_one_1_2014_1",
+      "seriesId": 18729,
+      "seriesName": "ALL-NEW MARVEL NOW! POINT ONE 1 (2014)",
+      "onSale": "2014-01-08T00:00:00+0000",
+      "mu": "2014-06-30T00:00:00+0000",
+      "digitalId": 32791,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/e0/67e6f6fe05dcb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 56,
+      "creators": [
+        {
+          "name": "Steve Mcniven",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        },
+        {
+          "name": "James Robinson",
+          "role": "writer"
+        },
+        {
+          "name": "Nathan Edmondson",
+          "role": "writer"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Silver Surfer Vol. 1: New Dawn (whole Point One anthology; Silver Surfer material)"
+    }
+  ]
+}

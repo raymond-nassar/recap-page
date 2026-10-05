@@ -1,0 +1,48 @@
+{
+  "id": "mcu-prep-fantastic-four-first-steps",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/701",
+  "vectorSha256": "390caf2c39ed3e4a78d79dfb1c2645fcf58f8b278fee95a7d598eab5ba7c6625",
+  "inputBasis": "Independent finalized exact-mapping factual capture, not derived from the emitted payload or rendered UI.",
+  "groups": [
+    "Fantastic Four (1961) #1-6",
+    "Fantastic Four: The Galactus Trilogy",
+    "Fantastic Four Vol. 1: Imaginauts",
+    "Fantastic Four by Jonathan Hickman Vol. 1",
+    "Silver Surfer Vol. 1: New Dawn (whole Point One anthology; Silver Surfer material)"
+  ],
+  "rows": [
+    { "position": 1, "issueId": 12894, "title": "Fantastic Four (1961) #1", "group": "Fantastic Four (1961) #1-6" },
+    { "position": 2, "issueId": 13005, "title": "Fantastic Four (1961) #2", "group": "Fantastic Four (1961) #1-6" },
+    { "position": 3, "issueId": 13116, "title": "Fantastic Four (1961) #3", "group": "Fantastic Four (1961) #1-6" },
+    { "position": 4, "issueId": 13227, "title": "Fantastic Four (1961) #4", "group": "Fantastic Four (1961) #1-6" },
+    { "position": 5, "issueId": 13255, "title": "Fantastic Four (1961) #5", "group": "Fantastic Four (1961) #1-6" },
+    { "position": 6, "issueId": 13266, "title": "Fantastic Four (1961) #6", "group": "Fantastic Four (1961) #1-6" },
+    { "position": 7, "issueId": 13253, "title": "Fantastic Four (1961) #48", "group": "Fantastic Four: The Galactus Trilogy" },
+    { "position": 8, "issueId": 13254, "title": "Fantastic Four (1961) #49", "group": "Fantastic Four: The Galactus Trilogy" },
+    { "position": 9, "issueId": 13256, "title": "Fantastic Four (1961) #50", "group": "Fantastic Four: The Galactus Trilogy" },
+    { "position": 10, "issueId": 15578, "title": "Fantastic Four (1998) #56", "group": "Fantastic Four Vol. 1: Imaginauts" },
+    { "position": 11, "issueId": 15583, "title": "Fantastic Four (1998) #60", "group": "Fantastic Four Vol. 1: Imaginauts" },
+    { "position": 12, "issueId": 15584, "title": "Fantastic Four (1998) #61", "group": "Fantastic Four Vol. 1: Imaginauts" },
+    { "position": 13, "issueId": 15585, "title": "Fantastic Four (1998) #62", "group": "Fantastic Four Vol. 1: Imaginauts" },
+    { "position": 14, "issueId": 15586, "title": "Fantastic Four (1998) #63", "group": "Fantastic Four Vol. 1: Imaginauts" },
+    { "position": 15, "issueId": 15587, "title": "Fantastic Four (1998) #64", "group": "Fantastic Four Vol. 1: Imaginauts" },
+    { "position": 16, "issueId": 15588, "title": "Fantastic Four (1998) #65", "group": "Fantastic Four Vol. 1: Imaginauts" },
+    { "position": 17, "issueId": 15589, "title": "Fantastic Four (1998) #66", "group": "Fantastic Four Vol. 1: Imaginauts" },
+    { "position": 18, "issueId": 25182, "title": "Fantastic Four (1998) #570", "group": "Fantastic Four by Jonathan Hickman Vol. 1" },
+    { "position": 19, "issueId": 25183, "title": "Fantastic Four (1998) #571", "group": "Fantastic Four by Jonathan Hickman Vol. 1" },
+    { "position": 20, "issueId": 25184, "title": "Fantastic Four (1998) #572", "group": "Fantastic Four by Jonathan Hickman Vol. 1" },
+    { "position": 21, "issueId": 25185, "title": "Fantastic Four (1998) #573", "group": "Fantastic Four by Jonathan Hickman Vol. 1" },
+    { "position": 22, "issueId": 25186, "title": "Fantastic Four (1998) #574", "group": "Fantastic Four by Jonathan Hickman Vol. 1" },
+    { "position": 23, "issueId": 48328, "title": "Silver Surfer (2014) #1", "group": "Silver Surfer Vol. 1: New Dawn (whole Point One anthology; Silver Surfer material)" },
+    { "position": 24, "issueId": 48329, "title": "Silver Surfer (2014) #2", "group": "Silver Surfer Vol. 1: New Dawn (whole Point One anthology; Silver Surfer material)" },
+    { "position": 25, "issueId": 48330, "title": "Silver Surfer (2014) #3", "group": "Silver Surfer Vol. 1: New Dawn (whole Point One anthology; Silver Surfer material)" },
+    { "position": 26, "issueId": 48331, "title": "Silver Surfer (2014) #4", "group": "Silver Surfer Vol. 1: New Dawn (whole Point One anthology; Silver Surfer material)" },
+    { "position": 27, "issueId": 48332, "title": "Silver Surfer (2014) #5", "group": "Silver Surfer Vol. 1: New Dawn (whole Point One anthology; Silver Surfer material)" },
+    { "position": 28, "issueId": 49846, "title": "ALL-NEW MARVEL NOW! POINT ONE 1 (2014) #1", "group": "Silver Surfer Vol. 1: New Dawn (whole Point One anthology; Silver Surfer material)" }
+  ],
+  "sharedOriginal": {
+    "issueId": 49846,
+    "readTimestamp": 123456,
+    "note": "My existing anthology note."
+  }
+}

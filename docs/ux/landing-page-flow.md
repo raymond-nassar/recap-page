@@ -29,6 +29,29 @@ App launch, or selecting the brand lockup in the sidebar.
 3. **Explore** offers the same content-backed category gateway as State A.
 4. Marvel attribution remains at the end of the surface.
 
+## Optional Home Highlights
+
+Both Home states keep a quiet **What's new** entry beside the heading. Its native disclosure is
+closed on arrival, creates no route or history entry, and never interrupts reading. The compact
+panel describes improvements included in the running copy and exact newly added Reading Lists,
+not available app upgrades. Each section initially shows up to three rows; **More** exposes every
+remaining row within the bounded scrolling panel. A maintenance-only copy may explicitly have no
+new highlights.
+
+**New** clears on opening and is remembered on this device until a newer highlight batch arrives.
+Viewing is a preference outside reading backups; erasing or restoring reading data keeps it.
+Clearing actual app storage resets it. If remembering fails, the panel says New may return next
+visit while reading data stays unchanged. Version-release preparation supplies the content from
+the existing reader summary and catalog delta; no second handwritten announcement list is required.
+
+The summary, Close, Escape, outside pointer and leaving Home close the panel. Explicit Close or
+Escape restores summary focus; outside pointers and navigation do not. New-list actions reuse
+Preview without importing or changing progress, and Preview returns to the Home summary rather
+than a hidden panel child. Catalog failures name the affected entries and offer Retry.
+On Android the entry occupies its own phone-header row with 48px controls. Native Back consumes
+an open dialog first, then visible narrow navigation, then Home news. Browser-style checks do not
+replace installed-device touch, system-text, Back or private-profile acceptance.
+
 ## Transitions
 - The first-run Browse and Add actions use their existing hubs, create browser history entries,
   and move focus to the destination heading. Back returns to Home.
@@ -41,16 +64,17 @@ App launch, or selecting the brand lockup in the sidebar.
 - A directly opened empty Marvel Ages gateway names the empty state rather than inventing categories.
 - Modern Timeline uses 1998 as this app's chosen boundary, not as an official Marvel editorial-era
   claim. Marvel Knights to Planet X opens the sequence in 1998, then Avengers Disassembled resumes it
-  in 2004. Its 148 Reading Lists appear as 144 grouped normal story cards.
+  in 2004. Its 148 Reading Lists appear as 148 independently named cards representing 144 logical
+  timeline stops. Alternate versions do not become additional required stops.
 - Setup to Modern Timeline is featured above the normal Modern Timeline cards through the same
   Preview flow. It is not duplicated as a card and is not included in the timeline count.
 - Modern Timeline marks the first story card that is not complete after the completed opening run.
   The position is rebuilt from imported Reading Lists and their issue read markers, not stored as a
-  separate cursor. A grouped story follows the shallowest imported option the card already presents,
-  or its shallowest option when none has been imported.
+  separate cursor. A logical story follows its shallowest imported option, or its shallowest option
+  when none has been imported. The marker belongs to that specific Reading List's card.
 - Search and category filters change what is visible, not the reader's position. A visible current
-  story keeps the marker even when only another option through that story matches. If the whole story
-  is hidden, one message names it instead of marking a different card.
+  Reading List keeps the marker. If that selected list is hidden, one message names it instead of
+  marking an alternative through the same story.
 - Completing every timeline story puts the position after the final card. If a catalog entry cannot
   be shown, the position is reported as unavailable because the missing entry's place is unknown.
 - Events outside that guided sequence remain available through Marvel Ages and existing direct
@@ -58,6 +82,14 @@ App launch, or selecting the brand lockup in the sidebar.
 - Preview's existing Add control can complete the first add on the chosen browse page. Failures
   target that page, while the existing success announcement remains unchanged. A separate follow-on owns
   any expanded first-save explanation.
+- Each catalog choice has its own title, Add or Open action and Preview. Preview inspects that
+  specific list rather than offering a hidden reading-option selector. Reading Paths preview their
+  explicitly named choice while recognizing a saved alternate version.
+- MCU Prep repeats the Secret Wars fast track as **Avengers: Doomsday & Avengers: Secret Wars**.
+  It creates its own named library list with the same issues and trade sections. Issue read marks
+  are shared with the fast track, while each saved list keeps its own name and list note.
+- Catalog title and source updates do not rewrite existing saved copies. Their names, issue order,
+  collected-edition maps and notes remain unchanged.
 - Home has no breadcrumb because it has no route ancestors. Routed destinations reached from Home
   show their stable hierarchy, while Preview remains a dialog with no breadcrumb.
 - Returning with Back restores Home rather than creating a second navigation model.

@@ -308,33 +308,33 @@ export function isBeginnerOrder(list) {
 
 export function catalogFacets(lists) {
   const all = Array.isArray(lists) ? lists : [];
-  const facets = [{ key: 'all', label: 'All', count: countStories(all) }];
+  const facets = [{ key: 'all', label: 'All', count: all.length }];
 
-  const beginner = countStories(all.filter(isBeginnerOrder));
+  const beginner = all.filter(isBeginnerOrder).length;
   if (beginner) facets.push({ key: 'beginner', label: 'Beginner-friendly', count: beginner });
 
   for (const c of catalogCategories(all)) {
     facets.push({
       key: `type:${c.key}`,
       label: c.key === UNCATEGORIZED ? 'Other' : (TYPE_FACET_LABELS[c.key] ?? typeLabel(c.key)),
-      count: countStories(filterByCategory(all, c.key)),
+      count: filterByCategory(all, c.key).length,
     });
   }
 
   // Reading in collected editions is a way of collecting, not a kind of story, so it cuts
   // across the type chips rather than sitting inside one. It is listed only when such an order
   // exists, like every other facet here.
-  const trade = countStories(all.filter(isTradeOrder));
+  const trade = all.filter(isTradeOrder).length;
   if (trade) facets.push({ key: 'trade', label: 'By collected edition', count: trade });
 
-  const short = countStories(all.filter(isShortOrder));
+  const short = all.filter(isShortOrder).length;
   if (short) facets.push({ key: 'short', label: `Short (under ${SHORT_ORDER_MAX} issues)`, count: short });
 
   return facets;
 }
 
-// How many stories a set of orders amounts to. The shelf shows one card per story, so a chip
-// counting orders would promise more cards than the grid then holds: eight events, six cards.
+// Logical stops stay distinct from visible choices: completing one reading of a story must not
+// turn its other readings into additional obligations.
 export function countStories(lists) {
   const keys = new Set();
   for (const list of Array.isArray(lists) ? lists : []) keys.add(storyKey(list));
@@ -349,7 +349,7 @@ export function countStories(lists) {
 // agreeing about whether they are the same story: the story count, the shelf's grouping, and the
 // reading path's placement. Two copies of this expression is two chances for them to disagree.
 export function storyKey(list) {
-  return list?.group ?? `list:${list?.id}`;
+  return list?.group ?? catalogEntryKey(list);
 }
 
 export function filterByFacet(lists, key) {
@@ -425,6 +425,7 @@ function spotlightStoryAliases(story) {
 
   for (const list of Array.isArray(story.lists) ? story.lists : []) {
     if (typeof list?.name === 'string' && list.name.trim()) aliases.add(list.name);
+    if (typeof list?.groupName === 'string' && list.groupName.trim()) aliases.add(list.groupName);
     if (typeof list?.variant === 'string' && list.variant.trim()) aliases.add(list.variant);
   }
 
@@ -551,10 +552,9 @@ export function searchCatalog(lists, query) {
 
 // ------------------------------------------------------------------ variants
 
-// A reader choosing between "essential" and "complete" is making one decision about a single
-// story, so the two orders are presented together under the story's name rather than as
-// unrelated catalog entries. A list with no group, or the only surviving member of its group
-// after filtering, stays a plain entry, because a heading over one item is noise.
+// Different readings remain one logical stop even though each has its own visible card.
+// Keeping those relationships separate from display prevents an alternate edition from
+// becoming mandatory extra reading after another edition of the same story is complete.
 export function groupCatalog(lists) {
   const groups = [];
   const byKey = new Map();
@@ -596,10 +596,9 @@ function depthRank(list) {
   return i < 0 ? READING_DEPTHS.length : i;
 }
 
-// Which path a story shows before the reader picks one. A story already in the library is shown at
-// the path it was added as: a card offering to add a second path while the reader already owns
-// another is a card disagreeing with its own button, and it is how the same story gets added twice.
-// Otherwise the shallowest, which is the least reading to commit to and is one click from the rest.
+// A logical stop follows an owned reading rather than an unimported sibling. Without a saved
+// reading, the shallowest choice is the default. The visible cards remain independent and do
+// not use this preference to hide another choice.
 //
 // `owns` is passed in rather than read here, because this module knows about the catalog and
 // nothing about the reader's library.
@@ -1166,7 +1165,7 @@ export function visibleFirstStopGuides(stories, placements, select = defaultPath
   if (!placements || typeof placements.get !== 'function' || typeof select !== 'function') return [];
   const starts = [];
   for (const story of visible) {
-    const placement = placements.get(story?.key);
+    const placement = placements.get(story?.groupKey ?? story?.key);
     if (placement?.previous !== null) continue;
     const guide = select(story);
     if (guide) starts.push({ guide, placement });
@@ -1441,12 +1440,13 @@ export function resolveReadingPaths(paths, lists) {
       stops.push({
         key: resolved.key,
         stepId,
-        name: siblings[0]?.groupName ?? siblings[0]?.name ?? resolved.list.name,
+        name: resolved.list.name,
         lists: [...siblings],
         shelf: shelfKey(story),
         year: storyYear(story),
       });
     }
+
     if (stops.length < 2) return [];
     const total = stops.length;
     return [{
@@ -1460,4 +1460,17 @@ export function resolveReadingPaths(paths, lists) {
       })),
     }];
   });
+}
+
+export function catalogEntryKey(list) {
+  return `list:${list?.id}`;
+}
+
+export function catalogEntries(lists) {
+  return (Array.isArray(lists) ? lists : []).map((list) => ({
+    key: catalogEntryKey(list),
+    groupKey: storyKey(list),
+    name: null,
+    lists: [list],
+  }));
 }

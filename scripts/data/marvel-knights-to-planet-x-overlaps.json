@@ -1,12 +1,12 @@
 {
   "parentId": "marvel-knights-to-planet-x",
-  "generatedAt": "2026-10-03T18:45:49.066Z",
-  "pairCount": 82,
+  "generatedAt": "2026-10-05T03:02:26.439Z",
+  "pairCount": 84,
   "chapterCountWithOverlap": 51,
-  "existingListCount": 22,
-  "sharedOccurrenceCount": 434,
+  "existingListCount": 24,
+  "sharedOccurrenceCount": 450,
   "internalChildOverlapCount": 0,
-  "matrixSha256": "d2c10c0025153e821e8551c2f26a94c3a7e3f1a1141ae9a11aa8695199547766",
+  "matrixSha256": "1f3f09d85699af9824525edcdfbb78d0c957c7cd96fdd32e958377ccd7160935",
   "existingLists": [
     {
       "id": "amazing-spider-man-reading-order-modern-marvel-era",
@@ -51,6 +51,14 @@
     {
       "id": "marvels-best-phoenix-comics",
       "sharedCount": 9
+    },
+    {
+      "id": "mcu-prep-daredevil-born-again",
+      "sharedCount": 9
+    },
+    {
+      "id": "mcu-prep-fantastic-four-first-steps",
+      "sharedCount": 7
     },
     {
       "id": "modern-x-men-fast-track",
@@ -463,6 +471,22 @@
       ]
     },
     {
+      "chapterId": "marvel-knights-to-planet-x-26",
+      "existingListId": "mcu-prep-daredevil-born-again",
+      "sharedCount": 9,
+      "sharedIssueIds": [
+        15634,
+        15635,
+        15636,
+        15637,
+        15638,
+        15639,
+        15640,
+        15641,
+        15643
+      ]
+    },
+    {
       "chapterId": "marvel-knights-to-planet-x-28",
       "existingListId": "amazing-spider-man-reading-order-modern-marvel-era",
       "sharedCount": 4,
@@ -547,6 +571,20 @@
     {
       "chapterId": "marvel-knights-to-planet-x-34",
       "existingListId": "fantastic-four-reading-order",
+      "sharedCount": 7,
+      "sharedIssueIds": [
+        15583,
+        15584,
+        15585,
+        15586,
+        15587,
+        15588,
+        15589
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-34",
+      "existingListId": "mcu-prep-fantastic-four-first-steps",
       "sharedCount": 7,
       "sharedIssueIds": [
         15583,

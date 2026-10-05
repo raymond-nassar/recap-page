@@ -14,7 +14,7 @@ import { buildComparisonReport } from '../scripts/lib/cbh-overlap.mjs';
 import { MCU_SELECTED_IDS } from '../scripts/lib/cbh-mcu-companion.mjs';
 import {
   availableHomeCategories,
-  groupCatalog,
+  catalogEntries,
   HOME_CATEGORIES,
   parseCatalog,
   shelfLists,
@@ -31,6 +31,11 @@ import {
   SCHEMA_VERSION,
 } from '../src/js/lib/model.js';
 import { assertCurrentLibraryExtension } from './helpers/owner-mcu-library-extension.mjs';
+import { recordedOwnerMcuLibrary } from './helpers/recorded-owner-mcu-library.mjs';
+import {
+  historicalReadingChoiceCatalogEntry,
+  historicalReadingChoiceIssueIds,
+} from './helpers/reading-choice-history.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const id = 'mcu-prep-thunderbolts';
@@ -235,7 +240,7 @@ test('Thunderbolts uses the existing MCU Prep gateways and Storylines shelf with
   assert.equal(inventory.records.some((entry) => entry.id === id), false);
   assert.deepEqual(inventory.records.filter((entry) => entry.centralDisposition === 'selected')
     .map((entry) => entry.id), MCU_SELECTED_IDS);
-  const stories = groupCatalog(catalog.lists);
+  const stories = catalogEntries(catalog.lists);
   const gateway = availableHomeCategories(stories)
     .find((category) => category.key === 'marvel-on-screen');
   const currentCompanions = catalog.lists.filter((entry) => entry.type === 'screen-companion')
@@ -273,13 +278,24 @@ test('Thunderbolts preserves frozen approval and rechecks the complete current v
     issueIds: (await readJson(`src/data/${entry.file}`)).items.map((item) => String(item.issueId)),
   })));
   const current = { candidateId: id, ...buildComparisonReport({ candidateIds: expectedIds, orders: currentOrders }) };
+  assert.equal(descriptors.length, 288);
+  assert.equal(descriptors.some((entry) => entry.orderId === 'spider-man-no-way-home-owner-selected'), false);
   assert.doesNotThrow(() => assertComparisonCoverage(current, {
     candidateId: id,
     candidateCount: 34,
     expectedOrderIds: descriptors.map((entry) => entry.orderId),
   }));
   const publicationPeers = new Set(report.comparisons.map((entry) => entry.orderId));
-  const orders = currentOrders.filter((entry) => publicationPeers.has(entry.orderId));
+  const orders = currentOrders.filter((entry) => publicationPeers.has(entry.orderId)).map((entry) => ({
+    ...entry,
+    descriptor: historicalReadingChoiceCatalogEntry(entry.descriptor),
+    issueIds: historicalReadingChoiceIssueIds(entry.orderId, entry.issueIds),
+  }));
+  const laterIds = [
+    'mcu-prep-daredevil-born-again', 'mcu-prep-deadpool-and-wolverine',
+    'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-moon-knight', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings',
+    'avengers-doomsday-secret-wars',
+  ];
   const comparison = buildComparisonReport({ candidateIds: expectedIds, orders });
   assert.equal(comparison.comparisonCount, 281);
   assert.equal(orders.filter((entry) => /^marvel-knights-to-planet-x-\d{2}$/.test(entry.orderId))
@@ -288,15 +304,28 @@ test('Thunderbolts preserves frozen approval and rechecks the complete current v
   const extension = await readJson(
     'scripts/data/owner-mcu-prep-deadpool-and-wolverine-current-library-extension.json',
   );
-  const { current: extensionComparison, laterIds } = assertCurrentLibraryExtension({
-    extension, candidateId: id, candidateIds: expectedIds,
+  const recordedOrders = await recordedOwnerMcuLibrary({
     orders: [...currentOrders, { orderId: id, issueIds: payload.items.map((item) => String(item.issueId)) }],
+    extension, candidateId: id, originalReport: report,
+  });
+  const { current: recorded, laterIds: extensionLaterIds } = assertCurrentLibraryExtension({
+    extension, candidateId: id, candidateIds: expectedIds,
+    orders: recordedOrders,
     originalReport: report, originalApprovalDigest: report.relationshipReview.approvalDigest,
   });
-  assert.deepEqual(laterIds, [
+  assert.deepEqual(extensionLaterIds, [
     'mcu-prep-deadpool-and-wolverine', 'mcu-prep-eternals', 'spider-man-no-way-home-owner-selected',
   ]);
-  assert.deepEqual({ candidateId: id, ...extensionComparison }, current);
+  const recordedPeerIds = new Set(recorded.comparisons.map((entry) => entry.orderId));
+  const activePeerIds = new Set(currentOrders.map((entry) => entry.orderId));
+  assert.deepEqual(currentOrders.filter((entry) => !recordedPeerIds.has(entry.orderId))
+    .map((entry) => entry.orderId), ['avengers-doomsday-secret-wars', 'mcu-prep-daredevil-born-again', 'mcu-prep-fantastic-four-first-steps', 'mcu-prep-moon-knight',
+    'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings']);
+  assert.deepEqual(recorded.comparisons.filter((entry) => !activePeerIds.has(entry.orderId))
+    .map((entry) => entry.orderId), ['spider-man-no-way-home-owner-selected']);
+  assert.deepEqual(recorded.comparisons.filter((entry) => activePeerIds.has(entry.orderId)),
+    current.comparisons.filter((entry) => recordedPeerIds.has(entry.orderId)));
+  assert.equal(recorded.comparisonCount, 284);
   assert.equal(report.candidateId, id);
   assert.equal(report.mappingDigest, digestCanonicalJson(expectedIds.map(String)));
   assert.equal(report.libraryDigest, digestCanonicalJson(orders));
@@ -343,6 +372,12 @@ test('Thunderbolts preserves frozen approval and rechecks the complete current v
     assert.ok(disposition.authorityIdentity && disposition.rationale);
     assert.equal(disposition.reviewedAt, review.reviewedAt);
   }
+  assert.deepEqual(currentOrders.filter((entry) => laterIds.includes(entry.orderId))
+    .map((entry) => entry.orderId), [...laterIds].sort((left, right) => left.localeCompare(right)));
+  assert.equal(current.comparisons.filter((entry) => entry.relationship === 'none').length,
+    current.comparisonCount - expectedPartialPeers.length);
+  assert.deepEqual(current.comparisons.filter((entry) => laterIds.includes(entry.orderId))
+    .map((entry) => [entry.relationship, entry.sharedIds]), laterIds.map(() => ['none', []]));
 });
 
 test('Thunderbolts import shares existing read progress without changing saved lists or schema', async () => {

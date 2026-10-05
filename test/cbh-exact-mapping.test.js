@@ -8,7 +8,10 @@ import {
   validateMappingDigest,
   validateReportDigest,
 } from '../scripts/lib/cbh-inventory.mjs';
-import { buildReportForMapping } from '../scripts/report-order-overlap.mjs';
+import {
+  buildHistoricalReadingChoiceReport as buildReportForMapping,
+} from './helpers/reading-choice-history.mjs';
+
 
 function packet() {
   return {
@@ -82,7 +85,7 @@ test('Marvel Zombies report covers the full current library with unchanged exact
   validateReportDigest(report);
   const current = await buildReportForMapping(mappingPath, [], {
     excludedOrderIds: ['ms-marvel-kamala-khan-reading-order', 'nova-reading-order', 'ultimate-spider-man-reading-order', 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide',
-      'shang-chi-master-of-kung-fu-reading-order', 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order', 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order', 'namor-sub-mariner-reading-order', 'iron-fist-reading-order', 'mcu-prep-deadpool-and-wolverine', 'mcu-prep-eternals', 'spider-man-no-way-home-owner-selected', 'mcu-prep-thunderbolts'],
+      'shang-chi-master-of-kung-fu-reading-order', 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order', 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order', 'namor-sub-mariner-reading-order', 'iron-fist-reading-order', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts', 'spider-man-no-way-home-owner-selected', 'mcu-prep-daredevil-born-again', 'mcu-prep-moon-knight', 'mcu-prep-deadpool-and-wolverine', 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps'],
   });
   assert.deepEqual(report, current);
   assert.equal(report.sourceCounts.sourceOccurrenceCount, 95);

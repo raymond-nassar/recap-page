@@ -38,7 +38,7 @@ test('no shipped reading order carries Marvel description prose', async () => {
     }
   }
 
-  assert.equal(orders.length, 284, `the catalog lists ${orders.length} orders, not 284, so this test's coverage has changed`);
+  assert.equal(orders.length, 288, `the catalog lists ${orders.length} orders, not 288, so this test's coverage has changed`);
 
   assert.ok(items > 1000, `only ${items} items were checked, so the data tree is not what this test thinks it is`);
   assert.deepEqual(offenders, [], `Marvel description prose is committed again in ${offenders.length} record(s)`);
@@ -55,8 +55,7 @@ test('no shipped reading order carries Marvel description prose', async () => {
 // silently or the test would fail on every script in the repository. That skip is a hole aimed
 // straight at the one file this test exists for: reformat the mockup bundle, or move it, and it
 // leaves the population with nothing said. A floor of two hundred and thirty-two still passes at
-// that point, because the catalog's own files alone clear it. An exact two hundred and eighty
-// does not.
+// that point, because the catalog's own files alone clear it. The exact census below does not.
 //
 // A review suggested pre-filtering on the literal "items" key so that package-lock.json is not
 // parsed. Avoiding one small parse is not the point. The cost is a second boundary to keep correct,
@@ -104,7 +103,7 @@ test('no file outside node_modules, .git and .copilot-tracking carries an items[
     }
   }
 
-  assert.equal(scanned, 288, `${scanned} item-bearing files were found, not 288, so this test's coverage has changed`);
+  assert.equal(scanned, 293, `${scanned} item-bearing files were found, not 293, so this test's coverage has changed`);
 
   assert.deepEqual(offenders, [], `Marvel description prose is committed in ${offenders.length} record(s) somewhere in the scanned tree`);
 });

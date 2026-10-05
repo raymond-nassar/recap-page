@@ -8,9 +8,13 @@ import { assertApprovedRelationshipReview, buildMarkdown } from '../scripts/auth
 import {
   assertMappingMatchesPacketOccurrences, validateFrozenPacket, validateMappingDigest, validateReportDigest,
 } from '../scripts/lib/cbh-inventory.mjs';
-import { buildReportForMapping } from '../scripts/report-order-overlap.mjs';
+
 import { parseCatalog, searchCatalog } from '../src/js/lib/catalog.js';
 import { parseChecklist } from '../src/js/lib/markdown.js';
+import {
+  buildHistoricalReadingChoiceReport as buildReportForMapping,
+  historicalReadingChoiceManifest,
+} from './helpers/reading-choice-history.mjs';
 
 const id = 'nebula-reading-order';
 const sourceUrl = 'https://www.comicbookherald.com/nebula-reading-order/';
@@ -137,17 +141,17 @@ test('Nebula keeps the 2014 Guardians original, numbered prose and late source p
 
 test('Nebula approved relationship report preserves all 187 reviewed orders', async () => {
   const manifest = await readJson('src/data/curated-lists.json');
-  const expectedOrderIds = manifest.lists
+  const expectedOrderIds = historicalReadingChoiceManifest(manifest).lists
     .filter((row) => row.id !== 'shang-chi-master-of-kung-fu-reading-order' && row.id !== 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order' && row.id !== 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order' && row.id !== id && row.id !== 'nova-reading-order' && row.id !== 'ultimate-spider-man-reading-order' && row.id !== 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide' && row.id !== 'hope-summers-reading-order'
       && row.id !== 'x-23-reading-order' && row.id !== 'ms-marvel-kamala-khan-reading-order' && row.id !== 'marvel-zombies-reading-order'
       && row.id !== 'hawkeye-reading-order'
       && row.id !== 'silk-cindy-moon-reading-order'
-      && row.id !== 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order').filter((row) => row.id !== 'namor-sub-mariner-reading-order' && row.id !== 'iron-fist-reading-order' && row.id !== 'mcu-prep-deadpool-and-wolverine' && row.id !== 'mcu-prep-eternals' && row.id !== 'spider-man-no-way-home-owner-selected' && row.id !== 'mcu-prep-thunderbolts')
+      && row.id !== 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order').filter((row) => row.id !== 'namor-sub-mariner-reading-order' && row.id !== 'iron-fist-reading-order' && row.id !== 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings' && row.id !== 'mcu-prep-daredevil-born-again' && row.id !== 'mcu-prep-moon-knight' && row.id !== 'mcu-prep-deadpool-and-wolverine' && row.id !== 'mcu-prep-eternals' && row.id !== 'mcu-prep-fantastic-four-first-steps' && row.id !== 'spider-man-no-way-home-owner-selected' && row.id !== 'mcu-prep-thunderbolts')
     .map((row) => row.id);
   const regenerated = await buildReportForMapping(`scripts/data/cbh-mappings/${id}.json`, [], {
     excludedOrderIds: ['mcu-prep-thunderbolts', 'hope-summers-reading-order', 'x-23-reading-order', 'marvel-zombies-reading-order',
       'hawkeye-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order',
-      'ms-marvel-kamala-khan-reading-order', 'nova-reading-order', 'ultimate-spider-man-reading-order', 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide', 'shang-chi-master-of-kung-fu-reading-order', 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order', 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order', 'namor-sub-mariner-reading-order', 'iron-fist-reading-order', 'mcu-prep-deadpool-and-wolverine', 'mcu-prep-eternals', 'spider-man-no-way-home-owner-selected'],
+      'ms-marvel-kamala-khan-reading-order', 'nova-reading-order', 'ultimate-spider-man-reading-order', 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide', 'shang-chi-master-of-kung-fu-reading-order', 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order', 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order', 'namor-sub-mariner-reading-order', 'iron-fist-reading-order', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'spider-man-no-way-home-owner-selected', 'mcu-prep-daredevil-born-again', 'mcu-prep-moon-knight', 'mcu-prep-deadpool-and-wolverine', 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps'],
 
   });
   assert.deepEqual(regenerated, report);

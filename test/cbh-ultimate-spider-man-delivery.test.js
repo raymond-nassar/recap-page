@@ -14,10 +14,14 @@ import {
   buildMarkdown,
   selectedIssueIds,
 } from '../scripts/author-cbh-packet.mjs';
-import { buildReportForMapping, loadLibrarySnapshot } from '../scripts/report-order-overlap.mjs';
+
 import { placeholderId } from '../scripts/lib/placeholder-id.mjs';
 import { parseCatalog } from '../src/js/lib/catalog.js';
 import { parseChecklist } from '../src/js/lib/markdown.js';
+import {
+  buildHistoricalReadingChoiceReport as buildReportForMapping,
+  loadHistoricalReadingChoiceLibrary as loadLibrarySnapshot,
+} from './helpers/reading-choice-history.mjs';
 
 const id = 'ultimate-spider-man-reading-order';
 const readJson = async (file) => JSON.parse(await readFile(file, 'utf8'));
@@ -224,14 +228,14 @@ test('Ultimate Spider-Man binds every current library peer to its independent ap
       'shang-chi-master-of-kung-fu-reading-order',
       'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order',
       'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order', 'namor-sub-mariner-reading-order',
-      'iron-fist-reading-order', 'mcu-prep-deadpool-and-wolverine', 'mcu-prep-eternals', 'spider-man-no-way-home-owner-selected'],
+      'iron-fist-reading-order', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'spider-man-no-way-home-owner-selected', 'mcu-prep-daredevil-born-again', 'mcu-prep-moon-knight', 'mcu-prep-deadpool-and-wolverine', 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps'],
   });
   const expectedOrderIds = library.lists.filter((entry) => entry.id !== id
     && entry.id !== 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide'
     && entry.id !== 'shang-chi-master-of-kung-fu-reading-order'
     && entry.id !== 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order'
     && entry.id !== 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order'
-    && entry.id !== 'namor-sub-mariner-reading-order' && entry.id !== 'iron-fist-reading-order' && entry.id !== 'mcu-prep-deadpool-and-wolverine' && entry.id !== 'mcu-prep-eternals' && entry.id !== 'spider-man-no-way-home-owner-selected' && entry.id !== 'mcu-prep-thunderbolts')
+    && entry.id !== 'namor-sub-mariner-reading-order' && entry.id !== 'iron-fist-reading-order' && entry.id !== 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings' && entry.id !== 'mcu-prep-daredevil-born-again' && entry.id !== 'mcu-prep-moon-knight' && entry.id !== 'mcu-prep-deadpool-and-wolverine' && entry.id !== 'mcu-prep-eternals' && entry.id !== 'mcu-prep-fantastic-four-first-steps' && entry.id !== 'spider-man-no-way-home-owner-selected' && entry.id !== 'mcu-prep-thunderbolts')
     .map((entry) => entry.id);
   assert.deepEqual(current, report);
   assert.equal(report.comparisonCount, 196);
@@ -340,7 +344,7 @@ test('Ultimate Spider-Man named checklist reproduces approved groups and 351 ori
   assert.equal(card.collections, 47);
   assert.equal(card.coverIssueId, 4372);
   assert.equal(card.source, packet.sourceUrl);
-  assert.equal(manifest.lists.length, 207);
+  assert.equal(manifest.lists.length, 211);
   const position = manifest.lists.findIndex((entry) => entry.id === id);
   assert.equal(manifest.lists[position + 1].id, 'venom-reading-order');
   assert.deepEqual(manifest.lists[position], mapping.approvedManifest);

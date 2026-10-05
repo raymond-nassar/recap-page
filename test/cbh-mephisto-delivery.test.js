@@ -10,9 +10,12 @@ import {
   validateReportDigest,
 } from '../scripts/lib/cbh-inventory.mjs';
 import { buildMarkdown } from '../scripts/author-cbh-packet.mjs';
-import { buildReportForMapping } from '../scripts/report-order-overlap.mjs';
+
 import { historicalAgathaLibrarySnapshot } from './helpers/agatha-historical-library.mjs';
 import { parseChecklist } from '../src/js/lib/markdown.js';
+import {
+  buildHistoricalReadingChoiceReport as buildReportForMapping,
+} from './helpers/reading-choice-history.mjs';
 
 const id = 'mephisto-reading-order';
 const readJson = async (file) => JSON.parse(await readFile(file, 'utf8'));
@@ -91,7 +94,7 @@ test('Mephisto packet, mapping and relationship approval retain their digest con
   const currentReport = await buildReportForMapping(
     `scripts/data/cbh-mappings/${id}.json`, [], {
       ...await historicalAgathaLibrarySnapshot(),
-      excludedOrderIds: ['miles-morales-spider-man-reading-order', 'spider-gwen-reading-order', 'best-ultron-reading-order', 'winter-soldier-bucky-barnes-reading-order', 'spider-man-2099-reading-order', 'donny-cates-marvel-universe-reading-order-2017', 'falcon-sam-wilson-captain-america-reading-order', 'the-vision-reading-order', 'emma-frost-reading-order', 'doctor-octopus-otto-octavius-reading-order', 'shadow-king-reading-order', 'thunderbolts-reading-order', 'nebula-reading-order', 'hope-summers-reading-order', 'x-23-reading-order', 'ms-marvel-kamala-khan-reading-order', 'marvel-zombies-reading-order', 'hawkeye-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order', 'nova-reading-order', 'ultimate-spider-man-reading-order', 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide', 'shang-chi-master-of-kung-fu-reading-order', 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order', 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order', 'namor-sub-mariner-reading-order', 'iron-fist-reading-order', 'mcu-prep-deadpool-and-wolverine', 'mcu-prep-eternals', 'spider-man-no-way-home-owner-selected', 'mcu-prep-thunderbolts'],
+      excludedOrderIds: ['miles-morales-spider-man-reading-order', 'spider-gwen-reading-order', 'best-ultron-reading-order', 'winter-soldier-bucky-barnes-reading-order', 'spider-man-2099-reading-order', 'donny-cates-marvel-universe-reading-order-2017', 'falcon-sam-wilson-captain-america-reading-order', 'the-vision-reading-order', 'emma-frost-reading-order', 'doctor-octopus-otto-octavius-reading-order', 'shadow-king-reading-order', 'thunderbolts-reading-order', 'nebula-reading-order', 'hope-summers-reading-order', 'x-23-reading-order', 'ms-marvel-kamala-khan-reading-order', 'marvel-zombies-reading-order', 'hawkeye-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order', 'nova-reading-order', 'ultimate-spider-man-reading-order', 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide', 'shang-chi-master-of-kung-fu-reading-order', 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order', 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order', 'namor-sub-mariner-reading-order', 'iron-fist-reading-order', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts', 'spider-man-no-way-home-owner-selected', 'mcu-prep-daredevil-born-again', 'mcu-prep-moon-knight', 'mcu-prep-deadpool-and-wolverine', 'mcu-prep-eternals', 'mcu-prep-fantastic-four-first-steps'],
 
     },
   );

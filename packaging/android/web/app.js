@@ -1,6 +1,6 @@
-import { boot } from '../js/main.js';
+import { boot, closeHomeUpdatesPanel } from '../js/main.js';
 import { setDownloadHandler } from '../js/lib/download.js';
-import { createAndroidBridge } from './bridge.js';
+import { createAndroidBackHandler, createAndroidBridge } from './bridge.js';
 import { wireMobileUi } from './mobile-ui.js';
 
 const report = document.createElement('p');
@@ -18,19 +18,11 @@ const bridge = createAndroidBridge({
     report.textContent = message;
     report.scrollIntoView({ block: 'nearest' });
   },
-  handleBack() {
-    const dialog = document.querySelector('dialog[open]');
-    if (dialog) {
-      if (dialog.dispatchEvent(new Event('cancel', { cancelable: true }))) dialog.close('');
-      return true;
-    }
-    const toggle = document.querySelector('#btn-rail-toggle');
-    if (window.matchMedia('(max-width: 880px)').matches && toggle?.getAttribute('aria-expanded') === 'true') {
-      toggle.click();
-      return true;
-    }
-    return false;
-  },
+  handleBack: createAndroidBackHandler({
+    document,
+    isNarrow: () => window.matchMedia('(max-width: 880px)').matches,
+    closeHomeUpdates: closeHomeUpdatesPanel,
+  }),
 });
 
 setDownloadHandler(bridge.save);

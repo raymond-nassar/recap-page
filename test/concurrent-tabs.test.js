@@ -4,6 +4,7 @@ import { readFileSync } from 'node:fs';
 import { runInNewContext } from 'node:vm';
 import { Store, KEY } from '../src/js/storage.js';
 import { dispatchStorageEvent } from '../src/js/main.js';
+import { LIST_HISTORY_KEY, LIST_HISTORY_FORMAT, ListHistoryStore } from '../src/js/lib/listHistory.js';
 import { createTemporaryReaderLinks } from '../src/js/lib/temporaryReaderLink.js';
 import {
   SAVE_EDUCATION_KEY, SAVE_EDUCATION_STATE, createSaveEducation,
@@ -68,6 +69,36 @@ function savedState(storage) {
 }
 
 // --------------------------------------------------------------------- the defect, reproduced
+
+test('completion-history events and stale origin-clear delivery read current storage without injected DOM dependencies', () => {
+  const storage = fakeStorage({ [KEY]: seedRaw() });
+  const reader = new Store({ storage });
+  reader.load();
+  const list = reader.state.lists[reader.state.active];
+  const current = JSON.stringify({
+    format: LIST_HISTORY_FORMAT, version: 1,
+    records: [{ listId: list.id, created: list.created, catalogId: list.catalogId, completedAt: 1000, rating: 'up' }],
+  });
+  const historyStore = new ListHistoryStore({ readerStore: reader, locks: null });
+  historyStore.load();
+  storage.setItem(LIST_HISTORY_KEY, current);
+  const options = {
+    readerStore: reader, historyStore,
+    education: { adopt() {} }, renderEducation: () => {},
+  };
+  dispatchStorageEvent({ key: LIST_HISTORY_KEY, newValue: 'older malformed event payload' }, options);
+  assert.equal(historyStore.seenRaw, current);
+  assert.equal(historyStore.isCompleted(reader.state, list.id), true);
+  storage.map.clear();
+  storage.setItem(LIST_HISTORY_KEY, current);
+  dispatchStorageEvent({ key: null, newValue: null }, options);
+  assert.equal(historyStore.seenRaw, current, 'a stale clear event cannot erase newer history');
+  assert.equal(historyStore.records.size, 1);
+  storage.failReads = true;
+  dispatchStorageEvent({ key: LIST_HISTORY_KEY, newValue: null }, options);
+  assert.equal(historyStore.known, false);
+  assert.equal(storage.map.get(LIST_HISTORY_KEY), current);
+});
 
 test('453 foreign adoption retains valid temporary links but actual erase and unknown outcomes invalidate', () => {
   const storage = fakeStorage({ [KEY]: seedRaw() });

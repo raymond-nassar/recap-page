@@ -24,6 +24,10 @@ import {
   markRead,
 } from '../src/js/lib/model.js';
 import { parseChecklist } from '../src/js/lib/markdown.js';
+import {
+  historicalReadingChoiceManifest,
+  historicalReadingChoiceIssueIds,
+} from './helpers/reading-choice-history.mjs';
 
 const id = 'hawkeye-reading-order';
 const mappingFile = `scripts/data/cbh-mappings/${id}.json`;
@@ -243,16 +247,16 @@ test('Hawkeye preserves interleaves, source collection order and original relaun
 });
 
 test('Hawkeye has a complete approved current-library relationship and shipped inventory lifecycle', async () => {
-  const existing = manifest.lists.filter((entry) =>
+  const existing = historicalReadingChoiceManifest(manifest).lists.filter((entry) =>
     entry.id !== id && entry.id !== 'marvel-zombies-reading-order'
     && entry.id !== 'shang-chi-master-of-kung-fu-reading-order'
     && entry.id !== 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order' && entry.id !== 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order'
     && entry.id !== 'ms-marvel-kamala-khan-reading-order'
     && entry.id !== 'nova-reading-order' && entry.id !== 'ultimate-spider-man-reading-order' && entry.id !== 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide'
-    && entry.id !== 'namor-sub-mariner-reading-order' && entry.id !== 'iron-fist-reading-order' && entry.id !== 'mcu-prep-deadpool-and-wolverine' && entry.id !== 'mcu-prep-eternals' && entry.id !== 'spider-man-no-way-home-owner-selected' && entry.id !== 'mcu-prep-thunderbolts');
+    && entry.id !== 'namor-sub-mariner-reading-order' && entry.id !== 'iron-fist-reading-order' && entry.id !== 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings' && entry.id !== 'mcu-prep-daredevil-born-again' && entry.id !== 'mcu-prep-moon-knight' && entry.id !== 'mcu-prep-deadpool-and-wolverine' && entry.id !== 'mcu-prep-eternals' && entry.id !== 'mcu-prep-fantastic-four-first-steps' && entry.id !== 'spider-man-no-way-home-owner-selected' && entry.id !== 'mcu-prep-thunderbolts');
   const orders = await Promise.all(existing.map(async (entry) => ({
     orderId: entry.id,
-    issueIds: issueIdsFromValue(await readJson(`src/data/${entry.out}`)),
+    issueIds: historicalReadingChoiceIssueIds(entry.id, issueIdsFromValue(await readJson(`src/data/${entry.out}`))),
   })));
   const libraryDigest = libraryDigestFor({ ...manifest, lists: existing },
     orders.map((order) => ({

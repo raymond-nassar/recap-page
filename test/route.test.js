@@ -22,6 +22,24 @@ const reading = read('src/js/views/reading.js');
 const has = (text, re, what) => assert.ok(re.test(text), `expected to find ${what}`);
 const lacks = (text, re, what) => assert.ok(!re.test(text), `expected not to find ${what}`);
 
+test('completed lists have a real bookmarkable panel at the unchanged reading-data origin', () => {
+  assert.ok(VIEWS.includes('completed'));
+  const hash = formatRoute({ view: 'completed', listId: 'my/list' });
+  assert.equal(parseRoute(hash).view, 'completed');
+  assert.equal(parseRoute(hash).listId, 'my/list');
+  assert.equal(new URL(hash, 'http://127.0.0.1:8787/').origin, 'http://127.0.0.1:8787');
+  has(read('src/index.html'), /id="view-completed"[^>]*aria-labelledby="completed-h"/, 'real completed panel');
+});
+
+test('completed breadcrumbs and rail selection are owned by Library', () => {
+  assert.deepEqual(breadcrumbHierarchy({ view: 'completed' }), [
+    { label: 'Home', href: '#/home' },
+    { label: 'Library', href: '#/library' },
+    { label: 'Completed lists', current: true },
+  ]);
+  has(read('src/js/main.js'), /next === 'completed'[\s\S]*return 'library'/, 'Library-owned completed rail selection');
+});
+
 test('every view the rail can reach survives a round trip', () => {
   for (const view of VIEWS.filter((name) => name !== 'issue')) {
     const parsed = parseRoute(formatRoute({ view }));
@@ -154,6 +172,7 @@ test('every routable view has one stable hierarchy and Home has none', () => {
     ['library', ['Home', 'Library']],
     ['read', ['Home', 'Library', 'Saved name']],
     ['progress', ['Home', 'Library', 'Progress by series']],
+    ['completed', ['Home', 'Library', 'Completed lists']],
     ['library-read', ['Home', 'Library', 'Everything read']],
     ['library-manual', ['Home', 'Library', 'Added by hand']],
     ['browse', ['Home', 'Browse']], ['reading-paths', ['Home', 'Browse', 'Reading paths']],

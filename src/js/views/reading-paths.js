@@ -7,28 +7,30 @@ import {
   orderWord,
 } from '../lib/model.js';
 
-export function readingPathProgress(state, stop) {
+export function readingPathProgress(state, stop, { isCompleted = () => false } = {}) {
   const exact = listForCatalogId(state, stop?.stepId);
   const imported = exact ?? (stop?.lists ?? [])
     .map((list) => listForCatalogId(state, list.id))
     .find(Boolean);
   if (!imported) return null;
   const { read, total, deferred } = listReadingProgress(state, imported.id);
+  const completed = isCompleted(state, imported.id);
   return {
     listId: imported.id,
     catalogId: imported.catalogId,
     name: imported.name,
     read,
     total,
-    state: completionState(read, total),
+    state: completed ? 'done' : completionState(read, total),
     match: exact ? 'exact' : 'sibling',
     ...(deferred ? { deferred } : {}),
+    ...(completed ? { completed: true } : {}),
   };
 }
 
 function progressText(progress) {
   if (!progress) return 'Not added';
-  return `${progress.read} of ${progress.total} issues read in ${progress.name}. ${progress.deferred ? `${progress.deferred} deferred. ` : ''}${orderWord(progress.state)}.${progress.match === 'sibling' ? ' Alternate reading version.' : ''}`;
+  return `${progress.read} of ${progress.total} issues read in ${progress.name}. ${progress.deferred ? `${progress.deferred} deferred. ` : ''}${progress.completed ? 'Marked as completed' : orderWord(progress.state)}.${progress.match === 'sibling' ? ' Alternate reading version.' : ''}`;
 }
 
 export function createReadingPathsView({
@@ -38,6 +40,7 @@ export function createReadingPathsView({
   getRequestedPathId,
   getState,
   isCurrent,
+  isCompleted = () => false,
   loadCatalog,
   onCanonicalPath,
   onLoadFailure,
@@ -52,14 +55,14 @@ export function createReadingPathsView({
     if (!isCurrent() || !selectedPath) return;
     for (const output of elements().progressOutputs()) {
       const stop = selectedPath.stops[Number(output.dataset.readingPathProgress)];
-      const progress = readingPathProgress(state, stop);
+      const progress = readingPathProgress(state, stop, { isCompleted });
       output.textContent = progressText(progress);
       const row = output.closest('.reading-path-stop');
       row.dataset.progress = progress?.state ?? 'not-added';
       const action = row.querySelector('[data-reading-path-action]');
       const text = progress
         ? (progress.match === 'exact' ? 'Open saved list' : 'Open saved version')
-        : (stop.lists.length > 1 ? 'Choose reading option' : 'Preview');
+        : 'Preview';
       action.textContent = text;
       action.setAttribute('aria-label', labelledName(text, progress?.name ?? stop.name));
     }
@@ -91,7 +94,7 @@ export function createReadingPathsView({
           type: 'button',
           class: 'btn btn-g reading-path-action',
           dataset: { readingPathAction: stop.stepId },
-          onclick: () => onOpenStop(stop, readingPathProgress(getState(), stop)),
+          onclick: () => onOpenStop(stop, readingPathProgress(getState(), stop, { isCompleted })),
         }),
       ]),
     ])));
