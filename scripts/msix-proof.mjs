@@ -29,7 +29,7 @@ const ORIGIN = 'http://127.0.0.1:8787';
 const CATALOG_ROUTE = '#/catalog';
 const CATALOG_RESULTS = '#catalog-results';
 const CATALOG_LIST_ID = 'house-of-m';
-const CATALOG_STORY_ID = 'house-of-m';
+const CATALOG_STORY_ID = 'list:house-of-m';
 const CATALOG_ITEM_COUNT = 20;
 const ARCHITECTURES = Object.freeze(PACKAGE_ARCHITECTURES.map(({ id }) => id));
 const ROOT = join(fileURLToPath(new URL('..', import.meta.url)));

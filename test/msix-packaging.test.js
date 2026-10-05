@@ -1224,7 +1224,9 @@ test('package scripts expose build and independently invocable proof scenarios',
   assert.equal(houseOfM?.type, 'event');
   assert.equal(houseOfM?.count, 20);
   assert.equal(houseOfM?.group, 'house-of-m');
-  assert.match(read(PROOF), /const CATALOG_STORY_ID = 'house-of-m'/);
+  const { catalogEntryKey } = await import('../src/js/lib/catalog.js');
+  const storyId = read(PROOF).match(/const CATALOG_STORY_ID = '([^']+)'/)?.[1];
+  assert.equal(storyId, catalogEntryKey(houseOfM));
   assert.match(
     read(PROOF),
     /input\[data-act="path-preview"\]\[data-key="\$\{CATALOG_LIST_ID\}"\]/,
