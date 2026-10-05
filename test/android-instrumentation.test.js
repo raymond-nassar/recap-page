@@ -265,7 +265,12 @@ grep -Fx 'Pkg.Revision = 37.1.11' "$SDK/emulator/source.properties"
         });
         assert.ifError(result.error);
         assert.equal(result.status, error ? 1 : 0, result.stderr);
-        if (error) {
+        if (!error) {
+          const metadata = await readFile(join(root, 'sdk/emulator/package.xml'), 'utf8');
+          assert.match(metadata, /<localPackage path="emulator">/);
+          assert.match(metadata, /xsi:type="generic:genericDetailsType"/);
+          assert.match(metadata, /<revision><major>37<\/major><minor>1<\/minor><micro>11<\/micro><\/revision>/);
+        } else {
           assert.ok(result.stderr.includes(error), result.stderr);
           assert.equal(await readFile(join(root, 'sdk/emulator/source.properties'), 'utf8'), 'Pkg.Revision = 37.2.11\n');
           await readFile(join(root, 'sdk/emulator/stale-file'));

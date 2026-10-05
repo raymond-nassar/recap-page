@@ -123,6 +123,19 @@ grep -Eq '^Pkg.Revision *= *7 *$' "$IMAGE/source.properties" || {
   cat "$IMAGE/source.properties" >&2
   exit 1
 }
+# The archive has no package.xml; avdmanager requires a registered emulator package.
+cat > "$EMULATOR_DOWNLOAD/emulator/package.xml" <<'XML'
+<?xml version="1.0" encoding="UTF-8"?>
+<repo:repository xmlns:repo="http://schemas.android.com/repository/android/common/02"
+    xmlns:generic="http://schemas.android.com/repository/android/generic/02"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <localPackage path="emulator">
+    <type-details xsi:type="generic:genericDetailsType"/>
+    <revision><major>37</major><minor>1</minor><micro>11</micro></revision>
+    <display-name>Android Emulator</display-name>
+  </localPackage>
+</repo:repository>
+XML
 rm -rf -- "$SDK/emulator"
 mv "$EMULATOR_DOWNLOAD/emulator" "$SDK/emulator"
 rm -rf -- "$EMULATOR_DOWNLOAD"
