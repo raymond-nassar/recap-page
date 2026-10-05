@@ -8,7 +8,10 @@ import {
   validateMappingDigest,
   validateReportDigest,
 } from '../scripts/lib/cbh-inventory.mjs';
-import { buildReportForMapping } from '../scripts/report-order-overlap.mjs';
+import {
+  buildHistoricalReadingChoiceReport as buildReportForMapping,
+} from './helpers/reading-choice-history.mjs';
+
 
 function packet() {
   return {

@@ -21,7 +21,7 @@ A link doesn't guarantee access. Recap Page cannot replace Marvel Unlimited or b
 
 An example with made-up progress:
 
-1. In **Browse**, add **Civil War: An Avengers Reading List** from
+1. In **Browse**, add **Civil War: Avengers and Aftermath Reading Order** from
    [Comic Book Herald's guide](https://www.comicbookherald.com/where-do-i-start-with-avengers-trade-collections/).
 2. With the first six comics marked read, **Civil War (2006) #7** is next.
 3. Choose **Read** to open the official reader where a link is available.

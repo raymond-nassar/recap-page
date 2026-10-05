@@ -1,6 +1,6 @@
 {
   "id": "hickman-full",
-  "name": "Hickman to Secret Wars: full",
+  "name": "Complete Hickman Saga to Secret Wars",
   "description": "The complete Hickman saga including tie-ins, ending with Secret Wars (2015).",
   "source": "https://github.com/emreparker/marvel-comics/blob/main/data/hickman_full.md",
   "sourceOrigin": "Vendored from emreparker/marvel-comics",

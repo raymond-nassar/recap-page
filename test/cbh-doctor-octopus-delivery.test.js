@@ -6,10 +6,14 @@ import { assertApprovedRelationshipReview, buildMarkdown } from '../scripts/auth
 import {
   assertMappingMatchesPacketOccurrences, digestCanonicalJson, validateFrozenPacket, validateMappingDigest,
 } from '../scripts/lib/cbh-inventory.mjs';
-import { buildReportForMapping } from '../scripts/report-order-overlap.mjs';
+
 import { historicalAgathaLibrarySnapshot } from './helpers/agatha-historical-library.mjs';
 import { parseCatalog, searchCatalog } from '../src/js/lib/catalog.js';
 import { parseChecklist } from '../src/js/lib/markdown.js';
+import {
+  buildHistoricalReadingChoiceReport as buildReportForMapping,
+  historicalReadingChoiceManifest,
+} from './helpers/reading-choice-history.mjs';
 
 const id = 'doctor-octopus-otto-octavius-reading-order';
 const sourceUrl = 'https://www.comicbookherald.com/doctor-octopus-otto-octavius-reading-order/';
@@ -152,7 +156,7 @@ test('Doctor Octopus relationship approval regenerates against its reviewed sour
       'shang-chi-master-of-kung-fu-reading-order', 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order', 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order', 'namor-sub-mariner-reading-order', 'iron-fist-reading-order', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'spider-man-no-way-home-owner-selected', 'mcu-prep-daredevil-born-again', 'mcu-prep-moon-knight', 'mcu-prep-deadpool-and-wolverine', 'mcu-prep-eternals',
     ],
   });
-  const expectedOrderIds = manifest.lists.filter((row) => row.id !== 'shang-chi-master-of-kung-fu-reading-order' && row.id !== 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order' && row.id !== 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order' && (
+  const expectedOrderIds = historicalReadingChoiceManifest(manifest).lists.filter((row) => row.id !== 'shang-chi-master-of-kung-fu-reading-order' && row.id !== 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order' && row.id !== 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order' && (
     row.id !== id && row.id !== 'nova-reading-order' && row.id !== 'ultimate-spider-man-reading-order' && row.id !== 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide'
       && ![
         'shadow-king-reading-order',

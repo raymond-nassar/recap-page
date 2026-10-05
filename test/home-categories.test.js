@@ -11,7 +11,7 @@ import {
   PUBLISHING_CATEGORIES,
   publishingAgeGroups,
   availableHomeCategories,
-  groupCatalog,
+  catalogEntries,
   parseCatalog,
 } from '../src/js/lib/catalog.js';
 import { VIEWS } from '../src/js/lib/route.js';
@@ -31,7 +31,7 @@ const presentationSource = [
   read('src/js/views/reading.js'),
 ].join('\n');
 const catalog = parseCatalog(JSON.parse(read('src/data/catalog.json')));
-const stories = groupCatalog(catalog.lists);
+const stories = catalogEntries(catalog.lists);
 
 test('the current gateway offers three primary modes and three secondary gateways', () => {
   const categories = availableHomeCategories(stories, HOME_CATEGORIES, catalog.paths);
@@ -58,7 +58,7 @@ test('the current gateway offers three primary modes and three secondary gateway
   }
   assert.equal(categories.find(({ key }) => key === 'timeline').count, 148);
   assert.equal(categories.find(({ key }) => key === 'marvel-ages').count, 204);
-  assert.equal(categories.find(({ key }) => key === 'marvel-on-screen').count, 12);
+  assert.equal(categories.find(({ key }) => key === 'marvel-on-screen').count, 13);
   assert.equal(categories.find(({ key }) => key === 'reading-paths').count, 3);
 });
 
@@ -149,26 +149,13 @@ test('Marvel Ages hides when empty and shares one count derivation with its scre
   assert.deepEqual(availableHomeCategories([], [MARVEL_AGES_CATEGORY]), []);
 });
 
-test('MCU Prep keeps the six CBH companions before owner companions on the stable route', () => {
+test('MCU Prep keeps authored screen companions in inventory order on the stable route', () => {
   const category = HOME_CATEGORIES.find(({ key }) => key === 'marvel-on-screen');
   assert.ok(category, 'MCU Prep is not declared');
   assert.equal(category.heading, 'MCU Prep');
   assert.deepEqual(
     category.select(stories).map((story) => story.lists[0].id),
-    [
-      'doctor-strange-multiverse-of-madness',
-      'spider-man-no-way-home',
-      'marvel-multiverse',
-      'marvel-what-if',
-      'wandavision',
-      'spider-man-far-from-home',
-      'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings',
-      'mcu-prep-thunderbolts',
-      'mcu-prep-moon-knight',
-      'mcu-prep-eternals',
-      'mcu-prep-deadpool-and-wolverine',
-      'mcu-prep-daredevil-born-again',
-    ],
+    catalog.lists.filter(({ type }) => type === 'screen-companion').map(({ id }) => id),
   );
   assert.equal(category.route, 'marvel-on-screen');
 });
@@ -256,7 +243,7 @@ test('the shared path entry uses resolved path availability and an explicit path
       plural: 'Reading paths',
     },
   );
-  assert.match(mainSource, /availableHomeCategories\([\s\S]*groupCatalog\(catalog\.lists\)[\s\S]*resolveReadingPaths\(catalog\.paths, catalog\.lists\)/);
+  assert.match(mainSource, /availableHomeCategories\([\s\S]*catalogEntries\(catalog\.lists\)[\s\S]*resolveReadingPaths\(catalog\.paths, catalog\.lists\)/);
   assert.match(homeSource, /category\.singular \?\? 'Reading List'/);
   assert.equal([...markup.matchAll(/data-category-gateway/g)].length, 2);
 });
@@ -294,7 +281,7 @@ test('Preview Open closes its modal before navigating to an existing Reading Lis
   const start = previewSource.indexOf('function addButton');
   assert.notEqual(start, -1, 'the catalog action renderer is missing');
   const body = previewSource.slice(start, previewSource.indexOf('function syncAdd', start));
-  assert.match(body, /onclick: \(\) => onOpen\(list, inLibrary\)/);
+  assert.match(body, /onclick: \(\) => \{\s*if \(isCurrent\(previewSession\)\) return onOpen\(list, inLibrary\);/);
   assert.match(
     mainSource,
     /if \(\$\('#preview'\)\.open\) \$\('#preview'\)\.close\(\);\s*showView\('read',\s*\{\s*push:\s*true\s*\}\)/,

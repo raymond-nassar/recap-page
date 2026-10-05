@@ -4,14 +4,20 @@ import { readFile } from 'node:fs/promises';
 import { assertApprovedRelationshipReview } from '../scripts/author-cbh-packet.mjs';
 import {
   digestCanonicalJson,
+  libraryDigestFor,
+  reportDigestFor,
   sourceCountsForPacket,
   validateFrozenPacket,
   validateMappingDigest,
 } from '../scripts/lib/cbh-inventory.mjs';
 import { resolveRow } from '../scripts/lib/cbh-resolution.mjs';
 import { buildEternalsOverlap, OWNER_SOURCE_PROVIDER } from '../scripts/report-eternals-overlap.mjs';
-import { HOME_CATEGORIES, groupCatalog, parseCatalog } from '../src/js/lib/catalog.js';
+import { HOME_CATEGORIES, catalogEntries, parseCatalog } from '../src/js/lib/catalog.js';
 import { parseChecklist } from '../src/js/lib/markdown.js';
+import { buildComparisonReport, issueIdsFromValue } from '../scripts/lib/cbh-overlap.mjs';
+import {
+  historicalReadingChoiceIssueIds, historicalReadingChoiceManifest,
+} from './helpers/reading-choice-history.mjs';
 
 const id = 'mcu-prep-eternals';
 const sourceUrl = 'https://github.com/raymond-nassar/recap-page/issues/684';
@@ -148,7 +154,7 @@ test('Eternals uses the existing owner-attributed MCU Prep gateway and Storyline
   }
   assert.equal(entry.sourcePage, sourceUrl);
   assert.equal(card.source, sourceUrl);
-  const stories = groupCatalog(catalog.lists);
+  const stories = catalogEntries(catalog.lists);
   const mcu = HOME_CATEGORIES.find((category) => category.key === 'marvel-on-screen');
   assert.equal(mcu.heading, 'MCU Prep');
   assert.equal(mcu.route, 'marvel-on-screen');
@@ -173,9 +179,23 @@ test('Eternals preserves its frozen human approval and rechecks the complete cur
   assert.deepEqual(current.comparisons.map((entry) => entry.orderId).sort(), expectedPeerIds);
   assert.equal(current.comparisonCount, expectedPeerIds.length);
   const publicationPeers = new Set(report.comparisons.map((entry) => entry.orderId));
-  const historical = await buildEternalsOverlap(mapping, {
-    excludedOrderIds: expectedPeerIds.filter((peerId) => !publicationPeers.has(peerId)),
-  });
+  const orders = await Promise.all([...publicationPeers].sort().map(async (orderId) => {
+    const entry = catalog.lists.find(({ id }) => id === orderId)
+      ?? manifest.lists.find(({ id }) => id === orderId);
+    assert.ok(entry, `Historical peer ${orderId} is missing`);
+    const issueIds = issueIdsFromValue(await readJson(`src/data/${entry.file ?? entry.out}`));
+    return { orderId, issueIds: historicalReadingChoiceIssueIds(orderId, issueIds) };
+  }));
+  const manifestSnapshot = historicalReadingChoiceManifest(manifest);
+  const unsigned = {
+    ...current,
+    libraryDigest: libraryDigestFor({
+      ...manifestSnapshot,
+      lists: manifestSnapshot.lists.filter(({ id }) => publicationPeers.has(id)),
+    }, orders.map(({ orderId, issueIds }) => ({ id: orderId, issueIds }))),
+    ...buildComparisonReport({ candidateIds: mapping.rows.map(({ selectedIssueId }) => selectedIssueId), orders }),
+  };
+  const historical = { ...unsigned, reportDigest: reportDigestFor(unsigned) };
   assert.deepEqual(historical, report);
   assert.doesNotThrow(() => assertApprovedRelationshipReview({
     packet, mapping, report,

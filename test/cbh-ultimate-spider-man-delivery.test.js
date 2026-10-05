@@ -14,10 +14,14 @@ import {
   buildMarkdown,
   selectedIssueIds,
 } from '../scripts/author-cbh-packet.mjs';
-import { buildReportForMapping, loadLibrarySnapshot } from '../scripts/report-order-overlap.mjs';
+
 import { placeholderId } from '../scripts/lib/placeholder-id.mjs';
 import { parseCatalog } from '../src/js/lib/catalog.js';
 import { parseChecklist } from '../src/js/lib/markdown.js';
+import {
+  buildHistoricalReadingChoiceReport as buildReportForMapping,
+  loadHistoricalReadingChoiceLibrary as loadLibrarySnapshot,
+} from './helpers/reading-choice-history.mjs';
 
 const id = 'ultimate-spider-man-reading-order';
 const readJson = async (file) => JSON.parse(await readFile(file, 'utf8'));
@@ -340,7 +344,7 @@ test('Ultimate Spider-Man named checklist reproduces approved groups and 351 ori
   assert.equal(card.collections, 47);
   assert.equal(card.coverIssueId, 4372);
   assert.equal(card.source, packet.sourceUrl);
-  assert.equal(manifest.lists.length, 209);
+  assert.equal(manifest.lists.length, 210);
   const position = manifest.lists.findIndex((entry) => entry.id === id);
   assert.equal(manifest.lists[position + 1].id, 'venom-reading-order');
   assert.deepEqual(manifest.lists[position], mapping.approvedManifest);

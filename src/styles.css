@@ -1793,7 +1793,7 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
 .preview-list .preview-group:first-child { padding-top: 0; }
 .preview-list .preview-group h4 { margin: 0; font-size: var(--t-body); font-weight: 600; }
 .preview-foot { display: flex; align-items: center; gap: var(--space-4); flex-wrap: wrap; border-top: 1px solid var(--line); padding-top: var(--space-6); }
-.preview-foot .btn { min-height: 44px; }
+.preview-foot .btn { min-height: 44px; scroll-margin: var(--space-3); }
 
 /* ============================================================ ask dialog */
 

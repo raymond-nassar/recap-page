@@ -9,7 +9,7 @@ import {
   PUBLISHING_CATEGORIES,
   HOME_CATEGORIES,
   availablePublishingCategories,
-  groupCatalog,
+  catalogEntries,
   inPublishingAge,
   isPublishingCategoryLeaf,
   parseCatalog,
@@ -21,7 +21,7 @@ import {
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const catalog = parseCatalog(JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'catalog.json'), 'utf8')));
-const stories = groupCatalog(catalog.lists);
+const stories = catalogEntries(catalog.lists);
 const byKey = new Map(PUBLISHING_CATEGORIES.map((category) => [category.key, category]));
 const topLevel = PUBLISHING_CATEGORIES.filter((category) => category.parent === null);
 const modernPeriods = PUBLISHING_CATEGORIES.filter((category) => category.parent === 'modern');
@@ -99,8 +99,8 @@ test('every shared year belongs to the later period and never to both', () => {
 test('the shipped dated catalog partitions once by age and once by Modern subperiod', () => {
   const dated = stories.filter((story) => storyYear(story) !== null);
   const modern = publishingCategoryStories(stories, 'modern');
-  assert.equal(dated.length, 198);
-  assert.equal(modern.length, 174);
+  assert.equal(dated.length, 204);
+  assert.equal(modern.length, 180);
 
   for (const story of dated) {
     assert.equal(

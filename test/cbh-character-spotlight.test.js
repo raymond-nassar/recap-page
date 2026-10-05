@@ -20,9 +20,10 @@ import {
 import { issueIdsFromValue } from '../scripts/lib/cbh-overlap.mjs';
 import { placeholderId } from '../scripts/lib/placeholder-id.mjs';
 import { assertApprovedRelationshipReview, buildMarkdown } from '../scripts/author-cbh-packet.mjs';
-import { buildReportForMapping as buildRawReportForMapping } from '../scripts/report-order-overlap.mjs';
+
 import { CBH_LATER_ORDER_IDS } from '../scripts/lib/cbro-evidence.mjs';
 import { historicalAgathaLibrarySnapshot } from './helpers/agatha-historical-library.mjs';
+
 import { moonKnightSourceLedger } from '../scripts/data/cbh-source-ledgers/moon-knight-reading-order.mjs';
 import { parseChecklist } from '../src/js/lib/markdown.js';
 import {
@@ -31,6 +32,11 @@ import {
   createList,
   pendingIssueIds,
 } from '../src/js/lib/model.js';
+import {
+  buildHistoricalReadingChoiceReport as buildRawReportForMapping,
+  loadHistoricalReadingChoiceLibrary,
+  historicalReadingChoiceManifest,
+} from './helpers/reading-choice-history.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const abominationCandidateId = 'abomination-reading-order';
@@ -643,7 +649,8 @@ function exclusionsForReviewedReport(manifest, report, candidateId, peerIds = []
 }
 
 async function libraryDigestForScope(manifest, excludedIds, librarySnapshot = null) {
-  const sourceManifest = librarySnapshot?.manifest ?? manifest;
+  const snapshot = librarySnapshot ?? await loadHistoricalReadingChoiceLibrary();
+  const sourceManifest = snapshot.manifest;
   const excluded = new Set([...excludedIds, guardiansCandidateId, 'adam-warlock-reading-order', 'mephisto-reading-order', 'miles-morales-spider-man-reading-order', 'spider-gwen-reading-order', 'best-ultron-reading-order', 'winter-soldier-bucky-barnes-reading-order', 'spider-man-2099-reading-order', 'donny-cates-marvel-universe-reading-order-2017', 'falcon-sam-wilson-captain-america-reading-order', 'the-vision-reading-order', 'emma-frost-reading-order', 'doctor-octopus-otto-octavius-reading-order', 'shadow-king-reading-order', 'thunderbolts-reading-order', 'nebula-reading-order', 'hope-summers-reading-order', 'x-23-reading-order', 'marvel-zombies-reading-order', 'hawkeye-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order']);
   excluded.add('the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order');
   excluded.add('ms-marvel-kamala-khan-reading-order');
@@ -666,9 +673,7 @@ async function libraryDigestForScope(manifest, excludedIds, librarySnapshot = nu
     && !entry.steps?.some((step) => excluded.has(step))
   ));
   const orderIssueIds = await Promise.all(lists.map(async (entry) => {
-    const payload = librarySnapshot
-      ? JSON.parse(await readFile(path.join(librarySnapshot.payloadDir, entry.out || `${entry.id}.json`), 'utf8'))
-      : await readJson(path.join('src', 'data', entry.out || `${entry.id}.json`));
+    const payload = JSON.parse(await readFile(path.join(snapshot.payloadDir, entry.out || `${entry.id}.json`), 'utf8'));
     return {
       id: entry.id,
       issueIds: issueIdsFromValue(payload),
@@ -1044,7 +1049,7 @@ test('Adam Warlock publishes the settled source with one exact resolution and th
     [],
     { excludedOrderIds: ['mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts', 'mephisto-reading-order', 'miles-morales-spider-man-reading-order', 'spider-gwen-reading-order', 'best-ultron-reading-order', 'winter-soldier-bucky-barnes-reading-order', 'spider-man-2099-reading-order', 'donny-cates-marvel-universe-reading-order-2017', 'falcon-sam-wilson-captain-america-reading-order', 'the-vision-reading-order', 'emma-frost-reading-order', 'doctor-octopus-otto-octavius-reading-order', 'shadow-king-reading-order', 'thunderbolts-reading-order', 'nebula-reading-order', 'hope-summers-reading-order', 'x-23-reading-order', 'marvel-zombies-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order', 'nova-reading-order', 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order', 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order', 'mcu-prep-eternals'] },
   );
-  const expectedOrderIds = manifest.lists
+  const expectedOrderIds = historicalReadingChoiceManifest(manifest).lists
     .filter((entry) => entry.id !== id && entry.id !== hawkeyeLaterId
       && entry.id !== 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order'
       && entry.id !== 'mephisto-reading-order'
@@ -2655,7 +2660,7 @@ test('Silver Surfer settles all four issue #304 gaps without losing source posit
   const record = inventory.find((entry) => entry.id === 'silver-surfer-reading-order');
   const manifestEntry = manifest.lists.find((entry) => entry.id === 'silver-surfer-reading-order');
   const catalogEntry = catalog.lists.find((entry) => entry.id === 'silver-surfer-reading-order');
-  const expectedOrderIds = manifest.lists
+  const expectedOrderIds = historicalReadingChoiceManifest(manifest).lists
     .map((entry) => entry.id)
     .filter((id) => id !== 'silver-surfer-reading-order'
      && id !== 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order'
@@ -4451,7 +4456,7 @@ test('the Modern X-Men fast-track preserves its selected source boundary and ove
     path.join(root, 'scripts', 'data', 'cbh-mappings', `${modernXMenCandidateId}.json`),
     [],
     {
-      excludedOrderIds: manifest.lists
+      excludedOrderIds: historicalReadingChoiceManifest(manifest).lists
         .map((entry) => entry.id)
         .filter((id) => id !== modernXMenCandidateId
           && !report.comparisons.some((comparison) => comparison.orderId === id)),
@@ -4659,7 +4664,7 @@ test('the first character batch stays exact through evidence, catalog, and gener
 
   const allBatchIds = evidence.flatMap((item) => item.mapping.rows.map((row) => String(row.selectedIssueId)));
   assert.equal(new Set(allBatchIds).size, 81);
-  assert.equal(catalog.lists.length, 286);
+  assert.equal(catalog.lists.length, 287);
   const characterRuns = catalog.lists.filter((entry) => entry.type === 'character-run');
   assert.equal(characterRuns.length, 70);
   assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 69);

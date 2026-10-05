@@ -2,13 +2,12 @@ import { labelledName } from '../../lib/accname.js';
 import {
   catalogCoverUrl,
   catalogGapLabels,
+  defaultPath,
   firstSentence,
-  pickPath,
   sourceLabel,
   sourceLink,
   storyYear,
   updatedLabel,
-  variantLabel,
 } from '../../lib/catalog.js';
 const CATALOG_ADD = '+ Add to library';
 
@@ -105,48 +104,8 @@ export function createCatalogPresentation({
   paintCoverUrl,
   shortTitle,
 }) {
-  const pathChoice = new Map();
-
   function chosenPath(story) {
-    return pickPath(story, pathChoice.get(story.key), (list) => isInLibrary(list.id));
-  }
-
-  function pathLabel(list) {
-    return isInLibrary(list.id)
-      ? `${variantLabel(list)} · in your library`
-      : variantLabel(list);
-  }
-
-  function pathChooser(story, scope, paint) {
-    if (story.lists.length < 2) return null;
-    const selected = chosenPath(story);
-    return el('fieldset', {
-      class: 'paths',
-      'aria-label': labelledName('Pick how much you want to read', story.name),
-    }, [
-      el('legend', { text: 'Pick how much you want to read' }),
-      ...story.lists.map((list) => el('label', { class: 'fp path' }, [
-        el('input', {
-          type: 'radio',
-          name: `${scope}-path-${story.key}`,
-          checked: list === selected,
-          dataset: { key: list.id, act: `path-${scope}` },
-          onchange: () => {
-            pathChoice.set(story.key, list.id);
-            paint(list);
-          },
-        }),
-        el('span', { text: pathLabel(list) }),
-      ])),
-    ]);
-  }
-
-  function markOwnedPaths(root, story) {
-    if (!story) return;
-    for (const input of root.querySelectorAll('input[type="radio"]')) {
-      const list = story.lists.find((candidate) => candidate.id === input.dataset.key);
-      if (list) input.nextElementSibling.textContent = pathLabel(list);
-    }
+    return defaultPath(story, (list) => isInLibrary(list.id));
   }
 
   function primaryButton(list, reportTarget) {
@@ -221,7 +180,7 @@ export function createCatalogPresentation({
     titleId = null,
   } = {}) {
     const reportTarget = report ?? `#${surface}-report`;
-    const title = story.name ?? story.lists[0].name;
+    const title = story.lists[0].name;
     const img = el('img', { alt: '', loading: 'lazy', decoding: 'async' });
     const fallback = el('div', { class: 'of cover-fallback', 'aria-hidden': 'true' }, [
       el('span', { class: 'ofs', text: shortTitle(title) }),
@@ -242,7 +201,7 @@ export function createCatalogPresentation({
         ...catalogGapLabels(list),
       ].join(' · ');
       source.replaceChildren(...[attributionLine(list, { compact: true })].filter(Boolean));
-      const previewText = story.lists.length > 1 ? `${story.lists.length} reading options` : 'Preview';
+      const previewText = 'Preview';
       actions.replaceChildren(
         primaryButton(list, reportTarget),
         el('button', {
@@ -250,11 +209,11 @@ export function createCatalogPresentation({
           type: 'button',
           'aria-label': labelledName(previewText, title),
           dataset: { key: story.key, act: 'preview' },
-          onclick: () => onPreview(list, story),
+          onclick: () => onPreview(list),
         }, previewText),
       );
     };
-    paint(chosenPath(story));
+    paint(story.lists[0]);
 
     const year = storyYear(story);
     return el('article', {
@@ -403,7 +362,7 @@ export function createCatalogPresentation({
         const yearId = `${idPrefix}-year-${year}`;
         const grid = el('div', { class: 'catalog-grid timeline-year-cards' });
         for (const story of yearStories) {
-          grid.append(catalogCard(story, placements.get(story.key), {
+          grid.append(catalogCard(story, placements.get(story.groupKey ?? story.key), {
             ...cardOptions,
             level: cardLevel,
           }));
@@ -421,7 +380,7 @@ export function createCatalogPresentation({
       if (!years.length) {
         const grid = el('div', { class: 'catalog-grid timeline-year-cards' });
         for (const story of section.stories) {
-          grid.append(catalogCard(story, placements.get(story.key), {
+          grid.append(catalogCard(story, placements.get(story.groupKey ?? story.key), {
             ...cardOptions,
             level: undatedCardLevel,
           }));
@@ -487,9 +446,7 @@ export function createCatalogPresentation({
     catalogCard,
     chosenPath,
     ensureSetupGuideFeature,
-    markOwnedPaths,
     paintTimelinePosition,
-    pathChooser,
     renderTimelineSections,
     shelfSectionHead,
   };

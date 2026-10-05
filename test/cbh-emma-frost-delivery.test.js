@@ -6,10 +6,15 @@ import { assertApprovedRelationshipReview, buildMarkdown } from '../scripts/auth
 import {
   assertMappingMatchesPacketOccurrences, digestCanonicalJson, validateFrozenPacket, validateMappingDigest,
 } from '../scripts/lib/cbh-inventory.mjs';
-import { buildReportForMapping } from '../scripts/report-order-overlap.mjs';
+
 import { historicalAgathaLibrarySnapshot } from './helpers/agatha-historical-library.mjs';
 import { parseCatalog, searchCatalog } from '../src/js/lib/catalog.js';
 import { parseChecklist } from '../src/js/lib/markdown.js';
+import {
+  buildHistoricalReadingChoiceReport as buildReportForMapping,
+  historicalReadingChoiceManifest,
+  historicalReadingChoicePayloadText,
+} from './helpers/reading-choice-history.mjs';
 
 const id = 'emma-frost-reading-order';
 const readJson = async (file) => JSON.parse(await readFile(file, 'utf8'));
@@ -145,7 +150,7 @@ test('Emma relationship approval regenerates against its reviewed source-manifes
     excludedOrderIds: ['doctor-octopus-otto-octavius-reading-order', 'shadow-king-reading-order', 'thunderbolts-reading-order', 'nebula-reading-order', 'hope-summers-reading-order', 'x-23-reading-order', 'ms-marvel-kamala-khan-reading-order', 'marvel-zombies-reading-order', 'hawkeye-reading-order', 'silk-cindy-moon-reading-order', 'marvels-infinity-saga-gauntlet-wars-crusade-reading-order', 'nova-reading-order', 'ultimate-spider-man-reading-order', 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide', 'shang-chi-master-of-kung-fu-reading-order', 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order', 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order', 'namor-sub-mariner-reading-order', 'iron-fist-reading-order', 'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts', 'spider-man-no-way-home-owner-selected', 'mcu-prep-daredevil-born-again', 'mcu-prep-moon-knight', 'mcu-prep-deadpool-and-wolverine', 'mcu-prep-eternals'],
 
   });
-  const expectedOrderIds = manifest.lists
+  const expectedOrderIds = historicalReadingChoiceManifest(manifest).lists
     .filter((row) => row.id !== 'shang-chi-master-of-kung-fu-reading-order' && row.id !== 'the-complete-marvel-reading-order-guide-age-of-apocalypse-reading-order' && row.id !== 'the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order' && row.id !== id && row.id !== 'nova-reading-order' && row.id !== 'ultimate-spider-man-reading-order' && row.id !== 'planet-hulk-reading-order-and-greg-pak-hulk-comics-guide'
       && row.id !== 'doctor-octopus-otto-octavius-reading-order'
       && row.id !== 'shadow-king-reading-order'
@@ -204,7 +209,7 @@ test('Emma metadata reconstruction preserves pinned covers and independently rec
   const files = [...new Set(reused.map((row) => row.file))];
   const fileHash = (text) => createHash('sha256').update(text.replace(/\r\n/g, '\n')).digest('hex');
   const sources = new Map(await Promise.all(files.map(async (file) => {
-    const text = await readFile(file, 'utf8');
+    const text = await historicalReadingChoicePayloadText(file);
     const lf = text.replace(/\r\n/g, '\n');
     assert.equal(fileHash(lf), fileHash(lf.replace(/\n/g, '\r\n')));
     return [file, { hash: fileHash(text), data: JSON.parse(text) }];
@@ -222,7 +227,7 @@ test('Emma metadata reconstruction preserves pinned covers and independently rec
     const value = pending.pop();
     if (!value || typeof value !== 'object') continue;
     if (value.file && value.fileSha256) {
-      assert.equal(fileHash(await readFile(value.file, 'utf8')), value.fileSha256);
+      assert.equal(fileHash(await historicalReadingChoicePayloadText(value.file)), value.fileSha256);
       assert.match(value.observedFileSha256, /^[a-f0-9]{64}$/);
     }
     for (const child of Object.values(value)) if (child && typeof child === 'object') pending.push(child);

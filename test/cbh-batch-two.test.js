@@ -15,6 +15,10 @@ import {
 import { validateBatchNoDuplicates } from '../scripts/lib/cbh-inventory.mjs';
 import { parseCatalog, sortCatalog } from '../src/js/lib/catalog.js';
 import { parseChecklist } from '../src/js/lib/markdown.js';
+import {
+  historicalReadingChoiceManifest,
+  historicalReadingChoiceIssueIds,
+} from './helpers/reading-choice-history.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dataDir = path.join(root, 'src', 'data');
@@ -81,7 +85,7 @@ test('batch two preserves the approved queue, exact substitutions, and catalog c
     manifest.lists.length - PACKET_IDS.length,
   );
   assert.ok(manifest.lists.length >= 66);
-  assert.equal(catalog.lists.length, 286);
+  assert.equal(catalog.lists.length, 287);
 
 
   const manifestPacket = manifest.lists.filter((entry) => PACKET_IDS.includes(entry.id));
@@ -294,12 +298,12 @@ test('batch two has no aggregate identity, source, sequence, or pre-publication 
   const packetRecords = [];
   const existingRecords = [];
 
-  for (const entry of manifest.lists) {
+  for (const entry of historicalReadingChoiceManifest(manifest).lists) {
     const generated = await readJson(path.join(dataDir, entry.out));
     const record = {
       id: entry.id,
       url: entry.sourcePage,
-      selectedIssueIds: generated.items.map((item) => String(item.issueId)),
+      selectedIssueIds: historicalReadingChoiceIssueIds(entry.id, generated.items.map((item) => String(item.issueId))),
       catalogIds: [entry.id],
     };
     if (packetSet.has(entry.id)) packetRecords.push(record);

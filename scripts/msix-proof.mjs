@@ -29,6 +29,7 @@ const ORIGIN = 'http://127.0.0.1:8787';
 const CATALOG_ROUTE = '#/catalog';
 const CATALOG_RESULTS = '#catalog-results';
 const CATALOG_LIST_ID = 'house-of-m';
+const CATALOG_STORY_ID = 'list:house-of-m';
 const CATALOG_ITEM_COUNT = 20;
 const ARCHITECTURES = Object.freeze(PACKAGE_ARCHITECTURES.map(({ id }) => id));
 const ROOT = join(fileURLToPath(new URL('..', import.meta.url)));
@@ -728,6 +729,14 @@ async function fetchEssentialJson() {
   return results;
 }
 
+async function fetchCatalogListName(listId) {
+  const response = await fetch(`${ORIGIN}/data/catalog.json`, { cache: 'no-store' });
+  if (!response.ok) throw new Error(`/data/catalog.json returned HTTP ${response.status}`);
+  const name = (await response.json())?.lists?.find((list) => list.id === listId)?.name;
+  if (typeof name !== 'string' || !name) throw new Error(`the served catalog has no ${listId} list`);
+  return name;
+}
+
 function resolveBrowserDriver() {
   const root = process.env.MRT_PUPPETEER;
   if (!root) throw new Error('MRT_PUPPETEER must name an external puppeteer-core entry file');
@@ -796,13 +805,13 @@ async function searchName(page, kind, query, expected) {
   );
 }
 
-async function waitForCatalogCard(page, title) {
+async function waitForCatalogCard(page, storyId) {
   await page.waitForFunction(
-    (selector, expected) => [...document.querySelectorAll(`${selector} .catalog-card-title`)]
-      .some((node) => node.textContent.trim() === expected),
+    (selector, expected) => [...document.querySelectorAll(`${selector} .catalog-card`)]
+      .some((card) => card.dataset.story === expected),
     { timeout: 15000 },
     CATALOG_RESULTS,
-    title,
+    storyId,
   );
 }
 
@@ -884,6 +893,7 @@ async function certificationFunctionality(architecture, source) {
       throw new Error(`served ${marker.packageVersion}, expected ${STORE_PACKAGE_VERSION}`);
     }
     const json = await fetchEssentialJson();
+    const catalogListName = await fetchCatalogListName(CATALOG_LIST_ID);
 
     await withBrowser(async (browser) => {
       const page = await browser.newPage();
@@ -893,23 +903,21 @@ async function certificationFunctionality(architecture, source) {
         return true;
       });
       await setRoute(page, CATALOG_ROUTE);
-      await waitForCatalogCard(page, 'House of M');
-      const opened = await page.evaluate((selector) => {
+      await waitForCatalogCard(page, CATALOG_STORY_ID);
+      const opened = await page.evaluate((selector, storyId) => {
         const card = [...document.querySelectorAll(`${selector} .catalog-card`)]
-          .find((candidate) => candidate.querySelector('.catalog-card-title')?.textContent.trim() === 'House of M');
+          .find((candidate) => candidate.dataset.story === storyId);
         const button = card?.querySelector('button[data-act="preview"]');
         button?.click();
         return Boolean(button);
-      }, CATALOG_RESULTS);
+      }, CATALOG_RESULTS, CATALOG_STORY_ID);
       if (!opened) throw new Error('House of M was not available to preview');
-      await page.waitForSelector('#preview[open] .preview-issue-link');
-      await page.$eval(
-        `#preview input[data-act="path-preview"][data-key="${CATALOG_LIST_ID}"]`,
-        (radio) => radio.click(),
-      );
       await page.waitForFunction(
-        (count) => document.querySelectorAll('#preview-body .preview-issue-link').length === count,
+        (name, count) => document.querySelector('#preview')?.open
+          && document.querySelector('#preview-h')?.textContent === name
+          && document.querySelectorAll('#preview-body .preview-issue-link').length === count,
         {},
+        catalogListName,
         CATALOG_ITEM_COUNT,
       );
       await page.$eval('#preview-add [data-act="main"]', (button) => button.click());
@@ -958,14 +966,14 @@ async function certificationFunctionality(architecture, source) {
       );
 
       await setRoute(page, CATALOG_ROUTE);
-      await waitForCatalogCard(page, 'House of M');
-      const previewOpened = await page.evaluate((selector) => {
+      await waitForCatalogCard(page, CATALOG_STORY_ID);
+      const previewOpened = await page.evaluate((selector, storyId) => {
         const card = [...document.querySelectorAll(`${selector} .catalog-card`)]
-          .find((candidate) => candidate.querySelector('.catalog-card-title')?.textContent.trim() === 'House of M');
+          .find((candidate) => candidate.dataset.story === storyId);
         const button = card?.querySelector('button[data-act="preview"]');
         button?.click();
         return Boolean(button);
-      }, CATALOG_RESULTS);
+      }, CATALOG_RESULTS, CATALOG_STORY_ID);
       if (!previewOpened) throw new Error('House of M was not available to preview');
       await page.waitForFunction(
         () => document.querySelector('#preview-body')?.textContent
