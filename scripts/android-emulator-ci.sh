@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+ROOT="${RECAP_ANDROID_SOURCE_ROOT:-$(cd "$(dirname "$0")/.." && pwd)}"
 cd "$ROOT"
 RECAP_ANDROID_DERIVED_INTERFACE=1
 MODE=debug
@@ -44,14 +44,17 @@ TEST_APK="$ROOT/packaging/android/app/build/outputs/apk/androidTest/debug/app-de
 ACTIVITY_SOURCE="$ROOT/packaging/android/app/src/main/java/io/github/raymondnassar/recappage/prototype/MainActivity.java"
 SOURCE_BACKUP=""
 EMULATOR_PID=""
+EMULATOR_DOWNLOAD=""
 NATIVE_FAILURE_ACTIVE=0
 CHECKER="$ROOT/scripts/check-android-instrumentation.mjs"
+if [[ "$MODE" == derived ]]; then CHECKER="$TOOLING/scripts/check-android-instrumentation.mjs"; fi
 INSTRUMENT_EXIT=0
 TEE_EXIT=0
 
 cleanup() {
   local result=$?
   trap - EXIT
+  if [[ -n "${EMULATOR_DOWNLOAD:-}" ]]; then rm -rf -- "$EMULATOR_DOWNLOAD"; fi
   if [[ -n "$SOURCE_BACKUP" ]]; then
     cp "$SOURCE_BACKUP" "$ACTIVITY_SOURCE" || result=1
     rm -f "$SOURCE_BACKUP"
@@ -97,10 +100,46 @@ test -r /dev/kvm
 test -w /dev/kvm
 SDKMANAGER="$SDK/cmdline-tools/latest/bin/sdkmanager"
 AVDMANAGER="$SDK/cmdline-tools/latest/bin/avdmanager"
-"$SDKMANAGER" --channel=0 "emulator" "platforms;android-36" "build-tools;35.0.0" "system-images;android-36;google_apis;x86_64" < /dev/null
+"$SDKMANAGER" --channel=0 "platforms;android-36" "build-tools;35.0.0" "system-images;android-36;google_apis;x86_64" < /dev/null
+# SDK Manager's stable emulator advances independently of the tested revision.
+EMULATOR_DOWNLOAD="$(mktemp -d "$RUNNER_TEMP/recap-emulator.XXXXXX")"
+curl --fail --silent --show-error --location --proto '=https' --tlsv1.2 \
+  https://dl.google.com/android/repository/emulator-linux_x64-15917651.zip \
+  --output "$EMULATOR_DOWNLOAD/emulator.zip"
+printf '%s  %s\n' 95771e0ae431897b2a4bd2d97fa095f29a8b0624a7b216baf529f9306161c266 \
+  "$EMULATOR_DOWNLOAD/emulator.zip" | sha256sum --check --status || {
+  printf '%s\n' 'Android Emulator archive checksum verification failed' >&2
+  exit 1
+}
+unzip -q "$EMULATOR_DOWNLOAD/emulator.zip" -d "$EMULATOR_DOWNLOAD"
 IMAGE="$SDK/system-images/android-36/google_apis/x86_64"
-grep -Eq '^Pkg.Revision *= *37\.1\.11 *$' "$SDK/emulator/source.properties"
-grep -Eq '^Pkg.Revision *= *7 *$' "$IMAGE/source.properties"
+grep -Eq '^Pkg.Revision *= *37\.1\.11 *$' "$EMULATOR_DOWNLOAD/emulator/source.properties" || {
+  printf '%s\n' 'Expected Android Emulator revision 37.1.11; downloaded metadata:' >&2
+  cat "$EMULATOR_DOWNLOAD/emulator/source.properties" >&2
+  exit 1
+}
+grep -Eq '^Pkg.Revision *= *7 *$' "$IMAGE/source.properties" || {
+  printf '%s\n' 'Expected API 36 Google APIs x86_64 image revision 7; installed metadata:' >&2
+  cat "$IMAGE/source.properties" >&2
+  exit 1
+}
+# The archive has no package.xml; avdmanager requires a registered emulator package.
+cat > "$EMULATOR_DOWNLOAD/emulator/package.xml" <<'XML'
+<?xml version="1.0" encoding="UTF-8"?>
+<repo:repository xmlns:repo="http://schemas.android.com/repository/android/common/02"
+    xmlns:generic="http://schemas.android.com/repository/android/generic/02"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <localPackage path="emulator">
+    <type-details xsi:type="generic:genericDetailsType"/>
+    <revision><major>37</major><minor>1</minor><micro>11</micro></revision>
+    <display-name>Android Emulator</display-name>
+  </localPackage>
+</repo:repository>
+XML
+rm -rf -- "$SDK/emulator"
+mv "$EMULATOR_DOWNLOAD/emulator" "$SDK/emulator"
+rm -rf -- "$EMULATOR_DOWNLOAD"
+EMULATOR_DOWNLOAD=""
 {
   git rev-parse HEAD
   java -version 2>&1

@@ -212,6 +212,77 @@ test('registered CI keeps mutually exclusive manual rehearsal and original debug
     ['  test:', '  lint:', '  android-emulator:'].includes(match[0].trimEnd())).length, 3);
 });
 
+test('emulator setup installs the verified tested archive instead of the moving stable package',
+  { skip: process.platform === 'win32' }, async () => {
+    const runner = readFileSync(new URL('../scripts/android-emulator-ci.sh', import.meta.url), 'utf8');
+    const setup = runner.slice(runner.indexOf('SDKMANAGER='), runner.indexOf('{\n  git rev-parse HEAD'));
+    const root = await mkdtemp(join(tmpdir(), 'recap-emulator-setup-'));
+    try {
+      const script = `
+set -euo pipefail
+SDK="$RUNNER_TEMP/sdk"
+mkdir -p "$SDK/emulator" "$SDK/system-images/android-36/google_apis/x86_64"
+printf 'Pkg.Revision = 37.2.11\\n' > "$SDK/emulator/source.properties"
+touch "$SDK/emulator/stale-file"
+printf 'Pkg.Revision = %s\\n' "$IMAGE_REVISION" > "$SDK/system-images/android-36/google_apis/x86_64/source.properties"
+EMULATOR_DOWNLOAD=""
+trap 'if [[ -n "$EMULATOR_DOWNLOAD" ]]; then rm -rf -- "$EMULATOR_DOWNLOAD"; fi' EXIT
+curl() {
+  [[ "$*" == *'--proto =https --tlsv1.2 https://dl.google.com/android/repository/emulator-linux_x64-15917651.zip --output '* ]]
+  printf archive > "\${@: -1}"
+}
+sha256sum() {
+  [[ "$*" == '--check --status' ]] || return 1
+  read -r checksum archive
+  [[ "$checksum" == 95771e0ae431897b2a4bd2d97fa095f29a8b0624a7b216baf529f9306161c266 && -f "$archive" ]] || return 1
+  [[ "$CHECKSUM_OK" == true ]] || return 1
+  touch "$RUNNER_TEMP/verified"
+}
+unzip() {
+  [[ -f "$RUNNER_TEMP/verified" ]]
+  mkdir -p "\${@: -1}/emulator"
+  printf 'Pkg.Revision = %s\\n' "$EMULATOR_REVISION" > "\${@: -1}/emulator/source.properties"
+}
+SDKMANAGER() {
+  [[ "$*" == '--channel=0 platforms;android-36 build-tools;35.0.0 system-images;android-36;google_apis;x86_64' ||
+     "$*" == '--channel=0 emulator platforms;android-36 build-tools;35.0.0 system-images;android-36;google_apis;x86_64' ]]
+}
+${setup.replace('"$SDKMANAGER" --channel=0', 'SDKMANAGER --channel=0')}
+test ! -e "$SDK/emulator/stale-file"
+grep -Fx 'Pkg.Revision = 37.1.11' "$SDK/emulator/source.properties"
+`;
+      for (const [checksumOk, emulatorRevision, imageRevision, error] of [
+        ['true', '37.1.11', '7', null],
+        ['false', '37.1.11', '7', 'Android Emulator archive checksum verification failed'],
+        ['true', '37.2.11', '7', 'Expected Android Emulator revision 37.1.11'],
+        ['true', '37.1.11', '8', 'Expected API 36 Google APIs x86_64 image revision 7'],
+      ]) {
+        await rm(join(root, 'verified'), { force: true });
+        const result = childProcess.spawnSync('bash', ['-c', script], {
+          encoding: 'utf8',
+          env: { ...process.env, RUNNER_TEMP: root, CHECKSUM_OK: checksumOk,
+            EMULATOR_REVISION: emulatorRevision, IMAGE_REVISION: imageRevision },
+        });
+        assert.ifError(result.error);
+        assert.equal(result.status, error ? 1 : 0, result.stderr);
+        if (!error) {
+          const metadata = await readFile(join(root, 'sdk/emulator/package.xml'), 'utf8');
+          assert.match(metadata, /<localPackage path="emulator">/);
+          assert.match(metadata, /xsi:type="generic:genericDetailsType"/);
+          assert.match(metadata, /<revision><major>37<\/major><minor>1<\/minor><micro>11<\/micro><\/revision>/);
+        } else {
+          assert.ok(result.stderr.includes(error), result.stderr);
+          assert.equal(await readFile(join(root, 'sdk/emulator/source.properties'), 'utf8'), 'Pkg.Revision = 37.2.11\n');
+          await readFile(join(root, 'sdk/emulator/stale-file'));
+        }
+      }
+      assert.match(setup, /emulator-linux_x64-15917651\.zip/);
+      assert.match(setup, /95771e0ae431897b2a4bd2d97fa095f29a8b0624a7b216baf529f9306161c266/);
+    } finally {
+      await rm(root, { recursive: true, force: true });
+    }
+  });
+
 test('derived native mode observes installed packages and probes before any ordinary reseeding', async (t) => {
   const root = '../packaging/android/app/src/androidTest/java/io/github/raymondnassar/recappage/prototype/';
   const source = readFileSync(new URL(`${root}NativeIntegrationTest.java`, import.meta.url), 'utf8');
