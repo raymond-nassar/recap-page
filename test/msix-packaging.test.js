@@ -1223,15 +1223,22 @@ test('package scripts expose build and independently invocable proof scenarios',
   assert.match(read(PROOF), /const CATALOG_RESULTS = '#catalog-results'/);
   assert.equal(houseOfM?.type, 'event');
   assert.equal(houseOfM?.count, 20);
+  assert.equal(houseOfM?.group, 'house-of-m');
+  const { catalogEntryKey } = await import('../src/js/lib/catalog.js');
+  const storyId = read(PROOF).match(/const CATALOG_STORY_ID = '([^']+)'/)?.[1];
+  assert.equal(storyId, catalogEntryKey(houseOfM));
+  assert.doesNotMatch(read(PROOF), /path-preview/);
+  assert.match(read(PROOF), /fetchCatalogListName\(CATALOG_LIST_ID\)/);
   assert.match(
     read(PROOF),
-    /input\[data-act="path-preview"\]\[data-key="\$\{CATALOG_LIST_ID\}"\]/,
+    /#preview-h'\)\?\.textContent === name\s*&& document\.querySelectorAll\('#preview-body \.preview-issue-link'\)\.length === count/,
   );
   assert.doesNotMatch(read(PROOF), /#\/storylines/);
   assert.equal(
-    [...read(PROOF).matchAll(/waitForCatalogCard\(page, 'House of M'\)/g)].length,
+    [...read(PROOF).matchAll(/waitForCatalogCard\(page, CATALOG_STORY_ID\)/g)].length,
     2,
   );
+  assert.match(read(PROOF), /card\.dataset\.story === expected/);
 });
 
 test('busy-port proof captures the installed supervisor without Windows Terminal', async (t) => {

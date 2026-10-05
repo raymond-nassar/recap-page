@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { URL } from 'node:url';
+import { historicalReadingChoiceIssueIds } from './reading-choice-history.mjs';
 
 export async function recordedOwnerMcuLibrary({ orders, extension, candidateId, originalReport }) {
   const added = extension.extensions.find((entry) => entry.candidateId === candidateId);
@@ -32,6 +33,6 @@ export async function recordedOwnerMcuLibrary({ orders, extension, candidateId, 
   return recordedIds.map((id) => {
     const order = available.get(id);
     assert.ok(order, `Recorded peer ${id} is missing`);
-    return order;
+    return { ...order, issueIds: historicalReadingChoiceIssueIds(id, order.issueIds) };
   });
 }

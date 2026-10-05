@@ -39,11 +39,11 @@ baseline = { ...baseline, overrides: { [house.items[1].issueId]: 'unavailable' }
 assert.equal(house.items.length, 20);
 assert.equal(expected.length, 43);
 assert.equal(expectedGroups.length, 5);
-assert.equal(expectedTitles.length, 12);
+assert.equal(expectedTitles.length, 13);
 assert.deepEqual(payload.items.map((item) => item.issueId), expected.map((item) => item.issueId));
-assert.deepEqual(expectedTitles.slice(-6), [
+assert.deepEqual(expectedTitles.slice(-7), [
   'Shang-Chi and the Legend of the Ten Rings', 'MCU Prep: Thunderbolts*', 'Moon Knight: MCU Prep', 'Eternals',
-  'MCU Prep: Deadpool & Wolverine', 'MCU Prep: Daredevil: Born Again',
+  'MCU Prep: Deadpool & Wolverine', 'Avengers: Doomsday & Avengers: Secret Wars', 'MCU Prep: Daredevil: Born Again',
 ]);
 
 async function click(page, selector) {

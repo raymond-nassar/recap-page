@@ -40,10 +40,12 @@ test('Preview rejects an older issue response after a newer selection opens', as
   };
   const pending = new Map();
   const focused = [];
+  const state = { lists: {}, listOrder: [] };
   const view = createPreviewView({
     captureFocus: () => null,
     el: element,
     elements: () => nodes,
+    getState: () => state,
     isInLibrary: () => null,
     issueFocusAnchor: (issue) => {
       focused.push(issue.issueId);
@@ -94,10 +96,12 @@ test('Preview separates individual issues after an edition without changing orig
   ];
   let requestedItems = items;
   const focused = [];
+  const state = { lists: {}, listOrder: [] };
   const view = createPreviewView({
     captureFocus: () => null,
     el: element,
     elements: () => nodes,
+    getState: () => state,
     isInLibrary: () => null,
     issueFocusAnchor: (entry) => {
       focused.push(entry.issueId);

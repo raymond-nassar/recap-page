@@ -4,7 +4,7 @@ import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
-  HOME_CATEGORIES, groupCatalog, parseCatalog, pathPlacements, shelfLists,
+  HOME_CATEGORIES, catalogEntries, parseCatalog, pathPlacements, shelfLists,
 } from '../src/js/lib/catalog.js';
 import { parseChecklist } from '../src/js/lib/markdown.js';
 import { MAX_COLLECTION } from '../src/js/lib/model.js';
@@ -15,12 +15,17 @@ import {
 } from '../scripts/lib/cbh-inventory.mjs';
 import { buildComparisonReport, issueIdsFromValue } from '../scripts/lib/cbh-overlap.mjs';
 import { loadLibrarySnapshot } from '../scripts/report-order-overlap.mjs';
+import {
+  historicalReadingChoiceCatalogEntry, historicalReadingChoiceIssueIds,
+  loadHistoricalReadingChoiceLibrary,
+} from './helpers/reading-choice-history.mjs';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 const id = 'mcu-prep-moon-knight';
 const laterIds = [
   'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts', 'mcu-prep-eternals',
   'mcu-prep-deadpool-and-wolverine', 'mcu-prep-daredevil-born-again',
+  'avengers-doomsday-secret-wars',
 ];
 const expectedSelections = [
   {
@@ -57,7 +62,7 @@ const expectedScreenIds = [
   'doctor-strange-multiverse-of-madness', 'spider-man-no-way-home', 'marvel-multiverse',
   'marvel-what-if', 'wandavision', 'spider-man-far-from-home',
   'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts', id, 'mcu-prep-eternals',
-  'mcu-prep-deadpool-and-wolverine', 'mcu-prep-daredevil-born-again',
+  'mcu-prep-deadpool-and-wolverine', 'avengers-doomsday-secret-wars', 'mcu-prep-daredevil-born-again',
 ];
 const sourceOrigin = 'Selected by the owner for MCU Prep; expanded into original issues for this project';
 const packetValidation = {
@@ -150,7 +155,7 @@ test('Moon Knight publishes one selected MCU Prep card, not a character guide or
   assert.equal(card.placeholderCount, 0);
   assert.equal(card.emptyRecordCount, 0);
   assert.deepEqual(HOME_CATEGORIES.find((category) => category.key === 'marvel-on-screen')
-    .select(groupCatalog(catalog.lists)).map((story) => story.lists[0].id), expectedScreenIds);
+    .select(catalogEntries(catalog.lists)).map((story) => story.lists[0].id), expectedScreenIds);
   assert.equal(shelfLists(catalog.lists, 'spotlights').length, 70);
   assert.ok(!shelfLists(catalog.lists, 'spotlights').some((item) => item.id === id));
   assert.equal(catalog.paths.some((path) => path.steps.includes(id)), false);
@@ -249,14 +254,18 @@ test('Moon Knight preserves human-approved snapshots and checks the complete cur
   const report = await readJson('scripts', 'data', 'cbh-overlaps', `${id}.json`);
   const visibleReport = await readJson('scripts', 'data', 'owner-overlaps', `${id}-visible.json`);
   const library = await loadLibrarySnapshot();
+  const historicalLibrary = await loadHistoricalReadingChoiceLibrary();
   const catalog = await readJson('src', 'data', 'catalog.json');
   const entries = catalog.lists.filter((entry) => entry.id !== id);
   const visibleOrders = await Promise.all(entries.map(async (entry) => ({
     id: entry.id, issueIds: issueIdsFromValue(await readJson('src', 'data', entry.file)).map(String),
   })));
   const visibleDigest = libraryDigestFor({
-    lists: entries.filter((entry) => !laterIds.includes(entry.id)), paths: catalog.paths,
-  }, visibleOrders.filter((entry) => !laterIds.includes(entry.id)));
+    lists: entries.filter((entry) => !laterIds.includes(entry.id))
+      .map(historicalReadingChoiceCatalogEntry), paths: catalog.paths,
+  }, visibleOrders.filter((entry) => !laterIds.includes(entry.id)).map((order) => ({
+    ...order, issueIds: historicalReadingChoiceIssueIds(order.id, order.issueIds),
+  })));
   assert.deepEqual(ledger.sourceContentProjection, projectionFields);
   const projection = Object.fromEntries(projectionFields.map((field) => [field, ledger[field]]));
   assert.equal(packet.sourceContentSha256, digestCanonicalJson(projection));
@@ -270,8 +279,8 @@ test('Moon Knight preserves human-approved snapshots and checks the complete cur
   const projections = [
     {
       report, review: mapping.relationshipReview,
-      currentLibraryDigest: libraryDigestExcludingOrders(library, [id, ...laterIds]),
-      expectedOrderIds: library.lists.filter((entry) => entry.id !== id && !laterIds.includes(entry.id))
+      currentLibraryDigest: libraryDigestExcludingOrders(historicalLibrary, [id, ...laterIds]),
+      expectedOrderIds: historicalLibrary.lists.filter((entry) => entry.id !== id && !laterIds.includes(entry.id))
         .map((entry) => entry.id),
       currentOrders: library.orders.filter((order) => order.orderId !== id),
       count: 203,

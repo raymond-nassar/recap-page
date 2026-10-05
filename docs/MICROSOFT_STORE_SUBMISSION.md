@@ -159,7 +159,7 @@ It is not a native phone app. No automatic device sync or offline comic reading.
 
 A reading session, using made-up progress rather than someone's reading history:
 
-1. In Browse, add Civil War: An Avengers Reading List, compiled from Comic Book Herald's guide:
+1. In Browse, add Civil War: Avengers and Aftermath Reading Order, compiled from Comic Book Herald's guide:
    https://www.comicbookherald.com/where-do-i-start-with-avengers-trade-collections/
 2. Imagine the first six comics are marked read. Civil War (2006) #7 is the next unread issue.
 3. Choose Read. The official reader opens in a separate tab when a link is available. Otherwise the

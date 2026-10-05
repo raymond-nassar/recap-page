@@ -59,7 +59,7 @@ export function createReadingPathsView({
       const action = row.querySelector('[data-reading-path-action]');
       const text = progress
         ? (progress.match === 'exact' ? 'Open saved list' : 'Open saved version')
-        : (stop.lists.length > 1 ? 'Choose reading option' : 'Preview');
+        : 'Preview';
       action.textContent = text;
       action.setAttribute('aria-label', labelledName(text, progress?.name ?? stop.name));
     }
