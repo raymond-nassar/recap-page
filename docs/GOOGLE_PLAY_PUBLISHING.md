@@ -53,6 +53,22 @@ Restrict its provider to the immutable repository and owner IDs, `refs/heads/mai
 `workflow_dispatch`. Bind only `roles/iam.workloadIdentityUser` on that service account.
 Do not give the workflow project Owner or Editor.
 
+The publishing job uses the protected environment at job scope. GitHub's default `sub` therefore
+identifies the environment, not the branch; use the separate `ref` claim to restrict the branch.
+The provider condition should match the immutable `repository_id` and `repository_owner_id`,
+`ref == 'refs/heads/main'`, the exact `workflow_ref` ending in
+`raymond-nassar/recap-page/.github/workflows/google-play-release.yml@refs/heads/main`,
+`environment == 'google-play-publishing'`, and `event_name == 'workflow_dispatch'`. Do not require
+a branch-shaped `sub` for this job. GitHub can use immutable IDs in `sub` too, so do not assume a
+fixed subject format. See GitHub's [OIDC claim reference](https://docs.github.com/en/actions/reference/security/oidc),
+retrieved 2026-10-05.
+
+If authentication fails with `The given credential is rejected by the attribute condition`, packet
+validation and GitHub approval have already passed, but the Google provider rejected the OIDC
+claims. Inspect its attribute mapping and condition, then compare them with the claims above. Correct
+the provider configuration without removing any of these restrictions; changing the workflow cannot
+correct a condition stored in Google Cloud.
+
 Invite the account in Play Console for **Recap Page only**:
 
 - View app information (read-only), including any implied app-quality read permission.
