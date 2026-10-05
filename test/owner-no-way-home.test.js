@@ -17,7 +17,7 @@ import { loadLibrarySnapshot } from '../scripts/report-order-overlap.mjs';
 import {
   availableHomeCategories,
   CATALOG_SHELVES,
-  groupCatalog,
+  catalogEntries,
   HOME_CATEGORIES,
   parseCatalog,
   shelfLists,
@@ -32,6 +32,7 @@ import {
 } from '../src/js/lib/model.js';
 import { Store, KEY } from '../src/js/storage.js';
 import { importedNoWayHomeFixture } from './helpers/owner-no-way-home-import.mjs';
+import { historicalReadingChoiceIssueIds } from './helpers/reading-choice-history.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const ownerId = 'spider-man-no-way-home-owner-selected';
@@ -163,7 +164,7 @@ test('owner No Way Home withdrawal leaves only the original guide in new discove
   assert.equal(catalog.lists.some(({ id }) => id === ownerId), false);
   assert.equal(manifest.lists.filter(({ id }) => id === legacyId).length, 1);
   assert.equal(catalog.lists.filter(({ id }) => id === legacyId).length, 1);
-  const stories = groupCatalog(catalog.lists);
+  const stories = catalogEntries(catalog.lists);
   const definition = HOME_CATEGORIES.find(({ key }) => key === 'marvel-on-screen');
   assert.equal(definition.heading, 'MCU Prep');
   assert.equal(definition.route, 'marvel-on-screen');
@@ -317,7 +318,8 @@ test('archived owner No Way Home approval binds the actual packet, mapping and e
   const reviewedIds = new Set(report.librarySnapshot.entries.map(({ id }) => id));
   const orders = await Promise.all(catalog.lists.filter(({ id }) => reviewedIds.has(id)).map(async (peer) => ({
     orderId: peer.id,
-    issueIds: (await readJson('src', 'data', peer.file)).items.map(({ issueId }) => String(issueId)),
+    issueIds: historicalReadingChoiceIssueIds(peer.id,
+      (await readJson('src', 'data', peer.file)).items.map(({ issueId }) => String(issueId))),
   })));
   assert.equal(orders.length, reviewedIds.size);
   for (const order of orders) {

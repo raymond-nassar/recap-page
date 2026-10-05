@@ -13,7 +13,7 @@ import { chooseMarkdownExport } from './views/markdown-export.js';
 import { serializeReadingOrder } from './lib/markdown.js';
 import { DEFAULT_LIST_NAME, LIBRARY_VIEWS } from './lib/library.js';
 import {
-  parseCatalog, groupCatalog,
+  parseCatalog, catalogEntries,
   pathPlacements, resolveReadingPaths, availableHomeCategories, HOME_CATEGORIES,
   availablePublishingCategories, isPublishingCategoryLeaf, publishingAgeGroups, publishingCategoryStories,
   timelineYears,
@@ -1482,6 +1482,7 @@ function applyRoute(route, { focus, filterIfAbsent }) {
 // screen reader. Without it, focus stays on the rail button and the view change is silent, so
 // the next Tab continues from the old position and nothing announces where you now are.
 function showView(next, { focus = true, push = false } = {}) {
+  previewView.invalidate();
   tooltips?.dismiss();
   // There is nothing to read without an active list, so the reading view hands over to the
   // landing page rather than showing an empty frame with a heading over it. `Object.hasOwn` for
@@ -1628,10 +1629,7 @@ async function restoreIssueFocusOpener(sourceView) {
     try {
       const catalog = await loadCatalog();
       const list = catalog.lists.find((entry) => entry.id === opener.contextId);
-      const story = sourceView === 'reading-paths'
-        ? readingPathsView.selected()?.stops.find((stop) => stop.lists.some((entry) => entry.id === list?.id))
-        : null;
-      if (list && view === sourceView) await previewView.open(list, story);
+      if (list && view === sourceView) await previewView.open(list);
     } catch {
       focusViewHeading(sourceView);
       return;
@@ -2494,10 +2492,11 @@ function renderPublishingIndex(category, allStories) {
   }
 }
 
-async function renderPublishingCategory(route) {
+async function renderPublishingCategory(route, { isCurrent = () => view === route } = {}) {
   const category = generatedCategoryByRoute.get(route);
-  if (!category) return;
+  if (!category || !isCurrent()) return;
   const generation = ++publishingCategoryGeneration;
+  const current = () => generation === publishingCategoryGeneration && isCurrent();
   const box = $(`#${route}-results`);
   const periods = $(`#${route}-categories`);
   const periodList = $(`#${route}-category-list`);
@@ -2514,6 +2513,7 @@ async function renderPublishingCategory(route) {
   try {
     catalog = await loadCatalog();
   } catch (err) {
+    if (!current()) return;
     box.replaceChildren();
     await reportBundledLoadFailure({
       report: `#${route}-report`,
@@ -2521,12 +2521,13 @@ async function renderPublishingCategory(route) {
       key: CATALOG_LOAD,
       subject: 'the catalog',
       retry: () => renderPublishingCategory(route),
-      isCurrent: () => generation === publishingCategoryGeneration,
+      isCurrent: current,
     });
     return;
   }
 
-  const allStories = groupCatalog(catalog.lists);
+  if (!current()) return;
+  const allStories = catalogEntries(catalog.lists);
   if (category.kind === 'publishing-index') {
     renderPublishingIndex(category, allStories);
     return;
@@ -2562,7 +2563,7 @@ async function renderPublishingCategory(route) {
   }
 
   const placements = pathPlacements(catalog.paths, catalog.lists);
-  const localStoryKeys = new Set(stories.map((story) => story.key));
+  const localStoryKeys = new Set(stories.map((story) => story.groupKey));
   if (isPublishingCategoryLeaf(category)) {
     const years = timelineYears(stories);
     catalogPresentation.renderTimelineSections(box, [{
@@ -2579,7 +2580,7 @@ async function renderPublishingCategory(route) {
   }
   const grid = el('div', { class: 'catalog-grid publishing-grid' });
   for (const story of stories) {
-    grid.append(catalogPresentation.catalogCard(story, placements.get(story.key), {
+    grid.append(catalogPresentation.catalogCard(story, placements.get(story.groupKey), {
       surface: route, report: `#${route}-report`, localStoryKeys, level: 'h2',
     }));
   }
@@ -2996,7 +2997,7 @@ const savedLists = createSavedListsPresenter({
 
 const homeView = createHomeView({
   categoriesForCatalog: (catalog) => availableHomeCategories(
-    groupCatalog(catalog.lists),
+    catalogEntries(catalog.lists),
     HOME_CATEGORIES,
     resolveReadingPaths(catalog.paths, catalog.lists),
   ),
@@ -3138,7 +3139,7 @@ const catalogPresentation = createCatalogPresentation({
   onAdd: (list, button, report) => importCurated(list, button, { report }),
   onGoToStop: goToStop,
   onOpen: openSavedCatalogList,
-  onPreview: (list, story) => previewView.open(list, story),
+  onPreview: (list) => previewView.open(list),
   pathHref: (stop) => formatRoute({
     view: stop.shelf,
     sort: stop.shelf === 'spotlights' ? catalogView.sort() : null,
@@ -3197,6 +3198,7 @@ const previewView = createPreviewView({
     paths: $('#preview-paths'),
     source: $('#preview-source'),
   }),
+  getState: () => store.state,
   isInLibrary: (catalogId) => listForCatalogId(store.state, catalogId),
   issueFocusAnchor,
   loadOrder: loadBundledOrder,
@@ -3204,14 +3206,17 @@ const previewView = createPreviewView({
     navigate: false,
     report: '#preview-report',
   }),
-  onClose: async (chose) => {
+  onClose: async (closedList, { changed, isCurrent }) => {
+    if (!isCurrent()) return;
     placeNotices();
-    if (!chose || (!CATALOG_SHELVES.some((shelf) => shelf.key === view)
+    if (!closedList || !changed || (!CATALOG_SHELVES.some((shelf) => shelf.key === view)
       && !generatedCategoryByRoute.has(view))) return;
-    const root = $(`#view-${view}`);
+    const sourceView = view;
+    const root = $(`#view-${sourceView}`);
     const held = captureFocus(root);
-    if (generatedCategoryByRoute.has(view)) await renderPublishingCategory(view);
-    else await catalogView.render(view);
+    if (generatedCategoryByRoute.has(sourceView)) await renderPublishingCategory(sourceView, { isCurrent });
+    else await catalogView.render(sourceView, { isCurrent });
+    if (!isCurrent() || view !== sourceView) return;
     if (document.activeElement === document.body) restoreFocus(held, { primary: 'main' });
   },
   onIssueLoadFailure: async ({
@@ -3282,7 +3287,7 @@ const readingPathsView = createReadingPathsView({
         '#reading-paths-report',
       );
     } else {
-      void previewView.open(catalogPresentation.chosenPath(stop), stop);
+      void previewView.open(stop.lists.find((list) => list.id === stop.stepId));
     }
   },
   onSelectedPath: (pathId) => {
@@ -3344,8 +3349,8 @@ const completionView = createCompletionView({
   showView,
   loadCatalog,
   resolveRecommendations: (options) => recommendationResolver.resolve(options),
-  previewRecommendation: (entry, suggestion, catalog) => {
-    void previewView.open(entry, groupCatalog(catalog.lists).find((story) => story.key === suggestion.storyKey));
+  previewRecommendation: (entry) => {
+    void previewView.open(entry);
   },
   askConfirm,
   backupFileRefusal,

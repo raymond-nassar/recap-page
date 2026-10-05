@@ -67,7 +67,7 @@ Severity: 2, single-rater estimate
 Rationale: occurs on the single most repeated action in the product, persists for the life of the
 list, and grows with list length, but degrades speed rather than blocking the task
 Confidence: Measured
-Evidence: `docs/ux-artifacts/render-cost.json`, `src/js/main.js:93-99`, `src/js/main.js:2591-2614`
+Evidence: `docs/ux-artifacts/render-cost.json`, `src/js/main.js:93-99`, `src/js/main.js:2592-2615`
 Source: live UI framing, reacted to the store wiring while reading `src/js/main.js`
 Impact: marking one issue read rebuilds the rail, all 219 rows and the progress block, which is
 4,485 DOM nodes and 1,533 row controls, at a median of 21.9 ms synchronous and 75.7 ms to paint,
@@ -86,7 +86,7 @@ Severity: 3, single-rater estimate
 Rationale: affects several primary flows, is permanent rather than transient, and splits the
 product's voice in two at exactly the moments a reader is deciding something
 Confidence: Observed
-Evidence: `src/js/main.js:1905`, `src/js/views/reading.js:348-356`, `src/js/views/reading.js:373-387`, against
+Evidence: `src/js/main.js:1903`, `src/js/views/reading.js:348-356`, `src/js/views/reading.js:373-387`, against
 `src/js/main.js:533-558`
 Source: heuristic 4 sweep, code-only framing
 Impact: the application has a careful in-page notice system with live regions, and then reports
@@ -252,7 +252,7 @@ Notable passes, recorded because a reader would reasonably expect them to fail:
 * 3.2.2 On Input passes, overturning a tool result. HTML_CodeSniffer flagged `#form-catalog-search`
   under H32.2 for having no submit button on both scanned surfaces. The form is search-as-you-type
   and calls `preventDefault` on submit, results update in place, and no change of context occurs,
-  so the criterion is met. Evidence: `src/index.html:551-556`, `src/js/views/catalog.js:411-440`.
+  so the criterion is met. Evidence: `src/index.html:551-556`, `src/js/views/catalog.js:419-448`.
 
 #### UX-A-001: The primary call to action and the accent text fall below 4.5:1
 
@@ -498,7 +498,7 @@ those shots is to show what was going ungated. `docs/ux-artifacts/14-accent-surf
 `docs/ux-artifacts/14-accent-surfaces-light.png` show two of the three at once, the red brand mark
 at the top of the rail and the 3px accent bar beside the selected item. The rail item has to be
 selected before the shot is taken, because nothing carries `aria-current` on a fresh load:
-`showView` writes it only to `.ri[data-view]` at `src/js/main.js:1509-1511`, and no rail item declares
+`showView` writes it only to `.ri[data-view]` at `src/js/main.js:1510-1512`, and no rail item declares
 `data-view="home"`. The brand does, but the brand is not an `.ri`. So a capture of the page as it
 first loads photographs a bar that is not rendered and passes for a picture of nothing.
 `docs/ux-artifacts/14-blocked-banner-dark.png` and `docs/ux-artifacts/14-blocked-banner-light.png`
@@ -743,7 +743,7 @@ Evidence: `src/index.html:47-92`, `src/js/lib/route.js:20-31`.
 
 Every routed page except Home now states its stable hierarchy in one breadcrumb trail. Preview and
 Ask remain dialogs without breadcrumbs. Evidence: `src/js/lib/route.js:61-138`,
-`src/js/main.js:1546-1585`, `test/ux-completion.test.js:69-80`.
+`src/js/main.js:1547-1586`, `test/ux-completion.test.js:69-80`.
 
 The two missing Library sub-views recorded as UX-I-003 are now present, closing the grouping gap.
 
@@ -758,7 +758,7 @@ Rationale: affects every view for the life of the product. It cannot be worked a
 quietly removes browser behaviours the reader already expects
 Confidence: Verified absent, confirmed by measurement
 Evidence: `absent: pushState|replaceState|location.hash|hashchange|popstate|history\., grep across
-src/ returning no matches`, `src/js/main.js:1484-1543`,
+src/ returning no matches`, `src/js/main.js:1484-1544`,
 `docs/ux-artifacts/live-inspection.json`
 Source: Step 5 information architecture review, addressability
 Impact: view switching mutates a module-level variable and toggles the `hidden` attribute. No
@@ -836,7 +836,7 @@ sentence frames rather than quotations. Nobody said these words.
   `src/index.html:288-333` and `src/index.html:312-313`.
 * When I open a crossover I have never read, I want to know how much reading I am committing to
   before I import it, so I can pick the essential path or the complete path deliberately. Traced to
-  `src/js/views/preview.js:141-153`.
+  `src/js/views/preview.js:129-143`.
 * When an issue has no metadata yet, I want the app to say so plainly, so I can tell a pending
   lookup apart from a comic that does not exist. Traced to `src/js/views/reading.js:846-847`.
 * When I have read half of a long order across several sittings, I want to come back and see where

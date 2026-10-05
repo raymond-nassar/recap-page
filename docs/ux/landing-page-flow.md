@@ -64,16 +64,17 @@ replace installed-device touch, system-text, Back or private-profile acceptance.
 - A directly opened empty Marvel Ages gateway names the empty state rather than inventing categories.
 - Modern Timeline uses 1998 as this app's chosen boundary, not as an official Marvel editorial-era
   claim. Marvel Knights to Planet X opens the sequence in 1998, then Avengers Disassembled resumes it
-  in 2004. Its 148 Reading Lists appear as 144 grouped normal story cards.
+  in 2004. Its 148 Reading Lists appear as 148 independently named cards representing 144 logical
+  timeline stops. Alternate versions do not become additional required stops.
 - Setup to Modern Timeline is featured above the normal Modern Timeline cards through the same
   Preview flow. It is not duplicated as a card and is not included in the timeline count.
 - Modern Timeline marks the first story card that is not complete after the completed opening run.
   The position is rebuilt from imported Reading Lists and their issue read markers, not stored as a
-  separate cursor. A grouped story follows the shallowest imported option the card already presents,
-  or its shallowest option when none has been imported.
+  separate cursor. A logical story follows its shallowest imported option, or its shallowest option
+  when none has been imported. The marker belongs to that specific Reading List's card.
 - Search and category filters change what is visible, not the reader's position. A visible current
-  story keeps the marker even when only another option through that story matches. If the whole story
-  is hidden, one message names it instead of marking a different card.
+  Reading List keeps the marker. If that selected list is hidden, one message names it instead of
+  marking an alternative through the same story.
 - Completing every timeline story puts the position after the final card. If a catalog entry cannot
   be shown, the position is reported as unavailable because the missing entry's place is unknown.
 - Events outside that guided sequence remain available through Marvel Ages and existing direct
@@ -81,6 +82,14 @@ replace installed-device touch, system-text, Back or private-profile acceptance.
 - Preview's existing Add control can complete the first add on the chosen browse page. Failures
   target that page, while the existing success announcement remains unchanged. A separate follow-on owns
   any expanded first-save explanation.
+- Each catalog choice has its own title, Add or Open action and Preview. Preview inspects that
+  specific list rather than offering a hidden reading-option selector. Reading Paths preview their
+  explicitly named choice while recognizing a saved alternate version.
+- MCU Prep repeats the Secret Wars fast track as **Avengers: Doomsday & Avengers: Secret Wars**.
+  It creates its own named library list with the same issues and trade sections. Issue read marks
+  are shared with the fast track, while each saved list keeps its own name and list note.
+- Catalog title and source updates do not rewrite existing saved copies. Their names, issue order,
+  collected-edition maps and notes remain unchanged.
 - Home has no breadcrumb because it has no route ancestors. Routed destinations reached from Home
   show their stable hierarchy, while Preview remains a dialog with no breadcrumb.
 - Returning with Back restores Home rather than creating a second navigation model.

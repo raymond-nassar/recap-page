@@ -3,7 +3,6 @@ import {
   collectionsLabel,
   depthLabel,
   readingTimeLabel,
-  variantLabel,
 } from '../lib/catalog.js';
 import { labelledName } from '../lib/accname.js';
 
@@ -13,6 +12,7 @@ export function createPreviewView({
   captureFocus,
   el,
   elements,
+  getState,
   isInLibrary,
   issueFocusAnchor,
   loadOrder,
@@ -26,7 +26,38 @@ export function createPreviewView({
   const justAdded = new Set();
   let loadToken = null;
   let previewList = null;
-  let previewStory = null;
+  let previewSession = null;
+  let lifecycleToken = {};
+
+  const isCurrent = (session) => session?.token === lifecycleToken;
+
+  function invalidate() {
+    lifecycleToken = {};
+    loadToken = null;
+    previewList = null;
+    previewSession = null;
+    justAdded.clear();
+  }
+
+  async function notifyClose(session) {
+    if (!isCurrent(session)) return;
+    const { lists, listOrder } = getState();
+    const changed = session.lists !== lists || session.listOrder !== listOrder;
+    if (session.notified && !changed) return;
+    session.lists = lists;
+    session.listOrder = listOrder;
+    session.notified = true;
+    const notificationToken = {};
+    session.notificationToken = notificationToken;
+    await onClose(session.list, {
+      changed,
+      isCurrent: () => {
+        if (!isCurrent(session) || session.notificationToken !== notificationToken) return false;
+        const current = getState();
+        return current.lists === lists && current.listOrder === listOrder;
+      },
+    });
+  }
 
   function addButton(list) {
     const inLibrary = isInLibrary(list.id);
@@ -38,7 +69,9 @@ export function createPreviewView({
         class: settled ? 'btn btn-g' : 'btn btn-added',
         'aria-label': labelledName(text, list.name),
         dataset: { key: list.id, act: 'main' },
-        onclick: () => onOpen(list, inLibrary),
+        onclick: () => {
+          if (isCurrent(previewSession)) return onOpen(list, inLibrary);
+        },
       }, text);
     }
     return el('button', {
@@ -54,7 +87,6 @@ export function createPreviewView({
     const nodes = elements();
     if (!previewList || !nodes.dialog.open) return;
     nodes.add.replaceChildren(addButton(previewList));
-    presentation.markOwnedPaths(nodes.paths, previewStory);
   }
 
   function returnFocus(held) {
@@ -63,19 +95,30 @@ export function createPreviewView({
   }
 
   async function add(list, button) {
+    const session = previewSession;
+    if (!isCurrent(session) || session.closed) return;
     const nodes = elements();
     const held = captureFocus(nodes.add);
     justAdded.add(list.id);
     const listId = await onAdd(list, button);
+    if (!isCurrent(session)) return;
     if (!listId) {
       justAdded.delete(list.id);
-      syncAdd();
-      returnFocus(held);
+      if (!session.closed) {
+        syncAdd();
+        returnFocus(held);
+      }
+      return;
+    }
+    if (session.closed) {
+      justAdded.delete(list.id);
+      await notifyClose(session);
       return;
     }
     syncAdd();
     returnFocus(held);
     setTimeout(() => {
+      if (!isCurrent(session) || session.closed) return;
       const settleFocus = captureFocus(elements().add);
       justAdded.delete(list.id);
       syncAdd();
@@ -86,9 +129,8 @@ export function createPreviewView({
   function paint(list) {
     const nodes = elements();
     previewList = list;
-    nodes.heading.textContent = previewStory ? previewStory.name : list.name;
+    nodes.heading.textContent = list.name;
     nodes.meta.textContent = [
-      previewStory ? variantLabel(list) : null,
       `${list.count} issue${list.count === 1 ? '' : 's'}`,
       ...catalogGapLabels(list),
       collectionsLabel(list),
@@ -133,20 +175,28 @@ export function createPreviewView({
         error,
         list,
         isCurrent: () => loadToken === token,
-        retry: () => loadIssues(list),
+        retry: () => {
+          if (loadToken === token) return loadIssues(list);
+        },
       });
     }
   }
 
-  async function open(list, story = null) {
+  async function open(list) {
+    invalidate();
+    const state = getState();
+    previewSession = {
+      token: lifecycleToken,
+      list,
+      lists: state.lists,
+      listOrder: state.listOrder,
+      closed: false,
+      notified: false,
+      notificationToken: null,
+    };
     const nodes = elements();
-    previewStory = story && story.lists.length > 1 ? story : null;
-    nodes.paths.replaceChildren(...(previewStory
-      ? [presentation.pathChooser(previewStory, 'preview', (next) => {
-        paint(next);
-        void loadIssues(next);
-      })]
-      : []));
+    nodes.paths.replaceChildren();
+    nodes.paths.hidden = true;
     paint(list);
     nodes.dialog.showModal();
     await loadIssues(list);
@@ -159,14 +209,19 @@ export function createPreviewView({
       if (event.target === nodes.dialog) nodes.dialog.close();
     });
     nodes.dialog.addEventListener('close', async () => {
-      const chose = previewStory;
+      if (nodes.dialog.open) return;
+      const session = previewSession;
+      previewSession = null;
       previewList = null;
-      previewStory = null;
-      await onClose(chose);
+      loadToken = null;
+      justAdded.clear();
+      if (session) session.closed = true;
+      await notifyClose(session);
     });
   }
 
   return {
+    invalidate,
     open,
     syncAdd,
     wire,

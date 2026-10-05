@@ -13,6 +13,10 @@ import {
 import { validateBatchNoDuplicates } from '../scripts/lib/cbh-inventory.mjs';
 import { parseCatalog, sortCatalog } from '../src/js/lib/catalog.js';
 import { parseChecklist } from '../src/js/lib/markdown.js';
+import {
+  historicalReadingChoiceManifest,
+  historicalReadingChoiceIssueIds,
+} from './helpers/reading-choice-history.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dataDir = path.join(root, 'src', 'data');
@@ -131,7 +135,7 @@ test('batch four preserves source order and independently verified shelf chronol
     manifest.lists.length - FOURTH_PACKET_IDS.length,
   );
   assert.ok(manifest.lists.length >= 66);
-  assert.equal(catalog.lists.length, 286);
+  assert.equal(catalog.lists.length, 287);
 
 
   const sorted = sortCatalog(parseCatalog(catalog).lists);
@@ -266,13 +270,13 @@ test('batch four has no aggregate identity, source, sequence, or issue overlap',
   const packetRecords = [];
   const existingRecords = [];
 
-  for (const entry of manifest.lists) {
+  for (const entry of historicalReadingChoiceManifest(manifest).lists) {
     const payload = await readJson(path.join(dataDir, entry.out));
     const record = {
       id: entry.id,
       url: entry.sourcePage,
       sourceSection: entry.sourceSection,
-      selectedIssueIds: payload.items.map((item) => String(item.issueId)),
+      selectedIssueIds: historicalReadingChoiceIssueIds(entry.id, payload.items.map((item) => String(item.issueId))),
       catalogIds: [entry.id],
     };
     if (packetSet.has(entry.id)) packetRecords.push(record);
@@ -282,7 +286,7 @@ test('batch four has no aggregate identity, source, sequence, or issue overlap',
   assert.equal(packetRecords.length, 10);
   assert.equal(
     existingRecords.length,
-    manifest.lists.length - packetRecords.length - laterReviewedIds.size,
+    historicalReadingChoiceManifest(manifest).lists.length - packetRecords.length - laterReviewedIds.size,
   );
   assert.doesNotThrow(() => validateBatchNoDuplicates(packetRecords, existingRecords));
 

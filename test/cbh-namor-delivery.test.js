@@ -9,10 +9,14 @@ import {
   validateReportDigest,
 } from '../scripts/lib/cbh-inventory.mjs';
 import { assertApprovedRelationshipReview, buildMarkdown } from '../scripts/author-cbh-packet.mjs';
-import { buildReportForMapping, loadLibrarySnapshot } from '../scripts/report-order-overlap.mjs';
+
 import { placeholderId } from '../scripts/lib/placeholder-id.mjs';
 import { parseChecklist } from '../src/js/lib/markdown.js';
 import { parseCatalog } from '../src/js/lib/catalog.js';
+import {
+  buildHistoricalReadingChoiceReport as buildReportForMapping,
+  loadHistoricalReadingChoiceLibrary as loadLibrarySnapshot,
+} from './helpers/reading-choice-history.mjs';
 
 const id = 'namor-sub-mariner-reading-order';
 const url = 'https://www.comicbookherald.com/namor-sub-mariner-reading-order/';

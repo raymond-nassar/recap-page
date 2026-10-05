@@ -13,7 +13,7 @@ import {
   validateReportDigest,
 } from '../scripts/lib/cbh-inventory.mjs';
 import {
-  availableHomeCategories, groupCatalog, HOME_CATEGORIES, parseCatalog, shelfKey,
+  availableHomeCategories, catalogEntries, HOME_CATEGORIES, parseCatalog, shelfKey,
 } from '../src/js/lib/catalog.js';
 import { parseChecklist } from '../src/js/lib/markdown.js';
 import {
@@ -24,6 +24,9 @@ import {
   assertCurrentLibraryExtension, libraryVectorDigest,
 } from './helpers/owner-mcu-library-extension.mjs';
 import { recordedOwnerMcuLibrary } from './helpers/recorded-owner-mcu-library.mjs';
+import {
+  historicalReadingChoiceCatalogEntry, historicalReadingChoiceIssueIds,
+} from './helpers/reading-choice-history.mjs';
 
 const id = 'mcu-prep-deadpool-and-wolverine';
 const stem = `owner-${id}`;
@@ -178,13 +181,13 @@ test('owner evidence reuses the frozen packet and mapping contracts without CBH 
   assert.doesNotMatch(entry.description, /[\u2013\u2014]|film.+inspir|costume|antagonism/i);
 });
 
-test('MCU Prep discovery preserves six CBH guides and the six active owner companions', async () => {
+test('MCU Prep discovery preserves the active guides and independent reading choices', async () => {
   const { manifest, catalog: raw } = await loadEvidence();
   const catalog = parseCatalog(raw);
   const entry = manifest.lists.find((list) => list.id === id);
   const card = catalog.lists.find((list) => list.id === id);
-  assert.equal(manifest.lists.length, 209);
-  assert.equal(catalog.lists.length, 286);
+  assert.equal(manifest.lists.length, 210);
+  assert.equal(catalog.lists.length, 287);
   assert.equal(manifest.lists.filter((list) => list.id === id).length, 1);
   assert.equal(catalog.lists.filter((list) => list.id === id).length, 1);
   for (const value of [entry, card]) {
@@ -197,16 +200,12 @@ test('MCU Prep discovery preserves six CBH guides and the six active owner compa
   assert.equal(card.count, 43);
   assert.equal(card.collections, 5);
   assert.equal(shelfKey({ lists: [card] }), 'lines');
-  const stories = groupCatalog(catalog.lists);
+  const stories = catalogEntries(catalog.lists);
   const category = HOME_CATEGORIES.find((item) => item.key === 'marvel-on-screen');
   assert.equal(category.route, 'marvel-on-screen');
-  assert.deepEqual(category.select(stories).map((story) => story.lists[0].id), [
-    'doctor-strange-multiverse-of-madness', 'spider-man-no-way-home', 'marvel-multiverse',
-    'marvel-what-if', 'wandavision', 'spider-man-far-from-home',
-    'mcu-prep-shang-chi-and-the-legend-of-the-ten-rings', 'mcu-prep-thunderbolts',
-    'mcu-prep-moon-knight', 'mcu-prep-eternals', id, 'mcu-prep-daredevil-born-again',
-  ]);
-  assert.equal(availableHomeCategories(stories).find((item) => item.key === category.key).count, 12);
+  assert.deepEqual(category.select(stories).map((story) => story.lists[0].id),
+    catalog.lists.filter((card) => card.type === 'screen-companion').map((card) => card.id));
+  assert.equal(availableHomeCategories(stories).find((item) => item.key === category.key).count, 13);
   assert.ok(catalog.paths.every((readingPath) => !readingPath.steps.includes(id)));
 });
 
@@ -215,7 +214,7 @@ test('approved relationships cover the complete library including generated chil
   const extension = await readJson(`../scripts/data/${stem}-current-library-extension.json`);
   const { completeManifest, orders, catalogIds } = await loadCompleteLibrary(manifest, catalog);
   const expectedPeers = orders.filter((entry) => entry.id !== id);
-  assert.equal(orders.length, 287);
+  assert.equal(orders.length, 288);
   assert.equal(orders.some((entry) => entry.id === 'spider-man-no-way-home-owner-selected'), false);
   const recordedOrders = await recordedOwnerMcuLibrary({ orders, extension, candidateId: id, originalReport: report });
   const { current: recorded, laterIds } = assertCurrentLibraryExtension({
@@ -230,7 +229,7 @@ test('approved relationships cover the complete library including generated chil
   const addedPeerIds = expectedPeers.filter((entry) => !recordedPeerIds.has(entry.id))
     .map((entry) => entry.id);
   assert.deepEqual(addedPeerIds, ['mcu-prep-shang-chi-and-the-legend-of-the-ten-rings',
-    'mcu-prep-moon-knight', 'mcu-prep-daredevil-born-again']);
+    'mcu-prep-moon-knight', 'avengers-doomsday-secret-wars', 'mcu-prep-daredevil-born-again']);
   assert.deepEqual(recorded.comparisons.filter((entry) => !activePeerIds.has(entry.orderId))
     .map((entry) => entry.orderId), ['spider-man-no-way-home-owner-selected']);
   assert.deepEqual(current.comparisons.filter((entry) => recordedPeerIds.has(entry.orderId)),
@@ -247,7 +246,7 @@ test('approved relationships cover the complete library including generated chil
   ]);
   assert.equal(recorded.comparisonCount, 284);
   assert.equal(current.comparisonCount, expectedPeers.length);
-  assert.equal(current.comparisonCount, 286);
+  assert.equal(current.comparisonCount, 287);
   assert.deepEqual(current.comparisons.map((entry) => entry.orderId),
     expectedPeers.map((entry) => entry.id).sort((left, right) => left.localeCompare(right)));
   assert.ok(expectedPeers.length >= catalog.lists.length - 1);
@@ -258,8 +257,17 @@ test('approved relationships cover the complete library including generated chil
   const reviewedPeers = expectedPeers.filter((entry) => publicationPeers.has(entry.id));
   const reviewed = buildComparisonReport({ candidateIds: expectedVector.map(String), orders: reviewedPeers });
   assert.deepEqual(report.comparisons, reviewed.comparisons);
+  const historicalManifest = {
+    ...completeManifest,
+    lists: completeManifest.lists.map((entry) => ({
+      ...historicalReadingChoiceCatalogEntry(entry), out: entry.out,
+    })),
+  };
+  const historicalOrders = orders.map((order) => ({
+    ...order, issueIds: historicalReadingChoiceIssueIds(order.id, order.issueIds),
+  }));
   const libraryDigest = libraryDigestExcludingOrders(
-    { manifest: completeManifest, orderIssueIds: orders }, [id, ...laterIds, ...addedPeerIds],
+    { manifest: historicalManifest, orderIssueIds: historicalOrders }, [id, ...laterIds, ...addedPeerIds],
   );
   assert.doesNotThrow(() => validateReportDigest(report));
   assert.doesNotThrow(() => assertApprovedRelationshipReview({

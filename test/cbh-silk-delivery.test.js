@@ -11,9 +11,13 @@ import {
   validateReportDigest,
 } from '../scripts/lib/cbh-inventory.mjs';
 import { assertApprovedRelationshipReview, buildMarkdown } from '../scripts/author-cbh-packet.mjs';
-import { buildReportForMapping, loadLibrarySnapshot } from '../scripts/report-order-overlap.mjs';
+
 import { parseCatalog } from '../src/js/lib/catalog.js';
 import { parseChecklist } from '../src/js/lib/markdown.js';
+import {
+  buildHistoricalReadingChoiceReport as buildReportForMapping,
+  loadHistoricalReadingChoiceLibrary as loadLibrarySnapshot,
+} from './helpers/reading-choice-history.mjs';
 
 const id = 'silk-cindy-moon-reading-order';
 const sourceUrl = 'https://www.comicbookherald.com/silk-cindy-moon-reading-order/';

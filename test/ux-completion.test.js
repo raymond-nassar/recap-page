@@ -91,8 +91,10 @@ test('the narrow rail override follows the base rule it must replace', () => {
   );
 });
 
-test('product copy uses Reading List everywhere and capitalizes both words', () => {
-  const terms = productCopy
+test('product labels use Reading List while authored guide titles retain their own wording', () => {
+  const guides = JSON.parse(read('src/data/catalog.json')).lists;
+  const labels = guides.reduce((copy, { name }) => copy.split(name).join(''), productCopy);
+  const terms = labels
     .replace(/Comic Book Reading Orders/g, '')
     .match(/\breading (?:orders?|lists?)\b/gi) ?? [];
   assert.ok(terms.length > 0, 'the product no longer contains any Reading List labels to check');

@@ -12,7 +12,7 @@ const screenTitles = [
   'Doctor Strange: Multiverse of Madness', 'Spider-Man: No Way Home',
   'Marvel Multiverse', 'Marvel What If?', 'WandaVision', 'Spider-Man: Far From Home',
   'Shang-Chi and the Legend of the Ten Rings', 'MCU Prep: Thunderbolts*', name, 'Eternals',
-  'MCU Prep: Deadpool & Wolverine', 'MCU Prep: Daredevil: Born Again',
+  'MCU Prep: Deadpool & Wolverine', 'Avengers: Doomsday & Avengers: Secret Wars', 'MCU Prep: Daredevil: Born Again',
 ];
 const priorId = 'prior-moon-knight';
 const issueNote = 'My existing Moon Knight issue note';
@@ -146,8 +146,9 @@ export const moonKnightActualData = {
         const tile = await page.$eval(target, (node) => ({
           text: node.textContent.trim(), name: node.getAttribute('aria-label'),
         }));
-        t.check(`${label}: MCU Prep is a visible twelve-list gateway`,
-          tile.text.includes('MCU Prep') && tile.name.includes('12 Reading Lists'), JSON.stringify(tile));
+        t.check(`${label}: MCU Prep exposes every independent reading choice`,
+          tile.text.includes('MCU Prep') && tile.name.includes(`${screenTitles.length} Reading Lists`),
+          JSON.stringify(tile));
         await click(page, target);
         await page.waitForSelector(card);
         const actual = await page.$eval(card, (node) => ({

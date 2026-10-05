@@ -51,9 +51,9 @@ test('intentional completion advances timeline positioning without changing actu
     listOrder: ['saved'], read: { 1: 12345 },
   };
   const before = JSON.stringify(state);
-  assert.equal(modernTimelinePosition(state, sequence).storyKey, 'first');
+  assert.equal(modernTimelinePosition(state, sequence).storyKey, 'list:one');
   const position = modernTimelinePosition(state, sequence, { isCompleted: (_state, id) => id === 'saved' });
-  assert.equal(position.storyKey, 'second');
+  assert.equal(position.storyKey, 'list:two');
   assert.equal(position.completed, 1);
   assert.equal(position.total, 2);
   assert.equal(JSON.stringify(state), before);

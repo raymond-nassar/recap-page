@@ -41,6 +41,10 @@ import {
 } from '../scripts/lib/cbh-inventory.mjs';
 import { parseChecklist } from '../src/js/lib/markdown.js';
 import { CBH_LATER_ORDER_IDS } from '../scripts/lib/cbro-evidence.mjs';
+import {
+  historicalReadingChoiceManifest,
+  historicalReadingChoiceIssueIds,
+} from './helpers/reading-choice-history.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dataDir = path.join(root, 'src', 'data');
@@ -1240,12 +1244,12 @@ test('the original authored packet keeps its identities, sequence, and pre-publi
   const existingRecords = [];
   const packetIssueIds = [];
 
-  for (const entry of manifest.lists) {
+  for (const entry of historicalReadingChoiceManifest(manifest).lists) {
     const generated = await readJson(path.join(dataDir, entry.out));
     const record = {
       id: entry.id,
       url: entry.sourcePage,
-      selectedIssueIds: generated.items.map((item) => String(item.issueId)),
+      selectedIssueIds: historicalReadingChoiceIssueIds(entry.id, generated.items.map((item) => String(item.issueId))),
       catalogIds: [entry.id],
     };
     if (packetSet.has(entry.id)) {
