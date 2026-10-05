@@ -29,6 +29,7 @@ const ORIGIN = 'http://127.0.0.1:8787';
 const CATALOG_ROUTE = '#/catalog';
 const CATALOG_RESULTS = '#catalog-results';
 const CATALOG_LIST_ID = 'house-of-m';
+const CATALOG_STORY_ID = 'house-of-m';
 const CATALOG_ITEM_COUNT = 20;
 const ARCHITECTURES = Object.freeze(PACKAGE_ARCHITECTURES.map(({ id }) => id));
 const ROOT = join(fileURLToPath(new URL('..', import.meta.url)));
@@ -796,13 +797,13 @@ async function searchName(page, kind, query, expected) {
   );
 }
 
-async function waitForCatalogCard(page, title) {
+async function waitForCatalogCard(page, storyId) {
   await page.waitForFunction(
-    (selector, expected) => [...document.querySelectorAll(`${selector} .catalog-card-title`)]
-      .some((node) => node.textContent.trim() === expected),
+    (selector, expected) => [...document.querySelectorAll(`${selector} .catalog-card`)]
+      .some((card) => card.dataset.story === expected),
     { timeout: 15000 },
     CATALOG_RESULTS,
-    title,
+    storyId,
   );
 }
 
@@ -893,14 +894,14 @@ async function certificationFunctionality(architecture, source) {
         return true;
       });
       await setRoute(page, CATALOG_ROUTE);
-      await waitForCatalogCard(page, 'House of M');
-      const opened = await page.evaluate((selector) => {
+      await waitForCatalogCard(page, CATALOG_STORY_ID);
+      const opened = await page.evaluate((selector, storyId) => {
         const card = [...document.querySelectorAll(`${selector} .catalog-card`)]
-          .find((candidate) => candidate.querySelector('.catalog-card-title')?.textContent.trim() === 'House of M');
+          .find((candidate) => candidate.dataset.story === storyId);
         const button = card?.querySelector('button[data-act="preview"]');
         button?.click();
         return Boolean(button);
-      }, CATALOG_RESULTS);
+      }, CATALOG_RESULTS, CATALOG_STORY_ID);
       if (!opened) throw new Error('House of M was not available to preview');
       await page.waitForSelector('#preview[open] .preview-issue-link');
       await page.$eval(
@@ -958,14 +959,14 @@ async function certificationFunctionality(architecture, source) {
       );
 
       await setRoute(page, CATALOG_ROUTE);
-      await waitForCatalogCard(page, 'House of M');
-      const previewOpened = await page.evaluate((selector) => {
+      await waitForCatalogCard(page, CATALOG_STORY_ID);
+      const previewOpened = await page.evaluate((selector, storyId) => {
         const card = [...document.querySelectorAll(`${selector} .catalog-card`)]
-          .find((candidate) => candidate.querySelector('.catalog-card-title')?.textContent.trim() === 'House of M');
+          .find((candidate) => candidate.dataset.story === storyId);
         const button = card?.querySelector('button[data-act="preview"]');
         button?.click();
         return Boolean(button);
-      }, CATALOG_RESULTS);
+      }, CATALOG_RESULTS, CATALOG_STORY_ID);
       if (!previewOpened) throw new Error('House of M was not available to preview');
       await page.waitForFunction(
         () => document.querySelector('#preview-body')?.textContent
