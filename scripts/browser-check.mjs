@@ -1974,6 +1974,9 @@ const SCENARIOS = [
         await page.waitForFunction((key, id) => localStorage.getItem(key) === String(id), {}, HOME_UPDATES_SEEN_KEY, batch.id);
         await other.waitForFunction(() => document.querySelector('#home-updates-new').hidden);
         t.check('explicit viewing clears New in both actual tabs', await page.evaluate(() => document.querySelector('#home-updates-new').hidden));
+        // Edge leaves this background tab's SVG load pending until activation. Reload the
+        // visible tab, as a reader would, while keeping the peer alive for storage events.
+        await page.bringToFront();
         await click(page, '#home-updates-close');
         await page.reload({ waitUntil: 'load' });
         t.check('viewing survives reload while the entry stays available and closed',
