@@ -280,15 +280,20 @@ test('an unplanned second occurrence of an allowed shape is still reported', () 
 
   const browserFile = 'test/browser-reporting.test.js';
   const browserHit = 'secret' + " : 'HeadlessChrome/140.0.7339.0'";
+  const playFile = 'test/google-play-publisher.test.js';
+  const playHit = 'token' + " = 'fixture-token-never-recorded'";
   for (const [path, value, expected] of [
     [browserFile, browserHit, 0],
     [browserFile, browserHit.replace('140.0.7339.0', '141.0.7339.0'), 1],
     ['some/other/file.js', browserHit, 1],
+    [playFile, playHit, 0],
+    [playFile, playHit.replace('never', 'unexpectedly'), 1],
+    ['some/other/file.js', playHit, 1],
   ]) {
     const sink = new Map();
     findings(path, value, sink);
     assert.equal(sink.get('a secret assigned in code')?.length ?? 0, expected,
-      'only the exact browser-version ternary in its fixture is allowed');
+      'only the exact named fixture in its intended file is allowed');
   }
 });
 

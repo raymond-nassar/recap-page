@@ -151,6 +151,8 @@ export const ALLOWED = new Map([
     'a fixed synthetic forbidden-field payload that the native capsule schema rejects, not a credential'],
   ['test/browser-reporting.test.js|a secret assigned in code|' + 'secret' + " : 'HeadlessChrome/140.0.7339.0'",
     'the fixed browser-version literal after a ternary colon in the reporter fixture, not an assigned credential'],
+  ['test/google-play-publisher.test.js|a secret assigned in code|' + 'token' + " = 'fixture-token-never-recorded'",
+    'the fixed noncredential bearer sentinel used only by the mocked Play transport tests'],
 ]);
 
 export function findings(label, text, sink) {

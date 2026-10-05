@@ -1,0 +1,152 @@
+name: Google Play testing release
+run-name: Google Play ${{ inputs.mode }} code ${{ inputs.version_code }} source ${{ inputs.source_sha }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Validate without Google access, inspect, or explicitly approved testing release
+        type: choice
+        options: [Validate, Inspect, Publish, Promote]
+        default: Validate
+      source_sha:
+        description: Exact merged application source commit
+        type: string
+        required: true
+      ledger_sha:
+        description: Exact later merged ledger commit containing the artifact seal
+        type: string
+        required: true
+      candidate_run_id:
+        description: Successful protected Android Candidate run that produced the packet
+        type: string
+        required: true
+      artifact_id:
+        description: Immutable GitHub artifact ID of that four-file packet
+        type: string
+        required: true
+      version_code:
+        description: Exact sealed Android code, never a development code
+        type: string
+        required: true
+      track:
+        description: Actual testing track ID from Inspect; no production or guessed alias
+        type: string
+      release_json:
+        description: Publish or Promote only; explicit name, versionCodes, status and releaseNotes
+        type: string
+      expected_track_sha256:
+        description: Publish or Promote only; exact current target digest returned by Inspect
+        type: string
+      upload_cert_sha256:
+        description: Approved public upload-certificate SHA-256, not a key or password
+        type: string
+        required: true
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: google-play-testing-publisher
+  cancel-in-progress: false
+
+jobs:
+  preflight:
+    name: Verify the sealed producer packet without Google credentials
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    outputs:
+      environment: ${{ steps.verify.outputs.environment }}
+      environment_id: ${{ steps.verify.outputs.environment_id }}
+      policy_sha: ${{ steps.verify.outputs.policy_sha }}
+      binding_sha: ${{ steps.verify.outputs.binding_sha }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        timeout-minutes: 2
+        with:
+          ref: ${{ github.workflow_sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        timeout-minutes: 4
+        with:
+          node-version: '24'
+      - name: Validate actual source, artifact, signature, ledger and protection
+        id: verify
+        timeout-minutes: 15
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node scripts/google-play-publisher.mjs preflight
+      - name: Remove only owned packet scratch
+        if: always()
+        timeout-minutes: 3
+        run: node scripts/google-play-publisher.mjs cleanup
+
+  publish:
+    name: Approved exact-packet testing operation
+    needs: preflight
+    if: >-
+      github.event_name == 'workflow_dispatch' &&
+      github.ref == 'refs/heads/main' &&
+      inputs.mode != 'Validate' &&
+      needs.preflight.outputs.environment == 'google-play-publishing'
+    environment: ${{ needs.preflight.outputs.environment }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    permissions:
+      contents: read
+      actions: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        timeout-minutes: 2
+        with:
+          ref: ${{ github.workflow_sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        timeout-minutes: 4
+        with:
+          node-version: '24'
+      - name: Recheck the exact packet and actual current-run human approval
+        timeout-minutes: 15
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          RECAP_PLAY_EXPECTED_ENVIRONMENT_ID: ${{ needs.preflight.outputs.environment_id }}
+          RECAP_PLAY_EXPECTED_POLICY_SHA: ${{ needs.preflight.outputs.policy_sha }}
+          RECAP_PLAY_EXPECTED_BINDING_SHA: ${{ needs.preflight.outputs.binding_sha }}
+          RECAP_PLAY_APPROVED_SIGNER: ${{ vars.ANDROID_UPLOAD_CERT_SHA256 }}
+        run: node scripts/google-play-publisher.mjs approved-preflight
+      - name: Authenticate with short-lived app-scoped credentials
+        id: auth
+        timeout-minutes: 3
+        uses: google-github-actions/auth@7c6bc770dae815cd3e89ee6cdf493a5fab2cc093 # v3.0.0
+        with:
+          workload_identity_provider: ${{ vars.GOOGLE_PLAY_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ vars.GOOGLE_PLAY_SERVICE_ACCOUNT }}
+          token_format: access_token
+          access_token_scopes: https://www.googleapis.com/auth/androidpublisher
+          access_token_lifetime: 900s
+          create_credentials_file: false
+          export_environment_variables: false
+      - name: Execute the approved operation once
+        timeout-minutes: 8
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          RECAP_PLAY_ACCESS_TOKEN: ${{ steps.auth.outputs.access_token }}
+          RECAP_PLAY_EXPECTED_BINDING_SHA: ${{ needs.preflight.outputs.binding_sha }}
+        run: node scripts/google-play-publisher.mjs publish
+      - name: Retain only the sanitized operation receipt
+        if: always()
+        timeout-minutes: 2
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: google-play-${{ github.run_id }}-${{ github.run_attempt }}
+          retention-days: 30
+          if-no-files-found: warn
+          path: ${{ runner.temp }}/recap-google-play-${{ github.run_id }}-${{ github.run_attempt }}/google-play-receipt.json
+      - name: Remove only owned packet scratch
+        if: always()
+        timeout-minutes: 3
+        run: node scripts/google-play-publisher.mjs cleanup

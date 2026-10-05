@@ -219,8 +219,8 @@ export function validateInvocation(input, context, run) {
   return { path, workflowId: run.workflow_id };
 }
 
-export function protectionPolicy(environment, branches) {
-  requireValue(environment.name === ENVIRONMENT && Number.isSafeInteger(environment.id)
+export function protectionPolicy(environment, branches, expectedName = ENVIRONMENT) {
+  requireValue(environment.name === expectedName && Number.isSafeInteger(environment.id)
     && environment.id > 0 && environment.can_admins_bypass === false, 'environment absent or admin bypass not disabled');
   requireValue(environment.deployment_branch_policy?.custom_branch_policies === true
     && environment.deployment_branch_policy.protected_branches === false,

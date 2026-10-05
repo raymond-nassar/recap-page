@@ -576,3 +576,11 @@ somebody performs them on a physical device:
 - [ ] Confirm the installed package's backup/transfer exclusions and document-provider behavior.
 
 Do not mark this checklist complete using resized-browser screenshots or a successful build alone.
+
+## Protected testing publication
+
+The separate [Google Play testing publisher](GOOGLE_PLAY_PUBLISHING.md) validates the retained
+signed and sealed candidate before a manual, owner-approved testing operation. It uses keyless
+authentication, never rebuilds the bundle, and does not grant production access or establish
+physical-device acceptance. Publishing from this workflow is distinct from candidate preparation
+and from distributing a compatible Play-signed APK through GitHub.

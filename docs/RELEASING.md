@@ -128,9 +128,14 @@ merge; a new manual workflow cannot be dispatched until it exists on the default
 Windows dispatch cannot launch Android proof.
 
 Candidate signing requires direct manual dispatch of its own workflow on main, an existing protected
-environment and human approval bound to that run. It is separate from rehearsal and any future
-Play uploader. There is no generic `release: published` subscription. Android prereleases keep
+environment and human approval bound to that run. It is separate from rehearsal and the protected
+Play testing uploader. There is no generic `release: published` subscription. Android prereleases keep
 `android-v...` tags; `v...` identifies the desktop GitHub release expected by Windows submission.
+
+The [protected Play testing publisher](GOOGLE_PLAY_PUBLISHING.md) consumes the exact retained
+packet after its seal is merged. Its default performs validation without Google access; every
+Google operation requires separate human approval. It rejects production tracks and reports
+submission separately from actual user availability.
 
 ## Delivered release matrix
 
