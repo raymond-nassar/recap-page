@@ -1,0 +1,2123 @@
+{
+  "schemaVersion": 1,
+  "id": "mcu-prep-spider-man-brand-new-day",
+  "inventoryId": "mcu-prep-spider-man-brand-new-day",
+  "draftStatus": "unsealed-owned-draft-not-integrated",
+  "reviewStatus": "pending",
+  "sourceProvider": "owner-authored",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/705",
+  "sourceRetrievedAt": "2026-10-03",
+  "sourceRetrievalStatus": "cached",
+  "sourceContentSha256": "5b15db1667fce95e278e124675305ac852b93cbb0d567c0de956ad5c8abb9a54",
+  "packetContentSha256": "2c4fba3a8a84ee279f25c441f780edca85e1e68e3b933d731d8a81d4b9bbed04",
+  "sourceOccurrenceCount": 20,
+  "canonicalSourcePositions": true,
+  "sourceGaps": [
+    {
+      "sourcePosition": 14,
+      "sourceIssueReference": "Venom Super Special (1995) #1",
+      "sourceRangeReference": "Amazing Spider-Man: Brand New Day Vol. 1",
+      "sourceGroup": "Amazing Spider-Man: Brand New Day Vol. 1",
+      "normalizedSeriesTitle": "Venom Super Special",
+      "seriesYear": 1995,
+      "issueNumber": "1",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-10-04",
+      "auditBasis": "Known original 59715 at owner selection2/within8/source14 is a settled provider refusal: /issues/59715 HTTP404; both exact-title queries HTTP200/no exact original; broader Super Special HTTP200/12 distinct observed candidates/no exact Venom. Preserve the original and source position, without substitutes. Coordinator reports OPEN assigned gap Issue707 and linked ruling on705; delivery PR must link707. This is an unsealed draft, not publication or a provider availability claim.",
+      "evidenceSources": [
+        {
+          "kind": "bibliography",
+          "url": "https://books.google.com/books/about/Spider_Man.html?id=UYBTo1grbR4C",
+          "retrievedAt": "2026-10-04"
+        },
+        {
+          "kind": "bibliography",
+          "url": "https://comicbookrealm.com/series/21532/211245/marvel-comics-amazing-spider-man-brand-new-day-tpb-1",
+          "retrievedAt": "2026-10-04"
+        },
+        {
+          "kind": "bibliography",
+          "url": "https://www.simpletragic.com/products/venom-super-special-1995-1",
+          "retrievedAt": "2026-10-04"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/issues/59715",
+          "retrievedAt": "2026-10-04"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Super%20Special&limit=100",
+          "retrievedAt": "2026-10-04"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Venom%20Super-Special&limit=100",
+          "retrievedAt": "2026-10-04"
+        },
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Venom%20Super%20Special&limit=100",
+          "retrievedAt": "2026-10-04"
+        }
+      ],
+      "evidenceDigest": "ffcbfe5f804f332001965f14c428e8c8e59660b2ce7b0fd430321cc3c7e89c0b"
+    }
+  ],
+  "sourceGapDetails": [
+    {
+      "sourcePosition": 14,
+      "selectionPosition": 2,
+      "withinSelectionPosition": 8,
+      "originalIssueId": 59715,
+      "seriesTitle": "Venom Super Special",
+      "seriesYear": 1995,
+      "issueNumber": "1",
+      "seriesId": null,
+      "coverUrl": null,
+      "selectedIssueId": null,
+      "originalSourceUrl": "https://www.marvel.com/comics/issue/59715/venom_super_special_1995_1",
+      "identityStatus": "known-original-provider-refusal-not-unresolved-book",
+      "httpStatus": 404,
+      "receipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/59715",
+        "httpStatus": 404,
+        "retrievedAt": "2026-10-04T03:06:03.724Z",
+        "bodySha256": "41426dd7abec6e73df4ef9ca86bfcc25df0fa63cb38ae3c035bcf7cf79697c05",
+        "receiptStatus": "original-cached-receipt-not-refetched"
+      },
+      "lookupBundle": [
+        {
+          "query": "Venom Super Special",
+          "receipt": {
+            "url": "https://marvel.emreparker.com/v1/search/issues?q=Venom%20Super%20Special&limit=100",
+            "httpStatus": 200,
+            "retrievedAt": "2026-10-04T02:56:24.084Z",
+            "bodySha256": "569d6d44f5045865e6cebdad068c12b67ccde3c8fe1534a0c77acf0b32346f36",
+            "receiptStatus": "original-cached-receipt-not-refetched"
+          },
+          "outcome": "no-exact-Venom-original",
+          "observedCandidateIds": [],
+          "observedCandidateCount": 0,
+          "exactOriginalCount": 0,
+          "completenessLimit": "Observed response only; no total/has_next fields establish global absence."
+        },
+        {
+          "query": "Venom Super-Special",
+          "receipt": {
+            "url": "https://marvel.emreparker.com/v1/search/issues?q=Venom%20Super-Special&limit=100",
+            "httpStatus": 200,
+            "retrievedAt": "2026-10-04T02:59:03.857Z",
+            "bodySha256": "47f4aad4f3b7934496eee2cee84f3313e2549f396bd5ba8e9415696d0c42cf2f",
+            "receiptStatus": "original-cached-receipt-not-refetched"
+          },
+          "outcome": "no-exact-Venom-original",
+          "observedCandidateIds": [],
+          "observedCandidateCount": 0,
+          "exactOriginalCount": 0,
+          "completenessLimit": "Observed response only; no total/has_next fields establish global absence."
+        },
+        {
+          "query": "Super Special",
+          "receipt": {
+            "url": "https://marvel.emreparker.com/v1/search/issues?q=Super%20Special&limit=100",
+            "httpStatus": 200,
+            "retrievedAt": "2026-10-04T03:26:35.851Z",
+            "bodySha256": "ca5413ddcf74c0e7511d2cd1a3696bb43fe051af64ecb9b1a91e1cb89d582eea",
+            "receiptStatus": "original-cached-receipt-not-refetched"
+          },
+          "outcome": "no-exact-Venom-original",
+          "observedCandidateIds": [
+            77775,
+            50896,
+            54964,
+            54966,
+            54967,
+            79442,
+            79450,
+            59712,
+            59710,
+            59711,
+            36775,
+            49168
+          ],
+          "observedCandidateCount": 12,
+          "exactOriginalCount": 0,
+          "completenessLimit": "Observed response only; no total/has_next fields establish global absence."
+        },
+        {
+          "route": "/issues/59715",
+          "receipt": {
+            "url": "https://marvel.emreparker.com/v1/issues/59715",
+            "httpStatus": 404,
+            "retrievedAt": "2026-10-04T03:06:03.724Z",
+            "bodySha256": "41426dd7abec6e73df4ef9ca86bfcc25df0fa63cb38ae3c035bcf7cf79697c05",
+            "receiptStatus": "original-cached-receipt-not-refetched"
+          },
+          "outcome": "settled-provider-refusal-for-known-original"
+        }
+      ],
+      "issue": {
+        "url": "https://github.com/raymond-nassar/recap-page/issues/707",
+        "stateReportedByCoordinator": "OPEN",
+        "assigneeReportedByCoordinator": "raymond-nassar",
+        "labelsReportedByCoordinator": [],
+        "coordinatorReportedAt": "2026-10-03T21:31:33.637-07:00",
+        "verificationProvenance": "Coordinator reports independently verified title/body/state/assignment and primary Issue link; this draft owner did not refetch.",
+        "guideRulingUrl": "https://github.com/raymond-nassar/recap-page/issues/705#issuecomment-5976584920",
+        "eventualDeliveryPrLinkRequired": true,
+        "duplicateFilingForbidden": true
+      },
+      "nonSubstituteIds": [
+        59710,
+        59711,
+        59712,
+        42148,
+        59421,
+        12010
+      ],
+      "collectedMaterial": "Material from Venom Super Special #1; exact reprinted story title is not independently verified",
+      "wholeOriginalReadingCaveat": "The selected trade collects only material from this original. The full issue includes Planet of the Symbiotes Chapter Three and other material. Do not add the preceding chapters or label the collected segment Career Day."
+    }
+  ],
+  "expectedCount": 19,
+  "proposedManifest": {
+    "id": "mcu-prep-spider-man-brand-new-day",
+    "name": "MCU Prep: Spider-Man: Brand New Day",
+    "description": "Three owner-selected first trades: Coming Home, Brand New Day Vol. 1 and Back to Basics. Selected bonus material stays with its collection; reading opens whole original comics.",
+    "type": "screen-companion",
+    "depth": "selected",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "mcu-prep-spider-man-brand-new-day.md",
+    "sourcePage": "https://github.com/raymond-nassar/recap-page/issues/705",
+    "sourceOrigin": "Compiled for this project",
+    "sourceLicense": null,
+    "out": "mcu_prep_spider_man_brand_new_day.json",
+    "characters": [
+      "Spider-Man"
+    ],
+    "keywords": [
+      "MCU Prep",
+      "Spider-Man",
+      "Peter Parker",
+      "Coming Home",
+      "Brand New Day",
+      "Back to Basics",
+      "J. Michael Straczynski",
+      "Dan Slott",
+      "Nick Spencer"
+    ],
+    "expect": 20,
+    "timeline": null,
+    "coverIssueId": 3583
+  },
+  "knownSourceVector": [
+    3583,
+    43123,
+    43125,
+    43128,
+    43130,
+    43132,
+    17338,
+    17340,
+    17341,
+    17581,
+    17582,
+    17583,
+    20809,
+    59715,
+    67631,
+    67633,
+    67635,
+    67636,
+    67637,
+    66474
+  ],
+  "resolvedVector": [
+    3583,
+    43123,
+    43125,
+    43128,
+    43130,
+    43132,
+    17338,
+    17340,
+    17341,
+    17581,
+    17582,
+    17583,
+    20809,
+    67631,
+    67633,
+    67635,
+    67636,
+    67637,
+    66474
+  ],
+  "sourceGroupCounts": [
+    6,
+    8,
+    6
+  ],
+  "editorialOrder": {
+    "decisionId": "U1",
+    "status": "selected-by-coordinator-under-owner-autonomous-delegation",
+    "decisionUrl": "https://github.com/raymond-nassar/recap-page/issues/705#issuecomment-5976584920",
+    "basis": "Publisher-listed supplemental order after Spencer (2018) #1-5",
+    "originalIssueId": 66474,
+    "sourcePosition": 20,
+    "selectionPosition": 3,
+    "withinSelectionPosition": 6,
+    "conditionalResolvedRow": 19,
+    "physicalTocVerified": false,
+    "newHumanReceipt": false,
+    "publicationReleased": false
+  },
+  "collectionNotes": [
+    {
+      "selectionPosition": 1,
+      "collectionTitle": "Amazing Spider-Man Vol. 1: Coming Home",
+      "notes": [
+        "Identifies the first trade's contents, not a larger JMS omnibus or later ultimate/complete collection. No exact printing day is asserted."
+      ],
+      "originalNotes": []
+    },
+    {
+      "selectionPosition": 2,
+      "collectionTitle": "Amazing Spider-Man: Brand New Day Vol. 1",
+      "notes": [
+        "The selected paperback boundary is not the larger Brand New Day Complete Collection.",
+        "No independently verified selected-paperback original named Marvel Spotlight or Director's Cut is added.",
+        "The digital contents order and independent TPB boundary are verified; no physical TOC/image was inspected.",
+        "Only material from Venom Super Special is collected. Reading that whole original exposes additional unrelated material; no preceding Planet of the Symbiotes chapters are added.",
+        "The exact selected Venom sub-story title remains unverified. Use the factual material-from label, not Career Day."
+      ],
+      "originalNotes": [
+        {
+          "sourcePosition": 13,
+          "originalIssueId": 20809,
+          "collectedMaterial": "Swing Shift",
+          "wholeOriginalReadingCaveat": "The original also contains a One More Day preview. The selected trade's Swing Shift material does not authorize adding a One More Day prelude or treating its Director's Cut reprint as another original."
+        },
+        {
+          "sourcePosition": 14,
+          "originalIssueId": 59715,
+          "collectedMaterial": "Material from Venom Super Special #1; exact reprinted story title is not independently verified",
+          "wholeOriginalReadingCaveat": "The selected trade collects only material from this original. The full issue includes Planet of the Symbiotes Chapter Three and other material. Do not add the preceding chapters or label the collected segment Career Day."
+        }
+      ]
+    },
+    {
+      "selectionPosition": 3,
+      "collectionTitle": "Amazing Spider-Man by Nick Spencer Vol. 1: Back to Basics",
+      "notes": [
+        "The verified published core span is #1-5, not the contradictory seller/print #1-6 text.",
+        "Only the Spider-Man FCBD segment is collected; whole-original reading includes additional FCBD material.",
+        "It is the newest of these three selected starting points, from 2018, not the most recent/current Spider-Man run.",
+        "No replacement run or film-source claim is authorized."
+      ],
+      "originalNotes": [
+        {
+          "sourcePosition": 20,
+          "originalIssueId": 66474,
+          "collectedMaterial": "Amazing Spider-Man story only",
+          "wholeOriginalReadingCaveat": "Only the Spider-Man segment is collected by the selected trade. The app opens the full FCBD original, including other material; its provider credit list also includes Gerry Duggan, Mike Deodato, and Mike O'sullivan."
+        }
+      ]
+    }
+  ],
+  "candidateMetadata": [
+    {
+      "id": 3583,
+      "title": "Amazing Spider-Man",
+      "issueTitle": "Amazing Spider-Man (1999) #30",
+      "seriesTitle": "Amazing Spider-Man",
+      "apiSeriesName": "Amazing Spider-Man (1999 - 2013)",
+      "seriesId": 454,
+      "issueNumber": "30",
+      "seriesYear": 1999,
+      "detailUrl": "https://www.marvel.com/comics/issue/3583/amazing_spider-man_1999_30",
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/3/10/50b3a4745f209",
+        "extension": "jpg"
+      },
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/3/10/50b3a4745f209.jpg",
+      "coverBytesFetched": false,
+      "creators": [
+        {
+          "id": 13366,
+          "name": "Avalon Dan Kemp",
+          "role": "colorist"
+        },
+        {
+          "id": 362,
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "id": 350,
+          "name": "Richard Starkings",
+          "role": "letterer"
+        },
+        {
+          "id": 13196,
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "id": 4,
+          "name": "J. Michael Straczynski",
+          "role": "writer"
+        }
+      ],
+      "pageCount": 0,
+      "onSaleDate": "2001-04-11T00:00:00+0000",
+      "unlimitedDate": "2001-04-11T00:00:00+0000",
+      "availabilityClaim": null,
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/3583",
+      "retrievedAt": "2026-10-04T03:06:04.328Z",
+      "httpStatus": 200,
+      "bodySha256": "1e751138dc0612dc4f64ef4a364fc860d36c9e1d1112f21fb8d19f504d83748a",
+      "metadataLimits": []
+    },
+    {
+      "id": 43123,
+      "title": "Amazing Spider-Man",
+      "issueTitle": "Amazing Spider-Man (1999) #31",
+      "seriesTitle": "Amazing Spider-Man",
+      "apiSeriesName": "Amazing Spider-Man (1999 - 2013)",
+      "seriesId": 454,
+      "issueNumber": "31",
+      "seriesYear": 1999,
+      "detailUrl": "https://www.marvel.com/comics/issue/43123/amazing_spider-man_1999_31",
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/2/80/50b51242d631d",
+        "extension": "jpg"
+      },
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/2/80/50b51242d631d.jpg",
+      "coverBytesFetched": false,
+      "creators": [
+        {
+          "id": 13366,
+          "name": "Avalon Dan Kemp",
+          "role": "colorist"
+        },
+        {
+          "id": 362,
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "id": 350,
+          "name": "Richard Starkings",
+          "role": "letterer"
+        },
+        {
+          "id": 13196,
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "id": 4,
+          "name": "J. Michael Straczynski",
+          "role": "writer"
+        }
+      ],
+      "pageCount": 0,
+      "onSaleDate": "2001-05-09T00:00:00+0000",
+      "unlimitedDate": "2001-05-09T00:00:00+0000",
+      "availabilityClaim": null,
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/43123",
+      "retrievedAt": "2026-10-04T03:06:04.577Z",
+      "httpStatus": 200,
+      "bodySha256": "59d06b78b8374e7a59114252cd6f5d51a955441b81b0c5ba9236c4fcb10d27ee",
+      "metadataLimits": []
+    },
+    {
+      "id": 43125,
+      "title": "Amazing Spider-Man",
+      "issueTitle": "Amazing Spider-Man (1999) #32",
+      "seriesTitle": "Amazing Spider-Man",
+      "apiSeriesName": "Amazing Spider-Man (1999 - 2013)",
+      "seriesId": 454,
+      "issueNumber": "32",
+      "seriesYear": 1999,
+      "detailUrl": "https://www.marvel.com/comics/issue/43125/amazing_spider-man_1999_32",
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/5/e0/57a34c140a58c",
+        "extension": "jpg"
+      },
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/5/e0/57a34c140a58c.jpg",
+      "coverBytesFetched": false,
+      "creators": [
+        {
+          "id": 13366,
+          "name": "Avalon Dan Kemp",
+          "role": "colorist"
+        },
+        {
+          "id": 362,
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "id": 350,
+          "name": "Richard Starkings",
+          "role": "letterer"
+        },
+        {
+          "id": 13196,
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "id": 4,
+          "name": "J. Michael Straczynski",
+          "role": "writer"
+        }
+      ],
+      "pageCount": 0,
+      "onSaleDate": "2001-06-13T00:00:00+0000",
+      "unlimitedDate": "2001-06-13T00:00:00+0000",
+      "availabilityClaim": null,
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/43125",
+      "retrievedAt": "2026-10-04T03:06:04.781Z",
+      "httpStatus": 200,
+      "bodySha256": "30afa7edd4e2df31f0db946079bdb39c2999d90ffc4504521aa3e0623ee602f0",
+      "metadataLimits": []
+    },
+    {
+      "id": 43128,
+      "title": "Amazing Spider-Man",
+      "issueTitle": "Amazing Spider-Man (1999) #33",
+      "seriesTitle": "Amazing Spider-Man",
+      "apiSeriesName": "Amazing Spider-Man (1999 - 2013)",
+      "seriesId": 454,
+      "issueNumber": "33",
+      "seriesYear": 1999,
+      "detailUrl": "https://www.marvel.com/comics/issue/43128/amazing_spider-man_1999_33",
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/b/c0/57a34b04dbc2f",
+        "extension": "jpg"
+      },
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/b/c0/57a34b04dbc2f.jpg",
+      "coverBytesFetched": false,
+      "creators": [],
+      "pageCount": 0,
+      "onSaleDate": "2001-09-01T00:00:00+0000",
+      "unlimitedDate": "2012-05-01T00:00:00+0000",
+      "availabilityClaim": null,
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/43128",
+      "retrievedAt": "2026-10-04T03:06:05.025Z",
+      "httpStatus": 200,
+      "bodySha256": "6da2ee2388c1966289eff9ee20717dfe54672b8ca05dfbd91550683254304206",
+      "metadataLimits": [
+        "Provider creator list is empty; book-level bibliography remains separately sourced."
+      ]
+    },
+    {
+      "id": 43130,
+      "title": "Amazing Spider-Man",
+      "issueTitle": "Amazing Spider-Man (1999) #34",
+      "seriesTitle": "Amazing Spider-Man",
+      "apiSeriesName": "Amazing Spider-Man (1999 - 2013)",
+      "seriesId": 454,
+      "issueNumber": "34",
+      "seriesYear": 1999,
+      "detailUrl": "https://www.marvel.com/comics/issue/43130/amazing_spider-man_1999_34",
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/70/57a349c3ee333",
+        "extension": "jpg"
+      },
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/6/70/57a349c3ee333.jpg",
+      "coverBytesFetched": false,
+      "creators": [
+        {
+          "id": 13366,
+          "name": "Avalon Dan Kemp",
+          "role": "colorist"
+        },
+        {
+          "id": 362,
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "id": 350,
+          "name": "Richard Starkings",
+          "role": "letterer"
+        },
+        {
+          "id": 13196,
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "id": 4,
+          "name": "J. Michael Straczynski",
+          "role": "writer"
+        }
+      ],
+      "pageCount": 0,
+      "onSaleDate": "2001-10-01T00:00:00+0000",
+      "unlimitedDate": "2001-08-15T00:00:00+0000",
+      "availabilityClaim": null,
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/43130",
+      "retrievedAt": "2026-10-04T03:06:05.264Z",
+      "httpStatus": 200,
+      "bodySha256": "665c5165cc9223c93ac38d78c362acc9216731f78314268dafb563a0677aea12",
+      "metadataLimits": []
+    },
+    {
+      "id": 43132,
+      "title": "Amazing Spider-Man",
+      "issueTitle": "Amazing Spider-Man (1999) #35",
+      "seriesTitle": "Amazing Spider-Man",
+      "apiSeriesName": "Amazing Spider-Man (1999 - 2013)",
+      "seriesId": 454,
+      "issueNumber": "35",
+      "seriesYear": 1999,
+      "detailUrl": "https://www.marvel.com/comics/issue/43132/amazing_spider-man_1999_35",
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/7/c0/57a34895df8f9",
+        "extension": "jpg"
+      },
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/7/c0/57a34895df8f9.jpg",
+      "coverBytesFetched": false,
+      "creators": [],
+      "pageCount": 0,
+      "onSaleDate": "2001-11-01T00:00:00+0000",
+      "unlimitedDate": "2012-05-01T00:00:00+0000",
+      "availabilityClaim": null,
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/43132",
+      "retrievedAt": "2026-10-04T03:06:05.544Z",
+      "httpStatus": 200,
+      "bodySha256": "b61f10ab4c520a2c75b152849bed6f95ee8d2b88a7c753fa3b44024f90b027ed",
+      "metadataLimits": [
+        "Provider creator list is empty; book-level bibliography remains separately sourced."
+      ]
+    },
+    {
+      "id": 17338,
+      "title": "Amazing Spider-Man",
+      "issueTitle": "Amazing Spider-Man (1999) #546",
+      "seriesTitle": "Amazing Spider-Man",
+      "apiSeriesName": "Amazing Spider-Man (1999 - 2013)",
+      "seriesId": 454,
+      "issueNumber": "546",
+      "seriesYear": 1999,
+      "detailUrl": "https://www.marvel.com/comics/issue/17338/amazing_spider-man_1999_546",
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/c/20/4d24e46ee23ad",
+        "extension": "jpg"
+      },
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/c/20/4d24e46ee23ad.jpg",
+      "coverBytesFetched": false,
+      "creators": [
+        {
+          "id": 428,
+          "name": "Antonio Fabela",
+          "role": "colorist"
+        },
+        {
+          "id": 441,
+          "name": "Chris Chuckry",
+          "role": "colorist"
+        },
+        {
+          "id": 442,
+          "name": "Dean White",
+          "role": "colorist"
+        },
+        {
+          "id": 360,
+          "name": "Justin Ponsor",
+          "role": "colorist"
+        },
+        {
+          "id": 774,
+          "name": "Morry Hollowell",
+          "role": "colorist"
+        },
+        {
+          "id": 13215,
+          "name": "Rain Beredo",
+          "role": "colorist"
+        },
+        {
+          "id": 471,
+          "name": "Dexter Vines",
+          "role": "cover artist"
+        },
+        {
+          "id": 616,
+          "name": "Jay Leisten",
+          "role": "cover artist"
+        },
+        {
+          "id": 570,
+          "name": "Klaus Janson",
+          "role": "cover artist"
+        },
+        {
+          "id": 13567,
+          "name": "Mike Deodato Jr.",
+          "role": "cover artist"
+        },
+        {
+          "id": 12581,
+          "name": "Vc Chris Eliopoulos",
+          "role": "letterer"
+        },
+        {
+          "id": 425,
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "id": 13272,
+          "name": "John Romita Sr.",
+          "role": "penciler"
+        },
+        {
+          "id": 4954,
+          "name": "Phil Winslade",
+          "role": "penciler"
+        },
+        {
+          "id": 9484,
+          "name": "Steve Mcniven",
+          "role": "penciler"
+        },
+        {
+          "id": 4953,
+          "name": "Bob Gale",
+          "role": "writer"
+        },
+        {
+          "id": 12983,
+          "name": "Dan Slott",
+          "role": "writer"
+        },
+        {
+          "id": 644,
+          "name": "Marc Guggenheim",
+          "role": "writer"
+        },
+        {
+          "id": 10409,
+          "name": "Zeb Wells",
+          "role": "writer"
+        }
+      ],
+      "pageCount": 48,
+      "onSaleDate": "2008-01-09T00:00:00+0000",
+      "unlimitedDate": "2008-01-09T00:00:00+0000",
+      "availabilityClaim": null,
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/17338",
+      "retrievedAt": "2026-10-04T03:06:05.745Z",
+      "httpStatus": 200,
+      "bodySha256": "c877478cdadb184fe604788823e60c3a05786a79735038fb743f9313b7e16bde",
+      "metadataLimits": []
+    },
+    {
+      "id": 17340,
+      "title": "Amazing Spider-Man",
+      "issueTitle": "Amazing Spider-Man (1999) #547",
+      "seriesTitle": "Amazing Spider-Man",
+      "apiSeriesName": "Amazing Spider-Man (1999 - 2013)",
+      "seriesId": 454,
+      "issueNumber": "547",
+      "seriesYear": 1999,
+      "detailUrl": "https://www.marvel.com/comics/issue/17340/amazing_spider-man_1999_547",
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/60/5787b1922acc3",
+        "extension": "jpg"
+      },
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/6/60/5787b1922acc3.jpg",
+      "coverBytesFetched": false,
+      "creators": [
+        {
+          "id": 774,
+          "name": "Morry Hollowell",
+          "role": "colorist"
+        },
+        {
+          "id": 471,
+          "name": "Dexter Vines",
+          "role": "cover artist"
+        },
+        {
+          "id": 12980,
+          "name": "Vc Cory Petit",
+          "role": "letterer"
+        },
+        {
+          "id": 9484,
+          "name": "Steve Mcniven",
+          "role": "penciler"
+        },
+        {
+          "id": 12983,
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "pageCount": 32,
+      "onSaleDate": "2008-01-16T00:00:00+0000",
+      "unlimitedDate": "2008-01-16T00:00:00+0000",
+      "availabilityClaim": null,
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/17340",
+      "retrievedAt": "2026-10-04T03:06:06.046Z",
+      "httpStatus": 200,
+      "bodySha256": "d5d8431a2679ddda02b1d658af60251ff657701b35d8fd9f2e363d1cf842ff4b",
+      "metadataLimits": []
+    },
+    {
+      "id": 17341,
+      "title": "Amazing Spider-Man",
+      "issueTitle": "Amazing Spider-Man (1999) #548",
+      "seriesTitle": "Amazing Spider-Man",
+      "apiSeriesName": "Amazing Spider-Man (1999 - 2013)",
+      "seriesId": 454,
+      "issueNumber": "548",
+      "seriesYear": 1999,
+      "detailUrl": "https://www.marvel.com/comics/issue/17341/amazing_spider-man_1999_548",
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/3/70/5787c1c0a1918",
+        "extension": "jpg"
+      },
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/3/70/5787c1c0a1918.jpg",
+      "coverBytesFetched": false,
+      "creators": [
+        {
+          "id": 501,
+          "name": "Dave Stewart",
+          "role": "colorist"
+        },
+        {
+          "id": 774,
+          "name": "Morry Hollowell",
+          "role": "colorist"
+        },
+        {
+          "id": 471,
+          "name": "Dexter Vines",
+          "role": "cover artist"
+        },
+        {
+          "id": 12980,
+          "name": "Vc Cory Petit",
+          "role": "letterer"
+        },
+        {
+          "id": 9484,
+          "name": "Steve Mcniven",
+          "role": "penciler"
+        },
+        {
+          "id": 12983,
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "pageCount": 32,
+      "onSaleDate": "2008-01-23T00:00:00+0000",
+      "unlimitedDate": "2008-01-23T00:00:00+0000",
+      "availabilityClaim": null,
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/17341",
+      "retrievedAt": "2026-10-04T03:06:06.213Z",
+      "httpStatus": 200,
+      "bodySha256": "97665a537ebe3ce40c12eabf0d95a96ddd304c57da951fd8514819cec7568b02",
+      "metadataLimits": []
+    },
+    {
+      "id": 17581,
+      "title": "Amazing Spider-Man",
+      "issueTitle": "Amazing Spider-Man (1999) #549",
+      "seriesTitle": "Amazing Spider-Man",
+      "apiSeriesName": "Amazing Spider-Man (1999 - 2013)",
+      "seriesId": 454,
+      "issueNumber": "549",
+      "seriesYear": 1999,
+      "detailUrl": "https://www.marvel.com/comics/issue/17581/amazing_spider-man_1999_549",
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/2/50/4d24fe3e6dcdb",
+        "extension": "jpg"
+      },
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/2/50/4d24fe3e6dcdb.jpg",
+      "coverBytesFetched": false,
+      "creators": [
+        {
+          "id": 426,
+          "name": "Jason Keith",
+          "role": "colorist"
+        },
+        {
+          "id": 11757,
+          "name": "Salvador Larroca",
+          "role": "cover artist"
+        },
+        {
+          "id": 12980,
+          "name": "Vc Cory Petit",
+          "role": "letterer"
+        },
+        {
+          "id": 644,
+          "name": "Marc Guggenheim",
+          "role": "writer"
+        }
+      ],
+      "pageCount": 32,
+      "onSaleDate": "2008-02-06T00:00:00+0000",
+      "unlimitedDate": "2008-02-06T00:00:00+0000",
+      "availabilityClaim": null,
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/17581",
+      "retrievedAt": "2026-10-04T03:06:06.456Z",
+      "httpStatus": 200,
+      "bodySha256": "ce683eb3b929c9ecbe535524d70c3b2a1fbb40c698e0cc33f42a850ac0bbc667",
+      "metadataLimits": []
+    },
+    {
+      "id": 17582,
+      "title": "Amazing Spider-Man",
+      "issueTitle": "Amazing Spider-Man (1999) #550",
+      "seriesTitle": "Amazing Spider-Man",
+      "apiSeriesName": "Amazing Spider-Man (1999 - 2013)",
+      "seriesId": 454,
+      "issueNumber": "550",
+      "seriesYear": 1999,
+      "detailUrl": "https://www.marvel.com/comics/issue/17582/amazing_spider-man_1999_550",
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/e/90/4d24ea242fbbb",
+        "extension": "jpg"
+      },
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/e/90/4d24ea242fbbb.jpg",
+      "coverBytesFetched": false,
+      "creators": [
+        {
+          "id": 426,
+          "name": "Jason Keith",
+          "role": "colorist"
+        },
+        {
+          "id": 1131,
+          "name": "Stephane Peru",
+          "role": "colorist"
+        },
+        {
+          "id": 11757,
+          "name": "Salvador Larroca",
+          "role": "cover artist"
+        },
+        {
+          "id": 7843,
+          "name": "Todd Klein",
+          "role": "letterer"
+        },
+        {
+          "id": 12980,
+          "name": "Vc Cory Petit",
+          "role": "letterer"
+        },
+        {
+          "id": 644,
+          "name": "Marc Guggenheim",
+          "role": "writer"
+        }
+      ],
+      "pageCount": 32,
+      "onSaleDate": "2008-02-13T00:00:00+0000",
+      "unlimitedDate": "2008-02-13T00:00:00+0000",
+      "availabilityClaim": null,
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/17582",
+      "retrievedAt": "2026-10-04T03:06:06.673Z",
+      "httpStatus": 200,
+      "bodySha256": "20b049d28ab36324efb7de4aa0747f720f92ed46123233fd704fef6444d18894",
+      "metadataLimits": []
+    },
+    {
+      "id": 17583,
+      "title": "Amazing Spider-Man",
+      "issueTitle": "Amazing Spider-Man (1999) #551",
+      "seriesTitle": "Amazing Spider-Man",
+      "apiSeriesName": "Amazing Spider-Man (1999 - 2013)",
+      "seriesId": 454,
+      "issueNumber": "551",
+      "seriesYear": 1999,
+      "detailUrl": "https://www.marvel.com/comics/issue/17583/amazing_spider-man_1999_551",
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/2/c0/4d2520d2335e4",
+        "extension": "jpg"
+      },
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/2/c0/4d2520d2335e4.jpg",
+      "coverBytesFetched": false,
+      "creators": [
+        {
+          "id": 426,
+          "name": "Jason Keith",
+          "role": "colorist"
+        },
+        {
+          "id": 1131,
+          "name": "Stephane Peru",
+          "role": "colorist"
+        },
+        {
+          "id": 11757,
+          "name": "Salvador Larroca",
+          "role": "cover artist"
+        },
+        {
+          "id": 7843,
+          "name": "Todd Klein",
+          "role": "letterer"
+        },
+        {
+          "id": 12980,
+          "name": "Vc Cory Petit",
+          "role": "letterer"
+        },
+        {
+          "id": 644,
+          "name": "Marc Guggenheim",
+          "role": "writer"
+        }
+      ],
+      "pageCount": 32,
+      "onSaleDate": "2008-02-20T00:00:00+0000",
+      "unlimitedDate": "2008-02-20T00:00:00+0000",
+      "availabilityClaim": null,
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/17583",
+      "retrievedAt": "2026-10-04T03:06:06.910Z",
+      "httpStatus": 200,
+      "bodySha256": "476a11278beecb5bbe06afc25355a72210db2c1e6cbbda6ff1500bb91e9b99dd",
+      "metadataLimits": []
+    },
+    {
+      "id": 20809,
+      "title": "FREE COMIC BOOK DAY 2007 1",
+      "issueTitle": "FREE COMIC BOOK DAY 2007 1 (2007) #1",
+      "seriesTitle": "FREE COMIC BOOK DAY 2007 1",
+      "apiSeriesName": "FREE COMIC BOOK DAY 2007 1 (2007)",
+      "seriesId": 3913,
+      "issueNumber": "1",
+      "seriesYear": 2007,
+      "detailUrl": "https://www.marvel.com/comics/issue/20809/free_comic_book_day_2007_1_2007_1",
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/9/80/4bb87fbe41815",
+        "extension": "jpg"
+      },
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/9/80/4bb87fbe41815.jpg",
+      "coverBytesFetched": false,
+      "creators": [
+        {
+          "id": 8738,
+          "name": "Jeromy Cox",
+          "role": "colorist"
+        },
+        {
+          "id": 485,
+          "name": "Andy Lanning",
+          "role": "cover artist"
+        },
+        {
+          "id": 359,
+          "name": "John Dell",
+          "role": "cover artist"
+        },
+        {
+          "id": 12980,
+          "name": "Vc Cory Petit",
+          "role": "letterer"
+        },
+        {
+          "id": 306,
+          "name": "Phil Jimenez",
+          "role": "penciler"
+        },
+        {
+          "id": 12983,
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
+      "pageCount": 40,
+      "onSaleDate": "2007-04-04T00:00:00+0000",
+      "unlimitedDate": "2007-04-04T00:00:00+0000",
+      "availabilityClaim": null,
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/20809",
+      "retrievedAt": "2026-10-04T03:02:19.375Z",
+      "httpStatus": 200,
+      "bodySha256": "73941759a2c2e09cf85066b06c0b4e6a6bd2e0b039bfc5debb2010d06b6e69fc",
+      "metadataLimits": []
+    },
+    {
+      "id": 67631,
+      "title": "The Amazing Spider-Man",
+      "issueTitle": "The Amazing Spider-Man (2018) #1",
+      "seriesTitle": "The Amazing Spider-Man",
+      "apiSeriesName": "The Amazing Spider-Man (2018 - 2022)",
+      "seriesId": 24396,
+      "issueNumber": "1",
+      "seriesYear": 2018,
+      "detailUrl": "https://www.marvel.com/comics/issue/67631/the_amazing_spider-man_2018_1",
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/b/90/5b3feb60f1a30",
+        "extension": "jpg"
+      },
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/b/90/5b3feb60f1a30.jpg",
+      "coverBytesFetched": false,
+      "creators": [
+        {
+          "id": 430,
+          "name": "Edgar Delgado",
+          "role": "colorist"
+        },
+        {
+          "id": 4306,
+          "name": "Laura Martin",
+          "role": "colorist"
+        },
+        {
+          "id": 13320,
+          "name": "Cliff Rathburn",
+          "role": "cover artist"
+        },
+        {
+          "id": 447,
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "id": 4300,
+          "name": "Nick Lowe",
+          "role": "editor"
+        },
+        {
+          "id": 5251,
+          "name": "Vc Joe Caramagna",
+          "role": "letterer"
+        },
+        {
+          "id": 72,
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "id": 13296,
+          "name": "Ryan Ottley",
+          "role": "penciler"
+        },
+        {
+          "id": 11434,
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "pageCount": 56,
+      "onSaleDate": "2018-07-11T00:00:00+0000",
+      "unlimitedDate": "2019-01-14T00:00:00+0000",
+      "availabilityClaim": null,
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/67631",
+      "retrievedAt": "2026-10-04T03:06:07.135Z",
+      "httpStatus": 200,
+      "bodySha256": "cf74e09f780ab6ddc9074b539f46110be5f290c6de9f2a4c943d7d3d9e07f10b",
+      "metadataLimits": []
+    },
+    {
+      "id": 67633,
+      "title": "The Amazing Spider-Man",
+      "issueTitle": "The Amazing Spider-Man (2018) #2",
+      "seriesTitle": "The Amazing Spider-Man",
+      "apiSeriesName": "The Amazing Spider-Man (2018 - 2022)",
+      "seriesId": 24396,
+      "issueNumber": "2",
+      "seriesYear": 2018,
+      "detailUrl": "https://www.marvel.com/comics/issue/67633/the_amazing_spider-man_2018_2",
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/e0/5b50f9d5c3478",
+        "extension": "jpg"
+      },
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/6/e0/5b50f9d5c3478.jpg",
+      "coverBytesFetched": false,
+      "creators": [
+        {
+          "id": 4306,
+          "name": "Laura Martin",
+          "role": "colorist"
+        },
+        {
+          "id": 13320,
+          "name": "Cliff Rathburn",
+          "role": "cover artist"
+        },
+        {
+          "id": 4300,
+          "name": "Nick Lowe",
+          "role": "editor"
+        },
+        {
+          "id": 5251,
+          "name": "Vc Joe Caramagna",
+          "role": "letterer"
+        },
+        {
+          "id": 13296,
+          "name": "Ryan Ottley",
+          "role": "penciler"
+        },
+        {
+          "id": 11434,
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "pageCount": 32,
+      "onSaleDate": "2018-07-25T00:00:00+0000",
+      "unlimitedDate": "2019-01-28T00:00:00+0000",
+      "availabilityClaim": null,
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/67633",
+      "retrievedAt": "2026-10-04T03:06:07.371Z",
+      "httpStatus": 200,
+      "bodySha256": "97be4e6c04bdda8d9058ef29475110ff1f60f7d004745b0b9f85d73538f1d0a5",
+      "metadataLimits": []
+    },
+    {
+      "id": 67635,
+      "title": "The Amazing Spider-Man",
+      "issueTitle": "The Amazing Spider-Man (2018) #3",
+      "seriesTitle": "The Amazing Spider-Man",
+      "apiSeriesName": "The Amazing Spider-Man (2018 - 2022)",
+      "seriesId": 24396,
+      "issueNumber": "3",
+      "seriesYear": 2018,
+      "detailUrl": "https://www.marvel.com/comics/issue/67635/the_amazing_spider-man_2018_3",
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/8/e0/5b62103ef2e2f",
+        "extension": "jpg"
+      },
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/8/e0/5b62103ef2e2f.jpg",
+      "coverBytesFetched": false,
+      "creators": [
+        {
+          "id": 4306,
+          "name": "Laura Martin",
+          "role": "colorist"
+        },
+        {
+          "id": 13320,
+          "name": "Cliff Rathburn",
+          "role": "cover artist"
+        },
+        {
+          "id": 4300,
+          "name": "Nick Lowe",
+          "role": "editor"
+        },
+        {
+          "id": 5251,
+          "name": "Vc Joe Caramagna",
+          "role": "letterer"
+        },
+        {
+          "id": 13296,
+          "name": "Ryan Ottley",
+          "role": "penciler"
+        },
+        {
+          "id": 11434,
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "pageCount": 32,
+      "onSaleDate": "2018-08-08T00:00:00+0000",
+      "unlimitedDate": "2019-02-11T00:00:00+0000",
+      "availabilityClaim": null,
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/67635",
+      "retrievedAt": "2026-10-04T03:06:07.623Z",
+      "httpStatus": 200,
+      "bodySha256": "5cbb1b9d7dca68f7b8ebac113043e03f8348b0e699367017dc34ba37869bb1ab",
+      "metadataLimits": []
+    },
+    {
+      "id": 67636,
+      "title": "The Amazing Spider-Man",
+      "issueTitle": "The Amazing Spider-Man (2018) #4",
+      "seriesTitle": "The Amazing Spider-Man",
+      "apiSeriesName": "The Amazing Spider-Man (2018 - 2022)",
+      "seriesId": 24396,
+      "issueNumber": "4",
+      "seriesYear": 2018,
+      "detailUrl": "https://www.marvel.com/comics/issue/67636/the_amazing_spider-man_2018_4",
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/9/d0/5b748df54d4a6",
+        "extension": "jpg"
+      },
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/9/d0/5b748df54d4a6.jpg",
+      "coverBytesFetched": false,
+      "creators": [
+        {
+          "id": 4306,
+          "name": "Laura Martin",
+          "role": "colorist"
+        },
+        {
+          "id": 13320,
+          "name": "Cliff Rathburn",
+          "role": "cover artist"
+        },
+        {
+          "id": 4300,
+          "name": "Nick Lowe",
+          "role": "editor"
+        },
+        {
+          "id": 5251,
+          "name": "Vc Joe Caramagna",
+          "role": "letterer"
+        },
+        {
+          "id": 13296,
+          "name": "Ryan Ottley",
+          "role": "penciler"
+        },
+        {
+          "id": 11434,
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "pageCount": 32,
+      "onSaleDate": "2018-08-22T00:00:00+0000",
+      "unlimitedDate": "2019-02-25T00:00:00+0000",
+      "availabilityClaim": null,
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/67636",
+      "retrievedAt": "2026-10-04T03:06:07.845Z",
+      "httpStatus": 200,
+      "bodySha256": "b8573db99641885c16059b888bbdad309d24bec9e6a0f8f8fcc7b02d9344b97c",
+      "metadataLimits": []
+    },
+    {
+      "id": 67637,
+      "title": "The Amazing Spider-Man",
+      "issueTitle": "The Amazing Spider-Man (2018) #5",
+      "seriesTitle": "The Amazing Spider-Man",
+      "apiSeriesName": "The Amazing Spider-Man (2018 - 2022)",
+      "seriesId": 24396,
+      "issueNumber": "5",
+      "seriesYear": 2018,
+      "detailUrl": "https://www.marvel.com/comics/issue/67637/the_amazing_spider-man_2018_5",
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/9/03/5b90171c52768",
+        "extension": "jpg"
+      },
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/9/03/5b90171c52768.jpg",
+      "coverBytesFetched": false,
+      "creators": [
+        {
+          "id": 4306,
+          "name": "Laura Martin",
+          "role": "colorist"
+        },
+        {
+          "id": 13320,
+          "name": "Cliff Rathburn",
+          "role": "cover artist"
+        },
+        {
+          "id": 4300,
+          "name": "Nick Lowe",
+          "role": "editor"
+        },
+        {
+          "id": 5251,
+          "name": "Vc Joe Caramagna",
+          "role": "letterer"
+        },
+        {
+          "id": 13296,
+          "name": "Ryan Ottley",
+          "role": "penciler"
+        },
+        {
+          "id": 11434,
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "pageCount": 32,
+      "onSaleDate": "2018-09-12T00:00:00+0000",
+      "unlimitedDate": "2018-09-12T00:00:00+0000",
+      "availabilityClaim": null,
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/67637",
+      "retrievedAt": "2026-10-04T03:06:08.107Z",
+      "httpStatus": 200,
+      "bodySha256": "42cf91d3eac3f375f98821155dbb0bcdc2767a0949182b48960cbe76f9312817",
+      "metadataLimits": []
+    },
+    {
+      "id": 66474,
+      "title": "Free Comic Book Day (The Amazing Spider-Man)",
+      "issueTitle": "Free Comic Book Day (The Amazing Spider-Man) (2018) #1",
+      "seriesTitle": "Free Comic Book Day (The Amazing Spider-Man)",
+      "apiSeriesName": "Free Comic Book Day (The Amazing Spider-Man) (2018)",
+      "seriesId": 25687,
+      "issueNumber": "1",
+      "seriesYear": 2018,
+      "detailUrl": "https://www.marvel.com/comics/issue/66474/free_comic_book_day_the_amazing_spider-man_2018_1",
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/2/e0/604007a4970fa",
+        "extension": "jpg"
+      },
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/2/e0/604007a4970fa.jpg",
+      "coverBytesFetched": false,
+      "creators": [
+        {
+          "id": 4991,
+          "name": "Frank Martin",
+          "role": "colorist"
+        },
+        {
+          "id": 4306,
+          "name": "Laura Martin",
+          "role": "colorist"
+        },
+        {
+          "id": 13320,
+          "name": "Cliff Rathburn",
+          "role": "cover artist"
+        },
+        {
+          "id": 4300,
+          "name": "Nick Lowe",
+          "role": "editor"
+        },
+        {
+          "id": 5251,
+          "name": "Vc Joe Caramagna",
+          "role": "letterer"
+        },
+        {
+          "id": 312,
+          "name": "Mike Deodato",
+          "role": "penciler"
+        },
+        {
+          "id": 13296,
+          "name": "Ryan Ottley",
+          "role": "penciler"
+        },
+        {
+          "id": 11680,
+          "name": "Gerry Duggan",
+          "role": "writer"
+        },
+        {
+          "id": 10004,
+          "name": "Mike O'sullivan",
+          "role": "writer"
+        },
+        {
+          "id": 11434,
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ],
+      "pageCount": 32,
+      "onSaleDate": "2018-05-05T00:00:00+0000",
+      "unlimitedDate": "2020-03-03T17:33:00+0000",
+      "availabilityClaim": null,
+      "metadataUrl": "https://marvel.emreparker.com/v1/issues/66474",
+      "retrievedAt": "2026-10-04T03:02:19.560Z",
+      "httpStatus": 200,
+      "bodySha256": "dc1f38fea57a99008f42ad744df1165d32dda8de2ea721c4c0d45b33acb150f3",
+      "metadataLimits": []
+    }
+  ],
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "selectionPosition": 1,
+      "withinSelectionPosition": 1,
+      "sourceIssueReference": "Amazing Spider-Man (1999) #30",
+      "sourceRangeReference": "Amazing Spider-Man Vol. 1: Coming Home",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1999,
+      "issueNumber": "30",
+      "metadataIssueNumber": "30",
+      "seriesId": 454,
+      "candidateIssueId": 3583,
+      "manualSeriesSelectionApproved": false,
+      "collectedIn": "Amazing Spider-Man Vol. 1: Coming Home",
+      "legacyNumber": 471,
+      "candidateIssueIds": [
+        3583
+      ],
+      "resolutionStatus": "exact",
+      "selectedIssueId": 3583,
+      "selectedIssueIds": [
+        3583
+      ],
+      "resolvedIssueTitle": "Amazing Spider-Man (1999) #30",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/3583/amazing_spider-man_1999_30",
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/3/10/50b3a4745f209.jpg",
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/3583",
+        "httpStatus": 200,
+        "retrievedAt": "2026-10-04T03:06:04.328Z",
+        "bodySha256": "1e751138dc0612dc4f64ef4a364fc860d36c9e1d1112f21fb8d19f504d83748a",
+        "receiptStatus": "original-cached-receipt-not-refetched"
+      },
+      "collectedMaterial": "Original issue"
+    },
+    {
+      "sourcePosition": 2,
+      "selectionPosition": 1,
+      "withinSelectionPosition": 2,
+      "sourceIssueReference": "Amazing Spider-Man (1999) #31",
+      "sourceRangeReference": "Amazing Spider-Man Vol. 1: Coming Home",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1999,
+      "issueNumber": "31",
+      "metadataIssueNumber": "31",
+      "seriesId": 454,
+      "candidateIssueId": 43123,
+      "manualSeriesSelectionApproved": false,
+      "collectedIn": "Amazing Spider-Man Vol. 1: Coming Home",
+      "legacyNumber": 472,
+      "candidateIssueIds": [
+        43123
+      ],
+      "resolutionStatus": "exact",
+      "selectedIssueId": 43123,
+      "selectedIssueIds": [
+        43123
+      ],
+      "resolvedIssueTitle": "Amazing Spider-Man (1999) #31",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/43123/amazing_spider-man_1999_31",
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/2/80/50b51242d631d.jpg",
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/43123",
+        "httpStatus": 200,
+        "retrievedAt": "2026-10-04T03:06:04.577Z",
+        "bodySha256": "59d06b78b8374e7a59114252cd6f5d51a955441b81b0c5ba9236c4fcb10d27ee",
+        "receiptStatus": "original-cached-receipt-not-refetched"
+      },
+      "collectedMaterial": "Original issue"
+    },
+    {
+      "sourcePosition": 3,
+      "selectionPosition": 1,
+      "withinSelectionPosition": 3,
+      "sourceIssueReference": "Amazing Spider-Man (1999) #32",
+      "sourceRangeReference": "Amazing Spider-Man Vol. 1: Coming Home",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1999,
+      "issueNumber": "32",
+      "metadataIssueNumber": "32",
+      "seriesId": 454,
+      "candidateIssueId": 43125,
+      "manualSeriesSelectionApproved": false,
+      "collectedIn": "Amazing Spider-Man Vol. 1: Coming Home",
+      "legacyNumber": 473,
+      "candidateIssueIds": [
+        43125
+      ],
+      "resolutionStatus": "exact",
+      "selectedIssueId": 43125,
+      "selectedIssueIds": [
+        43125
+      ],
+      "resolvedIssueTitle": "Amazing Spider-Man (1999) #32",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/43125/amazing_spider-man_1999_32",
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/5/e0/57a34c140a58c.jpg",
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/43125",
+        "httpStatus": 200,
+        "retrievedAt": "2026-10-04T03:06:04.781Z",
+        "bodySha256": "30afa7edd4e2df31f0db946079bdb39c2999d90ffc4504521aa3e0623ee602f0",
+        "receiptStatus": "original-cached-receipt-not-refetched"
+      },
+      "collectedMaterial": "Original issue"
+    },
+    {
+      "sourcePosition": 4,
+      "selectionPosition": 1,
+      "withinSelectionPosition": 4,
+      "sourceIssueReference": "Amazing Spider-Man (1999) #33",
+      "sourceRangeReference": "Amazing Spider-Man Vol. 1: Coming Home",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1999,
+      "issueNumber": "33",
+      "metadataIssueNumber": "33",
+      "seriesId": 454,
+      "candidateIssueId": 43128,
+      "manualSeriesSelectionApproved": false,
+      "collectedIn": "Amazing Spider-Man Vol. 1: Coming Home",
+      "legacyNumber": 474,
+      "candidateIssueIds": [
+        43128
+      ],
+      "resolutionStatus": "exact",
+      "selectedIssueId": 43128,
+      "selectedIssueIds": [
+        43128
+      ],
+      "resolvedIssueTitle": "Amazing Spider-Man (1999) #33",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/43128/amazing_spider-man_1999_33",
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/b/c0/57a34b04dbc2f.jpg",
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/43128",
+        "httpStatus": 200,
+        "retrievedAt": "2026-10-04T03:06:05.025Z",
+        "bodySha256": "6da2ee2388c1966289eff9ee20717dfe54672b8ca05dfbd91550683254304206",
+        "receiptStatus": "original-cached-receipt-not-refetched"
+      },
+      "collectedMaterial": "Original issue"
+    },
+    {
+      "sourcePosition": 5,
+      "selectionPosition": 1,
+      "withinSelectionPosition": 5,
+      "sourceIssueReference": "Amazing Spider-Man (1999) #34",
+      "sourceRangeReference": "Amazing Spider-Man Vol. 1: Coming Home",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1999,
+      "issueNumber": "34",
+      "metadataIssueNumber": "34",
+      "seriesId": 454,
+      "candidateIssueId": 43130,
+      "manualSeriesSelectionApproved": false,
+      "collectedIn": "Amazing Spider-Man Vol. 1: Coming Home",
+      "legacyNumber": 475,
+      "candidateIssueIds": [
+        43130
+      ],
+      "resolutionStatus": "exact",
+      "selectedIssueId": 43130,
+      "selectedIssueIds": [
+        43130
+      ],
+      "resolvedIssueTitle": "Amazing Spider-Man (1999) #34",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/43130/amazing_spider-man_1999_34",
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/6/70/57a349c3ee333.jpg",
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/43130",
+        "httpStatus": 200,
+        "retrievedAt": "2026-10-04T03:06:05.264Z",
+        "bodySha256": "665c5165cc9223c93ac38d78c362acc9216731f78314268dafb563a0677aea12",
+        "receiptStatus": "original-cached-receipt-not-refetched"
+      },
+      "collectedMaterial": "Original issue"
+    },
+    {
+      "sourcePosition": 6,
+      "selectionPosition": 1,
+      "withinSelectionPosition": 6,
+      "sourceIssueReference": "Amazing Spider-Man (1999) #35",
+      "sourceRangeReference": "Amazing Spider-Man Vol. 1: Coming Home",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1999,
+      "issueNumber": "35",
+      "metadataIssueNumber": "35",
+      "seriesId": 454,
+      "candidateIssueId": 43132,
+      "manualSeriesSelectionApproved": false,
+      "collectedIn": "Amazing Spider-Man Vol. 1: Coming Home",
+      "legacyNumber": 476,
+      "candidateIssueIds": [
+        43132
+      ],
+      "resolutionStatus": "exact",
+      "selectedIssueId": 43132,
+      "selectedIssueIds": [
+        43132
+      ],
+      "resolvedIssueTitle": "Amazing Spider-Man (1999) #35",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/43132/amazing_spider-man_1999_35",
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/7/c0/57a34895df8f9.jpg",
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/43132",
+        "httpStatus": 200,
+        "retrievedAt": "2026-10-04T03:06:05.544Z",
+        "bodySha256": "b61f10ab4c520a2c75b152849bed6f95ee8d2b88a7c753fa3b44024f90b027ed",
+        "receiptStatus": "original-cached-receipt-not-refetched"
+      },
+      "collectedMaterial": "Original issue"
+    },
+    {
+      "sourcePosition": 7,
+      "selectionPosition": 2,
+      "withinSelectionPosition": 1,
+      "sourceIssueReference": "Amazing Spider-Man (1999) #546",
+      "sourceRangeReference": "Amazing Spider-Man: Brand New Day Vol. 1",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1999,
+      "issueNumber": "546",
+      "metadataIssueNumber": "546",
+      "seriesId": 454,
+      "candidateIssueId": 17338,
+      "manualSeriesSelectionApproved": false,
+      "collectedIn": "Amazing Spider-Man: Brand New Day Vol. 1",
+      "legacyNumber": 546,
+      "candidateIssueIds": [
+        17338
+      ],
+      "resolutionStatus": "exact",
+      "selectedIssueId": 17338,
+      "selectedIssueIds": [
+        17338
+      ],
+      "resolvedIssueTitle": "Amazing Spider-Man (1999) #546",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17338/amazing_spider-man_1999_546",
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/c/20/4d24e46ee23ad.jpg",
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/17338",
+        "httpStatus": 200,
+        "retrievedAt": "2026-10-04T03:06:05.745Z",
+        "bodySha256": "c877478cdadb184fe604788823e60c3a05786a79735038fb743f9313b7e16bde",
+        "receiptStatus": "original-cached-receipt-not-refetched"
+      },
+      "collectedMaterial": "Original including Park Avenue Interlude, The Astonishing Aunt May, and Harry and the Hollisters backups"
+    },
+    {
+      "sourcePosition": 8,
+      "selectionPosition": 2,
+      "withinSelectionPosition": 2,
+      "sourceIssueReference": "Amazing Spider-Man (1999) #547",
+      "sourceRangeReference": "Amazing Spider-Man: Brand New Day Vol. 1",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1999,
+      "issueNumber": "547",
+      "metadataIssueNumber": "547",
+      "seriesId": 454,
+      "candidateIssueId": 17340,
+      "manualSeriesSelectionApproved": false,
+      "collectedIn": "Amazing Spider-Man: Brand New Day Vol. 1",
+      "legacyNumber": 547,
+      "candidateIssueIds": [
+        17340
+      ],
+      "resolutionStatus": "exact",
+      "selectedIssueId": 17340,
+      "selectedIssueIds": [
+        17340
+      ],
+      "resolvedIssueTitle": "Amazing Spider-Man (1999) #547",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17340/amazing_spider-man_1999_547",
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/6/60/5787b1922acc3.jpg",
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/17340",
+        "httpStatus": 200,
+        "retrievedAt": "2026-10-04T03:06:06.046Z",
+        "bodySha256": "d5d8431a2679ddda02b1d658af60251ff657701b35d8fd9f2e363d1cf842ff4b",
+        "receiptStatus": "original-cached-receipt-not-refetched"
+      },
+      "collectedMaterial": "Original issue"
+    },
+    {
+      "sourcePosition": 9,
+      "selectionPosition": 2,
+      "withinSelectionPosition": 3,
+      "sourceIssueReference": "Amazing Spider-Man (1999) #548",
+      "sourceRangeReference": "Amazing Spider-Man: Brand New Day Vol. 1",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1999,
+      "issueNumber": "548",
+      "metadataIssueNumber": "548",
+      "seriesId": 454,
+      "candidateIssueId": 17341,
+      "manualSeriesSelectionApproved": false,
+      "collectedIn": "Amazing Spider-Man: Brand New Day Vol. 1",
+      "legacyNumber": 548,
+      "candidateIssueIds": [
+        17341
+      ],
+      "resolutionStatus": "exact",
+      "selectedIssueId": 17341,
+      "selectedIssueIds": [
+        17341
+      ],
+      "resolvedIssueTitle": "Amazing Spider-Man (1999) #548",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17341/amazing_spider-man_1999_548",
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/3/70/5787c1c0a1918.jpg",
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/17341",
+        "httpStatus": 200,
+        "retrievedAt": "2026-10-04T03:06:06.213Z",
+        "bodySha256": "97665a537ebe3ce40c12eabf0d95a96ddd304c57da951fd8514819cec7568b02",
+        "receiptStatus": "original-cached-receipt-not-refetched"
+      },
+      "collectedMaterial": "Original issue"
+    },
+    {
+      "sourcePosition": 10,
+      "selectionPosition": 2,
+      "withinSelectionPosition": 4,
+      "sourceIssueReference": "Amazing Spider-Man (1999) #549",
+      "sourceRangeReference": "Amazing Spider-Man: Brand New Day Vol. 1",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1999,
+      "issueNumber": "549",
+      "metadataIssueNumber": "549",
+      "seriesId": 454,
+      "candidateIssueId": 17581,
+      "manualSeriesSelectionApproved": false,
+      "collectedIn": "Amazing Spider-Man: Brand New Day Vol. 1",
+      "legacyNumber": 549,
+      "candidateIssueIds": [
+        17581
+      ],
+      "resolutionStatus": "exact",
+      "selectedIssueId": 17581,
+      "selectedIssueIds": [
+        17581
+      ],
+      "resolvedIssueTitle": "Amazing Spider-Man (1999) #549",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17581/amazing_spider-man_1999_549",
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/2/50/4d24fe3e6dcdb.jpg",
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/17581",
+        "httpStatus": 200,
+        "retrievedAt": "2026-10-04T03:06:06.456Z",
+        "bodySha256": "ce683eb3b929c9ecbe535524d70c3b2a1fbb40c698e0cc33f42a850ac0bbc667",
+        "receiptStatus": "original-cached-receipt-not-refetched"
+      },
+      "collectedMaterial": "Original issue"
+    },
+    {
+      "sourcePosition": 11,
+      "selectionPosition": 2,
+      "withinSelectionPosition": 5,
+      "sourceIssueReference": "Amazing Spider-Man (1999) #550",
+      "sourceRangeReference": "Amazing Spider-Man: Brand New Day Vol. 1",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1999,
+      "issueNumber": "550",
+      "metadataIssueNumber": "550",
+      "seriesId": 454,
+      "candidateIssueId": 17582,
+      "manualSeriesSelectionApproved": false,
+      "collectedIn": "Amazing Spider-Man: Brand New Day Vol. 1",
+      "legacyNumber": 550,
+      "candidateIssueIds": [
+        17582
+      ],
+      "resolutionStatus": "exact",
+      "selectedIssueId": 17582,
+      "selectedIssueIds": [
+        17582
+      ],
+      "resolvedIssueTitle": "Amazing Spider-Man (1999) #550",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17582/amazing_spider-man_1999_550",
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/e/90/4d24ea242fbbb.jpg",
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/17582",
+        "httpStatus": 200,
+        "retrievedAt": "2026-10-04T03:06:06.673Z",
+        "bodySha256": "20b049d28ab36324efb7de4aa0747f720f92ed46123233fd704fef6444d18894",
+        "receiptStatus": "original-cached-receipt-not-refetched"
+      },
+      "collectedMaterial": "Original issue"
+    },
+    {
+      "sourcePosition": 12,
+      "selectionPosition": 2,
+      "withinSelectionPosition": 6,
+      "sourceIssueReference": "Amazing Spider-Man (1999) #551",
+      "sourceRangeReference": "Amazing Spider-Man: Brand New Day Vol. 1",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1999,
+      "issueNumber": "551",
+      "metadataIssueNumber": "551",
+      "seriesId": 454,
+      "candidateIssueId": 17583,
+      "manualSeriesSelectionApproved": false,
+      "collectedIn": "Amazing Spider-Man: Brand New Day Vol. 1",
+      "legacyNumber": 551,
+      "candidateIssueIds": [
+        17583
+      ],
+      "resolutionStatus": "exact",
+      "selectedIssueId": 17583,
+      "selectedIssueIds": [
+        17583
+      ],
+      "resolvedIssueTitle": "Amazing Spider-Man (1999) #551",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17583/amazing_spider-man_1999_551",
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/2/c0/4d2520d2335e4.jpg",
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/17583",
+        "httpStatus": 200,
+        "retrievedAt": "2026-10-04T03:06:06.910Z",
+        "bodySha256": "476a11278beecb5bbe06afc25355a72210db2c1e6cbbda6ff1500bb91e9b99dd",
+        "receiptStatus": "original-cached-receipt-not-refetched"
+      },
+      "collectedMaterial": "Original issue"
+    },
+    {
+      "sourcePosition": 13,
+      "selectionPosition": 2,
+      "withinSelectionPosition": 7,
+      "sourceIssueReference": "FREE COMIC BOOK DAY 2007 1 (2007) #1",
+      "sourceRangeReference": "Amazing Spider-Man: Brand New Day Vol. 1",
+      "normalizedSeriesTitle": "FREE COMIC BOOK DAY 2007 1",
+      "seriesYear": 2007,
+      "issueNumber": "1",
+      "metadataIssueNumber": "1",
+      "seriesId": 3913,
+      "candidateIssueId": 20809,
+      "manualSeriesSelectionApproved": false,
+      "collectedIn": "Amazing Spider-Man: Brand New Day Vol. 1",
+      "legacyNumber": null,
+      "candidateIssueIds": [
+        20809
+      ],
+      "resolutionStatus": "exact",
+      "selectedIssueId": 20809,
+      "selectedIssueIds": [
+        20809
+      ],
+      "resolvedIssueTitle": "FREE COMIC BOOK DAY 2007 1 (2007) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/20809/free_comic_book_day_2007_1_2007_1",
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/9/80/4bb87fbe41815.jpg",
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/20809",
+        "httpStatus": 200,
+        "retrievedAt": "2026-10-04T03:02:19.375Z",
+        "bodySha256": "73941759a2c2e09cf85066b06c0b4e6a6bd2e0b039bfc5debb2010d06b6e69fc",
+        "receiptStatus": "original-cached-receipt-not-refetched"
+      },
+      "collectedMaterial": "Swing Shift",
+      "wholeOriginalReadingCaveat": "The original also contains a One More Day preview. The selected trade's Swing Shift material does not authorize adding a One More Day prelude or treating its Director's Cut reprint as another original."
+    },
+    {
+      "sourcePosition": 15,
+      "selectionPosition": 3,
+      "withinSelectionPosition": 1,
+      "sourceIssueReference": "The Amazing Spider-Man (2018) #1",
+      "sourceRangeReference": "Amazing Spider-Man by Nick Spencer Vol. 1: Back to Basics",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "metadataIssueNumber": "1",
+      "seriesId": 24396,
+      "candidateIssueId": 67631,
+      "manualSeriesSelectionApproved": false,
+      "collectedIn": "Amazing Spider-Man by Nick Spencer Vol. 1: Back to Basics",
+      "legacyNumber": 802,
+      "candidateIssueIds": [
+        67631
+      ],
+      "resolutionStatus": "exact",
+      "selectedIssueId": 67631,
+      "selectedIssueIds": [
+        67631
+      ],
+      "resolvedIssueTitle": "The Amazing Spider-Man (2018) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/67631/the_amazing_spider-man_2018_1",
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/b/90/5b3feb60f1a30.jpg",
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/67631",
+        "httpStatus": 200,
+        "retrievedAt": "2026-10-04T03:06:07.135Z",
+        "bodySha256": "cf74e09f780ab6ddc9074b539f46110be5f290c6de9f2a4c943d7d3d9e07f10b",
+        "receiptStatus": "original-cached-receipt-not-refetched"
+      },
+      "collectedMaterial": "Original issue"
+    },
+    {
+      "sourcePosition": 16,
+      "selectionPosition": 3,
+      "withinSelectionPosition": 2,
+      "sourceIssueReference": "The Amazing Spider-Man (2018) #2",
+      "sourceRangeReference": "Amazing Spider-Man by Nick Spencer Vol. 1: Back to Basics",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "2",
+      "metadataIssueNumber": "2",
+      "seriesId": 24396,
+      "candidateIssueId": 67633,
+      "manualSeriesSelectionApproved": false,
+      "collectedIn": "Amazing Spider-Man by Nick Spencer Vol. 1: Back to Basics",
+      "legacyNumber": 803,
+      "candidateIssueIds": [
+        67633
+      ],
+      "resolutionStatus": "exact",
+      "selectedIssueId": 67633,
+      "selectedIssueIds": [
+        67633
+      ],
+      "resolvedIssueTitle": "The Amazing Spider-Man (2018) #2",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/67633/the_amazing_spider-man_2018_2",
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/6/e0/5b50f9d5c3478.jpg",
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/67633",
+        "httpStatus": 200,
+        "retrievedAt": "2026-10-04T03:06:07.371Z",
+        "bodySha256": "97be4e6c04bdda8d9058ef29475110ff1f60f7d004745b0b9f85d73538f1d0a5",
+        "receiptStatus": "original-cached-receipt-not-refetched"
+      },
+      "collectedMaterial": "Original issue"
+    },
+    {
+      "sourcePosition": 17,
+      "selectionPosition": 3,
+      "withinSelectionPosition": 3,
+      "sourceIssueReference": "The Amazing Spider-Man (2018) #3",
+      "sourceRangeReference": "Amazing Spider-Man by Nick Spencer Vol. 1: Back to Basics",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "3",
+      "metadataIssueNumber": "3",
+      "seriesId": 24396,
+      "candidateIssueId": 67635,
+      "manualSeriesSelectionApproved": false,
+      "collectedIn": "Amazing Spider-Man by Nick Spencer Vol. 1: Back to Basics",
+      "legacyNumber": 804,
+      "candidateIssueIds": [
+        67635
+      ],
+      "resolutionStatus": "exact",
+      "selectedIssueId": 67635,
+      "selectedIssueIds": [
+        67635
+      ],
+      "resolvedIssueTitle": "The Amazing Spider-Man (2018) #3",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/67635/the_amazing_spider-man_2018_3",
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/8/e0/5b62103ef2e2f.jpg",
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/67635",
+        "httpStatus": 200,
+        "retrievedAt": "2026-10-04T03:06:07.623Z",
+        "bodySha256": "5cbb1b9d7dca68f7b8ebac113043e03f8348b0e699367017dc34ba37869bb1ab",
+        "receiptStatus": "original-cached-receipt-not-refetched"
+      },
+      "collectedMaterial": "Original issue"
+    },
+    {
+      "sourcePosition": 18,
+      "selectionPosition": 3,
+      "withinSelectionPosition": 4,
+      "sourceIssueReference": "The Amazing Spider-Man (2018) #4",
+      "sourceRangeReference": "Amazing Spider-Man by Nick Spencer Vol. 1: Back to Basics",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "4",
+      "metadataIssueNumber": "4",
+      "seriesId": 24396,
+      "candidateIssueId": 67636,
+      "manualSeriesSelectionApproved": false,
+      "collectedIn": "Amazing Spider-Man by Nick Spencer Vol. 1: Back to Basics",
+      "legacyNumber": 805,
+      "candidateIssueIds": [
+        67636
+      ],
+      "resolutionStatus": "exact",
+      "selectedIssueId": 67636,
+      "selectedIssueIds": [
+        67636
+      ],
+      "resolvedIssueTitle": "The Amazing Spider-Man (2018) #4",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/67636/the_amazing_spider-man_2018_4",
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/9/d0/5b748df54d4a6.jpg",
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/67636",
+        "httpStatus": 200,
+        "retrievedAt": "2026-10-04T03:06:07.845Z",
+        "bodySha256": "b8573db99641885c16059b888bbdad309d24bec9e6a0f8f8fcc7b02d9344b97c",
+        "receiptStatus": "original-cached-receipt-not-refetched"
+      },
+      "collectedMaterial": "Original issue"
+    },
+    {
+      "sourcePosition": 19,
+      "selectionPosition": 3,
+      "withinSelectionPosition": 5,
+      "sourceIssueReference": "The Amazing Spider-Man (2018) #5",
+      "sourceRangeReference": "Amazing Spider-Man by Nick Spencer Vol. 1: Back to Basics",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2018,
+      "issueNumber": "5",
+      "metadataIssueNumber": "5",
+      "seriesId": 24396,
+      "candidateIssueId": 67637,
+      "manualSeriesSelectionApproved": false,
+      "collectedIn": "Amazing Spider-Man by Nick Spencer Vol. 1: Back to Basics",
+      "legacyNumber": 806,
+      "candidateIssueIds": [
+        67637
+      ],
+      "resolutionStatus": "exact",
+      "selectedIssueId": 67637,
+      "selectedIssueIds": [
+        67637
+      ],
+      "resolvedIssueTitle": "The Amazing Spider-Man (2018) #5",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/67637/the_amazing_spider-man_2018_5",
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/9/03/5b90171c52768.jpg",
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/67637",
+        "httpStatus": 200,
+        "retrievedAt": "2026-10-04T03:06:08.107Z",
+        "bodySha256": "42cf91d3eac3f375f98821155dbb0bcdc2767a0949182b48960cbe76f9312817",
+        "receiptStatus": "original-cached-receipt-not-refetched"
+      },
+      "collectedMaterial": "Original issue"
+    },
+    {
+      "sourcePosition": 20,
+      "selectionPosition": 3,
+      "withinSelectionPosition": 6,
+      "sourceIssueReference": "Free Comic Book Day (The Amazing Spider-Man) (2018) #1",
+      "sourceRangeReference": "Amazing Spider-Man by Nick Spencer Vol. 1: Back to Basics",
+      "normalizedSeriesTitle": "Free Comic Book Day (The Amazing Spider-Man)",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "metadataIssueNumber": "1",
+      "seriesId": 25687,
+      "candidateIssueId": 66474,
+      "manualSeriesSelectionApproved": false,
+      "collectedIn": "Amazing Spider-Man by Nick Spencer Vol. 1: Back to Basics",
+      "legacyNumber": null,
+      "candidateIssueIds": [
+        66474
+      ],
+      "resolutionStatus": "exact",
+      "selectedIssueId": 66474,
+      "selectedIssueIds": [
+        66474
+      ],
+      "resolvedIssueTitle": "Free Comic Book Day (The Amazing Spider-Man) (2018) #1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/66474/free_comic_book_day_the_amazing_spider-man_2018_1",
+      "coverUrl": "http://i.annihil.us/u/prod/marvel/i/mg/2/e0/604007a4970fa.jpg",
+      "recordedHttpReceipt": {
+        "url": "https://marvel.emreparker.com/v1/issues/66474",
+        "httpStatus": 200,
+        "retrievedAt": "2026-10-04T03:02:19.560Z",
+        "bodySha256": "dc1f38fea57a99008f42ad744df1165d32dda8de2ea721c4c0d45b33acb150f3",
+        "receiptStatus": "original-cached-receipt-not-refetched"
+      },
+      "collectedMaterial": "Amazing Spider-Man story only",
+      "wholeOriginalReadingCaveat": "Only the Spider-Man segment is collected by the selected trade. The app opens the full FCBD original, including other material; its provider credit list also includes Gerry Duggan, Mike Deodato, and Mike O'sullivan.",
+      "editorialDecisionId": "U1",
+      "conditionalResolvedRow": 19
+    }
+  ],
+  "checklistDraft": {
+    "status": "mapping-only-not-emitted",
+    "sourcePositionCount": 20,
+    "exactRowCount": 19,
+    "gapCount": 1,
+    "markdown": "# MCU Prep: Spider-Man: Brand New Day (unsealed owned draft)\n\nMapping-only draft. No list, catalog entry, payload or publication has been emitted.\n\n## Amazing Spider-Man Vol. 1: Coming Home\n> Owner selection 1: 6 original source positions.\nNote: Identifies the first trade's contents, not a larger JMS omnibus or later ultimate/complete collection. No exact printing day is asserted.\n- [ ] [Amazing Spider-Man (1999) #30 <!-- mrt:source-occurrence=1 -->](https://www.marvel.com/comics/issue/3583/amazing_spider-man_1999_30)\n- [ ] [Amazing Spider-Man (1999) #31 <!-- mrt:source-occurrence=2 -->](https://www.marvel.com/comics/issue/43123/amazing_spider-man_1999_31)\n- [ ] [Amazing Spider-Man (1999) #32 <!-- mrt:source-occurrence=3 -->](https://www.marvel.com/comics/issue/43125/amazing_spider-man_1999_32)\n- [ ] [Amazing Spider-Man (1999) #33 <!-- mrt:source-occurrence=4 -->](https://www.marvel.com/comics/issue/43128/amazing_spider-man_1999_33)\n- [ ] [Amazing Spider-Man (1999) #34 <!-- mrt:source-occurrence=5 -->](https://www.marvel.com/comics/issue/43130/amazing_spider-man_1999_34)\n- [ ] [Amazing Spider-Man (1999) #35 <!-- mrt:source-occurrence=6 -->](https://www.marvel.com/comics/issue/43132/amazing_spider-man_1999_35)\n\n## Amazing Spider-Man: Brand New Day Vol. 1\n> Owner selection 2: 8 original source positions.\nNote: The selected paperback boundary is not the larger Brand New Day Complete Collection.\nNote: No independently verified selected-paperback original named Marvel Spotlight or Director's Cut is added.\nNote: The digital contents order and independent TPB boundary are verified; no physical TOC/image was inspected.\nNote: Only material from Venom Super Special is collected. Reading that whole original exposes additional unrelated material; no preceding Planet of the Symbiotes chapters are added.\nNote: The exact selected Venom sub-story title remains unverified. Use the factual material-from label, not Career Day.\nNote for original 20809: The original also contains a One More Day preview. The selected trade's Swing Shift material does not authorize adding a One More Day prelude or treating its Director's Cut reprint as another original.\nNote for original 59715: The selected trade collects only material from this original. The full issue includes Planet of the Symbiotes Chapter Three and other material. Do not add the preceding chapters or label the collected segment Career Day.\nGap note: Source14 remains Venom original59715, HTTP404. Existing gap Issue: https://github.com/raymond-nassar/recap-page/issues/707. No original is replaced or removed.\n- [ ] [Amazing Spider-Man (1999) #546 <!-- mrt:source-occurrence=7 -->](https://www.marvel.com/comics/issue/17338/amazing_spider-man_1999_546)\n- [ ] [Amazing Spider-Man (1999) #547 <!-- mrt:source-occurrence=8 -->](https://www.marvel.com/comics/issue/17340/amazing_spider-man_1999_547)\n- [ ] [Amazing Spider-Man (1999) #548 <!-- mrt:source-occurrence=9 -->](https://www.marvel.com/comics/issue/17341/amazing_spider-man_1999_548)\n- [ ] [Amazing Spider-Man (1999) #549 <!-- mrt:source-occurrence=10 -->](https://www.marvel.com/comics/issue/17581/amazing_spider-man_1999_549)\n- [ ] [Amazing Spider-Man (1999) #550 <!-- mrt:source-occurrence=11 -->](https://www.marvel.com/comics/issue/17582/amazing_spider-man_1999_550)\n- [ ] [Amazing Spider-Man (1999) #551 <!-- mrt:source-occurrence=12 -->](https://www.marvel.com/comics/issue/17583/amazing_spider-man_1999_551)\n- [ ] [FREE COMIC BOOK DAY 2007 1 (2007) #1 <!-- mrt:source-occurrence=13 -->](https://www.marvel.com/comics/issue/20809/free_comic_book_day_2007_1_2007_1)\n- [ ] Venom Super Special (1995) #1 <!-- mrt:source-occurrence=14 -->\n\n## Amazing Spider-Man by Nick Spencer Vol. 1: Back to Basics\n> Owner selection 3: 6 original source positions.\nNote: The verified published core span is #1-5, not the contradictory seller/print #1-6 text.\nNote: Only the Spider-Man FCBD segment is collected; whole-original reading includes additional FCBD material.\nNote: It is the newest of these three selected starting points, from 2018, not the most recent/current Spider-Man run.\nNote: No replacement run or film-source claim is authorized.\nNote for original 66474: Only the Spider-Man segment is collected by the selected trade. The app opens the full FCBD original, including other material; its provider credit list also includes Gerry Duggan, Mike Deodato, and Mike O'sullivan.\nOrder note: Coordinator-selected publisher enumeration, not verified physical TOC. FCBD original 66474 remains source20/selection3/within6, conditional resolved-row19.\n- [ ] [The Amazing Spider-Man (2018) #1 <!-- mrt:source-occurrence=15 -->](https://www.marvel.com/comics/issue/67631/the_amazing_spider-man_2018_1)\n- [ ] [The Amazing Spider-Man (2018) #2 <!-- mrt:source-occurrence=16 -->](https://www.marvel.com/comics/issue/67633/the_amazing_spider-man_2018_2)\n- [ ] [The Amazing Spider-Man (2018) #3 <!-- mrt:source-occurrence=17 -->](https://www.marvel.com/comics/issue/67635/the_amazing_spider-man_2018_3)\n- [ ] [The Amazing Spider-Man (2018) #4 <!-- mrt:source-occurrence=18 -->](https://www.marvel.com/comics/issue/67636/the_amazing_spider-man_2018_4)\n- [ ] [The Amazing Spider-Man (2018) #5 <!-- mrt:source-occurrence=19 -->](https://www.marvel.com/comics/issue/67637/the_amazing_spider-man_2018_5)\n- [ ] [Free Comic Book Day (The Amazing Spider-Man) (2018) #1 <!-- mrt:source-occurrence=20 -->](https://www.marvel.com/comics/issue/66474/free_comic_book_day_the_amazing_spider-man_2018_1)\n\n"
+  },
+  "emissionStatus": "withheld-pending-real-insertion-source-review-and-relationship-authority"
+}
