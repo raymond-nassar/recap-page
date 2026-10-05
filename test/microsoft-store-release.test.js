@@ -439,6 +439,7 @@ test('manual rehearsal cannot select the Store API mutation path', () => {
 
 test('catch-up submission binds immutable application source separately from reviewed publisher', () => {
   assert.match(workflow, /options: \[Validate, Submit\]\r?\n\s+default: Validate/);
+  assert.match(step('Check out the reviewed publisher'), /^\s+fetch-depth: 0\r?$/m);
   assert.match(step('Check out the reviewed publisher'), /ref: \$\{\{ github\.workflow_sha \}\}/);
   assert.match(step('Check out the reviewed publisher'), /path: \.store-tooling/);
   const metadata = step('Resolve release metadata');
