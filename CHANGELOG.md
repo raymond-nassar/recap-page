@@ -13,6 +13,40 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+## 3.2.0
+
+### More reading choices and quieter next steps
+
+- Build personal Reading Lists from selected issue, series and creator search results.
+- Choose reading alternatives from separately named cards, including the 69-issue Secret Wars
+  fast track and a separately saved Doomsday companion.
+- Explore owner-selected MCU Prep guides for Fantastic Four: First Steps, Eternals,
+  Deadpool & Wolverine, Daredevil, Moon Knight, Thunderbolts* and Shang-Chi.
+- Finish and reopen Reading Lists without deleting them, keep optional thumbs private,
+  and find verified related next reads.
+- Open quiet What's new highlights on Home to see included improvements and new Reading Lists.
+- Keep Read and Done, next together, with secondary choices disclosed and simpler phone navigation.
+
+Saved reading data and reader JSON backups from version 3.1.0 remain compatible; the reader format
+stays at schema 3 with no new reader migration. Export a backup before upgrading, and keep the
+same browser profile and fixed local address.
+
+Completion and enjoyment are stored separately and are not included in a reader JSON backup.
+Export both the reading-data backup and the completion-history backup when preserving or moving
+them. Reader restore and Undo do not replace history; exact matching list identities can expose
+retained records. New or duplicated identities do not inherit completion. Replacing history requires
+confirmation and has no automatic Undo. Older builds cannot display or export this separate history,
+while existing reader-data compatibility is unchanged.
+
+Home highlight viewing is a separate local preference, not reading progress or a backup field.
+Older builds ignore it. Platform installation storage remains separate; no data moves automatically
+between Windows, Android or browser profiles.
+
+This record prepares a candidate for review, not a published release or new Windows or Google Play
+package. Phone-browser, physical Android, private-report receipt and explicit owner product/privacy
+acceptance remain unverified in [#709](https://github.com/raymond-nassar/recap-page/issues/709).
+Exact-artifact qualification and each platform publication approval remain separate.
+
 ### Build personal Reading Lists from comic searches
 
 Issue, series, and creator searches now show selectable comics instead of immediately adding them
@@ -71,6 +105,193 @@ Adds a manual build-and-validation path with protected upload-key signing and sa
 checks. The required human reviewer may approve their own dispatch; approval is never automatic.
 Secret-free rehearsal stays separate. Signing custody, exact version reservations and later Play
 approval remain required; no saved reading data or backup format changes.
+
+### Add the Fantastic Four: First Steps MCU Prep companion
+
+Added MCU Prep: The Fantastic Four: First Steps, an owner-selected guide with 28 original comics
+across the first six Fantastic Four issues, the Galactus Trilogy, Imaginauts, Jonathan Hickman's
+first volume and Silver Surfer: New Dawn. The New Dawn selection opens the whole Point One
+anthology for its Silver Surfer material, with that qualification shown in the guide's collection
+label. Film-source connections and sparse creator information are qualified rather than invented.
+Existing saved reading progress, personal notes, collection labels and completed-list enjoyment
+records are preserved.
+
+This is a data-only guide. It changes no reader-state schema, persistence/recovery behavior,
+storage key, five-state availability model, separate synchronous reader launch or production
+origin. It uses the existing schema 3 rather than introducing a migration. The Point One original
+remains one globally shared issue: no per-story IDs, separate progress or global user-note rewrite.
+Collection qualifications belong to this guide, and importing it preserves existing lists' labels.
+
+Reader backups retain the guide's ordered originals, list-owned labels, shared reading timestamps,
+notes and overrides. Completion and enjoyment remain in their existing separate store; the reader
+backup does not include them, so their separate history backup is required for portability.
+Import and reload preserve the existing history record.
+
+An older build without this catalog card still needs a compatible reader-state schema to open a
+saved or imported guide. This feature does not claim that a build predating schema 3 support can
+restore newer saved data, introduce a downgrade path or qualify the completion feature's separate
+phone, private-report or privacy acceptance.
+
+### Add the owner-selected Eternals MCU Prep list
+
+MCU Prep now includes Eternals through Home and Browse. Its 24 original comics preserve the
+three requested collection groups: Jack Kirby's first volume, Neil Gaiman and John Romita Jr.'s
+miniseries, and Kieron Gillen and Esad Ribic's Only Death Is Eternal. Preview, import and Reading
+List keep that order. The Kirby and Gillen picks stop at their first-volume boundaries; existing
+guides and saved reading data are unchanged.
+
+The saved-data and backup formats are unchanged, so no new migration or feature-specific backup
+step is required. Builds already compatible with the current saved-data format retain that
+compatibility; the new curated selection appears in builds that include its catalog data.
+
+### Add the owner-selected Deadpool & Wolverine companion
+
+MCU Prep now includes a five-part Deadpool & Wolverine Reading List with 43 original comics,
+from Weapon X through early Deadpool stories. The Dead Presidents creator credit is corrected
+with the owner's approval, and the selected Classic volume stays separate from Suicide Kings.
+Preview and import retain the verified collection order. Existing progress, notes, availability
+choices, reader launch, and saved-data formats are unchanged.
+
+### Add the owner-selected Daredevil companion
+
+MCU Prep now includes MCU Prep: Daredevil: Born Again, with 37 original comics in six collection
+groups. The owner's five selections are preserved, including both Bendis's Out and Brubaker's
+first volume at the third position. Born Again contains the seven-issue story arc, and the two
+Zdarsky collections use the correct 2019 series. Existing guides, saved progress, notes and reader
+behavior are unchanged.
+
+This introduces no schema change, migration or special backup step. Existing supported backups,
+older-build compatibility rules, saved lists, global progress, notes and availability overrides
+are unchanged. Older builds may lack the new bundled card; importing it uses the existing list
+format. The separately published retirement removes only new discovery of the duplicated
+Spider-Man guide; retained data, previously imported lists and supported backups remain intact.
+
+### Add the owner's Moon Knight MCU Prep selection
+
+MCU Prep includes the owner's three first-volume Moon Knight selections: Warren Ellis's
+From the Dead, Jeff Lemire's Lunatic, and Jed MacKay's The Midnight Mission. The Reading List
+keeps their 17 original comics in selection order, with a heading for each collection.
+
+The complete Moon Knight guide remains available separately. Importing the shortlist keeps
+existing read progress, notes and Unlimited overrides for shared comics. Saved-data formats and
+reader launching are unchanged. Existing backups remain compatible, with no migration or
+additional backup step required by this catalog addition.
+
+### Add MCU Prep: Thunderbolts*
+
+Adds the owner's five-selection companion to MCU Prep on Home and Browse, with 34 original
+comics from four collections and one Taskmaster spotlight issue. The Winter Soldier selection
+uses the approved Ultimate Collection, and Jim Zub's selection uses There Is No High Road.
+Thunderbolts (1997) #-1 remains an explicit source gap with separate follow-up work rather than
+being replaced or given a made-up identity. Saved reading progress, availability distinctions and
+reader launch behaviour are unchanged.
+
+The standalone spotlight is visibly separate from the four collected editions in Preview and the
+Reading List, without being counted as another book. Taskmaster is one miniseries opener, not a
+standalone one-shot. The missing original remains tracked in
+[#687](https://github.com/raymond-nassar/recap-page/issues/687), not treated as an availability judgment.
+
+### Add the Shang-Chi MCU Prep companion
+
+MCU Prep now includes Shang-Chi and the Legend of the Ten Rings, with 37 original comics in the
+owner's seven selected blocks: six collected editions and a standalone one-shot.
+The Shang-Chi-story-only anthology selection retains its whole-issue progress limit.
+Existing saved reading data and availability distinctions are unchanged.
+
+Saved-data format and existing backups are unchanged. No migration or backup step is required
+for this content addition. Older builds retain the same saved-data format, but an older catalog
+does not acquire the new companion automatically.
+
+### Choose separately named reading alternatives and the Secret Wars fast track
+
+Reading alternatives now appear as separately named cards, each with its own Preview, Add and
+Open action. This covers the Hickman saga, New Ultimate Universe, House of M, Civil War,
+Secret Invasion, and Silver Age to Claremont families. You no longer need to find an alternative
+inside another list's preview.
+
+Secret Wars Fast Track Trade Reading Order now follows the selected 69-issue sequence across
+ten trade-based sections. Its Ultimate detour sits between Time Runs Out volumes 2 and 3,
+New Avengers includes only #1-3, and the final Secret Wars section includes #0-9. Complete
+Hickman Saga to Secret Wars retains the complete 219-issue order.
+
+MCU Prep also offers Avengers: Doomsday & Avengers: Secret Wars. It contains the same short
+reading order but saves as its own named list. Reading an issue marks that original issue read
+in either saved list. Reading Paths still recognize a saved alternate version, and the timeline
+keeps the story's existing position while identifying the chosen list.
+
+Closing an unchanged Preview preserves its source links and keyboard focus. Stale background
+work is cancelled after navigation or a newer Preview, without suppressing distinct real library
+updates.
+
+Existing saved names, issue vectors, section maps, metadata, notes, availability overrides and
+read progress remain exact, including the legacy 89-issue fast track. Existing export/import
+backups remain valid; retired No Way Home saved/imported copies stay supported without
+restoring discovery. There is no saved-data migration or storage-origin change, and all five
+availability states remain distinct.
+
+### Show quiet release highlights on Home
+
+A quiet What's new entry on Home shows included improvements and newly added Reading Lists
+when requested. Release preparation fills it automatically from existing release information.
+Opening clears New on this device without changing reading progress.
+
+Reading schema stays 3 and JSON backups keep their existing shape. The separate viewing
+preference is not exported or erased/restored with reading data; genuine app-storage deletion
+resets it. Older builds ignore this preference and retain the same reading-data format.
+No migration, conversion or additional backup step is required. Missing locks or storage faults
+show a local warning that New may return.
+
+### Keep completed Reading Lists and private enjoyment
+
+Finish a Reading List without deleting it: use Mark as Completed, then reopen it whenever you
+want. Browse All completed or Enjoyed in your Library and keep optional thumbs private on your
+device. The wrap-up suggests verified related next reads and offers account-free Microsoft Forms
+reporting for missing comics, wrong order or incorrect links. Finishing never marks unread comics
+as read or removes notes, deferrals or your custom order. Completion and enjoyment have their own
+backup alongside your existing reading-data backup.
+
+The reader remains on schema 3 with unchanged reader-backup fields and no new reader migration.
+Stable supported identities retain reader bytes during completion, rating and reopening; older
+unstable identities may undergo the existing verified canonical normalization before history
+is attached.
+
+Completion history is separate and is not included in a reader JSON backup. Export both backup
+types when preserving or moving completion/enjoyment. Reader restore and Undo do not replace
+history; exact matching restored identities can expose retained records. Duplicated/new identities
+do not inherit another list's completion. History replacement requires confirmation and has no
+automatic Undo. Older builds cannot display or export this separate history; reader compatibility
+is unchanged for builds that already support the existing schema.
+
+### Keep the original No Way Home guide and preserve older imports
+
+Withdraw the newer Spider-Man: No Way Home (Owner selections) guide from new discovery and catalog
+import. The original Spider-Man: No Way Home guide remains available unchanged. Previously imported
+copies of the withdrawn guide remain readable, with reading progress, notes, availability choices,
+active-list selection and backups preserved.
+
+There is no saved-data schema change, migration or runtime change. Current and older builds can
+still read these imported lists and backups; a pre-withdrawal build may continue to offer the newer
+discovery choice until updated. No reset, re-import, special backup step or manual migration is
+required. Order-only Markdown export of a catalogless saved copy uses the existing unavailable
+attribution fallback; this does not affect reading or full backups.
+
+### Keep shared bookkeeping in final version releases
+
+Final version release PRs now own changelog updates, coordinated application version bumps,
+release summaries and optional project-wide prose or count rollups. Feature PRs keep their complete
+proposed release notes and saved-data compatibility records in their descriptions and linked
+Issues, without a new shared pending-notes file. Release PRs verify merged feature records,
+combine them with existing Unreleased notes without omissions or duplicates, preserve released
+history, and write the final version record once.
+
+No saved data, backup format, schema, storage origin, migration or application behavior changed.
+Older builds and backups are unaffected by this policy-only change.
+
+### Update development-only lint tooling
+
+Update ESLint to 10.11.0 and the locked development-only brace-expansion package from 5.0.9 to
+5.0.12. Neither package reaches the browser. Runtime dependencies remain zero; app behavior,
+saved reading data and backups are unchanged.
 
 ## 3.1.0
 
