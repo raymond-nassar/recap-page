@@ -500,7 +500,10 @@ The job keeps test results, synthetic screenshots and emulator/WebView versions 
 Actions artifact. An installable APK is included only after all positive checks pass, never the
 deliberately broken negative-control build. Source and synthetic evidence go to this repository's
 GitHub runner, not your saved reading data. This is test infrastructure, not an app cloud service.
-Update the pinned emulator/image versions in `scripts/android-emulator-ci.sh` deliberately.
+The emulator is installed from a fixed, SHA-256-verified archive rather than SDK Manager's moving
+stable package. Update the pinned archive, checksum and emulator/image revision checks in
+`scripts/android-emulator-ci.sh` deliberately. Candidate qualification uses the workflow's native
+runner and checker while keeping application builds in the exact source checkout.
 
 AndroidX dependencies are confined to the separate test APK. They are not shipped in the app.
 Emulator results do not complete the physical-device checklist below.

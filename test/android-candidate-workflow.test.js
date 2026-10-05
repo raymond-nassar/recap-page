@@ -50,6 +50,11 @@ test('upload secrets are confined to the external signer step and never enter re
 test('same-AAB proof and cleanup precede exact allowlisted retention with no Play upload', () => {
   assert.match(shell, /build-apks --bundle="\$WORK\/recap-page-android\.aab"/);
   assert.match(shell, /--derived-artifacts "\$WORK\/native-input\.json" --result "\$WORK\/native-result\.json"/);
+  assert.match(shell, /bash "\$TOOL_ROOT\/scripts\/android-emulator-ci\.sh" --derived-artifacts/);
+  const native = read('scripts/android-emulator-ci.sh');
+  assert.match(native, /ROOT="\$\{RECAP_ANDROID_SOURCE_ROOT:-/);
+  assert.match(native, /cd "\$ROOT"/);
+  assert.match(native, /if \[\[ "\$MODE" == derived \]\]; then CHECKER="\$TOOLING\/scripts\/check-android-instrumentation\.mjs"; fi/);
   assert.ok(shell.indexOf('  clean_secrets\n  unset RECAP_PROOF_PASSWORD') < shell.indexOf('  node "$NODE" finish'));
   assert.match(shell, /trap on_exit EXIT/);
   assert.match(shell, /trap 'exit 143' TERM/);

@@ -147,7 +147,7 @@ derive_and_qualify() {
   node "$NODE" inspect
   clean_secrets
   unset RECAP_PROOF_PASSWORD RECAP_PROOF_ALIAS
-  bash "$SOURCE/scripts/android-emulator-ci.sh" --derived-artifacts "$WORK/native-input.json" --result "$WORK/native-result.json"
+  bash "$TOOL_ROOT/scripts/android-emulator-ci.sh" --derived-artifacts "$WORK/native-input.json" --result "$WORK/native-result.json"
   node "$NODE" finish
 }
 
