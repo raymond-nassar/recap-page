@@ -1227,9 +1227,11 @@ test('package scripts expose build and independently invocable proof scenarios',
   const { catalogEntryKey } = await import('../src/js/lib/catalog.js');
   const storyId = read(PROOF).match(/const CATALOG_STORY_ID = '([^']+)'/)?.[1];
   assert.equal(storyId, catalogEntryKey(houseOfM));
+  assert.doesNotMatch(read(PROOF), /path-preview/);
+  assert.match(read(PROOF), /fetchCatalogListName\(CATALOG_LIST_ID\)/);
   assert.match(
     read(PROOF),
-    /input\[data-act="path-preview"\]\[data-key="\$\{CATALOG_LIST_ID\}"\]/,
+    /#preview-h'\)\?\.textContent === name\s*&& document\.querySelectorAll\('#preview-body \.preview-issue-link'\)\.length === count/,
   );
   assert.doesNotMatch(read(PROOF), /#\/storylines/);
   assert.equal(

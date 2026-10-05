@@ -729,6 +729,14 @@ async function fetchEssentialJson() {
   return results;
 }
 
+async function fetchCatalogListName(listId) {
+  const response = await fetch(`${ORIGIN}/data/catalog.json`, { cache: 'no-store' });
+  if (!response.ok) throw new Error(`/data/catalog.json returned HTTP ${response.status}`);
+  const name = (await response.json())?.lists?.find((list) => list.id === listId)?.name;
+  if (typeof name !== 'string' || !name) throw new Error(`the served catalog has no ${listId} list`);
+  return name;
+}
+
 function resolveBrowserDriver() {
   const root = process.env.MRT_PUPPETEER;
   if (!root) throw new Error('MRT_PUPPETEER must name an external puppeteer-core entry file');
@@ -885,6 +893,7 @@ async function certificationFunctionality(architecture, source) {
       throw new Error(`served ${marker.packageVersion}, expected ${STORE_PACKAGE_VERSION}`);
     }
     const json = await fetchEssentialJson();
+    const catalogListName = await fetchCatalogListName(CATALOG_LIST_ID);
 
     await withBrowser(async (browser) => {
       const page = await browser.newPage();
@@ -903,14 +912,12 @@ async function certificationFunctionality(architecture, source) {
         return Boolean(button);
       }, CATALOG_RESULTS, CATALOG_STORY_ID);
       if (!opened) throw new Error('House of M was not available to preview');
-      await page.waitForSelector('#preview[open] .preview-issue-link');
-      await page.$eval(
-        `#preview input[data-act="path-preview"][data-key="${CATALOG_LIST_ID}"]`,
-        (radio) => radio.click(),
-      );
       await page.waitForFunction(
-        (count) => document.querySelectorAll('#preview-body .preview-issue-link').length === count,
+        (name, count) => document.querySelector('#preview')?.open
+          && document.querySelector('#preview-h')?.textContent === name
+          && document.querySelectorAll('#preview-body .preview-issue-link').length === count,
         {},
+        catalogListName,
         CATALOG_ITEM_COUNT,
       );
       await page.$eval('#preview-add [data-act="main"]', (button) => button.click());
