@@ -23,7 +23,7 @@ export const VIEWS = [
   ...PUBLISHING_CATEGORIES.map((category) => category.route),
   ...CUSTOM_CATEGORY_ROUTES,
   ...ADD_VIEWS,
-  'data', 'about', ...LIBRARY_VIEWS.map((v) => v.value),
+  'data', 'about', 'completed', ...LIBRARY_VIEWS.map((v) => v.value),
 ];
 
 // Addresses written before a screen was replaced. They are accepted on input but never treated as
@@ -43,6 +43,7 @@ const STATIC_VIEW_LABELS = new Map([
   ['browse', 'Browse'],
   ['add', 'Add comics'],
   ['progress', 'Progress by series'],
+  ['completed', 'Completed lists'],
   ['data', 'Backup & settings'],
   ['about', 'About this app'],
 ]);
@@ -129,7 +130,7 @@ export function breadcrumbHierarchy({
 
   const label = STATIC_VIEW_LABELS.get(view);
   if (label) {
-    const parent = view === 'progress' ? linked('library', 'Library') : null;
+    const parent = view === 'progress' || view === 'completed' ? linked('library', 'Library') : null;
     return [home, parent, current(label)].filter(Boolean);
   }
 

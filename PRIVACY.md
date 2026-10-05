@@ -1,11 +1,11 @@
 # Recap Page privacy policy
 
-Last updated: 2026-10-01
+Last updated: 2026-10-04
 
-Recap Page keeps your reading progress, lists, notes, settings, availability choices, and custom
-entries on your device. There is no account, advertising, analytics, behavioral tracking, or
-telemetry. Saved data is not uploaded or synced automatically. If you export it, the destination
-you choose receives that file's contents.
+Recap Page keeps your reading progress, lists, completion dates, enjoyment choices, notes,
+settings, availability choices, and custom entries on your device. There is no account,
+advertising, analytics, behavioral tracking, or telemetry. Saved data is not uploaded or synced
+automatically. If you export it, the destination you choose receives that file's contents.
 
 ## Data stored on the device
 
@@ -28,6 +28,11 @@ uninstalling, or switching to a package that cannot update the installed copy.
 Saved reading data has no automatic expiry. Metadata cache keys can include issue-search text.
 Cache expiry limits reuse; it does not guarantee immediate deletion.
 
+Completion and enjoyment are stored separately from reading data. Reopening a list keeps its
+optional enjoyment choice. Removing a list from the library hides its completion record but
+retains it for a matching removal Undo or reading-data restore. A newly created or duplicated
+list does not inherit that record.
+
 ## Export and import
 
 Export a JSON backup from **Backup & settings**, or export a list in an offered format. Files can
@@ -38,6 +43,12 @@ pickers request a local-only provider; this is not a guarantee against its own s
 Choose a destination you trust and keep backups outside the app. Backups are not uploaded
 automatically, but saving transfers the chosen content to that destination. Manage previously
 exported files and any partial documents left by a failed save at the destination.
+
+Reading backups do not contain completion dates or enjoyment choices. **Backup & settings**
+offers a separate completion-history backup containing saved list identities, completion dates,
+and optional thumbs. Each restore replaces only its own kind of data. A reading-data restore or
+its Undo does not replace completion history. Download both files to preserve both kinds of data.
+The separately labelled saved-value troubleshooting copy is not a normal history backup.
 
 ## Direct network requests
 
@@ -60,7 +71,11 @@ These features make direct requests:
   the lookup button.
 
 Each service can see the request, your network address, and the issue or search details it needs.
-Recap Page does not send those services your saved lists, notes, read markers, settings, or backups.
+Recap Page does not send those services your saved lists, notes, read markers, completion dates,
+enjoyment choices, settings, or backups.
+
+Next-reading suggestions use same-origin bundled reading orders, paths, writer credits, and
+publication dates. There is no external recommendation service.
 
 This policy does not establish how long recipients keep request data. A `no-store` request controls
 HTTP caching, not deletion from their logs or systems.
@@ -85,14 +100,21 @@ external software update service. Store updates come only through Microsoft Stor
 ## Control and deletion
 
 In **Backup & settings**, **Erase all local data** clears lists, progress, notes, availability
-overrides, and custom entries when the save succeeds. Settings and sidebar preferences remain.
+overrides, and custom entries after verifying the saved empty reading data. Completion and
+enjoyment history are removed only after that verification and only while the checked reader
+and history values remain unchanged. Failed or unconfirmed history cleanup is reported as
+partial cleanup, not successful erasure of all data. Settings and sidebar preferences remain.
 Removal of pre-restore and staging copies is attempted afterwards; storage failures can leave copies
 behind. The app reports a retained pre-restore copy through **Undo last restore**.
+Old removal Undo and temporary reader links are withdrawn when reader erasure is verified,
+before later cleanup waits. New reading changes, their Undo, completion history, and restore copies
+made during those waits are kept. The final report checks current saved values and explicitly
+warns when any required value cannot be read rather than assuming it is absent.
 
 Salvage copies kept after a failed read are not removed. Remove them separately under
 **Copies kept after a failed read**; a copy cannot be removed while it protects active unreadable
-data. Erase also requests cache cleanup, but does not confirm every cache was cleared.
-**Clear cached metadata** separately reports cleanup failures.
+data. Erase also requests metadata cache cleanup and reports cleanup failures; it does not erase
+offline app files. **Clear cached metadata** remains a separate control.
 
 Use browser controls to clear desktop storage and caches; uninstalling the Windows package leaves
 them in place. On Android, clearing app data or uninstalling removes private app storage. These
@@ -118,6 +140,36 @@ recall an Issue, reply, notification, or existing copy.
 
 The Android About screen opens **Privacy policy** on GitHub in your browser only when selected.
 GitHub receives the page request, not your saved reading data. Its privacy statement applies.
+
+## Optional reading-list feedback
+
+Thumbs record a private enjoyment preference only. Choosing **Did not enjoy** opens instructions;
+it does not submit feedback. **Report a list problem** opens those instructions without changing
+your rating. On desktop and Android, **Open feedback form** deliberately opens Microsoft Forms
+outside Recap Page. No reader account, name or email is required.
+
+Recap Page attaches no saved list name, notes, progress, completion date, rating or backup. The
+static link identifies the form only. Reports contain what you manually enter: a public list or
+guide reference, the problem category, correction details and an optional platform choice.
+Use a public title/link or **Custom list**, never a private saved-list name. Do not include notes,
+backups, reading progress, credentials, personal information or vulnerability details.
+
+The maintainer reviews reports privately. Contact details are not collected, so no personal reply
+is promised. The maintainer manually removes raw reports from the Forms response dashboard within
+30 days; there is no automatic expiry. Useful, sanitized comic/order facts may remain in project
+work after the raw report is removed. No public response summary, collaborators, automatic
+notification copies, exports or reporting integrations are configured.
+
+Microsoft processes your form visit and submitted report under its
+[privacy statement](https://privacy.microsoft.com/privacystatement). Account-free does not mean
+network anonymity: anonymous results can retain response identifiers and times. The 30-day
+dashboard policy is not an all-copy deletion promise for Microsoft logs, backups or recoverable
+data; their lifetimes and complete individual-report purge are not established here.
+
+If the form is unavailable, try again later. Recap Page does not submit on your behalf, claim a
+report was received, or silently switch to public GitHub reporting. Reading-data loss or corruption
+and suspected vulnerabilities use the separate [private security policy](SECURITY.md), not this
+reading-list form.
 
 ## Contact and security
 

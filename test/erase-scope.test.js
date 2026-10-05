@@ -9,8 +9,13 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { compileFunction } from 'node:vm';
 
 import { eraseDialogBody, eraseOutcome } from '../src/js/views/data.js';
+import { Store, KEY } from '../src/js/storage.js';
+import { createEmptyState, createList, addIssuesToList, deleteList, exportBackup } from '../src/js/lib/model.js';
+import { LIST_HISTORY_KEY, LIST_HISTORY_FORMAT, ListHistoryStore, eraseReaderAndHistory } from '../src/js/lib/listHistory.js';
+import { ResponseCache } from '../src/js/cache.js';
 
 // Only the fields the wording reads: how many there are, and whether any of them is live. chars
 // and at belong to the row on screen rather than to this sentence, and a fixture that carried
@@ -23,12 +28,196 @@ const twoOneLive = [copy('mrt.state.salvage', true), copy('mrt.state.salvage.170
 
 const HEADING = 'Copies kept after a failed read';
 
+function deferred() {
+  let resolve;
+  const promise = new Promise((finish) => { resolve = finish; });
+  return { promise, resolve };
+}
+
+function eraseFixture({ locks = { request: async (_name, operation) => operation() }, clear = async () => true } = {}) {
+  const map = new Map();
+  const storage = {
+    map, failReads: new Set(), silentWrites: new Set(),
+    get length() { return map.size; },
+    key(index) { return [...map.keys()][index] ?? null; },
+    getItem(key) {
+      if (this.failReads.has(key)) throw new Error('read refused');
+      return map.get(key) ?? null;
+    },
+    setItem(key, value) { if (!this.silentWrites.has(key)) map.set(key, String(value)); },
+    removeItem(key) { map.delete(key); },
+  };
+  let state = createList(createEmptyState(), { id: 'old', name: 'Original list', catalogId: 'old-order' });
+  state = addIssuesToList(state, 'old', [{ issueId: 1, title: 'Original comic' }]).state;
+  map.set(KEY, JSON.stringify({ writeToken: 'erase-fixture', ...exportBackup(state) }));
+  map.set(LIST_HISTORY_KEY, JSON.stringify({
+    format: LIST_HISTORY_FORMAT, version: 1,
+    records: [{ listId: 'old', created: state.lists.old.created, catalogId: 'old-order', completedAt: 1000, rating: null }],
+  }));
+  const reader = new Store({ storage });
+  reader.load();
+  const history = new ListHistoryStore({ readerStore: reader, locks });
+  history.load();
+  const calls = { notify: [], announce: [], cache: [], forget: 0, links: [] };
+  const cacheStarted = deferred();
+  const h = { storage, reader, history, calls, cacheStarted, undo: { list: reader.state.lists.old }, temporaryLink: 'old reference' };
+  const dependencies = {
+    store: reader, listHistory: history, STATE_KEY: KEY, LIST_HISTORY_KEY,
+    eraseReaderAndHistory, eraseOutcome,
+    cache: { async clear(...args) { calls.cache.push(args); cacheStarted.resolve(); return clear(h, ...args); } },
+    readerLinkView: { reconcile(result) { calls.links.push(result); if (result.changed === true || result.changed === null) h.temporaryLink = null; } },
+    readingView: { forgetDeleted() { calls.forget += 1; h.undo = null; } },
+    recoveryView: { render() {}, renderSalvage() {} },
+    renderAll() {},
+    notify: (...args) => calls.notify.push(args),
+    announce: (message) => calls.announce.push(message),
+  };
+  // Run the actual composed callback, not a parallel implementation that can miss its waits.
+  const source = readFileSync(new URL('../src/js/main.js', import.meta.url), 'utf8').replace(/\r\n/g, '\n');
+  const bodies = [...source.matchAll(/\n {2}eraseHistory: true,\n {2}onErase: async \(\) => \{([\s\S]*?)\n {2}\},\n\}\);/g)];
+  assert.equal(bodies.length, 1, 'the actual erase callback must resolve uniquely');
+  const run = compileFunction(`return (async () => {${bodies[0][1]}\n})();`, Object.keys(dependencies));
+  h.run = () => run(...Object.values(dependencies));
+  return h;
+}
+
+async function saveLaterReading(h) {
+  h.reader.update((state) => {
+    let next = createList(state, { id: 'kept', name: 'New kept list', note: 'Keep this newer note' });
+    next = createList(next, { id: 'removed-later', name: 'New removed list', note: 'Recover this newer note' });
+    return addIssuesToList(next, 'kept', [{ issueId: 2, title: 'New comic' }]).state;
+  });
+  const restored = h.reader.restore(JSON.stringify(exportBackup(h.reader.state)));
+  assert.equal(restored.ok, true);
+  h.undo = { list: h.reader.state.lists['removed-later'] };
+  h.reader.update((state) => deleteList(state, 'removed-later').state);
+  h.temporaryLink = 'newer reference';
+  return {
+    undo: h.undo, readerRaw: h.storage.getItem(KEY),
+    snapshotRaw: h.storage.getItem('mrt.state.prerestore'),
+  };
+}
+
+test('actual erase follow-through withdraws old offers before waits and preserves newer recovery and saved facts', async () => {
+  for (const delayed of ['history', 'cache']) {
+    const entered = deferred();
+    const gate = deferred();
+    const h = eraseFixture(delayed === 'history' ? {
+      locks: { async request(_name, operation) { entered.resolve(); await gate.promise; return operation(); } },
+    } : {
+      clear: async () => { entered.resolve(); await gate.promise; return true; },
+    });
+    const pending = h.run();
+    await entered.promise;
+    const oldOfferWithdrawn = h.undo === null && h.temporaryLink === null;
+    let newer;
+    let historyRaw;
+    try {
+      newer = await saveLaterReading(h);
+      if (delayed === 'cache') {
+        const list = h.reader.state.lists.kept;
+        assert.equal((await h.history.restore(JSON.stringify({
+          format: LIST_HISTORY_FORMAT, version: 1,
+          records: [{ listId: list.id, created: list.created, catalogId: list.catalogId, completedAt: 2000, rating: 'up' }],
+        }))).ok, true);
+      }
+      historyRaw = h.storage.getItem(LIST_HISTORY_KEY);
+    } finally { gate.resolve(); }
+    await pending;
+    assert.deepEqual({
+      oldOfferWithdrawn, laterUndoPreserved: h.undo === newer.undo,
+      laterLinkPreserved: h.temporaryLink === 'newer reference',
+    }, { oldOfferWithdrawn: true, laterUndoPreserved: true, laterLinkPreserved: true }, delayed);
+    assert.equal(h.storage.getItem(KEY), newer.readerRaw, delayed);
+    assert.equal(h.storage.getItem(LIST_HISTORY_KEY), historyRaw, delayed);
+    assert.equal(h.storage.getItem('mrt.state.prerestore'), newer.snapshotRaw, delayed);
+    assert.ok(h.reader.state.lists.kept, delayed);
+    assert.match(h.calls.notify.at(-1)[1], /Reading data changed after the erase/);
+    assert.match(h.calls.notify.at(-1)[1], /Undo last restore/);
+    assert.doesNotMatch(h.calls.notify.at(-1)[1], /copy could not be removed/);
+    assert.doesNotMatch([...h.calls.announce, ...h.calls.notify.map((args) => args[1])].join(' '), /All local data erased/);
+    assert.equal(h.calls.forget, 1, delayed);
+  }
+});
+
+test('actual erase honors cache boolean policy and never reports unreadable final facts as verified absence', async () => {
+  for (const outcome of ['false', 'throw', 'unavailable', 'true', 'reader', 'history', 'snapshot', 'silent-reader']) {
+    const h = eraseFixture({
+      clear: async (fixture, options) => {
+        if (outcome === 'false') return false;
+        if (outcome === 'throw') throw new Error('cache transaction aborted');
+        if (outcome === 'unavailable') return ResponseCache.prototype.clear.call({ open: async () => null }, options);
+        const key = { reader: KEY, history: LIST_HISTORY_KEY, snapshot: 'mrt.state.prerestore' }[outcome];
+        if (key) fixture.storage.failReads.add(key);
+        return true;
+      },
+    });
+    const originalUndo = h.undo;
+    if (outcome === 'silent-reader') h.storage.silentWrites.add(KEY);
+    await h.run();
+    const messages = [...h.calls.announce, ...h.calls.notify.map((args) => args[1])].join(' ');
+    if (outcome === 'true' || outcome === 'unavailable') {
+      assert.deepEqual(h.calls.announce, ['All local data erased.'], outcome);
+      assert.equal(h.calls.notify.length, 0, outcome);
+      assert.deepEqual(h.calls.cache, [[]], 'erase keeps the default cache-access policy');
+    } else {
+      assert.doesNotMatch(messages, /All local data erased/, outcome);
+      if (outcome === 'false' || outcome === 'throw') assert.match(messages, /Cached metadata could not be cleared/);
+      if (outcome === 'reader') assert.match(messages, /reading data could not be checked/i);
+      if (outcome === 'history') assert.match(messages, /Completion history could not be checked/i);
+      if (outcome === 'snapshot') assert.match(messages, /pre-restore copy could not be checked/i);
+      if (outcome === 'silent-reader') {
+        assert.equal(h.undo, originalUndo);
+        assert.equal(h.calls.forget, 0);
+        assert.equal(h.calls.cache.length, 0);
+      } else assert.ok(h.calls.notify.some((args) => args[2] === 'warn'), outcome);
+    }
+  }
+});
+
 // The branch with nothing to disclose, which is not the branch with nothing to correct. It used
 // to say the route clears everything this browser has stored for the tracker, and two names
 // survive every erase: mrt.settings and sidebar.collapsed are written by the app and removed by
 // nothing, so that sentence was false for any reader who had ever changed the theme. It is the
 // same defect as the one BL-113 was raised for, in the one branch nobody thought to check
 // because it looked like the easy case.
+test('history-aware erase disclosure names completion without changing default recovery or preference policy', () => {
+  const body = eraseDialogBody(one, { completionHistory: true });
+  assert.match(body, /Completion and enjoyment history will also be erased/);
+  assert.match(body, /settings are kept/);
+  assert.match(body, /does not reach it/);
+  assert.doesNotMatch(eraseDialogBody([]), /Completion and enjoyment/);
+  const partial = eraseOutcome(false, [], { historyKept: true, historyError: 'Completion history could not be removed and is still saved.' });
+  assert.match(partial, /^Lists and reading progress erased/);
+  assert.match(partial, /Completion history could not be removed/);
+  assert.doesNotMatch(partial, /All local data erased/);
+});
+
+test('post-erase newer reader data and unconfirmed history or cache cleanup never claim an empty browser', () => {
+  const changed = eraseOutcome(true, one, {
+    readerChanged: true, historyKept: true,
+    historyError: 'Completion-history removal could not be verified. Its saved value may still be here.',
+  });
+  assert.match(changed, /^Reading data changed after the erase\. Check your library before erasing again/);
+  assert.doesNotMatch(changed, /newer data is still saved/);
+  assert.match(changed, /may still be here/);
+  assert.match(changed, /Undo last restore/);
+  assert.match(changed, /Copies kept after a failed read/);
+  assert.doesNotMatch(changed, /All local data erased/);
+  const cache = eraseOutcome(false, [], { cacheFailure: 'Cached metadata could not be cleared.' });
+  assert.match(cache, /Cached metadata could not be cleared/);
+  assert.doesNotMatch(cache, /All local data erased/);
+  const unknownReader = eraseOutcome(false, [], { readerChanged: null });
+  assert.match(unknownReader, /^Reading data could not be checked/);
+  assert.doesNotMatch(unknownReader, /All local data erased|Lists and reading progress erased/);
+  const unknownHistory = eraseOutcome(false, [], { historyKept: null });
+  assert.match(unknownHistory, /Completion history could not be checked/);
+  assert.doesNotMatch(unknownHistory, /All local data erased/);
+  const unknownSnapshot = eraseOutcome(null, []);
+  assert.match(unknownSnapshot, /pre-restore copy could not be checked/);
+  assert.doesNotMatch(unknownSnapshot, /All local data erased/);
+});
+
 test('with nothing kept aside the dialog claims the lists and the progress, and not the settings', () => {
   const body = eraseDialogBody([]);
   assert.doesNotMatch(body, /everything this browser has stored/);
@@ -178,7 +367,7 @@ test('the erase dialog is built by the policy, not by a literal at the button', 
   const at = dataSrc.indexOf(lead);
   assert.ok(policy !== -1 && next > policy, 'the two policies must both still be there, in order');
   assert.ok(at > policy && at < next, 'and the lead has to sit inside the policy that composes it');
-  assert.match(dataSrc, /body: eraseDialogBody\(getSalvageCopies\(\)\)/);
+  assert.match(dataSrc, /body: eraseDialogBody\(getSalvageCopies\(\), \{ completionHistory: eraseHistory \}\)/);
   assert.match(dataSrc, /export function eraseDialogBody/);
   assert.match(mainSrc, /import.*eraseOutcome.*from.*views\/data\.js/);
 });
@@ -193,7 +382,8 @@ test('the erase message is composed at the button from what storage says then', 
 
   assert.equal(dataSrc.split(plain).length - 1, 1, 'a second copy means the button is choosing a string again');
   assert.ok(dataSrc.indexOf(plain) > dataSrc.indexOf('export function eraseOutcome'));
-  assert.match(src, /announceIfSaved\(eraseOutcome\(snapshotKept, store\.salvageCopies\(\)\)\)/);
+  assert.match(src, /const outcome = eraseOutcome\(snapshotKept, store\.salvageCopies\(\), \{/);
+  assert.match(src, /if \(!result\.ok\)[\s\S]*return;[\s\S]*const outcome = eraseOutcome/);
 });
 
 // The list the two sentences above send the reader to is painted on arrival at that screen, and
@@ -204,7 +394,7 @@ test('the erase message is composed at the button from what storage says then', 
 test('the erase route repaints the salvage list, and does it before it speaks', () => {
   const src = readFileSync(new URL('../src/js/main.js', import.meta.url), 'utf8');
   const repaint = src.indexOf('recoveryView.renderSalvage()');
-  const speak = src.indexOf('announceIfSaved(eraseOutcome(');
+  const speak = src.indexOf('const outcome = eraseOutcome(');
   assert.ok(repaint !== -1, 'the erase route has to rebuild the list it now describes');
   assert.ok(repaint < speak, 'and rebuild it before describing it, or the two disagree on screen');
 });

@@ -272,12 +272,10 @@
                 <span id="synopsis-status" class="rail-hint" hidden></span>
                 <button type="button" class="quiet" id="btn-synopsis">Fetch synopses</button>
                 <button type="button" class="quiet" id="btn-cancel-synopsis" hidden>Stop synopses</button>
-                <!-- The one command here that cannot be undone, kept away from the ones that can.
-                     It used to sit flush against "Export as Markdown" in a run of five identical
-                     buttons, so the only thing separating a copy of the list from the loss of it
-                     was reading the label. It is last, past a rule, at the far end of the strip. -->
+                <!-- Keep removal separate from editing and export: it removes the reader's own
+                     order and note, even though the catalog and comic progress are kept. -->
                 <span class="tool-sep" aria-hidden="true"></span>
-                <button type="button" class="quiet quiet-danger" id="btn-delete-list">Delete list</button>
+                <button type="button" class="quiet quiet-danger" id="btn-delete-list">Remove from library</button>
               </div>
 
               <!-- The reader's own note about this order. Sits above the hero because it is
@@ -342,7 +340,7 @@
 
               <div id="all-read" class="empty-state" hidden>
                 <div class="empty-glyph" aria-hidden="true">✓</div>
-                <h2 id="all-read-h" tabindex="-1">Reading List complete</h2>
+                <h2 id="all-read-h" tabindex="-1">Every issue marked read</h2>
                 <p>Every issue in this list is marked read.</p>
                 <button type="button" class="btn" data-view="browse">Browse Reading Lists</button>
               </div>
@@ -838,13 +836,13 @@
               <h2>Data safety</h2>
               <div class="card card-static addpri">
                 <h3>Backup and restore</h3>
-                <p class="rail-hint">Back up regularly. Clearing site data for this address erases your progress.</p>
+                <p class="rail-hint">Back up regularly. Reading-data backups contain lists, notes, read progress and deferrals. Completion and enjoyment need the separate completion-history backup below.</p>
                 <div class="field-row">
-                  <button type="button" id="btn-export-json" class="btn">Download backup</button>
+                  <button type="button" id="btn-export-json" class="btn">Download reading-data backup</button>
                 </div>
 
                 <h4>Restore from a backup</h4>
-                <p class="rail-hint">A snapshot of your current data is kept, so a restore can be undone once.</p>
+                <p class="rail-hint">A snapshot of your current reading data is kept, so a restore can be undone once. Restoring or undoing reading data does not change completion and enjoyment history.</p>
                 <div class="field-row">
                   <input type="file" id="restore-file" accept="application/json,.json" aria-label="Backup file to restore" />
                   <button type="button" id="btn-undo-restore" class="btn btn-g" hidden>Undo last restore</button>
@@ -1004,7 +1002,7 @@
 
             <div class="card card-static card-danger setting">
               <h2>Danger zone</h2>
-              <p class="rail-hint setting-desc">Erasing removes every list, all progress and every note from this browser.</p>
+              <p class="rail-hint setting-desc">Erasing removes every list, all progress, every note, and completion and enjoyment history from this browser.</p>
               <button type="button" id="btn-wipe" class="btn btn-danger setting-ctl setting-action">Erase all local data</button>
             </div>
           </section>
@@ -1109,6 +1107,51 @@
             </div>
           </section>
           <section id="view-reading-paths" class="view" hidden aria-labelledby="reading-paths-h"><div class="head"><div class="head-left"><h1 id="reading-paths-h">Reading paths</h1><p class="sub">See each connected sequence in one place.</p></div></div><div id="reading-paths-report" class="report"></div><p id="reading-path-status" class="rail-hint" role="status">Loading reading paths…</p><div class="reading-path-controls"><label for="reading-path-select">Reading path</label><select id="reading-path-select"></select></div><section id="reading-path-details" hidden aria-labelledby="reading-path-name"><div class="reading-path-summary"><div><h2 id="reading-path-name">Reading path</h2><p id="reading-path-description"></p><p id="reading-path-source" class="rail-hint"></p></div><strong id="reading-path-count" class="reading-path-count"></strong></div><ol id="reading-path-spine" class="reading-path-spine"></ol></section></section>
+          <section id="view-completed" class="view view-wide" hidden aria-labelledby="completed-h">
+            <div class="head"><div class="head-left"><h1 id="completed-h">Completed lists</h1><p id="completed-count" class="sub">Completed Reading Lists and the ones you enjoyed.</p></div></div>
+            <fieldset class="reading-filters completion-filters">
+              <legend class="visually-hidden">Completed-list collection</legend>
+              <label class="fp"><input type="radio" name="completed-filter" value="all" checked /><span>All completed</span></label>
+              <label class="fp"><input type="radio" name="completed-filter" value="enjoyed" /><span>Enjoyed</span></label>
+            </fieldset>
+            <p id="completed-status" class="rail-hint"></p>
+            <section id="completed-section" class="sec" aria-labelledby="completed-lists-h">
+              <div class="sec-h"><h2 id="completed-lists-h">Your completed Reading Lists</h2></div>
+              <ul id="completed-list" class="yours"></ul>
+            </section>
+            <button type="button" class="btn btn-g" data-view="data">Backup &amp; settings</button>
+          </section>
+          <section id="list-wrap-up" class="completion-wrapup card card-static" hidden aria-labelledby="list-wrap-up-h">
+            <h2 id="list-wrap-up-h">Wrap up this Reading List</h2>
+            <p id="list-completion-status" class="rail-hint" hidden></p>
+            <div class="cta completion-actions">
+              <button type="button" id="btn-complete-list" class="quiet completion-mark" aria-describedby="list-completion-status">Mark as Completed</button>
+              <button type="button" id="btn-reopen-list" class="btn btn-g" hidden>Reopen list</button>
+              <button type="button" id="btn-completed-lists" class="btn btn-g">Completed lists</button>
+              <button type="button" id="btn-list-feedback-guide" class="quiet" hidden>Report a list problem</button>
+            </div>
+            <fieldset id="list-enjoyment" class="completion-enjoyment" hidden>
+              <legend class="visually-hidden">Enjoyment</legend>
+              <button type="button" id="btn-enjoyed-list" class="btn btn-g btn-icon has-tooltip" data-tooltip="Enjoyed" aria-label="Enjoyed" aria-pressed="false"><span id="enjoyed-list-content"></span></button>
+              <button type="button" id="btn-disliked-list" class="btn btn-g btn-icon has-tooltip" data-tooltip="Did not enjoy" aria-label="Did not enjoy" aria-pressed="false"><span id="disliked-list-content"></span></button>
+            </fieldset>
+            <section id="list-recommendations" class="completion-recommendations" hidden aria-labelledby="list-recommendations-h">
+              <h3 id="list-recommendations-h">What to read next</h3>
+              <p id="list-recommendation-status" class="rail-hint" role="status"></p>
+              <ul id="list-suggestions" class="recommendation-grid"></ul>
+              <div class="cta"><button type="button" id="btn-retry-recommendations" class="btn btn-g" hidden>Try suggestions again</button><button type="button" id="btn-recommendation-browse" class="btn btn-g">Browse Reading Lists</button></div>
+            </section>
+          </section>
+          <section id="completion-history-controls" class="card card-static setting" aria-labelledby="completion-history-h">
+            <h3 id="completion-history-h">Completion history</h3>
+            <p class="rail-hint">Completion dates and enjoyment are saved separately from reading data. Download both backups to move everything to another browser. Reading-data restore and Undo leave this history alone; only matching saved lists display it.</p>
+            <p id="history-status" class="rail-hint"></p>
+            <div class="field-row"><button type="button" id="btn-export-history" class="btn btn-g">Download completion-history backup</button><button type="button" id="btn-copy-history" class="quiet">Download saved-value copy</button><button type="button" id="btn-retry-history" class="quiet">Retry reading history</button></div>
+            <label for="restore-history-file">Restore a completion-history backup</label>
+            <input type="file" id="restore-history-file" accept="application/json,.json" />
+            <p class="rail-hint">Restoring replaces only completion and enjoyment, after confirmation, with no automatic Undo. The saved-value copy preserves unreadable data for troubleshooting; it is not a normal backup.</p>
+            <div id="history-report" class="report"></div>
+          </section>
           <footer class="app-footer">
             <button type="button" class="linkish" data-view="about" aria-description="Read full disclaimers and credits">
               Unofficial fan project. Metadata and links only. <span data-marvel-copyright>© MARVEL</span>
@@ -1190,6 +1233,14 @@
       </form>
     </dialog>
 
+    <dialog id="list-feedback" class="ask list-feedback" aria-labelledby="list-feedback-h" aria-describedby="list-feedback-description">
+      <h2 id="list-feedback-h">Report a list problem</h2>
+      <p id="list-feedback-description">Report missing comics or a wrong reading order. No account, name or email required.</p>
+      <p>Microsoft Forms opens outside Recap Page. Your saved reading data and thumb choice are not attached. Microsoft processes your form visit and submitted report.</p>
+      <p><a id="list-feedback-link" href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAMAAEys2uVUMkJLVFlNTUhaUFk0NERQQzYxT0xSSDAwVy4u" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">Open feedback form</a></p>
+      <p>Do not include notes, backups, reading progress or personal details. For a security or private data-loss concern, follow the <a id="list-private-feedback-link" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">private reporting policy</a> instead.</p>
+      <button type="button" id="list-feedback-close" class="btn btn-g">Close</button>
+    </dialog>
     <script type="module" src="./js/app.js"></script>
   </body>
 </html>

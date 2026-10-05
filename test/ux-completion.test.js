@@ -258,3 +258,39 @@ test('standing explanations move behind disclosures or become compact labels', (
   assert.match(libraryView, /class: 'library-sort', text: view\.sort/);
   assert.match(reading, /`\$\{upcoming\.length\} \$\{upcoming\.length === 1 \? 'issue' : 'issues'\}`/);
 });
+
+test('completion enjoyment controls are icon-only named actions with existing tooltips', () => {
+  const wrapup = between(html, 'id="list-wrap-up"', 'id="completion-history-controls"');
+  assert.doesNotMatch(wrapup, /id="list-completion-progress"|Your choice stays private/);
+  assert.match(wrapup, /<legend class="visually-hidden">Enjoyment<\/legend>/);
+  for (const [id, label] of [['btn-enjoyed-list', 'Enjoyed'], ['btn-disliked-list', 'Did not enjoy']]) {
+    const button = wrapup.match(new RegExp(`<button[^>]*id="${id}"[^>]*>[\\s\\S]*?<\\/button>`))?.[0];
+    assert.ok(button);
+    assert.match(button, /class="[^"]*btn-icon[^"]*has-tooltip/);
+    assert.ok(button.includes(`aria-label="${label}"`));
+    assert.ok(button.includes(`data-tooltip="${label}"`));
+    assert.match(button, /aria-pressed="false"/);
+    assert.doesNotMatch(button.replace(/<button[^>]*>/, ''), /Enjoyed|Did not enjoy/);
+  }
+});
+
+test('list reporting is an opt-in account-free Microsoft form with no saved-data prefill', () => {
+  const dialog = between(html, '<dialog id="list-feedback"', '</dialog>');
+  const link = dialog.match(/<a\b[^>]*id="list-feedback-link"[^>]*>[\s\S]*?<\/a>/)?.[0];
+  const feedbackUrl = 'https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAMAAEys2uVUMkJLVFlNTUhaUFk0NERQQzYxT0xSSDAwVy4u';
+  assert.ok(link, 'the reporting dialog must contain its explicit external action');
+  assert.ok(link.includes(`href="${feedbackUrl}"`), 'use the approved responder URL without reader data');
+  assert.match(link, /target="_blank"/);
+  assert.match(link, /rel="noopener noreferrer"/);
+  assert.match(link, /referrerpolicy="no-referrer"/);
+  assert.match(link, />Open feedback form<\/a>/);
+  assert.match(dialog, />Report a list problem<\/h2>/);
+  assert.match(dialog, /No account, name or email required/);
+  assert.match(dialog, /Microsoft Forms opens outside Recap Page/);
+  assert.match(dialog, /saved reading data and thumb choice are not attached/);
+  assert.match(dialog, /Microsoft processes your form visit and submitted report/);
+  assert.match(dialog, /Do not include notes, backups, reading progress or personal details/);
+  assert.match(dialog, /private reporting policy/);
+  assert.doesNotMatch(dialog, /GitHub requires|issues are public|<iframe|<script|<form\b|<input\b/);
+  assert.doesNotMatch(html, /<(?:script|iframe|link)\b[^>]*(?:forms\.cloud\.microsoft|forms\.office\.com)/);
+});

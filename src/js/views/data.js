@@ -37,16 +37,17 @@
 // changed the theme. docs/ARCHITECTURE.md holds the whole list and calls those two preferences
 // rather than data, which is why the message said afterwards still reports all local data erased
 // and only the promise made beforehand had to be narrowed.
-export function eraseDialogBody(copies) {
+export function eraseDialogBody(copies, { completionHistory = false } = {}) {
   const tail = ' Export a backup first if you are not sure. It cannot be undone.';
   const lead = 'This clears every list and all reading progress. Your settings are kept.';
+  const scope = completionHistory ? `${lead} Completion and enjoyment history will also be erased.` : lead;
   if (copies === null) {
-    return `${lead} This browser will not let the app list what else it has stored, so anything `
+    return `${scope} This browser will not let the app list what else it has stored, so anything `
       + `kept aside after a failed read is not reached and stays where it is.${tail}`;
   }
-  if (copies.length === 0) return `${lead}${tail}`;
+  if (copies.length === 0) return `${scope}${tail}`;
   const one = copies.length === 1;
-  const where = `${lead} `
+  const where = `${scope} `
     + `${one ? 'One copy' : `${copies.length} copies`} of data this app could not read `
     + `${one ? 'is' : 'are'} kept aside, and this does not reach ${one ? 'it' : 'them'}. `
     + `${one ? 'It stays' : 'They stay'} under "Copies kept after a failed read" above`;
@@ -65,10 +66,24 @@ export function eraseDialogBody(copies) {
 // and the reader can act on that only if they are told which button it is. The same holds for the
 // copies this route deliberately does not reach: naming where they are is the difference between
 // disclosing them and merely not having lied.
-export function eraseOutcome(snapshotKept, copies) {
+export function eraseOutcome(snapshotKept, copies, {
+  historyKept = false, historyError = null, readerChanged = false, cacheFailure = null, currentFacts = false,
+} = {}) {
   const notes = [];
-  if (snapshotKept) {
-    notes.push('One copy could not be removed and is still in this browser, behind "Undo last restore".');
+  if (cacheFailure) notes.push(cacheFailure);
+  if (historyKept === null) {
+    notes.push('Completion history could not be checked after the erase. Retry reading completion history in Backup & settings.');
+  } else if (historyKept) {
+    notes.push(historyError || (currentFacts
+      ? 'Completion and enjoyment history is still saved. Check Completion history in Backup & settings.'
+      : 'Completion and enjoyment history could not be cleared and may still be saved. Check Completion history in Backup & settings.'));
+  }
+  if (snapshotKept === null) {
+    notes.push('The pre-restore copy could not be checked. Do not assume it was removed; check "Undo last restore" before erasing again.');
+  } else if (snapshotKept) {
+    notes.push(currentFacts
+      ? 'One pre-restore copy is still saved in this browser, behind "Undo last restore".'
+      : 'One copy could not be removed and is still in this browser, behind "Undo last restore".');
   }
   if (copies === null) {
     notes.push('This browser will not list what else it has stored, so anything kept aside after a failed read is still here.');
@@ -77,8 +92,11 @@ export function eraseOutcome(snapshotKept, copies) {
   } else if (copies.length > 1) {
     notes.push(`${copies.length} copies kept after a failed read are still here, under "Copies kept after a failed read".`);
   }
-  if (notes.length === 0) return 'All local data erased.';
-  return ['Lists and reading progress erased.', ...notes].join(' ');
+  if (notes.length === 0 && readerChanged === false) return 'All local data erased.';
+  const lead = readerChanged === null
+    ? 'Reading data could not be checked after the erase. Reload and check your library before erasing again.'
+    : readerChanged ? 'Reading data changed after the erase. Check your library before erasing again.' : 'Lists and reading progress erased.';
+  return [lead, ...notes].join(' ');
 }
 
 // ------------------------------------------------------------------ view factory
@@ -105,6 +123,7 @@ export function createDataView({
   onApiBaseSubmit,
   onClearCache,
   onErase,
+  eraseHistory = false,
 }) {
   function renderLocalConnectionStatus(status, readyStatus) {
     const line = elements().localConnectionStatus;
@@ -213,13 +232,19 @@ export function createDataView({
     });
 
     nodes.btnWipe.addEventListener('click', async () => {
-      const yes = await askConfirm({
-        title: 'Erase every list and all reading progress?',
-        body: eraseDialogBody(getSalvageCopies()),
-        confirmLabel: 'Erase everything',
-      });
-      if (!yes) return;
-      onErase();
+      if (nodes.btnWipe.disabled) return;
+      nodes.btnWipe.disabled = true;
+      try {
+        const yes = await askConfirm({
+          title: eraseHistory ? 'Erase every list, reading progress and completion history?' : 'Erase every list and all reading progress?',
+          body: eraseDialogBody(getSalvageCopies(), { completionHistory: eraseHistory }),
+          confirmLabel: 'Erase everything',
+        });
+        if (!yes) return;
+        await onErase();
+      } finally {
+        nodes.btnWipe.disabled = false;
+      }
     });
   }
 

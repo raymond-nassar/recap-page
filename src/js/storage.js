@@ -714,10 +714,15 @@ export class Store {
   // Asked on every repaint, including the repaint that follows a read failure, so a throw here
   // unwound out of onChange, out of settleAfterSwap() and out of restore() itself, and the reader
   // was told nothing at all about a restore that had already changed their saved data.
-  hasPreRestoreSnapshot() {
+  hasPreRestoreSnapshot({ onError } = {}) {
+    if (!this.storage) {
+      onError?.(new Error('Browser storage is unavailable'));
+      return false;
+    }
     try {
-      return Boolean(this.storage?.getItem(PRERESTORE_KEY));
-    } catch {
+      return Boolean(this.storage.getItem(PRERESTORE_KEY));
+    } catch (error) {
+      onError?.(error);
       return false;
     }
   }

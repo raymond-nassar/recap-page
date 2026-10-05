@@ -24,7 +24,7 @@ import { completionState, listProgress } from '../lib/model.js';
 
 const FILTER_THRESHOLD = 12;
 
-export function modernTimelinePosition(state, stories, { dropped = 0 } = {}) {
+export function modernTimelinePosition(state, stories, { dropped = 0, isCompleted = () => false } = {}) {
   if (Number.isInteger(dropped) && dropped > 0) return { kind: 'unavailable', dropped };
 
   const ordered = Array.isArray(stories) ? stories : [];
@@ -55,7 +55,7 @@ export function modernTimelinePosition(state, stories, { dropped = 0 } = {}) {
       };
     }
     const progress = listProgress(state, saved.id);
-    if (completionState(progress.read, progress.total) !== 'done') {
+    if (!isCompleted(state, saved.id) && completionState(progress.read, progress.total) !== 'done') {
       return {
         kind: 'current',
         storyKey: catalogEntryKey(list),
@@ -76,6 +76,7 @@ export function createCatalogView({
   elements,
   getState = () => ({ listOrder: [], lists: {}, read: {} }),
   isCurrent = () => true,
+  isCompleted = () => false,
   loadCatalog,
   notifyDropped,
   onLoadFailure,
@@ -137,6 +138,7 @@ export function createCatalogView({
   function paintTimelineContext(context, { announceChange = false } = {}) {
     const position = modernTimelinePosition(getState(), context.stories, {
       dropped: context.dropped,
+      isCompleted,
     });
     const signature = timelineSignature(position, context);
     const message = timelinePositionMessage(position, context);

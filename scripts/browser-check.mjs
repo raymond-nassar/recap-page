@@ -1970,6 +1970,9 @@ const SCENARIOS = [
         await page.waitForFunction((key, id) => localStorage.getItem(key) === String(id), {}, HOME_UPDATES_SEEN_KEY, batch.id);
         await other.waitForFunction(() => document.querySelector('#home-updates-new').hidden);
         t.check('explicit viewing clears New in both actual tabs', await page.evaluate(() => document.querySelector('#home-updates-new').hidden));
+        // Edge leaves this background tab's SVG load pending until activation. Reload the
+        // visible tab, as a reader would, while keeping the peer alive for storage events.
+        await page.bringToFront();
         await click(page, '#home-updates-close');
         await page.reload({ waitUntil: 'load' });
         t.check('viewing survives reload while the entry stays available and closed',
@@ -8054,7 +8057,7 @@ const SCENARIOS = [
         legacyState.issues?.['6']?.description === 'Preloaded legacy synopsis.',
         JSON.stringify(legacyState.issues?.['6']));
 
-      await open(page, '/#/settings');
+      await page.goto(`${page.__origin}/#/settings`, { waitUntil: 'domcontentloaded' });
       await page.waitForFunction(
         () => document.querySelector('#cache-report')?.textContent.includes('Close other tabs'),
         { timeout: 15000 },
@@ -9965,8 +9968,8 @@ const SCENARIOS = [
       });
 
       const offered = await readNotice();
-      t.check('the delete is reported with the progress promise', offered.msg === `Deleted ${listName}. Reading progress was kept.`, JSON.stringify(offered.msg));
-      t.check('the way back is offered first', offered.buttons[0] === 'Undo delete', JSON.stringify(offered.buttons));
+      t.check('the removal is reported with the progress promise', offered.msg === `Removed ${listName} from your library. Reading progress was kept.`, JSON.stringify(offered.msg));
+      t.check('the way back is offered first', offered.buttons[0] === 'Undo removal', JSON.stringify(offered.buttons));
       t.check('and a way to close the message beside it', offered.buttons[1] === 'Dismiss', JSON.stringify(offered.buttons));
       t.check('the message offers exactly those two', offered.buttons.length === 2, JSON.stringify(offered.buttons));
 
@@ -9975,7 +9978,7 @@ const SCENARIOS = [
       await openBrowseCategory(page, 'timeline');
       await page.waitForSelector('#catalog-results .catalog-card', { timeout: 15000 });
       const elsewhere = await readNotice();
-      t.check('it is still there after the reader changes screen', elsewhere?.buttons.join('/') === 'Undo delete/Dismiss', JSON.stringify(elsewhere));
+      t.check('it is still there after the reader changes screen', elsewhere?.buttons.join('/') === 'Undo removal/Dismiss', JSON.stringify(elsewhere));
 
       await clickNoticeButton(page, 'Dismiss');
       await page.waitForFunction(() => !document.querySelector('#app-report .notice'), { timeout: 15000 });
@@ -10005,7 +10008,7 @@ const SCENARIOS = [
       await importOrder(page);
       await deleteActiveList(page);
       await page.waitForSelector('#app-report .notice', { timeout: 15000 });
-      await clickNoticeButton(page, 'Undo delete');
+      await clickNoticeButton(page, 'Undo removal');
       await page.waitForFunction(() => !document.querySelector('#app-report .notice'), { timeout: 15000 });
 
       const afterUndo = await readState(page);
@@ -10828,7 +10831,7 @@ const SCENARIOS = [
         completed.completed && !completed.empty && !completed.hero
         && completed.ring === 'All read' && completed.count === 'All read'
         && completed.focused === 'all-read-h'
-        && await page.$eval('#all-read-h', (node) => node.textContent === 'Reading List complete')
+        && await page.$eval('#all-read-h', (node) => node.textContent === 'Every issue marked read')
         && await page.$eval('#all-read [data-view="browse"]', (node) => node.checkVisibility()),
         JSON.stringify(completed));
       const completedState = await readState(page);
@@ -13649,16 +13652,17 @@ SCENARIOS.push({
         reference: icon.querySelector('use')?.getAttribute('href'),
       };
     }));
-    t.check('all 23 static controls retain their meaningful names', JSON.stringify(inventory.filter((i) => !i.gateway).map((i) => i.name))
+    t.check('all 25 static controls retain their meaningful names', JSON.stringify(inventory.filter((i) => !i.gateway).map((i) => i.name))
       === JSON.stringify([
         'Collapse sidebar', 'Library', 'Browse', 'Add comics', 'Backup & settings', 'About this app',
+        'Enjoyed', 'Did not enjoy',
         'Everything read', 'Progress by series', 'Added by hand', 'Search issues', 'Find a series',
         'Browse a creator', 'Paste a Reading List', 'Add an issue by hand', 'Search issue titles',
         'Series', 'Creators', 'Characters', 'Reading guides', 'Paste a Reading List',
         'Add an issue by hand', 'Find a series', 'Find a creator',
       ]), JSON.stringify(inventory));
-    t.check('all 47 static and generated SVGs are decorative and cannot become keyboard stops',
-      inventory.length === 47 && inventory.every((i) => i.tag === 'svg' && i.decorative));
+    t.check('all 49 static and generated SVGs are decorative and cannot become keyboard stops',
+      inventory.length === 49 && inventory.every((i) => i.tag === 'svg' && i.decorative));
     t.check('both gateways preserve six labelled category destinations and their icon/arrow pairs',
       await page.evaluate(() => [...document.querySelectorAll('[data-primary-paths], [data-secondary-paths]')]
         .flatMap((root) => [...root.querySelectorAll('button.home-path')])
@@ -13700,7 +13704,7 @@ SCENARIOS.push({
         geometry.length > 0 && geometry.every((i) => i.fits && i.target && i.painted && i.font === 'monospace'),
         JSON.stringify(geometry));
     }
-    t.check('all 17 authored symbol shapes were rendered', seen.size === 17, [...seen].join(', '));
+    t.check('all 17 navigation and search symbol shapes were rendered', seen.size === 17, [...seen].join(', '));
 
     await page.evaluate(() => { location.hash = '#/add-search'; });
     await page.waitForSelector('#view-add-search:not([hidden])');
@@ -15654,8 +15658,8 @@ SCENARIOS.push(
       await deleteActiveList(page);
       await page.waitForFunction(() => !JSON.parse(localStorage.getItem('mrt.state.v2')).lists.fixture);
       t.check('whole-list deletion replaces the invalid issue offer with its own Undo',
-        (await removalNotice(page)).buttons[0] === 'Undo delete');
-      await clickNoticeButton(page, 'Undo delete');
+        (await removalNotice(page)).buttons[0] === 'Undo removal');
+      await clickNoticeButton(page, 'Undo removal');
       const wholeListRestored = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
       await page.evaluate(() => window.__deletedSource444.click());
       t.check('whole-list Undo never resurrects the earlier removed-issue offer',
@@ -16048,6 +16052,8 @@ SCENARIOS.push((await import('./browser-source-credits.mjs')).sourceCredits);
 SCENARIOS.push((await import('./browser-markdown-export.mjs')).readableMarkdownExport);
 const deferral = await import('./browser-defer.mjs');
 SCENARIOS.push(deferral.deferNext, deferral.deferLifecycle, deferral.deferPersistence);
+const completion = await import('./browser-completion.mjs');
+SCENARIOS.push(completion.completionLifecycle, completion.completionKeyboard, completion.completionRecommendations, completion.completionPersistence);
 SCENARIOS.push((await import('./browser-order-export.mjs')).orderOnlyExport);
 SCENARIOS.push({
   id: 'infinity-saga-actual-data',

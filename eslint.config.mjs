@@ -119,6 +119,7 @@ export default [
       'scripts/browser-android-catalog-cards.mjs',
       'scripts/browser-reader-first.mjs',
       'scripts/browser-defer.mjs',
+      'scripts/browser-completion.mjs',
       'scripts/browser-preview-scroll-452.mjs',
       'scripts/browser-reading-list-choices.mjs',
       'scripts/browser-source-credits.mjs',

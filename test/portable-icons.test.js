@@ -35,8 +35,8 @@ test('all navigation/search glyphs use the selected local symbols, not font char
 test('the authored symbol set has exactly the used names and no remote or active content', () => {
   const ids = [...sprite.matchAll(/<symbol id="([\w-]+)" viewBox="0 0 24 24">/g)]
     .map(([, id]) => id);
-  assert.deepEqual(ids.sort(), [...new Set([...expected, 'storylines', 'screen', 'arrow-right'])].sort());
-  assert.equal(ids.length, 17);
+  assert.deepEqual(ids.sort(), [...new Set([...expected, 'storylines', 'screen', 'arrow-right', 'thumb-up', 'thumb-down'])].sort());
+  assert.equal(ids.length, 19);
   assert.doesNotMatch(sprite, /<(?:script|image|foreignObject|style|text)\b|\bhref=|\bon\w+=/i);
   assert.doesNotMatch(sprite, /[\uE000-\uF8FF]/);
   assert.match(css, /\.gi \{\s*fill: none; stroke: currentColor;/);
