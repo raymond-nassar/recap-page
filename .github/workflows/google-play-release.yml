@@ -1,5 +1,5 @@
 name: Google Play testing release
-run-name: Google Play ${{ inputs.mode }} code ${{ inputs.version_code }} source ${{ inputs.source_sha }}
+run-name: Google Play ${{ inputs.mode }} Candidate ${{ inputs.candidate_run_id }} track ${{ inputs.track }}
 
 on:
   workflow_dispatch:
@@ -9,39 +9,42 @@ on:
         type: choice
         options: [Validate, Inspect, Publish, Promote]
         default: Validate
-      source_sha:
-        description: Exact merged application source commit
-        type: string
-        required: true
-      ledger_sha:
-        description: Exact later merged ledger commit containing the artifact seal
-        type: string
-        required: true
       candidate_run_id:
-        description: Successful protected Android Candidate run that produced the packet
-        type: string
-        required: true
-      artifact_id:
-        description: Immutable GitHub artifact ID of that four-file packet
-        type: string
-        required: true
-      version_code:
-        description: Exact sealed Android code, never a development code
+        description: One successful Android Candidate run ID or exact same-repository run URL
         type: string
         required: true
       track:
-        description: Actual testing track ID from Inspect; no production or guessed alias
+        description: Actual testing track ID for Publish or Promote; no production or guessed alias
+        type: string
+      release_notes:
+        description: Plain notes for this version; generates a completed en-US release with its one sealed code
+        type: string
+      track_state_policy:
+        description: Automatic captures simple state for plain notes; advanced digest pins remain explicit
+        type: choice
+        options: [automatic, capture-current-simple, explicit-pin]
+        default: automatic
+      source_sha:
+        description: Advanced optional identity pin; supply all five pins together or omit all
+        type: string
+      ledger_sha:
+        description: Advanced optional sealed-ledger commit pin; part of the complete five-pin set
+        type: string
+      artifact_id:
+        description: Advanced optional immutable packet artifact ID; part of the complete five-pin set
+        type: string
+      version_code:
+        description: Advanced optional sealed Android code; part of the complete five-pin set
         type: string
       release_json:
-        description: Publish or Promote only; explicit name, versionCodes, status and releaseNotes
+        description: Advanced optional complete name, versionCodes, status and releaseNotes; never combine with plain notes
         type: string
       expected_track_sha256:
-        description: Publish or Promote only; exact current target digest returned by Inspect
+        description: Advanced optional target digest; required for Promote and automatic full-JSON intent
         type: string
       upload_cert_sha256:
-        description: Approved public upload-certificate SHA-256, not a key or password
+        description: Advanced optional public upload-certificate SHA-256; part of the complete five-pin set
         type: string
-        required: true
 
 permissions:
   contents: read

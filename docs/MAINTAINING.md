@@ -691,10 +691,10 @@ Never accept a missing value or create a draft to test the contract.
 ### Operate a Store update
 
 Complete release preparation below, including version-bound Store notes. A GitHub release does not
-start the Store job. Explicitly dispatch Submit from the default branch with the stable
-`v<version>` tag and full source SHA. Protected approval authorizes building and submitting that
-release. Reject approval if the Store product has pending work or this is not the intended next
-Store update.
+start the Store job. The normal path is one explicit Submit from the default branch with the stable
+`v<version>` tag and full source SHA; it combines quality checks and submission. A prior Validate
+or incident-recovery run is not required for each release. Protected approval authorizes this update;
+reject it if the Store product has pending work or this is not the intended next Store release.
 
 The job verifies the tag commit is on the default branch, builds once, inspects packages, runs WACK
 and confirms the bundle hash is unchanged. Only then does it authenticate, reject unsafe Partner

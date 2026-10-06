@@ -1,12 +1,15 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFile } from 'node:fs/promises';
+import { readFile, writeFile, mkdtemp, rm } from 'node:fs/promises';
+import { mkdirSync, writeFileSync } from 'node:fs';
+import childProcess from 'node:child_process';
+import { syncBuiltinESMExports } from 'node:module';
 import { tmpdir } from 'node:os';
-import { join, resolve } from 'node:path';
+import { basename, join, resolve } from 'node:path';
 import {
   ENVIRONMENT, WORKFLOW, PRODUCER, REPOSITORY_ID, PublisherError, digest, canonical,
-  validateIntent, validateInvocation, validateProducer, validateQualification,
-  trackSnapshot, trackDigest, proposedTrack, transact, validatePrepared, runDirectory,
+  validateIntent, resolveIntent, validateInvocation, validateProducer, selectProducerArtifact, validateQualification,
+  trackSnapshot, trackDigest, proposedTrack, transact, validatePrepared, runDirectory, prepare, publish,
 } from '../scripts/google-play-publisher.mjs';
 import {
   REPOSITORY, OFFICIAL_ID, PROTOTYPE_ID, BUNDLETOOL, protectionPolicy, requireApproval,
@@ -33,6 +36,15 @@ function raw(mode = 'Publish') {
     release_json: mode === 'Inspect' ? '' : JSON.stringify(release()),
     expected_track_sha256: mode === 'Inspect' ? '' : trackDigest(emptyTrack()),
   };
+}
+const pins = ['source_sha', 'ledger_sha', 'artifact_id', 'version_code', 'upload_cert_sha256'];
+function guided(mode = 'Publish') {
+  return { mode, candidate_run_id: '123', track: 'qa', release_notes: release().releaseNotes[0].text };
+}
+function resolved(value = guided()) {
+  const request = validateIntent(value);
+  return resolveIntent(request, { sourceSha: source, ledgerSha: request.ledgerSha || tooling,
+    artifactId: 456, code, signer, productVersion: '3.2.0' });
 }
 const identity = () => ({
   schemaVersion: 1, productVersion: '3.2.0', platform: 'android', packageVersion: code,
@@ -177,6 +189,73 @@ test('release intent is closed, bounded and never supplies an implicit rollout o
   }
 });
 
+test('guided and pinned requests share canonical mode policy routing without mixed overrides', () => {
+  for (const mode of ['Validate', 'Publish']) {
+    for (const identityPins of [{}, Object.fromEntries(pins.map((key) => [key, raw()[key]]))]) {
+      for (const patch of [
+        { expected_track_sha256: '', expected: 'capture-current-simple' },
+        { expected_track_sha256: trackDigest(emptyTrack()), expected: 'explicit-pin' },
+        { track_state_policy: 'capture-current-simple', expected: 'capture-current-simple' },
+      ]) {
+        const { expected, ...input } = patch;
+        const value = { ...guided(mode), ...identityPins, ...input };
+        assert.equal(validateIntent(value).trackStatePolicy, expected);
+        assert.deepEqual(resolved(value).release, release());
+      }
+      const custom = { ...release(), name: 'Reviewed custom release', status: 'draft',
+        versionCodes: ['3000003', String(code)], releaseNotes: [{ language: 'fr', text: 'Notes.' }, ...release().releaseNotes] };
+      for (const policy of ['automatic', 'capture-current-simple']) {
+        const value = { mode, candidate_run_id: '123', track: 'qa', ...identityPins,
+          release_json: JSON.stringify(custom), track_state_policy: policy,
+          expected_track_sha256: policy === 'automatic' ? trackDigest(emptyTrack()) : '' };
+        assert.deepEqual(resolved(value).release, custom);
+        assert.equal(validateIntent(value).trackStatePolicy,
+          policy === 'automatic' ? 'explicit-pin' : 'capture-current-simple');
+      }
+    }
+  }
+  for (const mode of ['Validate', 'Inspect']) {
+    for (const identityPins of [{}, Object.fromEntries(pins.map((key) => [key, raw()[key]]))]) {
+      const value = { mode, candidate_run_id: '123', ...identityPins };
+      const spec = resolved(value);
+      assert.equal(spec.trackStatePolicy, null);
+      assert.equal(spec.release, null);
+      assert.equal(spec.expectedTrackSha256, '');
+      for (const patch of [{ track_state_policy: 'explicit-pin' },
+        { track_state_policy: 'capture-current-simple' }, { expected_track_sha256: trackDigest(emptyTrack()) }]) {
+        assert.throws(() => validateIntent({ ...value, ...patch }));
+      }
+    }
+  }
+  const url = `https://github.com/${REPOSITORY}/actions/runs/123`;
+  assert.deepEqual(validateIntent({ ...guided(), candidate_run_id: url }), validateIntent(guided()));
+  for (const candidate_run_id of [`${url}/`, `${url}?attempt=1`, url.replace(REPOSITORY, 'fixture/fork'),
+    url.replace('https:', 'http:'), `${url}#artifacts`, 'latest', '0', '0123']) {
+    assert.throws(() => validateIntent({ ...guided(), candidate_run_id }));
+  }
+  for (const key of pins) {
+    assert.throws(() => validateIntent({ ...guided(), [key]: raw()[key] }), /ALL_OR_NONE/);
+    assert.throws(() => validateIntent({ ...raw(), [key]: '' }), /ALL_OR_NONE/);
+  }
+  for (const patch of [
+    { release_json: JSON.stringify(release()) }, { release_notes: ' \n\t' },
+    { release_notes: '\u{1f642}'.repeat(501) }, { expected_track_sha256: 'not-a-digest' },
+    { track_state_policy: 'unknown' }, { mode: 'Inspect' },
+    { mode: 'Promote' }, { track_state_policy: 'explicit-pin' },
+    { track_state_policy: 'capture-current-simple', expected_track_sha256: trackDigest(emptyTrack()) },
+    { mode: 'Promote', track_state_policy: 'capture-current-simple' },
+  ]) assert.throws(() => validateIntent({ ...guided(), ...patch }));
+  assert.equal(validateIntent({ ...guided(), release_notes: '\u{1f642}'.repeat(500) }).releaseNotes.length, 1000);
+  assert.equal(resolved({ ...guided('Promote'), expected_track_sha256: trackDigest(emptyTrack()) }).trackStatePolicy, 'explicit-pin');
+  assert.throws(() => validateIntent({ ...raw(), release_json: `{"name":"${'x'.repeat(8192)}"}` }), /TOO_LARGE/);
+  const wrongCode = { ...raw(), release_json: JSON.stringify({ ...release(), versionCodes: ['3000003'] }) };
+  for (const key of pins) delete wrongCode[key];
+  assert.throws(() => resolved(wrongCode), /CANDIDATE_CODE_REQUIRED/);
+  for (const patch of [{ source_sha: tooling }, { artifact_id: '457' }, { upload_cert_sha256: 'e'.repeat(64) }]) {
+    assert.throws(() => resolved({ ...raw(), ...patch }), /IDENTITY_PIN_MISMATCH/);
+  }
+});
+
 test('publisher invocation requires the actual direct main workflow and first attempt', () => {
   assert.doesNotThrow(() => validateInvocation(context(), run()));
   for (const change of [
@@ -203,6 +282,29 @@ test('producer qualification binds a successful signed run to its exact immutabl
     { size_in_bytes: 0 }, { workflow_run: { ...githubArtifact().workflow_run, repository_id: 1 } }]) {
     assert.throws(() => validateProducer(spec, run(true), { ...githubArtifact(), ...patch }));
   }
+});
+
+test('named producer selection rejects ambiguous packets including expired competitors', () => {
+  const request = validateIntent(guided());
+  const packet = githubArtifact();
+  const unrelated = { ...packet, id: 457, name: 'unrelated-report' };
+  assert.deepEqual(selectProducerArtifact(request, run(true), { total_count: 2, artifacts: [unrelated, packet] }),
+    { artifact: packet, code });
+  for (const listing of [
+    { total_count: 0, artifacts: [] }, { total_count: 2, artifacts: [packet] },
+    { total_count: 101, artifacts: [packet] }, { total_count: '1', artifacts: [packet] },
+    { total_count: 1, artifacts: [unrelated] },
+    { total_count: 2, artifacts: [packet, { ...unrelated, id: packet.id }] },
+    { total_count: 1, artifacts: [{ ...packet, expired: true }] },
+    { total_count: 2, artifacts: [packet, { ...packet, id: 458, name: `android-candidate-${code + 1}-123` }] },
+    { total_count: 2, artifacts: [packet, { ...packet, id: 458, expired: true }] },
+    { total_count: 1, artifacts: [{ ...packet, name: 'android-candidate-3000002-123' }] },
+    { total_count: 1, artifacts: [{ ...packet, name: 'android-candidate-2100000001-123' }] },
+    { total_count: 1, artifacts: [{ ...packet, workflow_run: { ...packet.workflow_run, id: 124 } }] },
+    { total_count: 2, artifacts: [packet, { ...unrelated, workflow_run: { ...packet.workflow_run, repository_id: 1 } }] },
+  ]) assert.throws(() => selectProducerArtifact(request, run(true), listing));
+  assert.throws(() => selectProducerArtifact(request, { ...run(true), run_attempt: 2 },
+    { total_count: 1, artifacts: [packet] }), /QUALIFIED_PRODUCER_REQUIRED/);
 });
 
 test('qualification receipt preserves actual identity, signatures, approval and limited native scope', () => {
@@ -293,6 +395,62 @@ test('publish uses exact bytes once and reports submitted rather than user avail
   } });
   await assert.rejects(transact(validateIntent(raw()), changed, artifact, later), /BUNDLE_CHANGED_BEFORE_UPLOAD/);
   assert.equal(later.calls.length, 4);
+});
+
+test('captured target evidence is durable before upload without changing the approved intent', async () => {
+  const prior = { track: 'qa', kind: 'androidpublisher#track', releases: [{
+    name: 'Previous release', status: 'completed', versionCodes: ['3000003'], inAppUpdatePriority: 0,
+  }] };
+  const spec = resolved();
+  const approved = canonical(spec);
+  Object.freeze(spec);
+  const fixture = harness({ tracks: [prior, { track: 'production', releases: [] }] });
+  const result = await transact(spec, bytes, artifact, fixture);
+  assert.equal(result.state, 'submitted-publication-unverified');
+  assert.equal(result.trackStatePolicy, 'capture-current-simple');
+  assert.equal(result.expectedTrackSha256, null);
+  assert.deepEqual(result.targetBefore, trackSnapshot(prior));
+  assert.equal(result.targetBeforeSha256, trackDigest(prior));
+  assert.deepEqual(result.desiredTarget, { track: 'qa', releases: [release()] });
+  assert.equal(canonical(spec), approved);
+  const captured = fixture.timeline.indexOf('receipt:target-prepared');
+  const upload = fixture.timeline.findIndex((item) => item.startsWith('request:POST:') && item.includes('/upload/'));
+  assert.ok(captured > 0 && captured < upload);
+  const beforeUpload = fixture.receipts.find((receipt) => receipt.stage === 'upload-bundle');
+  assert.deepEqual(beforeUpload.targetBefore, trackSnapshot(prior));
+  assert.equal(beforeUpload.targetBeforeSha256, result.targetBeforeSha256);
+  assert.deepEqual(beforeUpload.desiredTarget, result.desiredTarget);
+  assert.equal(fixture.calls.length, 9);
+  const blocked = harness();
+  await assert.rejects(transact(spec, bytes, artifact, { ...blocked, record: async (receipt) => {
+    if (receipt.stage === 'target-prepared') throw new Error('capture receipt unavailable');
+    await blocked.record(receipt);
+  } }), /capture receipt unavailable/);
+  assert.equal(blocked.calls.length, 4);
+  assert.ok(!blocked.calls.some((call) => call.path.includes('/upload/') || call.method === 'PUT'));
+});
+
+test('automatic capture refuses complex tracks and used codes before uploading', async () => {
+  const previous = { ...release(), versionCodes: ['3000003'] };
+  for (const options of [
+    { tracks: [{ track: 'qa', releases: [previous, previous] }] },
+    { tracks: [{ track: 'qa', releases: [{ ...previous, status: 'inProgress', userFraction: 0.5 }] }] },
+    { tracks: [{ track: 'qa', releases: [{ ...previous, status: 'halted' }] }] },
+    { tracks: [{ track: 'qa', releases: [{ ...previous, userFraction: 0.5 }] }] },
+    { tracks: [{ track: 'qa', releases: [{ ...previous, countryTargeting: { includeRestOfWorld: true } }] }] },
+    { tracks: [{ track: 'qa', releases: [{ ...previous, inAppUpdatePriority: 1 }] }] },
+    { tracks: [{ track: 'qa', releases: [{ ...previous, unrecognized: true }] }] },
+    { tracks: [{ track: 'internal', releases: [] }] },
+    { bundles: [{ versionCode: code, sha256: artifact.sha256 }] },
+    { apks: [{ versionCode: code + 1 }] },
+    { tracks: [emptyTrack(), { track: 'production', releases: [{ ...previous, versionCodes: [String(code)] }] }] },
+  ]) {
+    const fixture = harness(options);
+    await assert.rejects(transact(resolved(), bytes, artifact, fixture));
+    assert.ok(fixture.calls.length <= 4);
+    assert.ok(!fixture.calls.some((call) => call.path.includes('/upload/') || call.method === 'PUT'));
+    assert.equal(fixture.receipts.at(-1).state, 'blocked');
+  }
 });
 
 test('inspect creates one read-only working edit without uploading, changing tracks or committing', async () => {
@@ -415,6 +573,13 @@ test('workflow protects the exact main operation before narrow short-lived authe
   const workflow = await readFile(new URL('../.github/workflows/google-play-release.yml', import.meta.url), 'utf8');
   assert.match(workflow, /workflow_dispatch:/);
   assert.match(workflow, /default: Validate/);
+  assert.match(workflow, /candidate_run_id:[\s\S]*?type: string\s+required: true/);
+  assert.match(workflow, /release_notes:[\s\S]*?type: string/);
+  assert.match(workflow, /options: \[automatic, capture-current-simple, explicit-pin\]\s+default: automatic/);
+  assert.equal([...workflow.matchAll(/required: true/g)].length, 1, 'Only the named producer is always required');
+  for (const name of pins) {
+    assert.match(workflow, new RegExp(`      ${name}:\\s+description: Advanced optional`));
+  }
   assert.doesNotMatch(workflow, /^\s+(?:push|pull_request|release):/m);
   assert.match(workflow, /cancel-in-progress: false/);
   assert.match(workflow, /github\.ref == 'refs\/heads\/main'/);
@@ -448,7 +613,7 @@ test('workflow protects the exact main operation before narrow short-lived authe
 
 test('prepared binding cannot be forged, changed after approval or reused by another run', () => {
   const spec = validateIntent(raw());
-  const binding = { spec, source: identity(), bundle: artifact };
+  const binding = { request: spec, spec, source: identity(), artifactId: 456, bundle: artifact };
   const expected = digest(canonical(binding));
   const prepared = { binding, bindingSha: expected, approval: { approved: true }, context: context() };
   assert.doesNotThrow(() => validatePrepared(prepared, spec, context(), expected));
@@ -456,10 +621,195 @@ test('prepared binding cannot be forged, changed after approval or reused by ano
     (v) => { v.approval.approved = false; }, (v) => { v.context.runId += 1; },
     (v) => { v.context.attempt = 2; }, (v) => { v.binding.bundle.sha256 = '0'.repeat(64); },
     (v) => { v.binding.source.packageVersion += 1; }, (v) => { v.bindingSha = '0'.repeat(64); },
+    (v) => { v.binding.spec.trackStatePolicy = 'capture-current-simple'; },
+    (v) => { v.binding.request.expectedTrackSha256 = ''; },
   ]) {
     const value = structuredClone(prepared);
     change(value);
     assert.throws(() => validatePrepared(value, spec, context(), expected));
+  }
+  for (const value of [
+    { mode: 'Validate', candidate_run_id: '123' }, { mode: 'Inspect', candidate_run_id: '123' },
+    guided(), guided('Validate'), { ...guided('Promote'), expected_track_sha256: trackDigest(emptyTrack()) },
+    { ...raw(), release_json: '', release_notes: guided().release_notes, expected_track_sha256: '' },
+    { ...raw(), track_state_policy: 'capture-current-simple', expected_track_sha256: '' },
+  ]) {
+    const request = validateIntent(value);
+    const actual = resolved(value);
+    const binding = { request, spec: actual, source: identity(), artifactId: 456, bundle: artifact };
+    const expected = digest(canonical(binding));
+    const prepared = { binding, bindingSha: expected, approval: { approved: true }, context: context() };
+    assert.deepEqual(validatePrepared(prepared, validateIntent(value), context(), expected), actual);
+    assert.throws(() => validatePrepared(prepared, { ...request, track: 'other' }, context(), expected));
+    assert.throws(() => validatePrepared(prepared, { ...request, trackStatePolicy: 'automatic' }, context(), expected));
+  }
+});
+
+test('guided preparation and approved execution use the original packet and immutable dispatch ledger', async () => {
+  const root = await mkdtemp(join(tmpdir(), 'recap-play-prepare-'));
+  const eventPath = join(root, 'event.json');
+  const summaryPath = join(root, 'summary.txt');
+  const work = join(root, 'recap-google-play-789-1');
+  const savedEnvironment = { ...process.env };
+  const original = { fetch: globalThis.fetch, spawn: childProcess.spawnSync, exec: childProcess.execFileSync };
+  const fixture = harness();
+  const qualified = qualification();
+  qualified.approval.policySha256 = protectionPolicy(environment('android-release-candidate'), branches()).sha256;
+  const zip = Buffer.from('Synthetic archive transport; extraction and signature subprocesses are mocked.');
+  const packetArtifact = { ...githubArtifact(), size_in_bytes: zip.length, digest: `sha256:${digest(zip)}` };
+  const entry = (versionCode, sealed = false) => ({ versionCode, productVersion: '3.2.0',
+    sourceRevision: source, sourceTree: identity().sourceTree, artifact: sealed ? artifact : null });
+  const reservation = { schemaVersion: 1, retiredThrough: 3000002, reservations: [entry(3000003), entry(code)] };
+  const sealed = { ...reservation, reservations: [entry(3000003), entry(code, true)] };
+  let current = sealed;
+  const main = '9'.repeat(40);
+  const laterLedger = '8'.repeat(40);
+  const githubReads = [];
+  const ancestry = [];
+  const nativeCalls = [];
+  const gitOutput = (args) => {
+    if (args[0] === '--no-pager') args = args.slice(1);
+    if (args[0] === 'fetch' || ['status', 'ls-files'].includes(args[0])) return '';
+    if (args[0] === 'merge-base') {
+      ancestry.push(args.slice(2));
+      assert.notDeepEqual(args.slice(2), [laterLedger, tooling], 'Do not impose new legacy ledger-to-tooling ancestry');
+      return '';
+    }
+    if (args[0] === 'log') return `${ledger}\n${tooling}\n${main}`;
+    if (args[0] === 'rev-parse') {
+      if (args[1] === 'HEAD') return tooling;
+      if (args[1] === 'refs/remotes/origin/main') return main;
+      if (args[1].endsWith('^{tree}')) return identity().sourceTree;
+      if (args[1] === `${source}^{commit}`) return source;
+    }
+    if (args[0] === 'show') {
+      if (args[1] === `${source}:package.json`) return JSON.stringify({ version: '3.2.0' });
+      if (args[1].endsWith(':packaging/android/version-codes.json')) {
+        const revision = args[1].split(':')[0];
+        return JSON.stringify(revision === ledger ? reservation : revision === tooling ? sealed : current);
+      }
+    }
+    assert.fail(`Unexpected fixture git read: ${args.join(' ')}`);
+  };
+  try {
+    Object.assign(process.env, { RUNNER_TEMP: root, GITHUB_EVENT_PATH: eventPath,
+      GITHUB_REPOSITORY: REPOSITORY, GITHUB_EVENT_NAME: 'workflow_dispatch', GITHUB_REF: 'refs/heads/main',
+      GITHUB_SHA: tooling, GITHUB_WORKFLOW_SHA: tooling, GITHUB_WORKFLOW_REF: context().workflowRef,
+      GITHUB_RUN_ID: '789', GITHUB_RUN_ATTEMPT: '1', GITHUB_TOKEN: fixture.token,
+      JAVA_HOME_17_X64: join(root, 'fixture-jdk'), GITHUB_OUTPUT: join(root, 'output.txt'),
+      GITHUB_STEP_SUMMARY: summaryPath });
+    delete process.env.RECAP_PLAY_ACCESS_TOKEN;
+    childProcess.execFileSync = (file, args) => {
+      assert.equal(file, 'git');
+      return gitOutput(args);
+    };
+    childProcess.spawnSync = (file, args) => {
+      nativeCalls.push({ file, args });
+      if (file === 'git') return { status: 0, stdout: gitOutput(args) };
+      if (file === 'gh') {
+        assert.deepEqual(args, ['api', `repos/${REPOSITORY}/actions/artifacts/456/zip`, '--allow-escape-sequences']);
+        return { status: 0, stdout: zip };
+      }
+      assert.equal(basename(file), 'java');
+      assert.equal(args[1], 'archive');
+      const output = args[4];
+      mkdirSync(output, { recursive: true });
+      if (args[3] === '-') {
+        assert.equal(basename(args[2]), 'candidate-packet.zip');
+        writeFileSync(join(output, 'android-artifact.json'), qualified.recordBytes);
+        writeFileSync(join(output, 'android-candidate.json'), JSON.stringify(qualified.report));
+        writeFileSync(join(output, 'version-codes.proposed.json'), JSON.stringify(sealed));
+        writeFileSync(join(output, 'recap-page-android.aab'), bytes);
+      } else {
+        assert.equal(args[3], signer, 'The actual signature verifier must receive the derived upload signer');
+        const assets = join(output, 'base', 'assets', 'recap');
+        mkdirSync(assets, { recursive: true });
+        writeFileSync(join(assets, 'build-info.json'), JSON.stringify(identity()));
+      }
+      return { status: 0, stdout: '' };
+    };
+    syncBuiltinESMExports();
+    globalThis.fetch = async (url, init) => {
+      if (new URL(url).origin === 'https://androidpublisher.googleapis.com') return fixture.fetchImpl(url, init);
+      const path = new URL(url).pathname + new URL(url).search;
+      githubReads.push(path);
+      assert.ok(path.startsWith(`/repos/${REPOSITORY}/`));
+      let body;
+      if (path.endsWith('/actions/runs/789')) body = run();
+      else if (path.endsWith('/actions/runs/123')) body = run(true);
+      else if (path.endsWith('/actions/runs/123/artifacts?per_page=100')) body = { total_count: 1, artifacts: [packetArtifact] };
+      else if (path.endsWith('/actions/artifacts/456')) body = packetArtifact;
+      else if (path.endsWith('/deployment-branch-policies?per_page=100')) body = branches();
+      else if (path.endsWith('/environments/android-release-candidate')) body = environment('android-release-candidate');
+      else if (path.endsWith(`/environments/${ENVIRONMENT}`)) body = environment();
+      else if (path.endsWith('/approvals')) body = approvals();
+      else assert.fail(`Unexpected fixture GitHub read: ${path}`);
+      return new Response(JSON.stringify(body), { status: 200 });
+    };
+    const setInput = (inputs) => writeFile(eventPath, JSON.stringify({ repository: { default_branch: 'main' }, inputs }));
+    for (const inputs of [{ mode: 'Validate', candidate_run_id: '123' }, guided('Validate')]) {
+      await setInput(inputs);
+      const result = await prepare();
+      assert.equal(result.publisherPolicy, null);
+      assert.equal(result.binding.spec.ledgerSha, tooling);
+      assert.equal(result.binding.spec.trackStatePolicy, inputs.release_notes ? 'capture-current-simple' : null);
+      assert.equal(fixture.calls.length, 0, 'Validate never contacts Google');
+      await rm(work, { recursive: true, force: true });
+    }
+    await setInput(guided());
+    const initial = await prepare();
+    assert.equal(initial.binding.spec.sourceSha, source);
+    assert.notEqual(initial.binding.spec.sourceSha, tooling);
+    assert.equal(initial.binding.spec.ledgerSha, tooling);
+    assert.deepEqual(initial.binding.spec.release, release());
+    assert.equal(initial.binding.qualificationSha256, digest(Buffer.from(JSON.stringify(qualified.report))));
+    assert.equal(fixture.calls.length, 0);
+    Object.assign(process.env, { RECAP_PLAY_EXPECTED_ENVIRONMENT_ID: String(initial.publisherPolicy.environmentId),
+      RECAP_PLAY_EXPECTED_POLICY_SHA: initial.publisherPolicy.sha256,
+      RECAP_PLAY_EXPECTED_BINDING_SHA: initial.bindingSha, RECAP_PLAY_APPROVED_SIGNER: 'e'.repeat(64) });
+    current = { ...sealed, reservations: [...sealed.reservations, entry(code + 1)] };
+    await rm(work, { recursive: true, force: true });
+    await assert.rejects(prepare({ afterApproval: true }), /PROTECTED_SIGNER_MISMATCH/);
+    assert.equal(fixture.calls.length, 0);
+    process.env.RECAP_PLAY_APPROVED_SIGNER = signer;
+    await rm(work, { recursive: true, force: true });
+    await setInput({ ...guided(), release_notes: 'Changed while awaiting approval.' });
+    await assert.rejects(prepare({ afterApproval: true }), /APPROVED_BINDING_OR_POLICY_CHANGED/);
+    await rm(work, { recursive: true, force: true });
+    await setInput(guided());
+    const approved = await prepare({ afterApproval: true });
+    assert.equal(approved.bindingSha, initial.bindingSha, 'Later main reservations must not retarget the selected ledger');
+    assert.equal(approved.approval.approved, true);
+    process.env.RECAP_PLAY_ACCESS_TOKEN = fixture.token;
+    await setInput({ ...guided(), release_notes: 'Changed after approval.' });
+    await assert.rejects(publish(), /APPROVED_PREPARATION_REQUIRED/);
+    assert.equal(fixture.calls.length, 0);
+    await setInput(guided());
+    assert.equal((await publish()).state, 'submitted-publication-unverified');
+    assert.equal(fixture.calls.length, 9);
+    const receipt = JSON.parse(await readFile(join(work, 'google-play-receipt.json'), 'utf8'));
+    assert.deepEqual(receipt.targetBefore, emptyTrack());
+    assert.equal(receipt.trackStatePolicy, 'capture-current-simple');
+    assert.ok(githubReads.some((path) => path.endsWith('/actions/runs/123/artifacts?per_page=100')));
+    assert.ok(nativeCalls.filter(({ file }) => basename(file) === 'java').length >= 2);
+    assert.match(await readFile(summaryPath, 'utf8'), /no concurrent publisher or pending Console changes/);
+    delete process.env.RECAP_PLAY_ACCESS_TOKEN;
+    await rm(work, { recursive: true, force: true });
+    await setInput({ ...raw('Inspect'), ledger_sha: laterLedger });
+    const legacy = await prepare();
+    assert.equal(legacy.binding.spec.ledgerSha, laterLedger);
+    assert.equal(legacy.binding.spec.trackStatePolicy, null);
+    assert.ok(ancestry.some(([from, to]) => from === source && to === laterLedger));
+    assert.ok(githubReads.some((path) => path.endsWith('/actions/artifacts/456')));
+    assert.equal(fixture.calls.length, 9, 'Legacy preflight remains non-Google');
+  } finally {
+    globalThis.fetch = original.fetch;
+    childProcess.spawnSync = original.spawn;
+    childProcess.execFileSync = original.exec;
+    syncBuiltinESMExports();
+    for (const key of Object.keys(process.env)) if (!Object.hasOwn(savedEnvironment, key)) delete process.env[key];
+    Object.assign(process.env, savedEnvironment);
+    await rm(root, { recursive: true, force: true });
   }
 });
 

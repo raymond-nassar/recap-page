@@ -26,8 +26,10 @@ Before a publishing operation:
 4. Complete the owner's Play account, app-content, rights, service-use, privacy, signing,
    device and applicable testing requirements. The API requires an existing app with an initial
    Console upload and cannot perform required legal consents.
-5. Confirm that no one is changing this app in Play Console or running another publishing
-   client. Console changes can discard an API edit. The workflow serializes only its own runs.
+5. Confirm that there is no concurrent publisher and no pending Play Console work, including
+   changes already ready to send for review. Console changes can discard an API edit, and an
+   API commit can also submit pre-existing Console changes ready for review. The workflow
+   serializes only its own runs; it cannot verify or promise isolation from that Console work.
 
 The retained producer report is deliberately limited: synthetic native coverage is not physical
 device, production signer, API 26 runtime or upgrade acceptance. An accepted API commit is not
@@ -95,7 +97,7 @@ The pinned Google-maintained auth action creates a 15-minute access token with o
 There is no service-account JSON key, password or long-lived Google token in this workflow.
 Keep account-private configuration out of public Issues and release records.
 
-## Modes and explicit inputs
+## Modes and normal inputs
 
 Dispatch from `main`, once per intended operation. Reruns are refused.
 
@@ -103,23 +105,61 @@ Dispatch from `main`, once per intended operation. Reruns are refused.
 |---|---|
 | `Validate` (default) | Reads GitHub provenance and validates the packet, source, ledger and actual AAB signature. No Google credentials or Play API calls. |
 | `Inspect` | Requires protected approval. Creates one working edit and reads tracks, bundles and APKs. Does not upload, change releases, validate/commit or delete the edit. |
-| `Publish` | Requires protected approval. Uploads the exact retained AAB once, verifies returned code/hash, then changes only the approved testing track and commits once. |
+| `Publish` | Requires protected approval. Uploads the exact retained AAB once, verifies returned code/hash, sets the approved testing target, checks all tracks and commits once. |
 | `Promote` | Requires protected approval. Reuses a matching code/hash already present in Play; never uploads or rebuilds the bundle. |
 
-Every mode requires the exact application source SHA, later sealed-ledger SHA, producing
-Candidate run ID, immutable artifact ID, version code and approved public upload-certificate
-SHA-256. These are identifiers, not credentials.
+The normal new-version operation supplies four values:
 
-`Inspect` returns the actual non-production track identifiers, each current track digest and
-the observed code high-water in its receipt. Do not assume an `internal` alias: use the exact
-identifier returned for the intended app. Inspection itself creates an edit, so coordinate it
-with other Console work.
+| Input | Normal Publish value |
+|---|---|
+| `mode` | `Publish` |
+| `candidate_run_id` | One successful Candidate run ID, or its exact `https://github.com/raymond-nassar/recap-page/actions/runs/RUN_ID` URL |
+| `track` | The actual existing testing track identifier, not a guessed alias |
+| `release_notes` | Reviewed plain notes for this version, at most 500 Unicode code points |
 
-`Publish` and `Promote` additionally require:
+The publisher derives the exact packet artifact, source, code and public signer from that
+named successful main/direct/first-attempt producer, its original verified packet and the
+sealed ledger at the executing workflow revision. It does not choose the latest artifact.
+Discovery requires one canonical Candidate packet in a complete list of at most 100 artifacts;
+missing, duplicate, ambiguous, truncated, expired or wrong-producer evidence fails. An expired
+competing packet cannot be ignored to make selection unique. Current main is checked for intact
+history and seals, not used to retarget the approved source.
 
-- `track`: the existing testing track's exact identifier.
-- `expected_track_sha256`: its digest from the inspected state.
-- `release_json`: the complete desired simple release, including explicitly retained codes.
+Plain notes generate the release name `Recap Page PRODUCT_VERSION` from the verified application
+source, its one resolved version code, status `completed` and language `en-US`. The visible
+`track_state_policy` defaults to `automatic`, which selects `capture-current-simple` for this
+normal path. It captures and checks the actual simple target state inside the approved Publish
+edit. A separate Inspect or Validate run is not required.
+
+`Validate` needs only its mode and named producer for packet checks. Adding track and release
+intent previews the same normalized operation without Google access. `Inspect` is optional
+discovery or reconciliation: after approval it returns actual non-production track identifiers,
+current digests and code high-water. Do not assume an `internal` alias. Inspection creates an
+edit, so coordinate it with Console work too.
+
+## Advanced compatible inputs
+
+The optional identity fields `source_sha`, `ledger_sha`, `artifact_id`, `version_code` and
+`upload_cert_sha256` must be supplied together or all omitted. Complete old callers retain their
+explicit artifact lookup and existing ledger ancestry checks; every pin must match independent
+packet, source, seal, approval and signature evidence. These fields remain visible, but are not
+needed for normal publication. They are identifiers, not credentials.
+
+Use `release_json` instead of plain notes for a custom name, `draft` status, retained codes or
+multiple languages. Never supply both release forms. `expected_track_sha256` supplies the exact
+previous target digest when an explicit pin is required.
+
+| Release intent | State policy |
+|---|---|
+| Candidate-only Validate or Inspect, with no release or digest | Neutral `automatic` resolves to no transaction policy; explicit transaction policies are rejected. |
+| Publish or Validate preview with plain notes, no digest | `automatic` resolves to `capture-current-simple`, with either derived or complete identity pins. |
+| Complete release form and valid digest | `automatic` resolves to `explicit-pin`. |
+| Full JSON without a digest | Rejected under `automatic`; explicitly select `capture-current-simple` only for a supported new-version Publish or its Validate preview. |
+| Explicit `capture-current-simple` plus any digest | Rejected as conflicting intent. |
+| Promote, with either complete release form | A valid digest and `explicit-pin` are required; `automatic` with a digest resolves to that policy. Capture is never allowed. |
+
+An explicit pin must still match the actual target when the edit begins. Identity lookup form
+does not change release-state policy. Inspect accepts neither release intent nor a digest.
 
 Example shape only; placeholders are not a reservation or authorization:
 
@@ -138,12 +178,13 @@ Example shape only; placeholders are not a reservation or authorization:
 ```
 
 Only `draft` and `completed` are supported. The JSON input is bounded to 8 KiB, with notes limited
-to 500 Unicode characters per language. The candidate code must appear exactly once; any other retained code must already
+to 500 Unicode code points per language. Whitespace-only inputs are invalid.
+The candidate code must appear exactly once; any other retained code must already
 belong to the selected target track. This is an explicit replacement, not an inferred merge.
 Multiple active releases, rollouts, country targeting or non-default update priority require
 operator reconciliation rather than a guessed transformation.
 
-Review the preflight's exact source, artifact hash, signer, track state and requested release
+Review the preflight's exact source, artifact hash, signer, track, resolved state policy and requested release
 before approving. After approval, the workflow downloads and verifies the packet again,
 requires the unchanged binding/policy and checks the actual current-run human approval before
 obtaining a Google token. It rechecks protection and the current sealed ledger immediately
@@ -155,12 +196,21 @@ unknown fields or erase non-default rollout/targeting intent.
 
 ## Transaction and outcomes
 
-The publisher never modifies another track or Store listing. It checks the selected target
-state, rejects reused/out-of-order upload codes, compares the upload's returned SHA-256 and code,
-reads back all tracks, and server-validates before committing.
+The publisher sends no listing change and verifies that every non-target track remains unchanged
+in its edit. It checks the selected target, rejects reused/out-of-order upload codes across all
+tracks, bundles and APKs, compares the upload's returned SHA-256 and code, reads back all tracks,
+and server-validates before committing.
+
+Capture permits only an empty target or one draft/completed release without rollout, country
+targeting or non-default priority. Before upload, the durable receipt records the resolved policy,
+strict normalized actual target, its digest and the desired target. Failure to persist that
+evidence stops upload. The approved intent is not rewritten to insert a newly captured digest.
+Explicit pinning retains exact digest equality and the same simple-track restrictions.
 
 Commit always sets `changesInReviewBehavior=ERROR_IF_IN_REVIEW`. Google's cancellation default
-is not used. No failed request changes this flag automatically.
+is not used. No failed request changes this flag automatically. This does not isolate the commit
+from Console changes already ready for review. Do not publish with pending Console work or a
+concurrent publisher, and do not interpret acknowledgement as immediate tester availability.
 
 The retained `google-play-RUN_ID-ATTEMPT` artifact contains only a sanitized operation receipt,
 not the token, account configuration, bundle, raw server response or full native logs.
@@ -177,6 +227,25 @@ Attempted stages are written before requests. Mutations are sent once without au
 Do not rerun or rebuild merely because a job is red. Retain its edit/stage/code/hash facts.
 The workflow does not delete edits, cancel another review, waive a first upload, change
 managed-publishing settings or claim production delivery.
+
+## Normal release operations
+
+The reviewed reservation merge and exact seal merge remain separate. Normal Android delivery
+still needs two human credential approvals: Candidate signing, then exact-packet Play publication.
+There is no automatic ledger merge or privileged release broker.
+
+| Normal supplied values or approvals | Previously | Now |
+|---|---|---|
+| Candidate inputs | 6 | 4: mode, reserved code, observed high-water and public evidence |
+| Play Publish inputs | 10 | 4: mode, named Candidate, actual track and plain notes |
+| Native CI rehearsal inputs | 3 | 1: native mode |
+| Routine Android environment approvals | 3, including separate Inspect | 2: signing and publishing |
+
+Compatibility fields remain visible; these counts describe normal supplied values, not total
+form fields. Separate Inspect remains available when actual track discovery or reconciliation
+is needed. A manual Console fallback is an owner decision, not a failed workflow retry: first
+reconcile any attempted upload/commit, then retain the exact sealed bytes, code and qualification.
+Never rebuild, re-sign or silently replace the approved packet.
 
 ## GitHub Android downloads and production
 
@@ -201,3 +270,4 @@ Official documentation checked 2026-10-05:
 - [Bundle identity and upload](https://developers.google.com/android-publisher/api-ref/rest/v3/edits.bundles)
 - [Track intent and release fields](https://developers.google.com/android-publisher/api-ref/rest/v3/edits.tracks)
 - [Commit and existing-review protection](https://developers.google.com/android-publisher/api-ref/rest/v3/edits/commit)
+- [Concurrent edits and pending Console changes](https://developers.google.com/android-publisher/concurrency-considerations), checked 2026-10-06

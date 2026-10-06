@@ -6129,13 +6129,13 @@
     "fp": "a7a19dc0dbfabe78",
     "head": "\"devDependencies\": {"
   },
-  "SECURITY.md|in-scope|.github/workflows/ci.yml:248-250|0": {
-    "anchor": ".github/workflows/ci.yml:248-250",
+  "SECURITY.md|in-scope|.github/workflows/ci.yml:257-259|0": {
+    "anchor": ".github/workflows/ci.yml:257-259",
     "fp": "d7904643223f00ed",
     "head": "permissions:"
   },
-  "SECURITY.md|in-scope|.github/workflows/ci.yml:33-34|0": {
-    "anchor": ".github/workflows/ci.yml:33-34",
+  "SECURITY.md|in-scope|.github/workflows/ci.yml:38-39|0": {
+    "anchor": ".github/workflows/ci.yml:38-39",
     "fp": "95da3e6147977222",
     "head": "permissions:"
   },

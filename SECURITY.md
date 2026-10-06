@@ -66,9 +66,9 @@ If the report is declined, you may publish immediately and quote the reasoning.
 - **Development dependencies and GitHub Actions.** They run against a maintainer's checkout and in
   CI, not in the browser. `.github/dependabot.yml` defines advisory response thresholds.
 - **The workflows** in `.github/workflows/`. CI uses read-only repository permissions,
-  declared at `.github/workflows/ci.yml:33-34`. The optional manual Android rehearsal also reads
+  declared at `.github/workflows/ci.yml:38-39`. The optional manual Android rehearsal also reads
   repository Actions run metadata to verify its origin, declared at
-  `.github/workflows/ci.yml:248-250`. Neither grants write or Play publication access. Changes
+  `.github/workflows/ci.yml:257-259`. Neither grants write or Play publication access. Changes
   that expand these permissions are in scope.
 
 ## Out of scope
