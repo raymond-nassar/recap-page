@@ -25,7 +25,11 @@
       "productVersion": "3.2.0",
       "sourceRevision": "8ae81a17805e2e67772bea932ee721e817b68157",
       "sourceTree": "88ef56e45f4611cebe526b037de89307155ac64e",
-      "artifact": null
+      "artifact": {
+        "name": "recap-page-android.aab",
+        "bytes": 3418002,
+        "sha256": "7cb9b7611dfb8ca1090cf7198da9234572d2edc8cc07c44cef76d03d2405b211"
+      }
     }
   ]
 }
