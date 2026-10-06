@@ -8,7 +8,7 @@ import childProcess from 'node:child_process';
 import { syncBuiltinESMExports } from 'node:module';
 import {
   ENVIRONMENT, OFFICIAL_ID, PROTOTYPE_ID, REPOSITORY, PACKET, digest,
-  validateInvocation, protectionPolicy, requireApproval, eligibleReservation,
+  validateInvocation, resolveCandidateInput, resolveNativeMode, executionContext, protectionPolicy, requireApproval, eligibleReservation,
   requireUnusedCode, requireSourceAncestry, sourceCommand, checkRecord, assertFiles, checkAssets, noNative,
   verifyNativeReport, withPrivateDirectory, certificateFingerprint, execute, verifyPolicyResource, verifyDexDefinitions,
 } from '../scripts/android-candidate.mjs';
@@ -29,7 +29,7 @@ function invocation(mode = 'Candidate', path = '.github/workflows/android-releas
       evidence: mode === 'Candidate' ? `https://github.com/${REPOSITORY}/issues/578#issuecomment-123` : '' },
     context: { repository: REPOSITORY, event: 'workflow_dispatch', defaultBranch: 'main', ref: 'refs/heads/main',
       sha, workflowSha: sha, workflowRef: `${REPOSITORY}/${path}@refs/heads/main`, runId: 123, attempt: 1,
-      actor: 'initiator', triggeringActor: 'initiator', rehearsalFlag: true, emulatorFlag: false },
+      actor: 'initiator', triggeringActor: 'initiator', rehearsalFlag: true, emulatorFlag: false, rehearsalSourceSha: sha },
     run: { id: 123, event: 'workflow_dispatch', head_sha: sha, head_branch: 'main',
       run_attempt: 1, workflow_id: 42, path },
   };
@@ -72,6 +72,76 @@ test('manual caller identity makes CI rehearsal-only even when Candidate inputs 
   both.context.emulatorFlag = false;
   both.input.code = '3000003';
   assert.throws(() => validateInvocation(both.input, both.context, both.run), /must not receive/);
+  const current = invocation('Rehearsal', '.github/workflows/ci.yml');
+  Object.assign(current.context, { nativeMode: 'rehearsal', rehearsalFlag: false, rehearsalSourceSha: '' });
+  current.input.sourceSha = '';
+  assert.doesNotThrow(() => validateInvocation(current.input, current.context, current.run));
+  current.context.nativeMode = 'debug';
+  assert.throws(() => validateInvocation(current.input, current.context, current.run), /exclusive/);
+});
+
+test('candidate derives the reserved application source rather than the executing tooling revision', () => {
+  const v = invocation();
+  const ledger = reserveAndroidBuild(emptyLedger(), source);
+  v.context.workflowSha = 'e'.repeat(40);
+  const input = { ...v.input, sourceSha: '', ledgerSha: '' };
+  const resolved = resolveCandidateInput(input, v.context, ledger);
+  assert.equal(resolved.sourceSha, source.sourceRevision);
+  assert.notEqual(resolved.sourceSha, v.context.workflowSha);
+  assert.equal(resolved.ledgerSha, v.context.workflowSha);
+  assert.deepEqual(resolveCandidateInput(v.input, v.context, ledger), v.input,
+    'Fully pinned source and ledger callers retain their checked pins');
+  for (const patch of [{ code: '3000004' }, { sourceSha: v.context.workflowSha }]) {
+    assert.throws(() => resolveCandidateInput({ ...input, ...patch }, v.context, ledger));
+  }
+  const sealed = structuredClone(ledger);
+  sealed.reservations[0].artifact = { name: 'recap-page-android.aab', bytes: 1, sha256: hash };
+  assert.throws(() => resolveCandidateInput(input, v.context, sealed), /unsealed/);
+  const rehearsal = invocation('Rehearsal');
+  rehearsal.input.sourceSha = '';
+  assert.equal(resolveCandidateInput(rehearsal.input, rehearsal.context, null).sourceSha, sha);
+  for (const patch of [{ sourceSha: 'd'.repeat(40) }, { code: '3000003' }, { ledgerSha: sha },
+    { highWater: '0' }, { evidence: v.input.evidence }]) {
+    assert.throws(() => validateInvocation({ ...rehearsal.input, ...patch }, rehearsal.context, rehearsal.run));
+  }
+});
+
+test('native mode resolves raw dispatch inputs and rejects mixed or orphan legacy intent', async () => {
+  const root = await mkdtemp(join(tmpdir(), 'recap-native-mode-'));
+  const path = join(root, 'event.json');
+  const environment = { GITHUB_EVENT_PATH: path, GITHUB_EVENT_NAME: 'workflow_dispatch',
+    GITHUB_SHA: sha, GITHUB_WORKFLOW_SHA: sha };
+  try {
+    for (const [inputs, expected] of [
+      [{}, 'none'], [{ native_mode: 'none' }, 'none'], [{ native_mode: 'debug' }, 'debug'],
+      [{ native_mode: 'rehearsal' }, 'rehearsal'], [{ android_emulator: 'true' }, 'debug'],
+      [{ android_rehearsal: true, android_rehearsal_source_sha: sha }, 'rehearsal'],
+      [{ native_mode: 'none', android_rehearsal: 'true', android_emulator: 'false', android_rehearsal_source_sha: sha }, 'rehearsal'],
+    ]) {
+      await writeFile(path, JSON.stringify({ inputs }));
+      assert.deepEqual(resolveNativeMode(await executionContext(environment)),
+        { mode: expected, sourceSha: expected === 'rehearsal' ? sha : '' });
+    }
+    for (const inputs of [
+      { native_mode: 'unknown' }, { android_emulator: 'yes' },
+      { android_rehearsal: true, android_emulator: true, android_rehearsal_source_sha: sha },
+      { native_mode: 'debug', android_emulator: true },
+      { native_mode: 'rehearsal', android_rehearsal: true, android_rehearsal_source_sha: sha },
+      { android_rehearsal_source_sha: sha }, { native_mode: 'rehearsal', android_rehearsal_source_sha: sha },
+      { android_rehearsal: true }, { android_rehearsal: true, android_rehearsal_source_sha: 'main' },
+      { android_rehearsal: true, android_rehearsal_source_sha: 'd'.repeat(40) },
+    ]) {
+      await writeFile(path, JSON.stringify({ inputs }));
+      const awaitedContext = await executionContext(environment);
+      assert.throws(() => resolveNativeMode(awaitedContext));
+    }
+    await writeFile(path, JSON.stringify({ inputs: { native_mode: 'rehearsal' } }));
+    const current = await executionContext(environment);
+    assert.throws(() => resolveNativeMode({ ...current, sha: 'd'.repeat(40) }));
+    assert.throws(() => resolveNativeMode({ ...current, event: 'push' }));
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
 });
 
 test('protection requires actual no-bypass human review and exact main-only deployment policy', () => {
@@ -155,6 +225,9 @@ test('consumed candidate attempts are rejected and incomplete bounded history ne
     workflow_runs: [{ id: 123, display_title: 'Android Candidate code 3000003 source a' }] }), '3000003', 123);
   await assert.rejects(requireUnusedCode(async () => ({ total_count: 1,
     workflow_runs: [{ id: 122, display_title: 'Android Candidate code 3000003 source a' }] }), '3000003', 123), /earlier dispatch/);
+  await assert.rejects(requireUnusedCode(async () => ({ total_count: 2,
+    workflow_runs: [{ id: 123, display_title: 'Android Candidate code 3000003 ledger b' },
+      { id: 122, display_title: 'Android Candidate code 3000003 ledger a' }] }), '3000003', 123), /earlier dispatch/);
   await assert.rejects(requireUnusedCode(async () => ({ total_count: 0, workflow_runs: [] }),
     '3000003', 123), /does not include this run/);
   let reads = 0;

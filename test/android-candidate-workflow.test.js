@@ -20,14 +20,22 @@ test('candidate is direct manual main-only and missing protection cannot schedul
   assert.match(candidate, /environment: \$\{\{ needs\.preflight\.outputs\.environment \}\}/);
   assert.doesNotMatch(preflight, /^ {4}environment:|secrets\./m);
   assert.match(rehearsal, /ref: \$\{\{ github\.sha \}\}\s+path: application/);
-  assert.doesNotMatch(rehearsal, /ref: \$\{\{ inputs\.source_sha \}\}/);
+  assert.doesNotMatch(rehearsal, /ref: \$\{\{ (?:inputs\.source_sha|needs\.preflight\.outputs\.source_sha) \}\}/);
   assert.doesNotMatch(workflow, /contents: write|actions: write|id-token:|secrets: inherit/);
   for (const job of [candidate, rehearsal]) {
     const env = job.match(/^ {4}env:\r?\n([\s\S]*?)^ {4}steps:/m)?.[1];
     assert.ok(env, 'Inspect the actual job-level environment');
     assert.doesNotMatch(env, /\$\{\{\s*runner\./);
     assert.match(env, /RECAP_ANDROID_SOURCE_SUBDIRECTORY: application/);
+    assert.match(env, /RECAP_ANDROID_SOURCE_SHA: \$\{\{ needs\.preflight\.outputs\.source_sha \}\}/);
   }
+  assert.match(candidate, /ref: \$\{\{ needs\.preflight\.outputs\.source_sha \}\}\s+path: application/);
+  assert.match(candidate, /RECAP_ANDROID_LEDGER_SHA: \$\{\{ needs\.preflight\.outputs\.ledger_sha \}\}/);
+  assert.match(preflight, /source_sha: \$\{\{ steps\.check\.outputs\.source_sha \}\}/);
+  assert.match(preflight, /ledger_sha: \$\{\{ steps\.check\.outputs\.ledger_sha \}\}/);
+  assert.match(workflow, /source_sha:\s+description: Optional checked source pin[\s\S]*?type: string/);
+  assert.doesNotMatch(workflow, /required: true/);
+  assert.match(workflow, /run-name: Android \$\{\{ inputs\.mode \}\} code /);
   assert.match(shell, /WORK="\$\{RUNNER_TEMP:\?\}\/recap-aab-\$\{GITHUB_RUN_ID:\?\}-\$\{GITHUB_RUN_ATTEMPT:\?\}"/);
   assert.match(shell, /export RECAP_ANDROID_WORK="\$WORK"/);
 });
@@ -77,7 +85,7 @@ test('same-AAB proof and cleanup precede exact allowlisted retention with no Pla
     assert.ok(steps.reduce((sum, value) => sum + value, 0) < outer);
   }
   assert.match(rehearsal, /if: failure\(\) && inputs\.mode == 'Rehearsal'/);
-  assert.match(ci, /if: failure\(\) && inputs\.android_rehearsal == true && inputs\.android_emulator != true/);
+  assert.match(ci, /if: failure\(\) && steps\.native_mode\.outputs\.mode == 'rehearsal'/);
   assert.doesNotMatch(candidate, /native-failure|failure_capsule/);
 });
 

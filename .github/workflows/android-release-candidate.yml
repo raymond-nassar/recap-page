@@ -1,5 +1,5 @@
 name: Android release candidate
-run-name: Android ${{ inputs.mode }} code ${{ inputs.version_code || 'development' }} source ${{ inputs.source_sha }}
+run-name: Android ${{ inputs.mode }} code ${{ inputs.version_code || 'development' }} ledger ${{ inputs.ledger_sha || github.workflow_sha }}
 
 on:
   workflow_dispatch:
@@ -9,13 +9,6 @@ on:
         type: choice
         options: [Rehearsal, Candidate]
         default: Rehearsal
-      source_sha:
-        description: Exact application commit; rehearsal must equal the dispatched ref
-        type: string
-        required: true
-      ledger_sha:
-        description: Later approved ledger commit, Candidate only
-        type: string
       version_code:
         description: Unsealed reserved Android code, Candidate only
         type: string
@@ -24,6 +17,12 @@ on:
         type: string
       play_evidence:
         description: Parent issue-comment evidence for the observation, Candidate only
+        type: string
+      source_sha:
+        description: Optional checked source pin; normally derived from the selected reservation
+        type: string
+      ledger_sha:
+        description: Optional checked ledger pin, Candidate only; defaults to the executing revision
         type: string
 
 permissions:
@@ -48,6 +47,8 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 20
     outputs:
+      source_sha: ${{ steps.check.outputs.source_sha }}
+      ledger_sha: ${{ steps.check.outputs.ledger_sha }}
       environment: ${{ steps.check.outputs.environment }}
       environment_id: ${{ steps.check.outputs.environment_id }}
       policy_sha: ${{ steps.check.outputs.policy_sha }}
@@ -80,6 +81,7 @@ jobs:
     timeout-minutes: 90
     env:
       RECAP_ANDROID_SOURCE_SUBDIRECTORY: application
+      RECAP_ANDROID_SOURCE_SHA: ${{ needs.preflight.outputs.source_sha }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         timeout-minutes: 2
@@ -153,6 +155,8 @@ jobs:
     timeout-minutes: 120
     env:
       RECAP_ANDROID_SOURCE_SUBDIRECTORY: application
+      RECAP_ANDROID_SOURCE_SHA: ${{ needs.preflight.outputs.source_sha }}
+      RECAP_ANDROID_LEDGER_SHA: ${{ needs.preflight.outputs.ledger_sha }}
       RECAP_ANDROID_AFTER_APPROVAL: 'true'
       RECAP_ANDROID_EXPECTED_ENVIRONMENT_ID: ${{ needs.preflight.outputs.environment_id }}
       RECAP_ANDROID_EXPECTED_POLICY_SHA: ${{ needs.preflight.outputs.policy_sha }}
@@ -167,7 +171,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         timeout-minutes: 2
         with:
-          ref: ${{ inputs.source_sha }}
+          ref: ${{ needs.preflight.outputs.source_sha }}
           path: application
           fetch-depth: 0
           persist-credentials: false

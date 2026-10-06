@@ -24,7 +24,9 @@ const MAX_ARCHIVE = 256 * 1024 * 1024;
 const MAX_JSON = 2 * 1024 * 1024;
 const MODES = ['Validate', 'Inspect', 'Publish', 'Promote'];
 const INPUTS = ['mode', 'source_sha', 'ledger_sha', 'candidate_run_id', 'artifact_id',
-  'version_code', 'track', 'release_json', 'expected_track_sha256', 'upload_cert_sha256'];
+  'version_code', 'track', 'release_notes', 'release_json', 'track_state_policy',
+  'expected_track_sha256', 'upload_cert_sha256'];
+const IDENTITY_INPUTS = ['source_sha', 'ledger_sha', 'artifact_id', 'version_code', 'upload_cert_sha256'];
 const API = `https://androidpublisher.googleapis.com/androidpublisher/v3/applications/${OFFICIAL_ID}`;
 
 export class PublisherError extends Error {
@@ -55,7 +57,7 @@ function integer(value, maximum = Number.MAX_SAFE_INTEGER) {
   return Number(value);
 }
 function text(value, maximum) {
-  demand(typeof value === 'string' && [...value].length > 0 && [...value].length <= maximum,
+  demand(typeof value === 'string' && value.trim().length > 0 && [...value].length <= maximum,
     'INVALID_TEXT');
   demand(![...value].some((character) => {
     const code = character.codePointAt(0);
@@ -78,7 +80,7 @@ function desiredRelease(value, code) {
     && value.versionCodes.length <= 20, 'VERSION_CODES_REQUIRED');
   value.versionCodes.forEach((item) => integer(item, ANDROID_CODE_LIMIT));
   demand(new Set(value.versionCodes).size === value.versionCodes.length
-    && value.versionCodes.filter((item) => item === String(code)).length === 1,
+    && (code === null || value.versionCodes.filter((item) => item === String(code)).length === 1),
   'CANDIDATE_CODE_REQUIRED');
   demand(Array.isArray(value.releaseNotes) && value.releaseNotes.length > 0
     && value.releaseNotes.length <= 10, 'RELEASE_NOTES_REQUIRED');
@@ -93,31 +95,69 @@ function desiredRelease(value, code) {
   return value;
 }
 export function validateIntent(raw) {
-  object(raw, ['mode', 'source_sha', 'ledger_sha', 'candidate_run_id', 'artifact_id',
-    'version_code', 'upload_cert_sha256'], INPUTS);
-  demand(MODES.includes(raw.mode) && SHA.test(raw.source_sha) && SHA.test(raw.ledger_sha),
-    'EXACT_SOURCE_AND_MODE_REQUIRED');
-  const code = integer(raw.version_code, ANDROID_CODE_LIMIT);
-  demand(code > DEVELOPMENT_ANDROID_CODE, 'DEVELOPMENT_CODE_REFUSED');
+  object(raw, ['mode', 'candidate_run_id'], INPUTS);
+  demand(Object.values(raw).every((value) => typeof value === 'string'
+    && (value === '' || value.trim().length > 0)), 'INVALID_INPUT_TEXT');
+  demand(MODES.includes(raw.mode), 'EXPLICIT_MODE_REQUIRED');
+  const pins = IDENTITY_INPUTS.filter((key) => raw[key]);
+  demand(pins.length === 0 || pins.length === IDENTITY_INPUTS.length, 'ALL_OR_NONE_IDENTITY_PINS_REQUIRED');
+  const pinned = pins.length > 0;
+  demand(!pinned || (SHA.test(raw.source_sha) && SHA.test(raw.ledger_sha)), 'EXACT_SOURCE_REQUIRED');
+  const code = pinned ? integer(raw.version_code, ANDROID_CODE_LIMIT) : null;
+  demand(code === null || code > DEVELOPMENT_ANDROID_CODE, 'DEVELOPMENT_CODE_REFUSED');
+  const runPrefix = `https://github.com/${REPOSITORY}/actions/runs/`;
+  const producer = raw.candidate_run_id.startsWith(runPrefix)
+    ? raw.candidate_run_id.slice(runPrefix.length) : raw.candidate_run_id;
+  const requestedPolicy = raw.track_state_policy || 'automatic';
+  demand(['automatic', 'capture-current-simple', 'explicit-pin'].includes(requestedPolicy), 'UNKNOWN_TRACK_STATE_POLICY');
+  demand(!(raw.release_notes && raw.release_json), 'NOTES_AND_JSON_CONFLICT');
   const spec = {
-    mode: raw.mode, sourceSha: raw.source_sha, ledgerSha: raw.ledger_sha,
-    producerRunId: integer(raw.candidate_run_id), artifactId: integer(raw.artifact_id), code,
-    signer: certificateFingerprint(raw.upload_cert_sha256), track: raw.track || '',
-    expectedTrackSha256: raw.expected_track_sha256 || '', release: null,
+    mode: raw.mode, sourceSha: pinned ? raw.source_sha : null, ledgerSha: pinned ? raw.ledger_sha : null,
+    producerRunId: integer(producer), artifactId: pinned ? integer(raw.artifact_id) : null, code,
+    signer: pinned ? certificateFingerprint(raw.upload_cert_sha256) : null, track: raw.track || '',
+    expectedTrackSha256: raw.expected_track_sha256 || '', trackStatePolicy: null,
+    releaseNotes: raw.release_notes ? text(raw.release_notes, 500) : '', release: null,
   };
   if (spec.track) testingTrack(spec.track);
   const mutating = ['Publish', 'Promote'].includes(spec.mode);
-  const proposed = Boolean(raw.release_json || spec.expectedTrackSha256);
-  demand(spec.mode !== 'Inspect' || !proposed, 'INSPECT_CANNOT_RECEIVE_RELEASE_INTENT');
-  if (mutating || proposed) {
+  const proposed = Boolean(raw.release_json || spec.releaseNotes);
+  demand(!spec.expectedTrackSha256 || HASH.test(spec.expectedTrackSha256), 'INVALID_TRACK_PIN');
+  demand(requestedPolicy !== 'capture-current-simple' || !spec.expectedTrackSha256, 'CAPTURE_AND_PIN_CONFLICT');
+  demand(spec.mode !== 'Inspect' || (!proposed && !spec.expectedTrackSha256 && requestedPolicy === 'automatic'),
+    'INSPECT_CANNOT_RECEIVE_RELEASE_INTENT');
+  if (!mutating && !proposed) {
+    demand(!spec.expectedTrackSha256 && requestedPolicy === 'automatic', 'NEUTRAL_MODE_CANNOT_RECEIVE_TRACK_POLICY');
+  } else {
     testingTrack(spec.track);
-    demand(HASH.test(spec.expectedTrackSha256) && typeof raw.release_json === 'string'
-      && Buffer.byteLength(raw.release_json) <= 8192, 'TRACK_PIN_AND_RELEASE_REQUIRED');
-    let release;
-    try { release = JSON.parse(raw.release_json); } catch { throw new PublisherError('INVALID_RELEASE_JSON'); }
-    spec.release = desiredRelease(release, code);
+    demand(proposed, 'RELEASE_REQUIRED');
+    spec.trackStatePolicy = requestedPolicy === 'automatic'
+      ? spec.expectedTrackSha256 ? 'explicit-pin' : spec.releaseNotes ? 'capture-current-simple' : null
+      : requestedPolicy;
+    demand(spec.trackStatePolicy !== null, 'TRACK_PIN_AND_RELEASE_REQUIRED');
+    demand(spec.trackStatePolicy !== 'explicit-pin' || HASH.test(spec.expectedTrackSha256), 'TRACK_PIN_REQUIRED');
+    demand(spec.mode !== 'Promote' || spec.trackStatePolicy === 'explicit-pin', 'PROMOTION_REQUIRES_EXPLICIT_PIN');
+    if (raw.release_json) {
+      demand(Buffer.byteLength(raw.release_json) <= 8192, 'RELEASE_JSON_TOO_LARGE');
+      let release;
+      try { release = JSON.parse(raw.release_json); } catch { throw new PublisherError('INVALID_RELEASE_JSON'); }
+      spec.release = desiredRelease(release, code);
+    }
   }
   return spec;
+}
+
+export function resolveIntent(request, { sourceSha, ledgerSha, artifactId, code, signer, productVersion }) {
+  demand(SHA.test(sourceSha) && SHA.test(ledgerSha) && Number.isSafeInteger(artifactId) && artifactId > 0
+    && Number.isSafeInteger(code) && code > DEVELOPMENT_ANDROID_CODE && code <= ANDROID_CODE_LIMIT
+    && HASH.test(signer), 'RESOLVED_IDENTITY_REQUIRED');
+  const pins = { sourceSha, ledgerSha, artifactId, code, signer };
+  demand(Object.entries(pins).every(([key, value]) => request[key] === null || request[key] === value),
+    'IDENTITY_PIN_MISMATCH');
+  const release = request.releaseNotes ? {
+    name: `Recap Page ${text(productVersion, 80)}`, versionCodes: [String(code)], status: 'completed',
+    releaseNotes: [{ language: 'en-US', text: request.releaseNotes }],
+  } : request.release;
+  return { ...request, ...pins, release: release ? desiredRelease(release, code) : null };
 }
 
 export function validateInvocation(context, run) {
@@ -132,21 +172,45 @@ export function validateInvocation(context, run) {
     && run.path?.split('@')[0] === WORKFLOW && run.repository?.id === REPOSITORY_ID
     && run.head_repository?.id === REPOSITORY_ID, 'WORKFLOW_IDENTITY_MISMATCH');
 }
-export function validateProducer(spec, run, artifact) {
-  demand(run.id === spec.producerRunId && run.run_attempt === 1 && run.event === 'workflow_dispatch'
+function validateProducerRun(producerRunId, run) {
+  demand(run.id === producerRunId && run.run_attempt === 1 && run.event === 'workflow_dispatch'
     && run.status === 'completed' && run.conclusion === 'success' && run.head_branch === 'main'
     && SHA.test(run.head_sha) && run.path?.split('@')[0] === PRODUCER
     && run.repository?.id === REPOSITORY_ID && run.head_repository?.id === REPOSITORY_ID,
   'QUALIFIED_PRODUCER_REQUIRED');
+}
+function artifactRunMatches(artifact, run) {
+  return artifact.workflow_run?.id === run.id && artifact.workflow_run.head_sha === run.head_sha
+    && artifact.workflow_run.head_branch === 'main'
+    && artifact.workflow_run.repository_id === REPOSITORY_ID
+    && artifact.workflow_run.head_repository_id === REPOSITORY_ID;
+}
+export function validateProducer(spec, run, artifact) {
+  validateProducerRun(spec.producerRunId, run);
   demand(artifact.id === spec.artifactId && artifact.expired === false
     && artifact.name === `android-candidate-${spec.code}-${run.id}`
     && Number.isSafeInteger(artifact.size_in_bytes) && artifact.size_in_bytes > 0
     && artifact.size_in_bytes <= MAX_ARCHIVE
     && /^sha256:[0-9a-f]{64}$/.test(artifact.digest)
-    && artifact.workflow_run?.id === run.id && artifact.workflow_run.head_sha === run.head_sha
-    && artifact.workflow_run.head_branch === 'main'
-    && artifact.workflow_run.repository_id === REPOSITORY_ID
-    && artifact.workflow_run.head_repository_id === REPOSITORY_ID, 'PRODUCER_ARTIFACT_MISMATCH');
+    && artifactRunMatches(artifact, run), 'PRODUCER_ARTIFACT_MISMATCH');
+}
+export function selectProducerArtifact(request, producer, listing) {
+  validateProducerRun(request.producerRunId, producer);
+  demand(Number.isSafeInteger(listing.total_count) && listing.total_count > 0 && listing.total_count <= 100
+    && Array.isArray(listing.artifacts) && listing.artifacts.length === listing.total_count,
+  'COMPLETE_BOUNDED_ARTIFACT_LIST_REQUIRED');
+  demand(listing.artifacts.every((artifact) => artifact && Number.isSafeInteger(artifact.id)
+    && artifact.id > 0 && typeof artifact.name === 'string' && artifactRunMatches(artifact, producer))
+    && new Set(listing.artifacts.map((artifact) => artifact.id)).size === listing.artifacts.length,
+  'ARTIFACT_LIST_IDENTITY_MISMATCH');
+  const name = new RegExp(`^android-candidate-([1-9]\\d*)-${producer.id}$`);
+  const matches = listing.artifacts.filter((artifact) => name.test(artifact.name));
+  demand(matches.length === 1, 'ONE_CANDIDATE_PACKET_REQUIRED');
+  const artifact = matches[0];
+  const code = integer(name.exec(artifact.name)[1], ANDROID_CODE_LIMIT);
+  demand(code > DEVELOPMENT_ANDROID_CODE, 'DEVELOPMENT_CODE_REFUSED');
+  validateProducer({ ...request, artifactId: artifact.id, code }, producer, artifact);
+  return { artifact, code };
 }
 export function validateQualification(report, record, recordBytes, spec, producer, approval) {
   const { artifact, ...identity } = record;
@@ -233,8 +297,13 @@ export const trackDigest = (value) => digest(canonical(trackSnapshot(value)));
 export function proposedTrack(spec, current) {
   testingTrack(spec.track);
   const snapshot = trackSnapshot(current);
-  demand(spec.release && snapshot.track === spec.track
-    && trackDigest(snapshot) === spec.expectedTrackSha256, 'TRACK_STATE_CHANGED');
+  demand(spec.release && snapshot.track === spec.track, 'TRACK_STATE_CHANGED');
+  demand(['explicit-pin', 'capture-current-simple'].includes(spec.trackStatePolicy), 'RESOLVED_TRACK_POLICY_REQUIRED');
+  if (spec.trackStatePolicy === 'explicit-pin') {
+    demand(trackDigest(snapshot) === spec.expectedTrackSha256, 'TRACK_STATE_CHANGED');
+  } else {
+    demand(['Publish', 'Validate'].includes(spec.mode) && !spec.expectedTrackSha256, 'CAPTURE_POLICY_CONFLICT');
+  }
   demand(snapshot.releases.length <= 1
     && snapshot.releases.every((release) => ['draft', 'completed'].includes(release.status)
       && release.userFraction === undefined && release.countryTargeting === undefined
@@ -292,7 +361,12 @@ export async function transact(spec, bundle, artifact, {
   if (spec.mode !== 'Inspect') {
     testingTrack(spec.track);
     desiredRelease(spec.release, spec.code);
-    demand(HASH.test(spec.expectedTrackSha256), 'TRACK_PIN_REQUIRED');
+    demand(spec.trackStatePolicy === 'explicit-pin' ? HASH.test(spec.expectedTrackSha256)
+      : spec.trackStatePolicy === 'capture-current-simple' && spec.mode === 'Publish' && !spec.expectedTrackSha256,
+    'RESOLVED_TRACK_POLICY_REQUIRED');
+  } else {
+    demand(spec.trackStatePolicy === null && !spec.release && !spec.releaseNotes && !spec.expectedTrackSha256,
+      'INSPECT_CANNOT_RECEIVE_RELEASE_INTENT');
   }
   demand(typeof token === 'string' && token.length > 0 && !/[\r\n]/.test(token), 'ACCESS_TOKEN_REQUIRED');
   demand(Buffer.isBuffer(bundle) && bundle.length === artifact.bytes
@@ -302,6 +376,7 @@ export async function transact(spec, bundle, artifact, {
     sourceRevision: spec.sourceSha, versionCode: spec.code, bundleSha256: artifact.sha256,
     intentSha256: digest(canonical(spec)),
     track: spec.track || null, expectedTrackSha256: spec.expectedTrackSha256 || null,
+    trackStatePolicy: spec.trackStatePolicy,
     stage: 'ready', state: 'running', editId: null, mutationAttempted: false,
     commitAcknowledged: false, userAvailability: 'unverified', httpStatus: null,
   };
@@ -370,14 +445,21 @@ export async function transact(spec, bundle, artifact, {
     const matching = bundles.filter((item) => item.versionCode === spec.code);
     if (spec.mode === 'Publish') {
       demand(spec.code > receipt.observedHighWater && matching.length === 0, 'CODE_ALREADY_USED_OR_OUT_OF_ORDER');
+    } else {
+      demand(matching.length === 1 && matching[0].sha256 === artifact.sha256,
+        'PROMOTION_REQUIRES_EXACT_EXISTING_BUNDLE');
+    }
+    receipt.targetBefore = trackSnapshot(current);
+    receipt.targetBeforeSha256 = trackDigest(current);
+    receipt.desiredTarget = trackSnapshot(desired);
+    receipt.stage = 'target-prepared';
+    await save();
+    if (spec.mode === 'Publish') {
       demand(digest(bundle) === artifact.sha256 && bundle.length === artifact.bytes, 'BUNDLE_CHANGED_BEFORE_UPLOAD');
       const uploaded = await request('upload-bundle', 'POST',
         `https://androidpublisher.googleapis.com/upload/androidpublisher/v3/applications/${OFFICIAL_ID}/edits/${encodeURIComponent(edit.id)}/bundles?uploadType=media`,
         bundle, true);
       demand(uploaded.versionCode === spec.code && uploaded.sha256 === artifact.sha256, 'UPLOAD_IDENTITY_MISMATCH');
-    } else {
-      demand(matching.length === 1 && matching[0].sha256 === artifact.sha256,
-        'PROMOTION_REQUIRES_EXACT_EXISTING_BUNDLE');
     }
     await request('update-track', 'PUT', `${editUrl}/tracks/${encodeURIComponent(spec.track)}`, desired);
     const readback = tracksBody(await request('readback-tracks', 'GET', `${editUrl}/tracks`));
@@ -466,7 +548,7 @@ async function atomicJson(path, value) {
 }
 async function contextAndInput() {
   const event = await readJson(process.env.GITHUB_EVENT_PATH);
-  const spec = validateIntent(event.inputs);
+  const request = validateIntent(event.inputs);
   const context = {
     repository: process.env.GITHUB_REPOSITORY, event: process.env.GITHUB_EVENT_NAME,
     ref: process.env.GITHUB_REF, defaultBranch: event.repository?.default_branch,
@@ -477,25 +559,37 @@ async function contextAndInput() {
   validateInvocation(context, await github(`repos/${REPOSITORY}/actions/runs/${context.runId}`));
   const source = sourceIdentity(ROOT);
   demand(!source.sourceDirty && source.sourceRevision === context.workflowSha, 'CLEAN_REVIEWED_TOOLING_REQUIRED');
-  return { spec, context };
+  return { request, context };
 }
 async function policy(name) {
   return protectionPolicy(await github(`repos/${REPOSITORY}/environments/${name}`),
     await github(`repos/${REPOSITORY}/environments/${name}/deployment-branch-policies?per_page=100`), name);
 }
-async function prepare({ afterApproval = false } = {}) {
+export async function prepare({ afterApproval = false } = {}) {
   demand(!process.env.RECAP_PLAY_ACCESS_TOKEN, 'TOKEN_BEFORE_APPROVED_VALIDATION');
-  const { spec, context } = await contextAndInput();
+  const { request, context } = await contextAndInput();
   const work = await ownedWork();
-  const producer = await github(`repos/${REPOSITORY}/actions/runs/${spec.producerRunId}`);
-  const artifact = await github(`repos/${REPOSITORY}/actions/artifacts/${spec.artifactId}`);
-  validateProducer(spec, producer, artifact);
+  const producer = await github(`repos/${REPOSITORY}/actions/runs/${request.producerRunId}`);
+  validateProducerRun(request.producerRunId, producer);
+  let artifact;
+  let code = request.code;
+  if (request.artifactId !== null) {
+    artifact = await github(`repos/${REPOSITORY}/actions/artifacts/${request.artifactId}`);
+    validateProducer(request, producer, artifact);
+  } else {
+    ({ artifact, code } = selectProducerArtifact(request, producer,
+      await github(`repos/${REPOSITORY}/actions/runs/${producer.id}/artifacts?per_page=100`)));
+  }
+  const ledgerSha = request.ledgerSha || context.workflowSha;
   git('fetch', '--no-tags', 'origin', 'refs/heads/main:refs/remotes/origin/main');
   const main = git('rev-parse', 'refs/remotes/origin/main');
-  requireSourceAncestry(ROOT, spec.sourceSha, spec.ledgerSha, context.workflowSha, main);
-  demand(git('rev-parse', `${spec.sourceSha}^{commit}`) === spec.sourceSha, 'SOURCE_COMMIT_REQUIRED');
+  const selected = validateAndroidLedger(JSON.parse(git('show', `${ledgerSha}:${LEDGER}`)));
+  const reservation = selected.reservations.find((entry) => entry.versionCode === code);
+  demand(reservation?.artifact, 'SEALED_RESERVATION_REQUIRED');
+  const sourceSha = reservation.sourceRevision;
+  requireSourceAncestry(ROOT, sourceSha, ledgerSha, context.workflowSha, main);
+  demand(git('rev-parse', `${sourceSha}^{commit}`) === sourceSha, 'SOURCE_COMMIT_REQUIRED');
   git('merge-base', '--is-ancestor', producer.head_sha, main);
-  const selected = validateAndroidLedger(JSON.parse(git('show', `${spec.ledgerSha}:${LEDGER}`)));
   const current = validateAndroidLedger(JSON.parse(git('show', `${main}:${LEDGER}`)));
   assertAppendOnlyLedger(selected, current);
   let previous = { schemaVersion: 1, retiredThrough: DEVELOPMENT_ANDROID_CODE, reservations: [] };
@@ -526,10 +620,12 @@ async function prepare({ afterApproval = false } = {}) {
   const report = await readJson(join(packet, 'android-candidate.json'));
   const proposed = validateAndroidLedger(await readJson(join(packet, 'version-codes.proposed.json')));
   const identity = {
-    schemaVersion: 1, productVersion: JSON.parse(git('show', `${spec.sourceSha}:package.json`)).version,
-    platform: 'android', packageVersion: spec.code, channel: 'candidate',
-    sourceRevision: spec.sourceSha, sourceTree: git('rev-parse', `${spec.sourceSha}^{tree}`), sourceDirty: false,
+    schemaVersion: 1, productVersion: JSON.parse(git('show', `${sourceSha}:package.json`)).version,
+    platform: 'android', packageVersion: code, channel: 'candidate',
+    sourceRevision: sourceSha, sourceTree: git('rev-parse', `${sourceSha}^{tree}`), sourceDirty: false,
   };
+  const spec = resolveIntent(request, { sourceSha, ledgerSha, artifactId: artifact.id, code,
+    signer: certificateFingerprint(report.bundle?.bundleSignerSha256), productVersion: identity.productVersion });
   checkRecord(record, identity);
   assertAppendOnlyLedger(proposed, selected);
   const bundlePath = join(packet, 'recap-page-android.aab');
@@ -543,7 +639,7 @@ async function prepare({ afterApproval = false } = {}) {
   demand(canonical(await readJson(join(work, 'verified-bundle', 'base', 'assets', 'recap', 'build-info.json')))
     === canonical(identity), 'EMBEDDED_SOURCE_IDENTITY_MISMATCH');
   const binding = {
-    schemaVersion: 1, spec, source: identity, artifactId: artifact.id, archiveSha256: artifact.digest.slice(7),
+    schemaVersion: 1, request, spec, source: identity, artifactId: artifact.id, archiveSha256: artifact.digest.slice(7),
     bundle: record.artifact, producerRunId: producer.id, producerSha: producer.head_sha,
     qualificationSha256: digest(await readFile(join(packet, 'android-candidate.json'))),
     ledgerSha256: digest(canonical(selected)),
@@ -567,15 +663,18 @@ async function prepare({ afterApproval = false } = {}) {
   if (process.env.GITHUB_STEP_SUMMARY) {
     const summary = {
       mode: spec.mode, productVersion: identity.productVersion, source: spec.sourceSha,
-      sourceTree: identity.sourceTree, versionCode: spec.code, producerRunId: producer.id,
+      sourceTree: identity.sourceTree, ledger: spec.ledgerSha, versionCode: spec.code, producerRunId: producer.id,
       artifactId: artifact.id, archiveSha256: artifact.digest.slice(7),
       bundleSha256: record.artifact.sha256, uploadCertificateSha256: spec.signer,
-      track: spec.track || 'Inspect lists actual testing-track identifiers',
-      expectedTrackSha256: spec.expectedTrackSha256 || null, requestedRelease: spec.release,
+      track: spec.track || null,
+      expectedTrackSha256: spec.expectedTrackSha256 || null, trackStatePolicy: spec.trackStatePolicy,
+      requestedRelease: spec.release,
     };
     await appendFile(process.env.GITHUB_STEP_SUMMARY,
       `## Exact Google Play testing intent\n\n\`\`\`json\n${JSON.stringify(summary, null, 2)}\n\`\`\`\n\n`
       + 'No Google access has occurred in this validation. Approve only this exact packet and track intent. '
+      + 'There must be no concurrent publisher or pending Console changes: committing can also submit Console work already ready for review. '
+      + 'Submission does not establish tester availability. '
       + 'Native evidence is synthetic; account, first Console upload, signing, privacy and device gates remain independent.\n');
   }
   if (process.env.GITHUB_OUTPUT) {
@@ -584,22 +683,28 @@ async function prepare({ afterApproval = false } = {}) {
       + `environment_id=${publisherPolicy?.environmentId ?? ''}\npolicy_sha=${publisherPolicy?.sha256 ?? ''}\n`);
   }
   console.log(`Google Play packet validated: ${identity.productVersion}, code ${spec.code}; no Google access performed.`);
+  return result;
 }
-export function validatePrepared(prepared, spec, context, expectedBinding) {
+export function validatePrepared(prepared, request, context, expectedBinding) {
   demand(prepared.approval?.approved === true && prepared.context?.runId === context.runId
     && prepared.context.attempt === 1 && prepared.context.workflowSha === context.workflowSha
-    && canonical(prepared.binding?.spec) === canonical(spec)
+    && canonical(prepared.binding?.request) === canonical(request)
     && HASH.test(expectedBinding) && prepared.bindingSha === expectedBinding
-    && digest(canonical(prepared.binding)) === expectedBinding
-    && prepared.binding.source.sourceRevision === spec.sourceSha
-    && prepared.binding.source.packageVersion === spec.code,
+    && digest(canonical(prepared.binding)) === expectedBinding,
   'APPROVED_PREPARATION_REQUIRED');
+  const spec = resolveIntent(request, {
+    sourceSha: prepared.binding.source.sourceRevision, ledgerSha: request.ledgerSha || context.workflowSha,
+    artifactId: prepared.binding.artifactId, code: prepared.binding.source.packageVersion,
+    signer: prepared.binding.spec.signer, productVersion: prepared.binding.source.productVersion,
+  });
+  demand(canonical(prepared.binding.spec) === canonical(spec), 'APPROVED_PREPARATION_REQUIRED');
+  return spec;
 }
-async function publish() {
+export async function publish() {
   const work = await ownedWork();
   const prepared = await readJson(join(work, 'prepared.json'));
-  const { spec, context } = await contextAndInput();
-  validatePrepared(prepared, spec, context, process.env.RECAP_PLAY_EXPECTED_BINDING_SHA);
+  const { request, context } = await contextAndInput();
+  const spec = validatePrepared(prepared, request, context, process.env.RECAP_PLAY_EXPECTED_BINDING_SHA);
   const currentPolicy = await policy(ENVIRONMENT);
   demand(currentPolicy.environmentId === prepared.publisherPolicy.environmentId
     && currentPolicy.sha256 === prepared.publisherPolicy.sha256, 'POLICY_CHANGED_BEFORE_OPERATION');
@@ -619,6 +724,7 @@ async function publish() {
     record: (receipt) => atomicJson(receiptPath, receipt),
   });
   console.log(`Google Play result: ${result.state}; user availability remains unverified.`);
+  return result;
 }
 async function main() {
   const command = process.argv[2];

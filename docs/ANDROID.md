@@ -233,17 +233,24 @@ The manual **Android release candidate** workflow builds and validates candidate
 Play uploader and never publishes on merge. Having its source does not mean signing is
 provisioned, a key is enrolled, native tests passed or a release is approved.
 
-Before its first merge to the default branch, rehearse through the registered **CI** workflow.
-A new `workflow_dispatch` file cannot be dispatched just by naming a feature branch with `--ref`.
-After clearing the feature/execution gate and pushing, use the actual branch and full source
-commit in place of these placeholders:
+Use the registered **CI** workflow for a secret-free rehearsal of an exact pushed revision.
+This also supports pre-merge work: a new `workflow_dispatch` file cannot be dispatched just by
+naming a feature branch with `--ref`. After clearing the feature/execution gate and pushing,
+substitute the actual branch:
 
 ```text
-gh workflow run CI --ref YOUR_BRANCH -f android_emulator=false -f android_rehearsal=true -f android_rehearsal_source_sha=FULL_SOURCE_SHA
+gh workflow run CI --ref YOUR_BRANCH -f native_mode=rehearsal
 ```
 
-The two native flags default off and cannot be combined. Ordinary push/PR jobs and debug-emulator
-mode remain separate. CI passes literal Rehearsal mode to the shared producer without a protected
+`native_mode` defaults to `none`; choose `debug` or `rehearsal` for optional native work.
+Rehearsal derives the exact executing workflow SHA, not moving main. The deprecated
+`android_emulator`, `android_rehearsal` and `android_rehearsal_source_sha` inputs remain for existing
+callers. Leave the new selector at `none` when using them. Legacy rehearsal still requires its
+explicit matching source SHA. Two legacy modes, a new mode combined with a legacy mode, or a
+legacy source pin without legacy rehearsal fail before host preparation.
+
+Ordinary push/PR jobs and debug-emulator mode remain separate.
+CI passes literal Rehearsal mode to the shared producer without a protected
 environment or upload credentials. Rehearsal keeps only a sanitized JSON report, never a bundle,
 APK or signing key. Before relying on a result, read back its workflow path, run/attempt, branch
 and source SHA.
@@ -270,9 +277,18 @@ qualification gates.
 
 Once registered on the default branch, `android-release-candidate.yml` accepts direct Rehearsal
 or Candidate dispatch. Candidate is allowed only through that workflow on `main`, not CI or
-another caller. It requires exact source and later ledger commits, an unsealed reserved code,
-an observed lower Play high-water and the parent's public issue-comment evidence reference.
+another caller. The normal inputs are `mode=Candidate`, `version_code`, `play_high_water` and
+`play_evidence`. The code must name an unsealed reservation, the high-water must be a genuine
+observed lower Play code, and the evidence must be its public repository issue-comment reference.
 It does not allocate a code or choose a product version.
+
+The executing revision's reviewed ledger determines the application source. Optional `source_sha`
+and `ledger_sha` are checked compatibility pins, not overrides; an omitted ledger pin uses that
+executing revision. Existing fully pinned calls remain supported when they identify the same
+unsealed reservation under the source-before-ledger and current-history checks. Preflight emits
+the resolved pins for the actual application checkout and protected job. It never builds the
+later tooling commit as substitute source. Direct `mode=Rehearsal` pins its checkout to the dispatch SHA,
+not a job output; source input is optional, and preflight still rejects any mismatched pin.
 
 These are approved configuration **names**, not evidence that the configuration exists:
 
@@ -458,15 +474,15 @@ not physical Android, native fontScale or TalkBack acceptance.
 
 ## Native emulator checks without a local emulator
 
-The optional **android_emulator** input in **CI** is off by default. It runs the APK in a full
+The optional **native_mode=debug** selection in **CI** runs the APK in a full
 Android 16/API-36 x86_64 phone image on a GitHub-hosted Ubuntu runner. Use this supported pre-phone
 path on a Windows ARM computer. It does not install a local emulator or change ordinary push and
-pull-request checks.
+pull-request checks. The default `native_mode=none` runs no native checks.
 
 After pushing a feature branch containing the Android tests, dispatch it explicitly:
 
 ```text
-gh workflow run CI --ref YOUR_BRANCH -f android_emulator=true
+gh workflow run CI --ref YOUR_BRANCH -f native_mode=debug
 ```
 
 The job runs six native scenarios and a separate seed/force-stop/restart probe. First, it changes

@@ -80,7 +80,12 @@ or approves a package. The separate manual
 contents and native behavior derived from that same AAB. It has no Play uploader and sets up
 neither protected configuration nor key custody.
 
-The producer checks the selected later ledger against current main, including after approval.
+For normal Candidate dispatch, supply the mode, reserved code, genuinely observed Play high-water
+and public evidence. The executing ledger determines the application source; source and ledger
+SHA inputs remain optional checked compatibility pins. Resolved preflight outputs select the
+actual application checkout and protected job environment.
+
+The producer checks the executing and selected ledgers against current main, including after approval.
 An old unsealed snapshot cannot override a newer seal. Version/record commands execute from the
 selected application's checkout, not the later tooling checkout. Changing only the working directory
 does not change their source identity.
@@ -120,10 +125,14 @@ test workflows and artifact uploads never request Store deployment. The default 
 a read-only rehearsal. `Submit` requires an existing stable `v<product>` release, full source SHA,
 default-branch ancestry, existing protected owner approval, package inspection/WACK and the live
 free-product/pending-draft/higher-version checks. The publisher verifies the exact bundle before
-mutation. Never dispatch this workflow to test triggers.
+mutation. Normal Submit combines these quality checks and submission in one run; a separate
+Validate or incident-recovery run is not a routine release prerequisite. Never dispatch this
+workflow to test triggers.
 
 The Android synthetic CI job is opt-in, with no store credentials or publication authority.
-Choose debug or secret-free AAB rehearsal, never both. Use that registered manual entry before
+Choose `native_mode=debug` or `native_mode=rehearsal`, never both; the default is `none`.
+Rehearsal derives the exact executing SHA. Deprecated legacy flags remain checked compatibility
+aliases, not additional modes to combine. Use that registered manual entry before
 merge; a new manual workflow cannot be dispatched until it exists on the default branch.
 Windows dispatch cannot launch Android proof.
 
@@ -136,6 +145,13 @@ The [protected Play testing publisher](GOOGLE_PLAY_PUBLISHING.md) consumes the e
 packet after its seal is merged. Its default performs validation without Google access; every
 Google operation requires separate human approval. It rejects production tracks and reports
 submission separately from actual user availability.
+
+Normal Publish supplies the mode, one named Candidate run, actual testing track and plain notes.
+It resolves the sealed packet identity and captures a supported simple target inside the approved
+edit, so no prior Inspect is required. Signing and exact-artifact publishing still require two
+separate credential approvals, and both reviewed ledger merges remain. Promote requires an
+explicit target-state digest. No concurrent publisher or pending Console work may exist:
+Google can also submit Console changes already ready for review when the API edit commits.
 
 ## Delivered release matrix
 

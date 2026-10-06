@@ -179,7 +179,8 @@ test('Android CI stays explicitly opt-in and uses real offline Android with boun
   const workflow = readFileSync(new URL('../.github/workflows/ci.yml', import.meta.url), 'utf8');
   const runner = readFileSync(new URL('../scripts/android-emulator-ci.sh', import.meta.url), 'utf8');
   assert.match(workflow, /android_emulator:[\s\S]*?type: boolean[\s\S]*?default: false/);
-  assert.match(workflow, /if: \$\{\{ github\.event_name == 'workflow_dispatch' && \(inputs\.android_emulator == true \|\| inputs\.android_rehearsal == true\) \}\}/);
+  assert.match(workflow, /native_mode:[\s\S]*?options: \[none, debug, rehearsal\][\s\S]*?default: none/);
+  assert.match(workflow, /github\.event_name == 'workflow_dispatch' &&\s+\(\(inputs\.native_mode != '' && inputs\.native_mode != 'none'\) \|\|\s+inputs\.android_emulator == true \|\| inputs\.android_rehearsal == true \|\|\s+inputs\.android_rehearsal_source_sha != ''\)/);
   assert.match(workflow, /runs-on: ubuntu-24\.04/);
   assert.match(workflow, /retention-days: 7/);
   assert.match(runner, /system-images;android-36;google_apis;x86_64/);
@@ -198,14 +199,15 @@ test('registered CI keeps mutually exclusive manual rehearsal and original debug
   const workflow = readFileSync(new URL('../.github/workflows/ci.yml', import.meta.url), 'utf8');
   const native = workflow.slice(workflow.indexOf('\n  android-emulator:'));
   assert.match(workflow, /android_rehearsal:[\s\S]*?type: boolean[\s\S]*?default: false/);
-  assert.match(native, /assert\.notEqual\(debug, rehearsal, 'Select exactly one native mode'\)/);
-  assert.match(native, /assert\.equal\(process\.env\.RECAP_ANDROID_SOURCE_SHA, process\.env\.GITHUB_SHA\)/);
+  assert.match(native, /id: native_mode[\s\S]*run: node scripts\/android-candidate\.mjs native-mode/);
+  assert.ok(native.indexOf('run: node scripts/android-candidate.mjs native-mode') < native.indexOf('test -c /dev/kvm'));
+  assert.match(native, /RECAP_ANDROID_SOURCE_SHA: \$\{\{ github\.workflow_sha \}\}/);
   assert.match(native, /RECAP_ANDROID_MODE: Rehearsal/);
   const env = native.match(/^ {4}env:\r?\n([\s\S]*?)^ {4}steps:/m)?.[1];
   assert.ok(env);
   assert.doesNotMatch(env, /\$\{\{\s*runner\./);
-  assert.match(native, /if: always\(\) && inputs\.android_emulator == true && inputs\.android_rehearsal != true/);
-  assert.match(native, /if: success\(\) && inputs\.android_rehearsal == true && inputs\.android_emulator != true/);
+  assert.match(native, /if: always\(\) && steps\.native_mode\.outputs\.mode == 'debug'/);
+  assert.match(native, /if: success\(\) && steps\.native_mode\.outputs\.mode == 'rehearsal'/);
   assert.match(native, /run: bash scripts\/android-release-candidate\.sh rehearsal/);
   assert.doesNotMatch(native, /secrets\.|environment:|workflow_call|secrets: inherit/);
   assert.equal([...workflow.matchAll(/^ {2}[\w-]+:\r?$/gm)].filter((match) =>

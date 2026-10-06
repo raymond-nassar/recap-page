@@ -180,9 +180,48 @@ export function certificateFingerprint(value) {
   return result;
 }
 
+export function resolveNativeMode(context) {
+  requireValue(context.event === 'workflow_dispatch', 'native modes require an explicit manual event');
+  const flag = (value) => {
+    requireValue([undefined, '', false, true, 'false', 'true'].includes(value), 'invalid legacy native flag');
+    return value === true || value === 'true';
+  };
+  const mode = context.nativeMode || 'none';
+  const rehearsal = flag(context.rehearsalFlag);
+  const debug = flag(context.emulatorFlag);
+  const pin = context.rehearsalSourceSha || '';
+  requireValue(['none', 'debug', 'rehearsal'].includes(mode), 'unknown native mode');
+  requireValue(!(debug && rehearsal) && (mode === 'none' || (!debug && !rehearsal)),
+    'select one exclusive native mode, without mixing new and legacy modes');
+  requireValue(!pin || rehearsal, 'legacy source pin requires the legacy rehearsal flag');
+  if (rehearsal) {
+    requireValue(SHA.test(pin) && pin === context.sha, 'legacy rehearsal requires its exact executing source pin');
+  }
+  const selected = mode !== 'none' ? mode : rehearsal ? 'rehearsal' : debug ? 'debug' : 'none';
+  if (selected === 'rehearsal') {
+    requireValue(SHA.test(context.workflowSha) && context.sha === context.workflowSha,
+      'rehearsal must use the exact executing source');
+  }
+  return { mode: selected, sourceSha: selected === 'rehearsal' ? context.workflowSha : '' };
+}
+
+export function resolveCandidateInput(input, context, dispatchedLedger) {
+  if (input.mode === 'Rehearsal') {
+    requireValue(!input.sourceSha || input.sourceSha === context.workflowSha,
+      'rehearsal must use the exact executing source');
+    return { ...input, sourceSha: context.workflowSha };
+  }
+  const ledger = validateAndroidLedger(dispatchedLedger);
+  const reservation = ledger.reservations.find((entry) => entry.versionCode === Number(input.code));
+  requireValue(reservation && reservation.artifact === null, 'executing ledger requires an unsealed reservation');
+  requireValue(!input.sourceSha || input.sourceSha === reservation.sourceRevision,
+    'source pin differs from the executing ledger reservation');
+  return { ...input, sourceSha: reservation.sourceRevision, ledgerSha: input.ledgerSha || context.workflowSha };
+}
+
 export function validateInvocation(input, context, run) {
   requireValue(['Candidate', 'Rehearsal'].includes(input.mode), 'explicit Candidate or Rehearsal mode required');
-  requireValue(SHA.test(input.sourceSha), 'full immutable source SHA required');
+  requireValue(!input.sourceSha || SHA.test(input.sourceSha), 'full immutable source SHA required when supplied');
   requireValue(context.repository === REPOSITORY && context.event === 'workflow_dispatch'
     && context.defaultBranch === 'main', 'only this repository and an explicit manual event are permitted');
   requireValue(Number.isSafeInteger(context.runId) && context.runId > 0
@@ -199,7 +238,7 @@ export function validateInvocation(input, context, run) {
   if (input.mode === 'Candidate') {
     requireValue(path === own && context.ref === 'refs/heads/main' && context.attempt === 1,
       'Candidate requires its own direct main workflow, first attempt; CI cannot sign');
-    requireValue(SHA.test(input.ledgerSha) && /^[1-9]\d*$/.test(input.code)
+    requireValue((!input.ledgerSha || SHA.test(input.ledgerSha)) && /^[1-9]\d*$/.test(input.code)
       && Number.isSafeInteger(Number(input.code)) && Number(input.code) <= ANDROID_CODE_LIMIT
       && Number(input.code) > DEVELOPMENT_ANDROID_CODE, 'valid source-bound reservation required');
     requireValue(/^(0|[1-9]\d*)$/.test(input.highWater)
@@ -210,10 +249,10 @@ export function validateInvocation(input, context, run) {
   } else {
     requireValue(!input.ledgerSha && !input.code && !input.highWater && !input.evidence,
       'Rehearsal must not receive candidate ledger, code or Play inputs');
-    requireValue(input.sourceSha === context.sha, 'rehearsal must use the exact executing source');
+    requireValue(!input.sourceSha || input.sourceSha === context.sha, 'rehearsal must use the exact executing source');
     if (path === ci) {
-      requireValue(context.rehearsalFlag === true && context.emulatorFlag === false,
-        'CI rehearsal requires exclusive explicit manual rehearsal flag');
+      requireValue(resolveNativeMode(context).mode === 'rehearsal',
+        'CI rehearsal requires exclusive explicit manual rehearsal mode');
     }
   }
   return { path, workflowId: run.workflow_id };
@@ -307,36 +346,41 @@ export async function requireUnusedCode(readPage, code, runId) {
 function environmentRequest() {
   return {
     mode: process.env.RECAP_ANDROID_MODE,
-    sourceSha: process.env.RECAP_ANDROID_SOURCE_SHA,
+    sourceSha: process.env.RECAP_ANDROID_SOURCE_SHA || '',
     ledgerSha: process.env.RECAP_ANDROID_LEDGER_SHA || '',
     code: process.env.RECAP_ANDROID_CODE || '',
     highWater: process.env.RECAP_ANDROID_PLAY_HIGH_WATER || '',
     evidence: process.env.RECAP_ANDROID_PLAY_EVIDENCE || '',
   };
 }
-async function executionContext() {
-  const event = await json(process.env.GITHUB_EVENT_PATH);
+export async function executionContext(environment = process.env) {
+  const event = await json(environment.GITHUB_EVENT_PATH);
   return {
-    repository: process.env.GITHUB_REPOSITORY, event: process.env.GITHUB_EVENT_NAME,
-    defaultBranch: event.repository?.default_branch, ref: process.env.GITHUB_REF,
-    sha: process.env.GITHUB_SHA, workflowSha: process.env.GITHUB_WORKFLOW_SHA,
-    workflowRef: process.env.GITHUB_WORKFLOW_REF,
-    runId: Number(process.env.GITHUB_RUN_ID), attempt: Number(process.env.GITHUB_RUN_ATTEMPT),
-    actor: process.env.GITHUB_ACTOR, triggeringActor: process.env.GITHUB_TRIGGERING_ACTOR,
-    rehearsalFlag: ['true', true].includes(event.inputs?.android_rehearsal),
-    emulatorFlag: ['true', true].includes(event.inputs?.android_emulator),
+    repository: environment.GITHUB_REPOSITORY, event: environment.GITHUB_EVENT_NAME,
+    defaultBranch: event.repository?.default_branch, ref: environment.GITHUB_REF,
+    sha: environment.GITHUB_SHA, workflowSha: environment.GITHUB_WORKFLOW_SHA,
+    workflowRef: environment.GITHUB_WORKFLOW_REF,
+    runId: Number(environment.GITHUB_RUN_ID), attempt: Number(environment.GITHUB_RUN_ATTEMPT),
+    actor: environment.GITHUB_ACTOR, triggeringActor: environment.GITHUB_TRIGGERING_ACTOR,
+    nativeMode: event.inputs?.native_mode || 'none',
+    rehearsalFlag: event.inputs?.android_rehearsal,
+    emulatorFlag: event.inputs?.android_emulator,
+    rehearsalSourceSha: event.inputs?.android_rehearsal_source_sha || '',
   };
 }
 
 export async function preflight({ afterApproval = false } = {}) {
-  const input = environmentRequest();
+  const requested = environmentRequest();
   const context = await executionContext();
   const prefix = `repos/${REPOSITORY}`;
   const run = await github(`${prefix}/actions/runs/${context.runId}`);
-  const invocation = validateInvocation(input, context, run);
+  const invocation = validateInvocation(requested, context, run);
   const tooling = sourceIdentity(ROOT);
   requireValue(tooling.sourceRevision === context.workflowSha && !tooling.sourceDirty,
     'tooling must be the exact clean executing workflow source');
+  const dispatchedLedger = requested.mode === 'Candidate'
+    ? JSON.parse(git(ROOT, 'show', `${context.workflowSha}:${LEDGER}`)) : null;
+  const input = resolveCandidateInput(requested, context, dispatchedLedger);
   requireValue(git(ROOT, 'rev-parse', `${input.sourceSha}^{commit}`) === input.sourceSha, 'source is not an exact available commit');
   const source = {
     sourceRevision: input.sourceSha, sourceTree: git(ROOT, 'rev-parse', `${input.sourceSha}^{tree}`),
@@ -356,6 +400,7 @@ export async function preflight({ afterApproval = false } = {}) {
       assertAppendOnlyLedger(previous, next);
       previous = next;
     }
+    eligibleReservation(dispatchedLedger, current, source, input.code);
     eligibleReservation(selected, current, source, input.code);
     result.ledger = { selected, main, sha256: digest(JSON.stringify(selected)) };
     result.policy = protectionPolicy(
@@ -1138,14 +1183,22 @@ async function collectNativeReport(work) {
 
 async function main() {
   const [command, input, output] = process.argv.slice(2);
+  if (command === 'native-mode') {
+    const selected = resolveNativeMode(await executionContext());
+    requireValue(selected.mode !== 'none', 'select an explicit native mode before preparing the host');
+    requireValue(process.env.GITHUB_OUTPUT, 'native mode requires workflow outputs');
+    await appendFile(process.env.GITHUB_OUTPUT, `mode=${selected.mode}\nsource_sha=${selected.sourceSha}\n`);
+    return;
+  }
   const work = await ownedWork();
   const root = resolve(process.env.RECAP_ANDROID_SOURCE_ROOT || ROOT);
   if (command === 'preflight') {
     const receipt = await preflight({ afterApproval: process.env.RECAP_ANDROID_AFTER_APPROVAL === 'true' });
     await mkdir(work, { recursive: true, mode: 0o700 });
     await save(join(work, 'preflight.json'), receipt);
-    if (process.env.GITHUB_OUTPUT && receipt.policy) {
-      await appendFile(process.env.GITHUB_OUTPUT, `environment=${ENVIRONMENT}\nenvironment_id=${receipt.policy.environmentId}\npolicy_sha=${receipt.policy.sha256}\n`);
+    if (process.env.GITHUB_OUTPUT) {
+      await appendFile(process.env.GITHUB_OUTPUT, `source_sha=${receipt.input.sourceSha}\nledger_sha=${receipt.input.ledgerSha}\n`
+        + `environment=${receipt.policy ? ENVIRONMENT : ''}\nenvironment_id=${receipt.policy?.environmentId ?? ''}\npolicy_sha=${receipt.policy?.sha256 ?? ''}\n`);
     }
   } else if (command === 'prepare') {
     const receipt = await json(join(work, 'preflight.json'));
