@@ -19,8 +19,8 @@ test('candidate is direct manual main-only and missing protection cannot schedul
   assert.match(candidate, /needs\.preflight\.outputs\.environment == 'android-release-candidate'/);
   assert.match(candidate, /environment: \$\{\{ needs\.preflight\.outputs\.environment \}\}/);
   assert.doesNotMatch(preflight, /^ {4}environment:|secrets\./m);
-  assert.match(rehearsal, /ref: \$\{\{ needs\.preflight\.outputs\.source_sha \}\}\s+path: application/);
-  assert.doesNotMatch(rehearsal, /ref: \$\{\{ inputs\.source_sha \}\}/);
+  assert.match(rehearsal, /ref: \$\{\{ github\.sha \}\}\s+path: application/);
+  assert.doesNotMatch(rehearsal, /ref: \$\{\{ (?:inputs\.source_sha|needs\.preflight\.outputs\.source_sha) \}\}/);
   assert.doesNotMatch(workflow, /contents: write|actions: write|id-token:|secrets: inherit/);
   for (const job of [candidate, rehearsal]) {
     const env = job.match(/^ {4}env:\r?\n([\s\S]*?)^ {4}steps:/m)?.[1];
@@ -28,8 +28,8 @@ test('candidate is direct manual main-only and missing protection cannot schedul
     assert.doesNotMatch(env, /\$\{\{\s*runner\./);
     assert.match(env, /RECAP_ANDROID_SOURCE_SUBDIRECTORY: application/);
     assert.match(env, /RECAP_ANDROID_SOURCE_SHA: \$\{\{ needs\.preflight\.outputs\.source_sha \}\}/);
-    assert.match(job, /ref: \$\{\{ needs\.preflight\.outputs\.source_sha \}\}\s+path: application/);
   }
+  assert.match(candidate, /ref: \$\{\{ needs\.preflight\.outputs\.source_sha \}\}\s+path: application/);
   assert.match(candidate, /RECAP_ANDROID_LEDGER_SHA: \$\{\{ needs\.preflight\.outputs\.ledger_sha \}\}/);
   assert.match(preflight, /source_sha: \$\{\{ steps\.check\.outputs\.source_sha \}\}/);
   assert.match(preflight, /ledger_sha: \$\{\{ steps\.check\.outputs\.ledger_sha \}\}/);

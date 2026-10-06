@@ -287,8 +287,8 @@ and `ledger_sha` are checked compatibility pins, not overrides; an omitted ledge
 executing revision. Existing fully pinned calls remain supported when they identify the same
 unsealed reservation under the source-before-ledger and current-history checks. Preflight emits
 the resolved pins for the actual application checkout and protected job. It never builds the
-later tooling commit as substitute source. Direct `mode=Rehearsal` needs no source input either;
-any supplied source pin must equal the exact executing SHA.
+later tooling commit as substitute source. Direct `mode=Rehearsal` pins its checkout to the dispatch SHA,
+not a job output; source input is optional, and preflight still rejects any mismatched pin.
 
 These are approved configuration **names**, not evidence that the configuration exists:
 
