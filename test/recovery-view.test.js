@@ -89,11 +89,11 @@ test('render withdraws a prior incident download confirmation when recovery reso
 
 // -- renderSalvage reads fresh data --
 
-test('recovery waits for a completed download and never trusts cancellation or different bytes', async () => {
-  for (const outcome of ['saved', 'cancelled', 'changed']) {
+test('recovery waits for a completed download and never trusts cancellation, different or unrepresentable bytes', async () => {
+  for (const outcome of ['saved', 'cancelled', 'changed', 'unrepresentable']) {
     const nodes = recoveryNodes();
     const starts = [];
-    let raw = '{"incident":1}';
+    let raw = outcome === 'unrepresentable' ? '{"incident":"\ud800"}' : '{"incident":1}';
     let complete;
     const view = makeView({
       elements: () => nodes,

@@ -177,6 +177,9 @@ export function createRecoveryView({
       const when = new Date().toISOString().slice(0, 10);
       const result = await download(`recap-page-unreadable-${when}.json`, raw, 'application/json');
       if (!result) return;
+      if (result === true && new TextDecoder('utf-8', { ignoreBOM: true }).decode(new TextEncoder().encode(raw)) !== raw) {
+        return notify('#save-report', 'The file save completed, but this data cannot be preserved exactly in a UTF-8 file. Nothing was cleared. Keep the original browser data; starting fresh still requires an in-browser recovery copy.', 'warn', 'recovery-copy');
+      }
       // A picker can outlive this incident. Its success cannot confirm different unreadable data.
       if (result === true && isBlocked() && salvagedRaw() === raw) downloadedSalvage = raw;
       if (result === true) announce('Downloaded a copy of the unreadable data.');
