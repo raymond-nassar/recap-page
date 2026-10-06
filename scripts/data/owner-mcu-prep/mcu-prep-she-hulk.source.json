@@ -1,0 +1,329 @@
+{
+  "schemaVersion": 1,
+  "id": "mcu-prep-she-hulk",
+  "sourceProvider": "owner-authored",
+  "sourceUrl": "https://github.com/raymond-nassar/recap-page/issues/699",
+  "sourceRetrievedAt": "2026-10-03",
+  "status": "unsealed-owned-source-draft",
+  "sourceBoundary": "Only the three literal owner selections in supplied order: the Lee/Buscema Savage She-Hulk (1980) #1 origin, She-Hulk (2004) #1-6 from Single Green Female, then She-Hulk (2014) #1-6 from Law and Disorder. The origin-only interpretation is the coordinator choice under autonomous delegation, not a separate human-reviewed receipt. No full run, Masterworks or Complete Collection is substituted.",
+  "selectionCount": 3,
+  "expandedIssueCount": 13,
+  "scopeInterpretation": {
+    "authorityType": "coordinator-choice-under-autonomous-delegation",
+    "decisionUrl": "https://github.com/raymond-nassar/recap-page/issues/699#issuecomment-5976082382",
+    "sourceRetrievedAt": "2026-10-04T03:20:56.2294373Z",
+    "decision": "Use Savage She-Hulk (1980) #1 / ID 15256 only, followed by the unchanged Slott six and Soule six.",
+    "separateHumanReviewedReceipt": false,
+    "sourceReviewSealed": false,
+    "relationshipApproval": false,
+    "publicationApproval": false
+  },
+  "supersededKickoffPointer": {
+    "url": "https://github.com/raymond-nassar/recap-page/issues/701",
+    "disposition": "Initial parallel-result association mismatch only; the matching intake is issue 699."
+  },
+  "selections": [
+    {
+      "position": 1,
+      "originalTitle": "Savage She-Hulk",
+      "originalCreatorHint": "Stan Lee/John Buscema",
+      "originalPurpose": "classic origin, chronologically first.",
+      "purposeStatus": "Literal owner motivation retained as intake provenance, not a verified adaptation or comparative tone claim.",
+      "collectionTitle": null,
+      "editionIsbn": null,
+      "precisePrintingDate": null,
+      "coverDate": "February 1980",
+      "scopeInterpretation": {
+        "authorityType": "coordinator-choice-under-autonomous-delegation",
+        "decisionUrl": "https://github.com/raymond-nassar/recap-page/issues/699#issuecomment-5976082382",
+        "sourceRetrievedAt": "2026-10-04T03:20:56.2294373Z",
+        "decision": "Use Savage She-Hulk (1980) #1 / ID 15256 only, followed by the unchanged Slott six and Soule six.",
+        "separateHumanReviewedReceipt": false,
+        "sourceReviewSealed": false,
+        "relationshipApproval": false,
+        "publicationApproval": false
+      },
+      "creditedCreators": [
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        },
+        {
+          "name": "John Buscema",
+          "role": "penciler/art"
+        },
+        {
+          "name": "Chic Stone",
+          "role": "inker"
+        }
+      ],
+      "sourcePositions": [
+        1
+      ],
+      "contents": [
+        {
+          "seriesTitle": "The Savage She-Hulk",
+          "seriesYear": 1980,
+          "seriesId": 2291,
+          "issueNumbers": [
+            "1"
+          ],
+          "issueIds": [
+            15256
+          ]
+        }
+      ],
+      "expansionNote": "The single original origin issue only. No collected edition or ISBN is inferred.",
+      "evidence": [
+        {
+          "url": "https://www.keycollectorcomics.com/issue/savage-she-hulk-1-1-2,30839/",
+          "retrievedAt": "2026-10-03",
+          "supports": "Savage She-Hulk #1 has Stan Lee writer and John Buscema art credits, a February 1980 date and regular-first-print identity."
+        },
+        {
+          "url": "https://www.firstcomicsnews.com/review-corner-the-savage-she-hulk-1/",
+          "retrievedAt": "2026-10-03",
+          "supports": "The independent Savage She-Hulk #1 review corroborates Stan Lee, John Buscema, Chic Stone and February 1980 cover date, identifying this original as the origin story."
+        },
+        {
+          "url": "https://marvelheroeslibrary.com/comics/comic-info.aspx?comic=SAVSH-2",
+          "retrievedAt": "2026-10-04T02:59:44.344Z",
+          "supports": "The independent original-issue index identifies Savage She-Hulk #2 as March 1980, story Deathrace!, with David Kraft writer, Mike Vosburg penciler and Chic Stone inker, unlike the Lee/Buscema #1 credits.",
+          "qualification": "Index prints David Kraft, while the collected edition prints David Anthony Kraft; preserve the indexed form without claiming full-run creator parity"
+        },
+        {
+          "url": "https://github.com/raymond-nassar/recap-page/issues/699#issuecomment-5976082382",
+          "retrievedAt": "2026-10-04T03:20:56.2294373Z",
+          "supports": "The coordinator resolves the unspecified Savage origin to (1980) #1 / ID 15256 only under autonomous delegation, followed by the unchanged Slott (2004) #1-6 and Soule (2014) #1-6: 13 originals. No separate human-reviewed receipt, relationship or publication authority is granted.",
+          "qualification": "The account login does not turn this coordinator-authored choice into a human review. All implementation-release prerequisites except the resolved origin-range question remain."
+        }
+      ]
+    },
+    {
+      "position": 2,
+      "originalTitle": "She-Hulk by Dan Slott Vol. 1: Single Green Female",
+      "originalPurpose": "the foundational modern legal-comedy run.",
+      "purposeStatus": "Literal owner motivation retained as intake provenance, not a verified adaptation or comparative tone claim.",
+      "collectionTitle": "She-Hulk Vol. 1: Single Green Female",
+      "editionIsbn": "9780785114437",
+      "editionIsbn10": "0785114432",
+      "format": "paperback",
+      "publicationYear": 2004,
+      "precisePrintingDate": null,
+      "publicationDatePrecision": "Library edition year 2004; the same-ISBN bookseller listing dates its paperback 2007. Exact first-printing day is not independently settled, and the date discrepancy does not change the six-issue boundary.",
+      "publicationYearObservations": [
+        {
+          "year": 2004,
+          "source": "Physical library edition and ISBN-keyed library metadata"
+        },
+        {
+          "year": 2007,
+          "source": "Same-ISBN bookseller record"
+        }
+      ],
+      "creditedCreators": [
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        },
+        {
+          "name": "Juan Bobillo",
+          "role": "pencils"
+        },
+        {
+          "name": "Paul Pelletier",
+          "role": "pencils"
+        }
+      ],
+      "sourcePositions": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "contents": [
+        {
+          "seriesTitle": "She-Hulk",
+          "seriesYear": 2004,
+          "seriesId": 731,
+          "issueNumbers": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "issueIds": [
+            409,
+            472,
+            636,
+            713,
+            551,
+            520
+          ]
+        }
+      ],
+      "expansionNote": "The subtitle-specific first trade only, expanded to its six original issues in numerical order.",
+      "evidence": [
+        {
+          "url": "https://www.abebooks.com/9780785114437/She-Hulk-Vol-Single-Green-Female-0785114432/plp",
+          "retrievedAt": "2026-10-03",
+          "supports": "Single Green Female's subtitle-specific ISBN is 9780785114437; the record supports a legal-comedy setting, Slott/Bobillo/Pelletier creators and #1-6. The same-ISBN bookseller paperback is dated 2007 while its physical library edition is 2004."
+        },
+        {
+          "url": "https://books.google.com/books/about/She_hulk_2004_Volume_1.html?id=bWzBBwAAQBAJ",
+          "retrievedAt": "2026-10-03",
+          "supports": "The Google Books Single Green Female record explicitly states She-Hulk (2004) #1-6. Its digital edition must not supply an invented paperback publication date."
+        },
+        {
+          "url": "https://openlibrary.org/api/books?bibkeys=ISBN:9780785114437,ISBN:9780785190196&format=json&jscmd=data",
+          "retrievedAt": "2026-10-04T02:48:13.039Z",
+          "supports": "The exact ISBN-keyed library API identifies Single Green Female's paperback as 2004 and Law and Disorder as 2014, with the expected creator names and Law and Disorder's 136 pages."
+        },
+        {
+          "url": "https://openlibrary.org/books/OL22135242M.json",
+          "retrievedAt": "2026-10-03",
+          "supports": "The 2004 physical library edition explicitly identifies Vol. 1 Single green female, Dan Slott, Juan Bobillo and Paul Pelletier, with ISBN-10 0785114432."
+        },
+        {
+          "url": "https://www.abebooks.com/9780785154402/She-Hulk-Complete-Collection-Dan-Slott-078515440X/plp",
+          "retrievedAt": "2026-10-04T02:59:43.773Z",
+          "supports": "The actual Slott Complete Collection Vol. 1 paperback, ISBN 9780785154402, is a 416-page 2014 book collecting She-Hulk (2004) #1-12 and She-Hulk (2005) #1-5, unlike Single Green Female's six originals.",
+          "qualification": "Reject the earlier search-summary claim that Vol. 1 includes later bonus issues; they are not present in this direct record"
+        }
+      ]
+    },
+    {
+      "position": 3,
+      "originalTitle": "She-Hulk by Charles Soule Vol. 1: Law and Disorder",
+      "originalPurpose": "the most recent, direct tonal match: law-firm setting, fourth-wall humor.",
+      "purposeStatus": "Literal owner motivation retained as intake provenance, not a verified adaptation or comparative tone claim.",
+      "collectionTitle": "She-Hulk Vol. 1: Law and Disorder",
+      "editionIsbn": "9780785190196",
+      "editionIsbn10": "0785190198",
+      "format": "paperback",
+      "publicationYear": 2014,
+      "precisePrintingDate": null,
+      "publicationDatePrecision": "year verified by library records; conflicting search-summary exact days are not accepted",
+      "creditedCreators": [
+        {
+          "name": "Charles Soule",
+          "role": "writer"
+        },
+        {
+          "name": "Javier Pulido",
+          "role": "artist on #1-4"
+        },
+        {
+          "name": "Ron Wimberly",
+          "role": "artist on #5-6"
+        }
+      ],
+      "sourcePositions": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "contents": [
+        {
+          "seriesTitle": "She-Hulk",
+          "seriesYear": 2014,
+          "seriesId": 18472,
+          "issueNumbers": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "issueIds": [
+            49115,
+            49116,
+            49117,
+            49118,
+            49119,
+            49120
+          ]
+        }
+      ],
+      "expansionNote": "The subtitle-specific first trade only, expanded to its six original issues in numerical order.",
+      "evidence": [
+        {
+          "url": "https://www.abebooks.com/9780785190196/She-hulk-Law-Disorder-Marvel-Now-0785190198/plp",
+          "retrievedAt": "2026-10-03",
+          "supports": "The Law and Disorder ISBN-specific AbeBooks record states She-Hulk #1-6 and a new law practice; its synopsis carries an another-edition warning, requiring corroboration."
+        },
+        {
+          "url": "https://leagueofcomicgeeks.com/comic/8614813/she-hulk-vol-1-law-and-disorder-tp",
+          "retrievedAt": "2026-10-03",
+          "supports": "Law and Disorder is a 136-page first trade explicitly collecting She-Hulk (2014) #1-6."
+        },
+        {
+          "url": "https://archive.org/details/shehulkvol1lawdi0000soul",
+          "retrievedAt": "2026-10-03",
+          "supports": "Library-copy metadata for Law and Disorder cites the title-page verso's She-Hulk #1-6 boundary and lists Javier Pulido for #1-4, Ron Wimberly for #5-6."
+        },
+        {
+          "url": "https://openlibrary.org/api/books?bibkeys=ISBN:9780785114437,ISBN:9780785190196&format=json&jscmd=data",
+          "retrievedAt": "2026-10-04T02:48:13.039Z",
+          "supports": "The exact ISBN-keyed library API identifies Single Green Female's paperback as 2004 and Law and Disorder as 2014, with the expected creator names and Law and Disorder's 136 pages."
+        },
+        {
+          "url": "https://archive.org/metadata/shehulkvol1lawdi0000soul",
+          "retrievedAt": "2026-10-04T02:48:13.875Z",
+          "supports": "Law and Disorder's library-item metadata independently binds ISBNs 9780785190196/0785190198, year 2014, Charles Soule and the original #1-6 contents with artists split #1-4 Pulido, #5-6 Wimberly."
+        },
+        {
+          "url": "https://leagueofcomicgeeks.com/comic/6828965/she-hulk-by-charles-soule-the-complete-collection-tp",
+          "retrievedAt": "2026-10-03",
+          "supports": "She-Hulk by Charles Soule: The Complete Collection is a different, wider 272-page book: She-Hulk (2014) #1-12, Wolverines #13 and material from Gwenpool Special #1."
+        }
+      ]
+    }
+  ],
+  "excludedSourceReferences": [
+    "Savage She-Hulk (1980) #2-25 and Marvel Masterworks: The Savage She-Hulk Vol. 1 are outside the origin-only interpretation.",
+    "The larger Dan Slott and Charles Soule Complete Collections and later first-trade follow-ups are outside the selected six-issue boundaries.",
+    "Absolute recency, direct TV adaptation and trade-specific Soule fourth-wall claims are not used as verified recommendation facts."
+  ],
+  "factualQualifications": [
+    "Single Green Female has a 2004 physical library edition record and a 2007 same-ISBN bookseller record. Its precise first-printing date is not asserted; the She-Hulk (2004) #1-6 contents are settled.",
+    "Law and Disorder is the 2014 paperback, ISBN 9780785190196. Independent library credits name Javier Pulido for #1-4 and Ron Wimberly for #5-6.",
+    "Soule remains selected. A later 2022 Rowell collection refutes absolute recency; direct tonal match stays owner motivation and the selected trade is not established as the source of TV fourth-wall humor.",
+    "Bibliographic creator facts are independent of empty or conflicting provider creator fields. Provider unlimitedDate values are unreliable hints, not comic availability promises."
+  ],
+  "qualificationEvidence": [
+    {
+      "url": "https://books.google.com/books/about/She_Hulk_by_Rainbow_Rowell_Vol_1_Jen_Aga.html?id=g56zzgEACAAJ",
+      "retrievedAt": "2026-10-03",
+      "supports": "Rainbow Rowell's Jen, Again contains the 2022 series #1-5. A later independently fetched ISBN-specific record confirms the paperback year 2022."
+    },
+    {
+      "url": "https://thelegalgeeks.com/2014/06/09/she-hulk-esq-a-discussion-on-a-super-hero-lawyer/",
+      "retrievedAt": "2026-10-03",
+      "supports": "A June 9, 2014 legal review identifies Soule's opening issues with setting up law practice, while separately crediting Byrne's earlier series for fourth-wall storytelling.",
+      "qualification": "Supports the law-setting distinction; does not prove an absence of fourth-wall humor in every selected issue"
+    },
+    {
+      "url": "https://comicbook.com/tv-shows/news/marvel-she-hulk-fourth-wall-break-explained-head-writer-jessica-gao-attorney-at-law/",
+      "retrievedAt": "2026-10-03",
+      "supports": "Reporting of Jessica Gao's TV press-conference remarks explicitly credits the John Byrne run as foundational for fourth-wall and meta-humor.",
+      "qualification": "Evidence against automatically attributing the show's fourth-wall approach to the selected Soule trade; not a replacement recommendation"
+    },
+    {
+      "url": "https://www.abebooks.com/9781302929077/She-Hulk-Rainbow-Rowell-Vol-Jen-1302929070/plp",
+      "retrievedAt": "2026-10-04T02:59:44.119Z",
+      "supports": "Rowell's Jen, Again paperback is ISBN 9781302929077, year 2022, 120 pages, collecting She-Hulk (2022) #1-5.",
+      "qualification": "Recency counter-example only; not selected or mapped for inclusion"
+    }
+  ],
+  "positionPolicy": "Each expanded original has one sourcePosition from 1 to 13. selectionPosition identifies the literal owner selection from 1 to 3; withinSelectionPosition preserves its issue order.",
+  "selectionLedgerDigest": "ac53d2b0bc3c8550fc9f71df661bf024290f34a7b4181f803157009ea7ecacbc"
+}
