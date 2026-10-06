@@ -25,7 +25,7 @@ import {
 } from './helpers/owner-mcu-library-extension.mjs';
 import { recordedOwnerMcuLibrary } from './helpers/recorded-owner-mcu-library.mjs';
 import {
-  historicalReadingChoiceCatalogEntry, historicalReadingChoiceIssueIds,
+  historicalMcuDescriptionEntry, historicalReadingChoiceCatalogEntry, historicalReadingChoiceIssueIds,
 } from './helpers/reading-choice-history.mjs';
 
 const id = 'mcu-prep-deadpool-and-wolverine';
@@ -167,8 +167,8 @@ test('owner evidence reuses the frozen packet and mapping contracts without CBH 
     createHash('sha256').update(sourceText.replace(/\r\n/g, '\n'), 'utf8').digest('hex'));
   assert.equal(packet.sourceIssueBearingBlocksSha256, digestCanonicalJson(source.selections));
   const entry = manifest.lists.find((list) => list.id === id);
-  assert.deepEqual(packet.proposedManifest, entry);
-  assert.deepEqual(mapping.proposedManifest, entry);
+  assert.deepEqual(packet.proposedManifest, historicalMcuDescriptionEntry(entry));
+  assert.deepEqual(mapping.proposedManifest, historicalMcuDescriptionEntry(entry));
   assert.equal(payload.source, source.sourceUrl);
   assert.equal(entry.sourceOrigin, provider.sourceOrigin);
   assert.equal(payload.sourceOrigin, provider.sourceOrigin);

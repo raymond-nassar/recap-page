@@ -32,7 +32,9 @@ import {
 } from '../src/js/lib/model.js';
 import { Store, KEY } from '../src/js/storage.js';
 import { importedNoWayHomeFixture } from './helpers/owner-no-way-home-import.mjs';
-import { historicalReadingChoiceIssueIds } from './helpers/reading-choice-history.mjs';
+import {
+  historicalReadingChoiceIssueIds, historicalReadingChoicePayloadText,
+} from './helpers/reading-choice-history.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const ownerId = 'spider-man-no-way-home-owner-selected';
@@ -131,7 +133,9 @@ test('owner No Way Home keeps source authority and the existing companion identi
     ['spider_man_no_way_home_owner_selected.json', '7d6eadd3d92da6ae4048b3d5711f29803c4edfea2f7ec250f382817e1b7b937c'],
     [path.join('orders', 'spider-man-no-way-home-owner-selected.md'), '03db2728489533d09ed73eaf9575c0cd4e5d5329aabf984039669a109ff72c44'],
   ]) {
-    const text = await readFile(path.join(root, 'src', 'data', file), 'utf8');
+    const text = file === 'spider_man_no_way_home.json'
+      ? await historicalReadingChoicePayloadText(path.join('src', 'data', file))
+      : await readFile(path.join(root, 'src', 'data', file), 'utf8');
     assert.equal(createHash('sha256').update(text.replace(/\r\n/g, '\n')).digest('hex'),
       expected, `${file}: frozen source changed`);
   }

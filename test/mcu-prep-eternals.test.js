@@ -16,7 +16,7 @@ import { HOME_CATEGORIES, catalogEntries, parseCatalog } from '../src/js/lib/cat
 import { parseChecklist } from '../src/js/lib/markdown.js';
 import { buildComparisonReport, issueIdsFromValue } from '../scripts/lib/cbh-overlap.mjs';
 import {
-  historicalReadingChoiceIssueIds, historicalReadingChoiceManifest,
+  historicalMcuDescriptionEntry, historicalReadingChoiceIssueIds, historicalReadingChoiceManifest,
 } from './helpers/reading-choice-history.mjs';
 
 const id = 'mcu-prep-eternals';
@@ -139,7 +139,7 @@ test('Eternals uses the existing owner-attributed MCU Prep gateway and Storyline
     readJson('src/data/curated-lists.json'), readJson('src/data/catalog.json'),
   ]);
   const entry = manifest.lists.find((item) => item.id === id);
-  assert.deepEqual(entry, packet.proposedManifest);
+  assert.deepEqual(historicalMcuDescriptionEntry(entry), packet.proposedManifest);
   const catalog = parseCatalog(rawCatalog);
   const card = rawCatalog.lists.find((item) => item.id === id);
   for (const item of [entry, card]) {

@@ -138,6 +138,7 @@ export default [
       'scripts/browser-mcu-prep-eternals.mjs',
       'scripts/browser-mcu-prep-fantastic-four-first-steps.mjs',
       'scripts/browser-mcu-prep-brand-new-day.mjs',
+      'scripts/browser-mcu-prep-descriptions.mjs',
       'scripts/browser-owner-no-way-home.mjs',
       'scripts/capture-store-assets.mjs',
       'scripts/capture-play-assets.mjs',

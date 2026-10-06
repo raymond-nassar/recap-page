@@ -198,8 +198,9 @@ test('Thunderbolts keeps the exact minus-one gap without a guessed replacement o
     [15311, 'Thunderbolts (1997) #1', '1'],
     [62424, 'Thunderbolts (1997) #1', '1'],
   ]);
-  assert.match(manifest.lists.find((entry) => entry.id === id).description,
-    /34 resolved originals.*Thunderbolts \(1997\) #-1.*documented provider gap/);
+  const copy = await readJson('test/fixtures/mcu-prep-description-refresh.json');
+  assert.equal(manifest.lists.find((entry) => entry.id === id).description,
+    copy.entries.find((entry) => entry.id === id).after);
 });
 
 test('Thunderbolts uses the existing MCU Prep gateways and Storylines shelf without CBH attribution', async () => {

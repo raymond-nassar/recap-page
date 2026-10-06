@@ -15,6 +15,7 @@ import { parseChecklist } from '../src/js/lib/markdown.js';
 import {
   addIssuesToList, createEmptyState, createList, exportBackup, SCHEMA_VERSION, validateBackup,
 } from '../src/js/lib/model.js';
+import { historicalMcuDescriptionManifest } from './helpers/reading-choice-history.mjs';
 
 const text = (file) => readFile(new URL(`../${file}`, import.meta.url), 'utf8');
 const json = async (file) => JSON.parse(await text(file));
@@ -119,10 +120,10 @@ test('Brand New Day binds actual approval to the complete current library', asyn
   assert.ok(!peerIds.includes('spider-man-no-way-home-owner-selected'));
   const recordedIds = new Set(report.comparisons.map((row) => row.orderId));
   const recordedOrders = library.orders.filter((row) => recordedIds.has(row.orderId));
-  const recordedManifest = {
+  const recordedManifest = historicalMcuDescriptionManifest({
     ...library.manifest,
     lists: library.manifest.lists.filter((row) => recordedIds.has(row.id)),
-  };
+  });
   const recordedDigest = libraryDigestFor(recordedManifest, recordedOrders.map((row) => ({
     id: row.orderId, issueIds: row.issueIds.map(String),
   })));
