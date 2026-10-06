@@ -16,7 +16,7 @@ import {
 import { buildComparisonReport, issueIdsFromValue } from '../scripts/lib/cbh-overlap.mjs';
 import { loadLibrarySnapshot } from '../scripts/report-order-overlap.mjs';
 import {
-  historicalReadingChoiceCatalogEntry, historicalReadingChoiceIssueIds,
+  historicalMcuDescriptionEntry, historicalReadingChoiceCatalogEntry, historicalReadingChoiceIssueIds,
   loadHistoricalReadingChoiceLibrary,
 } from './helpers/reading-choice-history.mjs';
 
@@ -134,7 +134,7 @@ test('Moon Knight publishes one selected MCU Prep card, not a character guide or
   assert.equal(catalog.lists.filter((entry) => entry.id === id).length, 1);
   const entry = manifest.lists.find((entry) => entry.id === id);
   assert.equal(entry.type, 'screen-companion');
-  assert.deepEqual(entry, packet.proposedManifest);
+  assert.deepEqual(historicalMcuDescriptionEntry(entry), packet.proposedManifest);
   const card = catalog.lists.find((item) => item.id === id);
   for (const item of [entry, card]) {
     assert.equal(item.name, 'Moon Knight: MCU Prep');

@@ -2055,7 +2055,7 @@
     {
       "id": "doctor-strange-multiverse-of-madness",
       "name": "Doctor Strange: Multiverse of Madness",
-      "description": "Seventeen issue-specific picks connecting Doctor Strange, the Illuminati, and the multiverse, limited to the recommendations this companion guide names by issue.",
+      "description": "Step into Doctor Strange's magical New York, then behind closed doors with the Illuminati as Marvel's biggest egos try to keep the world under control. Heavy themes, big magic, and secrets that never stay buried for long.",
       "type": "screen-companion",
       "depth": "selected",
       "beginner": false,
@@ -2086,7 +2086,7 @@
     {
       "id": "spider-man-no-way-home",
       "name": "Spider-Man: No Way Home",
-      "description": "Seventeen issue-specific Spider-Man and Doctor Strange picks for a multiverse homecoming, limited to the recommendations this companion guide names by issue.",
+      "description": "Swing through Peter's tangled past, a desperate fight to protect the people he loves, and a brush with Doctor Strange's magic. Nostalgia, heartbreak, and magical trouble, all in one web.",
       "type": "screen-companion",
       "depth": "selected",
       "beginner": false,
@@ -2245,7 +2245,7 @@
     {
       "id": "mcu-prep-shang-chi-and-the-legend-of-the-ten-rings",
       "name": "Shang-Chi and the Legend of the Ten Rings",
-      "description": "An owner-selected modern Shang-Chi companion, from Agents of Atlas and Sword Master through Brothers & Sisters and the Ten Rings. Anthology selections are qualified; completion is tracked per issue.",
+      "description": "Shang-Chi's estranged siblings crawl out of his father's shadow to claim a deadly empire, while new allies and the Ten Rings pull him into fresh trouble. Family legacy and master assassin drama collide.",
       "type": "screen-companion",
       "depth": "selected",
       "beginner": false,
@@ -2280,7 +2280,7 @@
     {
       "id": "mcu-prep-thunderbolts",
       "name": "MCU Prep: Thunderbolts*",
-      "description": "34 resolved originals; Thunderbolts (1997) #-1 remains a documented provider gap. Owner-selected prep from four collections and one Taskmaster spotlight, following the original team, Natasha and Yelena, Bucky's Winter Soldier story and his later Thunderbolts team.",
+      "description": "Meet the original team of villains playing at being heroes, then follow Bucky's Winter Soldier past, Natasha and Yelena's deadly rivalry, and Taskmaster's mercenary tricks. It's a crash course in trusting people you really shouldn't. Thunderbolts (1997) #-1 is still missing provider details; the other 34 comics are included.",
       "type": "screen-companion",
       "depth": "selected",
       "beginner": false,
@@ -2316,7 +2316,7 @@
     {
       "id": "mcu-prep-moon-knight",
       "name": "Moon Knight: MCU Prep",
-      "description": "The owner's three first-volume Moon Knight selections, expanded into 17 original issues from 2014, 2016 and 2021, in selection order.",
+      "description": "Marc Spector's identities fight for control of his own mind while Egyptian gods pull the strings behind the scenes. Expect psychological horror, divine politics, and zero certainty about who's really driving.",
       "type": "screen-companion",
       "depth": "selected",
       "beginner": false,
@@ -2349,7 +2349,7 @@
     {
       "id": "mcu-prep-eternals",
       "name": "Eternals",
-      "description": "Three owner-selected Eternals collections: Jack Kirby's first volume, Neil Gaiman and John Romita Jr.'s miniseries, then Kieron Gillen and Esad Ribic's first volume. Original issues only.",
+      "description": "Ancient god-like beings have secretly shaped human history since the Stone Age, and these books peel back the mystery of who they really are. Expect secret identities, buried memories, and the kind of scale only cosmic beings can deliver.",
       "type": "screen-companion",
       "depth": "selected",
       "beginner": false,
@@ -2381,7 +2381,7 @@
     {
       "id": "mcu-prep-fantastic-four-first-steps",
       "name": "MCU Prep: The Fantastic Four: First Steps",
-      "description": "Five owner selections, expanded to 28 original comics: the first six Fantastic Four issues, the Galactus Trilogy, Imaginauts, Hickman's first volume and New Dawn. The Point One row opens the whole anthology; New Dawn selects its Silver Surfer story.",
+      "description": "Start with the cosmic accident that made Marvel's First Family, then go straight to the arrival of Galactus and the Silver Surfer. Family, science, and world-ending stakes, all in one package. The Point One selection opens the whole anthology, including stories beyond its Silver Surfer material.",
       "type": "screen-companion",
       "depth": "selected",
       "beginner": false,
@@ -2491,7 +2491,7 @@
     {
       "id": "mcu-prep-deadpool-and-wolverine",
       "name": "MCU Prep: Deadpool & Wolverine",
-      "description": "An owner-selected path through Weapon X, Dead Presidents, Gifted, Old Man Logan, and Deadpool Classic Vol. 1, expanded into 43 original comics in the supplied order.",
+      "description": "Dive into Logan's Weapon X nightmare and Wade's chaotic mercenary life, then fast forward to a battered, future version of Wolverine who's finally ready to pop the claws again. Brutal experiments, outrageous mercenary jobs, and one very rough retirement: there's plenty of trouble to go around.",
       "type": "screen-companion",
       "depth": "selected",
       "beginner": false,
@@ -6044,7 +6044,7 @@
     {
       "id": "avengers-doomsday-secret-wars",
       "name": "Avengers: Doomsday & Avengers: Secret Wars",
-      "description": "The Secret Wars fast track, presented as comics background for Avengers: Doomsday and Avengers: Secret Wars. Uses the same ten trade-based sections and shared issue read progress, with its own saved Reading List.",
+      "description": "Doctor Doom at his most brilliant and ruthless, building toward the moment he becomes a literal god ruling over the wreckage of a shattered multiverse. This is the deep end of Marvel cosmic stakes, with Doom finally taking center stage.",
       "type": "screen-companion",
       "depth": "essential",
       "beginner": false,
@@ -7006,7 +7006,7 @@
     {
       "id": "mcu-prep-daredevil-born-again",
       "name": "MCU Prep: Daredevil: Born Again",
-      "description": "An owner-selected Daredevil companion: The Man Without Fear, Born Again, Out, Brubaker's first volume, and the first two Zdarsky volumes.",
+      "description": "Watch Kingpin learn Matt Murdock's secret and burn his whole life to the ground, straight from the comic that gave the show its name. This is Hell's Kitchen at its most brutal, with Fisk tightening his grip on the city while Matt fights to survive.",
       "type": "screen-companion",
       "depth": "selected",
       "beginner": false,

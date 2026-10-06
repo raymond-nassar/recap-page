@@ -2211,3 +2211,30 @@ availability model and reader launch semantics are unchanged. Existing saved lis
 original-ID progress, notes and overrides remain intact. Reader backups retain an imported guide
 through the existing format. Completion and enjoyment history remains separate and still needs
 its own history backup for portability; it is not added to reader backups.
+
+## MCU Prep description refresh
+
+[Issue #731](https://github.com/raymond-nassar/recap-page/issues/731) replaces the
+descriptions of ten existing MCU Prep guides with the owner's warmer wording,
+minimally corrected to describe their actual selections. The curated manifest
+owns the current copy; the generated catalog and pinned import headers carry
+the same text. Catalog regeneration uses pinned data without new metadata
+requests or snapshot dates. The Thunderbolts minus-one gap and First Steps
+whole-anthology qualification remain explicit. Brand New Day already had its
+requested copy and is unchanged, as are the other unselected MCU choices.
+
+The [editorial revision record](../test/fixtures/mcu-prep-description-refresh.json)
+binds the exact before/after descriptions to their original committed entries
+and payload fingerprints. It is not a new source or relationship approval.
+Test-only historical reconstruction requires the exact current wording before
+restoring only the recorded old description for frozen comparisons. Original
+source, packet, mapping, report and approval files remain unchanged. Current
+library comparisons still include every active source and generated child and
+still reject newly meaningful relationships without review.
+
+Cards show the new first sentence, Preview shows the full description, and new
+imports save the new text. Existing saved-list descriptions are not migrated
+or rewritten. Selected comics, collection groups, source attribution, shared
+read progress, notes, overrides and separate completion/enjoyment history are
+unchanged. The original active No Way Home guide remains the selected target;
+the retired owner-selected guide remains archived and absent from discovery.

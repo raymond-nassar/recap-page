@@ -16237,6 +16237,7 @@ MUTATIONS.push(eternalsCollectionMutation);
 SCENARIOS.push((await import('./browser-reading-list-choices.mjs')).readingListChoices);
 SCENARIOS.push((await import('./browser-mcu-prep-fantastic-four-first-steps.mjs')).firstStepsActualData);
 SCENARIOS.push((await import('./browser-mcu-prep-brand-new-day.mjs')).brandNewDayActualData);
+SCENARIOS.push((await import('./browser-mcu-prep-descriptions.mjs')).mcuPrepDescriptions);
 
 // Without this an unexpected throw leaves an unhandled rejection, which Node reports as a bare
 // stack and exits 1 on. Exit 1 is this check's word for "an assertion failed", so an internal

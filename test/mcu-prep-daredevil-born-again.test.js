@@ -19,6 +19,7 @@ import {
 import { parseManifest } from '../src/js/lib/curated.js';
 import {
   historicalReadingChoiceCatalogEntry, historicalReadingChoiceIssueIds,
+  historicalReadingChoicePayloadText,
 } from './helpers/reading-choice-history.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -228,7 +229,9 @@ test('owner Daredevil checklist and pinned payload publish all 37 originals in s
   assert.equal(payload.sourceLicense, null);
   assert.ok(payload.items.every((row) => row.description === null && !row.detailsRefused));
   const ledger = await json(`scripts/data/owner-selections/${id}.json`);
-  assert.equal(ledger.metadataPublication.payloadSha256, digestCanonicalJson(payload));
+  assert.equal(ledger.metadataPublication.payloadSha256, digestCanonicalJson(JSON.parse(
+    await historicalReadingChoicePayloadText('src/data/mcu_prep_daredevil_born_again.json'),
+  )));
   assert.deepEqual(ledger.metadataPublication.lookupEndpoints,
     expectedIds.map((issueId) => `${payload.apiBase}/issues/${issueId}`));
   assert.deepEqual(ledger.metadataPublication.detailRefusals, []);
