@@ -222,9 +222,9 @@ export class Store {
 
   // Deliberate, user-initiated escape hatch from the blocked state. Refuses unless a copy of
   // the unreadable data verifiably survives somewhere, so the button the banner tells the user
-  // to press cannot destroy their only copy. confirmedDownloaded is the way out when storage is
-  // too full to hold a copy: the user has already saved the file to disk themselves.
-  startFresh({ confirmedDownloaded = false } = {}) {
+  // to press cannot destroy their only copy. verifiedCopyRaw comes from completed native output
+  // or exact file read-back, never a browser anchor request.
+  startFresh({ verifiedCopyRaw = null } = {}) {
     // Withdrawn rather than refused when its premise is gone. This button names one specific value,
     // the one this tab could not read, and offers to set it aside and clear it. If another tab has
     // replaced that value since, the button no longer names anything that exists, and neither of
@@ -247,16 +247,25 @@ export class Store {
       this.onChange(this.state, this.lastError);
       return false;
     }
-    if (!this.salvage() && !confirmedDownloaded) {
+    let original;
+    try {
+      original = this.storage?.getItem(KEY);
+    } catch (error) {
+      this.lastError = `Nothing was cleared: the original could not be checked (${error.message}). Try again.`;
+      this.onChange(this.state, this.lastError);
+      return false;
+    }
+    if (!this.salvage() && (typeof original !== 'string' || verifiedCopyRaw !== original)) {
       this.lastError =
         'Nothing was cleared: a copy of your unreadable data could not be set aside '
-        + '(browser storage is probably full). Use "Download a copy" first, then try again.';
+        + '(browser storage is probably full). Download a copy, then use "Verify downloaded copy" '
+        + 'to check the saved file before you try again. A download request alone is not a saved copy.';
       this.onChange(this.state, this.lastError);
       return false;
     }
     this.blocked = false;
     this.state = createEmptyState();
-    const ok = this.persist(this.state);
+    const ok = this.persist(this.state, original);
     if (ok) {
       this.lastError = null;
       // Saving works again, so the reason it was paused is no longer true. Cleared here rather
@@ -464,7 +473,7 @@ export class Store {
     } catch (err) {
       this.lastError =
         err?.name === 'QuotaExceededError'
-          ? 'Browser storage is full, so that change was not saved. Export a backup, then clear the cache from Settings.'
+          ? 'Reading-data storage is full, so that change was not saved. Download and check a backup before removing unneeded recovery copies or reading lists in Backup & settings. Clearing cached metadata does not free this separate storage.'
           : `Could not save that change (${err.message}). It has been undone.`;
       return false;
     }

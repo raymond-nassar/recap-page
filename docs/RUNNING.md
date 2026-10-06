@@ -307,6 +307,24 @@ Under **Backup & settings**, **Download backup** and **Restore from a backup** c
 The metadata-source form is under **Advanced**, inside **Metadata source**. Restore, undo,
 recovery copies and error reports are not hidden by these disclosures.
 
+### Checking a recovery download
+
+A desktop download request is not confirmation that a file was saved. Check the browser's
+downloads before relying on any exported backup.
+
+When saved data cannot be read, the original stays untouched while saving is paused.
+If the browser cannot keep a recovery copy, choose **Download a copy of the unreadable data**,
+then **Verify downloaded copy** and select that saved file. The app checks the whole file locally
+against the current unreadable data; it does not restore or upload it. Only a matching verified
+file, a completed Android file save, or an in-browser recovery copy permits **Start fresh**.
+Verification lasts only for this incident in this tab. A wrong, unreadable or cancelled file
+does not permit replacement. Keep the verified file outside browser storage.
+
+Reading-data storage and cached metadata use separate storage. **Clear cached metadata** cannot
+repair a reading-data quota failure. Download and check a backup before removing unneeded
+recovery copies or reading lists. After the same change saves successfully, its earlier
+not-saved warning disappears; unrelated warnings remain.
+
 ### Choosing when to see story summaries
 
 **Hide story summaries until I reveal them** is on by default. **Fetch synopses** asks permission to

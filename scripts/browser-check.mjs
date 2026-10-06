@@ -8008,6 +8008,50 @@ const SCENARIOS = [
 
       const others = await page.$$eval('button.cb[data-act="read"]', (els) => els.filter((e) => e.getAttribute('aria-pressed') === 'true').length);
       t.check('and only the issue that was marked is marked', others === 1, `${others} marked read`);
+
+      const savedBeforeFault = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      await page.evaluate(() => {
+        const original = Storage.prototype.setItem;
+        window.__ux01Quota = true;
+        Storage.prototype.setItem = function (key, value) {
+          if (window.__ux01Quota && key === 'mrt.state.v2') throw new DOMException('Synthetic reading quota', 'QuotaExceededError');
+          return original.call(this, key, value);
+        };
+      });
+      await click(page, 'button.cb[data-act="read"][data-key="900002"]');
+      const refused = await page.$eval('#save-report', (el) => el.textContent);
+      t.check('a refused change preserves stored bytes and names the separate reading-data quota',
+        await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === savedBeforeFault
+          && refused.includes('Reading-data storage is full')
+          && refused.includes('Clearing cached metadata does not free'), refused);
+      await page.evaluate(() => { window.__ux01Quota = false; });
+      await click(page, 'button.cb[data-act="read"][data-key="900002"]');
+      t.check('successful retry clears the resolved assertive reader-save failure',
+        await page.$eval('#save-report', (el) => el.textContent.trim()) === '');
+      const retry = await readState(page);
+      t.check('the retried exact change is saved', Object.hasOwn(retry.read, '900002'));
+
+      await page.evaluate(async () => {
+        const { notify } = await import('/js/main.js');
+        notify('#app-report', 'Synthetic routine completion.', 'ok', 'ux01-routine');
+      });
+      await click(page, '.ri[data-view="about"]');
+      t.check('routine success does not follow unrelated navigation',
+        !await page.$eval('#app-report', (el) => el.textContent.includes('Synthetic routine')));
+      await page.evaluate(async () => {
+        const { notify } = await import('/js/main.js');
+        notify('#app-report', 'Synthetic unrelated error.', 'error', 'ux01-unrelated');
+        notify('#save-report', 'Synthetic history save failed.', 'error', 'history-save');
+      });
+      await openFullOrder(page);
+      await page.evaluate(() => { window.__ux01Quota = true; });
+      await click(page, 'button.cb[data-act="read"][data-key="900003"]');
+      await page.evaluate(() => { window.__ux01Quota = false; });
+      await click(page, 'button.cb[data-act="read"][data-key="900003"]');
+      t.check('reader-save success does not clear a different save incident',
+        await page.$eval('#save-report', (el) => el.textContent.includes('Synthetic history save failed')));
+      t.check('unrelated error retains its necessary lifetime across navigation and successful writes',
+        await page.$eval('#app-report', (el) => el.textContent.includes('Synthetic unrelated error')));
     },
   },
   {
@@ -8411,6 +8455,104 @@ const SCENARIOS = [
         kept === corrupt,
         kept === null ? 'the key is gone' : `${kept.length} bytes vs ${corrupt.length}`,
       );
+
+      const { mkdtemp, rm, writeFile } = await import('node:fs/promises');
+      const { tmpdir } = await import('node:os');
+      const directory = await mkdtemp(join(tmpdir(), 'recap-recovery-copy-'));
+      const session = await page.browser().target().createCDPSession();
+      const contextId = page.browserContext().id;
+      let terminal;
+      const completed = new Map();
+      session.on('Browser.downloadProgress', (event) => {
+        if (event.state !== 'completed' && event.state !== 'canceled') return;
+        completed.set(event.guid, event.state);
+        terminal?.(event);
+      });
+      const waitDownload = () => new Promise((resolve, reject) => {
+        const timer = setTimeout(() => { terminal = null; reject(new Error('Native recovery download did not finish')); }, 15000);
+        terminal = (event) => { clearTimeout(timer); terminal = null; resolve(event); };
+      });
+      try {
+        await page.evaluateOnNewDocument(() => {
+          const set = Storage.prototype.setItem;
+          Storage.prototype.setItem = function (key, value) {
+            if (key.startsWith('mrt.state.salvage')) throw new DOMException('Synthetic salvage quota', 'QuotaExceededError');
+            return set.call(this, key, value);
+          };
+        });
+        await page.evaluate(() => {
+          for (const key of Object.keys(localStorage)) {
+            if (key.startsWith('mrt.state.salvage')) localStorage.removeItem(key);
+          }
+        });
+        await page.reload({ waitUntil: 'load' });
+        await page.waitForSelector('#blocked-banner:not([hidden])');
+        await session.send('Browser.setDownloadBehavior', { behavior: 'deny', browserContextId: contextId, eventsEnabled: true });
+        const denied = waitDownload();
+        await click(page, '#btn-download-salvage');
+        const denial = await denied;
+        t.check('the real browser denies the requested recovery download', denial.state === 'canceled');
+        const downloadReport = await page.$eval('#save-report', (el) => el.textContent);
+        t.check('denied output is reported as requested, never confirmed saved',
+          downloadReport.includes('not confirmed saved') && !downloadReport.includes('Downloaded a copy'), downloadReport);
+        await click(page, '#btn-start-fresh');
+        await page.waitForSelector('#ask[open]');
+        await click(page, '#ask-ok');
+        await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+        t.check('denied download plus failed salvage cannot replace the only saved bytes',
+          await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === corrupt);
+        t.check('no salvage copy was silently assumed',
+          !await page.evaluate(() => Object.keys(localStorage).some((key) => key.startsWith('mrt.state.salvage'))));
+
+        const verify = await page.$('#verify-salvage');
+        t.check('desktop recovery offers explicit local file verification', !!verify);
+        if (!verify) return;
+        await session.send('Browser.setDownloadBehavior', {
+          behavior: 'allowAndName', browserContextId: contextId, downloadPath: directory, eventsEnabled: true,
+        });
+        const saving = waitDownload();
+        await click(page, '#btn-download-salvage');
+        const saved = await saving;
+        t.check('a second real download completes', saved.state === 'completed');
+        const savedPath = join(directory, saved.guid);
+        t.check('completed output contains the entire exact incident', readFileSync(savedPath, 'utf8') === corrupt);
+        const wrong = join(directory, 'wrong.json');
+        await writeFile(wrong, corrupt.replace('newer', 'other'));
+        await verify.uploadFile(wrong);
+        await page.waitForFunction(() => document.querySelector('#save-report').textContent.includes('does not match'));
+        await click(page, '#btn-start-fresh');
+        await page.waitForSelector('#ask[open]');
+        await click(page, '#ask-ok');
+        await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+        t.check('a different file does not grant destructive recovery permission',
+          await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === corrupt);
+        await verify.uploadFile(savedPath);
+        await page.waitForFunction(() => document.querySelector('#save-report').textContent.includes('Verified the saved file')
+          || document.querySelector('#save-report').textContent.includes('could not be verified')
+          || document.querySelector('#save-report').textContent.includes('does not match'));
+        const verificationReport = await page.$eval('#save-report', (el) => el.textContent);
+        t.check('the saved file is explicitly verified before replacement',
+          verificationReport.includes('Verified the saved file'), verificationReport);
+        await page.evaluate(async () => {
+          const { notify } = await import('/js/main.js');
+          notify('#save-report', 'Synthetic unrelated fixed-pane error.', 'error');
+        });
+        await click(page, '#btn-start-fresh');
+        await page.waitForSelector('#ask[open]');
+        await click(page, '#ask-ok');
+        await page.waitForFunction(() => document.querySelector('#blocked-banner').hidden
+          || document.querySelector('#save-report').textContent.includes('Nothing was cleared'));
+        t.check('exact native-file read-back permits safe recovery with the external copy intact',
+          (await readState(page)).listOrder.length === 0 && readFileSync(savedPath, 'utf8') === corrupt);
+        t.check('the native observations include cancellation and completion',
+          [...completed.values()].includes('canceled') && [...completed.values()].includes('completed'));
+        await click(page, '.ri[data-view="about"]');
+        t.check('recovery resolution preserves an unrelated fixed-pane error across navigation',
+          await page.$eval('#save-report', (el) => el.textContent.includes('Synthetic unrelated fixed-pane error')));
+      } finally {
+        await session.detach();
+        await rm(directory, { recursive: true, force: true });
+      }
     },
   },
   {

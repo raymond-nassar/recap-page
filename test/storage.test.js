@@ -159,9 +159,34 @@ test('start fresh proceeds once the user has downloaded a copy themselves', () =
   assert.equal(store.salvagedRaw(), 'corrupt', 'so the download falls back to the live value');
   assert.equal(store.startFresh(), false, 'and the blind hatch stays shut');
 
-  assert.equal(store.startFresh({ confirmedDownloaded: true }), true);
+  assert.equal(store.startFresh({ verifiedCopyRaw: 'corrupt' }), true);
   assert.equal(store.blocked, false);
   assert.deepEqual(JSON.parse(storage.getItem(KEY)).listOrder, []);
+});
+
+test('unbound download permission and another tokenless incident cannot bypass failed salvage', () => {
+  const storage = fakeStorage({ [KEY]: 'original' });
+  storage.failKey = 'mrt.state.salvage';
+  const store = new Store({ storage });
+  store.load();
+  assert.equal(store.startFresh({ confirmedDownloaded: true }), false);
+  assert.equal(storage.getItem(KEY), 'original');
+  storage.setItem(KEY, 'different');
+  assert.equal(store.startFresh({ verifiedCopyRaw: 'original' }), false);
+  assert.equal(storage.getItem(KEY), 'different');
+  assert.equal(store.blocked, true);
+});
+
+test('localStorage quota guidance does not present metadata cleanup as a remedy', () => {
+  const storage = fakeStorage();
+  const store = new Store({ storage });
+  store.load();
+  storage.setItem = () => { throw new DOMException('Full', 'QuotaExceededError'); };
+  store.update((s) => createList(s, { name: 'Cannot save' }));
+  assert.equal(store.lastUpdateOk, false);
+  assert.match(store.lastError, /Reading-data storage is full/);
+  assert.match(store.lastError, /Clearing cached metadata does not free this separate storage/);
+  assert.deepEqual(store.state.listOrder, []);
 });
 
 // A stale salvage from an old incident must not be presented as the current data, and must not

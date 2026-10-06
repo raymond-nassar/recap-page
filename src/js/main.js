@@ -64,7 +64,7 @@ import { createAddView, persistSearchSelection } from './views/add.js';
 import { createDataView, eraseOutcome } from './views/data.js';
 import { createRecoveryView } from './views/recovery.js';
 import { wireTooltips } from './lib/tooltips.js';
-import { saveDownload } from './lib/download.js';
+import { saveDownload, downloadMessage } from './lib/download.js';
 
 const SETTINGS_KEY = 'mrt.settings';
 export const CACHE_PURGE_KEY = 'mrt.cache-purge.v1';
@@ -94,7 +94,8 @@ const store = new Store({
   onChange: (_state, err) => {
     if (store.blocked) temporaryReaderLinks.reconcile(_state, { changed: null });
     renderAll();
-    if (err) notify('#save-report', err, 'error');
+    if (err) notify('#save-report', err, 'error', 'reader-save');
+    else clearNotice('reader-save');
   },
 });
 const saveEducation = createSaveEducation({ storage: globalThis.localStorage });
@@ -103,7 +104,8 @@ const listHistory = new ListHistoryStore({
   onChange: (_history, error) => {
     renderAll();
     readingPathsView.refreshProgress();
-    if (error) notify('#save-report', error, 'error');
+    if (error) notify('#save-report', error, 'error', 'history-save');
+    else clearNotice('history-save');
   },
 });
 const homeUpdatesSeen = createHomeUpdatesSeen({ storage: store.storage, locks: globalThis.navigator?.locks });
@@ -426,6 +428,18 @@ const API_BASE_REJECTED = 'api-base-rejected';
 // moving the nodes about instead left a copy behind in the pane the message started in, and with
 // two outstanding it kept whichever came first in the markup rather than the newer one.
 const notices = new Map();
+const fixedNotices = new Map();
+
+function placeFixedNotice(sel) {
+  const note = [...fixedNotices.values()].filter((entry) => entry.sel === sel).at(-1);
+  $(sel)?.replaceChildren(...(note ? [noticeEl(note)] : []));
+}
+
+export function retireRoutineNotices(notes) {
+  for (const [key, note] of notes) {
+    if (note.kind === 'ok' && !note.action && !note.dismiss) notes.delete(key);
+  }
+}
 
 // #app-report is above every view, so it is the only pane always available to a message whose own
 // pane the reader cannot see. Seven of the nine views carry no pane of their own.
@@ -530,7 +544,7 @@ function focusAfterDismiss(inDialog) {
 // after a delete. `dismiss` puts a second one there for a message the reader can be finished with
 // before anything replaces it, which is the only way a notice under a long-lived key ever leaves
 // the screen: these panes hold what they are given until something clears them.
-function notify(sel, msg, kind = 'ok', key = sel, action = null, dismiss = null) {
+export function notify(sel, msg, kind = 'ok', key = sel, action = null, dismiss = null) {
   const own = $(sel);
   if (!own) return;
   // Only the general notice panes move. #save-report sits above every view and is assertive
@@ -538,6 +552,8 @@ function notify(sel, msg, kind = 'ok', key = sel, action = null, dismiss = null)
   // form that filled them, so relocating either would lose the context that makes it actionable
   // and would quietly change which channel it goes out on.
   if (!own.classList.contains('report')) {
+    if (sel === '#save-report') fixedNotices.delete(key);
+    if (sel === '#save-report') fixedNotices.set(key, { sel, msg, kind, action, dismiss });
     own.replaceChildren(noticeEl({
       msg, kind, action, dismiss,
     }));
@@ -569,6 +585,9 @@ export function spoken(msg, action, dismiss) {
 
 function clearNotice(key) {
   notices.delete(key);
+  const fixed = fixedNotices.get(key);
+  fixedNotices.delete(key);
+  if (fixed) placeFixedNotice(fixed.sel);
   placeNotices();
 }
 
@@ -1489,6 +1508,12 @@ function showView(next, { focus = true, push = false } = {}) {
   // the same reason as in applyRoute, and past tense for the same reason: the map used to answer a
   // bare lookup with a prototype member, and BL-068 has since given it none to answer with.
   if (next === 'read' && !Object.hasOwn(store.state.lists, activeListId() ?? '')) next = 'home';
+  if (next !== view) {
+    retireRoutineNotices(notices);
+    const panes = new Set([...fixedNotices.values()].map((note) => note.sel));
+    retireRoutineNotices(fixedNotices);
+    for (const sel of panes) placeFixedNotice(sel);
+  }
   if (next !== 'issue' && view === 'issue') {
     issueView.cancel();
     issueRoute = null;
@@ -2024,8 +2049,9 @@ async function exportMarkdown() {
       items: listItems(store.state, id),
     });
     if (md === null) return;
-    if (!await saveDownload(`${slug(list.name)}.md`, md, 'text/markdown')) return;
-    announce('Markdown Reading List downloaded.');
+    const result = await saveDownload(`${slug(list.name)}.md`, md, 'text/markdown');
+    if (!result) return;
+    announce(downloadMessage(result, 'Markdown Reading List'));
   } catch (error) {
     notify('#app-report', `Could not export Markdown: ${error.message}`, 'error');
   }
@@ -2040,11 +2066,13 @@ const recoveryView = createRecoveryView({
     undoRestore: $('#btn-undo-restore'),
     btnDownloadSalvage: $('#btn-download-salvage'),
     btnStartFresh: $('#btn-start-fresh'),
+    verifySalvage: $('#verify-salvage'),
     salvageList: $('#salvage-list'),
   }),
   isBlocked: () => store.blocked,
   blockedReason: () => store.blockedReason,
   hasPreRestoreSnapshot: () => store.hasPreRestoreSnapshot(),
+  clearRecoveryNotice: () => clearNotice('recovery-copy'),
   salvagedRaw: () => store.salvagedRaw(),
   salvageCopies: () => store.salvageCopies(),
   salvageRawAt: (key) => store.salvageRawAt(key),
@@ -2088,8 +2116,9 @@ const dataView = createDataView({
   askConfirm,
   notify,
   onExportJson: async () => {
-    if (!await download('recap-page-backup.json', JSON.stringify(exportBackup(store.state), null, 2), 'application/json')) return;
-    announce('Backup downloaded.');
+    const result = await download('recap-page-backup.json', JSON.stringify(exportBackup(store.state), null, 2), 'application/json');
+    if (!result) return;
+    announce(downloadMessage(result, 'Backup'));
   },
   onExportMarkdown: exportMarkdown,
   onExportOrder: exportReadingOrder,
@@ -3395,8 +3424,9 @@ async function exportReadingOrder() {
       confirmLabel: 'Download order only',
     });
     if (!yes) return;
-    if (!await saveDownload(`${slug(list.name)}-order-only.md`, md, 'text/markdown')) return;
-    announce('Order-only Markdown downloaded. Your saved reading data is unchanged.');
+    const result = await saveDownload(`${slug(list.name)}-order-only.md`, md, 'text/markdown');
+    if (!result) return;
+    announce(`${downloadMessage(result, 'Order-only Markdown')} Your saved reading data is unchanged.`);
   } catch (err) {
     notify('#app-report', `Could not export the reading order: ${err.message}. Your saved reading data is unchanged.`, 'error', 'order-export');
   }

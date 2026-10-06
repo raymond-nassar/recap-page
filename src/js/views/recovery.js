@@ -46,6 +46,7 @@ export function createRecoveryView({
   isBlocked,
   blockedReason,
   hasPreRestoreSnapshot,
+  clearRecoveryNotice,
   salvagedRaw,
   salvageCopies,
   salvageRawAt,
@@ -56,17 +57,12 @@ export function createRecoveryView({
   askConfirm,
   download,
 }) {
-  // Set once the user has saved a copy of the unreadable data to disk themselves. It is the only
-  // way out when the browser is too full to hold a second copy, which is exactly the situation
-  // where the automatic salvage fails.
+  // Exact incident bytes confirmed by native output or file read-back, not an anchor request.
   let downloadedSalvage = null;
+  let verificationGeneration = 0;
 
-  // The banner as the last render left it, so its withdrawal can take the notices that were about
-  // it. While the banner is up, everything the save report can hold is about the block: a refused
-  // write, the refusal to start fresh, and the empty-download warning are its only writers in that
-  // state. So the moment saving works again, whatever is still in there points at a banner that is
-  // no longer on screen. A restore is the path that exposed this, because it reports its own
-  // success to the restore pane and leaves the save report untouched.
+  // Resolution withdraws only recovery's notice. Reader and completion-history save failures
+  // have their own keys and may still need attention, even while this banner is up.
   let blockedBannerWasUp = false;
 
   function render() {
@@ -83,10 +79,12 @@ export function createRecoveryView({
     // Below the hide, so a cleared reason is never on screen: the banner has already gone by the
     // time the text it held is emptied.
     if (blockedBannerWasUp && !blocked) {
-      nodes.saveReport.replaceChildren();
+      if (clearRecoveryNotice) clearRecoveryNotice();
+      else nodes.saveReport.replaceChildren();
       // A download confirms only the incident whose banner was showing. Carrying it into a later
       // incident could let Start fresh replace different unreadable bytes with no copy of them.
       downloadedSalvage = null;
+      verificationGeneration += 1;
     }
     blockedBannerWasUp = blocked;
     // The pre-restore snapshot outlives a reload, so the undo affordance must be restored on
@@ -116,7 +114,7 @@ export function createRecoveryView({
       return;
     }
     if (copies.length === 0) {
-      box.replaceChildren(el('p', { class: 'rail-hint', text: 'Nothing is being kept aside. Your saved data has always been readable.' }));
+      box.replaceChildren(el('p', { class: 'rail-hint', text: 'Nothing is being kept aside.' }));
       return;
     }
 
@@ -175,26 +173,55 @@ export function createRecoveryView({
     // Blocked banner: download + start fresh
     nodes.btnDownloadSalvage.addEventListener('click', async () => {
       const raw = salvagedRaw();
-      if (!raw) return notify('#save-report', 'There was nothing left to download.', 'warn');
+      if (!raw) return notify('#save-report', 'There was nothing left to download.', 'warn', 'recovery-copy');
       const when = new Date().toISOString().slice(0, 10);
-      if (!await download(`recap-page-unreadable-${when}.json`, raw, 'application/json')) return;
+      const result = await download(`recap-page-unreadable-${when}.json`, raw, 'application/json');
+      if (!result) return;
       // A picker can outlive this incident. Its success cannot confirm different unreadable data.
-      if (isBlocked() && salvagedRaw() === raw) downloadedSalvage = raw;
-      announce('Downloaded a copy of the unreadable data.');
+      if (result === true && isBlocked() && salvagedRaw() === raw) downloadedSalvage = raw;
+      if (result === true) announce('Downloaded a copy of the unreadable data.');
+      else notify('#save-report', 'Download requested, not confirmed saved. Check your browser\'s downloads, then select the saved file with "Verify downloaded copy". Nothing has been cleared.', 'warn', 'recovery-copy');
+    });
+
+    nodes.verifySalvage?.addEventListener('change', async (event) => {
+      const input = event.target;
+      const file = input.files?.[0];
+      if (!file) return;
+      const generation = ++verificationGeneration;
+      const raw = salvagedRaw();
+      downloadedSalvage = null;
+      try {
+        if (!isBlocked() || typeof raw !== 'string' || file.size !== new Blob([raw]).size) {
+          return notify('#save-report', 'That file does not match the unreadable data. Nothing was cleared. Download this incident\'s copy and try again.', 'warn', 'recovery-copy');
+        }
+        const text = new TextDecoder('utf-8', { fatal: true, ignoreBOM: true }).decode(await file.arrayBuffer());
+        if (generation !== verificationGeneration) return;
+        if (!isBlocked() || salvagedRaw() !== raw) {
+          return notify('#save-report', 'The recovery data changed while the file was being checked. Nothing was cleared. Download the current copy and try again.', 'warn', 'recovery-copy');
+        }
+        if (text !== raw) return notify('#save-report', 'That file does not match the unreadable data. Nothing was cleared. Download this incident\'s copy and try again.', 'warn', 'recovery-copy');
+        downloadedSalvage = raw;
+        notify('#save-report', 'Verified the saved file matches this unreadable data. You can now start fresh.', 'ok', 'recovery-copy');
+      } catch (error) {
+        if (generation !== verificationGeneration) return;
+        notify('#save-report', `That file could not be verified (${error.message}). Nothing was cleared. Select the downloaded copy and try again.`, 'error', 'recovery-copy');
+      } finally {
+        if (generation === verificationGeneration) input.value = '';
+      }
     });
 
     nodes.btnStartFresh.addEventListener('click', async () => {
       const yes = await askConfirm({
         title: 'Start fresh?',
         body: 'This replaces the unreadable saved data with an empty tracker. '
-          + 'Download a copy first if you have not already.',
+          + 'An in-browser recovery copy or a verified saved file must survive before anything is replaced.',
         confirmLabel: 'Start fresh',
       });
       if (!yes) return;
       // Not reported on failure: both failing exits assign lastError and then call onChange,
       // which already notifies here. Measured in Edge, 2 identical strings per refusal, now 1.
-      if (startFresh({ confirmedDownloaded: downloadedSalvage !== null && downloadedSalvage === salvagedRaw() })) {
-        notify('#save-report', 'Started fresh. Saving is working again.', 'ok');
+      if (startFresh({ verifiedCopyRaw: downloadedSalvage !== null && downloadedSalvage === salvagedRaw() ? downloadedSalvage : null })) {
+        notify('#save-report', 'Started fresh. Saving is working again.', 'ok', 'recovery-copy');
       }
     });
 
@@ -227,8 +254,11 @@ export function createRecoveryView({
         // otherwise arrive as one name and a browser-appended (1), leaving the reader unable to
         // tell which is which after the screen that could have told them is closed.
         const stamp = copy.at === null ? 'undated' : new Date(copy.at).toISOString().slice(0, 19).replace(/:/g, '-');
-        if (!await download(`recap-page-unreadable-${stamp}.json`, raw, 'application/json')) return;
-        return notify('#salvage-report', `Downloaded the copy ${named}. It is still being kept here as well.`, 'ok');
+        const result = await download(`recap-page-unreadable-${stamp}.json`, raw, 'application/json');
+        if (!result) return;
+        return notify('#salvage-report', result === true
+          ? `Downloaded the copy ${named}. It is still being kept here as well.`
+          : `Download requested for the copy ${named}. Check your browser's downloads to confirm it was saved. It is still being kept here.`, result === true ? 'ok' : 'warn');
       }
 
       const yes = await askConfirm({

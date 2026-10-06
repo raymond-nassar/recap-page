@@ -293,7 +293,9 @@ export function createCompletionView({
     try {
       const text = copy ? history.exportStoredCopy() : history.exportBackup();
       const saved = await download(copy ? 'recap-page-completion-saved-copy.json' : 'recap-page-completion-history.json', text, 'application/json');
-      if (saved) announce(copy ? 'Completion-history saved-value copy downloaded.' : 'Completion-history backup downloaded.');
+      if (saved) announce(saved === true
+        ? copy ? 'Completion-history saved-value copy downloaded.' : 'Completion-history backup downloaded.'
+        : 'Completion-history download requested. Check your browser\'s downloads to confirm it was saved.');
     } catch (error) {
       notify('#history-report', `Completion history could not be exported (${error.message}). Its saved value is unchanged.`, 'error');
     }

@@ -121,7 +121,8 @@
             <h2>Your saved data could not be read</h2>
             <p id="blocked-why"></p>
             <p>It has <strong>not</strong> been changed or deleted, and saving is paused so it
-              cannot be overwritten. Download a copy first, then you can start fresh.</p>
+              cannot be overwritten. Download a copy first. If a recovery copy cannot be kept
+              in this browser, verify the downloaded file before starting fresh.</p>
             <div class="blocked-actions">
               <button type="button" class="btn" id="btn-download-salvage">Download a copy of the unreadable data</button>
               <!-- Ghost, not because it matters less, but because the paragraph above orders these
@@ -130,6 +131,12 @@
                    dialog, where the way out is the ghost and the action being asked for is not. -->
               <button type="button" class="btn btn-g" id="btn-start-fresh">Start fresh and resume saving</button>
             </div>
+            <div class="field-row">
+              <label for="verify-salvage">Verify downloaded copy</label>
+              <input type="file" id="verify-salvage" accept=".json,application/json" aria-describedby="verify-salvage-help">
+            </div>
+            <p class="rail-hint" id="verify-salvage-help">Select the saved unreadable-data file.
+              It is checked locally against the original, not restored or uploaded.</p>
           </section>
 
 
