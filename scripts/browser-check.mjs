@@ -1654,6 +1654,24 @@ const MUTATIONS = [
     },
   },
   {
+    id: 'comic-search-zero-form-expanded',
+    breaks: 'comic-search-selection-flow',
+    why: 'zero selections expose the full destination and naming form above comic results',
+    rewriteAdd: (source) => source.replace(
+      / {6}builder\.disclosure\.hidden = selected\.size === 0;\r?\n {6}if \(!selected\.size\) builder\.disclosure\.open = false;/,
+      '      builder.disclosure.hidden = false;\n      builder.disclosure.open = true;',
+    ),
+  },
+  {
+    id: 'comic-search-old-save-feedback',
+    breaks: 'comic-search-selection-flow',
+    why: 'a current query leaves older shared save feedback ahead of its own no-results or failure',
+    rewriteAdd: (source) => source.replace(
+      / {2}function beginSearch\(config\) \{\r?\n {4}clearSelectionReports\(\);/,
+      '  function beginSearch(config) {',
+    ),
+  },
+  {
     id: 'comic-search-forgets-selection',
     breaks: 'comic-search-builder',
     why: 'a new search discards comics chosen from an earlier search instead of building one selection',
@@ -9397,6 +9415,170 @@ const SCENARIOS = [
     },
   },
   {
+    id: 'comic-search-selection-flow',
+    title: 'comic results lead a compact shared selection and the current query owns feedback',
+    async run(page, t) {
+      let seed = createList(createEmptyState(), { id: 'existing', name: 'Exact destination' });
+      seed = addIssuesToList(seed, 'existing', [ORDER.items[0]]).state;
+      seed.read[900001] = 1234;
+      seed.notes[900001] = 'Retain this note';
+      await page.evaluateOnNewDocument((initial) => {
+        window.__mrtComicSearch = true;
+        window.__mrtComicSearchFlow = true;
+        if (!localStorage.getItem('mrt.state.v2')) localStorage.setItem('mrt.state.v2', JSON.stringify(initial));
+        localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
+      }, seed);
+      await open(page, '/#/add-search');
+      const before = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      const field = async (selector, value, event = 'input') => page.$eval(selector, (node, text, type) => {
+        node.value = text;
+        node.dispatchEvent(new Event(type, { bubbles: true }));
+      }, value, event);
+      const query = async (prefix, value, result = 'input[data-comic-id]') => {
+        await field(`#${prefix}-q`, value);
+        await click(page, `#form-${prefix} button[type="submit"]`);
+        await page.waitForSelector(`#${prefix}-results ${result}`, { timeout: 15000 });
+      };
+      const count = async (prefix) => page.$eval(
+        `#${prefix}-selection-form .comic-selection-count`, (node) => node.textContent,
+      );
+      const openSave = async (prefix) => {
+        const summary = `#${prefix}-selection-form details > summary`;
+        if (await page.$(summary)) await click(page, summary);
+      };
+      for (const width of [1280, 320, 390]) {
+        await page.setViewport({ width, height: 900 });
+        for (const [prefix, value] of [
+          ['search', 'Fixture'], ['series', 'House of M (2015)'], ['creator', 'Brubaker'],
+        ]) {
+          await click(page, `[data-view="add-${prefix === 'search' ? 'search' : prefix}"]`);
+          await query(prefix, value);
+          const compact = await page.evaluate((mode) => {
+            const form = document.querySelector(`#${mode}-selection-form`);
+            const first = document.querySelector(`#${mode}-results .comic-choice`).getBoundingClientRect();
+            return {
+              destination: document.querySelector(`#${mode}-destination`).checkVisibility(),
+              name: document.querySelector(`#${mode}-list-name`).checkVisibility(),
+              height: form.getBoundingClientRect().height,
+              first: { top: first.top, bottom: first.bottom },
+              overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
+            };
+          }, prefix);
+          t.check(`${prefix} at ${width}px: zero selection stays compact and results lead`,
+            !compact.destination && !compact.name && compact.height <= 140
+              && !compact.overflow && compact.first.top >= 0 && compact.first.bottom <= 900,
+            JSON.stringify(compact));
+        }
+      }
+      await page.setViewport({ width: 1280, height: 900 });
+      await click(page, '[data-view="add-series"]');
+      await query('series', 'House of M', 'button[aria-label^="Browse comics"]');
+      const seriesCounts = await page.$$eval('#series-results .result-meta', (rows) => rows.map((row) => row.textContent));
+      t.check('series name choices use one comic and plural comics',
+        seriesCounts.includes('1 comic') && seriesCounts.includes('4 comics'), JSON.stringify(seriesCounts));
+      await click(page, '[data-view="add-creator"]');
+      await query('creator', 'Count Fixture', 'button[aria-label^="Browse comics"]');
+      const creatorCounts = await page.$$eval('#creator-results .result-meta', (rows) => rows.map((row) => row.textContent));
+      t.check('creator name choices preserve zero, one and unknown counts',
+        creatorCounts.includes('0 comics') && creatorCounts.includes('1 comic')
+          && creatorCounts.includes('An unknown number of comics'), JSON.stringify(creatorCounts));
+
+      await click(page, '[data-view="add-search"]');
+      await query('search', 'Fixture');
+      await page.focus('#search-results input[data-comic-id="97601"]');
+      await page.keyboard.press('Space');
+      t.check('one selection exposes a closed reachable native save step without stealing checkbox focus',
+        await count('search') === '1 comic selected' && await page.evaluate(() => {
+          const disclosure = document.querySelector('#search-selection-form details');
+          return disclosure?.checkVisibility() && !disclosure.open
+            && document.activeElement?.dataset.comicId === '97601'
+            && !document.querySelector('#search-destination').checkVisibility();
+        }));
+      await click(page, '#search-results input[data-comic-id="900001"]');
+      await openSave('search');
+      await field('#search-destination', 'existing', 'change');
+      t.check('opening save exposes the exact existing destination without an unused name',
+        await page.$eval('#search-destination', (node) => node.checkVisibility() && node.value === 'existing')
+          && await page.$eval('#search-list-name', (node) => !node.checkVisibility()));
+      await click(page, '#search-results a[data-issue-id="97601"]');
+      await page.waitForSelector('#view-issue:not([hidden])');
+      await page.goBack();
+      await page.waitForFunction(() => document.activeElement?.dataset.issueId === '97601');
+      t.check('Issue inspection and Back retain two unsaved comics and exact title focus',
+        await count('search') === '2 comics selected'
+          && await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === before);
+      for (const width of [1280, 320, 390]) {
+        await page.setViewport({ width, height: 900 });
+        for (const [prefix, value] of [['series', 'House of M (2015)'], ['creator', 'Brubaker'], ['search', 'Fixture']]) {
+          await click(page, `[data-view="add-${prefix}"]`);
+          await query(prefix, value);
+          const current = await page.$eval(`#${prefix}-selection-form`, (form) => form.querySelector('details')?.open ?? true);
+          if (!current) await openSave(prefix);
+          const controls = await page.evaluate((mode) => ({
+            destination: document.querySelector(`#${mode}-destination`).value,
+            visible: document.querySelector(`#${mode}-destination`).checkVisibility(),
+            disclosure: document.querySelector(`#${mode}-selection-form summary`)?.getBoundingClientRect().height ?? 0,
+            overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
+          }), prefix);
+          t.check(`${prefix} at ${width}px: two comics and exact destination retain a reachable save flow`,
+            await count(prefix) === '2 comics selected' && controls.destination === 'existing'
+              && controls.visible && controls.disclosure >= 44 && !controls.overflow, JSON.stringify(controls));
+        }
+      }
+      await page.setViewport({ width: 1280, height: 900 });
+      for (const [filter, expected] of [['Search Fixture', '1 comic matches'], ['no matching title', '0 comics match'], ['', '2 comics match']]) {
+        await field('#search-comic-filter', filter);
+        await page.waitForFunction((start) => {
+          const text = document.querySelector('#announcer').textContent;
+          return text.includes(start.split(' match')[0]) && text.includes('this filter.');
+        }, {}, expected);
+        t.check(`filter feedback: ${expected}`, await page.$eval('#announcer', (node, start) => (
+          node.textContent.endsWith(`${start} this filter.`)
+        ), expected));
+      }
+      const disclosure = await page.$eval('#search-selection-form', (form) => form.querySelector('details')?.open ?? true);
+      if (!disclosure) await openSave('search');
+      await click(page, '#search-selection-form button[type="submit"]');
+      await page.waitForFunction(() => document.querySelector('#search-selection-report').textContent.includes('Added'));
+      const saved = await readState(page);
+      t.check('explicit save uses the chosen list and reports the exact duplicate count',
+        saved.active === 'existing' && saved.listOrder.length === 1
+          && JSON.stringify(saved.lists.existing.itemIds) === '[900001,97601]'
+          && saved.read[900001] === 1234 && saved.notes[900001] === 'Retain this note'
+          && await page.$eval('#search-selection-report', (node) => /Added 1 comic.*1 comic already in that list/.test(node.textContent)));
+      await query('search', 'UX06 none', '.notice');
+      await page.waitForFunction(() => document.querySelector('#search-results').textContent.includes('Nothing matched'));
+      t.check('a new empty query owns feedback instead of the previous save',
+        await page.$eval('#search-selection-report', (node) => node.textContent === '')
+          && await page.$eval('#search-results', (node) => node.checkVisibility() && /Nothing matched/.test(node.textContent)));
+
+      await query('search', 'Fixture');
+      await click(page, '#search-results input[data-comic-id="97601"]');
+      await openSave('search');
+      await click(page, '#search-selection-form button[type="submit"]');
+      await page.waitForFunction(() => document.querySelector('#search-selection-report').textContent.includes('Added'));
+      await query('search', 'UX06 fail', '.notice');
+      await page.waitForFunction(() => document.querySelector('#search-results').textContent.includes('Could not load'));
+      t.check('a new failed query retires old success and exposes the current failure',
+        await page.$eval('#search-selection-report', (node) => node.textContent === '')
+          && await page.$eval('#search-results', (node) => /Could not load/.test(node.textContent)));
+
+      await query('search', 'Fixture');
+      await click(page, '#search-results input[data-comic-id="97601"]');
+      await openSave('search');
+      await click(page, '#search-selection-form button[type="button"]');
+      t.check('clearing restores compact results, search focus and no unsaved warning',
+        await count('search') === '0 comics selected' && await page.evaluate(() => {
+          const event = new Event('beforeunload', { cancelable: true });
+          dispatchEvent(event);
+          const form = document.querySelector('#search-selection-form');
+          return !event.defaultPrevented && document.activeElement?.id === 'search-q'
+            && !document.querySelector('#search-destination').checkVisibility()
+            && (!form.querySelector('details') || !form.querySelector('details').open);
+        }));
+    },
+  },
+  {
     id: 'comic-search-builder',
     title: 'search previews build one explicit selection without changing unrelated Reading Lists',
     async run(page, t) {
@@ -9515,6 +9697,7 @@ const SCENARIOS = [
         await selectedCount('search') === '4 comics selected'
           && await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === before);
 
+      await click(page, '#search-selection-form details > summary');
       for (const [width, zoom] of [[320, 1], [640, 2]]) {
         await page.setViewport({ width, height: 900 });
         await page.evaluate((scale) => { document.documentElement.style.zoom = String(scale); }, zoom);
@@ -9588,6 +9771,7 @@ const SCENARIOS = [
           && JSON.stringify(reloaded.lists[newId].itemIds) === JSON.stringify([978001, 978002, 97601, 97201]));
       await query('search', 'Fixture');
       await click(page, '#search-results [data-act="select-all"]');
+      await click(page, '#search-selection-form details > summary');
       await setField('#search-destination', 'existing', 'change');
       await click(page, '#search-selection-form button[type="submit"]');
       const appended = await readState(page);
@@ -9680,6 +9864,7 @@ const SCENARIOS = [
       t.check('an unsearched route can save the shared draft',
         await page.$$eval('#series-results input[data-comic-id]', (nodes) => nodes.length === 0)
           && await page.$eval('#series-selection-form button[type="submit"]', (button) => !button.disabled));
+      await click(page, '#series-selection-form details > summary');
       await setField('#series-list-name', 'Overlapping picks');
       await click(page, '#series-selection-form button[type="submit"]');
       await page.waitForFunction(() => document.querySelector('#series-selection-report')?.textContent.includes('Created'));
@@ -9736,6 +9921,7 @@ const SCENARIOS = [
 
       await click(page, '[data-view="add-search"]');
       await click(page, '#search-results input[data-comic-id="97601"]');
+      await click(page, '#search-selection-form details > summary');
       await setField('#search-destination', 'existing', 'change');
       const nameVisibility = await page.$eval('#search-list-name', (input) => ({
         hidden: input.parentElement.hidden,
@@ -9863,6 +10049,7 @@ const SCENARIOS = [
         JSON.stringify({ ids: afterStale, status: afterStaleStatus }));
 
       await click(page, '#series-results input[data-comic-id="97201"]');
+      await click(page, '#series-selection-form details > summary');
       await page.$eval('#series-list-name', (input) => {
         input.value = 'Mixed search picks';
         input.dispatchEvent(new Event('input', { bubbles: true }));
@@ -9931,6 +10118,7 @@ const SCENARIOS = [
           && JSON.stringify(finalIds) === '[97101,97201]',
         JSON.stringify({ failedCreator, finalIds }));
       await click(page, '#creator-results input[data-comic-id="97401"]');
+      await click(page, '#creator-selection-form details > summary');
       await click(page, '#creator-selection-form button[type="submit"]');
       const savedPartial = await storedIds();
       t.check('a deliberately saved failed-search selection appends only its chosen comic',
@@ -13846,6 +14034,7 @@ SCENARIOS.push({
     await click(page, '#form-search button[type="submit"]');
     await page.waitForSelector('#search-results input[data-comic-id]');
     await click(page, '#search-results [data-act="select-all"]');
+    await click(page, '#search-selection-form details > summary');
     await page.$eval('#search-list-name', (input) => {
       input.value = '   ';
       input.dispatchEvent(new Event('input', { bubbles: true }));
@@ -15123,6 +15312,17 @@ async function preparePage(page, origin, mutation) {
           return Promise.resolve(json(selectedOrder));
         }
         if (url.endsWith('data/creators-index.json')) {
+          if (window.__mrtComicSearchFlow) {
+            return Promise.resolve(json({
+              total: 4,
+              items: [
+                { id: 367, name: 'Ed Brubaker', issueCount: 239 },
+                { id: 11743, name: 'Count Fixture Zero', issueCount: 0 },
+                { id: 14264, name: 'Count Fixture One', issueCount: 1 },
+                { id: 14265, name: 'Count Fixture Unknown', issueCount: null },
+              ],
+            }));
+          }
           if (comicSearch || longAdd) {
             return Promise.resolve(json({
               generatedAt: '2026-01-01T00:00:00.000Z',
@@ -15215,6 +15415,12 @@ async function preparePage(page, origin, mutation) {
           }));
         }
         if (comicSearch && requestUrl.pathname.endsWith('/search/issues')) {
+          if (window.__mrtComicSearchFlow && requestUrl.searchParams.get('q') === 'UX06 none') {
+            return Promise.resolve(json({ items: [] }));
+          }
+          if (window.__mrtComicSearchFlow && requestUrl.searchParams.get('q') === 'UX06 fail') {
+            return Promise.resolve(json({ error: 'Fixture refused query' }, 400));
+          }
           const held = order.items[0];
           return Promise.resolve(json({
             items: [searchComic, {

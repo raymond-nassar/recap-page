@@ -1303,9 +1303,11 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: 6px; padding: 
   border-bottom: 1px solid var(--line);
 }
 .comic-builder .comic-list-name[hidden] { display: none; }
-.comic-builder { margin: var(--space-6) 0; border-block: 1px solid var(--line); }
-.comic-builder > h2 { margin: var(--space-5) 0 var(--space-4); }
-.comic-builder > form { padding: 0 0 var(--space-5); }
+.comic-builder { margin: var(--space-5) 0; border-block: 1px solid var(--line); }
+.comic-builder > form { padding: var(--space-4) 0; }
+.comic-selection-tools { justify-content: space-between; }
+.comic-save > summary { min-height: 44px; padding: var(--space-4) 0; cursor: pointer; color: var(--dim); }
+.comic-save > .stack { padding: var(--space-4) 0; }
 .comic-builder select {
   width: 100%; min-width: 0; min-height: 44px; padding: var(--space-4) var(--space-5);
   border: 1px solid var(--line-2); border-radius: 8px;

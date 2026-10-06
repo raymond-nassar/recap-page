@@ -459,6 +459,23 @@ test('all search surfaces share selection controls rather than immediate Add act
   assert.doesNotMatch(add, /savePage|onAdd|addToActive|LongAddRunner|Add all issues/);
 });
 
+test('search saving stays in a native selected-only disclosure without moving checkbox focus', () => {
+  assert.match(add, /const disclosure = el\('details', \{ class: 'comic-save', hidden: true \}/);
+  assert.match(add, /builder\.disclosure\.hidden = selected\.size === 0/);
+  assert.match(add, /if \(!selected\.size\) builder\.disclosure\.open = false/);
+  assert.match(add, /el\('summary', \{ text: 'Save selected comics' \}\)/);
+  const checkbox = add.slice(add.indexOf("checkbox.addEventListener('change'"), add.indexOf('const metadata ='));
+  assert.doesNotMatch(checkbox, /\.focus\(|\.open = true/);
+});
+
+test('a current search retires shared save feedback without discarding the draft', () => {
+  const begin = add.slice(add.indexOf('  function beginSearch'), add.indexOf('  function wireNameSearch'));
+  assert.match(begin, /clearSelectionReports\(\)/);
+  assert.doesNotMatch(begin, /selected\.clear|destinationId =|draftName =/);
+  assert.match(add, /text: item\.issueCount == null \? 'An unknown number of comics' : comics\(item\.issueCount\)/);
+  assert.match(add, /matches\.length === 1 \? 'matches' : 'match'/);
+});
+
 test('the Add hub groups five routes with five dedicated pages', () => {
   assert.deepEqual(ADD_VIEWS, ['add-search', 'add-series', 'add-creator', 'add-import', 'add-manual']);
   const hub = page('add');

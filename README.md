@@ -71,9 +71,12 @@ match, including those beyond the first visible rows. Your selection stays with 
 three searches and while you inspect an issue. Title searches show up to 50 matches; narrow the
 search if you need a different comic.
 
-Give the new list a name and choose **Create Reading List**, or explicitly choose an existing
+With comics selected, open **Save selected comics**. Give the new list a name and choose
+**Create Reading List**, or explicitly choose an existing
 destination and use **Add to Reading List**. Existing lists keep their order and skip duplicate
 comics. If loading stops, you can select from the clearly marked partial results or search again.
+**Clear selection** returns to search without changing saved lists. A new search replaces earlier
+save feedback, but keeps your selected comics and destination.
 Unfinished selections are not saved across a reload; the browser warns before you leave with one.
 
 ### Finish a reading list without removing it

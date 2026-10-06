@@ -297,6 +297,9 @@ export function createAddView({
       builder.host.hidden = !config.hasResults && selected.size === 0 && builder.report.childElementCount === 0;
       builder.count.textContent = `${comics(selected.size)} selected`;
       builder.clear.disabled = selected.size === 0 || saving;
+      builder.clear.hidden = selected.size === 0;
+      builder.disclosure.hidden = selected.size === 0;
+      if (!selected.size) builder.disclosure.open = false;
       builder.save.disabled = selected.size === 0 || saving || missing;
       builder.save.textContent = destinationId ? 'Add to Reading List' : 'Create Reading List';
       builder.nameRow.hidden = Boolean(destinationId);
@@ -393,19 +396,24 @@ export function createAddView({
       reportError: (message) => notify(`#${prefix}-selection-report`, message, 'warn'),
       invalidMessage: `Name the new Reading List using 1 to ${MAX_NAME} characters.`,
     });
+    const disclosure = el('details', { class: 'comic-save', hidden: true }, [
+      el('summary', { text: 'Save selected comics' }),
+      el('div', { class: 'stack' }, [
+        el('label', { for: `${prefix}-destination`, text: 'Save to' }),
+        destination,
+        missing,
+        nameRow,
+        el('div', { class: 'field-row' }, [save]),
+      ]),
+    ]);
     const form = el('form', { class: 'stack', id: `${prefix}-selection-form` }, [
-      selectionCount,
-      el('label', { for: `${prefix}-destination`, text: 'Save to' }),
-      destination,
-      missing,
-      nameRow,
-      el('div', { class: 'field-row' }, [save, clear]),
+      el('div', { class: 'field-row comic-selection-tools' }, [selectionCount, clear]),
+      disclosure,
       el('span', { class: 'visually-hidden', id: `${prefix}-clear-help`, text: clearHelp }),
     ]);
     const host = el('section', {
-      class: 'comic-builder', hidden: true, 'aria-labelledby': `${prefix}-selection-h`,
+      class: 'comic-builder', hidden: true, 'aria-label': 'Comic selection',
     }, [
-      el('h2', { id: `${prefix}-selection-h`, text: 'Build a Reading List' }),
       form,
       report,
     ]);
@@ -433,7 +441,7 @@ export function createAddView({
     });
     $(config.results).before(host);
     config.builder = {
-      host, destination, name, nameRow, count: selectionCount, save, clear, missing, report, validation,
+      host, destination, name, nameRow, count: selectionCount, save, clear, disclosure, missing, report, validation,
     };
   }
 
@@ -565,7 +573,7 @@ export function createAddView({
     filter.addEventListener('input', () => {
       shown = RESULT_BATCH_SIZE;
       renderRows();
-      announce(`${comics(matches.length)} match this filter.`);
+      announce(`${comics(matches.length)} ${matches.length === 1 ? 'matches' : 'match'} this filter.`);
     });
     selectAll.addEventListener('click', () => {
       selectComics(matches);
@@ -611,6 +619,7 @@ export function createAddView({
   }
 
   function beginSearch(config) {
+    clearSelectionReports();
     config.focusResults = false;
     config.epoch += 1;
     config.runner.cancel();
@@ -665,7 +674,7 @@ export function createAddView({
           box.append(el('div', { class: 'result' }, [
             el('div', { class: 'result-main' }, [
               el('div', { class: 'result-title', text: item.name }),
-              el('div', { class: 'result-meta', text: `${item.issueCount ?? 'an unknown number of'} issues` }),
+              el('div', { class: 'result-meta', text: item.issueCount == null ? 'An unknown number of comics' : comics(item.issueCount) }),
             ]),
             el('button', {
               type: 'button',
