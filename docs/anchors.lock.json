@@ -1594,8 +1594,8 @@
     "fp": "7240fa3b501276f5",
     "head": "load() {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:1058-1062|0": {
-    "anchor": "src/js/views/add.js:1058-1062",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:1061-1065|0": {
+    "anchor": "src/js/views/add.js:1061-1065",
     "fp": "685f975f82d16d65",
     "head": "globalThis.addEventListener('beforeunload', (event) => {"
   },
@@ -1604,13 +1604,13 @@
     "fp": "25b24212ed6208de",
     "head": "export function mergeSearchSelection(state, items, { listId = null, name = '' } = {}) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:313-355|0": {
-    "anchor": "src/js/views/add.js:313-355",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:316-358|0": {
+    "anchor": "src/js/views/add.js:316-358",
     "fp": "181871c435b16f65",
     "head": "function saveSelected(config) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:576-600|0": {
-    "anchor": "src/js/views/add.js:576-600",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/add.js:579-603|0": {
+    "anchor": "src/js/views/add.js:579-603",
     "fp": "e144bb5aecf41505",
     "head": "for (const config of searches) {"
   },
@@ -6184,8 +6184,8 @@
     "fp": "307982fb4a5a2d23",
     "head": "this.onProgress(this.status('running'));"
   },
-  "test/passive-announce.test.js|preamble|src/js/views/add.js:345-354|0": {
-    "anchor": "src/js/views/add.js:345-354",
+  "test/passive-announce.test.js|preamble|src/js/views/add.js:348-357|0": {
+    "anchor": "src/js/views/add.js:348-357",
     "fp": "ab21e79435cdec8a",
     "head": "notify(report, withSaveEducation(message, result.transition), result.added ? 'ok' : 'warn');"
   },

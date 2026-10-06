@@ -13531,12 +13531,16 @@ SCENARIOS.push({
     });
     await click(page, '#search-selection-form button[type="submit"]');
     t.check('builder naming errors identify and focus the invalid field', await fieldError('#search-list-name'));
-    await page.$eval('#search-list-name', (input) => {
+    await open(page, '/?ux04=builder#/add-series');
+    await page.$eval('#series-list-name', (input) => {
       input.value = 'Corrected draft';
       input.dispatchEvent(new Event('input', { bubbles: true }));
     });
     t.check('builder correction clears invalid state without saving',
-      await page.$eval('#search-list-name', (input) => !input.hasAttribute('aria-invalid'))
+      await page.evaluate(() => ['search', 'series', 'creator'].every((prefix) => {
+        const input = document.querySelector(`#${prefix}-list-name`);
+        return input.value === 'Corrected draft' && !input.hasAttribute('aria-invalid');
+      }))
         && await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === before);
   },
 }, {

@@ -258,7 +258,10 @@ export function createAddView({
   };
 
   function clearSelectionReports() {
-    for (const config of searches) config.builder?.report.replaceChildren();
+    for (const config of searches) {
+      config.builder?.report.replaceChildren();
+      config.builder?.validation.clear();
+    }
   }
 
   function selectComics(items) {

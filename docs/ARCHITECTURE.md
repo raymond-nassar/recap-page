@@ -291,15 +291,15 @@ comics in memory, rejects invalid issue identities, and reports incomplete loads
 total, at `src/js/views/add.js:95-187`. Cancellation retires the run before aborting its request;
 late responses cannot replace a newer preview. Received partial results remain selectable, with
 an explicit stopped or failed notice. When a focused Cancel action disappears, its search field
-receives focus, at `src/js/views/add.js:576-600`.
+receives focus, at `src/js/views/add.js:579-603`.
 
 The shared selection survives searches and issue-detail navigation, but not a document reload.
 A named new list is the default destination. The explicit save composes creation, selected membership,
 and activation in one Store update, at `src/js/views/add.js:31-68` and `src/js/views/add.js:70-93`.
 An existing destination keeps its prior order, skips duplicate membership, and retains shared progress.
 A refused write leaves the selection and intended destination intact; only a successful addition
-starts hydration, at `src/js/views/add.js:313-355`. The browser warns before leaving with an unsaved
-selection, at `src/js/views/add.js:1058-1062`. Paste import and manual entry keep their existing paths.
+starts hydration, at `src/js/views/add.js:316-358`. The browser warns before leaving with an unsaved
+selection, at `src/js/views/add.js:1061-1065`. Paste import and manual entry keep their existing paths.
 
 Field corrections identify the invalid field, associate its inline report and focus it. An invalid
 optional reader address opens its disclosure before focus moves. Whitespace-only names stay in the
