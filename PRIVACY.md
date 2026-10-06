@@ -49,6 +49,12 @@ offers a separate completion-history backup containing saved list identities, co
 and optional thumbs. Each restore replaces only its own kind of data. A reading-data restore or
 its Undo does not replace completion history. Download both files to preserve both kinds of data.
 The separately labelled saved-value troubleshooting copy is not a normal history backup.
+Reading and history backup controls are adjacent. Settings are not part of this transfer.
+A reading restore keeps the exact prior reading-data bytes as a saved copy. A one-shot Undo
+is identified only in the tab that performed the restore. Undo, reload or a replaced snapshot
+leaves a clearly named saved-copy action instead, never an unlabeled reverse Undo. Replacement
+requires confirmation; changes made while that confirmation is open are refused.
+The saved copy can also be downloaded exactly, even when this version cannot restore it.
 
 Pasted imports retain exact source text, recognized source positions and selected matches in a
 separate local draft, including unresolved and duplicate occurrences. Source can contain arbitrary
@@ -119,7 +125,7 @@ enjoyment history are removed only after that verification and only while the ch
 and history values remain unchanged. Failed or unconfirmed history cleanup is reported as
 partial cleanup, not successful erasure of all data. Settings and sidebar preferences remain.
 Removal of pre-restore and staging copies is attempted afterwards; storage failures can leave copies
-behind. The app reports a retained pre-restore copy through **Undo last restore**.
+behind. The app reports a retained pre-restore copy through its saved reading-data copy controls.
 Old removal Undo and temporary reader links are withdrawn when reader erasure is verified,
 before later cleanup waits. New reading changes, their Undo, completion history, and restore copies
 made during those waits are kept. The final report checks current saved values and explicitly

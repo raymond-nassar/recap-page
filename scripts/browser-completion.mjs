@@ -440,10 +440,12 @@ export const completionPersistence = {
       writeFileSync(emptyFile, JSON.stringify(exportBackup(createEmptyState())));
       const restoredHistory = await raw(page, LIST_HISTORY_KEY);
       await (await page.$('#restore-file')).uploadFile(emptyFile);
+      await confirm(page);
       await page.waitForFunction(() => JSON.parse(localStorage.getItem('mrt.state.v2')).listOrder.length === 0);
       t.check('reader restore leaves history intact rather than replacing it with empty history',
         await raw(page, LIST_HISTORY_KEY) === restoredHistory);
       await click(page, '#btn-undo-restore');
+      await confirm(page);
       await page.waitForFunction(() => JSON.parse(localStorage.getItem('mrt.state.v2')).listOrder.length === 2);
       t.check('reader Undo restores matching completed identity without rewriting history',
         await raw(page, LIST_HISTORY_KEY) === restoredHistory

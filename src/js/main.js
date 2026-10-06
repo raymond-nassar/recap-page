@@ -20,7 +20,7 @@ import {
   catalogListShelf, CATALOG_SHELVES, PUBLISHING_CATEGORIES,
   modernTimelineFeaturedCard,
 } from './lib/catalog.js';
-import { Store, ImportDraftStore, IMPORT_DRAFT_KEY, KEY as STATE_KEY } from './storage.js';
+import { Store, ImportDraftStore, IMPORT_DRAFT_KEY, PRERESTORE_KEY, KEY as STATE_KEY } from './storage.js';
 import { LIST_HISTORY_KEY, ListHistoryStore, eraseReaderAndHistory } from './lib/listHistory.js';
 import { createListRecommendationResolver } from './lib/listRecommendations.js';
 import { createCompletionView } from './views/completion.js';
@@ -143,6 +143,10 @@ export function dispatchStorageEvent(
     historyStore = readerStore === store ? listHistory : null,
   } = {},
 ) {
+  if (readerStore === store && event.key === PRERESTORE_KEY) {
+    dataView.renderRestoreOffer();
+    return;
+  }
   if (readerStore === store && (event.key === IMPORT_DRAFT_KEY || event.key === null)) {
     importDraft.load();
     renderAll();
@@ -2114,6 +2118,8 @@ const dataView = createDataView({
     restoreFile: $('#restore-file'),
     undoRestore: $('#btn-undo-restore'),
     formSettings: $('#form-settings'),
+    restoreCopySummary: $('#restore-copy-summary'),
+    btnExportRestoreCopy: $('#btn-export-restore-copy'),
     btnClearCache: $('#btn-clear-cache'),
     btnWipe: $('#btn-wipe'),
     cacheUsage: $('#cache-usage'),
@@ -2125,6 +2131,8 @@ const dataView = createDataView({
   getApiBase: () => settings.apiBase,
   getSalvageCopies: () => store.salvageCopies(),
   hasPreRestoreSnapshot: () => store.hasPreRestoreSnapshot(),
+  getRestoreOffer: () => store.restoreOffer(),
+  inspectBackup: (text) => store.inspectBackup(text),
   isAllowedApiBase,
   backupFileRefusal,
   askConfirm,
@@ -2147,15 +2155,24 @@ const dataView = createDataView({
   },
   onExportMarkdown: exportMarkdown,
   onExportOrder: exportReadingOrder,
-  onRestore: (text) => {
-    const res = store.restore(text);
+  onExportRestoreCopy: async () => {
+    const captured = store.captureRestore();
+    if (!captured.ok || !captured.snapshot) {
+      notify('#restore-report', captured.errors?.join(' ') || 'No saved reading-data copy is available.', 'error');
+      return;
+    }
+    const result = await download('recap-reading-data-saved-copy.json', captured.snapshot, 'application/json');
+    if (result) announce(downloadMessage(result, 'Saved reading-data copy'));
+  },
+  onRestore: (text, expected) => {
+    const res = store.restore(text, { expected });
     readerLinkView.reconcile({ changed: res.changed });
     if (res.changed !== false) void importDraft.invalidate();
     if (res.ok) readingView.forgetDeleted();
     return res;
   },
-  onUndoRestore: () => {
-    const res = store.undoRestore();
+  onUndoRestore: (expected) => {
+    const res = store.undoRestore(expected);
     readerLinkView.reconcile({ changed: res.changed });
     if (res.changed !== false) void importDraft.invalidate();
     if (res.ok) readingView.forgetDeleted();
@@ -2670,6 +2687,7 @@ function renderAll() {
   // clears the block, and leaving the banner up would push the user toward "Start fresh",
   // which would then wipe the backup they had just restored.
   recoveryView.render();
+  dataView.renderRestoreOffer();
   renderBreadcrumbs();
   // The active list changes at more than a dozen places that never navigate, among them
   // duplicating a list and restoring a backup. This is the one point every one of them passes
@@ -3400,6 +3418,8 @@ const completionView = createCompletionView({
     libraryYours: $('#library-yours'),
     dataSafety: $('#view-data .setgroup'),
     historyControls: $('#completion-history-controls'),
+    backupHistory: $('#normal-backup-history'),
+    historyTroubleshooting: $('#history-troubleshooting'),
     historyStatus: $('#history-status'),
     historyExport: $('#btn-export-history'),
     historyCopy: $('#btn-copy-history'),

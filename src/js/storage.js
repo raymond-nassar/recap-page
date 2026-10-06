@@ -16,7 +16,7 @@ import {
 export const KEY = 'mrt.state.v2';
 export const IMPORT_DRAFT_KEY = 'mrt.import.draft.v1';
 const TEMP_KEY = 'mrt.state.restore.tmp';
-const PRERESTORE_KEY = 'mrt.state.prerestore';
+export const PRERESTORE_KEY = 'mrt.state.prerestore';
 const SALVAGE_KEY = 'mrt.state.salvage';
 
 // Recovery values preserve the exact bytes that existed when something went wrong. They can be
@@ -365,6 +365,9 @@ export class Store {
     // stale snapshot the refusal was about. Cleared by persist() on entry rather than by its reader,
     // so it describes one call and cannot be inherited by the next.
     this.conflicted = false;
+    this.undoSnapshot = null;
+    this.undoMain = null;
+    this.snapshotSummary = null;
   }
 
   // A failed load must never lead to data loss. Previously this fell back to empty state and
@@ -813,26 +816,68 @@ export class Store {
   // Hence `changed`, which every return now carries: false when the saved data is as it was, true
   // when it holds the backup, and null when storage will not say which. The message describes that
   // outcome instead of asserting one.
-  restore(rawJson) {
+  inspectBackup(rawJson) {
     let parsed;
     try {
       parsed = typeof rawJson === 'string' ? JSON.parse(rawJson) : rawJson;
     } catch (err) {
-      return { ok: false, changed: false, errors: [`Not valid JSON: ${err.message}`] };
+      return { ok: false, errors: [`Not valid JSON: ${err.message}`] };
     }
 
     const { ok, errors, state } = validateBackup(parsed);
-    if (!ok) return { ok: false, changed: false, errors };
+    return { ok, errors, state };
+  }
+
+  captureRestore() {
+    try {
+      if (!this.storage) throw new Error('Browser storage is unavailable');
+      return { ok: true, main: this.storage.getItem(KEY) ?? '', snapshot: this.storage.getItem(PRERESTORE_KEY) };
+    } catch (error) {
+      return { ok: false, errors: [`Could not check saved reading data and its recovery copy (${error.message}). Reload and try again.`] };
+    }
+  }
+
+  restoreOffer() {
+    const captured = this.captureRestore();
+    if (!captured.ok) return { ...captured, available: false };
+    const { main, snapshot } = captured;
+    if (!snapshot) return { ...captured, available: false };
+    if (this.snapshotSummary?.raw !== snapshot) {
+      const checked = this.inspectBackup(snapshot);
+      const state = checked.state;
+      this.snapshotSummary = {
+        raw: snapshot,
+        text: checked.ok
+          ? `${state.listOrder.length} lists, ${Object.keys(state.issues).length} comics and ${Object.keys(state.read).length} read marks.`
+          : 'This saved copy cannot be restored by this version. Download it before trying another version or troubleshooting.',
+      };
+    }
+    const undo = !this.blocked && this.undoSnapshot === snapshot;
+    return {
+      ...captured, available: true, kind: undo ? 'undo' : 'copy',
+      edited: undo && main !== this.undoMain, identical: main === snapshot,
+      summary: this.snapshotSummary.text,
+    };
+  }
+
+  restore(rawJson, { expected, recovering = false } = {}) {
+    const { ok, errors, state } = this.inspectBackup(rawJson);
+    if (!ok) return { ok: false, changed: false, invalid: true, errors };
+    if (expected) {
+      const current = this.captureRestore();
+      if (!current.ok) return { ok: false, changed: false, errors: current.errors };
+      if (current.main !== expected.main || current.snapshot !== expected.snapshot) {
+        return { ok: false, changed: false, errors: ['Reading data or the saved copy changed while you were choosing. Review the current data and try again; nothing was overwritten.'] };
+      }
+    }
 
     // Stamped like an ordinary write, so what lands here is the same shape persist() writes and this
     // tab's next edit compares against its own restore rather than against what it read at boot.
     //
-    // Not compared before writing, unlike persist(). A restore is the reader saying to replace
-    // everything with this file, which is what it does; refusing it because another tab had saved
-    // would be refusing the instruction rather than protecting it from an accident. What the other
-    // tab saved is not lost either: priorMain below is read from storage at this moment rather than
-    // from anything this tab held, so the snapshot behind Undo is that tab's work, not this one's
-    // stale view of it.
+    // Unlike persist(), a confirmed replacement may adopt a newer value already captured by the
+    // dialog. Any change after that capture refuses the replacement. Calls without a capture retain
+    // the legacy deliberate-overwrite behavior and preserve the current durable bytes, not this
+    // tab's stale in-memory view.
     const serialized = JSON.stringify({ [WRITE_TOKEN]: newToken(), ...exportBackup(state) });
     // Read before anything is written, because a restore that turns out not to have happened has
     // to put this slot back as it found it, and a slot cannot be put back to a value nobody read.
@@ -848,6 +893,7 @@ export class Store {
     // Set between the snapshot and the swap, so it answers the one question the catch cannot
     // answer for itself: whether the throw arrived before the main key was ever addressed.
     let swapReached = false;
+    let preservationReached = false;
     // What the main key held going in, kept so a read-back that matches neither the backup nor
     // this can be called what it is. Without it the mismatch branch said "Nothing was changed"
     // for every non-match, which is a claim about a value it had thrown away.
@@ -855,22 +901,38 @@ export class Store {
     try {
       this.storage?.setItem(TEMP_KEY, serialized);
       priorMain = this.storage?.getItem(KEY) ?? '';
+      if (expected && (priorMain !== expected.main || (this.storage?.getItem(PRERESTORE_KEY) ?? null) !== expected.snapshot)) {
+        throw new Error('Reading data or the saved copy changed before replacement. Review and try again');
+      }
+      preservationReached = true;
       this.storage?.setItem(PRERESTORE_KEY, priorMain);
+      if (this.storage && this.storage.getItem(PRERESTORE_KEY) !== priorMain) {
+        throw new Error('The previous reading data could not be preserved. Export a reading-data backup before trying again');
+      }
       swapReached = true;
       this.storage?.setItem(KEY, serialized);
       this.storage?.removeItem(TEMP_KEY);
     } catch (err) {
       this.discardStaging();
       if (!swapReached) {
-        // setItem throws instead of writing, so a throw here leaves the snapshot slot untouched
-        // as well as the main key. Nothing to rewind, and nothing to reconcile.
+        let copyStatus = '';
+        if (preservationReached) {
+          try {
+            if (typeof heldSnapshot === 'string') this.storage?.setItem(PRERESTORE_KEY, heldSnapshot);
+            copyStatus = (this.storage?.getItem(PRERESTORE_KEY) ?? null) === heldSnapshot
+              ? ' The earlier recovery copy is unchanged.'
+              : ' Check and download the retained recovery copy before trying again.';
+          } catch (copyError) {
+            copyStatus = ` Recovery-copy preservation could not be confirmed (${copyError.message}). Keep this page open and download any retained copy before trying again.`;
+          }
+        }
         return {
           ok: false,
           changed: false,
-          errors: [`Could not write the restored data: ${err.message}. Nothing was changed.`],
+          errors: [`Could not write the restored data: ${err.message}. Reading data was not replaced.${copyStatus}`],
         };
       }
-      return this.settleAfterSwap({ serialized, state, heldSnapshot, priorMain, err });
+      return this.settleAfterSwap({ serialized, state, heldSnapshot, priorMain, err, recovering });
     }
 
     // A swap that did not throw is not a swap that landed. setItem can report a success it did not
@@ -878,7 +940,7 @@ export class Store {
     // reads its own removal back. Taking the absence of a throw as proof is the inference this whole
     // path exists to remove, so the ordinary outcome is reconciled through the same read-back as the
     // failing one rather than being the one place that still assumes.
-    return this.settleAfterSwap({ serialized, state, heldSnapshot, priorMain, err: null });
+    return this.settleAfterSwap({ serialized, state, heldSnapshot, priorMain, err: null, recovering });
   }
 
   // What the saved data actually holds, once a write has been attempted.
@@ -887,7 +949,7 @@ export class Store {
   // the outcomes that reach here are indistinguishable from the outside: a swap that threw, a
   // cleanup that threw after the swap landed, and a swap that reported success without storing all
   // arrive looking alike. Storage has the answer, so it is asked.
-  settleAfterSwap({ serialized, state, heldSnapshot, priorMain, err }) {
+  settleAfterSwap({ serialized, state, heldSnapshot, priorMain, err, recovering }) {
     // With no storage at all every write above was a no-op through optional chaining, so there is
     // nothing to read back and nothing this could reconcile against. The app always constructs the
     // store with localStorage; this is the shape a test double takes.
@@ -921,6 +983,8 @@ export class Store {
       // The token that is now on disk, taken from what was read back rather than from what was
       // written, because this branch exists precisely because the two can differ.
       this.seenToken = tokenOf(durable);
+      this.undoSnapshot = recovering ? null : priorMain || null;
+      this.undoMain = recovering ? null : durable;
       return this.adoptRestored(state);
     }
 
@@ -990,7 +1054,7 @@ export class Store {
     }
   }
 
-  undoRestore() {
+  undoRestore(expected) {
     let prev;
     let live;
     try {
@@ -1006,7 +1070,7 @@ export class Store {
     if (prev === live) {
       return { ok: false, changed: false, errors: ['There is nothing to undo: the snapshot matches your saved data.'] };
     }
-    return this.restore(prev);
+    return this.restore(prev, { expected, recovering: true });
   }
 
   // Asked on every repaint, including the repaint that follows a read failure, so a throw here

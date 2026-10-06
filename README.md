@@ -105,6 +105,10 @@ The existing **Undo removal** offer can put that copy back.
 Completion dates and enjoyment choices have their own export and restore controls in
 **Backup & settings**. Export both backups to carry both kinds of data to another device.
 If a pasted import draft is present, also download its separately labeled import-draft backup.
+These independent files do not include settings. Normal backup controls are grouped together.
+Reading-data replacement asks for confirmation and keeps the prior data as a downloadable saved
+copy. Undo is offered once in the restoring tab; after Undo or reload, the retained copy uses an
+explicit saved-copy action rather than a misleading Undo label.
 It contains the original source, unresolved positions and selected matches, not just saved comics.
 Resolved comics publish even when other positions remain unresolved. Matching a gap fills its
 source position; duplicate occurrences remain in the draft without duplicating list membership.

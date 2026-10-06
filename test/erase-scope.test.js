@@ -135,7 +135,7 @@ test('actual erase follow-through withdraws old offers before waits and preserve
     assert.equal(h.storage.getItem('mrt.state.prerestore'), newer.snapshotRaw, delayed);
     assert.ok(h.reader.state.lists.kept, delayed);
     assert.match(h.calls.notify.at(-1)[1], /Reading data changed after the erase/);
-    assert.match(h.calls.notify.at(-1)[1], /Undo last restore/);
+    assert.match(h.calls.notify.at(-1)[1], /saved reading-data copy controls/);
     assert.doesNotMatch(h.calls.notify.at(-1)[1], /copy could not be removed/);
     assert.doesNotMatch([...h.calls.announce, ...h.calls.notify.map((args) => args[1])].join(' '), /All local data erased/);
     assert.equal(h.calls.forget, 1, delayed);
@@ -211,7 +211,7 @@ test('post-erase newer reader data and unconfirmed history or cache cleanup neve
   assert.match(changed, /^Reading data changed after the erase\. Check your library before erasing again/);
   assert.doesNotMatch(changed, /newer data is still saved/);
   assert.match(changed, /may still be here/);
-  assert.match(changed, /Undo last restore/);
+  assert.match(changed, /saved reading-data copy controls/);
   assert.match(changed, /Copies kept after a failed read/);
   assert.doesNotMatch(changed, /All local data erased/);
   const cache = eraseOutcome(false, [], { cacheFailure: 'Cached metadata could not be cleared.' });
@@ -311,7 +311,7 @@ test('the snapshot sentence is unchanged when the snapshot is the only thing lef
   assert.equal(
     eraseOutcome(true, []),
     'Lists and reading progress erased. One copy could not be removed and is still in this browser, '
-      + 'behind "Undo last restore".',
+      + 'under the saved reading-data copy controls.',
   );
 });
 
@@ -327,7 +327,7 @@ test('a salvage copy that survives is named in the message, not only in the dial
 test('both survivors are reported when both survive', () => {
   const said = eraseOutcome(true, two);
   assert.match(said, /^Lists and reading progress erased\./);
-  assert.match(said, /"Undo last restore"/);
+  assert.match(said, /saved reading-data copy controls/);
   assert.match(said, /2 copies kept after a failed read are still here/);
 });
 

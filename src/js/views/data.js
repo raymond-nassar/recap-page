@@ -11,7 +11,7 @@ import { wireFieldValidation } from './shared/field-validation.js';
 //
 // BL-113's decision, and the reason it is a pair of sentences rather than a wider erase.
 //
-// The rule at `src/js/storage.js:634-637` stands: nothing but the reader removes a salvage copy,
+// The rule at `src/js/storage.js:637-640` stands: nothing but the reader removes a salvage copy,
 // because no rule this app could apply would know whether they still want data it could not read
 // itself. So the erase is not widened to reach those copies, and the wording is narrowed to stop
 // claiming that it does. They are not undisclosed either way, which is what separates them from
@@ -86,11 +86,11 @@ export function eraseOutcome(snapshotKept, copies, {
       : 'Completion and enjoyment history could not be cleared and may still be saved. Check Completion history in Backup & settings.'));
   }
   if (snapshotKept === null) {
-    notes.push('The pre-restore copy could not be checked. Do not assume it was removed; check "Undo last restore" before erasing again.');
+    notes.push('The pre-restore copy could not be checked. Do not assume it was removed; check the saved reading-data copy controls before erasing again.');
   } else if (snapshotKept) {
     notes.push(currentFacts
-      ? 'One pre-restore copy is still saved in this browser, behind "Undo last restore".'
-      : 'One copy could not be removed and is still in this browser, behind "Undo last restore".');
+      ? 'One pre-restore copy is still saved in this browser, under the saved reading-data copy controls.'
+      : 'One copy could not be removed and is still in this browser, under the saved reading-data copy controls.');
   }
   if (copies === null) {
     notes.push('This browser will not list what else it has stored, so anything kept aside after a failed read is still here.');
@@ -113,6 +113,8 @@ export function createDataView({
   getApiBase,
   getSalvageCopies,
   hasPreRestoreSnapshot,
+  getRestoreOffer,
+  inspectBackup,
   isAllowedApiBase,
   backupFileRefusal,
   askConfirm,
@@ -122,6 +124,7 @@ export function createDataView({
   onExportOrder,
   onRestore,
   onUndoRestore,
+  onExportRestoreCopy,
   onSetCovers,
   onSetTheme,
   onSetReadingShortcut,
@@ -136,6 +139,42 @@ export function createDataView({
   onRestoreDraft,
   eraseHistory = false,
 }) {
+  let restoring = false;
+
+  function renderRestoreOffer() {
+    if (!getRestoreOffer) return;
+    const nodes = elements();
+    const offer = getRestoreOffer();
+    nodes.undoRestore.hidden = !offer.available;
+    nodes.undoRestore.disabled = restoring || !!offer.identical;
+    nodes.undoRestore.textContent = offer.kind === 'undo' ? 'Undo last restore' : 'Restore saved reading-data copy';
+    if (nodes.restoreCopySummary) {
+      nodes.restoreCopySummary.textContent = !offer.ok ? offer.errors.join(' ')
+        : !offer.available ? 'No saved reading-data copy is available.'
+          : `${offer.summary} ${offer.kind === 'undo'
+            ? 'This is your reading data from before the last restore in this tab.'
+            : 'Direction is not recorded for this retained copy. Restoring it replaces your current reading data.'}`
+            + (offer.edited ? ' Reading data has changed since that restore; Undo would replace those edits.' : '')
+            + (offer.identical ? ' This copy already matches your saved data.' : '');
+    }
+    if (nodes.btnExportRestoreCopy) {
+      nodes.btnExportRestoreCopy.hidden = !offer.available;
+      nodes.btnExportRestoreCopy.disabled = restoring;
+    }
+  }
+
+  function reportRestore(res, success) {
+    if (res.ok) notify('#restore-report', success, 'ok');
+    else {
+      const lead = res.changed === null
+        ? 'Restore did not finish. The saved reading-data outcome is unknown. Keep this page open, download any retained copy, then reload and check your library.'
+        : res.changed === true ? 'Reading data changed, but restore did not finish. Check your library and retained copy.'
+          : 'Reading data is unchanged. Choose a reading-data JSON backup from this app and try again.';
+      notify('#restore-report', `${lead} ${res.errors.join(' ')}`, 'error');
+    }
+    renderRestoreOffer();
+  }
+
   function renderLocalConnectionStatus(status, readyStatus) {
     const line = elements().localConnectionStatus;
     if (!line) return;
@@ -182,6 +221,12 @@ export function createDataView({
     });
 
     nodes.btnExportJson.addEventListener('click', onExportJson);
+    nodes.btnExportRestoreCopy?.addEventListener('click', onExportRestoreCopy);
+    const restoreValidation = wireFieldValidation({
+      field: nodes.restoreFile, reportId: 'restore-report',
+      reportError: (message) => notify('#restore-report', message, 'error'),
+      invalidMessage: 'Choose a reading-data JSON backup from this app.',
+    });
     const draftValidation = nodes.restoreDraft ? wireFieldValidation({
       field: nodes.restoreDraft, reportId: 'draft-transfer-report',
       reportError: (message) => notify('#draft-transfer-report', message, 'error'),
@@ -223,44 +268,84 @@ export function createDataView({
 
     nodes.restoreFile.addEventListener('change', async (e) => {
       const file = e.target.files?.[0];
-      if (!file) return;
+      if (!file || restoring) return;
+      const expected = getRestoreOffer?.();
       // Asked of the file's declared size, so a file picked by mistake is refused before text()
       // pulls it into memory. The check is here rather than in the store because by the time the
       // store sees a backup it is already a string, which is the cost this avoids.
       const refusal = backupFileRefusal(file);
       if (refusal) {
-        notify('#restore-report', refusal, 'error');
+        restoreValidation.fail(`Reading data is unchanged. Choose a reading-data JSON backup from this app and try again. ${refusal}`);
         e.target.value = '';
         return;
       }
-      const text = await file.text();
-      const res = onRestore(text);
-      if (res.ok) {
-        notify('#restore-report', 'Restored. Your previous data was snapshotted, so this can be undone once.', 'ok');
-        // Asked of the store rather than assumed from the success. A first restore into an empty
-        // tracker snapshots an empty main key, which is no snapshot at all, and this line used to
-        // un-hide the button anyway, after the repaint had correctly hidden it.
-        nodes.undoRestore.hidden = !hasPreRestoreSnapshot();
-        // The buffered list belongs to the data the restore has just replaced. Offering it back
-        // would splice a list out of the old tracker into the restored one.
-      } else {
-        // The lead sentence comes from what the store found in storage, not from this call site.
-        const lead = res.changed === null
-          ? 'Restore did not finish, and this browser will not say what your saved data now holds. Reload the page.'
-          : 'Restore refused, nothing was changed.';
-        notify('#restore-report', `${lead} ${res.errors.join(' ')}`, 'error');
-        // Whether an undo is offered is a question about the snapshot slot, which these failures
-        // leave in three different states, so it is asked rather than inferred from the failure.
-        nodes.undoRestore.hidden = !hasPreRestoreSnapshot();
+      restoring = true;
+      nodes.restoreFile.disabled = true;
+      let cancelled = false;
+      let replacementReached = false;
+      try {
+        if (expected && !expected.ok) {
+          reportRestore({ ...expected, changed: false }, '');
+          return;
+        }
+        const text = await file.text();
+        const checked = inspectBackup?.(text);
+        if (checked && !checked.ok) {
+          restoreValidation.fail(`Reading data is unchanged. Choose a reading-data JSON backup from this app and try again. ${checked.errors.join(' ')}`);
+          return;
+        }
+        const yes = await askConfirm({
+          title: 'Replace reading data with this backup?',
+          body: 'This replaces all lists, notes and reading progress. Your current reading data will be kept as a saved copy. Completion history and settings stay unchanged. Import draft source stays saved but needs Resume review before more comics can be applied.',
+          confirmLabel: 'Restore reading data',
+        });
+        if (!yes) { cancelled = true; return; }
+        restoreValidation.clear();
+        replacementReached = true;
+        const res = onRestore(text, expected);
+        reportRestore(res, 'Reading data restored. Check the saved-copy summary for recovery. Completion history is unchanged.');
+        if (!getRestoreOffer) nodes.undoRestore.hidden = !hasPreRestoreSnapshot();
+      } catch (error) {
+        if (replacementReached) reportRestore({ ok: false, changed: null, errors: [error.message] }, '');
+        else restoreValidation.fail(`Reading data is unchanged. The backup file could not be read (${error.message}). Choose the file again or try another reading-data backup.`);
+      } finally {
+        restoring = false;
+        nodes.restoreFile.disabled = false;
+        e.target.value = '';
+        renderRestoreOffer();
+        if ((cancelled || nodes.restoreFile.getAttribute('aria-invalid') === 'true')
+          && nodes.restoreFile.isConnected && !nodes.restoreFile.closest('[hidden]')) nodes.restoreFile.focus();
       }
-      e.target.value = '';
     });
 
-    nodes.undoRestore.addEventListener('click', () => {
-      const res = onUndoRestore();
-      notify('#restore-report', res.ok ? 'Restore undone.' : `Could not undo: ${res.errors.join(' ')}`, res.ok ? 'ok' : 'error');
-      // Undoing a restore swaps the whole state back, exactly as the restore did, so the buffered
-      // list belongs to data that is no longer here in this direction too.
+    nodes.undoRestore.addEventListener('click', async () => {
+      if (restoring) return;
+      const offer = getRestoreOffer?.();
+      if (offer && (!offer.ok || !offer.available)) {
+        reportRestore({ ok: false, changed: false, errors: offer.errors || ['No saved reading-data copy is available.'] }, '');
+        return;
+      }
+      restoring = true;
+      renderRestoreOffer();
+      let cancelled = false;
+      try {
+        const yes = await askConfirm({
+          title: offer?.kind === 'undo' ? 'Undo the last reading-data restore?' : 'Replace reading data with the saved copy?',
+          body: `${offer?.summary || ''} This replaces all current lists, notes and reading progress.${offer?.edited ? ' Reading data has changed since the restore; these intervening edits will be replaced.' : ''} The data you replace stays as the next saved copy, not another Undo. Completion history and settings stay unchanged. Import draft source is retained and needs Resume review.`,
+          confirmLabel: offer?.kind === 'undo' ? 'Undo restore' : 'Restore saved copy',
+        });
+        if (!yes) { cancelled = true; return; }
+        const res = onUndoRestore(offer);
+        reportRestore(res, offer?.kind === 'undo'
+          ? 'Restore undone. The replaced reading data is retained as a saved copy, not another Undo.'
+          : 'Saved reading-data copy restored. The replaced data is retained as the next saved copy.');
+      } catch (error) {
+        reportRestore({ ok: false, changed: null, errors: [error.message] }, '');
+      } finally {
+        restoring = false;
+        renderRestoreOffer();
+        if (cancelled && nodes.undoRestore.isConnected && !nodes.undoRestore.closest('[hidden]')) nodes.undoRestore.focus();
+      }
     });
 
     // Measured at 200 per cent zoom, the API notice landed 658 px above view, and cache clearing
@@ -312,5 +397,6 @@ export function createDataView({
     clearLocalConnectionReport,
     renderCacheUsage,
     renderLocalConnectionStatus,
+    renderRestoreOffer,
   };
 }

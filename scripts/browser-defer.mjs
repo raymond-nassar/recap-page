@@ -215,11 +215,16 @@ export const deferPersistence = {
       input.files = files.files;
       input.dispatchEvent(new Event('change', { bubbles: true }));
     }, exportBackup(setDeferred(state, 'defer', ids[2])));
+    await page.waitForSelector('#ask[open]');
+    await click(page, '#ask-ok');
     await page.waitForFunction(() => document.querySelector('#restore-report').textContent.trim().length > 0);
     t.check('JSON restore preserves unread and dormant intent and read timestamp',
       (await saved(page)).lists.defer.deferredIssueIds.join() === ids.join()
       && (await saved(page)).read[ids[0]] === 510);
     await click(page, '#btn-undo-restore');
+    await page.waitForSelector('#ask[open]');
+    await click(page, '#ask-ok');
+    await page.waitForFunction(() => !document.querySelector('#ask').open && !document.querySelector('#btn-undo-restore').disabled);
     t.check('Undo restore returns the previous exact list choices',
       (await saved(page)).lists.defer.deferredIssueIds.join() === `${ids[0]},${ids[1]}`);
     await page.evaluate(async () => {

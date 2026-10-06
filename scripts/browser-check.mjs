@@ -490,6 +490,35 @@ const EXPECTED_TITLES = ORDER.items.map((i) => i.title);
 // the tree modified, which is a failure mode a file-editing harness has and this one cannot.
 const MUTATIONS = [
   {
+    id: 'restore-copy-unlabeled-redo',
+    breaks: 'restore-copy-workflow',
+    why: 'consumed Undo is incorrectly minted again for the retained opposite-direction copy',
+    rewriteStorage: (source) => source.replace(
+      'this.undoSnapshot = recovering ? null : priorMain || null;',
+      'this.undoSnapshot = priorMain || null;',
+    ),
+  },
+  {
+    id: 'restore-copy-stale-confirmation',
+    breaks: 'restore-copy-workflow',
+    why: 'the captured reader/snapshot guard is bypassed after confirmation',
+    rewriteStorage: (source) => source.replace('if (expected) {', 'if (false && expected) {')
+      .replace('if (expected && (priorMain', 'if (false && expected && (priorMain'),
+  },
+  {
+    id: 'backup-guidance-regression',
+    breaks: 'backup-transfer-guidance',
+    why: 'parser-led refusals and closed incident tools remove actionable backup recovery guidance',
+    rewriteData: (source) => source.replaceAll(
+      'Reading data is unchanged. Choose a reading-data JSON backup from this app and try again.',
+      'Technical backup refusal.',
+    ),
+    rewriteCompletion: (source) => source.replace(
+      'nodes.historyTroubleshooting.open = true;',
+      'nodes.historyTroubleshooting.open = false;',
+    ),
+  },
+  {
     id: 'reorientation-return-lost-445',
     breaks: 'reorientation-445',
     why: 'Back loses the exact earlier-issue picker link and focuses the view heading instead',
@@ -2291,6 +2320,10 @@ const SCENARIOS = [
           input.files = transfer.files;
           input.dispatchEvent(new Event('change', { bubbles: true }));
         }, text);
+        if (text !== 'invalid json') {
+          await page.waitForSelector('#ask[open]');
+          await click(page, '#ask-ok');
+        }
         await page.waitForFunction(() => document.querySelector('#restore-report').textContent.trim().length > 0);
         await focusIssue(-8);
       };
@@ -2308,6 +2341,8 @@ const SCENARIOS = [
       await use(-8, 44);
       await go('#/data', '#view-data:not([hidden])');
       await click(page, '#btn-undo-restore');
+      await page.waitForSelector('#ask[open]');
+      await click(page, '#ask-ok');
       await focusIssue(-8);
       t.check('Undo restore also clears temporary link', await page.$eval('#btn-issue-read', (node) => node.hidden));
       await use(-8, 44);
@@ -7981,6 +8016,151 @@ const SCENARIOS = [
     },
   },
   {
+    id: 'restore-copy-workflow',
+    title: 'one-shot Undo and retained copies explain replacement and refuse stale confirmation',
+    async run(page, t) {
+      let five = createEmptyState();
+      for (let i = 0; i < 5; i += 1) five = createList(five, { id: `saved-${i}`, name: `Saved ${i}` });
+      await open(page, '/#/data');
+      await page.evaluate((state) => localStorage.setItem('mrt.state.v2', JSON.stringify(state)), five);
+      await page.reload({ waitUntil: 'load' });
+      await page.waitForSelector('#view-data:not([hidden])');
+      const restored = createList(createEmptyState(), { id: 'one', name: 'One restored list' });
+      const pick = async () => {
+        await page.evaluate((state) => {
+          const files = new DataTransfer();
+          files.items.add(new File([JSON.stringify(state)], 'reading-backup.json', { type: 'application/json' }));
+          const input = document.querySelector('#restore-file');
+          input.files = files.files;
+          input.dispatchEvent(new Event('change', { bubbles: true }));
+        }, restored);
+        await page.waitForSelector('#ask[open]');
+      };
+      await pick();
+      t.check('file selection confirms replacement before changing five saved lists',
+        (await readState(page)).listOrder.length === 5
+          && await page.$eval('#ask-body', (node) => node.textContent.includes('Completion history and settings stay unchanged')));
+      await click(page, '#ask-cancel');
+      await page.waitForFunction(() => !document.querySelector('#restore-file').disabled);
+      t.check('cancel preserves reading data and returns focus after input reenables',
+        (await readState(page)).listOrder.length === 5
+          && await page.evaluate(() => document.activeElement.id === 'restore-file'));
+      await pick();
+      await click(page, '#ask-ok');
+      await page.waitForFunction(() => document.querySelector('#restore-report').textContent.includes('Reading data restored'));
+      t.check('first restore offers one Undo with the five-list snapshot summary',
+        await page.$eval('#btn-undo-restore', (node) => node.textContent === 'Undo last restore')
+          && await page.$eval('#restore-copy-summary', (node) => node.textContent.startsWith('5 lists')));
+      await page.evaluate(async () => {
+        const { Store } = await import('./js/storage.js');
+        const { createList } = await import('./js/lib/model.js');
+        const editor = new Store();
+        editor.load();
+        editor.update((state) => createList(state, { id: 'intervening', name: 'Intervening edit' }));
+      });
+      await click(page, '#btn-undo-restore');
+      await page.waitForSelector('#ask[open]');
+      t.check('Undo confirmation explicitly warns that intervening edits will be replaced',
+        await page.$eval('#ask-body', (node) => node.textContent.includes('intervening edits')));
+      await click(page, '#ask-ok');
+      await page.waitForFunction(() => document.querySelector('#restore-report').textContent.includes('Restore undone'));
+      t.check('Undo recovers five lists and never offers the reverse swap under the Undo label',
+        (await readState(page)).listOrder.length === 5
+          && await page.$eval('#btn-undo-restore', (node) => node.textContent === 'Restore saved reading-data copy'));
+      const retained = await page.evaluate(() => localStorage.getItem('mrt.state.prerestore'));
+      t.check('the opposite-direction copy retains the intervening edit rather than deleting recovery',
+        JSON.parse(retained).lists.intervening?.name === 'Intervening edit');
+      await click(page, '#btn-export-restore-copy');
+      await page.waitForFunction(() => window.__mrtDownloads.length > 0);
+      t.check('retained copy download requests exact raw bytes without claiming verified desktop save',
+        await page.evaluate((raw) => window.__mrtDownloads.some((entry) => entry.text === raw), retained));
+      await page.reload({ waitUntil: 'load' });
+      await page.waitForSelector('#view-data:not([hidden])');
+      t.check('reload retains bytes and uses neutral direction, not a fabricated Undo',
+        await page.$eval('#btn-undo-restore', (node) => node.textContent === 'Restore saved reading-data copy')
+          && await page.evaluate((raw) => localStorage.getItem('mrt.state.prerestore') === raw, retained));
+      await click(page, '#btn-undo-restore');
+      await page.waitForSelector('#ask[open]');
+      const peer = await page.browserContext().newPage();
+      try {
+        peer.__denyExternal = true;
+        await preparePage(peer, page.__origin, page.__mutation);
+        await open(peer, '/#/data');
+        const foreign = await peer.evaluate(() => {
+          const raw = JSON.parse(localStorage.getItem('mrt.state.v2'));
+          raw.writeToken = 'foreign-confirmation-value';
+          raw.lists['saved-0'].note = 'New work in another tab';
+          const text = JSON.stringify(raw);
+          localStorage.setItem('mrt.state.v2', text);
+          return text;
+        });
+        await peer.close();
+        await click(page, '#ask-ok');
+        await page.waitForFunction(() => !document.querySelector('#ask').open && !document.querySelector('#btn-undo-restore').disabled);
+        t.check('cross-tab replacement while confirmation is open refuses the stale restore without overwrite',
+          await page.evaluate((raw) => localStorage.getItem('mrt.state.v2') === raw, foreign)
+            && await page.$eval('#restore-report', (node) => node.textContent.includes('changed while you were choosing')));
+      } finally {
+        if (!peer.isClosed()) await peer.close();
+      }
+      await click(page, '#btn-undo-restore');
+      await page.waitForSelector('#ask[open]');
+      await click(page, '#ask-ok');
+      await page.waitForFunction(() => document.querySelector('#restore-report').textContent.includes('Saved reading-data copy restored'));
+      t.check('explicit saved-copy restoration deliberately recovers the two-list replacement',
+        (await readState(page)).listOrder.length === 2 && !!(await readState(page)).lists.intervening);
+    },
+  },
+  {
+    id: 'backup-transfer-guidance',
+    title: 'independent normal backups are adjacent and malformed input leads with useful recovery',
+    async run(page, t) {
+      await importOrder(page);
+      await click(page, '.ri[data-view="data"]');
+      t.check('reading and history normal backups are together above exceptional salvage tools', await page.evaluate(() => {
+        const history = document.querySelector('#completion-history-controls');
+        const card = document.querySelector('#btn-export-json').closest('.card');
+        return card.contains(history) && !!(history.compareDocumentPosition(document.querySelector('#salvage-list')) & Node.DOCUMENT_POSITION_FOLLOWING);
+      }));
+      t.check('complete transfer explicitly names retained draft source and excludes settings', await page.evaluate(() => {
+        const copy = document.querySelector('#btn-export-json').closest('.card').textContent;
+        return copy.includes('completion-history') && copy.includes('retained draft source') && copy.includes('Settings are not included');
+      }));
+      t.check('healthy history keeps troubleshooting behind a closed native disclosure',
+        await page.$eval('#history-troubleshooting', (node) => !node.open && node.contains(document.querySelector('#btn-copy-history'))
+          && node.contains(document.querySelector('#btn-retry-history'))));
+      const before = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      await page.evaluate(() => {
+        const files = new DataTransfer();
+        files.items.add(new File(['not JSON'], 'invalid.json', { type: 'application/json' }));
+        const input = document.querySelector('#restore-file');
+        input.files = files.files;
+        input.dispatchEvent(new Event('change', { bubbles: true }));
+      });
+      await page.waitForFunction(() => !document.querySelector('#restore-file').disabled && document.querySelector('#restore-report').textContent.length > 0);
+      t.check('malformed backup names unchanged reading data and useful next action before technical detail',
+        await page.$eval('#restore-report', (node) => node.textContent.includes('Reading data is unchanged. Choose a reading-data JSON backup'))
+          && await page.evaluate((raw) => localStorage.getItem('mrt.state.v2') === raw && !document.querySelector('#ask').open, before));
+      t.check('malformed backup focuses its enabled field with associated invalid status',
+        await page.evaluate(() => document.activeElement.id === 'restore-file'
+          && document.activeElement.getAttribute('aria-invalid') === 'true'
+          && document.activeElement.getAttribute('aria-describedby').includes('restore-report')));
+      await page.evaluate(() => localStorage.setItem('mrt.list-history.v1', 'unreadable history fixture'));
+      await page.reload({ waitUntil: 'load' });
+      await page.waitForSelector('#view-data:not([hidden])');
+      const incident = await page.evaluate(() => ({
+        open: document.querySelector('#history-troubleshooting').open,
+        status: document.querySelector('#history-status').textContent,
+        disabled: document.querySelector('#btn-copy-history').disabled,
+      }));
+      t.check('an unreadable saved history automatically reveals copy and retry without hiding its error',
+        incident.open && incident.status.length > 0 && !incident.disabled, JSON.stringify(incident));
+      t.check('history incident leaves reading bytes and retained history untouched',
+        await page.evaluate((raw) => localStorage.getItem('mrt.state.v2') === raw
+          && localStorage.getItem('mrt.list-history.v1') === 'unreadable history fixture', before));
+    },
+  },
+  {
     id: 'persistence',
     title: 'progress survives a reload',
     async run(page, t) {
@@ -10813,10 +10993,14 @@ const SCENARIOS = [
         input.files = files.files;
         input.dispatchEvent(new Event('change', { bubbles: true }));
       }, backup);
-      await page.waitForFunction(() => document.querySelector('#restore-report').textContent.includes('Restored.'));
+      await page.waitForSelector('#ask[open]');
+      await click(page, '#ask-ok');
+      await page.waitForFunction(() => document.querySelector('#restore-report').textContent.includes('Reading data restored.'));
       t.check('restore leaves the disabled local preference and progress intact',
         disabled(await presentation()) && await count() === 5);
       await click(page, '#btn-undo-restore');
+      await page.waitForSelector('#ask[open]');
+      await click(page, '#ask-ok');
       t.check('undo restore also leaves the shortcut off', disabled(await presentation()));
       await click(page, '#opt-reading-shortcut');
       t.check('re-enabling restores all advertised D behavior', enabled(await presentation()));
@@ -14623,6 +14807,8 @@ async function preparePage(page, origin, mutation) {
     ['/dev-faults.js', mutation?.rewriteFaults],
     ['/js/main.js', mutation?.rewriteMain],
     ['/js/views/add.js', mutation?.rewriteAdd],
+    ['/js/views/data.js', mutation?.rewriteData],
+    ['/js/views/completion.js', mutation?.rewriteCompletion],
     ['/js/views/catalog.js', mutation?.rewriteCatalogView],
     ['/js/views/reading.js', mutation?.rewriteReading],
     ['/js/views/library.js', mutation?.rewriteLibrary],
@@ -15829,6 +16015,8 @@ async function restoreRemovalFixture(page, saved) {
     input.files = files.files;
     input.dispatchEvent(new Event('change', { bubbles: true }));
   }, saved);
+  await page.waitForSelector('#ask[open]');
+  await click(page, '#ask-ok');
   await page.waitForFunction(() => document.querySelector('#restore-report').textContent.trim().length > 0);
 }
 
@@ -16081,7 +16269,7 @@ SCENARIOS.push(
       const replaced = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
       await page.evaluate(() => window.__restoredSource444.click());
       t.check('backup restoration withdraws the offer and a stale action cannot change the restored dataset',
-        await page.$eval('#restore-report', (node) => node.textContent.startsWith('Restored.'))
+        await page.$eval('#restore-report', (node) => node.textContent.startsWith('Reading data restored.'))
         && await page.evaluate((raw) => localStorage.getItem('mrt.state.v2') === raw, replaced)
         && !(await removalNotice(page)).buttons.includes('Undo remove'));
 

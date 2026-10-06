@@ -181,8 +181,76 @@ test('restore notifies error for oversized file', async () => {
   view.wire();
   await nodes.restoreFile._fire({ target: { files: [{ size: 999999999 }], value: 'x' } });
   assert.equal(notifications.length, 1);
-  assert.equal(notifications[0].msg, 'too big');
+  assert.match(notifications[0].msg, /^Reading data is unchanged\..*Choose.*too big/);
   assert.equal(notifications[0].kind, 'error');
+});
+
+test('restore confirms captured replacement, cancels safely and restores focus after reenable', async () => {
+  const nodes = stubElements();
+  const expected = { ok: true, main: 'current', snapshot: 'copy', available: true, kind: 'undo', edited: true, summary: '5 lists.' };
+  const calls = [];
+  let yes = false;
+  const view = createDataView(stubDeps({
+    elements: () => nodes, getRestoreOffer: () => expected,
+    inspectBackup: () => ({ ok: true }),
+    askConfirm: async (options) => { calls.push(options); return yes; },
+    onRestore: (text, captured) => { calls.push({ text, captured }); return { ok: true }; },
+    onUndoRestore: (captured) => { calls.push({ captured }); return { ok: true }; },
+  }));
+  view.wire();
+  nodes.restoreFile.files = [{ text: async () => 'backup' }];
+  await nodes.restoreFile._fire({ target: nodes.restoreFile });
+  assert.equal(nodes.restoreFile.disabled, false);
+  assert.equal(nodes.restoreFile.focused, true);
+  assert.equal(calls.length, 1);
+  yes = true;
+  await nodes.restoreFile._fire({ target: nodes.restoreFile });
+  assert.equal(calls[2].captured, expected);
+  assert.equal(calls[2].text, 'backup');
+  yes = false;
+  await nodes.undoRestore._fire();
+  assert.match(calls.at(-1).body, /intervening edits/);
+  assert.equal(nodes.undoRestore.focused, true);
+  assert.equal(nodes.undoRestore.disabled, false);
+});
+
+test('invalid reading backups and failed file reads lead with non-mutation and next action', async () => {
+  for (const mode of ['invalid', 'read']) {
+    const nodes = stubElements();
+    const notices = [];
+    let applied = 0;
+    const view = createDataView(stubDeps({
+      elements: () => nodes,
+      inspectBackup: () => ({ ok: false, errors: ['Technical parser detail'] }),
+      onRestore: () => { applied += 1; },
+      notify: (_target, message) => notices.push(message),
+    }));
+    view.wire();
+    nodes.restoreFile.files = [{ text: async () => { if (mode === 'read') throw new Error('Cannot read'); return 'bad'; } }];
+    await nodes.restoreFile._fire({ target: nodes.restoreFile });
+    assert.equal(applied, 0);
+    assert.match(notices[0], /^Reading data is unchanged\..*Choose/);
+    assert.equal(nodes.restoreFile.getAttribute('aria-invalid'), 'true');
+    assert.ok(nodes.restoreFile.getAttribute('aria-describedby').includes('restore-report'));
+  }
+});
+
+test('unknown or changed restore outcomes never claim unchanged reading data', async () => {
+  for (const changed of [null, true]) {
+    const nodes = stubElements();
+    const notices = [];
+    const view = createDataView(stubDeps({
+      elements: () => nodes,
+      askConfirm: async () => true,
+      onRestore: () => ({ ok: false, changed, errors: ['Verification failed'] }),
+      notify: (_target, message) => notices.push(message),
+    }));
+    view.wire();
+    nodes.restoreFile.files = [{ text: async () => 'backup' }];
+    await nodes.restoreFile._fire({ target: nodes.restoreFile });
+    assert.doesNotMatch(notices[0], /unchanged|nothing was changed/i);
+    assert.match(notices[0], changed === null ? /unknown/ : /Reading data changed/);
+  }
 });
 
 // -- service replacement ownership in main --
@@ -218,7 +286,7 @@ function stubNode(overrides = {}) {
     closest() { return null; },
     focus() { this.focused = true; },
     addEventListener(name, fn) { listeners[name] = fn; },
-    _fire(arg) { return listeners[Object.keys(listeners)[0]]?.(arg); },
+    _fire(arg) { return (listeners.change || listeners[Object.keys(listeners)[0]])?.(arg); },
     ...overrides,
   };
 }
@@ -236,6 +304,8 @@ function stubElements() {
     btnExportOrder: stubNode(),
     restoreFile: stubNode(),
     undoRestore: stubNode(),
+    restoreCopySummary: stubNode(),
+    btnExportRestoreCopy: stubNode(),
     formSettings: stubNode(),
     btnClearCache: stubNode(),
     btnWipe: stubNode(),

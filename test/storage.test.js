@@ -1178,6 +1178,94 @@ test('a browser that will not say what it holds latches the store instead of gue
 // follows a latch reads a second key. The store below is wired the way the app wires it.
 const PRERESTORE_KEY = 'mrt.state.prerestore';
 
+test('restore offer is one-shot by identity while raw copies survive Undo, edits and reload', () => {
+  const storage = fakeStorage({ [KEY]: goodBackup() });
+  const store = new Store({ storage });
+  store.load();
+  assert.equal(store.restore(replacementBackup()).ok, true);
+  assert.equal(store.restoreOffer().kind, 'undo');
+  store.update((state) => createList(state, { id: 'edit', name: 'Edit' }));
+  assert.equal(store.restoreOffer().edited, true);
+  assert.equal(store.undoRestore(store.restoreOffer()).ok, true);
+  assert.equal(store.restoreOffer().kind, 'copy', 'consumption cannot offer an unlabeled Redo');
+  const raw = store.restoreOffer().snapshot;
+  assert.ok(raw.includes('Edit'), 'replaced edits remain recoverable exactly');
+  const reload = new Store({ storage });
+  reload.load();
+  assert.equal(reload.restoreOffer().kind, 'copy');
+  assert.equal(reload.restoreOffer().snapshot, raw);
+  assert.match(reload.restoreOffer().summary, /lists.*comics.*read marks/);
+  assert.equal(reload.undoRestore(reload.restoreOffer()).ok, true);
+  assert.ok(reload.state.lists.edit);
+});
+
+test('captured restore refuses changed reader or snapshot bytes and preserves all current values', () => {
+  for (const key of [KEY, PRERESTORE_KEY]) {
+    const storage = fakeStorage({ [KEY]: goodBackup() });
+    const store = new Store({ storage });
+    store.load();
+    store.restore(replacementBackup());
+    const captured = store.captureRestore();
+    storage.map.set(key, goodBackup());
+    const before = new Map(storage.map);
+    const result = store.undoRestore(captured);
+    assert.equal(result.ok, false);
+    assert.match(result.errors.join(' '), /changed/);
+    assert.deepEqual(storage.map, before);
+    assert.equal(store.restoreOffer().kind, key === PRERESTORE_KEY ? 'copy' : 'undo');
+  }
+});
+
+test('silent snapshot preservation failure refuses reader replacement and keeps previous bytes', () => {
+  const storage = fakeStorage({ [KEY]: goodBackup(), [PRERESTORE_KEY]: 'older exact copy' });
+  const store = new Store({ storage });
+  store.load();
+  storage.silentKey = PRERESTORE_KEY;
+  const before = storage.getItem(KEY);
+  const result = store.restore(replacementBackup());
+  assert.equal(result.ok, false);
+  assert.equal(result.changed, false);
+  assert.equal(storage.getItem(KEY), before);
+  assert.equal(storage.getItem(PRERESTORE_KEY), 'older exact copy');
+  assert.match(result.errors.join(' '), /could not be preserved/);
+
+  storage.silentKey = null;
+  const get = storage.getItem.bind(storage);
+  let snapshotReads = 0;
+  storage.getItem = (key) => {
+    if (key === PRERESTORE_KEY && ++snapshotReads === 2) throw new Error('snapshot verification refused');
+    return get(key);
+  };
+  const refusedReadBack = store.restore(replacementBackup());
+  assert.equal(refusedReadBack.ok, false);
+  assert.equal(refusedReadBack.changed, false);
+  assert.equal(get(KEY), before);
+  assert.equal(get(PRERESTORE_KEY), 'older exact copy');
+  assert.match(refusedReadBack.errors.join(' '), /snapshot verification refused/);
+});
+
+test('legacy, invalid, missing and unreadable retained copies have truthful non-mutating offers', () => {
+  const rawBackup = goodBackup();
+  const storage = fakeStorage({ [KEY]: rawBackup, [PRERESTORE_KEY]: rawBackup });
+  const store = new Store({ storage });
+  store.load();
+  assert.equal(store.restoreOffer().kind, 'copy');
+  assert.equal(store.restoreOffer().identical, true);
+  for (const raw of ['opaque bytes', JSON.stringify({ schemaVersion: 99 })]) {
+    storage.map.set(PRERESTORE_KEY, raw);
+    assert.equal(store.restoreOffer().snapshot, raw);
+    assert.match(store.restoreOffer().summary, /cannot be restored/);
+    const before = new Map(storage.map);
+    assert.equal(store.undoRestore(store.captureRestore()).ok, false);
+    assert.deepEqual(storage.map, before);
+  }
+  storage.map.delete(PRERESTORE_KEY);
+  assert.equal(store.restoreOffer().available, false);
+  storage.failReadKey = PRERESTORE_KEY;
+  assert.equal(store.restoreOffer().ok, false);
+  assert.match(store.restoreOffer().errors.join(' '), /Could not check/);
+});
+
 test('a browser that stops answering reads still gets its answer back to the reader', () => {
   const storage = fakeStorage({ [KEY]: goodBackup() });
   const store = new Store({ storage });

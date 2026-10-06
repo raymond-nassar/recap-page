@@ -215,8 +215,22 @@ test('each report pane hears only about the control it sits with', () => {
   assert.equal(noticeTarget('API URL saved.'), '#api-report');
   assert.equal(noticeTarget('The local app connection is ready.'), '#local-connection-report');
   assert.equal(noticeTarget('Cached metadata cleared.'), '#cache-report');
-  assert.equal(noticeTarget('Restored. Your previous data was snapshotted'), '#restore-report');
-  assert.equal(noticeTarget('Restore undone.'), '#restore-report');
+  assert.match(DATA_VIEW, /if \(res\.ok\) notify\('#restore-report', success, 'ok'\)/);
+  assert.match(DATA_VIEW, /reportRestore\(res, 'Reading data restored/);
+  assert.match(DATA_VIEW, /Restore undone\. The replaced reading data/);
+});
+
+test('normal reading, history and draft transfers precede exceptional recovery with independent formats', () => {
+  assert.ok(idPosition(VIEW, 'btn-export-json') < idPosition(VIEW, 'normal-backup-history'));
+  assert.ok(idPosition(VIEW, 'normal-backup-history') < idPosition(VIEW, 'salvage-list'));
+  assert.ok(idPosition(VIEW, 'btn-export-draft') < idPosition(VIEW, 'salvage-list'));
+  assert.match(VIEW, /complete reading and history transfer/);
+  assert.match(VIEW, /Settings are not included/);
+  assert.match(VIEW, /draft or retained draft source/);
+  const details = sliceElement(HTML, 'details', openingTags(HTML, 'details')
+    .find((entry) => getAttribute(entry.open, 'id') === 'history-troubleshooting').start);
+  assert.ok(details.includes('btn-copy-history') && details.includes('btn-retry-history'));
+  assert.match(HTML, /saved-value copy preserves unreadable data exactly; it is not a normal backup/);
 });
 
 test('the local connection control names its status and recovery guidance', () => {

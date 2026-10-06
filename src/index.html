@@ -842,19 +842,22 @@
             <section class="setgroup">
               <h2>Data safety</h2>
               <div class="card card-static addpri">
-                <h3>Backup and restore</h3>
-                <p class="rail-hint">Back up regularly. Reading-data backups contain lists, notes, read progress and deferrals. A complete transfer also needs the separate completion-history backup below and the separate import-draft file when a draft is present.</p>
+                <h3>Back up reading data</h3>
+                <p class="rail-hint">For a complete reading and history transfer, download the reading-data and completion-history backups together, plus the separate import-draft file when a draft or retained draft source is present. Settings are not included. These are separate files, not interchangeable formats.</p>
                 <div class="field-row">
                   <button type="button" id="btn-export-json" class="btn">Download reading-data backup</button>
                 </div>
+                <div id="normal-backup-history"></div>
 
                 <h4>Restore from a backup</h4>
-                <p class="rail-hint">A snapshot of your current reading data is kept, so a restore can be undone once. Restoring or undoing reading data does not change completion and enjoyment history.</p>
+                <p class="rail-hint">Restoring replaces all reading data after confirmation and keeps a saved copy of what it replaces. Undo is offered once in this tab. After Undo or reload, use the clearly named saved-copy action instead. Completion and enjoyment history are unchanged.</p>
                 <div class="field-row">
-                  <input type="file" id="restore-file" accept="application/json,.json" aria-label="Backup file to restore" />
-                  <button type="button" id="btn-undo-restore" class="btn btn-g" hidden>Undo last restore</button>
+                  <input type="file" id="restore-file" accept="application/json,.json" aria-label="Reading-data backup file to restore" aria-describedby="restore-report" />
+                  <button type="button" id="btn-undo-restore" class="btn btn-g" aria-describedby="restore-copy-summary" hidden>Undo last restore</button>
+                  <button type="button" id="btn-export-restore-copy" class="btn btn-g" hidden>Download saved reading-data copy</button>
                 </div>
-                <div id="restore-report" class="results"></div>
+                <p id="restore-copy-summary" class="rail-hint"></p>
+                <div id="restore-report" class="results" tabindex="-1"></div>
                 <h4>Separate import draft</h4>
                 <p class="rail-hint">Includes exact pasted source, source positions, selected matches and retained previous sources. No automatic expiry. Reading-data and completion-history backups do not include it. Restoring reading data keeps the draft but requires review before applying more comics.</p>
                 <div class="field-row">
@@ -1156,15 +1159,20 @@
               <div class="cta"><button type="button" id="btn-retry-recommendations" class="btn btn-g" hidden>Try suggestions again</button><button type="button" id="btn-recommendation-browse" class="btn btn-g">Browse Reading Lists</button></div>
             </section>
           </section>
-          <section id="completion-history-controls" class="card card-static setting" aria-labelledby="completion-history-h">
-            <h3 id="completion-history-h">Completion history</h3>
-            <p class="rail-hint">Completion dates and enjoyment are saved separately from reading data. Download both backups to move everything to another browser. Reading-data restore and Undo leave this history alone; only matching saved lists display it.</p>
+          <section id="completion-history-controls" aria-labelledby="completion-history-h">
+            <h4 id="completion-history-h">Completion history</h4>
+            <p class="rail-hint">Completion dates and enjoyment are saved separately. Include this backup with reading data for a complete reading and history transfer, and include the separate import-draft file when draft source is retained. Settings are not included. Reading-data restore and Undo leave history alone; only matching saved lists display it.</p>
             <p id="history-status" class="rail-hint"></p>
-            <div class="field-row"><button type="button" id="btn-export-history" class="btn btn-g">Download completion-history backup</button><button type="button" id="btn-copy-history" class="quiet">Download saved-value copy</button><button type="button" id="btn-retry-history" class="quiet">Retry reading history</button></div>
+            <div class="field-row"><button type="button" id="btn-export-history" class="btn btn-g">Download completion-history backup</button></div>
             <label for="restore-history-file">Restore a completion-history backup</label>
             <input type="file" id="restore-history-file" accept="application/json,.json" />
-            <p class="rail-hint">Restoring replaces only completion and enjoyment, after confirmation, with no automatic Undo. The saved-value copy preserves unreadable data for troubleshooting; it is not a normal backup.</p>
-            <div id="history-report" class="report"></div>
+            <p class="rail-hint">Restoring replaces only completion and enjoyment, after confirmation, with no automatic Undo.</p>
+            <div id="history-report" class="report" tabindex="-1"></div>
+            <details id="history-troubleshooting" class="field-disclosure action-disclosure">
+              <summary>Completion-history troubleshooting</summary>
+              <p class="rail-hint">The saved-value copy preserves unreadable data exactly; it is not a normal backup. Retry reading history after resolving a storage problem.</p>
+              <div class="field-row"><button type="button" id="btn-copy-history" class="quiet">Download saved-value copy</button><button type="button" id="btn-retry-history" class="quiet">Retry reading history</button></div>
+            </details>
           </section>
           <footer class="app-footer">
             <button type="button" class="linkish" data-view="about" aria-description="Read full disclaimers and credits">

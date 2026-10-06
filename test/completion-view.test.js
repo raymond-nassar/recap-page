@@ -15,6 +15,8 @@ function node(props = {}, children = []) {
     classList: { toggle(name, force) { if (force) classes.add(name); else classes.delete(name); } },
     addEventListener(name, listener) { this.listeners[name] = listener; },
     setAttribute(name, value) { this.attributes[name] = value; },
+    getAttribute(name) { return this.attributes[name] ?? null; },
+    removeAttribute(name) { delete this.attributes[name]; },
     replaceChildren(...next) { this.children = next; },
     prepend(child) { this.children.unshift(child); },
     append(child) { this.children.push(child); },
@@ -44,6 +46,7 @@ function fixture() {
     'recommendationBrowse', 'collectionCount', 'collectionStatus', 'collectionSection',
     'collectionResults', 'home', 'homeYours', 'library', 'libraryYours', 'dataSafety',
     'historyControls', 'historyStatus', 'historyExport', 'historyCopy', 'historyRetry', 'historyRestore',
+    'backupHistory', 'historyTroubleshooting',
   ].map((name) => [name, node()]));
   nodes.collectionFilters = [node({ value: 'all' }), node({ value: 'enjoyed' })];
   nodes.home.append(nodes.homeYours);
@@ -198,6 +201,31 @@ test('wrap-up completes and reopens at the existing visibility boundaries withou
       assert.equal(id === oldId, version !== 1);
     }
   } finally { Date.now = originalNow; }
+});
+
+test('healthy history keeps exceptional tools disclosed and incidents open without moving focus', async () => {
+  const h = fixture();
+  await h.view.render();
+  assert.equal(h.nodes.historyTroubleshooting.open, false);
+  assert.ok(h.nodes.backupHistory.children.includes(h.nodes.historyControls));
+  h.history.known = false;
+  h.history.lastError = 'Saved history could not be read';
+  await h.view.render();
+  assert.equal(h.nodes.historyTroubleshooting.open, true);
+  assert.match(h.nodes.historyStatus.textContent, /could not be read/);
+  assert.equal(h.nodes.historyRetry.disabled, false);
+  assert.equal(h.nodes.historyCopy.disabled, false);
+  assert.equal(h.nodes.historyRetry.focused, undefined, 'passive errors must not steal focus');
+});
+
+test('invalid completion backup gives unchanged history and next action without replacement', async () => {
+  const h = fixture();
+  h.current = 'data';
+  h.nodes.historyRestore.files = [{ text: async () => 'not history JSON' }];
+  await h.nodes.historyRestore.listeners.change({ target: h.nodes.historyRestore });
+  assert.equal(h.calls.restored, undefined);
+  assert.match(h.calls.notify.at(-1)[1], /^Completion history is unchanged\..*Choose a completion-history JSON backup/);
+  assert.equal(h.nodes.historyRestore.disabled, false);
 });
 
 test('compact completion status exposes unavailable actions without healthy explanatory prose', async () => {

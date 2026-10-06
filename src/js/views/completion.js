@@ -2,6 +2,7 @@ import { listReadingProgress } from '../lib/model.js';
 import { listHistoryIdentity, parseListHistory } from '../lib/listHistory.js';
 import { uiIcon } from '../lib/uiIcon.js';
 import { labelledName } from '../lib/accname.js';
+import { wireFieldValidation } from './shared/field-validation.js';
 
 export const LIST_FEEDBACK_URL = 'https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAMAAEys2uVUMkJLVFlNTUhaUFk0NERQQzYxT0xSSDAwVy4u';
 export const PRIVATE_FEEDBACK_URL = 'https://github.com/raymond-nassar/recap-page/security/policy';
@@ -39,6 +40,7 @@ export function createCompletionView({
   let feedbackOpener = null;
   let feedbackIdentity = null;
   let restoreFeedbackFocus = true;
+  let historyValidation;
   const gateways = new Map();
 
   function currentList() {
@@ -280,6 +282,9 @@ export function createCompletionView({
     nodes.historyExport.disabled = !history.known || history.busy;
     nodes.historyRestore.disabled = restoring || history.busy || !!history.writeUnavailable || history.seenRaw === undefined;
     nodes.historyRetry.disabled = history.busy;
+    if ((!history.known || history.writeUnavailable || history.lastError) && nodes.historyTroubleshooting) {
+      nodes.historyTroubleshooting.open = true;
+    }
   }
 
   function render() {
@@ -310,16 +315,18 @@ export function createCompletionView({
     const generation = ++importGeneration;
     const refusal = backupFileRefusal(file);
     if (refusal) {
-      notify('#history-report', refusal, 'error');
+      historyValidation.fail(`Completion history is unchanged. Choose a completion-history JSON backup from this app and try again. ${refusal}`);
       input.value = '';
       return;
     }
     restoring = true;
     let cancelled = false;
+    let replacementReached = false;
     renderHistory();
     try {
       const text = await file.text();
       parseListHistory(text);
+      historyValidation.clear();
       if (generation !== importGeneration || getView() !== 'data') return;
       const yes = await askConfirm({
         title: 'Replace completion and enjoyment history?',
@@ -328,26 +335,33 @@ export function createCompletionView({
       });
       if (!yes) cancelled = true;
       if (!yes || generation !== importGeneration || getView() !== 'data') return;
+      replacementReached = true;
       const result = await history.restore(text);
       if (result.ok) notify('#history-report', 'Completion history restored. Reading data is unchanged.', 'ok');
     } catch (error) {
-      notify('#history-report', `Completion-history restore refused (${error.message}).`, 'error');
+      if (replacementReached) notify('#history-report', `Completion-history restore did not finish (${error.message}). Check its saved value before retrying.`, 'error');
+      else historyValidation.fail(`Completion history is unchanged. Choose a completion-history JSON backup from this app and try again. ${error.message}`);
     } finally {
       restoring = false;
       input.value = '';
       renderHistory();
-      if (cancelled && generation === importGeneration && getView() === 'data'
+      if ((cancelled || input.getAttribute('aria-invalid') === 'true') && generation === importGeneration && getView() === 'data'
         && input.isConnected && !input.disabled && !input.closest('[hidden]')) input.focus();
     }
   }
 
   function wire() {
     const nodes = elements();
+    historyValidation = wireFieldValidation({
+      field: nodes.historyRestore, reportId: 'history-report',
+      reportError: (message) => notify('#history-report', message, 'error'),
+      invalidMessage: 'Choose a completion-history JSON backup from this app.',
+    });
     nodes.icons.replaceChildren(createIcon('thumb-up', 'gi'));
     nodes.downIcons.replaceChildren(createIcon('thumb-down', 'gi'));
     nodes.listTools.prepend(nodes.complete);
     nodes.readBody.prepend(nodes.wrapup);
-    nodes.dataSafety.append(nodes.historyControls);
+    (nodes.backupHistory || nodes.dataSafety).append(nodes.historyControls);
     nodes.complete.addEventListener('click', () => { void change('complete', null, nodes.complete); });
     nodes.reopen.addEventListener('click', () => { void change('reopen', null, nodes.reopen); });
     for (const [button, rating] of [[nodes.up, 'up'], [nodes.down, 'down']]) {

@@ -302,7 +302,19 @@ Add starts with **Search issues** and **Find a series**. **More ways to add** co
 paste and manual-entry choices. Search keeps its alternatives in **Other ways to find comics**,
 and an empty result offers **Add an issue by hand** directly.
 
-Under **Backup & settings**, **Download backup** and **Restore from a backup** come first.
+Under **Backup & settings**, reading-data and completion-history backup controls are grouped
+together above exceptional recovery tools. For a complete reading and history transfer, download
+both files and the separate import-draft file when a draft or retained draft source is present.
+Settings are not included; these formats cannot be substituted for each other.
+
+Reading-data restore and saved-copy replacement ask for confirmation. The previous exact reading
+data is retained and downloadable. **Undo last restore** is a one-shot offer in the restoring tab.
+After Undo or reload, **Restore saved reading-data copy** names the retained copy without inventing
+its direction. The summary describes its scope and warns about intervening edits. A change while
+confirmation is open refuses replacement; review the current data before trying again.
+Completion history is independent. Its saved-value/retry tools are inside troubleshooting, which
+opens when history needs attention. A malformed backup leaves its data unchanged and names the
+correct backup file to choose before technical details.
 **Checklist and sharing options** contains the optional Markdown exports and their differences.
 The metadata-source form is under **Advanced**, inside **Metadata source**. Restore, undo,
 recovery copies and error reports are not hidden by these disclosures.
